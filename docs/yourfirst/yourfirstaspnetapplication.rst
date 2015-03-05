@@ -38,3 +38,9 @@ That's it for that code block. What if we want to now show some HTML markup?
 	</html>
 
 The above should be highlighted as HTML.
+
+To get started, open Visual Studio and Add a New Project:
+
+.. image:: _static/100-NewProject.png
+
+Next...
