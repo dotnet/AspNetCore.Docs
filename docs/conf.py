@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'aspnet'
-copyright = '2015, Daniel Roth'
+copyright = '2015 Microsoft'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
