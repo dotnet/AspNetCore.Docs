@@ -2,6 +2,7 @@
 
 Your First ASP.NET Application Using Visual Studio
 ==================================================
+By `Steve Smith`_ | Originally Published: 1 June 2015
 
 Header
 ======
@@ -44,3 +45,14 @@ To get started, open Visual Studio and Add a New Project:
 .. image:: _static/100-NewProject.png
 
 Next...
+
+.. _`Steve Smith`:
+ 
+Author
+^^^^^^
+
+Steve Smith is an ASP.NET MVP and Chief Technology Officer at Falafel Software. You can
+follow him on twitter as `@ardalis`_ or on his blog, `ardalis.com`_.
+
+.. _`@ardalis`: http://twitter.com/ardalis
+.. _`ardalis.com`: http://ardalis.com/ardalis
