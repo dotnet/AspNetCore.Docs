@@ -3,14 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to aspnet's documentation!
-==================================
+ASP.NET 5 Documentation
+=======================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
+   yourfirst/yourfirstaspnetapplication
 
 
 Indices and tables
