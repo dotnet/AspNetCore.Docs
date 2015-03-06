@@ -24,21 +24,18 @@ Create a New ASP.NET 5 Project
 To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 
 .. image:: _static/100-new-project.png
-	:width: 500
 
 On the right, choose ASP.NET Web Application. Make sure the framework specified at the top of the window is .NET Framework 4.6. Enter a name and confirm where you would like the project to be created, and click OK.
 
 Next you should see another dialog, the New ASP.NET Project window:
  
 .. image:: _static/200-select-template.png
-	:width: 500
 	
 Select the ASP.NET 5 Starter Web template from the set of ASP.NET 5 templates. These are distinct from the ASP.NET 4.6 templates, which can be used to create ASP.NET projects using the previous version of ASP.NET. Note that you can choose to configure hosting in Microsoft Azure directly from this dialog by checking the box on the right **(ED: confirm this is available at RTM)**. After selecting ASP.NET 5 Starter Web, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.  Your project, once fully loaded, should look like this:
 
 .. image:: _static/300-visual-studio-on-project-load.png
-	:width: 500
 
 Looking at the Solution Explorer and comparing the elements with what we're familiar with in previous versions of ASP.NET, a few things stick out as being new and different. There's now a *wwwroot* folder, with its own icon. Similarly, there's a *Dependencies* folder **and** still a *References* folder – we'll discuss the differences between these two in a moment. Finally, there's a Compiler folder that isn't something we've seen in prior versions of ASP.NET. Rounding out the list of folders, we have Controllers, Models, and Views, which make sense for an ASP.NET MVC project, and Migrations, which holds classes used by Entity Framework to track updates to our model's database schema.
 
@@ -71,14 +68,12 @@ The Dependencies folder contains two subfolders: Bower and NPM. These folders co
 The bower dependencies are controlled by the bower.json file. You’ll notice that each of the items listed in the figure above correspond to dependencies listed in bower.json:
 
 .. image:: _static/600-bower-json.png
-	:width: 500
 
 Each dependency is then further configured in its own section within the bower.json file, indicating how it should be deployed to the wwwroot folder when the bower task is executed.
 
 By default, the bower task is executed using grunt, which is configured in gruntfile.js. The current web template’s gruntfile simply configures bower and npm:
 
 .. image:: _static/700-gruntfile.png
-	:width: 500
 
 (**(TODO)**: Show bower_components and node_modules folders in file system)
 
@@ -88,7 +83,6 @@ Server Side Dependency Management
 The References folder details the server-side references for the project. It should be familiar to ASP.NET developers who have worked with previous versions of ASP.NET, but it has been modified to differentiate between references for different framework targets, such as the full ASP.NET 5.0 vs. ASP.NET Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are typically checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under Options – NuGet Package Manager – Package Sources).	
 
 .. image:: _static/801-references.png
-	:width: 500
 
 Configuring the Application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
