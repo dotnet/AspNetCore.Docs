@@ -12,7 +12,7 @@ This article covers the following topics:
 	- Create a new ASP.NET 5 Project
 	- The wwwroot folder
 	- Resolving Client-Side Dependencies
-	- Resolving Servier-Side Dependencies
+	- Resolving Server-Side Dependencies
 	- Configuring the Application
 	- Application Startup
 	
