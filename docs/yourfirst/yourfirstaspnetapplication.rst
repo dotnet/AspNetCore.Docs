@@ -2,7 +2,9 @@
 
 Your First ASP.NET 5 Application Using Visual Studio
 ====================================================
-By `Steve Smith`_ | Originally Published: 1 June 2015
+By `Steve Smith`_ | Originally Published: 1 June 2015 
+
+.. _`Steve Smith`: Author_
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
@@ -14,7 +16,7 @@ This article covers the following topics:
 	- Configuring the Application
 	- Application Startup
 	
-You can download the finished source from the project created in this article HERE.
+You can download the finished source from the project created in this article HERE **(TODO)**.
 
 Create a New ASP.NET 5 Project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,7 +80,7 @@ By default, the bower task is executed using grunt, which is configured in grunt
 .. image:: _static/700-gruntfile.png
 	:width: 500
 
-(TODO: Show bower_components and node_modules folders in file system)
+(**(TODO)**: Show bower_components and node_modules folders in file system)
 
 Server Side Dependency Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -96,12 +98,12 @@ TODO
 Application Startup
 ^^^^^^^^^^^^^^^^^^^
 
-TODO
+**(TODO)**
 
 Summary
 ^^^^^^^
 
-TODO
+**(TODO)**
 	
 Playing Around With Code Formatting Section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -134,24 +136,4 @@ That's it for that code block. What if we want to now show some HTML markup?
 
 The above should be highlighted as HTML.
 
-
-.. _`Steve Smith`:
- 
-Author
-^^^^^^
-.. container:: author
-
-	.. container:: photo
-	
-		|SAS|
-		
-	.. container:: bio
-	
-		Steve Smith is an ASP.NET MVP and Chief Technology Officer at Falafel Software. You can
-		follow him on twitter as `@ardalis`_ or on his blog, `ardalis.com`_.
-
-.. |SAS| image:: https://pbs.twimg.com/profile_images/2160626272/SteveSmithSailingProfile.JPG
-   :height: 100
-	   
-.. _`@ardalis`: http://twitter.com/ardalis
-.. _`ardalis.com`: http://ardalis.com/ardalis
+.. include:: ../_authors/steve-smith.rst
