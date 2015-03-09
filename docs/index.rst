@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    yourfirst/yourfirstaspnetapplication
+   yourfirst/fundamentalconcepts
 
 
 Indices and tables

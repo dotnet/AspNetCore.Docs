@@ -117,7 +117,6 @@ else:
 			'_static/custom.css',
 		],
 	}
-	
 
 #html_theme = 'default'
 
