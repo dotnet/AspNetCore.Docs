@@ -22,22 +22,62 @@ You can download the finished source from the project created in this article HE
 ASP.NET Project Structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+ASP.NET 5's project structure adds some new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here:
+
+.. image:: _static/100-solution-explorer.png
+
+The first thing you may notice about this new structure is that it includes a Solution Items folder with a global.json file, and the web project itself is located within a 'src' folder within the solution. The new structure also includes a special wwwroot folder and a Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this version). In the root the project there are also several new files such as bower.json, config.json, gruntfile.js, package.json, project.json, and Startup.cs. You may notice that the files global.asax, packages.config, and web.config are no longer present. Their functionality has been replaced by some of these other files.
 
 Framework Target
 ^^^^^^^^^^^^^^^^
 
-**(TODO)**
+ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default applications will target the full version of .NET, but they can also target the Core CLR (.NET Core). Most legacy applications will want to target full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core. .NET Core is a small version of the .NET framework that is optimized for web applications and which will support Linux and Mac environments. It can be deployed with an application, allowing multiple applications on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate NuGet packages.
+
+You can see which framework is currently being targeted in the web application project's properties:
+
+.. image:: _static/200-project-properties.png
+
+To target the Core CLR, change the option from one of the kre-clr versions to one of the kre-coreclr versions. Note that you will also be able to target non-Windows environments using this approach as well.
 
 The project.json File
 ^^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+The project.json_ file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_, which are discussed further below, as well as other project-specific information. The sections included in project.json by default with the default web project template are shown below.
+
+.. image:: _static/300-project-json.png
+
+The **webroot** section specifies the folder that should act as the root of the web site, which by convention defaults to `the wwwroot folder`_. The version property specifies the current version of the project. You can also specify other metadata about the project such as **authors** and **description**.
+
+ASP.NET 5 has a great deal of support for command line tooling, and the **commands** section allows you to configure what certain command line commands should do (for instance, launch a web site or run tests).
+
+The **frameworks** section designates which targeted frameworks will be built, and what dependencies need to be included (for *aspnetcore50* only - *aspnet50* will include the full framework). For instance, if you were using LINQ and collections, you could ensure these were included with your .NET Core build by adding them to the "aspnetcore50" list of dependencies as shown.
+
+.. image:: _static/400-framework-dependencies.png
+
+.. _project.json: https://github.com/aspnet/Home/wiki/Project.json-file
+
+The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **bundleExclude** is used to identify content portions of the project that should be excluded when bundling the site (e.g. for publication).
+
+.. image:: _static/500-excludes.png
+
+The **scripts** section is used to specify when certain build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after certain events. The default ASP.NET project template has scripts in place to run during *postrestore* and *prepare* that install `client side dependencies`_ using npm and bower.
+
+.. image:: _static/600-scripts.png
 
 The global.json File
 ^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+The global.json file is used to configure the solution as a whole. It includes just two sections, *sources* and *sdk* by default.
+
+.. image:: _static/700-global-json.png
+
+The *sources* folder designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
+
+.. image:: _static/800-solution-files.png
+
+The *sdk* property specifies the version of the KRE that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
+
+.. _`the wwwroot folder` :
 
 The wwwroot Folder
 ^^^^^^^^^^^^^^^^^^
@@ -51,6 +91,8 @@ This approach presented some problems. First, protecting sensitive project files
 Enter the *wwwroot* folder in ASP.NET 5. The wwwroot folder represents the actual root of the web application when running on a web server. Static files, like config.json, which are not located in wwwroot will never be accessible, and there is no need to create special rules to block access to sensitive files. Instead of blacklisting access to sensitive files, a more secure whitelist approach is taken whereby only those files that placed in the wwwroot folder are accessible via web requests made to the application.
 
 In addition to the security benefits, the wwwroot folder also simplifies common tasks like bundling and minification, which can now be more easily incorporated into a standard build process and automated using tools like Grunt.
+
+.. _`client side dependencies` :
 
 Client Side Dependency Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -70,6 +112,8 @@ By default, the bower task is executed using grunt, which is configured in grunt
 .. image:: _static/700-gruntfile.png
 
 (**(TODO)**: Show bower_components and node_modules folders in file system)
+
+.. _`server side dependencies` :
 
 Server Side Dependency Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
