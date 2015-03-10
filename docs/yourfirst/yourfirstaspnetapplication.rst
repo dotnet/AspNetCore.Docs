@@ -42,22 +42,39 @@ Looking at the files in the root of the project, we may notice the absence of a 
 
 While we're at it, you may not notice it from the Solution Explorer, but if you open Windows Explorer you'll see that there is no longer a .csproj file, either. Instead you'll find a .kproj file, an MSBuild file that serves the same purpose from a build process perspective, but which is much simpler than its csproj/vbproj predecessor.
 
-Let's address each of these new parts of the ASP.NET project one by one.
-
 Running the Application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)** 
+Run the application and after a quick build step, you should see it open in your web browser.
+
+.. image:: _static/400-first-run.png
+
+Click on the About link, and note the text on the page. Now, open the HomeController.cs file in the Controllers folder, and change the ViewBag.Message as follows:
+
+.. code:: c#
+
+	ViewBag.Message = "ASP.NET 5 Rocks!";
+	
+Save the file and, **without rebuilding the project**, refresh your web browser. You should see the updated text. ASP.NET 5 no longer requires that you manually build your server-side logic before viewing it, making small updates much faster to inspect during development.
+
+.. image:: _static/500-about-page.png
+
 
 Server-Side vs. Client-Side Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+Modern web applications frequently make use of a combination of server-side and client-side behavior. Over time, ASP.NET has evolved to support more and more client-side behavior, and with ASP.NET 5 it now includes great support for Single Page Applications (SPAs) that shift virtually all of the application logic to the web client, and use the server only to fetch and store data. Your application's approach to where its behavior resides will depend on a variety of factors. The more comfortable your team is with client-side development, the more likely it is that much of your application's behavior will run on the client. If your web site will include a great deal of public content that should be discoverable by search engines, you may wish to ensure the server returns this content directly, rather than having it built up by client-side scripts, since the latter requires `special effort`_ to be indexed by search engines.
+
+.. _`special effort`: http://stackoverflow.com/questions/18530258/how-to-make-a-spa-seo-crawlable
+
+On the server, ASP.NET MVC 6 (part of ASP.NET 5) works similarly to its predecessor, including support for Razor-formatted Views as well as integrated support for Web API.  On the client, there are many options available for managing client application state, binding to UI elements, and communication with APIs. 
+
+Now we can add a bit of behavior to both the server and the client of the default application, to demonstrate how easy it is to get started building your own ASP.NET 5 application.
 
 Adding Server-Side Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+We've already tweaked the behavior of the HomeController's About method to change the Message passed to the View. We can add additional server-side behavior by adding or modifying Controllers and Views and the Models they work with.
 
 Adding Client-Side Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -69,35 +86,4 @@ Summary
 
 **(TODO)**
 	
-Playing Around With Code Formatting Section
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: c#
-	
-	using System;
-	using System.Web;
-	// just kidding, we aren't going to use System.Web!
-	public class Foo
-	{
-		public void Bar()
-		{
-			var x = new String();
-			
-			x = x.ToLower();
-		}
-	}
-	
-That's it for that code block. What if we want to now show some HTML markup?
-
-.. code-block:: html
-	
-	<html>
-	<head><title>Title</title></head>
-	<body>
-		<div class="container"></div>
-	</body>
-	</html>
-
-The above should be highlighted as HTML.
-
 .. include:: ../_authors/steve-smith.rst
