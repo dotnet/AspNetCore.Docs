@@ -107,14 +107,17 @@ if not on_rtd:
 	import sphinx_rtd_theme
 	html_theme = 'sphinx_rtd_theme'
 	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-	def setup(app):
-		app.add_stylesheet('custom.css')
-else:
-	html_context = {
-		'extra_css_files': [
-			'_static/custom.css',
-		],
-	}
+	# def setup(app):
+		# app.add_stylesheet('custom.css')
+# else:
+	# html_context = {
+		# 'extra_css_files': [
+			# '_static/custom.css',
+		# ],
+	# }
+	
+def setup(app):
+	app.add_stylesheet('custom.css')	
 
 #html_theme = 'default'
 
