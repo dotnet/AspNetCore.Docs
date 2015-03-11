@@ -75,7 +75,7 @@ The *sources* folder designates which folders contain source code for the soluti
 
 .. image:: _static/800-solution-files.png
 
-The *sdk* property specifies the version of the KRE that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
+The *sdk* property specifies the version of the DNX (DotNetExecution Environment) that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
 
 .. _`the wwwroot folder` :
 
@@ -146,6 +146,14 @@ Next, make sure ASP.NET knows what to return when a constructor requires an inst
 The third and final step is to specify that your controller expects an IConfiguration instance via its constructor. Following the `Explicit Dependencies Principle`_ with your classes is a good habit to get into, and will allow ASP.NET 5's built-in support for Dependency Injection to work correctly. Assign the instance to a local field, and then access the configuration value by calling the Get() method on this instance.
 
 .. _`Explicit Dependencies Principle`: http://deviq.com/explicit-dependencies-principle/
+
+You will need to ensure you have this using statement:
+
+.. code-block:: c#
+
+	using Microsoft.Framework.ConfigurationModel;
+	
+Then, update the controller as shown:
 
 .. image:: _static/902-get-config.png
 

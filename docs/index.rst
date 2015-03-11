@@ -9,7 +9,7 @@ ASP.NET 5 Documentation
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    yourfirst/yourfirstaspnetapplication
    yourfirst/fundamentalconcepts
