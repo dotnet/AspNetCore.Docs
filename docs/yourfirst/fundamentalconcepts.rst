@@ -166,8 +166,85 @@ Run the application and navigate to the About page and you should see the result
 Application Startup
 ^^^^^^^^^^^^^^^^^^^
 
-**(TODO)**
+ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web application. This allows for the creation of extremely lean web applications that do not rely on any features they don't use. When ASP.NET starts up, it will call the Configure() method in the Startup class. If you create a new ASP.NET web project using the Empty template, you will find that the Startup.cs file literally has nothing in its Configure() method. The default Web project's Startup class wires up configuration, MVC, Entity Framework, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET application. There are three parts to the sample Startup class: a constructor, a ConfigureServices() method, and a Configure() method. The three methods are called in the order listed.
 
+The constructor specifies how Configuration will be handled by the application. Configuration is a property of the Startup class and can be read from a variety of file formats as well as from environment variables. The default project template wires up Configuration to use a JSON file ("config.json") as well as environment variables.
+
+.. code-block:: c#
+
+	public Startup(IHostingEnvironment env)
+	{
+		// Setup configuration sources.
+		Configuration = new Configuration()
+			.AddJsonFile("config.json")
+			.AddEnvironmentVariables();
+	}
+	
+The ConfigureServices() method is used to specify which services are available to the application. The default template uses a set of helper methods to quickly add a variety of services used for Entity Framework, Identity, and MVC itself. This is also where you can add your own services, as we did above to expose the Configuration as a service. The complete ConfigureServices() method, including the call to add Configuration as a Singleton, is shown here:
+
+.. code-block:: c#
+
+	// This method gets called by the runtime.
+	public void ConfigureServices(IServiceCollection services)
+	{
+		// Add EF services to the services container.
+		services.AddEntityFramework(Configuration)
+			.AddSqlServer()
+			.AddDbContext<ApplicationDbContext>();
+
+		// Add Identity services to the services container.
+		services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
+			.AddEntityFrameworkStores<ApplicationDbContext>();
+
+		// Add MVC services to the services container.
+		services.AddMvc();
+
+		services.AddSingleton(_ => Configuration);
+	}
+	
+Finally, the Configure() method will be called by the runtime after ConfigureServices(). In the sample project, Configure() is used to wire up a console logger, to enable BrowserLink in the development environment, to add support for static files, to specify the use of Identity, and to configure MVC and its routes. Simply adding the services for Identity and MVC isn't sufficient - they also need to be added to the request pipeline via these calls in the Configure() method.
+
+.. code-block:: c#
+
+	// Configure is called after ConfigureServices is called.
+	public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
+	{
+		// Configure the HTTP request pipeline.
+		// Add the console logger.
+		loggerfactory.AddConsole();
+
+		// Add the following to the request pipeline only in development environment.
+		if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
+		{
+			app.UseBrowserLink();
+			app.UseErrorPage(ErrorPageOptions.ShowAll);
+			app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
+		}
+		else
+		{
+			// Add Error handling middleware which catches all application specific errors and
+			// send the request to the following path or controller action.
+			app.UseErrorHandler("/Home/Error");
+		}
+
+		// Add static files to the request pipeline.
+		app.UseStaticFiles();
+
+		// Add cookie-based authentication to the request pipeline.
+		app.UseIdentity();
+
+		// Add MVC to the request pipeline.
+		app.UseMvc(routes =>
+		{
+			routes.MapRoute(
+				name: "default",
+				template: "{controller}/{action}/{id?}",
+				defaults: new { controller = "Home", action = "Index" });
+		});
+	}
+
+As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the Startup class, as opposed to using HTTP Modules and Handlers managed via web.config. You can learn more about how the request pipeline is configured as well as how to write your own middleware components here (**TODO**).
+	
 Summary
 ^^^^^^^
 
