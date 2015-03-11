@@ -6,8 +6,6 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
-**(TODO)** Move most of the project structure topics to the fundamentalconcepts.rst article
-
 This article covers the following topics:
 	- Create a new ASP.NET 5 Project
 	- Running the Application
@@ -74,7 +72,7 @@ Now we can add a bit of behavior to both the server and the client of the defaul
 Adding Server-Side Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We've already tweaked the behavior of the HomeController's About method to change the Message passed to the View. We can add additional server-side behavior by adding or modifying Controllers and Views and the Models they work with.
+We've already tweaked the behavior of the HomeController's About method to change the Message passed to the View. We can add additional server-side behavior by adding or modifying Controllers and Views and the Models they work with. As a simple demonstration of server-side behavior, we can display some basic information about the server itself, using a new controller and a view. Then, we'll enhance this basic information by adding some client-side behavior.
 
 Adding Client-Side Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
