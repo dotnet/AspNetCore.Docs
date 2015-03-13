@@ -49,7 +49,7 @@ Run the application and after a quick build step, you should see it open in your
 
 Click on the About link, and note the text on the page. Now, open the HomeController.cs file in the Controllers folder, and change the ViewBag.Message as follows:
 
-.. code:: c#
+.. code-block:: c#
 
 	ViewBag.Message = "ASP.NET 5 Rocks!";
 	
@@ -76,7 +76,7 @@ We've already tweaked the behavior of the HomeController's About method to chang
 
 To start, add a new Model class called ServerInfo. I'm adding this in my Models folder as a convention, but you don't need to do so.
 
-.. code:: c#
+.. code-block:: c#
 
 	namespace FundamentalConcepts.Models
 	{
@@ -90,7 +90,7 @@ To start, add a new Model class called ServerInfo. I'm adding this in my Models 
 	
 Next, update the HomeController's About() method to instantiate this class, set its properties, and pass it to the View.
 
-.. code:: c#
+.. code-block:: c#
 
 	public IActionResult About()
 	{
@@ -111,14 +111,14 @@ Now we need to update the View to give it a strongly-typed model and display the
 
 Then add these two lines to the bottom of the view.
 
-.. code:: html
+.. code-block:: html
 
 	<h2>Server Name: @Model.Name</h2>
 	<h3>Software: @Model.Software</h3>
 
 Now we can build the solution. Since the default web template targets both the full .NET and .NET Core, we expect the build to fail when it tries to access the Environment.MachineName and Environment.OSVersion variables in HomeController. This behavior won't work in .NET Core, so we can comment it out. Open project.json and modify the "frameworks" key as shown:
 
-.. code:: javascript
+.. code-block:: javascript
 
     "frameworks": {
         "aspnet50": { }/*,
@@ -140,14 +140,14 @@ Let's begin with the client-side code. We are going to need a button and a list 
 
 .. _Bootstrap: http://getbootstrap.com/
 
-.. code:: html
+.. code-block:: html
 
 	<button id="listButton" class="btn-success">List Processes</button>
 	<ul id="processList" class="list-group"></ul>
 	
 Next, we need to add some script that will run when the listButton button is clicked, and will populate the contents of the processList list. Since we want this script to run after jQuery is loaded (in the _Layout.cshtml razor file), we need to place it into a Razor Section called scripts. In this section, we will include a script block that will define a function for binding the list to some data, and a click handler that will make a GET request to our API and call the binding function with the resulting data.  Add the following to the end of the About.cshtml page, after the <ul> element we just added.
 
-.. code:: html
+.. code-block:: html
 
 	@section scripts {
 		<script type="text/javascript">
@@ -182,7 +182,7 @@ At this point, we're done with the client code and we need to add the Web API co
 
 Delete all of the methods except for the Get() method, and update the Get() method to return an enumeration of ProcessInfo items as shown (we'll define ProcessInfo in a moment).
 
-.. code:: c#
+.. code-block:: c#
 
 	using System;
 	using System.Collections.Generic;
@@ -209,7 +209,7 @@ Delete all of the methods except for the Get() method, and update the Get() meth
 
 Finally, add the class ProcessInfo to the Models folder:
 
-.. code:: c#
+.. code-block:: c#
 
     public class ProcessInfo
     {
