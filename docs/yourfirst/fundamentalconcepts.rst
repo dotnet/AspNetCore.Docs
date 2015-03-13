@@ -75,7 +75,7 @@ The *sources* folder designates which folders contain source code for the soluti
 
 .. image:: _static/800-solution-files.png
 
-The *sdk* property specifies the version of the DNX (DotNetExecution Environment) that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
+The *sdk* property specifies the version of the DNX (.Net Execution Environment) that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
 
 .. _`the wwwroot folder` :
 
