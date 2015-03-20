@@ -34,3 +34,26 @@ Then run it from the root of the project with
 Note that you may need to run 'make html' once before sphinx-autobuild will serve the docs correctly.
 
 If contributing new documentation content, please review the [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html).
+
+## Adding Content ##
+
+In addition to the style guide, articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). Within each section, each article should also have its own folder, within which the article.rst file resides. Images and other static resources (code samples, etc.) should be placed in a _static folder within the article folder.
+
+### Example Structure ###
+
+	docs
+		/yourfirst
+			/fundamentalconcepts
+				/_static
+					about-page.png
+					add-config.png
+					...
+				fundamentalconcepts.rst
+			/yourfirstaspnetapplication
+				/_static
+					about-page.png
+					add-api-controller.png
+					...
+				yourfirstaspnetapplication.rst
+
+Author information should be placed in the _authors folder following the example of steve-smith.rst. Place photos in the photos folder - size them to be no more than 125px wide or tall.
