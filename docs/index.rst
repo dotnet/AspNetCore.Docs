@@ -11,8 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   yourfirst/yourfirstaspnetapplication
-   yourfirst/fundamentalconcepts
+   yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication
+   yourfirst/fundamentalconcepts/fundamentalconcepts
 
 
 Indices and tables

@@ -6,7 +6,7 @@ Author
 
 	.. container:: photo
 	
-		.. image:: ../_authors/photos/steve-smith.jpg
+		.. image:: /_authors/photos/steve-smith.jpg
 		
 	.. container:: bio
 	

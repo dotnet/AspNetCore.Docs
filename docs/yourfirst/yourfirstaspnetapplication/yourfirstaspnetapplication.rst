@@ -20,19 +20,19 @@ Create a New ASP.NET 5 Project
 
 To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 
-.. image:: _static/100-new-project.png
+.. image:: _static/new-project.png
 
 On the right, choose ASP.NET Web Application. Make sure the framework specified at the top of the window is .NET Framework 4.6. Enter a name and confirm where you would like the project to be created, and click OK.
 
 Next you should see another dialog, the New ASP.NET Project window:
  
-.. image:: _static/200-select-template.png
+.. image:: _static/select-template.png
 	
 Select the ASP.NET 5 Starter Web template from the set of ASP.NET 5 templates. These are distinct from the ASP.NET 4.6 templates, which can be used to create ASP.NET projects using the previous version of ASP.NET. Note that you can choose to configure hosting in Microsoft Azure directly from this dialog by checking the box on the right **(ED: confirm this is available at RTM)**. After selecting ASP.NET 5 Starter Web, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.  Your project, once fully loaded, should look like this:
 
-.. image:: _static/300-visual-studio-on-project-load.png
+.. image:: _static/visual-studio-on-project-load.png
 
 Looking at the Solution Explorer and comparing the elements with what we're familiar with in previous versions of ASP.NET, a few things stick out as being new and different. There's now a *wwwroot* folder, with its own icon. Similarly, there's a *Dependencies* folder **and** still a *References* folder – we'll discuss the differences between these two in a moment. Finally, there's a Compiler folder that isn't something we've seen in prior versions of ASP.NET. Rounding out the list of folders, we have Controllers, Models, and Views, which make sense for an ASP.NET MVC project, and Migrations, which holds classes used by Entity Framework to track updates to our model's database schema.
 
@@ -45,7 +45,7 @@ Running the Application
 
 Run the application and after a quick build step, you should see it open in your web browser.
 
-.. image:: _static/400-first-run.png
+.. image:: _static/first-run.png
 
 Click on the About link, and note the text on the page. Now, open the HomeController.cs file in the Controllers folder, and change the ViewBag.Message as follows:
 
@@ -55,7 +55,7 @@ Click on the About link, and note the text on the page. Now, open the HomeContro
 	
 Save the file and, **without rebuilding the project**, refresh your web browser. You should see the updated text. ASP.NET 5 no longer requires that you manually build your server-side logic before viewing it, making small updates much faster to inspect during development.
 
-.. image:: _static/500-about-page.png
+.. image:: _static/about-page.png
 
 
 Server-Side vs. Client-Side Behavior
@@ -231,4 +231,4 @@ Summary
 
 ASP.NET 5 introduces a few new concepts, but should be very familiar to developers who have used previous versions of ASP.NET. Creating a new web application that includes both server-side and client-side behavior takes only a few minutes using the Visual Studio ASP.NET 5 Starter Web template.
 	
-.. include:: ../_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.rst

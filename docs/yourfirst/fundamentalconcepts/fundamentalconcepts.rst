@@ -24,7 +24,7 @@ ASP.NET Project Structure
 
 ASP.NET 5's project structure adds some new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here:
 
-.. image:: _static/100-solution-explorer.png
+.. image:: _static/solution-explorer.png
 
 The first thing you may notice about this new structure is that it includes a Solution Items folder with a global.json file, and the web project itself is located within a 'src' folder within the solution. The new structure also includes a special wwwroot folder and a Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this version). In the root the project there are also several new files such as bower.json, config.json, gruntfile.js, package.json, project.json, and Startup.cs. You may notice that the files global.asax, packages.config, and web.config are no longer present. In previous versions of ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic has been refactored into files that are generally smaller and more focused.
 
@@ -35,7 +35,7 @@ ASP.NET 5 can target multiple frameworks, allowing the application to be deploye
 
 You can see which framework is currently being targeted in the web application project's properties:
 
-.. image:: _static/200-project-properties.png
+.. image:: _static/project-properties.png
 
 To target the Core CLR, change the option from one of the kre-clr versions to one of the kre-coreclr versions. Note that you will also be able to target non-Windows environments using this approach as well.
 
@@ -44,7 +44,7 @@ The project.json File
 
 The project.json_ file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_, which are discussed further below, as well as other project-specific information. The sections included in project.json by default with the default web project template are shown below.
 
-.. image:: _static/300-project-json.png
+.. image:: _static/project-json.png
 
 The **webroot** section specifies the folder that should act as the root of the web site, which by convention defaults to `the wwwroot folder`_. The version property specifies the current version of the project. You can also specify other metadata about the project such as **authors** and **description**.
 
@@ -52,28 +52,28 @@ ASP.NET 5 has a great deal of support for command line tooling, and the **comman
 
 The **frameworks** section designates which targeted frameworks will be built, and what dependencies need to be included (for *aspnetcore50* only - *aspnet50* will include the full framework). For instance, if you were using LINQ and collections, you could ensure these were included with your .NET Core build by adding them to the "aspnetcore50" list of dependencies as shown.
 
-.. image:: _static/400-framework-dependencies.png
+.. image:: _static/framework-dependencies.png
 
 .. _project.json: https://github.com/aspnet/Home/wiki/Project.json-file
 
 The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **bundleExclude** is used to identify content portions of the project that should be excluded when bundling the site (e.g. for publication).
 
-.. image:: _static/500-excludes.png
+.. image:: _static/excludes.png
 
 The **scripts** section is used to specify when certain build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after certain events. The default ASP.NET project template has scripts in place to run during *postrestore* and *prepare* that install `client side dependencies`_ using npm and bower.
 
-.. image:: _static/600-scripts.png
+.. image:: _static/scripts.png
 
 The global.json File
 ^^^^^^^^^^^^^^^^^^^^
 
 The global.json file is used to configure the solution as a whole. It includes just two sections, *sources* and *sdk* by default.
 
-.. image:: _static/700-global-json.png
+.. image:: _static/global-json.png
 
 The *sources* folder designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
 
-.. image:: _static/800-solution-files.png
+.. image:: _static/solution-files.png
 
 The *sdk* property specifies the version of the DNX (.Net Execution Environment) that Visual Studio will use when opening the solution. It's set here, rather than in project.json, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
 
@@ -84,7 +84,7 @@ The wwwroot Folder
 
 In previous versions of ASP.NET, the root of the project was also the root of the website, typically. If you placed a Default.aspx file in the project root of an early version of ASP.NET, it would load if a request was made to the web application’s root. In later versions of ASP.NET, support for routing was added (first to MVC, and later to all ASP.NET applications), making it possible to easily decouple the locations of files from their corresponding URLs (thus, HomeController in the Controllers folder is able to serve requests made to the root of the site, using a default route implementation). However, this routing typically was used only for ASP.NET-specific application logic, not static files needed by the client to properly render the resulting page. Resources like images, script files, and stylesheets were generally still loaded based on their location within the file structure of the application, based off of the root of the project.
 
-.. image:: _static/400-wwwroot.png
+.. image:: _static/wwwroot.png
 
 This approach presented some problems. First, protecting sensitive project files required framework-level protection of certain filenames or extensions, to prevent having things like web.config or global.asax served to a client in response to a request. Having to specifically block access to certain files is much less secure than granting access only to those files which should be accessible. It was also frequently the case that different versions of files would be needed during development than when deployed to the server. Client scripts would typically be referenced individually and in a readable format during development, but would be minified and potentially bundled together when deployed to the server. In some cases it would be desirable not to deploy original sources of such files, but handling these kinds of scenarios was difficult with everything in a single folder.
 
@@ -99,17 +99,17 @@ Client Side Dependency Management
 
 The Dependencies folder contains two subfolders: Bower and NPM. These folders correspond to two package managers by the same names, and they’re used to pull in client-side dependencies and tools (e.g. jQuery, bootstrap, or grunt). Expanding the folders reveals which dependencies are currently managed by each tool, and the current version being used by the project.
 
-.. image:: _static/501-dependencies.png
+.. image:: _static/dependencies.png
 
 The bower dependencies are controlled by the bower.json file. You’ll notice that each of the items listed in the figure above correspond to dependencies listed in bower.json:
 
-.. image:: _static/600-bower-json.png
+.. image:: _static/bower-json.png
 
 Each dependency is then further configured in its own section within the bower.json file, indicating how it should be deployed to the wwwroot folder when the bower task is executed.
 
 By default, the bower task is executed using grunt, which is configured in gruntfile.js. The current web template’s gruntfile simply configures bower and npm:
 
-.. image:: _static/700-gruntfile.png
+.. image:: _static/gruntfile.png
 
 (**(TODO)**: Show bower_components and node_modules folders in file system)
 
@@ -120,14 +120,14 @@ Server Side Dependency Management
 
 The References folder details the server-side references for the project. It should be familiar to ASP.NET developers who have worked with previous versions of ASP.NET, but it has been modified to differentiate between references for different framework targets, such as the full ASP.NET 5.0 vs. ASP.NET Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are typically checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under Options – NuGet Package Manager – Package Sources).	
 
-.. image:: _static/801-references.png
+.. image:: _static/references.png
 
 Configuring the Application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ASP.NET 5 no longer stores configuration settings in an XML configuration value (web.config, or inherited from machine.config). Instead, it introduces a new JSON-formatted file specifically for storing application configuration settings, config.json. The default ASP.NET project template includes Entity Framework, and so specifies the database connection string details in the config.json file included in the project.
 
-.. image:: _static/900-config-json.png
+.. image:: _static/config-json.png
 
 Individual entries within config.json are not limited to name-value pairs, but can specify rich objects. Entries can also reference other entries, as you can see the EntityFramework configuration does above.
 
@@ -135,7 +135,7 @@ There's nothing special about the config.json filename - it's specified by name 
 
 Accessing configuration data from your application is best done by injecting the IConfiguration interface into your Controller, and then simply calling its Get method with the name of the configuration element you need. For example, to store the application name in config and display it on the About page, you would need to make three changes to the default project. First, add the entry to project.config.
 
-.. image:: _static/901-add-config.png
+.. image:: _static/add-config.png
 
 Next, make sure ASP.NET knows what to return when a constructor requires an instance of IConfiguration. In this case, we can specify that the configuration value is a Singleton, since we don't expect it to change throughout the life of the application. We'll address Startup.cs in a moment, but for this step just add one line to the end of the ConfigureServices() method in Startup.cs:
 
@@ -155,11 +155,11 @@ You will need to ensure you have this using statement:
 	
 Then, update the controller as shown:
 
-.. image:: _static/902-get-config.png
+.. image:: _static/get-config.png
 
 Run the application and navigate to the About page and you should see the result.
 
-.. image:: _static/903-about-page.png
+.. image:: _static/about-page.png
 
 .. _Startup.cs: 
 
@@ -250,4 +250,4 @@ Summary
 
 ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with web.config, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
 
-.. include:: ../_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.rst
