@@ -56,4 +56,6 @@ In addition to the style guide, articles should be organized into logical groups
 					...
 				yourfirstaspnetapplication.rst
 
+**Note:** Sphinx will automatically fix duplicate image names, such as the about-page.png files shown above. There is no need to try to ensure uniqueness of static files beyond an individual article.
+
 Author information should be placed in the _authors folder following the example of steve-smith.rst. Place photos in the photos folder - size them to be no more than 125px wide or tall.
