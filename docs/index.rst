@@ -13,6 +13,7 @@ Contents:
 
    yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication
    yourfirst/fundamentalconcepts/fundamentalconcepts
+   migration/migratingfrommvc5/migratingfrommvc5
 
 
 Indices and tables
@@ -22,3 +23,9 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+.. toctree::
+   :glob:
+   :hidden:
+   
+   /_authors/*
