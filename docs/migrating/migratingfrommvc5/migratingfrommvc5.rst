@@ -30,9 +30,58 @@ This sample web project will demonstrate how to migrate an MVC 5 web project tha
 Create the Destination Solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We will begin our migration by creating a new, empty ASP.NET 6 solution.
+We will begin our migration by creating a new, empty ASP.NET 6 solution. Create a new project in Visual Studio 2015, choose an ASP.NET Web Application, and then choose select the ASP.NET 5 Empty template.
 
-	
+.. image:: _static/new-project-mvc6.png
+
+.. image:: _static/new-project-select-empty-aspnet5-template.png
+
+This migration will start from an empty template. If you're already familiar with ASP.NET 6 and its starter templates and there are features in a starter template you would like to take advantage of, you may wish to start from another template. The next step is to configure the site to use MVC. This requires changes to the project.json file and startup.cs file. First, open project.json and add "Microsoft.AspNet.Mvc" to the "dependencies" property:
+
+.. code-block:: c#
+
+	"dependencies": {
+		"Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
+		"Microsoft.AspNet.Mvc": "6.0.0-beta3"
+	},
+
+Now open Startup.cs and modify it as follows:
+
+.. code-block:: c#
+
+	public void ConfigureServices(IServiceCollection services)
+	{
+		services.AddMvc();
+	}
+
+	public void Configure(IApplicationBuilder app)
+	{
+		app.UseMvc(routes =>
+		{
+			routes.MapRoute(
+				name: "default",
+				template: "{controller}/{action}/{id?}",
+				defaults: new { controller = "Home", action = "Index" });
+		});
+	}
+
+At this point we are ready to create a simple Controller and View. Add a Controllers folder and a Views folder to the project. Add an MVC Controller called HomeController.cs class to the Controllers folder and a Home folder in the Views folder. Finally, add an Index.cshtml MVC View Page to the Views/Home folder. The project structure should be as shown:
+
+.. image:: _static/project-structure-controller-view.png
+
+Modify Index.cshtml to show a welcome message:
+
+.. code-block:: html
+
+	<h1>Hello world!</h1>
+
+Run the application - you should see Hello World output in your browser.
+
+.. image:: _static/hello-world.png
+
+
+
+
 Summary
 ^^^^^^^
 
