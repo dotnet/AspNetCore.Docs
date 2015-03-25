@@ -7,9 +7,9 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 Starter Web Project to ASP.NET MVC 6.
 
 This article covers the following topics:
-	- Initial project
-	- Create the destination solution
-	- 
+	- Initial Project
+	- Create the Destination Solution
+	- Migrate Basic Controllers, Views, and Static Content
 
 	
 You can download the finished source from the project created in this article HERE **(TODO)**.
@@ -59,7 +59,7 @@ Now open Startup.cs and modify it as follows:
 		app.UseMvc(routes =>
 		{
 			routes.MapRoute(
-				name: "default",
+				name: "default",
 				template: "{controller}/{action}/{id?}",
 				defaults: new { controller = "Home", action = "Index" });
 		});
@@ -79,12 +79,84 @@ Run the application - you should see Hello World output in your browser.
 
 .. image:: _static/hello-world.png
 
+Migrate Basic Controllers, Views, and Static Content
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now that we've confirmed we have a simple, working ASP.NET MVC 6 project, it's time to start migrating functionality from the source project. There are many different ways one can approach this task. We will need to move all of the client-side content files (CSS, fonts, scripts), all of the controllers, views, and models, and migrate configured features like bundling, filters, and identity. Let's begin by replacing our simple "hello world" implementation of HomeController with the actual HomeController and Views from the source project.
+
+Copy each of the methods from the source HomeController to the HomeController we added to the project in the previous section. Note that in MVC 5, actions typically returned ActionResult, but in MVC 6 this has changed to IActionResult (though it will still compile if you leave it as ActionResult).
+
+Next, create new MVC View Pages in the Views/Home folder for About and Contact. Copy the contents of the corresponding views in the old project to these new views, as well as Index.cshtml. At this point you should once again be able to run the new application, and although the styles are not yet in place, you should see the correct content on the home page as well as /home/about and /home/contact (contact is shown here):
+
+.. image:: _static/contact-page.png
+
+In MVC5 and previous versions of ASP.NET, static content was hosted from the root of the web project, and was intermixed with server-side files. In MVC6, all static content files are hosted from the /wwwroot folder, so we will need to adjust where we are storing our static content files. For instance, we can copy the favicon.ico file from the root of the original project to the /wwwroot folder in the new project.
+
+The MVC5 project uses Bootstrap for its styling, with files stored in /Content and /Scripts and referenced in /Views/Shared/_Layout.cshtml. We could simply copy the bootstrap.js and bootstrap.css files from the old project to the /wwwroot folder in the new project, but there are better ways to handle these kinds of client-side library dependencies in ASP.NET 5.
+
+In our new project, we'll add support for Bootstrap (and other client-side libraries), but we'll do so using the new support for client-side build tooling using bower and grunt. First, add a new Bower JSON Configuration File to the project root, called bower.json. In its "dependencies" property, add bootstrap, jquery, jquery-validation, and jquery-validation-unobtrusive. Add new properties for these items to the "exportsOverride" property as well, so that the complete bower.json file looks like this:
+
+.. code-block:: javascript
+
+	{
+		"name": "NewMvc6Project",
+		"private": true,
+		"dependencies": {
+			"bootstrap": "3.0.0",
+			"jquery": "1.10.2",
+			"jquery-validation": "1.11.1",
+			"jquery-validation-unobtrusive": "3.2.2"
+		},
+		"exportsOverride": {
+			"bootstrap": {
+				"js": "dist/js/*.*",
+				"css": "dist/css/*.*",
+				"fonts": "dist/fonts/*.*"
+			},
+
+			"jquery": {
+				"": "jquery.{js,min.js,min.map}"
+			},
+			"jquery-validation": {
+				"": "jquery.validate.js"
+			},
+			"jquery-validation-unobtrusive": {
+				"": "jquery.validate.unobtrusive.{js,min.js}"
+			}
+		}
+	}
+
+Bower will automatically download the specified dependencies, but for now the files are not yet in the wwwroot folder, and so cannot be requested by the browser:
+
+.. image:: _static/project-structure-bower.png
+
+Next, we will configure Grunt to process these files and place them where we want them in the wwwroot folder. Add a new Grunt Configuration file (Gruntfile.js) to the root of the project. The default version of this file includes an empty call to grunt.initConfig. We need to configure grunt to use bower, and then register tasks associated with this configuration. Modify the Gruntfile.js to match this file:
+
+.. code-block:: javascript
+
+	module.exports = function (grunt) {
+		grunt.initConfig({
+			bower: {
+				install: {
+					options: {
+						targetDir: "wwwroot/lib",
+						layout: "byComponent",
+						cleanTargetDir: false
+					}
+				}
+			}
+		});
+
+		grunt.registerTask("default", ["bower:install"]);
+
+		grunt.loadNpmTasks("grunt-bower-task");
+	};
 
 
 
 Summary
 ^^^^^^^
 
-ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with web.config, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
+Migrating from ASP.NET MVC 5 to ASP.NET MVC 6 requires several steps, but is not overly difficult. Basic features like the models, views, and controllers that comprise an MVC application can be migrated largely without changes. Most of the changes affect static content and features related to static content, like bundling, as well as configuration steps for the application. By following the steps in this example, you should be able to quickly migrate most ASP.NET MVC 5 applications.
 
 .. include:: /_authors/steve-smith.rst
