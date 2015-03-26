@@ -10,6 +10,7 @@ This article covers the following topics:
 	- Initial Project
 	- Create the Destination Solution
 	- Migrate Basic Controllers, Views, and Static Content
+	- Configure Authentication
 
 	
 You can download the finished source from the project created in this article HERE **(TODO)**.
@@ -198,8 +199,15 @@ The complete _Layout.cshtml file should look like this at the moment:
 
 .. image:: _static/layout-cshtml.png
 
+View the site in the browser. It should now load correctly, with the expected styles in place.
 
-	
+Configure Authentication
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Our original MVC 5 project included authentication via Microsoft.AspNet.Identity. MVC 6 has updated authentication, but the controllers and views remain similar. We'll see how to convert from MVC 5 to MVC 6 piece by piece, but you may also consider creating a new MVC 6 Starter Web project and simply copying the appropriate controllers, views, and models from there, rather than trying to convert from MVC 5's versions. The MVC 5 project has both an AccountController and a ManageController, with associated views, for authorization and account management. In the MVC 6 template, these have been condensed into a single AccountController.
+
+
+
 Summary
 ^^^^^^^
 
