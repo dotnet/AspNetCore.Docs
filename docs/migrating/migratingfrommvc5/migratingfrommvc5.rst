@@ -130,7 +130,18 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 .. image:: _static/project-structure-bower.png
 
-Next, we will configure Grunt to process these files and place them where we want them in the wwwroot folder. Add a new Grunt Configuration file (Gruntfile.js) to the root of the project. The default version of this file includes an empty call to grunt.initConfig. We need to configure grunt to use bower, and then register tasks associated with this configuration. Modify the Gruntfile.js to match this file:
+Next, we will configure Grunt to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Grunt is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add the "grunt" and "grunt-bower-task" items to the devDependencies property, as shown (you should get Intellisense as you type their names):
+
+.. code-block:: javascript
+
+	"devDependencies": {
+		"grunt": "0.4.5",
+		"grunt-bower-task": "0.4.0"
+	}
+
+Save your changes. You should see a new NPM folder in your project, under Dependencies, and it should include the grunt and grunt-bower-task items.
+
+Next, add a new Grunt Configuration file (Gruntfile.js) to the root of the project. The default version of this file includes an empty call to grunt.initConfig. We need to configure grunt to use bower, and then register tasks associated with this configuration. Modify the Gruntfile.js to match this file:
 
 .. code-block:: javascript
 
@@ -152,8 +163,43 @@ Next, we will configure Grunt to process these files and place them where we wan
 		grunt.loadNpmTasks("grunt-bower-task");
 	};
 
+Now that we've finished setting things up, we're ready to let these tools manage our static files and client-side dependencies for us. Right click on gruntfile.js in your project, and select Task Runner Explorer. Double-click on the bower task to run it.
+
+.. image:: _static/task-runner-explorer.png
+
+The output should show that the process completed without errors, and you should see that it copied some packages to the \wwwroot\lib folder. Open the wwwroot\lib folder in project explorer, and you should fine that the client-side dependencies (bootstrap, jquery, etc.) have all been copied into this folder:
+
+.. image:: _static/wwwroot-lib-folder.png
+
+The files have minified as well as developer-readable versions available; we will configure bundling shortly.
+
+Now that the required bootstrap files are available in the wwwroot folder, the next step is to modify our Views to include references to these files. Copy the _ViewStart.cshtml file from the original project's Views folder into the new project's Views folder. In this case, it references /Shared/_Layout.cshtml, which is the next file we need to copy (create a new Shared folder in /Views and copy _Layout.cshtml from the old project to it). Open _Layout.cshtml and make the following changes:
+
+	- Replace @Styles.Render("~/Content/css") with a <link> element to load bootstrap.css (see below)
+	- Remove @Scripts.Render("~/bundles/modernizr")
+	- Comment out the line with @Html.Partial("_LoginPartial") - we'll return to it shortly (surround the line with @*...*@)
+	- Replace @Scripts.Render("~/bundles/jquery") with a <script> element (see below)
+	- Replace @Scripts.Render("~/bundles/bootstrap") with a <script> element (see below)
+
+The CSS link to use:
+
+.. code-block:: html
+
+	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+
+The script tags to use:
+
+.. code-block:: html
+
+	<script src="~/lib/jquery/jquery.js"></script>
+	<script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+The complete _Layout.cshtml file should look like this at the moment:
+
+.. image:: _static/layout-cshtml.png
 
 
+	
 Summary
 ^^^^^^^
 
