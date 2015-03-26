@@ -1,22 +1,21 @@
 Migrating From ASP.NET MVC 5 to MVC 6
-======================================================
+=====================================
 By `Steve Smith`_ | Originally Published: 1 June 2015 
 
 .. _`Steve Smith`: Author_
 
-Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 Starter Web Project to ASP.NET MVC 6.
+Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 Starter Web Project to ASP.NET MVC 6, including initial setup, basic controllers and views, and static content and client side dependencies.
 
 This article covers the following topics:
-	- Initial Project
+	- Create the Initial Project
 	- Create the Destination Solution
 	- Migrate Basic Controllers, Views, and Static Content
-	- Configure Authentication
+	- Configure Bundling
 
-	
 You can download the finished source from the project created in this article HERE **(TODO)**.
 
-Initial Project
-^^^^^^^^^^^^^^^
+Create the Initial Project
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For the purposes of this article, we will be starting from the default ASP.NET MVC 5 starter web project, which you can create in Visual Studio 2015 by adding a new web project, and choosing MVC 5.
 
@@ -201,12 +200,55 @@ The complete _Layout.cshtml file should look like this at the moment:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-Configure Authentication
+Configure Bundling
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our original MVC 5 project included authentication via Microsoft.AspNet.Identity. MVC 6 has updated authentication, but the controllers and views remain similar. We'll see how to convert from MVC 5 to MVC 6 piece by piece, but you may also consider creating a new MVC 6 Starter Web project and simply copying the appropriate controllers, views, and models from there, rather than trying to convert from MVC 5's versions. The MVC 5 project has both an AccountController and a ManageController, with associated views, for authorization and account management. In the MVC 6 template, these have been condensed into a single AccountController.
+The ASP.NET MVC 5 starter web template utilized ASP.NET's built-in support for bundling. In ASP.NET MVC 6, this functionality is better performed using client build steps, like we have already configured to manage our client-side dependencies. Instead of maintaining bundling functionality in a static configuration class that runs on the server, the minification and combination of files is done as part of the build process, using grunt.
 
+You can learn more about configuring Grunt here.(*TODO*)
 
+To simply bundle the jQuery and boostrap scripts together into a single, minified, file, we can use the grunt-contrib-concat task. First, update package.json to require grunt-contrib-concat in "devDependencies":
+
+.. code-block:: javascript
+
+	"devDependencies": {
+		"grunt": "0.4.5",
+		"grunt-bower-task": "0.4.0",
+		"grunt-contrib-concat": "0.5.1"
+	}
+
+Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the grunt-contrib-concat package is listed there. Next, we will add a concat task to gruntfile.js (after the bower task, in initConfig):
+
+.. code-block:: javascript
+
+	concat: {
+		all: {
+			src: ['wwwroot/lib/jquery/jquery.min.js',
+				'wwwroot/lib/bootstrap/js/bootstrap.min.js'
+			],
+			dest: 'wwwroot/lib/bundle.js'
+		}
+	}
+
+Finally, in order to run the task, you need to call grunt.loadNpmTasks:
+
+.. code-block:: javascript
+
+	grunt.loadNpmTasks('grunt-contrib-concat');
+
+Save gruntfile.js, then open the Task Runner Explorer. Right click on the concat task and run it. You should see the output, which should show that it runs without errors. In your solution explorer, you should see the bundle.js file in wwwroot/lib. You can see all of this working in the screenshot:
+
+.. image:: _static/updated-gruntfile-with-concat.png
+
+All that remains it to update _Layout.cshtml and replace the last two <script> elements with a single <script> element that loads bundle.js:
+
+.. code-block:: html
+
+	<script src="~/lib/bundle.js"></script>
+
+Refresh the site in a browser, and you can see that the calls to load jQuery.js and bootstrap.js have been replaced with a single call to bundle.js:
+
+.. image:: _static/bundle-screenshot.png
 
 Summary
 ^^^^^^^
