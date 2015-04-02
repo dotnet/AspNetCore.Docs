@@ -22,6 +22,7 @@ ASP.NET MVC 6
    :maxdepth: 1
    
    migrating/migratingfrommvc5/migratingfrommvc5
+   migrating/migratingconfig/migratingconfig
 
 Web API
 -------
