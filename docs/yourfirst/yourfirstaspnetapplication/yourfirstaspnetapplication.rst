@@ -105,7 +105,7 @@ Next, update the HomeController's About() method to instantiate this class, set 
 
 Now we need to update the View to give it a strongly-typed model and display the information using Razor syntax. Add this line to the top of the About.cshtml file in the Views > Home folder.
 
-.. code:: html
+.. code-block:: html
 
 	@model FundamentalConcepts.Models.ServerInfo
 
