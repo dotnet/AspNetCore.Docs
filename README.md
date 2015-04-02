@@ -31,7 +31,13 @@ Then run it from the root of the project with
 
 	sphinx-autobuild docs docs/_build/html
 
-Note that you may need to run 'make html' once before sphinx-autobuild will serve the docs correctly.
+Note that you may need to run 'make html' once before sphinx-autobuild will serve the docs correctly. Also, there seems to be an encoding issue in one of the CSS files in the theme that may cause Python to throw an exception when trying to serve the file. You can work around this issue by editing the cp1252.py file (most likely in C:\Python34\Lib\encodings\ on Windows). Modify the IncrementalDecoder as follows:
+
+	class IncrementalDecoder(codecs.IncrementalDecoder):
+    		def decode(self, input, final=False):
+        		return codecs.charmap_decode(input,'ignore',decoding_table)[0]
+
+This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming the encoding used by the CSS file for the RTD theme.
 
 If contributing new documentation content, please review the [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html).
 
