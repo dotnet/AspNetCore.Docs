@@ -25,6 +25,15 @@ namespace ProductsDnx
             app.UseStaticFiles();
             // Add MVC to the request pipeline.
             app.UseMvc();
+
+            // Add routes from ProductsApp
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "DefaultApi",
+            //        template: "api/{controller}/{action}/{id:int?}",
+            //        defaults: new { controller = "Products", action = "GetAllProducts" });
+            //});
         }
     }
 }
