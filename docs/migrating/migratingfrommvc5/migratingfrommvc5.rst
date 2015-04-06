@@ -4,7 +4,7 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 
 .. _`Steve Smith`: Author_
 
-Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 Starter Web Project to ASP.NET MVC 6, including initial setup, basic controllers and views, and static content and client side dependencies.
+Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 default project template to ASP.NET MVC 6, including initial setup, basic controllers and views, static content, and client side dependencies.
 
 This article covers the following topics:
 	- Create the Initial Project
@@ -17,32 +17,32 @@ You can download the finished source from the project created in this article HE
 Create the Initial Project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For the purposes of this article, we will be starting from the default ASP.NET MVC 5 starter web project, which you can create in Visual Studio 2015 by adding a new web project, and choosing MVC 5.
+For the purposes of this article, we will be starting from the default ASP.NET MVC 5 starter web project, which you can create in Visual Studio 2015 by adding a new web project and choosing MVC 5.
 
 .. image:: _static/new-project.png
 
 .. image:: _static/new-project-select-mvc-template.png
 
-If you prefer, you can `download the MVC5Project used in this article </_static/mvc5project.zip>`_. **(TODO)**
+If you prefer, you can `download the MVC 5 Project used in this article </_static/mvc5project.zip>`_. **(TODO)**
 
 This sample web project will demonstrate how to migrate an MVC 5 web project that includes controllers, views, and ASP.NET Identity models, as well as startup and configuration logic common to many MVC 5 projects.
 
 Create the Destination Solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We will begin our migration by creating a new, empty ASP.NET 6 solution. Create a new project in Visual Studio 2015, choose an ASP.NET Web Application, and then choose select the ASP.NET 5 Empty template.
+We will begin our migration by creating a new, empty ASP.NET 5 solution. Create a new project in Visual Studio 2015, choose an ASP.NET Web Application, and then choose the ASP.NET 5 Empty template.
 
 .. image:: _static/new-project-mvc6.png
 
 .. image:: _static/new-project-select-empty-aspnet5-template.png
 
-This migration will start from an empty template. If you're already familiar with ASP.NET 6 and its starter templates and there are features in a starter template you would like to take advantage of, you may wish to start from another template. The next step is to configure the site to use MVC. This requires changes to the project.json file and startup.cs file. First, open project.json and add "Microsoft.AspNet.Mvc" to the "dependencies" property:
+This migration will start from an empty template. If you're already familiar with ASP.NET 5 and its starter templates and there are features in a starter template you would like to take advantage of, you may wish to start from another template. The next step is to configure the site to use MVC. This requires changes to the project.json file and Startup.cs file. First, open project.json and add "Microsoft.AspNet.Mvc" to the "dependencies" property:
 
-.. code-block:: c#
+.. code-block:: javascript
 
 	"dependencies": {
-		"Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
-		"Microsoft.AspNet.Mvc": "6.0.0-beta3"
+		"Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
+		"Microsoft.AspNet.Mvc": "6.0.0-beta4"
 	},
 
 Now open Startup.cs and modify it as follows:
@@ -60,8 +60,7 @@ Now open Startup.cs and modify it as follows:
 		{
 			routes.MapRoute(
 				name: "default",
-				template: "{controller}/{action}/{id?}",
-				defaults: new { controller = "Home", action = "Index" });
+				template: "{controller=Home}/{action=Index}/{id?}");
 		});
 	}
 
@@ -90,11 +89,11 @@ Next, create new MVC View Pages in the Views/Home folder for About and Contact. 
 
 .. image:: _static/contact-page.png
 
-In MVC5 and previous versions of ASP.NET, static content was hosted from the root of the web project, and was intermixed with server-side files. In MVC6, all static content files are hosted from the /wwwroot folder, so we will need to adjust where we are storing our static content files. For instance, we can copy the favicon.ico file from the root of the original project to the /wwwroot folder in the new project.
+In MVC 5 and previous versions of ASP.NET, static content was hosted from the root of the web project, and was intermixed with server-side files. In MVC 6, all static content files are hosted from the /wwwroot folder, so we will need to adjust where we are storing our static content files. For instance, we can copy the favicon.ico file from the root of the original project to the /wwwroot folder in the new project.
 
-The MVC5 project uses Bootstrap for its styling, with files stored in /Content and /Scripts and referenced in /Views/Shared/_Layout.cshtml. We could simply copy the bootstrap.js and bootstrap.css files from the old project to the /wwwroot folder in the new project, but there are better ways to handle these kinds of client-side library dependencies in ASP.NET 5.
+The MVC 5 project uses Bootstrap for its styling, with files stored in /Content and /Scripts and referenced in /Views/Shared/_Layout.cshtml. We could simply copy the bootstrap.js and bootstrap.css files from the old project to the /wwwroot folder in the new project, but there are better ways to handle these kinds of client-side library dependencies in ASP.NET 5.
 
-In our new project, we'll add support for Bootstrap (and other client-side libraries), but we'll do so using the new support for client-side build tooling using bower and grunt. First, add a new Bower JSON Configuration File to the project root, called bower.json. In its "dependencies" property, add bootstrap, jquery, jquery-validation, and jquery-validation-unobtrusive. Add new properties for these items to the "exportsOverride" property as well, so that the complete bower.json file looks like this:
+In our new project, we'll add support for Bootstrap (and other client-side libraries), but we'll do so using the new support for client-side build tooling using Bower and grunt. First, add a new Bower JSON Configuration File to the project root, called bower.json. In its "dependencies" property, add bootstrap, jquery, jquery-validation, and jquery-validation-unobtrusive. Add new properties for these items to the "exportsOverride" property as well, so that the complete bower.json file looks like this:
 
 .. code-block:: javascript
 
@@ -199,6 +198,8 @@ The complete _Layout.cshtml file should look like this at the moment:
 .. image:: _static/layout-cshtml.png
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
+
+(*TODO - Convert Views/web.config to _GlobalImport.cshtml with @using statements *)
 
 Configure Bundling
 ^^^^^^^^^^^^^^^^^^^^^^^^
