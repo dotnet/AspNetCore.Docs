@@ -75,7 +75,7 @@ Our ASP.NET MVC 5 project included the required database connection string in We
 	}
 
 Change the name of the Database from _CHANGE_ME. In the case of this migration, we are going to point to a new database, which we'll name NewMvc6Project to match our migrated project name.
-
+ 
 Summary
 ^^^^^^^
 
