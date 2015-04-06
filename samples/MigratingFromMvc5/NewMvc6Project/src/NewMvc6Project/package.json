@@ -1,0 +1,10 @@
+{
+    "version": "1.0.0",
+    "name": "NewMvc6Project",
+    "private": true,
+    "devDependencies": {
+        "grunt": "0.4.5",
+        "grunt-bower-task": "0.4.0",
+        "grunt-contrib-concat": "0.5.1"
+    }
+}

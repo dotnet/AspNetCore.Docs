@@ -1,0 +1,27 @@
+{
+    "name": "NewMvc6Project",
+    "private": true,
+    "dependencies": {
+        "bootstrap": "3.0.0",
+        "jquery": "1.10.2",
+        "jquery-validation": "1.11.1",
+        "jquery-validation-unobtrusive": "3.2.2"
+    },
+    "exportsOverride": {
+        "bootstrap": {
+            "js": "dist/js/*.*",
+            "css": "dist/css/*.*",
+            "fonts": "dist/fonts/*.*"
+        },
+
+        "jquery": {
+            "": "jquery.{js,min.js,min.map}"
+        },
+        "jquery-validation": {
+            "": "jquery.validate.js"
+        },
+        "jquery-validation-unobtrusive": {
+            "": "jquery.validate.unobtrusive.{js,min.js}"
+        }
+    }
+}
