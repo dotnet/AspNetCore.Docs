@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22728.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0D7C65F-A53B-4ADE-BC48-07FCFAE5F40F}"
 EndProject
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NewMvc6Project", "src\NewMvc6Project\NewMvc6Project.kproj", "{FF6605B6-3B46-4E1D-859C-626BEC8AAC0D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NewMvc6Project", "src\NewMvc6Project\NewMvc6Project.xproj", "{FF6605B6-3B46-4E1D-859C-626BEC8AAC0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
