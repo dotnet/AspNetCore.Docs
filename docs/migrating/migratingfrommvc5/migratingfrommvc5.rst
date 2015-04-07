@@ -129,48 +129,60 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 .. image:: _static/project-structure-bower.png
 
-Next, we will configure Grunt to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Grunt is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add the "grunt" and "grunt-bower-task" items to the devDependencies property, as shown (you should get Intellisense as you type their names):
+Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add the following to the devDependencies property (you should get Intellisense as you type each package name):
 
 .. code-block:: javascript
 
 	"devDependencies": {
-		"grunt": "0.4.5",
-		"grunt-bower-task": "0.4.0"
+        "gulp": "3.8.11",
+        "gulp-clean": "0.3.1"
 	}
 
-Save your changes. You should see a new NPM folder in your project, under Dependencies, and it should include the grunt and grunt-bower-task items.
+Save your changes. You should see a new NPM folder in your project, under Dependencies, and it should now include gulp (3.8.11) as well as the related packages. In addition to Gulp itself, these two packages will allow us to clean up folders before we copy files to them, and to concatenate two or more files together, to achieve bundling.
 
-Next, add a new Grunt Configuration file (Gruntfile.js) to the root of the project. The default version of this file includes an empty call to grunt.initConfig. We need to configure grunt to use bower, and then register tasks associated with this configuration. Modify the Gruntfile.js to match this file:
+Next, add a new Gulp Configuration file (Gulpfile.js) to the root of the project.
+
+.. image:: _static/add-gulpfile.png
+
+We need to configure Gulp to use Bower, and then register tasks associated with this configuration. Modify Gulpfile.js to match this file:
 
 .. code-block:: javascript
 
-	module.exports = function (grunt) {
-		grunt.initConfig({
-			bower: {
-				install: {
-					options: {
-						targetDir: "wwwroot/lib",
-						layout: "byComponent",
-						cleanTargetDir: false
-					}
-				}
-			}
-		});
+	var gulp = require('gulp');
+	var clean = require('gulp-clean');
 
-		grunt.registerTask("default", ["bower:install"]);
-
-		grunt.loadNpmTasks("grunt-bower-task");
+	var paths = {
+		bower: "./bower_components/",
+		lib: "./wwwroot/lib/"
 	};
 
-Now that we've finished setting things up, we're ready to let these tools manage our static files and client-side dependencies for us. Right click on gruntfile.js in your project, and select Task Runner Explorer. Double-click on the bower task to run it.
+	gulp.task('clean', function () {
+		return gulp.src(paths.lib + '*')
+			.pipe(clean());
+	});
+
+	gulp.task('default', ['clean'], function () {
+		var bower = {
+			"bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
+			"jquery": "jquery/jquery*.{js,map}",
+			"jquery-validation": "jquery-validation/jquery.validate.js",
+			"jquery-validation-unobtrusive":
+				"jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+		};
+
+		for (var destinationDir in bower) {
+			gulp.src(paths.bower + bower[destinationDir])
+				.pipe(gulp.dest(paths.lib + destinationDir));
+		}
+	});
+
+Now that we've finished setting things up, we're ready to let these tools manage our static files and client-side dependencies for us. Right click on Gulpfile.js in your project, and select Task Runner Explorer. Double-click on the default task to run it.
 
 .. image:: _static/task-runner-explorer.png
 
-The output should show that the process completed without errors, and you should see that it copied some packages to the \wwwroot\lib folder. Open the wwwroot\lib folder in project explorer, and you should fine that the client-side dependencies (bootstrap, jquery, etc.) have all been copied into this folder:
+The output should show that the process completed without errors, and you should see that it copied some packages to the \wwwroot\lib folder. Open the wwwroot\lib folder in project explorer, and you should find that the client-side dependencies (bootstrap, jquery, etc.) have all been copied into this folder:
 
 .. image:: _static/wwwroot-lib-folder.png
-
-The files have minified as well as developer-readable versions available; we will configure bundling shortly.
 
 Now that the required bootstrap files are available in the wwwroot folder, the next step is to modify our Views to include references to these files. Copy the _ViewStart.cshtml file from the original project's Views folder into the new project's Views folder. In this case, it references /Shared/_Layout.cshtml, which is the next file we need to copy (create a new Shared folder in /Views and copy _Layout.cshtml from the old project to it). Open _Layout.cshtml and make the following changes:
 
@@ -206,40 +218,63 @@ Configure Bundling
 
 The ASP.NET MVC 5 starter web template utilized ASP.NET's built-in support for bundling. In ASP.NET MVC 6, this functionality is better performed using client build steps, like we have already configured to manage our client-side dependencies. Instead of maintaining bundling functionality in a static configuration class that runs on the server, the minification and combination of files is done as part of the build process, using grunt.
 
-You can learn more about configuring Grunt here.(*TODO*)
+You can learn more about configuring Gulp here.(*TODO*)
 
-To simply bundle the jQuery and boostrap scripts together into a single, minified, file, we can use the grunt-contrib-concat task. First, update package.json to require grunt-contrib-concat in "devDependencies":
+To simply bundle the jQuery and bootstrap scripts together into a single, minified, file, we can use the gulp-concat task. First, update package.json to require gulp-concat in "devDependencies":
 
 .. code-block:: javascript
+	:emphasize-lines: 4
 
 	"devDependencies": {
-		"grunt": "0.4.5",
-		"grunt-bower-task": "0.4.0",
-		"grunt-contrib-concat": "0.5.1"
+        "gulp": "3.8.11",
+        "gulp-clean": "0.3.1",
+        "gulp-concat": "2.5.2"
 	}
 
-Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the grunt-contrib-concat package is listed there. Next, we will add a concat task to gruntfile.js (after the bower task, in initConfig):
+Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the gulp-concat package is listed there. Next, we will add a concat task to Gulpfile.js. Add the highlighted sections:
 
 .. code-block:: javascript
+	:emphasize-lines: 3, 30-35
 
-	concat: {
-		all: {
-			src: ['wwwroot/lib/jquery/jquery.min.js',
-				'wwwroot/lib/bootstrap/js/bootstrap.min.js'
-			],
-			dest: 'wwwroot/lib/bundle.js'
+	var gulp = require('gulp');
+	var clean = require('gulp-clean');
+	var concat = require('gulp-concat');
+
+	var paths = {
+		bower: "./bower_components/",
+		lib: "./wwwroot/lib/"
+	};
+
+	gulp.task('clean', function () {
+		return gulp.src(paths.lib + '*')
+			.pipe(clean());
+	});
+
+	gulp.task('default', ['clean'], function () {
+		var bower = {
+			"bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
+			"jquery": "jquery/jquery*.{js,map}",
+			"jquery-validation": "jquery-validation/jquery.validate.js",
+			"jquery-validation-unobtrusive":
+				"jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+		};
+
+		for (var destinationDir in bower) {
+			gulp.src(paths.bower + bower[destinationDir])
+				.pipe(gulp.dest(paths.lib + destinationDir));
 		}
-	}
+	});
 
-Finally, in order to run the task, you need to call grunt.loadNpmTasks:
+	gulp.task('concat', function () {
+		return gulp.src([paths.lib + 'bootstrap/js/bootstrap.min.js',
+				paths.lib + 'jquery/jquery.min.js'])
+			.pipe(concat("bundle.js"))
+			.pipe(gulp.dest(paths.lib));
+	});
 
-.. code-block:: javascript
+Save Gulpfile.js, then open the Task Runner Explorer. Right click on the concat task and run it. You should see the output, which should show that it runs without errors. In your solution explorer, you should see the bundle.js file in wwwroot/lib. You can see all of this working in the screenshot:
 
-	grunt.loadNpmTasks('grunt-contrib-concat');
-
-Save gruntfile.js, then open the Task Runner Explorer. Right click on the concat task and run it. You should see the output, which should show that it runs without errors. In your solution explorer, you should see the bundle.js file in wwwroot/lib. You can see all of this working in the screenshot:
-
-.. image:: _static/updated-gruntfile-with-concat.png
+.. image:: _static/updated-gulpfile-with-concat.png
 
 All that remains it to update _Layout.cshtml and replace the last two <script> elements with a single <script> element that loads bundle.js:
 
