@@ -1,4 +1,4 @@
-Migrating From ASP.NET MVC 5 to MVC 6
+ Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
 By `Steve Smith`_ | Originally Published: 1 June 2015 
 
@@ -12,7 +12,7 @@ This article covers the following topics:
 	- Migrate Basic Controllers, Views, and Static Content
 	- Configure Bundling
 
-You can download the finished source from the project created in this article HERE **(TODO)**.
+Download the `finished source <https://github.com/aspnet/Docs/tree/master/samples/MigratingFromMvc5/NewMvc6Project>`_ from the project created in this article.
 
 Create the Initial Project
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
