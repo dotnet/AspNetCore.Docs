@@ -129,14 +129,12 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 .. image:: _static/project-structure-bower.png
 
-Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add the following to the devDependencies property (you should get Intellisense as you type each package name):
+Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add *gulp*, *rimraf*, and *guld-concat* to the devDependencies property (you should get Intellisense as you type each package name). When you're finished, your file should look similar to this one:
 
-.. code-block:: javascript
-
-	"devDependencies": {
-        "gulp": "3.8.11",
-        "gulp-clean": "0.3.1"
-	}
+.. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/package.json
+	:language: javascript
+	:emphasize-lines: 6-8
+	:linenos: 
 
 Save your changes. You should see a new NPM folder in your project, under Dependencies, and it should now include gulp (3.8.11) as well as the related packages. In addition to Gulp itself, these two packages will allow us to clean up folders before we copy files to them, and to concatenate two or more files together, to achieve bundling.
 
@@ -149,16 +147,15 @@ We need to configure Gulp to use Bower, and then register tasks associated with 
 .. code-block:: javascript
 
 	var gulp = require('gulp');
-	var clean = require('gulp-clean');
+	var rimraf = require('rimraf');
 
 	var paths = {
 		bower: "./bower_components/",
 		lib: "./wwwroot/lib/"
 	};
 
-	gulp.task('clean', function () {
-		return gulp.src(paths.lib + '*')
-			.pipe(clean());
+	gulp.task('clean', function (callback) {
+		rimraf(paths.lib, callback);
 	});
 
 	gulp.task('default', ['clean'], function () {
@@ -227,50 +224,16 @@ To simply bundle the jQuery and bootstrap scripts together into a single, minifi
 
 	"devDependencies": {
         "gulp": "3.8.11",
-        "gulp-clean": "0.3.1",
+        "rimraf": "2.3.2",
         "gulp-concat": "2.5.2"
 	}
 
 Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the gulp-concat package is listed there. Next, we will add a concat task to Gulpfile.js. Add the highlighted sections:
 
-.. code-block:: javascript
-	:emphasize-lines: 3, 30-35
-
-	var gulp = require('gulp');
-	var clean = require('gulp-clean');
-	var concat = require('gulp-concat');
-
-	var paths = {
-		bower: "./bower_components/",
-		lib: "./wwwroot/lib/"
-	};
-
-	gulp.task('clean', function () {
-		return gulp.src(paths.lib + '*')
-			.pipe(clean());
-	});
-
-	gulp.task('default', ['clean'], function () {
-		var bower = {
-			"bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
-			"jquery": "jquery/jquery*.{js,map}",
-			"jquery-validation": "jquery-validation/jquery.validate.js",
-			"jquery-validation-unobtrusive":
-				"jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
-		};
-
-		for (var destinationDir in bower) {
-			gulp.src(paths.bower + bower[destinationDir])
-				.pipe(gulp.dest(paths.lib + destinationDir));
-		}
-	});
-
-	gulp.task('concat', function () {
-		return gulp.src([paths.lib + 'bootstrap/js/bootstrap.min.js',
-				paths.lib + 'jquery/jquery.min.js'])
-			.pipe(concat("bundle.js"))
-			.pipe(gulp.dest(paths.lib));
-	});
+.. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/Gulpfile.js
+	:language: javascript
+	:emphasize-lines: 8,34-39
+	:linenos: 
 
 Save Gulpfile.js, then open the Task Runner Explorer. Right click on the concat task and run it. You should see the output, which should show that it runs without errors. In your solution explorer, you should see the bundle.js file in wwwroot/lib. You can see all of this working in the screenshot:
 

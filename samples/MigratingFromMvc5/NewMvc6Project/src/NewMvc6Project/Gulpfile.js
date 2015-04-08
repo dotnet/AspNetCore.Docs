@@ -4,7 +4,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 */
 
 var gulp = require('gulp');
-var clean = require('gulp-clean');
+var rimraf = require('rimraf');
 var concat = require('gulp-concat');
 
 var paths = {
@@ -12,9 +12,8 @@ var paths = {
     lib: "./wwwroot/lib/"
 };
 
-gulp.task('clean', function () {
-    return gulp.src(paths.lib + '*')
-        .pipe(clean());
+gulp.task('clean', function (callback) {
+    rimraf(paths.lib, callback);
 });
 
 gulp.task('default', ['clean'], function () {
@@ -33,7 +32,7 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('concat', function () {
-    return gulp.src([paths.lib + 'bootstrap/js/bootstrap.min.js',
+    gulp.src([paths.lib + 'bootstrap/js/bootstrap.min.js',
             paths.lib + 'jquery/jquery.min.js'])
         .pipe(concat("bundle.js"))
         .pipe(gulp.dest(paths.lib));
