@@ -3,8 +3,8 @@
     "name": "NewMvc6Project",
     "private": true,
     "devDependencies": {
-        "grunt": "0.4.5",
-        "grunt-bower-task": "0.4.0",
-        "grunt-contrib-concat": "0.5.1"
+        "gulp": "3.8.11",
+        "rimraf": "2.3.2",
+        "gulp-concat": "2.5.2"
     }
 }
