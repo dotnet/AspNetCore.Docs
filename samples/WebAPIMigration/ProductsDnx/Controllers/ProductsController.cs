@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace ProductsDnx.Controllers
 {
+    [Route("api/[controller]")]
     public class ProductsController : Controller
     {
         Product[] products = new Product[] 
@@ -14,11 +15,15 @@ namespace ProductsDnx.Controllers
             new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M } 
         };
 
+        // /api/products
+        [HttpGet]
         public IEnumerable<Product> GetAllProducts()
         {
             return products;
         }
 
+        // /api/products/1
+        [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var product = products.FirstOrDefault((p) => p.Id == id);
