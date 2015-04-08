@@ -162,6 +162,7 @@ Run the application and navigate to the About page and you should see the result
 .. image:: _static/about-page.png
 
 .. _Startup.cs: 
+.. _fundamentalconcepts-application-startup:
 
 Application Startup
 ^^^^^^^^^^^^^^^^^^^
