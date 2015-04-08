@@ -1,4 +1,4 @@
- Migrating From ASP.NET MVC 5 to MVC 6
+Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
 By `Steve Smith`_ | Originally Published: 1 June 2015 
 
