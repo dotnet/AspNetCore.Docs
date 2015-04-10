@@ -273,4 +273,116 @@ Unload and reload the project. When the project loads again, the watch task will
 Using Gulp
 ^^^^^^^^^^
 
+Gulp configuration is similar to Grunt with some notable differences. The example below parallels the Grunt example using Gulp packages and conventions.
+
+NPM Package Differences
+-----------------------
+
+The **devDependencies** defined in package.json are specific to Gulp. To get the same result as the Grunt walk-through, **package.json** should look something like the code below. You will need to change the package versions in the devDependencies list to the latest version. You can get the correct version number using Intellisense (Ctrl-space).
+
+.. code-block:: javascript
+
+	{
+		"version": "1.0.0",
+		"name": "GulpFromEmptyWeb",
+		"private": true,
+		"devDependencies": {
+			"gulp": "3.8.11",
+			"gulp-clean": "0.3.1",
+			"gulp-jshint": "1.9.2",
+			"gulp-concat": "2.5.2",
+			"gulp-uglify": "1.1.0",
+			"gulp-rename": "1.2.0"
+		}
+	}
+
+Gulpfile vs Gruntfile Examples
+------------------------------
+
+Instead of adding Gruntfile.js to the project, add a JavaScript file to the project and name it **gulpfile.js**. In gulpfile.js, assign a series of objects using the node.js **require()** method. Make the assignment for Gulp itself and for every package needed for automation. The code below assigns the same tasks used in the Grunt example:
+
+.. code-block:: javascript
+
+	var gulp = require('gulp');
+	var clean = require('gulp-clean');
+	var concat = require('gulp-concat');
+	var jshint = require('gulp-jshint');
+	var uglify = require('gulp-uglify');
+
+Below these assignments in gulpfile.js, call the **gulp** object **task()** method. The first parameter to task() is the name of the task and the second is a function.
+
+.. code-block:: javascript
+
+	gulp.task("all", function () {
+
+	});
+
+Just adding the empty task() method to gulpfile.js displays the **all** task in Task Runner Explorer.
+
+.. image:: _static/task-runner-explorer-gulp.png
+
+Inside the **task()** function, use the objects defined earlier by **require()** to do the work. The example below cleans any files from the wwwroot/lib directory.
+
+.. code-block:: javascript
+
+	gulp.task("all", function () {
+		 gulp.src('wwwroot/lib/*').pipe(clean());
+	});
+
+The Gulp Stream
+---------------
+
+Gulp is a streaming object that includes methods **src()**, **pipe()** and **dest()**.
+ 
+	- src() defines where the stream is coming from -- wwwroot/lib in our example. The method returns a stream that can be passed to other Gulp plugins. 
+	- pipe() pulls data from the stream and writes it to the destination parameter. 
+	- dest() outputs streams to files. 
+
+The general coding pattern for Gulp looks like this partial example:
+
+.. code-block:: javascript
+
+	gulp.src()
+		.pipe()
+		.pipe()
+		.pipe(dest());
+
+The src() method gathers the initial raw materials. A series of pipe() calls allow Gulp plugins to operate on the stream. Finally, the dest() method writes out the final results. The advantage to this flow is that only one file read and one file write occur, making the whole process quicker.
+
+All Together
+------------
+
+Here’s the complete example that concatenates, lints, minifies and writes out the minified file. The processing time is quite fast.
+
+.. code-block:: javascript
+
+	gulp.task("all", function () {
+		 gulp.src('wwwroot/lib/*').pipe(clean());
+		 gulp.src(['TypeScript/Tastes.js', 'TypeScript/Food.js'])
+			.pipe(concat("combined.js"))
+			.pipe(jshint())
+			.pipe(uglify())
+			.pipe(rename({
+				extname: '.min.js'
+			 }))
+			.pipe(gulp.dest('wwwroot/lib'))
+	});
+
+Watcher tasks are similar to the Grunt parallel task and are simple to set up. Again, the gulp.task() method names the task that will show in the Task Runner Explorer. The Gulp **watch()** method takes a path or array of paths and second parameter is an array of tasks to run. 
+
+.. code-block:: javascript
+
+	gulp.task("watcher", function () {
+		gulp.watch("TypeScript/*.js", ['all']);
+	});
+
+The Task Runner Explorer running Gulp tasks uses the same interface as Grunt. The screenshot below shows the **watcher** task running. 
+
+.. image:: _static/task-runner-explorer-gulp-watcher.png
+
+Summary
+^^^^^^^
+
+Both Grunt and Gulp are powerful tasks runners that automate most client-build tasks. Grunt and Gulp both require support from NPM to deliver their packages. While Grunt is configured using Gruntfile.js and Gulp is configured using Gulpfile.js, both build tools play nicely in Visual Studio, automatically sensing changes to the configuration files. Task Runner Explorer detects changes to configuration files and provides a convenient interface to run tasks, view running tasks, and bind tasks to Visual Studio events. 
+
 .. include:: /_authors/noel-rice.rst
