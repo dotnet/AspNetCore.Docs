@@ -37,7 +37,7 @@ In addition to being able to target a variety of different device platforms, the
 .NET Core and ASP.NET
 ^^^^^^^^^^^^^^^^^^^^^
 
-ASP.NET 5 can target either the full .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the *frameworks* section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
+ASP.NET 5 can target either the full .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the `frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
 
 .. code-block:: javascript
 
@@ -48,8 +48,7 @@ ASP.NET 5 can target either the full .NET Framework or .NET Core. In fact, ASP.N
 
 *dnx451* is the full .NET Framework; *dnxcore50* is .NET Core 5 (5.0).
 
-By contrast, earlier versions of ASP.NET can only target the .NET Framework
-ASP.NET 4.6 and earlier can only target the .NET Framework. Since both the full .NET Framework and .NET Core can both be targeted at the same time by ASP.NET 5, the recommendation is to target both with new applications, resolving issues with dependencies that are incompatible with .NET Core through the use of conditional compilation directives or choosing to require the full .NET Framework, if necessary.
+Since both the full .NET Framework and .NET Core can both be targeted at the same time by ASP.NET 5, the recommendation is to target both with new applications, resolving issues with dependencies that are incompatible with .NET Core through the use of conditional compilation directives or choosing to require the full .NET Framework, if necessary. Note that ASP.NET 4.6 and earlier target and require the .NET Framework, as always.
 
 .. note:: You can use compiler directives (**#if**) to check for symbols that correspond to the two frameworks: **DNX451** and **DNXCORE50**.
 	
@@ -58,15 +57,15 @@ If for instance you have code that uses resources that are not available as part
 .. code-block:: c#
 
 	#if DNX451
-		// utilize resource only available with full .NET
+		// utilize resource only available with .NET Framework
 	#endif
 
-If you want to only target .NET Core, you should remove *dnx451* from the *frameworks* listed in *project.json*.
+If you want to only target .NET Core, remove *dnx451* from the *frameworks* listed in *project.json*.
 
 .NET Core and NuGet
 ^^^^^^^^^^^^^^^^^^^
 
-As part of the effort to *factor* the CoreFX, the individual assemblies are available as separate NuGet packages. In fact, NuGet is the primary delivery vehicle for .NET Core. If, for example, you need to use immutable collections, you can install the System.Collections.Immutable package via NuGet. The NuGet version will also align with the assembly version, and will use `semantic versioning <http://semver.org>`_.
+As part of the effort to *factor* the CoreFX, the individual assemblies are packaged as separate NuGet packages. In fact, NuGet is the primary delivery vehicle for .NET Core. If, for example, you need to use immutable collections, you can install the System.Collections.Immutable package via NuGet. The NuGet version will also align with the assembly version, and will use `semantic versioning <http://semver.org>`_.
 
 Using NuGet allows for much more agile usage of the individual libraries that comprise .NET Core. It also means that an application can list a collection of NuGet packages (and associated version information) and this will comprise both system/framework as well as third-party dependencies required. Further, third-party dependencies can now also express their specific dependencies on framework features, making it much easier to ensure the proper packages and versions are pulled together during the development and build process.
 
