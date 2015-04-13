@@ -4,7 +4,7 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 
 .. _`Steve Smith`: Author_
 
-.NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the full .NET Framework. Learn what targeting .NET Core, or *dnxcore50*, means for your ASP.NET 5 application.
+.NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core, or *dnxcore50*, means for your ASP.NET 5 application.
 
 This article covers the following topics:
 	- What is .NET Core?
@@ -16,25 +16,21 @@ This article covers the following topics:
 What is .NET Core
 ^^^^^^^^^^^^^^^^^
 
-.NET Core 5 is a modular runtime and library implementation that includes a subset of the full .NET Framework. Currently it builds and runs on Windows, but support for Linux and Mac is under development. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
+.NET Core 5 is a modular runtime and library implementation that includes a subset of the full .NET Framework. Currently it is feature complete on Windows, and is in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
 
 	- `.NET Core Libraries (CoreFX) <https://github.com/dotnet/corefx>`_
 	- `.NET Core Common Language Runtime (CoreCLR) <https://github.com/dotnet/coreCLR>`_
 
-The CoreCLR runtime is made available via NuGet (Microsoft.CoreCLR); the CoreFX library is also available as a set of individual NuGet packages, factored according to functionality. These packages are named "System.[module]" on `Nuget.org <http://www.nuget.org/>`_.
+The CoreCLR runtime is made available via NuGet (Microsoft.CoreCLR); the CoreFX library is also available as a set of individual NuGet packages, factored according to functionality. These packages are named "System.[module]" on `nuget.org <http://www.nuget.org/>`_.
 
 One of the key benefits of .NET Core is its portability. You can package and deploy the CoreCLR with your application, eliminating your application's dependency on an installed version of the full .NET Framework at the device or server level. You can host multiple applications side-by-side using different versions of the CoreCLR, and upgrade them individually, rather than being forced to upgrade all of them simultaneously.
 
-Another benefit is common access to standard libraries. The CoreFX library includes Collections, Console access, Diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few. Applications targeting a variety of devices and deployment models (such as Windows Desktop, Windows Store, Windows Phone, and ASP.NET) can directly target these libraries, avoiding the need to write wrapper code or conditionally compile based on target platform, as is common today.
+Another benefit is common access to standard libraries. The CoreFX library includes collections, console access, diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few. Applications targeting a variety of devices and deployment models (such as Windows Desktop, Windows Store, Windows Phone, and ASP.NET) can directly target these libraries, avoiding the need to write wrapper code or conditionally compile based on target platform, as is common today.
 
 Motivation Behind .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The fragmentation of .NET and its capabilities across different platforms is the primary motivation for .NET Core. When .NET first shipped in 2002, it was a single framework, but it didn't take long before the .NET Compact Framework shipped, providing a smaller version of .NET designed for mobile devices. Over the years, this exercise was repeated multiple times, so that today there are different flavors of .NET specific to different platforms. Add to this the further fragmentation created by Mono and Xamarin, which target Linux, Mac, and native iOS and Android devices, and the need for a single common Core of .NET that works the same across all of these platforms becomes even more apparent. Since .NET Core is a full open source project, it will no longer be necessary for Mono to maintain its own fork of this technology, and instead Microsoft and the Mono community can collaborate together on .NET Core.
-
-.. note:: The `.NET Framework Client Profile`_ shared some of the goals of .NET Core when it was provided with .NET 4 and earlier versions, providing a subset of the .NET Framework optimized for client applications. It was later discontinued with the release of the .NET Framework 4.5.
-
-.. _`.NET Framework Client Profile`: https://msdn.microsoft.com/en-us/library/cc656912%28v=vs.110%29.aspx
+The fragmentation of .NET and its capabilities across different platforms is the primary motivation for .NET Core. When .NET first shipped in 2002, it was a single framework, but it didn't take long before the .NET Compact Framework shipped, providing a smaller version of .NET designed for mobile devices. Over the years, this exercise was repeated multiple times, so that today there are different flavors of .NET specific to different platforms. Add to this the further fragmentation created by Mono and Xamarin, which target Linux, Mac, and native iOS and Android devices, and the need for a single common Core of .NET that works the same across all of these platforms becomes even more apparent. Since .NET Core is a full open source project, the Mono community can contribute to it, as well as reference it directly, rather than maintaining copies of libraries CoreFX libraries. .NET Core will not replace Mono, but it will allow the Mono community to reference and share, rather than duplicate, certain common libraries.
 
 In addition to being able to target a variety of different device platforms, there was also pressure from the server side to reduce the overall footprint of the .NET framework. By factoring the CoreFX libraries and minimizing the size of CoreFX, server-based applications built with ASP.NET 5 can minimize their size, allowing cloud-based hosting environments to increase the density of applications they can support on a given set of hardware resources. This will provide increased economies of scale for ASP.NET applications hosted on Azure, for instance.
 
