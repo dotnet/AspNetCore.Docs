@@ -85,7 +85,7 @@ Author information should be placed in the _authors folder following the example
 
 **Step 5:** Submit a Pull Request from your branch to `aspnet/docs/master`.
 
-**Step 6:** Discuss the Pull Request with the ASP.NET team; make any requested updates to your branch. When they are ready to accept the PR, they will add a :shipit: comment.
+**Step 6:** Discuss the Pull Request with the ASP.NET team; make any requested updates to your branch. When they are ready to accept the PR, they will add a :shipit: (`:shipit:`) comment.
 
 **Step 7:** The last step before your Pull Request is accepted is to [squash all commits](http://stackoverflow.com/questions/14534397/squash-all-my-commits-into-one-for-github-pull-request) into a single commit message. Do this in your branch, using the `rebase` git command. For example, if you want to squash the last 4 commits into a single commit, you would use:
 
