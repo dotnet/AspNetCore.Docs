@@ -16,16 +16,16 @@ This article covers the following topics:
 What is .NET Core
 ^^^^^^^^^^^^^^^^^
 
-.NET Core 5 is a modular runtime and library implementation that includes a subset of the full .NET Framework. Currently it is feature complete on Windows, and is in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
+.NET Core 5 is a modular runtime and library implementation that includes a subset of the .NET Framework. Currently it is feature complete on Windows, and in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
 
 	- `.NET Core Libraries (CoreFX) <https://github.com/dotnet/corefx>`_
 	- `.NET Core Common Language Runtime (CoreCLR) <https://github.com/dotnet/coreCLR>`_
 
-The CoreCLR runtime is made available via NuGet (Microsoft.CoreCLR); the CoreFX library is also available as a set of individual NuGet packages, factored according to functionality. These packages are named "System.[module]" on `nuget.org <http://www.nuget.org/>`_.
+The CoreCLR runtime (Microsoft.CoreCLR) and CoreFX libraries are distributed via NuGet. The CoreFX libraries are factored as individual NuGet packages according to functionality, named "System.[module]" on `nuget.org <http://www.nuget.org/>`_.
 
 One of the key benefits of .NET Core is its portability. You can package and deploy the CoreCLR with your application, eliminating your application's dependency on an installed version of .NET (e.g. .NET Framework on Windows). You can host multiple applications side-by-side using different versions of the CoreCLR, and upgrade them individually, rather than being forced to upgrade all of them simultaneously.
 
-Another benefit of CoreFX is that it allows developers to target a single common set of libraries across many different platforms. The CoreFX library includes collections, console access, diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few. Applications targeting a variety of devices and deployment models (such as Windows Desktop, Windows Store, Windows Phone, and ASP.NET) can directly target these libraries, avoiding the need to write wrapper code or conditionally compile based on target platform, as was often required with previous versions of the .NET Framework.
+CoreFX has been built as a componentized set of libraries, each requiring the minimum set of library dependencies (e.g. System.Collections only depends on System.Runtime, not System.XML). This approach enables minimal distributions  of CoreFX libraries (just the ones you need) within an application, alongside CoreCLR. CoreFX includes collections, console access, diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few libraries. Another benefit of CoreFX is that it allows developers to target a single common set of libraries that are supported by multiple platforms. 
 
 Motivation Behind .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,7 +39,7 @@ In addition to being able to target a variety of different device platforms, the
 .NET Core and ASP.NET
 ^^^^^^^^^^^^^^^^^^^^^
 
-ASP.NET 5 can target either the full .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
+ASP.NET 5 can target either the .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
 
 .. code-block:: javascript
 
@@ -48,13 +48,7 @@ ASP.NET 5 can target either the full .NET Framework or .NET Core. In fact, ASP.N
 		"dnxcore50": { }
 	},
 
-*dnx451* is the full .NET Framework; *dnxcore50* is .NET Core 5 (5.0).
-
-Since both the full .NET Framework and .NET Core can both be targeted at the same time by ASP.NET 5, the recommendation is to target both with new applications, resolving issues with dependencies that are incompatible with .NET Core through the use of conditional compilation directives or choosing to require the full .NET Framework, if necessary. Note that ASP.NET 4.6 and earlier target and require the .NET Framework, as always.
-
-.. note:: You can use compiler directives (**#if**) to check for symbols that correspond to the two frameworks: :keyword:`DNX451` and :keyword:`DNXCORE50`.
-	
-If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
+*dnx451* represents the .NET Framework, while *dnxcore50* represents .NET Core 5 (5.0). You can use compiler directives (**#if**) to check for symbols that correspond to the two frameworks: :keyword:`DNX451` and :keyword:`DNXCORE50`. If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
 
 .. code-block:: c#
 
@@ -62,21 +56,21 @@ If for instance you have code that uses resources that are not available as part
 		// utilize resource only available with .NET Framework
 	#endif
 
-If you want to only target .NET Core, remove *dnx451* from the *frameworks* listed in *project.json*.
+The recommendation from the ASP.NET team is to target both frameworks with new applications. If you want to only target .NET Core, remove *dnx451*, or only target .NET Framework, remove *dnxcore50*, from the *frameworks* listed in *project.json*. Note that ASP.NET 4.6 and earlier target and require the .NET Framework, as they always have.
 
 .NET Core and NuGet
 ^^^^^^^^^^^^^^^^^^^
 
-As part of the effort to *factor* the CoreFX, the individual assemblies are distributed as separate NuGet packages. In fact, NuGet is the primary delivery vehicle for .NET Core. If, for example, you need to use immutable collections, you can install the System.Collections.Immutable package via NuGet. The NuGet version will also align with the assembly version, and will use `semantic versioning <http://semver.org>`_.
-
 Using NuGet allows for much more agile usage of the individual libraries that comprise .NET Core. It also means that an application can list a collection of NuGet packages (and associated version information) and this will comprise both system/framework as well as third-party dependencies required. Further, third-party dependencies can now also express their specific dependencies on framework features, making it much easier to ensure the proper packages and versions are pulled together during the development and build process.
+
+If, for example, you need to use immutable collections, you can install the System.Collections.Immutable package via NuGet. The NuGet version will also align with the assembly version, and will use `semantic versioning <http://semver.org>`_.
 
 .. note:: Although CoreFX will be made available as a fairly large number of individual NuGet packages, it will continue to ship periodically as a full unit that Microsoft has been tested as a whole. These distributions will most likely ship at a lower cadence than individual packages, allowing time to perform necessary testing, fixes, and the distribution process.
 
 Summary
 ^^^^^^^
 
-.NET Core is a modular, streamlined subset of the full .NET Framework and CLR. It is fully open-source and provides a common set of libraries that can be targeted across numerous platforms. Its factored approach allows applications to take dependencies only on those portions of the CoreFX that they use, and the smaller runtime is ideal for deployment to both small devices (though it doesn't yet support any) as well as cloud-optimized environments that need to be able to run many small applications side-by-side. Support for targeting .NET Core is built into the ASP.NET 5 project templates that ship with Visual Studio 2015.
+.NET Core is a modular, streamlined subset of the .NET Framework and CLR. It is fully open-source and provides a common set of libraries that can be targeted across numerous platforms. Its factored approach allows applications to take dependencies only on those portions of the CoreFX that they use, and the smaller runtime is ideal for deployment to both small devices (though it doesn't yet support any) as well as cloud-optimized environments that need to be able to run many small applications side-by-side. Support for targeting .NET Core is built into the ASP.NET 5 project templates that ship with Visual Studio 2015.
 
 Additional Reading
 ^^^^^^^^^^^^^^^^^^
