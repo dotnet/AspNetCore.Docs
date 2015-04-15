@@ -9,3 +9,9 @@ div.photo {
 div.bio {
 	margin-left:10px;
 }
+
+code.std-keyword {
+	background-color: #EEEEEE;
+	color: black;
+	border-radius: 5px;
+}
