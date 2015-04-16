@@ -16,7 +16,9 @@ Article Structure
 
 Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in 3 places in an article document: line 3, line 5 (an alias to the Author_ target), and on the very last line, where the appropriate author.rst file is included (e.g. steve-smith.rst).
 
-Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list. Articles should end with a Summary section, which should not appear in the bulleted list of topics.
+Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list. 
+
+Articles should typically include a Summary section at the end, and optionally additional sections like Next Steps or Additional Resources. These should not be included in the bulleted list of topics, however.
 
 Headings
 --------
