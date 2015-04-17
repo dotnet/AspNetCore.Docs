@@ -29,7 +29,11 @@ Section headings should correspond to the bulleted list of topics set out after 
 
 Subsection headings can be used to organize content within a section. `Headings`, above, is an example of a subsection heading. A subsection heading should appear on its own line, followed by a line of --- characters.
 
-Article should end with a Summary section.
+For section headings, only the first word should be capitalized:
+- This heading follow the style
+- This Heading Does Note
+
+
 
 ReStructuredText Syntax
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -48,6 +52,20 @@ Surround text with:
 ..note:: Inline markup cannot be nested, nor can surrounded content start or end with whitespace (``* foo*`` is wrong).
 
 Escaping is done using the ``\`` backslash.
+
+Format specific items using these rules:
+
+- *Italics* (surround with \*)
+	- Files, folders, paths (for long items, split onto their own line)
+	- New terms
+	- URLs (unless rendered as links, which is the default)
+- **Strong** (surround with \**)
+	- UI elements
+- ``Code Elements`` (surround with \``)
+	- Classes and members
+	- Command-line commands
+	- Database table and column names
+	- Language keywords
 
 Links
 -----
@@ -69,6 +87,8 @@ In addition to URLs, documents and document sections can also be linked by name:
 	For example, here is a link to the `Inline Markup`_ section, above.
 	
 For example, here is a link to the `Inline Markup`_ section, above.
+
+Any element that is rendered as a link should not have any additional formatting or styling.
 
 Lists
 -----
@@ -93,7 +113,7 @@ Numbered lists can start with a number, or they can be autonumbered by starting 
 Source Code
 -----------
 
-Of course, source code is very commonly included in these articles. You can refer to it using the ``code-block`` element, which must be declared precisely as shown, including spaces, blank lines, and indentation:
+Of course, source code is very commonly included in these articles. Images should never be used to display source code - instead use ``code-block`` or ``literalinclude``. You can refer to it using the ``code-block`` element, which must be declared precisely as shown, including spaces, blank lines, and indentation:
 
 .. code-block:: rst
 
@@ -155,6 +175,8 @@ Images
 
 Images such as screen shots and explanatory figures or diagrams should be placed in a ``_static`` folder at the same level as the article file. References to images should therefore always be made using relative references, e.g. ``_static/asp-net.png``. Note that images should always be saved as all lower-case file names, using hyphens to separate words, if necessary.
 
+.. note:: Do not use images for code. Use ``code-block`` or ``literalinclude`` instead.
+
 To include an image in an article, use the ``.. image`` directive:
 
 .. code-block:: rst
@@ -167,7 +189,7 @@ Here's an example using the above syntax:
 
 .. image:: _static/asp-net.png
 
-Images are responsively sized according to the browser viewport when using this directive.
+Images are responsively sized according to the browser viewport when using this directive. Currently the maximum width supported by the http://docs.asp.net theme is 697px.
 
 Notes
 -----
@@ -220,13 +242,24 @@ Tables
 
 Tables can be constructed using grid-like "ASCII Art" style text. In general they should only be used where it makes sense to present some tabular data. Rather than include all of the syntax options here, you will find a detailed reference at `<http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables>`_.
 
+UI navigation
+-------------
+
+When documenting how a user should navigate a series of menus, use the ``:menuselection:`` directive:
+
+.. code-block:: rst
+
+	:menuselection:`Windows --> Views --> Other...`
+	
+This will result in :menuselection:`Windows --> Views --> Other...`.
+
 Additional Reading
 ^^^^^^^^^^^^^^^^^^
 
 Learn more about Sphinx and ReStructuredText:
 	- `Sphinx documentation <http://sphinx-doc.org/contents.html>`_
 	- `RST Quick Reference <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
-	
+
 
 Summary
 ^^^^^^^
