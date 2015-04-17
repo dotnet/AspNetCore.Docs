@@ -15,7 +15,9 @@ Your First ASP.NET Application
    yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication
    yourfirst/fundamentalconcepts/fundamentalconcepts
    dotnetcore/introducing-dotnetcore/introducing-dotnetcore
-   
+
+.. include:: getting-started/index.rst
+ 
 ASP.NET MVC 6
 -------------
 
