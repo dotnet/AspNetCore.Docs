@@ -9,3 +9,6 @@ div.photo {
 div.bio {
 	margin-left:10px;
 }
+.wy-nav-content {
+	max-width: inherit !important;    
+}
