@@ -4,7 +4,15 @@ By `Noel Rice`_ | Originally Published: 1 June 2015
 
 .. _`Noel Rice`: Author_
 
-Both Grunt and Gulp are JavaScript task runners that automate script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Gulp is the Visual Studio 2015 default, but Grunt can be used in its place.
+Both Grunt and Gulp are JavaScript task runners that automate script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Both Grunt and Gulp are equally supported in Visual Studio 2015. The ASP.NET project templates use Gulp by default.
+
+This article covers the following topics:
+	- `Grunt and Gulp`_
+	- `Using Grunt`_
+	- `Using Gulp`_
+	
+Grunt and Gulp
+^^^^^^^^^^^^^^
 
 What's the difference between Grunt and Gulp? Grunt is an early entry in the client-build-tool space. Grunt modules predefine most everyday tasks like linting, minimizing, and unit testing. Grunt is widely adopted and downloaded thousands of times each day.
 
@@ -101,13 +109,15 @@ Next, configure NPM to download grunt and grunt-tasks.
 	}
 
 4.	Save the **packages.json** file.
-5.	In Solution Explorer, right-click **Dependencies\NPM** and select the **Restore Packages** context menu option. 
-
-.. image:: _static/restore-packages.png
 
 The packages for each devDependencies item will download, along with any files that each package requires. You can find the package files in the **node_modules** directory by enabling the **Show All Files** button in the Solution Explorer.  
 
 .. image:: _static/node-modules.png
+
+.. note:: If you need to, you can manually restore dependencies in Solution Explorer by right-clicking on **Dependencies\\NPM** and selecting the **Restore Packages** menu option.
+
+.. image:: _static/restore-packages.png
+
 
 Configuring Grunt
 ------------------
