@@ -39,7 +39,7 @@ In addition to being able to target a variety of different device platforms, the
 Building Applications with .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ASP.NET 5 can target either the .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
+.NET Core can be used to build a variety of applications using different application models including Web applications, console applications and native mobile applications. The .NET Execution Environment (DNX) provides a cross-platform runtime host that you can use to build .NET Core based applications that can run on Windows, Mac and Linux and is the foundation for running ASP.NET applications on .NET Core. Applications running on DNX can target the .NET Framework or .NET Core. In fact, DNX projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
 
 .. code-block:: javascript
 
