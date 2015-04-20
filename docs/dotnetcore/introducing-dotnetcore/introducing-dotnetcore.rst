@@ -39,7 +39,7 @@ In addition to being able to target a variety of different device platforms, the
 Building Applications with .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.NET Core can be used to build a variety of applications using different application models including Web applications, console applications and native mobile applications. The .NET Execution Environment (DNX) provides a cross-platform runtime host that you can use to build .NET Core based applications that can run on Windows, Mac and Linux and is the foundation for running ASP.NET applications on .NET Core. Applications running on DNX can target the .NET Framework or .NET Core. In fact, DNX projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
+.NET Core can be used to build a variety of applications using different application models including Web applications, console applications and native mobile applications. The .NET Execution Environment (DNX) provides a cross-platform runtime host that you can use to build .NET Core based applications that can run on Windows, Mac and Linux and is the foundation for running ASP.NET applications on .NET Core. Applications running on DNX can target the .NET Framework or .NET Core. In fact, DNX projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the ``frameworks`` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
 
 .. code-block:: javascript
 
@@ -48,7 +48,7 @@ Building Applications with .NET Core
 		"dnxcore50": { }
 	},
 
-*dnx451* represents the .NET Framework, while *dnxcore50* represents .NET Core 5 (5.0). You can use compiler directives (**#if**) to check for symbols that correspond to the two frameworks: :keyword:`DNX451` and :keyword:`DNXCORE50`. If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
+``dnx451`` represents the .NET Framework, while ``dnxcore50`` represents .NET Core 5 (5.0). You can use compiler directives (``#if``) to check for symbols that correspond to the two frameworks: ``DNX451`` and ``DNXCORE50``. If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
 
 .. code-block:: c#
 
