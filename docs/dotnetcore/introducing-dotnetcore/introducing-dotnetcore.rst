@@ -7,11 +7,11 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 .NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core means for your ASP.NET 5 application.
 
 This article covers the following topics:
-	- What is .NET Core?
-	- Motivation Behind .NET Core
-	- .NET Core and ASP.NET
-	- .NET Core and NuGet
-	- Additional Reading
+	- `What is .NET Core`_?
+	- `Motivation Behind .NET Core`_
+	- `Building Applications with .NET Core`_
+	- `.NET Core and NuGet`_
+	- `Additional Reading`_
 
 What is .NET Core
 ^^^^^^^^^^^^^^^^^
@@ -36,8 +36,8 @@ In addition to being able to target a variety of different device platforms, the
 
 ..note The overall size of .NET Core doesn't intend to be smaller than the .NET Framework over time, but since it is pay-for-play, most applications that utilize only parts of CoreFX will have a smaller deployment footprint.
 
-.NET Core and ASP.NET
-^^^^^^^^^^^^^^^^^^^^^
+Building Applications with .NET Core
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ASP.NET 5 can target either the .NET Framework or .NET Core. In fact, ASP.NET 5 projects can be cross-compiled, targeting both of these frameworks in a single project, and this is how the project templates ship with Visual Studio 2015. For example, the :keyword:`frameworks` section of *project.json* in a new ASP.NET 5 web project will target *dnx451* and *dnxcore50* by default:
 
@@ -65,7 +65,7 @@ Using NuGet allows for much more agile usage of the individual libraries that co
 
 If, for example, you need to use immutable collections, you can install the System.Collections.Immutable package via NuGet. The NuGet version will also align with the assembly version, and will use `semantic versioning <http://semver.org>`_.
 
-.. note:: Although CoreFX will be made available as a fairly large number of individual NuGet packages, it will continue to ship periodically as a full unit that Microsoft has been tested as a whole. These distributions will most likely ship at a lower cadence than individual packages, allowing time to perform necessary testing, fixes, and the distribution process.
+.. note:: Although CoreFX will be made available as a fairly large number of individual NuGet packages, it will continue to ship periodically as a full unit that Microsoft has tested as a whole. These distributions will most likely ship at a lower cadence than individual packages, allowing time to perform necessary testing, fixes, and the distribution process.
 
 Summary
 ^^^^^^^
