@@ -44,7 +44,7 @@ This should allow the CSS file to be loaded, but may result in icons being rende
 If contributing new documentation content, please review:
 
 - the [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html)
-- [ASP.NET Docs Style Guide](http://docs.asp.net/contribute/style-guide/style-guide)
+- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide/style-guide.html)
 
 ## Adding Content ##
 
