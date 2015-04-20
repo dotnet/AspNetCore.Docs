@@ -28,15 +28,25 @@ The installer will inform you of the steps it is taking and pause before proceed
 Install the .NET Version Manager (DNVM)
 ---------------------------------------
 
-Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/k`` from a Terminal window. If you need to update your version of DNVM, first run ``brew untap aspnet/k`` to delete the old commands, and then run the ``bew tap aspnet/k`` command again to get the updated scripts.
+Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/k`` from a Terminal window. If you need to update your version of DNVM, first run ``brew untap aspnet/k`` to delete the old commands, and then run the ``brew tap aspnet/k`` command again to get the updated scripts.
 
-Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. Run ``dnvm`` to verify that your terminal understands this command. If it does not, run the command ``source dnvm.sh`` to link it, then try running ``dnvm`` again. You should see something like this:
+.. image:: _static/homebrew-tap-aspnet.png
 
-.. image:: /_static/foo.png
+Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. 
+
+.. image:: _static/brew-install-dnvm.png
+
+Next, run ``dnvm`` to verify that your terminal understands this command. If it does not, run the command ``source dnvm.sh`` to link it, then try running ``dnvm`` again. You should see something like this:
+
+.. image:: _static/run-dnvm.png
 
 To install the latest version of DNX using DNVM, run: ``dnvm upgrade``
 
-Now that DNX is installed, you're ready to begin using ASP.NET 5! Now you're ready to `create a cross-platform console application <>`_ or `a simple ASP.NET MVC application that runs within DNX <>`_.
+Now that DNX is installed, you're ready to begin using ASP.NET 5! 
+
+.. TODO: (add to previous paragraph) Learn how you can create a cross-platform console application or a simple ASP.NET MVC application that runs within DNX.
+
+.. TODO: create links to cross-platform console application and simple ASP.NET MVC application running in DNX/command line.
 
 Summary
 ^^^^^^^
@@ -46,9 +56,9 @@ ASP.NET 5 is built on the cross-platform .NET Execution Environment, which can b
 Related Resources
 ^^^^^^^^^^^^^^^^^
 
-`Installing ASP.NET 5 on Windows <>`_
-`Installing ASP.NET 5 on Linux <>`_
-`Your First ASP.NET 5 Application Using Visual Studio <>`_
-`Your First ASP.NET 5 Application on a Mac <>`_
+- `Installing ASP.NET 5 on Windows <../installing-on-windows/installing-on-windows>`_
+- `Your First ASP.NET 5 Application Using Visual Studio <../../yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication>`_
+.. TODO: - `Installing ASP.NET 5 on Linux <>`_
+.. TODO: `Your First ASP.NET 5 Application on a Mac`_
 
 .. include:: /_authors/steve-smith.rst
