@@ -48,6 +48,18 @@ At this point, we're ready to run the app. You can do this by simply entering ``
 
 .. image:: _static/dnx-run.png
 
+..note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
+
+Set the ``DNX_TRACE`` environment variable to 1, and run the application again. You should see a great deal more output:
+
+.. image:: _static/dnx-trace-run.png
+
+In this example, running on the Windows platform, the default behavior for DNX is to run on the full .NET Framework. You can switch to use the CoreCLR by running ``dnvm upgrade -r CoreCLR``. To return to using .NET CLR, run ``dnvm upgrade -r CLR``.
+
+You can see the app continues to run after switching to use CoreCLR:
+
+.. image:: _static/dnx-trace-coreclr-run.png
+
 Summary
 -------
 
