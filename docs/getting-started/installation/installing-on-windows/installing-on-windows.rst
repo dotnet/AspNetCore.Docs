@@ -4,7 +4,7 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 
 .. _`Steve Smith`: Author_
 
-ASP.NET 5 is now available on a variety of platforms, including Windows, OS X, and Linux. This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
+This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
 
 This article covers the following topics:
 	- `Install ASP.NET with Visual Studio`_
