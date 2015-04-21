@@ -56,11 +56,17 @@ SignalR
 .. toctree::
    :maxdepth: 1
    
+Contribute
+----------
 
+**We accept pull requests!** But you're more likely to have yours accepted if you follow these guidelines:
 
-Indices and tables
-==================
+	1. Read https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
+	2. Follow the `ASP.NET Docs Style Guide <contribute/style-guide/style-guide>`_
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
