@@ -1,0 +1,17 @@
+.. :orphan: 
+
+.. _Author:
+ 
+Author
+^^^^^^
+.. container:: author
+
+	.. container:: photo
+	
+		.. image:: /_authors/photos/venkata-koppaka.jpg
+		
+	.. container:: bio
+	
+		Venkata Koppaka is a Telerik Developer Expert and works at `Falafel Software <http://falafel.com>`_ as a Software Architect on Web and Mobile projects. You can follow him on twitter as `@vkoppaka <http://twitter.com/vkoppaka>`_ or on his `blog <http://blog.falafel.com/author/venkata-koppaka/>`_.
+
+		
