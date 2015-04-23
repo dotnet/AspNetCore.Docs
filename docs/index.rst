@@ -6,55 +6,11 @@
 ASP.NET 5 Documentation
 =======================
 
-Your First ASP.NET Application
-------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication
-   yourfirst/fundamentalconcepts/fundamentalconcepts
-   dotnetcore/introducing-dotnetcore/introducing-dotnetcore
-
 .. include:: getting-started/index.rst
- 
-ASP.NET MVC 6
--------------
 
-.. toctree::
-   :maxdepth: 1
-   
-   migrating/migratingfrommvc5/migratingfrommvc5
-   migrating/migratingconfig/migratingconfig
+.. include:: aspnet5/index.rst
 
-Web API
--------
-
-.. toctree::
-   :maxdepth: 1
-   
-   webapi/migratingfromwebapi2/migratingfromwebapi2
-
-Mobile
-------
-
-.. toctree::
-   :maxdepth: 1
-   
-   
-
-Web Forms
----------
-
-.. toctree::
-   :maxdepth: 1
-   
-
-SignalR
--------
-
-.. toctree::
-   :maxdepth: 1
+.. include:: mvc/index.rst
    
 Contribute
 ----------
