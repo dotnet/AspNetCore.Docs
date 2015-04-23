@@ -71,6 +71,8 @@ Client-Side Development
    :glob:
    :maxdepth: 1
 
+   js-web-tools/knockout/knockout
+   js-web-tools/less-sass-fa/less-sass-fa
    aspnet5/clientdev/*.*
 
 Publishing and Deployment
