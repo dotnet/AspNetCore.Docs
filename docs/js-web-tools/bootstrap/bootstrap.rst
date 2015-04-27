@@ -7,7 +7,7 @@ By `Steve Smith`_ | Originally Published: 1 June 2015
 Bootstrap 3 is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of HTML, CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
 
 Getting Started
-^^^^^^^^^^^^^^^
+---------------
 
 There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET 5, in which case Bootstrap will come pre-installed:
 
@@ -16,21 +16,21 @@ There are several ways to get started with Bootstrap. If you're starting a new w
 You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
 
 Bower
------
+^^^^^
 
 .. code-block:: console
 
 	bower install bootstrap
 	
 npm
----
+^^^
 
 .. code-block:: console
 
 	npm install bootstrap
 	
 NuGet
------
+^^^^^
 
 .. code-block:: console
 
@@ -57,12 +57,12 @@ Note that if you're going to be using any of Bootstrap's jQuery plugins, you wil
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 Basic Templates and Features
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 The most basic Bootstrap template looks very much like the _Layout.cshtml file shown above, and simply includes a basic menu for navigation and a place to render the rest of the page.
 
 Basic Navigation
-----------------
+^^^^^^^^^^^^^^^^
 
 The default template uses a set of <div> elements to render a top navbar and the main body of the page. If you're using HTML5, you can replace the first <div> tag with a <nav> tag to get the same effect, but with more precise semantics.  Within this first <div> you can see there are several others. First, a <div> with a class of "container", and then within that, two more <div> elements: "navbar-header" and "navbar-collapse".  The navbar-header div includes a button that will appear when the screen is below a certain minimum width, showing 3 horizontal lines (a so-called "hamburger icon"). The icon is rendered using pure HTML and CSS; no image is required. This is the code that displays the icon, with each of the <span> tags rendering one of the white bars:
 
@@ -88,12 +88,12 @@ Clicking the icon reveals the menu items in a vertical drawer that slides down f
 .. image:: _static/about-page-hamburger-open.png
 
 Typography and Links
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 Bootstrap sets up the site's basic typography, colors, and link formatting in its CSS file. This CSS file includes default styles for tables, buttons, form elements, images, and more. One particularly useful feature is the grid layout system, covered next.
 
 Grids
------
+^^^^^
 
 One of the most popular features of Bootstrap is its grid layout system. Modern web applications should avoid using the <table> tag for layout, instead restricting the use of this element to actual tabular data. Instead, columns and rows can be laid out using a series of <div> elements and the appropriate CSS classes. There are several advantages to this approach, including the ability to adjust the layout of grids to display vertically on narrow screens, such as on phones.
 
@@ -134,14 +134,14 @@ In the above example, One and Two share a row in the "md" layout, while Two and 
 In this example, only a single row <div> was used, and Bootstrap still mostly did the right thing with regard to the layout and stacking of the columns. Typically, you should specify a row <div> for each horizontal row your layout requires, and of course you can nest Bootstrap grids within one another. When you do, each nested grid will occupy 100% of the width of the element in which it is placed, which can then be subdivided using column classes.
 
 Jumbotron
----------
+^^^^^^^^^
 
 If you've used the default ASP.NET MVC templates in Visual Studio 2012 or 2013, you've probably seen the Jumbotron in action. It refers to a large full-width section of a page that can be used to display a large background image, a call to action, a rotator, or similar elements. To add a jumbotron to a page, simply add a <div> and give it a class of "jumbotron", then place a container <div> inside and add your content.  We can easily adjust the standard About page to use a jumbotron for the main headings it displays:
 
 .. image:: _static/jumbotron.png
 
 The Bootstrap Theme
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 In addition to the included features, you can also apply a standard theme to your site by using the Bootstrap Theme. This theme includes a set of common styles for many standard elements, and is already installed when you installed bootstrap. To start using it, add a reference to its CSS using either its local path or a CDN.  Here are both options, using the same default ASP.NET starter application we've been working with thus far:
 
@@ -157,28 +157,28 @@ In addition to the included features, you can also apply a standard theme to you
 With this CSS included, we gain access to a large set of standard CSS classes that we can use to control the appearance of many of our standard UI elements.  For instance, any buttons our application requires can use a standard palette of classes to help users visually distinguish between different buttons' behaviors based on their color and appearance.
 
 Buttons
--------
+^^^^^^^
 
 The default button classes and their colors are shown in the figure below.
 
 .. image:: _static/theme-buttons.png
 
 Badges
-------
+^^^^^^
 
 Badges refer to small, usually numeric callouts next to a navigation item. They can indicate a number of messages or notifications waiting, or the presence of updates. Specifying such badges is as simple as adding a <span> containing the text, with a class of "badge":
 
 .. image:: _static/theme-badges.png
 
 Alerts
-------
+^^^^^^
 
 You may need to display some kind of notification, alert, or error message to your application's users. That's where the standard alert classes come in.  There are four different severity levels, with associated color schemes:
 
 .. image:: _static/theme-alerts.png
 
 Navbars and Menus
------------------
+^^^^^^^^^^^^^^^^^
 
 Our layout already includes a standard navbar, but the Bootstrap theme supports additional styling options. We can also easily opt to display the navbar vertically rather than horizontally if that's preferred, as well as adding sub-navigation items in flyout menus. Simple navigation menus, like tab strips, are built on top of <ul> elements. These can be created very simply by just providing them with the CSS classes "nav" and "nav-tabs":
 
@@ -189,14 +189,14 @@ Navbars are built similarly, but are a bit more complex.  They start with a <nav
 .. image:: _static/theme-navbars.png
 
 Additional Elements
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 The default theme can also be used to present HTML tables in a nicely formatted style, including support for striped views. There are labels with styles that are similar to those of the buttons. You can create custom Dropdown menus that support additional styling options beyond the standard HTML <select> element, along with Navbars like the one our default starter site is already using. If you need a progress bar, there are several styles to choose from, as well as List Groups and panels that include a title and content.  Explore additional options within the standard Bootstrap Theme here:
 
 http://getbootstrap.com/examples/theme/ 
 
 More Themes
-^^^^^^^^^^^
+-----------
 
 You can extend the standard Bootstrap Theme by overriding some or all of its CSS, adjusting the colors and styles to suit your own application's needs. If you'd like to start from a ready-made theme, there are several theme galleries available online that specialize in Bootstrap Themes, such as WrapBootstrap.com (which has a variety of commercial themes) and Bootswatch.com (which offers free themes).  Some of the paid templates available provide a great deal of functionality on top of the basic Bootstrap theme, such as rich support for administrative menus, and dashboards with rich charts and gauges.   An example of a popular paid template is Inspinia, currently for sale for $18, which includes an ASP.NET MVC5 template in addition to AngularJS and static HTML versions.  A sample screenshot is shown below.
 
@@ -205,36 +205,36 @@ You can extend the standard Bootstrap Theme by overriding some or all of its CSS
 If you're interested in building your own dashboard, you may wish to start from the free example available here: http://getbootstrap.com/examples/dashboard/. 
 
 Components
-^^^^^^^^^^
+----------
 
 In addition to those elements already discussed, Bootstrap includes support for a variety of built-in UI components. 
 
 Glyphicons
-----------
+^^^^^^^^^^
 
 Bootstrap includes icon sets from Glyphicons (http://glyphicons.com), with over 200 icons freely available for use within your Bootstrap-enabled web application. Here's just a small sample:
 
 .. image:: _static/theme-glyphicons.png
 
 Input Groups
-------------
+^^^^^^^^^^^^
 
 Input groups allow bundling of additional text or buttons with an input element, providing the user with a more intuitive experience:
 
 .. image:: _static/input-groups.png
 
 Breadcrumbs
------------
+^^^^^^^^^^^
 
 Breadcrumbs are a common UI component used to show a user their recent history or depth within a site's navigation hierarchy. Add them easily by applying the "breadcrumb" class to any <ol> list element. Include built-in support for pagination by using the "pagination" class on a <ul> element within a <nav>. Add responsive embedded slideshows and video by using <iframe>, <embed>, <video>, or <object> elements, which Bootstrap will style automatically. Specify a particular aspect ratio by using specific classes like "embed-responsive-16by9".
 
 JavaScript Support
-^^^^^^^^^^^^^^^^^^
+------------------
 
 Bootstrap's JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, bootstrap.js includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There's not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit http://getbootstrap.com/javascript/. 
 
 Summary
-^^^^^^^
+-------
 
 Bootstrap provides a web framework that can be used to quickly and productively lay out and style a wide variety of websites and applications. Its basic typography and styles provide a pleasant look and feel that can easily be manipulated through custom theme support, which can be hand-crafted or purchased commercially. It supports a host of web components that in the past would have required expensive third-party controls to accomplish, while supporting modern and open web standards. 
 
