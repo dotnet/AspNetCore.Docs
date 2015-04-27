@@ -6,11 +6,17 @@
 ASP.NET 5 Documentation
 =======================
 
-.. include:: getting-started/index.rst
+.. toctree::
+   :maxdepth: 2
+   
+   getting-started/index
 
-.. include:: aspnet5/index.rst
 
-.. include:: mvc/index.rst
+Related Topics
+--------------
+
+`ASP.NET MVC <mvc/index.rst>`_
+ 
    
 Contribute
 ----------
