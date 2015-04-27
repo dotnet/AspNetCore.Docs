@@ -42,6 +42,7 @@ Modern Web Application Development
    :maxdepth: 1
    
    js-web-tools/grunt-gulp/grunt-gulp
+   js-web-tools/bootstrap/bootstrap
 
 Mobile
 ------
