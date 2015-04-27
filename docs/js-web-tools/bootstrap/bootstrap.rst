@@ -1,10 +1,10 @@
 Working with Bootstrap
 ======================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
+By `Steve Smith`_ | Originally Published: 28 April 2015 
 
 .. _`Steve Smith`: Author_
 
-Bootstrap 3 is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of HTML, CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
+Bootstrap is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
 
 Getting Started
 ---------------
@@ -12,6 +12,27 @@ Getting Started
 There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET 5, in which case Bootstrap will come pre-installed:
 
 .. image:: _static/bootstrap-in-starter-template.png
+ 
+Adding Bootstrap to an ASP.NET 5 project is simply a matter of adding it to ``bower.json`` as a dependency:
+
+.. code-block:: javascript
+	:emphasize-lines: 5
+
+	{
+	  "name": "ASP.NET",
+	  "private": true,
+	  "dependencies": {
+		"bootstrap": "3.0.0",
+		"jquery": "1.10.2",
+		"jquery-validation": "1.11.1",
+		"jquery-validation-unobtrusive": "3.2.2",
+		"hammer.js": "2.0.4",
+		"bootstrap-touch-carousel": "0.8.0"
+	  }
+	}
+
+
+This is the recommended way to add Bootstrap to an ASP.NET 5 project.
  
 You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
 
@@ -36,9 +57,14 @@ NuGet
 
 	Install-Package bootstrap
 	
-If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In the default ASP.NET site template, the _Layout.cshtml file does so like this:
+.. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET 5 is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
 
-.. image:: _static/bootstrap-in-layout.png
+If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In the default ASP.NET site template, the ``_Layout.cshtml`` file does so like this:
+
+.. literalinclude:: sample/_Layout.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 10,55
 
 You can also simply reference Bootstrap using its CDN (Content Delivery Network) links, which is how you may wish to have your application reference bootstrap in production in any case. Simply replace the two references above with these:
 
@@ -64,7 +90,7 @@ The most basic Bootstrap template looks very much like the _Layout.cshtml file s
 Basic Navigation
 ^^^^^^^^^^^^^^^^
 
-The default template uses a set of <div> elements to render a top navbar and the main body of the page. If you're using HTML5, you can replace the first <div> tag with a <nav> tag to get the same effect, but with more precise semantics.  Within this first <div> you can see there are several others. First, a <div> with a class of "container", and then within that, two more <div> elements: "navbar-header" and "navbar-collapse".  The navbar-header div includes a button that will appear when the screen is below a certain minimum width, showing 3 horizontal lines (a so-called "hamburger icon"). The icon is rendered using pure HTML and CSS; no image is required. This is the code that displays the icon, with each of the <span> tags rendering one of the white bars:
+The default template uses a set of ``<div>`` elements to render a top navbar and the main body of the page. If you're using HTML5, you can replace the first ``<div>`` tag with a ``<nav>`` tag to get the same effect, but with more precise semantics.  Within this first ``<div>`` you can see there are several others. First, a ``<div>`` with a class of "container", and then within that, two more ``<div>`` elements: "navbar-header" and "navbar-collapse".  The navbar-header div includes a button that will appear when the screen is below a certain minimum width, showing 3 horizontal lines (a so-called "hamburger icon"). The icon is rendered using pure HTML and CSS; no image is required. This is the code that displays the icon, with each of the <span> tags rendering one of the white bars:
 
 .. code-block:: html
 
@@ -74,8 +100,8 @@ The default template uses a set of <div> elements to render a top navbar and the
 		<span class="icon-bar"></span>
 	</button>
 
-It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the <ul> element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29.
-Below the navigation, the main body of each page is rendered in another <div>, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple <footer> is added to the end of the <div> element.  You can see how the built-in About page appears using this template:
+It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the ``<ul>`` element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29.
+Below the navigation, the main body of each page is rendered in another ``<div>``, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple ``<footer>`` is added to the end of the ``<div>`` element.  You can see how the built-in About page appears using this template:
 
 .. image:: _static/about-page-wide.png
 
@@ -90,14 +116,14 @@ Clicking the icon reveals the menu items in a vertical drawer that slides down f
 Typography and Links
 ^^^^^^^^^^^^^^^^^^^^
 
-Bootstrap sets up the site's basic typography, colors, and link formatting in its CSS file. This CSS file includes default styles for tables, buttons, form elements, images, and more. One particularly useful feature is the grid layout system, covered next.
+Bootstrap sets up the site's basic typography, colors, and link formatting in its CSS file. This CSS file includes default styles for tables, buttons, form elements, images, and more (`learn more <http://getbootstrap.com/css/>`_). One particularly useful feature is the grid layout system, covered next.
 
 Grids
 ^^^^^
 
-One of the most popular features of Bootstrap is its grid layout system. Modern web applications should avoid using the <table> tag for layout, instead restricting the use of this element to actual tabular data. Instead, columns and rows can be laid out using a series of <div> elements and the appropriate CSS classes. There are several advantages to this approach, including the ability to adjust the layout of grids to display vertically on narrow screens, such as on phones.
+One of the most popular features of Bootstrap is its grid layout system. Modern web applications should avoid using the ``<table>`` tag for layout, instead restricting the use of this element to actual tabular data. Instead, columns and rows can be laid out using a series of ``<div>`` elements and the appropriate CSS classes. There are several advantages to this approach, including the ability to adjust the layout of grids to display vertically on narrow screens, such as on phones.
 
-Bootstrap's grid layout system is based on twelve columns. This number was chosen because it can be divided evenly into 1, 2, 3, or 4 columns, and column widths can vary to within 1/12th of the vertical width of the screen. To start using the grid layout system, you should begin with a container <div> and then add a row <div>, as shown here:
+`Bootstrap's grid layout system <http://getbootstrap.com/css/#grid>`_ is based on twelve columns. This number was chosen because it can be divided evenly into 1, 2, 3, or 4 columns, and column widths can vary to within 1/12th of the vertical width of the screen. To start using the grid layout system, you should begin with a container ``<div>`` and then add a row ``<div>``, as shown here:
 
 .. code-block:: html
 
@@ -107,7 +133,7 @@ Bootstrap's grid layout system is based on twelve columns. This number was chose
 		</div>
 	</div>
 
-Next, add additional <div> elements for each column, and specify the number of columns that <div> should occupy (out of 12) as part of a CSS class starting with "col-md-". For instance, if you want to simply have two columns of equal size, you would use a class of "col-md-6" for each one. In this case "md" is short for "medium" and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).
+Next, add additional ``<div>`` elements for each column, and specify the number of columns that ``<div>`` should occupy (out of 12) as part of a CSS class starting with "col-md-". For instance, if you want to simply have two columns of equal size, you would use a class of "col-md-6" for each one. In this case "md" is short for "medium" and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).
 
 +--------------------+--------------------------+------------+ 
 | CSS Class Prefix   | Device Tier              | Width      | 
@@ -123,38 +149,22 @@ Next, add additional <div> elements for each column, and specify the number of c
 
 When specifying two columns both with "col-md-6" the resulting layout will be two columns at desktop resolutions, but these two columns will stack vertically when rendered on smaller devices (or a narrower browser window on a desktop), allowing users to easily view content without the need to scroll horizontally.
 
-Bootstrap will always default to a single-column layout, so you only need to specify columns when you want more than one column. The only time you would want to explicitly specify that a <div> take up all 12 columns would be to override the behavior of a larger device tier. When specifying multiple device tier classes, you may need to reset the column rendering at certain points. Adding a clearfix div that is only visible within a certain viewport can achieve this, as shown here:
+Bootstrap will always default to a single-column layout, so you only need to specify columns when you want more than one column. The only time you would want to explicitly specify that a ``<div>`` take up all 12 columns would be to override the behavior of a larger device tier. When specifying multiple device tier classes, you may need to reset the column rendering at certain points. Adding a clearfix div that is only visible within a certain viewport can achieve this, as shown here:
 
 .. image:: _static/narrow-and-wide-viewport-grid.png
 
-In the above example, One and Two share a row in the "md" layout, while Two and Three share a row in the "xs" layout. Without the clearfix <div>, Two and Three are not shown correctly in the "xs" view (note that only One, Four, and Five are shown):
+In the above example, One and Two share a row in the "md" layout, while Two and Three share a row in the "xs" layout. Without the clearfix ``<div>``, Two and Three are not shown correctly in the "xs" view (note that only One, Four, and Five are shown):
 
 .. image:: _static/grid-without-clearfix.png
 
-In this example, only a single row <div> was used, and Bootstrap still mostly did the right thing with regard to the layout and stacking of the columns. Typically, you should specify a row <div> for each horizontal row your layout requires, and of course you can nest Bootstrap grids within one another. When you do, each nested grid will occupy 100% of the width of the element in which it is placed, which can then be subdivided using column classes.
+In this example, only a single row ``<div>`` was used, and Bootstrap still mostly did the right thing with regard to the layout and stacking of the columns. Typically, you should specify a row ``<div>`` for each horizontal row your layout requires, and of course you can nest Bootstrap grids within one another. When you do, each nested grid will occupy 100% of the width of the element in which it is placed, which can then be subdivided using column classes.
 
 Jumbotron
 ^^^^^^^^^
 
-If you've used the default ASP.NET MVC templates in Visual Studio 2012 or 2013, you've probably seen the Jumbotron in action. It refers to a large full-width section of a page that can be used to display a large background image, a call to action, a rotator, or similar elements. To add a jumbotron to a page, simply add a <div> and give it a class of "jumbotron", then place a container <div> inside and add your content.  We can easily adjust the standard About page to use a jumbotron for the main headings it displays:
+If you've used the default ASP.NET MVC templates in Visual Studio 2012 or 2013, you've probably seen the Jumbotron in action. It refers to a large full-width section of a page that can be used to display a large background image, a call to action, a rotator, or similar elements. To add a jumbotron to a page, simply add a ``<div>`` and give it a class of "jumbotron", then place a container ``<div>`` inside and add your content.  We can easily adjust the standard About page to use a jumbotron for the main headings it displays:
 
 .. image:: _static/jumbotron.png
-
-The Bootstrap Theme
--------------------
-
-In addition to the included features, you can also apply a standard theme to your site by using the Bootstrap Theme. This theme includes a set of common styles for many standard elements, and is already installed when you installed bootstrap. To start using it, add a reference to its CSS using either its local path or a CDN.  Here are both options, using the same default ASP.NET starter application we've been working with thus far:
-
-.. code-block:: html
-
-	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-theme.css" />
-	
-	<!-- CDN Link (for production)
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/bootstrap-theme.min.css" />
-	-->
-
-With this CSS included, we gain access to a large set of standard CSS classes that we can use to control the appearance of many of our standard UI elements.  For instance, any buttons our application requires can use a standard palette of classes to help users visually distinguish between different buttons' behaviors based on their color and appearance.
 
 Buttons
 ^^^^^^^
@@ -184,14 +194,14 @@ Our layout already includes a standard navbar, but the Bootstrap theme supports 
 
 .. image:: _static/theme-tabstrips.png
 
-Navbars are built similarly, but are a bit more complex.  They start with a <nav> or <div> with a class of "navbar", within which a container div holds the rest of the elements. Our page includes a navbar in its header already – the one shown below simply expands on this, adding support for a dropdown menu:
+Navbars are built similarly, but are a bit more complex.  They start with a ``<nav>`` or ``<div>`` with a class of "navbar", within which a container div holds the rest of the elements. Our page includes a navbar in its header already – the one shown below simply expands on this, adding support for a dropdown menu:
 
 .. image:: _static/theme-navbars.png
 
 Additional Elements
 ^^^^^^^^^^^^^^^^^^^
 
-The default theme can also be used to present HTML tables in a nicely formatted style, including support for striped views. There are labels with styles that are similar to those of the buttons. You can create custom Dropdown menus that support additional styling options beyond the standard HTML <select> element, along with Navbars like the one our default starter site is already using. If you need a progress bar, there are several styles to choose from, as well as List Groups and panels that include a title and content.  Explore additional options within the standard Bootstrap Theme here:
+The default theme can also be used to present HTML tables in a nicely formatted style, including support for striped views. There are labels with styles that are similar to those of the buttons. You can create custom Dropdown menus that support additional styling options beyond the standard HTML ``<select>`` element, along with Navbars like the one our default starter site is already using. If you need a progress bar, there are several styles to choose from, as well as List Groups and panels that include a title and content.  Explore additional options within the standard Bootstrap Theme here:
 
 http://getbootstrap.com/examples/theme/ 
 
@@ -207,7 +217,7 @@ If you're interested in building your own dashboard, you may wish to start from 
 Components
 ----------
 
-In addition to those elements already discussed, Bootstrap includes support for a variety of built-in UI components. 
+In addition to those elements already discussed, Bootstrap includes support for a variety of `built-in UI components <http://getbootstrap.com/components/>`_. 
 
 Glyphicons
 ^^^^^^^^^^
@@ -226,7 +236,7 @@ Input groups allow bundling of additional text or buttons with an input element,
 Breadcrumbs
 ^^^^^^^^^^^
 
-Breadcrumbs are a common UI component used to show a user their recent history or depth within a site's navigation hierarchy. Add them easily by applying the "breadcrumb" class to any <ol> list element. Include built-in support for pagination by using the "pagination" class on a <ul> element within a <nav>. Add responsive embedded slideshows and video by using <iframe>, <embed>, <video>, or <object> elements, which Bootstrap will style automatically. Specify a particular aspect ratio by using specific classes like "embed-responsive-16by9".
+Breadcrumbs are a common UI component used to show a user their recent history or depth within a site's navigation hierarchy. Add them easily by applying the "breadcrumb" class to any ``<ol>`` list element. Include built-in support for pagination by using the "pagination" class on a ``<ul>`` element within a ``<nav>``. Add responsive embedded slideshows and video by using ``<iframe>``, ``<embed>``, ``<video>``, or ``<object>`` elements, which Bootstrap will style automatically. Specify a particular aspect ratio by using specific classes like "embed-responsive-16by9".
 
 JavaScript Support
 ------------------
