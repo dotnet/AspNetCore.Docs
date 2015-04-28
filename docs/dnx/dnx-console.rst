@@ -1,6 +1,6 @@
 Creating a Cross-Platform Console App with DNX
 ==============================================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
+By `Steve Smith`_ | Originally Published: 28 April 2015 
 
 .. _`Steve Smith`: Author_
 
@@ -17,14 +17,14 @@ Creating a Console App
 ----------------------
 
 Before you begin, make sure you have successfully installed DNX on your system:
-	- :doc:`Installing on Windows </getting-started/installation/installing-on-windows/installing-on-windows>`
-	- :doc:`Installing on Mac OS X </getting-started/installation/installing-on-mac/installing-on-mac>`
+	- :doc:`Installing on Windows </getting-started/installing-on-windows>`
+	- :doc:`Installing on Mac OS X </getting-started/installing-on-mac>`
 
 Open a console or terminal window in an empty working folder, where ``dnx`` is configured.
 
 Creating a console application is extremely straightforward. For this article, we're going to use the following C# class, which has just one line of executable code:
 
-.. literalinclude:: ../../../../samples/CreatingConsoleAppWithDNX/Program.cs
+.. literalinclude:: dnx-console/sample/Program.cs
 	:linenos:
 	:language: c#
 	
@@ -35,7 +35,7 @@ Specifying Project Settings
 
 Next, we need to provide the project settings DNX will use. Create a new ``project.json`` file in the same folder, and edit it to match the listing shown here:
 
-.. literalinclude:: ../../../../samples/CreatingConsoleAppWithDNX/project.json
+.. literalinclude:: dnx-console/sample/project.json
 	:linenos:
 	:language: javascript
 
@@ -46,19 +46,19 @@ Running the App
 
 At this point, we're ready to run the app. You can do this by simply entering ``dnx . run`` from the command prompt. You should see a result like this one:
 
-.. image:: _static/dnx-run.png
+.. image:: dnx-console/_static/dnx-run.png
 
 ..note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
 
 Set the ``DNX_TRACE`` environment variable to 1, and run the application again. You should see a great deal more output:
 
-.. image:: _static/dnx-trace-run.png
+.. image:: dnx-console/_static/dnx-trace-run.png
 
 In this example, running on the Windows platform, the default behavior for DNX is to run on the full .NET Framework. You can switch to use the CoreCLR by running ``dnvm upgrade -r CoreCLR``. To return to using .NET CLR, run ``dnvm upgrade -r CLR``.
 
 You can see the app continues to run after switching to use CoreCLR:
 
-.. image:: _static/dnx-trace-coreclr-run.png
+.. image:: dnx-console/_static/dnx-trace-coreclr-run.png
 
 Summary
 -------
