@@ -6,13 +6,13 @@ By `Steve Smith`_ | Originally Published: 15 April 2015
 
 Knockout is a popular JavaScript library that simplifies the creation of complex data-based user interfaces. It can be used alone or with other libraries, such as jQuery. Its primary purpose is to bind UI elements to an underlying data model defined as a JavaScript object, such that when changes are made to the UI, the model is updated, and vice versa. Knockout facilitates the use of a Model-View-ViewModel (MVVM) pattern in a web application's client-side behavior. The two main concepts one must learn when working with Knockout's MVVM implementation are Observables and Bindings.
 
-This article covers the following topics:
-	- Getting Started with Knockout in ASP.NET 5
-	- Observables, ViewModels, and Simple Binding
-	- Control Flow
-	- Templates
-	- Components
-	- Communicating with APIs
+In this article:
+	- `Getting Started with Knockout in ASP.NET 5`_
+	- `Observables, ViewModels, and Simple Binding`_
+	- `Control Flow`_
+	- `Templates`_
+	- `Components`_
+	- `Communicating with APIs`_
 
 Getting Started with Knockout in ASP.NET 5
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -34,11 +34,11 @@ Knockout is deployed as a single JavaScript file, so installing and using it is 
 
 With this in place, you can then manually run bower by opening the Task Runner Explorer (under :menuselection:`View --> Other Windows --> Task Runner Explorer`) and then under Tasks, right-click on bower and select Run. The result should appear similar to this:
 
-.. image:: _static/bower-knockout.png
+.. image:: knockout/_static/bower-knockout.png
 
 Now if you look in your project's ``wwwroot`` folder, you should see knockout installed under the lib folder.
 
-.. image:: _static/wwwroot-knockout.png
+.. image:: knockout/_static/wwwroot-knockout.png
 
 It's recommended that in your production environment you reference knockout via a Content Delivery Network, or CDN, as this increases the likelihood that your users will already have a cached copy of the file and thus will not need to download it at all. Knockout is available on several CDNs, including the Microsoft Ajax CDN, here:
 
@@ -81,7 +81,7 @@ As a simple example, consider the page list below. It includes a ``<span>`` elem
 
 When viewed in the browser, the content of the <span> element is replaced with the value in the viewModel variable:
 
-.. image:: _static/simple-binding-screenshot.png
+.. image:: knockout/_static/simple-binding-screenshot.png
 
 We now have simple one-way binding working. Notice that nowhere in the code did we write JavaScript to assign a value to the span's contents. If we want to manipulate the ViewModel, we can take this a step further and add an HTML input textbox, and bind to its value, like so:
 
@@ -93,7 +93,7 @@ We now have simple one-way binding working. Notice that nowhere in the code did 
 
 Reloading the page, we see that this value is indeed bound to the input box:
 
-.. image:: _static/input-binding-screenshot.png
+.. image:: knockout/_static/input-binding-screenshot.png
 
 However, if we change the value in the textbox, the corresponding value in the ``<span>`` element doesn't change. Why not?
 
@@ -157,7 +157,7 @@ The revised viewModel declaration is shown below. It is now declared as a functi
 
 The result works as expected in the browser:
 
-.. image:: _static/hyperlink-screenshot.png
+.. image:: knockout/_static/hyperlink-screenshot.png
 
 Knockout also supports binding to certain UI element events, such as the click event. This allows you to easily and declaratively bind UI elements to functions within the application's viewModel. As a simple example, we can add a button that, when clicked, modifies the author's twitterAlias to be all caps.
 
@@ -192,7 +192,7 @@ Then, add the function to the viewModel, and wire it up to modify the viewModel'
 
 Running the code and clicking the button modifies the displayed link as expected:
 
-.. image:: _static/hyperlink-caps-screenshot.png
+.. image:: knockout/_static/hyperlink-caps-screenshot.png
 
 Control Flow
 ^^^^^^^^^^^^
@@ -241,7 +241,7 @@ Knockout includes bindings that can perform conditional and looping operations. 
 
 Notice that this time we're using ViewModel with a capital “V" because we expect to construct it using “new" (in the applyBindings call). When executed, the page results in the following output:
 
-.. image:: _static/record-screenshot.png
+.. image:: knockout/_static/record-screenshot.png
 
 To demonstrate that the observable collection is working, let's add a bit more functionality. We can include the ability to record the results of another game to the ViewModel, and then add a button and some UI to work with this new function.  First, let's create the addResult method:
 
@@ -260,7 +260,7 @@ Bind this method to a button using the ``click`` binding:
 
 Open the page in the browser and click the button a couple of times, resulting in a new table row with each click:
 
-.. image:: _static/record-addresult-screenshot.png
+.. image:: knockout/_static/record-addresult-screenshot.png
 
 There are a few ways to support adding new records in the UI, typically either inline or in a separate form. We can easily modify the table to use textboxes and dropdownlists so that the whole thing is editable. Just change the ``<tr>`` element as shown:
 
@@ -278,7 +278,7 @@ Note that ``$root`` refers to the root ViewModel, which is where the possible ch
 
 With this change, the entire grid becomes editable:
 
-.. image:: _static/editable-grid-screenshot.png
+.. image:: knockout/_static/editable-grid-screenshot.png
 
 If we weren't using Knockout, we could achieve all of this using jQuery, but most likely it would not be nearly as efficient. Knockout tracks which bound data items in the ViewModel correspond to which UI elements, and only updates those elements that need to be added, removed, or updated. It would take significant effort to achieve this ourselves using jQuery or direct DOM manipulation, and even then if we then wanted to display aggregate results (such as a win-loss record) based on the table's data, we would need to once more loop through it and parse the HTML elements.  With Knockout, displaying the win-loss record is trivial. We can perform the calculations within the ViewModel itself, and then display it with a simple text binding and a ``<span>``.
 
@@ -301,7 +301,7 @@ Bind this function to a span within the ``<h1>`` element at the top of the page:
 
 The result:
 
-.. image:: _static/record-winloss-screenshot.png
+.. image:: knockout/_static/record-winloss-screenshot.png
 
 Adding rows or modifying the selected element in any row's Result column will update the record shown at the top of the window.
 

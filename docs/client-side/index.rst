@@ -4,5 +4,11 @@ Client-Side Development
 .. toctree::
    :maxdepth: 2
 
-   bootstrap
+   .. angular
+   .. bundling and minification (covered in gulp article)
+   .. working with CDNs
+   grunt-gulp
    bower
+   .. npm
+   bootstrap
+   knockout
