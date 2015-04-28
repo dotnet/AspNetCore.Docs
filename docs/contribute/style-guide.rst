@@ -173,7 +173,7 @@ This results in:
 Images
 ^^^^^^
 
-Images such as screen shots and explanatory figures or diagrams should be placed in a ``_static`` folder within a folder named the same as the article file. References to images should therefore always be made using relative references, e.g. ``article-name/_static/asp-net.png``. Note that images should always be saved as all lower-case file names, using hyphens to separate words, if necessary.
+Images such as screen shots and explanatory figures or diagrams should be placed in a ``_static`` folder within a folder named the same as the article file. References to images should therefore always be made using relative references, e.g. ``article-name/style-guide/_static/asp-net.png``. Note that images should always be saved as all lower-case file names, using hyphens to separate words, if necessary.
 
 .. note:: Do not use images for code. Use ``code-block`` or ``literalinclude`` instead.
 
@@ -181,13 +181,13 @@ To include an image in an article, use the ``.. image`` directive:
 
 .. code-block:: rst
 
-	.. image:: _static/asp-net.png
+	.. image:: style-guide/_static/asp-net.png
 	
 .. note:: No quotes are needed around the file name.
 
 Here's an example using the above syntax:
 
-.. image:: _static/asp-net.png
+.. image:: style-guide/_static/asp-net.png
 
 Images are responsively sized according to the browser viewport when using this directive. Currently the maximum width supported by the http://docs.asp.net theme is 697px.
 
@@ -213,12 +213,12 @@ External file references can specify a language, emphasize certain lines, displa
 
 .. code-block:: rst
 
-	.. literalinclude:: _static/startup.cs
+	.. literalinclude:: style-guide/_static/startup.cs
 		:language: c#
 		:emphasize-lines: 19,25-27
 		:linenos:
 
-.. literalinclude:: _static/startup.cs
+.. literalinclude:: style-guide/_static/startup.cs
 	:language: c#
 	:emphasize-lines: 19,25-27
 	:linenos:
@@ -228,7 +228,7 @@ You can also include just a section of a larger file, if desired:
 .. code-block:: rst
    :emphasize-lines: 3
 
-	.. literalinclude:: _static/startup.cs
+	.. literalinclude:: style-guide/_static/startup.cs
 		:language: c#
 		:lines: 1,4,20-
 		:linenos:
