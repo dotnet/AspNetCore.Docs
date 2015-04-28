@@ -19,7 +19,7 @@ ASP.NET 5 Documentation
 Related Topics
 --------------
 
-`ASP.NET MVC <mvc/index.rst>`_
+`ASP.NET MVC <mvc/index>`_
  
    
 Contribute
