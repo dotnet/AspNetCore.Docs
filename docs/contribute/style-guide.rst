@@ -169,6 +169,7 @@ This results in:
 		// Foo all the things!
 	}
 
+.. note:: ``caption`` and ``name`` will result in a code-block not being displayed if these are used on Sphinx prior to version 1.3. If you don't see a code block displayed above this note, it's most likely because the version of Sphinx is < 1.3.
 
 Images
 ^^^^^^
