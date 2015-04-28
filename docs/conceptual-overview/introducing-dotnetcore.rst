@@ -1,12 +1,12 @@
 Introducing .NET Core
 =====================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
+By `Steve Smith`_ | Originally Published: 28 April 2015 
 
 .. _`Steve Smith`: Author_
 
 .NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core means for your ASP.NET 5 application.
 
-This article covers the following topics:
+In this article:
 	- `What is .NET Core`_?
 	- `Motivation Behind .NET Core`_
 	- `Building Applications with .NET Core`_
