@@ -15,7 +15,7 @@ Install ASP.NET with Visual Studio
 
 The easiest way to get started building application with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the freely available Community edition). Visual Studio is an Integrated Development Environment (IDE), which means it's not just an editor, but also many of the tools you need to build applications, in this case ASP.NET 5 web applications. When installing Visual Studio 2015, you'll want to be sure to specify that you want to install the Microsoft Web Developer Tools.
 
-.. image:: _static/web-dev-tools.png
+.. image:: installing-on-windows/installing-on-windows/_static/web-dev-tools.png
 
 Once Visual Studio is installed, ASP.NET 5 is installed as well. You're ready to `build your first ASP.NET application </yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication>`_.
 
@@ -37,7 +37,7 @@ After the script has run, open a new command prompt and confirm DNVM is working 
 	
 Assuming DNVM is configured correctly, you should see a result like this:
 
-.. image:: _static/dnvm-prompt.png
+.. image:: installing-on-windows/_static/dnvm-prompt.png
 
 Install the .NET Execution Environment (DNX)
 --------------------------------------------
@@ -48,7 +48,7 @@ This command downloads the latest version of DNX and puts it on your user profil
 
 After this command completes, run: ``dnx`` to confirm DNX is configured correctly.
 
-.. image:: _static/dnx-installed.png
+.. image:: installing-on-windows/_static/dnx-installed.png
 
 Now that DNX is installed, you're ready to begin using ASP.NET 5! 
 

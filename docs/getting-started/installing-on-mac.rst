@@ -30,15 +30,15 @@ Install the .NET Version Manager (DNVM)
 
 Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/k`` from a Terminal window. If you need to update your version of DNVM, first run ``brew untap aspnet/k`` to delete the old commands, and then run the ``brew tap aspnet/k`` command again to get the updated scripts.
 
-.. image:: _static/homebrew-tap-aspnet.png
+.. image:: installing-on-mac/_static/homebrew-tap-aspnet.png
 
 Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. 
 
-.. image:: _static/brew-install-dnvm.png
+.. image:: installing-on-mac/_static/brew-install-dnvm.png
 
 Next, run ``dnvm`` to verify that your terminal understands this command. If it does not, run the command ``source dnvm.sh`` to link it, then try running ``dnvm`` again. You should see something like this:
 
-.. image:: _static/run-dnvm.png
+.. image:: installing-on-mac/_static/run-dnvm.png
 
 To install the latest version of DNX using DNVM, run: ``dnvm upgrade``
 
