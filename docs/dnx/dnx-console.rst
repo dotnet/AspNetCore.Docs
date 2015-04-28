@@ -6,7 +6,7 @@ By `Steve Smith`_ | Originally Published: 28 April 2015
 
 Using the .NET Execution environment (DNX), it's very easy to run a simple console application.
 
-This article covers the following topics:
+In this article:
 	- `Creating a Console App`_
 	- `Specifying Project Settings`_
 	- `Running the App`_
