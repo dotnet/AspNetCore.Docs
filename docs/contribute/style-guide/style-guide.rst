@@ -6,7 +6,7 @@ By `Steve Smith`_ | Originally Published: 15 April 2015
 
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
-This article covers the following topics:
+In this article:
 	- `Article Structure`_
 	- `ReStructuredText Syntax`_
 
@@ -173,7 +173,7 @@ This results in:
 Images
 ^^^^^^
 
-Images such as screen shots and explanatory figures or diagrams should be placed in a ``_static`` folder at the same level as the article file. References to images should therefore always be made using relative references, e.g. ``_static/asp-net.png``. Note that images should always be saved as all lower-case file names, using hyphens to separate words, if necessary.
+Images such as screen shots and explanatory figures or diagrams should be placed in a ``_static`` folder within a folder named the same as the article file. References to images should therefore always be made using relative references, e.g. ``article-name/_static/asp-net.png``. Note that images should always be saved as all lower-case file names, using hyphens to separate words, if necessary.
 
 .. note:: Do not use images for code. Use ``code-block`` or ``literalinclude`` instead.
 
@@ -207,7 +207,7 @@ This results in:
 Including External Source Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One nice feature of ReStructuredText is its ability to reference external files. This allows actual sample source files to be referenced from documentation articles, reducing the chances of the documentation content getting out of sync with the actual, working code sample (assuming the code sample works, of course). However, if documentation articles are referencing samples by filename and line number, it is important that the documentation articles be reviewed whenever changes are made to the source code, otherwise these references may be broken or point to the wrong line number. For this reason, it is recommended that samples be specific to individual articles, so that updates to the sample will only affect a single article (at most, an article series could reference a common sample). Samples should be committed to ``/aspnet/docs/samples/`` in a folder named to correspond with the article referencing the sample.
+One nice feature of ReStructuredText is its ability to reference external files. This allows actual sample source files to be referenced from documentation articles, reducing the chances of the documentation content getting out of sync with the actual, working code sample (assuming the code sample works, of course). However, if documentation articles are referencing samples by filename and line number, it is important that the documentation articles be reviewed whenever changes are made to the source code, otherwise these references may be broken or point to the wrong line number. For this reason, it is recommended that samples be specific to individual articles, so that updates to the sample will only affect a single article (at most, an article series could reference a common sample). Samples should therefore be placed in a subfolder named the same as the article file, in a ``sample`` folder (e.g. ``/article-name/sample/``).
 
 External file references can specify a language, emphasize certain lines, display line numbers (recommended), similar to `Source Code`_. Remember that these line number references may need to be updated if the source file is changed.
 
@@ -235,7 +235,7 @@ You can also include just a section of a larger file, if desired:
 
 This would include the first and fourth line, and then line 20 through the end of the file.
 
-Literal includes also support `Captions`_ and names, as with ``code-block`` elements. If the ``caption`` is left blank, the file name will be used as the caption.
+Literal includes also support `Captions`_ and names, as with ``code-block`` elements. If the ``caption`` is left blank, the file name will be used as the caption. Note that captions and names are available with Sphinx 1.3, which the ReadTheDocs theme used by this system is not yet updated to support.
 
 Tables
 ^^^^^^
