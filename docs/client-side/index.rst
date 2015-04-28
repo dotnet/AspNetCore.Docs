@@ -12,3 +12,4 @@ Client-Side Development
    .. npm
    bootstrap
    knockout
+   less-sass-fa

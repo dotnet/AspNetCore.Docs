@@ -11,15 +11,15 @@ Users of web applications have increasingly high expectations when it comes to s
 .. _Sass : http://sass-lang.com/
 .. _`Font Awesome` : http://fortawesome.github.io/Font-Awesome/
 
-This article covers the following topics:
+In this article:
 	- `CSS Preprocessor Languages`_
-	- Less
-	- Sass
-	- Less or Sass?
-	- Font Awesome
+	- `Less`_
+	- `Sass`_
+	- `Less or Sass?`_
+	- `Font Awesome`_
 
 CSS Preprocessor Languages
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Languages that are compiled into other languages, in order to improve the experience of working with the underlying language, are referred to as pre-processors. There are two popular pre-processors for CSS: Less and Sass.  These pre-processors add features to CSS, such as support for variables and nested rules, which improve the maintainability of large, complex stylesheets. CSS as a language is very basic, lacking support even for something as simple as variables, and this tends to make CSS files repetitive and bloated. Adding real programming language features via preprocessors can help reduce duplication and provide better organization of styling rules. Visual Studio provides built-in support for both Less and Sass, as well as extensions that can further improve the development experience when working with these languages.
 
@@ -61,7 +61,7 @@ Using Less, this can be rewritten to eliminate all of the duplication, using a m
 Visual Studio 2015 adds a great deal of built-in support for Less and Sass. You can also add support for earlier versions of Visual Studio by installing the `Web Essentials extension <http://vswebessentials.com/>`_.
 
 Less
-^^^^
+----
 
 The Less CSS pre-processor runs using Node.js. You can quickly install it using the Node Package Manager (NPM), with:
 
@@ -102,7 +102,7 @@ Modify main.less to include the following content, which creates a simple color 
 ``@base`` and the other @-prefixed items are variables. Each of them represents a color. Except for ``@base``, they are set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes ``.baseColor``, etc. will demonstrate the calculated values of each of the variables in the CSS file that is produced.
 
 Getting Started
----------------
+^^^^^^^^^^^^^^^
 
 If you don't already have one in your project, add a new Gulp configuration file. Make sure package.json includes gulp in its ``devDependencies``, and add "gulp-less":
 
@@ -325,7 +325,7 @@ Given our current ``@base`` value of ``#663333``, this Less script will produce 
 Less provides a number of additional features, but this should give you some idea of the power of this preprocessing language.
 
 Sass
-^^^^
+----
 
 Sass is similar to Less, providing support for many of the same features, but with slightly different syntax. It is built using Ruby, rather than JavaScript, and so has different setup requirements. The original Sass language did not use curly braces or semicolons, but instead defined scope using white space and indentation. In version 3 of Sass, a new syntax was introduced, **SCSS** ("Sassy CSS"). SCSS is similar to CSS in that it ignore indentation levels and whitespace, and instead uses semicolons and curly braces.
 
@@ -506,7 +506,7 @@ Less or Sass?
 There is still no consensus as to whether it's generally better to use Less or Sass (or even whether to prefer the original Sass or the newer SCSS syntax within Sass). A recent poll conducted on twitter of mostly ASP.NET developers found that the majority preferred to use Less, by about a 2-to-1 margin. Probably the most important decision is to **use one of these tools**, as opposed to just hand-coding your CSS files. Once you've made that decision, both Less and Sass are good choices.
 
 Font Awesome
-^^^^^^^^^^^^
+------------
 
 In addition to CSS pre-compilers, another great resource for styling modern web applications is Font Awesome. Font Awesome is a toolkit that provides over 500 scalable vector icons that can be freely used in your web applications. It was originally designed to work with Bootstrap, but has no dependency on that framework, or on any JavaScript libraries.
 
@@ -592,7 +592,7 @@ You can view a complete list of the available icons here:
 http://fortawesome.github.io/Font-Awesome/icons/ 
 
 Summary
-^^^^^^^
+-------
 
 Modern web applications increasingly demand responsive, fluid designs that are clean, intuitive, and easy to use from a variety of devices. Managing the complexity of the CSS stylesheets required to achieve these goals is best done using a pre-processor like Less or Sass. In addition, toolkits like Font Awesome quickly provide well-known icons to textual navigation menus and buttons, improving the overall user experience of your application.
 
