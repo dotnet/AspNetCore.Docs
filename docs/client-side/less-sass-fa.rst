@@ -1,6 +1,6 @@
 Styling Applications with Less, Sass, and Font Awesome
 ======================================================
-By `Steve Smith`_ | Originally Published: 1 May 2015 
+By `Steve Smith`_ | Originally Published: 28 April 2015 
 
 .. _`Steve Smith`: Author_
 

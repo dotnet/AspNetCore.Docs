@@ -223,4 +223,7 @@ Make sure bootstrap.js follows jquery.js, so that jQuery is loaded first.
 	</body>
 	</html>
 
+**TODO** Migrate remainder of article
+	
+.. include:: /_authors/noel-rice.rst
 
