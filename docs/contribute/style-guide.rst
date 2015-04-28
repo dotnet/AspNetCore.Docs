@@ -100,12 +100,12 @@ Lists can be started with a ``-`` or ``*`` character:
 	- This is one item
 	- This is a second item
 
-Numbered lists can start with a number, or they can be autonumbered by starting each item with the \# character.
+Numbered lists can start with a number, or they can be autonumbered by starting each item with the \# character. Please use the \# syntax.
 
 .. code-block:: rst
 
-	1. Numbered list item one.
-	2. Numbered list item two.
+	1. Numbered list item one.(don't use numbers)
+	2. Numbered list item two.(don't use numbers)
 
 	#. Auto-numbered one.
 	#. Auto-numbered two.
@@ -113,7 +113,7 @@ Numbered lists can start with a number, or they can be autonumbered by starting 
 Source Code
 ^^^^^^^^^^^
 
-Of course, source code is very commonly included in these articles. Images should never be used to display source code - instead use ``code-block`` or ``literalinclude``. You can refer to it using the ``code-block`` element, which must be declared precisely as shown, including spaces, blank lines, and indentation:
+Source code is very commonly included in these articles. Images should never be used to display source code - instead use ``code-block`` or ``literalinclude``. You can refer to it using the ``code-block`` element, which must be declared precisely as shown, including spaces, blank lines, and indentation:
 
 .. code-block:: rst
 
