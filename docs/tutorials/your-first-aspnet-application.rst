@@ -6,7 +6,7 @@ By `Steve Smith`_ | Originally Published: 28 April 2015
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
-This article covers the following topics:
+In this article:
 	- `Create a New ASP.NET 5 Project`_
 	- `Running the Application`_
 	- `Server-Side vs. Client-Side Behavior`_
