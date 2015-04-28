@@ -17,7 +17,7 @@ In this article:
 	- `Configuring the Application`_
 	- `Application Startup`_
 	
-.. View or download the finished source from the project created in this article.
+.. `View or download <https://github.com/aspnet/docs/tree/master/docs/conceptual-overview/understanding-aspnet5-apps/sample>`_ the finished source from the project created in this article.
 
 ASP.NET Project Structure
 -------------------------
@@ -75,7 +75,9 @@ The **exclude** section is used to identify files and folders that should be exc
 
 .. image:: understanding-aspnet5-apps/_static/excludes.png
 
-The **scripts** section is used to specify when certain build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after certain events. The default ASP.NET project template has scripts in place to run during *postrestore* and *prepare* that install `client side dependencies`_ using **(TODO) npm/bower link** npm and bower.
+The **scripts** section is used to specify when certain build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after certain events. The default ASP.NET project template has scripts in place to run during *postrestore* and *prepare* that install `client side dependencies`_ using npm and bower.
+
+.. TODO add link to npm/bower article(s)
 
 .. image:: understanding-aspnet5-apps/_static/scripts.png
 
@@ -84,9 +86,10 @@ The global.json File
 
 The global.json file is used to configure the solution as a whole. It includes just two sections, ``sources`` and ``sdk`` by default.
 
-.. image:: understanding-aspnet5-apps/_static/global-json.png
+.. literalinclude:: understanding-aspnet5-apps/sample/global.json
+	:language: javascript
 
-The *sources* folder designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
+The *sources* property designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
 
 .. image:: understanding-aspnet5-apps/_static/solution-files.png
 
