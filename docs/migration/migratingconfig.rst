@@ -1,19 +1,19 @@
 Migrating Configuration From ASP.NET MVC 5 to MVC 6
 ===================================================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
+By `Steve Smith`_ | Originally Published: 28 April 2015 
 
 .. _`Steve Smith`: Author_
 
 In the previous article we began `migrating an ASP.NET MVC 5 project to MVC 6 </migrating/migratingfrommvc5/migratingfrommvc5>`_. In this article, we migrate the configuration feature from ASP.NET MVC 5 to ASP.NET MVC 6.
 
-This article covers the following topics:
+In this article:
 	- Set up Configuration
 	- Migrate Configuration Settings from web.config
 
 You can download the finished source from the project created in this article HERE **(TODO)**.
 
 Set up Configuration
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 ASP.NET 5 and ASP.NET MVC 6 no longer use the Global.asax and Web.config files that previous versions of ASP.NET utilized. In earlier versions of ASP.NET, application startup logic was placed in an Application_StartUp() method within Global.asax. Later, in ASP.NET MVC 5, a Startup.cs file was included in the root of the project, and was called using an OwinStartupAttribute when the application started. ASP.NET 5 (and ASP.NET MVC 6) have adopted this approach completely, placing all startup logic in the Startup.cs file.
 
@@ -57,10 +57,10 @@ Next, open project.json and add the Microsoft.Framework.ConfigurationModel.Json 
 
 Finally, add a config.json file to the root of the project.
 
-.. image:: _static/add-config-json.png
+.. image:: migratingconfig/_static/add-config-json.png
 
 Migrate Configuration Settings from Web.config
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------
 
 Our ASP.NET MVC 5 project included the required database connection string in Web.config, in the <connectionStrings> element. In our MVC 6 project, we are going to store this information in the config.json file. Open Config.json, and you should see that it already includes the following:
 
@@ -77,7 +77,7 @@ Our ASP.NET MVC 5 project included the required database connection string in We
 Change the name of the Database from _CHANGE_ME. In the case of this migration, we are going to point to a new database, which we'll name NewMvc6Project to match our migrated project name.
 
 Summary
-^^^^^^^
+-------
 
 ASP.NET 5 places all Startup logic for the application in a single file in which necessary services and dependencies can be defined and configured. It replaces the web.config file with a flexible configuration feature that can leverage a variety of file formats, such as JSON, as well as environment variables.
 
