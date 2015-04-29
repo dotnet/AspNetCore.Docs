@@ -71,11 +71,11 @@ The Less CSS pre-processor runs using Node.js. You can quickly install it using 
 
 If you're using Visual Studio 2015, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a Styles folder to your project, and then add a new Less file called main.less to this folder.
 
-.. image:: _static/add-less-file.png
+.. image:: less-sass-fa/_static/add-less-file.png
 
 Once added, your folder structure should look something like this:
 
-.. image:: _static/folder-structure.png
+.. image:: less-sass-fa/_static/folder-structure.png
 
 Now we can add some basic styling to the file, which will be compiled into CSS and deployed to the wwwroot folder by Gulp.
 
@@ -145,11 +145,11 @@ Next, add a task to run less, using the syntax shown here:
 
 Open the Task Runner Explorer (view>Other Windows > Task Runner Explorer). Among the tasks, you should see a new task named ``less``. Run it, and you should have output similar to what is shown here:
 
-.. image:: _static/less-task-runner.png
+.. image:: less-sass-fa/_static/less-task-runner.png
 
 Now refresh your Solution Explorer and inspect the contents of the wwwroot/css folder. You should find a new file, main.css, there:
 
-.. image:: _static/main-css-created.png
+.. image:: less-sass-fa/_static/main-css-created.png
 
 Open main.css and you should see something like the following:
 
@@ -198,7 +198,7 @@ Add a simple HTML page to the wwwroot folder and reference main.css to see the c
 
 You can see that the 180 degree spin on ``@base`` used to produce ``@background`` resulted in the color wheel opposing color of ``@base``:
 
-.. image:: _static/less-test-screenshot.png
+.. image:: less-sass-fa/_static/less-test-screenshot.png
 
 Less also provides support for nested rules, as well as nested media queries. For example, defining nested hierarchies like menus can result in verbose CSS rules like these:
 
@@ -369,7 +369,7 @@ Next, modify gulpfile.js to add a sass variable and a task to compile your Sass 
 
 Now you can add the Sass file main2.scss to the Styles folder in the root of the project:
 
-.. image:: _static/add-scss-file.png
+.. image:: less-sass-fa/_static/add-scss-file.png
 
 Open main2.scss and add the following:
 
@@ -584,7 +584,7 @@ Once you have a reference to it on a page, you can add icons to your application
 
 This produces the following in the browser - note the icon beside each item:
 
-.. image:: _static/list-icons-screenshot.png
+.. image:: less-sass-fa/_static/list-icons-screenshot.png
 
 
 You can view a complete list of the available icons here:
