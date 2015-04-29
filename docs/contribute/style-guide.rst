@@ -264,4 +264,4 @@ This style guide is intended to help contributors quickly create new articles fo
 
 .. _style-guide-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

@@ -143,4 +143,4 @@ Related Resources
 
 .. _migratingfromwebapi2-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

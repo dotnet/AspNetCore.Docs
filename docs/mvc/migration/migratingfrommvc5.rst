@@ -254,4 +254,4 @@ Migrating from ASP.NET MVC 5 to ASP.NET MVC 6 requires several steps, but is not
 
 .. _migratingfrommvc5-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

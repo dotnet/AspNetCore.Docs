@@ -165,4 +165,4 @@ See :doc:`/getting-started/index` for instructions on how to acquire and install
 
 .. _dnx-author:
 
-.. include:: /_authors/daniel-roth.rst
+.. include:: /_authors/daniel-roth.txt

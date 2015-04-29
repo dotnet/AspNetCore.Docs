@@ -182,4 +182,4 @@ ASP.NET Identity and Security middleware can be used to authenticate with extern
 
 .. _sociallogins-author:
 
-.. include:: /_authors/pranav-rastogi.rst
+.. include:: /_authors/pranav-rastogi.txt

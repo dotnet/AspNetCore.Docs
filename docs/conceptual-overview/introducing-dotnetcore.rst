@@ -82,4 +82,4 @@ Learn more about .NET Core:
 	
 .. _introducing-dotnetcore-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

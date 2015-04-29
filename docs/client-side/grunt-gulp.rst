@@ -393,4 +393,4 @@ Both Grunt and Gulp are powerful tasks runners that automate most client-build t
 
 .. _grunt-gulp-author:
 
-.. include:: /_authors/noel-rice.rst
+.. include:: /_authors/noel-rice.txt

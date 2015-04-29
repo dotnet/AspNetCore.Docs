@@ -81,4 +81,4 @@ ASP.NET 5 places all Startup logic for the application in a single file in which
 
 .. _migratingconfig-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

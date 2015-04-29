@@ -231,4 +231,4 @@ ASP.NET 5 introduces a few new concepts, but should be very familiar to develope
 	
 .. _your-first-aspnet-application-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

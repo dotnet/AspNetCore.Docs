@@ -160,4 +160,4 @@ ASP.NET 5 and MVC 6 introduce changes to the ASP.NET Identity 2 features that sh
 
 .. _migratingauthmembership-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

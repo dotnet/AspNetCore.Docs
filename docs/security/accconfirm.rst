@@ -243,4 +243,4 @@ ASP.NET Identity can be used to add account confirmation and password recovery.
 
 .. _accconfirm-author:
 
-.. include:: /_authors/pranav-rastogi.rst
+.. include:: /_authors/pranav-rastogi.txt
