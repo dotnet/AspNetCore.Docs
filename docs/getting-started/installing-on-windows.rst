@@ -60,8 +60,6 @@ Related Resources
 
 - :doc:`Installing ASP.NET 5 on OS X <installing-on-mac>`
 - :doc:`Your First ASP.NET 5 Application Using Visual Studio </tutorials/your-first-aspnet-application>`
-.. - `Installing ASP.NET 5 on Linux <>`_
-.. - `Your First ASP.NET 5 Application on a Mac <>`_
 
 .. _installing-on-windows-author:
 
