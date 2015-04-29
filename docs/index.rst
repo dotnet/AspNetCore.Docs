@@ -13,7 +13,6 @@ ASP.NET 5 Documentation
    tutorials/index
    conceptual-overview/index
    dnx/index
-   migration/index
    client-side/index
 
 
