@@ -46,7 +46,7 @@ To begin, set up a new empty web application and add TypeScript example files. T
 
 .. image:: grunt-gulp/_static/typescript-options.png
 
-6.	Right-click the ``TypeScript`` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file **Tastes.ts** (note the *.ts extension). Copy the line of TypeScript code below into the file (when you save, a new Tastes.js file will appear with the JavaScript source).
+6.	Right-click the ``TypeScript`` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file **Tastes.ts** (note the \*.ts extension). Copy the line of TypeScript code below into the file (when you save, a new Tastes.js file will appear with the JavaScript source).
 enum Tastes { Sweet, Sour, Salty, Bitter }
 
 .. code-block:: javascript
@@ -248,7 +248,7 @@ The new task shows up in Task Runner Explorer under Alias Tasks. You can right-c
 Watching For Changes
 ^^^^^^^^^^^^^^^^^^^^
 
-A ``watch`` task keeps an eye on files and directories. The watch triggers tasks automatically if it detects changes. Add the code below to initConfig to watch for changes to *.js files in the TypeScript directory. If a JavaScript file is changed, ``watch`` will run the ``all`` task.
+A ``watch`` task keeps an eye on files and directories. The watch triggers tasks automatically if it detects changes. Add the code below to initConfig to watch for changes to \*.js files in the TypeScript directory. If a JavaScript file is changed, ``watch`` will run the ``all`` task.
 
 .. code-block:: javascript
 
