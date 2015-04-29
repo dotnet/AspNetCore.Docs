@@ -14,7 +14,7 @@ ASP.NET 5 Documentation
    conceptual-overview/index
    dnx/index
    client-side/index
-
+   security/index
 
 Related Topics
 --------------
