@@ -141,17 +141,17 @@ Login with Facebook
 
 - Run your application and click Login. You will see an option for Facebook.
 
-.. image:: sociallogins/_static/FBlogin1.PNG
+.. image:: sociallogins/_static/FBLogin1.PNG
 
 - When you click on Facebook, you will be redirected to Facebook for authenication.
 
-.. image:: sociallogins/_static/FBlogin2.PNG
+.. image:: sociallogins/_static/FBLogin2.PNG
 
 - Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
 
 - You are now logged in using your Facebook credentials.
 
-.. image:: sociallogins/_static/FBlogin3.PNG
+.. image:: sociallogins/_static/FBLogin3.PNG
 
 Optionally set password
 -----------------------
