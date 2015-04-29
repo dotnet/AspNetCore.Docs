@@ -45,7 +45,7 @@ From a Terminal / bash prompt, run ``dnu restore`` to restore the project's depe
 
 .. image:: your-first-mac-aspnet/_static/vscode-commands.png
 
-This will allow you to run commands directly from within Visual Studio Code, including ``dnu update`` and any commands defined in ``project.json``.
+This will allow you to run commands directly from within Visual Studio Code, including ``dnu restore`` and any commands defined in ``project.json``.
 
 At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
 
