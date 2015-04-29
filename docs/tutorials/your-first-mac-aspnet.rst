@@ -157,8 +157,9 @@ Note the ``GIT URL``, which is also shown in step 3. Assuming you've been follow
 
 .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
+.. TODO: Fix this and take screenshot once Kestrel beta4 is in nuget.org feed
 
-
+Now you can browse to your Web App and you should see your newly deployed application. At this point, you can make additional changes to the application, commit them, and whenever you're ready to deploy, simply perform another ``git push azure master`` from a Terminal prompt.
 
 Summary
 -------
@@ -170,6 +171,8 @@ Additional Reading
 
 Learn more about Visual Studio Code:
 	- `Blog Post <http://blogs.msdn.com/>`_
+	- `code.visualstudio.com <http://code.visualstudio.com>`_
 	
+.. TODO: Update list of URLs above.
 	
 .. include:: /_authors/steve-smith.rst
