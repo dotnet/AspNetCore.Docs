@@ -48,7 +48,7 @@ By default, the checkbox for *Use specific DNX version* is unchecked. To target 
 The project.json File
 ---------------------
 
-The project.json_ file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_ (discussed below), as well as other project-specific information. The sections included in *project.json* by default with the default web project template are shown below.
+The project.json file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_ (discussed below), as well as other project-specific information. The sections included in *project.json* by default with the default web project template are shown below.
 
 .. image:: understanding-aspnet5-apps/_static/project-json.png
 
