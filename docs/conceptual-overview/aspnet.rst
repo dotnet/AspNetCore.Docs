@@ -7,18 +7,18 @@ ASP.NET 5 is a significant redesign of ASP.NET. This topic introduces the new co
 What is ASP.NET 5?
 ------------------
 
-ASP.NET 5 is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET. We built it from the ground up to provide an optimized development framework for apps that are either deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run your ASP.NET 5 applications cross-platform on Windows, Mac and Linux and ASP.NET 5 is fully open source on `GitHub <https://github.com/aspnet/home>`_.
+ASP.NET 5 is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET. We built it from the ground up to provide an optimized development framework for apps that are either deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run your ASP.NET 5 applications cross-platform on Windows, Mac and Linux. ASP.NET 5 is fully open source on `GitHub <https://github.com/aspnet/home>`_.
 
 Why build ASP.NET 5?
 --------------------
 
 The first preview release of ASP.NET 1.0 came out almost 15 years ago.  Since then millions of developers have used it to build and run great web applications, and over the years we have added and evolved many, many capabilities to it.
 
-With ASP.NET 5 we are making a number of architectural changes that makes the core web framework much leaner and more modular. ASP.NET 5 is no longer based on System.Web.dll, but is instead based on a set of granular and well factored NuGet packages allowing you to optimize your app to have just what you need. You can reduce the surface area of your application to improve security, reduce your servicing burden and also to improve performance in a true pay for what you use model.
+With ASP.NET 5 we are making a number of architectural changes that make the core web framework much leaner and more modular. ASP.NET 5 is no longer based on System.Web.dll, but is instead based on a set of granular and well factored NuGet packages allowing you to optimize your app to have just what you need. You can reduce the surface area of your application to improve security, reduce your servicing burden and also to improve performance in a true pay-for-what-you-use model.
 
 ASP.NET 5 is built with the needs of modern Web applications in mind, including a unified story for building Web UI and Web APIs that integrate with today's modern client-side frameworks and development workflows. ASP.NET 5 is also built to be cloud-ready by introducing environment-based configuration and by providing built-in dependency injection support.
 
-To appeal to a broader audience of developers ASP.NET 5 supports cross-platform development on Windows, Mac and Linux. The entire ASP.NET 5 stack is open source and encourages community contributions and engagement. ASP.NET 5  comes with a new, agile project system in Visual Studio while also providing a complete command-line interface so that you can develop using the tools of your choice.
+To appeal to a broader audience of developers, ASP.NET 5 supports cross-platform development on Windows, Mac and Linux. The entire ASP.NET 5 stack is open source and encourages community contributions and engagement. ASP.NET 5  comes with a new, agile project system in Visual Studio while also providing a complete command-line interface so that you can develop using the tools of your choice.
 
 In summary, with ASP.NET 5 you gain the following foundational improvements:
 
