@@ -138,10 +138,12 @@ Commands can  be built and distributed as NuGet packages. You can then use DNU t
 
 For more information on using and creating commands see :doc:`\dnx\using-commands`.
 
+.. _dnx-concept-apphost:
+
 Application Host
 ----------------
 
-The DNX application host is typically the first managed entry point invoked by DNX and is responsible for handling dependency resolution, parsing project.json, providing additional services (see :ref:`dnx-concept-di`) and invoking the application entry point.
+The DNX application host is typically the first managed entry point invoked by DNX and is responsible for handling dependency resolution, parsing project.json, providing additional services (see :ref:`dnx-concept-apphost`) and invoking the application entry point.
 
 Alternatively, you can have DNX invoke your application's entry point directly. Doing so requires that your application be fully built and all dependencies located in a single directory. Using DNX without using the DNX Application Host is not common.
 
