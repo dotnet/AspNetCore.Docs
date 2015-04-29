@@ -72,6 +72,7 @@ The app already has the code to enable two-factor authentication. Follow these s
 
 - In your project open Index view in Manage folder.
 - Uncomment the code to add a phone number to an user account.
+
 .. code-block:: html
 
     <dt>Phone Number:</dt>
@@ -91,6 +92,7 @@ The app already has the code to enable two-factor authentication. Follow these s
     </dd>
 
 - Uncomment the code to enable/ disable two-factor authentication for an user account.
+
 .. code-block:: html
 
     <dt>Two-Factor Authentication:</dt>
@@ -166,6 +168,7 @@ We recommend you use account lockout with 2FA.Once a user logs in (through local
 The following configures Account to be locked out for 10 min after 10 failed attempts.
 
 .. code-block:: c#
+
     services.Configure<IdentityOptions>(options =>
     {
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
@@ -177,7 +180,6 @@ Next steps
 ----------
 - Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
-:doc:`accconfirm`
 
 Summary
 -------
