@@ -14,7 +14,7 @@ In this article:
 Setting Up Your Development Environment
 ---------------------------------------
 
-First, make sure you have `installed ASP.NET on your Mac OS X machine </getting-started/installation/installing-on-mac/installing-on-mac>`_. This step will include installing `Homebrew <http://brew.sh/>`_ and configuring DNVM. This article has been tested with DNX beta4. You can confirm that you are running the correct version of ``dnx`` by running the command ``dnvm list``. You should see ``default`` listed under the ``Alias`` column for ``1.0.0-beta4`` as shown:
+First, make sure you have :doc:`installed ASP.NET on your Mac OS X machine </getting-started/installing-on-mac>`. This step will include installing `Homebrew <http://brew.sh/>`_ and configuring DNVM. This article has been tested with DNX beta4. You can confirm that you are running the correct version of ``dnx`` by running the command ``dnvm list``. You should see ``default`` listed under the ``Alias`` column for ``1.0.0-beta4`` as shown:
 
 .. image:: your-first-mac-aspnet/_static/dnvm-list-beta4.png
 
