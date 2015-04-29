@@ -89,7 +89,7 @@ Next, configure NPM to download grunt and grunt-tasks.
 
 2.	In the package.json file, inside the ``devDependencies`` object braces, enter "grunt". Select ``grunt`` from the Intellisense list and press the Enter key. Visual Studio will quote the grunt package name, and add a colon. To the right of the colon, select the latest stable version of the package from the top of the Intellisense list (press ``Ctrl-Space`` if Intellisense does not appear).
 
-.. image:: grunt-gulp/_static/devDependencies-grunt.png
+.. image:: grunt-gulp/_static/devdependencies-grunt.png
 
 .. note:: NPM uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (0.4.5 in the example above) is considered the latest stable version of the package. The carat ^ symbol matches the most recent major version and the tilde ~ matches the most recent minor version. See the `NPM semver version parser reference <https://www.npmjs.com/package/semver>`_ as a guide to the full expressivity that SemVer provides.
 
