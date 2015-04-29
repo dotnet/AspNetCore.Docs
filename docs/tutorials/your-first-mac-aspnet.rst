@@ -54,21 +54,21 @@ This empty project template simply displays "Hello World!". Open ``Startup.cs`` 
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very steamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
 
-In the left navigation bar, there are four icons:
+In the left navigation bar, there are four icons, representing four viewlets:
 	- Explore
 	- Search
 	- Git
 	- Debug
 	
-The Explore window allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
+The Explore viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
 
-The Search command allows you to quickly search within the folder structure, searching filenames as well as contents.
+The Search viewlet allows you to quickly search within the folder structure, searching filenames as well as contents.
 
-*Code* will integrate with Git if it is installed on your system. You can easily initialize a new repository, make commits, and push changes from within the tool.
+*Code* will integrate with Git if it is installed on your system. You can easily initialize a new repository, make commits, and push changes from the git viewlet.
 
 .. image:: your-first-mac-aspnet/_static/vscode-git.png
 
-The Debug command supports interactive debugging of applications. Currently only node.js and mono applications support the interactive debugger, however.
+The Debug viewlet supports interactive debugging of applications. Currently only node.js and mono applications are supported by the interactive debugger.
 
 Finally, Code's editor has a ton of great features. You should note right away that several using statements are underlined, because Code has determined they are not necessary. Note that classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the keyboard shortcuts you're used to, such as ``command k c`` to comment a block of code, and ``command k u`` to uncomment.
 
