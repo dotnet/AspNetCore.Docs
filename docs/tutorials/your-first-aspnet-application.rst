@@ -1,8 +1,6 @@
 Your First ASP.NET 5 Application Using Visual Studio
 ====================================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <your-first-aspnet-application-author>` | Originally Published: 28 April 2015
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
@@ -12,7 +10,7 @@ In this article:
 	- `Server-Side vs. Client-Side Behavior`_
 	- `Adding Server-Side Behavior`_
 	- `Adding Client-Side Behavior`_
-	
+
 .. You can download the finished source from the project created in this article HERE **(TODO)**.
 
 Create a New ASP.NET 5 Project
@@ -25,9 +23,9 @@ To get started, open Visual Studio 2015. Next, create a New Project (from the St
 On the right, choose ASP.NET Web Application. Make sure the framework specified at the top of the window is .NET Framework 4.6. Enter a name and confirm where you would like the project to be created, and click OK.
 
 Next you should see another dialog, the New ASP.NET Project window:
- 
+
 .. image:: your-first-aspnet-application/_static/select-template.png
-	
+
 Select the ASP.NET 5 Starter Web template from the set of ASP.NET 5 templates. These are distinct from the ASP.NET 4.6 templates, which can be used to create ASP.NET projects using the previous version of ASP.NET. Note that you can choose to configure hosting in Microsoft Azure directly from this dialog by checking the box on the right **(ED: confirm this is available at RTM)**. After selecting ASP.NET 5 Starter Web, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.  Your project, once fully loaded, should look like this:
@@ -52,7 +50,7 @@ Click on the About link, and note the text on the page. Now, open the HomeContro
 .. code-block:: c#
 
 	ViewBag.Message = "ASP.NET 5 Rocks!";
-	
+
 Save the file and, **without rebuilding the project**, refresh your web browser. You should see the updated text. ASP.NET 5 no longer requires that you manually build your server-side logic before viewing it, making small updates much faster to inspect during development.
 
 .. image:: your-first-aspnet-application/_static/about-page.png
@@ -65,7 +63,7 @@ Modern web applications frequently make use of a combination of server-side and 
 
 .. _`special effort`: http://stackoverflow.com/questions/18530258/how-to-make-a-spa-seo-crawlable
 
-On the server, ASP.NET MVC 6 (part of ASP.NET 5) works similarly to its predecessor, including support for Razor-formatted Views as well as integrated support for Web API.  On the client, there are many options available for managing client application state, binding to UI elements, and communication with APIs. 
+On the server, ASP.NET MVC 6 (part of ASP.NET 5) works similarly to its predecessor, including support for Razor-formatted Views as well as integrated support for Web API.  On the client, there are many options available for managing client application state, binding to UI elements, and communication with APIs.
 
 Now we can add a bit of behavior to both the server and the client of the default application, to demonstrate how easy it is to get started building your own ASP.NET 5 application.
 
@@ -87,7 +85,7 @@ To start, add a new Model class called ServerInfo. I'm adding this in my Models 
 			public string Software { get; set; }
 		}
 	}
-	
+
 Next, update the HomeController's About() method to instantiate this class, set its properties, and pass it to the View.
 
 .. code-block:: c#
@@ -144,7 +142,7 @@ Let's begin with the client-side code. We are going to need a button and a list 
 
 	<button id="listButton" class="btn-success">List Processes</button>
 	<ul id="processList" class="list-group"></ul>
-	
+
 Next, we need to add some script that will run when the listButton button is clicked, and will populate the contents of the processList list. Since we want this script to run after jQuery is loaded (in the _Layout.cshtml razor file), we need to place it into a Razor Section called scripts. In this section, we will include a script block that will define a function for binding the list to some data, and a click handler that will make a GET request to our API and call the binding function with the resulting data.  Add the following to the end of the About.cshtml page, after the <ul> element we just added.
 
 .. code-block:: html
@@ -230,5 +228,7 @@ Summary
 -------
 
 ASP.NET 5 introduces a few new concepts, but should be very familiar to developers who have used previous versions of ASP.NET. Creating a new web application that includes both server-side and client-side behavior takes only a few minutes using the Visual Studio ASP.NET 5 Starter Web template.
-	
+
+.. _your-first-aspnet-application-author:
+
 .. include:: /_authors/steve-smith.rst

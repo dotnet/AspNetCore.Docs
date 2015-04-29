@@ -1,8 +1,6 @@
 Migrating From ASP.NET Web API 2 to MVC 6
 =========================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingfromwebapi2-author>` | Originally Published: 28 April 2015
 
 ASP.NET Web API 2 was separate from ASP.NET MVC 5, with each using their own libraries for dependency resolution, among other things. In MVC 6, Web API has been merged with MVC, providing a single, consistent way of building web applications. In this article we demonstrate the steps required to migrate from an ASP.NET Web API 2 project to MVC 6.
 
@@ -49,7 +47,7 @@ Finally, the model, Product, used by the ProductsApp, is a simple class:
 	:linenos:
 
 Now that we have a simple project from which to start, we can demonstrate how to migrate this Web API 2 project to ASP.NET MVC 6.
-	
+
 Create the Destination Project
 ------------------------------
 
@@ -76,7 +74,7 @@ ASP.NET 5 no longer uses global.asax, web.config, or App_Start folders. Instead,
 	:language: c#
 	:emphasize-lines: 27
 	:linenos:
-	
+
 Assuming you want to use attribute routing in your project going forward, you don't need to do any additional configuration. You can simply apply the attributes as needed to your controllers and actions,, as is done in the sample ValuesController.cs class that is included in the Web API starter project:
 
 .. literalinclude:: migratingfromwebapi2/sample/ProductsDnx/Controllers/ValuesController.cs
@@ -99,7 +97,7 @@ You also need to add the [HttpGet] attribute to the two methods, since they both
 	// /api/products
 	[HttpGet]
 	...
-	
+
 	// /api/products/1
 	[HttpGet("{id}")]
 
@@ -115,7 +113,7 @@ The last step in the migration process for this simple Web API project is to cop
 	- `IHttpActionResult` does not exist
 	- `NotFound` does not exist
 	- `Ok` does not exist
-	
+
 Fortunately, these are all very easy to correct:
 
 	- Change `ApiController` to `Controller` (you may need to add `using Microsoft.AspNet.Mvc`)
@@ -130,7 +128,7 @@ Once these changes have been made and unused using statements removed, the migra
 	:language: c#
 	:emphasize-lines: 1,2,6,8-9,27,32,34
 	:linenos:
-	
+
 You should now be able to run the migrated project and browse to /api/products, and you should see the full list of 3 products. Browse to /api/products/1 and you should see the first product.
 
 Summary
@@ -142,5 +140,7 @@ Related Resources
 -----------------
 
 `Create a Web API in MVC 6 <http://www.asp.net/vnext/overview/aspnet-vnext/create-a-web-api-with-mvc-6>`_
+
+.. _migratingfromwebapi2-author:
 
 .. include:: /_authors/steve-smith.rst

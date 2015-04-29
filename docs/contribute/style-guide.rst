@@ -1,8 +1,6 @@
 ASP.NET Docs Style Guide
 ========================
-By `Steve Smith`_ | Originally Published: 15 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <style-guide-author>` | Originally Published: 15 April 2015
 
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
@@ -13,9 +11,9 @@ In this article:
 Article Structure
 -----------------
 
-Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in 3 places in an article document: line 3, line 5 (an alias to the Author_ target), and on the very last line, where the appropriate author.rst file is included (e.g. steve-smith.rst).
+Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in 2 places in an article document: line 3 and on the very last line, where the appropriate author.rst file is included (e.g. steve-smith.rst).
 
-Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list. 
+Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list.
 
 Articles should typically include a Summary section at the end, and optionally additional sections like Next Steps or Additional Resources. These should not be included in the bulleted list of topics, however.
 
@@ -75,9 +73,9 @@ Inline hyperlinks are formatted like this:
 .. code-block:: rst
 
 	Learn more about `ASP.NET <http://www.asp.net>`_.
-	
+
 Learn more about `ASP.NET <http://www.asp.net>`_.
-	
+
 Surround the link text with backticks. Within the backticks, place the target in angle brackets, and ensure there is a space between the end of the link text and the opening angle bracket. Follow the closing backtick with an underscore.
 
 In addition to URLs, documents and document sections can also be linked by name:
@@ -85,7 +83,7 @@ In addition to URLs, documents and document sections can also be linked by name:
 .. code-block:: rst
 
 	For example, here is a link to the `Inline Markup`_ section, above.
-	
+
 For example, here is a link to the `Inline Markup`_ section, above.
 
 Any element that is rendered as a link should not have any additional formatting or styling.
@@ -118,7 +116,7 @@ Source code is very commonly included in these articles. Images should never be 
 .. code-block:: rst
 
 	.. code-block:: c#
-	
+
 	public void Foo()
 	{
 		// Foo all the things!
@@ -139,7 +137,7 @@ The code block ends when you begin a new paragraph without indentation. `Sphinx 
 - ``javascript``
 - ``html``
 
-.. _Captions: 
+.. _Captions:
 
 Code blocks also support line numbers and emphasizing or highlighting certain lines, as well as captions and names (in v1.3 of Sphinx). Captions are displayed, names can be used as link targets (e.g. `Foo Method`_):
 
@@ -150,7 +148,7 @@ Code blocks also support line numbers and emphasizing or highlighting certain li
 	   :emphasize-lines: 3
 	   :caption: The Foo() method
 	   :name: Foo Method
-	
+
 	public void Foo()
 	{
 		// Foo all the things!
@@ -183,7 +181,7 @@ To include an image in an article, use the ``.. image`` directive:
 .. code-block:: rst
 
 	.. image:: style-guide/_static/asp-net.png
-	
+
 .. note:: No quotes are needed around the file name.
 
 Here's an example using the above syntax:
@@ -200,7 +198,7 @@ To add a note callout, like the ones shown in this document, use the ``.. note::
 .. code-block:: rst
 
 	.. note:: This is a note.
-	
+
 This results in:
 
 .. note:: This is a note.
@@ -251,7 +249,7 @@ When documenting how a user should navigate a series of menus, use the ``:menuse
 .. code-block:: rst
 
 	:menuselection:`Windows --> Views --> Other...`
-	
+
 This will result in :menuselection:`Windows --> Views --> Other...`.
 
 Additional Reading
@@ -266,5 +264,7 @@ Summary
 -------
 
 This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
+
+.. _style-guide-author:
 
 .. include:: /_authors/steve-smith.rst

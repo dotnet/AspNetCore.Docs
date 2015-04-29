@@ -1,8 +1,6 @@
 Migrating Authentication and Identity From ASP.NET MVC 5 to MVC 6
 =================================================================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingauthmembership-author>` | Originally Published: 1 June 2015
 
 In the previous article we `migrated configuration from an ASP.NET MVC 5 project to MVC 6 </migrating/migratingconfig/migratingconfig>`_. In this article, we migrate the registration, login, and user management features.
 
@@ -76,7 +74,7 @@ ApplicationDbContext.cs:
 			public ApplicationDbContext()
 			{
 				// Create the database and schema if it doesn't exist
-				// This is a temporary workaround to create database until Entity Framework database migrations 
+				// This is a temporary workaround to create database until Entity Framework database migrations
 				// are supported in ASP.NET 5
 				if (!_created)
 				{
@@ -103,7 +101,7 @@ With these files in place, the Startup.cs file can be made to compile by updatin
 	using NewMvc6Project.Models;
 	using Microsoft.AspNet.Identity;
 
-Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users. 
+Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users.
 
 Migrate Registration and Login Logic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -154,10 +152,12 @@ else
 At this point, you should be able to refresh the site in your browser.
 
 
-	
+
 Summary
 ^^^^^^^
 
 ASP.NET 5 and MVC 6 introduce changes to the ASP.NET Identity 2 features that shipped with ASP.NET MVC 5. In this article, you have seen how to migrate the authentication and user management features of an ASP.NET MVC 5 project to MVC 6.
+
+.. _migratingauthmembership-author:
 
 .. include:: /_authors/steve-smith.rst
