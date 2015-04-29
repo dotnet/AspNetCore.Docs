@@ -1,8 +1,6 @@
 Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingfrommvc5-author>` | Originally Published: 28 April 2015 
 
 Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 default project template to ASP.NET MVC 6, including initial setup, basic controllers and views, static content, and client side dependencies.
 
@@ -253,5 +251,7 @@ Summary
 -------
 
 Migrating from ASP.NET MVC 5 to ASP.NET MVC 6 requires several steps, but is not overly difficult. Basic features like the models, views, and controllers that comprise an MVC application can be migrated largely without changes. Most of the changes affect static content and features related to static content, like bundling, as well as configuration steps for the application. By following the steps in this example, you should be able to quickly migrate most ASP.NET MVC 5 applications.
+
+.. _migratingfrommvc5-author:
 
 .. include:: /_authors/steve-smith.rst
