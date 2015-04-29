@@ -1,5 +1,5 @@
 Manage Client-Side Packages with Bower
-============================
+======================================
 By `Noel Rice`_ | Originally Published: 28 April 2015 
 
 .. _`Noel Rice`: Author_
