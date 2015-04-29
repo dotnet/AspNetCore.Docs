@@ -1,8 +1,6 @@
 Installing ASP.NET 5 On Windows
 ===============================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <installing-on-windows-author>` | Originally Published: 28 April 2015 
 
 This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
 
@@ -64,5 +62,7 @@ Related Resources
 - :doc:`Your First ASP.NET 5 Application Using Visual Studio </tutorials/your-first-aspnet-application>`
 .. - `Installing ASP.NET 5 on Linux <>`_
 .. - `Your First ASP.NET 5 Application on a Mac <>`_
+
+.. _installing-on-windows-author:
 
 .. include:: /_authors/steve-smith.rst

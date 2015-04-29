@@ -1,8 +1,6 @@
 Manage Client-Side Packages with Bower
 ======================================
-By `Noel Rice`_ | Originally Published: 28 April 2015 
-
-.. _`Noel Rice`: Author_
+By :ref:`Noel Rice <bower-author>` | Originally Published: 28 April 2015 
 
 Bower is a "package manager for the web." Bower lets you install and restore client-side packages, include JavaScript and CSS libraries. For example, with Bower you can install CSS files, fonts, client frameworks, and JavaScript libraries from external sources. Bower resolves dependencies and will automatically download and install all the packages you need. For example, if you configure Bower to load the Bootstrap package, the right jQuery package will automatically come along for the ride.  (For server-side libraries like the MVC 6 framework, you will still use NuGet Package Manager.)
 
@@ -225,5 +223,7 @@ Make sure bootstrap.js follows jquery.js, so that jQuery is loaded first.
 
 **TODO** Migrate remainder of article
 	
+.. _bower-author:
+
 .. include:: /_authors/noel-rice.rst
 

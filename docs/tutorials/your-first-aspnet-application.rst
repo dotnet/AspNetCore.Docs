@@ -1,8 +1,6 @@
 Your First ASP.NET 5 Application Using Visual Studio
 ====================================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <your-first-aspnet-application-author>` | Originally Published: 28 April 2015 
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
@@ -231,4 +229,6 @@ Summary
 
 ASP.NET 5 introduces a few new concepts, but should be very familiar to developers who have used previous versions of ASP.NET. Creating a new web application that includes both server-side and client-side behavior takes only a few minutes using the Visual Studio ASP.NET 5 Starter Web template.
 	
+.. _your-first-aspnet-application-author:
+
 .. include:: /_authors/steve-smith.rst

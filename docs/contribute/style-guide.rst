@@ -1,9 +1,6 @@
 ASP.NET Docs Style Guide
 ========================
-By `Steve Smith`_ | Originally Published: 15 April 2015 
-
-.. _`Steve Smith`: Author_
-
+By :ref:`Steve Smith <style-guide-author>` | Originally Published: 15 April 2015 
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
 In this article:
@@ -266,5 +263,7 @@ Summary
 -------
 
 This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
+
+.. _style-guide-author:
 
 .. include:: /_authors/steve-smith.rst
