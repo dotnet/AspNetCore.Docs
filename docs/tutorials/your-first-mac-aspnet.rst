@@ -88,7 +88,7 @@ The sample we're using is configured to use Kestrel as its webserver. You can se
 	  "dependencies": {
 		"Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
 		"Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-		"Kestrel": "1.0.0-beta4-*"
+		"Kestrel": "1.0.0-beta4"
 	  },
 
 	  "commands": {
@@ -126,12 +126,37 @@ Save the file and restart the web server. Make a few requests to the URL. You sh
 
 .. image:: your-first-mac-aspnet/_static/kestrel-logging.png
 
-
+As you can see, it's quite straightforward, especially if you're already familiar with command line tooling, to get started building ASP.NET applications using Visual Studio Code on Mac OS X.
 
 Publishing to Azure
 -------------------
 
-Once you've developed your application, you can easily use the git integration built into Visual Studio Code to push updates to production, hosted on `Windows Azure <http://azure.microsoft.com>`_. First, if you haven't already done so, initialize git in the folder you're working in.
+Once you've developed your application, you can easily use the git integration built into Visual Studio Code to push updates to production, hosted on `Windows Azure <http://azure.microsoft.com>`_. 
+
+Initialize Git
+^^^^^^^^^^^^^^
+
+First, if you haven't already done so, initialize git in the folder you're working in. Simply click on the git viewlet and click the ``Initialize git repository`` button.
+
+.. image:: your-first-mac-aspnet/_static/vscode-git-commit.png
+
+Add a commit message as shown in the image above, and click the checkmark icon to commit the staged files. Now git is tracking changes, so if you make an update to a file, the git viewlet will display how many files have changed since your last commit.
+
+Initialize Azure Website
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you're unfamiliar with Windows Azure, you may not know that you can deploy to Azure Web Apps directly using git. They also support other workflows, but being able to simply perform a ``git push`` to a remote can be a very convenient way to make updates.
+
+.. note:: Learn more about `configuring Azure to support deployment from source control <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`_.
+
+Create a new Web App in Azure, and configure it to support git deployment. Once it's configured, you should see a page like this:
+
+.. image:: your-first-mac-aspnet/_static/azure-git-details.png
+
+Note the ``GIT URL``, which is also shown in step 3. Assuming you've been following along, you can skip steps 1 and 2 and go directly to step 3. In a Terminal window, add a remote named ``azure`` with the ``GIT URL`` shown, and then perform ``git push azure master`` to deploy. You should see output similar to the following:
+
+.. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
+
 
 
 
