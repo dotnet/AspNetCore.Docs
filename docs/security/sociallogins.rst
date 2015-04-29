@@ -1,8 +1,6 @@
 Enabling authenication using external providers
 ===============================================
-By `Pranav Rastogi`_ | Originally Published: 28 April 2015 
-
-.. _`Pranav Rastogi`: Author_
+By :ref:`Pranav Rastogi <sociallogins-author>` | Originally Published: 28 April 2015 
 
 This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
 
@@ -181,5 +179,7 @@ Summary
 -------
 
 ASP.NET Identity and Security middleware can be used to authenticate with external providers.
+
+.. _sociallogins-author:
 
 .. include:: /_authors/pranav-rastogi.rst
