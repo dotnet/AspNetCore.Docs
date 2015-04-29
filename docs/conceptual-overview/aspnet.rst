@@ -37,7 +37,7 @@ In summary, with ASP.NET 5 you gain the following foundational improvements:
 Application anatomy
 -------------------
 
-ASP.NET 5 are built and run using the new :doc:`.NET Execution Environment (DNX) <dnx>`. Every ASP.NET 5 project is a :doc:`DNX project </dnx/projects>`. ASP.NET 5 integrates with DNX through the `ASP.NET Application Hosting <https://nuget.org/packages/Microsoft.AspNet.Hosting>`_ package.
+ASP.NET 5 applications are built and run using the new :doc:`.NET Execution Environment (DNX) <dnx>`. Every ASP.NET 5 project is a :doc:`DNX project </dnx/projects>`. ASP.NET 5 integrates with DNX through the `ASP.NET Application Hosting <https://nuget.org/packages/Microsoft.AspNet.Hosting>`_ package.
 
 ASP.NET 5 applications are defined using a public ``Startup`` class:
 
@@ -59,7 +59,7 @@ The ``ConfigureServices`` method defines the services used by your application a
 Services
 --------
 
-A service is a component that is intended for common consumption in an application. Services are made available through dependency injection. ASP.NET 5 includes a simple built-in inversion of control (IoC) container that supports constructor injection by default, but can be easily be replaced with your IoC container of choice. See :doc:`/runtime/dependency-injection` for more details.
+A service is a component that is intended for common consumption in an application. Services are made available through dependency injection. ASP.NET 5 includes a simple built-in inversion of control (IoC) container that supports constructor injection by default, but can be easily replaced with your IoC container of choice. See :doc:`/runtime/dependency-injection` for more details.
 
 Services in ASP.NET 5 come in three varieties: singleton, scoped and transient. Transient services are created each time they’re requested from the container. Scoped services are created only if they don’t already exist in the current scope. For Web applications, a container scope is created for each request, so you can think of scoped services as per request. Singleton services are only ever created once.
 
@@ -89,12 +89,12 @@ ASP.NET 5 includes server support for running on IIS or self-hosting in your own
 Web root
 --------
 
-The Web root of your application is the root location in your project from where HTTP requests are handled (ex. handling of static file requests). The Web root of an ASP.NET 5 application is configuring using the "webroot" property in your project.json file.
+The Web root of your application is the root location in your project from which HTTP requests are handled (ex. handling of static file requests). The Web root of an ASP.NET 5 application is configured using the "webroot" property in your project.json file.
 
 Configuration
 -------------
 
-ASP.NET 5 uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-it configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET 5 and can also be setup using environment variables:
+ASP.NET 5 uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-it configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET 5 and can also be set up using environment variables:
 
 .. code-block:: c#
 
