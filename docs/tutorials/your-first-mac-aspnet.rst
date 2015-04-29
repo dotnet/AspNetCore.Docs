@@ -1,19 +1,17 @@
 Your First ASP.NET 5 Application on a Mac
 =========================================
-By `Steve Smith`_ | Originally Published: 30 April 2015 
+By `Steve Smith`_ | Originally Published: 29 April 2015 
 
 .. _`Steve Smith`: Author_
 
-ASP.NET 5 is cross-platform and can be developed and run on OS X as well as Linux and Windows. See how you can quickly install, scaffold, run, debug, and deploy ASP.NET applications on a Mac.
+ASP.NET 5 is cross-platform and can be developed and run on Mac OS X as well as Linux and Windows. See how you can quickly install, scaffold, run, debug, and deploy ASP.NET applications on a Mac.
 
 This article covers the following topics:
 	- `Setting Up Your Development Environment`_
 	- `Scaffolding Applications Using Yeoman`_
 	- `Developing ASP.NET Applications on a Mac With Visual Studio Code`_
 	- `Running Locally Using Kestrel`_
-	- `Publish to Azure`_
-
-
+	- `Publishing to Azure`_
 
 Setting Up Your Development Environment
 ---------------------------------------
