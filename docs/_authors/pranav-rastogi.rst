@@ -1,7 +1,5 @@
 :orphan: 
 
-.. _Author:
- 
 Author
 ^^^^^^
 .. container:: author
