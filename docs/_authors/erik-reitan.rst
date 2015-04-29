@@ -8,7 +8,7 @@ Author
 
 	.. container:: photo
 	
-		.. image:: /_authors/photos/erik-reitan.jpg
+		.. image:: /_authors/photos/Erik-Reitan.jpg
 		
 	.. container:: bio
 	
