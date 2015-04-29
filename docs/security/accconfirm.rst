@@ -86,6 +86,7 @@ The app already has the code to enable account confirmation and reset password..
 
 - In your project open **AccountController** and look at **Register** action.
 - Uncomment the code to enable account confirmation.
+
 .. code-block:: c#
         
     public async Task<IActionResult> Register(RegisterViewModel model)
@@ -112,7 +113,8 @@ The app already has the code to enable account confirmation and reset password..
         return View(model);
     }
 
-- Enable Password recovery by uncommenting the code in **ForgotPassword** action 
+- Enable Password recovery by uncommenting the code in **ForgotPassword** action
+
 .. code-block:: c#
 
     public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -140,6 +142,7 @@ The app already has the code to enable account confirmation and reset password..
     }
 
 - Enable Password recovery form by uncommenting the code in **Views\Account\ForgotPassword** 
+
 .. code-block:: html
 
 	<form asp-controller="Account" asp-action="ForgotPassword" method="post" class="form-horizontal" role="form">
@@ -174,7 +177,7 @@ Let us run the Web site and show the account confirmation and password recovery 
 
 - Click the link to confirm your email.
 
-.. image:: accconfirm/_static/loginaccconfirm2.png
+.. image:: accconfirm/_static/loginaccconfirm2.PNG
 
 - Login with your email and password.
 
@@ -182,19 +185,19 @@ Let us run the Web site and show the account confirmation and password recovery 
 
 - Click Login and select **Forgot your password?**
 
-.. image:: accconfirm/_static/loginaccconfirm3.png
+.. image:: accconfirm/_static/loginaccconfirm3.PNG
 
 - Enter your email which was used to register the account with.
 
-.. image:: accconfirm/_static/loginaccconfirm4.png
+.. image:: accconfirm/_static/loginaccconfirm4.PNG
 
 - An email with the link to reset your password will be sent. Check your email and click it to reset your password.
 
-.. image:: accconfirm/_static/loginaccconfirm5.png
+.. image:: accconfirm/_static/loginaccconfirm5.PNG
 
 - After your password has been successfully reset, you can login with your email and new password.
 
-.. image:: accconfirm/_static/loginaccconfirm6.png
+.. image:: accconfirm/_static/loginaccconfirm6.PNG
 
          
 Require email confirmation before login
@@ -232,7 +235,6 @@ Next steps
 ----------
 - Once you publish your Web site to Azure Web App, you should reset the secrets for SendGrid. 
 - Set the SendGrid Secrets as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
-:doc:`2fa`
 
 Summary
 -------
