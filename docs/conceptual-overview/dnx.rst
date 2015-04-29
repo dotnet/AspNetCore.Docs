@@ -61,7 +61,7 @@ You specify which frameworks you want to build for under the "frameworks" proper
 
 You can use the .NET Development Utility (DNU) to build, package and publish DNX projects. Building a project produces the binary outputs for the project. Packaging produces a NuGet package that can be uploaded to a package feed (ex http://nuget.org) and then consumed. Publishing collects all required runtime artifacts (the required DNX and packages) into a single folder so that it can be deployed as an application.
 
-For more details on working with DNX projects see :doc:`\dnx\working-with-dnx-projects`.
+For more details on working with DNX projects see :doc:`/dnx/projects`.
 
 .. _dnx-concept-dependencies:
 
@@ -136,7 +136,7 @@ Commands can  be built and distributed as NuGet packages. You can then use DNU t
 
     dnu commands install MyCommand
 
-For more information on using and creating commands see :doc:`\dnx\using-commands`.
+For more information on using and creating commands see :doc:`/dnx/commands`.
 
 .. _dnx-concept-apphost:
 
