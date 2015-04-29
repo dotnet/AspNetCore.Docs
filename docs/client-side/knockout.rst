@@ -348,4 +348,4 @@ Knockout provides a simple, elegant way to bind UI elements to the current state
 
 .. _knockout-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

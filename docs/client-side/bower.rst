@@ -225,5 +225,5 @@ Make sure bootstrap.js follows jquery.js, so that jQuery is loaded first.
 	
 .. _bower-author:
 
-.. include:: /_authors/noel-rice.rst
+.. include:: /_authors/noel-rice.txt
 

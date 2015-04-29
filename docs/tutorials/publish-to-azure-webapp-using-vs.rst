@@ -46,5 +46,5 @@ When publishing to Azure is complete, your web app will be displayed in a browse
 
 .. _publish-to-azure-webapp-using-vs-author:
 
-.. include:: /_authors/erik-reitan.rst
+.. include:: /_authors/erik-reitan.txt
 

@@ -269,4 +269,4 @@ ASP.NET 5 introduces a few concepts that didn't exist in previous versions of AS
 
 .. _understanding-aspnet5-apps-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

@@ -188,4 +188,4 @@ ASP.NET Identity can be used to add two-factor authentication.
 
 .. _2fa-author:
 
-.. include:: /_authors/pranav-rastogi.rst
+.. include:: /_authors/pranav-rastogi.txt

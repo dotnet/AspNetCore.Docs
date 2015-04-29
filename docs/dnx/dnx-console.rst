@@ -64,4 +64,4 @@ Creating and running your first console application on DNX is very simple, and o
 	
 .. _dnx-console-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

@@ -57,4 +57,4 @@ Related Resources
 
 .. _installing-on-mac-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

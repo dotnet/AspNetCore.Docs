@@ -254,4 +254,4 @@ Bootstrap provides a web framework that can be used to quickly and productively 
 
 .. _bootstrap-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt

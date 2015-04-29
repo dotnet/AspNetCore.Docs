@@ -63,4 +63,4 @@ Related Resources
 
 .. _installing-on-windows-author:
 
-.. include:: /_authors/steve-smith.rst
+.. include:: /_authors/steve-smith.txt
