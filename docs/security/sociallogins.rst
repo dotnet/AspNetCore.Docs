@@ -94,7 +94,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 - Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta4**
 
-.. image:: sociallogins/_static/SM1.png
+.. image:: sociallogins/_static/SM1.PNG
 
 - Install the SecretManager tool using DNU (Microsoft .NET Development Utlity) by running **dnu commands install SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
@@ -141,17 +141,17 @@ Login with Facebook
 
 - Run your application and click Login. You will see an option for Facebook.
 
-.. image:: sociallogins/_static/FBlogin1.png
+.. image:: sociallogins/_static/FBlogin1.PNG
 
 - When you click on Facebook, you will be redirected to Facebook for authenication.
 
-.. image:: sociallogins/_static/FBlogin2.png
+.. image:: sociallogins/_static/FBlogin2.PNG
 
 - Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
 
 - You are now logged in using your Facebook credentials.
 
-.. image:: sociallogins/_static/FBlogin3.png
+.. image:: sociallogins/_static/FBlogin3.PNG
 
 Optionally set password
 -----------------------
@@ -161,11 +161,11 @@ To set the password once you have logged in with an external provider:
 
 - Click the **Hello raspranav@gmail.com** at the top right corner to navigate to the Manage view.
 
-.. image:: sociallogins/_static/pass1.png
+.. image:: sociallogins/_static/pass1.PNG
 
 - Click **Create** next to the Password text.
 
-.. image:: sociallogins/_static/pass2.png
+.. image:: sociallogins/_static/pass2.PNG
 
 - Set a valid password and you can use this to login with your email.
 
