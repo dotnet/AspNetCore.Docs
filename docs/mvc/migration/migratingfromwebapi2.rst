@@ -19,7 +19,7 @@ This article uses the sample project, ProductsApp, created in the article, `Gett
 
 In Global.asax.cs, a call is made to WebApiConfig.Register:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/global.asax.cs
+.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/Global.asax.cs
 	:language: c#
 	:emphasize-lines: 14
 	:linenos:
