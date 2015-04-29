@@ -43,7 +43,13 @@ Visual Studio Code may detect that you need to restore dependencies, as shown in
 
 .. image:: your-first-mac-aspnet/_static/vscode-restore.png
 
-From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. At this point, you should be able to host and browse to your simple ASP.NET web application, which we'll see in a moment.
+From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can press ``command o`` and then type ``>d`` as shown:
+
+.. image:: your-first-mac-aspnet/_static/vscode-commands.png
+
+This will allow you to run commands directly from within Visual Studio Code, including ``dnu update`` and any commands defined in ``project.json``.
+
+At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
 
 This empty project template simply displays "Hello World!". Open ``Startup.cs`` in Visual Studio Code to see how this is configured:
 
