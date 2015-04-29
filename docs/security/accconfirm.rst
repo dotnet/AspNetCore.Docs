@@ -1,8 +1,6 @@
 Account Confirmation and Password Recovery with ASP.NET Identity
 ================================================================
-By `Pranav Rastogi`_ | Originally Published: 28 April 2015 
-
-.. _`Pranav Rastogi`: Author_
+By :ref:`Pranav Rastogi <accconfirm-author>` | Originally Published: 28 April 2015 
 
 This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using the ASP.NET Identity.
 
@@ -240,5 +238,7 @@ Summary
 -------
 
 ASP.NET Identity can be used to add account confirmation and password recovery.
+
+.. _accconfirm-author:
 
 .. include:: /_authors/pranav-rastogi.rst
