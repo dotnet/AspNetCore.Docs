@@ -103,7 +103,6 @@ Commands
 A command is a named execution of a .NET entry point with specific arguments. You can define commands in your project.json file:
 
 .. code-block:: json
-    :caption: Commands in project.json
 
     {
       "version": "1.0.0",
