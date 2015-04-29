@@ -1,9 +1,8 @@
+:orphan:
+
 ASP.NET Docs Style Guide
 ========================
-By `Steve Smith`_ | Originally Published: 15 April 2015 
-
-.. _`Steve Smith`: Author_
-
+By :ref:`Steve Smith <style-guide-author>` | Originally Published: 15 April 2015 
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
 In this article:
@@ -141,16 +140,14 @@ The code block ends when you begin a new paragraph without indentation. `Sphinx 
 
 .. _Captions: 
 
-Code blocks also support line numbers and emphasizing or highlighting certain lines, as well as captions and names (in v1.3 of Sphinx). Captions are displayed, names can be used as link targets (e.g. `Foo Method`_):
+Code blocks also support line numbers and emphasizing or highlighting certain lines:
 
 .. code-block:: rst
 
 	.. code-block:: c#
 	   :linenos:
 	   :emphasize-lines: 3
-	   :caption: The Foo() method
-	   :name: Foo Method
-	
+
 	public void Foo()
 	{
 		// Foo all the things!
@@ -161,15 +158,13 @@ This results in:
 .. code-block:: c#
    :linenos:
    :emphasize-lines: 3
-   :caption: The Foo() method
-   :name: Foo Method
 
 	public void Foo()
 	{
 		// Foo all the things!
 	}
 
-.. note:: ``caption`` and ``name`` will result in a code-block not being displayed if these are used on Sphinx prior to version 1.3. If you don't see a code block displayed above this note, it's most likely because the version of Sphinx is < 1.3.
+.. note:: ``caption`` and ``name`` will result in a code-block not being displayed due to our builds using a Sphinx version prior to version 1.3. If you don't see a code block displayed above this note, it's most likely because the version of Sphinx is < 1.3.
 
 Images
 ^^^^^^
@@ -267,4 +262,6 @@ Summary
 
 This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
 
-.. include:: /_authors/steve-smith.rst
+.. _style-guide-author:
+
+.. include:: /_authors/steve-smith.txt

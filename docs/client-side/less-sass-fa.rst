@@ -1,8 +1,6 @@
 Styling Applications with Less, Sass, and Font Awesome
 ======================================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <less-sass-fa-author>` | Originally Published: 28 April 2015 
 
 Users of web applications have increasingly high expectations when it comes to style and overall experience. Modern web applications frequently leverage rich tools and frameworks for defining and managing their look and feel in a consistent manner. Frameworks like `Bootstrap`_ can go a long way toward defining a common set of styles and layout options for the web sites. However, most non-trivial sites also benefit from being able to effectively define and maintain styles and cascading style sheet (CSS) files, as well as having easy access to non-image icons that help make the site's interface more intuitive. That's where languages and tools that support `Less`_ and `Sass`_, and libraries like `Font Awesome`_, come in.
 
@@ -71,11 +69,11 @@ The Less CSS pre-processor runs using Node.js. You can quickly install it using 
 
 If you're using Visual Studio 2015, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a Styles folder to your project, and then add a new Less file called main.less to this folder.
 
-.. image:: _static/add-less-file.png
+.. image:: less-sass-fa/_static/add-less-file.png
 
 Once added, your folder structure should look something like this:
 
-.. image:: _static/folder-structure.png
+.. image:: less-sass-fa/_static/folder-structure.png
 
 Now we can add some basic styling to the file, which will be compiled into CSS and deployed to the wwwroot folder by Gulp.
 
@@ -145,11 +143,11 @@ Next, add a task to run less, using the syntax shown here:
 
 Open the Task Runner Explorer (view>Other Windows > Task Runner Explorer). Among the tasks, you should see a new task named ``less``. Run it, and you should have output similar to what is shown here:
 
-.. image:: _static/less-task-runner.png
+.. image:: less-sass-fa/_static/less-task-runner.png
 
 Now refresh your Solution Explorer and inspect the contents of the wwwroot/css folder. You should find a new file, main.css, there:
 
-.. image:: _static/main-css-created.png
+.. image:: less-sass-fa/_static/main-css-created.png
 
 Open main.css and you should see something like the following:
 
@@ -198,7 +196,7 @@ Add a simple HTML page to the wwwroot folder and reference main.css to see the c
 
 You can see that the 180 degree spin on ``@base`` used to produce ``@background`` resulted in the color wheel opposing color of ``@base``:
 
-.. image:: _static/less-test-screenshot.png
+.. image:: less-sass-fa/_static/less-test-screenshot.png
 
 Less also provides support for nested rules, as well as nested media queries. For example, defining nested hierarchies like menus can result in verbose CSS rules like these:
 
@@ -369,7 +367,7 @@ Next, modify gulpfile.js to add a sass variable and a task to compile your Sass 
 
 Now you can add the Sass file main2.scss to the Styles folder in the root of the project:
 
-.. image:: _static/add-scss-file.png
+.. image:: less-sass-fa/_static/add-scss-file.png
 
 Open main2.scss and add the following:
 
@@ -584,7 +582,7 @@ Once you have a reference to it on a page, you can add icons to your application
 
 This produces the following in the browser - note the icon beside each item:
 
-.. image:: _static/list-icons-screenshot.png
+.. image:: less-sass-fa/_static/list-icons-screenshot.png
 
 
 You can view a complete list of the available icons here:
@@ -596,4 +594,6 @@ Summary
 
 Modern web applications increasingly demand responsive, fluid designs that are clean, intuitive, and easy to use from a variety of devices. Managing the complexity of the CSS stylesheets required to achieve these goals is best done using a pre-processor like Less or Sass. In addition, toolkits like Font Awesome quickly provide well-known icons to textual navigation menus and buttons, improving the overall user experience of your application.
 
-.. include:: /_authors/steve-smith.rst
+.. _less-sass-fa-author:
+
+.. include:: /_authors/steve-smith.txt

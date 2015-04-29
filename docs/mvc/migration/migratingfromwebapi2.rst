@@ -1,8 +1,6 @@
 Migrating From ASP.NET Web API 2 to MVC 6
 =========================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingfromwebapi2-author>` | Originally Published: 28 April 2015 
 
 ASP.NET Web API 2 was separate from ASP.NET MVC 5, with each using their own libraries for dependency resolution, among other things. In MVC 6, Web API has been merged with MVC, providing a single, consistent way of building web applications. In this article we demonstrate the steps required to migrate from an ASP.NET Web API 2 project to MVC 6.
 
@@ -21,7 +19,7 @@ This article uses the sample project, ProductsApp, created in the article, `Gett
 
 In Global.asax.cs, a call is made to WebApiConfig.Register:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/global.asax.cs
+.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/Global.asax.cs
 	:language: c#
 	:emphasize-lines: 14
 	:linenos:
@@ -143,4 +141,6 @@ Related Resources
 
 `Create a Web API in MVC 6 <http://www.asp.net/vnext/overview/aspnet-vnext/create-a-web-api-with-mvc-6>`_
 
-.. include:: /_authors/steve-smith.rst
+.. _migratingfromwebapi2-author:
+
+.. include:: /_authors/steve-smith.txt

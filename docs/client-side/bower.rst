@@ -1,8 +1,6 @@
 Manage Client-Side Packages with Bower
-============================
-By `Noel Rice`_ | Originally Published: 28 April 2015 
-
-.. _`Noel Rice`: Author_
+======================================
+By :ref:`Noel Rice <bower-author>` | Originally Published: 28 April 2015 
 
 Bower is a "package manager for the web." Bower lets you install and restore client-side packages, include JavaScript and CSS libraries. For example, with Bower you can install CSS files, fonts, client frameworks, and JavaScript libraries from external sources. Bower resolves dependencies and will automatically download and install all the packages you need. For example, if you configure Bower to load the Bootstrap package, the right jQuery package will automatically come along for the ride.  (For server-side libraries like the MVC 6 framework, you will still use NuGet Package Manager.)
 
@@ -19,22 +17,21 @@ Client-side packages are listed in the bower.json file. The ASP.NET 5 Starter We
 
 Let’s add support for photo albums by installing the `Fotorama <http://fotorama.io/>_` jQuery plugin. 
 
-1.	At the end of the ``dependencies`` section in bower.json, add a comma and type "fotorama". Notice as you type that you get IntelliSense with a list of available packages. Select "fotorama" from the list. 
+#.	At the end of the ``dependencies`` section in bower.json, add a comma and type "fotorama". Notice as you type that you get IntelliSense with a list of available packages. Select "fotorama" from the list. 
 
 	.. image:: bower/_static/add-package.png
 
-2.	Add a colon and then select the latest stable version of the package from the drop down list.
+#.	Add a colon and then select the latest stable version of the package from the drop down list.
 
 	.. image:: bower/_static/version-intellisense.png
 
-3.	Save the bower.json file. 
-4.	In Solution Explorer, right-click the **Dependencies\Bower** node. Select **Restore Packages** from the drop down menu.
-5.	Right-click gruntfile.js and select **Task Runner Explorer**. 
-6.	Double-click **Tasks** > **bower** to run the Bower deployment task. This task runs Bower to download and install the packages listed in bower.json.
+#.	Save the bower.json file. 
+#.	Right-click gruntfile.js and select **Task Runner Explorer**. 
+#.	Double-click **Tasks** > **bower** to run the Bower deployment task. This task runs Bower to download and install the packages listed in bower.json.
  
 	.. image:: bower/_static/bower-deploy.png
 
-7.	In Solution Explorer, expand the **wwwroot** node. The *lib* directory should now contain all of the packages, including the fotorama package. 
+#.	In Solution Explorer, expand the **wwwroot** node. The *lib* directory should now contain all of the packages, including the fotorama package. 
 
 	.. image:: bower/_static/package-lib.png
 
@@ -146,7 +143,6 @@ The first step is to define the packages your application needs and download the
 		}
 
 12.	Save the bower.json file.
-13. Right-click **Dependencies** > **Bower** and click **Restore packages**. 
 
 The project should now include *bootstrap* and *jQuery* directories in two locations: *Dependencies\Bower* and *bower_components*. 
 
@@ -223,7 +219,43 @@ Make sure bootstrap.js follows jquery.js, so that jQuery is loaded first.
 	</body>
 	</html>
 
-**TODO** Migrate remainder of article
+
+Use the Installed Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Add jQuery and Bootstrap components to the page to verify that the web application is configured correctly.
+
+1.	Inside the body tag, above the script references, add a **div** element with the Bootstrap **jumbotron** class and an anchor tag.
+
+	.. code-block:: html
+
+		<div class="jumbotron">
+			<h1>Using the jumbotron style</h1>
+			<p><a class="btn btn-primary btn-lg" role="button">
+			   Stateful button</a></p>
+		</div>
+
+2.	Add the following code after the jQuery and Bootstrap references. 
+
+	.. code-block:: html
 	
-.. include:: /_authors/noel-rice.rst
+		<script>
+			$(".btn").click(function() {
+				$(this).text('loading')
+					.delay(1000)
+					.queue(function () {
+						$(this).text('reset');
+						$(this).dequeue()
+					});
+				}            
+			);
+		</script>
+
+3.	Press Ctrl-Shift-W to view the HTML page in the browser. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state. 
+
+	.. image:: bower/_static/jumbotron.png
+	
+.. _bower-author:
+
+.. include:: /_authors/noel-rice.txt
 

@@ -1,8 +1,6 @@
 Migrating Authentication and Identity From ASP.NET MVC 5 to MVC 6
 =================================================================
-By `Steve Smith`_ | Originally Published: 1 June 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingauthmembership-author>` | Originally Published: 1 June 2015 
 
 In the previous article we `migrated configuration from an ASP.NET MVC 5 project to MVC 6 </migrating/migratingconfig/migratingconfig>`_. In this article, we migrate the registration, login, and user management features.
 
@@ -18,7 +16,7 @@ Configure Identity and Membership
 
 In ASP.NET MVC 5, authentication and identity features are configured in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In MVC 6, these features are configured in Startup.cs. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open project.json and add "Microsoft.AspNet.Identity.EntityFramework" and "Microsoft.AspNet.Identity.Cookies" to the list of dependencies:
 
-.. code-block:: javascript
+.. code-block:: json
 
 	"dependencies": {
 		"Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
@@ -122,34 +120,34 @@ Update _Layout.cshtml; uncomment the @Html.Partial line:
 
 Now, add a new MVC View Page called _LoginPartial to the Views/Shared folder:
 
-.. image /static/AddLoginPartial.png
+.. image migratingauthmembership/_static/AddLoginPartial.png
 
 Update _LoginPartial.cshtml with the following code (replace all of its contents):
 
 .. code-block:: c#
 
-@using System.Security.Principal
+	@using System.Security.Principal
 
-@if (User.Identity.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+	@if (User.Identity.IsAuthenticated)
+	{
+	    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+	    {
+	        @Html.AntiForgeryToken()
+	        <ul class="nav navbar-nav navbar-right">
+	            <li>
+	                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+	            </li>
+	            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+	        </ul>
+	    }
+	}
+	else
+	{
+	    <ul class="nav navbar-nav navbar-right">
+	        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+	        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+	    </ul>
+	}
 
 At this point, you should be able to refresh the site in your browser.
 
@@ -160,4 +158,6 @@ Summary
 
 ASP.NET 5 and MVC 6 introduce changes to the ASP.NET Identity 2 features that shipped with ASP.NET MVC 5. In this article, you have seen how to migrate the authentication and user management features of an ASP.NET MVC 5 project to MVC 6.
 
-.. include:: /_authors/steve-smith.rst
+.. _migratingauthmembership-author:
+
+.. include:: /_authors/steve-smith.txt

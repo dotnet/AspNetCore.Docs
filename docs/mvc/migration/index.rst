@@ -1,3 +1,5 @@
+:orphan:
+
 Migration
 ---------
 
@@ -7,5 +9,6 @@ Migration
    migratingfrommvc5
    migratingconfig
    migratingfromwebapi2
+   migratingauthmembership
 
 

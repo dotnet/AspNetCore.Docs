@@ -1,8 +1,6 @@
 Understanding ASP.NET 5 Web Apps
 ================================
-By `Steve Smith`_ | Updated : 27 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <understanding-aspnet5-apps-author>` | Updated : 27 April 2015 
 
 ASP.NET 5 introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
 
@@ -37,7 +35,7 @@ has been refactored into files that are generally smaller and more focused.
 Framework Target
 ----------------
 
-ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default applications will target the full version of .NET, but they can also target the .NET Core. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate NuGet packages (`learn more about .NET Core <introducing-dotnet-core>`_).
+ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default applications will target the full version of .NET, but they can also target the .NET Core. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate NuGet packages (:doc:`learn more about .NET Core <dotnetcore>`).
 
 You can see which framework is currently being targeted in the web application project's properties, by right-clicking on the web project in Solution Explorer and selecting Properties:
  
@@ -48,7 +46,7 @@ By default, the checkbox for *Use specific DNX version* is unchecked. To target 
 The project.json File
 ---------------------
 
-The project.json_ file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_ (discussed below), as well as other project-specific information. The sections included in *project.json* by default with the default web project template are shown below.
+The project.json file is new to ASP.NET 5. It is used to define the project's `server side dependencies`_ (discussed below), as well as other project-specific information. The sections included in *project.json* by default with the default web project template are shown below.
 
 .. image:: understanding-aspnet5-apps/_static/project-json.png
 
@@ -119,7 +117,7 @@ The Dependencies folder contains two subfolders: Bower and NPM. These folders co
 
 .. image:: understanding-aspnet5-apps/_static/dependencies.png
 
-The bower dependencies are controlled by the *bower.json* file. You’ll notice that each of the items listed in the figure above correspond to dependencies listed in bower.json:
+The bower dependencies are controlled by the *bower.json* file. You'll notice that each of the items listed in the figure above correspond to dependencies listed in bower.json:
 
 .. image:: understanding-aspnet5-apps/_static/bower-json.png
 
@@ -269,4 +267,6 @@ Summary
 
 ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
 
-.. include:: /_authors/steve-smith.rst
+.. _understanding-aspnet5-apps-author:
+
+.. include:: /_authors/steve-smith.txt
