@@ -27,7 +27,6 @@ Projects
 A DNX project is a folder with a project.json file. The name of the project is the folder name. You use DNX projects to build NuGet packages. The project.json file defines your package metadata, your project dependencies and which frameworks you want to build for:
 
 .. code-block:: json
-    :caption: project.json
 
     {
       "version": "1.0.0-*",
@@ -72,7 +71,6 @@ Dependencies
 Dependencies in DNX consist of a name and a version number. Version numbers should follow `Semantic Versioning <http://semver.org>`_. Typically dependencies refer to an installed NuGet package or to another DNX project. Project references are resolved using peer folders to the current project or using and project paths specified using a global.json file at the solution level:
 
 .. code-block:: json
-    :caption: global.json
 
     {
       "projects": [ "src", "test" ],
