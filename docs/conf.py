@@ -254,7 +254,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'aspnet', 'ASP.NET 5 Documentation',
-   'Microsoft', 'ASP.NET 5', 'ASP.NET 5 is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET.',
+   'Microsoft', 'aspnet', 'ASP.NET 5 Documentation',
    '.NET Development'),
 ]
 
