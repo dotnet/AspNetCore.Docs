@@ -12,9 +12,11 @@ ASP.NET 5 Documentation
    getting-started/index
    tutorials/index
    conceptual-overview/index
+   runtime/index
    dnx/index
    client-side/index
    security/index
+   extensibility/index
 
 Related Topics
 --------------
