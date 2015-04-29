@@ -1,8 +1,6 @@
 Grunt and Gulp: Task Runners
 ============================
-By `Noel Rice`_ | Originally Published: 28 April 2015 
-
-.. _`Noel Rice`: Author_
+By :ref:`Noel Rice <grunt-gulp-author>` | Originally Published: 28 April 2015
 
 Both Grunt and Gulp are JavaScript task runners that automate script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Both Grunt and Gulp are equally supported in Visual Studio 2015. The ASP.NET project templates use Gulp by default.
 
@@ -10,7 +8,7 @@ In this article:
 	- `Gulp and Grunt`_
 	- `Using Grunt`_
 	- `Using Gulp`_
-	
+
 Gulp and Grunt
 --------------
 
@@ -21,7 +19,7 @@ Using Grunt
 
 This example uses the Empty ASP.NET 5 template to show how to automate the client build process from scratch. The non-empty ASP.NET 5 project templates use Gulp by default.
 
-The finished example cleans the target deployment directory, combines JavaScript files, checks code quality, condenses JavaScript file content and deploys to the root of your web application. We will use the following packages: 
+The finished example cleans the target deployment directory, combines JavaScript files, checks code quality, condenses JavaScript file content and deploys to the root of your web application. We will use the following packages:
 
 - **grunt**: The Grunt task runner package.
 - **grunt-contrib-clean**: A task that removes files or directories.
@@ -52,7 +50,7 @@ enum Tastes { Sweet, Sour, Salty, Bitter }
 .. code-block:: javascript
 
 	enum Tastes { Sweet, Sour, Salty, Bitter }
-	
+
 7.	Add a second file to the **TypeScript** directory and name it ``Food.js``. Copy the code below into the file.
 
 .. code-block:: javascript
@@ -60,7 +58,7 @@ enum Tastes { Sweet, Sour, Salty, Bitter }
 	class Food {
 		constructor(name: string, calories: number) {
 			this._name = name;
-			this._calories = calories; 
+			this._calories = calories;
 		}
 
 		private _name: string;
@@ -78,7 +76,7 @@ enum Tastes { Sweet, Sour, Salty, Bitter }
 		set Taste(value: Tastes) {
 			this._taste = value;
 		}
-	}	
+	}
 
 Configuring NPM
 ^^^^^^^^^^^^^^^
@@ -108,7 +106,7 @@ Next, configure NPM to download grunt and grunt-tasks.
 
 4.	Save the ``packages.json`` file.
 
-The packages for each devDependencies item will download, along with any files that each package requires. You can find the package files in the ``node_modules`` directory by enabling the **Show All Files** button in the Solution Explorer.  
+The packages for each devDependencies item will download, along with any files that each package requires. You can find the package files in the ``node_modules`` directory by enabling the **Show All Files** button in the Solution Explorer.
 
 .. image:: grunt-gulp/_static/node-modules.png
 
@@ -122,7 +120,7 @@ Configuring Grunt
 
 Grunt is configured using a manifest named ``gruntfile.js`` that defines, loads and registers tasks that can be run manually or configured to run automatically based on events in Visual Studio.
 
-1.	Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, ``Gruntfile.js``, and click the **Add** button. 
+1.	Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, ``Gruntfile.js``, and click the **Add** button.
 
 The initial code includes a module definition and the ``grunt.initConfig()`` method. The ``initConfig()`` is used to set options for each package, and the remainder of the module will load and register tasks.
 
@@ -131,7 +129,7 @@ The initial code includes a module definition and the ``grunt.initConfig()`` met
 	module.exports = function (grunt) {
 		grunt.initConfig({
 		});
-	}; 
+	};
 
 2.	Inside the ``initConfig()`` method, add options for the ``clean`` task as shown in the example Gruntfile.js below. The clean task accepts an array of directory strings. This task removes files from wwwroot/lib and removes the entire /temp directory.
 
@@ -149,7 +147,7 @@ The initial code includes a module definition and the ``grunt.initConfig()`` met
 
 	grunt.loadNpmTasks("grunt-contrib-clean");
 
-4.	Save Gruntfile.js. The file should look something like the screenshot below. 
+4.	Save Gruntfile.js. The file should look something like the screenshot below.
 
 .. image:: grunt-gulp/_static/gruntfile-js-initial.png
 
@@ -165,9 +163,9 @@ The initial code includes a module definition and the ``grunt.initConfig()`` met
 
 .. image:: grunt-gulp/_static/task-runner-explorer-run-clean.png
 
-.. note:: There are no files or directories to clean yet. If you like, you can manually create them in the Solution Explorer and then run the clean task as a test. 
+.. note:: There are no files or directories to clean yet. If you like, you can manually create them in the Solution Explorer and then run the clean task as a test.
 
-8.	In the initConfig() method, add an entry for ``concat`` using the code below. 
+8.	In the initConfig() method, add an entry for ``concat`` using the code below.
 
 The ``src`` property array lists files to combine, in the order that they should be combined. The ``dest`` property assigns the path to the combined file that is produced.
 
@@ -178,11 +176,11 @@ The ``src`` property array lists files to combine, in the order that they should
 			src: ['TypeScript/Tastes.js', 'TypeScript/Food.js'],
 			dest: 'temp/combined.js'
 		}
-	}, 
+	},
 
 .. note:: The ``all`` property in the code above is the name of a target. Targets are used in some Grunt tasks to allow multiple build environments. You can view the built-in targets using Intellisense or assign your own.
 
-9.	Add the ``jshint`` task using the code below. 
+9.	Add the ``jshint`` task using the code below.
 
 The jshint code-quality utility is run against every JavaScript file found in the temp directory.
 
@@ -197,7 +195,7 @@ The jshint code-quality utility is run against every JavaScript file found in th
 
 .. note:: The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, i.e. ``Tastes["Sweet"]`` instead of ``Tastes.Sweet``. The option turns off the warning to allow the rest of the process to continue.
 
-10.	Add the ``uglify`` task using the code below. 
+10.	Add the ``uglify`` task using the code below.
 
 The task minifies the combined.js file found in the temp directory and creates the result file in wwwroot/lib following the standard naming convention <file name>.min.js.
 
@@ -221,7 +219,7 @@ The task minifies the combined.js file found in the temp directory and creates t
 12.	Save ``Gruntfile.js``. The file should look something like the example below.
 
 .. image:: grunt-gulp/_static/gruntfile-js-complete.png
- 
+
 13.	Notice that the Task Runner Explorer Tasks list includes ``clean``, ``concat``, ``jshint`` and ``uglify`` tasks. Run each task in order and observe the results in Solution Explorer. Each task should run without errors.
 
 .. image:: grunt-gulp/_static/task-runner-explorer-run-each-task.png
@@ -241,7 +239,7 @@ Use the Grunt ``registerTask()`` method to run a series of tasks in a particular
 
 	grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify']);
 
-The new task shows up in Task Runner Explorer under Alias Tasks. You can right-click and run it just as you would other tasks. The ``all`` task will run ``clean``, ``concat``, ``jshint`` and ``uglify``, in order. 
+The new task shows up in Task Runner Explorer under Alias Tasks. You can right-click and run it just as you would other tasks. The ``all`` task will run ``clean``, ``concat``, ``jshint`` and ``uglify``, in order.
 
 .. image:: grunt-gulp/_static/alias-tasks.png
 
@@ -257,7 +255,7 @@ A ``watch`` task keeps an eye on files and directories. The watch triggers tasks
 		tasks: ["all"]
 	}
 
-Add a call to ``loadNpmTasks()`` to show the ``watch`` task in Task Runner Explorer. 
+Add a call to ``loadNpmTasks()`` to show the ``watch`` task in Task Runner Explorer.
 
 .. code-block:: javascript
 
@@ -270,9 +268,9 @@ Right-click the watch task in Task Runner Explorer and select Run from the conte
 Binding to Visual Studio Events
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Unless you want to manually start your tasks every time you work in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events. 
+Unless you want to manually start your tasks every time you work in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events.
 
-Let’s bind ``watch`` so that it runs every time Visual Studio opens. In Task Runner Explorer, right-click the watch task and select **Bindings > Project Open** from the context menu. 
+Let’s bind ``watch`` so that it runs every time Visual Studio opens. In Task Runner Explorer, right-click the watch task and select **Bindings > Project Open** from the context menu.
 
 .. image:: grunt-gulp/_static/bindings-project-open.png
 
@@ -341,10 +339,10 @@ The Gulp Stream
 ^^^^^^^^^^^^^^^
 
 Gulp is a streaming object that includes methods ``src()``, ``pipe()`` and ``dest()``.
- 
-	- src() defines where the stream is coming from -- wwwroot/lib in our example. The method returns a stream that can be passed to other Gulp plugins. 
-	- pipe() pulls data from the stream and writes it to the destination parameter. 
-	- dest() outputs streams to files. 
+
+	- src() defines where the stream is coming from -- wwwroot/lib in our example. The method returns a stream that can be passed to other Gulp plugins.
+	- pipe() pulls data from the stream and writes it to the destination parameter.
+	- dest() outputs streams to files.
 
 The general coding pattern for Gulp looks like this partial example:
 
@@ -376,7 +374,7 @@ Here’s the complete example that concatenates, lints, minifies and writes out 
 			.pipe(gulp.dest('wwwroot/lib'))
 	});
 
-Watcher tasks are similar to the Grunt parallel task and are simple to set up. Again, the gulp.task() method names the task that will show in the Task Runner Explorer. The Gulp ``watch()`` method takes a path or array of paths and second parameter is an array of tasks to run. 
+Watcher tasks are similar to the Grunt parallel task and are simple to set up. Again, the gulp.task() method names the task that will show in the Task Runner Explorer. The Gulp ``watch()`` method takes a path or array of paths and second parameter is an array of tasks to run.
 
 .. code-block:: javascript
 
@@ -384,13 +382,15 @@ Watcher tasks are similar to the Grunt parallel task and are simple to set up. A
 		gulp.watch("TypeScript/*.js", ['all']);
 	});
 
-The Task Runner Explorer running Gulp tasks uses the same interface as Grunt. The screenshot below shows the ``watcher`` task running. 
+The Task Runner Explorer running Gulp tasks uses the same interface as Grunt. The screenshot below shows the ``watcher`` task running.
 
 .. image:: grunt-gulp/_static/task-runner-explorer-gulp-watcher.png
 
 Summary
 -------
 
-Both Grunt and Gulp are powerful tasks runners that automate most client-build tasks. Grunt and Gulp both require support from NPM to deliver their packages. While Grunt is configured using Gruntfile.js and Gulp is configured using Gulpfile.js, both build tools play nicely in Visual Studio, automatically sensing changes to the configuration files. Task Runner Explorer detects changes to configuration files and provides a convenient interface to run tasks, view running tasks, and bind tasks to Visual Studio events. 
+Both Grunt and Gulp are powerful tasks runners that automate most client-build tasks. Grunt and Gulp both require support from NPM to deliver their packages. While Grunt is configured using Gruntfile.js and Gulp is configured using Gulpfile.js, both build tools play nicely in Visual Studio, automatically sensing changes to the configuration files. Task Runner Explorer detects changes to configuration files and provides a convenient interface to run tasks, view running tasks, and bind tasks to Visual Studio events.
+
+.. _grunt-gulp-author:
 
 .. include:: /_authors/noel-rice.rst

@@ -1,8 +1,6 @@
 Introducing .NET Core
 =====================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <introducting-dotnetcore-author>` | Originally Published: 28 April 2015
 
 .NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core means for your ASP.NET 5 application.
 
@@ -25,7 +23,7 @@ The CoreCLR runtime (Microsoft.CoreCLR) and CoreFX libraries are distributed via
 
 One of the key benefits of .NET Core is its portability. You can package and deploy the CoreCLR with your application, eliminating your application's dependency on an installed version of .NET (e.g. .NET Framework on Windows). You can host multiple applications side-by-side using different versions of the CoreCLR, and upgrade them individually, rather than being forced to upgrade all of them simultaneously.
 
-CoreFX has been built as a componentized set of libraries, each requiring the minimum set of library dependencies (e.g. System.Collections only depends on System.Runtime, not System.Xml). This approach enables minimal distributions  of CoreFX libraries (just the ones you need) within an application, alongside CoreCLR. CoreFX includes collections, console access, diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few libraries. Another benefit of CoreFX is that it allows developers to target a single common set of libraries that are supported by multiple platforms. 
+CoreFX has been built as a componentized set of libraries, each requiring the minimum set of library dependencies (e.g. System.Collections only depends on System.Runtime, not System.Xml). This approach enables minimal distributions  of CoreFX libraries (just the ones you need) within an application, alongside CoreCLR. CoreFX includes collections, console access, diagnostics, IO, LINQ, JSON, XML, and regular expression support, just to name a few libraries. Another benefit of CoreFX is that it allows developers to target a single common set of libraries that are supported by multiple platforms.
 
 Motivation Behind .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,5 +79,7 @@ Learn more about .NET Core:
 	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore5>`_
 	- `.NET Core is Open Source <http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx>`_
 	- `.NET Core on GitHub <https://github.com/dotnet/corefx>`_
-	
+
+.. _introducing-dotnetcore-author:
+
 .. include:: /_authors/steve-smith.rst

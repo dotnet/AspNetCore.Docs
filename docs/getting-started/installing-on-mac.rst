@@ -1,10 +1,8 @@
 Installing ASP.NET 5 On Mac OS X
 ================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
+By :ref:`Steve Smith <installing-on-mac-author>` | Originally Published: 28 April 2015
 
-.. _`Steve Smith`: Author_
-
-ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including OS X. This article describes how to install DNX, and therefore ASP.NET 5, on OS X, using `Homebrew <http://brew.sh/>`_. 
+ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including OS X. This article describes how to install DNX, and therefore ASP.NET 5, on OS X, using `Homebrew <http://brew.sh/>`_.
 
 In this article:
 	- `Install ASP.NET 5 on OS X`_
@@ -32,7 +30,7 @@ Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/k`` fr
 
 .. image:: installing-on-mac/_static/homebrew-tap-aspnet.png
 
-Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. 
+Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed.
 
 .. image:: installing-on-mac/_static/brew-install-dnvm.png
 
@@ -49,7 +47,7 @@ Now that DNX is installed, you're ready to begin using ASP.NET 5! Learn how you 
 Summary
 -------
 
-ASP.NET 5 is built on the cross-platform .NET Execution Environment, which can be installed on OS X as well as Linux and Windows. Installing DNX and ASP.NET 5 on OS X takes just a few minutes, using a few Terminal commands. 
+ASP.NET 5 is built on the cross-platform .NET Execution Environment, which can be installed on OS X as well as Linux and Windows. Installing DNX and ASP.NET 5 on OS X takes just a few minutes, using a few Terminal commands.
 
 Related Resources
 -----------------
@@ -58,5 +56,8 @@ Related Resources
 - :doc:`Your First ASP.NET 5 Application Using Visual Studio </tutorials/your-first-aspnet-application>`
 .. TODO: - `Installing ASP.NET 5 on Linux <>`_
 .. TODO: `Your First ASP.NET 5 Application on a Mac`_
+
+
+.. _installing-on-mac-author:
 
 .. include:: /_authors/steve-smith.rst

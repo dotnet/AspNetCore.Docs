@@ -1,10 +1,8 @@
 Publish to an Azure Web App using Visual Studio
 ===============================================
-By `Erik Reitan`_ | Originally Published: 28 April 2015 
+By :ref:`Erik Reitan <publish-to-an-azure-web-app-using-visual-studio-author>` | Originally Published: 28 April 2015
 
-.. _`Erik Reitan`: Author_
-
-This article describes how how to publish an ASP.NET web app to Azure using Visual Studio. 
+This article describes how how to publish an ASP.NET web app to Azure using Visual Studio.
 
 **Note:** To complete this tutorial, you need a Microsoft Azure account. If you don't have an account, you can `activate your MSDN subscriber benefits`_ or `sign up for a free trial`_.
 
@@ -13,7 +11,7 @@ This article describes how how to publish an ASP.NET web app to Azure using Visu
 .. _`sign up for a free trial`: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 
 
-Start by either creating a new ASP.NET web app or opening an existing ASP.NET web app. 
+Start by either creating a new ASP.NET web app or opening an existing ASP.NET web app.
 
 1. In **Solution Explorer** of Visual Studio, right-click on the project and select **Publish**.
 
@@ -41,10 +39,11 @@ You can view the publishing progress in the **Web Publish Activity** window with
 
 .. image:: publish-to-an-azure-web-app-using-visual-studio/_static/06-WebPublishActivityWindow.png
 
-When publishing to Azure is complete, your web app will be displayed in a browser running on Azure. 
+When publishing to Azure is complete, your web app will be displayed in a browser running on Azure.
 
 .. image:: publish-to-an-azure-web-app-using-visual-studio/_static/07-Browser.png
 
 
-.. include:: /_authors/erik-reitan.rst
+.. _publish-to-an-azure-web-app-using-visual-studio-author:
 
+.. include:: /_authors/erik-reitan.rst

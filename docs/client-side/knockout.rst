@@ -1,8 +1,6 @@
 Knockout.js MVVM Framework
 ==========================
-By `Steve Smith`_ | Originally Published: 15 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <knockout-author>` | Originally Published: 15 April 2015
 
 Knockout is a popular JavaScript library that simplifies the creation of complex data-based user interfaces. It can be used alone or with other libraries, such as jQuery. Its primary purpose is to bind UI elements to an underlying data model defined as a JavaScript object, such that when changes are made to the UI, the model is updated, and vice versa. Knockout facilitates the use of a Model-View-ViewModel (MVVM) pattern in a web application's client-side behavior. The two main concepts one must learn when working with Knockout's MVVM implementation are Observables and Bindings.
 
@@ -124,7 +122,7 @@ First, add the HTML to display the hyperlink, which we'll show in parentheses af
 		(<a data-bind="attr: { href: twitterUrl}, text: twitterAlias" ></a>)
 	</p>
 
-Next, update the viewModel to include the twitterUrl and twitterAlias properties:	
+Next, update the viewModel to include the twitterUrl and twitterAlias properties:
 
 .. code-block:: javascript
    :emphasize-lines: 3-6
@@ -137,7 +135,7 @@ Next, update the viewModel to include the twitterUrl and twitterAlias properties
 		}, this)
 	};
 	ko.applyBindings(viewModel);
-	
+
 Notice that at this point we haven't yet updated the twitterUrl to go to the correct URL for this twitter alias – it's just pointing at twitter.com. Also notice that we're using a new Knockout function, ``computed``, for twitterUrl. This is an observable function that will notify any UI elements if it changes. However, for it to have access to other properties in the viewModel, we need to change how we are creating the viewModel, so that each property is its own statement.
 
 The revised viewModel declaration is shown below. It is now declared as a function. Notice that each property is its own statement now, ending with a semicolon. Also notice that to access the twitterAlias property value, we need to execute it, so its reference includes ().
@@ -148,7 +146,7 @@ The revised viewModel declaration is shown below. It is now declared as a functi
 	function viewModel() {
 		this.authorName = ko.observable('Steve Smith');
 		this.twitterAlias = ko.observable('@ardalis');
-		
+
 		this.twitterUrl = ko.computed(function() {
 			return "https://twitter.com/" + this.twitterAlias().replace('@','');
 		}, this)
@@ -178,11 +176,11 @@ Then, add the function to the viewModel, and wire it up to modify the viewModel'
 	function viewModel() {
 		this.authorName = ko.observable('Steve Smith');
 		this.twitterAlias = ko.observable('@ardalis');
-		
+
 		this.twitterUrl = ko.computed(function() {
 			return "https://twitter.com/" + this.twitterAlias().replace('@','');
 		}, this);
-		
+
 		this.capitalizeTwitterAlias = function() {
 			var currentValue = this.twitterAlias();
 			this.twitterAlias(currentValue.toUpperCase());
@@ -227,9 +225,9 @@ Knockout includes bindings that can perform conditional and looping operations. 
 
 		function ViewModel() {
 			var self = this;
-		
+
 			self.resultChoices = ["Win", "Loss", "Tie"];
-			
+
 			self.gameResults = ko.observableArray([
 				new GameResult("Brendan", self.resultChoices[0]),
 				new GameResult("Brendan", self.resultChoices[0]),
@@ -269,7 +267,7 @@ There are a few ways to support adding new records in the UI, typically either i
 	<tbody data-bind="foreach: gameResults">
 		<tr>
 			<td><input data-bind="value:opponent" /></td>
-			<td><select data-bind="options: $root.resultChoices, 
+			<td><select data-bind="options: $root.resultChoices,
 				value:result, optionsText: $data"></select></td>
 		</tr>
 	</tbody>
@@ -326,7 +324,7 @@ Knockout has support for templates, so that you can easily separate your UI from
 	<script type="text/html" id="rowTemplate">
 		<tr>
 			<td><input data-bind="value:opponent" /></td>
-			<td><select data-bind="options: $root.resultChoices, 
+			<td><select data-bind="options: $root.resultChoices,
 				value:result, optionsText: $data"></select></td>
 		</tr>
 	</script>
@@ -347,5 +345,7 @@ Summary
 ^^^^^^^
 
 Knockout provides a simple, elegant way to bind UI elements to the current state of the client application, defined in a ViewModel. Knockout's binding syntax uses the data-bind attribute, applied to HTML elements that are to be processed. Knockout is able to efficiently render and update large data sets by tracking UI elements and only processing changes to affected elements. Large applications can break up UI logic using templates and components, which can be loaded on demand from external files. Currently version 3, Knockout is a stable JavaScript library that can improve web applications that require rich client interactivity.
+
+.. _knockout-author:
 
 .. include:: /_authors/steve-smith.rst

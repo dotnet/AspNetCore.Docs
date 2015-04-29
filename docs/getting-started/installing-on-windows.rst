@@ -1,10 +1,8 @@
 Installing ASP.NET 5 On Windows
 ===============================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
+By :ref:`Steve Smith <installing-on-windows-author>` | Originally Published: 28 April 2015
 
-.. _`Steve Smith`: Author_
-
-This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
+This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015.
 
 In this article:
 	- `Install ASP.NET with Visual Studio`_
@@ -34,7 +32,7 @@ The .NET Version Manager is used to install one or more versions of the .NET Exe
 	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))"
 
 After the script has run, open a new command prompt and confirm DNVM is working by typing: ``dnvm``
-	
+
 Assuming DNVM is configured correctly, you should see a result like this:
 
 .. image:: installing-on-windows/_static/dnvm-prompt.png
@@ -44,13 +42,13 @@ Install the .NET Execution Environment (DNX)
 
 To install the latest version of DNX using DNVM, run: ``dnvm upgrade``
 
-This command downloads the latest version of DNX and puts it on your user profile so that it is ready to use. 
+This command downloads the latest version of DNX and puts it on your user profile so that it is ready to use.
 
 After this command completes, run: ``dnx`` to confirm DNX is configured correctly.
 
 .. image:: installing-on-windows/_static/dnx-installed.png
 
-Now that DNX is installed, you're ready to begin using ASP.NET 5! 
+Now that DNX is installed, you're ready to begin using ASP.NET 5!
 
 Summary
 -------
@@ -64,5 +62,7 @@ Related Resources
 - :doc:`Your First ASP.NET 5 Application Using Visual Studio </tutorials/your-first-aspnet-application>`
 .. - `Installing ASP.NET 5 on Linux <>`_
 .. - `Your First ASP.NET 5 Application on a Mac <>`_
+
+.. _installing-on-windows-author:
 
 .. include:: /_authors/steve-smith.rst

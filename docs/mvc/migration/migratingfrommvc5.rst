@@ -1,8 +1,6 @@
 Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
-By `Steve Smith`_ | Originally Published: 28 April 2015 
-
-.. _`Steve Smith`: Author_
+By :ref:`Steve Smith <migratingfrommvc5-author>` | Originally Published: 28 April 2015
 
 Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 default project template to ASP.NET MVC 6, including initial setup, basic controllers and views, static content, and client side dependencies.
 
@@ -134,7 +132,7 @@ Next, we will configure Gulp to process these files and place them where we want
 .. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/package.json
 	:language: javascript
 	:emphasize-lines: 6-8
-	:linenos: 
+	:linenos:
 
 Save your changes. You should see a new NPM folder in your project, under Dependencies, and it should now include gulp (3.8.11) as well as the related packages. In addition to Gulp itself, these two packages will allow us to clean up folders before we copy files to them, and to concatenate two or more files together, to achieve bundling.
 
@@ -233,7 +231,7 @@ Save the package.json file and the new package should be installed. You can conf
 .. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/Gulpfile.js
 	:language: javascript
 	:emphasize-lines: 8,34-39
-	:linenos: 
+	:linenos:
 
 Save Gulpfile.js, then open the Task Runner Explorer. Right click on the concat task and run it. You should see the output, which should show that it runs without errors. In your solution explorer, you should see the bundle.js file in wwwroot/lib. You can see all of this working in the screenshot:
 
@@ -253,5 +251,7 @@ Summary
 -------
 
 Migrating from ASP.NET MVC 5 to ASP.NET MVC 6 requires several steps, but is not overly difficult. Basic features like the models, views, and controllers that comprise an MVC application can be migrated largely without changes. Most of the changes affect static content and features related to static content, like bundling, as well as configuration steps for the application. By following the steps in this example, you should be able to quickly migrate most ASP.NET MVC 5 applications.
+
+.. _migratingfrommvc5-author:
 
 .. include:: /_authors/steve-smith.rst
