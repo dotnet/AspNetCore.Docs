@@ -1,3 +1,5 @@
+:orphan:
+
 ASP.NET Docs Style Guide
 ========================
 By :ref:`Steve Smith <style-guide-author>` | Originally Published: 15 April 2015 
