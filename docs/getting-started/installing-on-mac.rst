@@ -30,6 +30,8 @@ Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/dnx`` 
 
 .. image:: installing-on-mac/_static/brew-tap-aspnetdnx.png
 
+If you had an older version of our Homebrew "tap" configured, you might get the following error: ``Could not create link for aspnet/dnx/kvm, as it conflicts with aspnet/k/kvm``. In that case, simply run ``brew untap aspnet/k`` to remove the old tap and then retry the ``brew tap aspnet/dnx`` command.
+
 Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. 
 
 .. image:: installing-on-mac/_static/brew-install-dnvm.png
