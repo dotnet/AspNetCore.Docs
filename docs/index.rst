@@ -6,55 +6,23 @@
 ASP.NET 5 Documentation
 =======================
 
-Your First ASP.NET Application
-------------------------------
-
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+   
+   getting-started/index
+   tutorials/index
+   conceptual-overview/index
+   runtime/index
+   dnx/index
+   client-side/index
+   security/index
+   extensibility/index
 
-   yourfirst/yourfirstaspnetapplication/yourfirstaspnetapplication
-   yourfirst/fundamentalconcepts/fundamentalconcepts
-   dotnetcore/introducing-dotnetcore/introducing-dotnetcore
+Related Topics
+--------------
 
-.. include:: getting-started/index.rst
+:doc:`ASP.NET MVC <mvc/index>`
  
-ASP.NET MVC 6
--------------
-
-.. toctree::
-   :maxdepth: 1
-   
-   migrating/migratingfrommvc5/migratingfrommvc5
-   migrating/migratingconfig/migratingconfig
-
-Web API
--------
-
-.. toctree::
-   :maxdepth: 1
-   
-   webapi/migratingfromwebapi2/migratingfromwebapi2
-
-Mobile
-------
-
-.. toctree::
-   :maxdepth: 1
-   
-   
-
-Web Forms
----------
-
-.. toctree::
-   :maxdepth: 1
-   
-
-SignalR
--------
-
-.. toctree::
-   :maxdepth: 1
    
 Contribute
 ----------
@@ -62,7 +30,7 @@ Contribute
 **We accept pull requests!** But you're more likely to have yours accepted if you follow these guidelines:
 
 	1. Read https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
-	2. Follow the `ASP.NET Docs Style Guide <contribute/style-guide/style-guide>`_
+	2. Follow the :doc:`ASP.NET Docs Style Guide <contribute/style-guide>`
 
 .. Indices and tables
 .. ==================

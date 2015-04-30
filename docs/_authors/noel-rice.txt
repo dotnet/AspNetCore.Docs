@@ -1,0 +1,13 @@
+Author
+^^^^^^
+.. container:: author
+
+	.. container:: photo
+	
+		.. image:: /_authors/photos/noel-rice.jpg
+		
+	.. container:: bio
+	
+		Noel Rice is an author of books, blogs, and articles, and a Master Consultant at `Falafel Software`_. You can follow him at http://blog.falafel.com/author/noel-rice.
+   
+.. _`Falafel Software`: http://falafel.com/

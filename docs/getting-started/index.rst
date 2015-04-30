@@ -2,9 +2,11 @@ Getting Started
 ---------------
 
 .. toctree::
-   :glob:
-   :maxdepth: 1
+   :maxdepth: 2
 
-   getting-started/installation/*/*
+   installing-on-windows
+   installing-on-mac
+   installing-on-linux
+   choosing-the-right-dotnet
 
-   
+
