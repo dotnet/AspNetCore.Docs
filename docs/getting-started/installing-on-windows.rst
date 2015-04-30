@@ -29,7 +29,7 @@ The .NET Version Manager is used to install one or more versions of the .NET Exe
 
 .. code-block:: console
 
-	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.ps1'))"
+	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))"
 
 After the script has run, open a new command prompt and confirm DNVM is working by typing: ``dnvm``
 	
