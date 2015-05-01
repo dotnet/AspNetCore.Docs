@@ -37,7 +37,7 @@ You can configure the system to protect keys at rest by calling any of the Prote
       	});
   	}
 
-See [ed note: link to key encryption at rest section in key management] for more examples and for discussion on the built-in key encryption mechanisms.
+See :ref:`key encryption at rest <data-protection-implementation-key-encryption-at-rest>` for more examples and for discussion on the built-in key encryption mechanisms.
 
 To configure the system to use a default key lifetime of 14 days instead of 90 days, consider the following example:
 
@@ -183,7 +183,7 @@ To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC valid
   });
 
 .. note:: 
-  The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the `BCryptOpenAlgorithmProvider <https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx>_` documentation for more information.
+  The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the `BCryptOpenAlgorithmProvider <https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx>`_ documentation for more information.
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionOptions instance that contains the algorithmic information.
 
@@ -203,7 +203,7 @@ To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption +
   });
 
 .. note:: 
-  The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of exactly 128 bits, and it must support GCM encryption. The EncryptionAlgorithmProvider property can be set to null to use the default provider for the specified algorithm. See the `BCryptOpenAlgorithmProvider <https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx>_` documentation for more information.
+  The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of exactly 128 bits, and it must support GCM encryption. The EncryptionAlgorithmProvider property can be set to null to use the default provider for the specified algorithm. See the `BCryptOpenAlgorithmProvider <https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx>`_ documentation for more information.
 
 Specifying other custom algorithms
 ----------------------------------
