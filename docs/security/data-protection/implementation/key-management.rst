@@ -63,7 +63,7 @@ Any operation which modifies the key ring (creating a new key explicitly or perf
 
 The sample below demonstrates using the IKeyManager interface to inspect and manipulate the key ring, including revoking existing keys and generating a new key manually.
 
-.. literalinclude:: _static/key-management.cs
+.. literalinclude:: key-management/samples/key-management.cs
         :language: c#
         :linenos:
 

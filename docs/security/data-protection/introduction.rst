@@ -38,11 +38,11 @@ Audience
 --------
 The data protection system is divided into five main packages. Various aspects of these APIs target three main audiences;
 
-1. The :doc:`consumer-apis` target application and framework developers.
+1. The :doc:`consumer-apis/overview` target application and framework developers.
 
   "I don't want to learn about how the stack operates or about how it is configured. I simply want to perform some operation in as simple a manner as possible with high probability of using the APIs successfully."
   
-2. The :doc:`configuration APIs <configuration>` target application developers and system administrators.
+2. The :doc:`configuration APIs <configuration/overview>` target application developers and system administrators.
 
   "I need to tell the data protection system that my environment requires non-default paths or settings."
 
@@ -60,5 +60,5 @@ The data protection stack consists of five packages.
 * Microsoft.AspNet.DataProtection contains the core implementation of the data protection system, including the core cryptographic operations, key management, configuration, and extensibility.
   If you're responsible for instantiating the data protection system (e.g., adding it to an IServiceCollection) or modifying or extending its behavior, you'll want to reference Microsoft.AspNet.DataProtection.
 * Microsoft.AspNet.DataProtection.Extensions contains additional APIs which developers might find useful but which don't belong in the core package. For instance, this package contains a simple "instantiate the system pointing at a specific key storage directory with no dependency injection setup" API (more info). It also contains extension methods for limiting the lifetime of protected payloads (more info).
-* Microsoft.AspNet.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machineKey> operations to instead use the new data protection stack. See :ref:`compatibility <data-protection-replacing-machinekey>` for more information.
-* Microsoft.AspNet.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See :doc:`password-hashing` for more information.
+* Microsoft.AspNet.DataProtection.SystemWeb can be installed into an existing ASP.NET 4.x application to redirect its <machineKey> operations to instead use the new data protection stack. See :ref:`compatibility <compatibility-replacing-machinekey>` for more information.
+* Microsoft.AspNet.Cryptography.KeyDerivation provides an implementation of the PBKDF2 password hashing routine and can be used by systems which need to handle user passwords securely. See :doc:`consumer-apis/password-hashing` for more information.

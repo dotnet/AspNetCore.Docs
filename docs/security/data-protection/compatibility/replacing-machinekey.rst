@@ -1,4 +1,4 @@
-.. _data-protection-replacing-machinekey:
+.. _compatibility-replacing-machinekey:
 
 Replacing <machineKey> in ASP.NET 4.5.1
 =======================================

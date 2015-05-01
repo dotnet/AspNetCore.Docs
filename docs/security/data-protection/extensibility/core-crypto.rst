@@ -3,7 +3,7 @@
 Core cryptography extensibility
 ===============================
 
-.. include:: extensibility-thread-safety-included.rst
+.. include:: thread-safety-included.txt
 
 .. _data-protection-extensibility-core-crypto-iauthenticatedencryptor:
 

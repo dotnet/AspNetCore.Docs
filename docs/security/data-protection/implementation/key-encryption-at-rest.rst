@@ -61,7 +61,7 @@ Beginning with Windows 8, the operating system supports DPAPI-NG (also called CN
 
 	Cloud computing, however, often requires that content encrypted on one computer be decrypted on another. Therefore, beginning with Windows 8, Microsoft extended the idea of using a relatively straightforward API to encompass cloud scenarios. This new API, called DPAPI-NG, enables you to securely share secrets (keys, passwords, key material) and messages by protecting them to a set of principals that can be used to unprotect them on different computers after proper authentication and authorization.
 	
-	From `https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794(v=vs.85).aspx`_ 
+	From https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794(v=vs.85).aspx 
 
 The principal is encoded as a protection descriptor rule. Consider the below example, which encrypts key material such that only the domain-joined user with the specified SID can decrypt the key material.
 

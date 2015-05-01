@@ -31,6 +31,6 @@ This API takes the protected payload (as a byte array) and returns the unprotect
   Exercise extreme caution when passing ignoreRevocationErrors: true to the DangerousUnprotect method. If after calling this method the wasRevoked value is true, then the key used to protect this payload was revoked, and the payload's authenticity should be treated as suspect. In this case only continue operating on the unprotected payload if you have some separate assurance that it is authentic, e.g. that it's coming from a secure database rather than being sent by an untrusted web client.
 
 
-.. literalinclude:: _static/dangerous-unprotect.cs
+.. literalinclude:: dangerous-unprotect/samples/dangerous-unprotect.cs
 	:language: c#
 	:linenos:

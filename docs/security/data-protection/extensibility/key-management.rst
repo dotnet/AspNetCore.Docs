@@ -6,7 +6,7 @@ Key management extensibility
 .. tip:: 
   Read the :ref:`key management <data-protection-implementation-key-management>` section before reading this section, as it explains some of the fundamental concepts behind these APIs.
   
-.. include:: extensibility-thread-safety-included.rst
+.. include:: thread-safety-included.txt
 
 Key
 ---
@@ -51,14 +51,14 @@ XmlKeyManager depends on several other components in the course of fulfilling it
 
 Below are high-level diagrams which indicate how these components are wired together within XmlKeyManager.
 
-.. figure:: _static/keycreation.png
+.. figure:: key-management/_static/keycreation.png
    :alt: Key Creation
    
    Key Creation / CreateNewKey
 
 In the implementation of CreateNewKey, the IAuthenticatedEncryptorConfiguration component is used to create a unique IAuthenticatedEncryptorDescriptor, which is then serialized as XML. If a key escrow sink is present, the raw (unencrypted) XML is provided to the sink for long-term storage. The unencrypted XML is then run through an IXmlEncryptor (if required) to generate the encrypted XML document. This encrypted document is persisted to long-term storage via the IXmlRepository. (If no IXmlEncryptor is configured, the unencrypted document is persisted in the IXmlRepository.)
 
-.. figure:: _static/keyretrieval.png
+.. figure:: key-management/_static/keyretrieval.png
    :alt: Key Retrieval
    
    Key Retrieval / GetAllKeys
@@ -129,6 +129,6 @@ The following sample code demonstrates creating and registering an IKeyEscrowSin
 .. note:: 
   To run this sample, you must be on a domain-joined Windows 8 / Windows Server 2012 machine, and the domain controller must be Windows Server 2012 or later.
 
-.. literalinclude:: _static/key-management-extensibility.cs
+.. literalinclude:: key-management/samples/key-management-extensibility.cs
 	:language: c#
 	:linenos:

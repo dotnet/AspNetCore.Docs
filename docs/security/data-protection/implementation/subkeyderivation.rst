@@ -1,6 +1,6 @@
 .. _data-protection-implementation-subkey-derivation:
 
-Subkey derivation and authenticated encryption
+Subkey Derivation and Authenticated Encryption
 ==============================================
 
 Most keys in the key ring will contain some form of entropy and will have algorithmic information stating "CBC-mode encryption + HMAC validation" or "GCM encryption + validation". In these cases, we refer to the embedded entropy as the master keying material (or KM) for this key, and we perform a key derivation function to derive the keys that will be used for the actual cryptographic operations.
@@ -39,7 +39,7 @@ CBC-mode encryption + HMAC validation
 
 Once K\ :sub:`E` is generated via the above mechanism, we generate a random initialization vector and run the symmetric block cipher algorithm to encipher the plaintext. The initialization vector and ciphertext are then run through the HMAC routine initialized with the key K\ :sub:`H` to produce the MAC. This process and the return value is represented graphically below.
 
-.. figure:: _static/cbcprocess.png
+.. figure:: subkeyderivation/_static/cbcprocess.png
    :alt: CBC-mode process and return
   
    output:= keyModifier || iv || E\ :sub:`cbc` (K\ :sub:`E`,iv,data) || HMAC(K\ :sub:`H`, iv || E\ :sub:`cbc` (K\ :sub:`E`,iv,data))
@@ -52,7 +52,7 @@ Galois/Counter Mode encryption + validation
 
 Once K\ :sub:`E` is generated via the above mechanism, we generate a random 96-bit nonce and run the symmetric block cipher algorithm to encipher the plaintext and produce the 128-bit authentication tag.
 
-.. figure:: _static/galoisprocess.png
+.. figure:: subkeyderivation/_static/galoisprocess.png
   :alt: GCM-mode process and return
 
   output := keyModifier || nounce || E\ :sub:`gcm` (K\ :sub:`E`,nounce,data) || authTag

@@ -5,7 +5,7 @@ Authenticated encryption details.
 
 Calls to IDataProtector.Protect are authenticated encryption operations. The Protect method offers both confidentiality and authenticity, and it is tied to the purpose chain that was used to derive this particular IDataProtector instance from its root IDataProtectionProvider.
 
-IDataProtector.Protect takes a byte[] plaintext parameter and produces a byte[] protected payload, whose format is described below. (There is also an extension method overload which takes a string plaintext parameter and returns a string protected payload. If this API is used the protected payload format will still have the below structure, but it will be :ref:`base64url-encoded <#section-5>`.)
+IDataProtector.Protect takes a byte[] plaintext parameter and produces a byte[] protected payload, whose format is described below. (There is also an extension method overload which takes a string plaintext parameter and returns a string protected payload. If this API is used the protected payload format will still have the below structure, but it will be `base64url-encoded <https://tools.ietf.org/html/rfc4648#section-5>`_.)
 
 Protected payload format
 ------------------------
@@ -22,7 +22,7 @@ The protected payload format consists of three primary components:
 
 A sample protected payload is illustrated below.
 
-.. literalinclude:: _static/protectedpayload.txt
+.. literalinclude:: authenticated-encryption-details/_static/protectedpayload.txt
         :linenos:
 
 From the payload format above the first 32 bits, or 4 bytes are the magic header identifying the version (09 F0 C9 F0)

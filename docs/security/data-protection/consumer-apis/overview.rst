@@ -1,5 +1,5 @@
-Consumer APIs
-=============
+Consumer APIs Overview
+======================
 
 The IDataProtectionProvider and IDataProtector interfaces are the basic interfaces through which consumers use the data protection system. They are located in the Microsoft.AspNet.DataProtection.Interfaces package.
 
@@ -25,26 +25,26 @@ Consuming these interfaces
 For a DI-aware component, the intended usage is that the component take an IDataProtectionProvider parameter in its constructor and that the DI system automatically provides this service when the component is instantiated.
 
 .. note:: 
-  Some applications (such as console applications or ASP.NET 4.x applications) might not be DI-aware so cannot use the mechanism described here. For these scenarios consult the :doc:`configuration-non-di-scenarios` document for more information on getting an instance of an IDataProtection provider without going through DI.
+  Some applications (such as console applications or ASP.NET 4.x applications) might not be DI-aware so cannot use the mechanism described here. For these scenarios consult the :doc:`../configuration/non-di-scenarios` document for more information on getting an instance of an IDataProtection provider without going through DI.
 
 The following sample demonstrates three concepts: 
 
-#. :doc:`Adding the data protection system <configuration>` to the service container, 
+#. :doc:`Adding the data protection system <../configuration/overview>` to the service container, 
 #. Using DI to receive an instance of an IDataProtectionProvider, and 
 #. Creating an IDataProtector from an IDataProtectionProvider and using it to protect and unprotect data.
 
-.. literalinclude:: _static/protectunprotect.cs
+.. literalinclude:: ../using-data-protection/samples/protectunprotect.cs
         :language: c#
         :emphasize-lines: 26,34-40
         :linenos:
 
 The package Microsoft.AspNet.DataProtection.Interfaces contains an extension method IServiceProvider.GetDataProtector as a developer convenience. It encapsulates as a single operation both retrieving an IDataProtectionProvider from the service provider and calling IDataProtectionProvider.CreateProtector. The following sample demonstrates its usage.
 
-.. literalinclude:: _static/getdataprotector.cs
+.. literalinclude:: overview/samples/getdataprotector.cs
         :language: c#
         :emphasize-lines: 15
         :linenos:
 
-.. include:: thread-safety-included.rst
+.. include:: ../thread-safety-included.txt
 
 

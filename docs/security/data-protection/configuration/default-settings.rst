@@ -13,10 +13,10 @@ The system tries to detect its operational environment and provide good zero-con
 #. If the application is hosted in IIS, keys are persisted to the HKLM registry in a special registry key that is ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
 #. If none of these conditions matches, keys are not persisted outside of the current process. When the process shuts down, all generated keys will be lost.
 
-The developer is always in full control and can override how and where keys are stored. The first three options above should good defaults for most applications similar to how the ASP.NET <machineKey> auto-generation routines worked in the past. The final, fall back option is the only scenario that truly requires the developer to specify :doc:`configuration <configuration>` upfront if he wants key persistence, but this fall-back would only occur in rare situations.
+The developer is always in full control and can override how and where keys are stored. The first three options above should good defaults for most applications similar to how the ASP.NET <machineKey> auto-generation routines worked in the past. The final, fall back option is the only scenario that truly requires the developer to specify :doc:`configuration <overview>` upfront if he wants key persistence, but this fall-back would only occur in rare situations.
 
 .. WARNING::
-  If the developer overrides this heuristic and points the data protection system at a specific key repository, automatic encryption of keys at rest will be disabled. At rest protection can be re-enabled via :doc:`configuration <configuration>`.
+  If the developer overrides this heuristic and points the data protection system at a specific key repository, automatic encryption of keys at rest will be disabled. At rest protection can be re-enabled via :doc:`configuration <overview>`.
 
 Key Lifetime
 ------------

@@ -3,7 +3,7 @@
 Miscellaneous APIs
 ==================
 
-.. include:: extensibility-thread-safety-included.rst
+.. include:: thread-safety-included.txt
 
 ISecret
 -------

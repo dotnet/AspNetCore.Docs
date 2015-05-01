@@ -9,7 +9,7 @@ The package currently offers a method KeyDerivation.Pbkdf2 which allows hashing 
 #. The KeyDerivation.Pbkdf2 method detects the current operating system and attempts to choose the most optimized implementation of the routine, providing much better performance in certain cases. (On Windows 8, it offers around 10x the throughput of Rfc2898DeriveBytes.)
 #. The KeyDerivation.Pbkdf2 method requires the caller to specify all parameters (salt, PRF, and iteration count). The Rfc2898DeriveBytes type provides default values for these.
 
-.. literalinclude:: _static/passwordhasher.cs
+.. literalinclude:: password-hashing/samples/passwordhasher.cs
         :language: c#
         :linenos:
 
