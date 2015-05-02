@@ -42,7 +42,7 @@ To install the latest version of DNX using DNVM, run:
 
 ``dnvm upgrade``
 
-Now that DNX is installed, you're ready to begin using ASP.NET 5! Learn how you can :doc:`create a cross-platform console application </dnx/dnx-console>` or a simple ASP.NET MVC application that runs within DNX.
+Now that DNX is installed, you're ready to begin using ASP.NET 5! Learn how you can :doc:`create a cross-platform console application </dnx/console>` or a simple ASP.NET MVC application that runs within DNX.
 
 .. TODO: create links to cross-platform console application and simple ASP.NET MVC application running in DNX/command line.
 
