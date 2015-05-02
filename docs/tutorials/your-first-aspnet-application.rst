@@ -119,8 +119,8 @@ Now we can build the solution. Since the default web template targets both the f
 .. code-block:: javascript
 
     "frameworks": {
-        "aspnet50": { }/*,
-        "aspnetcore50": { }*/
+        "dnx451": { }/*,
+        "dnxcore50": { }*/
     },
 
 Now we should be able to build and run the solution. Navigate to the About page and you should see your server name and OS version displayed.

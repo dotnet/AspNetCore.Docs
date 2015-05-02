@@ -7,8 +7,8 @@
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4"
     },
     "frameworks": {
-        "aspnet50": { },
-        "aspnetcore50": { }
+        "dnx451": { },
+        "dnxcore50": { }
     },
     "bundleExclude": [
         "node_modules",
