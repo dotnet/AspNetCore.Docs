@@ -51,7 +51,7 @@ enum Tastes { Sweet, Sour, Salty, Bitter }
 
 	enum Tastes { Sweet, Sour, Salty, Bitter }
 	
-7.	Add a second file to the **TypeScript** directory and name it ``Food.js``. Copy the code below into the file.
+7.	Add a second file to the **TypeScript** directory and name it ``Food.ts``. Copy the code below into the file.
 
 .. code-block:: javascript
 
