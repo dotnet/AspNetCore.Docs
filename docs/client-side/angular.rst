@@ -1,6 +1,6 @@
 Using Angular for Single Page Applications (SPAs)
 =================================================
-By `Venkata Koppaka`_ | Originally Published: 5 May 2015 
+By :ref:`Venkata Koppaka <angular-author>` | Originally Published: 5 May 2015 
 
 .. _`Venkata Koppaka`: Author_
 
@@ -392,5 +392,7 @@ Related Resources
 -----------------
 
 `Create a Web API in MVC 6 <http://www.asp.net/vnext/overview/aspnet-vnext/create-a-web-api-with-mvc-6>`_
+
+.. _angular-author:
 
 .. include:: /_authors/venkata-koppaka.rst
