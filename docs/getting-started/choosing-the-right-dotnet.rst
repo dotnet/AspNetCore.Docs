@@ -27,7 +27,7 @@ Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET 
 Mono
 ----
 
-`Mono <http://mono-project.com>`_ is a port of the .NET Framework built primarily for non-Windows platforms. Mono is open source and cross-platform. It also shares a similar API factoring to the .NET Framework, so many existing managed libraries work on Mono today. However, Mono has a number of reliability issues that make it generally unsuitable for production server workloads. It is however a good proving ground for cross-platform development while cross-platform support in .NET Core matures.
+`Mono <http://mono-project.com>`_ is a port of the .NET Framework built primarily for non-Windows platforms. Mono is open source and cross-platform. It also shares a similar API factoring to the .NET Framework, so many existing managed libraries work on Mono today. Mono is not a supported platform by Microsoft. It is however a good proving ground for cross-platform development while cross-platform support in .NET Core matures.
 
 Summary
 -------

@@ -7,4 +7,5 @@ Security
    sociallogins
    accconfirm
    2fa
+   data-protection/index
 

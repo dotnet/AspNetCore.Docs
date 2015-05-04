@@ -59,7 +59,7 @@ The ``ConfigureServices`` method defines the services used by your application a
 Services
 --------
 
-A service is a component that is intended for common consumption in an application. Services are made available through dependency injection. ASP.NET 5 includes a simple built-in inversion of control (IoC) container that supports constructor injection by default, but can be easily replaced with your IoC container of choice. See :doc:`/runtime/dependency-injection` for more details.
+A service is a component that is intended for common consumption in an application. Services are made available through dependency injection. ASP.NET 5 includes a simple built-in inversion of control (IoC) container that supports constructor injection by default, but can be easily replaced with your IoC container of choice. See :doc:`/fundamentals/dependency-injection` for more details.
 
 Services in ASP.NET 5 come in three varieties: singleton, scoped and transient. Transient services are created each time they’re requested from the container. Scoped services are created only if they don’t already exist in the current scope. For Web applications, a container scope is created for each request, so you can think of scoped services as per request. Singleton services are only ever created once.
 
@@ -70,14 +70,14 @@ In ASP.NET 5 you compose your request pipeline using middleware. ASP.NET 5 middl
 
 ASP.NET 5 comes with a rich set of prebuilt middleware:
 
-- :doc:`/runtime/static-files`
-- :doc:`/runtime/routing`
-- :doc:`/runtime/diagnostics`
+- :doc:`/fundamentals/static-files`
+- :doc:`/fundamentals/routing`
+- :doc:`/fundamentals/diagnostics`
 - :doc:`Authentication </security/index>`
 
 You can also author your own :doc:`custom middleware </extensibility/middleware>`.
 
-You can use any `OWIN <http://owin.org>`_-based middleware with ASP.NET 5. See :doc:`/runtime/owin` for details.
+You can use any `OWIN <http://owin.org>`_-based middleware with ASP.NET 5. See :doc:`/fundamentals/owin` for details.
 
 Servers
 -------
@@ -112,7 +112,7 @@ ASP.NET 5 uses a new configuration model for handling of simple name-value pairs
     configuration.AddEnvironmentVariables();
     Configuration = configuration;
 
-See :doc:`/runtime/configuration` for more details on the new configuration system and :doc:`/runtime/environments` for details on how to work with environments in ASP.NET 5.
+See :doc:`/fundamentals/configuration` for more details on the new configuration system and :doc:`/fundamentals/environments` for details on how to work with environments in ASP.NET 5.
 
 Client-side development
 -----------------------
