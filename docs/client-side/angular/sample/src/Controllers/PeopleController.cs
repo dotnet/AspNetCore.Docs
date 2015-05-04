@@ -9,5 +9,14 @@ namespace AngularSample.Controllers
         {
             return View();
         }
+
+        public IActionResult Spa()
+        {
+            return View();
+        }
+        public IActionResult Events()
+        {
+            return View();
+        }
     }
 }

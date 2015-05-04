@@ -356,21 +356,108 @@ Routing and Multiple Views
 
 AngularJS has a built-in route provider to handle SPA (Single Page Application) based navigation. To work with routing in AngularJS you have to add the ``angular-route`` library using NPM or Bower. You can see in the :ref:`project.json <angular-bower-json>` file referenced at the start of this article that we are already referencing it in our project.
 
-After you install the package, add the script reference your view.
+After you install the package, add the script reference (``angular-route.js``) to your view.
+
+Now let's take the Person App we have been building and add navigation to it. First, we will make a copy of the app by creating a new ``PeopleController`` action called ``Spa`` and a corresponding ``Spa.cshtml`` View by copying the Index.cshtml view in the People folder. Add a script reference to ``angular-route`` (see line #11). Also add a ``div`` marked with the ``ng-view`` directive (see line #6) as a placeholder to place views in. We are going to be using several additional ``.js`` files which are referenced on lines 12-15.
+
+.. literalinclude:: angular/sample/src/Views/People/Spa.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 6,11-15
+	
+Let's take a look at ``personModule.js`` file to see how we are instantiating the module with routing. We are passing ``ngRoute`` as a library into the module. This module handles routing in our application.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personmodule.js
+	:language: javascript
+	:linenos:
+
+The ``personRoutes.js`` file, below, defines routes based on the route provider. Lines 4-7 define navigation by effectively saying, when a URL with ``/persons`` is requested, use a template called ``partials/personList`` by working through ``personListController``. Lines 8-11 indicate a detail page with a route parameter of ``personId``. If the URL doesn't match one of the patterns, Angular defaults to the ``/persons`` view.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personroutes.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 4-7, 8-11, 13
+
+The ``personlist.html`` file is a partial view, which only has HTML that is needed to show person list. 
+
+.. literalinclude:: angular/sample/src/wwwroot/app/partials/personlist.html
+	:language: html
+	:linenos:
+	:emphasize-lines: 3
+
+The controller is defined by using the module's ``controller()`` function in ``personListController.js``.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personListController.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 1
+
+If we run this application and go to the ``people/spa#/persons`` URL we will see:
+
+.. image:: angular/_static/spa-persons.png
+
+If we navigate to a detail page, for example, ``people/spa#/persons/2``, we will see the detail partial view: 
+
+.. image:: angular/_static/spa-persons-2.png
+
+You can view the full source and any files not shown in this article on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
+
+Event Handlers
+^^^^^^^^^^^^^^
+
+There are a number of directives in AngularJS that add event-handling capabilities to the input elements in your HTML DOM. Below is a list of the events that are built into AngularJS.
+
+	- ``ng-click``
+	- ``ng-dbl-click``
+	- ``ng-mousedown``
+	- ``ng-mouseup``
+	- ``ng-mouseenter``
+	- ``ng-mouseleave``
+	- ``ng-mousemove``
+	- ``ng-keydown``
+	- ``ng-keyup``
+	- ``ng-keypress``
+	- ``ng-change``
+
+.. note:: You can add your own event handlers using the custom directives feature in AngularJS.
+
+Let's look at how the ``ng-click`` event is wired up. Create a new JavaScript file, ``eventHandlerController.js``, and add the following to it.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/eventHandlerController.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 5-7
+
+Notice in the eventHandlerController we now have a new ``sayName()`` function (line #5). All the method is doing for now is showing a JavaScript alert to the user with a welcome message.
+
+The view below binds a controller function to an AngularJS event. Line #8 has a new ``<input>`` element of type button marked with the ``ng-click`` angular directive that calls our ``sayName()`` function which is part of the ``$scope`` object passed to this view.
+
+.. literalinclude:: angular/sample/src/Views/People/Events.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 8
+
+The running example demonstrates that the controller's ``sayName()`` function is called automatically when the button is clicked.
+
+.. image:: angular/_static/events.png
+
+For more detail on AngularJS built-in event handler directives, be sure to head to the `documentation website <https://docs.angularjs.org/api/ng/directive/ngClick>`_ of AngularJS.
 
 Angular 2.0
 -----------
 
+Angular 2.0 is the next version of AngularJS, which is totally reimagined with ES6 and mobile in mind. It's built using Microsoft's TypeScript language. Angular 2.0 is supposed to be released towards the end of calendar year 2015. There are many changes in Angular 2.0 when compared to 1.X but the Angular team is working hard to provide guidance to developers and things will become more clear closer to the release. If you wish to play with Angular 2.0 now, the Angular team has released a website, `Angular.io <http://angular.io>`_ to show their progress, provide early documentation, and to gather feedback. 
 
 Summary
 -------
 
-Migrating a simple Web API 2 project to MVC 6 is fairly straightforward, thanks to the fact that Web API has been merged with MVC 6 in ASP.NET 5. The main pieces every Web API 2 project will need to migrate are routes, controllers, and models, along with updates to the types used by MVC 6 controllers and actions.
+This article provides an overview of AngularJS for ASP.NET developers, and should help developers new to the framework get up to speed with AngularJS quickly.
 
 Related Resources
 -----------------
 
-`Create a Web API in MVC 6 <http://www.asp.net/vnext/overview/aspnet-vnext/create-a-web-api-with-mvc-6>`_
+- `Angular Docs <https://docs.angularjs.org>`_
+- `Angular 2 Info <http://angular.io>`_
 
 .. _angular-author:
 
