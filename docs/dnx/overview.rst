@@ -1,4 +1,4 @@
-The .NET Execution Environment (DNX)
+DNX Overview
 ====================================
 By :ref:`Daniel Roth <dnx-author>` | Updated : 28 April 2015
 

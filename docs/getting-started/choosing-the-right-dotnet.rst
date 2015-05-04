@@ -2,7 +2,7 @@ Choosing the Right .NET For You on the Server
 =============================================
 By :ref:`Daniel Roth <choosing-the-right-dotnet-author>` | Originally Published: 29 April 2015
 
-ASP.NET 5 is based on the :doc:`.NET Execution Environment (DNX) </conceptual-overview/dnx>`, which supports running cross-platform on Windows, Mac and Linux. When selecting a DNX to use you also have a choice of .NET flavors to pick from: .NET Framework (CLR), :doc:`.NET Core </conceptual-overview/dotnetcore>` (CoreCLR) or `Mono <http://mono-project.com>`_. Which .NET flavor should you choose? Let's look at the pros and cons of each one.
+ASP.NET 5 is based on the :doc:`.NET Execution Environment (DNX) </dnx/overview>`, which supports running cross-platform on Windows, Mac and Linux. When selecting a DNX to use you also have a choice of .NET flavors to pick from: .NET Framework (CLR), :doc:`.NET Core </conceptual-overview/dotnetcore>` (CoreCLR) or `Mono <http://mono-project.com>`_. Which .NET flavor should you choose? Let's look at the pros and cons of each one.
 
 .NET Framework
 --------------

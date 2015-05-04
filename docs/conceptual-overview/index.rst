@@ -6,5 +6,5 @@ Conceptual Overview
 
    aspnet
    dotnetcore
-   dnx
+   /dnx/overview
    understanding-aspnet5-apps

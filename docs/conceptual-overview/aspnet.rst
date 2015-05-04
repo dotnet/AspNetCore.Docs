@@ -37,7 +37,7 @@ In summary, with ASP.NET 5 you gain the following foundational improvements:
 Application anatomy
 -------------------
 
-ASP.NET 5 applications are built and run using the new :doc:`.NET Execution Environment (DNX) <dnx>`. Every ASP.NET 5 project is a :doc:`DNX project </dnx/projects>`. ASP.NET 5 integrates with DNX through the `ASP.NET Application Hosting <https://nuget.org/packages/Microsoft.AspNet.Hosting>`_ package.
+ASP.NET 5 applications are built and run using the new :doc:`.NET Execution Environment (DNX) </dnx/overview>`. Every ASP.NET 5 project is a :doc:`DNX project </dnx/projects>`. ASP.NET 5 integrates with DNX through the `ASP.NET Application Hosting <https://nuget.org/packages/Microsoft.AspNet.Hosting>`_ package.
 
 ASP.NET 5 applications are defined using a public ``Startup`` class:
 
