@@ -276,7 +276,25 @@ The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``last
 Services
 ^^^^^^^^
 
+Services in AngularJS are commonly used shared code that are abstracted away into a file that can be used throughout the lifetime of an angular application. Services are lazily instantiated, meaning that there will not be an instance of a service unless a component that depends on the service gets used. Factories are an example of a service used in AngularJS applications. Factories are created using the ``myApp.factory()`` function call, where ``myApp`` is the module. 
 
+Below is an example that shows how to use factories in AngularJS: 
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personFactory.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 1
+
+To call this factory from the controller, pass ``personFactory`` as a parameter to the ``controller()`` function: 
+
+.. code-block:: javascript
+
+	personApp.controller('personController', function($scope,personFactory) {
+		$scope.name = personFactory.getName();
+	});
+
+Using services to talk to a REST endpoint
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
