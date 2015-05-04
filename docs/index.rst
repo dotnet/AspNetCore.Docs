@@ -14,6 +14,7 @@ ASP.NET 5 Documentation
    conceptual-overview/index
    fundamentals/index
    dnx/index
+   publishing/index
    client-side/index
    security/index
    extensibility/index
