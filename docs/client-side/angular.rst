@@ -33,10 +33,12 @@ Installation
 
 There are several ways to add AngularJS to your application. If you’re starting a new web application in Visual Studio 2015 and ASP.NET 5, you can add AngularJS using the built-in NPM and Bower support. Simply open ``bower.json`` and add an entry to the ``dependencies`` property:
 
+.. _angular-bower-json:
+
 .. literalinclude:: angular/sample/src/bower.json
 	:language: javascript
 	:linenos:
-	:emphasize-lines: 5
+	:emphasize-lines: 11
 	
 One you save the file, Angular will be installed for your project, located in the Bower folder. You can then use `Grunt or Gulp <../grunt-gulp/grunt-gulp>`_ to copy the appropriate files into your ``wwwroot/lib`` folder, as shown:
 
@@ -280,7 +282,7 @@ Services in AngularJS are commonly used shared code that are abstracted away int
 
 Below is an example that shows how to use factories in AngularJS: 
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personFactory.js
+.. literalinclude:: angular/sample/src/wwwroot/app/simpleFactory.js
 	:language: javascript
 	:linenos:
 	:emphasize-lines: 1
@@ -296,7 +298,65 @@ To call this factory from the controller, pass ``personFactory`` as a parameter 
 Using services to talk to a REST endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Below is an end-to-end example using services in AngularJS to interact with an ASP.NET WebAPI REST endpoint. The example gets data from the service built using ASP.NET 5 and displays the data in a view template. Let's start with the view first: 
 
+.. literalinclude:: angular/sample/src/Views/People/Index.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 4,7,9,16-18
+
+In this view, we have an Angular module called ``PersonsApp`` and a controller called ``personController``. We are using ``ng-repeat`` to iterate over the list of persons. We are referencing three separate script files on lines 16-18.
+
+The ``personApp.js`` file is used to register the ``PersonsApp`` module. The syntax is similar to previous examples. We are using the ``angular.module()`` function to create a new instance of the module that we will be working with.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personApp.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 3
+
+Let's take a look at ``personFactory.js``, below. We are calling the module’s ``factory()`` method to create a factory. Line #12 shows the built-in Angular ``$http`` service retrieving people information from a web service.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personFactory.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 6-7,12
+
+In ``personController.js``, we are calling the module’s ``controller()`` method to create the controller. The ``$scope`` object's ``people`` property is assigned the data returned from the personFactory (line #13).
+
+.. literalinclude:: angular/sample/src/wwwroot/app/personController.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 6-7,13
+
+Let's take a quick look at the ASP.NET 5 web service and the model behind it. The Person model is a plain POCO (Plain Old CLR Object) with Id, FirstName and LastName properties:
+
+.. literalinclude:: angular/sample/src/Models/Person.cs
+	:language: csharp
+	:linenos:
+
+The Person controller returns a JSON-formatted list of Persons.
+
+.. literalinclude:: angular/sample/src/Controllers/Api/PersonController.cs
+	:language: csharp
+	:linenos:
+	:emphasize-lines: 9-10,19
+
+Let's see the application in action: 
+
+.. image:: angular/_static/rest-bound.png
+
+You can `view the application's structure on GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
+
+.. note:: For more on structuring AngularJS applications, see `John Papa's Angular Style Guide <https://github.com/johnpapa/angular-styleguide>`_
+
+.. note:: To create AngularJS module, controller, factory, directive and view files easily, be sure to check out Sayed Hashimi's `SideWaffle template pack for Visual Studio <http://sidewaffle.com/>`_. Sayed Hashimi is a Senior Program Manager on the Visual Studio Web Team at Microsoft and SideWaffle templates are considered the gold standard. At the time of this writing, SideWaffle is only available for Visual Studio 2012 and 2013.
+
+Routing and Multiple Views
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+AngularJS has a built-in route provider to handle SPA (Single Page Application) based navigation. To work with routing in AngularJS you have to add the ``angular-route`` library using NPM or Bower. You can see in the :ref:`project.json <angular-bower-json>` file referenced at the start of this article that we are already referencing it in our project.
+
+After you install the package, add the script reference your view.
 
 Angular 2.0
 -----------

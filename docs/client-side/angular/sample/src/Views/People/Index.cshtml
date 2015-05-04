@@ -1,13 +1,13 @@
 ﻿@{ Layout = "";
 }
 <html>
-<body ng-app="personApp">
+<body ng-app="PersonsApp">
     <h1>Controllers</h1>
 
     <div ng-controller="personController">
         <ul>
             <li ng-repeat="person in people">
-                <h2>{{person.firstName}} {{person.lastName}}</h2>
+                <h2>{{person.FirstName}} {{person.LastName}}</h2>
             </li>
         </ul>
     </div>

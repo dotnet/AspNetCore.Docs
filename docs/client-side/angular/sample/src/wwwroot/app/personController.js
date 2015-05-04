@@ -3,7 +3,8 @@
 
     var controllerId = 'personController';
 
-    angular.module('PersonsApp').controller(controllerId, ['$scope', personFactory, personController]);
+    angular.module('PersonsApp').controller(controllerId,
+        ['$scope', 'personFactory', personController]);
 
     function personController($scope, personFactory) {
         $scope.people = [];
