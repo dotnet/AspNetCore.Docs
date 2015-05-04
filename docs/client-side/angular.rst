@@ -1,16 +1,18 @@
 Using Angular for Single Page Applications (SPAs)
 =================================================
-By `Venkata Koppaka`_ | Originally Published: 1 June 2015 
+By `Venkata Koppaka`_ | Originally Published: 5 May 2015 
 
 .. _`Venkata Koppaka`: Author_
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
-This article covers the following topics:
+In this article:
 	- `What is AngularJS?`_
 	- `Getting Started`_
 	- `Key Components`_
 	- `Angular 2.0`_
+	
+`View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
 
 What is AngularJS?
 ------------------
@@ -31,21 +33,14 @@ Installation
 
 There are several ways to add AngularJS to your application. If you’re starting a new web application in Visual Studio 2015 and ASP.NET 5, you can add AngularJS using the built-in NPM and Bower support. Simply open ``bower.json`` and add an entry to the ``dependencies`` property:
 
-.. code-block:: javascript
+.. literalinclude:: angular/sample/src/bower.json
+	:language: javascript
 	:linenos:
 	:emphasize-lines: 5
-
-	{
-		"name": "ASP.NET",
-		"private": true,
-		"dependencies": {
-			"angular": "1.3.15"
-		}
-	}
-
+	
 One you save the file, Angular will be installed for your project, located in the Bower folder. You can then use `Grunt or Gulp <../grunt-gulp/grunt-gulp>`_ to copy the appropriate files into your ``wwwroot/lib`` folder, as shown:
 
-.. image:: _static/angular-solution-explorer.png
+.. image:: angular/_static/angular-solution-explorer.png
 
 Next, add a ``<script>`` reference to the bottom of the ``<body>`` section of your html page or `_Layout.cshtml` file, as shown here:
 
@@ -97,7 +92,7 @@ One of the primitive directives used in all AngularJS applications is the ``ng-a
 
 To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the ``ng-app`` directive to indicate this page is an AngularJS application. The ``{{2+2}}`` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application: 
 
-.. image:: _static/simple-directive.png
+.. image:: angular/_static/simple-directive.png
 
 Other primitive directives in AngularJS include:
 
@@ -150,7 +145,7 @@ Create a new HTML file or controller action and view called ``Databinding`` and 
 
 Notice that you can display model values using either directives or data binding (``ng-bind``). The resulting page should look like this:
 
-.. image:: _static/simple-databinding.png
+.. image:: angular/_static/simple-databinding.png
 
 Templates
 ^^^^^^^^^
@@ -180,11 +175,11 @@ Add another view to demonstrate templates, and add the following to it:
 
 The template has AngularJS directives like ``ng-app``, ``ng-init``, ``ng-model`` and data binding expression syntax to bind the ``personName`` property. Running in the browser, the view looks like the screenshot below: 
 
-.. image:: _static/simple-templates-1.png
+.. image:: angular/_static/simple-templates-1.png
 
 If you change the name by typing in the input field, you will see the text next to the input field dynamically update, showing Angular two-way data binding in action.
 
-.. image:: _static/simple-templates-2.png
+.. image:: angular/_static/simple-templates-2.png
 
 Expressions
 ^^^^^^^^^^^
@@ -215,7 +210,7 @@ The AngularJS expressions in the sample below bind personName and a simple JavaS
 
 The example running in the browser displays the personName data and the results of the calculation:
 
-.. image:: _static/simple-expressions.png
+.. image:: angular/_static/simple-expressions.png
 
 Repeaters
 ^^^^^^^^^
@@ -247,7 +242,7 @@ Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. T
 
 The repeat directive outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
-.. image:: _static/repeater.png
+.. image:: angular/_static/repeater.png
 
 Here is an example that repeats over an array of objects. The ``ng-init`` directive establishes a names array, where each element is an object contains first and last names. The ``ng-repeat`` assignment, ``name in names``, outputs a list item for every array element.
 
@@ -324,7 +319,7 @@ Below is a sample that shows $index, $even, $odd, $first, $odd in action:
 
 Here is the resulting output:
 
-.. image:: _static/repeaters2.png
+.. image:: angular/_static/repeaters2.png
 
 $scope
 ^^^^^^
@@ -370,9 +365,9 @@ What happens when a particular property is not found by the view? The view defin
 	</body>
 	</html>
 
-Notice in line #8 that we are asking Angular to show the “name” property using expression syntax. Line #9 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age - missing properties are ignored.
+Notice in line #8 that we are asking Angular to show the "name" property using expression syntax. Line #9 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age - missing properties are ignored.
 
-.. image:: _static/scope.png
+.. image:: angular/_static/scope.png
 
 Modules
 ^^^^^^^
