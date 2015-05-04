@@ -9,7 +9,7 @@ ASP.NET 5 is based on the :doc:`.NET Execution Environment (DNX) </conceptual-ov
 
 The .NET Framework is the most well known and mature of the three options. The .NET Framework is a mature and fully featured framework that ships with Windows. The .NET Framework ecosystem is well established and has been around for well over a decade. The .NET Framework is production ready today and provides the highest level of compatibility for your existing applications and libraries.
 
-The .NET Framework runs on Windows only. It is also a monolithic component that with a large API surface area and a slower release cycle. While the code for the .NET Framework is `available for reference <http://referencesource.microsoft.com/>`_ it is not an active open source project.
+The .NET Framework runs on Windows only. It is also a monolithic component with a large API surface area and a slower release cycle. While the code for the .NET Framework is `available for reference <http://referencesource.microsoft.com/>`_ it is not an active open source project.
 
 .NET Core
 ---------
