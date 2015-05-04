@@ -76,19 +76,10 @@ AngularJS uses directives to extend HTML with custom attributes and elements. An
 
 One of the primitive directives used in all AngularJS applications is the ``ng-app`` directive used to bootstrap the AngularJS application. This directive can be added to the whole document body or to specific pieces of the body. Let's see an example in action. Assuming you're in an ASP.NET project, you can either add an HTML file to the ``wwwroot`` folder, or add a new controller action and associated view. In this case, I've added a new ``Directives()`` action method to ``HomeController.cs`` and the associated view is shown here:
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Directives.cshtml
+	:language: html
 	:linenos:
 	:emphasize-lines: 4,6
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Directives</h1>
-		{{2+2}}
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the ``ng-app`` directive to indicate this page is an AngularJS application. The ``{{2+2}}`` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application: 
 
@@ -123,25 +114,10 @@ AngularJS provides data binding support out-of-the-box using either the ``ng-bin
 
 Create a new HTML file or controller action and view called ``Databinding`` and include the following:
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Databinding.cshtml
+	:language: html
 	:linenos:
 	:emphasize-lines: 7-9
-	:caption: Databinding.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Databinding</h1>
-
-		<div ng-init="firstName='John'; lastName='Doe';">
-			<strong>First name:</strong> {{firstName}} <br />
-			<strong>Last name:</strong> <span ng-bind="lastName" />
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 Notice that you can display model values using either directives or data binding (``ng-bind``). The resulting page should look like this:
 
@@ -154,24 +130,10 @@ Templates in AngularJS are just plain HTML pages decorated with AngularJS direct
 
 Add another view to demonstrate templates, and add the following to it:
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Templates.cshtml
+	:language: html
 	:linenos:
 	:emphasize-lines: 7-9
-	:caption: Templates.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Templates</h1>
-
-		<div ng-init="personName='John Doe'">
-			<input ng-model="personName" /> {{personName}}
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 The template has AngularJS directives like ``ng-app``, ``ng-init``, ``ng-model`` and data binding expression syntax to bind the ``personName`` property. Running in the browser, the view looks like the screenshot below: 
 
@@ -188,25 +150,10 @@ Expressions in AngularJS are JavaScript-like code snippets that are written insi
 
 The AngularJS expressions in the sample below bind personName and a simple JavaScript calculated expression:
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Expressions.cshtml
+	:language: html
 	:linenos:
 	:emphasize-lines: 7-9
-	:caption: Expressions.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-    <h1>Expressions</h1>
-
-    <div ng-init="personName='John Doe'">
-        Person's name is: {{personName}} <br />
-        Simple JavaScript calculation of 1 + 2: {{1+2}}
-    </div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 The example running in the browser displays the personName data and the results of the calculation:
 
@@ -217,60 +164,21 @@ Repeaters
 
 Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. The ``ng-repeat`` directive repeats a given HTML element in a view over the length of a repeating data array. Repeaters in AngularJS can repeat over an array of strings or objects. Here is a sample usage of repeating over an array of strings: 
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Repeaters.cshtml
+	:language: html
 	:linenos:
 	:emphasize-lines: 7,9-10
-	:caption: Repeaters.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Repeaters</h1>
-
-		<div ng-init="names=['John Doe', 'Mary Jane', 'Bob Parker']">
-			<ul>
-				<li ng-repeat="name in names">
-					{{name}}
-				</li>
-			</ul>
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 The repeat directive outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
 .. image:: angular/_static/repeater.png
 
-Here is an example that repeats over an array of objects. The ``ng-init`` directive establishes a names array, where each element is an object contains first and last names. The ``ng-repeat`` assignment, ``name in names``, outputs a list item for every array element.
+Here is an example that repeats over an array of objects. The ``ng-init`` directive establishes a names array, where each element is an object containing first and last names. The ``ng-repeat`` assignment, ``name in names``, outputs a list item for every array element.
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Repeaters2.cshtml
+	:language: html
 	:linenos:
-	:emphasize-lines: 7-10, 12-13
-	:caption: Repeaters.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Repeaters</h1>
-
-		<div ng-init="names=[
-		{firstName:'John', lastName:'Doe'},
-		{firstName:'Mary', lastName:'Jane'},
-		{firstName:'Bob', lastName:'Parker'}]">
-			<ul>
-				<li ng-repeat="name in names">
-					{{name.firstName + ' ' + name.lastName}}
-				</li>
-			</ul>
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
+	:emphasize-lines: 7-10,12-13
 
 The output in this case is the same as in the previous example.
 
@@ -287,35 +195,11 @@ Angular provides some additional directives that can help provide behavior based
 
 Below is a sample that shows $index, $even, $odd, $first, $odd in action: 
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Repeaters3.cshtml
+	:language: html
 	:linenos:
-	:emphasize-lines: 12-17
-	:caption: Repeaters.cshtml
+	:emphasize-lines: 13-17
 
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app>
-		<h1>Repeaters2</h1>
-
-		<div ng-init="names=[
-			{firstName:'John', lastName:'Doe'},
-			{firstName:'Mary', lastName:'Jane'},
-			{firstName:'Bob', lastName:'Parker'}]">
-			<ul>
-				<li ng-repeat="name in names">
-					{{name.firstName + ' ' + name.lastName}} at index {{$index}}
-					<span ng-show="{{$first}}">, the first position</span>
-					<span ng-show="{{$last}}">, the last position</span>
-					<span ng-show="{{$odd}}">,which is odd-numbered.</span>
-					<span ng-show="{{$even}}">,which is even-numbered.</span>
-				</li>
-			</ul>
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-	</body>
-	</html>
 
 Here is the resulting output:
 
@@ -330,40 +214,19 @@ $scope
 
 Below is a simple example showing how to set properties on ``$scope`` within a separate JavaScript file, ``scope.js``:
 
-.. code-block:: javascript
+.. literalinclude:: angular/sample/src/wwwroot/app/scope.js
+	:language: html
 	:linenos:
-	:emphasize-lines: 2
-	:caption: scope.js
-
-	var personApp = angular.module('personApp', []);
-	personApp.controller('personController', ['$scope', function ($scope) {
-		$scope.name = 'Mary Jane';
-	}]);
+	:emphasize-lines: 2-3
 
 Observe the $scope parameter passed to the controller on line #2. This object is what the view knows about. In line #3, we are setting a property called "name" to "Mary Jane". 
 
 What happens when a particular property is not found by the view? The view defined below refers to name and age properties: 
 
-.. code-block:: html
+.. literalinclude:: angular/sample/src/Views/Home/Scope.cshtml
+	:language: html
 	:linenos:
-	:emphasize-lines: 4,7-10,13
-	:caption: Scope.cshtml
-
-	@{ Layout = "";
-	}
-	<html>
-	<body ng-app="personApp">
-		<h1>Scope</h1>
-
-		<div ng-controller="personController">
-			<strong>Name:</strong> {{name}} <br />
-			<strong>Missing Property (age):</strong> {{age}}
-		</div>
-
-		<script src="~/lib/angular/angular.js"></script>
-		<script src="~/lib/scope.js"></script>
-	</body>
-	</html>
+	:emphasize-lines: 8-9,13
 
 Notice in line #8 that we are asking Angular to show the "name" property using expression syntax. Line #9 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age - missing properties are ignored.
 
@@ -371,6 +234,44 @@ Notice in line #8 that we are asking Angular to show the "name" property using e
 
 Modules
 ^^^^^^^
+
+A **module** in AngularJS is a collection of controllers, services, directives etc. The ``angular.module()`` function call is used to create, register and retrieve modules in AngularJS. All modules, including those shipped by the AngularJS team and third party libraries should be registered using the ``angular.module()`` function. 
+
+Below is a snippet of code that shows how to create a new module in AngularJS. The first parameter is the name of the module. The second parameter defines dependencies on other modules. Later in this article we will be showing how to pass these dependencies to an ``angular.module()`` method call.
+
+.. code-block:: javascript
+
+	var personApp = angular.module('personApp', []);
+
+Use the ``ng-app`` directive to represent an AngularJS module on the page. To use a module, assign the name of the module, ``personApp`` in this example, to the ``ng-app`` directive in our template.
+
+.. code-block:: html
+
+	<body ng-app="personApp">
+
+Controllers
+^^^^^^^^^^^
+
+Controllers in AngularJS are the first point of entry for your code. The ``<module name>.controller()`` function call is used to create and register controllers in AngularJS. The ``ng-controller`` directive is used to represent an AngularJS controller on the HTML page. The role of the controller in Angular is to set state and behavior of the data model (``$scope``). Controllers should not be used to manipulate the DOM directly.
+
+Below is a snippet of code that registers a new controller. The ``personApp`` variable in the snippet is an Angular module, defined on line 5.
+
+.. literalinclude:: angular/sample/src/wwwroot/app/controllers.js
+	:language: javascript
+	:linenos:
+	:emphasize-lines: 2,5
+
+The view using the ``ng-controller`` directive assigns the controller name: 
+
+.. literalinclude:: angular/sample/src/Views/Home/Controllers.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 7,13
+
+The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``lastName`` properties assigned to the ``$scope`` object.
+
+.. image:: angular/_static/controllers.png
+
 
 Services
 ^^^^^^^^

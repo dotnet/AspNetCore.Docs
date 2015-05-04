@@ -61,5 +61,9 @@ namespace AngularSample.Controllers
         {
             return View();
         }
+        public IActionResult Controllers()
+        {
+            return View();
+        }
     }
 }
