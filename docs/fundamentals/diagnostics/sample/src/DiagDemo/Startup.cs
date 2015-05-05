@@ -19,7 +19,7 @@ namespace DiagDemo
 
             app.Run(async (context) =>
             {
-                if(context.Request.Query["throw"] != "") throw new Exception("Exception triggered!");
+                if(context.Request.Query.ContainsKey("throw")) throw new Exception("Exception triggered!");
                 await context.Response.WriteAsync("Hello World!");
             });
         }

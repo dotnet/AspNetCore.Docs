@@ -24,7 +24,7 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 	:linenos:
 	:emphasize-lines: 2,18
 
-The above code, which is built from the ASP.NET 5 Empty Application template, includes simple mechanism for creating an exception on line 22. If a request includes a non-empty querystring parameter for the variable ``throw``, an exception will be thrown. Comment out line 18 and trigger an exception, so you can see the default ASP.NET behavior (without an error page):
+The above code, which is built from the ASP.NET 5 Empty Application template, includes simple mechanism for creating an exception on line 22. If a request includes a non-empty querystring parameter for the variable ``throw``, an exception will be thrown. Comment out line 18 and trigger an exception, so you can see the default ASP.NET behavior (without an error page) for the specified web server (in this case IIS Express):
 
 .. image:: diagnostics/_static/oops-500.png
 
@@ -41,7 +41,17 @@ The next tab shows the contents of the Querystring collection, if any:
 
 .. image:: diagnostics/_static/errorpage-query.png
 
+In this case, you can see the value of the ``throw`` parameter that was passed to this request. This request didn't have any cookies, but if it did, they would appear on the Cookies tab. You can see the headers that were passed, here:
 
+.. image:: diagnostics/_static/errorpage-headers.png
+
+Finally, any environment variables defined for the server environment would be displayed on the Environment tab.
+
+.. note:: In the current pre-release build, both the Cookies and Environment sections of the ErrorPage are not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
+
+In most cases, you will not want to display detailed stack traces and environment settings in a production setting. The error page will only display detailed information if the ``ASPNET_ENV`` environment variable is set to DEVELOPMENT (which is the default). You can also configure this behavior by including a file named ``Microsoft.AspNet.Diagnostics.ini`` in the root of your web project. With ``ASPNET_ENV`` set to PRODUCTION, the error page displayed is:
+
+(TODO)
 
 The runtime info page
 ---------------------
