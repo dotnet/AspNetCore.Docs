@@ -41,7 +41,7 @@ While we're at it, you may not notice it from the Solution Explorer, but if you 
 Running the Application
 -----------------------
 
-Run the application and after a quick build step, you should see it open in your web browser.
+Run the application (Debug -> Start Without Debugging) and after a quick build step, you should see it open in your web browser.
 
 .. image:: your-first-aspnet-application/_static/first-run.png
 
