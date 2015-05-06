@@ -1,12 +1,11 @@
-﻿{
+{
     "webroot": "wwwroot",
     "version": "1.0.0-*",
 
     "dependencies": {
         "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
         "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
-        "Microsoft.ApplicationInsights.Web": "0.16.1-build00418"
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta4"
     },
 
     "commands": {

@@ -13,6 +13,7 @@ Fundamentals
     configuration
     dependency-injection
     diagnostics
+	application-insights
     environments
     owin
 
