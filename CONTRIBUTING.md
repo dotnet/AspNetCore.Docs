@@ -19,6 +19,10 @@ This project is also using a custom theme from ReadTheDocs, which you can instal
 
 	pip install sphinx_rtd_theme
 
+Note that later if you wish to update your current, installed version of this theme, you should run:
+
+	pip install -U sphinx_rtd_theme
+
 You should now be able to navigate to the `docs` folder and run
 
 	make html
