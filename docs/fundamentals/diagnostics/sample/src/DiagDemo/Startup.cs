@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 using System;
@@ -13,11 +14,20 @@ namespace DiagDemo
         {
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseErrorPage(ErrorPageOptions.ShowAll);
+            if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
+            {
+                app.UseErrorPage(ErrorPageOptions.ShowAll);
 
-            app.UseRuntimeInfoPage(); // default path is /runtimeinfo
+                app.UseRuntimeInfoPage(); // default path is /runtimeinfo
+            }
+            else
+            {
+                // specify production behavior for error handling, for example:
+                // app.UseErrorHandler("/Home/Error");
+                // if nothing is set here, web server error page will be displayed
+            }
 
             app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
 
