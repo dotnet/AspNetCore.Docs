@@ -43,7 +43,7 @@ Note that you may need to run 'make html' once before sphinx-autobuild will serv
     		def decode(self, input, final=False):
         		return codecs.charmap_decode(input,'ignore',decoding_table)[0]
 
-This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme.
+This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme. Note that you may need to re-apply this fix after making updates to packages on your machine.
 
 If contributing new documentation content, please review:
 
