@@ -10,7 +10,7 @@ In this article:
 	- `Using the error page during development`_
 	- `The runtime info page`_
 	- `The welcome page`_
-	- `Using AppInsights`_
+	- `Using Application Insights`_
 	
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/diagnostics/sample>`_.
 
@@ -19,14 +19,16 @@ In this article:
 Configuring an error handling page
 ----------------------------------
 
-In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_. In order to add a simple error handling page, all that's required is to add a dependency on Microsoft.AspNet.Diagnostics to the project (and a using statement to ``Startup.cs``), and then add one line to ``Configure()``:
+In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_. In order to add a simple error handling page, all that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a using statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
+
+.. _diag-startup:
 
 .. literalinclude:: diagnostics/sample/src/DiagDemo/Startup.cs
 	:language: csharp
 	:linenos:
 	:emphasize-lines: 2,18
 
-The above code, which is built from the ASP.NET 5 Empty Application template, includes simple mechanism for creating an exception on line 26. If a request includes a non-empty querystring parameter for the variable ``throw``, an exception will be thrown. Line 18 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <>`_ set to ``ShowAll``. Using ``ErrorPageOption`` you can toggle the visibility of the following features of the error page that is shown:
+The above code, which is built from the ASP.NET 5 Empty Application template, includes simple mechanism for creating an exception on line 26. If a request includes a non-empty querystring parameter for the variable ``throw``, an exception will be thrown. Line 18 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/ErrorPageOptions.cs>`_ set to ``ShowAll``. Using ``ErrorPageOption`` you can toggle the visibility of the following features of the error page that is shown:
 
 - Exception details
 - Source code
@@ -116,13 +118,68 @@ You can optionally configure the welcome page to only respond to certain paths. 
 
 	app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
 
+With this in place as shown, the :ref:`startup.cs <diag-startup>` shown above will respond to requests as follows:
 
+.. list-table:: Requests
+	:header-rows: 1
+
+	* - Path
+	  - Result
+	* - /runtimeinfo
+	  - ``UseRuntimeInfoPage`` will handle and display runtime info page
+	* - /welcome
+	  - ``UseWelcomePage`` will handle and display welcome page
+	* - (any path without ``?throw=``)
+	  - ``app.Run()`` will respond with "Hello World!"
+	* - (any path with ``?throw=``)
+	  - ``app.Run()`` throws an exception; ``UseErrorPage`` handles, displays an error page
 	
-Using AppInsights
------------------
+Using Application Insights
+--------------------------
+
+*Application Insights, like ASP.NET 5, is in preview.*
+
+Visual Studio Application Insights allows developers to insert a few lines of code into their application in order to find out how users are interacting with the app. It can also `detect and diagnose performance issues and exceptions <http://azure.microsoft.com/en-us/documentation/articles/app-insights-detect-triage-diagnose/>`_ in your applications. You can send telemetry data from web servers as well as clients/browers, as well as desktop applications and mobile devices.
+
+Getting started
+^^^^^^^^^^^^^^^
+
+To get started with Application Insights, you will need a subscription to Microsoft Azure. If your team or organization already has a subscription, you can ask the owner to add you to it using your Microsoft account.
+
+Sign in to the `Azure portal <http://portal.azure.com/>`_ with your account and create a new Application Insights resource. 
+
+.. image:: diagnostics/_static/azure-create-appinsight.png
+
+Choose ASP.NET as the application type. Note the *Instrumentation Key* (under Settings, Properties) associated with the Application Insights resource you've created (`see detailed instructions with more screenshots here <http://azure.microsoft.com/en-us/documentation/articles/app-insights-start-monitoring-app-health-usage/>`_). You will need the instrumentation key in a few moments when you configure your ASP.NET 5 application to use Application Insights.
+
+Next, add Application Insights to your ASP.NET project. You can do so by right-clicking on the project in Solution Explorer and selecting ``Manage NuGet Packages``:
+
+
+Next, update ``project.json`` to add a new reference to ``Microsoft.ApplicationInsights.AspNet``, as shown:
+
+.. image:: diagnostics/_static/manage-nuget-packages.png
+
+Then be sure you have checked ``Include prerelease`` and that your package source is ``nuget.org``. Search for "Application" and you should see ``Microsoft.ApplicationInsights.Web as one of the first choices. Click the ``Install`` button and accept the license agreement.
+
+.. image:: diagnostics/_static/nuget-package-manager.png
+
+This will download and install a number of packages and may take a few minutes. When completed, you should see a new entry in your ``project.json`` file's ``dependencies`` section:
+
+.. code-block:: javascript
+
+	"Microsoft.ApplicationInsights.Web": "0.16.1-build00418"
+
+Next, create or edit a ``config.json`` file, adding the instrumentation key you noted above from your Application Insights resource in Windows Azure. Specify an "ApplicationInsights" section with a key named "InstrumentationKey". Set its value to the instrumentation key.
+
+.. image:: diagnostics/_static/config-json.png
+
+
 
 Summary
 -------
+
+In ASP.NET 5, you can easily add error pages, view diagnostic information, or respond to requests with a simple welcome page by adding just one line to your app's ``Startup.cs`` class. You can also quickly configure Application Insights 
+
 
 .. _diagnostics-author:
 
