@@ -17,6 +17,10 @@ namespace DiagDemo
         {
             app.UseErrorPage(ErrorPageOptions.ShowAll);
 
+            app.UseRuntimeInfoPage(); // default path is /runtimeinfo
+
+            app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
+
             app.Run(async (context) =>
             {
                 if(context.Request.Query.ContainsKey("throw")) throw new Exception("Exception triggered!");
