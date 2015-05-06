@@ -14,16 +14,23 @@ In this article:
 Getting and setting configuration settings
 ------------------------------------------
 
-Content goes here.
+Content goes here. What packages are required? For which formats? What's the minimum necessary to work with config?
 
 Using the built-in providers
 ----------------------------
 
 Content goes here.
 
+Note that precedence is increasing with order of declaration - last one wins.
+
+Cover JSON, XML, INI as well as in-memory, command-line, and env vars.
+
+Note that Env Vars are a good option to keep secrets out of source control and easily enable production environments (or local dev machines) to use custom connection strings and other config settings independent of files.
+
 Writing custom providers
 ------------------------
 
+In addition to using the built-in providers, you can also write your own.
 Content goes here.
 
 
