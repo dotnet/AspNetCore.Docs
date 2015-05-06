@@ -14,6 +14,11 @@ In this article:
 Getting and setting configuration settings
 ------------------------------------------
 
+ASP.NET 5's configuration system has been rearchitected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new `configuration model <https://github.com/aspnet/Configuration>`_ provides streamlined access to key/value based settings that can be retrieved from a variety of sources.
+
+To work with settings in your application, you simply need to add a reference to ``Microsoft.Framework.ConfigurationModel`` and access configuration as shown in this method:
+
+
 Content goes here. What packages are required? For which formats? What's the minimum necessary to work with config?
 
 Using the built-in providers
