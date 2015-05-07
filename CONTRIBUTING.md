@@ -19,6 +19,10 @@ This project is also using a custom theme from ReadTheDocs, which you can instal
 
 	pip install sphinx_rtd_theme
 
+Note that later if you wish to update your current, installed version of this theme, you should run:
+
+	pip install -U sphinx_rtd_theme
+
 You should now be able to navigate to the `docs` folder and run
 
 	make html
@@ -39,7 +43,7 @@ Note that you may need to run 'make html' once before sphinx-autobuild will serv
     		def decode(self, input, final=False):
         		return codecs.charmap_decode(input,'ignore',decoding_table)[0]
 
-This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme.
+This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme. Note that you may need to re-apply this fix after making updates to packages on your machine.
 
 If contributing new documentation content, please review:
 

@@ -5,7 +5,7 @@ By :ref:`Daniel Roth <dnx-author>` | Updated : 28 April 2015
 What is the .NET Execution Environment?
 ---------------------------------------------
 
-The .NET Execution Environment (DNX) is a software development kit (SDK) and runtime environment that has everything you need to build and run .NET applications for Windows, Mac and Linux. It provide a host process, CLR hosting logic and managed entry point discovery.  DNX was built for running cross-platform ASP.NET Web applications, but it can run other types of .NET applications, too, such as cross-platform console apps.
+The .NET Execution Environment (DNX) is a software development kit (SDK) and runtime environment that has everything you need to build and run .NET applications for Windows, Mac and Linux. It provides a host process, CLR hosting logic and managed entry point discovery.  DNX was built for running cross-platform ASP.NET Web applications, but it can run other types of .NET applications, too, such as cross-platform console apps.
 
 Why build DNX?
 --------------
