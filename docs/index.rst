@@ -8,7 +8,6 @@ ASP.NET 5 Documentation
 
 .. toctree::
     :maxdepth: 2
-    :caption: ASP.NET
     
     getting-started/index
     tutorials/index
@@ -23,11 +22,9 @@ ASP.NET 5 Documentation
     performance/index
     migration/index
 
-Frameworks
-----------
-
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
+    :titlesonly:
     :caption: Frameworks
     
     mvc/index
