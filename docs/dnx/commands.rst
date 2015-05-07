@@ -1,7 +1,7 @@
 .. include:: /stub-topic.txt
 
 |stub-icon| Using Commands
-==============
+==========================
 
 .. include:: /stub-notice.txt
     

@@ -1,7 +1,7 @@
 .. include:: /stub-topic.txt
 
 |stub-icon| Publishing to a Windows Virtual Machine on Azure
-==========================================================
+============================================================
 
 .. include:: /stub-notice.txt
 
