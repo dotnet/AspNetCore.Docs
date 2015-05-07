@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace ConfigDemo.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IConfiguration _configuration;
+        public HomeController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -15,7 +22,8 @@ namespace ConfigDemo.Controllers
 
         public IActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = _configuration["AppSettings:SiteTitle"] + 
+                " - Your application description page.";
 
             return View();
         }
