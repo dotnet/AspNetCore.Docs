@@ -7,23 +7,30 @@ ASP.NET 5 Documentation
 =======================
 
 .. toctree::
-   :maxdepth: 2
-   
-   getting-started/index
-   tutorials/index
-   conceptual-overview/index
-   fundamentals/index
-   dnx/index
-   publishing/index
-   client-side/index
-   security/index
-   extensibility/index
+    :maxdepth: 2
+    :caption: ASP.NET
+    
+    getting-started/index
+    tutorials/index
+    conceptual-overview/index
+    fundamentals/index
+    dnx/index
+    data/index
+    publishing/index
+    client-side/index
+    mobile/index
+    security/index
+    performance/index
+    migration/index
 
-Related Topics
---------------
+Frameworks
+----------
 
-:doc:`ASP.NET MVC <mvc/index>`
- 
+.. toctree::
+    :maxdepth: 2
+    :caption: Frameworks
+    
+    mvc/index
    
 Contribute
 ----------

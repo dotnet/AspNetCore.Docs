@@ -9,3 +9,6 @@ Client-Side Development
    bootstrap
    knockout
    less-sass-fa
+   bundling-and-minification
+   cdn
+   responsive-design
