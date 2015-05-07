@@ -11,7 +11,7 @@ In this article:
 	- `Adding Server-Side Behavior`_
 	- `Adding Client-Side Behavior`_
 	
-.. You can download the finished source from the project created in this article HERE **(TODO)**.
+`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/docs/tutorials/your-first-aspnet-application/sample>`_.
 
 Create a New ASP.NET 5 Project
 ------------------------------
@@ -32,9 +32,9 @@ At this point, the project is created. It may take a few moments to load, and yo
 
 .. image:: your-first-aspnet-application/_static/visual-studio-on-project-load.png
 
-Looking at the Solution Explorer and comparing the elements with what we're familiar with in previous versions of ASP.NET, a few things stick out as being new and different. There's now a *wwwroot* folder, with its own icon. Similarly, there's a *Dependencies* folder **and** still a *References* folder – we'll discuss the differences between these two in a moment. Finally, there's a Compiler folder that isn't something we've seen in prior versions of ASP.NET. Rounding out the list of folders, we have Controllers, Models, and Views, which make sense for an ASP.NET MVC project, and Migrations, which holds classes used by Entity Framework to track updates to our model's database schema.
+Looking at the Solution Explorer and comparing the elements with what we're familiar with in previous versions of ASP.NET, a few things stick out as being new and different. There's now a ``wwwroot`` folder, with its own icon. Similarly, there's a *Dependencies* folder **and** still a *References* folder - we'll discuss the differences between these two in a moment. Finally, there's a Compiler folder that isn't something we've seen in prior versions of ASP.NET. Rounding out the list of folders, we have Controllers, Models, and Views, which make sense for an ASP.NET MVC project, and Migrations, which holds classes used by Entity Framework to track updates to our model's database schema.
 
-Looking at the files in the root of the project, we may notice the absence of a few files. Global.asax is no longer present, nor is web.config, both mainstays from the start of ASP.NET. Instead, we find a Startup.cs file and a config.json file.  Adding to this mix are bower.json, gruntfile.js, package.json, and project.json (the Project_Readme.html file you can see in the browser tab). Clearly the success of Javascript in web development has had an effect on how ASP.NET 5 projects are configured and compiled, and deployed, with JavaScript Object Notation (JSON) files replacing XML for configuration purposes.
+Looking at the files in the root of the project, we may notice the absence of a few files. Global.asax is no longer present, nor is web.config, both mainstays from the start of ASP.NET. Instead, we find a Startup.cs file and a config.json file.  Adding to this mix are bower.json, gulpfile.js, package.json, and project.json (the Project_Readme.html file you can see in the browser tab). Clearly the success of Javascript in web development has had an effect on how ASP.NET 5 projects are configured and compiled, and deployed, with JavaScript Object Notation (JSON) files replacing XML for configuration purposes.
 
 While we're at it, you may not notice it from the Solution Explorer, but if you open Windows Explorer you'll see that there is no longer a .csproj file, either. Instead you'll find an .xproj file, an MSBuild file that serves the same purpose from a build process perspective, but which is much simpler than its csproj/vbproj predecessor.
 
@@ -72,49 +72,27 @@ Adding Server-Side Behavior
 
 We've already tweaked the behavior of the HomeController's About method to change the Message passed to the View. We can add additional server-side behavior by further modifying the AboutController and associated View. Then, we'll enhance this basic information by adding some client-side behavior that makes API calls back to the server.
 
-To start, add a new Model class called ServerInfo. I'm adding this in my Models folder as a convention, but you don't need to do so.
+To start, add a new Model class called ServerInfo. I'm adding this in my Models folder as a convention, but you can place the file in another folder if you prefer.
 
-.. code-block:: c#
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Models/ServerInfo.cs
+	:language: c#
 
-	namespace FundamentalConcepts.Models
-	{
-		public class ServerInfo
-		{
-			public string Name { get; set; }
-			public string LocalAddress { get; set; }
-			public string Software { get; set; }
-		}
-	}
-	
 Next, update the HomeController's About() method to instantiate this class, set its properties, and pass it to the View.
 
-.. code-block:: c#
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Controllers/HomeController.cs
+	:language: c#
+	:linenos:
+	:emphasize-lines: 14-25
 
-	public IActionResult About()
-	{
-		string appName = _config.Get("ApplicationName");
-		ViewBag.Message = "Your application name: " + appName;
+Now we need to update the View to give it a strongly-typed model and display the information using Razor syntax. Modify ``Views/Home/About.cshtml`` as follows:
 
-		var serverInfo = new ServerInfo();
-		serverInfo.Name = Environment.MachineName;
-		serverInfo.Software = Environment.OSVersion.ToString();
-		return View(serverInfo);
-	}
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Views/Home/About.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 1,7-8
+	:lines: 1-8
 
-Now we need to update the View to give it a strongly-typed model and display the information using Razor syntax. Add this line to the top of the About.cshtml file in the Views > Home folder.
-
-.. code-block:: html
-
-	@model FundamentalConcepts.Models.ServerInfo
-
-Then add these two lines to the bottom of the view.
-
-.. code-block:: html
-
-	<h2>Server Name: @Model.Name</h2>
-	<h3>Software: @Model.Software</h3>
-
-Now we can build the solution. Since the default web template targets both the full .NET and .NET Core, we expect the build to fail when it tries to access the Environment.MachineName and Environment.OSVersion variables in HomeController. This behavior won't work in .NET Core, so we can comment it out. Open project.json and modify the "frameworks" key as shown:
+Now we can build the solution. Since the default web template targets both the full .NET and .NET Core, we expect the build to fail when it tries to access the Environment.MachineName and Environment.OSVersion variables in HomeController. This behavior won't work in .NET Core (currently), so we can comment it out. Open project.json and modify the "frameworks" key as shown:
 
 .. code-block:: javascript
 
@@ -138,72 +116,32 @@ Let's begin with the client-side code. We are going to need a button and a list 
 
 .. _Bootstrap: http://getbootstrap.com/
 
-.. code-block:: html
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Views/Home/About.cshtml
+	:language: html
+	:lines: 12-13
 
-	<button id="listButton" class="btn-success">List Processes</button>
-	<ul id="processList" class="list-group"></ul>
-	
-Next, we need to add some script that will run when the listButton button is clicked, and will populate the contents of the processList list. Since we want this script to run after jQuery is loaded (in the _Layout.cshtml razor file), we need to place it into a Razor Section called scripts. In this section, we will include a script block that will define a function for binding the list to some data, and a click handler that will make a GET request to our API and call the binding function with the resulting data.  Add the following to the end of the About.cshtml page, after the <ul> element we just added.
+Next, we need to add some script that will run when the listButton button is clicked, and will populate the contents of the processList list. Since we want this script to run after jQuery is loaded (in the _Layout.cshtml razor file), we need to place it into a Razor Section called scripts. In this section, we will include a script block that will define a function for binding the list to some data, and a click handler that will make a GET request to our API and call the binding function with the resulting data.  Update About.cshtml to add a ``@section scripts`` as shown:
 
-.. code-block:: html
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Views/Home/About.cshtml
+	:language: html
+	:linenos:
+	:emphasize-lines: 15-
 
-	@section scripts {
-		<script type="text/javascript">
-			function bindData(element, data)
-			{
-				var items = [];
-				items.push('<li class="list-group-item active">Processes</li>');
-				$.each(data, function (id, option) {
-					items.push('<li class="list-group-item">' + option.Name + '</li>');
-				});
-				element.html(items.join(''));
+At this point, we're done with the client code and we need to add the Web API code that will respond to a GET request to the "/api/processes" URL. Add a new class, ``ProcessInfo``, to the ``Models`` folder, and give it just one string property, ``Name``:
 
-			}
-			$(document).ready(function () {
-				$("#listButton").bind("click", function (e) {
-					$.ajax({
-						url: "/api/processes",
-						data: "",
-						type: "GET",
-						success: function (data) {
-							bindData($("#processList"), data);
-						}
-					});
-				});
-			});
-		</script>
-	}
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Models/ProcessInfo.cs
+	:language: c#
 
-At this point, we're done with the client code and we need to add the Web API code that will respond to a GET request to the "/api/processes" URL. Add a new item to the Controllers folder, and choose a new Web API Controller. Call it ProcessesController as shown.
+Now add a new item to the ``Controllers`` folder, and choose a new Web API Controller Class. Call it ``ProcessesController`` as shown.
 
 .. image:: your-first-aspnet-application/_static/add-api-controller.png
 
-Delete all of the methods except for the Get() method, and update the Get() method to return an enumeration of ProcessInfo items as shown (we'll define ProcessInfo in a moment).
+Delete all of the methods except for the Get() method, and update the Get() method to return an enumeration of ProcessInfo items as shown.
 
-.. code-block:: c#
-
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Microsoft.AspNet.Mvc;
-	using FundamentalConcepts.Models;
-	using System.Diagnostics;
-
-	namespace FundamentalConcepts.Controllers.Controllers
-	{
-		[Route("api/[controller]")]
-		public class ProcessesController : Controller
-		{
-			// GET: api/values
-			[HttpGet]
-			public IEnumerable<ProcessInfo> Get()
-			{
-				var processList = Process.GetProcesses().OrderBy(p => p.ProcessName).ToList();
-
-				return processList.Select(p => new ProcessInfo() { Name = p.ProcessName });
-			}
-		}
-	}
+.. literalinclude:: your-first-aspnet-application/sample/src/WebApplication4/Controllers/ProcessesController.cs
+	:language: c#
+	:linenos:
+	:emphasize-lines: 4-5,14,16,18
 
 Finally, add the class ProcessInfo to the Models folder:
 
