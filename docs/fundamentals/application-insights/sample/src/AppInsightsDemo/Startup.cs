@@ -10,7 +10,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.Logging;
 using AppInsightsDemo.Models;
-//using Microsoft.ApplicationInsights.AspNet;
+using Microsoft.ApplicationInsights.AspNet;
 
 namespace AppInsightsDemo
 {
@@ -28,6 +28,7 @@ namespace AppInsightsDemo
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
+                configuration.AddApplicationInsightsSettings(developerMode: true);
             }
             configuration.AddEnvironmentVariables();
             Configuration = configuration;
@@ -41,7 +42,7 @@ namespace AppInsightsDemo
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
-            //services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add EF services to the services container.
             services.AddEntityFramework()
@@ -81,6 +82,7 @@ namespace AppInsightsDemo
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
+            app.UseApplicationInsightsRequestTelemetry();
 
             // Add the console logger.
             loggerfactory.AddConsole(minLevel: LogLevel.Warning);
@@ -98,6 +100,7 @@ namespace AppInsightsDemo
                 // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
+            app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();

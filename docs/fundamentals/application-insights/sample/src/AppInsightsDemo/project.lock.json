@@ -25,7 +25,7 @@
       "Microsoft.Framework.Logging >= 1.0.0-beta4",
       "Microsoft.Framework.Logging.Console >= 1.0.0-beta4",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-beta4",
-      "Microsoft.ApplicationInsights.Web >= 0.16.1-build00418"
+      "Microsoft.ApplicationInsights.AspNet >= 0.32.0-beta4"
     ],
     "DNX,Version=v4.5.1": []
   },
@@ -367,166 +367,41 @@
         "tools/net40/uninstall.ps1"
       ]
     },
-    "Microsoft.ApplicationInsights.Agent.Intercept/0.14.0-build08008": {
+    "Microsoft.ApplicationInsights.AspNet/0.32.0-beta4": {
       "serviceable": false,
-      "sha": "n/4HctvjvkUv0z6L8LnbFpdLerh63EsyShezUvYV1Et+kvJwDx/wjEdan8Pyh+elZrVI50rm27GY/xjeYxWGOQ==",
+      "sha": "xBTfqLEM943krfrRXIKow1MdlPm8w+bQ18+mCyXaq83XyFZG5FGXSmeXaRUGb7JootoKp1Bqc6se8znzoGKnaQ==",
       "frameworks": {
         "DNX,Version=v4.5.1": {
           "dependencies": {
-            "Microsoft.Diagnostics.Tracing.EventSource.Redist": "1.1.16-beta"
+            "Microsoft.ApplicationInsights": "0.16.1-build00185",
+            "Microsoft.AspNet.Hosting": "1.0.0-beta4",
+            "Microsoft.AspNet.Http": "1.0.0-beta4",
+            "Microsoft.AspNet.Http.Extensions": "1.0.0-beta4",
+            "Microsoft.AspNet.Mvc.Core": "6.0.0-beta4",
+            "Microsoft.Framework.Logging": "1.0.0-beta4"
           },
-          "frameworkAssemblies": [],
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
           "runtimeAssemblies": [
-            "lib/net40/Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll"
+            "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll"
           ],
           "compileAssemblies": [
-            "lib/net40/Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll"
+            "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll"
           ]
         }
       },
       "files": [
-        "Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008.nupkg",
-        "Microsoft.ApplicationInsights.Agent.Intercept.0.14.0-build08008.nupkg.sha512",
-        "Microsoft.ApplicationInsights.Agent.Intercept.nuspec",
-        "build/Microsoft.ApplicationInsights.Agent.Intercept.targets",
-        "lib/native/x64/Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll",
-        "lib/native/x86/Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll",
-        "lib/net40/Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll"
-      ]
-    },
-    "Microsoft.ApplicationInsights.DependencyCollector/0.16.1-build00418": {
-      "serviceable": false,
-      "sha": "CIjhj+uU7rH+oNtmliQVrBwYuX8/JgYLQZ4SRkq/8OiGhcbBlMTK7H7Ce1DDIIqTMcTMjPkyvyC+4J8DGblHQA==",
-      "frameworks": {
-        "DNX,Version=v4.5.1": {
-          "dependencies": {
-            "Microsoft.ApplicationInsights": "0.16.1-build00418",
-            "Microsoft.ApplicationInsights.Agent.Intercept": "0.14.0-build08008"
-          },
-          "frameworkAssemblies": [],
-          "runtimeAssemblies": [
-            "lib/net45/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll"
-          ],
-          "compileAssemblies": [
-            "lib/net45/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll"
-          ]
-        }
-      },
-      "files": [
-        "Microsoft.ApplicationInsights.DependencyCollector.0.16.1-build00418.nupkg",
-        "Microsoft.ApplicationInsights.DependencyCollector.0.16.1-build00418.nupkg.sha512",
-        "Microsoft.ApplicationInsights.DependencyCollector.nuspec",
-        "build/native/Microsoft.Applicationinsights.RuntimeTelemetry.targets",
-        "content/native/ApplicationInsights.config.install.xdt",
-        "content/native/ApplicationInsights.config.uninstall.xdt",
-        "content/net40/ApplicationInsights.config.install.xdt",
-        "content/net40/ApplicationInsights.config.uninstall.xdt",
-        "content/net45/ApplicationInsights.config.install.xdt",
-        "content/net45/ApplicationInsights.config.uninstall.xdt",
-        "content/portable-win81+wpa81/ApplicationInsights.config.install.xdt",
-        "content/portable-win81+wpa81/ApplicationInsights.config.uninstall.xdt",
-        "lib/net40/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll",
-        "lib/net40/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.XML",
-        "lib/net45/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll",
-        "lib/net45/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.XML",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.XML"
-      ]
-    },
-    "Microsoft.ApplicationInsights.PerfCounterCollector/0.16.1-build00418": {
-      "serviceable": false,
-      "sha": "TiYuW4/pyX7NIBLLfJof6K5lCm3FuyfJUuFTR4tf2quxt6JFy3EgWP3wo6LuQqWRoyvbE9D38Xh4XFuBheI0iA==",
-      "frameworks": {
-        "DNX,Version=v4.5.1": {
-          "dependencies": {
-            "Microsoft.ApplicationInsights": "0.16.1-build00418"
-          },
-          "frameworkAssemblies": [],
-          "runtimeAssemblies": [
-            "lib/net40/Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll"
-          ],
-          "compileAssemblies": [
-            "lib/net40/Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll"
-          ]
-        }
-      },
-      "files": [
-        "Microsoft.ApplicationInsights.PerfCounterCollector.0.16.1-build00418.nupkg",
-        "Microsoft.ApplicationInsights.PerfCounterCollector.0.16.1-build00418.nupkg.sha512",
-        "Microsoft.ApplicationInsights.PerfCounterCollector.nuspec",
-        "content/ApplicationInsights.config.install.xdt",
-        "content/ApplicationInsights.config.uninstall.xdt",
-        "lib/net40/Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll"
-      ]
-    },
-    "Microsoft.ApplicationInsights.PersistenceChannel/0.16.1-build00418": {
-      "serviceable": false,
-      "sha": "HyXdNd4Y4doAmrVJRf8eE/LobkrT2oD/hV4acSZ6i3RkbP0p0i6xwCjTmGge+QuH4Wsk19q5PT5/LaQgUDohyw==",
-      "frameworks": {
-        "DNX,Version=v4.5.1": {
-          "dependencies": {
-            "Microsoft.ApplicationInsights": "0.16.1-build00418"
-          },
-          "frameworkAssemblies": [],
-          "runtimeAssemblies": [
-            "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll"
-          ],
-          "compileAssemblies": [
-            "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll"
-          ]
-        }
-      },
-      "files": [
-        "Microsoft.ApplicationInsights.PersistenceChannel.0.16.1-build00418.nupkg",
-        "Microsoft.ApplicationInsights.PersistenceChannel.0.16.1-build00418.nupkg.sha512",
-        "Microsoft.ApplicationInsights.PersistenceChannel.nuspec",
-        "content/ApplicationInsights.config.install.xdt",
-        "content/ApplicationInsights.config.uninstall.xdt",
-        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "lib/portable-win8+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.XML"
-      ]
-    },
-    "Microsoft.ApplicationInsights.Web/0.16.1-build00418": {
-      "serviceable": false,
-      "sha": "uy/aH3AWLGZKpLoCNHGR/nodFmXQtjebv2AisrZtheP6Je23g2X3ivF9M6Z7fqJ9BY3lyayzoImYVB/1eGZxLg==",
-      "frameworks": {
-        "DNX,Version=v4.5.1": {
-          "dependencies": {
-            "Microsoft.ApplicationInsights": "0.16.1-build00418",
-            "Microsoft.ApplicationInsights.DependencyCollector": "0.16.1-build00418",
-            "Microsoft.ApplicationInsights.PersistenceChannel": "0.16.1-build00418",
-            "Microsoft.Diagnostics.Tracing.EventSource.Redist": "1.1.16-beta",
-            "Microsoft.ApplicationInsights.PerfCounterCollector": "0.16.1-build00418"
-          },
-          "frameworkAssemblies": [],
-          "runtimeAssemblies": [
-            "lib/net45/Microsoft.ApplicationInsights.Extensibility.Web.dll"
-          ],
-          "compileAssemblies": [
-            "lib/net45/Microsoft.ApplicationInsights.Extensibility.Web.dll"
-          ]
-        }
-      },
-      "files": [
-        "Microsoft.ApplicationInsights.Web.0.16.1-build00418.nupkg",
-        "Microsoft.ApplicationInsights.Web.0.16.1-build00418.nupkg.sha512",
-        "Microsoft.ApplicationInsights.Web.nuspec",
-        "content/net40/ApplicationInsights.config.install.xdt",
-        "content/net40/ApplicationInsights.config.uninstall.xdt",
-        "content/net40/web.config.install.xdt",
-        "content/net40/web.config.uninstall.xdt",
-        "content/net45/ApplicationInsights.config.install.xdt",
-        "content/net45/ApplicationInsights.config.uninstall.xdt",
-        "content/net45/web.config.install.xdt",
-        "content/net45/web.config.uninstall.xdt",
-        "lib/net40/Microsoft.ApplicationInsights.Extensibility.Web.dll",
-        "lib/net40/Microsoft.ApplicationInsights.Extensibility.Web.XML",
-        "lib/net45/Microsoft.ApplicationInsights.Extensibility.Web.dll",
-        "lib/net45/Microsoft.ApplicationInsights.Extensibility.Web.XML"
+        "Microsoft.ApplicationInsights.AspNet.0.32.0-beta4.nupkg",
+        "Microsoft.ApplicationInsights.AspNet.0.32.0-beta4.nupkg.sha512",
+        "Microsoft.ApplicationInsights.AspNet.nuspec",
+        "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll",
+        "lib/dnx451/Microsoft.ApplicationInsights.AspNet.xml",
+        "lib/dnxcore50/Microsoft.ApplicationInsights.AspNet.dll",
+        "lib/dnxcore50/Microsoft.ApplicationInsights.AspNet.xml"
       ]
     },
     "Microsoft.AspNet.Authentication/1.0.0-beta4": {

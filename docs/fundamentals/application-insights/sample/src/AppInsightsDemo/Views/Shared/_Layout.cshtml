@@ -1,4 +1,5 @@
-﻿@inject IOptions<AppSettings> AppSettings
+﻿@inject Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfiguration 
+@inject IOptions<AppSettings> AppSettings
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +21,7 @@
                   asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
             <link rel="stylesheet" href="~/css/site.css" />
         </environment>
+        @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">

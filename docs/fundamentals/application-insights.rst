@@ -29,7 +29,7 @@ Next, update ``project.json`` to add a new reference to ``Microsoft.ApplicationI
 
 .. image:: application-insights/_static/manage-nuget-packages.png
 
-Then be sure you have checked ``Include prerelease`` and that your package source is ``nuget.org``. Search for "Application" and you should see ``Microsoft.ApplicationInsights.Web`` as one of the first choices. Click the ``Install`` button and accept the license agreement.
+Then be sure you have checked ``Include prerelease`` and that your package source is ``nuget.org``. Search for "ApplicationInsights.AspNet" and you should see ``Microsoft.ApplicationInsights.AspNet`` as one of the first choices. Click the ``Install`` button and accept the license agreement.
 
 .. image:: application-insights/_static/nuget-package-manager.png
 
@@ -37,7 +37,7 @@ This will download and install a number of packages and may take a few minutes. 
 
 .. code-block:: javascript
 
-	"Microsoft.ApplicationInsights.Web": "0.16.1-build00418"
+	"Microsoft.ApplicationInsights.AspNet": "0.32.0-beta4"
 
 Next, edit (or create) the ``config.json`` file, adding the instrumentation key you noted above from your Application Insights resource in Windows Azure. Specify an "ApplicationInsights" section with a key named "InstrumentationKey". Set its value to the instrumentation key.
 
@@ -45,11 +45,37 @@ Next, edit (or create) the ``config.json`` file, adding the instrumentation key 
 	:linenos:
 	:emphasize-lines: 2-3
 	
-Next, in ``Startup.cs`` you need to configure Application Insights in the ``ConfigureServices()`` method. Add the ``Microsoft.ApplicationInsights.AspNet`` namespace to your using list, and the highlighted line below to ``ConfigureServices()``:
+Next, in ``Startup.cs`` you need to configure Application Insights in a few places. In the constructor, where you configure ``Configuration``, add a block to configure Application Insights for development:
+
+.. code-block:: c#
+
+	if (env.IsEnvironment("Development"))
+	{
+		configuration.AddApplicationInsightsSettings(developerMode: true);
+	}
+
+Add the ``Microsoft.ApplicationInsights.AspNet`` namespace to your using list, and then add `` services.AddApplicationInsightsTelemetry(Configuration);`` to ``ConfigureServices()``.
+
+Then, in the ``Configure()`` method add middleware to allow Application Insights to track exceptions and log information about individual requests. Note that the request tracking middleware should be as the first middleware in the pipeline, while the exception middleware should follow the configuration of error pages or other error handling middleware.
+
+A complete listing of ``Startup.cs`` is shown below, with the Application Insights code highlighted.
 
 .. literalinclude:: application-insights/sample/src/AppInsightsDemo/Startup.cs
 	:linenos:
-	:emphasize-lines: 2-3
+	:emphasize-lines: 13,31,45,85,103
+
+The last file that needs to be updated in order to finish setting up your ASP.NET 5 application to use Application Insights is ``_Layout.cshtml``. Add the following to the very top of the file:
+
+.. code-block:: c#
+
+	@inject Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfiguration 
+
+Then, add one line of code at the end of the ``<head>`` section:
+
+.. code-block:: html
+
+		@Html.ApplicationInsightsJavaScript(TelemetryConfiguration) 
+	</head>
 
 
 Viewing activity
