@@ -1,0 +1,18 @@
+.. :orphan: 
+
+.. _Author:
+ 
+Author
+^^^^^^
+.. container:: author
+
+	.. container:: photo
+	
+		.. image:: /_authors/photos/rick-anderson.jpg
+		
+	.. container:: bio
+	
+		Rick Anderson works as a programmer writer for Microsoft, focusing on ASP.NET MVC, Azure and EF. You can follow him on twitter as `@RickAndMSFT`_
+		
+.. _`@RickAndMSFT`: https://twitter.com/RickAndMSFT
+
