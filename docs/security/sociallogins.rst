@@ -1,4 +1,4 @@
-Enabling authenication using external providers
+Enabling authentication using external providers
 ===============================================
 By :ref:`Pranav Rastogi <sociallogins-author>` | Originally Published: 28 April 2015 
 
@@ -143,7 +143,7 @@ Login with Facebook
 
 .. image:: sociallogins/_static/FBLogin1.PNG
 
-- When you click on Facebook, you will be redirected to Facebook for authenication.
+- When you click on Facebook, you will be redirected to Facebook for authentication.
 
 .. image:: sociallogins/_static/FBLogin2.PNG
 
