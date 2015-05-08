@@ -30,7 +30,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000 --color blue",
     "gen": "Microsoft.Framework.CodeGeneration",
     "ef":  "EntityFramework.Commands"
   },

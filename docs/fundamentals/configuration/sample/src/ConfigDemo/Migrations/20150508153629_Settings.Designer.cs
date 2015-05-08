@@ -8,9 +8,19 @@ using ConfigDemo.Models;
 namespace ConfigDemo.Migrations
 {
     [ContextType(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class Settings
     {
-        public override IModel Model
+        public override string Id
+        {
+            get { return "20150508153629_Settings"; }
+        }
+        
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta4-12943"; }
+        }
+        
+        public override IModel Target
         {
             get
             {

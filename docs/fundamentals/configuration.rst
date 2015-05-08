@@ -16,20 +16,24 @@ Getting and setting configuration settings
 
 ASP.NET 5's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new `configuration model <https://github.com/aspnet/Configuration>`_ provides streamlined access to key/value based settings that can be retrieved from a variety of sources.
 
-To work with settings in your ASP.NET application, you can instantiate a new instance of ``Configuration`` anywhere you need one. However, it's recommended to do this once in your application's ``Startup``, and then inject an instance of ``IConfiguration`` into any controllers or services that need to access configuration. At its simplest, the ``Configuration`` class is just a name-value collection, which you can read from or write to however you wish. For instance, you could include the following code in any method in your ASP.NET application:
+To work with settings in your ASP.NET application, you can instantiate a new instance of ``Configuration`` anywhere you need one. However, it's recommended to do this once in your application's ``Startup``, and then inject an instance of ``IConfiguration`` into any controllers or services that need to access configuration. At its simplest, the ``Configuration`` class is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. For instance, you could include the following code in any method in your ASP.NET application:
+
+.. TODO: Update to use MemoryConfigurationSource instead of EnvironmentVariables
 
 .. code-block:: c#
 	:linenos:
 
 	// assumes using Microsoft.Framework.ConfigurationModel is specified
-	var config = new Configuration();
+	var config = new Configuration()
+		.AddEnvironmentVariables();
+		
 	config.Set("somekey", "somevalue");
 	
 	// do some other work
 	
-	var setting = config.Get("somekey); // returns "somevalue"
+	string setting = config.Get("somekey); // returns "somevalue"
 	// or
-	var setting2 = config["somekey"]; // also returns "somevalue"
+	string setting2 = config["somekey"]; // also returns "somevalue"
 
 It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following `config.json`` file:
 
@@ -55,38 +59,79 @@ The recommended way to access configuration settings from within your applicatio
 		// more code omitted
 	}
 
+.. _inject-config:
+
 Now with this in place, you can request an instance of ``IConfiguration`` in the constructor of any controller that needs access to configuration values.
 
 .. literalinclude:: configuration/sample/src/ConfigDemo/Controllers/HomeController.cs
 	:linenos:
 	:language: c#
-	:emphasize-lines: 12-16,20
-	:lines: 1-17, 23-29, 42-
+	:emphasize-lines: 8-12,15-16
+	:lines: 1-12, 19-25, 38-
 
 This approach provides several benefits. First, it follows the `Don't Repeat Yourself, or DRY, Principle <http://deviq.com/don-t-repeat-yourself/>`_, because the ``Configuration`` instance is only defined in one place in the application. The resulting code is also easier to test, since it doesn't have a dependency on creating a ``Configuration`` instance, and instead a fake or mock ``IConfiguration`` instance can be provided during testing.
 
 Using the built-in providers
 ----------------------------
 
-Content goes here.
+ASP.NET 5 ships with built-in support for JSON, XML, and INI configuration files, as well as support for in-memory configuration (directly setting values in code) and the ability to pull configuration from environment variables and command line parameters. Developers are not limited to using a single configuration source, and in fact several may be set up together such that a default configuration is overridden by settings from another source if they are present.
 
-Note that precedence is increasing with order of declaration - last one wins.
+Adding support for additional configuration file sources is accomplished through extension methods. These methods can be called on a ``Configuration`` instance in a standalone fashion, or chained together as a fluent API, as shown.
 
-Cover JSON, XML, INI as well as in-memory, command-line, and env vars.
+.. literalinclude:: configuration/sample/src/ConfigDemo/ConfigSetup.cs
+	:linenos:
+	:language: c#
+	:lines: 9-17
 
-Note that Env Vars are a good option to keep secrets out of source control and easily enable production environments (or local dev machines) to use custom connection strings and other config settings independent of files.
+The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both ``config.json`` and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
+
+One challenge with the use of configuration files for specifying sensitive information like connection strings and API keys is that such files are typically committed to source control, possibly exposing such secrets. This is particularly troublesome for open source applications, but can be an issue with any application. By using environment variables for such values, default development settings and keys can be checked into source control (making them available to all developers), while in production the development settings are overwritten. Access to the production system's environment variables can be much more restrictive than access to the application's source control system, resulting in greater security for these secrets. Learn more about `safe storage of application secrets </security/app-secrets.html>`_
 
 Writing custom providers
 ------------------------
 
-In addition to using the built-in providers, you can also write your own.
-Content goes here.
+In addition to using `the built-in configuration source providers <https://github.com/aspnet/Configuration/tree/dev/src/Microsoft.Framework.ConfigurationModel/Sources>`_, you can also write your own. To do so, you simply inherit from ``ConfigurationSource``, and populate the ``Data`` property with the settings from your configuration source.
 
+Example: Entity Framework Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You may wish to store some of your application's settings in a database, and access them using Entity Framework. There are many ways in which you could choose to store such values, ranging from a simple table with a column for the setting name and another column for the setting value, to having separate columns for each setting value. In this example, I'm going to create a simple ``Settings`` model type that will store each of its settings in a separate column in the database table. Here is the ``Settings`` class:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Models/Settings.cs
+	:linenos:
+	:language: c#
+
+Next we add this type to our DbContext, and add migrations if necessary. This custom configuration provider is not designed to be reused without modification between applications, but instead is specific to this application's requirements. Thus, it will rely directly on the ``ApplicationDbContext`` defined in this project, rather than a more generic type. Below is the updated ``ApplicationDbContext`` from the sample project.
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Models/ApplicationDbContext.cs
+	:linenos:
+	:emphasize-lines: 8
+	:language: c#
+
+Next, create the custom configuration source by inheriting from ``ConfigurationSource``. In this implementation, the provider assumes there is only ever one row in the Settings table (and if it doesn't exist, the provider will create one). Again, you can customize this behavior in your own implementation, perhaps by allowing for multiple named configurations to be stored in the database, for instance. The complete ``EfSettingConfigurationSource`` is shown below.
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/EfSettingConfigurationSource.cs
+	:linenos:
+	:emphasize-lines: 7, 22-24
+	:language: c#
+
+You can see an example of how to use this custom ``ConfigurationSource`` in your application in the following example. A reference to the application's ``ApplicationDbContext`` is passed into the controller using Dependency Injection. Then, the ``Index()`` method creates a new ``Configuration`` instance and adds the ``EfSettingConfigurationSource`` to it (you could create your own extension method for this, if desired, as well, to match the `built-in extension methods <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.ConfigurationModel/ConfigurationExtensions.cs>`_).
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Controllers/SettingsController.cs
+	:linenos:
+	:emphasize-lines: 21-22
+	:language: c#
+
+.. note:: In a production application, you would probably perform this configuration setup work in ``Startup.cs`` and pass an ``IConfiguration`` into your Controllers, :ref:`as shown above <inject-config>`.
+
+The view simply displays the values specified, in this case showing the defaults that are created when ``Settings`` already exists in the data source:
+
+.. image:: configuration/_static/settings-view.png
 
 Summary
 -------
 
-asdf
+ASP.NET 5 provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. You can create your own custom configuration source providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility.
 
 
 .. _configuration-author:

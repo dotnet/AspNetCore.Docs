@@ -40,7 +40,7 @@ namespace ConfigDemo
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
-            services.AddSingleton(Configuration);
+            services.AddSingleton(_ => Configuration);
 
             // Add EF services to the services container.
             services.AddEntityFramework()
