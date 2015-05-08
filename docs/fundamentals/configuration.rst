@@ -18,14 +18,12 @@ ASP.NET 5's configuration system has been re-architected from previous versions 
 
 To work with settings in your ASP.NET application, you can instantiate a new instance of ``Configuration`` anywhere you need one. However, it's recommended to do this once in your application's ``Startup``, and then inject an instance of ``IConfiguration`` into any controllers or services that need to access configuration. At its simplest, the ``Configuration`` class is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. For instance, you could include the following code in any method in your ASP.NET application:
 
-.. TODO: Update to use MemoryConfigurationSource instead of EnvironmentVariables
-
 .. code-block:: c#
 	:linenos:
 
 	// assumes using Microsoft.Framework.ConfigurationModel is specified
-	var config = new Configuration()
-		.AddEnvironmentVariables();
+	var config = new Configuration();
+	config.Add(new MemoryConfigurationSource());
 		
 	config.Set("somekey", "somevalue");
 	
@@ -34,6 +32,8 @@ To work with settings in your ASP.NET application, you can instantiate a new ins
 	string setting = config.Get("somekey); // returns "somevalue"
 	// or
 	string setting2 = config["somekey"]; // also returns "somevalue"
+
+.. note:: You must set at least one configuration source.
 
 It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following `config.json`` file:
 
@@ -85,7 +85,20 @@ Adding support for additional configuration file sources is accomplished through
 
 The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both ``config.json`` and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
 
-One challenge with the use of configuration files for specifying sensitive information like connection strings and API keys is that such files are typically committed to source control, possibly exposing such secrets. This is particularly troublesome for open source applications, but can be an issue with any application. By using environment variables for such values, default development settings and keys can be checked into source control (making them available to all developers), while in production the development settings are overwritten. Access to the production system's environment variables can be much more restrictive than access to the application's source control system, resulting in greater security for these secrets. Learn more about `safe storage of application secrets </security/app-secrets.html>`_
+One challenge with the use of configuration files for specifying sensitive information like connection strings and API keys is that such files are typically committed to source control, possibly exposing such secrets. This is particularly troublesome for open source applications, but can be an issue with any application. By using environment variables for such values, default development settings and keys can be checked into source control (making them available to all developers), while in production the development settings are overridden. Access to the production system's environment variables can be much more restrictive than access to the application's source control system, resulting in greater security for these secrets. Learn more about `safe storage of application secrets </security/app-secrets.html>`_
+
+One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In this simple console application, a default value for the ``username`` setting is specified in a ``MemoryConfigurationSource``, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many configuration sources are configured at each stage of the program.
+
+.. literalinclude:: configuration/sample/src/ConfigConsole/Program.cs
+	:linenos:
+	:language: c#
+	:emphasize-lines: 15-17,20,23
+	
+When run, the program will display the default value unless a command line parameter overrides it.
+
+.. image:: configuration/_static/config-console.png
+
+.. note:: As you can see, you can run DNX console applications using dnx commands, in addition to being able to compile them into EXEs.
 
 Writing custom providers
 ------------------------
