@@ -1,7 +1,7 @@
-View Components in MVC 6
+﻿View Components in MVC 6
 ======================================================
 
-By `Rick Anderson`_ | Updated : 1 June 2015 
+By `Rick Anderson`_ | Updated : 21 May 2015 
 
 .. _`Rick Anderson`: Author_
 
@@ -18,7 +18,7 @@ In this article:
 	- `Addition Resources`_
 	
 Create a new ASP.NET 5 starter project  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Start Visual Studio 2015. From the **File** menu  :menuselection:`click New --> Project`.
  
@@ -119,11 +119,7 @@ New to ASP.NET MVC 6, view components (VCs) are similar to partial views, but th
 - Shopping cart
 - Recently published articles
 - Sidebar content on a typical blog
-
-VC compared to partial views
-
-- Partial view data models are dependent on the model of the parent view, VCs don't have that restriction.
-- You can't call asynchronous methods with partial views, you can with VCs.
+- Partials are inflexible when you need a different model for the data source. VCs are not dependent on the strongly bound model of the parent view.
 
 One use of a VC could be to create a login panel that would be displayed on every page with the following functionality:
 
