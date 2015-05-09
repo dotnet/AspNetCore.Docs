@@ -8,3 +8,4 @@ Publishing and Deployment
     azure-windows-vm
     azure-continuous-deployment
     docker
+    how-to-customize
