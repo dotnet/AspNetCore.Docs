@@ -111,7 +111,7 @@ A command is a named execution of a .NET entry point with specific arguments. Yo
         "wwwroot"
       ],
       "dependencies": {
-        "Kestrel": "1.0.0-beta4-*",
+        "Kestrel": "1.0.0-beta4",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
         "Microsoft.AspNet.Hosting": "1.0.0-beta4",
         "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
