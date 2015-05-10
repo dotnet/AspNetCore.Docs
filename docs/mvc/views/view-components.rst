@@ -119,7 +119,6 @@ New to ASP.NET MVC 6, view components (VCs) are similar to partial views, but th
 - Shopping cart
 - Recently published articles
 - Sidebar content on a typical blog
-- Partials are inflexible when you need a different model for the data source. VCs are not dependent on the strongly bound model of the parent view.
 
 One use of a VC could be to create a login panel that would be displayed on every page with the following functionality:
 
@@ -127,7 +126,7 @@ One use of a VC could be to create a login panel that would be displayed on ever
 - If the user is logged in, links to log out and manage account are rendered.
 - If the user is in the admin role, an admin panel is rendered.
 
-You can also create a VC that gets and renders data depending on the user's claims. You can add this VC view to the layout page and have it get and render user-specific data throughout the whole application.
+You can also create a VC that gets and renders data depending on the user's claims. You can add this VC view to the layout page and have it get and render user-specific data throughout the whole application. ViewComponents don’t use model binding, and only depend on the data you provide when calling into it. 
 
 A VC consists of two parts, the class (typically derived from  ``ViewComponent``) and the Razor view which calls methods in the VC class. Like the new ASP.NET controllers, a VC can be a POCO, but most users will want to take advantage of the methods and properties available by deriving from ViewComponent.
 
