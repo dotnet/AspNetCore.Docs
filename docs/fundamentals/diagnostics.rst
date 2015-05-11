@@ -18,7 +18,7 @@ In this article:
 Configuring an error handling page
 ----------------------------------
 
-In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_). In order to add a simple error handling page, all that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
+In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_). You can add a simple error page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
 
 .. _diag-startup:
 
@@ -27,7 +27,7 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 	:linenos:
 	:emphasize-lines: 2,21
 
-The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/ErrorPageOptions.cs>`_ set to ``ShowAll``. Using ``ErrorPageOption`` you can toggle the visibility of the following features of the error page:
+The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/ErrorPageOptions.cs>`_ set to ``ShowAll``. Using ``ErrorPageOptions`` you can toggle the visibility of the following features of the error page:
 
 - Exception details
 - Source code
