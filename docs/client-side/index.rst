@@ -2,7 +2,7 @@ Client-Side Development
 -----------------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    grunt-gulp
    bower

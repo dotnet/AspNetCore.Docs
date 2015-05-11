@@ -2,7 +2,7 @@ Controllers
 -----------
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
     
     actions
     routing

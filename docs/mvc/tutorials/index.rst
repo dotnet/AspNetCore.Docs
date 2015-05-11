@@ -2,7 +2,7 @@ Tutorials
 ---------
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     mvc-with-entity-framework
     music-store/index

@@ -9,7 +9,7 @@ ASP.NET 5 Documentation
 .. include:: stub-overview.txt
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
     
     getting-started/index
     tutorials/index

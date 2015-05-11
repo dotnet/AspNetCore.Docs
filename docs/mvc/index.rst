@@ -4,7 +4,7 @@ ASP.NET MVC
 -----------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
    
    overview
    getting-started/index

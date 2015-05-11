@@ -2,7 +2,7 @@ Security
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    sociallogins
    accconfirm

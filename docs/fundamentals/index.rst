@@ -2,7 +2,7 @@ Fundamentals
 ============
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     startup
     http-abstractions

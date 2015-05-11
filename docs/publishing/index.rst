@@ -2,7 +2,7 @@ Publishing and Deployment
 =========================
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     iis
     azure-windows-vm

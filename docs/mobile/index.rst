@@ -2,7 +2,7 @@ Mobile
 ------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    /client-side/responsive-design
    /mvc/views/mobile

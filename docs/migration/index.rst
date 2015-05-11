@@ -2,7 +2,7 @@ Migration
 -----------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
    
    identity
    http-modules

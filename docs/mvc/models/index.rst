@@ -2,7 +2,7 @@ Models
 ------
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
     
     model-binding
     validation

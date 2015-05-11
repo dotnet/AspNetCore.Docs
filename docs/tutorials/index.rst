@@ -2,7 +2,7 @@ Tutorials
 ---------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    your-first-aspnet-application
    your-first-mac-aspnet

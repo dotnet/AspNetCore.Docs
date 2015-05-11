@@ -2,7 +2,7 @@ Authorization
 -------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    roles
    claims

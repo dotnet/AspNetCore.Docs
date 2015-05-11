@@ -2,7 +2,7 @@ Tag Helpers
 -----------
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
     
     intro
     using

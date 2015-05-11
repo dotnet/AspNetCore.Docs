@@ -2,7 +2,7 @@ Views
 -----
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
     
     razor
     dynamic-vs-static

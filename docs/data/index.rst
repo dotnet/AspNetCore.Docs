@@ -2,6 +2,6 @@ Working with Data
 -----------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
    
    entity-framework

@@ -8,7 +8,7 @@
 .. _issue: https://github.com/aspnet/Docs/issues/49
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
 
 

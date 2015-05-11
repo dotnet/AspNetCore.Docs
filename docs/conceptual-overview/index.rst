@@ -2,7 +2,7 @@ Conceptual Overview
 -------------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    aspnet
    dotnetcore

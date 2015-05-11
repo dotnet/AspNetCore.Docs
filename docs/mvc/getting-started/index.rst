@@ -2,7 +2,7 @@ Getting Started
 ---------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    first-mvc-app
    first-web-api
