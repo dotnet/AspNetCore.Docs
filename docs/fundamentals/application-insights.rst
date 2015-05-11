@@ -77,15 +77,37 @@ Then, add one line of code at the end of the ``<head>`` section:
 		@Html.ApplicationInsightsJavaScript(TelemetryConfiguration) 
 	</head>
 
-
 Viewing activity
 ----------------
 
+You can view the activity from your site once it's been configured and you've made some requests to it by navigating to the Azure portal. There, you will find the Application Insights resource you configured previously, and you will be able to view charts showing performance and activity data:
+
+.. image:: application-insights/_static/view-activity.png
+
+In addition to tracking activity and performance data on every page, you can also track specific events. For instance, if you want to know any time a user completes a certain transaction, you can create and track such events individually. To do so, you should inject the TelemetryClient into the controller in question, and call its ``TrackEvent`` method. In the included sample, we've added event tracking for user registration and successful and failed login attempts. You can see the required code in the excerpt from AccountController.cs shown below:
+
+.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Controllers/AccountController.cs
+	:linenos:
+	:emphasize-lines: 9,16,20,24,55,68,107
+	:lines: 1-115,451-
+	:caption: AccountController.cs
+
+With this in place, testing the application's registration and login feature results in the following activity available for analysis:
+
+.. image:: application-insights/_static/view-custom-events.png
+
+.. note:: Application Insights is still in development. To view the latest release notes and configuration instructions, please `refer to the project wiki <https://github.com/Microsoft/ApplicationInsights-aspnet5/wiki/Getting-Started>`_.
 
 Summary
 -------
 
-	
+Application Insights allows you to easily add application activity and performance tracking to any ASP.NET 5 app. With Application Insights in place, you can view live reports showing information about the users of your application and how it is performing, including both client and server performance information. In addition, you can track custom events, allowing to you capture user activities unique to your application.
+
+Additional Resources
+--------------------
+
+- `Application Insights API for custom events and metrics <http://azure.microsoft.com/en-us/documentation/articles/app-insights-api-custom-events-metrics/>`_
+
 .. _appinsights-author:
 
 .. include:: /_authors/steve-smith.txt

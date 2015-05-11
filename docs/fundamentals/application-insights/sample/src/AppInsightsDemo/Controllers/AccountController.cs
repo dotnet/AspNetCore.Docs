@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
-using AppInsightsDemo;
 using AppInsightsDemo.Models;
+using Microsoft.ApplicationInsights;
 
 namespace AppInsightsDemo.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private readonly TelemetryClient _telemetryClient;
+
+        public AccountController(UserManager<ApplicationUser> userManager, 
+            SignInManager<ApplicationUser> signInManager, 
+            TelemetryClient telemetryClient)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _telemetryClient = telemetryClient;
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-
         public SignInManager<ApplicationUser> SignInManager { get; private set; }
 
         //
@@ -52,6 +52,7 @@ namespace AppInsightsDemo.Controllers
                 var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
                 if (result.Succeeded)
                 {
+                    _telemetryClient.TrackEvent("LoginSuccess");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -64,6 +65,7 @@ namespace AppInsightsDemo.Controllers
                 }
                 else
                 {
+                    _telemetryClient.TrackEvent("LoginFailure");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
@@ -102,6 +104,7 @@ namespace AppInsightsDemo.Controllers
                     //await MessageServices.SendEmailAsync(model.Email, "Confirm your account",
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     await SignInManager.SignInAsync(user, isPersistent: false);
+                    _telemetryClient.TrackEvent("NewRegistration");
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
