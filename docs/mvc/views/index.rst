@@ -7,7 +7,7 @@ Views
     razor
     dynamic-vs-static
     html-helpers
-    tag-helpers
+    tag-helpers/index
     partial
     dependency-injection
     view-components
