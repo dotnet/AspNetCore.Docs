@@ -298,7 +298,7 @@ To call this factory from the controller, pass ``personFactory`` as a parameter 
 Using services to talk to a REST endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an end-to-end example using services in AngularJS to interact with an ASP.NET WebAPI REST endpoint. The example gets data from the service built using ASP.NET 5 and displays the data in a view template. Let's start with the view first: 
+Below is an end-to-end example using services in AngularJS to interact with an ASP.NET 5 Web API endpoint. The example gets data from the Web API built using ASP.NET 5 and displays the data in a view template. Let's start with the view first: 
 
 .. literalinclude:: angular/sample/src/Views/People/Index.cshtml
 	:language: html
@@ -328,7 +328,7 @@ In ``personController.js``, we are calling the module’s ``controller()`` metho
 	:linenos:
 	:emphasize-lines: 6-7,13
 
-Let's take a quick look at the ASP.NET 5 web service and the model behind it. The Person model is a plain POCO (Plain Old CLR Object) with Id, FirstName and LastName properties:
+Let's take a quick look at the ASP.NET 5 Web API and the model behind it. The Person model is a plain POCO (Plain Old CLR Object) with Id, FirstName and LastName properties:
 
 .. literalinclude:: angular/sample/src/Models/Person.cs
 	:language: csharp
