@@ -87,11 +87,13 @@ The path for this page can be optionally specified in the call to ``UseRuntimeIn
 
 .. code-block:: c#
 
-	app.UseRuntimeInfoPage(new RuntimeInfoPageOptions() { Path = new PathString("/info") });
+	app.UseRuntimeInfoPage("/info");
 
 As with ``UseErrorPage()``, it is a good idea to limit public access to diagnostic information about your application. As such, in our sample we are only implementing ``UseRuntimeInfoPage()`` when the EnvironmentName is set to Development.
 
 .. note:: Remember that the ``Configure()`` method in ``Startup.cs`` is defining the pipeline that will be used by all requests to your application, which means the order is important. If for example you move the call to ``UseRuntimeInfoPage()`` after the call to ``app.Run()`` in the examples shown here, it will never be called because ``app.Run()`` will handle the request before it reaches the call to ``UseRuntimeInfoPage``.
+
+.. TODO: Link to UseErrorHandler article.
 
 The welcome page
 ----------------
@@ -110,7 +112,7 @@ You can optionally configure the welcome page to only respond to certain paths. 
 
 .. code-block:: c#
 
-	app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
+	app.UseWelcomePage("/welcome"));
 
 Configured in this manner, the :ref:`startup.cs <diag-startup>` shown above will respond to requests as follows:
 

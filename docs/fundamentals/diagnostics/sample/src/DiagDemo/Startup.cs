@@ -29,7 +29,7 @@ namespace DiagDemo
                 // if nothing is set here, web server error page will be displayed
             }
 
-            app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
+            app.UseWelcomePage("/welcome");
 
             app.Run(async (context) =>
             {
