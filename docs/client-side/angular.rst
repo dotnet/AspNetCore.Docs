@@ -17,7 +17,7 @@ In this article:
 What is AngularJS?
 ------------------
 
-AngularJS is a modern JavaScript framework from Google commonly used to work with Single Page Applications (SPAs). AngularJS is open sourced under MIT license and the development progress of AngularJS can be followed on `its GitHub repository <https://github.com/angular/angular.js>`_. The library is called Angular because HTML uses angular brackets.
+`AngularJS <http://angularjs.org/>`_ is a modern JavaScript framework from Google commonly used to work with Single Page Applications (SPAs). AngularJS is open sourced under MIT license and the development progress of AngularJS can be followed on `its GitHub repository <https://github.com/angular/angular.js>`_. The library is called Angular because HTML uses angular brackets.
 
 AngularJS is not a DOM manipulation library like jQuery but it uses a subset of jQuery called jQLite. AngularJS is primarily based on declarative HTML attributes that you can add to your HTML tags. You can try AngularJS in your browser using the `Code School website <http://campus.codeschool.com/courses/shaping-up-with-angular-js/intro>`_.
 
@@ -71,7 +71,7 @@ AngularJS includes a number of major components, such as *directives*, *template
 Directives
 ^^^^^^^^^^
 
-AngularJS uses directives to extend HTML with custom attributes and elements. AngularJS directives are defined via ``data-ng-*`` or ``ng-*`` prefixes(``ng`` is short for angular). There are two types of AngularJS directives:
+AngularJS uses `directives <https://docs.angularjs.org/guide/directive>`_ to extend HTML with custom attributes and elements. AngularJS directives are defined via ``data-ng-*`` or ``ng-*`` prefixes(``ng`` is short for angular). There are two types of AngularJS directives:
 
 	- Primitive Directives: These are pre-defined by the Angular team and are part of the AngularJS framework.
 	- Custom Directives: These are custom directives that you can define.
@@ -112,7 +112,7 @@ For a full list of all primitive directives supported in AngularJS please refer 
 Data Binding
 ^^^^^^^^^^^^
 
-AngularJS provides data binding support out-of-the-box using either the ``ng-bind`` directive or a data binding expression syntax such as ``{{expression}}``. AngularJS supports two-way data binding where data from a model is kept in synchronization with a view template at all times. Any changes to the view are automatically reflected in the model and any changes in the model are likewise reflected in the view.
+AngularJS provides `data binding <https://docs.angularjs.org/guide/databinding>`_ support out-of-the-box using either the ``ng-bind`` directive or a data binding expression syntax such as ``{{expression}}``. AngularJS supports two-way data binding where data from a model is kept in synchronization with a view template at all times. Any changes to the view are automatically reflected in the model and any changes in the model are likewise reflected in the view.
 
 Create a new HTML file or controller action and view called ``Databinding`` and include the following:
 
@@ -128,7 +128,7 @@ Notice that you can display model values using either directives or data binding
 Templates
 ^^^^^^^^^
 
-Templates in AngularJS are just plain HTML pages decorated with AngularJS directives and artifacts. A template in AngularJS is a mixture of directives, expressions, filters, and controls that combine with HTML to form the view.
+`Templates <https://docs.angularjs.org/guide/templates>`_ in AngularJS are just plain HTML pages decorated with AngularJS directives and artifacts. A template in AngularJS is a mixture of directives, expressions, filters, and controls that combine with HTML to form the view.
 
 Add another view to demonstrate templates, and add the following to it:
 
@@ -148,7 +148,7 @@ If you change the name by typing in the input field, you will see the text next 
 Expressions
 ^^^^^^^^^^^
 
-Expressions in AngularJS are JavaScript-like code snippets that are written inside the ``{{ expression }}`` syntax. The data from these expressions are bound to HTML the same way as ng-bind directives. The main difference between AngularJS expressions and regular JavaScript expressions is that AngularJS expressions are evaluated against the ``$scope`` object in AngularJS. 
+`Expressions <https://docs.angularjs.org/guide/expression>`_ in AngularJS are JavaScript-like code snippets that are written inside the ``{{ expression }}`` syntax. The data from these expressions are bound to HTML the same way as ng-bind directives. The main difference between AngularJS expressions and regular JavaScript expressions is that AngularJS expressions are evaluated against the ``$scope`` object in AngularJS. 
 
 The AngularJS expressions in the sample below bind personName and a simple JavaScript calculated expression:
 
@@ -171,7 +171,7 @@ Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. T
 	:linenos:
 	:emphasize-lines: 7,9-10
 
-The repeat directive outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
+The `repeat directive <https://docs.angularjs.org/api/ng/directive/ngRepeat>`_ outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
 .. image:: angular/_static/repeater.png
 
@@ -212,7 +212,7 @@ $scope
 
 ``$scope`` is a JavaScript object that acts as glue between the view (template) and the controller (explained below). A view template in AngularJS only knows about the values that are set on the ``$scope`` object from the controller. 
 
-.. note:: In the MVVM world, the ``$scope`` object in AngularJS is often defined as the ViewModel. The AngularJS team refers to the ``$scope`` object as the Data-Model.
+.. note:: In the MVVM world, the ``$scope`` object in AngularJS is often defined as the ViewModel. The AngularJS team refers to the ``$scope`` object as the Data-Model. `Learn more about Scopes in AngularJS <https://docs.angularjs.org/guide/scope>`_
 
 Below is a simple example showing how to set properties on ``$scope`` within a separate JavaScript file, ``scope.js``:
 
@@ -221,7 +221,7 @@ Below is a simple example showing how to set properties on ``$scope`` within a s
 	:linenos:
 	:emphasize-lines: 2-3
 
-Observe the $scope parameter passed to the controller on line #2. This object is what the view knows about. In line #3, we are setting a property called "name" to "Mary Jane". 
+Observe the ``$scope`` parameter passed to the controller on line #2. This object is what the view knows about. In line #3, we are setting a property called "name" to "Mary Jane". 
 
 What happens when a particular property is not found by the view? The view defined below refers to name and age properties: 
 
@@ -237,7 +237,7 @@ Notice in line #8 that we are asking Angular to show the "name" property using e
 Modules
 ^^^^^^^
 
-A **module** in AngularJS is a collection of controllers, services, directives etc. The ``angular.module()`` function call is used to create, register and retrieve modules in AngularJS. All modules, including those shipped by the AngularJS team and third party libraries should be registered using the ``angular.module()`` function. 
+A `module <https://docs.angularjs.org/guide/module>`_ in AngularJS is a collection of controllers, services, directives etc. The ``angular.module()`` function call is used to create, register and retrieve modules in AngularJS. All modules, including those shipped by the AngularJS team and third party libraries should be registered using the ``angular.module()`` function. 
 
 Below is a snippet of code that shows how to create a new module in AngularJS. The first parameter is the name of the module. The second parameter defines dependencies on other modules. Later in this article we will be showing how to pass these dependencies to an ``angular.module()`` method call.
 
@@ -254,7 +254,7 @@ Use the ``ng-app`` directive to represent an AngularJS module on the page. To us
 Controllers
 ^^^^^^^^^^^
 
-Controllers in AngularJS are the first point of entry for your code. The ``<module name>.controller()`` function call is used to create and register controllers in AngularJS. The ``ng-controller`` directive is used to represent an AngularJS controller on the HTML page. The role of the controller in Angular is to set state and behavior of the data model (``$scope``). Controllers should not be used to manipulate the DOM directly.
+`Controllers <https://docs.angularjs.org/guide/controller>`_ in AngularJS are the first point of entry for your code. The ``<module name>.controller()`` function call is used to create and register controllers in AngularJS. The ``ng-controller`` directive is used to represent an AngularJS controller on the HTML page. The role of the controller in Angular is to set state and behavior of the data model (``$scope``). Controllers should not be used to manipulate the DOM directly.
 
 Below is a snippet of code that registers a new controller. The ``personApp`` variable in the snippet is an Angular module, defined on line 5.
 
@@ -278,7 +278,7 @@ The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``last
 Services
 ^^^^^^^^
 
-Services in AngularJS are commonly used shared code that are abstracted away into a file that can be used throughout the lifetime of an angular application. Services are lazily instantiated, meaning that there will not be an instance of a service unless a component that depends on the service gets used. Factories are an example of a service used in AngularJS applications. Factories are created using the ``myApp.factory()`` function call, where ``myApp`` is the module. 
+`Services <https://docs.angularjs.org/guide/services>`_ in AngularJS are commonly used shared code that are abstracted away into a file that can be used throughout the lifetime of an angular application. Services are lazily instantiated, meaning that there will not be an instance of a service unless a component that depends on the service gets used. Factories are an example of a service used in AngularJS applications. Factories are created using the ``myApp.factory()`` function call, where ``myApp`` is the module. 
 
 Below is an example that shows how to use factories in AngularJS: 
 
@@ -419,7 +419,7 @@ There are a number of directives in AngularJS that add event-handling capabiliti
 	- ``ng-keypress``
 	- ``ng-change``
 
-.. note:: You can add your own event handlers using the custom directives feature in AngularJS.
+.. note:: You can add your own event handlers using the `custom directives feature in AngularJS <https://docs.angularjs.org/guide/directive>`_.
 
 Let's look at how the ``ng-click`` event is wired up. Create a new JavaScript file, ``eventHandlerController.js``, and add the following to it.
 
