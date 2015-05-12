@@ -6,6 +6,18 @@
       "environmentVariables": {
         "ASPNET_ENV": "Development"
       }
+    },
+    "kestrel": {
+      "commandName": "kestrel",
+      "environmentVariables": {
+        "ASPNET_ENV": "Development"
+      }
+    },
+    "web": {
+      "commandName": "web",
+      "environmentVariables": {
+        "ASPNET_ENV": "Development"
+      }
     }
   }
 }
