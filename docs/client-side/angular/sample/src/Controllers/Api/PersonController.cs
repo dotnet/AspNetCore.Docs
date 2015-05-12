@@ -7,7 +7,7 @@ namespace AngularSample.Controllers.Api
     public class PersonController : Controller
     {
         [Route("/api/people")]
-        public JsonResult GetPersons()
+        public JsonResult GetPeople()
         {
             var people = new List<Person>()
             {
