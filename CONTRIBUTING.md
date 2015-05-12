@@ -1,7 +1,7 @@
 Contributing
 ======
 
-Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md) in the Home repo.
+Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) in the Home repo.
 
 The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructuredText](http://sphinx-doc.org/rest.html), and then hosted by [ReadTheDocs](http://aspnet.readthedocs.org).
 
