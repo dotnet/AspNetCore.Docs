@@ -34,7 +34,6 @@ The above code, which is built from the ASP.NET 5 Empty template, includes a sim
 - Query
 - Cookies
 - Headers
-- Environment
 
 To disable the display of cookies, for instance, you would pass in an options instance configured as follows:
 
@@ -48,7 +47,7 @@ Notice that the call to ``UseErrorPage()`` is wrapped inside an ``if`` condition
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseErrorPage()``, and thus any exceptions will be handled by the underlying web server (in this case, IIS Express) as shown here:
+Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseErrorPage()``, and thus any exceptions will be handled by the underlying web server package(in this case, ``Microsoft.AspNet.Server.IIS``) as shown here:
 
 .. image:: diagnostics/_static/oops-500.png
 
@@ -69,9 +68,7 @@ In this case, you can see the value of the ``throw`` parameter that was passed t
 
 .. image:: diagnostics/_static/errorpage-headers.png
 
-Finally, any environment variables defined for the server environment would be displayed on the Environment tab.
-
-.. note:: In the current pre-release build, both the Cookies and Environment sections of the ErrorPage are not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
+.. note:: In the current pre-release build, the Cookies section of ErrorPage is not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
 
 The runtime info page
 ---------------------
