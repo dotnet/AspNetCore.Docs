@@ -14,6 +14,7 @@ Fundamentals
     dependency-injection
     options
     diagnostics
+    application-insights
     logging
     app-state
     environments
