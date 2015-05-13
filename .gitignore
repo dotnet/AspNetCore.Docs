@@ -196,5 +196,7 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
 samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/wwwroot/lib/
 samples/AngularSample/src/AngularSample/wwwroot/lib
+project.lock.json

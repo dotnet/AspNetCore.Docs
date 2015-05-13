@@ -9,12 +9,16 @@
     },
     "kestrel": {
       "commandName": "kestrel",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:12333",
       "environmentVariables": {
         "ASPNET_ENV": "Development"
       }
     },
     "web": {
       "commandName": "web",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:12334",
       "environmentVariables": {
         "ASPNET_ENV": "Development"
       }

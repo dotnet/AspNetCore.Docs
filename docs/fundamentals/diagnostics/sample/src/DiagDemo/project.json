@@ -10,13 +10,13 @@
     },
 
     "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:12344"
+        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:12334",
+        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:12333"
     },
 
     "frameworks": {
-        "dnx451": { }/*,
-        "dnxcore50": { }*/
+        "dnx451": { },
+        "dnxcore50": { }
     },
 
     "publishExclude": [
