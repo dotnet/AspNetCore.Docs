@@ -85,7 +85,7 @@ Author information should be placed in the _authors folder following the example
 
 **Step 3:** Create a `branch` for your article.
 
-**Step 4:** Write your article, placing the article in its own folder and any needed images in a _static folder located in the same folder as the article. Be sure to follow the [ASP.NET Docs Style Guide](http://docs.asp.net/contribute/style-guide/style-guide). If you have code samples, place them in a folder within the `/samples/` folder.
+**Step 4:** Write your article, placing the article in its own folder and any needed images in a _static folder located in the same folder as the article. Be sure to follow the [ASP.NET Docs Style Guide](http://docs.asp.net/contribute/style-guide). If you have code samples, place them in a folder within the `/samples/` folder.
 
 **Step 5:** Submit a Pull Request from your branch to `aspnet/docs/master`.
 
