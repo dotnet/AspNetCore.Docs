@@ -138,7 +138,7 @@ In ASP.NET 5, you can easily add error pages, view diagnostic information, or re
 Additional Resources
 --------------------
 
-- `Using Application Insights <application-insights>`_ Collect detailed usage and diagnostic data for your application.
+- :ref:`Using Application Insights <application-insights>` Collect detailed usage and diagnostic data for your application.
 
 .. _diagnostics-author:
 
