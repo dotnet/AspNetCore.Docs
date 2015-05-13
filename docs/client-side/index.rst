@@ -8,7 +8,9 @@ Client-Side Development
    bower
    bootstrap
    knockout
+   angular
    less-sass-fa
    bundling-and-minification
    cdn
    responsive-design
+   typescript
