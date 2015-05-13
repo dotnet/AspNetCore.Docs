@@ -3,8 +3,6 @@
 
 By :ref:`Rick Anderson <viewcomp-author>`  | Updated : 12 May 2015
 
-.. _`Rick Anderson`: Author_
-
 In this article:
 	- `Create a new ASP.NET 5 starter project`_
 	- `Run EF migrations`_
