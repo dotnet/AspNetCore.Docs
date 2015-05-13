@@ -1,0 +1,14 @@
+﻿@{ Layout = "";
+}
+<html>
+<body ng-app>
+    <h1>Databinding</h1>
+
+    <div ng-init="firstName='John'; lastName='Doe';">
+        <strong>First name:</strong> {{firstName}} <br />
+        <strong>Last name:</strong> <span ng-bind="lastName" />
+    </div>
+
+    <script src="~/lib/angular/angular.js"></script>
+</body>
+</html>

@@ -86,7 +86,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 Use SecretManager to store Facebook AppId and AppSecret
 -----------------------------------------------------------
 
-The project creates has the following code in Startup which reads the configuration values from a secret store. As a best practise, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source code and can be publicly accessible.
+The project created has the following code in Startup which reads the configuration values from a secret store. As a best practise, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source code and can be publicly accessible.
 
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
