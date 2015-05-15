@@ -1,12 +1,12 @@
-﻿View Components in MVC 6
+View Components in MVC 6
 ======================================================
 
-By :ref:`Rick Anderson <viewcomp-author>`  | Updated : 12 May 2015
+By :ref:`Rick Anderson <viewcomp-author>`  | Updated : 15 May 2015
 
 In this article:
+	- `Introducing view components`_
 	- `Create a new ASP.NET 5 starter project`_
 	- `Run EF migrations`_
-	- `Introducing view components`_
 	- `Adding a view component class`_
 	- `Adding a view component view`_
 	- `Add InvokeAsync to the priority component`_
@@ -15,8 +15,40 @@ In this article:
 	- `Publish to Azure`_
 	- `Addition Resources`_
 	
+
+Introducing view components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+New to ASP.NET MVC 6, view components (VCs) are similar to partial views, but they are much more powerful. VCs include the same separation-of-concerns and testability benefits found between a controller and view. You can think of a VC as a mini-controller—it’s responsible for rendering a chunk rather than a whole response. You can use VCs to solve any problem that you feel is too complex with a partial, such as: 
+
+- Dynamic navigation menus
+- Tag cloud (where it queries the database)
+- Login panel
+- Shopping cart
+- Recently published articles
+- Sidebar content on a typical blog
+
+One use of a VC could be to create a login panel that would be displayed on every page with the following functionality:
+
+- If the user is not logged in, a login panel is rendered.
+- If the user is logged in, links to log out and manage account are rendered.
+- If the user is in the admin role, an admin panel is rendered.
+
+You can also create a VC that gets and renders data depending on the user's claims. You can add this VC view to the layout page and have it get and render user-specific data throughout the whole application. ViewComponents don’t use model binding, and only depend on the data you provide when calling into it. 
+
+A VC consists of two parts, the class (typically derived from  ``ViewComponent``) and the Razor view which calls methods in the VC class. Like the new ASP.NET controllers, a VC can be a POCO, but most users will want to take advantage of the methods and properties available by deriving from ``ViewComponent``.
+
+A view component class can be created by any of the following:
+
+- Deriving from  `ViewComponent <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ViewComponents/ViewComponent.cs>`__ .
+- Decorating the class with the ``[ViewComponent]`` attribute, or deriving from a class with the ``[ViewComponent]`` attribute.
+- Creating a class where the name ends with the suffix *ViewComponent*.
+
+Like controllers, VCs must be public, non-nested, non-abstract classes.
+
+
 Create a new ASP.NET 5 starter project  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Start Visual Studio 2015. From the **File** menu  :menuselection:`click New --> Project`.
  
@@ -106,35 +138,6 @@ Run the app and create a couple *Todo* items. Make at least one of the *Todo* it
 
 .. image:: _static/2do.png
 
-Introducing view components
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-New to ASP.NET MVC 6, view components (VCs) are similar to partial views, but they are much more powerful. VCs include the same separation-of-concerns and testability benefits found between a controller and view. You can think of a VC as a mini-controller—it’s responsible for rendering a chunk rather than a whole response. You can use VCs to solve any problem that you feel is too complex with a partial, such as: 
-
-- Dynamic navigation menus
-- Tag cloud (where it queries the database)
-- Login panel
-- Shopping cart
-- Recently published articles
-- Sidebar content on a typical blog
-
-One use of a VC could be to create a login panel that would be displayed on every page with the following functionality:
-
-- If the user is not logged in, a login panel is rendered.
-- If the user is logged in, links to log out and manage account are rendered.
-- If the user is in the admin role, an admin panel is rendered.
-
-You can also create a VC that gets and renders data depending on the user's claims. You can add this VC view to the layout page and have it get and render user-specific data throughout the whole application. ViewComponents don’t use model binding, and only depend on the data you provide when calling into it. 
-
-A VC consists of two parts, the class (typically derived from  ``ViewComponent``) and the Razor view which calls methods in the VC class. Like the new ASP.NET controllers, a VC can be a POCO, but most users will want to take advantage of the methods and properties available by deriving from ViewComponent.
-
-A view component class can be created by:
-
-- Deriving from  `ViewComponent <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ViewComponents/ViewComponent.cs>`__ .
-- Decorating the class with the ``[ViewComponent]`` attribute, or deriving from a class with the ``[ViewComponent]`` attribute.
-- Creating a class where the name ends with the suffix *ViewComponent*.
-
-Like controllers, VCs must be public, non-nested, non-abstract classes.
 
 Adding a view component class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,6 +193,9 @@ Adding a view component view
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a new folder called *Components* under the *Views\\Todo* folder. This folder **must** be named *Components*.
+
+.. note:: View Component views are more typically added to the *Views\\Shared* folder, because VCs are typically not controller specific.
+
 2. Create a new folder called *PriorityList* in under the *Views\\Todo\\Components* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the ViewComponent suffix in the class name). If you used the the ``ViewComponent`` attribute, the class name would need to match the attribute designation. 
 3. Use **Add exiting item** to copy *Views\\Todo\\Components\\PriorityList\\Default.cshtml* from the download. Alternatively, create a *Default.cshtml* Razor view file in the *Views\\Todo\\Components\\PriorityList* folder, and add the following markup: 
 
@@ -226,8 +232,6 @@ The markup ``@Component.Invoke`` shows the syntax for calling view components. T
 The following image shows the priority items:  (make sure you have at least one priority 1 item that is not completed)
 
 .. image:: _static/pi.png
-
-.. note:: View Component views are more typically added to the *Views\\Shared* folder, because VCs are typically not controller specific.
 
 Add InvokeAsync to the priority component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -495,3 +499,4 @@ Addition Resources
  .. _viewcomp-author:
 
 .. include:: /_authors/rick-anderson.txt
+
