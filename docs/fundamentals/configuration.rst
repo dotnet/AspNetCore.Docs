@@ -146,7 +146,7 @@ When run, the page displays the ``AppSettings:SiteTitle`` setting defined in ``c
 
 .. image:: configuration/_static/options-screenshot.png
 
-.. note:: Options (Microsoft.Framework.OptionsModel) is a framework for accessing and configuring POCO settings, and is part of ASP.NET 5. You can `view its source and comment or contribute to the project on GitHub <https://github.com/aspnet/Options>`_.
+.. note:: Options (Microsoft.Framework.OptionsModel) is a framework for accessing and configuring POCO settings, and is part of ASP.NET 5. You can `view its source and comment or contribute to the project on GitHub <https://github.com/aspnet/Options>`_ or `download it from NuGet <http://www.nuget.org/packages/Microsoft.Framework.OptionsModel>`_.
 
 Writing custom providers
 ------------------------
