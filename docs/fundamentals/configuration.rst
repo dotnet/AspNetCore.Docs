@@ -1,12 +1,13 @@
 Configuration
 =============
-By :ref:`Steve Smith <configuration-author>` | Originally Published: 6 May 2015
+By :ref:`Steve Smith <configuration-author>` | Originally Published: 16 May 2015
 
 ASP.NET 5 supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables. Of course, developers can build their own custom configuration providers, as well.
 
 In this article:
 	- `Getting and setting configuration settings`_
 	- `Using the built-in providers`_
+	- `Using Options and configuration objects`_
 	- `Writing custom providers`_
 	
 `Download sample from GitHub <https://github.com/aspnet/docs>`_.
@@ -35,7 +36,9 @@ To work with settings in your ASP.NET application, you can instantiate a new ins
 
 .. note:: You must set at least one configuration source.
 
-It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following `config.json`` file:
+It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following ``config.json`` file:
+
+.. _config-json:
 
 .. literalinclude:: configuration/sample/src/ConfigDemo/config.json
 	:linenos:
@@ -43,9 +46,13 @@ It's not unusual to store configuration values in a hierarchical structure, espe
 
 Access to the "SiteTitle" setting is done through a key of ``AppSettings:SiteTitle``. Similarly, access to the ``ConnectionString`` setting is achieved through this key: ``Data:DefaultConnection:ConnectionString``.
 
-.. TODO: Show how to load POCOs using https://github.com/aspnet/Options/blob/dev/src/Microsoft.Framework.OptionsModel/ConfigurationBinder.cs
+It's not recommended that developers access configuration directly within their ASP.NET applications by instantiating ``Configuration`` wherever they might need access to a setting. The recommended approach is to create your own settings class (probably several different classes, corresponding to different sets of settings), and use  :ref:`Options and configuration objects <options-config-objects>` and `Dependency Injection <dependency-injection.html>`_ to access these classes wherever they're needed (:ref:`see below <options-config-objects>`).
 
-The recommended way to access configuration settings from within your application is to leverage the built-in support for `Dependency Injection <dependency-injection.html>`_ in ASP.NET 5. First, set up configuration in ``Startup.cs`` (we'll see how in the next section), and assign the ``Configuration`` instance to a property on ``Startup``.  Next, in ``ConfigureServices()``, add the ``Configuration`` property to the list of services ASP.NET manages, like so:
+Injecting the Configuration object
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is also possible to inject the configuration system itself into your classes. This is not the preferred approach, since it doesn't take advantage of separate classes for separate groups of settings, and results in a more tightly coupled design. But it's a bit simpler and is still better than referencing ``Configuration`` directly from the app. 
+
+First, set up configuration in ``Startup.cs`` (we'll see how in :ref:`the next section <config-setup>`), and assign the ``Configuration`` instance to a property on ``Startup``.  Next, in ``ConfigureServices()``, add the ``Configuration`` property to the list of services ASP.NET manages, like so:
 
 .. code-block:: c#
 
@@ -69,7 +76,7 @@ Now with this in place, you can request an instance of ``IConfiguration`` in the
 	:emphasize-lines: 8-12,15-16
 	:lines: 1-12, 19-25, 38-
 
-This approach provides several benefits. First, it follows the `Don't Repeat Yourself, or DRY, Principle <http://deviq.com/don-t-repeat-yourself/>`_, because the ``Configuration`` instance is only defined in one place in the application. The resulting code is also easier to test, since it doesn't have a dependency on creating a ``Configuration`` instance, and instead a fake or mock ``IConfiguration`` instance can be provided during testing.
+The main benefits of this approach are that it allows your app to follow the `Don't Repeat Yourself, or DRY, Principle <http://deviq.com/don-t-repeat-yourself/>`_ and results in more testable code. The ``Configuration`` instance is only defined in one place in the application, and tests are able to replace the configuration values with a fake or mock ``IConfiguration`` instance that can easily be set up to provide values specific to individual tests. However, this approach does not provide any factoring of settings based on functionality or concern, and it tends to `spread magic strings <http://deviq.com/magic-strings/>`_ throughout the app, since the configuration key values must still be specified. The :ref:`Options <options-config-objects>` approach below provides the same benefits as this approach, without the associated drawbacks.
 
 Using the built-in providers
 ----------------------------
@@ -77,6 +84,8 @@ Using the built-in providers
 ASP.NET 5 ships with built-in support for JSON, XML, and INI configuration files, as well as support for in-memory configuration (directly setting values in code) and the ability to pull configuration from environment variables and command line parameters. Developers are not limited to using a single configuration source, and in fact several may be set up together such that a default configuration is overridden by settings from another source if they are present.
 
 Adding support for additional configuration file sources is accomplished through extension methods. These methods can be called on a ``Configuration`` instance in a standalone fashion, or chained together as a fluent API, as shown.
+
+.. _config-setup:
 
 .. literalinclude:: configuration/sample/src/ConfigDemo/ConfigSetup.cs
 	:linenos:
@@ -99,6 +108,45 @@ When run, the program will display the default value unless a command line param
 .. image:: configuration/_static/config-console.png
 
 .. note:: As you can see, you can run DNX console applications using dnx commands, in addition to being able to compile them into EXEs.
+
+.. _options-config-objects:
+
+Using Options and configuration objects
+---------------------------------------
+
+The default ASP.NET 5 web site template includes an example configuration object, ``AppSettings``, that is configured to be used with the ``IOptions<T>`` type. Using ``Options`` you can easily convert any class (or POCO - Plain Old CLR Object) into a settings class. It's recommended that you create well-factored settings objects that correspond to certain features within your application, thus following the Interface Segregation Principle (ISP) (classes depend only on the configuration settings they use) as well as Separation of Concerns (settings for disparate parts of your app are managed separately, and thus are less likely to negatively impact one another).
+
+The simple AppSettings.cs class included with the template is shown here:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Properties/AppSettings.cs
+	:language: c#
+
+The built-in ``Configuration`` object is responsible for mapping this class to settings in whichever configuration sources you have set up. To provide app-wide access to these settings, the settings must be added to the built-in ASP.NET services container in ``Startup.cs``:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Startup.cs
+	:language: c#
+	:emphasize-lines: 26
+	:lines: 16-41
+
+The call to ``Configuration.GetSubKey("AppSettings")`` returns an `IConfiguration` instance. ``Services.Configure<T>`` is responsible for mapping that ``IConfiguration`` instance to the associated POCO type specified. With this in place, the `AppSettings` configuration object can be referenced anywhere within the application by injecting an ``IOptions<AppSettings>`` type, as shown, and accessing the configuration object via its ``Options`` property:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Controllers/OptionsController.cs
+	:language: c#
+	:emphasize-lines: 10,12
+	:linenos:
+
+In this simple example, we're passing the ``AppSettings`` type to the view as a strongly-typed viewmodel, which is then displayed on the page as shown:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Views/Options/index.cshtml
+	:language: c#
+	:emphasize-lines: 1,3,5
+	:linenos:
+
+When run, the page displays the ``AppSettings:SiteTitle`` setting defined in ``config.json`` (:ref:`shown above <config-json>`):
+
+.. image:: configuration/_static/options-screenshot.png
+
+.. note:: Options (Microsoft.Framework.OptionsModel) is a framework for accessing and configuring POCO settings, and is part of ASP.NET 5. You can `view its source and comment or contribute to the project on GitHub <https://github.com/aspnet/Options>`_.
 
 Writing custom providers
 ------------------------
