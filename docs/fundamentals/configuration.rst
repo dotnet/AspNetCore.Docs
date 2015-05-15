@@ -180,10 +180,10 @@ You can see an example of how to use this custom ``ConfigurationSource`` in your
 
 .. literalinclude:: configuration/sample/src/ConfigDemo/Controllers/SettingsController.cs
 	:linenos:
-	:emphasize-lines: 21-22
+	:emphasize-lines: 20-22
 	:language: c#
 
-.. note:: In a production application, you would probably perform this configuration setup work in ``Startup.cs`` and pass an ``IConfiguration`` into your Controllers, :ref:`as shown above <inject-config>`.
+.. note:: In a production application, you would probably perform this configuration setup work in ``Startup.cs`` and pass an ``IOptions<T>`` type to your Controller, :ref:`as shown above <options-config-objects>`.
 
 The view simply displays the values specified, in this case showing the defaults that are created when ``Settings`` already exists in the data source:
 
