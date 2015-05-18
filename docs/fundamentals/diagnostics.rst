@@ -13,12 +13,12 @@ In this article:
 	
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/diagnostics/sample>`_.
 
-.. _configure-error-page
+.. _configure-error-page:
 
 Configuring an error handling page
 ----------------------------------
 
-In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_). You can add a simple error page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
+In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about :doc:`configuration`). You can add a simple error page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
 
 .. _diag-startup:
 
@@ -73,7 +73,7 @@ In this case, you can see the value of the ``throw`` parameter that was passed t
 The runtime info page
 ---------------------
 
-In addition to `configuring and displaying an error page <configure-error-page>`_, you can also add a runtime info page by simply calling an extension method in ``Startup.cs``. The following line, is used to enable this feature:
+In addition to :ref:`configuring and displaying an error page <configure-error-page>`, you can also add a runtime info page by simply calling an extension method in ``Startup.cs``. The following line, is used to enable this feature:
 
 .. code-block:: c#
 

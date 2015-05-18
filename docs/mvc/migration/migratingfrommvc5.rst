@@ -21,7 +21,7 @@ For the purposes of this article, we will be starting from the default ASP.NET M
 
 .. image:: migratingfrommvc5/_static/new-project-select-mvc-template.png
 
-If you prefer, you can `view or download the MVC 5 Project used in this article </https://github.com/aspnet/Docs/tree/master/samples/MigratingFromMvc5/Mvc5Project>`_.
+If you prefer, you can `view or download the MVC 5 Project used in this article <https://github.com/aspnet/Docs/tree/master/samples/MigratingFromMvc5/Mvc5Project>`_.
 
 This sample web project will demonstrate how to migrate an MVC 5 web project that includes controllers, views, and ASP.NET Identity models, as well as startup and configuration logic common to many MVC 5 projects.
 
@@ -75,6 +75,8 @@ Modify Index.cshtml to show a welcome message:
 Run the application - you should see Hello World output in your browser.
 
 .. image:: migratingfrommvc5/_static/hello-world.png
+
+.. _migrate-controllers-views-static:
 
 Migrate Basic Controllers, Views, and Static Content
 ----------------------------------------------------
