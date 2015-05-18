@@ -440,7 +440,7 @@ Add markup calling the StatisticsService to the end of the file:
 	public void ConfigureServices(IServiceCollection services)
 	{
 	   // Add Application settings to the services container.
-	   services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+	   services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
 	   // Code removed for brevity.
 	   // Add MVC services to the services container.
 	   services.AddMvc();
