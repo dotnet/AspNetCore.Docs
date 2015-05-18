@@ -1,7 +1,7 @@
 Working with Multiple Environments
 ==================================
 
-By :ref:`Steve Smith <environments-author>` | Originally Published: 6 May 2015 
+By :ref:`Steve Smith <environments-author>` | Originally Published: 18 May 2015 
 
 ASP.NET 5 introduces improved support for controlling application behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the application is running in, allowing the app to be configured appropriately.
 
@@ -32,7 +32,7 @@ You can manually add this value to other profiles, such as ``web`` (defined by d
 
 .. literalinclude:: environments/sample/src/Environments/Properties/launchSettings.json
 	:language: javascript
-	:caption: launchSettings.json``
+	:caption: launchSettings.json
 	:emphasize-lines: 7,13
 
 .. note:: Changes made to project profiles or to ``launchSettings.json`` directly will not take effect until the web server being used is restarted.
@@ -58,12 +58,51 @@ This is by no means meant to be a complete list. It's best to avoid scattering e
 Startup conventions
 -------------------
 
-ASP.NET 5 supports a convention-based approach to configuring an application's startup based on the current environment.
+ASP.NET 5 supports a convention-based approach to configuring an application's startup based on the current environment. You can also programmatically control how your application behaves according to which environment it is in, allowing you to create and manage your own conventions.
+
+When an ASP.NET 5 application starts, the ``Startup`` class is used to bootstrap the application, load its configuration settings, etc. (:doc:`learn more about ASP.NET startup <startup>`). However, if a class exists named ``Startup{EnvironmentName}``, e.g. ``StartupDevelopment``, and the ``ASPNET_ENV`` environment variable matches that name, then that ``Startup`` class is used instead. Thus, you could configure ``Startup`` for development, but have a separate ``StartupProduction`` that would be used when the app is run in production. Or vice versa.
+
+The following ``StartupDevelopment`` file from this articles sample project is run when the application is set to run in a Development environment:
+
+.. literalinclude:: environments/sample/src/Environments/StartupDevelopment.cs
+	:language: c#
+	:caption: StartupDevelopment.cs
+	:linenos:
+	:emphasize-lines: 5
+
+Run the application in development, and a welcome screen is displayed. The sample also includes a ``StartupStaging`` class:
+
+.. literalinclude:: environments/sample/src/Environments/StartupStaging.cs
+	:language: c#
+	:caption: StartupStaging.cs
+	:linenos:
+	:emphasize-lines: 6
+
+When the application is run with ``ASPNET_ENV`` set to ``Staging``, this ``Startup`` class is used, and the application will simply display a string stating it's running in a staging environment. The application's default ``Startup`` class will only run when ``ASPNET_ENV`` is not set to either ``Development`` or ``Staging`` (presumably, this would be when it is set to ``Production``, but you're not limited to only these three options. Also note that if no environment is set, the default ``Startup`` will run).
+
+In addition to using an entirely separate ``Startup`` class based on the current environment, you can also make adjustments to how the application is configured within a ``Startup`` class. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on an instance of ``IHostingEnvironment`` passed into the appropriate method.
+
+If you need to check whether the application is running in a particular environment, us ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
+
+.. TODO: Include samples/WebApplication1/src/WebApplication1/Startup.cs
+.. TODO: from PR 238
+
+In the ``Startup()`` method, the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
+
+In ``Configure()``, the environment is checked one more, and if the app is running in a ``Development`` environment, then it will enable BrowserLink and error pages.
 
 Environment variables
 ---------------------
 
+In addition to using Visual Studio's project properties and ``launchSettings.json`` file to set environment variables, you can of course manage environment variables yourself from the command line. On Windows, you can use ``set`` to view current environment variables, and ``set ASPNET_ENV=Deveopment`` to set the current environment to development. You can filter the list by piping (using the ``|`` character) the result to ``findstr``. The following screenshot shows how to view the current ASPNET_ENV setting (if any), how to set it, and then how to run the sample application from the command prompt:
 
+.. image:: environments/_static/windows-command-environment.png
+
+On a Mac, you can do the same thing, using a slightly different set of commands. Open a Terminal window, and use ``export`` to see a list of currently configured environment variables. You can filter the result by piping it to ``grep``. Use ``export ASPNET_ENV=Development`` to set the variable, as shown.
+
+.. image:: environments/_static/mac-terminal-environment.png
+
+At this point you could launch the application, perhaps using ``Kestrel`` as your web server. :doc:`Learn more about developing ASP.NET applications on a Mac <../tutorials/your-first-mac-aspnet>`.
 
 Summary
 -------
@@ -74,6 +113,7 @@ Additional Resources
 --------------------
 
 - `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
+- :doc:`Configuring ASP.NET 5 Applications <configuration>`
 
 .. _environments-author:
 

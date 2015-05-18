@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Builder;
 
-
 namespace Environments
 {
     public class StartupDevelopment
