@@ -2,7 +2,7 @@ Migrating Configuration From ASP.NET MVC 5 to MVC 6
 ===================================================
 By :ref:`Steve Smith <migratingconfig-author>` | Originally Published: 28 April 2015 
 
-In the previous article we began `migrating an ASP.NET MVC 5 project to MVC 6 </migrating/migratingfrommvc5/migratingfrommvc5>`_. In this article, we migrate the configuration feature from ASP.NET MVC 5 to ASP.NET MVC 6.
+In the previous article we began :doc:`migrating an ASP.NET MVC 5 project to MVC 6 <migratingfrommvc5>`. In this article, we migrate the configuration feature from ASP.NET MVC 5 to ASP.NET MVC 6.
 
 In this article:
 	- Set up Configuration
@@ -17,7 +17,7 @@ ASP.NET 5 and ASP.NET MVC 6 no longer use the Global.asax and Web.config files t
 
 The web.config file has also been replaced in ASP.NET 5. Configuration itself can now be configured, as part of the application startup procedure described in Startup.cs. Configuration can still utilize XML files, if desired, but typically ASP.NET 5 projects will place configuration values in a JSON-formatted file, such as config.json. ASP.NET 5's configuration system can also easily access environment variables, which can provide a more secure and robust location for environment-specific values. This is especially true for secrets like connection strings and API keys that should not be checked into source control.
 
-For this article, we are starting with the partially-migrated ASP.NET MVC 6 project from `the previous article <migratingfrommvc5>`_. To configure Configuration using the default MVC 6 settings, add the following constructor to the Startup.cs class in the root of the project:
+For this article, we are starting with the partially-migrated ASP.NET MVC 6 project from :doc:`the previous article <migratingfrommvc5>`. To configure Configuration using the default MVC 6 settings, add the following constructor to the Startup.cs class in the root of the project:
 
 .. code-block:: c#
 

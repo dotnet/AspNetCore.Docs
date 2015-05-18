@@ -38,7 +38,7 @@ There are several ways to add AngularJS to your application. If you’re startin
 	:linenos:
 	:emphasize-lines: 11
 	
-One you save the file, Angular will be installed for your project, located in the Bower folder. You can then use `Grunt or Gulp <../grunt-gulp/grunt-gulp>`_ to copy the appropriate files into your ``wwwroot/lib`` folder, as shown:
+One you save the file, Angular will be installed for your project, located in the Bower folder. You can then use :doc:`Grunt or Gulp <grunt-gulp>` to copy the appropriate files into your ``wwwroot/lib`` folder, as shown:
 
 .. image:: angular/_static/angular-solution-explorer.png
 
