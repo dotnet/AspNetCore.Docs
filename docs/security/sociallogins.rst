@@ -143,7 +143,7 @@ Login with Facebook
 
 .. image:: sociallogins/_static/FBLogin1.PNG
 
-- When you click on Facebook, you will be redirected to Facebook for authenication.
+- When you click on Facebook, you will be redirected to Facebook for authentication.
 
 .. image:: sociallogins/_static/FBLogin2.PNG
 
@@ -171,7 +171,7 @@ To set the password once you have logged in with an external provider:
 
 Next steps
 ----------
-- This article showed how you can authenicate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
+- This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
 - Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
