@@ -24,6 +24,8 @@ Developing on .NET Core allows you to target a single consistent platform that c
 
 Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET Core has to offer.
 
+.. note:: You cannot deploy a 64 bit version (full CLR or core) to a free or shared Azure web app. By default, Azure web apps created in Visual Studio are hosted as free. To deploy a 64 bit version, you must create a basic, standard or premium web app. 
+
 Mono
 ----
 
