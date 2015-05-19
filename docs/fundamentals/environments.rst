@@ -84,17 +84,24 @@ In addition to using an entirely separate ``Startup`` class based on the current
 
 If you need to check whether the application is running in a particular environment, us ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
 
-.. TODO: Include samples/WebApplication1/src/WebApplication1/Startup.cs
-.. TODO: from PR 238
+.. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
+	:language: c#
+	:caption: Startup.cs (some parts removed for brevity)
+	:linenos:
+	:dedent: 4
+	:lines: 27-47,89-109,134-135
+	:emphasize-lines: 8,10-15,30-41
 
-In the ``Startup()`` method, the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
+The highlighted sections in the example above show several examples of adjusting application configuration based on environment.
 
-In ``Configure()``, the environment is checked one more, and if the app is running in a ``Development`` environment, then it will enable BrowserLink and error pages.
+In the ``Startup()`` method (constructor), the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
+
+In ``Configure()``, the environment is checked once more, and if the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
 Environment variables
 ---------------------
 
-In addition to using Visual Studio's project properties and ``launchSettings.json`` file to set environment variables, you can of course manage environment variables yourself from the command line. On Windows, you can use ``set`` to view current environment variables, and ``set ASPNET_ENV=Deveopment`` to set the current environment to development. You can filter the list by piping (using the ``|`` character) the result to ``findstr``. The following screenshot shows how to view the current ASPNET_ENV setting (if any), how to set it, and then how to run the sample application from the command prompt:
+In addition to using Visual Studio's project properties and ``launchSettings.json`` file to set environment variables, you can of course manage environment variables yourself from the command line. On Windows, you can use ``set`` to view current environment variables, and ``set ASPNET_ENV=Development`` to set the current environment to development. You can filter the list by piping (using the ``|`` character) the result to ``findstr``. The following screenshot shows how to view the current ASPNET_ENV setting (if any), how to set it, and then how to run the sample application from the command prompt:
 
 .. image:: environments/_static/windows-command-environment.png
 
