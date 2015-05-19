@@ -49,7 +49,7 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             // Add Application settings to the services container.
-            services.Configure<AppSettings>(Configuration.GetConfigurationSection("AppSettings"));
+            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
             // Add EF services to the services container.
             services.AddEntityFramework()
