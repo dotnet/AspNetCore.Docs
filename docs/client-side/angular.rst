@@ -365,13 +365,13 @@ Now let's take the Person App we have been building and add navigation to it. Fi
 	
 Let's take a look at ``personModule.js`` file to see how we are instantiating the module with routing. We are passing ``ngRoute`` as a library into the module. This module handles routing in our application.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personmodule.js
+.. literalinclude:: angular/sample/src/wwwroot/app/personModule.js
 	:language: javascript
 	:linenos:
 
 The ``personRoutes.js`` file, below, defines routes based on the route provider. Lines 4-7 define navigation by effectively saying, when a URL with ``/persons`` is requested, use a template called ``partials/personList`` by working through ``personListController``. Lines 8-11 indicate a detail page with a route parameter of ``personId``. If the URL doesn't match one of the patterns, Angular defaults to the ``/persons`` view.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personroutes.js
+.. literalinclude:: angular/sample/src/wwwroot/app/personRoutes.js
 	:language: javascript
 	:linenos:
 	:emphasize-lines: 4-7, 8-11, 13
