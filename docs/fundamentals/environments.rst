@@ -8,7 +8,7 @@ ASP.NET 5 introduces improved support for controlling application behavior acros
 In this article:
 	- `Development, Staging, Production`_
 	- `Startup conventions`_
-	- `Environment variables`_
+	- `Determining the environment at runtime`_
 
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/environments/sample>`_.
 
@@ -82,7 +82,10 @@ When the application is run with ``ASPNET_ENV`` set to ``Staging``, this ``Start
 
 In addition to using an entirely separate ``Startup`` class based on the current environment, you can also make adjustments to how the application is configured within a ``Startup`` class. The ``Configure()`` and ``ConfigureServices()`` methods support environment-specific versions similar to the ``Startup`` class itself, of the form ``Configure[Environment]()`` and ``Configure[Environment]Services()``. If you define a method ``ConfigureDevelopment()`` it will be called instead of ``Configure()`` when the environment is set to development. Likewise, ``ConfigureDevelopmentServices()`` would be called instead of ``ConfigureServices()`` in the same environment.
 
-Another approach you can use is to programmatically inspect the environment and use it to customize behavior within the ``Startup`` class. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on an instance of ``IHostingEnvironment`` passed into the appropriate method.
+Determining the environment at runtime
+--------------------------------------
+
+The ``IHostingEnvironment`` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and is injected if you request an instance of ``IHostingEnvironment`` in the parameter list of the ``Configure()`` and ``ConfigureServices()`` methods within ``Startup``. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on the instance of ``IHostingEnvironment`` passed into the appropriate method.
 
 If you need to check whether the application is running in a particular environment, use ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
 
@@ -100,19 +103,6 @@ In the ``Startup()`` method (constructor), the configuration of the application 
 
 In ``Configure()``, the environment is checked once more, and if the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
-Environment variables
----------------------
-
-In addition to using Visual Studio's project properties and ``launchSettings.json`` file to set environment variables, you can of course manage environment variables yourself from the command line. On Windows, you can use ``set`` to view current environment variables, and ``set ASPNET_ENV=Development`` to set the current environment to development. You can filter the list by piping (using the ``|`` character) the result to ``findstr``. The following screenshot shows how to view the current ASPNET_ENV setting (if any), how to set it, and then how to run the sample application from the command prompt:
-
-.. image:: environments/_static/windows-command-environment.png
-
-On a Mac, you can do the same thing, using a slightly different set of commands. Open a Terminal window, and use ``export`` to see a list of currently configured environment variables. You can filter the result by piping it to ``grep``. Use ``export ASPNET_ENV=Development`` to set the variable, as shown.
-
-.. image:: environments/_static/mac-terminal-environment.png
-
-At this point you could launch the application, perhaps using ``Kestrel`` as your web server. :doc:`Learn more about developing ASP.NET applications on a Mac <../tutorials/your-first-mac-aspnet>`.
-
 Summary
 -------
 
@@ -123,6 +113,7 @@ Additional Resources
 
 - `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
 - :doc:`configuration`
+- `Configuring Environment Variables from command / terminal prompt <http://ardalis.com/configuring-asp-net-5-environment-variables>`_ on Windows and Mac OS
 
 .. _environments-author:
 
