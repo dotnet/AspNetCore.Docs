@@ -6,6 +6,7 @@ By :ref:`Rick Anderson <pubIIS-author>`  | Updated : 21 May 2015
 In this article:
 	- `Publish from Visual Studio`_
 	- `Xcopy to IIS Server`_
+	- `Xcopy Alternative: MSDeploy (Web Deploy) to IIS Server`_
 	- `Addition Resources`_
 	
 Publish from Visual Studio  
@@ -42,6 +43,32 @@ Xcopy to IIS Server
 #. In IIS manager, configure the app with application path to the **wwwroot** path. You can click on **Browse *.80(http)** to see your deployed app in the browser. 
 
 .. image:: pubIIS/_static/b8.png
+
+Xcopy Alternative: MSDeploy (Web Deploy) to IIS Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Confirm that you have included **Microsoft.AspNet.Server.IIS** in the project (or framework) dependencies of **project.json**.
+#. Confirm the server has .NET Framework 4.5.1 installed.
+#. Install the latest version of Web Deploy on the server and locally. This is most easily accomplished using the `Web Platform Installer <http://www.iis.net/learn/install/web-platform-installer/web-platform-installer-direct-downloads/>`_.
+#. On the server, create the physical folder layout for the deployment consisting of two folders: Create a root level folder to hold all of the deployed assets. You will probably name the root folder with the same name you give to the website in IIS. Within the root folder, create a **wwwroot** folder. These two folders are all that are required when configuring for the initial deployment. The **approot** folder will be created by MSDeploy when you initially deploy the application, so there is no need to create it at the outset.
+#. Create the website in the IIS Manager. Set the IIS physical path for the application to the **wwwroot** folder you created.
+#. Note for 32-bit applications: Set **Enable 32-Bit Applications** to **True** in the Application Pool Advanced Settings.
+#. Issue three MSDeploy commands in sequence: (1) Shutdown the AppPool, (2) Deploy the application, and (3) Start the AppPool. The purpose of killing the AppPool before deployment is to force IIS to release any file locks that it holds. Stopping/starting the AppPool must be performed every time you deploy to the server. These three commands will be issued for each server/VM where you are deploying. For Azure VM's, each VM will have a different port mapped to port 8172 in the Azure Cloud Service. Confirm that you've opened the firewall on each VM for traffic on 8172, as well.
+
+.. code-block:: none
+
+    "C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="IIS_SITE_NAME",recycleMode="StopAppPool",ComputerName="https://CLOUD_SERVICE_NAME.cloudapp.net:PORT/msdeploy.axd",UserName="USERNAME",Password="PASSWORD",AuthType="Basic"
+
+    "C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -allowUntrusted -source:contentPath="OUTPUT_FOLDER_PATH" -dest:contentPath="SERVER_FOLDER_PATH",ComputerName="https://CLOUD_SERVICE_NAME.cloudapp.net:PORT/msdeploy.axd",UserName="USERNAME",Password="PASSWORD",AuthType="Basic"
+
+    "C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="IIS_SITE_NAME",recycleMode="StartAppPool",ComputerName="https://CLOUD_SERVICE_NAME.cloudapp.net:PORT/msdeploy.axd",UserName="USERNAME",Password="PASSWORD",AuthType="Basic"
+
+* IIS_SITE_NAME = Enter your IIS website name.
+* OUTPUT_FOLDER_PATH = Provide the local physical path to your project's **output** folder (in the **bin** folder of the project), which is created when you publish to the file system in Visual Studio. The **output** folder contains the **approot** and **wwwroot** folders.
+* SERVER_FOLDER_PATH = Enter the root folder path on the server that you created in Step 4. This is the folder above the **wwwroot** folder on the server.
+* ComputerName = Provide your server location. The commands shown above assume an Azure VM is used for hosting [CLOUD_SERVICE_NAME = Azure Cloud Service, PORT = Publish port (mapped to port 8172 on each VM where you will publish)]
+* UserName = Enter your Web Deploy username.
+* Password = Enter your Web Deploy account password.
 
 Addition Resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^
