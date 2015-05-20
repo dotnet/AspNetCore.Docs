@@ -1,14 +1,14 @@
 Working with Multiple Environments
 ==================================
 
-By :ref:`Steve Smith <environments-author>` | Originally Published: 18 May 2015 
+By :ref:`Steve Smith <environments-author>` | Originally Published: 20 May 2015 
 
 ASP.NET 5 introduces improved support for controlling application behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the application is running in, allowing the app to be configured appropriately.
 
 In this article:
 	- `Development, Staging, Production`_
-	- `Startup conventions`_
 	- `Determining the environment at runtime`_
+	- `Startup conventions`_
 
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/environments/sample>`_.
 
@@ -55,6 +55,29 @@ The ``Production`` environment is the environment in which the application runs 
 
 This is by no means meant to be a complete list. It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's ``Startup`` class(es) wherever possible
 
+Determining the environment at runtime
+--------------------------------------
+
+The ``IHostingEnvironment`` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and is to methods within ``Startup`` via :doc:`dependency-injection`. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on the instance of ``IHostingEnvironment`` passed into the appropriate method.
+
+If you need to check whether the application is running in a particular environment, use ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
+
+The following code is taken from the default ASP.NET 5 web site template:
+
+.. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
+	:language: c#
+	:caption: Startup.cs (some parts removed for brevity)
+	:linenos:
+	:dedent: 4
+	:lines: 27-47,89-109,134-135
+	:emphasize-lines: 8,10-15,30-41
+
+The highlighted sections in the example above show several examples of adjusting application configuration based on environment.
+
+In the ``Startup()`` method (constructor), the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
+
+In ``Configure()``, the environment is checked once more, and if the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
+
 Startup conventions
 -------------------
 
@@ -82,26 +105,6 @@ When the application is run with ``ASPNET_ENV`` set to ``Staging``, this ``Start
 
 In addition to using an entirely separate ``Startup`` class based on the current environment, you can also make adjustments to how the application is configured within a ``Startup`` class. The ``Configure()`` and ``ConfigureServices()`` methods support environment-specific versions similar to the ``Startup`` class itself, of the form ``Configure[Environment]()`` and ``Configure[Environment]Services()``. If you define a method ``ConfigureDevelopment()`` it will be called instead of ``Configure()`` when the environment is set to development. Likewise, ``ConfigureDevelopmentServices()`` would be called instead of ``ConfigureServices()`` in the same environment.
 
-Determining the environment at runtime
---------------------------------------
-
-The ``IHostingEnvironment`` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and is injected if you request an instance of ``IHostingEnvironment`` in the parameter list of the ``Configure()`` and ``ConfigureServices()`` methods within ``Startup``. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on the instance of ``IHostingEnvironment`` passed into the appropriate method.
-
-If you need to check whether the application is running in a particular environment, use ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
-
-.. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
-	:language: c#
-	:caption: Startup.cs (some parts removed for brevity)
-	:linenos:
-	:dedent: 4
-	:lines: 27-47,89-109,134-135
-	:emphasize-lines: 8,10-15,30-41
-
-The highlighted sections in the example above show several examples of adjusting application configuration based on environment.
-
-In the ``Startup()`` method (constructor), the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
-
-In ``Configure()``, the environment is checked once more, and if the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
 Summary
 -------
@@ -113,7 +116,6 @@ Additional Resources
 
 - `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
 - :doc:`configuration`
-- `Configuring Environment Variables from command / terminal prompt <http://ardalis.com/configuring-asp-net-5-environment-variables>`_ on Windows and Mac OS
 
 .. _environments-author:
 
