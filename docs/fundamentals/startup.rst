@@ -16,7 +16,7 @@ In this article:
 The Startup class
 -----------------
 
-In ASP.NET 5, the Startup class provides the entry point for an application. It's possible to have :doc:`environment-specific startup files <environments>`, but regardless, one Startup class will serve as the entry point for the application.
+In ASP.NET 5, the ``Startup`` class provides the entry point for an application. It's possible to have :doc:`environment-specific startup files and methods <environments>`, but regardless, one ``Startup`` class will serve as the entry point for the application. This ``Startup`` class can accept dependencies in its constructor, 
 
 Understanding request delegates
 -------------------------------
