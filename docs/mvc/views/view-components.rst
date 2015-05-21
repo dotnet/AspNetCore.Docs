@@ -65,7 +65,7 @@ Under **ASP.NET 5 Preview Templates** select **Web Site**, and then **OK**.
 Add the Todo controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Download and open the completed project. [todo make link]
+1. Download and open the `completed project <https://dl.dropboxusercontent.com/u/18075777/ToDoFinal.zip>`_.
 2. In solution explorer, in the new app you've created, right click the *Controllers* folder :menuselection:`Add --> Exiting Item`. Enter the path to the *TodoController.cs* file in the download project.
 3. Using the same approach, add the *Models\\TodoItem.cs* and  *Models\\TodoItemEditModel.cs* to the *Models* folder.
 4. Create a *ToDo* folder under *Views*. Using the same approach, add all the views in the download *Views\\ToDo* folder to the new project *Views\\Todo* folder. 
@@ -122,7 +122,7 @@ Run EF migrations
 	dnx . ef migration add Initial
 	dnx . ef migration apply
 
-- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use default`` instructs the .NET Version Manager to add the ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For Visual Studio 2015 RC, the following is displayed:  [TODO Needs work]
+- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use default`` instructs the .NET Version Manager to add the ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For Visual Studio 2015 RC, the following is displayed: 
 
 .. code-block:: javascript
 
