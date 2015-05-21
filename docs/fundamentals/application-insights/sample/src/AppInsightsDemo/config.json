@@ -1,6 +1,6 @@
 {
     "ApplicationInsights": {
-        "InstrumentationKey": "your key goes here"
+        "InstrumentationKey": "YOUR KEY GOES HERE"
     },
     "AppSettings": {
         "SiteTitle": "AppInsightsDemo"

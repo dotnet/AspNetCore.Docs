@@ -6,6 +6,7 @@
     "dependencies": {
         "EntityFramework.SqlServer": "7.0.0-beta4",
         "EntityFramework.Commands": "7.0.0-beta4",
+        "Microsoft.ApplicationInsights.AspNet": "0.32.0-beta4",
         "Microsoft.AspNet.Mvc": "6.0.0-beta4",
         "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta4",
         "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta4",
@@ -25,8 +26,7 @@
         "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta4",
         "Microsoft.Framework.Logging": "1.0.0-beta4",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta4",
-        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta4",
-        "Microsoft.ApplicationInsights.AspNet": "0.32.0-beta4"
+        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta4"
     },
 
     "commands": {

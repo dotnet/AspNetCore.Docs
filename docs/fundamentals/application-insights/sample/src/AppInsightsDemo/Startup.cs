@@ -10,7 +10,6 @@ using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.Logging;
 using AppInsightsDemo.Models;
-using Microsoft.ApplicationInsights.AspNet;
 
 namespace AppInsightsDemo
 {
@@ -42,6 +41,7 @@ namespace AppInsightsDemo
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
+            // Add Application Insights data collection services to the container
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add EF services to the services container.
@@ -82,6 +82,8 @@ namespace AppInsightsDemo
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
+            
+            // Track HTTP request telemetry data
             app.UseApplicationInsightsRequestTelemetry();
 
             // Add the console logger.
@@ -100,6 +102,9 @@ namespace AppInsightsDemo
                 // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
+            
+            // Track exception telemetry data
+            // Should be configured after all error handling middleware
             app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
