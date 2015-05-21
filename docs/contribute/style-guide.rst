@@ -27,9 +27,21 @@ Section headings should correspond to the bulleted list of topics set out after 
 
 Subsection headings can be used to organize content within a section. `Headings`, above, is an example of a subsection heading. A subsection heading should appear on its own line, followed by a line of ^^^ characters.
 
+.. code-block:: rst
+
+	Title (H1)
+	==========
+	
+	Section heading (H2)
+	--------------------
+	
+	Subsection heading (H3)
+	^^^^^^^^^^^^^^^^^^^^^^^
+
 For section headings, only the first word should be capitalized:
-- This heading follow the style
-- This Heading Does Note
+
+- Use this heading style
+- Do Not Use This Style 
 
 More on sections and headings in ReStructuredText:
 http://sphinx-doc.org/rest.html#sections

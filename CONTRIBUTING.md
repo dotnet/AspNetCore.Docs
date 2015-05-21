@@ -54,24 +54,25 @@ If contributing new documentation content, please review:
 
 Before adding content, submit an issue with a suggestion for your proposed article. Provide detail on what the article would discuss, and how it would relate to existing documentation.
 
-Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). Within each section, each article should also have its own folder, within which the article.rst file resides. Images and other static resources (code samples, etc.) should be placed in a _static folder within the article folder.
+Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). That section contains the rst files for all articles in the section. For images and other static resources, create a subfolder that matches the name of the article. Within this subfolder, create a ``sample`` folder for code samples and a  ``_static`` folder for images and other static content.
 
 ### Example Structure ###
 
 	docs
-		/yourfirst
-			/fundamentalconcepts
+		/client-side
+			/angular
+				/_static
+					controllers.png
+					events.png
+					...
+				/sample
+					(sample code)
+			/bootstrap
 				/_static
 					about-page.png
-					add-config.png
 					...
-				fundamentalconcepts.rst
-			/yourfirstaspnetapplication
-				/_static
-					about-page.png
-					add-api-controller.png
-					...
-				yourfirstaspnetapplication.rst
+			angular.rst
+			bootstrap.rst
 
 **Note:** Sphinx will automatically fix duplicate image names, such as the about-page.png files shown above. There is no need to try to ensure uniqueness of static files beyond an individual article.
 

@@ -82,12 +82,12 @@ The **scripts** section is used to specify when certain build automation scripts
 The global.json File
 --------------------
 
-The global.json file is used to configure the solution as a whole. It includes just two sections, ``sources`` and ``sdk`` by default.
+The global.json file is used to configure the solution as a whole. It includes just two sections, ``projects`` and ``sdk`` by default.
 
 .. literalinclude:: understanding-aspnet5-apps/sample/global.json
 	:language: javascript
 
-The *sources* property designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
+The *projects* property designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
 
 .. image:: understanding-aspnet5-apps/_static/solution-files.png
 
@@ -147,7 +147,7 @@ Individual entries within *config.json* are not limited to name-value pairs, but
 
 There's nothing special about the *config.json* filename - it's specified by name in Startup.cs_. You can add as many different configuration files as makes sense for your app, rather than having to add to an ever-growing *web.config* file. You're also not limited to just JSON-formatted files - you can still use XML or even .INI files if you prefer.
 
-Accessing configuration data from your app is best done by injecting the `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.ConfigurationModel.Interfaces/IConfiguration.cs>`_ interface into your controller, and then simply calling its ``Get`` method with the name of the configuration element you need. For example, to store the application name in config and display it on the About page, you would need to make three changes to the default project. First, add the entry to *project.config*.
+Accessing configuration data from your app is best done by injecting the `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.ConfigurationModel.Interfaces/IConfiguration.cs>`_ interface into your controller, and then simply calling its ``Get`` method with the name of the configuration element you need. For example, to store the application name in config and display it on the About page, you would need to make three changes to the default project. First, add the entry to *config.json*.
 
 .. image:: understanding-aspnet5-apps/_static/add-config.png
 
