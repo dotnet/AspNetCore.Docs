@@ -1,7 +1,7 @@
 Working with Multiple Environments
 ==================================
 
-By :ref:`Steve Smith <environments-author>` | Originally Published: 20 May 2015 
+By `Steve Smith`_
 
 ASP.NET 5 introduces improved support for controlling application behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the application is running in, allowing the app to be configured appropriately.
 
@@ -117,6 +117,3 @@ Additional Resources
 - `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
 - :doc:`configuration`
 
-.. _environments-author:
-
-.. include:: /_authors/steve-smith.txt

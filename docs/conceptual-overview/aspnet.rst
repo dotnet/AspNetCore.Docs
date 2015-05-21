@@ -1,6 +1,7 @@
 Introduction to ASP.NET 5
 =========================
-By :ref:`Daniel Roth <aspnet-author>` | Updated : 28 April 2015
+
+By `Daniel Roth`_
 
 ASP.NET 5 is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET 5 and explains how they help you develop modern web apps.
 
@@ -119,6 +120,3 @@ Client-side development
 
 ASP.NET 5 is designed to integrate seamlessly with a variety of client-side frameworks, including `AngularJS <https://angularjs.org/>`_, `KnockoutJS <http://knockoutjs.com>`_ and `Bootstrap <http://getbootstrap.com/>`_. See :doc:`/client-side/index` for more details.
 
-.. _aspnet-author:
-
-.. include:: /_authors/daniel-roth.txt

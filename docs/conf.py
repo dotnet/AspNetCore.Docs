@@ -98,6 +98,15 @@ rst_prolog = """
 .. raw:: html
 
 	<noscript><img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/></noscript>
+	
+.. _Daniel Roth: https://github.com/danroth27
+.. _Rick Anderson: https://github.com/rick-anderson
+.. _Steve Smith: https://github.com/ardalis
+.. _Noel Rice: https://github.com/noelatfalafel
+.. _Venkata Koppaka: https://github.com/vkoppaka
+.. _Mike Wasson: https://github.com/mikewasson
+.. _Erik Reitan: https://github.com/Erikre
+.. _Pranav Rastogi: https://github.com/rustd
 """
 
 # -- Options for HTML output ----------------------------------------------

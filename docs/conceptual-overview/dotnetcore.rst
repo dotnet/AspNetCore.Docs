@@ -1,6 +1,7 @@
 Introducing .NET Core
 =====================
-By :ref:`Steve Smith <dotnetcore-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_ 
 
 .NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core means for your ASP.NET 5 application.
 
@@ -79,7 +80,4 @@ Learn more about .NET Core:
 	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore5>`_
 	- `.NET Core is Open Source <http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx>`_
 	- `.NET Core on GitHub <https://github.com/dotnet/corefx>`_
-	
-.. _dotnetcore-author:
 
-.. include:: /_authors/steve-smith.txt

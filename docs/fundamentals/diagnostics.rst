@@ -1,7 +1,7 @@
 Diagnostics
 ===========
 
-By :ref:`Steve Smith <diagnostics-author>` | Originally Published: 6 May 2015 
+By `Steve Smith`_
 
 ASP.NET 5 includes a number of new features that can assist with diagnosing problems. Configuring different handlers for application errors or to display additional information about the application can easily be achieved in the application's startup class.
 
@@ -140,6 +140,3 @@ Additional Resources
 
 - :ref:`Using Application Insights <application-insights>` Collect detailed usage and diagnostic data for your application.
 
-.. _diagnostics-author:
-
-.. include:: /_authors/steve-smith.txt

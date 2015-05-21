@@ -1,6 +1,7 @@
 Grunt and Gulp: Task Runners
 ============================
-By :ref:`Noel Rice <grunt-gulp-author>` | Originally Published: 28 April 2015 
+
+By `Noel Rice`_
 
 Both Grunt and Gulp are JavaScript task runners that automate script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Both Grunt and Gulp are equally supported in Visual Studio 2015. The ASP.NET project templates use Gulp by default.
 
@@ -392,6 +393,3 @@ Summary
 
 Both Grunt and Gulp are powerful tasks runners that automate most client-build tasks. Grunt and Gulp both require support from NPM to deliver their packages. While Grunt is configured using Gruntfile.js and Gulp is configured using Gulpfile.js, both build tools play nicely in Visual Studio, automatically sensing changes to the configuration files. Task Runner Explorer detects changes to configuration files and provides a convenient interface to run tasks, view running tasks, and bind tasks to Visual Studio events. 
 
-.. _grunt-gulp-author:
-
-.. include:: /_authors/noel-rice.txt

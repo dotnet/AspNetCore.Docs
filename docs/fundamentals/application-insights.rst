@@ -1,6 +1,7 @@
 Application Insights
 ====================
-By :ref:`Steve Smith <appinsights-author>` | Originally Published: 21 May 2015 
+
+By `Steve Smith`
 
 `Application Insights <http://azure.microsoft.com/services/application-insights/>`_ provides development teams with a 360 |deg| view across their live application's performance, availability, and usage. It can also `detect and diagnose issues and exceptions <http://azure.microsoft.com/documentation/articles/app-insights-detect-triage-diagnose/>`_ in these applications. Telemetry data may be collected from web servers and web clients, as well as desktop  and mobile applications.
 
@@ -119,6 +120,3 @@ Additional Resources
 - `Application Insights API for custom events and metrics <http://azure.microsoft.com/documentation/articles/app-insights-api-custom-events-metrics/>`_
 - `Application Insights for ASP.NET 5 <http://blogs.msdn.com/b/webdev/archive/2015/05/19/application-insights-for-asp-net-5-you-re-in-control.aspx>`_
 
-.. _appinsights-author:
-
-.. include:: /_authors/steve-smith.txt

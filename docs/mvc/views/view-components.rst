@@ -1,7 +1,7 @@
 View Components in MVC 6
 ======================================================
 
-By :ref:`Rick Anderson <viewcomp-author>`  | Updated : 15 May 2015
+By `Rick Anderson`_
 
 In this article:
 	- `Introducing view components`_
@@ -495,8 +495,5 @@ Addition Resources
 
 - `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_
 - `Introducing .NET Core <http://docs.asp.net/en/latest/conceptual-overview/dotnetcore.html>`_
- 
- .. _viewcomp-author:
 
-.. include:: /_authors/rick-anderson.txt
 

@@ -1,6 +1,7 @@
 Migrating Configuration From ASP.NET MVC 5 to MVC 6
 ===================================================
-By :ref:`Steve Smith <migratingconfig-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_
 
 In the previous article we began :doc:`migrating an ASP.NET MVC 5 project to MVC 6 <migratingfrommvc5>`. In this article, we migrate the configuration feature from ASP.NET MVC 5 to ASP.NET MVC 6.
 
@@ -79,6 +80,3 @@ Summary
 
 ASP.NET 5 places all Startup logic for the application in a single file in which necessary services and dependencies can be defined and configured. It replaces the web.config file with a flexible configuration feature that can leverage a variety of file formats, such as JSON, as well as environment variables.
 
-.. _migratingconfig-author:
-
-.. include:: /_authors/steve-smith.txt

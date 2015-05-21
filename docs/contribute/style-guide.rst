@@ -2,7 +2,9 @@
 
 ASP.NET Docs Style Guide
 ========================
-By :ref:`Steve Smith <style-guide-author>` | Originally Published: 15 April 2015 
+
+By `Steve Smith`_
+
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
 In this article:
@@ -12,7 +14,7 @@ In this article:
 Article Structure
 -----------------
 
-Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in two places in an article document: line 3 and on the very last line, where the appropriate author.txt file is included (e.g. steve-smith.txt). Author photos should be 125 pixels tall and 125 pixels or less in width.
+Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author should be displayed with a link to an author specific page (ex. the author's GitHub user page, Twitter page, etc.). 
 
 Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list. 
 
@@ -274,6 +276,3 @@ Summary
 
 This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
 
-.. _style-guide-author:
-
-.. include:: /_authors/steve-smith.txt

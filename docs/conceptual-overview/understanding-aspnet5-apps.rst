@@ -1,6 +1,7 @@
 Understanding ASP.NET 5 Web Apps
 ================================
-By :ref:`Steve Smith <understanding-aspnet5-apps-author>` | Updated : 27 April 2015 
+
+By `Steve Smith`_
 
 ASP.NET 5 introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
 
@@ -267,6 +268,3 @@ Summary
 
 ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
 
-.. _understanding-aspnet5-apps-author:
-
-.. include:: /_authors/steve-smith.txt

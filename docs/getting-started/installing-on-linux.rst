@@ -1,6 +1,7 @@
 Installing ASP.NET 5 On Linux
 ================================
-By :ref:`Daniel Roth <installing-on-linux-author>` | Originally Published: 28 April 2015 
+
+By `Daniel Roth`_
 
 ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including Linux. This article describes how to install DNX, and therefore ASP.NET 5, on Linux using Mono.
 
@@ -100,8 +101,5 @@ Installing on CentOS, Fedora and derivatives
 .. note::
 
     Installation steps for CentOS, Fedora and derivatives are not currently available but should be available soon. The commands are mostly the same, with some differences to account for the different package managers used on these systems. Learn how you can `contribute <https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md>`_ on GitHub.
-    
-.. _installing-on-linux-author:
-    
-.. include:: /_authors/daniel-roth.txt    
+  
 

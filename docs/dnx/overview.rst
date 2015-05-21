@@ -1,6 +1,7 @@
 DNX Overview
 ====================================
-By :ref:`Daniel Roth <dnx-author>` | Updated : 28 April 2015
+
+By `Daniel Roth`_
 
 What is the .NET Execution Environment?
 ---------------------------------------------
@@ -163,6 +164,3 @@ You can install multiple DNX versions and flavors on your machine. To install an
 
 See :doc:`/getting-started/index` for instructions on how to acquire and install DNVM for your platform.
 
-.. _dnx-author:
-
-.. include:: /_authors/daniel-roth.txt
