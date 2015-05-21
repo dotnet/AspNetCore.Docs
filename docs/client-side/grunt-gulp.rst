@@ -314,6 +314,7 @@ Instead of adding Gruntfile.js to the project, add a JavaScript file to the proj
 	var concat = require('gulp-concat');
 	var jshint = require('gulp-jshint');
 	var uglify = require('gulp-uglify');
+	var rename = require('gulp-rename');
 
 Below these assignments in gulpfile.js, call the ``gulp`` object ``task()`` method. The first parameter to task() is the name of the task and the second is a function.
 

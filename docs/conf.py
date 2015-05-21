@@ -68,7 +68,7 @@ release = '0.0.1'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build','sample/*','samples/*']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -94,6 +94,11 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
+rst_prolog = """
+.. raw:: html
+
+	<noscript><img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/></noscript>
+"""
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -110,6 +115,7 @@ if not on_rtd:
 	
 def setup(app):
 	app.add_stylesheet('custom.css')	
+	app.add_javascript('wedc.js')
 
 #html_theme = 'default'
 

@@ -2,7 +2,7 @@ Getting Started
 ---------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    installing-on-windows
    installing-on-mac

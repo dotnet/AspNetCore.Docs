@@ -2,7 +2,7 @@ Migrating Authentication and Identity From ASP.NET MVC 5 to MVC 6
 =================================================================
 By :ref:`Steve Smith <migratingauthmembership-author>` | Originally Published: 1 June 2015 
 
-In the previous article we `migrated configuration from an ASP.NET MVC 5 project to MVC 6 </migrating/migratingconfig/migratingconfig>`_. In this article, we migrate the registration, login, and user management features.
+In the previous article we :doc:`migrated configuration from an ASP.NET MVC 5 project to MVC 6 <migratingconfig>`. In this article, we migrate the registration, login, and user management features.
 
 This article covers the following topics:
 	- Configure Identity and Membership
@@ -106,7 +106,7 @@ Our application is now ready to support authentication and identity services - i
 Migrate Registration and Login Logic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-With identity services configured for the application and data access configured using Entity Framework and SQL Server, we are now ready to add support for registration and login to the application. Recall that `earlier in the migration process </migrating/migratingfrommvc5/migratingfrommvc5.html#migrate-basic-controllers-views-and-static-content>`_ we commented out a reference to _LoginPartial in _Layout.cshtml. Now it's time to return to that code, uncomment it, and add in the necessary controllers and views to support login functionality.
+With identity services configured for the application and data access configured using Entity Framework and SQL Server, we are now ready to add support for registration and login to the application. Recall that :ref:`earlier in the migration process <migrate-controllers-views-static>` we commented out a reference to _LoginPartial in _Layout.cshtml. Now it's time to return to that code, uncomment it, and add in the necessary controllers and views to support login functionality.
 
 Update _Layout.cshtml; uncomment the @Html.Partial line:
 
