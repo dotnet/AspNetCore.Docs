@@ -77,7 +77,7 @@ The last file that needs to be updated in order to finish setting up your ASP.NE
 
 	@inject Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfiguration 
 
-Then, add one line of code at the end of the ``<head>`` section:
+Then, add one line of code at the end of the ``<head>`` section (before any other JavaScript blocks specified there):
 
 .. code-block:: html
 
