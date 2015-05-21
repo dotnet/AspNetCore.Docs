@@ -13,21 +13,8 @@ namespace ContosoBooks.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using (var db = serviceProvider.GetService<BookContext>())
-            {
-                var sqlServerDb = db.Database as SqlServerDatabase;
-                if (sqlServerDb != null)
-                {
-                    sqlServerDb.EnsureDeleted();
-
-                    if (sqlServerDb.EnsureCreated())
-                    {
-                        InsertTestData(db);
-                    }
-                }
-                else
-                {
-                    InsertTestData(db);
-                }
+            { 
+                InsertTestData(db);
             }
         }
 

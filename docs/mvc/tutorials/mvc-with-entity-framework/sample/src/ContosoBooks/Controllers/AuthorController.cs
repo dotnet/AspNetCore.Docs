@@ -16,19 +16,16 @@ namespace ContosoBooks.Controllers
     public class AuthorController : Controller
     {
         [FromServices]
-        public BookContext DbContext { get; set; }
-
-        [FromServices]
-        public ILogger<AuthorController> Logger { get; set; }
+        public BookContext BookContext { get; set; }
 
         public IActionResult Index()
         {
-            return View(DbContext.Authors);
+            return View(BookContext.Authors);
         }
 
         public async Task<ActionResult> Details(int id)
         {
-            Author author = await DbContext.Authors
+            Author author = await BookContext.Authors
                 .SingleOrDefaultAsync(x => x.AuthorID == id);
             if (author == null)
             {
@@ -50,14 +47,13 @@ namespace ContosoBooks.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DbContext.Authors.Add(author);
-                    await DbContext.SaveChangesAsync();
+                    BookContext.Authors.Add(author);
+                    await BookContext.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataStoreException ex)
+            catch (DataStoreException)
             {
-                Logger.LogError("Unable to save changes.", ex);
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
 
@@ -84,12 +80,11 @@ namespace ContosoBooks.Controllers
             try
             {
                 Author author = await FindAuthorAsync(id);
-                DbContext.Authors.Remove(author);
-                await DbContext.SaveChangesAsync();
+                BookContext.Authors.Remove(author);
+                await BookContext.SaveChangesAsync();
             }
-            catch (DataStoreException ex)
+            catch (DataStoreException)
             {
-                Logger.LogError("Unable to delete record.", ex);
                 return RedirectToAction("Delete", new { id = id, retry = true });
             }
             return RedirectToAction("Index");
@@ -113,14 +108,13 @@ namespace ContosoBooks.Controllers
             try
             {
                 author.AuthorID= id;
-                DbContext.Authors.Attach(author);
-                DbContext.Entry(author).State = EntityState.Modified;
-                await DbContext.SaveChangesAsync();
+                BookContext.Authors.Attach(author);
+                BookContext.Entry(author).State = EntityState.Modified;
+                await BookContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch (DataStoreException ex)
+            catch (DataStoreException)
             {
-                Logger.LogError("Unable to update.", ex);
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
             return View(author);
@@ -128,7 +122,7 @@ namespace ContosoBooks.Controllers
 
         private Task<Author> FindAuthorAsync(int id)
         {
-            return DbContext.Authors.SingleOrDefaultAsync(x => x.AuthorID == id);
+            return BookContext.Authors.SingleOrDefaultAsync(x => x.AuthorID == id);
         }
     }
 }

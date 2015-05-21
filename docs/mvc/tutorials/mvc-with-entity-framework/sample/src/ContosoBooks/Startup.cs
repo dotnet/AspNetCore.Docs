@@ -37,11 +37,13 @@ namespace ContosoBooks
             services.AddMvc();
 
             services.AddEntityFramework()
-                //.AddInMemoryStore()
+                .AddInMemoryStore()
                 .AddSqlServer()
                 .AddDbContext<BookContext>(options =>
                 {
                     options.UseSqlServer(Configuration.Get("Data:ConnectionString"));
+                    // To select the in-memory store instead, uncomment the following:
+                    // options.UseInMemoryStore();
                 });
 
         }
