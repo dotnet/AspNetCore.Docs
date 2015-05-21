@@ -27,6 +27,9 @@ namespace AppInsightsDemo
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
+
+                // This will expedite telemetry through pipeline,
+                // allowing you to view results immediately
                 configuration.AddApplicationInsightsSettings(developerMode: true);
             }
             configuration.AddEnvironmentVariables();
@@ -41,7 +44,7 @@ namespace AppInsightsDemo
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
-            // Add Application Insights data collection services to the container
+            // Add Application Insights data collection services to the container.
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add EF services to the services container.
@@ -83,7 +86,7 @@ namespace AppInsightsDemo
         {
             // Configure the HTTP request pipeline.
             
-            // Track HTTP request telemetry data
+            // Track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 
             // Add the console logger.
@@ -103,8 +106,8 @@ namespace AppInsightsDemo
                 app.UseErrorHandler("/Home/Error");
             }
             
-            // Track exception telemetry data
-            // Should be configured after all error handling middleware
+            // Track exception telemetry data;
+            // Should be configured after all error handling middleware.
             app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.

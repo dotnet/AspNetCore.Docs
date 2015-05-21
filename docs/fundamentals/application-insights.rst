@@ -66,8 +66,8 @@ An edited ``Startup.cs`` is shown below, highlighting the necessary Application 
 	:linenos:
 	:language: c#
 	:caption: Startup.cs
-	:lines: 16-31,33-37,39-40,44-45,79-80,82-108,134-135
-	:emphasize-lines: 15,24-25,32-33,52-54
+	:lines: 16-34,36-40,42-43,47-48,82-83,85-113,137-138
+	:emphasize-lines: 16-18,27-28,35-36,55-57
 	
 .. note:: Setting AppInsights in developerMode (``configuration.AddApplicationInsightsSettings(developerMode: true)``) will expedite your telemetry through the pipeline so that you can see results immediately (`learn more <http://azure.microsoft.com/documentation/articles/app-insights-api-custom-events-metrics/#debug>`_).
 
