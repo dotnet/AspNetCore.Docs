@@ -12,7 +12,7 @@ In this article:
 Article Structure
 -----------------
 
-Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in 3 places in an article document: line 3, line 5 (an alias to the Author_ target), and on the very last line, where the appropriate author.rst file is included (e.g. steve-smith.rst).
+Articles should be submitted as individual text files with a **.rst** extension. Authors should be sure they are familiar with the `Sphinx Style Guide <http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html>`_, but where there are disagreements, this document takes precedence. The article should begin with its title on line 1, followed by a line of === characters. Next, the author and publication date should be displayed. The author name appears in two places in an article document: line 3 and on the very last line, where the appropriate author.txt file is included (e.g. steve-smith.txt). Author photos should be 125 pixels tall and 125 pixels or less in width.
 
 Articles should typically begin with a brief abstract describing what will be covered, followed by a bulleted list of topics, if appropriate. If the article has associated sample files, a link to the samples should be included following this bulleted list. 
 
@@ -27,9 +27,21 @@ Section headings should correspond to the bulleted list of topics set out after 
 
 Subsection headings can be used to organize content within a section. `Headings`, above, is an example of a subsection heading. A subsection heading should appear on its own line, followed by a line of ^^^ characters.
 
+.. code-block:: rst
+
+	Title (H1)
+	==========
+	
+	Section heading (H2)
+	--------------------
+	
+	Subsection heading (H3)
+	^^^^^^^^^^^^^^^^^^^^^^^
+
 For section headings, only the first word should be capitalized:
-- This heading follow the style
-- This Heading Does Note
+
+- Use this heading style
+- Do Not Use This Style 
 
 More on sections and headings in ReStructuredText:
 http://sphinx-doc.org/rest.html#sections

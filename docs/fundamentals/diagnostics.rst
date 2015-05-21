@@ -13,12 +13,12 @@ In this article:
 	
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/diagnostics/sample>`_.
 
-.. _configure-error-page
+.. _configure-error-page:
 
 Configuring an error handling page
 ----------------------------------
 
-In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about `configuration <configuration>`_). In order to add a simple error handling page, all that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
+In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about :doc:`configuration`). You can add a simple error page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project (and a ``using`` statement to ``Startup.cs``), and then add one line to ``Configure()`` in ``Startup.cs``:
 
 .. _diag-startup:
 
@@ -27,14 +27,13 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 	:linenos:
 	:emphasize-lines: 2,21
 
-The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/ErrorPageOptions.cs>`_ set to ``ShowAll``. Using ``ErrorPageOption`` you can toggle the visibility of the following features of the error page:
+The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` with `ErrorPageOptions <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/ErrorPageOptions.cs>`_ set to ``ShowAll``. Using ``ErrorPageOptions`` you can toggle the visibility of the following features of the error page:
 
 - Exception details
 - Source code
 - Query
 - Cookies
 - Headers
-- Environment
 
 To disable the display of cookies, for instance, you would pass in an options instance configured as follows:
 
@@ -48,7 +47,7 @@ Notice that the call to ``UseErrorPage()`` is wrapped inside an ``if`` condition
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseErrorPage()``, and thus any exceptions will be handled by the underlying web server (in this case, IIS Express) as shown here:
+Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseErrorPage()``, and thus any exceptions will be handled by the underlying web server package(in this case, ``Microsoft.AspNet.Server.IIS``) as shown here:
 
 .. image:: diagnostics/_static/oops-500.png
 
@@ -69,14 +68,12 @@ In this case, you can see the value of the ``throw`` parameter that was passed t
 
 .. image:: diagnostics/_static/errorpage-headers.png
 
-Finally, any environment variables defined for the server environment would be displayed on the Environment tab.
-
-.. note:: In the current pre-release build, both the Cookies and Environment sections of the ErrorPage are not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
+.. note:: In the current pre-release build, the Cookies section of ErrorPage is not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
 
 The runtime info page
 ---------------------
 
-In addition to `configuring and displaying an error page <configure-error-page>`_, you can also add a runtime info page by simply calling an extension method in ``Startup.cs``. The following line, is used to enable this feature:
+In addition to :ref:`configuring and displaying an error page <configure-error-page>`, you can also add a runtime info page by simply calling an extension method in ``Startup.cs``. The following line, is used to enable this feature:
 
 .. code-block:: c#
 
@@ -90,11 +87,13 @@ The path for this page can be optionally specified in the call to ``UseRuntimeIn
 
 .. code-block:: c#
 
-	app.UseRuntimeInfoPage(new RuntimeInfoPageOptions() { Path = new PathString("/info") });
+	app.UseRuntimeInfoPage("/info");
 
 As with ``UseErrorPage()``, it is a good idea to limit public access to diagnostic information about your application. As such, in our sample we are only implementing ``UseRuntimeInfoPage()`` when the EnvironmentName is set to Development.
 
 .. note:: Remember that the ``Configure()`` method in ``Startup.cs`` is defining the pipeline that will be used by all requests to your application, which means the order is important. If for example you move the call to ``UseRuntimeInfoPage()`` after the call to ``app.Run()`` in the examples shown here, it will never be called because ``app.Run()`` will handle the request before it reaches the call to ``UseRuntimeInfoPage``.
+
+.. TODO: Link to UseErrorHandler article.
 
 The welcome page
 ----------------
@@ -113,7 +112,7 @@ You can optionally configure the welcome page to only respond to certain paths. 
 
 .. code-block:: c#
 
-	app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
+	app.UseWelcomePage("/welcome"));
 
 Configured in this manner, the :ref:`startup.cs <diag-startup>` shown above will respond to requests as follows:
 
@@ -139,7 +138,7 @@ In ASP.NET 5, you can easily add error pages, view diagnostic information, or re
 Additional Resources
 --------------------
 
-- `Using Application Insights <application-insights>`_ Collect detailed usage and diagnostic data for your application.
+- :ref:`Using Application Insights <application-insights>` Collect detailed usage and diagnostic data for your application.
 
 .. _diagnostics-author:
 

@@ -66,7 +66,7 @@ Services in ASP.NET 5 come in three varieties: singleton, scoped and transient. 
 Middleware
 ----------
 
-In ASP.NET 5 you compose your request pipeline using middleware. ASP.NET 5 middleware perform asynchronous logic on an ``HttpContext`` and then optionally  invoke the next middleware in the sequence or terminate the request directly. You generally "Use" middleware by invoking a corresponding extension method on the ``IApplicationBuilder`` in your ``Configure`` method.
+In ASP.NET 5 you compose your request pipeline using :doc:`/fundamentals/middleware`. ASP.NET 5 middleware perform asynchronous logic on an ``HttpContext`` and then optionally  invoke the next middleware in the sequence or terminate the request directly. You generally "Use" middleware by invoking a corresponding extension method on the ``IApplicationBuilder`` in your ``Configure`` method.
 
 ASP.NET 5 comes with a rich set of prebuilt middleware:
 
@@ -75,7 +75,7 @@ ASP.NET 5 comes with a rich set of prebuilt middleware:
 - :doc:`/fundamentals/diagnostics`
 - :doc:`Authentication </security/index>`
 
-You can also author your own :doc:`custom middleware </extensibility/middleware>`.
+You can also author your own :doc:`custom middleware </fundamentals/middleware>`.
 
 You can use any `OWIN <http://owin.org>`_-based middleware with ASP.NET 5. See :doc:`/fundamentals/owin` for details.
 
@@ -94,7 +94,7 @@ The Web root of your application is the root location in your project from which
 Configuration
 -------------
 
-ASP.NET 5 uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-it configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET 5 and can also be set up using environment variables:
+ASP.NET 5 uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET 5 and can also be set up using environment variables:
 
 .. code-block:: c#
 

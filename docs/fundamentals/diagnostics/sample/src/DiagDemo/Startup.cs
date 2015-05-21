@@ -29,12 +29,18 @@ namespace DiagDemo
                 // if nothing is set here, web server error page will be displayed
             }
 
-            app.UseWelcomePage(new WelcomePageOptions() { Path = new PathString("/welcome") });
+            app.UseWelcomePage("/welcome");
 
             app.Run(async (context) =>
             {
                 if(context.Request.Query.ContainsKey("throw")) throw new Exception("Exception triggered!");
-                await context.Response.WriteAsync("Hello World!");
+                context.Response.ContentType = "text/html";
+                await context.Response.WriteAsync("<html><body>Hello World!");
+                await context.Response.WriteAsync("<ul>");
+                await context.Response.WriteAsync("<li><a href=\"/welcome\">Welcome Page</a></li>");
+                await context.Response.WriteAsync("<li><a href=\"/?throw=true\">Throw Exception</a></li>");
+                await context.Response.WriteAsync("</ul>");
+                await context.Response.WriteAsync("</body></html>");
             });
         }
     }

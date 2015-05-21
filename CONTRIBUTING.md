@@ -1,7 +1,7 @@
 Contributing
 ======
 
-Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md) in the Home repo.
+Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) in the Home repo.
 
 The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructuredText](http://sphinx-doc.org/rest.html), and then hosted by [ReadTheDocs](http://aspnet.readthedocs.org).
 
@@ -18,6 +18,10 @@ This may take a few minutes.
 This project is also using a custom theme from ReadTheDocs, which you can install with:
 
 	pip install sphinx_rtd_theme
+
+Note that later if you wish to update your current, installed version of this theme, you should run:
+
+	pip install -U sphinx_rtd_theme
 
 You should now be able to navigate to the `docs` folder and run
 
@@ -39,35 +43,36 @@ Note that you may need to run 'make html' once before sphinx-autobuild will serv
     		def decode(self, input, final=False):
         		return codecs.charmap_decode(input,'ignore',decoding_table)[0]
 
-This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme.
+This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme. Note that you may need to re-apply this fix after making updates to packages on your machine.
 
 If contributing new documentation content, please review:
 
 - the [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html)
-- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide/style-guide.html)
+- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html)
 
 ## Adding Content ##
 
 Before adding content, submit an issue with a suggestion for your proposed article. Provide detail on what the article would discuss, and how it would relate to existing documentation.
 
-Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). Within each section, each article should also have its own folder, within which the article.rst file resides. Images and other static resources (code samples, etc.) should be placed in a _static folder within the article folder.
+Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). That section contains the rst files for all articles in the section. For images and other static resources, create a subfolder that matches the name of the article. Within this subfolder, create a ``sample`` folder for code samples and a  ``_static`` folder for images and other static content.
 
 ### Example Structure ###
 
 	docs
-		/yourfirst
-			/fundamentalconcepts
+		/client-side
+			/angular
+				/_static
+					controllers.png
+					events.png
+					...
+				/sample
+					(sample code)
+			/bootstrap
 				/_static
 					about-page.png
-					add-config.png
 					...
-				fundamentalconcepts.rst
-			/yourfirstaspnetapplication
-				/_static
-					about-page.png
-					add-api-controller.png
-					...
-				yourfirstaspnetapplication.rst
+			angular.rst
+			bootstrap.rst
 
 **Note:** Sphinx will automatically fix duplicate image names, such as the about-page.png files shown above. There is no need to try to ensure uniqueness of static files beyond an individual article.
 
@@ -81,7 +86,7 @@ Author information should be placed in the _authors folder following the example
 
 **Step 3:** Create a `branch` for your article.
 
-**Step 4:** Write your article, placing the article in its own folder and any needed images in a _static folder located in the same folder as the article. Be sure to follow the [ASP.NET Docs Style Guide](http://docs.asp.net/contribute/style-guide/style-guide). If you have code samples, place them in a folder within the `/samples/` folder.
+**Step 4:** Write your article, placing the article in its own folder and any needed images in a _static folder located in the same folder as the article. Be sure to follow the [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html). If you have code samples, place them in a folder within the `/samples/` folder.
 
 **Step 5:** Submit a Pull Request from your branch to `aspnet/docs/master`.
 

@@ -2,6 +2,7 @@ Compatibility
 -------------
 
 .. toctree::
+    :titlesonly:
 
-   cookie-sharing
-   replacing-machinekey
+    cookie-sharing
+    replacing-machinekey

@@ -2,10 +2,15 @@ Client-Side Development
 -----------------------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    grunt-gulp
    bower
    bootstrap
    knockout
+   angular
    less-sass-fa
+   bundling-and-minification
+   cdn
+   responsive-design
+   typescript
