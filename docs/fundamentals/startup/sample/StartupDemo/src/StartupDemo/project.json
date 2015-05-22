@@ -4,7 +4,10 @@
 
   "dependencies": {
     "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4"
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
+    "Microsoft.Framework.Logging": "1.0.0-beta4",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta4"
   },
 
   "commands": {

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 
 namespace StartupDemo
 {
@@ -16,6 +17,50 @@ namespace StartupDemo
         public void ConfigureServices(IServiceCollection services)
         {
         }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello, World!");
+            });
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello, World, Again!");
+            });
+        }
+
+        public void ConfigureLogInline(IApplicationBuilder app, ILoggerFactory loggerfactory)
+        {
+            loggerfactory.AddConsole(minLevel: LogLevel.Information);
+            var logger = loggerfactory.CreateLogger(_environment);
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("Handling request.");
+                await next.Invoke();
+                logger.LogInformation("Finished handling request.");
+            });
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
+
+        public void ConfigureLogMiddleware(IApplicationBuilder app, 
+            ILoggerFactory loggerfactory)
+        {
+            loggerfactory.AddConsole(minLevel: LogLevel.Information);
+
+            app.UseRequestLogger();
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
+
 
         public void ConfigureEnvironmentOne(IApplicationBuilder app)
         {
