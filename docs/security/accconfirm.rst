@@ -217,6 +217,12 @@ Currently once a user completes the registration form, they are logged in. You g
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user))
                 {
+		    // Send an email with confirmation link
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Context.Request.Scheme);
+                    await MessageServices.SendEmailAsync(model.Email, "Confirm your account",
+                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                        
                     ModelState.AddModelError(string.Empty, "You must have a confirmed email to log in.");
                     return View(model);
                 }
