@@ -30,7 +30,7 @@ namespace ContosoBooks
             services.AddMvc();
 
             services.AddEntityFramework()
-               // .AddInMemoryStore()
+                .AddInMemoryStore()
                 .AddSqlServer()
                 .AddDbContext<BookContext>(options =>
                 {
