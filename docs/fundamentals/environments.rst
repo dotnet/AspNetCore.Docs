@@ -85,7 +85,7 @@ ASP.NET 5 supports a convention-based approach to configuring an application's s
 
 When an ASP.NET 5 application starts, the ``Startup`` class is used to bootstrap the application, load its configuration settings, etc. (:doc:`learn more about ASP.NET startup <startup>`). However, if a class exists named ``Startup{EnvironmentName}``, e.g. ``StartupDevelopment``, and the ``ASPNET_ENV`` environment variable matches that name, then that ``Startup`` class is used instead. Thus, you could configure ``Startup`` for development, but have a separate ``StartupProduction`` that would be used when the app is run in production. Or vice versa.
 
-The following ``StartupDevelopment`` file from this articles sample project is run when the application is set to run in a Development environment:
+The following ``StartupDevelopment`` file from this article's sample project is run when the application is set to run in a Development environment:
 
 .. literalinclude:: environments/sample/src/Environments/StartupDevelopment.cs
 	:language: c#
