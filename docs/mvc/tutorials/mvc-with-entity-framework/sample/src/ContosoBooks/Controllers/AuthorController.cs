@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ContosoBooks.Models;
+using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Storage;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using ContosoBooks.Models;
-using Microsoft.Framework.Logging;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity.Storage;
-using Microsoft.Data.Entity;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ContosoBooks.Controllers
 {
@@ -26,7 +20,7 @@ namespace ContosoBooks.Controllers
         public async Task<ActionResult> Details(int id)
         {
             Author author = await BookContext.Authors
-                .SingleOrDefaultAsync(x => x.AuthorID == id);
+                .SingleOrDefaultAsync(a => a.AuthorID == id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -122,7 +116,7 @@ namespace ContosoBooks.Controllers
 
         private Task<Author> FindAuthorAsync(int id)
         {
-            return BookContext.Authors.SingleOrDefaultAsync(x => x.AuthorID == id);
+            return BookContext.Authors.SingleOrDefaultAsync(author => author.AuthorID == id);
         }
     }
 }

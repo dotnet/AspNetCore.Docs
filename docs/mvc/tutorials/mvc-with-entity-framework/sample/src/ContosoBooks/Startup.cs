@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ContosoBooks.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Routing;
+using Microsoft.Data.Entity;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Logging.Console;
-using ContosoBooks.Models;
-using Microsoft.Data.Entity;
 
 namespace ContosoBooks
 {
@@ -37,7 +30,7 @@ namespace ContosoBooks
             services.AddMvc();
 
             services.AddEntityFramework()
-                .AddInMemoryStore()
+               // .AddInMemoryStore()
                 .AddSqlServer()
                 .AddDbContext<BookContext>(options =>
                 {

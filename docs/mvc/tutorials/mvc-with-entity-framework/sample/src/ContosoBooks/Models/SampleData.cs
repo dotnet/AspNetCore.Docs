@@ -1,11 +1,6 @@
-﻿using Microsoft.Data.Entity.SqlServer;
+﻿using Microsoft.Framework.DependencyInjection;
 using System;
-using System.Threading.Tasks;
-using Microsoft.Framework.DependencyInjection;
-using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity;
-using Microsoft.AspNet.Builder;
 
 namespace ContosoBooks.Models
 {

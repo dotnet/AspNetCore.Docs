@@ -1,13 +1,13 @@
-﻿using System;
+﻿using ContosoBooks.Models;
+using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Storage;
+using Microsoft.Framework.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using ContosoBooks.Models;
-using Microsoft.Framework.Logging;
-using Microsoft.Data.Entity.Storage;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,8 +31,8 @@ namespace ContosoBooks.Controllers
         public async Task<ActionResult> Details(int id)
         {
             Book book = await BookContext.Books
-                .Include(x => x.Author)
-                .SingleOrDefaultAsync(x => x.BookID == id);
+                .Include(b => b.Author)
+                .SingleOrDefaultAsync(b => b.BookID == id);
             if (book == null)
             {
                 Logger.LogInformation("Details: Item not found {0}", id);
@@ -133,7 +133,7 @@ namespace ContosoBooks.Controllers
 
         private Task<Book> FindBookAsync(int id)
         {
-            return BookContext.Books.SingleOrDefaultAsync(x => x.BookID == id);
+            return BookContext.Books.SingleOrDefaultAsync(book => book.BookID == id);
         }
 
         private IEnumerable<SelectListItem> GetAuthorsListItems(int selected = -1)
@@ -142,12 +142,12 @@ namespace ContosoBooks.Controllers
 
             // Create authors list for <select> dropdown
             return tmp
-                .OrderBy(x => x.LastName)
-                .Select(x => new SelectListItem
+                .OrderBy(author => author.LastName)
+                .Select(author => new SelectListItem
                 {
-                    Text = String.Format("{0}, {1}", x.LastName, x.FirstMidName),
-                    Value = x.AuthorID.ToString(),
-                    Selected = x.AuthorID == selected
+                    Text = String.Format("{0}, {1}", author.LastName, author.FirstMidName),
+                    Value = author.AuthorID.ToString(),
+                    Selected = author.AuthorID == selected
                 });
         }
     }

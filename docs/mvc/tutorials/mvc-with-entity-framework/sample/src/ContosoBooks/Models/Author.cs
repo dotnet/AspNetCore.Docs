@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ContosoBooks.Models
 {
@@ -13,8 +12,5 @@ namespace ContosoBooks.Models
 
         [Display(Name = "First Name")]
         public string FirstMidName { get; set; }
-        
-
-
     }
 }
