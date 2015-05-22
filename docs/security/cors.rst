@@ -81,6 +81,8 @@ The second approach is to define one or more named CORS policies, and then selec
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.  
 
+.. _cors-policy-options:
+
 CORS policy options
 -------------------
 		
@@ -226,6 +228,8 @@ The Access-Control-Max-Age header specifies how long the response to the preflig
 	:start-after: BEGIN09
 	:end-before: END09
 	:dedent: 16
+
+.. _cors-how-cors-works:
 
 How CORS works
 --------------
