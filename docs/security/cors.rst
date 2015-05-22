@@ -1,17 +1,23 @@
 Enabling Cross-Origin Requests (CORS)
 =====================================
 
-By `Mike Wasson <https://github.com/MikeWasson>`_ | Originally Published: May 25, 2015
+By `Mike Wasson <https://github.com/MikeWasson>`_
 
-What is CORS?
--------------
+Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app. 
 
-Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app; for example, to call a REST API. 
+`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application. 
 
-`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application (including MVC 6).
+In this article:
+    - `What is "same origin"?`_
+    - `Add the CORS package`_
+    - `Configure CORS in your app`_
+    - `CORS policy options`_
+    - `How CORS works`_
+
+.. note:: This topic covers general ASP.NET 5 apps. For information about CORS support in ASP.NET MVC 6, see :doc:`Specifying a CORS Policy </mvc/security/cors-policy>`.
 
 What is "same origin"?
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 Two URLs have the same origin if they have identical schemes, hosts, and ports. (`RFC 6454 <http://tools.ietf.org/html/rfc6454>`_)
 
@@ -39,12 +45,10 @@ In your project.json file, add the following:
 	:lines: 5,8-10
 	:emphasize-lines: 3
 
-Configure CORS (non-MVC app)
-----------------------------
+Configure CORS in your app
+--------------------------
 
-This section shows how to configure CORS in a general ASP.NET 5 application. If your app uses MVC 6, skip to the next section.
-
-First, add the CORS service. In Startup.cs:
+This section shows how to configure CORS. First, add the CORS service. In Startup.cs:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
 	:language: csharp
@@ -77,72 +81,20 @@ The second approach is to define one or more named CORS policies, and then selec
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.  
 
-Configure CORS (MVC 6 app)
---------------------------
-
-If your app uses MVC 6, configure CORS as follows:
-
-1.	Define one or more CORS policies
-2.	Apply the policies.
-
-The following code shows how to define a CORS policy:
-
-.. literalinclude:: cors/sample/src/CorsMvc/Startup.cs
-	:language: csharp
-	:lines: 10-21,27
-	:dedent: 8
-
-This code defines a CORS policy named "AllowSpecificOrigin". The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
-
-The next step is to apply the policies. You can apply a CORS policy per action, per controller, or globally for all controllers in your application.
-
-Per action
-^^^^^^^^^^
-
-Add the [EnableCors] attribute to the action. Specify the policy name.
-
-.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
-	:language: csharp
-	:lines: 7-13
-	:dedent: 4
-
-Per controller
-^^^^^^^^^^^^^^
-
-Add the [EnableCors] attribute to the controller class. Specify the policy name.
-
-.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
-	:language: csharp
-	:lines: 6-8
-	:dedent: 4
-
-Globally
-^^^^^^^^
-
-Add the CorsAuthorizationFilterFactory filter to the global filter collection:
-
-.. literalinclude:: cors/sample/src/CorsMvc/Startup.cs
-	:language: csharp
-	:lines: 10-12,22-26
-	:dedent: 8
-	
-The precedence order is: Action, controller, global. Action-level policies take precedence over controller-level policies, and controller-level policies take precedence over global policies.  		
+CORS policy options
+-------------------
 		
-Disable CORS
-^^^^^^^^^^^^
+This section describes the various options that you can set in a CORS policy.	
 
-To disable CORS for a controller or action, use the [DisableCors] attribute.
+    - `Set the allowed origins`_
+    - `Set the allowed HTTP methods`_
+    - `Set the allowed request headers`_
+    - `Set the exposed response headers`_
+    - `Credentials in cross-origin requests`_	
+    - `Set the preflight expiration time`_
 
-.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
-	:language: csharp
-	:lines: 15-19
-	:dedent: 4
-
-Setting CORS Options
---------------------
-		
-This section describes the various options that you can set in a CORS policy.		
-		
+For some options it may be helpful to read `How CORS works`_ first.
+    
 Set the allowed origins
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -226,8 +178,8 @@ The CORS spec calls these *simple response headers*. To make other headers avail
 	:end-before: END07
 	:dedent: 16
 
-Passing credentials in cross-origin requests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Credentials in cross-origin requests
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Credentials require special handling in a CORS request. By default, the browser does not send any credentials with a cross-origin request. Credentials include cookies as well as HTTP authentication schemes. To send credentials with a cross-origin request, the client must set XMLHttpRequest.withCredentials to true.
 

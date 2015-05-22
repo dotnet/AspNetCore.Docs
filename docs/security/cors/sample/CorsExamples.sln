@@ -16,8 +16,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CorsExample2", "src\CorsExa
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CorsMvc", "src\CorsMvc\CorsMvc.xproj", "{10B8C34D-BE81-4A02-984B-55AB75B90643}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CorsExample3", "src\CorsExample3\CorsExample3.xproj", "{EF312103-8CD2-4469-8403-F6E7D1C8A92D}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CorsExample4", "src\CorsExample4\CorsExample4.xproj", "{3FC1564E-EC79-4B82-AE2C-563215453F94}"
 EndProject
 Global
