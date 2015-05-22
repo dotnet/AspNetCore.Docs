@@ -30,7 +30,7 @@ The ``Configure()`` method is used to specify how the ASP.NET application will r
 	:dedent: 8
 	:emphasize-lines: 12-14,20,24,27,37
 
-You can see what each of these extensions does by examining the source. For instance, the ``UseMvc()`` extension method is defined in `BuilderExtensions <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_, available on GitHub. Its primary responsibility is to ensure MVC was added as a service (in ``ConfigureServices()`` and to correctly set up routing for an ASP.NET MVC application. We'll examine the specifics of how to configure your application's request pipeline later in this article.
+You can see what each of these extensions does by examining the source. For instance, the ``UseMvc()`` extension method is defined in `BuilderExtensions <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_, available on GitHub. Its primary responsibility is to ensure MVC was added as a service (in ``ConfigureServices()``) and to correctly set up routing for an ASP.NET MVC application. We'll examine the specifics of how to configure your application's request pipeline later in this article.
 
 ConfigureServices()
 ^^^^^^^^^^^^^^^^^^^
