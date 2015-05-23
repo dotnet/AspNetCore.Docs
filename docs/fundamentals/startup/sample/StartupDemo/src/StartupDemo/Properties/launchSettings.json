@@ -10,7 +10,7 @@
     "web": {
       "commandName": "web",
       "environmentVariables": {
-        "ASPNET_ENV": "LogMiddleware"
+        "ASPNET_ENV": "MapWhen"
       }
     }
   }

@@ -77,5 +77,39 @@ namespace StartupDemo
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
         }
+
+        private static void HandleMapTest(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Map Test Successful");
+            });
+        }
+
+        public void ConfigureMapping(IApplicationBuilder app)
+        {
+            app.Map("/maptest", HandleMapTest);
+
+        }
+
+        private static void HandleBranch(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Branch used.");
+            });
+        }
+
+        public void ConfigureMapWhen(IApplicationBuilder app)
+        {
+            app.MapWhen(context => {
+                return context.Request.Query.ContainsKey("branch");
+            }, HandleBranch);
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
     }
 }

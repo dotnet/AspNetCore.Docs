@@ -1,7 +1,7 @@
 Application Startup
 ===================
 
-By :ref:`Steve Smith <startup-author>` | Originally Published: 20 May 2015 
+By `Steve Smith`_
 
 ASP.NET 5 provides complete control of how individual requests are handled by your application. The ``Startup`` class is the entry point to the application, setting up configuration and wiring up services the application will use. Developers configure a request pipeline in the ``Startup`` class that is used to handle all requests made to the application.
 
@@ -116,7 +116,6 @@ Using the extension method and associated middleware class, the ``Configure()`` 
 	:emphasize-lines: 4
 	:dedent: 8
 
-
 .. _request-pipeline:
 
 Setting up your request pipeline
@@ -144,11 +143,41 @@ Because of the order in which this pipeline was constructed, ``UseErrorHandler()
 Run, Map, and Use
 -----------------
 
+You configure the HTTP pipeline using the `extensions <https://github.com/aspnet/HttpAbstractions/tree/dev/src/Microsoft.AspNet.Http.Abstractions/Extensions>`_ ``Run``, ``Map``, and ``Use``. The ``Run`` method is simply a shorthand way of adding middleware to the pipeline that doesn't call any other middleware (that is, it will not call a ``next`` request delegate). The following two examples are equivalent to one another, since the second one doesn't use its ``next`` parameter:
+
+.. literalinclude:: startup/sample/StartupDemo/src/StartupDemo/Startup.cs
+	:language: c#
+	:linenos:
+	:lines: 65-79
+	:emphasize-lines: 11
+	:dedent: 8
+
+.. note:: The ``IApplicationBuilder`` `interface <https://github.com/aspnet/HttpAbstractions/blob/8703e2d7f21d09b50d20cc764e11d6bb0268aad2/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs#L17>`_ itself exposes a single ``Use`` method, so technically they're not all *extension* methods.
+
+We've already seen several examples of how to build a request pipeline with ``Use``. The ``Map`` extension method is used to match request delegates based on a request's path. ``Map`` simply accepts a path and a function that configures a separate middleware pipeline. In this example, any request with the base path of ``/maptest`` will be handled by the pipeline configured in the ``HandleMapTest`` method.
+
+.. literalinclude:: startup/sample/StartupDemo/src/StartupDemo/Startup.cs
+	:language: c#
+	:linenos:
+	:lines: 81-97
+	:emphasize-lines: 11
+	:dedent: 8
+
+In addition to path-based mapping, the ``MapWhen`` method supports predicate-based middleware branching, allowing separate pipelines to be constructed in a very flexible fashion. Any predicate of type ``Func<HttpContext, bool>`` can be used to map requests to a new branch of the pipeline. In the following example, a simple predicate is used to detect the presence of a querystring variable ``branch``:
+
+.. literalinclude:: startup/sample/StartupDemo/src/StartupDemo/Startup.cs
+	:language: c#
+	:linenos:
+	:lines: 95-113
+	:emphasize-lines: 11-13
+	:dedent: 8
+
+Using the configuration shown above, any request that includes a querystring value for ``branch`` will use the pipeline defined in the ``HandleBranch`` method (in this case, a response of "Branch used.").
 
 Summary
 -------
 
-Summary
+In ASP.NET 5, the ``Startup`` class is responsible for setting up the application, including its configuration, the services it will use, and how it will process requests. Request pipelines can be as simple as a single line, or they can include rich behavior consisting of multiple levels of middleware and pipeline branches based on request properties.
 
 Additional Resources
 --------------------
