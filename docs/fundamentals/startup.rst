@@ -22,7 +22,7 @@ In ASP.NET 5, the ``Startup`` class provides the entry point for an application.
 Configure()
 ^^^^^^^^^^^
 
-The ``Configure()`` method is used to specify how the ASP.NET application will respond to individual HTTP requests. At its simplest, you can configure every request to receive the same response. However, most real-world applications require more functionality than this. The ASP.NET team recommends that more complex sets of pipeline configuration be encapsulated in extension methods on ``IApplicationBuilder``, to keep the ``Configure()`` method concise and easy to follow. In this example from the default web site template, you can see several extensions methods are used to configure the pipeline with support for BrowserLink, error pages, static files, ASP.NET MVC, and Identity.
+The ``Configure()`` method is used to specify how the ASP.NET application will respond to individual HTTP requests. At its simplest, you can configure every request to receive the same response. However, most real-world applications require more functionality than this. The ASP.NET team recommends that more complex sets of pipeline configuration be encapsulated in extension methods on ``IApplicationBuilder``, to keep the ``Configure()`` method concise and easy to follow. In this example from the default web site template, you can see several extension methods are used to configure the pipeline with support for BrowserLink, error pages, static files, ASP.NET MVC, and Identity.
 
 .. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
@@ -36,9 +36,9 @@ You can see what each of these extensions does by examining the source. For inst
 ConfigureServices()
 ^^^^^^^^^^^^^^^^^^^
 
-Your `Startup` class can optionally include a ``ConfigureServices()`` method, which is called before ``Configure()``. This is important, because some features like ASP.NET MVC require certain services to be added in ``ConfigureServices()`` before they can wired up to the request pipeline. In ``ConfigureServices``
+Your `Startup` class can optionally include a ``ConfigureServices()`` method, which is called before ``Configure()``. This is important, because some features like ASP.NET MVC require certain services to be added in ``ConfigureServices()`` before they can be wired up to the request pipeline.
 
-Just as with ``Configure()``, it is recommended that features that require substantial setup within ``ConfigureServices()`` be wrapped up in extension methods on ``IApplicationBuilder``. You can see in this example from the default web site template that several ``Add[Something]`` extensions methods are used to configure the app to use Entity Framework, Identity, and MVC:
+Just as with ``Configure()``, it is recommended that features that require substantial setup within ``ConfigureServices()`` be wrapped up in extension methods on ``IApplicationBuilder``. You can see in this example from the default web site template that several ``Add[Something]`` extension methods are used to configure the app to use Entity Framework, Identity, and MVC:
 
 .. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
@@ -99,7 +99,7 @@ For more complex request handling functionality, the ASP.NET team recommends imp
 	:linenos:
 	:emphasize-lines: 14, 19
 
-The middleware follows the *Explicit Dependencies Principle* and exposes all of its dependencies in its constructor. The extension method is responsible for providing the required dependencies. You can create overloads of the extension methods that allow dependencies to be passed in from the ``Configure()`` method, as well. The complete class containing the ``UseRequestLogger()`` extension method is shown below:
+The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. The extension method is responsible for providing the required dependencies. You can create overloads of the extension methods that allow dependencies to be passed in from the ``Configure()`` method, as well. The complete class containing the ``UseRequestLogger()`` extension method is shown below:
 
 .. literalinclude:: startup/sample/StartupDemo/src/StartupDemo/RequestLoggerExtensions.cs
 	:language: c#
