@@ -15,8 +15,7 @@ namespace CorsExamples
         public void Configure(IApplicationBuilder app)
         {
             app.UseCors(builder =>
-                builder.WithOrigins("http://example.com")
-                );
+                builder.WithOrigins("http://example.com"));
 
             app.Run(async (context) =>
             {

@@ -15,8 +15,8 @@ In your project.json file, add the following:
 
 .. literalinclude:: cors-policy/sample/project.json
     :language: json
-    :lines: 5,9-11
-    :emphasize-lines: 3
+    :lines: 5,9-10
+    :emphasize-lines: 2
 
 
 Configure CORS

@@ -42,8 +42,8 @@ In your project.json file, add the following:
 
 .. literalinclude:: cors/sample/src/CorsExample1/project.json
 	:language: json
-	:lines: 5,8-10
-	:emphasize-lines: 3
+	:lines: 5,8-9
+	:emphasize-lines: 2
 
 Configure CORS in your app
 --------------------------
@@ -59,7 +59,7 @@ Next, configure a cross-origin policy, using the ``CorsPolicyBuilder`` class. Th
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
 	:language: csharp
-	:lines: 15-19, 25
+	:lines: 15-18, 24
 	:dedent: 8
 
 The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
@@ -142,7 +142,9 @@ This affects pre-flight requests and Access-Control-Allow-Methods header.
 Set the allowed request headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A CORS preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). To whitelist specific headers:
+A CORS preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). 
+
+To whitelist specific headers:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
 	:language: csharp
@@ -163,7 +165,7 @@ Browsers are not entirely consistent in how they set Access-Control-Request-Head
 Set the exposed response headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the browser does not expose all of the response headers to the application. The response headers that are available by default are:
+By default, the browser does not expose all of the response headers to the application. (See http://www.w3.org/TR/cors/#simple-response-header.) The response headers that are available by default are:
 
 - Cache-Control
 - Content-Language
