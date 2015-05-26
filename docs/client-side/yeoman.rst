@@ -1,6 +1,6 @@
 Building Projects with Yeoman
 =============================
-By :ref:`Noel Rice <yeoman-author>` | Originally Published: 30 April 2015 
+By `Noel Rice`_
 
 `Yeoman <http://yeoman.io/>`_ generates complete, running projects for a given set of client-tools. You may be overwhelmed by "feature-shock" for the latest glut of client-tools (NPM, Gulp, Angular, etc.) or have simply run out of time to work through each feature set, much less the details, of every client tool. Yeoman generates everything you need to get over your first hurdle, the "hello world" that demonstrates that a group of technologies function together. 
 
