@@ -28,7 +28,7 @@ ASP.NET 5's project structure adds new concepts and replaces some legacy element
 The first thing you may notice about this new structure is that it includes a Solution Items folder with a *global.json* file, and the web 
 project itself is located within a *src* folder within the solution. The new structure also includes a special *wwwroot* folder and a 
 Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this 
-version). In the root the project there are also several new files such as *bower.json, config.json, gruntfile.js, package.json, project.json*, 
+version). In the root the project there are also several new files such as *bower.json, config.json, gulpfile.js, package.json, project.json*, 
 and *Startup.cs*. You may notice that the files *global.asax, packages.config*, and *web.config* are gone. In previous versions of 
 ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic 
 has been refactored into files that are generally smaller and more focused.
