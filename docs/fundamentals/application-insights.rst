@@ -60,7 +60,7 @@ Next, in ``Startup.cs`` you need to configure Application Insights in a few plac
 		configuration.AddApplicationInsightsSettings(developerMode: true);
 	}
 
-Add `` services.AddApplicationInsightsTelemetry(Configuration);`` to ``ConfigureServices()``.
+Add ``services.AddApplicationInsightsTelemetry(Configuration);`` to ``ConfigureServices()``.
 
 Then, in the ``Configure()`` method add middleware to allow Application Insights to track exceptions and log information about individual requests. Note that the request tracking middleware should be as the first middleware in the pipeline, while the exception middleware should follow the configuration of error pages or other error handling middleware.
 
