@@ -1,7 +1,7 @@
 Enabling Cross-Origin Requests (CORS)
 =====================================
 
-By `Mike Wasson <https://github.com/MikeWasson>`_
+By `Mike Wasson`_
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app. 
 
