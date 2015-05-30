@@ -47,7 +47,7 @@ At this point, we're ready to run the app. You can do this by simply entering ``
 
 .. image:: console/_static/dnx-run.png
 
-..note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
+.. note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
 
 Set the ``DNX_TRACE`` environment variable to 1, and run the application again. You should see a great deal more output:
 
