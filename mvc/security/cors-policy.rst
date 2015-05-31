@@ -1,3 +1,5 @@
+.. _cors-policy:
+
 Specifying a CORS Policy
 ========================
 
@@ -5,7 +7,7 @@ By `Mike Wasson`_
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
 
-`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. This topic shows how to enable CORS in your ASP.NET MVC 6 application. (For background on CORS, see :ref:`cors-how-cors-works`.)
+`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. This topic shows how to enable CORS in your ASP.NET MVC 6 application. (For background on CORS, see :ref:`aspnet:cors-how-cors-works`.)
 
 
 Add the CORS package
@@ -29,7 +31,7 @@ To configure CORS, call ``ConfigureCors`` in the ``ConfigureServices`` method of
     :lines: 10-21,27
     :dedent: 8
 
-This example defines a CORS policy named "AllowSpecificOrigin" that allows cross-origin requests from "http://example.com" and no other origins. The lambda takes a ``CorsPolicyBuilder`` object. To learn more about the various CORS policy settings, see :ref:`cors-policy-options`. 
+This example defines a CORS policy named "AllowSpecificOrigin" that allows cross-origin requests from "http://example.com" and no other origins. The lambda takes a ``CorsPolicyBuilder`` object. To learn more about the various CORS policy settings, see :ref:`aspnet:cors-policy-options`. 
 
 Apply CORS Policies
 -------------------

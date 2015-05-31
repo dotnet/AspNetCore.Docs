@@ -64,7 +64,7 @@ If you need to check whether the application is running in a particular environm
 
 The following code is taken from the default ASP.NET 5 web site template:
 
-.. literalinclude:: ../../samples/WebApplication1/src/WebApplication1/Startup.cs
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
 	:caption: Startup.cs (some parts removed for brevity)
 	:linenos:

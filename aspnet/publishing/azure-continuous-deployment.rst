@@ -1,8 +1,8 @@
-.. include:: /stub-topic.txt
+.. include:: /../common/stub-topic.txt
 
 |stub-icon| Publishing to an Azure Web App with Continuous Deployment
 =====================================================================
 
-.. include:: /stub-notice.txt
+.. include:: /../common/stub-notice.txt
 
 .. _issue: https://github.com/aspnet/Docs/issues/104

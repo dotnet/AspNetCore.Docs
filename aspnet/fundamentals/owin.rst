@@ -1,4 +1,4 @@
-.. include:: /stub-topic.txt
+.. include:: /../common/stub-topic.txt
 
 |stub-icon| OWIN
 ================

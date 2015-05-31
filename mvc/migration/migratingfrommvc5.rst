@@ -132,7 +132,7 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add *gulp*, *rimraf*, and *guld-concat* to the devDependencies property (you should get Intellisense as you type each package name). When you're finished, your file should look similar to this one:
 
-.. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/package.json
+.. literalinclude:: migratingfrommvc5/samples//NewMvc6Project/src/NewMvc6Project/package.json
 	:language: javascript
 	:emphasize-lines: 6-8
 	:linenos: 
@@ -231,7 +231,7 @@ To simply bundle the jQuery and bootstrap scripts together into a single, minifi
 
 Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the gulp-concat package is listed there. Next, we will add a concat task to Gulpfile.js. Add the highlighted sections:
 
-.. literalinclude:: ../../../samples/MigratingFromMvc5/NewMvc6Project/src/NewMvc6Project/Gulpfile.js
+.. literalinclude:: migratingfrommvc5/samples//NewMvc6Project/src/NewMvc6Project/Gulpfile.js
 	:language: javascript
 	:emphasize-lines: 8,34-39
 	:linenos: 

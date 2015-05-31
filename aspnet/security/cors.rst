@@ -14,7 +14,7 @@ In this article:
     - `CORS policy options`_
     - `How CORS works`_
 
-.. note:: This topic covers general ASP.NET 5 apps. For information about CORS support in ASP.NET MVC 6, see :doc:`Specifying a CORS Policy </mvc/security/cors-policy>`.
+.. note:: This topic covers general ASP.NET 5 apps. For information about CORS support in ASP.NET MVC 6, see :ref:`Specifying a CORS Policy <mvc:cors-policy>`.
 
 What is "same origin"?
 ----------------------

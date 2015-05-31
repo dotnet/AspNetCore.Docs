@@ -1,8 +1,8 @@
-.. include:: /stub-topic.txt
+.. include:: /../common/stub-topic.txt
 
 |stub-icon| Razor Syntax
 ========================
 
-.. include:: /stub-notice.txt
+.. include:: /../common/stub-notice.txt
 
 .. _issue: https://github.com/aspnet/Docs/issues/130

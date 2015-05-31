@@ -6,7 +6,15 @@
 ASP.NET 5 Documentation
 =======================
 
-.. include:: stub-overview.txt
+.. include:: ../common/stub-overview.txt
+
+Frameworks
+----------
+
+* :ref:`MVC <mvc:index>`
+
+Topics
+------
 
 .. toctree::
     :titlesonly:
@@ -23,14 +31,8 @@ ASP.NET 5 Documentation
     security/index
     performance/index
     migration/index
-
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Frameworks
-    
-    mvc/index
-   
+    contribute/index
+ 
 Contribute
 ----------
 
@@ -39,11 +41,6 @@ The documentation on this site is the handiwork of our many `contributors <https
 **We accept pull requests!** But you're more likely to have yours accepted if you follow these guidelines:
 
 	1. Read https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
-	2. Follow the :doc:`ASP.NET Docs Style Guide <contribute/style-guide>`
+	2. Follow the :ref:`ASP.NET Docs Style Guide <style-guide>`
 
-.. Indices and tables
-.. ==================
 
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`

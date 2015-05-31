@@ -1,4 +1,4 @@
-:orphan:
+.. _style-guide:
 
 ASP.NET Docs Style Guide
 ========================
@@ -275,4 +275,5 @@ Summary
 -------
 
 This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
+
 

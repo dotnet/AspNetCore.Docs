@@ -1,8 +1,8 @@
-.. include:: /stub-topic.txt
+.. include:: /../common/stub-topic.txt
 
 |stub-icon| ASP.NET 5 on Nano Server
 ====================================
 
-.. include:: /stub-notice.txt
+.. include:: /../common/stub-notice.txt
 
 .. _issue: https://github.com/aspnet/Docs/issues/194

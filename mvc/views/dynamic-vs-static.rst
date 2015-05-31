@@ -1,9 +1,9 @@
-.. include:: /stub-topic.txt
+.. include:: /../common/stub-topic.txt
 
 |stub-icon| Dynamic vs Strongly Typed Views
 ===========================================
 
-.. include:: /stub-notice.txt
+.. include:: /../common/stub-notice.txt
 
 .. _issue: https://github.com/aspnet/Docs/issues/134
 
