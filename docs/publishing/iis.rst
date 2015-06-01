@@ -6,7 +6,7 @@ By `Rick Anderson`_
 In this article:
 	- `Publish from Visual Studio`_
 	- `Xcopy to IIS Server`_
-	- `Addition Resources`_
+	- `Additional Resources`_
 	
 Publish from Visual Studio  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -43,7 +43,7 @@ Xcopy to IIS Server
 
 .. image:: pubIIS/_static/b8.png
 
-Addition Resources
+Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_
