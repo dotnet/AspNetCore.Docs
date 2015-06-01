@@ -1,5 +1,5 @@
-Application Startup
-===================
+Servers
+=======
 
 By `Steve Smith`_
 
@@ -21,6 +21,7 @@ Servers and commands
 ASP.NET 5 is designed to decouple web applications from the underlying web server that hosts them. Traditionally, ASP.NET applications have been windows-only (unless `hosted via mono <http://www.mono-project.com/docs/web/aspnet/>`_) and hosted on the built-in web server for windows, Internet Information Server (IIS) (or a development server, like `IIS Express <http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview>`_ or earlier development web servers). While IIS is still the recommended way to host production ASP.NET applications on Windows, the cross-platform nature of ASP.NET allows it to be hosted in any number of different web servers, on multiple operating systems.
 
 ASP.NET 5 ships with support for 3 different servers:
+
 - Microsoft.AspNet.Loader.IIS (Helios)
 - Microsoft.AspNet.Server.WebListener (WebListener)
 - Microsoft.AspNet.Server.Kestrel (Kestrel)
@@ -31,6 +32,7 @@ I've configured the sample project for this article to support each of these hos
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/project.json
 	:lines: 1-17
+	:emphasize-lines: 14-16
 	:linenos:
 	:language: javascript
 	:caption: project.json (truncated)
@@ -38,29 +40,130 @@ I've configured the sample project for this article to support each of these hos
 The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``.
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/program.cs
-	:lines: 1-17
 	:linenos:
 	:language: javascript
 	:caption: program.cs
 
-
 Feature interfaces
 ------------------
 
+ASP.NET 5 defines a number of `Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/dev/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
 
+`IHttpRequestFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpRequestFeature.cs>`_
+	Defines the structure of an HTTP request, including the protocol, path, QueryString, headers, and body.
 
+`IHttpResponseFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpResponseFeature.cs>`_
+	Defines the structure of an HTTP response, including the status code, headers, and body of the response.
+
+`IHttpAuthenticationFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpAuthenticationFeature.cs>`_
+	Defines support for identifying users based on a ``ClaimsPrincipal`` and specifying an authentication handler.
+
+`IHttpUpgradeFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpUpgradeFeature.cs>`_
+	Defines support for `HTTP Upgrades <http://tools.ietf.org/html/rfc2616#section-14.42>`_, which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
+
+`IHttpBufferingFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpBufferingFeature.cs>`_
+	Defines methods for disabling buffering of requests and/or responses.
+
+`IHttpConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpConnectionFeature.cs>`_
+	Defines properties for local and remote addresses and ports.
+
+`IHttpRequestLifetimeFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpRequestLifetimeFeature.cs>`_
+	Defines support for aborting connections.
+
+`IHttpSendFileFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpSendFileFeature.cs>`_
+	Defines a method for sending files asynchronously.
+
+`IHttpWebSocketFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpWebSocketFeature.cs>`_
+	Defines an API for supporting web sockets.
+
+`IRequestIdentifierFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IRequestIdentifierFeature.cs>`_
+	Adds a property that can be implemented to uniquely identify requests.
+
+`ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
+	Defines ``ISessionFactory`` and ``ISession`` abstractions for supporting user sessions.
+
+`ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
+	Defines an API for retrieving client certificates.
+
+`ITlsTokenBindingFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsTokenBindingFeature.cs>`_
+	Defines methods for working with TLS token binding parameters.
+
+Supported Features by Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+	:header-rows: 1
+	
+	* - Feature
+	  - IIS / Helios
+	  - WebListener
+	  - Kestrel
+	* - IHttpRequestFeature
+	  - Yes
+	  - Yes
+	  - Yes
+	* - IHttpResponseFeature
+	  - Yes
+	  - Yes
+	  - Yes
+	* - IHttpAuthenticationFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IHttpUpgradeFeature
+	  - Yes
+	  - Yes
+	  - Yes
+	* - IHttpBufferingFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IHttpConnectionFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IHttpRequestLifetimeFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IHttpSendFileFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IHttpWebSocketFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - IRequestIdentifierFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - ISessionFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - ITlsConnectionFeature
+	  - Yes
+	  - Yes
+	  - No
+	* - ITlsTokenBindingFeature
+	  - Yes
+	  - Yes
+	  - No
+
+For the most part, feature interfaces are specified on the 
 
 IIS and IIS Express
 -------------------
 
-The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is include by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
+The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is included by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
 
 Working with IIS as your server for your ASP.NET application is a great option. It provides the most features, integrating with IIS and providing access to other IIS modules. It bypasses the legacy ``System.Web`` infrastructure used by prior version of ASP.NET, providing a substantial performance gain. IIS has great support for static files and can also be used with the built-in Windows Authentication mechanism, too.
 
 WebListener
 -----------
 
-WebListener is a Windows-only server that allows ASP.NET applications to be hosted outside of IIS. It runs directly on the Http.Sys kernel driver, and has very little overhead. It supports the same feature interfaces as IIS
+WebListener is a Windows-only server that allows ASP.NET applications to be hosted outside of IIS. It runs directly on the Http.Sys kernel driver, and has very little overhead. It supports the same feature interfaces as IIS, in fact, you can think of WebListener as a library version of IIS.
 
 Kestrel
 -------
