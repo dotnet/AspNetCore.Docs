@@ -151,31 +151,58 @@ Supported Features by Server
 	  - Yes
 	  - No
 
-For the most part, feature interfaces are specified on the 
+For the most part, feature interfaces are specified on the request object. Later in this article we'll see how Kestrel implements the features it supports.
 
 IIS and IIS Express
 -------------------
 
-The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is included by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
+The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is included in ``project.json`` by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
 
 Working with IIS as your server for your ASP.NET application is a great option. It provides the most features, integrating with IIS and providing access to other IIS modules. It bypasses the legacy ``System.Web`` infrastructure used by prior version of ASP.NET, providing a substantial performance gain. IIS has great support for static files and can also be used with the built-in Windows Authentication mechanism, too.
 
 WebListener
 -----------
 
-WebListener is a Windows-only server that allows ASP.NET applications to be hosted outside of IIS. It runs directly on the Http.Sys kernel driver, and has very little overhead. It supports the same feature interfaces as IIS, in fact, you can think of WebListener as a library version of IIS.
+WebListener is a Windows-only server that allows ASP.NET applications to be hosted outside of IIS. It runs directly on the `Http.Sys kernel driver <http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture>`_, and has very little overhead. It supports the same feature interfaces as IIS; in fact, you can think of WebListener as a library version of IIS.
+
+You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNet.Server.WebListener" dependency in project.json.
 
 Kestrel
 -------
 
-Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. Kestrel is open-source, and you can `view the Kestrel source on GitHub <https://github.com/aspnet/KestrelHttpServer>`_. Kestrel is a great option to at least include support for in your ASP.NET 5 projects so that your project can be easily run by developers on any of the supported platforms.
+Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. Kestrel is open-source, and you can `view the Kestrel source on GitHub <https://github.com/aspnet/KestrelHttpServer>`_. Kestrel is a great option to at least include support for in your ASP.NET 5 projects so that your project can be easily run by developers on any of the supported platforms. You add support for Kestrel by including "Kestrel" in your project's dependencies listed in ``project.json``.
 
-Kestrel currently supports a limited number of feature interfaces, including ``IHttpRequestFeature``, ``IHttpResponseFeature``, and ``IHttpUpgradeFeature``, but additional features will be added in the future. You can see how these interfaces are implemented and supported by Kestrel in its `ServerRequest class <https://github.com/aspnet/KestrelHttpServer/blob/dev/src/Kestrel/ServerRequest.cs>`_. Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server.
+Kestrel currently supports a limited number of feature interfaces, including ``IHttpRequestFeature``, ``IHttpResponseFeature``, and ``IHttpUpgradeFeature``, but additional features will be added in the future. You can see how these interfaces are implemented and supported by Kestrel in its `ServerRequest class <https://github.com/aspnet/KestrelHttpServer/blob/dev/src/Kestrel/ServerRequest.cs>`_, a portion of which is shown below.
+
+.. code-block:: c#
+	:caption: Kestrel ServerRequest.cs class snippets
+
+	using Microsoft.AspNet.FeatureModel;
+	using Microsoft.AspNet.Http.Features;
+	
+	namespace Kestrel
+	{
+		public class ServerRequest : IHttpRequestFeature, 
+						 IHttpResponseFeature, 
+						 IHttpUpgradeFeature
+		{
+			private FeatureCollection _features;
+			
+			private void PopulateFeatures()
+				{
+					_features.Add(typeof(IHttpRequestFeature), this);
+					_features.Add(typeof(IHttpResponseFeature), this);
+					_features.Add(typeof(IHttpUpgradeFeature), this);
+				}
+		}
+	}
+
+Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server.
 
 Custom Servers
 --------------
 
-In addition to the options listed above, you can create your own server in which to host your ASP.NET application. Creating a minimal custom ASP.NET 5 server is fairly straightforward.
+In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server.
 
 
 Summary
