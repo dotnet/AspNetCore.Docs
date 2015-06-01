@@ -27,7 +27,7 @@ Publish the project
 
 #. In the **Select a publish target** section of the **Publish Web** dialog box, choose the **Docker Containers** button.
 
-   If you don't see a Docker Containers option, make sure you have installed the Visual Studio 2015 RC Tools for Docker and that you selected an ASP.NET 5 Web Site template in the previous step.
+   If you don't see a Docker Containers option, make sure you have installed the `Visual Studio 2015 RC Tools for Docker <https://visualstudiogallery.msdn.microsoft.com/6f638067-027d-4817-bcc7-aa94163338f0>`_ and that you selected an ASP.NET 5 Web Site template in the previous step.
 
    .. image:: docker/_static/publish-dialog.png
    
