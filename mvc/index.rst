@@ -11,7 +11,7 @@ ASP.NET MVC Documentation
 .. include:: ../common/stub-overview.txt
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     overview
     getting-started/index
