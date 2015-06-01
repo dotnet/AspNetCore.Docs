@@ -30,13 +30,10 @@ namespace ContosoBooks
             services.AddMvc();
 
             services.AddEntityFramework()
-                .AddInMemoryStore()
                 .AddSqlServer()
                 .AddDbContext<BookContext>(options =>
                 {
                     options.UseSqlServer(Configuration.Get("Data:ConnectionString"));
-                    // To select the in-memory store instead, uncomment the following:
-                    // options.UseInMemoryStore();
                 });
 
         }
@@ -48,7 +45,6 @@ namespace ContosoBooks
 
             // Add the console logger.
             loggerfactory.AddConsole(minLevel: LogLevel.Verbose);
-
 
             // Add the following to the request pipeline only in development environment.
             if (env.IsEnvironment("Development"))
