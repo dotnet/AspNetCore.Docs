@@ -17,8 +17,9 @@ Getting and setting configuration settings
 
 ASP.NET 5's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new `configuration model <https://github.com/aspnet/Configuration>`_ provides streamlined access to key/value based settings that can be retrieved from a variety of sources.
 
-To work with settings in your ASP.NET application, you can instantiate a new instance of ``Configuration`` anywhere you need one. However, it's recommended to do this once in your application's ``Startup``, and then inject an instance of `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.Configuration.Abstractions/IConfiguration.cs>`_ into any controllers or services that need to access configuration. At its simplest, the ``Configuration`` class is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. For instance, you could include the following code in any method in your ASP.NET application:
-To work with settings in your ASP.NET application, you can instantiate a new instance of ``Configuration`` anywhere you need one. However, it's recommended to do this once in your application's ``Startup``, and then inject an instance of `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.Configuration.Abstractions/IConfiguration.cs>`_ into any controllers or services that need to access configuration. At its simplest, the ``Configuration`` class is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. For instance, you could include the following code in any method in your ASP.NET application:
+To work with settings in your ASP.NET application, it is recommended that you only instantiate an instance of ``Configuration`` in your application's ``Startup`` class. Then, use the :ref:`Options pattern <options-config-objects>` to access individual settings.
+
+At its simplest, the ``Configuration`` class is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. The following sample shows how to test working with ``Configuration`` as a key/value store:
 
 .. code-block:: c#
 	:linenos:
@@ -67,6 +68,16 @@ Adding support for additional configuration file sources is accomplished through
 
 The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both ``config.json`` and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
 
+It can be useful to have environment-specific configuration files. This can be achieved using the following:
+
+.. literalinclude:: configuration/sample/src/ConfigDemo/Startup.cs
+	:language: c#
+	:emphasize-lines: 4
+	:lines: 20-23
+	:dedent: 12
+
+In the ``Development`` environment, the highlighted line of code above would look for a file named ``config.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
+
 You should never store passwords or other sensitive data in source code. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the source repository. Environment variables can be helpful in managing such secrets - learn more about :doc:`environments` and :doc:`/security/app-secrets`.
 
 One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In this simple console application, a default value for the ``username`` setting is specified in a ``MemoryConfigurationSource``, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many configuration sources are configured at each stage of the program.
@@ -100,6 +111,8 @@ The built-in ``Configuration`` object is responsible for mapping this class to s
 	:language: c#
 	:emphasize-lines: 26
 	:lines: 16-41
+	:linenos:
+	:dedent: 4
 
 The call to ``Configuration.GetSubKey("AppSettings")`` returns an `IConfiguration` instance. ``Services.Configure<T>`` is responsible for mapping that ``IConfiguration`` instance to the associated POCO type specified. With this in place, the `AppSettings` configuration object can be referenced anywhere within the application by injecting an ``IOptions<AppSettings>`` type, as shown, and accessing the configuration object via its ``Options`` property:
 
