@@ -7,6 +7,7 @@ ASP.NET 5 is completely decoupled from the web server environment that hosts the
 
 In this article:
 	- `Servers and commands`_
+	- `Feature interfaces`_
 	- `IIS and IIS Express`_
 	- `WebListener`_
 	- `Kestrel`_
@@ -24,7 +25,7 @@ ASP.NET 5 ships with support for 3 different servers:
 - Microsoft.AspNet.Server.WebListener (WebListener)
 - Microsoft.AspNet.Server.Kestrel (Kestrel)
 
-ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of feature interfaces composed into an HttpContext. Both Helios and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
+ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :ref:`feature interfaces` composed into an HttpContext. Both Helios and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
 
 I've configured the sample project for this article to support each of these hosting options as separate commands in ``project.json``:
 
@@ -33,6 +34,21 @@ I've configured the sample project for this article to support each of these hos
 	:linenos:
 	:language: javascript
 	:caption: project.json (truncated)
+
+The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``.
+
+.. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/program.cs
+	:lines: 1-17
+	:linenos:
+	:language: javascript
+	:caption: program.cs
+
+
+Feature interfaces
+------------------
+
+
+
 
 IIS and IIS Express
 -------------------
