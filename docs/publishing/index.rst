@@ -2,6 +2,10 @@ Publishing and Deployment
 =========================
 
 .. toctree::
-    :maxdepth: 2
+    :titlesonly:
 
+    iis
+    azure-windows-vm
+    azure-continuous-deployment
     docker
+    how-to-customize

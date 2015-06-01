@@ -1,5 +1,5 @@
-Enabling authenication using external providers
-===============================================
+Enabling authentication using external providers
+================================================
 By :ref:`Pranav Rastogi <sociallogins-author>` | Originally Published: 28 April 2015 
 
 This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
@@ -86,7 +86,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 Use SecretManager to store Facebook AppId and AppSecret
 -----------------------------------------------------------
 
-The project creates has the following code in Startup which reads the configuration values from a secret store. As a best practise, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source code and can be publicly accessible.
+The project created has the following code in Startup which reads the configuration values from a secret store. As a best practise, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source code and can be publicly accessible.
 
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
@@ -143,7 +143,7 @@ Login with Facebook
 
 .. image:: sociallogins/_static/FBLogin1.PNG
 
-- When you click on Facebook, you will be redirected to Facebook for authenication.
+- When you click on Facebook, you will be redirected to Facebook for authentication.
 
 .. image:: sociallogins/_static/FBLogin2.PNG
 
@@ -171,7 +171,7 @@ To set the password once you have logged in with an external provider:
 
 Next steps
 ----------
-- This article showed how you can authenicate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
+- This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
 - Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 

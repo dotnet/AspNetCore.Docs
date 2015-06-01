@@ -1,0 +1,8 @@
+Performance
+-----------
+
+.. toctree::
+   :titlesonly:
+   
+   measuring
+

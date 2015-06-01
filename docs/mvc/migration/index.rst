@@ -1,10 +1,8 @@
-:orphan:
-
 Migration
 ---------
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    migratingfrommvc5
    migratingconfig

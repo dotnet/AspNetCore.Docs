@@ -1,0 +1,15 @@
+﻿@{ Layout = "";
+}
+<html>
+<body ng-app="personApp">
+    <h1>Scope</h1>
+
+    <div ng-controller="personController">
+        <strong>Name:</strong> {{name}} <br />
+        <strong>Missing Property (age):</strong> {{age}}
+    </div>
+
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/app/scope.js"></script>
+</body>
+</html>

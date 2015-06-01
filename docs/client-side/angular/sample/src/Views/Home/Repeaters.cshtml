@@ -1,0 +1,17 @@
+﻿@{ Layout = "";
+}
+<html>
+<body ng-app>
+    <h1>Repeaters</h1>
+
+    <div ng-init="names=['John Doe', 'Mary Jane', 'Bob Parker']">
+        <ul>
+            <li ng-repeat="name in names">
+                {{name}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="~/lib/angular/angular.js"></script>
+</body>
+</html>

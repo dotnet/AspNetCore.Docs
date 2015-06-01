@@ -1,0 +1,3 @@
+.. |stub-icon| unicode:: U+1F527
+
+
