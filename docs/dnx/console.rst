@@ -1,6 +1,8 @@
 Creating a Cross-Platform Console App with DNX
 ==============================================
-By :ref:`Steve Smith <console-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_
+
 Using the .NET Execution environment (DNX), it's very easy to run a simple console application.
 
 In this article:
@@ -45,7 +47,7 @@ At this point, we're ready to run the app. You can do this by simply entering ``
 
 .. image:: console/_static/dnx-run.png
 
-..note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
+.. note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
 
 Set the ``DNX_TRACE`` environment variable to 1, and run the application again. You should see a great deal more output:
 
@@ -61,7 +63,4 @@ Summary
 -------
 
 Creating and running your first console application on DNX is very simple, and only requires two files.
-	
-.. _console-author:
 
-.. include:: /_authors/steve-smith.txt

@@ -1,6 +1,7 @@
 Understanding ASP.NET 5 Web Apps
 ================================
-By :ref:`Steve Smith <understanding-aspnet5-apps-author>` | Updated : 27 April 2015 
+
+By `Steve Smith`_
 
 ASP.NET 5 introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
 
@@ -27,7 +28,7 @@ ASP.NET 5's project structure adds new concepts and replaces some legacy element
 The first thing you may notice about this new structure is that it includes a Solution Items folder with a *global.json* file, and the web 
 project itself is located within a *src* folder within the solution. The new structure also includes a special *wwwroot* folder and a 
 Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this 
-version). In the root the project there are also several new files such as *bower.json, config.json, gruntfile.js, package.json, project.json*, 
+version). In the root the project there are also several new files such as *bower.json, config.json, gulpfile.js, package.json, project.json*, 
 and *Startup.cs*. You may notice that the files *global.asax, packages.config*, and *web.config* are gone. In previous versions of 
 ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic 
 has been refactored into files that are generally smaller and more focused.
@@ -267,6 +268,3 @@ Summary
 
 ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
 
-.. _understanding-aspnet5-apps-author:
-
-.. include:: /_authors/steve-smith.txt

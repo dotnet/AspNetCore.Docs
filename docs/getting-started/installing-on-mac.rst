@@ -1,6 +1,7 @@
 Installing ASP.NET 5 On Mac OS X
 ================================
-By :ref:`Steve Smith <installing-on-mac-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_
 
 ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including OS X. This article describes how to install DNX, and therefore ASP.NET 5, on OS X, using `Homebrew <http://brew.sh/>`_. 
 
@@ -59,6 +60,3 @@ Related Resources
 - :doc:`Installing ASP.NET 5 on Windows <installing-on-windows>`
 - :doc:`Your First ASP.NET 5 Application Using Visual Studio </tutorials/your-first-aspnet-application>`
 
-.. _installing-on-mac-author:
-
-.. include:: /_authors/steve-smith.txt

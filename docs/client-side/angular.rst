@@ -1,6 +1,6 @@
 Using Angular for Single Page Applications (SPAs)
 =================================================
-By :ref:`Venkata Koppaka <angular-author>` | Originally Published: 5 May 2015 
+By `Venkata Koppaka`_
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
@@ -457,6 +457,3 @@ Related Resources
 - `Angular Docs <https://docs.angularjs.org>`_
 - `Angular 2 Info <http://angular.io>`_
 
-.. _angular-author:
-
-.. include:: /_authors/venkata-koppaka.txt

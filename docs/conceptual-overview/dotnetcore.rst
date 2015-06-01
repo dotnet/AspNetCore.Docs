@@ -1,6 +1,7 @@
 Introducing .NET Core
 =====================
-By :ref:`Steve Smith <dotnetcore-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_ 
 
 .NET Core is a small, optimized runtime that can be targeted by ASP.NET 5 applications. In fact, the new ASP.NET 5 project templates target .NET Core by default, in addition to the .NET Framework. Learn what targeting .NET Core means for your ASP.NET 5 application.
 
@@ -32,7 +33,7 @@ When .NET first shipped in 2002, it was a single framework, but it didn't take l
 
 In addition to being able to target a variety of different device platforms, there was also pressure from the server side to reduce the overall footprint, and more importantly, surface area, of the .NET Framework. By factoring the CoreFX libraries and allowing individual applications to pull in only those parts of CoreFX they require (a so-called "pay-for-play" model), server-based applications built with ASP.NET 5 can minimize their dependencies. This, in turn, reduces the frequency with which patches and updates to the framework will impact these applications, since only changes made to the individual pieces of CoreFX leveraged by the application will impact the application. A smaller deployment size for the application is a side benefit, and one that makes more of a difference if many applications are deployed side-by-side on a given server.
 
-..note The overall size of .NET Core doesn't intend to be smaller than the .NET Framework over time, but since it is pay-for-play, most applications that utilize only parts of CoreFX will have a smaller deployment footprint.
+.. note:: The overall size of .NET Core doesn't intend to be smaller than the .NET Framework over time, but since it is pay-for-play, most applications that utilize only parts of CoreFX will have a smaller deployment footprint.
 
 Building Applications with .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -79,7 +80,4 @@ Learn more about .NET Core:
 	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore5>`_
 	- `.NET Core is Open Source <http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx>`_
 	- `.NET Core on GitHub <https://github.com/dotnet/corefx>`_
-	
-.. _dotnetcore-author:
 
-.. include:: /_authors/steve-smith.txt

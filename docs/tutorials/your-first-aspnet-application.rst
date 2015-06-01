@@ -1,6 +1,7 @@
 Your First ASP.NET 5 Application Using Visual Studio
 ====================================================
-By :ref:`Steve Smith <your-first-aspnet-application-author>` | Originally Published: 28 April 2015 
+
+By `Steve Smith`_
 
 ASP.NET 5 provides a host of improvements over its predecessors, including improved performance, better support for modern web development standards and tools, and improved integration between WebAPI, MVC, and WebForms.  In addition, you can easily develop ASP.NET 5 applications using a variety of tools and editors, but Visual Studio continues to provide a very productive way to build web applications.  In this article, we'll walk through creating your first ASP.NET 5 web application using Visual Studio 2015.
 
@@ -28,7 +29,7 @@ Next you should see another dialog, the New ASP.NET Project window:
 	
 Select the ASP.NET 5 Starter Web template from the set of ASP.NET 5 templates. These are distinct from the ASP.NET 4.6 templates, which can be used to create ASP.NET projects using the previous version of ASP.NET. Note that you can choose to configure hosting in Microsoft Azure directly from this dialog by checking the box on the right **(ED: confirm this is available at RTM)**. After selecting ASP.NET 5 Starter Web, click OK.
 
-At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.  Your project, once fully loaded, should look like this:
+At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio is downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.  Your project, once fully loaded, should look like this:
 
 .. image:: your-first-aspnet-application/_static/visual-studio-on-project-load.png
 
@@ -166,7 +167,4 @@ Summary
 -------
 
 ASP.NET 5 introduces a few new concepts, but should be very familiar to developers who have used previous versions of ASP.NET. Creating a new web application that includes both server-side and client-side behavior takes only a few minutes using the Visual Studio ASP.NET 5 Starter Web template.
-	
-.. _your-first-aspnet-application-author:
 
-.. include:: /_authors/steve-smith.txt

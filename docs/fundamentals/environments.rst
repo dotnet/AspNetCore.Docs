@@ -1,7 +1,7 @@
 Working with Multiple Environments
 ==================================
 
-By :ref:`Steve Smith <environments-author>` | Originally Published: 20 May 2015 
+By `Steve Smith`_
 
 ASP.NET 5 introduces improved support for controlling application behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the application is running in, allowing the app to be configured appropriately.
 
@@ -58,7 +58,7 @@ This is by no means meant to be a complete list. It's best to avoid scattering e
 Determining the environment at runtime
 --------------------------------------
 
-The ``IHostingEnvironment`` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and is to methods within ``Startup`` via :doc:`dependency-injection`. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on the instance of ``IHostingEnvironment`` passed into the appropriate method.
+The ``IHostingEnvironment`` service provides the core abstraction for working with environments. This service is provided by the ASP.NET hosting layer, and can be injected into your startup logic via :doc:`dependency-injection`. The ASP.NET 5 web site template in Visual Studio uses this approach to load environment-specific configuration files (if present) and to customize the app's error handling settings. In both cases, this behavior is achieved by referring to the currently specified environment by calling ``EnvironmentName`` or ``IsEnvironment`` on the instance of ``IHostingEnvironment`` passed into the appropriate method.
 
 If you need to check whether the application is running in a particular environment, use ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
 
@@ -85,7 +85,7 @@ ASP.NET 5 supports a convention-based approach to configuring an application's s
 
 When an ASP.NET 5 application starts, the ``Startup`` class is used to bootstrap the application, load its configuration settings, etc. (:doc:`learn more about ASP.NET startup <startup>`). However, if a class exists named ``Startup{EnvironmentName}``, e.g. ``StartupDevelopment``, and the ``ASPNET_ENV`` environment variable matches that name, then that ``Startup`` class is used instead. Thus, you could configure ``Startup`` for development, but have a separate ``StartupProduction`` that would be used when the app is run in production. Or vice versa.
 
-The following ``StartupDevelopment`` file from this articles sample project is run when the application is set to run in a Development environment:
+The following ``StartupDevelopment`` file from this article's sample project is run when the application is set to run in a Development environment:
 
 .. literalinclude:: environments/sample/src/Environments/StartupDevelopment.cs
 	:language: c#
@@ -117,6 +117,3 @@ Additional Resources
 - `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
 - :doc:`configuration`
 
-.. _environments-author:
-
-.. include:: /_authors/steve-smith.txt

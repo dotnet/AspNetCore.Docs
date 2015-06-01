@@ -1,13 +1,14 @@
 Diagnostics
 ===========
 
-By :ref:`Steve Smith <diagnostics-author>` | Originally Published: 6 May 2015 
+By `Steve Smith`_
 
 ASP.NET 5 includes a number of new features that can assist with diagnosing problems. Configuring different handlers for application errors or to display additional information about the application can easily be achieved in the application's startup class.
 
 In this article:
 	- `Configuring an error handling page`_
 	- `Using the error page during development`_
+	- `HTTP 500 errors on Azure`_
 	- `The runtime info page`_
 	- `The welcome page`_
 	
@@ -69,6 +70,25 @@ In this case, you can see the value of the ``throw`` parameter that was passed t
 .. image:: diagnostics/_static/errorpage-headers.png
 
 .. note:: In the current pre-release build, the Cookies section of ErrorPage is not yet enabled. `View ErrorPage Source <https://github.com/aspnet/Diagnostics/blob/dev/src/Microsoft.AspNet.Diagnostics/Views/ErrorPage.cshtml>`_.
+
+HTTP 500 errors on Azure
+-------------------------
+
+If your app throws an exception before the ``Configure`` method in *Startup.cs* completes, the error page won't be configured. For local development using IIS Express, you'll still get a call stack showing where the exception occurred. The same app deployed to Azure (or another production server) will return an HTTP 500 error with no message details. ASP.NET 5 uses a new configuration model that is not based on *web.config*, and when you create a new web app with Visual Studio 2015, the project no longer contains a *web.config* file. (See `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_.)
+
+The publish wizard in Visual Studio 2015 creates a *web.config* file if you don't have one. If you have a *web.config* file in the *wwwroot* folder, deploy inserts the markup into the the *web.config* file it generates. 
+
+To get detailed error messages on Azure, add the following *web.config* file to the *wwwroot* folder.
+
+.. note:: Security warning: Enabling detailed error message can leak critical information from your app. You should never enable detailed error messages on a production app.
+
+.. code-block:: html
+
+	<configuration>
+	   <system.web>
+		  <customErrors mode="Off"/>
+	   </system.web>
+	</configuration>
 
 The runtime info page
 ---------------------
@@ -138,8 +158,4 @@ In ASP.NET 5, you can easily add error pages, view diagnostic information, or re
 Additional Resources
 --------------------
 
-- :ref:`Using Application Insights <application-insights>` Collect detailed usage and diagnostic data for your application.
-
-.. _diagnostics-author:
-
-.. include:: /_authors/steve-smith.txt
+- :doc:`Using Application Insights <application-insights>` - Collect detailed usage and diagnostic data for your application.
