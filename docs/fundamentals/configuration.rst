@@ -47,38 +47,9 @@ It's not unusual to store configuration values in a hierarchical structure, espe
 
 Access to the "SiteTitle" setting is done through a key of ``AppSettings:SiteTitle``. Similarly, access to the ``ConnectionString`` setting is achieved through this key: ``Data:DefaultConnection:ConnectionString``.
 
-Instantiating ``Configuration`` as shown above should be avoided. The recommended approach is to create your own settings class (probably several different classes, corresponding to different cohesive groups of settings), and use  :ref:`Options and configuration objects <options-config-objects>` and :doc:`dependency-injection` to access these classes wherever they're needed.
+Instantiating ``Configuration`` as shown above should be avoided, except in your application's ``Startup`` class. The recommended approach is to create your own settings class (probably several different classes, corresponding to different cohesive groups of settings), and use  :ref:`Options and configuration objects <options-config-objects>` and :doc:`dependency-injection` to access these classes wherever they're needed.
 
-Injecting the Configuration object
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-It is also possible to inject the configuration system itself into your classes. This is not the preferred approach, since it doesn't take advantage of separate classes for separate groups of settings, and results in a more tightly coupled design. But it's a bit simpler and is still better than referencing ``Configuration`` directly from the app. 
-
-First, set up configuration in the ``Startup.cs`` file (we'll see how in :ref:`the next section <config-setup>`), and assign the ``Configuration`` instance to a property on ``Startup``.  Next, in ``ConfigureServices``, add the ``Configuration`` property to the list of services ASP.NET manages, like so:
-
-.. code-block:: c#
-
-	// set this in Startup() constructor
-	public IConfiguration Configuration { get; set; }
-
-	// This method gets called by the runtime. Use this method to add services to the container.
-	public void ConfigureServices(IServiceCollection services)
-	{
-		services.AddSingleton(_ => Configuration);
-		
-		// Code removed for brevity.
-	}
-
-.. _inject-config:
-
-Now with this in place, you can request an instance of ``IConfiguration`` in the constructor of any controller that needs access to configuration values.
-
-.. literalinclude:: configuration/sample/src/ConfigDemo/Controllers/HomeController.cs
-	:linenos:
-	:language: c#
-	:emphasize-lines: 8-12,15-16
-	:lines: 1-12, 19-25, 38-
-
-The main benefits of this approach are that it allows your app to follow the `Don't Repeat Yourself, or DRY, Principle <http://deviq.com/don-t-repeat-yourself/>`_ and results in more testable code. The ``Configuration`` instance is only defined in one place in the application, and tests are able to replace the configuration values with a fake or mock ``IConfiguration`` instance that can easily be set up to provide values specific to individual tests. However, this approach does not provide any factoring of settings based on functionality or concern, and it tends to `spread magic strings <http://deviq.com/magic-strings/>`_ throughout the app, since the configuration key values must still be specified. The :ref:`Options <options-config-objects>` approach below provides the same benefits as this approach, without the associated drawbacks.
+.. note: You could store your ``Configuration`` instance as a service, but this would unnecessarily couple your application to a single configuration system and specific configuration keys. Instead, you can use the :ref:`Options pattern <opsions-config-objects>` to avoid these issues.
 
 Using the built-in providers
 ----------------------------
