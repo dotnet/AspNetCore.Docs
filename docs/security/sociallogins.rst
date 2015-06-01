@@ -32,7 +32,7 @@ Next you should see another dialog, the New ASP.NET Project window:
 	
 Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
 
-At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
+At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio is downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
 
 
 Running the Application
@@ -66,7 +66,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 
 .. image:: sociallogins/_static/FBApp04.png
 
-- Select **Settings** for the left menu bar.
+- Select **Settings** from the left menu bar.
 
 .. image:: sociallogins/_static/FBApp05.png
 
@@ -87,7 +87,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 Use SecretManager to store Facebook AppId and AppSecret
 -----------------------------------------------------------
 
-The project created has the following code in Startup which reads the configuration values from a secret store. As a best practise, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source code and can be publicly accessible.
+The project created has the following code in Startup which reads the configuration values from a secret store. As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
@@ -97,7 +97,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 .. image:: sociallogins/_static/SM1.PNG
 
-- Install the SecretManager tool using DNU (Microsoft .NET Development Utlity) by running **dnu commands install SecretManager**
+- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret 862373430475128**
 - The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
@@ -119,7 +119,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 Enable Facebook middleware
 --------------------------
 
-- You can add the Options for Facebook middleware such as Facebook AppId and AppSecret in ConfigureServices method in Startup.
+- You can add the options for Facebook middleware such as Facebook AppId and AppSecret in the ConfigureServices method in Startup.
 
 .. code-block:: c#
 
@@ -130,7 +130,7 @@ Enable Facebook middleware
 	});
 
 
-- Add the Facebook middleware by adding it to the HTTP request pipeline by uncommenting the following lines in Configure method in Startup.
+- Add the Facebook middleware by adding it to the HTTP request pipeline by uncommenting the following line in the Configure method in Startup.
 
 .. code-block:: c#
 
