@@ -20,8 +20,9 @@
 
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-    "gen": "Microsoft.Framework.CodeGeneration"
-  },
+    "gen": "Microsoft.Framework.CodeGeneration",
+    "ef": "EntityFramework.Commands"
+    },
 
   "frameworks": {
     "dnx451": { },
