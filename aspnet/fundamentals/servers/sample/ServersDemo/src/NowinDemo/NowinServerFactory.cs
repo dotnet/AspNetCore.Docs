@@ -23,15 +23,17 @@ namespace NowinWebSockets
 
         public IServerInformation Initialize(IConfiguration configuration)
         {
-            var builder = ServerBuilder.New()
-                                       .SetAddress(IPAddress.Any)
-                                       .SetPort(5000)
-                                       .SetOwinApp(OwinWebSocketAcceptAdapter.AdaptWebSockets(HandleRequest));
+            var builder = ServerBuilder
+                .New()
+                .SetAddress(IPAddress.Any)
+                .SetPort(5000)
+                .SetOwinApp(OwinWebSocketAcceptAdapter.AdaptWebSockets(HandleRequest));
 
             return new NowinServerInformation(builder);
         }
 
-        public IDisposable Start(IServerInformation serverInformation, Func<IFeatureCollection, Task> application)
+        public IDisposable Start(IServerInformation serverInformation, 
+            Func<IFeatureCollection, Task> application)
         {
             var information = (NowinServerInformation)serverInformation;
             _callback = application;

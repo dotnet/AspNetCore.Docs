@@ -1,9 +1,5 @@
-<<<<<<< HEAD:docs/fundamentals/servers.rst
 Servers
 =======
-=======
-.. include:: /../common/stub-topic.txt
->>>>>>> master:aspnet/fundamentals/servers.rst
 
 By `Steve Smith`_
 
@@ -50,6 +46,8 @@ The ``run`` command will execute the application via its ``void main()`` method 
 
 Feature interfaces
 ------------------
+
+.. TODO: move to separate article
 
 ASP.NET 5 defines a number of `Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/dev/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
 
@@ -193,29 +191,49 @@ Kestrel currently supports a limited number of feature interfaces, including ``I
 			private FeatureCollection _features;
 			
 			private void PopulateFeatures()
-				{
-					_features.Add(typeof(IHttpRequestFeature), this);
-					_features.Add(typeof(IHttpResponseFeature), this);
-					_features.Add(typeof(IHttpUpgradeFeature), this);
-				}
+			{
+				_features.Add(typeof(IHttpRequestFeature), this);
+				_features.Add(typeof(IHttpResponseFeature), this);
+				_features.Add(typeof(IHttpUpgradeFeature), this);
+			}
 		}
 	}
 
-Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server.
+Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server. In fact, like all of ASP.NET 5, you're welcome to `contribute <https://github.com/aspnet/KestrelHttpServer/blob/dev/CONTRIBUTING.md>`_ any improvements you make back to the project.
+
+Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
 Custom Servers
 --------------
 
-In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server.
+In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server. In the sample for this article, I've included a very simple project that references Nowin and uses it to create a simple server capable of self-hosting ASP.NET 5.
 
+.. literalinclude:: servers/sample/ServersDemo/src/NowinDemo/NowinServerFactory.cs
+	:emphasize-lines: 15,19,21,30,39
+	:linenos:
+	:language: c#
+
+`IServerFactory <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerFactory.cs>`_ is an ASP.NET interface that requires an Initialize and a Start method. Initialize must return an instance of `IServerInformation <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerInformation.cs>`_, which simply includes the server's name. In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
+
+``Initialize`` is responsible for configuring the server, which in this case is done through a series of fluent API calls that hard code the server to listen for requests (to any IP address) on port 5000. Note that the final line of the fluent configuration of the ``builder`` variable specifies that requests will be handled by the private method ``HandleRequest``.
+
+``Start`` is called after ``Initialize`` and accepts the the ``IServerInformation`` created by ``Initialize``, and a callback of type ``Func<IFeatureCollection, Task>``. This callback is assigned to a local field and is ultimately called on each request from within the private ``HandleRequest`` method (which was wired up in ``Initialize``).
+
+With this in place, all that's required to run an ASP.NET application using this custom server is the following command in ``project.json``:
+
+.. literalinclude:: servers/sample/ServersDemo/src/NowinDemo/project.json
+	:emphasize-lines: 9
+	:linenos:
+	:language: javascript
+
+.. TODO: Note how this command connects with IServerFactory.
 
 Summary
 -------
 
-Summary goes here.
+Because ASP.NET 5 has completely decoupled ASP.NET applications from IIS or any other web server, it's now possible to host ASP.NET applications on any number of different servers. ASP.NET supports three: IIS, WebListener, and Kestrel, which provide two great options for Windows environments and a third, open-source option that can be used on several different operating systems.
 
-<<<<<<< HEAD:docs/fundamentals/servers.rst
-=======
-.. include:: /../common/stub-notice.txt
->>>>>>> master:aspnet/fundamentals/servers.rst
+Additional Reading
+------------------
 
+- :doc:`request-features`
