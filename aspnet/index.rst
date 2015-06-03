@@ -32,7 +32,12 @@ Topics
     performance/index
     migration/index
     contribute/index
- 
+
+Related Resources
+----------------- 
+
+* :ref:`.NET Core Documentation <dotnet:index>`
+  
 Contribute
 ----------
 
