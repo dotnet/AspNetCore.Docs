@@ -3,8 +3,9 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using StartupDemo;
 
-namespace StartupDemo
+namespace aaa
 {
     public class Startup
     {
