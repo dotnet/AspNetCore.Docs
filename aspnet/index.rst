@@ -3,6 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _index:
+
 ASP.NET 5 Documentation
 =======================
 
@@ -18,7 +20,7 @@ Topics
 
 .. toctree::
     :titlesonly:
-    
+
     getting-started/index
     tutorials/index
     conceptual-overview/index
@@ -34,10 +36,10 @@ Topics
     contribute/index
 
 Related Resources
------------------ 
+-----------------
 
 * :ref:`.NET Core Documentation <dotnet:index>`
-  
+
 Contribute
 ----------
 
@@ -47,5 +49,3 @@ The documentation on this site is the handiwork of our many `contributors <https
 
 	1. Read https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
 	2. Follow the :ref:`ASP.NET Docs Style Guide <style-guide>`
-
-
