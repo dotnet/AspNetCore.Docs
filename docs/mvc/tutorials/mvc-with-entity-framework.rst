@@ -1,5 +1,5 @@
-Create a web app that talks to a SQL database
-=============================================
+Get Started with Entity Framework 7 Code using ASP.NET MVC 6
+============================================================
 
 By `Mike Wasson`_ 
 
@@ -27,7 +27,7 @@ In this article:
     - `Add a delete page`_
     - `Wrapping up`_
 
-Browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
+You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
 
 
 Create the project
@@ -100,7 +100,7 @@ Right-click the *Models* folder and select **Add** > **New Item**. In the **Add 
     :language: c#
     :lines: 1-8,10-16
 
-Repeate these steps to add another class named ``Book`` with the following code:
+Repeat these steps to add another class named ``Book`` with the following code:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Models/Book.cs
     :language: c#
@@ -118,7 +118,7 @@ In EF 7, the primary class for interacting with data is ``Microsoft.Data.Entity.
 
 The ``DbSet`` properties represent collections of entities. These will become tables in the SQL database.
 
-Tip: It’s easy to add the necessary ``using`` directives in Visual Studio. With the insertion point on "BookContext", type ``Ctrl+.`` (Ctrl + period). This will bring up a list of quick action. Select "using ControsoBooks.Models" to add the using directive. 
+Tip: It’s easy to add the necessary ``using`` directives in Visual Studio. With the insertion point on "BookContext", type ``Ctrl+.`` (Ctrl + period). This will bring up a list of quick actions. Select "using ControsoBooks.Models" to add the using directive. 
 
 .. image:: mvc-with-entity-framework/_static/quick-action.png
 
@@ -132,7 +132,7 @@ You wouldn’t put this into production code, but it’s OK for a sample app.
 Configure Entity Framework
 --------------------------
 
-Open *config.json*. Add the the following entry:
+Open *config.json*. Add the following entry:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/config.json
     :language: json
@@ -155,7 +155,7 @@ Add the following code at the end of the *Configure* method:
     :lines: 72
     :dedent: 12
 
-Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from config.json. When you deploy the app to a production environment, you would store the connection string in an environment variable on the host. 
+Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from config.json. When you deploy the app to a production environment, you would store the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in config.json.
 
 Here is the complete *Startup.cs* after these changes:
 
@@ -174,7 +174,7 @@ Open *project.json*. In the "commands" section, add an entry for ``EntityFramewo
     :dedent: 4
     :emphasize-lines: 4
 
-Open a command prompt in the project directory (\ContosoBooks\src\ContosoBooks\) and run the following commands:
+Open a command prompt in the project directory (/ContosoBooks/src/ContosoBooks) and run the following commands:
 
 .. code-block:: none
 
@@ -183,10 +183,11 @@ Open a command prompt in the project directory (\ContosoBooks\src\ContosoBooks\)
     dnx . ef migration add Initial
     dnx . ef migration apply
 
-The "``add Initial``" command adds code to project that allows EF to update the database scheme. The "``apply``" command creates the actual database. After you run the run these commands, your project should have a new folder named *Migrations*:
+The "``add Initial``" command adds code to the project that allows EF to update the database scheme. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
+For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <mvc:dnx/overview>`.
 
 Add an index page
 -----------------
@@ -229,9 +230,9 @@ Add the following method to the ``BooksController`` class:
 This code looks up a book by ID. In the EF query:
 
 - The ``Include`` method tells EF to fetch the related ``Author`` entity.  
-- The ``SingleOrDefault`` method returns a single entity by ID, or ``null`` if none is found.
+- The ``SingleOrDefault`` method returns a single entity, or ``null`` if none is found.
 
-If the EF query returns ``null``, the controller method returns ``HttpNotFound``, which ASP.NET translates into a 404 response. Otherwise, the controller passes book to a view, which renders the details page. Let’s add the view now.
+If the EF query returns ``null``, the controller method returns ``HttpNotFound``, which ASP.NET translates into a 404 response. Otherwise, the controller passes *book* to a view, which renders the details page. Let’s add the view now.
 
 In the *Views/Book* folder, add a view named *Details.cshtml* with the following code:
 
