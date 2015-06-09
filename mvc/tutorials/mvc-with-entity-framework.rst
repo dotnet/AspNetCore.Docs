@@ -17,7 +17,7 @@ In this article:
 
     - `Create the project`_
     - `Add Entity Framework`_
-    - `Create models`_
+    - `Create entity classes`_
     - `Add a DbContext class`_
     - `Configure Entity Framework`_
     - `Add an index page`_
@@ -59,10 +59,10 @@ with this:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Views/Shared/_Layout.cshtml
     :language: aspx-cs
-    :lines: 37-39
+    :lines: 37-38
     :dedent: 24
 
-This adds links to the Books and Authors pages (which we haven’t created yet). 
+This adds links to a Books page, which we haven’t created yet. (That will come later in tutorial.)
 
 Add Entity Framework
 --------------------
@@ -80,15 +80,15 @@ When you save *project.json*, Visual Studio automatically resolves the new packa
 
 .. image:: mvc-with-entity-framework/_static/package-restore.png
 
-Create models
--------------
+Create entity classes
+---------------------
 
-The app will have two models:
+The app will have two entities:
 
 - Book
 - Author
 
-We'll define a class for each model. First, add a new folder to the project. In Solution Explorer, right-click the project. (The project appears under the "src" folder.) Select **Add** > **New Folder**. Name the folder *Models*.
+We'll define a class for each. First, add a new folder to the project. In Solution Explorer, right-click the project. (The project appears under the "src" folder.) Select **Add** > **New Folder**. Name the folder *Models*.
 
 .. image:: mvc-with-entity-framework/_static/add-folder.png
 
@@ -106,21 +106,17 @@ Repeat these steps to add another class named ``Book`` with the following code:
     :language: c#
     :lines: 1-8,10-13,15-24
 
-To keep the app simple, each book has a single author. The ``Author`` property provides a way to navigate the relationship from a book to an author. In EF, this type of property is called a *navigation property*. When EF creates the DB schema, it can automatically infer that ``AuthorID`` should be a foreign key to the Authors table. 
+To keep the app simple, each book has a single author. The ``Author`` property provides a way to navigate the relationship from a book to an author. In EF, this type of property is called a *navigation property*. When EF creates the DB schema, EF automatically infers that ``AuthorID`` should be a foreign key to the Authors table. 
 
 Add a DbContext class
 ---------------------
 
-In EF 7, the primary class for interacting with data is ``Microsoft.Data.Entity.DbContext``. Add a class in the *Models* folder that derives from ``DbContext``:
+In EF 7, the primary class for interacting with data is ``Microsoft.Data.Entity.DbContext``. Add a class in the *Models* folder named ``BookContext`` that derives from ``DbContext``:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Models/BookContext.cs
     :language: c#
 
 The ``DbSet`` properties represent collections of entities. These will become tables in the SQL database.
-
-Tip: It’s easy to add the necessary ``using`` directives in Visual Studio. With the insertion point on "BookContext", type ``Ctrl+.`` (Ctrl + period). This will bring up a list of quick actions. Select "using ControsoBooks.Models" to add the using directive. 
-
-.. image:: mvc-with-entity-framework/_static/quick-action.png
 
 Next, we'll create some sample data. Add a class named ``SampleData`` in the *Models* folder with the following code:
 
@@ -132,12 +128,11 @@ You wouldn’t put this into production code, but it’s OK for a sample app.
 Configure Entity Framework
 --------------------------
 
-Open *config.json*. Add the following entry:
+Open *config.json*. Add the following highlighted lines:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/config.json
     :language: json
-    :lines: 5-7
-    :dedent: 2
+    :emphasize-lines: 5-7
   
 This defines a connection string to LocalDB, which is a lightweight version of SQL Server Express for development. 
 
@@ -152,7 +147,7 @@ Add the following code at the end of the *Configure* method:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :lines: 72
+    :lines: 71
     :dedent: 12
 
 Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from config.json. When you deploy the app to a production environment, you would store the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in config.json.
@@ -183,11 +178,11 @@ Open a command prompt in the project directory (/ContosoBooks/src/ContosoBooks) 
     dnx . ef migration add Initial
     dnx . ef migration apply
 
-The "``add Initial``" command adds code to the project that allows EF to update the database scheme. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
+The "``add Initial``" command adds code to the project that allows EF to update the database schema. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
-For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <mvc:dnx/overview>`.
+For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview`.
 
 Add an index page
 -----------------
@@ -202,8 +197,10 @@ Replace the boilerplate code with the following:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 1-27,151-152
+    :lines: 1-26,149-150
 
+Notice that we don't set any value for ``Logger`` and ``BookContext``. The dependency injection (DI) subsystem automatically sets these properties at runtime. DI also handles the object lifetimes, so you don't need to call ``Dispose``. For more information, see :ref:`Dependency Injection`.
+    
 In the *Views* folder, make a sub-folder named *Book*. You can do this by right-clicking the *Views* folder in Solution Explorer and clicking **Add New Folder**.
 
 Right-click the *Views/Book* subfolder that you just created, and select **Add** > **New Item**. Select the **MVC View Page** template. Keep the default name, *Index.cshtml*. 
@@ -224,7 +221,7 @@ Add the following method to the ``BooksController`` class:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 29-40
+    :lines: 28-39
     :dedent: 8
 
 This code looks up a book by ID. In the EF query:
@@ -246,7 +243,7 @@ Add the following two methods to ``BookController``:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 41-46,137-150
+    :lines: 40-46,135-148
     :dedent: 8
 
 Add a view named *Views/Book/Create.cshtml*.
@@ -265,12 +262,12 @@ Now let’s write the controller action to handle the form post. In the ``BookCo
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 50-66
+    :lines: 47-65
     :dedent: 8
 
-The ``[HttpPost]`` attribute tells MVC 6 that this action applies to HTTP POST requests. The ``[ValidateAntiForgeryToken]`` attribute is a security feature that guards against cross-site request forgery. For more information, see :doc:`../../security/anti-request-forgery`.
+The ``[HttpPost]`` attribute tells MVC that this action applies to HTTP POST requests. The ``[ValidateAntiForgeryToken]`` attribute is a security feature that guards against cross-site request forgery. For more information, see :doc:`../../security/anti-request-forgery`.
 
-Inside this method, we check the model state (``ModelState.IsValid``). If the client submitted a valid model, we add it to the database. Otherwise, we return the original view. This time, the view will display the validation errors in these ``span`` elements:
+Inside this method, we check the model state (``ModelState.IsValid``). If the client submitted a valid model, we add it to the database. Otherwise, we return the original view with validation errors shown:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Views/Book/Create.cshtml
     :language: aspx-cs
@@ -309,14 +306,14 @@ Add the following methods to ``BookController``:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 99-135
+    :lines: 98-133
     :dedent: 8
 
 This code is very similar to adding a new entity, except for the code needed to update the database:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 120-121
+    :lines: 119-120
     :dedent: 16
 
 Add a view named *Views/Book/Edit.cshtml* view with the following code:
@@ -333,7 +330,7 @@ Add the following code to ``BookController``.
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 68-97
+    :lines: 67-96
     :dedent: 8
 
 Add a view named *Views/Book/Delete.cshtml* view with the following code:
@@ -347,11 +344,11 @@ The basic flow is:
 #. The app displays a confirmation page.
 #. The confirmation page is a form. Submitting the form (via HTTP POST) does the actual deletion.
 
-Performing a delete operation in response to a GET request creates a security risk. For more information, see `ASP.NET MVC Tip #46 — Don't use Delete Links because they create Security Holes <http://stephenwalther.com/archive/2009/01/21/asp-net-mvc-tip-46-ndash-donrsquot-use-delete-links-because>`_ on Stephen Walther's blog.
+You don't want the "Delete" link itself to delete the item. Performing a delete operation in response to a GET request creates a security risk. For more information, see `ASP.NET MVC Tip #46 — Don't use Delete Links because they create Security Holes <http://stephenwalther.com/archive/2009/01/21/asp-net-mvc-tip-46-ndash-donrsquot-use-delete-links-because>`_ on Stephen Walther's blog.
 
 Wrapping up
 -----------
 
 The sample app has equivalent pages for authors. However, they don't contain any new concepts, so I won’t show them in the tutorial. You can browse the source code on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
 
-For information about deploying your app, see :doc:`../../publishing/index`.
+For information about deploying your app, see :ref:`Publishing and Deployment`.

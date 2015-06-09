@@ -19,7 +19,6 @@ namespace ContosoBooks.Controllers
         [FromServices]
         public ILogger<BookController> Logger { get; set; }
 
-        // GET: /<controller>/
         public IActionResult Index()
         {
            var books = BookContext.Books.Include(b => b.Author);
@@ -96,7 +95,6 @@ namespace ContosoBooks.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
             Book book = await FindBookAsync(id);
