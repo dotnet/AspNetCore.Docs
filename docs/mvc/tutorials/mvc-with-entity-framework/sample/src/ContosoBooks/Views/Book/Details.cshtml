@@ -7,40 +7,23 @@
 <h2>Details</h2>
 <div>
   <dl class="dl-horizontal">
-    <dt>
-      @Html.DisplayNameFor(model => model.Title)
-    </dt>
+    <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+    <dd>@Html.DisplayFor(model => model.Title)</dd>
+
+    <dt>@Html.DisplayNameFor(model => model.Author)</dt>
     <dd>
-      @Html.DisplayFor(model => model.Title)
+      @Html.DisplayFor(model => model.Author.FirstMidName) 
+      @Html.DisplayFor(model => model.Author.LastName)
     </dd>
 
-    <dt>
-      @Html.DisplayNameFor(model => model.Author)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Author.FirstMidName) @Html.DisplayFor(model => model.Author.LastName)
-    </dd>
+    <dt>@Html.DisplayNameFor(model => model.Year)</dt>
+    <dd>@Html.DisplayFor(model => model.Year)</dd>
 
-    <dt>
-      @Html.DisplayNameFor(model => model.Year)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Year)
-    </dd>
+    <dt>@Html.DisplayNameFor(model => model.Genre)</dt>
+    <dd>@Html.DisplayFor(model => model.Genre)</dd>
 
-    <dt>
-      @Html.DisplayNameFor(model => model.Genre)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Genre)
-    </dd>
-
-    <dt>
-      @Html.DisplayNameFor(model => model.Price)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Price)
-    </dd>
+    <dt>@Html.DisplayNameFor(model => model.Price)</dt>
+    <dd>@Html.DisplayFor(model => model.Price)</dd>
   </dl>
 </div>
 <p>

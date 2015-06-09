@@ -35,7 +35,6 @@ namespace ContosoBooks
                 {
                     options.UseSqlServer(Configuration.Get("Data:ConnectionString"));
                 });
-
         }
 
         // Configure is called after ConfigureServices is called.
