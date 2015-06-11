@@ -3,14 +3,14 @@ Account Confirmation and Password Recovery with ASP.NET Identity
 
 By `Pranav Rastogi`_
 
-This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using the ASP.NET Identity.
+This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using ASP.NET Identity.
 
 In this article:
 	- `Create a New ASP.NET 5 Project`_
 	- `Running the Application`_
 	- `Setup up Email provider`_
 	- `Enable Account confirmation and Password recovery`_
-	- `Register, confirm email and reset password`_
+	- `Register, confirm email, and reset password`_
 	- `Require email confirmation before login`_
 	- `Next steps`_
 	- `Summary`_
@@ -18,7 +18,7 @@ In this article:
 Create a New ASP.NET 5 Project
 ------------------------------
 
-To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
+To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project). On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 
 .. image:: accconfirm/_static/new-project.png
 
@@ -26,9 +26,9 @@ Next you should see another dialog, the New ASP.NET Project window:
  
 .. image:: accconfirm/_static/select-project.png
 	
-Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
+Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure that authentication is set to **Individual User Accounts**. After selecting, click OK.
 
-At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio id downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
+At this point, the project is created. It may take a few moments to load, and you may notice that Visual Studio's status bar indicates that it is downloading some resources as part of this process. Visual Studio ensures that some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
 
 
 Running the Application
@@ -44,8 +44,8 @@ Setup up Email provider
 
 Although this tutorial only shows how to add email notification through `SendGrid <https://sendgrid.com/>`_, you can send email using SMTP and other mechanisms.
  - Install SendGrid NuGet package
- - Go to the `Azure SendGrid sign up page <http://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/>`_ and register for free SendGrid account.
- - Add code in MessageServices similar to the following to configure SendGrid
+ - Go to the `Azure SendGrid sign up page <http://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/>`_ and register for a free SendGrid account.
+ - Add code in **MessageServices.cs** similar to the following to configure SendGrid
 
 .. code-block:: c#
 
@@ -54,14 +54,11 @@ Although this tutorial only shows how to add email notification through `SendGri
         // Plug in your email service here to send an email.
         var myMessage = new SendGridMessage();
         myMessage.AddTo(email);
-        myMessage.From = new System.Net.Mail.MailAddress(
-                            "Joe@contoso.com", "Joe S.");
+        myMessage.From = new System.Net.Mail.MailAddress("Joe@contoso.com", "Joe S.");
         myMessage.Subject = subject;
         myMessage.Text = message;
         myMessage.Html = message;
-        var credentials = new NetworkCredential(
-                         "SendGridUser", "SendGridKey"
-                         );
+        var credentials = new NetworkCredential("SendGridUser", "SendGridKey");
         // Create a Web transport for sending email.
         var transportWeb = new Web(credentials);
         // Send the email.
@@ -83,9 +80,9 @@ Although this tutorial only shows how to add email notification through `SendGri
 Enable Account confirmation and Password recovery
 -------------------------------------------------
 
-The app already has the code to enable account confirmation and reset password.. Follow these steps to enable them:
+The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
 
-- In your project open **AccountController** and look at **Register** action.
+- In your project open **AccountController** and look at the **Register** action.
 - Uncomment the code to enable account confirmation.
 
 .. code-block:: c#
@@ -114,7 +111,7 @@ The app already has the code to enable account confirmation and reset password..
         return View(model);
     }
 
-- Enable Password recovery by uncommenting the code in **ForgotPassword** action
+- Enable password recovery by uncommenting the code in the **ForgotPassword** action and its associated view:
 
 .. code-block:: c#
 
@@ -142,8 +139,6 @@ The app already has the code to enable account confirmation and reset password..
         return View(model);
     }
 
-- Enable Password recovery form by uncommenting the code in **Views\Account\ForgotPassword** 
-
 .. code-block:: html
 
 	<form asp-controller="Account" asp-action="ForgotPassword" method="post" class="form-horizontal" role="form">
@@ -165,12 +160,12 @@ The app already has the code to enable account confirmation and reset password..
 	</form>
 
 
-Register, confirm email and reset password
+Register, confirm email, and reset password
 ------------------------------------------
 
 Let us run the Web site and show the account confirmation and password recovery flow.
 
-- Run the app and register a new user
+- Run the application and register a new user
 
 .. image:: accconfirm/_static/loginaccconfirm1.png
 
@@ -203,7 +198,7 @@ Let us run the Web site and show the account confirmation and password recovery 
          
 Require email confirmation before login
 ---------------------------------------
-Currently once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users to have a confirmed email before they are logged in (authenticated).  Update the HttpPost Login action with the following highlighted changes.
+Currently once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users to have a confirmed email before they are logged in (authenticated). Update the HttpPost Login action with the following highlighted changes.
 
 .. code-block:: c#
 
@@ -223,7 +218,6 @@ Currently once a user completes the registration form, they are logged in. You g
                 }
             }
             // Code removed for brevity. You should have the code that was in the project.
-
         }
 
         // If we got this far, something failed, redisplay form
@@ -234,11 +228,9 @@ Currently once a user completes the registration form, they are logged in. You g
 
 Next steps
 ----------
-- Once you publish your Web site to Azure Web App, you should reset the secrets for SendGrid. 
-- Set the SendGrid Secrets as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+- Once you publish your Web site to Azure Web App, you should reset the secrets for SendGrid. Set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 Summary
 -------
 
 ASP.NET Identity can be used to add account confirmation and password recovery.
-
