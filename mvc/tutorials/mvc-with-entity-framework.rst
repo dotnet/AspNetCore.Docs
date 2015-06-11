@@ -349,6 +349,6 @@ You don't want the "Delete" link itself to delete the item. Performing a delete 
 Wrapping up
 -----------
 
-The sample app has equivalent pages for authors. However, they don't contain any new concepts, so I won’t show them in the tutorial. You can browse the source code on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
+The sample app has equivalent pages for authors. However, they don't contain any new concepts, so I won’t show them in the tutorial. You can browse the source code on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/tutorials/mvc-with-entity-framework/sample>`__.
 
 For information about deploying your app, see :ref:`Publishing and Deployment <aspnet:publishing-and-deployment>`.
