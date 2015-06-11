@@ -90,7 +90,7 @@ Dependencies are transitive in that you only need to specify your top level depe
 Packages and feeds
 ---------------------------
 
-For package dependencies to resolve they must first be installed. You can use DNU to install a new package into an existing project or to restore all package dependencies for an existing project. The following command downloads and installs all packages that are listed in the *project.json* file:
+For package dependencies to resolve they must first be installed. You can use DNU to install a new package into an existing project or to restore all package dependencies for an existing project. The following command downloads and installs all packages that are listed in the *project.json* file::
 
     dnu restore
 
