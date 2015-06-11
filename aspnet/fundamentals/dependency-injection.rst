@@ -1,3 +1,5 @@
+.. _dependency-injection:
+
 .. include:: /../common/stub-topic.txt
 
 |stub-icon| Dependency Injection

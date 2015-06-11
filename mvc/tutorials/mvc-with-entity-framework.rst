@@ -27,7 +27,7 @@ In this article:
     - `Add a delete page`_
     - `Wrapping up`_
 
-You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
+You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/tutorials/mvc-with-entity-framework/sample>`__.
 
 
 Create the project
@@ -182,7 +182,7 @@ The "``add Initial``" command adds code to the project that allows EF to update 
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
-For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview`.
+For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
 
 Add an index page
 -----------------
@@ -199,7 +199,7 @@ Replace the boilerplate code with the following:
     :language: c#
     :lines: 1-26,149-150
 
-Notice that we don't set any value for ``Logger`` and ``BookContext``. The dependency injection (DI) subsystem automatically sets these properties at runtime. DI also handles the object lifetimes, so you don't need to call ``Dispose``. For more information, see :ref:`Dependency Injection`.
+Notice that we don't set any value for ``Logger`` and ``BookContext``. The dependency injection (DI) subsystem automatically sets these properties at runtime. DI also handles the object lifetimes, so you don't need to call ``Dispose``. For more information, see :ref:`Dependency Injection  <aspnet:dependency-injection>`.
     
 In the *Views* folder, make a sub-folder named *Book*. You can do this by right-clicking the *Views* folder in Solution Explorer and clicking **Add New Folder**.
 
@@ -349,6 +349,6 @@ You don't want the "Delete" link itself to delete the item. Performing a delete 
 Wrapping up
 -----------
 
-The sample app has equivalent pages for authors. However, they don't contain any new concepts, so I won’t show them in the tutorial. You can browse the source code on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/tutorials/mvc-with-entity-framework/sample>`_.
+The sample app has equivalent pages for authors. However, they don't contain any new concepts, so I won’t show them in the tutorial. You can browse the source code on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/tutorials/mvc-with-entity-framework/sample>`__.
 
-For information about deploying your app, see :ref:`Publishing and Deployment`.
+For information about deploying your app, see :ref:`Publishing and Deployment <aspnet:publishing-and-deployment>`.
