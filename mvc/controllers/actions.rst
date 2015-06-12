@@ -1,5 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
+.. _actions:
+
 |stub-icon| Actions and Action Results
 ===========================================
 
