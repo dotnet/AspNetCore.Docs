@@ -161,7 +161,7 @@ The template already has the code for account confirmation and password recovery
 
 
 Register, confirm email, and reset password
-------------------------------------------
+-------------------------------------------
 
 Let us run the Web site and show the account confirmation and password recovery flow.
 
