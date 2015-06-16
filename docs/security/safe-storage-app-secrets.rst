@@ -24,7 +24,7 @@ Installing the secrets manager tool
 
 - Create a new ASP.NET web app. We will use this to test secrets stored with the secrets manager tool.
 - Open a command prompt and navigate to the project folder (the folder with *config.json*).
-- Set the runtime version using the .Net Version Manager(DNVM). DNVM is a tool that lets you list, install and switch `DNX <http://docs.asp.net/en/latest/dnx/overview.html?highlight=dnvm>`__ versions on your machine. Run the following command:
+- Set the runtime version using the .Net Version Manager (DNVM). DNVM is a tool that lets you list, install and switch `DNX <http://docs.asp.net/en/latest/dnx/overview.html?highlight=dnvm>`__ versions on your machine. Run the following command:
 
 .. TODO each version, update version # (1.0.0-beta4)
 	note: there are multiple versions in this file
