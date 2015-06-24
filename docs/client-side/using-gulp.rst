@@ -1,7 +1,7 @@
 Using Gulp
 ========================================
 
-By ``_
+By Noel Rice and Mike Wasson_
 
 Modern web development has lots of moving parts. To build a typical web app, you might:
 
@@ -10,29 +10,25 @@ Modern web development has lots of moving parts. To build a typical web app, you
 -	Bundle and minify your JS files.
 -	Run tools like JSHint.
 
-A *task runner* is an app that automates these routine development tasks. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners, Gulp and Grunt. 
+A *task runner* is an app that automates these routine development tasks. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners, `Gulp <http://gulpjs.com>`_ and `Grunt <http://gruntjs.com/>`_. 
 
 Using Gulp
 ----------
-Here are the general steps to use Gulp in your ASP.NET project. This topic will cover each in more detail.
+This topic will cover the following typical steps in using Gulp in your ASP.NET project.
 
-1.	Use NPM to add the Gulp.js package.
+-	Use NPM to add the Gulp.js package.
 
-#.	Use NPM to add one or more `Gulp plugins <http://gulpjs.com/plugins>`_. By itself, Gulp is just an engine for running tasks. Plugins are the modules that actually do the work.
+-	Use NPM to add one or more `Gulp plugins <http://gulpjs.com/plugins>`_. By itself, Gulp is just an engine for running tasks. Plugins are the modules that actually do the work.
 
-#.	Define Gulp tasks.
+-	Define Gulp tasks.
 
-#.	Run tasks in Task Runner Explorer.
+-	Run tasks in Task Runner Explorer.
 
-#.	Bind tasks to build events.
+-	Bind tasks to build events.
 
-Empty vs. Web Site Projects
----------------------------
-New ASP.NET Web Applications created in Visual Studio 2015 start with the *Empty* or *Web Site* templates. 
- 
--  The *Empty* Visual Studio ASP.NET template does not include NPM or Gulp configuration. You can use the Empty template to learn how NPM and Gulp work, step-by-step. 
-
--  The *Web Site* template includes NPM and Gulp by default. NPM is preconfigured to add the Gulp.js package. Gulp is configured to copy Bootstrap, Hammer and jQuery client libraries to your web app directory.       
+ASP.NET Project Templates
+-------------------------
+New ASP.NET Web Applications created in Visual Studio 2015 start with the *Empty* *Web API" and *Web Site* templates. The *Web Site* template includes NPM and Gulp by default. NPM is preconfigured to add the Gulp.js package. Gulp is configured to copy Bootstrap, Hammer and jQuery client libraries to your web app directory.       
 
 Add the Gulp package
 --------------------
@@ -41,7 +37,7 @@ Add an NPM configuration file.
 
 1.	In Solution Explorer, right-click the project.
 
-#.	Select Add > New Item.
+#.	Select **Add** > **New Item**.
 
 #.	Select **NPM configuration file**.
 
@@ -85,11 +81,11 @@ Add the Gulp config file
 
 #.	Click **Add**.
 
-#.  Right-click Dependencies > NPM and select **Restore Packages** from the context menu.
+#.  Right-click **Dependencies** > **NPM** and select **Restore Packages** from the context menu.
 
 Define a "Hello World" task
 ---------------------------
-Open gulpfile.js and add the following line.
+Now you're ready to define some Gulp tasks. Open gulpfile.js and add the following line.
 
 .. code-block:: javascript
    :emphasize-lines: 4
@@ -141,9 +137,9 @@ The real power of Gulp is that you can pipe a file through multiple plugins. The
 
 compile TypeScript > run JSHint > minify 
 
-Use Gulp to run JSHint
-----------------------
-Let's add JSHint to our pipeline. We'll also add a "clean" task.
+Using Gulp Plugins
+------------------
+To do real work with Gulp, you'll use `plugins <http://gulpjs.com/plugins/>`_. This section shows an example of using the *JSHint* and *del* plugins. JSHint is used to detect JavaScript problems and the del plugin allows you to remove files and directories.
 
 Open package.json and add entries for "gulp-jshint" and "del":
 
@@ -210,7 +206,7 @@ Now the Task Runner Explorer first runs the 'clean' task, then the 'default' tas
 
 Bind tasks to build events
 --------------------------
-Unless you want to manually start every tasks in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events. 
+Unless you want to manually start every task in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events. 
 
 Let's bind 'default' so that it runs every time Visual Studio builds the project. In Task Runner Explorer, right-click the 'default' task and select **Bindings > After Build** from the context menu. 
 
