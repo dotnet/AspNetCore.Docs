@@ -29,12 +29,12 @@ Getting Started
 The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates ASP.NET 5, DNX projects that can 
 be loaded into Visual Studio 2015 or run from the command line. The generator creates the following project types:
   
-- Empty Application: An application with minimal dependencies that outputs "hello world" to the browser.     
-- Console Application: Another minimal application that outputs "hello world" to the console.
+- Empty Application: An empty Web application with minimal dependencies.     
+- Console Application: A DNX-based console application.
 - Web Application: A complete MVC web application with a simple home page and examples for managing accounts and login.  
-- Web API Application: An ASP.NET 5 web service with one controller.   
-- Nancy ASP.NET Application: A light-weight HTTP service with one module.
-- Class Library: Creates a DLL that can be referenced by other ASP.NET projects.
+- Web API Application: A Web API built with MVC.   
+- Nancy ASP.NET Application: A light-weight HTTP service with one module built using `Nancy <nancyfx.org>`_.
+- Class Library: A DNX-based class library.
 
 This walk-through demonstrates how to use Yeoman to generate an ASP.NET 5 web application. 
  
@@ -87,8 +87,7 @@ The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates
 
  yo aspnet --gulp
  
-The generator also configures **package.json** to load Grunt or Gulp and configures **project.json** to restore client-side packages
-using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
+The generator also configures **package.json** to load Grunt or Gulp and adds bower.json to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
 
 Building and Running from Visual Studio
 ---------------------------------------
@@ -115,7 +114,7 @@ Restoring, Building and Hosting from the Command Line
 You can prepare and host your web application using commands **dnu** (Microsoft .NET Development Utility) and 
 **dnx** (Micorosft .NET Execution Environment). 
 
-.. note:: For more information on DNX see `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`_ 
+.. note:: For more information on DNX see :doc:`/dnx/overview`  
 
 1. From the command line, change the current directory to the folder containing the project (that is, the folder that contains the `project.json` file). 
 
@@ -161,7 +160,7 @@ The web server will listen on port 5000. The URL and port are defined in project
 
 Adding to Your Project with Sub Generators
 ------------------------------------------
-You can add new generated files using Yeoman even after the project is created. Use `sub generators <https://www.npmjs.com/package/generator-aspnet#sub-generatorsl>`_ to add any of the file types
+You can add new generated files using Yeoman even after the project is created. Use `sub generators <https://www.npmjs.com/package/generator-aspnet#sub-generators>`_ to add any of the file types
 that make up your project. For example, to add a new class to your project, enter the **yo aspnet:Class** command followed by the 
 name of the class. Run the command from the directory where the file should be created. 
 
