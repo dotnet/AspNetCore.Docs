@@ -1,0 +1,36 @@
+﻿@model ContosoBooks.Models.Book
+
+<div>
+  <form asp-controller="Book" asp-action="Create" method="post">
+    <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+      <label asp-for="Title"></label>
+      <input asp-for="Title" class="form-control" placeholder="Title"/>
+      <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+     <select asp-for="AuthorID" asp-items="@ViewBag.Items"></select>
+    </div>
+    <div class="form-group">
+      <label asp-for="Year"></label>
+      <input asp-for="Year" class="form-control" placeholder="1900"/>
+      <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label asp-for="Price"></label>
+      <input asp-for="Price" class="form-control" placeholder="1.00"/>
+      <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label asp-for="Genre"></label>
+      <input asp-for="Genre" class="form-control" placeholder="Genre"/>
+      <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-default" value="Create" />
+  </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
