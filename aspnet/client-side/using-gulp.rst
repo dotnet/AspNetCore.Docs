@@ -28,7 +28,7 @@ This topic will cover the following typical steps in using Gulp in your ASP.NET 
 
 ASP.NET Project Templates
 -------------------------
-New ASP.NET Web Applications created in Visual Studio 2015 start with the *Empty* *Web API" and *Web Site* templates. The *Web Site* template includes NPM and Gulp by default. NPM is preconfigured to add the Gulp.js package. Gulp is configured to copy Bootstrap, Hammer and jQuery client libraries to your web app directory.       
+New ASP.NET Web Applications created in Visual Studio 2015 start with the *Empty*, *Web API", and *Web Site* templates. The *Web Site* template includes NPM and Gulp by default. NPM is preconfigured to add the Gulp.js package. Gulp is configured to copy Bootstrap, Hammer and jQuery client libraries to your web app directory.       
 
 Add the Gulp package
 --------------------
