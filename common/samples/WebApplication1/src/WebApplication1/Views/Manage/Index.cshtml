@@ -1,10 +1,10 @@
 ﻿@model IndexViewModel
 @{
-    ViewBag.Title = "Manage your account";
+    ViewData["Title"] = "Manage your account";
 }
 
-<h2>@ViewBag.Title.</h2>
-<p class="text-success">@ViewBag.StatusMessage</p>
+<h2>@ViewData["Title"].</h2>
+<p class="text-success">@ViewData["StatusMessage"]</p>
 <div>
     <h4>Change your account settings</h4>
     <hr />
@@ -36,7 +36,6 @@
                 See <a href="http://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication using SMS.
             </p>
-
             @*@(Model.PhoneNumber ?? "None") [
                 @if (Model.PhoneNumber != null)
                 {
@@ -62,7 +61,7 @@
                     <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal" role="form">
                         <text>
                             Enabled
-                            <input type="submit" value="Disable" class="btn btn-link" />
+                            <button type="submit" class="btn btn-link">Disable</button>
                         </text>
                     </form>
                 }
@@ -71,7 +70,7 @@
                     <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal" role="form">
                         <text>
                             Disabled
-                            <input type="submit" value="Enable" class="btn btn-link" />
+                            <button type="submit" class="btn btn-link">Enable</button>
                         </text>
                     </form>
                 }*@

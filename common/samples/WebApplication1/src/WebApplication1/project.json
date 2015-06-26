@@ -1,37 +1,36 @@
 ﻿{
   "webroot": "wwwroot",
-  "userSecretsId": "aspnet5-WebApplication1-095c9ba6-2118-447e-a685-688c1519c20e",
+  "userSecretsId": "aspnet5-WebApplication1-4b306581-2726-410c-8e9e-2d55d4fdcf65",
   "version": "1.0.0-*",
 
   "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-beta4",
-    "EntityFramework.Commands": "7.0.0-beta4",
-    "Microsoft.AspNet.Mvc": "6.0.0-beta4",
-    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta4",
-    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta4",
-    "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta4",
-    "Microsoft.AspNet.Authentication.Google": "1.0.0-beta4",
-    "Microsoft.AspNet.Authentication.MicrosoftAccount": "1.0.0-beta4",
-    "Microsoft.AspNet.Authentication.Twitter": "1.0.0-beta4",
-    "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
-    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta4",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta4",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-beta4",
-    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta4",
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
-    "Microsoft.Framework.ConfigurationModel.UserSecrets": "1.0.0-beta4",
-    "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta4",
-    "Microsoft.Framework.Logging": "1.0.0-beta4",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta4",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta4"
+    "EntityFramework.SqlServer": "7.0.0-beta5",
+    "EntityFramework.Commands": "7.0.0-beta5",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta5",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta5",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta5",
+    "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta5",
+    "Microsoft.AspNet.Authentication.Google": "1.0.0-beta5",
+    "Microsoft.AspNet.Authentication.MicrosoftAccount": "1.0.0-beta5",
+    "Microsoft.AspNet.Authentication.Twitter": "1.0.0-beta5",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-beta5",
+    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta5",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta5",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta5",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta5",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta5",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta5",
+    "Microsoft.Framework.Logging": "1.0.0-beta5",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta5"
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-    "gen": "Microsoft.Framework.CodeGeneration",
-    "ef":  "EntityFramework.Commands"
+    "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+    "ef": "EntityFramework.Commands"
   },
 
   "frameworks": {
@@ -52,7 +51,6 @@
     "**.vspscc"
   ],
   "scripts": {
-    "postrestore": [ "npm install", "bower install" ],
-    "prepare": [ "gulp copy" ]
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]
   }
 }

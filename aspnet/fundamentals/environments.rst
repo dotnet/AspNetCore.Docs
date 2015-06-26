@@ -69,8 +69,8 @@ The following code is taken from the default ASP.NET 5 web site template:
 	:caption: Startup.cs (some parts removed for brevity)
 	:linenos:
 	:dedent: 4
-	:lines: 27-47,89-109,134-135
-	:emphasize-lines: 8,10-15,30-41
+	:lines: 28-48,92-111,137-138
+	:emphasize-lines: 9,11-16,30-41
 
 The highlighted sections in the example above show several examples of adjusting application configuration based on environment.
 

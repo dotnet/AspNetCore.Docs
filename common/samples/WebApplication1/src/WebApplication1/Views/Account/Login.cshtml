@@ -1,18 +1,18 @@
-﻿@model LoginViewModel
-@using System.Collections.Generic
+﻿@using System.Collections.Generic
 @using Microsoft.AspNet.Http
 @using Microsoft.AspNet.Http.Authentication
+@model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewBag.Title = "Log in";
+    ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewData["Title"].</h2>
 <div class="row">
     <div class="col-md-8">
-        <section id="loginForm">
-            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
+        <section>
+            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <button type="submit" class="btn btn-default">Log in</button>
                     </div>
                 </div>
                 <p>
@@ -53,12 +53,12 @@
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
+        <section>
             <h4>Use another service to log in.</h4>
             <hr />
             @{
-                var LoginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
-                if (LoginProviders.Count == 0)
+                var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+                if (loginProviders.Count == 0)
                 {
                     <div>
                         <p>
@@ -69,13 +69,12 @@
                 }
                 else
                 {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="form-horizontal" role="form">
-
-                        <div id="socialLoginList">
+                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
+                        <div>
                             <p>
-                                @foreach (AuthenticationDescription p in LoginProviders)
+                                @foreach (var provider in loginProviders)
                                 {
-                                    <button type="submit" class="btn btn-default" id="@p.AuthenticationScheme" name="provider" value="@p.AuthenticationScheme" title="Log in using your @p.Caption account">@p.AuthenticationScheme</button>
+                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.Caption account">@provider.AuthenticationScheme</button>
                                 }
                             </p>
                         </div>
@@ -87,5 +86,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
