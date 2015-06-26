@@ -1,5 +1,74 @@
-code.std-keyword {
-	background-color: #EEEEEE;
-	color: black;
-	border-radius: 5px;
+.wy-nav-content-wrap, .wy-nav-content {
+    background: #fff;
+}
+
+body {
+    font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+    color: #222;
+    font-size: .813em;
+    line-height: 1.4em;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    margin-top: 0;
+    font-weight: 700;
+    font-family: 'Segoe UI Light','Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+}
+
+.wy-nav-side {
+    background: #ddd;
+}
+
+.wy-side-nav-search {
+    background: #f7f7f7;
+    padding: 1em;
+}
+
+.wy-side-nav-search input[type=text] {
+  width: 100%;
+  border-radius: 0;
+  padding: 6px 12px;
+  border-color: #e2e2e2;
+  font-size: 14px;
+  color: #707070;
+}
+
+.wy-side-nav-search > a, .wy-side-nav-search > a:hover
+{
+    text-indent: -9999px;
+    width: 100%;
+    background: url('nav-logo-microsoft.png') 1em no-repeat, 
+                url('nav-logo-aspnet.png') right 1em top no-repeat;
+}
+
+.wy-side-nav-search > a:hover {
+    background-color: transparent;
+}
+
+.wy-side-nav-search > a:before {
+    content: "";
+}
+
+.wy-menu-vertical a {
+  color: #222;
+  font: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+
+}
+
+.rst-content .note {
+    background: #efefef;
+    font: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+}
+
+
+
+.rst-content .note .admonition-title {
+    
+    background: #0054a3;
+    font-weight: normal;
+}
+
+.rst-content .note .last {
+    font: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+    font-size: 14px;
 }
