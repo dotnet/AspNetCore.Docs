@@ -21,8 +21,8 @@ namespace ContosoBooks.Controllers
 
         public IActionResult Index()
         {
-           var books = BookContext.Books.Include(b => b.Author);
-           return View(books);
+            var books = BookContext.Books.Include(b => b.Author);
+            return View(books);
         }
 
         public async Task<ActionResult> Details(int id)
@@ -40,7 +40,7 @@ namespace ContosoBooks.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Items = GetAuthorsListItems();
+            ViewBag.Items = GetAuthorsListItems();            
             return View();
         }
 
@@ -145,6 +145,18 @@ namespace ContosoBooks.Controllers
                     Value = author.AuthorID.ToString(),
                     Selected = author.AuthorID == selected
                 });
+        }
+   
+        private IEnumerable<SelectListItem> GetAuthorsListItems2246(int selected = -1)
+        {
+            return BookContext.Authors
+                .OrderBy(author => author.LastName)
+                .Select(author => new SelectListItem
+                {
+                    Text = String.Format("{0}, {1}", author.LastName, author.FirstMidName),
+                    Value = author.AuthorID.ToString(),
+                    Selected = author.AuthorID == selected
+                });   
         }
     }
 }

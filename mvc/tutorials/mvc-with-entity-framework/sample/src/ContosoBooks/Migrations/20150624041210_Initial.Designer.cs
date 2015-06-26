@@ -7,9 +7,19 @@ using ContosoBooks.Models;
 namespace ContosoBooks.Migrations
 {
     [ContextType(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    partial class Initial
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "20150624041210_Initial"; }
+        }
+        
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta5-13518"; }
+        }
+        
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("SqlServer:DefaultSequenceName", "DefaultSequence")

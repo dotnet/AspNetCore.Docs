@@ -1,13 +1,13 @@
 Get Started with Entity Framework 7 Code using ASP.NET MVC 6
 ============================================================
 
-By `Mike Wasson`_ 
+By `Mike Wasson`_  and `Rick Anderson`_
 
 In this tutorial, you’ll create a simple web app using ASP.NET MVC and Entity Framework (EF). The app stores records in a SQL database and supports the basic CRUD operations (create, read, update, delete). 
 
 .. note:: This tutorial uses Visual Studio 2015. If you are completely new to ASP.NET MVC or Visual Studio, read :doc:`../getting-started/first-mvc-app` first.
 
-The sample app that you'll build manages a list of authors and books. Here is a screenshot of the app:
+The sample app that you'll build manages a list of authors and books. Here is a screen shot of the app:
 
 .. image:: mvc-with-entity-framework/_static/screenshot1.png
 
@@ -62,7 +62,7 @@ with this:
     :lines: 37-38
     :dedent: 24
 
-This adds links to a Books page, which we haven’t created yet. (That will come later in tutorial.)
+This adds a link to the Books page, which we haven’t created yet. (That will come later in tutorial.)
 
 Add Entity Framework
 --------------------
@@ -73,7 +73,7 @@ Open the *project.json* file. In the dependencies section, add the following lin
 
   "dependencies": {
     ...
-    "EntityFramework.SqlServer": "7.0.0-beta4"
+    "EntityFramework.SqlServer": "7.0.0-beta5"
   },
 
 When you save *project.json*, Visual Studio automatically resolves the new package reference. 
@@ -92,7 +92,7 @@ We'll define a class for each. First, add a new folder to the project. In Soluti
 
 .. image:: mvc-with-entity-framework/_static/add-folder.png
 
-.. note:: You can put model classes anywhere in your project. The "Models" folder is just a convention.
+.. note:: You can put model classes anywhere in your project. The *Models* folder is just a convention.
 
 Right-click the *Models* folder and select **Add** > **New Item**. In the **Add New Item** dialog, select the **Class** template. In the **Name** edit box, type "Author.cs" and click OK. Replace the boilerplate code with:
 
@@ -147,34 +147,36 @@ Add the following code at the end of the *Configure* method:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :lines: 71
+    :lines: 74
     :dedent: 12
 
-Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from config.json. When you deploy the app to a production environment, you would store the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in config.json.
+Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *config.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *config.json*.
 
 Here is the complete *Startup.cs* after these changes:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :emphasize-lines: 1,5,32-37,71
+    :emphasize-lines: 1,5,32-37,74
 
 Use data migrations to create the database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Open *project.json*. In the "commands" section, add an entry for ``EntityFramework.Commands``:
+Open *project.json*. 
+- In the "commands" and "dependencies" sections, add an entry for ``EntityFramework.Commands``.
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/project.json
     :language: json
-    :lines: 21-25
-    :dedent: 4
-    :emphasize-lines: 4
+    :emphasize-lines: 18,23
 
-Open a command prompt in the project directory (/ContosoBooks/src/ContosoBooks) and run the following commands:
+Build the app.
+
+..	dnu restore removed
+
+Open a command prompt in the project directory (ContosoBooks/src/ContosoBooks) and run the following commands:
 
 .. code-block:: none
 
-    dnvm use default
-    dnu restore
+    dnvm use 1.0.0-beta5
     dnx . ef migration add Initial
     dnx . ef migration apply
 
@@ -182,7 +184,13 @@ The "``add Initial``" command adds code to the project that allows EF to update 
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
-For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
+- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-beta5`` instructs the .NET Version Manager to add the 1.0.0-beta5 ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5 Beta 5, the following is displayed: 
+
+.. code-block:: none
+
+	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-beta5\\bin to process PATH 
+
+- **dnx . ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
 
 Add an index page
 -----------------
@@ -197,7 +205,7 @@ Replace the boilerplate code with the following:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 1-26,149-150
+    :lines: 1-26,161-162
 
 Notice that we don't set any value for ``Logger`` and ``BookContext``. The dependency injection (DI) subsystem automatically sets these properties at runtime. DI also handles the object lifetimes, so you don't need to call ``Dispose``. For more information, see :ref:`Dependency Injection  <aspnet:dependency-injection>`.
     
@@ -227,7 +235,7 @@ Add the following method to the ``BooksController`` class:
 This code looks up a book by ID. In the EF query:
 
 - The ``Include`` method tells EF to fetch the related ``Author`` entity.  
-- The ``SingleOrDefault`` method returns a single entity, or ``null`` if none is found.
+- The ``SingleOrDefaultAsync`` method returns a single entity, or ``null`` if one is not found.
 
 If the EF query returns ``null``, the controller method returns ``HttpNotFound``, which ASP.NET translates into a 404 response. Otherwise, the controller passes *book* to a view, which renders the details page. Let’s add the view now.
 

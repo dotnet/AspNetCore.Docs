@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Relational.Migrations.Operations;
 
 namespace ContosoBooks.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         public override void Up(MigrationBuilder migration)
         {
@@ -30,8 +30,8 @@ namespace ContosoBooks.Migrations
                 name: "Book",
                 columns: table => new
                 {
-                    AuthorID = table.Column(type: "int", nullable: false),
                     BookID = table.Column(type: "int", nullable: false),
+                    AuthorID = table.Column(type: "int", nullable: false),
                     Genre = table.Column(type: "nvarchar(max)", nullable: true),
                     Price = table.Column(type: "decimal(18, 2)", nullable: false),
                     Title = table.Column(type: "nvarchar(max)", nullable: true),
