@@ -3,10 +3,10 @@
   "private": true,
   "dependencies": {
     "bootstrap": "3.0.0",
-    "jquery": "1.10.2",
-    "jquery-validation": "1.11.1",
-    "jquery-validation-unobtrusive": "3.2.2",
+    "bootstrap-touch-carousel": "0.8.0",
     "hammer.js": "2.0.4",
-    "bootstrap-touch-carousel": "0.8.0"
+    "jquery": "2.1.4",
+    "jquery-validation": "1.11.1",
+    "jquery-validation-unobtrusive": "3.2.2"
   }
 }
