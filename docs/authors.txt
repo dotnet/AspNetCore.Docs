@@ -6,4 +6,3 @@
 .. _Mike Wasson: https://github.com/mikewasson
 .. _Erik Reitan: https://github.com/Erikre
 .. _Pranav Rastogi: https://github.com/rustd
-.. _Eilon Lipton: https://github.com/Eilon
