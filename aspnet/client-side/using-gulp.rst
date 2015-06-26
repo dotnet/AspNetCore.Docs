@@ -137,9 +137,9 @@ The real power of Gulp is that you can pipe a file through multiple plugins. The
 
 compile TypeScript > run JSHint > minify 
 
-Using Gulp Plugins
-------------------
-To do real work with Gulp, you'll use `plugins <http://gulpjs.com/plugins/>`_. This section shows an example of using the *JSHint* and *del* plugins. JSHint is used to detect JavaScript problems and the del plugin allows you to remove files and directories.
+Using Gulp to run JSHint
+------------------------
+To do real work with Gulp, you'll use `plugins <http://gulpjs.com/plugins/>`_. This section shows an example of using the *JSHint* plugin to detect JavaScript problems. The example also demonstrates creating a "cleanup" task to remove files and directories.
 
 Open package.json and add entries for "gulp-jshint" and "del":
 
