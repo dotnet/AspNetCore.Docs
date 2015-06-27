@@ -41,11 +41,7 @@ namespace SimpleApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] TodoItem item)
         {
-            if (item == null)
-            {
-                return HttpBadRequest();
-            }
-            if (item.Key != id)
+            if (item == null || item.Key != id)
             {
                 return HttpBadRequest();
             }
@@ -59,6 +55,10 @@ namespace SimpleApi.Controllers
             TodoItems.Update(item);
             return new NoContentResult();
         }
+
+
+
+
 
         [HttpDelete("{id}")]
         public void Delete(string id)
