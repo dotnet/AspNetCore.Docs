@@ -1,15 +1,3 @@
-div.author {
-	min-height:150px;
-}
-div.photo {
-	width: 125px;
-	float: left;
-	padding: 5px;
-}
-div.bio {
-	margin-left:10px;
-}
-
 code.std-keyword {
 	background-color: #EEEEEE;
 	color: black;

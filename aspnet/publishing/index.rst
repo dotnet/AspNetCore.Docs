@@ -1,3 +1,5 @@
+.. _publishing-and-deployment:
+
 Publishing and Deployment
 =========================
 

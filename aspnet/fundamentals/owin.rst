@@ -3,6 +3,6 @@
 |stub-icon| OWIN
 ================
 
-.. include /stub-notice.txt
+.. include:: /../common/stub-notice.txt
 
 .. _issue: https://github.com/aspnet/Docs/issues/71

@@ -21,6 +21,7 @@ Fundamentals
     websockets
     caching
     error-handling
+    request-features
     servers
     owin
     hosting
