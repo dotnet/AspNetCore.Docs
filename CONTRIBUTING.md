@@ -23,11 +23,11 @@ Note that later if you wish to update your current, installed version of this th
 
 	pip install -U sphinx_rtd_theme
 
-You should now be able to navigate to the `docs` folder and run
+You should now be able to navigate to a subdirectory, such as `mvc` or `aspnet`,  and run the make.bat file. Use the `html` argument to build the stand-alone version of the project in question. For example, navigate to `docs\aspnet` and type
 
 	make html
 
-which should generate the documentation in the _build folder. Open the _build/html/index.html file to view the generated documentation.
+to generate the documentation in the _build folder of the `aspnet` project. Open the _build/html/index.html file to view the generated documentation.
 
 You can also install sphinx-autobuild which will run a local web server and automatically refresh whenever changes to docs files are detected. To do so, first install sphinx-autobuild:
 
