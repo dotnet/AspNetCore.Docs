@@ -21,9 +21,9 @@ The developer is always in full control and can override how and where keys are 
 Key Lifetime
 ------------
 
-Keys by default have a 90-day lifetime. When a key expires, the system will automatically generate a new key and set the new key as the active key. As long as retired keys remain on the system you will still be able to decrypt any data protected with them. See the key lifetime section for more information.
+Keys by default have a 90-day lifetime. When a key expires, the system will automatically generate a new key and set the new key as the active key. As long as retired keys remain on the system you will still be able to decrypt any data protected with them. See :ref:`key lifetime<data-protection-implementation-key-management-expiration>` for more information.
 
 Default Algorithms
 ------------------
 
-The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, rolled every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See the subkey derivation section for more information.
+The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, rolled every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See :ref:`subkey derivation<data-protection-implementation-subkey-derivation-aad>` for more information.
