@@ -7,7 +7,7 @@ ASP.NET 5 is completely decoupled from the web server environment that hosts the
 
 In this article:
 	- `Servers and commands`_
-	- `Feature interfaces`_
+	- `Supported features by server`_
 	- `IIS and IIS Express`_
 	- `WebListener`_
 	- `Kestrel`_
@@ -26,7 +26,7 @@ ASP.NET 5 ships with support for 3 different servers:
 - Microsoft.AspNet.Server.WebListener (WebListener)
 - Microsoft.AspNet.Server.Kestrel (Kestrel)
 
-ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :ref:`feature interfaces` composed into an HttpContext. Both Helios and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
+ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of `feature interfaces`_ composed into an HttpContext. Both Helios and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
 
 I've configured the sample project for this article to support each of these hosting options as separate commands in ``project.json``:
 
@@ -44,54 +44,11 @@ The ``run`` command will execute the application via its ``void main()`` method 
 	:language: javascript
 	:caption: program.cs
 
-Feature interfaces
-------------------
-
-.. TODO: move to separate article
-
-ASP.NET 5 defines a number of `Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/dev/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
-
-`IHttpRequestFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpRequestFeature.cs>`_
-	Defines the structure of an HTTP request, including the protocol, path, QueryString, headers, and body.
-
-`IHttpResponseFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpResponseFeature.cs>`_
-	Defines the structure of an HTTP response, including the status code, headers, and body of the response.
-
-`IHttpAuthenticationFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpAuthenticationFeature.cs>`_
-	Defines support for identifying users based on a ``ClaimsPrincipal`` and specifying an authentication handler.
-
-`IHttpUpgradeFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpUpgradeFeature.cs>`_
-	Defines support for `HTTP Upgrades <http://tools.ietf.org/html/rfc2616#section-14.42>`_, which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
-
-`IHttpBufferingFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpBufferingFeature.cs>`_
-	Defines methods for disabling buffering of requests and/or responses.
-
-`IHttpConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpConnectionFeature.cs>`_
-	Defines properties for local and remote addresses and ports.
-
-`IHttpRequestLifetimeFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpRequestLifetimeFeature.cs>`_
-	Defines support for aborting connections.
-
-`IHttpSendFileFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpSendFileFeature.cs>`_
-	Defines a method for sending files asynchronously.
-
-`IHttpWebSocketFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IHttpWebSocketFeature.cs>`_
-	Defines an API for supporting web sockets.
-
-`IRequestIdentifierFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/IRequestIdentifierFeature.cs>`_
-	Adds a property that can be implemented to uniquely identify requests.
-
-`ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
-	Defines ``ISessionFactory`` and ``ISession`` abstractions for supporting user sessions.
-
-`ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
-	Defines an API for retrieving client certificates.
-
-`ITlsTokenBindingFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsTokenBindingFeature.cs>`_
-	Defines methods for working with TLS token binding parameters.
 
 Supported Features by Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
+
+ASP.NET defines a number of :doc:`request-features` which may be supported on different server implementations. The following table lists the different features and the servers supporting them.
 
 .. list-table::
 	:header-rows: 1
@@ -153,7 +110,7 @@ Supported Features by Server
 	  - Yes
 	  - No
 
-For the most part, feature interfaces are specified on the request object. Later in this article we'll see how Kestrel implements the features it supports.
+For the most part, feature interfaces are specified on the request object. We'll see below how `Kestrel`_ implements the features it supports.
 
 IIS and IIS Express
 -------------------
@@ -177,7 +134,7 @@ Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv
 Kestrel currently supports a limited number of feature interfaces, including ``IHttpRequestFeature``, ``IHttpResponseFeature``, and ``IHttpUpgradeFeature``, but additional features will be added in the future. You can see how these interfaces are implemented and supported by Kestrel in its `ServerRequest class <https://github.com/aspnet/KestrelHttpServer/blob/dev/src/Kestrel/ServerRequest.cs>`_, a portion of which is shown below.
 
 .. code-block:: c#
-	:caption: Kestrel ServerRequest.cs class snippets
+	:caption: Kestrel ServerRequest.cs class snippet
 
 	using Microsoft.AspNet.FeatureModel;
 	using Microsoft.AspNet.Http.Features;
@@ -199,6 +156,42 @@ Kestrel currently supports a limited number of feature interfaces, including ``I
 		}
 	}
 
+The ``IHttpUpgradeFeature`` interface consists of only one property and one method. Kestrel's implementation of this interface is shown here for reference:
+
+.. code-block:: c#
+	:caption: Kestrel ServerRequest.cs IHttpUpgradeFeature implementation
+	
+	bool IHttpUpgradeFeature.IsUpgradableRequest
+	{
+		get
+		{
+			string[] values;
+			if (_frame.RequestHeaders.TryGetValue("Connection", out values))
+			{
+				return values.Any(value => value.IndexOf("upgrade", 
+					StringComparison.OrdinalIgnoreCase) != -1);
+			}
+			return false;
+		}
+	}
+
+	async Task<Stream> IHttpUpgradeFeature.UpgradeAsync()
+	{
+		_frame.StatusCode = 101;
+		_frame.ReasonPhrase = "Switching Protocols";
+		_frame.ResponseHeaders["Connection"] = new string[] { "Upgrade" };
+		if (!_frame.ResponseHeaders.ContainsKey("Upgrade"))
+		{
+			string[] values;
+			if (_frame.RequestHeaders.TryGetValue("Upgrade", out values))
+			{
+				_frame.ResponseHeaders["Upgrade"] = values;
+			}
+		}
+		_frame.ProduceStart();
+		return _frame.DuplexStream;
+	}
+
 Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server. In fact, like all of ASP.NET 5, you're welcome to `contribute <https://github.com/aspnet/KestrelHttpServer/blob/dev/CONTRIBUTING.md>`_ any improvements you make back to the project.
 
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
@@ -206,27 +199,7 @@ Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-
 Custom Servers
 --------------
 
-In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server. In the sample for this article, I've included a very simple project that references Nowin and uses it to create a simple server capable of self-hosting ASP.NET 5.
-
-.. literalinclude:: servers/sample/ServersDemo/src/NowinDemo/NowinServerFactory.cs
-	:emphasize-lines: 15,19,21,30,39
-	:linenos:
-	:language: c#
-
-`IServerFactory <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerFactory.cs>`_ is an ASP.NET interface that requires an Initialize and a Start method. Initialize must return an instance of `IServerInformation <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerInformation.cs>`_, which simply includes the server's name. In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
-
-``Initialize`` is responsible for configuring the server, which in this case is done through a series of fluent API calls that hard code the server to listen for requests (to any IP address) on port 5000. Note that the final line of the fluent configuration of the ``builder`` variable specifies that requests will be handled by the private method ``HandleRequest``.
-
-``Start`` is called after ``Initialize`` and accepts the the ``IServerInformation`` created by ``Initialize``, and a callback of type ``Func<IFeatureCollection, Task>``. This callback is assigned to a local field and is ultimately called on each request from within the private ``HandleRequest`` method (which was wired up in ``Initialize``).
-
-With this in place, all that's required to run an ASP.NET application using this custom server is the following command in ``project.json``:
-
-.. literalinclude:: servers/sample/ServersDemo/src/NowinDemo/project.json
-	:emphasize-lines: 9
-	:linenos:
-	:language: javascript
-
-.. TODO: Note how this command connects with IServerFactory.
+In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. Forking and modifying the KestrelHttpServer is one way to quickly create your own custom server, and at the time of this writing the KestrelHttpServer repository on GitHub has been forked 55 times. When implementing your own server, you're free to implement just the feature interfaces your application needs.
 
 Summary
 -------
