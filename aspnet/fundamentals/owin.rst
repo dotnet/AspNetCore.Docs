@@ -1,8 +1,30 @@
-.. include:: /../common/stub-topic.txt
+OWIN
+====
 
-|stub-icon| OWIN
-================
+By `Steve Smith`_
 
-.. include:: /../common/stub-notice.txt
+ASP.NET 5 supports OWIN, the Open Web Interface for .NET, which allows web applications to be decoupled from web servers. In addition, OWIN defines a standard way for middleware to be used in a pipeline to handle individual requests and associated responses. ASP.NET 5 applications and middleware can interoperate with OWIN-based applications and middleware.
 
-.. _issue: https://github.com/aspnet/Docs/issues/71
+In this article:
+	- `Running OWIN middleware in the ASP.NET pipeline`_
+	- `Using ASP.NET Hosting on an OWIN-based server`_
+	- `Using ASP.NET middleware in an OWIN pipeline`_
+	- `OWIN keys and ASP.NET OWIN adapters`_
+
+`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/owin/sample>`_.
+
+Running OWIN middleware in the ASP.NET pipeline
+-----------------------------------------------
+
+Using ASP.NET Hosting on an OWIN-based server
+---------------------------------------------
+
+Using ASP.NET middleware in an OWIN pipeline
+--------------------------------------------
+
+OWIN keys and ASP.NET OWIN adapters
+-----------------------------------
+
+Summary
+-------
+
