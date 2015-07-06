@@ -16,6 +16,17 @@ In this article:
 Running OWIN middleware in the ASP.NET pipeline
 -----------------------------------------------
 
+ASP.NET 5's OWIN support is deployed as part of the HttpAbstractions package, in the Microsoft.AspNet.Owin project. You can import OWIN support into your project by adding this package as a dependency in your ``project.json`` file, as shown here:
+
+.. literalinclude:: owin/sample/src/OwinSample/project.json
+	:language: javascript
+	:lines: 5-10
+	:emphasize-lines: 3
+
+OWIN middleware conform to the OWIN specification, which requires certain headers be set. 
+
+
+
 Using ASP.NET Hosting on an OWIN-based server
 ---------------------------------------------
 
