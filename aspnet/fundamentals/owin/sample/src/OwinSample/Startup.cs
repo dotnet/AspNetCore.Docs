@@ -19,11 +19,11 @@ namespace OwinSample
         {
             app.UseOwin(pipeline =>
             {
-                pipeline(next => Invoke);
+                pipeline(next => OwinHello);
             });
         }
 
-        public Task Invoke(IDictionary<string, object> environment)
+        public Task OwinHello(IDictionary<string, object> environment)
         {
             string responseText = "Hello World";
             byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
