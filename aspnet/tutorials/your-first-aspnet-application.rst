@@ -12,7 +12,7 @@ In this article:
 	- `Adding Server-Side Behavior`_
 	- `Adding Client-Side Behavior`_
 	
-`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/docs/tutorials/your-first-aspnet-application/sample>`_.
+`View or download sample from GitHub <https://github.com/aspnet/Home/tree/dev/samples>`_.
 
 Create a New ASP.NET 5 Project
 ------------------------------
