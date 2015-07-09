@@ -29,32 +29,9 @@ Projects
 
 A DNX project is a folder with a *project.json* file. The name of the project is the folder name. You use DNX projects to build NuGet packages. The *project.json* file defines your package metadata, your project dependencies and which frameworks you want to build for:
 
-.. code-block:: json
-
-    {
-      "version": "1.0.0-*",
-      "description": "",
-      "authors": [ "" ],
-      "tags": [ "" ],
-      "projectUrl": "",
-      "licenseUrl": "",
-
-      "dependencies": {
-      },
-
-      "frameworks" : {
-        "dnx451": { },
-        "dnxcore50" : {
-          "dependencies": {
-            "System.Collections": "4.0.10-beta-22816",
-            "System.Linq": "4.0.0-beta-22816",
-            "System.Threading": "4.0.10-beta-22816",
-            "Microsoft.CSharp": "4.0.0-beta-22816"
-          }
-        }
-      }
-    }
-
+.. literalinclude:: /../common/samples/ClassLibrary1/src/ClassLibrary1/project.json
+  :linenos:
+  :language: json
 
 All the files in the folder are by default part of the project unless explicitly excluded in *project.json*.
 
@@ -73,15 +50,9 @@ Dependencies
 
 Dependencies in DNX consist of a name and a version number. Version numbers should follow `Semantic Versioning <http://semver.org>`_. Typically dependencies refer to an installed NuGet package or to another DNX project. Project references are resolved using peer folders to the current project or  project paths specified using a *global.json* file at the solution level:
 
-.. code-block:: json
-
-    {
-      "projects": [ "src", "test" ],
-      "sdk": {
-        "version": "1.0.0-beta4"
-      }
-    }
-
+.. literalinclude:: /../common/samples/ClassLibrary1/global.json
+  :linenos:
+  :language: json
 
 The *global.json* file also defines the minimum DNX version ("sdk" version) needed to build the project.
 
@@ -105,31 +76,11 @@ Commands
 
 A command is a named execution of a .NET entry point with specific arguments. You can define commands in your *project.json* file:
 
-.. code-block:: json
-
-    {
-      "version": "1.0.0",
-      "webroot": "wwwroot",
-      "exclude": [
-        "wwwroot"
-      ],
-      "dependencies": {
-        "Kestrel": "1.0.0-beta4",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta4",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta4"
-      },
-      "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5001",
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
-      },
-      "frameworks": {
-        "dnx451": { },
-        "dnxcore50": { }
-      }
-    }
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
+  :linenos:
+  :language: json
+  :lines: 31-34
+  :dedent: 2
 
 You can then use DNX to execute the commands defined by your project, like this::
 
