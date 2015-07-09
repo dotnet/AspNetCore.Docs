@@ -4,8 +4,9 @@ Client-Side Development
 .. toctree::
    :titlesonly:
 
-   grunt-gulp
-   bower
+   using-gulp
+   using-grunt
+   bower 
    bootstrap
    knockout
    angular
