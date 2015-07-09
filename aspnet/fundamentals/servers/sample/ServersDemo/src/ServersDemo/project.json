@@ -3,17 +3,17 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Hosting.Interfaces": "1.0.0-beta4",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
-    "Kestrel": "1.0.0-beta4"
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta5",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
+    "Kestrel": "1.0.0-beta5"
   },
 
   "commands": {
     "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
     "run": "run server.urls=http://localhost:5003",
-    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
+    "kestrel2": "Microsoft.AspNet.Hosting --server Kestrel"
   },
 
   "frameworks": {

@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
+using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Runtime;
 
 namespace ServersDemo
 {
     public class Startup
     {
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        {
+            // Setup configuration sources.
+            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
+                .AddJsonFile("config.json")
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+        public IConfiguration Configuration { get; private set; }
         public void ConfigureServices(IServiceCollection services)
         {
         }

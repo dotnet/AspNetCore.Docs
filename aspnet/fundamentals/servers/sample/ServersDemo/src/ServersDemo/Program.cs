@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 
 namespace ServersDemo
 {
@@ -11,20 +11,23 @@ namespace ServersDemo
     /// </summary>
     public class Program
     {
+        private readonly IServiceProvider _serviceProvider;
+
+        public Program(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
         public Task<int> Main(string[] args)
         {
             //Add command line configuration source to read command line parameters.
-            var config = new Configuration();
-            config.AddCommandLine(args);
+            var builder = new ConfigurationBuilder();
+            builder.AddCommandLine(args);
+            var config = builder.Build();
 
-            var context = new HostingContext()
-            {
-                Configuration = config,
-                ServerFactoryLocation = "Microsoft.AspNet.Server.WebListener",
-                ApplicationName = "ServersDemo"
-            };
-
-            using (new HostingEngine().Start(context))
+            using (new WebHostBuilder(_serviceProvider, config)
+                .UseServer("Microsoft.AspNet.Server.WebListener")
+                .Build()
+                .Start())
             {
                 Console.WriteLine("Started the server..");
                 Console.WriteLine("Press any key to stop the server");
