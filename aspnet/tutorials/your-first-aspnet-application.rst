@@ -93,13 +93,12 @@ Now we need to update the View to give it a strongly-typed model and display the
 	:emphasize-lines: 1,7-8
 	:lines: 1-8
 
-Now we can build the solution. Since the default web template targets both the full .NET and .NET Core, we expect the build to fail when it tries to access the Environment.MachineName and Environment.OSVersion variables in HomeController. This behavior won't work in .NET Core (currently), so we can comment it out. Open project.json and modify the "frameworks" key as shown:
+Now we can build the solution. Since the default web template targets both the full .NET and .NET Core, we expect the build to fail when it tries to access the Environment.MachineName and Environment.OSVersion variables in HomeController. This behavior won't work in .NET Core (currently), so we can remove it. Open project.json and modify the "frameworks" key as shown:
 
 .. code-block:: javascript
 
     "frameworks": {
-        "dnx451": { }/*,
-        "dnxcore50": { }*/
+        "dnx451": { }
     },
 
 Now we should be able to build and run the solution. Navigate to the About page and you should see your server name and OS version displayed.
