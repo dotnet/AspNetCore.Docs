@@ -1,7 +1,6 @@
 ﻿using System;
-using Microsoft.Framework.ConfigurationModel;
 using System.Linq;
-using System.Collections.Generic;
+using Microsoft.Framework.Configuration;
 
 namespace ConfigConsole
 {
@@ -9,18 +8,19 @@ namespace ConfigConsole
     {
         public void Main(string[] args)
         {
-            var configuration = new Configuration();
-            Console.WriteLine("Initial Config Sources: " + configuration.Sources.Count());
+            var builder = new ConfigurationBuilder();
+            Console.WriteLine("Initial Config Sources: " + builder.Sources.Count());
 
             var defaultSettings = new MemoryConfigurationSource();
             defaultSettings.Set("username", "Guest");
-            configuration.Add(defaultSettings);
-            Console.WriteLine("Added Memory Source. Sources: " + configuration.Sources.Count());
+            builder.Add(defaultSettings);
+            Console.WriteLine("Added Memory Source. Sources: " + builder.Sources.Count());
 
-            configuration.AddCommandLine(args);
-            Console.WriteLine("Added Command Line Source. Sources: " + configuration.Sources.Count());
+            builder.AddCommandLine(args);
+            Console.WriteLine("Added Command Line Source. Sources: " + builder.Sources.Count());
 
-            string username = configuration.Get("username");
+            var config = builder.Build();
+            string username = config.Get("username");
 
             Console.WriteLine($"Hello, {username}!");
         }
