@@ -11,6 +11,7 @@ In this article:
 	- `IIS and IIS Express`_
 	- `WebListener`_
 	- `Kestrel`_
+	- `Choosing a server`_
 	- `Custom Servers`_
 	
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/servers/sample>`_.
@@ -32,16 +33,17 @@ I've configured the sample project for this article to support each of these hos
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/project.json
 	:lines: 1-17
-	:emphasize-lines: 14-16
+	:emphasize-lines: 12-14
 	:linenos:
 	:language: javascript
 	:caption: project.json (truncated)
 
-The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``.
+The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``. In this case, this has been set up to configure and start an instance of ``WebListener``.
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/program.cs
 	:linenos:
-	:language: javascript
+	:emphasize-lines: 27-35
+	:language: c#
 	:caption: program.cs
 
 
@@ -112,12 +114,65 @@ ASP.NET defines a number of :doc:`request-features` which may be supported on di
 
 For the most part, feature interfaces are specified on the request object. We'll see below how `Kestrel`_ implements the features it supports.
 
+Configuration options
+^^^^^^^^^^^^^^^^^^^^^
+
+When launching a server, you can provide it with some configuration options. This can be done directly using command line parameters, or a configuration file containing the settings can be specified. The ``Microsoft.AspNet.Hosting`` command supports parameters for the server to use (such as ``Kestrel`` or ``WebListener``) as well as a ``server.urls`` configuration key, which should contain a semicolon-separated list of URL prefixes the server should handle.
+
+The ``project.json`` file shown above demonstrates how to pass the ``server.urls`` parameter directly:
+
+.. code-block:: javascript
+
+	"kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
+
+Alternately, a configuration file can be referenced, instead:
+
+.. code-block:: javascript
+
+	"kestrel": "Microsoft.AspNet.Hosting --config hosting.ini"
+
+Then, ``hosting.ini`` can include the settings the server will use (including the server parameter, as well):
+
+.. code-block:: text
+
+	server=Kestrel
+	server.urls=http://localhost:5004
+
+Programmatic configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to specifying configuration options, the server hosting the application can be referenced programmatically via the `IApplicationBuilder interface <https://github.com/aspnet/HttpAbstractions/blob/ed339a35d2a0ae6137c12e9bc8e8b037ed429bc1/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs>`_, available in the ``Configure`` method in ``Startup``. ``IApplicationBuilder`` exposes a Server property of type `ServerInformation <https://github.com/aspnet/Hosting/blob/62e534977386ebb02bfc351ec4a6bbea9ea7f635/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerInformation.cs>`_. ``IServerInformation`` only exposes a ``Name`` property, but different server implementations may expose additional functionality. For instance, WebListener exposes a ``Listener`` property that can be used to configure the server's authentication:
+
+.. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/Startup.cs
+	:linenos:
+	:lines: 29-45
+	:emphasize-lines: 3,6-8,13
+	:language: c#
+	:dedent: 8
+
+In addition to configuring the server, you can also adjust how your application will behave based on which server is hosting it, as provided by ``IServerInformation.Name`` (as shown on line 13 in the code listing above). The following table lists the servers and the name they provide:
+
+.. list-table::
+	:header-rows: 1
+	
+	* - Server
+	  - IServerInformation.Name
+	* - IIS and IIS Express
+	  - `Microsoft.AspNet.Server.IIS`
+	* - WebListener
+	  - `Microsoft.AspNet.Server.WebListener`
+	* - Kestrel
+	  - `Kestrel`
+
+	
 IIS and IIS Express
 -------------------
 
 The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is included in ``project.json`` by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
 
-Working with IIS as your server for your ASP.NET application is a great option. It provides the most features, integrating with IIS and providing access to other IIS modules. It bypasses the legacy ``System.Web`` infrastructure used by prior version of ASP.NET, providing a substantial performance gain. IIS has great support for static files and can also be used with the built-in Windows Authentication mechanism, too.
+.. image:: /fundamentals/servers/_static/serverdemo-properties.png
+
+Working with IIS as your server for your ASP.NET application is a great option. It provides the most features, integrating with IIS and providing access to other IIS modules. It bypasses the legacy ``System.Web`` infrastructure used by prior versions of ASP.NET, providing a substantial performance gain. IIS has great support for static files and can also be used with the built-in Windows Authentication mechanism, too.
 
 WebListener
 -----------
@@ -196,10 +251,16 @@ Since Kestrel is open source, it makes an excellent starting point if you need t
 
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
+Choosing a server
+-----------------
+
+If you intend to deploy your application on a Windows server, you should prefer the Windows optimized servers (IIS and WebListener). IIS remains the best choice for typical web application deployments on Windows servers, and provides the richest set of features. Choose WebListener instead of IIS only if you need to host your application within your own process or service. Use Kestrel if you intend to deploy to non-Windows environments.
+
+
 Custom Servers
 --------------
 
-In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. Forking and modifying the KestrelHttpServer is one way to quickly create your own custom server, and at the time of this writing the KestrelHttpServer repository on GitHub has been forked 55 times. When implementing your own server, you're free to implement just the feature interfaces your application needs.
+In addition to the options listed above, you can create your own server in which to host your ASP.NET application, or use other open source servers. Forking and modifying the KestrelHttpServer is one way to quickly create your own custom server, and at the time of this writing the KestrelHttpServer repository on GitHub has been forked 55 times. When implementing your own server, you're free to implement just the feature interfaces your application needs, though at a minimum you must support ``IHttpRequestFeature`` and ``IHttpResponseFeature``.
 
 Summary
 -------
@@ -210,3 +271,4 @@ Additional Reading
 ------------------
 
 - :doc:`request-features`
+- :doc:`hosting`
