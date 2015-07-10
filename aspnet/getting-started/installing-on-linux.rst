@@ -70,7 +70,7 @@ Once this step is complete you should be able to run ``dnvm`` and see some help 
 
 .. note:
 
-    ``dnvm`` needs unzip to function properly. If you don't have it installed, run ``sudo apt-get install unzip```to install it before installing a runtime.
+    ``dnvm`` needs unzip to function properly. If you don't have it installed, run ``sudo apt-get install unzip`` to install it before installing a runtime.
 
 Add NuGet sources
 ^^^^^^^^^^^^^^^^^
