@@ -1,39 +1,52 @@
-﻿using Microsoft.AspNet.Authentication.Facebook;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Authentication.Facebook;
+using Microsoft.AspNet.Authentication.Google;
 using Microsoft.AspNet.Authentication.MicrosoftAccount;
+using Microsoft.AspNet.Authentication.Twitter;
 using Microsoft.AspNet.Builder;
-using Microsoft.Framework.DependencyInjection;
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Diagnostics.Entity;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Routing;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
+using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using Microsoft.Framework.Logging.Console;
+using Microsoft.Framework.Runtime;
 using AppInsightsDemo.Models;
+using AppInsightsDemo.Services;
 
 namespace AppInsightsDemo
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var configuration = new Configuration()
+
+            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
-            if (env.IsEnvironment("Development"))
+            if (env.IsDevelopment())
             {
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                configuration.AddUserSecrets();
+                builder.AddUserSecrets();
 
-                // This will expedite telemetry through pipeline,
-                // allowing you to view results immediately
-                configuration.AddApplicationInsightsSettings(developerMode: true);
+                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+                builder.AddApplicationInsightsSettings(developerMode: true);
+
             }
-            configuration.AddEnvironmentVariables();
-            Configuration = configuration;
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; set; }
@@ -41,13 +54,10 @@ namespace AppInsightsDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add Application settings to the services container.
-            services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
-
-            // Add Application Insights data collection services to the container.
+            // Add Application Insights data collection services to the services container.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            // Add EF services to the services container.
+            // Add Entity Framework services to the services container.
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
@@ -79,21 +89,25 @@ namespace AppInsightsDemo
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
+
+            // Register application services.
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Information;
+            loggerFactory.AddConsole();
+
             // Configure the HTTP request pipeline.
-            
-            // Track HTTP request telemetry data.
+
+            // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 
-            // Add the console logger.
-            loggerfactory.AddConsole(minLevel: LogLevel.Warning);
-
             // Add the following to the request pipeline only in development environment.
-            if (env.IsEnvironment("Development"))
+            if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseErrorPage(ErrorPageOptions.ShowAll);
@@ -105,9 +119,8 @@ namespace AppInsightsDemo
                 // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
-            
-            // Track exception telemetry data;
-            // Should be configured after all error handling middleware.
+
+            // Track data about exceptions from the application. Should be configured after all error handling middleware in the request pipeline.
             app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
@@ -128,8 +141,7 @@ namespace AppInsightsDemo
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
+                    template: "{controller=Home}/{action=Index}/{id?}");
 
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");

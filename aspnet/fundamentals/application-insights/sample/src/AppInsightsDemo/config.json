@@ -1,13 +1,10 @@
 {
-    "ApplicationInsights": {
-        "InstrumentationKey": "YOUR KEY GOES HERE"
-    },
-    "AppSettings": {
-        "SiteTitle": "AppInsightsDemo"
-    },
-    "Data": {
-        "DefaultConnection": {
-            "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-AppInsightsDemo-ec32242e-aa53-4e4f-b32b-24aec35f431d;Trusted_Connection=True;MultipleActiveResultSets=true"
-        }
+  "ApplicationInsights": {
+    "InstrumentationKey": "YOUR KEY GOES HERE"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-AppInsightsDemo-8ca2ae8a-d6e9-44f0-b6d7-72f99287c54a;Trusted_Connection=True;MultipleActiveResultSets=true"
     }
+  }
 }
