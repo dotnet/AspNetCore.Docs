@@ -10,9 +10,19 @@ using AppInsightsDemo.Models;
 namespace AppInsightsDemo.Migrations
 {
     [ContextType(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    partial class CreateIdentitySchema
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "00000000000000_CreateIdentitySchema"; }
+        }
+
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta5"; }
+        }
+
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("SqlServer:ValueGeneration", "Identity");
