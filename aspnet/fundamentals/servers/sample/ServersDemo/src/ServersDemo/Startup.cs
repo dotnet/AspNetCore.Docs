@@ -1,5 +1,4 @@
-﻿using Kestrel;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Hosting.Server;
 using Microsoft.AspNet.Http;
@@ -19,6 +18,7 @@ namespace ServersDemo
             // Setup configuration sources.
             var configBuilder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddEnvironmentVariables();
+
             Configuration = configBuilder.Build();
         }
         public IConfiguration Configuration { get; private set; }
