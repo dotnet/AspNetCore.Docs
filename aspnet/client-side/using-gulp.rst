@@ -1,7 +1,7 @@
 Using Gulp
 ========================================
 
-By Noel Rice and Mike Wasson_
+By `Noel Rice`_ and `Mike Wasson`_
 
 Modern web development has lots of moving parts. To build a typical web app, you might:
 
@@ -213,3 +213,8 @@ Let's bind 'default' so that it runs every time Visual Studio builds the project
 .. image:: using-gulp/_static/task-binding.png
 
 In the Solution Explorer, right-click and **Build** the project. After the project build, the 'default' task runs automatically.
+
+See Also
+--------
+
+	- :doc:`using-grunt`
