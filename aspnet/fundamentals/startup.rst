@@ -31,7 +31,7 @@ Your ``Configure`` method must accept an ``IApplicationBuilder`` parameter. Addi
 	:dedent: 8
 	:emphasize-lines: 12-14,20,24,27,37
 
-You can see what each of these extensions does by examining the source. For instance, the ``UseMvc`` extension method is defined in ``BuilderExtensions`` available on `GitHub <https://github.com/aspnet/Mvc/blob/6.0.0-beta4/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_. Its primary responsibility is to ensure MVC was added as a service (in ``ConfigureServices``) and to correctly set up routing for an ASP.NET MVC application. 
+You can see what each of these extensions does by examining the source. For instance, the ``UseMvc`` extension method is defined in ``BuilderExtensions`` available on `GitHub <https://github.com/aspnet/Mvc/blob/6.0.0-beta5/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_. Its primary responsibility is to ensure MVC was added as a service (in ``ConfigureServices``) and to correctly set up routing for an ASP.NET MVC application. 
 
 You can learn all about middleware and using ``IApplicationBuilder`` to define your request pipeline in the :doc:`middleware` topic.
 
