@@ -93,7 +93,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 - Open a Command Prompt and navigate to the folder of project.json for your project.
 
-- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta4**
+- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta5**
 
 .. image:: sociallogins/_static/SM1.PNG
 
