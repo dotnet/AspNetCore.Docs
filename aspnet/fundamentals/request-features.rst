@@ -89,45 +89,30 @@ In the example above, ``OwinEnvironment``'s constructor verifies that the ``Http
 
 Since feature collections are mutable, even within the context of a request, middleware can be used to modify the collection and add support for additional features.
 
+Middleware and request features
+-------------------------------
+
+While servers are responsible for creating the collection of features, middleware can both add to this collection and consume features from the collection. For example, the StaticFileMiddleware accesses a feature through the StaticFileContext:
+
+(demo)
+
+Additionally, middleware can add to the feature collection established by the server, as is done by WebSocketsMiddleware.
+
+(see also ClaimsTransformationMiddleware)
+
+
+
 Summary
 -------
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+Additional Resources
+--------------------
+
+- :doc:`servers`
+- :doc:`middleware`
+- :doc:`owin`
+
 	
 	
 	
