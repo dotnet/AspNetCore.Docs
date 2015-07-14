@@ -8,6 +8,7 @@ Individual web server features related to how HTTP requests and responses are ha
 In this article:
 	- `Feature interfaces`_
 	- `Feature collections`_
+	- `Middleware and request features`_
 	
 Feature interfaces
 ------------------
@@ -46,13 +47,14 @@ ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspne
 
 `ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
 	Defines ``ISessionFactory`` and ``ISession`` abstractions for supporting user sessions.
-
+	
 `ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
 	Defines an API for retrieving client certificates.
 
 `ITlsTokenBindingFeature <https://github.com/aspnet/HttpAbstractions/blob/dev/src/Microsoft.AspNet.Http.Features/ITlsTokenBindingFeature.cs>`_
 	Defines methods for working with TLS token binding parameters.
-	
+
+.. note:: ``ISessionFeature`` is not a server feature, but is implemented by `SessionMiddleware <https://github.com/aspnet/Session/blob/42321d243b1d4bea8e2677a8382a0f20737e4b3d/src/Microsoft.AspNet.Session/SessionMiddleware.cs>`_.
 	
 Feature collections
 -------------------
@@ -92,19 +94,68 @@ Since feature collections are mutable, even within the context of a request, mid
 Middleware and request features
 -------------------------------
 
-While servers are responsible for creating the collection of features, middleware can both add to this collection and consume features from the collection. For example, the StaticFileMiddleware accesses a feature through the StaticFileContext:
+While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware  <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta5/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs>`_ accesses a feature (``IHttpSendFileFeature``) through the `StaticFileContext <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta5/src/Microsoft.AspNet.StaticFiles/StaticFileContext.cs>`_:
 
-(demo)
+.. code-block:: c#
+	:caption: StaticFileContext.cs
+	:emphasize-lines: 6
 
-Additionally, middleware can add to the feature collection established by the server, as is done by WebSocketsMiddleware.
+	public async Task SendAsync()
+	{
+		ApplyResponseHeaders(Constants.Status200Ok);
 
-(see also ClaimsTransformationMiddleware)
+		string physicalPath = _fileInfo.PhysicalPath;
+		var sendFile = _context.GetFeature<IHttpSendFileFeature>();
+		if (sendFile != null && !string.IsNullOrEmpty(physicalPath))
+		{
+			await sendFile.SendFileAsync(physicalPath, 0, _length, _context.RequestAborted);
+			return;
+		}
 
+		Stream readStream = _fileInfo.CreateReadStream();
+		try
+		{
+			await StreamCopyOperation.CopyToAsync(readStream, _response.Body, _length, _context.RequestAborted);
+		}
+		finally
+		{
+			readStream.Dispose();
+		}
+	}
 
+In the code above, the ``StaticFileContext`` class's ``SendAsync`` method accesses the server's implementation of the ``IHttpSendFileFeature`` feature (by calling ``GetFeature`` on `HttpContext <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http/DefaultHttpContext.cs>`_). If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a much slower workaround method is used to send the file (when available, the ``IHttpSendFileFeature`` allows the operating system to open the file and perform a direct kernel mode copy to the network card).
+
+.. note:: Use the pattern shown above for feature detection from middleware or within your application. Calls made to ``GetFeature`` will return an instance if the feature is supported, or ``null`` otherwise.
+
+Additionally, middleware can add to the feature collection established by the server, by calling ``SetFeature<>``. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.
+
+The `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/c86b157ad3cd00e8848c4895fe29de2f9d81a0b4/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_ follows this approach, first detecting if the server supports upgrading (``IHttpUpgradeFeature``), and then adding a new ``IHttpWebSocketFeature`` to the feature collection if it doesn't already exist. Alternately, if configured to replace the existing implementation (via ``_options.ReplaceFeature``), it will overwrite any existing implementation with its own.
+
+.. code-block:: c#
+	:emphasize-lines: 4,7,9-10
+
+	public Task Invoke(HttpContext context)
+	{
+		// Detect if an opaque upgrade is available. If so, add a websocket upgrade.
+		var upgradeFeature = context.GetFeature<IHttpUpgradeFeature>();
+		if (upgradeFeature != null)
+		{
+			if (_options.ReplaceFeature || context.GetFeature<IHttpWebSocketFeature>() == null)
+			{
+				context.SetFeature<IHttpWebSocketFeature>(new UpgradeHandshake(context, 
+					upgradeFeature, _options));
+			}
+		}
+
+		return _next(context);
+	}
+
+By combining custom server implementations and specific middleware enhancements, the precise set of features an application requires can be constructed. This allows missing features to be added without requiring a change in server, and ensures only the minimal amount of features are exposed, thus limiting attack surface area and improving performance.
 
 Summary
 -------
 
+Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
 	
 Additional Resources
 --------------------
