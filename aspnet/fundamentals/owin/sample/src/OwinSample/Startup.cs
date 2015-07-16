@@ -25,7 +25,7 @@ namespace OwinSample
 
         public Task OwinHello(IDictionary<string, object> environment)
         {
-            string responseText = "Hello World";
+            string responseText = "Hello World via OWIN";
             byte[] responseBytes = Encoding.UTF8.GetBytes(responseText);
 
             // OWIN Environment Keys: http://owin.org/spec/owin-1.0.0.html

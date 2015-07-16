@@ -1,0 +1,32 @@
+﻿{
+  "webroot": "wwwroot",
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNet.Hosting": "1.0.0-beta5",
+    "Microsoft.AspNet.Owin": "1.0.0-beta5",
+    "Microsoft.AspNet.Http": "1.0.0-beta5",
+    "Nowin": "0.17.0"
+  },
+
+  "commands": {
+    "web": "Microsoft.AspNet.Hosting --server NowinWebSockets"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  },
+
+  "publishExclude": [
+    "node_modules",
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ]
+}
