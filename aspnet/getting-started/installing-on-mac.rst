@@ -11,37 +11,53 @@ In this article:
 Install ASP.NET 5 on OS X
 -------------------------
 
-ASP.NET 5 requires DNX, which is installed and managed by the .NET Version Manager (DNVM). The DNVM is easily installed using a tool called Homebrew, which will also install the correct version of Mono for OS X.
+Install Mono
+^^^^^^^^^^^^
 
-Install Homebrew
-^^^^^^^^^^^^^^^^
+Currently, ASP.NET 5 on OS X requires the `Mono <http://mono-project.com>`_ runtime. Mono is an ongoing effort to port the .NET Framework to other platforms. It is one of the ways .NET applications can run on platforms other than Windows.
 
-The first step is to install Homebrew if it's not already installed. This can be done from a Terminal prompt using this script:
+Using the Mono Installer
+""""""""""""""""""""""""
 
-.. code-block:: console
+You can install the latest version of Mono from the `Mono project downloads page <http://www.mono-project.com/download/>`_, just select Mac OS X and click download. The latest version should be compatible with ASP.NET 5 (specifically, you need at least Mono 4.0.1). 
 
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+Using Homebrew
+""""""""""""""
 
-The installer will inform you of the steps it is taking and pause before proceeding. You can `learn more about Homebrew here <https://github.com/Homebrew/homebrew/tree/master/share/doc/homebrew#readme>`_.
+If you use the `Homebrew <http://brew.sh>`_ package manager, you can install mono using the following command::
 
-Install the .NET Version Manager (DNVM)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	brew install mono
+	
+Installing DNVM
+^^^^^^^^^^^^^^^
 
-Once Homebrew is installed, install the DNVM by running ``brew tap aspnet/dnx`` from a Terminal window. If you need to update your version of DNVM, first run ``brew untap aspnet/dnx`` to delete the old commands, and then run the ``brew tap aspnet/dnx`` command again to get the updated scripts.
+Next, you need to install the .NET Version Manager (DNVM). You can do so by running an automatic installation script we provide. If you'd rather do it manually, instructions for manual installation are also provided.
 
-.. image:: installing-on-mac/_static/brew-tap-aspnetdnx.png
+Automated Install Script
+""""""""""""""""""""""""
 
-If you had an older version of our Homebrew "tap" configured, you might get the following error: ``Could not create link for aspnet/dnx/kvm, as it conflicts with aspnet/k/kvm``. In that case, simply run ``brew uninstall kvm`` to ensure any old versions of ``kvm`` are removed, then ``brew untap aspnet/k`` to remove the old tap. After that, the ``brew tap aspnet/dnx`` command should succeed.
+To install DNVM using the automatic installations script, run the following command from your Terminal::
 
-Next, run the command ``brew install dnvm`` to install the .NET Version Manager. This will also automatically install the latest DNX package from the https://www.nuget.org/api/v2 feed. 
+	curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh && source ~/.dnx/dnvm/dnvm.sh
 
-.. image:: installing-on-mac/_static/brew-install-dnvm.png
+Manual Install
+""""""""""""""
 
-Next, run ``dnvm`` to verify that your terminal understands this command. If it does not, run the command ``source dnvm.sh`` to link it, then try running ``dnvm`` again. You should see something like this:
+If you'd rather install DNVM manually, you can download the ``dnvm.sh`` file from the `aspnet/Home <https://github.com/aspnet/Home>`_ repository and place it in the ``/Users/[your user name here]/.dnx/dnvm`` directory on your file system. Then, add the following lines to your shell startup script (normally ``/Users/[your user name here]/.bash_profile``, or ``/Users/[your user name here]/.zshrc`` if you are using ZSH)::
+
+	[ -s "~/.dnx/dnvm/dnvm.sh" ] && source "~/.dnx/dnvm/dnvm.sh"
+	
+Verifying your installation
+"""""""""""""""""""""""""""
+
+You can verify that DNVM is installed properly by running ``dnvm`` in a Terminal window. If your shell does not recognize it ``dnvm`` as a command, run ``source dnvm.sh`` to load it, then try running ``dnvm`` again. You should see something like this:
 
 .. image:: installing-on-mac/_static/run-dnvm.png
+	
+Installing DNX
+^^^^^^^^^^^^^^
 
-To install the latest version of DNX using DNVM, run: 
+Once you have DNVM installed, you need to install the .NET Execution Environment (DNX). To install the latest version of DNX using DNVM, run: 
 
 ``dnvm upgrade``
 
