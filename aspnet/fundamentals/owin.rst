@@ -16,21 +16,21 @@ In this article:
 Running OWIN middleware in the ASP.NET pipeline
 -----------------------------------------------
 
-ASP.NET 5's OWIN support is deployed as part of the `HttpAbstractions package <https://github.com/aspnet/HttpAbstractions>`_, in the Microsoft.AspNet.Owin project. You can import OWIN support into your project by adding this package as a dependency in your ``project.json`` file, as shown here:
+ASP.NET 5's OWIN support is deployed as part of the `Microsoft.AspNet.Owin <https://www.nuget.org/packages/Microsoft.AspNet.Owin/1.0.0-beta5>`_ package, and the source is in the `HttpAbstractions repository <https://github.com/aspnet/HttpAbstractions/tree/1.0.0-beta5/src/Microsoft.AspNet.Owin>`_. You can import OWIN support into your project by adding this package as a dependency in your ``project.json`` file, as shown here:
 
 .. literalinclude:: owin/sample/src/OwinSample/project.json
 	:language: javascript
 	:lines: 5-10
 	:emphasize-lines: 3
 
-OWIN middleware conform to the `OWIN specification <http://owin.org/spec/spec/owin-1.0.0.html>`_, which defines a ``Properties IDictionary<string, object>`` interface that must be used, and also requires certain headers be set (such as ``owin.ResponseBody``). We can construct a very simple example of middleware that follows the OWIN specification to display "Hello World", as shown here:
+OWIN middleware conform to the `OWIN specification <http://owin.org/spec/spec/owin-1.0.0.html>`_, which defines a ``Properties IDictionary<string, object>`` interface that must be used, and also requires certain keys be set (such as ``owin.ResponseBody``). We can construct a very simple example of middleware that follows the OWIN specification to display "Hello World", as shown here:
 
 .. literalinclude:: owin/sample/src/OwinSample/Startup.cs
 	:language: c#
 	:lines: 26-39
 	:dedent: 8
 
-In the above example, notice that the method returns a ``Task`` and accepts an ``IDictionary<string, object>`` as required by OWIN. Within the method, this parameter is used to specify the ``owin.ResponseBody`` and ``owin.ResponseHeaders`` objects within the environment dictionary. Once the headers are set appropriately for the content being returned, a task representing the asynchronous write to the response stream is returned.
+In the above example, notice that the method returns a ``Task`` and accepts an ``IDictionary<string, object>`` as required by OWIN. Within the method, this parameter is used to retrieve the ``owin.ResponseBody`` and ``owin.ResponseHeaders`` objects from the environment dictionary. Once the headers are set appropriately for the content being returned, a task representing the asynchronous write to the response stream is returned.
 
 Adding OWIN middleware to the ASP.NET pipeline is most easily done using the ``UseOwin`` extension method. Given the ``OwinHello`` method shown above, adding it to the pipeline is a simple matter:
 
@@ -39,7 +39,9 @@ Adding OWIN middleware to the ASP.NET pipeline is most easily done using the ``U
 	:lines: 18-24
 	:dedent: 8
 
-You can of course configure other actions to take place within the OWIN pipeline. Whether directly from within the call to ``UseOwin`` as shown below, or through multiple calls to ``UseOwin``. Just remember that response headers should only be modified prior to the first write to the response stream, so configure your pipeline accordingly.
+You can of course configure other actions to take place within the OWIN pipeline. Remember that response headers should only be modified prior to the first write to the response stream, so configure your pipeline accordingly.
+
+.. note:: Multiple calls to ``UseOwin`` is discouraged for performance reasons. OWIN components will operate best if grouped together.
 
 .. code-block:: c#
 
@@ -65,7 +67,7 @@ OWIN-based servers can host ASP.NET applications, since ASP.NET conforms to the 
 	:linenos:
 	:language: c#
 
-`IServerFactory <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerFactory.cs>`_ is an ASP.NET interface that requires an Initialize and a Start method. Initialize must return an instance of `IServerInformation <https://github.com/aspnet/Hosting/blob/b75a855b98b7d1e2385ba9695eabdaeab06c138a/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerInformation.cs>`_, which simply includes the server's name (but the specific implementation may provide additional functionality). In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
+`IServerFactory <https://github.com/aspnet/Hosting/blob/1.0.0-beta5/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerFactory.cs>`_ is an ASP.NET interface that requires an Initialize and a Start method. Initialize must return an instance of `IServerInformation <https://github.com/aspnet/Hosting/blob/1.0.0-beta5/src/Microsoft.AspNet.Hosting.Server.Abstractions/IServerInformation.cs>`_, which simply includes the server's name (but the specific implementation may provide additional functionality). In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
 
 ``Initialize`` is responsible for configuring the server, which in this case is done through a series of fluent API calls that hard code the server to listen for requests (to any IP address) on port 5000. Note that the final line of the fluent configuration of the ``builder`` variable specifies that requests will be handled by the private method ``HandleRequest``.
 
