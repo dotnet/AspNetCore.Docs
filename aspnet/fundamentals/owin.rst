@@ -166,9 +166,6 @@ Response Data (OWIN v1.0.0)
 	* - owin.ResponseReasonPhrase
 	  - ``String``
 	  - Optional
-	* - owin.ResponseProtocol
-	  - ``String``
-	  - Optional
 	* - owin.ResponseHeaders
 	  - ``IDictionary<string,string[]>``
 	  - 
@@ -190,22 +187,6 @@ Other Data (OWIN v1.0.0)
 	  -
 	* - owin.Version
 	  - ``String``
-	  -
-
-IAppBuilder.Properties
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-	:header-rows: 1
-	
-	* - Key
-	  - Value (type)
-	  - Description
-	* - builder.AddSignatureConversion
-	  -
-	  -
-	* - builder.DefaultApp
-	  -
 	  -
 
 Common Keys
@@ -238,17 +219,8 @@ Common Keys
 	* - server.IsLocal
 	  - ``bool``
 	  -
-	* - server.Capabilities
-	  - ``IDictionary<string,object>``
-	  -
 	* - server.OnSendingHeaders
 	  - ``Action<Action<object>,object>``
-	  -
-	* - host.TraceOutput
-	  - ``TextWriter``
-	  - Available to the application for low volume debug statements
-	* - host.Addresses
-	  - ``IList<IDictionary<string,object>>``
 	  -
 	* - host.AppName
 	  - ``String``
@@ -278,18 +250,13 @@ SendFiles v0.3.0
 	* - Key
 	  - Value (type)
 	  - Description
-	* - sendfile.Version
-	  - ``String``
-	  -
-	* - sendfile.Support
-	  - ``IDictionary<string,object>``
-	  -
-	* - sendfile.Concurrency
-	  - ``String``
-	  - "Overlapped" indicates support for multiple outstanding async operations.
+	* - sendfile.SendAsync
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-SendFile-Extension-v0.3.0.htm>`_
+	  - Per Request
 
 Opaque v0.3.0
 ^^^^^^^^^^^^^
+
 
 .. list-table::
 	:header-rows: 1
@@ -349,32 +316,6 @@ WebSocket v0.3.0
 	* - websocket.ClientCloseDescription
 	  - ``String``
 	  - Optional
-
-Security v0.1.0
-^^^^^^^^^^^^^^^
-
-.. list-table::
-	:header-rows: 1
-	
-	* - Key
-	  - Value (type)
-	  - Description
-	* - server.User
-	  - ``IPrincipal``
-	  - The current user identity. May be anonymous or null.
-	* - security.Authenticate
-	  -
-	  -
-	* - security.SignIn
-	  -
-	  -
-	* - security.SignOut
-	  -
-	  -
-	* - security.Challenge
-	  -
-	  -
-
 
 Summary
 -------
