@@ -77,7 +77,7 @@ Additional Reading
 Learn more about .NET Core:
 	- `Immo Landwerth Explains .NET Core <http://blogs.msdn.com/b/dotnet/archive/2014/12/04/introducing-net-core.aspx>`_
 	- `What is .NET Core 5 and ASP.NET 5 <http://blogs.msdn.com/b/cesardelatorre/archive/2014/11/18/what-is-net-core-5-and-asp-net-5-within-net-2015-preview.aspx>`_
-	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore5>`_
+	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore>`_
 	- `.NET Core is Open Source <http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx>`_
 	- `.NET Core on GitHub <https://github.com/dotnet/corefx>`_
 
