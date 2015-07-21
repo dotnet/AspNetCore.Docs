@@ -23,7 +23,7 @@ ASP.NET 5's OWIN support is deployed as part of the `Microsoft.AspNet.Owin <http
 	:lines: 5-10
 	:emphasize-lines: 3
 
-OWIN middleware conform to the `OWIN specification <http://owin.org/spec/spec/owin-1.0.0.html>`_, which defines a ``Properties IDictionary<string, object>`` interface that must be used, and also requires certain keys be set (such as ``owin.ResponseBody``). We can construct a very simple example of middleware that follows the OWIN specification to display "Hello World", as shown here:
+OWIN middleware conform to the `OWIN specification <http://owin.org/spec/spec/owin-1.0.0.html>`_, which defines a Properties ``IDictionary<string, object>`` interface that must be used, and also requires certain keys be set (such as ``owin.ResponseBody``). We can construct a very simple example of middleware that follows the OWIN specification to display "Hello World", as shown here:
 
 .. literalinclude:: owin/sample/src/OwinSample/Startup.cs
 	:language: c#
@@ -222,24 +222,6 @@ Common Keys
 	* - server.OnSendingHeaders
 	  - ``Action<Action<object>,object>``
 	  -
-	* - host.AppName
-	  - ``String``
-	  - A name describing the application instance.
-	* - host.OnAppDisposing
-	  - ``CancellationToken``
-	  - Signaled when the application is preparing to shut down
-	* - host
-	  - ``String``
-	  - The host portion of the URI, e.g. `docs.asp.net`
-	* - scheme
-	  - ``String``
-	  - The scheme portion of the URI, e.g. `http`
-	* - port
-	  - ``String``
-	  - The port portion of the URI, e.g. `80`
-	* - path
-	  - ``String``
-	  - The path portion of the URI, e.g. `/en/latest/fundamentals/owin.html`
 
 SendFiles v0.3.0
 ^^^^^^^^^^^^^^^^
