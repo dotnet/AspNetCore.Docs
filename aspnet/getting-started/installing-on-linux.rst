@@ -75,11 +75,11 @@ Now that we have DNVM and the other tools needed to run an ASP.NET 5 application
 
 The nightly package source is: `https://www.myget.org/F/aspnetvnext/api/v2/`
 
-You specify your package sources through your NuGet.config file.
+You specify your package sources through your NuGet.Config file.
 
-Edit: ``~/.config/NuGet/NuGet.config``
+Edit: ``~/.config/NuGet/NuGet.Config``
 
-The NuGet.config file should look something like the following
+The NuGet.Config file should look something like the following
 
 .. code-block:: xml
 
