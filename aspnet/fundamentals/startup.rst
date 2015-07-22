@@ -9,8 +9,6 @@ In this article:
 	- `The Startup class`_
 	- `The Configure method`_
 	- `The ConfigureServices method`_
-	
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/startup/sample>`_.
 
 The Startup class
 -----------------
