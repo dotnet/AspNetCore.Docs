@@ -24,7 +24,7 @@ You can install the latest version of Mono from the `Mono project downloads page
 Using Homebrew
 """"""""""""""
 
-If you use the `Homebrew <http://brew.sh>`_ package manager, you can install mono using the following command::
+If you use the Homebrew_ package manager, you can install mono using the following command::
 
 	brew install mono
 	

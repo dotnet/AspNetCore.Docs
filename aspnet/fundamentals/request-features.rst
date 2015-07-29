@@ -93,7 +93,7 @@ While servers are responsible for creating the feature collection, middleware ca
 		}
 	}
 
-In the code above, the ``StaticFileContext`` class's ``SendAsync`` method accesses the server's implementation of the ``IHttpSendFileFeature`` feature (by calling ``GetFeature`` on `HttpContext <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http/DefaultHttpContext.cs>`_). If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a much slower workaround method is used to send the file (when available, the ``IHttpSendFileFeature`` allows the operating system to open the file and perform a direct kernel mode copy to the network card).
+In the code above, the ``StaticFileContext`` class's ``SendAsync`` method accesses the server's implementation of the ``IHttpSendFileFeature`` feature (by calling ``GetFeature`` on HttpContext_). If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a much slower workaround method is used to send the file (when available, the ``IHttpSendFileFeature`` allows the operating system to open the file and perform a direct kernel mode copy to the network card).
 
 .. note:: Use the pattern shown above for feature detection from middleware or within your application. Calls made to ``GetFeature`` will return an instance if the feature is supported, or ``null`` otherwise.
 

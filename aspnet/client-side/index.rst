@@ -15,3 +15,4 @@ Client-Side Development
    cdn
    responsive-design
    typescript
+   yeoman

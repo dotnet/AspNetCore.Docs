@@ -27,7 +27,7 @@ ASP.NET 5 ships with support for 3 different servers:
 - Microsoft.AspNet.Server.WebListener (WebListener)
 - Microsoft.AspNet.Server.Kestrel (Kestrel)
 
-ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of `feature interfaces`_ composed into an HttpContext. Both IIS and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
+ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :doc:`feature interfaces <request-features>` composed into an HttpContext. Both IIS and WebListener are Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx . run``) rather than hosting it in a separate process.
 
 The default web host for ASP.NET applications developed using Visual Studio 2015 is IIS / IIS Express. The "Microsoft.AspNet.Server.IIS" dependency is included in ``project.json`` by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu.
 
@@ -46,7 +46,7 @@ I've configured the sample project for this article to support each of the diffe
 
 The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``. In this case, this has been set up to configure and start an instance of ``WebListener``. This is not a typical means of launching a server, but is shown to demonstrate the possibility (the `Music Store sample application <https://github.com/aspnet/MusicStore>`_ also demonstrates this option).
 
-.. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/program.cs
+.. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/Program.cs
 	:linenos:
 	:emphasize-lines: 27-35
 	:language: c#
@@ -114,7 +114,7 @@ ASP.NET defines a number of :doc:`request-features` which may be supported on di
 	  - Yes
 	  - No
 	  
-*To add support for web sockets in Kestrel, use the `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/c86b157ad3cd00e8848c4895fe29de2f9d81a0b4/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_
+To add support for web sockets in Kestrel, use the `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/c86b157ad3cd00e8848c4895fe29de2f9d81a0b4/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_
 
 Configuration options
 ^^^^^^^^^^^^^^^^^^^^^
