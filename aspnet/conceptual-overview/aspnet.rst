@@ -31,7 +31,7 @@ In summary, with ASP.NET 5 you gain the following foundational improvements:
 - Single aligned web stack for Web UI and Web APIs
 - Cloud-ready environment-based configuration
 - Built-in support for dependency injection
-- New tooling that simplifies modern Web development
+- New tooling that simplifies modern web development
 - Build and run cross-platform ASP.NET apps on Windows, Mac and Linux
 - Open source and community focused
 
