@@ -28,21 +28,7 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 	:linenos:
 	:emphasize-lines: 2,21
 
-The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` to enable the error page middleware. Using ``ErrorPageOptions`` you can toggle the visibility of the following features of the error page:
-
-- Exception details
-- Source code
-- Query
-- Cookies
-- Headers
-
-To disable the display of cookies, for instance, you would pass in an options instance configured as follows:
-
-.. code-block:: c#
-
-	var errorPageOptions = new ErrorPageOptions();
-	errorPageOptions.ShowCookies = false;
-	app.UseErrorPage(errorPageOptions);
+The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` to enable the error page middleware. 
 
 Notice that the call to ``UseErrorPage()`` is wrapped inside an ``if`` condition that checks the current ``EnvironmentName``. This is a good practice, since you typically do not want to share detailed diagnostic information about your application publicly once it is in production. This check uses the ``ASPNET_ENV`` environment variable. If you are using Visual Studio 2015, you can customize the environment variables used when the application runs in the web application project's properties, under the Debug tab, as shown here:
 

@@ -18,7 +18,7 @@ namespace DiagDemo
         {
             if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
             {
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
 
                 app.UseRuntimeInfoPage(); // default path is /runtimeinfo
             }
