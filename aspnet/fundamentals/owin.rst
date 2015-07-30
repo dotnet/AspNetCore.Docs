@@ -152,7 +152,7 @@ Request Data (OWIN v1.1.0)
 	  - Optional
 
 Response Data (OWIN v1.0.0)
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
 	:header-rows: 1
@@ -251,7 +251,7 @@ Opaque v0.3.0
 	  -
 	* - opaque.Upgrade
 	  - ``OpaqueUpgrade``
-	  - See `delegate signature <http://owin.org/spec/extensions/owin-OpaqueStream-Extension-v0.3.0.htm>`_
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-OpaqueStream-Extension-v0.3.0.htm>`__
 	* - opaque.Stream
 	  - ``Stream``
 	  -
@@ -273,7 +273,7 @@ WebSocket v0.3.0
 	  -
 	* - websocket.Accept
 	  - ``WebSocketAccept``
-	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`_.
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`__.
 	* - websocket.AcceptAlt
 	  -
 	  - Non-spec
@@ -282,13 +282,13 @@ WebSocket v0.3.0
 	  - See `RFC6455 Section 4.2.2 <https://tools.ietf.org/html/rfc6455#section-4.2.2>`_ Step 5.5
 	* - websocket.SendAsync
 	  - ``WebSocketSendAsync``
-	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`_.
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`__.
 	* - websocket.ReceiveAsync
 	  - ``WebSocketReceiveAsync``
-	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`_.
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`__.
 	* - websocket.CloseAsync
 	  - ``WebSocketCloseAsync``
-	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`_.
+	  - See `delegate signature <http://owin.org/spec/extensions/owin-WebSocket-Extension-v0.4.0.htm>`__.
 	* - websocket.CallCancelled
 	  - ``CancellationToken``
 	  -
