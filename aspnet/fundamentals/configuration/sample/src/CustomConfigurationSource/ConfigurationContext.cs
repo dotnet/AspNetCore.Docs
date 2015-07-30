@@ -9,7 +9,7 @@ namespace CustomConfigurationSource
 {
     public class ConfigurationContext : DbContext
     {
-        public ConfigurationContext(EntityOptions options) : base(options)
+        public ConfigurationContext(DbContextOptions options) : base(options)
         {
         }
 

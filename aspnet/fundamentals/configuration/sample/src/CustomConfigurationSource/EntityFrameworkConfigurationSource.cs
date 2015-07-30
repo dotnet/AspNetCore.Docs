@@ -9,16 +9,16 @@ namespace CustomConfigurationSource
 {
     public class EntityFrameworkConfigurationSource : ConfigurationSource
     {
-        public EntityFrameworkConfigurationSource(Action<EntityOptionsBuilder> optionsAction)
+        public EntityFrameworkConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
         {
             OptionsAction = optionsAction;
         }
 
-        Action<EntityOptionsBuilder> OptionsAction { get; }
+        Action<DbContextOptionsBuilder> OptionsAction { get; }
 
         public override void Load()
         {
-            var builder = new EntityOptionsBuilder<ConfigurationContext>();
+            var builder = new DbContextOptionsBuilder<ConfigurationContext>();
             OptionsAction(builder);
 
             using (var dbContext = new ConfigurationContext(builder.Options))
@@ -47,7 +47,7 @@ namespace CustomConfigurationSource
 
     public static class EntityFrameworkExtensions
     {
-        public static IConfigurationBuilder AddEntityFramework(this IConfigurationBuilder builder, Action<EntityOptionsBuilder> setup)
+        public static IConfigurationBuilder AddEntityFramework(this IConfigurationBuilder builder, Action<DbContextOptionsBuilder> setup)
         {
             return builder.Add(new EntityFrameworkConfigurationSource(setup));
         }
