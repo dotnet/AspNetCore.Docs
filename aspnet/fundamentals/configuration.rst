@@ -156,9 +156,9 @@ In addition to using `the built-in configuration source providers <https://githu
 Example: Entity Framework Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You may wish to store some of your application's settings in a database, and access them using Entity Framework (EF). There are many ways in which you could choose to store such values, ranging from a simple table with a column for the setting name and another column for the setting value, to having separate columns for each setting value. In this example, I'm going to create a simple configuraton source that reads name-value pairs from a database using EF.
+You may wish to store some of your application's settings in a database, and access them using Entity Framework (EF). There are many ways in which you could choose to store such values, ranging from a simple table with a column for the setting name and another column for the setting value, to having separate columns for each setting value. In this example, I'm going to create a simple configuration source that reads name-value pairs from a database using EF.
 
-To start off we'll define a simple ``ConfigurationValue`` entity for storing configuraiton values in the database:
+To start off we'll define a simple ``ConfigurationValue`` entity for storing configuration values in the database:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationSource/ConfigurationValue.cs
   :linenos:
