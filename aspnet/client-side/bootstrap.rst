@@ -6,11 +6,11 @@ By `Steve Smith`_
 Bootstrap is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
 
 In this article:
-	- `Getting Started`_
-	- `Basic Templates and Features`_
-	- `More Themes`_
-	- `Components`_
-	- `JavaScript Support`_
+  - `Getting Started`_
+  - `Basic Templates and Features`_
+  - `More Themes`_
+  - `Components`_
+  - `JavaScript Support`_
 
 Getting Started
 ---------------
@@ -21,21 +21,10 @@ There are several ways to get started with Bootstrap. If you're starting a new w
  
 Adding Bootstrap to an ASP.NET 5 project is simply a matter of adding it to ``bower.json`` as a dependency:
 
-.. code-block:: javascript
-	:emphasize-lines: 5
-
-	{
-	  "name": "ASP.NET",
-	  "private": true,
-	  "dependencies": {
-		"bootstrap": "3.0.0",
-		"jquery": "1.10.2",
-		"jquery-validation": "1.11.1",
-		"jquery-validation-unobtrusive": "3.2.2",
-		"hammer.js": "2.0.4",
-		"bootstrap-touch-carousel": "0.8.0"
-	  }
-	}
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/bower.json
+  :language: json
+  :linenos:
+  :emphasize-lines: 5
 
 This is the recommended way to add Bootstrap to an ASP.NET 5 project.
  
@@ -46,46 +35,32 @@ Bower
 
 .. code-block:: console
 
-	bower install bootstrap
-	
+  bower install bootstrap
+  
 npm
 ^^^
 
 .. code-block:: console
 
-	npm install bootstrap
-	
+  npm install bootstrap
+  
 NuGet
 ^^^^^
 
 .. code-block:: console
 
-	Install-Package bootstrap
-	
+  Install-Package bootstrap
+  
 .. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET 5 is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
 
-If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In the default ASP.NET site template, the ``_Layout.cshtml`` file does so like this:
+If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the ``_Layout.cshtml`` file does so like this:
 
-.. literalinclude:: bootstrap/sample/_Layout.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 10,55
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 9,14,54,63
 
-You can also simply reference Bootstrap using its CDN (Content Delivery Network) links, which is how you may wish to have your application reference bootstrap in production in any case. Simply replace the two references above with these:
-
-.. code-block:: html
-
-	<!-- Latest compiled and minified CSS --> 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-Note that if you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery (as shown above on line 40). If you're going the CDN route, you can of course use jQuery's CDN as well:
-
-.. code-block:: html
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+.. note:: If you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery.
 
 Basic Templates and Features
 ----------------------------
@@ -99,11 +74,11 @@ The default template uses a set of ``<div>`` elements to render a top navbar and
 
 .. code-block:: html
 
-	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-	</button>
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
 
 It also includes the application name, which appears in the top left.  The main navigation menu is rendered by the ``<ul>`` element within the second div, and includes links to Home, About, and Contact. Additional links for Register and Login are added by the _LoginPartial line on line 29.
 Below the navigation, the main body of each page is rendered in another ``<div>``, marked with the "container" and "body-content" classes. In the simple default _Layout file shown here, the contents of the page are rendered by the specific View associated with the page, and then a simple ``<footer>`` is added to the end of the ``<div>`` element.  You can see how the built-in About page appears using this template:
@@ -132,11 +107,11 @@ One of the most popular features of Bootstrap is its grid layout system. Modern 
 
 .. code-block:: html
 
-	<div class="container">
-		<div class="row">
-		
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+    
+    </div>
+  </div>
 
 Next, add additional ``<div>`` elements for each column, and specify the number of columns that ``<div>`` should occupy (out of 12) as part of a CSS class starting with "col-md-". For instance, if you want to simply have two columns of equal size, you would use a class of "col-md-6" for each one. In this case "md" is short for "medium" and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).
 
