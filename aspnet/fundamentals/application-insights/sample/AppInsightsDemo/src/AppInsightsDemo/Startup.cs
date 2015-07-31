@@ -43,7 +43,6 @@ namespace AppInsightsDemo
 
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
-
             }
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -110,7 +109,7 @@ namespace AppInsightsDemo
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else

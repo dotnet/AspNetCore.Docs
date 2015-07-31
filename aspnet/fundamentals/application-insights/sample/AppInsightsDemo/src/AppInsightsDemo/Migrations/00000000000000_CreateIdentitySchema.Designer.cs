@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Relational.Migrations.Infrastructure;
+using Microsoft.Data.Entity.Migrations.Infrastructure;
 using AppInsightsDemo.Models;
 
 namespace AppInsightsDemo.Migrations
@@ -30,7 +30,6 @@ namespace AppInsightsDemo.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ConcurrencyStamp")
@@ -51,8 +50,7 @@ namespace AppInsightsDemo.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .GenerateValueOnAdd()
-                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
+                        .ValueGeneratedOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ClaimType")
@@ -72,8 +70,7 @@ namespace AppInsightsDemo.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .GenerateValueOnAdd()
-                        .StoreGeneratedPattern(StoreGeneratedPattern.Identity)
+                        .ValueGeneratedOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ClaimType")
@@ -93,11 +90,9 @@ namespace AppInsightsDemo.Migrations
             builder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<string>("ProviderKey")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 1);
 
                     b.Property<string>("ProviderDisplayName")
@@ -127,7 +122,6 @@ namespace AppInsightsDemo.Migrations
             builder.Entity("AppInsightsDemo.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .GenerateValueOnAdd()
                         .Annotation("OriginalValueIndex", 0);
 
                     b.Property<int>("AccessFailedCount")

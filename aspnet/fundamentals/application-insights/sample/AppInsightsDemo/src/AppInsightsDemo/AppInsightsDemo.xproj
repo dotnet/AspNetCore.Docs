@@ -6,15 +6,14 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>e534eb33-d19a-4090-bd15-a39234378e6f</ProjectGuid>
+    <ProjectGuid>d371d503-05c9-4d84-a3ef-8a771259cbba</ProjectGuid>
     <RootNamespace>AppInsightsDemo</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <DevelopmentServerPort>45911</DevelopmentServerPort>
-    <ApplicationInsightsResourceId>/subscriptions/d55c9139-45f5-4045-b471-d86d3df137da/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/AppInsightsDemo</ApplicationInsightsResourceId>
+    <DevelopmentServerPort>59980</DevelopmentServerPort>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

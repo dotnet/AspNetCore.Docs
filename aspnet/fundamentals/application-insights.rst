@@ -12,7 +12,7 @@ In this article:
 	- `Getting started`_
 	- `Viewing activity`_
 	
-`View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights>`_.
+`View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights/sample>`_.
 
 Getting started
 ---------------
@@ -29,28 +29,28 @@ Choose ASP.NET as the application type. Note the *Instrumentation Key* (under Se
 
 Next, update ``project.json`` to add a new reference to ``Microsoft.ApplicationInsights.AspNet`` in your ``dependencies`` section, as shown:
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/project.json
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/project.json
   :linenos:
   :language: json
   :lines: 6-30
   :dedent: 4
-  :emphasize-lines: 4
+  :emphasize-lines: 29
 
 Saving the ``project.json`` file will download and install the required packages.
 	
 Next, edit (or create) the ``config.json`` file, adding the instrumentation key you noted above from your Application Insights resource in Windows Azure. Specify an "ApplicationInsights" section with a key named "InstrumentationKey". Set its value to the instrumentation key.
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/config.json
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/config.json
   :linenos:
   :language: json
-  :emphasize-lines: 2-3
+  :emphasize-lines: 2-4
 
 Next, in ``Startup.cs`` you need to configure Application Insights in a few places. In the constructor, where you configure ``Configuration``, add a block to configure Application Insights for development:
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Startup.cs
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Startup.cs
   :linenos:
   :language: c#
-  :lines: 38-47
+  :lines: 38-46
   :dedent: 12
   :emphasize-lines: 8
 
@@ -58,33 +58,33 @@ Next, in ``Startup.cs`` you need to configure Application Insights in a few plac
 
 Add the Application Insights telemetry services in your ``ConfigureServices()`` method:
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Startup.cs
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Startup.cs
   :linenos:
   :language: c#
-  :lines: 55-58
+  :lines: 54-58
   :dedent: 8
   :emphasize-lines: 4
 
 Then, in the ``Configure()`` method add middleware to allow Application Insights to track exceptions and log information about individual requests. Note that the request tracking middleware should be as the first middleware in the pipeline, while the exception middleware should follow the configuration of error pages or other error handling middleware.
 
-An edited ``Startup.cs`` is shown below, highlighting the necessary Application Insights code (`view full Startup.cs <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights/sample/src/AppInsightsDemo/Startup.cs>`_):
+An edited ``Startup.cs`` is shown below, highlighting the necessary Application Insights code (`view full Startup.cs <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Startup.cs>`_):
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Startup.cs
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Startup.cs
   :linenos:
   :language: c#
-  :lines: 99-124
+  :lines: 98-124
   :dedent: 8
-  :emphasize-lines: 8,25
+  :emphasize-lines: 9,26
 
 Now add the Application Insights scripts to your views. Add the following to the very top of the ``_ViewImports.cshtml`` file:
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Views/_ViewImports.cshtml
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Views/_ViewImports.cshtml
   :linenos:
   :emphasize-lines: 5
 
 Then, add the following line of code in your ``_Layouts.cshtml`` file at the end of the ``<head>`` section (before any other JavaScript blocks specified there):
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Views/Shared/_Layout.cshtml
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Views/Shared/_Layout.cshtml
   :linenos:
   :language: html
   :lines: 3-23
@@ -100,11 +100,11 @@ You can view the activity from your site once it's been configured and you've ma
 
 In addition to tracking activity and performance data on every page, you can also track specific events. For instance, if you want to know any time a user completes a certain transaction, you can create and track such events individually. To do so, you should inject the TelemetryClient into the controller in question, and call its ``TrackEvent`` method. In the included sample, we've added event tracking for user registration and successful and failed login attempts. You can see the required code in the excerpt from AccountController.cs shown below:
 
-.. literalinclude:: application-insights/sample/src/AppInsightsDemo/Controllers/AccountController.cs
+.. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/Controllers/AccountController.cs
   :linenos:
   :language: c#
   :lines: 1-47,58-96,106-135,486-
-  :emphasize-lines: 16,30,45,64,77,108
+  :emphasize-lines: 17,30,38,45,64,77,108
 
 With this in place, testing the application's registration and login feature results in the following activity available for analysis:
 

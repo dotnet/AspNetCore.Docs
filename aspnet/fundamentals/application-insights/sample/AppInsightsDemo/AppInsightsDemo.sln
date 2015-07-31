@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CE594AAA-53E6-4579-BF55-0DB02018BEDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F42E7ACD-9F54-4541-8960-1338FBCABDE9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppInsightsDemo", "src\AppInsightsDemo\AppInsightsDemo.xproj", "{D371D503-05C9-4D84-A3EF-8A771259CBBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D371D503-05C9-4D84-A3EF-8A771259CBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D371D503-05C9-4D84-A3EF-8A771259CBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D371D503-05C9-4D84-A3EF-8A771259CBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D371D503-05C9-4D84-A3EF-8A771259CBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D371D503-05C9-4D84-A3EF-8A771259CBBA} = {CE594AAA-53E6-4579-BF55-0DB02018BEDF}
+	EndGlobalSection
+EndGlobal
