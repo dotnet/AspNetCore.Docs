@@ -80,7 +80,7 @@ Now we can add some basic styling to the file, which will be compiled into CSS a
 
 Modify main.less to include the following content, which creates a simple color palette from a single base color.
 
-.. code-block::
+.. code-block:: css
 
 	@base: #663333;
 	@background: spin(@base, 180);
