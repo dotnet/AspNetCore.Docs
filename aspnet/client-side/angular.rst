@@ -5,11 +5,11 @@ By `Venkata Koppaka`_
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
 In this article:
-	- `What is AngularJS?`_
-	- `Getting Started`_
-	- `Key Components`_
-	- `Angular 2.0`_
-	
+  - `What is AngularJS?`_
+  - `Getting Started`_
+  - `Key Components`_
+  - `Angular 2.0`_
+  
 `View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
 
 What is AngularJS?
@@ -33,31 +33,30 @@ There are several ways to add AngularJS to your application. If you’re startin
 
 .. _angular-bower-json:
 
-.. literalinclude:: angular/sample/src/bower.json
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 11
-	
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/bower.json
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 11
+  
 One you save the file, Angular will be installed for your project, located in the Bower folder. You can then use :doc:`Grunt <using-grunt>` or :doc:`Gulp  <using-gulp>` to copy the appropriate files into your ``wwwroot/lib`` folder, as shown:
 
 .. image:: angular/_static/angular-solution-explorer.png
 
 Next, add a ``<script>`` reference to the bottom of the ``<body>`` section of your html page or `_Layout.cshtml` file, as shown here:
 
-.. code-block:: html
-
-	<body>
-		...
-		<script src="~/lib/angular/angular.js"></script>
-		@RenderSection("scripts", required: false)
-	</body>
-	</html>
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Shared/_Layout.cshtml
+  :language: html
+  :linenos:
+  :lines: 51-57
+  :emphasize-lines: 6
 
 It's recommended that production applications utilize CDNs for common libraries like Angular. You can reference Angular from one of several CDNs, such as this one:
 
-.. code-block:: html
-
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Shared/_Layout.cshtml
+  :language: html
+  :linenos:
+  :lines: 58-80
+  :emphasize-lines: 18
 
 Once you have a reference to the angular.js script file, you're ready to begin using Angular in your web pages.
 
@@ -71,15 +70,15 @@ Directives
 
 AngularJS uses `directives <https://docs.angularjs.org/guide/directive>`_ to extend HTML with custom attributes and elements. AngularJS directives are defined via ``data-ng-*`` or ``ng-*`` prefixes(``ng`` is short for angular). There are two types of AngularJS directives:
 
-	- Primitive Directives: These are pre-defined by the Angular team and are part of the AngularJS framework.
-	- Custom Directives: These are custom directives that you can define.
+  - Primitive Directives: These are pre-defined by the Angular team and are part of the AngularJS framework.
+  - Custom Directives: These are custom directives that you can define.
 
 One of the primitive directives used in all AngularJS applications is the ``ng-app`` directive used to bootstrap the AngularJS application. This directive can be added to the whole document body or to specific pieces of the body. Let's see an example in action. Assuming you're in an ASP.NET project, you can either add an HTML file to the ``wwwroot`` folder, or add a new controller action and associated view. In this case, I've added a new ``Directives()`` action method to ``HomeController.cs`` and the associated view is shown here:
 
-.. literalinclude:: angular/sample/src/Views/Home/Directives.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 4,6
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Directives.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 4,6
 
 To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the ``ng-app`` directive to indicate this page is an AngularJS application. The ``{{2+2}}`` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application: 
 
@@ -88,22 +87,22 @@ To keep these samples independent of one another, I'm not using the shared layou
 Other primitive directives in AngularJS include:
 
 ``ng-controller``
-	Determines which JavaScript controller is bound to which view.
+  Determines which JavaScript controller is bound to which view.
 
 ``ng-model``
-	Determines what model the values of an HTML element's properties are bound to.
+  Determines what model the values of an HTML element's properties are bound to.
 
 ``ng-init``
-	Used to initialize the application data in the form of an expression for the current scope.
+  Used to initialize the application data in the form of an expression for the current scope.
 
 ``ng-if``
-	If clause used within your AngularJS application; usually used with an expression.
+  If clause used within your AngularJS application; usually used with an expression.
 
 ``ng-repeat``
-	Repeats a given block of HTML over a set of data.
+  Repeats a given block of HTML over a set of data.
 
 ``ng-show``
-	Shows or hides the given HTML element based on the expression provided.
+  Shows or hides the given HTML element based on the expression provided.
 
 For a full list of all primitive directives supported in AngularJS please refer to the `directive documentation section on the AngularJS documentation website <https://docs.angularjs.org/api/ng/directive>`_.
 
@@ -114,10 +113,10 @@ AngularJS provides `data binding <https://docs.angularjs.org/guide/databinding>`
 
 Create a new HTML file or controller action and view called ``Databinding`` and include the following:
 
-.. literalinclude:: angular/sample/src/Views/Home/Databinding.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7-9
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Databinding.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7-9
 
 Notice that you can display model values using either directives or data binding (``ng-bind``). The resulting page should look like this:
 
@@ -130,10 +129,10 @@ Templates
 
 Add another view to demonstrate templates, and add the following to it:
 
-.. literalinclude:: angular/sample/src/Views/Home/Templates.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7-9
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Templates.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7-9
 
 The template has AngularJS directives like ``ng-app``, ``ng-init``, ``ng-model`` and data binding expression syntax to bind the ``personName`` property. Running in the browser, the view looks like the screenshot below: 
 
@@ -150,10 +149,10 @@ Expressions
 
 The AngularJS expressions in the sample below bind personName and a simple JavaScript calculated expression:
 
-.. literalinclude:: angular/sample/src/Views/Home/Expressions.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7-9
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Expressions.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7-9
 
 The example running in the browser displays the personName data and the results of the calculation:
 
@@ -164,10 +163,10 @@ Repeaters
 
 Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. The ``ng-repeat`` directive repeats a given HTML element in a view over the length of a repeating data array. Repeaters in AngularJS can repeat over an array of strings or objects. Here is a sample usage of repeating over an array of strings: 
 
-.. literalinclude:: angular/sample/src/Views/Home/Repeaters.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7,9-10
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7,9-10
 
 The `repeat directive <https://docs.angularjs.org/api/ng/directive/ngRepeat>`_ outputs a series of list items in an unordered list, as you can see in the developer tools shown in this screenshot:
 
@@ -175,30 +174,30 @@ The `repeat directive <https://docs.angularjs.org/api/ng/directive/ngRepeat>`_ o
 
 Here is an example that repeats over an array of objects. The ``ng-init`` directive establishes a names array, where each element is an object containing first and last names. The ``ng-repeat`` assignment, ``name in names``, outputs a list item for every array element.
 
-.. literalinclude:: angular/sample/src/Views/Home/Repeaters2.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7-10,12-13
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters2.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7-10,12-13
 
 The output in this case is the same as in the previous example.
 
 Angular provides some additional directives that can help provide behavior based on where the loop is in its execution.
 
 ``$index``
-	Use ``$index`` in the ``ng-repeat`` loop to determine which index position your loop currently is on.
+  Use ``$index`` in the ``ng-repeat`` loop to determine which index position your loop currently is on.
 
 ``$even`` and ``$odd``
-	Use ``$even`` in the ``ng-repeat`` loop to determine whether the current index in your loop is an even indexed row. Similarly, use ``$odd`` to determine if the current index is an odd indexed row.
+  Use ``$even`` in the ``ng-repeat`` loop to determine whether the current index in your loop is an even indexed row. Similarly, use ``$odd`` to determine if the current index is an odd indexed row.
 
 ``$first`` and ``$last``
-	Use ``$first`` in the ``ng-repeat`` loop to determine whether the current index in your loop is the first row. Similarly, use ``$last`` to determine if the current index is the last row.
+  Use ``$first`` in the ``ng-repeat`` loop to determine whether the current index in your loop is the first row. Similarly, use ``$last`` to determine if the current index is the last row.
 
 Below is a sample that shows $index, $even, $odd, $first, $odd in action: 
 
-.. literalinclude:: angular/sample/src/Views/Home/Repeaters3.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 13-17
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters3.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 13-17
 
 
 Here is the resulting output:
@@ -214,19 +213,19 @@ $scope
 
 Below is a simple example showing how to set properties on ``$scope`` within a separate JavaScript file, ``scope.js``:
 
-.. literalinclude:: angular/sample/src/wwwroot/app/scope.js
-	:language: html
-	:linenos:
-	:emphasize-lines: 2-3
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/scope.js
+  :language: html
+  :linenos:
+  :emphasize-lines: 2-3
 
 Observe the ``$scope`` parameter passed to the controller on line #2. This object is what the view knows about. In line #3, we are setting a property called "name" to "Mary Jane". 
 
 What happens when a particular property is not found by the view? The view defined below refers to name and age properties: 
 
-.. literalinclude:: angular/sample/src/Views/Home/Scope.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 8-9,13
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Scope.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 8-9,13
 
 Notice in line #8 that we are asking Angular to show the "name" property using expression syntax. Line #9 then refers to "age", a property that does not exist. The running example shows the name set to "Mary Jane" and nothing for age - missing properties are ignored.
 
@@ -241,13 +240,13 @@ Below is a snippet of code that shows how to create a new module in AngularJS. T
 
 .. code-block:: javascript
 
-	var personApp = angular.module('personApp', []);
+  var personApp = angular.module('personApp', []);
 
 Use the ``ng-app`` directive to represent an AngularJS module on the page. To use a module, assign the name of the module, ``personApp`` in this example, to the ``ng-app`` directive in our template.
 
 .. code-block:: html
 
-	<body ng-app="personApp">
+  <body ng-app="personApp">
 
 Controllers
 ^^^^^^^^^^^
@@ -256,17 +255,17 @@ Controllers
 
 Below is a snippet of code that registers a new controller. The ``personApp`` variable in the snippet is an Angular module, defined on line 5.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/controllers.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 2,5
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/controllers.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 2,5
 
 The view using the ``ng-controller`` directive assigns the controller name: 
 
-.. literalinclude:: angular/sample/src/Views/Home/Controllers.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 7,13
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Controllers.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 7,13
 
 The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``lastName`` properties assigned to the ``$scope`` object.
 
@@ -280,64 +279,64 @@ Services
 
 Below is an example that shows how to use factories in AngularJS: 
 
-.. literalinclude:: angular/sample/src/wwwroot/app/simpleFactory.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 1
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/simpleFactory.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 1
 
 To call this factory from the controller, pass ``personFactory`` as a parameter to the ``controller()`` function: 
 
 .. code-block:: javascript
 
-	personApp.controller('personController', function($scope,personFactory) {
-		$scope.name = personFactory.getName();
-	});
+  personApp.controller('personController', function($scope,personFactory) {
+    $scope.name = personFactory.getName();
+  });
 
 Using services to talk to a REST endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Below is an end-to-end example using services in AngularJS to interact with an ASP.NET 5 Web API endpoint. The example gets data from the Web API built using ASP.NET 5 and displays the data in a view template. Let's start with the view first: 
 
-.. literalinclude:: angular/sample/src/Views/People/Index.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 4,7,9,16-18
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/People/Index.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 4,7,9,16-18
 
 In this view, we have an Angular module called ``PersonsApp`` and a controller called ``personController``. We are using ``ng-repeat`` to iterate over the list of persons. We are referencing three separate script files on lines 16-18.
 
 The ``personApp.js`` file is used to register the ``PersonsApp`` module. The syntax is similar to previous examples. We are using the ``angular.module()`` function to create a new instance of the module that we will be working with.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personApp.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 3
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personApp.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 3
 
 Let's take a look at ``personFactory.js``, below. We are calling the module’s ``factory()`` method to create a factory. Line #12 shows the built-in Angular ``$http`` service retrieving people information from a web service.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personFactory.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 6-7,12
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personFactory.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 6-7,12
 
 In ``personController.js``, we are calling the module’s ``controller()`` method to create the controller. The ``$scope`` object's ``people`` property is assigned the data returned from the personFactory (line #13).
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personController.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 6-7,13
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personController.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 6-7,13
 
 Let's take a quick look at the ASP.NET 5 Web API and the model behind it. The Person model is a plain POCO (Plain Old CLR Object) with Id, FirstName and LastName properties:
 
-.. literalinclude:: angular/sample/src/Models/Person.cs
-	:language: csharp
-	:linenos:
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Models/Person.cs
+  :language: csharp
+  :linenos:
 
 The Person controller returns a JSON-formatted list of Persons.
 
-.. literalinclude:: angular/sample/src/Controllers/Api/PersonController.cs
-	:language: csharp
-	:linenos:
-	:emphasize-lines: 9-10,19
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Controllers/Api/PersonController.cs
+  :language: csharp
+  :linenos:
+  :emphasize-lines: 9-10,19
 
 Let's see the application in action: 
 
@@ -358,37 +357,37 @@ After you install the package, add the script reference (``angular-route.js``) t
 
 Now let's take the Person App we have been building and add navigation to it. First, we will make a copy of the app by creating a new ``PeopleController`` action called ``Spa`` and a corresponding ``Spa.cshtml`` View by copying the Index.cshtml view in the People folder. Add a script reference to ``angular-route`` (see line #11). Also add a ``div`` marked with the ``ng-view`` directive (see line #6) as a placeholder to place views in. We are going to be using several additional ``.js`` files which are referenced on lines 12-15.
 
-.. literalinclude:: angular/sample/src/Views/People/Spa.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 6,11-15
-	
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/People/Spa.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 6,11-15
+  
 Let's take a look at ``personModule.js`` file to see how we are instantiating the module with routing. We are passing ``ngRoute`` as a library into the module. This module handles routing in our application.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personModule.js
-	:language: javascript
-	:linenos:
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personModule.js
+  :language: javascript
+  :linenos:
 
 The ``personRoutes.js`` file, below, defines routes based on the route provider. Lines 4-7 define navigation by effectively saying, when a URL with ``/persons`` is requested, use a template called ``partials/personList`` by working through ``personListController``. Lines 8-11 indicate a detail page with a route parameter of ``personId``. If the URL doesn't match one of the patterns, Angular defaults to the ``/persons`` view.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personRoutes.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 4-7, 8-11, 13
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personRoutes.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 4-7, 8-11, 13
 
 The ``personlist.html`` file is a partial view, which only has HTML that is needed to show person list. 
 
-.. literalinclude:: angular/sample/src/wwwroot/app/partials/personlist.html
-	:language: html
-	:linenos:
-	:emphasize-lines: 3
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/partials/personlist.html
+  :language: html
+  :linenos:
+  :emphasize-lines: 3
 
 The controller is defined by using the module's ``controller()`` function in ``personListController.js``.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/personListController.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 1
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personListController.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 1
 
 If we run this application and go to the ``people/spa#/persons`` URL we will see:
 
@@ -405,35 +404,35 @@ Event Handlers
 
 There are a number of directives in AngularJS that add event-handling capabilities to the input elements in your HTML DOM. Below is a list of the events that are built into AngularJS.
 
-	- ``ng-click``
-	- ``ng-dbl-click``
-	- ``ng-mousedown``
-	- ``ng-mouseup``
-	- ``ng-mouseenter``
-	- ``ng-mouseleave``
-	- ``ng-mousemove``
-	- ``ng-keydown``
-	- ``ng-keyup``
-	- ``ng-keypress``
-	- ``ng-change``
+  - ``ng-click``
+  - ``ng-dbl-click``
+  - ``ng-mousedown``
+  - ``ng-mouseup``
+  - ``ng-mouseenter``
+  - ``ng-mouseleave``
+  - ``ng-mousemove``
+  - ``ng-keydown``
+  - ``ng-keyup``
+  - ``ng-keypress``
+  - ``ng-change``
 
 .. note:: You can add your own event handlers using the `custom directives feature in AngularJS <https://docs.angularjs.org/guide/directive>`_.
 
 Let's look at how the ``ng-click`` event is wired up. Create a new JavaScript file, ``eventHandlerController.js``, and add the following to it.
 
-.. literalinclude:: angular/sample/src/wwwroot/app/eventHandlerController.js
-	:language: javascript
-	:linenos:
-	:emphasize-lines: 5-7
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/eventHandlerController.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 5-7
 
 Notice in the eventHandlerController we now have a new ``sayName()`` function (line #5). All the method is doing for now is showing a JavaScript alert to the user with a welcome message.
 
 The view below binds a controller function to an AngularJS event. Line #8 has a new ``<input>`` element of type button marked with the ``ng-click`` angular directive that calls our ``sayName()`` function which is part of the ``$scope`` object passed to this view.
 
-.. literalinclude:: angular/sample/src/Views/People/Events.cshtml
-	:language: html
-	:linenos:
-	:emphasize-lines: 8
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/People/Events.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 8
 
 The running example demonstrates that the controller's ``sayName()`` function is called automatically when the button is clicked.
 
