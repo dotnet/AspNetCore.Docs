@@ -10,7 +10,7 @@ In this article:
 	- `Specifying Project Settings`_
 	- `Running the App`_
 	
-You can `view and download the source <https://github.com/aspnet/Docs/tree/master/samples/CreatingConsoleAppWithDNX>`_ from the project created in this article.
+You can `view and download the source <https://github.com/aspnet/Docs/tree/master/common/samples/ConsoleApp1>`_ from the project created in this article.
 
 Creating a Console App
 ----------------------
@@ -23,7 +23,7 @@ Open a console or terminal window in an empty working folder, where ``dnx`` is c
 
 Creating a console application is extremely straightforward. For this article, we're going to use the following C# class, which has just one line of executable code:
 
-.. literalinclude:: console/sample/Program.cs
+.. literalinclude:: /../common/samples/ConsoleApp1/src/ConsoleApp1/Program.cs
 	:linenos:
 	:language: c#
 	
@@ -34,9 +34,11 @@ Specifying Project Settings
 
 Next, we need to provide the project settings DNX will use. Create a new ``project.json`` file in the same folder, and edit it to match the listing shown here:
 
-.. literalinclude:: console/sample/project.json
+.. literalinclude:: /../common/samples/ConsoleApp1/src/ConsoleApp1/project.json
 	:linenos:
-	:language: javascript
+	:language: json
+
+The ``project.json`` files defines the app dependencies and target frameworks in addition to various metadata properties about the app. See :doc:`projects` for more details.
 
 Save your changes.
 
@@ -47,17 +49,19 @@ At this point, we're ready to run the app. You can do this by simply entering ``
 
 .. image:: console/_static/dnx-run.png
 
-.. note:: ``dnx`` references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
+.. note:: The ``dnx`` command is used to execute a managed entry point (a ``Program.Main`` function) in an assembly. The ``dnx . run`` command is a shorthand for executing the entry point in the current project. It is equivalent to ``dnx . [project_name]``
+
+You can select which CLR to run on using the .NET Version Manager (DNVM). To run on CoreCLR first run ``dnvm use [version] -r CoreCLR``. To return to using the .NET Framework CLR run ``dnvm use [version] -r CLR``.
+
+You can see the app continues to run after switching to use CoreCLR:
+
+.. image:: console/_static/dnx-run-coreclr.png
+
+The ``dnx`` command references several `environment variables <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, such as ``DNX_TRACE``, that affect its behavior.
 
 Set the ``DNX_TRACE`` environment variable to 1, and run the application again. You should see a great deal more output:
 
 .. image:: console/_static/dnx-trace-run.png
-
-In this example, running on the Windows platform, the default behavior for DNX is to run on the full .NET Framework. You can switch to use the CoreCLR by running ``dnvm upgrade -r CoreCLR``. To return to using .NET CLR, run ``dnvm upgrade -r CLR``.
-
-You can see the app continues to run after switching to use CoreCLR:
-
-.. image:: console/_static/dnx-trace-coreclr-run.png
 
 Summary
 -------

@@ -1,0 +1,28 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "ConsoleApp1 Console Application",
+  "authors": [ "author" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+  },
+
+  "commands": {
+    "ConsoleApp1": "ConsoleApp1"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Collections": "4.0.10-beta-23109",
+        "System.Console": "4.0.0-beta-23109",
+        "System.Linq": "4.0.0-beta-23109",
+        "System.Threading": "4.0.10-beta-23109",
+        "Microsoft.CSharp": "4.0.0-beta-23109"
+      }
+    }
+  }
+}
