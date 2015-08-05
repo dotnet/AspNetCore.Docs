@@ -10,6 +10,7 @@ The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructur
 To build the docs, you will need to install [python](https://www.python.org/downloads/) (version 2 or higher). If you are running Windows, you will want to add the Python install folder and the \Scripts\ folder to your `PATH` environment variable (C:\Python34;C:\Python34\Scripts).
 
 To install Python on a Mac using brew, open a command prompt and run:
+
 	brew install python
 
 To install Sphinx, open a command prompt and run:
