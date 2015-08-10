@@ -127,6 +127,8 @@ In order to inject the repository into the controller, we need to register it wi
 
 In the ``ConfigureServices`` method, add the highlighted code:
 
+== services.Add(new ServiceDescriptor(typeof(ITodoRepository), new TodoRepository())); ==
+
 .. literalinclude:: first-web-api/sample/src/TodoApi/Startup.cs
     :language: c#
     :lines: 16-22
