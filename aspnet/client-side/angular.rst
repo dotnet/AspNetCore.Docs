@@ -10,7 +10,7 @@ In this article:
   - `Key Components`_
   - `Angular 2.0`_
   
-`View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
+`View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`_.
 
 What is AngularJS?
 ------------------
@@ -342,7 +342,7 @@ Let's see the application in action:
 
 .. image:: angular/_static/rest-bound.png
 
-You can `view the application's structure on GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
+You can `view the application's structure on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`_.
 
 .. note:: For more on structuring AngularJS applications, see `John Papa's Angular Style Guide <https://github.com/johnpapa/angular-styleguide>`_
 
@@ -397,7 +397,7 @@ If we navigate to a detail page, for example, ``people/spa#/persons/2``, we will
 
 .. image:: angular/_static/spa-persons-2.png
 
-You can view the full source and any files not shown in this article on `GitHub <https://github.com/aspnet/Docs/tree/master/docs/client-side/angular/sample>`_.
+You can view the full source and any files not shown in this article on `GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`_.
 
 Event Handlers
 ^^^^^^^^^^^^^^
