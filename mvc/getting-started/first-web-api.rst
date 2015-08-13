@@ -129,7 +129,7 @@ In the ``ConfigureServices`` method, add the highlighted code:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Startup.cs
     :language: c#
-    :lines: 16-22
+    :lines: 22-28
     :emphasize-lines: 6
     :dedent: 8
 
