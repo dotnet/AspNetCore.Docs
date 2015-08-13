@@ -14,7 +14,7 @@ namespace WebApplication4.Controllers
         public IActionResult About()
         {
             string appName = "Your First ASP.NET 5 App";
-            ViewBag.Message = "Your Appliation Name: " + appName;
+            ViewBag.Message = "Your Application Name: " + appName;
 
             var serverInfo = new ServerInfo()
             {
