@@ -42,7 +42,7 @@ Visual Studio Code may detect that you need to restore dependencies, as shown in
 
 .. image:: your-first-mac-aspnet/_static/vscode-restore.png
 
-From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can press ``command o`` and then type ``>d`` as shown:
+From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can press ``command shift p`` and then type ``>d`` as shown:
 
 .. image:: your-first-mac-aspnet/_static/vscode-commands.png
 
