@@ -108,7 +108,7 @@ The DNX application host provides a set of services to applications through depe
 Compile Modules
 ---------------
 
-Compile modules are an extensibility point that let you participate in the DNX compilation process. You implement a compile module by implementing the `ICompileModule <https://github.com/aspnet/dnx/blob/dev/src/Microsoft.Framework.Runtime.Roslyn.Interfaces/ICompileModule.cs>`_ interface and putting your compile module in a compiler/preprocess or compiler/postprocess in your project.
+Compile modules are an extensibility point that let you participate in the DNX compilation process. You implement a compile module by implementing the `ICompileModule <https://github.com/aspnet/dnx/blob/dev/src/Microsoft.Dnx.Compilation.CSharp.Abstractions/ICompileModule.cs>`_ interface and putting your compile module in a compiler/preprocess or compiler/postprocess in your project.
 
 DNX Version Manager
 -------------------
