@@ -23,7 +23,7 @@ Note that later if you wish to update your current, installed version of this th
 
 	pip install -U sphinx_rtd_theme
 
-You should now be able to navigate to the `docs` folder and run
+You should now be able to navigate to the `aspnet` folder and run
 
 	make html
 
