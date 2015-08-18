@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6, legend {
   border-radius: 0;
   padding: 6px 12px;
   border-color: #e2e2e2;
+  font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
   font-size: 14px;
   color: #707070;
 }
@@ -38,7 +39,8 @@ h1, h2, h3, h4, h5, h6, legend {
     text-indent: -9999px;
     width: 100%;
     background: url('nav-logo-microsoft.png') 1em no-repeat, 
-                url('nav-logo-aspnet.png') right 1em top no-repeat;
+                url('nav-logo-aspnet.png') right 1em center no-repeat;
+    padding: 7px 23px 7px 10px;
 }
 
 .wy-side-nav-search > a:hover {
@@ -52,7 +54,22 @@ h1, h2, h3, h4, h5, h6, legend {
 .wy-menu-vertical a {
   color: #222;
   font: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+  font-size: 14px;
+}
 
+.wy-menu-vertical a:hover, 
+.wy-menu-vertical li.current a:hover, 
+.wy-menu-vertical a:hover span.toctree-expand,
+.wy-menu-vertical li.toctree-l2 a:hover span.toctree-expand,
+.wy-menu-vertical li.toctree-l1.current>a.current,
+.wy-menu-vertical li.toctree-l2.current>a {
+    background-color: #0054a3;
+    color: #fff;
+}
+
+.wy-menu-vertical li span.toctree-expand {
+    margin-left: -0.9em;
+    margin-right: 0.5em;
 }
 
 .rst-content .note {
