@@ -98,6 +98,11 @@ The NuGet.Config file should look something like the following
 
 You should now be able to restore packages from both the official public feed on https://nuget.org and also from the ASP.NET 5 dev builds.
 
+Nuget restore also checks the hash on the package. So ensure that you have `libcrypto` available. To do this run: 
+
+```
+sudo apt-get install libssl-dev
+```
 
 Installing on CentOS, Fedora and derivatives
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
