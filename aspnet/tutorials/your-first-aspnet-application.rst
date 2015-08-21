@@ -71,7 +71,7 @@ Now we can add a bit of behavior to both the server and the client of the defaul
 Adding Server-Side Behavior
 ---------------------------
 
-We've already tweaked the behavior of the HomeController's ``About`` method to change the Message passed to the View. We can add additional server-side behavior by further modifying the AboutController and associated View. Then, we'll enhance this basic information by adding some client-side behavior that makes API calls back to the server.
+We've already tweaked the behavior of the HomeController's ``About`` method to change the Message passed to the View. We can add additional server-side behavior by further modifying the HomeController's About action and its associated View. Then, we'll enhance this basic information by adding some client-side behavior that makes API calls back to the server.
 
 To start, add a new ViewModel class called ServerInfoViewModel. I'm adding this in a new ``ViewModels`` folder as a convention, but you can place the file in another folder if you prefer.
 
