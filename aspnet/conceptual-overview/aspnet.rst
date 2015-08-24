@@ -90,7 +90,9 @@ ASP.NET 5 includes server support for running on IIS or self-hosting in your own
 Web root
 --------
 
-The Web root of your application is the root location in your project from which HTTP requests are handled (ex. handling of static file requests). The Web root of an ASP.NET 5 application is configured using the "webroot" property in your project.json file.
+The Web root of your application is the root location in your project from which HTTP requests are handled (e.g. handling of static file requests). The Web root of an ASP.NET 5 application is configured using the "webroot" property in your project.json file.
+
+[Reader's Comment: this section would be improved with some further clarification. What is the meaning of "the root location", especially the term 'location'? Is this referring to a concept in the Solution Explorer in Visual Studio, a folder in the file system during development or when hosted? If this is the 'root' node, what would the children be? What would it mean or achieve to change the "webroot" property in the project.json file? What else would I have to do if I made that change?]
 
 Configuration
 -------------
