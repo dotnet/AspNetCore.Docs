@@ -22,7 +22,7 @@ Getting started with Tag Helpers
 
 This tutorial provides an introduction to programming tag helpers. See also :doc:`intro`.
 
-A tag helper is any class that implements `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. When you derrive a class from ``TagHelper``, you get the methods and properties you need to create a tag helper. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
+A tag helper is any class that implements `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. When you derive a class from ``TagHelper``, you get the methods and properties you need to create a tag helper. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
 
 #. Create new ASP.NET MVC 6 project called **TagHlp**. You won't need authentication for this project.
 #. Create a folder to hold the tag helpers called *TagHelpers*. The *TagHelpers* folder is not required but is a reasonable convention. Now let's get started writing some simple tag helpers.
@@ -112,7 +112,7 @@ Next we'll update our tag helper to take information from a razor view (in the f
 
 Update the ``EmailTagHelper`` class with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelperCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelperMailTo.cs
    :lines: 7-24
    :emphasize-lines: 6-8, 14-16
    :dedent: 3
@@ -130,14 +130,7 @@ Notes:
  
 4. Run the app and verify it generates the correct links.
 
-**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing ( a single tag terminating with a closing slash ``/>`` and containing no content ). In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``.You can override the self-closing state with the ``SelfClosing`` property. Self-closing ancor tags are not valid HTML, so you wouldn't want to create one. The following code sets the ``SelfClosing`` property:
-
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelperCopy2.cs
-   :lines: 16-24
-   :dedent: 6
-   :emphasize-lines: 8
-
-The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag, and you can also explicity set it as shown above.
+**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing. In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``. Self-closing anchor tags are not valid HTML, so you wouldn't want to create one. The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag. 
    
 Inspecting and retrieving child content
 ----------------------------------------
@@ -183,7 +176,7 @@ You would generally bring in the tag helpers in the *Views/_ViewImports.cshtml* 
 
 The ``[TargetElement]`` attribute above only targets HTML markup that provides an attribute value of "bold". The ``<bold>`` element was not modified by the tag helper.  
 
-6. Comment out the ``[TargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is HTML markup of the form ``<bold>``. (Remember the default naming convetion will match the class name **Bold**\TagHelper to ``<bold>`` tags.)
+6. Comment out the ``[TargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is HTML markup of the form ``<bold>``. (Remember the default naming convention will match the class name **Bold**\TagHelper to ``<bold>`` tags.)
 
 7. Run the app and very the ``<bold>`` tag is processed by the tag helper.
 
@@ -216,7 +209,7 @@ The web site information tag helper
 Notes: 
 
 - As mentioned previously, the ASP.NET 5 runtime translates Pascal cased c# class names for tag helpers into `lower kebab case <http://c2.com/cgi/wiki?KebabCase>`__. Therefore, to use the ``WebsiteInformationTagHelper`` in razor, you'll write ``<website-information />``.
-- We are not explicitly identifying the target element with the ``TargetElement`` attribute, so the default of ``website-information`` will be targeted. If you applyed the following attribute (note it's not kebab case but matches the class name):
+- We are not explicitly identifying the target element with the ``TargetElement`` attribute, so the default of ``website-information`` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
 
 .. code-block:: c#
 
@@ -227,6 +220,8 @@ The lower kebab case tag ``<website-information />`` would not match. If you wan
 .. code-block:: c#
 
 	    [TargetElement("Website-Information")]
+
+- `Void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`_ (that is, an element with a self-closing tag) have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a section element (which is not self-closing and we are writing content), therefore we need to set self-closing to false so we have output. Alternatively, you can comment out the line setting self-closing to false and write markup with a closing tag.
 
 4. Update the *Views/_ViewImports.cshtml* file to use wildcard importing of tag helpers so all our tag helpers will be imported.
 
@@ -254,8 +249,11 @@ the ASP.NET 5 runtime knows the ``info`` attribute is a class, not a string and 
 
 Notes:
 
-- You must explicitly set ``SelfClosing`` to false.
+- You can use the following markup with a closing tag and remove the line  setting self-closing to false in the tag helper:
 
+.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/AboutNotSelfClosing.cshtml
+   :language: aspx-cs
+   :lines: 15-20
 
 The condition tag helper
 ---------------------------------

@@ -1,9 +1,9 @@
-﻿/*
+﻿
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TagHlp.TagHelpers
+namespace TagHlp.TagHe1pers
 {
     [TargetElement("p")]
     public class AutoLinkerHttpTagHelper : TagHelper
@@ -37,4 +37,3 @@ namespace TagHlp.TagHelpers
         }
     }
 }
-*/
