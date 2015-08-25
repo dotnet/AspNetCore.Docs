@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using TagHlp.Models;
 
-namespace TagHlp.TagHelpers
+namespace TagHlp.TagHelpers.Copy
 {
     public class WebsiteInformationTagHelper : TagHelper
     {
@@ -13,7 +13,7 @@ namespace TagHlp.TagHelpers
             output.TagName = "section";
             output.Content.SetContent(string.Format(
                 "<ul><li><strong>Version:</strong> {0}</li>" + Environment.NewLine +
-                "<li><strong>Copyright aa Year:</strong> {1}</li>" + Environment.NewLine +
+                "<li><strong>Copyright Year:</strong> {1}</li>" + Environment.NewLine +
                 "<li><strong>Approved:</strong> {2}</li>" + Environment.NewLine +
                 "<li><strong>Number of tags to show:</strong> {3}</li></ul>" + Environment.NewLine,
                 Info.Version.ToString(),

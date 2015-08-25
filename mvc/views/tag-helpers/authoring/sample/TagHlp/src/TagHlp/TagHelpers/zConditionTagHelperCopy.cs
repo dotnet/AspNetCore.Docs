@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿/*
+using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
 namespace TagHlp.TagHelpers
 {
- //   [TargetElement(Attributes = nameof(Condition))]
+
+ // [TargetElement(Attributes = nameof(Condition))]
     [TargetElement(Attributes = "condition")]
 
     public class ConditionTagHelper : TagHelper
@@ -17,4 +19,9 @@ namespace TagHlp.TagHelpers
             }
         }
     }
+
+
 }
+
+
+*/
