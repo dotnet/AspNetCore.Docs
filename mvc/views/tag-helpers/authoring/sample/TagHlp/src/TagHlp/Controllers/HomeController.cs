@@ -28,8 +28,8 @@ namespace TagHlp.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-             return View("ContactCopyTestRm");
-            //return View();
+             //return View("ContactCopy");
+            return View();
         }
 
         public IActionResult Error()

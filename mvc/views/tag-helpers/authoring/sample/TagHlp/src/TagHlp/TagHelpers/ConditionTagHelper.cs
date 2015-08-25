@@ -2,8 +2,7 @@
 
 namespace TagHlp.TagHelpers
 {
- //   [TargetElement(Attributes = nameof(Condition))]
-    [TargetElement(Attributes = "condition")]
+    [TargetElement(Attributes = nameof(Condition))]
 
     public class ConditionTagHelper : TagHelper
     {

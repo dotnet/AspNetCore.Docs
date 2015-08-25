@@ -22,7 +22,7 @@ Getting started with Tag Helpers
 
 This tutorial provides an introduction to programming tag helpers. See also :doc:`intro`.
 
-A tag helper is any class that implements `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. When you derive a class from ``TagHelper``, you get the methods and properties you need to create a tag helper. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
+A tag helper is any class that implements `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__ because doing so gives you access to the methods and properties you need to create a tag helper. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
 
 #. Create new ASP.NET MVC 6 project called **TagHlp**. You won't need authentication for this project.
 #. Create a folder to hold the tag helpers called *TagHelpers*. The *TagHelpers* folder is not required but is a reasonable convention. Now let's get started writing some simple tag helpers.
@@ -50,7 +50,7 @@ That is, an anchor tag making this an email link. You might want to do this if y
    
 Notes: 
 
-- The ``TargetElement`` attribute identifies "email" as the element to target for processing. ASP.NET MVC 6 uses a naming convention, so you could comment out this attribute (because the class is named **Email**\TagHelper) and it would still target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email/>** tags.)
+- The ``TargetElement`` attribute identifies "email" as the element to target for processing. If you don't specify a ``TargetElement`` attribute, ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). You could comment out this attribute (because the class is named **Email**\TagHelper) and it would target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email/>** tags.)
 - The ``EmailTagHelper`` class derives from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. The ``TagHelper`` class provides the rich methods and properties we will examine in this tutorial.
 - The ``ProcessAsync`` asynchronously executes the tag helper. The ``TagHelper`` class also provides a synchronous version with the same parameters named ``Process``, but in this tutorial we'll only be using the asynchronous version. Unless you have a specific reason to use the synchronous version, you should generally use ``ProcessAsync``.
 - The context parameter to ``ProcessAsync`` contains information associated with the current HTML tag. We will use the context parameter to get the content of our target element.
@@ -81,7 +81,7 @@ Using the wildcard syntax, you don't need to use the fully qualified name. Also 
    :emphasize-lines: 15-16
    :lines: 1-17
    
-4. Run the app and use your favorite browser to view the HTML source so you can verify the email tag is replaced with the correct anchor markup (``<a>Support</a>``). Support is rendered as a link, but it doesn't have an ``href`` attribute to make it functional. We'll fix that in the next section.
+4. Run the app and use your favorite browser to view the HTML source so you can verify the email tag is replaced with anchor markup (``<a>Support</a>``). Support is rendered as a link, but it doesn't have an ``href`` attribute to make it functional. We'll fix that in the next section.
 
 Note: Like `HTML tags and attributes <http://www.w3.org/TR/html-markup/documents.html#case-insensitivity>`__, tags, class names and attributes in razor, c# and VB are not case-sensitive.
 
@@ -130,16 +130,10 @@ Notes:
  
 4. Run the app and verify it generates the correct links.
 
-**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing. In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``. Self-closing anchor tags are not valid HTML, so you wouldn't want to create one. The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag. 
+**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing. In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``. Self-closing anchor tags (also known as `void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`__) are not valid HTML, so you wouldn't want to create one, but you might want to create a tag helper for a void element. The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag. 
    
 Inspecting and retrieving child content
 ----------------------------------------
-
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelper.cs
-   :lines: 7-17
-   :dedent: 4
-
-.. This is a comment
 
 TODO this section to showcase the ways you can interact with it and how context.GetChildcontentAsync plays a role. For example?
 
@@ -208,20 +202,20 @@ The web site information tag helper
 
 Notes: 
 
-- As mentioned previously, the ASP.NET 5 runtime translates Pascal cased c# class names for tag helpers into `lower kebab case <http://c2.com/cgi/wiki?KebabCase>`__. Therefore, to use the ``WebsiteInformationTagHelper`` in razor, you'll write ``<website-information />``.
+- As mentioned previously, the ASP.NET 5 runtime translates Pascal cased c# class names and properties for tag helpers into `lower kebab case <http://c2.com/cgi/wiki?KebabCase>`__. Therefore, to use the ``WebsiteInformationTagHelper`` in razor, you'll write ``<website-information />``.
 - We are not explicitly identifying the target element with the ``TargetElement`` attribute, so the default of ``website-information`` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
 
 .. code-block:: c#
 
 	    [TargetElement("WebsiteInformation")]
 
-The lower kebab case tag ``<website-information />`` would not match. If you want use the attribute, you would use kebab case as shown below:
+The lower kebab case tag ``<website-information />`` would not match. If you want use the ``TargetElement`` attribute, you would use kebab case as shown below:
 
 .. code-block:: c#
 
 	    [TargetElement("Website-Information")]
 
-- `Void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`_ (that is, an element with a self-closing tag) have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a section element (which is not self-closing and we are writing content), therefore we need to set self-closing to false so we have output. Alternatively, you can comment out the line setting self-closing to false and write markup with a closing tag.
+- `Void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`_ (that is, an element with a self-closing tag) have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a `section <http://www.w3.org/TR/html5/sections.html#the-section-element>`__ element (which is not self-closing and we are writing content inside the ``section`` element), therefore we need to set self-closing to false to write output. Alternatively, you can comment out the line setting self-closing to false and write markup with a closing tag. (Example markup is provided later in the tutorial.)
 
 4. Update the *Views/_ViewImports.cshtml* file to use wildcard importing of tag helpers so all our tag helpers will be imported.
 
@@ -277,7 +271,7 @@ The condition tag helper renders output when passed a true value.
    :language: c#
    :lines: 9-18
    
-4. Run the app and browse to the home page. The markup in the conditional ``div`` will not be rendered. Append  the query string ``?approved=true`` to the URL (for example, http://localhost:1235/Home/Index?approved=true) the condition will be true and the conditional markup will be displayed.
+4. Run the app and browse to the home page. The markup in the conditional ``div`` will not be rendered. Append  the query string ``?approved=true`` to the URL (for example, http://localhost:1235/Home/Index?approved=true) , the approved is set to true and the conditional markup will be displayed.
 
 Note: We use the `nameof <https://msdn.microsoft.com/en-us/library/dn986596.aspx>`_ operator to specify the attribute to target rather than specifying a string as we did with the bold tag helper:
 

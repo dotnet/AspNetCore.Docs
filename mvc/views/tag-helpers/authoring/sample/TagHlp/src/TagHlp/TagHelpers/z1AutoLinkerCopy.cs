@@ -17,7 +17,7 @@ namespace TagHlp.TagHe1pers
             output.Content.SetContent(Regex.Replace(
                  childContent,
                  @"\b(?:https?://)(\S+)\b",
-                  "<strong><a target=\"_blank\" href=\"$0\">$0</a></strong>"));  // http link version}
+                  "<a target=\"_blank\" href=\"$0\">$0</a>"));  // http link version}
         }
     }
 
@@ -33,7 +33,7 @@ namespace TagHlp.TagHe1pers
             output.Content.SetContent(Regex.Replace(
                  childContent,
                  @"\b(www\.)(\S+)\b",
-                 "<strong><a target=\"_blank\" href=\"http://$0\">$0</a></strong>"));  // www version
+                 "<a target=\"_blank\" href=\"http://$0\">$0</a>"));  // www version
         }
     }
 }
