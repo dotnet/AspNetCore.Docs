@@ -10,11 +10,6 @@ ASP.NET 5 Documentation
 
 .. include:: ../common/stub-overview.txt
 
-Frameworks
-----------
-
-* :ref:`MVC <mvc:index>`
-
 Topics
 ------
 
@@ -26,6 +21,7 @@ Topics
     conceptual-overview/index
     fundamentals/index
     dnx/index
+    frameworks/index
     data/index
     publishing/index
     client-side/index
