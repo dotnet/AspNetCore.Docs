@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Threading.Tasks;
 
-namespace TagHlp.TagHelpers
+namespace AuthoringTagHelpers.TagHelpers4
 {
     [TargetElement("email")]
     public class EmailTagHelper : TagHelper
@@ -11,8 +11,9 @@ namespace TagHlp.TagHelpers
         {
             output.TagName = "a";    // Replaces <email> with <a> tag
             var content = await context.GetChildContentAsync();
-            output.Attributes["href"] = "mailto:" + content.GetContent() + "@" + EmailDomain;
-            output.Content.SetContent(content.GetContent() + "@" + EmailDomain);
+            var target = content.GetContent() + "@" + EmailDomain;
+            output.Attributes["href"] = "mailto:" + target;
+            output.Content.SetContent(target);
         }
     }
 }

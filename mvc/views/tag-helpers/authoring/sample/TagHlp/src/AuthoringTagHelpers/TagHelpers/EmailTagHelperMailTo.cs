@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Threading.Tasks;
 
-namespace TagHlp.TagHelpers2
+namespace AuthoringTagHelpers.TagHelpers2
 {
     [TargetElement("email")]
     public class EmailTagHelper : TagHelper
@@ -10,7 +10,7 @@ namespace TagHlp.TagHelpers2
         private const string EmailDomain = "contoso.com";
 
         // Can be passed via <email mail-to="..." />. 
-        // PascalCase gets translated into lower-kebab-case.
+        // Pascal case gets translated into lower-kebab-case.
         public string MailTo { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)

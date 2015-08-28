@@ -8,11 +8,11 @@ In this article:
     - `Getting started with Tag Helpers`_
     - `Starting the email tag helper`_
     - `A working email tag helper`_
-    - `Inspecting and retrieving child content`_
     - `The bold tag helper`_
     - `The web site information tag helper`_
     - `The condition tag helper`_
     - `Avoiding tag helper conflicts`_
+    - `Inspecting and retrieving child content`_
     - `Wrap up and next steps`_
 
 You can browse the source code for the sample app used in this document on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/views/tag-helpers/authoring/sample>`__. 
@@ -20,11 +20,11 @@ You can browse the source code for the sample app used in this document on `GitH
 Getting started with Tag Helpers
 ------------------------------------
 
-This tutorial provides an introduction to programming tag helpers. See also :doc:`intro`.
+This tutorial provides an introduction to programming tag helpers. :doc:`intro` details the benefits that tag helpers provide.
 
 A tag helper is any class that implements `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__ because doing so gives you access to the methods and properties you need to create a tag helper. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
 
-#. Create new ASP.NET MVC 6 project called **TagHlp**. You won't need authentication for this project.
+#. Create new ASP.NET MVC 6 project called **AuthoringTagHelpers**. You won't need authentication for this project.
 #. Create a folder to hold the tag helpers called *TagHelpers*. The *TagHelpers* folder is not required but is a reasonable convention. Now let's get started writing some simple tag helpers.
 
 Starting the email tag helper
@@ -34,7 +34,7 @@ In this section we will write a tag helper that will update an email tag, for ex
 
 ``<email>Support</email>``
 
-and the server will user our email tag helper to convert that markup into the following:
+and the server will use our email tag helper to convert that markup into the following:
 
 .. code-block:: HTML
 
@@ -44,28 +44,29 @@ That is, an anchor tag making this an email link. You might want to do this if y
 
 #. Add the following ``EmailTagHelper`` class to the *TagHelpers* folder.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z1EmailTagHelperCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs
    :language: c#
    :lines: 2-16
    
 Notes: 
 
-- The ``TargetElement`` attribute identifies "email" as the element to target for processing. If you don't specify a ``TargetElement`` attribute, ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). You could comment out this attribute (because the class is named **Email**\TagHelper) and it would target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email/>** tags.)
+- The ``TargetElement`` attribute identifies "email" as the element to target for processing. If you don't specify a ``TargetElement`` attribute, ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). You could comment out this attribute (because the class is named **Email**\TagHelper) and it would target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email>** tags.)
 - The ``EmailTagHelper`` class derives from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. The ``TagHelper`` class provides the rich methods and properties we will examine in this tutorial.
-- The ``ProcessAsync`` asynchronously executes the tag helper. The ``TagHelper`` class also provides a synchronous version with the same parameters named ``Process``, but in this tutorial we'll only be using the asynchronous version. Unless you have a specific reason to use the synchronous version, you should generally use ``ProcessAsync``.
-- The context parameter to ``ProcessAsync`` contains information associated with the current HTML tag. We will use the context parameter to get the content of our target element.
-- The output parameter to ``ProcessAsync`` contains a stateful HTML element used to generate an HTML tag and content.
+- The override ``Process`` method executes the tag helper.  The ``TagHelper`` class also provides a asynchronously version (``ProcessAsync``) with the same parameters.  
+- The context parameter to ``Process`` (and ``ProcessAsync``) contains information associated with the current HTML tag. We will use the context parameter to get the content of our target element.
+- The output parameter to ``Process`` (and ``ProcessAsync``) contains a stateful HTML element used to generate an HTML tag and content.
+- Our class name has a suffix of **TagHelper**, this is not required but is a good convention.
 
-2. Add the ``EmailTagHelper`` to the *Views/_ViewImports.cshtml* file so it will be available to all the views. 
+2. To make the ``EmailTagHelper`` available to all our Razor views, we will add the ``addTagHelper`` directive to the *Views/_ViewImports.cshtml* file:  
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/Views/_ViewImports.cshtml
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/_ViewImports.cshtml
    :language: aspx-cs
    :lines: 1-3
    :emphasize-lines: 3
 
-To add a tag helper to a view, you first add the fully qualified name (``TagHlp.TagHelpers.EmailTagHelper``), then the DLL name (*TagHlp*). You typically add tag helpers to the *Views/_ViewImports.cshtml* file as we've done here, but it's more common to use wildcard syntax to bring in all tag helpers with one line as the following shows:
+To add a tag helper to a view, you first add the fully qualified name (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), then the DLL name (*AuthoringTagHelpers*). You typically add tag helpers to the *Views/_ViewImports.cshtml* file as we've done here, but it's more common to use wildcard syntax to bring in all tag helpers with one line as the following shows:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/Views/_ViewImportsCopy.cshtml
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml
    :language: aspx-cs
    :lines: 2-4
    :emphasize-lines: 2,3
@@ -76,7 +77,7 @@ Using the wildcard syntax, you don't need to use the fully qualified name. Also 
    
 3. Update the markup in the *Views/Home/Contact.cshtml* file with the changes shown below:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/Contact.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/Contact.cshtml
    :language: aspx-cs
    :emphasize-lines: 15-16
    :lines: 1-17
@@ -87,62 +88,66 @@ Note: Like `HTML tags and attributes <http://www.w3.org/TR/html-markup/documents
 
 A working email tag helper
 ----------------------------------
-
-In this section we will update the ``EmailTagHelper`` so that it will create a valid anchor tag for email.
-
-#. Update the ``EmailTagHelper`` class with the following code:
-
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelper.cs
-   :emphasize-lines: 9,13-15
-   
-Notes:
-
-- We use the ``context`` parameter to get contents of the HTML element.
-- The following line shows the syntax for setting attribute values:
-
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelper.cs
-   :lines: 14
-   :dedent: 12
-
-- The last line sets the completed content for our minimally functional tag helper.
-
-2. Run the app and verify it generates  a valid email link.
-
-Next we'll update our tag helper to take information from a razor view (in the form of a ``mail-to`` attribute) and use that in generating the anchor.
+In this section we will update the ``EmailTagHelper`` so that it will create a valid anchor tag for email. We'll update our tag helper to take information from a razor view (in the form of a ``mail-to`` attribute) and use that in generating the anchor.
 
 Update the ``EmailTagHelper`` class with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/EmailTagHelperMailTo.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailTo.cs
    :lines: 7-24
-   :emphasize-lines: 6-8, 14-16
    :dedent: 3
 
 Notes:
 
-- The ASP.NET 5 runtime translates c# and VB Pascal cased classes and property names for tag helpers into `lower kebab case <http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101>`__. Therefore, to use the ``MailTo`` attribute, you'll use ``<email mail-to="value"/>``.
+- The ASP.NET 5 runtime translates C# and VB Pascal cased classes and property names for tag helpers into `lower kebab case <http://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101#12273101>`__. Therefore, to use the ``MailTo`` attribute, you'll use ``<email mail-to="value"/>``.
+- The following line shows how to set attributes:
+
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailTo.cs
+   :lines: 7-24
+   :dedent: 3
+   :emphasize-lines: 15
+
 
 3. Update the markup in the *Views/Home/Contact.cshtml* file with the changes shown below:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/ContactCopy.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml
    :language: aspx-cs
    :emphasize-lines: 15-16
    :lines: 1-17
  
 4. Run the app and verify it generates the correct links.
 
-**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing. In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``. Self-closing anchor tags (also known as `void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`__) are not valid HTML, so you wouldn't want to create one, but you might want to create a tag helper for a void element. The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag. 
-   
-Inspecting and retrieving child content
-----------------------------------------
+**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``) the final output would also be self-closing. In our example, the output would be ``<a href="mailto:Rick@contoso.com" />``. Self-closing anchor tags (also known as `void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`__) are not valid HTML, so you wouldn't want to create one, but you might want to create a tag helper for a void element. The ASP.NET 5 runtime sets the state of the ``SelfClosing`` property after reading a tag.
 
-TODO this section to showcase the ways you can interact with it and how context.GetChildcontentAsync plays a role. For example?
+
+In this section we will update the ``EmailTagHelper`` so that it gets the target ``mail-to`` from the content. 
+
+#. Update the ``EmailTagHelper`` class with the following code:
+
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/EmailTagHelper.cs
+   :lines: 6-18
+   :dedent: 3
+
+Notes:
+
+- We use the ``context`` parameter to get contents of the HTML element.
+- The following line shows the syntax for setting attribute values:
+
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/EmailTagHelper.cs
+   :lines: 14
+   :dedent: 12
+
+- The last line sets the completed content for our minimally functional tag helper.
+- This version uses the asynchronous ``ProcessAsync`` method. The asynchronous `GetChildContentAsync <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContext.cs#L65-L79>`__ returns a ``Task`` containing the `TagHelperContent <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContent.cs>`__. 
+
+2. Run the app and verify it generates  a valid email link.
+    
 
 The bold tag helper
 ---------------------------
 
 #. Add the following ``BoldTagHelper`` class to the *TagHelpers* folder.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/BoldTagHelper.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/BoldTagHelper.cs
     :language: c#
 
 Notes:
@@ -150,41 +155,42 @@ Notes:
 - The ``[TargetElement]`` attribute passes in an attribute parameter that specifies any HTML element that contains an HTML attribute value of "bold" will match, and the ``Process`` override method in the class will run. In our sample,  the ``Process``  method removes the "bold" attribute value and surrounds the containing markup with ``<strong></strong>``.
 - Because we are keeping the tag content, we must write the opening tag with the ``PreContent.SetContent`` method and the closing tag with the ``PostContent.SetContent`` method.
 
-4. Modify the *About.cshtml* view to contain a ``bold`` attribute value and add the bold tag helper. The completed code is shown below.
+2. Modify the *About.cshtml* view to contain a ``bold`` attribute value. The completed code is shown below.
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/About.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/About.cshtml
    :language: aspx-cs
-   :emphasize-lines: 1,8-11 
+   :emphasize-lines: 7-11 
    :lines: 1-11   
 
-Note the syntax of adding the tag helper you just authored. 
+      
+3. Update the *Views/_ViewImports.cshtml* file to use the wildcard syntax we previously mentioned, that way we won't have to update our file when we add new tag helpers.
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/About.cshtml
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml
    :language: aspx-cs
-   :lines: 1
-   :emphasize-lines: 1
-   
-You would generally bring in the tag helpers in the *Views/_ViewImports.cshtml* file as we did in the previous section. You might want to reference a tag helper in a view like this to limit the tag helper to only those views you explicitly opt in.
+   :lines: 2-4
+   :emphasize-lines: 2,3
   
-5. Run the app. You can use your favorite browser to inspect the source and verify the markup has changed as promised.
+4. Run the app. You can use your favorite browser to inspect the source and verify the markup has changed as promised.
 
-The ``[TargetElement]`` attribute above only targets HTML markup that provides an attribute value of "bold". The ``<bold>`` element was not modified by the tag helper.  
+The ``[TargetElement]`` attribute above only targets HTML markup that provides an attribute value name of "bold". The ``<bold>`` element was not modified by the tag helper.  
 
-6. Comment out the ``[TargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is HTML markup of the form ``<bold>``. (Remember the default naming convention will match the class name **Bold**\TagHelper to ``<bold>`` tags.)
+5. Comment out the ``[TargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is HTML markup of the form ``<bold>``. (Remember the default naming convention will match the class name **Bold**\TagHelper to ``<bold>`` tags.)
 
-7. Run the app and very the ``<bold>`` tag is processed by the tag helper.
+6. Run the app and verify the ``<bold>`` tag is processed by the tag helper.
 
 Decorating a class with multiple ``TargetElement`` statements results in a logical-OR of the targets. For example using the code below, a bold tag or a bold attribute will match.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/zBoldTagHelperCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/zBoldTagHelperCopy.cs
    :language: c#
    :lines: 5-6
  
 When multiple attributes are added to the same statement, the runtime treats them as a logical-AND. For example in the code below, an HTML element must contain both a bold tag and a bold attribute to match.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/zBoldTagHelperCopy2.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/zBoldTagHelperCopy2.cs
    :language: c#
    :lines: 5
+
+For a good example of a bootstrap progress bar that targets a tag and an attribute, see `Creating custom MVC 6 Tag Helpers <http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx>`__.
 
 The web site information tag helper
 ------------------------------------
@@ -192,12 +198,12 @@ The web site information tag helper
 #. Add a *Models* folder.
 #. Add the following ``WebsiteContext`` class to the models folder:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/Models/WebsiteContext.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/Models/WebsiteContext.cs
     :language: c#
 
 3. Add the following ``WebsiteInformationTagHelper`` class to the *TagHelpers* folder.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/WebsiteInformationTagHelper.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs
     :language: c#
 
 Notes: 
@@ -217,27 +223,20 @@ The lower kebab case tag ``<website-information />`` would not match. If you wan
 
 - `Void elements <http://www.w3.org/TR/html5/syntax.html#void-elements>`_ (that is, an element with a self-closing tag) have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a `section <http://www.w3.org/TR/html5/sections.html#the-section-element>`__ element (which is not self-closing and we are writing content inside the ``section`` element), therefore we need to set self-closing to false to write output. Alternatively, you can comment out the line setting self-closing to false and write markup with a closing tag. (Example markup is provided later in the tutorial.)
 
-4. Update the *Views/_ViewImports.cshtml* file to use wildcard importing of tag helpers so all our tag helpers will be imported.
-
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/Views/_ViewImportsCopy.cshtml
-   :language: aspx-cs
-   :lines: 2-4
-   :emphasize-lines: 3
-
 5. Add the following markup to the *About.cshtml* view. The highlighted markup displays the web site information.
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/About.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/About.cshtml
    :language: aspx-cs
    :emphasize-lines: 13-20  
    :lines: 1-20
 
 Note: In the razor markup shown below:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/About.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/About.cshtml
    :language: aspx-cs
    :lines: 15-20
    
-the ASP.NET 5 runtime knows the ``info`` attribute is a class, not a string and you want to write c# code, therefore it doesn't require the razor ``@`` character.
+Razor knows the ``info`` attribute is a class, not a string and you want to write C# code. Any non-string tag helper attribute should be written without the ``@`` character.
 
 6. Run the app, navigate to the about view to see the web site information.   
 
@@ -245,7 +244,7 @@ Notes:
 
 - You can use the following markup with a closing tag and remove the line  setting self-closing to false in the tag helper:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/AboutNotSelfClosing.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/AboutNotSelfClosing.cshtml
    :language: aspx-cs
    :lines: 15-20
 
@@ -256,18 +255,18 @@ The condition tag helper renders output when passed a true value.
 
 #. Add the following ``ConditionTagHelper`` class to the *TagHelpers* folder.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/ConditionTagHelper.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/ConditionTagHelper.cs
     :language: c#
     
 2. Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/Index.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/Index.cshtml
    :language: aspx-cs
    :lines: 1-13
 
 3. Replace the ``Index`` method in the ``Home`` controller with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/Controllers/HomeController.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/Controllers/HomeController.cs
    :language: c#
    :lines: 9-18
    
@@ -275,7 +274,7 @@ The condition tag helper renders output when passed a true value.
 
 Note: We use the `nameof <https://msdn.microsoft.com/en-us/library/dn986596.aspx>`_ operator to specify the attribute to target rather than specifying a string as we did with the bold tag helper:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/zConditionTagHelperCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/zConditionTagHelperCopy.cs
     :language: c#
     :lines: 7-21
     :emphasize-lines: 1,2,6
@@ -291,7 +290,7 @@ Because these two helpers are closely related and we may refactor them in the fu
 
 #. Add the following ``AutoLinker`` class to the *TagHelpers* folder.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z1AutoLinker.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs
    :language: c#
    :lines: 2-22
 
@@ -300,7 +299,7 @@ Notes: The ``AutoLinkerHttpTagHelper`` class targets ``p`` elements and uses `Re
 
 2. Add the following markup to the end of the *Views/Home/Contact.cshtml* file:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/Contact.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/Contact.cshtml
    :language: aspx-cs
    :lines: 1-20
    :emphasize-lines: 20
@@ -309,35 +308,35 @@ Notes: The ``AutoLinkerHttpTagHelper`` class targets ``p`` elements and uses `Re
 
 4. Update the ``AutoLinker`` class to include the ``AutoLinkerWWWTagHelper`` which will convert www text to an anchor tag which also contains the original www text. The updated code is highlighted below:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z1AutoLinker.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs
    :language: c#
    :lines: 2-39
    :emphasize-lines: 23-38
    
 5. Update the markup at the end of the *Views/Home/Contact.cshtml* file to include a www link text:
 
-.. literalinclude::  authoring/sample/TagHlp/src/TagHlp/Views/Home/Contact.cshtml
+.. literalinclude::  authoring/sample/TagHlp/src/AuthoringTagHelpers/Views/Home/ContactFinal.cshtml
    :language: aspx-cs
    :lines: 1-22
-   :emphasize-lines: 21
+   :emphasize-lines: 20,21
 
-6. Run the app. Notice the www text is rendered as a link but the HTTP text is not. If you put a break point in both classes you can see the HTTP tag helper class runs first (this is subject to change). The problem is that the tag helper output is cached, and when the WWW tag helper is run, it overwrites the cached output from the HTTP tag helper. We'll fix that with the following code:
+6. Run the app. Notice the www text is rendered as a link but the HTTP text is not. If you put a break point in both classes you can see the HTTP tag helper class runs first. Later in the tutorial I'll show how to control the order tag helpers run in. The problem is that the tag helper output is cached, and when the WWW tag helper is run, it overwrites the cached output from the HTTP tag helper. We'll fix that with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z1AutoLinkerCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs
    :language: c#
-   :lines: 2-46
-   :emphasize-lines: 12,13,17,28,29,33
+   :lines: 8-38
+   :emphasize-lines: 6,7,11,22,23,27
    
 Note: In the first edition of the auto linking tag helpers, we got the content of the target with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z1AutoLinker.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs
    :language: c#
    :lines: 13-14
    :dedent: 12
    
 That is, we call  `GetChildContentAsync <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContext.cs#L65-L79>`__ using the `TagHelperContext <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContext.cs>`__ passed into the ``ProcessAsync`` method. As mentioned previously, because the output is cached, the last tag helper to run wins. We fixed that problem with the following code:
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z2AutoLinkerCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs
    :language: c#
    :lines: 19-20
    :dedent: 12
@@ -346,13 +345,28 @@ The code above checks to see if the content has been modified, and if it has, it
    
 7. Run the app and verify the two links work as expected. While it might appear our auto linker tag helper is correct and complete, it has a subtle problem. If the WWW tag helper runs first, the www links will not be correct. Update the code by adding the  ``Order`` overload to control the order the tag runs in. The ``Order`` property determines the execution order relative to other tag helpers targeting the same element. The default order value is zero and instances with lower values are executed first.
 
-.. literalinclude:: authoring/sample/TagHlp/src/TagHlp/TagHelpers/z2AutoLinkerCopy.cs
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs
    :language: c#
    :lines: 9-16
    :emphasize-lines: 5-8
+   :dedent: 3
 
 The above code will guarantee the WWW tag helper runs before the HTTP tag helper. Change ``Order`` to ``MaxValue`` and verify the code WWW tag is incorrect.
 
+Inspecting and retrieving child content
+----------------------------------------
+
+- The result of `GetChildContentAsync <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContext.cs#L65-L79>`__ can be appended to ``output.Content``. 
+- You can inspect the result of ``GetChildContentAsync`` with ``GetContent``.
+- If you modify ``output.Content``, the TagHelper body will not be executed or rendered unless the you call `GetChildContentAsync <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelperContext.cs#L65-L79>`__ as in our auto linker sample:
+
+.. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1AutoLinkerCopy.cs
+   :language: c#
+   :lines: 8-23
+   :emphasize-lines: 6,7,11
+
+- Multiple calls to ``GetChildContentAsync`` will return the same value and will not re-execute the ``TagHelper`` body unless you pass in a false parameter indicating  not use the cached result.
+   
 Wrap up and next steps
 -----------------------
 

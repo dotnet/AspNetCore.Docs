@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TagHlp.Models
+namespace AuthoringTagHelpers.Models
 {
     public class WebsiteContext
     {

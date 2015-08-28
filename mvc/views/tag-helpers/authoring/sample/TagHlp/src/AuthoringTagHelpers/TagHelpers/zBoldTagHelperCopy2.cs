@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
-namespace TagHlp.TagHelpers2
+namespace AuthoringTagHelpers.TagHelpers2
 {
 [TargetElement("bold", Attributes = "bold")]
 public class BoldTagHelper : TagHelper

@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.AspNet.Mvc;
-using TagHlp.Models;
+using AuthoringTagHelpers.Models;
 
-namespace TagHlp.Controllers
+namespace AuthoringTagHelpers.Controllers
 {
     public class HomeController : Controller
     {

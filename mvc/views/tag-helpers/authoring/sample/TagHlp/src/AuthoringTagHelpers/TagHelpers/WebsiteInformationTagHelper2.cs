@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
-using TagHlp.Models;
+using AuthoringTagHelpers.Models;
 
-namespace TagHlp.TagHelpers2
+namespace AuthoringTagHelpers.TagHelpers.Copy
 {
     public class WebsiteInformationTagHelper : TagHelper
     {
@@ -11,7 +11,7 @@ namespace TagHlp.TagHelpers2
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "section";
-            output.PreContent.SetContent(string.Format(
+            output.Content.SetContent(string.Format(
                 "<ul><li><strong>Version:</strong> {0}</li>" + Environment.NewLine +
                 "<li><strong>Copyright Year:</strong> {1}</li>" + Environment.NewLine +
                 "<li><strong>Approved:</strong> {2}</li>" + Environment.NewLine +
