@@ -25,7 +25,7 @@ Scaffolding Applications Using Yeoman
 
 Coming soon: instructions for getting started with `Yeoman <http://yeoman.io>`_.
 
-`Download a sample Empty Web Site <https://github.com/aspnet/docs/>`_ to use with this article.
+`Download a sample Empty Web Site <https://github.com/aspnet/docs/>`_ to use with this article. Go to the aspnet/Home directory in github, and find samples directory <https://github.com/aspnet/Home/tree/dev/samples>, and find the version your working with. Then download the files from HelloWeb directory. As of this writing the version 1.0.0-beta6
 
 Developing ASP.NET Applications on a Mac With Visual Studio Code
 ----------------------------------------------------------------
