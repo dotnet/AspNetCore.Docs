@@ -23,7 +23,7 @@ Adding logging to your application is done by requesting either an ``ILoggerFact
 	:dedent: 8
 	:emphasize-lines: 2,7-8
 
-When a logger is created, a category name or source must be provided. By convention this is string is hierarchical, with categories separated by dot (``.``) characters. Some logging providers have filtering support that leverages this convention, making it easier to locate logging output of interest. In the above example, the logging is configured to use the built-in `ConsoleLogger <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.Console/ConsoleLogger.cs>`_ (see `Configuring Logging in your Application`_ below). To see the console logger in action, run the sample application using the ``web`` command, and make a request to configured URL (``localhost:5000``). You should see output similar to the following:
+When a logger is created, a category name or source must be provided. By convention this string is hierarchical, with categories separated by dot (``.``) characters. Some logging providers have filtering support that leverages this convention, making it easier to locate logging output of interest. In the above example, the logging is configured to use the built-in `ConsoleLogger <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.Console/ConsoleLogger.cs>`_ (see `Configuring Logging in your Application`_ below). To see the console logger in action, run the sample application using the ``web`` command, and make a request to configured URL (``localhost:5000``). You should see output similar to the following:
 
 .. image:: logging/_static/console-logger-output.png
 
@@ -54,11 +54,83 @@ Error
 Critical
 	A critical log level should be reserved for unrecoverable application or system crashes, or catastrophic failure that requires immediate attention. Examples: data loss scenarios, stack overflows, out of disk space
 
+The ``Logging`` packages provides `helper extension methods <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.Abstractions/LoggerExtensions.cs>`_ for each of these standard ``LogLevel``s, allowing you to call ``LogInformation`` rather than the more verbose Log(LogLevel.Information, ...) method. Each of the ``LogLevel``-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
+
+string data
+	The message to log. Called ``data`` because naming 
+
+int eventId
+	A numeric id to associate with the log, which can be used to associate a series of logged events with one another.
+
+string format
+	A format string for the log message.
+
+object[] args
+	An array of objects to format.
+
+Exception error
+	An exception instance to log.
+
+.. note:: Some loggers, such as the built-in ``ConsoleLogger`` used in this article, will ignore the ``eventId`` parameter. If you need to display it, you can include it in the message string, as is done in the following sample.
+
+The following logging middleware adds logging before and after ASP.NET requests are handled, and logs any unhandled exceptions using the ``Critical`` log level. In the sample code, note that the critical logging is wrapped in a condition that first confirms that logging is enabled for the ``Critical`` ``LogLevel``. This is especially important if expensive operations are being done as part of the log process, or if the logging operation itself will be called many times (such as within a loop).
+
+Since a real ASP.NET application would be handling many concurrent requests, the logging utilizes a simple random number scheme for grouping by ``eventId``, making it simple to determine which log messages should be grouped together.
+
+.. literalinclude:: logging/sample/src/LoggingSample/RequestLoggerMiddleware.cs
+	:language: c#
+	:linenos:
+	:lines: 10-48
+	:dedent: 4
+	:emphasize-lines: 17-19,26-33,35-36
+
+This middleware is configured in a separate method in ``Startup.cs`` (``ConfigureLogMiddleware``). You can run this example by setting the ``ASPNET_ENV`` variable to ``LogMiddleware``. Learn more about :doc:`environments`.
+
+.. literalinclude:: logging/sample/src/LoggingSample/Startup.cs
+	:language: c#
+	:linenos:
+	:lines: 27-42
+	:dedent: 8
+	:emphasize-lines: 6, 10-13
+
+This configuration will write "Hello, World!" to the response unless the request contains the string "boom", in which case it will throw an exception. When running the sample using this configuration and navigating to the path ``http://localhost:5000/boom`` the following output is sent to the console (note that ``Critical`` messages are formatted in red):
+
+.. image:: logging/_static/console-boom.png
+
+Note that in order to use formatting as well as logging the exception, we passed in the formatted message as an instance of ``FormattedLogValues``.
+
+Scopes
+^^^^^^
+
+TODO: Discuss scopes
 
 Configuring Logging in your Application
 ----------------------------------------
 
+ILoggerFactory and DI
+ILogger<T>
+Add ILoggerProvider implementations
+Set minimum verbosity level - default is Verbose
+Configure any logging-framework specific settings
 
+Logging Recommendations
+-----------------------
+
+The following are some recommendations you may find helpful when implementing logging in your ASP.NET applications.
+
+1. Log using the correct ``LogLevel``. This will allow you to consume and route logging output appropriately based on the importance of the messages.
+
+2. Log information that will enable errors to be identified quickly. Avoid logging irrelevant or redundant information.
+
+3. Keep log messages concise without sacrificing important information.
+
+4. Although loggers will not log if disabled, consider adding code guards around logging methods to prevent extra method calls and log message setup overhead, especially within loops and performance critical methods.
+
+5. Name your loggers with a distinct prefix so they can easily be filtered or disabled. Remember the ``Create<T>`` extension will create loggers named with the full name of the class.
+
+6. Use Scopes sparingly, and only for actions with a bounded start and end. For example, an MVC action. Avoid nesting many scopes within one another.
+
+7. Application logging code should be related to the business concerns of the application. Increase the logging verbosity to reveal additional framework-related concerns, rather than implementing yourself.
 
 Summary
 -------
