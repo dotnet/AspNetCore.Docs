@@ -167,7 +167,9 @@ You can add support for WebListener to your ASP.NET application by adding the "M
 .. code-block:: javascript
 
 	"web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
-	
+
+.. _kestrel:
+
 Kestrel
 -------
 
