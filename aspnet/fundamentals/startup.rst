@@ -27,7 +27,7 @@ Your ``Configure`` method must accept an ``IApplicationBuilder`` parameter. Addi
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 91-137
+	:lines: 87-132
 	:dedent: 8
 	:emphasize-lines: 12-14,20,24,27,37
 
@@ -45,9 +45,9 @@ Just as with ``Configure``, it is recommended that features that require substan
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 50-89
+	:lines: 46-84
 	:dedent: 8
-	:emphasize-lines: 5,11,31
+	:emphasize-lines: 4,10,30
 
 Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`. Just as the ``Startup`` class is able to specify dependencies its methods require as parameters, rather than hard-coding to a specific implementation, so too can your middleware, MVC controllers and other classes in your application.
 

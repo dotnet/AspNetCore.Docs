@@ -75,7 +75,7 @@ It can be useful to have environment-specific configuration files. This can be a
   :linenos:
   :dedent: 8
   :language: c#
-  :lines: 30-46
+  :lines: 25-41
   :emphasize-lines: 1,7
 
 The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``config.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
