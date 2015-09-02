@@ -30,7 +30,7 @@ To install DNX for .NET Core run::
 
     dnvm upgrade -r coreclr
 
-.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
+.. note:: .NET Core on OS X is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
 
 To install DNX for Mono run::
 
