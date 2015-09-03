@@ -6,7 +6,7 @@ DNX projects are used to build and run .NET applications for Windows, Mac and Li
 What is a command?
 ------------------
 
-A command is a named execution of a .NET entry point with specific arguments. Commands can be defined locally in your project or installed globally on your machine. The *project.json* file in your project allows you to define commands for your project. Commands that you define for your projects are understood by Visual Studio Code (VS Code) as well as Visual Studio. Global commandsw, which are not project specific, can be installed on a machine and run from a command prompt.
+A command is a named execution of a .NET entry point with specific arguments. Commands can be defined locally in your project or installed globally on your machine. The *project.json* file in your project allows you to define commands for your project. Commands that you define for your projects are understood by Visual Studio Code (VS Code) as well as Visual Studio. Global commands, which are not project specific, can be installed on a machine and run from a command prompt.
 
 Using commands in your project
 ------------------------------
@@ -16,18 +16,16 @@ In the ``commands`` section of the below *project.json* example, four commands a
 .. code-block:: json
 
     {
-      "version": "1.0.0",
-      "webroot": "wwwroot",
-      "exclude": [
-        "wwwroot"
-      ],
+	  "webroot": "wwwroot",
+	  "version": "1.0.0-*",
+	
       "dependencies": {
-        "Kestrel": "1.0.0-beta6",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta6",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta6"
+        "Kestrel": "1.0.0-beta7",
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta7",
+        "Microsoft.AspNet.Hosting": "1.0.0-beta7",
+        "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
       },
       "commands": {
 		"web": "Microsoft.AspNet.Hosting --config hosting.ini",
@@ -41,9 +39,15 @@ In the ``commands`` section of the below *project.json* example, four commands a
       }
     }
 
-A command can include a set of arguments that will be passed to the DNX. In the above example, the first part of a command statement is an assembly with an entry point that the DNX will try to execute. Notice that in the ``commands`` section shown above, the ``ef`` command is implemented by the ``EntityFramework.Commands`` assembly. This command doesn't require any extra argument, all that is needed to define the command is the name of the assembly. For the ``web`` command and the ``kestrel`` command, the arguments are contained in the referenced *hosting.ini* file. In the *hosting.ini* file you will see the ``server`` agrument and the the ``server.urls`` argument. The ``kestrel`` command, as well as the ``web`` command, will check the ``Microsoft.AspNet.Hosting`` assembly for an entry point, then it will pass the ``server`` and ``serveral.urls`` agruments to the entry point. 
+A command can include a set of arguments that will be passed to the DNX. In the above example, the first part of a command statement is an assembly with an entry point that the DNX will try to execute. Notice that in the ``commands`` section shown above, the ``ef`` command is implemented by the ``EntityFramework.Commands`` assembly. This command doesn't require any extra argument, all that is needed to define the command is the name of the assembly. For the ``web`` command and the ``kestrel`` command, the arguments are contained in the referenced *hosting.ini* file. In the *hosting.ini* file you will see the ``server`` agrument and the the ``server.urls`` argument. The ``kestrel`` command, as well as the ``web`` command, will check the ``Microsoft.AspNet.Hosting`` assembly for an entry point, then it will pass the ``server`` and ``server.urls`` arguments to the entry point. Specifically, the arguments for each command are passed to the entry point throught the ``args`` argument of the ``main`` method.
 
 .. note:: The assembly listed in the ``commands`` section should be pulled in by a package that your application depends on.
+
+You can add a command package and its dependencies to your project using the `Package Manager Console <http://docs.nuget.org/consume/package-manager-console>`_. For example, to install the `SecretManager <http://www.nuget.org/packages/Microsoft.Framework.SecretManager>`_ package from the **Package Manager Console**, enter the following::
+
+	Install-Package Microsoft.Framework.SecretManager -Pre
+	
+.. note:: The global *NuGet.config* file is used to find the correct NuGet feed when installing global command NuGet packages. Use ``Install-Package -?`` from the **Package Manager Console** to view help information related to the ``Install-Package`` command. 
 
 Running commands using dnx.exe
 ------------------------------
@@ -54,7 +58,7 @@ You can use DNX to run the commands defined by your project by entering the foll
 
 You can also run commands from VS Code or Visual Studio. From VS Code, open the **Command Palette** (Ctrl+Shift+P) and enter the name of the command you want to run. From Visual Studio, open the **Command Window** (Ctrl+Alt+A) and enter the name of the command you want to run.
 	
-For example, the following command is used to run a web application::
+For example, the following command is used to run a web application using the Kestrel web server::
 
     dnx kestrel
 
@@ -62,24 +66,20 @@ To run a console app, you can use the following command::
 
 	dnx run
 	
-.. note:: Note that running a command is short-hand for specifying the command assembly and it's arguments directly to DNX. For example, ``dnx web`` is a short-hand alias for ``dnx Microsoft.AspNet.Hosting hosting.ini``, where the hosting.ini file contains the command parameters. 
+.. note:: Note that running a command is short-hand for specifying the command assembly and it's arguments directly to DNX. For example, ``dnx web`` is a short-hand alias for ``dnx Microsoft.AspNet.Hosting hosting.ini``, where the *hosting.ini* file contains the command parameters. 
 
 Global commands
 ---------------
-Global commands are DNX console applications (in a NuGet package) that are installed globally and runnable from your command line. Global commands are different from the commands that your add in the ``commands`` section of the *project.json* file of a project because global commands are not project specific. You can install, run, uninstall, build, and publish global commands. 
+Global commands are DNX console applications (in a NuGet package) that are installed globally and runnable from your command line. The difference between global commands and commands that your add in the ``commands`` section of the *project.json* file of a project is that global commands are made available to everything that runs under a user profile. You can install, run, uninstall, build, and publish global commands. 
 
-Global commands use the local XML *NuGet.Config* file to store package source locations. The main sections for this file are ``packageRestore``, ``packageSources``, ``disabledPackageSources``, and ``activePackageSource``.
+The ``dnu commands install`` command will use the NuGet sources contained in the local XML *NuGet.Config* file to determine where it looks for NuGet packages. The main sections for this file are ``packageRestore``, ``packageSources``, ``disabledPackageSources``, and ``activePackageSource``.
 
 Installing global commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can add a global command package and its dependencies using the `Package Manager Console <http://docs.nuget.org/consume/package-manager-console>`_. For example, to install the `SecretManager <http://www.nuget.org/packages/Microsoft.Framework.SecretManager>`_ from the **Package Manager Console**, enter the following::
+To add a global command (and package), you can use the .NET Development Utility (DNU) to download a NuGet package and install it.
 
-	Install-Package Microsoft.Framework.SecretManager -Pre
-	
-.. note:: The global *NuGet.config* file is used to find the correct NuGet feed when installing global command NuGet packages. Use ``Install-Package -?`` from the **Package Manager Console** to view help information related to the ``Install-Package`` command. 
-
-You can then use the .NET Development Utility (DNU) to install the commands contained in the package. For example, enter the following from the command prompt::
+For example, enter the following from the command prompt::
 
 	dnu commands install Microsoft.Framework.SecretManager
 	
@@ -92,18 +92,18 @@ You can run global commands from the command prompt after installing the related
 
 	user-secret list
 	
-.. note:: To see a list of the available DNX runtimes, including the **active** DNX runtime, you can enter ``dnvm list`` from the command prompt. If you need to change the active DNX runtime, use ``dnvm use [version] -p``. For example, ``dnvm use 1.0.0-beta6 –p``. Global commands always run with the active DNX runtime. 
+.. note:: To see a list of the available DNX runtimes, including the **active** DNX runtime, you can enter ``dnvm list`` from the command prompt. If you need to change the active DNX runtime, use ``dnvm use [version] -p``. For example, ``dnvm use 1.0.0-beta7 –p``. Global commands always run with the active DNX runtime. 
 	
 Uninstalling global commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To uninstall global commands you can use the following DNX command::
 
-	dnu commands uninstall [arguments] [options]
+	dnx commands uninstall [arguments] [options]
 	
 The [arguments] is the name of the command to uninstall. For example::
 
-	dnx commands uninstall Microsoft.Framework.SecretManager
+	dnx commands uninstall user-secret
 	
 For additional details about the uninstall command, enter ``dnu commands uninstall -?`` from the command prompt.	
 
@@ -112,10 +112,10 @@ Built-in global commands
 
 The following built-in global commands are available: 
 
-	1. user-secrets
+	1. user-secret
 	2. sqlservercache
 
-These commands have specific NuGet packages that must be installed. Once a global command package is installed, you can install the command using the DNU. 
+These commands have specific NuGet packages that are installed. When you install a global command, the related NuGet package is also installed. 
 
 Building and publishing global command
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -153,12 +153,16 @@ The ``publish`` command will package your application into a self-contained dire
 
 The packages directory contains all the packages your command needs to run. The *appName* directory will contain all of your applications code. If you have project references, they will appear as their own directory with code at this level as well. 
 
+There are 3 commands that are skipped for global install, those are ``run``, ``test`` and ``web``. You can build a NuGet package with those commands, but they cannot be installed globally. So, for the default console application template, you must rename the ``run`` command to something else, such as ``my-cmd``, if you want to make the command globally installable.
+
+Also, the following command names cannot be used: ``dnx``, ``dnvm``, ``nuget``, ``dnu``. You will get a build error if you use those names.
+
 Global commands details
 -----------------------
 
 Global commands are DNX console applications (in a NuGet package) that are installed globally and runnable from your command line. 
 	
-.. note:: If you are using Visual Studio, then the both ``SecretManager`` and ``SqlConfig`` should already be installed for you. If you not using Visual Studio, first install the DNX, then install the NuGet package, then run ``dnu commands install [namespace.command]``. When a command is finished installing, the output will specifically show the name of the commands that have been installed.
+.. note:: If you are using Visual Studio, then  both ``SecretManager`` and ``SqlConfig`` should already be installed for you. If you not using Visual Studio, first install the DNX, then run ``dnu commands install [namespace.command]``. When a command is finished installing, the output will specifically show the name of the commands that have been installed.
 
 SecretManager
 ^^^^^^^^^^^^^
