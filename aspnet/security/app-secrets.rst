@@ -28,17 +28,17 @@ Installing the secret manager tool
 
 .. code-block:: none
 
-  dnvm use 1.0.0-beta5
+  dnvm use 1.0.0-beta7
 
-The **dnvm** tool is the .NET Version Manager used to update and configure the .NET Execution Environment (DNX). The command ``dnvm use 1.0.0-beta5`` instructs the .NET Version Manager to add the DNX to the ``PATH`` environment variable for the current shell. After running this command the following is displayed::
+The **dnvm** tool is the .NET Version Manager used to update and configure the .NET Execution Environment (DNX). The command ``dnvm use 1.0.0-beta7`` instructs the .NET Version Manager to add the DNX to the ``PATH`` environment variable for the current shell. After running this command the following is displayed::
 
-  Adding C:\Users\<user>\.dnx\runtimes\dnx-clr-win-x86.1.0.0-beta5\bin to process PATH
+  Adding C:\Users\<user>\.dnx\runtimes\dnx-clr-win-x86.1.0.0-beta7\bin to process PATH
 
 - Install the secret manager tool using DNU (Microsoft .NET Development Utility). DNU is used to build, package and publish DNX projects.
  
 .. code-block:: none
  
-  dnu commands install SecretManager
+  dnu commands install Microsoft.Framework.SecretManager
 
 - Test the secret manager tool by running the following command::
 
