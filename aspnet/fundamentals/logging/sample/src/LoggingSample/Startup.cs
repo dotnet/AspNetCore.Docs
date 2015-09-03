@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
@@ -25,9 +26,46 @@ namespace LoggingSample
             });
         }
         public void ConfigureLogMiddleware(IApplicationBuilder app,
-            ILoggerFactory loggerfactory)
+            ILoggerFactory loggerFactory)
         {
-            loggerfactory.AddConsole(minLevel: LogLevel.Information);
+            loggerFactory.AddConsole(minLevel: LogLevel.Information);
+            app.UseRequestLogger();
+
+            app.Run(async context =>
+            {
+                if (context.Request.Path.Value.Contains("boom"))
+                {
+                    throw new Exception("boom!");
+                }
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+
+        public void ConfigureSimpleLogger(IApplicationBuilder app,
+            ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(minLevel: LogLevel.Information);
+            app.UseSimpleLogger();
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+
+        public void ConfigureTraceLogging(IApplicationBuilder app,
+            ILoggerFactory loggerFactory)
+        {
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+
+#if DNX451
+            var sourceSwitch = new SourceSwitch("LoggingSample");
+            sourceSwitch.Level = SourceLevels.Critical;
+            loggerFactory.AddTraceSource(sourceSwitch,
+                new ConsoleTraceListener(false));
+            loggerFactory.AddTraceSource(sourceSwitch, 
+                new EventLogTraceListener("Application"));
+#endif
 
             app.UseRequestLogger();
 

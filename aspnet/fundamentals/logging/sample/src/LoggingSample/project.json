@@ -6,7 +6,8 @@
     "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
     "Microsoft.Framework.Logging": "1.0.0-beta6-11601",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta6" 
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
+    "Microsoft.Framework.Logging.TraceSource": "1.0.0-beta6"
   },
 
   "commands": {

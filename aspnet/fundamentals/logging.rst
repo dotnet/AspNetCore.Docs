@@ -102,16 +102,79 @@ Note that in order to use formatting as well as logging the exception, we passed
 Scopes
 ^^^^^^
 
-TODO: Discuss scopes
+In the course of logging information within your application, you can group a set of logical operations within a *scope*. A scope is an ``IDisposable`` type returned by calling the ``BeginScopeImpl`` method, which lasts from the moment it is created until it is disposed. Not all loggers support scopes. For example, the `ConsoleLogger simply returns null <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.Console/ConsoleLogger.cs#L114>`_ from ``BeginScopeImpl``. The built-in `TraceSource logger <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.TraceSource/TraceSourceLogger.cs#L66-L69>`_ returns a `TraceSourceScope <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.TraceSource/TraceSourceScope.cs>`_, which is responsible for starting and stopping tracing operations. Any logging state, such as a transaction id, is attached to the scope when it is created.
+
+Scopes are not required, and should be used sparingly, if at all. They're best used for operations that have a distinct beginning and end, such as an HTTP request or an MVC action.
+
+Working with ILogger<T>
+^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to working with ``ILoggerFactory``, your application can request an instance of ``ILogger<T>`` as a dependency in a class's constructor, where T represents your class's name. For example, an ASP.NET Controller called ``HomeController`` that needed to perform logging could include an ``ILogger<HomeController>`` parameter in its constructor. When this technique is used, the logger will automatically use the type's name as its category name.
+
+You can see a simple example of this in action using middleware. The following middleware class requests an instance of ``ILogger<SimpleLoggerMiddleware>``. When it is created, an ``ILogger`` is provided with a category name already set to ``LoggingSample.SimpleLoggerMiddleware``.
+
+.. literalinclude:: logging/sample/src/LoggingSample/SimpleLoggerMiddleware.cs
+	:language: c#
+	:linenos:
+	:lines: 8-29
+	:dedent: 4
+	:emphasize-lines: 4,7,10
+
+By requesting an instance of ``ILogger<T>``, your class doesn't need to create an instance of a logger via ``ILoggerFactory``. You can use this approach anywhere you don't need the additional functionality offered by ``ILoggerFactory``.
 
 Configuring Logging in your Application
 ----------------------------------------
 
-ILoggerFactory and DI
-ILogger<T>
-Add ILoggerProvider implementations
-Set minimum verbosity level - default is Verbose
-Configure any logging-framework specific settings
+To configure logging in your ASP.NET application, you should resolve ``ILoggerFactory`` in the ``Configure`` method in your ``Startup`` class. ASP.NET will automatically provide an instance of ``ILoggerFactory`` using :doc:`dependency-injection` when you add a parameter of this type to the ``Configure`` method. Once you've added ``ILoggerFactory`` as a parameter, you configure loggers within the ``Configure`` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by simply calling ``loggerFactory.AddConsole``. In addition to adding loggers, you can also control the verbosity of the application's logging by setting the ``MinimumLevel`` property on the logger factory. The default verbosity is ``Verbose``.
+
+.. note:: You can also specify the minimum level of logging to use on a per-logger basis as well. For example, the ``AddConsole`` extension method supports an optional parameter for setting its minimum ``LogLevel``.  
+
+Configuring TraceSource Logging
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The built-in `TraceSourceLogger <https://github.com/aspnet/Logging/blob/1.0.0-beta6/src/Microsoft.Framework.Logging.TraceSource/TraceSourceLogger.cs>`_ provides a simple way to configure log messages to use the existing `System.Diagnostics.TraceSource <https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource(v=vs.110).aspx>`_ libraries and providers, including easy access to the Windows event log. This proven means of routing messages to a variety of listeners is already in use by many organizations, and the ``TraceSourceLogger`` allows developers to continue leveraging this existing investment.
+
+First, be sure to add the ``Microsoft.Framework.Logging.TraceSource`` package to your project (in ``project.json``):
+
+.. literalinclude:: logging/sample/src/LoggingSample/project.json
+	:language: javascript
+	:linenos:
+	:lines: 5-11
+	:emphasize-lines: 6
+
+
+The following example demonstrates how to configure two separate ``TraceSourceLogger``s for an application, both logging only ``Critical`` messages. Each call to ``AddTraceSource`` takes a ``TraceListener``. The first call configures a ``ConsoleTraceListener``; the second one configures an ``EventLogTraceListener`` to write to the ``Application`` event log. These two listeners are not available in DNX Core, so their configuration is wrapped in a conditional compilation statement (``#if DNX451``).
+
+.. literalinclude:: logging/sample/src/LoggingSample/Startup.cs
+	:language: c#
+	:linenos:
+	:lines: 56-80
+	:emphasize-lines: 4,6-13
+
+The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this level is simply the default, and can be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener``s. When the application is run (using the ``TraceLogging`` environment, on Windows), and a request is made to ``http://localhost:5000/boom``, the following is shown in the console output:
+
+.. image:: logging/_static/console-trace-boom.png
+
+Examining the Application event log in the Windows Event Viewer, the following event has also been logged as a result of this request:
+
+.. image:: logging/_static/eventlog.png
+
+Configuring Other Providers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In addition to the built-in loggers, you can configure logging to use other providers, such as `NLog <https://github.com/aspnet/Logging/tree/1.0.0-beta6/src/Microsoft.Framework.Logging.NLog>`_ or `Serilog <https://github.com/serilog/serilog-framework-logging>`_. Add the appropriate package to your ``project.json`` file, and then configure it just like any other provider. Typically, these packages should include extension methods on ``ILoggerFactory`` to make it easy to add them. For example, to add support for NLog you would just call:
+
+.. code-block:: c#
+
+	loggerFactory.AddNLog(new NLog.LogFactory());
+
+For Serilog, the code is similar:
+
+.. code-block:: c#
+
+	loggerFactory.AddSerilog();
+
+You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements. The links above for NLog and Serilog provide good references to help you get started.
 
 Logging Recommendations
 -----------------------
@@ -135,5 +198,5 @@ The following are some recommendations you may find helpful when implementing lo
 Summary
 -------
 
-Summarize logging here.
+ASP.NET provides built-in support for logging, which can easily be configured within the ``Startup`` class and used throughout the application. Logging verbosity can be configured globally and per logging provider to ensure actionable information is logged appropriately. Built-in providers for console and trace source logging are included in the framework; other logging frameworks can easily be configured as well.
 
