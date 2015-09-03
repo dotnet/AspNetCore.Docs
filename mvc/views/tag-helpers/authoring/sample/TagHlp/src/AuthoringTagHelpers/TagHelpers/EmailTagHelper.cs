@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Threading.Tasks;
 
-namespace AuthoringTagHelpers.TagHelpers4
+namespace AuthoringTagHelpers.TagHelpers
 {
     [TargetElement("email")]
     public class EmailTagHelper : TagHelper
     {
-        public static string EmailDomain = "example.com";
+        public static string EmailDomain = "contoso.com";
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";    // Replaces <email> with <a> tag
