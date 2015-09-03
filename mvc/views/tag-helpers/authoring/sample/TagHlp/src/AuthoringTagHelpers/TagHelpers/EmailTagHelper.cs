@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System.Threading.Tasks;
 
-namespace AuthoringTagHelpers.TagHelpers
+namespace AuthoringTagHelpers.TagHelpers3
 {
-    [TargetElement("email")]
     public class EmailTagHelper : TagHelper
     {
         public static string EmailDomain = "contoso.com";

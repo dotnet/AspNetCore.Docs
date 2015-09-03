@@ -1,32 +1,32 @@
-Authoring tag helpers
+Authoring Tag Helpers
 ===========================================
 
 By `Rick Anderson`_
 
-    - `Getting started with tag helpers`_
-    - `Starting the email tag helper`_
-    - `A working email tag helper`_
-    - `The bold tag helper`_
-    - `Web site information tag helper`_
-    - `Condition tag helper`_
-    - `Avoiding tag helper conflicts`_
+    - `Getting started with Tag Helpers`_
+    - `Starting the email Tag Helper`_
+    - `A working email Tag Helper`_
+    - `The bold Tag Helper`_
+    - `Web site information Tag Helper`_
+    - `Condition Tag Helper`_
+    - `Avoiding Tag Helper conflicts`_
     - `Inspecting and retrieving child content`_
     - `Wrap up and next steps`_
     - `Additional Resources`_
 
 You can browse the source code for the sample app used in this document on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/views/tag-helpers/authoring/sample>`__. 
 
-Getting started with tag helpers
+Getting started with Tag Helpers
 ------------------------------------
 
-This tutorial provides an introduction to programming tag helpers. :doc:`intro` describes the benefits that tag helpers provide.
+This tutorial provides an introduction to programming Tag Helpers. :doc:`intro` describes the benefits that Tag Helpers provide.
 
 A tag helper is any class that implements the `ITagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/ITagHelper.cs>`__ interface. However, when you author a tag helper, you generally derive from `TagHelper <https://github.com/aspnet/Razor/blob/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers/TagHelper.cs>`__, doing so gives you access to the ``Process`` method. We will introduce the ``TagHelper`` methods and properties as we use them in this tutorial.
 
 #. Create a new ASP.NET MVC 6 project called **AuthoringTagHelpers**. You won't need authentication for this project.
-#. Create a folder to hold the tag helpers called *TagHelpers*. The *TagHelpers* folder is not required, but it is a reasonable convention. Now let's get started writing some simple tag helpers.
+#. Create a folder to hold the Tag Helpers called *TagHelpers*. The *TagHelpers* folder is not required, but it is a reasonable convention. Now let's get started writing some simple tag helpers.
 
-Starting the email tag helper
+Starting the email Tag Helper
 --------------------------------
 
 In this section we will write a tag helper that updates an email tag. For example:
@@ -45,16 +45,19 @@ That is, an anchor tag that makes this an email link. You might want to do this 
 
 .. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs
    :language: c#
-   :lines: 2-16
+   :lines: 2-14
    
 Notes: 
 
-- The ``TargetElement`` attribute identifies "email" as the element to target for processing. If you don't specify a ``TargetElement`` attribute, ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). You could comment out this attribute (because the class is named **Email**\TagHelper), and it would target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email>** tags).
+- ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). In this example, the root name of **Email**\TagHelper is *email*, so the ``<email>`` tag will be targeted. This naming convention should work for most tag helpers and later on I'll show how to override it.
+
 - The ``EmailTagHelper`` class derives from `TagHelper <https://github.com/aspnet/Razor/tree/dev/src/Microsoft.AspNet.Razor.Runtime/TagHelpers>`__. The ``TagHelper`` class provides the rich methods and properties we will examine in this tutorial.
 - The override ``Process`` method controls what the tag helper does when executed.  The ``TagHelper`` class also provides an asynchronous version (``ProcessAsync``) with the same parameters.  
 - The context parameter to ``Process`` (and ``ProcessAsync``) contains information associated with the execution of the current HTML tag. We will use the context parameter to get the content of our target element.
 - The output parameter to ``Process`` (and ``ProcessAsync``) contains a stateful HTML element representative of the original source used to generate an HTML tag and content.
 - Our class name has a suffix of **TagHelper**, which is required.
+
+.. The ``TargetElement`` attribute identifies "email" as the element to target for processing. If you don't specify a ``TargetElement`` attribute, ASP.NET MVC 6 uses a naming convention that targets elements of the root class name (minus the *TagHelper* portion of the class name). You could comment out this attribute (because the class is named **Email**\TagHelper), and it would target email tags. Using the attribute does make the intention explicit (that is, we are targeting **<email>** tags).
 
 2. To make the ``EmailTagHelper`` class available to all our Razor views, we will add the ``addTagHelper`` directive to the *Views/_ViewImports.cshtml* file:  
 
@@ -70,8 +73,6 @@ To add a tag helper to a view, you first add the fully qualified name (``Authori
    :lines: 2-4
    :emphasize-lines: 2,3
 
-.. This is a comment
-
 When you use the wildcard syntax, you don't need to use the fully qualified name. Also, note that the second line brings in the `ASP.NET 5 MVC 6 tag helpers <https://github.com/aspnet/Mvc/tree/dev/src/Microsoft.AspNet.Mvc.TagHelpers>`__ using the wild card syntax (those helpers are discussed in :doc:`intro`.) It's the ``@addTagHelper`` command that makes the tag helper available to the Razor view.
    
 3. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
@@ -85,14 +86,14 @@ When you use the wildcard syntax, you don't need to use the fully qualified name
 
 Note: Like `HTML tags and attributes <http://www.w3.org/TR/html-markup/documents.html#case-insensitivity>`__, tags, class names and attributes in Razor, and C# are not case-sensitive.
 
-A working email tag helper
+A working email Tag Helper
 ----------------------------------
 In this section, we will update the ``EmailTagHelper`` so that it will create a valid anchor tag for email. We'll update our tag helper to take information from a Razor view (in the form of a ``mail-to`` attribute) and use that in generating the anchor.
 
 Update the ``EmailTagHelper`` class with the following code:
 
 .. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailTo.cs
-   :lines: 7-24
+   :lines: 5-24
    :dedent: 3
 
 Notes:
@@ -148,7 +149,7 @@ That approach works for the attribute "href" as long as it doesn't currently exi
 2. Run the app and verify that it generates a valid email link.
     
 
-The bold tag helper
+The bold Tag Helper
 ---------------------------
 
 #. Add the following ``BoldTagHelper`` class to the *TagHelpers* folder.
@@ -198,7 +199,13 @@ When multiple attributes are added to the same statement, the runtime treats the
 
 For a good example of a bootstrap progress bar that targets a tag and an attribute, see `Creating custom MVC 6 Tag Helpers <http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx>`__.
 
-Web site information tag helper
+You can also use the ``TargetElement`` to change the name of the targeted element. For example if you wanted the ``BoldTagHelper`` to target ``<MyBold>`` tags, you would use the following attribute:
+
+.. code-block:: c#
+
+	    [TargetElement("MyBold")]
+
+Web site information Tag Helper
 ------------------------------------
 
 #. Add a *Models* folder.
@@ -254,7 +261,7 @@ Notes:
    :language: aspx-cs
    :lines: 15-20
 
-Condition tag helper
+Condition Tag Helper
 ---------------------------------
 
 The condition tag helper renders output when passed a true value.
@@ -282,12 +289,12 @@ Note: We use the `nameof <https://msdn.microsoft.com/en-us/library/dn986596.aspx
 
 .. literalinclude:: authoring/sample/TagHlp/src/AuthoringTagHelpers/TagHelpers/zConditionTagHelperCopy.cs
     :language: c#
-    :lines: 7-21
-    :emphasize-lines: 1,2,6
+    :lines: 6-19
+    :emphasize-lines: 1,2,5
 
 The `nameof <https://msdn.microsoft.com/en-us/library/dn986596.aspx>`_ operator will protect the code should it ever be refactored (we might want to change the name to RedCondition).
 
-Avoiding tag helper conflicts
+Avoiding Tag Helper conflicts
 ______________________________
 
 In this section, we will write a pair of auto-linking tag helpers. The first will replace markup containing a URL starting with HTTP to an HTML anchor tag containing the same URL (and thus yielding a link to the URL). The second will do the same for a URL starting with WWW.

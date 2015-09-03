@@ -8,8 +8,8 @@ namespace AuthoringTagHelpers.TagHelpers
     [TargetElement("p")]
     public class AutoLinkerHttpTagHelper : TagHelper
     {
-        // This filter must run before the AutoLinkerWWWTagHelper as it searches and replaces http and 
-        // the AutoLinkerWWWTagHelper adds http to the markup.
+        // This filter must run before the  AutoLinkerWwwTagHelper  as it searches and replaces http and 
+        // the  AutoLinkerWwwTagHelper  adds http to the markup.
         public override int Order
         {
             get  {  return int.MinValue;   }
@@ -28,7 +28,7 @@ namespace AuthoringTagHelpers.TagHelpers
     }
 
     [TargetElement("p")]
-    public class AutoLinkerWWWTagHelper : TagHelper
+    public class  AutoLinkerWwwTagHelper  : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
