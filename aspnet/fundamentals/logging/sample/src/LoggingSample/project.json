@@ -3,11 +3,11 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-    "Microsoft.Framework.Logging": "1.0.0-beta6-11601",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
-    "Microsoft.Framework.Logging.TraceSource": "1.0.0-beta6"
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
+    "Microsoft.Framework.Logging": "1.0.0-beta7",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta7",
+    "Microsoft.Framework.Logging.TraceSource": "1.0.0-beta7"
   },
 
   "commands": {

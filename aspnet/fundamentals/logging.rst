@@ -19,7 +19,7 @@ Adding logging to your application is done by requesting either an ``ILoggerFact
 .. literalinclude:: logging/sample/src/LoggingSample/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 15-25
+	:lines: 17-27
 	:dedent: 8
 	:emphasize-lines: 2,7-8
 
