@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace TodoApi.Models
 {
     public class TodoRepository : ITodoRepository
     {
-        Dictionary<string, TodoItem> _todos = new Dictionary<string, TodoItem>();
+        static ConcurrentDictionary<string, TodoItem> _todos = new ConcurrentDictionary<string, TodoItem>();
 
         public TodoRepository()
         {
@@ -34,7 +35,7 @@ namespace TodoApi.Models
         {
             TodoItem item;
             _todos.TryGetValue(key, out item);
-            _todos.Remove(key);
+            _todos.TryRemove(key, out item);
             return item;
         }
 
