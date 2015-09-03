@@ -47,6 +47,10 @@ To install DNX for .NET Core run::
     dnvm upgrade -r coreclr
 
 .. note:: Running .NET Core on Linux currently requires installing the following additional packages: ``libunwind8``, ``gettext``, ``libssl-dev``, ``libcurl3-dev``, ``zlib1g``
+
+To install these packages use::
+
+    sudo apt-get install libunwind8 gettext libssl-dev libcurl3-dev zlib1g
   
 .. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
 
