@@ -130,7 +130,7 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 .. image:: migratingfrommvc5/_static/project-structure-bower.png
 
-Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add *gulp*, *rimraf*, and *guld-concat* to the devDependencies property (you should get Intellisense as you type each package name). When you're finished, your file should look similar to this one:
+Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add *gulp*, *rimraf*, and *gulp-concat* to the devDependencies property (you should get Intellisense as you type each package name). When you're finished, your file should look similar to this one:
 
 .. literalinclude:: migratingfrommvc5/samples/NewMvc6Project/src/NewMvc6Project/package.json
 	:language: javascript
