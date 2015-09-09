@@ -45,11 +45,11 @@ Save your changes.
 Running the App
 ---------------
 
-At this point, we're ready to run the app. You can do this by simply entering ``dnx . run`` from the command prompt. You should see a result like this one:
+At this point, we're ready to run the app. You can do this by simply entering ``dnx run`` from the command prompt. You should see a result like this one:
 
 .. image:: console/_static/dnx-run.png
 
-.. note:: The ``dnx`` command is used to execute a managed entry point (a ``Program.Main`` function) in an assembly. The ``dnx . run`` command is a shorthand for executing the entry point in the current project. It is equivalent to ``dnx . [project_name]``
+.. note:: The ``dnx`` command is used to execute a managed entry point (a ``Program.Main`` function) in an assembly. By default, the ``dnx run`` command looks in the current directory for the project to run. To specify a different directory, use the --project switch.
 
 You can select which CLR to run on using the .NET Version Manager (DNVM). To run on CoreCLR first run ``dnvm use [version] -r CoreCLR``. To return to using the .NET Framework CLR run ``dnvm use [version] -r CLR``.
 
