@@ -24,7 +24,7 @@ namespace TodoApi
             services.AddMvc();
 
             // Add our repository type
-            services.AddSingleton<ITodoRepository, TodoRepository>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
         }
 
         // Configure is called after ConfigureServices is called.
