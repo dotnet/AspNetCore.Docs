@@ -38,7 +38,9 @@ The **dnvm** tool is the .NET Version Manager used to update and configure the .
  
 .. code-block:: none
  
-  dnu commands install SecretManager
+    dnu commands install SecretManager
+    for beta6 and beta7, use:
+    dnu commands install Microsoft.Framework.SecretManager)
 
 - Test the secret manager tool by running the following command::
 
