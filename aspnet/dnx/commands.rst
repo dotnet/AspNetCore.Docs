@@ -222,7 +222,6 @@ The ``Microsoft.Framework.Caching.SqlConfig`` package contains commands for crea
 | Command             | Description                                   |
 +=====================+===============================================+
 | set                 | Sets the user secret to the specified value.  |
-
 +---------------------+-----------------------------------------------+
 | help                | Show help information.                        |
 +---------------------+-----------------------------------------------+
