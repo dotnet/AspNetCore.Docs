@@ -18,14 +18,14 @@ namespace DiagDemo
         {
             if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
             {
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseDeveloperExceptionPage(ErrorPageOptions.ShowAll);
 
                 app.UseRuntimeInfoPage(); // default path is /runtimeinfo
             }
             else
             {
                 // specify production behavior for error handling, for example:
-                // app.UseErrorHandler("/Home/Error");
+                // app.UseExceptionHandler("/Home/Error");
                 // if nothing is set here, web server error page will be displayed
             }
 

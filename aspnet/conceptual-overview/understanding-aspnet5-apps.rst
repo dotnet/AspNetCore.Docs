@@ -233,14 +233,14 @@ Finally, the ``Configure`` method will be called by the runtime after ``Configur
 		if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
 		{
 			app.UseBrowserLink();
-			app.UseErrorPage(ErrorPageOptions.ShowAll);
+			app.UseDeveloperExceptionPage(ErrorPageOptions.ShowAll);
 			app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
 		}
 		else
 		{
 			// Add Error handling middleware which catches all application specific errors and
 			// send the request to the following path or controller action.
-			app.UseErrorHandler("/Home/Error");
+			app.UseExceptionHandler("/Home/Error");
 		}
 
 		// Add static files to the request pipeline.
