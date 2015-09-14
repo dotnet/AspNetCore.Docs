@@ -8,18 +8,19 @@ registered subscribers. The POST request contains information about the
 event which makes it possible for the receiver to act accordingly. 
 
 Because of their simplicity, WebHooks are already exposed by a large 
-number of services including Dropbox, GitHub, MailChimp, PayPal, Slack, 
-Trello, and many more. For example, a WebHook can indicate that a file 
-has changed in Dropbox, or a code change has been committed in GitHub, 
-or a payment has been initiated in PayPal, or a card has been created in 
-Trello. The possibilities are endless! 
+number of services including `Dropbox <http://dropbox.com/>`_, `GitHub <http://www.github.com/>`_, 
+`MailChimp <http://www.mailchimp.com/>`_, `PayPal <http://www.paypal.com/>`_, `Slack <http://www.slack.com>`_, 
+`Stripe <http://www.stripe.com>`_, `Trello <http://www.trello.com/>`_, and many more. For example, a WebHook can indicate that a file 
+has changed in Dropbox_, or a code change has been committed in GitHub, 
+or a payment has been initiated in PayPal_, or a card has been created in 
+Trello_. The possibilities are endless! 
 
 Microsoft ASP.NET WebHooks makes it easier to both send and receive WebHooks as part of your ASP.NET application:
 
 * On the receiving side, it provides a common model for receiving and 
   processing WebHooks from any number of WebHook providers. It comes out 
-  of the box with support for Dropbox, GitHub, MailChimp, PayPal, Pusher, 
-  Slack, Stripe, Trello, and WordPress but it is easy to add support for 
+  of the box with support for Dropbox_, GitHub_, MailChimp_, PayPal_, `Pusher <http://www.pusher.com>`_, 
+  `Salesforce <http://www.salesforce.com>`_, Slack_, Stripe_, Trello_, and `WordPress <http://www.wordpress.com>`_ but it is easy to add support for 
   more. 
 
 * On the sending side it provides support for managing and storing 
@@ -32,7 +33,7 @@ If you only need to receive WebHooks from other services then you can
 use just the receiver part; if you only want to expose WebHooks for 
 others to consume, then you can do just that. 
 
-The code targets ASP.NET Web API 2 and ASP.NET MVC 5 and is available as `OSS on GitHub <https://github.com/aspnet/WebHooks/tree/1.2.0-beta>`__.
+The code targets ASP.NET Web API 2 and ASP.NET MVC 5 and is available as `OSS on GitHub <https://github.com/aspnet/WebHooks/tree/1.2.0-beta>`_.
 
 WebHooks Overview
 -----------------
@@ -43,7 +44,7 @@ notifications are propagated as HTTP POST requests containing information about 
 
 Typically the HTTP POST request contains a JSON object or HTML form data determined by the WebHook sender including 
 information about the event causing the WebHook to trigger. For example, an example of a WebHook POST request body 
-from GitHub looks like this as a result of a new issue being opened in a particular repository::
+from GitHub_ looks like this as a result of a new issue being opened in a particular repository::
 
   {
     "action": "opened",
@@ -70,7 +71,7 @@ from GitHub looks like this as a result of a new issue being opened in a particu
   }    
 
 To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then 
-verified by the receiver. For example, GitHub includes an ‘X-Hub-Signature’ HTTP header with a hash of the request 
+verified by the receiver. For example, `GitHub WebHooks <https://developer.github.com/webhooks/>`_ includes an *X-Hub-Signature* HTTP header with a hash of the request 
 body which is checked by the receiver implementation so you don’t have to worry about it.
 
 The WebHook flow generally goes something like this:

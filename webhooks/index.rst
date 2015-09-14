@@ -15,6 +15,7 @@ ASP.NET WebHooks Documentation
 
     overview
     receiving/index
+    diagnostics/index
 
 .. include:: /../common/contribute.txt
 

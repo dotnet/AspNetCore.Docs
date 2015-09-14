@@ -1,5 +1,3 @@
-.. include:: /../common/stub-topic.txt
-
 Processing WebHooks
 ===================
 
