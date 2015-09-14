@@ -81,11 +81,11 @@ Yeoman will create the project and supporting files.
 Client-Side Build Support
 -------------------------
 
-The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates support files to configure client-side build tools. `Grunt or Gulp task runners <http://docs.asp.net/en/latest/client-side/grunt-gulp.html>`_ files are added to your project to automate build tasks for Web Application projects. By default, aspnet-generator creates **gruntfile.js** to run tasks. Running the generator with the **--gulp** argument generates **gulpfile.js** instead.
+The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates support files to configure client-side build tools. `Grunt or Gulp task runners <http://docs.asp.net/en/latest/client-side/grunt-gulp.html>`_ files are added to your project to automate build tasks for Web Application projects. By default, aspnet-generator creates **gulpfile.js** to run tasks. Running the generator with the **--grunt** argument generates **Gruntfile.js** instead.
 
 .. code-block:: console 
 
- yo aspnet --gulp
+ yo aspnet --grunt
  
 The generator also configures **package.json** to load Grunt or Gulp and adds bower.json to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
 
