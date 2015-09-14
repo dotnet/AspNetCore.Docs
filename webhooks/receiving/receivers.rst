@@ -1,5 +1,3 @@
-.. include:: /../common/stub-topic.txt
-
 WebHook Receivers
 =================
 
@@ -107,6 +105,3 @@ WebHook Receivers are initialized by registering them, typically in the *WebApiC
         }
     }
 
-.. include:: /../common/stub-notice.txt
-
-.. _issue: https://github.com/aspnet/Docs/issues/111

@@ -8,7 +8,7 @@
 ASP.NET WebHooks Documentation
 ==============================
 
-.. include:: ../common/stub-overview.txt
+.. include:: /../common/stub-overview.txt
 
 .. toctree::
     :titlesonly:
@@ -16,6 +16,5 @@ ASP.NET WebHooks Documentation
     overview
     receiving/index
 
-.. include:: ../common/contribute.txt
-
+.. include:: /../common/contribute.txt
 

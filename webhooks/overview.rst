@@ -1,5 +1,3 @@
-.. include:: /../common/stub-topic.txt
-
 Overview of ASP.NET WebHooks
 ============================
 
@@ -69,7 +67,7 @@ from GitHub looks like this as a result of a new issue being opened in a particu
         "id": 1,
         ...
     }
-  }	
+  }    
 
 To ensure that the WebHook is indeed from the intended sender, the POST request is secured in some way and then 
 verified by the receiver. For example, GitHub includes an ‘X-Hub-Signature’ HTTP header with a hash of the request 
@@ -106,7 +104,4 @@ The two key concepts here are *Receivers* and *Handlers*:
 * Handlers are typicaly where user code runs processing the particular WebHook.
 
 In the following nodes these concepts are described in more details.
-  
-.. include:: /../common/stub-notice.txt
 
-.. _issue: https://github.com/aspnet/Docs/issues/113
