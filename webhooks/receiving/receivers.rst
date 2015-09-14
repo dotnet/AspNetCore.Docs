@@ -27,7 +27,7 @@ The URI of this controller is the WebHook URI that you register with the service
 
   https://<host>/api/webhooks/incoming/<receiver>/{id}
 
-For security reasons, many WebHook receivers require that the the URI is an *https* URI and in some cases it must
+For security reasons, many WebHook receivers require that the URI is an *https* URI and in some cases it must
 also contain an additional query parameter which is used to enforce that only the intended party can send
 WebHooks to the URI above.
 

@@ -98,10 +98,10 @@ The Microsoft ASP.NET WebHooks processing pipeline for incoming WebHooks looks l
 
 The two key concepts here are *Receivers* and *Handlers*:
 
-* Receivers are responsible for handling the particular flavor of WebHook from a given sender and for enforcing security checks
+* *Receivers* are responsible for handling the particular flavor of WebHook from a given sender and for enforcing security checks
   to ensure that the WebHook request indeed is from the intended sender.
  
-* Handlers are typicaly where user code runs processing the particular WebHook.
+* *Handlers* are typically where user code runs processing the particular WebHook.
 
 In the following nodes these concepts are described in more details.
 

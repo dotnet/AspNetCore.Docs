@@ -81,7 +81,7 @@ Queued Processing
 
 Most WebHook senders will resend a WebHook if a response is not 
 generated within a handful of seconds. This means that your handler must 
-complete the processing within that timeframe in order not for it to be 
+complete the processing within that time frame in order not for it to be 
 called again. 
 
 If the processing takes longer, or is better handled separately then the 
@@ -96,7 +96,7 @@ An outline of a WebHookQueueHandler_ implementation is provided here::
         public override Task EnqueueAsync(WebHookQueueContext context)
         {
         
-            // Enqueue WebHookQueueContext to your queueing system of choice
+            // Enqueue WebHookQueueContext to your queuing system of choice
         
             return Task.FromResult(true);
         }
