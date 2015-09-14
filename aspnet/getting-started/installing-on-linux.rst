@@ -102,7 +102,7 @@ You should now be able to restore packages from both the official public feed on
 Installing on CentOS, Fedora and derivatives
 --------------------------------------------
 
- The follwoing instrcution were tested using CentOS 7.
+ The follwoing instrcutions were tested using CentOS 7.
  
 Install Mono
 ^^^^^^^^^^^^
@@ -118,11 +118,11 @@ First import the public key from ubuntu.com::
 Now your CentOS 7 have the public key from this server.
 
 In the next Step we want add the repo from the mono project. For this step we need a tool collection called yum-utils.
-Wie install it with this command::
+We install it with this command::
 
     sudo yum install yum-utils
 
-Now we can add the repositorie from mono::
+Now we can add the respository from mono::
 
     sudo yum-config-manager --add-repo http://download.mono-project.com/repo/centos
     sudo yum update
