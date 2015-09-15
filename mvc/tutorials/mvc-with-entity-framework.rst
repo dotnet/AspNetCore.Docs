@@ -1,4 +1,4 @@
-Get Started with Entity Framework 7 Code using ASP.NET MVC 6
+Get Started with Entity Framework 7 using ASP.NET MVC 6
 ============================================================
 
 By `Mike Wasson`_  and `Rick Anderson`_
