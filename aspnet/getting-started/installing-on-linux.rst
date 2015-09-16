@@ -131,7 +131,7 @@ First import the public key from ubuntu.com::
 
 Now your CentOS 7 have the public key from this server.
 
-In the next Step we want add the repo from the mono project. For this step we need a tool collection called yum-utils.
+In the next Step we want add the repo from the mono project. Now, we have to add the yum repository provided by the Mono project. For this step we need to install the yum-utils package.
 We install it with this command::
 
     sudo yum install yum-utils
