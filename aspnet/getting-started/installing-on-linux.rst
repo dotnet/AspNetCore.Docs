@@ -136,7 +136,7 @@ We install it with this command::
 
     sudo yum install yum-utils
 
-Now we can add the respository from mono::
+Now we can add the repository from mono::
 
     sudo yum-config-manager --add-repo http://download.mono-project.com/repo/centos
     sudo yum update
