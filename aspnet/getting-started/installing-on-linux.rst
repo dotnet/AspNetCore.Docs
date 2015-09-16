@@ -112,7 +112,7 @@ You should now be able to restore packages from both the official public feed on
 Installing on CentOS, Fedora and derivatives
 --------------------------------------------
 
- The follwoing instrcutions were tested using CentOS 7.
+ The follwoing instructions were tested using CentOS 7.
  
 Install Mono
 ^^^^^^^^^^^^
