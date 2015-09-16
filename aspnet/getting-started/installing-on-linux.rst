@@ -148,7 +148,7 @@ In the last step we can now install mono::
 Install Libuv
 ^^^^^^^^^^^^^
 
-`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by the `KestrelHttpServer <https://github.com/aspnet/KestrelHttpServer>`_ that we will use to host our ASP.NET 5 web applications.
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by the `Kestrel <https://github.com/aspnet/KestrelHttpServer>`_ that we will use to host our ASP.NET 5 web applications.
 
 To build libuv you should do the following::
 
