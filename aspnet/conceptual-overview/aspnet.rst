@@ -43,6 +43,7 @@ ASP.NET 5 applications are built and run using the new :doc:`.NET Execution Envi
 ASP.NET 5 applications are defined using a public ``Startup`` class:
 
 .. code-block:: c#
+    :linenos:
 
     public class Startup
     {
@@ -97,21 +98,11 @@ Configuration
 
 ASP.NET 5 uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET 5 and can also be set up using environment variables:
 
-.. code-block:: c#
-
-    // Setup configuration sources.
-    var configuration = new Configuration()
-        .AddJsonFile("config.json")
-        .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
-
-    if (env.IsEnvironment("Development"))
-    {
-        // This reads the configuration keys from the secret store.
-        // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-        configuration.AddUserSecrets();
-    }
-    configuration.AddEnvironmentVariables();
-    Configuration = configuration;
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :language: c#
+  :linenos:
+  :lines: 29-42
+  :dedent: 12
 
 See :doc:`/fundamentals/configuration` for more details on the new configuration system and :doc:`/fundamentals/environments` for details on how to work with environments in ASP.NET 5.
 
