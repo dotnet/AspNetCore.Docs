@@ -24,12 +24,9 @@ Prerequisites
    sudo privilege.
 2. Public access to port 80 on your server. You may want to use IPTables
    to restrict access to your server.
-3. An exisiting ASP.NET 5 application. If you do not have an application
-   you can use Visual Studio or the `Yeoman
-   generator <https://github.com/omnisharp/generator-aspnet>`__ to
-   quickly scaffold an app.
+3. An exisiting ASP.NET 5 application.
 
-Before getting started you require Mono, LibUV and DNVM. Follow the instructions on the :doc:`/getting-started/installing-on-linux` page.
+Before getting started you require LibUV and DNVM. Follow the instructions on the :doc:`/getting-started/installing-on-linux` page.
 
 
 Copy over your app
@@ -208,21 +205,9 @@ user to run our ASP.NET web application
 Install a DNX globally
 ----------------------
 
-.. note::
-
-    This workaround is only required till `this change gets
-    merged <https://github.com/aspnet/dnvm/pull/393>`__
-
 .. code:: shell
 
-    # Grab a DNX from NuGet
-    dnvm upgrade
-
-    # Make it available globally
-    sudo mkdir -p /usr/local/lib/dnx/runtimes/
-    sudo cp -R ~/.dnx/runtimes/dnx-mono.1.0.0-beta6/ /usr/local/lib/dnx/runtimes/
-    sudo chmod 775 -R /usr/local/lib/dnx/runtimes/dnx-mono.1.0.0-beta6/
-    sudo chown -R aspnet /usr/local/lib/dnx/runtimes/dnx-mono.1.0.0-beta6/
+    dnvm install 1.0.0-beta7 -g -r coreclr
 
 Start our web application on startup
 ------------------------------------
@@ -241,7 +226,7 @@ text editor update the file contents to match what is shown below.
     stop on runlevel [016]
 
     script
-        exec start-stop-daemon --start --make-pidfile --pidfile /var/run/aspnet5webserver.pid --chuid aspnet --exec /usr/local/lib/runtimes/dnx-mono.1.0.0-beta6/bin/dnx /path/to/packaged/app kestrel --signal INT
+        exec start-stop-daemon --start --make-pidfile --pidfile /var/run/aspnet5webserver.pid --chuid aspnet --exec /usr/local/lib/dnx/runtimes/dnx-coreclr-linux-x64.1.0.0-beta7/bin/dnx /path/to/packaged/app kestrel --signal INT
     end script
 
     pre-start script
@@ -252,6 +237,10 @@ text editor update the file contents to match what is shown below.
         rm /var/run/aspnet5webserver.pid
         echo "[`date`] (sys) Stopped" >> /var/log/aspnet5webserver.sys.log
     end script
+
+.. note::
+
+    In the above script replace ``/path/to/packaged/app`` with the path where your application resides on disk.
 
 Viewing your logs
 ~~~~~~~~~~~~~~~~~
