@@ -119,7 +119,7 @@ Install Mono
 
 .. note::
 
-This step it's optional if you want only use CoreCLR.
+This step is optional if you will only be using CoreCLR.
 
 `Mono <http://mono-project.com>`_ is an ongoing effort to port the .NET Framework to other platforms. Mono is one of the ways .NET applications can run on platforms other than Windows. ASP.NET 5 requires a version of Mono greater than 4.0.1.
 
