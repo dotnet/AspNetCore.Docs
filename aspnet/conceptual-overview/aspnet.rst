@@ -100,18 +100,18 @@ ASP.NET 5 uses a new configuration model for handling of simple name-value pairs
 .. code-block:: c#
 
     // Setup configuration sources.
-    var configuration = new Configuration()
+    var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
         .AddJsonFile("config.json")
         .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
-    if (env.IsEnvironment("Development"))
+    if (env.IsDevelopment())
     {
         // This reads the configuration keys from the secret store.
         // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-        configuration.AddUserSecrets();
+        builder.AddUserSecrets();
     }
-    configuration.AddEnvironmentVariables();
-    Configuration = configuration;
+    builder.AddEnvironmentVariables();
+    Configuration = builder.Build();
 
 See :doc:`/fundamentals/configuration` for more details on the new configuration system and :doc:`/fundamentals/environments` for details on how to work with environments in ASP.NET 5.
 
