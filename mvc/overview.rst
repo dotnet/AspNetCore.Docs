@@ -34,6 +34,8 @@ The ASP.NET MVC framework provides the following features:
 
 - `Content negotiation <http://www.asp.net/web-api/overview/formats-and-model-binding/content-negotiation>`_ is a mechanism defined in the HTTP specification (RFC 2616) as "the process of selecting the best representation for a given response when there are multiple representations available."
 
+- :doc:`Areas </controllers/areas>` provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. 
+
 MVC 6 - A unified framework for Web UI and Web APIs
 ---------------------------------------------------
 
