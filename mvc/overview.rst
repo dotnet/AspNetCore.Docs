@@ -26,15 +26,15 @@ The ASP.NET MVC framework provides the following features:
 
 - Extensive support for :doc:`ASP.NET routing </controllers/routing>`, which is a powerful URL-mapping component that lets you build applications that have comprehensible and searchable URLs. This enables you to define your application's URL naming patterns that work well for search engine optimization (SEO) and for link generation.
 
-- Support for existing ASP.NET features. ASP.NET MVC lets you use features such as forms authentication and Windows authentication, URL authorization, membership and roles, output and data caching, session and profile state management, health monitoring, the configuration system, and the provider architecture.
-
 - :doc:`View components </views/view-components>` - Similar to partial views, view components include the same separation-of-concerns and testability benefits found between a controller and view that acts as a mini-controller capable of rendering a partial response to the client rather than a whole response.
 
 - :doc:`Tag Helpers </views/tag-helpers/intro>` - Similar to HTML Helpers, Tag Helpers enable you to dynamically modify the HTML returned to the client based on input from the controller.
 
 - `Content negotiation <http://www.asp.net/web-api/overview/formats-and-model-binding/content-negotiation>`_ is a mechanism defined in the HTTP specification (RFC 2616) as "the process of selecting the best representation for a given response when there are multiple representations available."
 
-- :doc:`Areas </controllers/areas>` provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. 
+- :doc:`Areas </controllers/areas>` provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers.
+
+- Support for existing ASP.NET features such as forms and Windows authentication, URL authorization, membership and roles, output and data caching, session and profile state management, health monitoring, the configuration system, and the provider architecture.
 
 MVC 6 - A unified framework for Web UI and Web APIs
 ---------------------------------------------------
