@@ -28,6 +28,10 @@ The ASP.NET MVC framework provides the following features:
 
 - Support for existing ASP.NET features. ASP.NET MVC lets you use features such as forms authentication and Windows authentication, URL authorization, membership and roles, output and data caching, session and profile state management, health monitoring, the configuration system, and the provider architecture.
 
+- :doc:`View components </views/view-components>` - Similar to partial views, view components include the same separation-of-concerns and testability benefits found between a controller and view that acts as a mini-controller capable of rendering a partial response to the client rather than a whole response.
+
+- :doc:`Tag Helpers </views/tag-helpers/intro>` - Similar to HTML Helpers, Tag Helpers enable you to dynamically modify the HTML returned to the client based on input from the controller.
+
 - `Content negotiation <http://www.asp.net/web-api/overview/formats-and-model-binding/content-negotiation>`_ is a mechanism defined in the HTTP specification (RFC 2616) as "the process of selecting the best representation for a given response when there are multiple representations available."
 
 MVC 6 - A unified framework for Web UI and Web APIs
