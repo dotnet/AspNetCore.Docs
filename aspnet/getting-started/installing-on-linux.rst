@@ -114,9 +114,10 @@ Installing on CentOS, Fedora and derivatives
 
  The follwoing instructions were tested using CentOS 7.
  
+
 .. note::
 
-If you want use CLR you must install mono. This step is optional if you will only be using CoreCLR. `Mono <http://mono-project.com>`_ is an ongoing effort to port the .NET Framework to other platforms. Mono is one of the ways .NET applications can run on platforms other than Windows. ASP.NET 5 requires a version of Mono greater than 4.0.1. For more information to install mono on CentOS you can follow the `install instructions <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`.
+    If you want use CLR you must install mono. This step is optional if you will only be using CoreCLR. `Mono <http://mono-project.com>`_ is an ongoing effort to port the .NET Framework to other platforms. Mono is one of the ways .NET applications can run on platforms other than Windows. ASP.NET 5 requires a version of Mono greater than 4.0.1. For more information to install mono on CentOS you can follow the `install instructions <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`_.
 
 Install Libuv
 ^^^^^^^^^^^^^
