@@ -1,7 +1,7 @@
 Installing ASP.NET 5 On Windows
 ===============================
 
-By `Steve Smith`_
+By `Steve Smith`_, `Daniel Roth`_
 
 This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
 
@@ -23,8 +23,6 @@ When installing Visual Studio 2015, you'll want to be sure to specify that you w
 
 Once Visual Studio is installed, follow the instructions on the Download Center page for installing the latest `ASP.NET 5 preview (Beta7)`_.
 
-Now you're ready to :doc:`build your first ASP.NET application </tutorials/your-first-aspnet-application>`.
-
 Install ASP.NET Standalone
 --------------------------
 
@@ -33,37 +31,37 @@ Visual Studio isn't the only way to install ASP.NET, and installing an IDE may n
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The .NET Version Manager is used to install one or more versions of the .NET Execution Environment (DNX), and to manage which version is currently active. 
+Use .NET Version Manager to install different versions of the .NET Execution Environment (DNX). 
 
-To install DNVM on Windows, download and run the appropriate installer for your operating system type (x64 is most common):
-- `.NET Version Manager (x86) <http://download.microsoft.com/download/2/4/F/24FABE35-76C4-42DD-AA36-0909B18AD74B/DotNetVersionManager-x86.msi>`__
-- `.NET Version Manager (x64) <http://download.microsoft.com/download/2/4/F/24FABE35-76C4-42DD-AA36-0909B18AD74B/DotNetVersionManager-x64.msi>`__
+To install DNVM open a command prompt and run the following::
 
-After installing DNVM open a new command prompt and confirm DNVM is working by typing: ``dnvm``. Assuming DNVM is configured correctly, you should see a result like this:
+    @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
-.. image:: installing-on-windows/_static/dnvm-prompt.png
+Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
 Install the .NET Execution Environment (DNX)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To install the latest version of DNX using DNVM, run: ``dnvm upgrade``
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for the full .NET Framework or for .NET Core (see :doc:`choosing-the-right-dotnet`).
 
-This command downloads the latest version of DNX and puts it on your user profile so that it is ready to use. 
+To install DNX for .NET Core run::
 
-After this command completes, run: ``dnx`` to confirm DNX is configured correctly.
+  dnvm upgrade -r coreclr
 
-.. image:: installing-on-windows/_static/dnx-installed.png
+To install DNX for the full .NET Framework run::
 
-Now that DNX is installed, you're ready to begin using ASP.NET 5! 
+  dnvm upgrade -r clr
+
+By default DNVM will install DNX for the full .NET Framework if no runtime is specified.
 
 Summary
 -------
 
-You can install ASP.NET 5 on Windows either as a standalone installation, or as part of Visual Studio 2015. In either case, installation is straightforward, and once complete, you're ready to get started building :doc:`your first ASP.NET application </tutorials/your-first-aspnet-application>`.
+You can install ASP.NET 5 on Windows either as a standalone installation, or as part of Visual Studio 2015. In either case, installation is straightforward. You're now ready to build :doc:`your first ASP.NET application </tutorials/your-first-aspnet-application>`!
 
 Related Resources
 ^^^^^^^^^^^^^^^^^
 
 - :doc:`/tutorials/your-first-aspnet-application`
-- :doc:`/client-side/yeoman`
+- :doc:`/fundamentals/index`
 
