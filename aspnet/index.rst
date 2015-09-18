@@ -12,6 +12,11 @@ ASP.NET 5 Documentation
 
 .. include:: ../common/stub-overview.txt
 
+Frameworks
+----------
+
+* :ref:`MVC <mvc:index>`
+
 Topics
 ------
 
