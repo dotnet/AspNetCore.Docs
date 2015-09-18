@@ -177,8 +177,8 @@ Open a command prompt in the project directory (ContosoBooks/src/ContosoBooks) a
 .. code-block:: none
 
     dnvm use 1.0.0-beta5
-    dnx . ef migration add Initial
-    dnx . ef migration apply
+    dnx ef migration add Initial
+    dnx ef migration apply
 
 The "``add Initial``" command adds code to the project that allows EF to update the database schema. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
 
@@ -190,7 +190,7 @@ The "``add Initial``" command adds code to the project that allows EF to update 
 
 	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-beta5\\bin to process PATH 
 
-- **dnx . ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
+- **dnx ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
 
 Add an index page
 -----------------
