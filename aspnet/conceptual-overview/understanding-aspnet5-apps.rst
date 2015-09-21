@@ -51,7 +51,7 @@ The project.json file is new to ASP.NET 5. It is used to define the project's `s
 
 .. image:: understanding-aspnet5-apps/_static/project-json.png
 
-The **webroot** section specifies the folder that should act as the root of the web site, which by convention defaults to `the wwwroot folder`_. The version property specifies the current version of the project. You can also specify other metadata about the project such as **authors** and **description**.
+The **webroot** section specifies the folder that should act as the root of the web site, which by convention defaults to `the wwwroot folder`_. The version property specifies the current version of the project. You can also specify metadata about the project including the standard `Nuspec <https://docs.nuget.org/create/nuspec-reference>`_ metadata properties: **authors**, **description**, **copyright**, **projectUrl**, **licenseUrl**, **requireLicenseAcceptance**, **tags** and **title**. 
 
 ASP.NET 5 has a great deal of support for command line tooling, and the **commands** section allows you to configure what certain command line commands should do (for instance, launch a web site or run tests).
 
