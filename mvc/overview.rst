@@ -43,15 +43,18 @@ The ASP.NET MVC framework provides the following features:
 Routing
 -------
 
-MVC 6 provides support for :doc:`routing </controllers/routing>` - a powerful URL-mapping component that lets you build applications that have comprehensible and searchable URLs. This enables you to define your application's URL naming patterns that work well for search engine optimization (SEO) and for link generation. Support for:
+MVC 6 provides support for :doc:`routing </controllers/routing>` - a powerful URL-mapping component that lets you build applications that have comprehensible and searchable URLs. This enables you to define your application's URL naming patterns that work well for search engine optimization (SEO) and for link generation.
 
-  - Convention-based routing - Enables you to specify routing information in a centralized location.
-  - Attribute-based routing - Enables you to specify routing information by decorating your controllers and actions with attributes that define your application's routes.
-  - Token replacement - Enables you to future-proof your routes by allowing you to specify tokens - such as ``[controller]`` - instead of hard-coded literals representing specific controllers or action names.
-  - Constraints, defaults, and optionality - Give you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
+  - **Convention routing** enables you to define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the incoming URL and matches it to one of the defined URL formats, and calls the associated controller's action method.
+
+  - **Attribute routing** enables you to specify routing information by decorating your controllers and actions with attributes that define your application's routes. This means that your route definitions are placed next to the controller and action with which they're associated.
+
+  - **Route tokens** enables you to future-proof your routes by allowing you to specify tokens - such as ``[controller]`` or ``[action]`` - instead of hard-coded literals representing specific controllers or action names. This way, if you change the name of your controller or action at some point, your routes will still work as your routing entry refers to the token and not the underlying string value.
+
+  - Constraints, defaults, and optionality - MVC gives you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
 
 Model binding and formatting
----------------------------
+----------------------------
 
 MVC :doc:`model binding and formatting </models/model-binding>` converts form (Web page) values and route data from the incoming HTTP request into objects that the controller can handle.
 
