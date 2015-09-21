@@ -1,6 +1,6 @@
 Overview of ASP.NET MVC
 =======================
-By `Tom Archer`
+By `Tom Archer`_
 
 .. image:: overview/_static/mvc.png
   :align: right
@@ -46,6 +46,8 @@ Routing
 :doc:`Routing </controllers/routing>` is a powerful URL-mapping component that lets you build applications that have comprehensible and searchable URLs. This enables you to define your application's URL naming patterns that work well for search engine optimization (SEO) and for link generation.
 
   - **Convention routing** enables you to define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the incoming URL and matches it to one of the defined URL formats, and calls the associated controller's action method.
+
+
 
   - **Attribute routing** enables you to specify routing information by decorating your controllers and actions with attributes that define your application's routes. This means that your route definitions are placed next to the controller and action with which they're associated.
 
