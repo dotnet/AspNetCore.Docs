@@ -1,7 +1,7 @@
 Application Insights
 ====================
 
-By `Steve Smith <http://blog.falafel.com/author/steve-smith/>`
+By `Steve Smith`_
 
 `Application Insights <http://azure.microsoft.com/services/application-insights/>`_ provides development teams with a 360 |deg| view across their live application's performance, availability, and usage. It can also `detect and diagnose issues and exceptions <http://azure.microsoft.com/documentation/articles/app-insights-detect-triage-diagnose/>`_ in these applications. Telemetry data may be collected from web servers and web clients, as well as desktop  and mobile applications.
 
