@@ -286,9 +286,9 @@ To build the win-loss record string, we can use a computed observable. Note that
 .. code-block:: javascript
 
 	self.displayRecord = ko.computed(function () {
-		var wins = self.gameResults().filter(function (value.result() == "Win"; } ).length;
-		var losses = self.gameResults().filter(function (value.result() == "Loss"; } ).length;
-		var ties = self.gameResults().filter(function (value.result() == "Tie"; } ).length;
+		var wins = self.gameResults().filter(function (value) { return value.result() == "Win"; }).length;
+		var losses = self.gameResults().filter(function (value) { return value.result() == "Loss"; }).length;
+		var ties = self.gameResults().filter(function (value) { return value.result() == "Tie"; }).length;
 		return wins + " - " + losses + " - " + ties;
 	}, this);
 
