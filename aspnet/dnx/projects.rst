@@ -1,16 +1,23 @@
 Working with DNX Projects
 =========================
 
-DNX projects are used to build and run .NET applications for Windows, Mac and Linux. DNX provides a host process, CLR hosting logic and managed entry point discovery. 
+DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
-.. note:: To see and create an example of a DNX project, follow the steps provided in the tutorial `Create an ASP.NET 5 web app in Visual Studio Code <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_. After creating the app and opening it in VSCode, you will be able to view the **project.json** file.
+In this article:
+  - `Creating a new project`_
+  - `Targeting frameworks`_
+  - `Adding dependencies`_
+  - `Restoring packages`_
+  - `Using commands`_
+  - `Running your app`_
+  - `Building`_
+  - `Publishing`_
+  - `Scripts`_
 
 Creating a new project 
 ----------------------
 
-At its simplest form, a DNX project is a **project.json** file along with a code file:
-
-::
+At its simplest form, a DNX project is a **project.json** file along with a code file::
 
     -MyApp (folder)
     --project.json
@@ -638,3 +645,9 @@ Token                Replaced with
 ==================== =============================
 
 If any of the above tokens appear in the value of the script key they will be replaced with the associated value.
+
+Related Resources
+-----------------
+
+- :doc:`/dnx/overview`
+- `Create an ASP.NET 5 web app in Visual Studio Code  <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_

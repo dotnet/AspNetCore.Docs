@@ -84,7 +84,7 @@ A command is a named execution of a .NET entry point with specific arguments. Yo
 
 You can then use DNX to execute the commands defined by your project, like this::
 
-    dnx . web
+    dnx web
 
 Commands can  be built and distributed as NuGet packages. You can then use DNU to install commands globally on a machine::
 
