@@ -138,6 +138,16 @@ To build libuv you should do the following::
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
     ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
 
+Install libuwind
+^^^^^^^^^^^^^^^^
+
+`Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
+
+To install it you must do the following steps:
+
+	sudo yum -y install epel-release
+	sudo yum -y install libunwind 
+
 
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
