@@ -138,15 +138,27 @@ To build libuv you should do the following::
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
     ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
 
-Install libuwind
-^^^^^^^^^^^^^^^^
+Install CoreCLR dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
-
-To install it you must do the following steps::
+To run CoreCLR correctly you must install much dependencies from epel. To include epel in CentOS you must do following::
 
     sudo yum -y install epel-release
-    sudo yum -y install libunwind 
+
+To install the dependencies run this command::
+
+    sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
+
+.. note::
+
+    This step it's optional. For the discription of the depencies you can read the following lines.
+    - `Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
+    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project, that you can use to help with the translation of your programms.
+    - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
+    - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
+    - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
+
+
 
 
 Install the .NET Version Manager (DNVM)
