@@ -8,7 +8,14 @@
 ASP.NET 5 Documentation
 =======================
 
+.. attention:: ASP.NET 5 beta7 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
+
 .. include:: ../common/stub-overview.txt
+
+Frameworks
+----------
+
+* :ref:`MVC <mvc:index>`
 
 Topics
 ------

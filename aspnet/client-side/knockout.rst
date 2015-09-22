@@ -210,7 +210,7 @@ Knockout includes bindings that can perform conditional and looping operations. 
 				<th>Result</th>
 			</tr>
 		</thead>
-		<tbody data-bind:"foreach: gameResults">
+		<tbody data-bind="foreach: gameResults">
 			<tr>
 				<td data-bind="text:opponent"></td>
 				<td data-bind="text:result"></td>
@@ -320,7 +320,7 @@ Knockout has support for templates, so that you can easily separate your UI from
  .. code-block:: html
 	:emphasize-lines: 1,3
 
-	<tbody data-bind:"template: { name: 'rowTemplate', foreach: gameResults">
+	<tbody data-bind="template: { name: 'rowTemplate', foreach: gameResults }">
 	</tbody>
 	<script type="text/html" id="rowTemplate">
 		<tr>

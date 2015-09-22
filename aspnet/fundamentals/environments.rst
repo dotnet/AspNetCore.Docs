@@ -62,21 +62,15 @@ The ``IHostingEnvironment`` service provides the core abstraction for working wi
 
 If you need to check whether the application is running in a particular environment, use ``env.IsEnvironment("environmentname")`` since it will correctly ignore case (instead of checking if ``env.EnvironmentName == "Development"`` for example).
 
-The following code is taken from the default ASP.NET 5 web site template:
+For example, you can use the following code in you Configure method to setup environment specific error handling:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
-	:caption: Startup.cs (some parts removed for brevity)
 	:linenos:
-	:dedent: 4
-	:lines: 28-48,92-111,137-138
-	:emphasize-lines: 9,11-16,30-41
+	:dedent: 12
+	:lines: 96-107
 
-The highlighted sections in the example above show several examples of adjusting application configuration based on environment.
-
-In the ``Startup()`` method (constructor), the configuration of the application is set up to optionally allow for environment-specific configuration files (e.g. ``config.Development.json``) that will override any other config settings (because the file is added last in the configuration setup chain - :doc:`learn more about ASP.NET configuration <configuration>`). A call to ``IsEnvironment()`` is also used to ensure that User Secrets are only configured for use in ``Development`` (learn more about User Secrets and the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_).
-
-In ``Configure()``, the environment is checked once more, and if the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
+If the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
 Startup conventions
 -------------------

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using WebApplication1;
 using WebApplication1.Models;
 using WebApplication1.Services;
+using WebApplication1.ViewModels.Account;
 
 namespace WebApplication1.Controllers
 {
@@ -446,7 +443,7 @@ namespace WebApplication1.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                context.Database.ApplyMigrations();
+                context.Database.Migrate();
             }
         }
 
