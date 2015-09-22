@@ -143,7 +143,7 @@ Install libuwind
 
 `Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
 
-To install it you must do the following steps:
+To install it you must do the following steps::
 
     sudo yum -y install epel-release
     sudo yum -y install libunwind 
