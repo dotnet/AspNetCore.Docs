@@ -145,8 +145,8 @@ Install libuwind
 
 To install it you must do the following steps:
 
-	sudo yum -y install epel-release
-	sudo yum -y install libunwind 
+    sudo yum -y install epel-release
+    sudo yum -y install libunwind 
 
 
 Install the .NET Version Manager (DNVM)
