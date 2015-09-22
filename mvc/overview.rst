@@ -47,9 +47,28 @@ Routing
 
   - **Convention routing** enables you to define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the incoming URL and matches it to one of the defined URL formats, and calls the associated controller's action method.
 
+   In the following example, the first argument - ``name`` - is the name of the route, and is used to distinguish this route from any other routes you define. The second argument - ``url`` - is the URL template for this route that represents the format that the URL should take if this is the correct route for the incoming URL. Finally, the third argument - ``defaults`` - contains the default route values.
 
+   Looking at this route definition, we can see that if the user types in ``http://<yourAppName>/Product/42``, the ``Index`` method on the ``ProductController`` controller will be called with the ``id`` value of ``42`` passed as a parameter.
+
+    .. code-block:: c#
+
+      routes.MapRoute(
+        name: "Product",
+        url: "Product/{id}",
+        defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
+      );
 
   - **Attribute routing** enables you to specify routing information by decorating your controllers and actions with attributes that define your application's routes. This means that your route definitions are placed next to the controller and action with which they're associated.
+
+  .. code-block:: c#
+
+      public class ProductController : Controller
+      {
+          [Route("Product/{sku:guid?}")]
+          public ActionResult Index( id) { ... }
+      }
+
 
   - **Route tokens** enable you to future-proof your routes by allowing you to specify tokens - such as ``[controller]`` or ``[action]`` - instead of hard-coded literals representing specific controllers or action names. This way, if you change the name of your controller or action at some point, your routes will still work as your routing entry refers to the token and not the underlying string value.
 
