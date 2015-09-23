@@ -324,7 +324,7 @@ Once you've defined the View Component, you can define the view that will displa
   <ul>
       @foreach (var product in Model)
       {
-        <li>@product.Name is on sale for @product.Price</li>
+        <li>@product.Name is on sale for @String.Format("{0:c}", product.Price)</li>
       }
   </ul>
 
