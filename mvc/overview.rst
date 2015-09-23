@@ -97,7 +97,7 @@ Routing
         }
 
 
-  - Parameter, constraints, and optionality - MVC gives you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
+  - Parameters, constraints, and optionality - MVC gives you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
 
     Defining parameters for an MVC route is done by utilizing the {} syntax. In the following example, a attribute route is defined as taking a single parameter called ``id``. The ``:int`` suffix to that parameter name indicates a constraint that the value *must* be an integer value. Finally, the ``?`` operator indicates that the value is optional.
 
@@ -128,86 +128,86 @@ Model binding and formatting
 
 MVC :doc:`model binding and formatting </models/model-binding>` converts form (Web page) values and route data from the incoming HTTP request into objects that the controller can handle. As a result, your controller logic doesn't have to do the work of figuring out the incoming request data; it simply has the data as parameters to its action methods.
 
-  To see this in action, let's take a simple example of creating a new product. First the Model definition which, to keep things simple, has only two fields (Item and Price).
+To see this in action, let's take a simple example of creating a new product. First the Model definition which, to keep things simple, has only two fields (``Name`` and ``Price``).
 
-  .. code-block:: c#
+.. code-block:: c#
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.ComponentModel.DataAnnotations;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Threading.Tasks;
+  using System.ComponentModel.DataAnnotations;
 
-    namespace MyStore.Models
-    {
-        public class Product
-        {
-            [Required(ErrorMessage ="Enter a name for this product")]
-            public string Item { get; set; }
-
-            public decimal Price { get; set; }
-        }
-    }
-
-  Now, let's see the view and its layout. Note the model definition at the top of the view.
-
-  .. code-block:: c#
-
-    @model MyStore.Models.Product
-    @{
-        ViewBag.Title = "Create Product";
-    }
-    <h2>@ViewBag.Title</h2>
-    @using (Html.BeginForm())
-    {
-        <div>
-            <label asp-for="Item"></label>
-            <input type="text" asp-for="Item"/>
-            <span asp-validation-for="Item"></span>
-        </div>
-
-        <div>
-            <label asp-for="Price"></label>
-            <input type="text" asp-for="Price" />
-            <span asp-validation-for="Price"></span>
-        </div>
-
-        <button type="submit">Create</button>
-    }
-
-    And now, the controller logic.
-
-    .. code-block:: c#
-
-      namespace MyStore.Controllers
+  namespace MyStore.Models
+  {
+      public class Product
       {
-          [Route("[controller]")]
-          public class ProductController : Controller
-          {
-              [Route("[action]")]
-              public IActionResult Create()
-              {
-                  return View();
-              }
+          [Required(ErrorMessage ="Enter a name for this product")]
+          public string Name { get; set; }
 
-              [HttpPost]
-              [Route("[action]")]
-              public IActionResult Create(Product p)
+          public decimal Price { get; set; }
+      }
+  }
+
+Now, let's see the view and its layout. Note the model definition at the top of the view.
+
+.. code-block:: c#
+
+  @model MyStore.Models.Product
+  @{
+      ViewBag.Title = "Create Product";
+  }
+  <h2>@ViewBag.Title</h2>
+  @using (Html.BeginForm())
+  {
+      <div>
+          <label asp-for="Name"></label>
+          <input type="text" asp-for="Name"/>
+          <span asp-validation-for="Name"></span>
+      </div>
+
+      <div>
+          <label asp-for="Price"></label>
+          <input type="text" asp-for="Price" />
+          <span asp-validation-for="Price"></span>
+      </div>
+
+      <button type="submit">Create</button>
+  }
+
+And now, the controller logic.
+
+.. code-block:: c#
+
+  namespace MyStore.Controllers
+  {
+      [Route("[controller]")]
+      public class ProductController : Controller
+      {
+          [Route("[action]")]
+          public IActionResult Create()
+          {
+              return View();
+          }
+
+          [HttpPost]
+          [Route("[action]")]
+          public IActionResult Create(Product p)
+          {
+              if (ModelState.IsValid)
               {
-                  if (ModelState.IsValid)
-                  {
-                      return RedirectToAction("Index");
-                  }
-                  return View(p);
+                  return RedirectToAction("Index");
               }
+              return View(p);
           }
       }
+  }
 
-  As you can see, there are two ``ProductController.Create`` methods - one (the parameter-less version) that is called when the user browses to ``http://<yourApp>/Product/Create``, and another one (with the ``HttpPost`` attribute) that is called when the user submits the form via the ``Submit`` button.
+As you can see, there are two ``ProductController.Create`` methods - one (the parameter-less version) that is called when the user browses to ``http://<yourApp>/Product/Create``, and another one (with the ``HttpPost`` attribute) that is called when the user submits the form via the ``Submit`` button.
 
-  Note that all the ``Create`` action method has to do is work with the incoming model object. That's because MVC model binding did the heavy lifting of retrieving the values that were POST-ed to your app, and mapped them into your model object for you.
+Note that all the ``Create`` action method has to do is work with the incoming model object. That's because MVC model binding did the heavy lifting of retrieving the values that were POST-ed to your app, and mapped them into your model object for you.
 
-  For more advanced scenarios - such as custom model binding (enables you to specify how you want complex route data to appear to the controller) and content negotiation (enables you to specify what format will be used in the response), see the article on :doc:`model binding and formatting </models/model-binding>`.
+For more advanced scenarios - such as custom model binding (enables you to specify how you want complex route data to appear to the controller) and content negotiation (enables you to specify what format will be used in the response), see the article on :doc:`model binding and formatting </models/model-binding>`.
 
 Razor Views
 -----------
