@@ -275,6 +275,65 @@ View Components
 ---------------
 Similar to partial views, :doc:`View Components </views/view-components>` include the same separation-of-concerns and testability benefits found between a controller and view that acts as a mini-controller capable of rendering a partial response to the client rather than a whole response.
 
+Adding a View Component to your app is accomplished with the following steps:
+
+  #. Create the View Component
+  #. Create the view that will display the data
+  #. Call the ``Component.Invoke`` method where you want to display the component
+
+As an example, let's say you're developing a store app and want to display on each page the items that are on sale.
+
+First, you create the View Component as a POCO that either derives from ``ViewComponent`` or is decorated with the ``ViewComponent`` attribute. The following View Component provides a method that returns all products where the ``Product.IsOnSale`` property is ``true``.
+
+.. code-block:: c#
+
+  ...
+  using Microsoft.AspNet.Mvc;
+
+  namespace MyStore.Models
+  {
+      public class OnSaleProducts : ViewComponent
+      {
+          public IViewComponentResult Invoke ()
+          {
+              var products = GetProductsOnSale().Where(p => p.IsOnSale);
+              return View(products);
+          }
+
+          public IList<Product> GetProductsOnSale()
+          {
+              IList<Product> products = new List<Product>()
+              {
+                  new Product() { Name = "Fancy Television", Price = 1000, IsOnSale = false},
+                  new Product() { Name = "Nice Television", Price = 500, IsOnSale = true},
+                  new Product() { Name = "Cheap Television", Price = 200, IsOnSale = false}
+              };
+
+              return products;
+          }
+      }
+  }
+
+Once you've defined the View Component, you can define the view that will display it.
+
+.. code-block:: html
+
+  @model IEnumerable<MyStore.Models.Product>
+
+  <h3>On-Sale Products</h3>
+  <ul>
+      @foreach (var product in Model)
+      {
+        <li>@product.Name is on sale for @product.Price</li>
+      }
+  </ul>
+
+Finally, you need only call the ``Component.Invoke`` method wherever you want to display the View Component.
+
+.. code-block:: html
+
+  @Component.Invoke("OnSaleProducts")
+
 Dependency Injection
 --------------------
 
