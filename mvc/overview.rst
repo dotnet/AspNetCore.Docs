@@ -126,12 +126,88 @@ Routing
 Model binding and formatting
 ----------------------------
 
-MVC :doc:`model binding and formatting </models/model-binding>` converts form (Web page) values and route data from the incoming HTTP request into objects that the controller can handle.
+MVC :doc:`model binding and formatting </models/model-binding>` converts form (Web page) values and route data from the incoming HTTP request into objects that the controller can handle. As a result, your controller logic doesn't have to do the work of figuring out the incoming request data; it simply has the data as parameters to its action methods.
 
-  - Strongly typed action parameters for form data, headers, and query string values
-  - Handles standard data formats such as JSON and XML
-  - Custom model binding - Easily specify how you want complex route data to appear to the controller.
-  - `Content negotiation <http://www.asp.net/web-api/overview/formats-and-model-binding/content-negotiation>`_ support
+  To see this in action, let's take a simple example of creating a new product. First the Model definition which, to keep things simple, has only two fields (Item and Price).
+
+  .. code-block:: c#
+
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.ComponentModel.DataAnnotations;
+
+    namespace MyStore.Models
+    {
+        public class Product
+        {
+            [Required(ErrorMessage ="Enter a name for this product")]
+            public string Item { get; set; }
+
+            public decimal Price { get; set; }
+        }
+    }
+
+  Now, let's see the view and its layout. Note the model definition at the top of the view.
+
+  .. code-block:: c#
+
+    @model MyStore.Models.Product
+    @{
+        ViewBag.Title = "Create Product";
+    }
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+        <div>
+            <label asp-for="Item"></label>
+            <input type="text" asp-for="Item"/>
+            <span asp-validation-for="Item"></span>
+        </div>
+
+        <div>
+            <label asp-for="Price"></label>
+            <input type="text" asp-for="Price" />
+            <span asp-validation-for="Price"></span>
+        </div>
+
+        <button type="submit">Create</button>
+    }
+
+    And now, the controller logic.
+
+    .. code-block:: c#
+
+      namespace MyStore.Controllers
+      {
+          [Route("[controller]")]
+          public class ProductController : Controller
+          {
+              [Route("[action]")]
+              public IActionResult Create()
+              {
+                  return View();
+              }
+
+              [HttpPost]
+              [Route("[action]")]
+              public IActionResult Create(Product p)
+              {
+                  if (ModelState.IsValid)
+                  {
+                      return RedirectToAction("Index");
+                  }
+                  return View(p);
+              }
+          }
+      }
+
+  As you can see, there are two ``ProductController.Create`` methods - one (the parameter-less version) that is called when the user browses to ``http://<yourApp>/Product/Create``, and another one (with the ``HttpPost`` attribute) that is called when the user submits the form via the ``Submit`` button.
+
+  Note that all the ``Create`` action method has to do is work with the incoming model object. That's because MVC model binding did the heavy lifting of retrieving the values that were POST-ed to your app, and mapped them into your model object for you.
+
+  For more advanced scenarios - such as custom model binding (enables you to specify how you want complex route data to appear to the controller) and content negotiation (enables you to specify what format will be used in the response), see the article on :doc:`model binding and formatting </models/model-binding>`.
 
 Razor Views
 -----------
