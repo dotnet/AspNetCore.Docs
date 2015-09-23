@@ -22,9 +22,11 @@ The ASP.NET MVC framework provides the following features:
 
 - `Routing`_
 
+- `Tag Helpers`_
+
 - `Model binding and formatting`_
 
-- `Razor views`_
+- `View Components`_
 
 - `Dependency Injection`_
 
@@ -123,6 +125,66 @@ Routing
           }
         }
 
+Tag Helpers
+-----------
+Similar to HTML Helpers, :doc:`Tag Helpers </views/tag-helpers/intro>` enable you to dynamically modify the HTML returned to the client based on input from the controller.
+
+In the following example, you can see first an HTML Helper example of a simple input form that incorporates labels, text fields, and validation. Note the use of Razor C# syntax mixed in with the HTML markup.
+
+HTML Helper example
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: html
+
+  @model MyStore.Models.Product
+
+  @using (Html.BeginForm())
+  {
+      <div class="editor-label">
+          @Html.LabelFor(m => m.Item)
+      </div>
+      <div class="editor-field">
+          @Html.EditorFor(m => m.Item)
+          @Html.ValidationMessageFor(m => m.Item)
+      </div>
+
+      <div class="editor-label">
+          @Html.LabelFor(m => m.Price)
+      </div>
+      <div class="editor-field">
+          @Html.EditorFor(m => m.Price)
+          @Html.ValidationMessageFor(m => m.Price)
+      </div>
+
+      <button type="submit">Create</button>
+  }
+
+Now, let's see a version of the same form that uses Tag Helpers instead of HTML Helpers. As you can see, the code is much cleaner and easier to read.
+
+Tag Helper example
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: html
+
+  @model MyStore.Models.Product
+
+  @using (Html.BeginForm())
+  {
+      <div>
+          <label asp-for="Name"></label>
+          <input type="text" asp-for="Name"/>
+          <span asp-validation-for="Name"></span>
+      </div>
+
+      <div>
+          <label asp-for="Price"></label>
+          <input type="text" asp-for="Price" />
+          <span asp-validation-for="Price"></span>
+      </div>
+
+      <button type="submit">Create</button>
+  }
+
 Model binding and formatting
 ----------------------------
 
@@ -151,7 +213,7 @@ To see this in action, let's take a simple example of creating a new product. Fi
 
 Now, let's see the view and its layout. Note the model definition at the top of the view.
 
-.. code-block:: c#
+.. code-block:: html
 
   @model MyStore.Models.Product
   @{
@@ -209,17 +271,9 @@ Note that all the ``Create`` action method has to do is work with the incoming m
 
 For more advanced scenarios - such as custom model binding (enables you to specify how you want complex route data to appear to the controller) and content negotiation (enables you to specify what format will be used in the response), see the article on :doc:`model binding and formatting </models/model-binding>`.
 
-Razor Views
------------
-
-:doc:`Razor views </views/razor>` enable you to use create dynamic web pages with C#.
-
-  - :doc:`Dynamic and strongly typed views </views/dynamic-vs-static>`
-  - Support to inline C#
-  - Support for C# 6 - Full support for the latest version of C#
-  - Layout
-  - :doc:`Tag Helpers </views/tag-helpers/intro>` - Similar to HTML Helpers, Tag Helpers enable you to dynamically modify the HTML returned to the client based on input from the controller.
-  - :doc:`View components </views/view-components>` - Similar to partial views, view components include the same separation-of-concerns and testability benefits found between a controller and view that acts as a mini-controller capable of rendering a partial response to the client rather than a whole response.
+View Components
+---------------
+Similar to partial views, :doc:`View Components </views/view-components>` include the same separation-of-concerns and testability benefits found between a controller and view that acts as a mini-controller capable of rendering a partial response to the client rather than a whole response.
 
 Dependency Injection
 --------------------
