@@ -99,7 +99,7 @@ Routing
         }
 
 
-  - Parameters, constraints, and optionality - MVC gives you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
+  - **Parameters**, **constraints**, and **optionality** - MVC gives you complete control over how requests are mapped to routes. This includes the ability to use regular expressions in setting up constraints, defining default values, and specifying optional values.
 
     Defining parameters for an MVC route is done by utilizing the {} syntax. In the following example, a attribute route is defined as taking a single parameter called ``id``. The ``:int`` suffix to that parameter name indicates a constraint that the value *must* be an integer value. Finally, the ``?`` operator indicates that the value is optional.
 
@@ -324,7 +324,7 @@ Once you've defined the View Component, you can define the view that will displa
   <ul>
       @foreach (var product in Model)
       {
-        <li>@product.Name is on sale for @String.Format("{0:c}", product.Price)</li>
+        <li>@product.Name is on sale for @String.Format("{0:c}", product.Price) </li>
       }
   </ul>
 
