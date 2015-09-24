@@ -18,17 +18,17 @@ The Yeoman command line tool **yo** works alongside a Yeoman generator. Generato
 - You can even `generate your own Yeoman generator <https://github.com/yeoman/generator-generator>`_.
 
 In this article:
-	- `Getting Started`_
-	- `Building and Running from Visual Studio`_
-	- `Client-Side Build Support`_
-	- `Restoring, Building and Hosting from the Command Line`_
-	- `Adding to Your Project with Sub Generators`_
-	
+  - `Getting Started`_
+  - `Building and Running from Visual Studio`_
+  - `Client-Side Build Support`_
+  - `Restoring, Building and Hosting from the Command Line`_
+  - `Adding to Your Project with Sub Generators`_
+
 Getting Started
 ---------------
 The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates ASP.NET 5, DNX projects that can 
 be loaded into Visual Studio 2015 or run from the command line. The generator creates the following project types:
-  
+
 - Empty Application: An empty Web application with minimal dependencies.     
 - Console Application: A DNX-based console application.
 - Web Application: A complete MVC web application with a simple home page and examples for managing accounts and login.  
@@ -38,9 +38,9 @@ be loaded into Visual Studio 2015 or run from the command line. The generator cr
 
 This walk-through demonstrates how to use Yeoman to generate an ASP.NET 5 web application. 
  
-1.  Follow the instructions on http://yeoman.io/learning/ to install **yo** and other required tools. 
+1. Follow the instructions on http://yeoman.io/learning/ to install **yo** and other required tools. 
 
-2.	On the command line, install the ASP.NET generator:  
+2. On the command line, install the ASP.NET generator:  
 
 .. code-block:: console
 
@@ -48,29 +48,29 @@ This walk-through demonstrates how to use Yeoman to generate an ASP.NET 5 web ap
 
 .. note:: The **–g** flag installs the generator globally so that you can use it from any path on your system.
  
-3.	Make a new directory where your project will be generated:
+3. Make a new directory where your project will be generated:
 
 .. code-block:: console
 
  mkdir c:\MyYo
 
-4.	On the command line, make the new directory the current directory.
+4. On the command line, make the new directory the current directory.
 
 .. code-block:: console
  
  cd c:\MyYo
 
-5.	Run the ``yo`` command and pass the name of the generator.
+5. Run the ``yo`` command and pass the name of the generator.
 
 .. code-block:: console 
 
  yo aspnet
 
-6.	The aspnet generator displays a menu. Select the **Web Application** and press ``Enter``.
+6. The aspnet generator displays a menu. Select the **Web Application** and press ``Enter``.
 
 .. image:: yeoman/_static/yeoman-yo-aspnet.png
 
-7.	Provide an application name "MyWebApp" and press ``Enter``.
+7. Provide an application name "MyWebApp" and press ``Enter``.
 
 .. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
 
@@ -81,11 +81,11 @@ Yeoman will create the project and supporting files.
 Client-Side Build Support
 -------------------------
 
-The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates support files to configure client-side build tools. `Grunt or Gulp task runners <http://docs.asp.net/en/latest/client-side/grunt-gulp.html>`_ files are added to your project to automate build tasks for Web Application projects. By default, aspnet-generator creates **gruntfile.js** to run tasks. Running the generator with the **--gulp** argument generates **gulpfile.js** instead.
+The `ASPNET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates support files to configure client-side build tools. `Grunt or Gulp task runners <http://docs.asp.net/en/latest/client-side/grunt-gulp.html>`_ files are added to your project to automate build tasks for Web Application projects. By default, aspnet-generator creates **gulpfile.js** to run tasks. Running the generator with the **--grunt** argument generates **Gruntfile.js** instead.
 
 .. code-block:: console 
 
- yo aspnet --gulp
+ yo aspnet --grunt
  
 The generator also configures **package.json** to load Grunt or Gulp and adds bower.json to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
 
@@ -138,25 +138,24 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 
 .. code-block:: console
 
- dnx . web
+ dnx web
 
-The web server will listen on port 5000. The URL and port are defined in project.json in the **commands** section.
+The web server will listen on port 5000. The URL and port are defined in the hosting.ini file, which is referenced by the **commands** section of the project.json file.
 
-.. code-block:: json
-	:emphasize-lines: 2
+.. code-block:: c#
+  :linenos:
+  :emphasize-lines: 3
 
-	"commands": {
-		"web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-		"kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5001",
-		"gen": "Microsoft.Framework.CodeGeneration",
-		"ef": "EntityFramework.Commands"
-	},
+  "commands": {
+    "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --config hosting.ini",
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --config hosting.ini"
+  },
 
 5. Open a web browser and navigate to http://localhost:5000. 
 
  .. image:: yeoman/_static/yeoman-home-page_5000.png 
 
-.. note:: You can also run the cross-platform Kestrel development server using the **dnx . kestrel** command. By default, Kestrel listens on port 5001 as defined in the **project.json**, **commands** section.  
+.. note:: You can also run the cross-platform Kestrel development server using the **dnx kestrel** command. 
 
 Adding to Your Project with Sub Generators
 ------------------------------------------
