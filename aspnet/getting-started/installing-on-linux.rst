@@ -88,9 +88,64 @@ Installing on CentOS, Fedora and derivatives
  The follwoing instructions were tested using CentOS 7.
  
 
+Innstall the .Net Version Manager (DNVM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
+
+1. Install ``upzip`` if you don't already have it::
+
+    sudo yum install unzip
+
+2. Download and install DNVM::
+
+    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+    sudo chmod +x ~/.dnx/dnvm/dnvm.sh
+    ~/.dnx/dnvm/dnvm.sh
+    
+Once this step is complete you should be able to run ``dnvm`` and see some help text.
+
+Install the .NET Execution Environment (DNX)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ or .NET Core (see :doc:`choosing-the-right-dotnet`).
+
+**To install DNX for .NET Core:**
+
+1. Install the DNX prerequisites::
+    sudo yum -y install epel-release
+    sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
+
+.. note:: This add for you epel to your repo list.
+
 .. note::
 
-    If you want use CLR you must install mono. This step is optional if you will only be using CoreCLR. `Mono <http://mono-project.com>`_ is an ongoing effort to port the .NET Framework to other platforms. Mono is one of the ways .NET applications can run on platforms other than Windows. ASP.NET 5 requires a version of Mono greater than 4.0.1. For more information to install mono on CentOS you can follow the `install instructions <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`_.
+    This step it's optional. For the discription of the depencies you can read the following lines.
+    - `Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
+    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project, that you can use to help with the translation of your programms.
+    - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
+    - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
+    - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
+
+2. Use DNVM to install DNX for .NET Core::
+
+    dnvm upgrade -r coreclr
+
+.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
+
+**To install DNX for Mono:**
+
+1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`__ via the ``mono-complete`` package.
+
+2. Ensure that the ``ca-certificates-mono`` package is also installed as `noted <http://www.mono-project.com/docs/getting-started/install/linux/#notes>`__ in the Mono installation instructions.
+
+3. Use DNVM to install DNX for Mono::
+
+    dnvm upgrade -r mono
+
+By default DNVM will install DNX for Mono if no runtime is specified.
+
+.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (ex. 2000).
 
 Install Libuv
 ^^^^^^^^^^^^^
@@ -121,15 +176,6 @@ To run CoreCLR correctly you must install much dependencies from epel. To includ
 To install the dependencies run this command::
 
     sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
-
-.. note::
-
-    This step it's optional. For the discription of the depencies you can read the following lines.
-    - `Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
-    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project, that you can use to help with the translation of your programms.
-    - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
-    - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
-    - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
 
 
 
