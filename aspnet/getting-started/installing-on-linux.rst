@@ -166,29 +166,6 @@ To build libuv you should do the following::
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
     ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
 
-Install CoreCLR dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To run CoreCLR correctly you must install much dependencies from epel. To include epel in CentOS you must do following::
-
-    sudo yum -y install epel-release
-
-To install the dependencies run this command::
-
-    sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
-
-
-
-
-Install the .NET Version Manager (DNVM)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now let's get DNVM. To do this run::
-
-    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    sudo chmod +x ~/.dnx/dnvm/dnvm.sh
-    ~/.dnx/dnvm/dnvm.sh
-
 Using Docker
 ------------
 
