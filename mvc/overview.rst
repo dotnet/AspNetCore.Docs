@@ -352,7 +352,81 @@ Filters
 Areas
 -----
 
-:doc:`Areas </controllers/areas>` provides a way to separate a large MVC application into semantically-related groups of models, views, and controllers.
+:doc:`Areas </controllers/areas>` provides a way to separate a large MVC application into semantically-related groups of controllers and views. As an example, let's take a simple store app that has controllers and views for Products and Services. That hierarchy might look something like the following:
+
+- Controllers
+
+  - Appliances
+
+  - Computers
+
+  - Support
+
+  - Layaway
+
+- Views
+
+  - Appliances
+
+    - Index
+
+  - Computers
+
+    - Index
+
+  - Suport
+
+    - Index
+
+  - Layaway
+
+    - Index
+
+As you can see, the Product and Services controllers and views are mixed as the Controllers folder holds all controllers for the project, and likewise, the Views folder holds all views for the project.
+
+This is where Areas come in. Areas enable you to partition your project such that controllers and their views can be stored under a parent folder that defines their logical grouping. So, for this example, we would probably want two areas - one for Products and it's associated controllers and views, and one for Services with its associated controllers and views.
+
+Implementing Areas would result in the much more manageable hierarchy:
+
+- Areas
+
+  - Products
+
+    - Controllers
+
+      - Appliances
+
+      - Computers
+
+    - Views
+
+      - Appliances
+
+        - Index
+
+      - Computers
+
+        - Index
+
+  - Services
+
+    - Controllers
+
+      - Support
+
+      - Layaway
+
+    - Views
+
+      - Support
+
+        - Index
+
+      - Layaway
+
+        - Index
+
+For each controller that belongs to an area, you need to use the ``[Area]`` attribute. The :doc:`Areas </controllers/areas>` article covers this as well as how to link between areas, including how to link from outside an area to inside an area and vice versa.
 
 Mobile Development
 ------------------
