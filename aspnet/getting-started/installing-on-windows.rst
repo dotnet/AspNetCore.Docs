@@ -23,6 +23,13 @@ When installing Visual Studio 2015, you'll want to be sure to specify that you w
 
 Once Visual Studio is installed, follow the instructions on the Download Center page for installing the latest `ASP.NET 5 preview (Beta7)`_.
 
+To enable a full command-line experience after installing Visual Studio, open a **Developer Command Prompt for VS2015** and run the following commands::
+
+  dnvm setup
+  dnvm upgrade
+
+This will setup the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
+
 Install ASP.NET Standalone
 --------------------------
 
@@ -35,7 +42,7 @@ Use .NET Version Manager to install different versions of the .NET Execution Env
 
 To install DNVM open a command prompt and run the following::
 
-    @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
+  @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
