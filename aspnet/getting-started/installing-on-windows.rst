@@ -42,7 +42,7 @@ Use .NET Version Manager to install different versions of the .NET Execution Env
 
 To install DNVM open a command prompt and run the following::
 
-  @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
+    @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
