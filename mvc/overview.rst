@@ -7,7 +7,7 @@ By `Tom Archer`_, `Daniel Roth`_
 
 ASP.NET MVC is a lightweight, cross-platform, highly testable Web application development framework that separates an application into three main components: model, view, and controller:
 
-- :doc:`Models </models/index>` are the parts of the application that implement the logic for the application's data domain. Often, model objects retrieve and store model state in a database. For example, a Product object might retrieve information from a database, operate on it, and then write updated information back to a Products table in a SQL Server database.
+- :doc:`Models </models/index>` are the parts of the application that implement application's state. Often, model objects retrieve and store model state in a database. For example, a Product object might retrieve information from a database, operate on it, and then write updated information back to a Products table in a SQL Server database.
 
 - :doc:`Views </views/index>` are responsible for displaying the application's user interface (UI). Typically, this UI is created from the model data. An example would be an edit view of a Products table that displays text boxes, drop-down lists, and check boxes based on the current state of the Product object being represented in the view.
 
