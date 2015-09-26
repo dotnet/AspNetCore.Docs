@@ -7,7 +7,7 @@ By `Tom Archer`_, `Daniel Roth`_
 
 ASP.NET MVC is a lightweight, cross-platform, highly testable Web application development framework that separates an application into three main components: model, view, and controller:
 
-- :doc:`Models </models/index>` are the parts of the application that implement application's state. Often, model objects retrieve and store model state in a database. For example, a Product object might retrieve information from a database, operate on it, and then write updated information back to a Products table in a SQL Server database.
+- :doc:`Models </models/index>` are the parts of the application that implement the application's state. Often model objects retrieve and store model state in a database. For example, a Product object might retrieve information from a database, operate on it, and then write updated information back to a Products table in a SQL Server database.
 
 - :doc:`Views </views/index>` are responsible for displaying the application's user interface (UI). Typically, this UI is created from the model data. An example would be an edit view of a Products table that displays text boxes, drop-down lists, and check boxes based on the current state of the Product object being represented in the view.
 
@@ -34,6 +34,7 @@ ASP.NET MVC provides the following features:
   - `Web UI and Web APIs`_
   - `Test-driven Development`_
   - `Built on top of ASP.NET 5`_
+  - `Tooling`_
 
 Routing
 -------
@@ -197,7 +198,15 @@ MVC has great support for :doc:`mobile development </views/mobile>`, including t
 Web UI and Web APIs
 -------------------
 
-In addition to being a great platform for build websites MVC has great support for building Web APIs. With MVC you can build RESTful services that can reach a broad ranch of clients including browsers and mobile devices. MVC includes support for HTTP content-negotiation with built-in support for form data, JSON and XML. Write custom formatters to add support for your own formats. Use link generation to enable support for hypermedia. Because MVC supports both Web UI and Web APIs as a unified framework you can leverage common infrastructure for model binding, request validation and handling cross-cutting concerns via filters.
+In addition to being a great platform for build websites MVC has great support for building Web APIs. With MVC you can build RESTful services that can reach a broad ranch of clients including browsers and mobile devices. 
+
+MVC includes support for HTTP content-negotiation with built-in support for form data, JSON and XML. Write custom formatters to add support for your own formats. 
+
+Use link generation to enable support for hypermedia. 
+
+With MVC you can easily enable support for `cross-origin resource sharing (CORS) <http://www.w3.org/TR/cors/>`__ so that your Web APIs shared across multiple Web applications.
+
+Because MVC supports both Web UI and Web APIs as a unified framework you can leverage common infrastructure for model binding, request validation and handling cross-cutting concerns via filters.
 
 Test-driven Development
 -----------------------
@@ -208,3 +217,8 @@ Built on top of ASP.NET 5
 -------------------------
 
 MVC is built on ASP.NET 5 and supports ASP.NET features such as forms and Windows authentication, URL authorization, membership and roles, output and data caching, session and profile state management, health monitoring, and the configuration system.
+
+Tooling
+-------
+
+MVC has great tooling support so that you can be productive fast. Visual Studio includes a variety of tooling features for MVC applications including scaffolding, project templates, item templates, Razor IntelliSense, and authentication configuration.
