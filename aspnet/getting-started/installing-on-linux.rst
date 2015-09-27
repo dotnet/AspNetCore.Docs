@@ -20,14 +20,14 @@ Install the .NET Version Manager (DNVM)
 
 Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
 
-1. Install ``upzip`` if you don't already have it::
+1. Install ``unzip`` if you don't already have it::
 
     sudo apt-get install unzip
 
 2. Download and install DNVM::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    
+
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
 Install the .NET Execution Environment (DNX)
@@ -73,7 +73,7 @@ To build libuv you should do the following::
     cd /usr/local/src/libuv-1.4.2
     sudo sh autogen.sh
     sudo ./configure
-    sudo make 
+    sudo make
     sudo make install
     sudo rm -rf /usr/local/src/libuv-1.4.2 && cd ~/
     sudo ldconfig
@@ -81,19 +81,18 @@ To build libuv you should do the following::
 .. note::
 
     ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ```ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
-    
+
 Installing on CentOS, Fedora and derivatives
 --------------------------------------------
 
- The follwoing instructions were tested using CentOS 7.
- 
+The following instructions were tested using CentOS 7.
 
-Innstall the .Net Version Manager (DNVM)
+Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
 
-1. Install ``upzip`` if you don't already have it::
+1. Install ``unzip`` if you don't already have it::
 
     sudo yum install unzip
 
@@ -102,7 +101,7 @@ Use the .NET Version Manager (DNVM) to install different versions of the .NET Ex
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
     sudo chmod +x ~/.dnx/dnvm/dnvm.sh
     ~/.dnx/dnvm/dnvm.sh
-    
+
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
 Install the .NET Execution Environment (DNX)
@@ -113,18 +112,24 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 **To install DNX for .NET Core:**
 
 1. Install the DNX prerequisites::
+
     sudo yum -y install epel-release
     sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
 
-.. note:: This add for you epel to your repo list.
+.. note:: This will add the epel-release repository to your repo list.
 
 .. note::
 
-    This step it's optional. For the discription of the depencies you can read the following lines.
-    - `Libuwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a programm. That can you use for debuggin and exception handling.
-    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project, that you can use to help with the translation of your programms.
+    Description of the .NET Core dependencies:
+    
+    - `libunwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a program that can you use for debugging and exception handling.
+
+    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project that you can use to help with the translation of your programs.
+
     - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
+
     - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
+
     - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
 
 2. Use DNVM to install DNX for .NET Core::
@@ -150,7 +155,7 @@ By default DNVM will install DNX for Mono if no runtime is specified.
 Install Libuv
 ^^^^^^^^^^^^^
 
-`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by the `Kestrel <https://github.com/aspnet/KestrelHttpServer>`_ that we will use to host our ASP.NET 5 web applications.
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
 
 To build libuv you should do the following::
 
@@ -181,4 +186,3 @@ Related Resources
 
 - :doc:`/tutorials/your-first-mac-aspnet`
 - :doc:`/fundamentals/index`
-
