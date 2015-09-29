@@ -72,7 +72,6 @@ Configure the ``AuthMessageSender`` class
 This tutorial shows how to add email notification through `SendGrid <https://sendgrid.com/>`_, but you can send email using SMTP and other mechanisms.
  - Install the SendGrid NuGet package. From the Package Manager Console,  enter the following the following command:
 ``Install-Package SendGrid``
-
  - Go to the `Azure SendGrid sign up page <http://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/>`_ and register for a free SendGrid account.
  - Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid
 
@@ -88,7 +87,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
 	 "frameworks": {
     "dnx451": { }
   },
-   
+
 Enable Account confirmation and Password recovery
 -------------------------------------------------
 
