@@ -1,182 +1,236 @@
 Account Confirmation and Password Recovery with ASP.NET Identity
 ================================================================
 
-By `Rick Anderson`_
+By `Pranav Rastogi`_
 
 This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using ASP.NET Identity.
 
 In this article:
 	- `Create a New ASP.NET 5 Project`_
-	- `Require email confirmation`_
+	- `Running the Application`_
 	- `Setup up Email provider`_
 	- `Enable Account confirmation and Password recovery`_
 	- `Register, confirm email, and reset password`_
 	- `Require email confirmation before login`_
-	- `Combine social and local login accounts`_ 
+	- `Next steps`_
+	- `Summary`_
 
 Create a New ASP.NET 5 Project
 ------------------------------
 
-Create a new ASP.NET 5 web app with individual user accounts.
+To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project). On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 
 .. image:: accconfirm/_static/new-project.png
 
-Run the app and then click on the Register link and register a user. At this  point, the only validation on the email is with the `[EmailAddress] <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx>`_ attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
+Next you should see another dialog, the New ASP.NET Project window:
+ 
+.. image:: accconfirm/_static/select-project.png
+	
+Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure that authentication is set to **Individual User Accounts**. After selecting, click OK.
 
-In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)\MSSQLLocalDB(SQL Server 12)**. Right click on **dbo.AspNetUsers** > **View Data**:
+At this point, the project is created. It may take a few moments to load, and you may notice that Visual Studio's status bar indicates that it is downloading some resources as part of this process. Visual Studio ensures that some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
 
-.. image:: accconfirm/_static/ssox.png
-.. image:: accconfirm/_static/au.PNG
 
-Note the ``EmailConfirmed`` field is ``False``.
+Running the Application
+-----------------------
 
-Right click on the row and select delete. You'll might want to use this email again in the next step, when the app sends a confirmation email.
+Run the application and after a quick build step, you should see it open in your web browser.
 
-Require email confirmation
-----------------------------
+.. image:: accconfirm/_static/first-run.png
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recover because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers, they have many working email aliases they can use to register.
-
-You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, a SMS text message or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
 
 Setup up Email provider
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
-We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :doc:`../fundamentals/configuration`.
-
- - Create a class to fetch the secure email key. For this sample, the ``AuthMessageSenderOptions`` class is created in the *Services/AuthMessageSenderOptions.cs* file.
-
-  .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Services/AuthMessageSenderOptions.cs
-   :language: c#
-   :lines: 3-7
-   :dedent: 4
-
-Set the ``SendGridUser`` and ``SendGridKey`` with the `secret manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_.
-
-Configure starup to use ``AuthMessageSenderOptions``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Add ``AuthMessageSenderOptions`` to the service container at the end of the ``ConfigureServices`` method in the *Startup.cs* file:
-
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Startup.cs
-   :language: c#
-   :lines: 81-85
-   :emphasize-lines: 4
-   :dedent: 8
-
-.. ToDo figure out bolding in next line
-
-Configure the ``AuthMessageSender`` class
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This tutorial shows how to add email notification through `SendGrid <https://sendgrid.com/>`_, but you can send email using SMTP and other mechanisms.
- - Install the SendGrid NuGet package. From the Package Manager Console,  enter the following the following command:
-``Install-Package SendGrid``
+Although this tutorial only shows how to add email notification through `SendGrid <https://sendgrid.com/>`_, you can send email using SMTP and other mechanisms.
+ - Install SendGrid NuGet package
  - Go to the `Azure SendGrid sign up page <http://azure.microsoft.com/en-us/marketplace/partners/sendgrid/sendgrid-azure/>`_ and register for a free SendGrid account.
- - Add code in *Services/MessageServices.cs* similar to the following to configure SendGrid
+ - Add code in **MessageServices.cs** similar to the following to configure SendGrid
 
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Services/MessageServices.cs
-   :language: c#
-   :lines: 12-51
-   :dedent: 4 
+.. code-block:: c#
 
-.. note:: SendGrid doesn't currently target dnxcore50: If you build your project you will get compilation errors. This is because SendGrid does not have a package for dnxcore50 and some APIs such as System.Mail are not available on .NET Core. You can remove dnxcore50 from *project.json* or call the REST API from SendGrid to send email. The code below shows the updated *project.json* file with ``"dnxcore50": { }`` removed.
+    public static Task SendEmailAsync(string email, string subject, string message)
+    {
+        // Plug in your email service here to send an email.
+        var myMessage = new SendGridMessage();
+        myMessage.AddTo(email);
+        myMessage.From = new System.Net.Mail.MailAddress("Joe@contoso.com", "Joe S.");
+        myMessage.Subject = subject;
+        myMessage.Text = message;
+        myMessage.Html = message;
+        var credentials = new NetworkCredential("SendGridUser", "SendGridKey");
+        // Create a Web transport for sending email.
+        var transportWeb = new Web(credentials);
+        // Send the email.
+        if (transportWeb != null)
+        {
+            return transportWeb.DeliverAsync(myMessage);
+        }
+        else
+        {
+            return Task.FromResult(0);
+        }
+    }
 
-.. code-block:: json
+.. note:: SendGrid cannot target dnxcore50: If you build your project then you will get compilation errors. This is because SendGrid does not have a package for dnxcore50 and some APIs such as System.Mail are not available on .NET Core. You can remove dnxcore50 from project.json or call the REST API from SendGrid to send email.
 
-	 "frameworks": {
-    "dnx451": { }
-  },
+.. note:: Security Note: Never store sensitive data in your source code. The account and credentials are added to the code above to keep the sample simple. Follow the steps on how to store secrets using the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_ . The template code is setup to read configuration values from the SecretManager.
+
 
 Enable Account confirmation and Password recovery
 -------------------------------------------------
 
 The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
 
-- Find the ``[HttpPost] Register`` method in the  *AccountController.cs* file.
+- In your project open **AccountController** and look at the **Register** action.
 - Uncomment the code to enable account confirmation.
 
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
-   :language: c#
-   :lines: 107-135
-   :emphasize-lines: 17-21
-   :dedent: 8
+.. code-block:: c#
+        
+    public async Task<IActionResult> Register(RegisterViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+                // Send an email with this link
+                var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Context.Request.Scheme);
+                await MessageServices.SendEmailAsync(model.Email, "Confirm your account",
+                    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                //await SignInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Home");
+            }
+            AddErrors(result);
+        }
 
-**Note:** We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
+        // If we got this far, something failed, redisplay form
+        return View(model);
+    }
+
+- Enable password recovery by uncommenting the code in the **ForgotPassword** action and its associated view:
 
 .. code-block:: c#
 
-	//await _signInManager.SignInAsync(user, isPersistent: false);
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null || !(await UserManager.IsEmailConfirmedAsync(user)))
+            {
+                // Don't reveal that the user does not exist or is not confirmed
+                return View("ForgotPasswordConfirmation");
+            }
 
-- Enable password recovery by uncommenting the code in the ``ForgotPassword`` action in the *Controllers/AccountController.cs* file. 
+            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+            // Send an email with this link
+            var code = await UserManager.GeneratePasswordResetTokenAsync(user);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Context.Request.Scheme);
+            await MessageServices.SendEmailAsync(model.Email, "Reset Password",
+               "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+            return View("ForgotPasswordConfirmation");
+        }
 
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
-   :language: c#
-   :lines: 262-289
-   :emphasize-lines: 19-23
-   :dedent: 8
+        // If we got this far, something failed, redisplay form
+        return View(model);
+    }
 
-Uncomment the highlighted ``ForgotPassword`` form in the *Views/Account/ForgotPassword.cshtml* view file.
+.. code-block:: html
 
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Views/Account/ForgotPassword.cshtml
-   :language: html
-   :emphasize-lines: 11-27
+	<form asp-controller="Account" asp-action="ForgotPassword" method="post" class="form-horizontal" role="form">
+		<h4>Enter your email.</h4>
+		<hr />
+		<div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+		<div class="form-group">
+			<label asp-for="Email" class="col-md-2 control-label"></label>
+			<div class="col-md-10">
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" class="btn btn-default" value="Submit" />
+			</div>
+		</div>
+	</form>
+
 
 Register, confirm email, and reset password
 -------------------------------------------
 
-In this section we'll run the web app and show the account confirmation and password recovery flow.
+Let us run the Web site and show the account confirmation and password recovery flow.
 
 - Run the application and register a new user
 
 .. image:: accconfirm/_static/loginaccconfirm1.png
 
-- Check your email for the account confirmation link. If you don't get the email notification:
-
-	* Check the SendGrid web site to verify your sent mail messages. 
-	* Check your spam folder.
-	* Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-	* In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
+- Check your email for the account confirmation link.
 
 - Click the link to confirm your email.
+
+.. image:: accconfirm/_static/loginaccconfirm2.PNG
+
 - Login with your email and password.
+
 - Log Off.
 
-Test password reset
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 - Click Login and select **Forgot your password?**
+
+.. image:: accconfirm/_static/loginaccconfirm3.PNG
+
 - Enter your email which was used to register the account with.
-- An email with the link to reset your password will be sent. Check your email and click it to reset your password.  After your password has been successfully reset, you can login with your email and new password.
+
+.. image:: accconfirm/_static/loginaccconfirm4.PNG
+
+- An email with the link to reset your password will be sent. Check your email and click it to reset your password.
+
+.. image:: accconfirm/_static/loginaccconfirm5.PNG
+
+- After your password has been successfully reset, you can login with your email and new password.
+
+.. image:: accconfirm/_static/loginaccconfirm6.PNG
+
          
 Require email confirmation before login
-----------------------------------------
+---------------------------------------
+Currently once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users to have a confirmed email before they are logged in (authenticated). Update the HttpPost Login action with the following highlighted changes.
 
-With the current templates, once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in (authenticated). Update the ``HttpPost Login`` action with the following highlighted changes.
+.. code-block:: c#
 
-.. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
-   :language: c#
-   :lines: 51-96
-   :emphasize-lines: 12-21
-   :dedent: 8
+    public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+    {
+        ViewBag.ReturnUrl = returnUrl;
+        if (ModelState.IsValid)
+        {
+            // Require the user to have a confirmed email before they can log on.
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user))
+                {
+                    ModelState.AddModelError(string.Empty, "You must have a confirmed email to log in.");
+                    return View(model);
+                }
+            }
+            // Code removed for brevity. You should have the code that was in the project.
+        }
 
-- A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+        // If we got this far, something failed, redisplay form
+        return View(model);
+    }
 
-Combine social and local login accounts
--------------------------------------------
 
-To complete this section, you must first enable an external authentication provider. See :doc:`sociallogins`.
 
-You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social log in first, then add a local login.
+Next steps
+----------
+- Once you publish your Web site to Azure Web App, you should reset the secrets for SendGrid. Set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
-.. image:: accconfirm/_static/rick.png
+Summary
+-------
 
-Click on the **Manage** link. Note the 0 external (social logins) associated with this account.
-
-.. image:: accconfirm/_static/manage.PNG
-
-Click the link to another log in service and accept the app requests. In the image below, Facebook is the external authentication provider:
-
-.. image:: accconfirm/_static/fb.png
-
-The two accounts have been combined, you will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account. 
+ASP.NET Identity can be used to add account confirmation and password recovery.
