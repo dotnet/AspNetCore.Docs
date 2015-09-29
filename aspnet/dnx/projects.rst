@@ -307,7 +307,7 @@ To run commands out of a different project, you can use the ``--project`` option
 For a Console Application, the entry point is the ``Main`` method of the ``Program`` class. For more information about the Web Application startup process, see :doc:`/fundamentals/startup`.
 
 
-When your run your app, you can specify whether to compile in Debug mode or in Release mode. You can specify the ``configuration`` option as follows::
+When you run your app, you can specify whether to compile in Debug mode or in Release mode. You can specify the ``configuration`` option as follows::
 
 	dnx --configuration Debug
 
