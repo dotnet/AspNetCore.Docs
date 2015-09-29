@@ -26,7 +26,7 @@ Run the app and then click on the Register link and register a user. At this  po
 In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)\MSSQLLocalDB(SQL Server 12)**. Right click on **dbo.AspNetUsers** > **View Data**:
 
 .. image:: accconfirm/_static/ssox.png
-.. image:: accconfirm/_static/au.png
+.. image:: accconfirm/_static/au.PNG
 
 Note the ``EmailConfirmed`` field is ``False``.
 
@@ -174,7 +174,7 @@ You can combine local and social accounts by clicking on your email link. In the
 
 Click on the **Manage** link. Note the 0 external (social logins) associated with this account.
 
-.. image:: accconfirm/_static/manage.png
+.. image:: accconfirm/_static/manage.PNG
 
 Click the link to another log in service and accept the app requests. In the image below, Facebook is the external authentication provider:
 
