@@ -85,6 +85,24 @@ Set the ``SendGridUser`` and ``SendGridKey`` with the `secret-manager tool <http
 	C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
 	info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
+On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
+
+ .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/project.json
+   :language: json
+   :lines: 1-6
+   :emphasize-lines: 3
+
+At this time, the contents of the *project.json* file are not encrypted. The *project.json* file is shown below (the sensitive keys have been removed.)
+
+.. code-block:: json
+
+	{
+	  "SendGridUser": "RickAndMSFT",
+	  "SendGridKey": "",
+	  "Authentication:Facebook:AppId": "",
+	  "Authentication:Facebook:AppSecret": ""
+	}
+
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
