@@ -9,8 +9,8 @@ In this article:
 	- `Create a New ASP.NET 5 Project`_
 	- `Require SSL`_
 	- `Require email confirmation`_
-	- `Setup up Email provider`_
-	- `Enable Account confirmation and Password recovery`_
+	- `Configure email provider`_
+	- `Enable account confirmation and password recover`_
 	- `Register, confirm email, and reset password`_
 	- `Require email confirmation before login`_
 	- `Combine social and local login accounts`_ 
@@ -22,7 +22,7 @@ Create a new ASP.NET 5 web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 
-Run the app and then click on the Register link and register a user. At this  point, the only validation on the email is with the `[EmailAddress] <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx>`_ attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
+Run the app and then click on the **Register** link and register a user. At this  point, the only validation on the email is with the `[EmailAddress] <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.emailaddressattribute(v=vs.110).aspx>`_ attribute. After you submit the registration, you are logged into the app. Later in the tutorial we'll change this so new users cannot log in until their email has been validated.
 
 In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)\MSSQLLocalDB(SQL Server 12)**. Right click on **dbo.AspNetUsers** > **View Data**:
 
@@ -31,7 +31,7 @@ In **SQL Server Object Explorer** (SSOX), navigate to **(localdb)\MSSQLLocalDB(S
 
 Note the ``EmailConfirmed`` field is ``False``.
 
-Right click on the row and select delete. You'll might want to use this email again in the next step, when the app sends a confirmation email.
+Right-click on the row and from the context menu, select **Delete**. You might want to use this email again in the next step, when the app sends a confirmation email. Deleting the email alias now will make it easier in the following steps.
 
 Require SSL
 ------------------------
@@ -62,11 +62,11 @@ Add the ``[RequireHttps]`` attribute to each controller. The ``[RequireHttps]`` 
 Require email confirmation
 ----------------------------
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recover because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers, they have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
-You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, a SMS text message or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
+You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, an SMS text message, or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
 
-Setup up Email provider
+Configure email provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :doc:`../fundamentals/configuration`.
@@ -78,7 +78,12 @@ We'll use the :ref:`Options pattern <options-config-objects>` to access the user
    :lines: 3-7
    :dedent: 4
 
-Set the ``SendGridUser`` and ``SendGridKey`` with the `secret manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_.
+Set the ``SendGridUser`` and ``SendGridKey`` with the `secret-manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_. For example:
+
+.. code-block:: none
+
+	C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
+	info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,7 +120,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
     "dnx451": { }
   },
 
-Enable Account confirmation and Password recovery
+Enable account confirmation and password recover
 -------------------------------------------------
 
 The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
@@ -143,7 +148,7 @@ The template already has the code for account confirmation and password recovery
    :emphasize-lines: 19-23
    :dedent: 8
 
-Uncomment the highlighted ``ForgotPassword`` form in the *Views/Account/ForgotPassword.cshtml* view file.
+Uncomment the highlighted ``ForgotPassword`` from in the *Views/Account/ForgotPassword.cshtml* view file.
 
 .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Views/Account/ForgotPassword.cshtml
    :language: html
@@ -152,7 +157,7 @@ Uncomment the highlighted ``ForgotPassword`` form in the *Views/Account/ForgotPa
 Register, confirm email, and reset password
 -------------------------------------------
 
-In this section we'll run the web app and show the account confirmation and password recovery flow.
+In this section, run the web app and show the account confirmation and password recovery flow.
 
 - Run the application and register a new user
 
@@ -166,20 +171,20 @@ In this section we'll run the web app and show the account confirmation and pass
 	* In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
 
 - Click the link to confirm your email.
-- Login with your email and password.
-- Log Off.
+- Log in with your email and password.
+- Log off.
 
 Test password reset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Click Login and select **Forgot your password?**
-- Enter your email which was used to register the account with.
-- An email with the link to reset your password will be sent. Check your email and click it to reset your password.  After your password has been successfully reset, you can login with your email and new password.
+- Login and select **Forgot your password?**
+- Enter the email you used to register the account.
+- An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
          
 Require email confirmation before login
 ----------------------------------------
 
-With the current templates, once a user completes the registration form, they are logged in. You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in (authenticated). Update the ``HttpPost Login`` action with the following highlighted changes.
+With the current templates, once a user completes the registration form, they are logged in (authenticated). You generally want to confirm their email before logging them in. In the section below, we will modify the code to require new users have a confirmed email before they are logged in. Update the ``[HttpPost] Login`` action in the *AccountController.cs* file with the following highlighted changes.
 
 .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
    :language: c#
@@ -187,14 +192,14 @@ With the current templates, once a user completes the registration form, they ar
    :emphasize-lines: 12-21
    :dedent: 8
 
-- A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+.. note:: A security best practice is to not use production secrets in test and development. If you publish the app to Azure, you can set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
 Combine social and local login accounts
 -------------------------------------------
 
 To complete this section, you must first enable an external authentication provider. See :doc:`sociallogins`.
 
-You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social log in first, then add a local login.
+You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 
 .. image:: accconfirm/_static/rick.png
 
@@ -202,8 +207,8 @@ Click on the **Manage** link. Note the 0 external (social logins) associated wit
 
 .. image:: accconfirm/_static/manage.png
 
-Click the link to another log in service and accept the app requests. In the image below, Facebook is the external authentication provider:
+Click the link to another login service and accept the app requests. In the image below, Facebook is the external authentication provider:
 
 .. image:: accconfirm/_static/fb.png
 
-The two accounts have been combined, you will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account. 
+The two accounts have been combined. You will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account. 
