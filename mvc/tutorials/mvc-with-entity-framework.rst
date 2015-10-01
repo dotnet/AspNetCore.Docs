@@ -177,8 +177,8 @@ Open a command prompt in the project directory (ContosoBooks/src/ContosoBooks) a
 .. code-block:: none
 
     dnvm use 1.0.0-beta5
-    dnx ef migration add Initial
-    dnx ef migration apply
+    dnx ef . migration add Initial
+    dnx ef . migration apply
 
 The "``add Initial``" command adds code to the project that allows EF to update the database schema. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
 
