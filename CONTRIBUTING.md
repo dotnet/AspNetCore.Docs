@@ -1,5 +1,4 @@
-Contributing
-======
+# Contributing #
 
 Information on contributing to this repo is in the [Contributing Guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) in the Home repo.
 
@@ -7,52 +6,36 @@ The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructur
 
 ## Building the Docs ##
 
-To build the docs, you will need to install [python](https://www.python.org/downloads/) (version 2 or higher). If you are running Windows, you will want to add the Python install folder and the \Scripts\ folder to your `PATH` environment variable (C:\Python34;C:\Python34\Scripts).
+Once you have cloned the Docs to your local machine, the following instructions will walk you through installing the tools necessary to build and test.
 
-To install Sphinx, open a command prompt and run:
+1. [Download python](https://www.python.org/downloads/) version 2.7.10 or higher. 
+
+2. If you are installing on Windows, add both the Python install directory and the Python scripts directory to your `PATH` environment variable. For example, if you install Python into the c:\python34 directory, you would add `c:\python34;c:\python34\scripts` to your `PATH` environment variable.  
+
+3. Install Sphinx by opening a command prompt and running the following Python command. (Note that this operation might take a few minutes to complete.)
 
 	pip install sphinx
 
-This may take a few minutes.
-
-This project is also using a custom theme from ReadTheDocs, which you can install with:
-
-	pip install sphinx_rtd_theme
-
-Note that later if you wish to update your current, installed version of this theme, you should run:
+4. By default, when you install Sphinx, it will install the ReadTheDocs custom theme automatically. If you need to update the installed version of this theme, you should run:
 
 	pip install -U sphinx_rtd_theme
 
-You should now be able to navigate to a subdirectory, such as `mvc` or `aspnet`,  and run the make.bat file. Use the `html` argument to build the stand-alone version of the project in question. For example, navigate to `docs\aspnet` and type
+5. Navigate to one of the the main project subdirectories in the Docs repo - such as `mvc` or `aspnet`.
+
+6. Run the `make.bat` file using `html` argument to build the stand-alone version of the project in question.
 
 	make html
 
-to generate the documentation in the _build folder of the `aspnet` project. Open the _build/html/index.html file to view the generated documentation.
-
-You can also install sphinx-autobuild which will run a local web server and automatically refresh whenever changes to docs files are detected. To do so, first install sphinx-autobuild:
-
-	pip install sphinx-autobuild
-
-Then run it from the root of the project with
-
-	sphinx-autobuild docs docs/_build/html
-
-Note that you may need to run 'make html' once before sphinx-autobuild will serve the docs correctly. Also, there seems to be an encoding issue in one of the CSS files in the theme that may cause Python to throw an exception when trying to serve the file. You can work around this issue by editing the cp1252.py file (most likely in C:\Python34\Lib\encodings\ on Windows). Modify the IncrementalDecoder as follows:
-
-	class IncrementalDecoder(codecs.IncrementalDecoder):
-    		def decode(self, input, final=False):
-        		return codecs.charmap_decode(input,'ignore',decoding_table)[0]
-
-This should allow the CSS file to be loaded, but may result in icons being rendered improperly. A proper fix will likely involve confirming and correcting the encoding used by the CSS file for the RTD theme. Note that you may need to re-apply this fix after making updates to packages on your machine.
-
-If contributing new documentation content, please review:
-
-- the [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html)
-- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html)
+7. Once make completes, the generated docs will be in the .../docs/<project>/_build/html directory. Simply open the `index.html` file in your browser to see the built docs for that project.
 
 ## Adding Content ##
 
 Before adding content, submit an issue with a suggestion for your proposed article. Provide detail on what the article would discuss, and how it would relate to existing documentation.
+
+Also, please review the following style guides:
+
+- [Sphinx Style Guide](http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html)
+- [ASP.NET Docs Style Guide](http://docs.asp.net/en/latest/contribute/style-guide.html)
 
 Articles should be organized into logical groups or sections. Each section should be given a named folder (e.g. /yourfirst). That section contains the rst files for all articles in the section. For images and other static resources, create a subfolder that matches the name of the article. Within this subfolder, create a ``sample`` folder for code samples and a  ``_static`` folder for images and other static content.
 
@@ -107,4 +90,3 @@ Below are some common pitfalls you should try to avoid:
 - Don't update or `merge` your branch after you submit your pull request
 - Don't forget to squash your commits once your pull request is ready to be accepted
 - If updating code samples in `/samples/`, be sure any line number references in your article remain correct
-
