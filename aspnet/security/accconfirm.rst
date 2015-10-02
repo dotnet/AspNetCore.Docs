@@ -10,7 +10,7 @@ In this article:
 	- `Require SSL`_
 	- `Require email confirmation`_
 	- `Configure email provider`_
-	- `Enable account confirmation and password recover`_
+	- `Enable account confirmation and password recovery`_
 	- `Register, confirm email, and reset password`_
 	- `Require email confirmation before login`_
 	- `Combine social and local login accounts`_ 
@@ -141,7 +141,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
     "dnx451": { }
   },
 
-Enable account confirmation and password recover
+Enable account confirmation and password recovery
 -------------------------------------------------
 
 The template already has the code for account confirmation and password recovery. Follow these steps to enable it:
