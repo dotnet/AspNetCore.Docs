@@ -99,7 +99,10 @@ pygments_style = 'sphinx'
 
 rst_prolog = """
 .. raw:: html
-
+	
+	<div id="helpful-position"></div><div id="helpful" class="helpfulness-container fixed" style="display:none;"><div class="helpfulness"><div class="helpfulness-form"><h2>Was this page helpful?</h2><span>Your feedback about this content is important. Let us know what you think.</span><a id="helpfulness-btn-yes" href="javascript:;" class="common-btn first">Yes</a><a id="helpfulness-btn-no" href="javascript:;" class="common-btn">No</a></div><div class="helpfulness-form-no" style="display:none;"><h2>Was this page helpful?</h2>
+	Sorry this wasn't helpful.
+	<input type="text" id="txt-helpfulness" placeholder="Please let us know why this wasn't helpful"><span id="helpfulness-characters-left">characters remaining</span><a id="helpfulness-btn-submit" href="javascript:;" class="common-btn">Submit</a><a id="helpfulness-btn-skip" href="javascript:;" class="common-btn secondary">Skip this</a></div><a href="javascript:;" class="helpfulness-close">✖</a><div class="messages processing" style="display:none;">Sending feedback...</div><div class="messages success" style="display:none;">Thank you for your feedback!</div><div class="messages error" style="display:none;">Error during submission!</div></div></div>
 	<noscript><img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/></noscript>
 	
 .. include:: /../common/authors.txt
@@ -123,9 +126,10 @@ if not on_rtd:
 	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 	
 def setup(app):
-    app.add_stylesheet('custom.css')   
-    if on_rtd:
-        app.add_javascript('wedc.js')
+	app.add_stylesheet('custom.css?v=1')
+	app.add_javascript('helpfulness.js')
+	if on_rtd:
+		app.add_javascript('wedc.js')
 
 #html_theme = 'default'
 
