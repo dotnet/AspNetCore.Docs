@@ -124,7 +124,7 @@ Next, add additional ``<div>`` elements for each column, and specify the number 
 +--------------------+--------------------------+------------+ 
 | col-md-            | Desktops                 | >= 992px   | 
 +--------------------+--------------------------+------------+ 
-| col-lq-            | Larger Desktop Displays  | >= 1200px  | 
+| col-lg-            | Larger Desktop Displays  | >= 1200px  | 
 +--------------------+--------------------------+------------+ 
 
 When specifying two columns both with "col-md-6" the resulting layout will be two columns at desktop resolutions, but these two columns will stack vertically when rendered on smaller devices (or a narrower browser window on a desktop), allowing users to easily view content without the need to scroll horizontally.
