@@ -97,13 +97,13 @@ You can run global commands from the command prompt after installing the related
 Uninstalling global commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To uninstall global commands you can use the following DNX command::
+To uninstall global commands you can use the following DNU command::
 
-	dnx commands uninstall [arguments] [options]
+	dnu commands uninstall [arguments] [options]
 	
 The [arguments] is the name of the command to uninstall. For example::
 
-	dnx commands uninstall user-secret
+	dnu commands uninstall user-secret
 	
 For additional details about the uninstall command, enter ``dnu commands uninstall -?`` from the command prompt.	
 
