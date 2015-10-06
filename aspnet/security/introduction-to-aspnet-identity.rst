@@ -5,6 +5,8 @@ By `Pranav Rastogi <http://www.asp.net/identity/overview/getting-started/introdu
 
 The ASP.NET membership system was introduced with ASP.NET 2.0 back in 2005, and since then there have been many changes in the ways web applications typically handle authentication and authorization. ASP.NET Identity is a membership system that is used for building modern applications for the web, phone, or tablet.
 
+You can configure ASP.NET Identity to use social identity providers (such as Microsoft Accounts, Facebook, Google, Twitter) for authentication and authorization functionality. Alternatively, you can create accounts that use a SQL Server database to store user names, passwords, and profile data. 
+
 Getting started with ASP.NET Identity
 -------------------------------------
  
@@ -12,7 +14,7 @@ ASP.NET Identity is used in the Visual Studio project templates for ASP.NET `MVC
 
 The purpose of this article is to give you a high level overview of ASP.NET Identity; you can follow it step by step or just read the details. For more detailed instructions about creating apps using ASP.NET Identity, see the Next Steps section at the end of this article.
 
-1. Create an ASP.NET MVC application with Individual Accounts. You can use ASP.NET Identity in an ASP.NET MVC application, as well as other ASP.NET frameworks, such as Web Forms, Web API, SignalR, etc. In this article, you will start with an ASP.NET MVC application. In Visual Studio, select **File** -> **New** -> **Project**. Then, select the **ASP.NET Web Appication** from the **New Project** dialog box. Continue by selecting a **Web Appication** with **Individual User Accounts** as the authenication method.
+1. Create an ASP.NET MVC application with Individual Accounts. You can use ASP.NET Identity in an ASP.NET MVC application, as well as other ASP.NET frameworks, such as Web Forms, Web API, SignalR, etc. In this article, you will start with an ASP.NET MVC application. In Visual Studio, select **File** -> **New** -> **Project**. Then, select the **ASP.NET Web Application** from the **New Project** dialog box. Continue by selecting a **Web Application** with **Individual User Accounts** as the authentication method.
 
 	.. image:: introduction-to-aspnet-identity/_static/01-mvc.png
 	
@@ -21,7 +23,9 @@ The purpose of this article is to give you a high level overview of ASP.NET Iden
 - ``Microsoft.AspNet.Identity.EntityFramework``
  The `Microsoft.AspNet.Identity.EntityFramework <http://www.nuget.org/packages/Microsoft.AspNet.Identity.EntityFramework/>`_ package has the Entity Framework implementation of ASP.NET Identity which will persist the ASP.NET Identity data and schema to SQL Server. 
 
-.. note:: In Visual Studio, you can view NuGet packages details by selecting **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution**.
+.. note:: In Visual Studio, you can view NuGet packages details by selecting **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution**. You also see a list of packages in the ``dependencies`` section of the *project.json* file.
+
+When the application is started, the ``Startup`` class is instantiated. Within this class, the runtime calls the ``ConfigureServices`` method which adds a number of services to a services container. Incluced in this services container is the Identity services. After the ``ConfigureServices`` method is called, the ``Configure`` method is called. In this method, ASP.NET Identity is enabled for the application when the ``UseIdentity`` method is called. This adds cookie-based authentication to the request pipeline. For more information about the request pipeline, see `Understanding ASP.NET 5 Web Apps - Application Startup <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html?highlight=request%20pipeline#application-startup>`_. For more information about the application start up process, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.html>`_.
  
 3. Creating a user.
 
@@ -38,7 +42,7 @@ When the user clicks the **Register** button, the ``Register`` action of the ``A
 	:dedent: 8
 	
 4. Log in.
- If the user was successfully created, they are logged in by the ``SignInAsync`` method, also contained in the ``Register`` action.
+ If the user was successfully created, they are logged in by the ``SignInAsync`` method, also contained in the ``Register`` action. By signing in, the ``SignInAsync`` method stores a cookie with the users claims. A claim can include rich information about the user’s identity and membership.
 	
 .. literalinclude:: introduction-to-aspnet-identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
 	:language: c#
@@ -46,7 +50,9 @@ When the user clicks the **Register** button, the ``Register`` action of the ``A
 	:emphasize-lines: 19
 	:dedent: 8
 
-The above ``SignInAsync`` method calls the below ``SignInAsync`` task, which is contained in the ``SignInManager`` class. The ``SignInAsync`` method is overloaded. The ``authenticationProperties`` parameter that can be added to the call. This parameter is a dictionary used to store state values about the authentication session. These values are applied to the login and authentication cookie. 
+The above ``SignInAsync`` method calls the below ``SignInAsync`` task, which is contained in the ``SignInManager`` class. 
+
+If needed, you can access the user's identity details inside a controller action. For instance, by setting a breakpoint inside the ``HomeController.Index`` action method, you can view the ``User.claims`` details. By having the user signed-in, you can make authorization decisions. For more information, see `Authorization <http://docs.asp.net/en/latest/security/authorization/index.html>`_.
 
 5. Log off.
  Clicking the **Log off** link calls the ``LogOff`` action in the account controller. 
@@ -57,7 +63,7 @@ The above ``SignInAsync`` method calls the below ``SignInAsync`` task, which is 
 	:emphasize-lines: 5
 	:dedent: 8 
  
-The code above shows the ``SignInManager.SignOut`` method. This is analogous to `FormsAuthentication.SignOut <http://msdn.microsoft.com/en-us/library/system.web.security.formsauthentication.signout.aspx>`_ method used by the `FormsAuthentication <http://msdn.microsoft.com/en-us/library/system.web.security.formsauthenticationmodule.aspx>`_ module in Web Forms.
+The code above shows the ``SignInManager.SignOut`` method. The ``SignOut`` method clears the users claims stored in a cookie. 
 
 6. View the database.
  After stopping the application, view the user database from Visual Studio by selecting **View** -> **SQL Server Object Explorer**. Then, expand the following within the **SQL Server Object Explorer**:
@@ -74,16 +80,23 @@ The code above shows the ``SignInManager.SignOut`` method. This is analogous to 
 Components of ASP.NET Identity
 ------------------------------
 
-The diagram below shows the components of the ASP.NET Identity system (click on `this <http://i1.asp.net/media/4459023/1.png?cdn_id=2015-08-15-002>`_ or on the diagram to enlarge it). The packages in green make up the ASP.NET Identity system. All the other packages are dependencies which are needed to use the ASP.NET Identity system in ASP.NET applications.  
- 
-	.. image:: introduction-to-aspnet-identity/_static/03-1Small.png
- 
-The following is a brief description of the NuGet packages not mentioned previously:
+The primary reference assembly for the ASP.NET Identity system is ``Microsoft.AspNet.Identity``, as show below:
 
+ 	.. image:: introduction-to-aspnet-identity/_static/05-dependencies.png
+
+These dependencies are needed to use the ASP.NET Identity system in ASP.NET applications:
+ 
+- ``EntityFramework.SqlServer``
+ Entity Framework is Microsoft's recommended data access technology for relational databases.
+ 
 - ``Microsoft.AspNet.Authentication.Cookies``
  Middleware that enables an application to use cookie based authentication, similar to ASP.NET's Forms Authentication.
-- ``EntityFramework``
- Entity Framework is Microsoft's recommended data access technology for relational databases.
+
+- ``Microsoft.AspNet.Cryptography.KeyDerivation``
+ ASP.NET 5 utilities for key derivation.
+
+- ``Microsoft.AspNet.Hosting.Abstractions``
+ ASP.NET 5 Hosting abstractions. 
 
 Migrating to ASP.NET Identity 3.x
 ---------------------------------------------
