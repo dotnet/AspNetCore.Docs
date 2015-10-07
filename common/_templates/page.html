@@ -1,0 +1,56 @@
+{% extends "!page.html" %}
+
+{% set disqus_shortname = 'aspnetdocs' %}
+
+{#########################}
+{# for disqus commenting #}
+{#########################}
+
+{% macro comments() %}
+{% if 'index' not in pagename and on_rtd %}
+<!-- Only show comments in the Conference section -->
+<h2 id="comments">
+Comments
+<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a>
+</h2>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = '{{ disqus_shortname }}'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+{% endif %}
+{% endmacro %}
+
+
+{%- block body %}
+  {{ super() }}
+
+{% if next or prev %}
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    {% if next %}
+      <a href="{{ next.link|e }}" class="btn btn-neutral float-right" title="{{ next.title|striptags|e }}" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+    {% endif %}
+    {% if prev %}
+      <a href="{{ prev.link|e }}" class="btn btn-neutral" title="{{ prev.title|striptags|e }}" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if disqus_shortname %}
+  {{ comments() }}
+{% else %}
+<!-- disqus commenting disabled; set disqus_shortname -->
+{% endif %}
+
+{%- endblock %}
+
