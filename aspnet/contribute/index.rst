@@ -5,4 +5,5 @@ Contribute
    :titlesonly:
 
    style-guide
+   docs-survey
 
