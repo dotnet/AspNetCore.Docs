@@ -81,13 +81,95 @@ To build libuv you should do the following::
 .. note::
 
     ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ```ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
-    
+
 Installing on CentOS, Fedora and derivatives
+--------------------------------------------
+
+The following instructions were tested using CentOS 7.
+
+Install the .NET Version Manager (DNVM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
+
+1. Install ``unzip`` if you don't already have it::
+
+    sudo yum install unzip
+
+2. Download and install DNVM::
+
+    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+    sudo chmod +x ~/.dnx/dnvm/dnvm.sh
+    ~/.dnx/dnvm/dnvm.sh
+
+Once this step is complete you should be able to run ``dnvm`` and see some help text.
+
+Install the .NET Execution Environment (DNX)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ or .NET Core (see :doc:`choosing-the-right-dotnet`).
+
+**To install DNX for .NET Core:**
+
+1. Install the DNX prerequisites::
+
+    sudo yum -y install epel-release
+    sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
+
+.. note:: This will add the epel-release repository to your repo list.
 
 .. note::
 
-    Installation steps for CentOS, Fedora and derivatives are not currently available but should be available soon. The commands are mostly the same, with some differences to account for the different package managers used on these systems. Learn how you can `contribute <https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md>`_ on GitHub.
+    Description of the .NET Core dependencies:
+    
+    - `libunwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a program that can you use for debugging and exception handling.
+
+    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project that you can use to help with the translation of your programs.
+
+    - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
+
+    - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
+
+    - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
+
+2. Use DNVM to install DNX for .NET Core::
+
+    dnvm upgrade -r coreclr
+
+.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
+
+**To install DNX for Mono:**
+
+1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`__ via the ``mono-complete`` package.
+
+2. Ensure that the ``ca-certificates-mono`` package is also installed as `noted <http://www.mono-project.com/docs/getting-started/install/linux/#notes>`__ in the Mono installation instructions.
+
+3. Use DNVM to install DNX for Mono::
+
+    dnvm upgrade -r mono
+
+By default DNVM will install DNX for Mono if no runtime is specified.
+
+.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (ex. 2000).
+
+Install Libuv
+^^^^^^^^^^^^^
+
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
+
+To build libuv you should do the following::
+
+    sudo yum install automake libtool wget
+    wget http://dist.libuv.org/dist/v1.4.2/libuv-v1.4.2.tar.gz
+    tar -zxf libuv-v1.4.2.tar.gz
+    cd libuv-v1.6.2
+    sudo sh autogen.sh
+    sudo ./configure
+    sudo make
+    sudo make check
+    sudo make install
+    ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
+    ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
 
 Using Docker
 ------------
