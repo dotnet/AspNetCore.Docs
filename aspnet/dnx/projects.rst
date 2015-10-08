@@ -111,7 +111,7 @@ The .NET Development Utility (DNU) is responsible for all operations involving p
 	
 For a list of usage, arguments, and options of the ``install`` command, enter the following in the command windows::
 
-	dnu help install
+	dnu install --help
 	
 For more information about ``dnu`` commands, see `.NET Development Utility (DNU) <https://github.com/aspnet/Home/wiki/DNX-utility>`_.
 
@@ -369,7 +369,7 @@ When building a DNX based application, such as by using ``dnu build`` or via pac
 
 For a list of usage, arguments, and options of the ``build`` command, enter the following in the command windows::
 
-	dnu help build
+	dnu build --help
 
 Including/Excluding files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -595,7 +595,7 @@ The appName directory will contain all of your applications code, if you have pr
 
 The publish command will also hoist any commands from your *project.json* file into batch files. Running any of these commands is the same as running  ``dnx <command>``. For a list of usage, arguments, and options of the ``publish`` command, enter the following in the command windows::
 
-	dnu help publish
+	dnu publish --help
 
 Scripts
 -------
