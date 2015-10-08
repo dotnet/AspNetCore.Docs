@@ -35,7 +35,7 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['_templates', '../common/_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -120,6 +120,10 @@ rst_prolog = """
 
 # This allows sphinx_rtd_theme to work locally
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+html_context = {
+    'on_rtd' : on_rtd
+}
 
 if not on_rtd:
 	import sphinx_rtd_theme
