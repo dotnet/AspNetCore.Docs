@@ -24,9 +24,10 @@ Use the .NET Version Manager (DNVM) to install different versions of the .NET Ex
 
     sudo apt-get install unzip
 
-2.0 if you didn't unstall curl before- install it now.
+2.0 if you didn't install curl before- install it now.
+
     sudo apt-get install curl
-    
+  
 2.1 Download and install DNVM::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
