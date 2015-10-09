@@ -99,8 +99,6 @@ Use the .NET Version Manager (DNVM) to install different versions of the .NET Ex
 2. Download and install DNVM::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    sudo chmod +x ~/.dnx/dnvm/dnvm.sh
-    ~/.dnx/dnvm/dnvm.sh
 
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
@@ -117,20 +115,6 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
     sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
 
 .. note:: This will add the epel-release repository to your repo list.
-
-.. note::
-
-    Description of the .NET Core dependencies:
-    
-    - `libunwind <http://www.nongnu.org/libunwind/index.html>`_ is a C API to determine the call-chain of a program that can you use for debugging and exception handling.
-
-    - `gettext <http://www.gnu.org/software/gettext/gettext.html>`_ is a translation project that you can use to help with the translation of your programs.
-
-    - `libcurl-devel <http://curl.haxx.se/libcurl/>`_ is a client-side URL transfer library.
-
-    - `openssl-devel <https://www.openssl.org/>`_ is a TLS and SSL library.
-
-    - `zlib <http://zlib.net/>`_ is a lossless data-compression library.
 
 2. Use DNVM to install DNX for .NET Core::
 
