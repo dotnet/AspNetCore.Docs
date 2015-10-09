@@ -99,7 +99,7 @@ Next, configure NPM to download grunt and grunt-tasks.
 			"grunt-contrib-watch": "0.6.1"
 	}
 
-4.	Save the ``packages.json`` file.
+4.	Save the ``package.json`` file.
 
 The packages for each devDependencies item will download, along with any files that each package requires. You can find the package files in the ``node_modules`` directory by enabling the **Show All Files** button in the Solution Explorer.  
 
@@ -113,7 +113,7 @@ The packages for each devDependencies item will download, along with any files t
 Configuring Grunt
 ^^^^^^^^^^^^^^^^^
 
-Grunt is configured using a manifest named ``gruntfile.js`` that defines, loads and registers tasks that can be run manually or configured to run automatically based on events in Visual Studio.
+Grunt is configured using a manifest named ``Gruntfile.js`` that defines, loads and registers tasks that can be run manually or configured to run automatically based on events in Visual Studio.
 
 1.	Right-click the project and select **Add > New Item**. Select the **Grunt Configuration file** option, leave the default name, ``Gruntfile.js``, and click the **Add** button. 
 
@@ -219,7 +219,7 @@ The task minifies the combined.js file found in the temp directory and creates t
 
 .. image:: using-grunt/_static/task-runner-explorer-run-each-task.png
 
-The concat task creates a new combined.js file and places it into the temp directory. The jshint task simply runs and doesn’t produce output. The uglify task creates a new combined.min.js file and places it into wwwroot\lib. On completion, the solution should look something like the screenshot below:
+The concat task creates a new combined.js file and places it into the temp directory. The jshint task simply runs and doesn’t produce output. The uglify task creates a new combined.min.js file and places it into wwwroot/lib. On completion, the solution should look something like the screenshot below:
 
 .. image:: using-grunt/_static/solution-explorer-after-all-tasks.png
 
