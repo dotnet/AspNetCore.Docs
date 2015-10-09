@@ -11,7 +11,7 @@ ASP.NET MVC is a lightweight, cross-platform, highly testable Web application de
 
 - :doc:`Views </views/index>` are responsible for displaying the application's user interface (UI). Typically, this UI is created from the model data. An example would be an edit view of a Products table that displays text boxes, drop-down lists, and check boxes based on the current state of the Product object being represented in the view.
 
-- :doc:`Controllers </controllers/index>` process incoming requests, work with the model, and ultimately return a view to the client that displays the user interface.
+- :doc:`Controllers </controllers/index>` define actions that process incoming requests, work with the model, and ultimately return a view to the client that displays the user interface.
 
 This delineation of responsibilities helps you scale the application in terms of complexity because it’s much easier to code, debug, and test something (model, view, or controller) that has a single job rather than something that performs multiple tasks.
 
