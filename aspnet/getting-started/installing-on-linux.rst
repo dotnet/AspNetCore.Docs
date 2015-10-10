@@ -24,7 +24,11 @@ Use the .NET Version Manager (DNVM) to install different versions of the .NET Ex
 
     sudo apt-get install unzip
 
-2. Download and install DNVM::
+2.0 if you didn't install curl before- install it now.
+
+    sudo apt-get install curl
+  
+2.1 Download and install DNVM::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
     
@@ -50,7 +54,9 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 **To install DNX for Mono:**
 
 1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives>`__ via the ``mono-complete`` package.
-
+    sudo apt-get install mono-complete
+  .. note:: after installation check installed mono version. Min supported version is 3.4.1. Information about all new releases of mono -http://www.mono-project.com/docs/about-mono/releases/
+   mono --version
 2. Ensure that the ``ca-certificates-mono`` package is also installed as `noted <http://www.mono-project.com/docs/getting-started/install/linux/#notes>`__ in the Mono installation instructions.
 
 3. Use DNVM to install DNX for Mono::
