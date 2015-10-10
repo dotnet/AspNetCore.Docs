@@ -15,13 +15,13 @@ Install ASP.NET with Visual Studio
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the freely available Community edition). Visual Studio is an Integrated Development Environment (IDE), which means it's not just an editor, but also has many of the tools you need to build applications, in this case ASP.NET 5 web applications. 
 
 1. Install `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__
-2. Install the latest `ASP.NET 5 preview (Beta8) <http://go.microsoft.com/fwlink/?LinkId=690242>`_
+2. Install the latest `ASP.NET 5 preview (Beta7) <http://go.microsoft.com/fwlink/?LinkId=623894>`_
 
 When installing Visual Studio 2015, you'll want to be sure to specify that you want to install the Microsoft Web Developer Tools.
 
 .. image:: installing-on-windows/_static/web-dev-tools.png
 
-Once Visual Studio is installed, follow the instructions on the Download Center page for installing the latest `ASP.NET 5 preview (Beta8)`_.
+Once Visual Studio is installed, follow the instructions on the Download Center page for installing the latest `ASP.NET 5 preview (Beta7)`_.
 
 To enable a full command-line experience after installing Visual Studio, open a **Developer Command Prompt for VS2015** and run the following commands::
 
