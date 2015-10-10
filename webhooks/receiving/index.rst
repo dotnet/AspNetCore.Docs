@@ -1,5 +1,5 @@
-Receivers
----------
+Receiving WebHooks
+------------------
 
 .. include:: /../common/stub-overview.txt
 
