@@ -11,13 +11,13 @@ namespace TodoApi.Controllers
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
+        private readonly ITodoRepository _todoRepository;
         private readonly ILogger<TodoController> _logger;
 
-        [FromServices]
-        public ITodoRepository TodoItems { get; set; }
-
-        public TodoController(ILogger<TodoController> logger)
+        public TodoController(ITodoRepository todoRepository, 
+            ILogger<TodoController> logger)
         {
+            _todoRepository = todoRepository;
             _logger = logger;
         }
 
@@ -26,14 +26,14 @@ namespace TodoApi.Controllers
         {
             _logger.LogInformation(LoggingEvents.LIST_ITEMS, "Listing all items");
             EnsureItems();
-            return TodoItems.GetAll();
+            return _todoRepository.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(string id)
         {
             _logger.LogInformation(LoggingEvents.GET_ITEM, "Getting item {0}", id);
-            var item = TodoItems.Find(id);
+            var item = _todoRepository.Find(id);
             if (item == null)
             {
                 _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "GetById({0}) NOT FOUND", id);
@@ -49,7 +49,7 @@ namespace TodoApi.Controllers
             {
                 return HttpBadRequest();
             }
-            TodoItems.Add(item);
+            _todoRepository.Add(item);
             _logger.LogInformation(LoggingEvents.INSERT_ITEM, "Item {0} Created", item.Key);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
         }
@@ -62,14 +62,14 @@ namespace TodoApi.Controllers
                 return HttpBadRequest();
             }
 
-            var todo = TodoItems.Find(id);
+            var todo = _todoRepository.Find(id);
             if (todo == null)
             {
                 _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Update({0}) NOT FOUND", id);
                 return HttpNotFound();
             }
 
-            TodoItems.Update(item);
+            _todoRepository.Update(item);
             _logger.LogInformation(LoggingEvents.UPDATE_ITEM, "Item {0} Updated", item.Key);
             return new NoContentResult();
         }
@@ -77,18 +77,18 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            TodoItems.Remove(id);
+            _todoRepository.Remove(id);
             _logger.LogInformation(LoggingEvents.DELETE_ITEM, "Item {0} Deleted", id);
         }
 
         private void EnsureItems()
         {
-            if (!TodoItems.GetAll().Any())
+            if (!_todoRepository.GetAll().Any())
             {
                 _logger.LogInformation(LoggingEvents.GENERATE_ITEMS, "Generating sample items.");
                 for (int i = 1; i < 11; i++)
                 {
-                    TodoItems.Add(new TodoItem() { Name = "Item " + i });
+                    _todoRepository.Add(new TodoItem() { Name = "Item " + i });
                 }
             }
         }
