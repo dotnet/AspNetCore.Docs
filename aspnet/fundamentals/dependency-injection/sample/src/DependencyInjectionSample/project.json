@@ -5,7 +5,7 @@
 
   "dependencies": {
     "EntityFramework.Commands": "7.0.0-beta7",
-    "EntityFramework.SqlServer": "7.0.0-beta7",
+    "EntityFramework.InMemory": "7.0.0-beta7",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta7",
     "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta7",
     "Microsoft.AspNet.Authentication.Google": "1.0.0-beta7",

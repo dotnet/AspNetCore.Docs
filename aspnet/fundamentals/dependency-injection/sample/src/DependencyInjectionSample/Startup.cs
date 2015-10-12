@@ -49,9 +49,8 @@ namespace DependencyInjectionSample
         {
             // Add Entity Framework services to the services container.
             services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                .AddInMemoryDatabase()
+                .AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase());
 
             // Add Identity services to the services container.
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -83,6 +82,9 @@ namespace DependencyInjectionSample
             // Register application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
+
+            var foo = "";
         }
 
         // Configure is called after ConfigureServices is called.

@@ -77,32 +77,68 @@ The ``ConfigureServices`` method is responsible for defining the services the ap
 	:dedent: 8
 	:emphasize-lines: 5,11,18,24
 
-In order to keep the ``ConfigureServices`` method manageable, it is recommended that middleware and feature authors provide extension methods and fluent configuration APIs that work with ``IServiceCollection``. The built-in features for Entity Framework, Identity, and ASP.NET MVC all follow this approach and can be used as models for providing a very succinct way to add a great deal of functionality to an ASP.NET application.
+In order to keep the ``ConfigureServices`` method manageable, it is recommended that :doc:`middleware` and :doc:`request-features` authors provide extension methods and fluent configuration APIs that work with ``IServiceCollection``. The built-in features for Entity Framework, Identity, and ASP.NET MVC all follow this approach and can be used as models for providing a very succinct way to add a great deal of functionality to an ASP.NET application.
 
 Of course, in addition to configuring the application to take advantage of various framework features, you can also use ``ConfigureServices`` to configure your own application services.
 
 Registering Your Own Services
 -----------------------------
 
-In the default web template example above, two application services are added to the ``IServiceCollection`` (``IEmailSender`` and ``ISmsSender``). The ``AddTransient`` method is used to map abstract types to concrete services that are instantiated separately for every object that requires it. This is known as the service's *lifetime*, and additional lifetime options are described below.
+In the default web template example above, two application services are added to the ``IServiceCollection`` (``IEmailSender`` and ``ISmsSender``). The ``AddTransient`` method is used to map abstract types to concrete services that are instantiated separately for every object that requires it. This is known as the service's *lifetime*, and additional lifetime options are described below. It is important to choose an appropriate lifetime for each of the services you register. Should a new instance of the service be provided to each class that requests it? Should once instance be used throughout a given web request? Or should a single instance be used for the lifetime of the application?
 
+In the sample for this article, there is a simple controller that displays character names, called ``CharacterController``. Its ``Index`` method displays the current list of characters that have been stored in the application, and initializes the collection with a handful of characters if none exist. Note that although this application uses Entity Framework and the ``ApplicationDbContext`` class for its persistence, none of that is apparent in the controller. Instead, the specific data access mechanism has been abstracted behind an interface, ``ICharacterRepository``, which follows the `repository pattern <http://deviq.com/repository-pattern/>`_. An instance of ``ICharacterRepository`` is requested via the constructor and assigned to a private field, which is then used to access characters as necessary.
 
-Show an example of registering your own services using a Repository pattern
+.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Controllers/CharactersController.cs
+	:language: c#
+	:linenos:
+	:lines: 1-32
+	:emphasize-lines: 9,11,13,19,22-26
 
-Inside ConfigureServices, there is a list of service descriptors. At the end of your code in that method, that is the list that will be available to your application via DI.
+The `ICharacterRepository` simply defines the two methods the controller needs to work with `Character` instances.
+
+.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Models/ICharacterRepository.cs
+	:language: c#
+	:linenos:
+
+This interface is in turn implemented by a concrete type, ``CharacterRepository``, that is used at runtime.
+
+.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Models/CharacterRepository.cs
+	:language: c#
+	:linenos:
+
+Note that ``CharacterRepository`` requests an ``ApplicationDbContext`` in its constructor. It is not unusual for dependency injection to be used in a chained fashion like this, with each requested dependency in turn requesting its own dependencies. The container is responsible for resolving all of the dependencies in the tree and returning the fully resolved object graph.
+
+In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext`` must be registered with the services container in ``ConfigureServices`` in ``Startup``. ``ApplicationDbContext`` is configured via the call to the extension method ``AddEntityFramework`` which includes an extenstion for adding a ``DbContext`` (``AddDbContext<T>``). Registration of the repository is done at the bottom end of ``ConfigureServices``:
+
+.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
+	:language: c#
+	:lines: 48-54, 82-86
+	:linenos:
+	:dedent: 8
+	:emphasize-lines: 6, 11
+
+Entity Framework contexts should be added to the services container using the ``Scoped`` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
 Service Lifetimes and Registration Options
 ------------------------------------------
 
-* Transient
-* Scoped
-* Singleton
-* Instance which is also singleton
+ASP.NET services can be configured with the following lifetimes:
 
-Talk about registration
-* by Type
-* by Factory
-* by Instance (Singleton)
+Transient
+	Transient lifetime services are created each time they are requested. This lifetime works best for lightweight, stateless service.
+
+Scoped
+	Scoped lifetime services are created once per request.
+
+Singleton
+	Singleton lifetime services are created the first time they are requested, and then every subsequent request will use the same instance. If your application requires singleton behavior, this is recommended in place of implementing the singleton design pattern in your class yourself.
+
+Instance
+	You can choose to add an instance directly to the services container. If you do so, this instance will be used for all subsequent requests (this technique will create a Singleton-scoped instance).
+
+Services can be registered with the container in several ways. We have already seen how to register a service implementation with a given type by specifying the concrete type to use. In addition, a factory can be specified, which will then be used to create the instance on demand. The third approach is to directly specify the instance of the type to use, in which case the container will never attempt to create an instance.
+
+
 
 Request Services and Application Services
 -----------------------------------------

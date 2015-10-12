@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DependencyInjectionSample.Models;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
 
@@ -10,28 +11,19 @@ namespace DependencyInjectionSample.Controllers
     public class HomeController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(IHostingEnvironment hostingEnvironment)
+        public HomeController(IHostingEnvironment hostingEnvironment,
+            ApplicationDbContext dbContext)
         {
             _hostingEnvironment = hostingEnvironment;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewData["Environment"] = _hostingEnvironment.EnvironmentName;
+            ViewData["UserCount"] = _dbContext.Users.Count();
             return View();
         }
 
