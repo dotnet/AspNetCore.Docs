@@ -8,7 +8,7 @@ The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructur
 
 Once you have cloned the Docs to your local machine, the following instructions will walk you through installing the tools necessary to build and test.
 
-1. [Download python](https://www.python.org/downloads/) version 2.7.10 or higher. 
+1. [Download python](https://www.python.org/downloads/) version 2.7.10 or higher. (Version 3.4 is recommended.)
 
 2. If you are installing on Windows, add both the Python install directory and the Python scripts directory to your `PATH` environment variable. For example, if you install Python into the c:\python34 directory, you would add `c:\python34;c:\python34\scripts` to your `PATH` environment variable.  
 
