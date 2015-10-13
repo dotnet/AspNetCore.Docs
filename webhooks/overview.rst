@@ -33,7 +33,7 @@ If you only need to receive WebHooks from other services then you can
 use just the receiver part; if you only want to expose WebHooks for 
 others to consume, then you can do just that. 
 
-The code targets ASP.NET Web API 2 and ASP.NET MVC 5 and is available as `OSS on GitHub <https://github.com/aspnet/WebHooks/tree/1.2.0-beta>`_.
+The code targets ASP.NET Web API 2 and ASP.NET MVC 5 and is available as `OSS on GitHub <https://github.com/aspnet/WebHooks>`_.
 
 WebHooks Overview
 -----------------

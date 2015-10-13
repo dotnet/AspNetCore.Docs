@@ -14,7 +14,9 @@ ASP.NET WebHooks Documentation
     :titlesonly:
 
     overview
+    source
     receiving/index
+    sending/index
     diagnostics/index
 
 .. include:: /../common/contribute.txt

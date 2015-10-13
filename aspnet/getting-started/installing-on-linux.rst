@@ -39,7 +39,7 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 1. Install the DNX prerequisites::
 
-    sudo apt-get install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
+    sudo apt-get install libunwind8 gettext libssl-dev libcurl3-dev zlib1g
 
 2. Use DNVM to install DNX for .NET Core::
 
@@ -105,9 +105,22 @@ Once this step is complete you should be able to run ``dnvm`` and see some help 
 Install the .NET Execution Environment (DNX)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ (see :doc:`choosing-the-right-dotnet`).
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ or .NET Core (see :doc:`choosing-the-right-dotnet`).
 
-.. note:: DNX support for .NET Core is not available for CentOS, Fedora and derivative in this release, but will be enabled in a future release.
+**To install DNX for .NET Core:**
+
+1. Install the DNX prerequisites::
+
+    sudo yum -y install epel-release
+    sudo yum -y install libunwind gettext libcurl-devel openssl-devel zlib
+
+.. note:: This will add the epel-release repository to your repo list.
+
+2. Use DNVM to install DNX for .NET Core::
+
+    dnvm upgrade -r coreclr
+
+.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
 
 **To install DNX for Mono:**
 
