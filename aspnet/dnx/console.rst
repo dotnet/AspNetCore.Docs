@@ -10,7 +10,7 @@ In this article:
 	- `Specifying Project Settings`_
 	- `Running the App`_
 	
-You can `view and download the source <https://github.com/aspnet/Docs/tree/master/common/samples/ConsoleApp1>`_ from the project created in this article.
+You can `view and download the source <https://github.com/aspnet/Docs/tree/master/aspnet/dnx/console/sample/ConsoleApp1>`_ from the project created in this article.
 
 Creating a Console App
 ----------------------
@@ -23,7 +23,7 @@ Open a console or terminal window in an empty working folder, where ``dnx`` is c
 
 Creating a console application is extremely straightforward. For this article, we're going to use the following C# class, which has just one line of executable code:
 
-.. literalinclude:: /../common/samples/ConsoleApp1/src/ConsoleApp1/Program.cs
+.. literalinclude:: /dnx/console/sample/ConsoleApp1/src/ConsoleApp1/Program.cs
 	:linenos:
 	:language: c#
 	
@@ -34,13 +34,13 @@ Specifying Project Settings
 
 Next, we need to provide the project settings DNX will use. Create a new ``project.json`` file in the same folder, and edit it to match the listing shown here:
 
-.. literalinclude:: /../common/samples/ConsoleApp1/src/ConsoleApp1/project.json
+.. literalinclude:: /dnx/console/sample/ConsoleApp1/src/ConsoleApp1/project.json
 	:linenos:
 	:language: json
 
 The ``project.json`` files defines the app dependencies and target frameworks in addition to various metadata properties about the app. See :doc:`projects` for more details.
-
-Save your changes.
+ 
+Save your changes. If you're using Visual Studio, it will automatically detect the changes to ``project.json`` and will pull in any dependencies. If you're using another editor, you will need to run ``dnu restore`` to pull in the project's dependencies prior to running the application.
 
 Running the App
 ---------------
