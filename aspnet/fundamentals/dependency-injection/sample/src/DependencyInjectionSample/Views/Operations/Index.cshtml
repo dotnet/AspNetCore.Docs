@@ -1,0 +1,35 @@
+﻿@using System.Threading.Tasks
+@using DependencyInjectionSample.Interfaces
+@{
+    ViewData["Title"] = "Lifetimes";
+}
+<h1>Lifetimes</h1>
+<div class="row">
+    <div class="col-md-6">
+        Controller Operations
+        <dl class="dl-horizontal">
+            <dt>Transient</dt>
+            <dd>@ViewBag.Transient.OperationId</dd>
+            <dt>Scoped</dt>
+            <dd>@ViewBag.Scoped.OperationId</dd>
+            <dt>Singleton</dt>
+            <dd>@ViewBag.Singleton.OperationId</dd>
+            <dt>Instance</dt>
+            <dd>@ViewBag.Instance.OperationId</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        OperationService Operations
+        <dl class="dl-horizontal">
+            <dt>Transient</dt>
+            <dd>@ViewBag.Service.TransientOperation.OperationId</dd>
+            <dt>Scoped</dt>
+            <dd>@ViewBag.Service.ScopedOperation.OperationId</dd>
+            <dt>Singleton</dt>
+            <dd>@ViewBag.Service.SingletonOperation.OperationId</dd>
+            <dt>Instance</dt>
+            <dd>@ViewBag.Service.InstanceOperation.OperationId</dd>
+        </dl>
+
+    </div>
+</div>

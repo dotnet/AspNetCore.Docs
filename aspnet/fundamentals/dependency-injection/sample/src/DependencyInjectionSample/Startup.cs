@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using DependencyInjectionSample.Interfaces;
 using Microsoft.AspNet.Authentication.Facebook;
-using Microsoft.AspNet.Authentication.Google;
 using Microsoft.AspNet.Authentication.MicrosoftAccount;
-using Microsoft.AspNet.Authentication.Twitter;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics.Entity;
 using Microsoft.AspNet.Hosting;
@@ -22,7 +18,7 @@ namespace DependencyInjectionSample
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, 
+        public Startup(IHostingEnvironment env,
             IApplicationEnvironment appEnv,
             ILoggerFactory loggerFactory)
         {
@@ -84,13 +80,18 @@ namespace DependencyInjectionSample
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddScoped<ICharacterRepository, CharacterRepository>();
 
-            var foo = "";
+            // Show different lifetime options
+            services.AddTransient<IOperationTransient, Operation>();
+            services.AddScoped<IOperationScoped, Operation>();
+            services.AddSingleton<IOperationSingleton, Operation>();
+            services.AddInstance<IOperationInstance>(new Operation(Guid.Empty));
+            services.AddTransient<OperationService, OperationService>();
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app,
             IApplicationEnvironment appEnv,
-            IHostingEnvironment env, 
+            IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using DependencyInjectionSample.Models;
 
-namespace DependencyInjectionSample.Models
+namespace DependencyInjectionSample.Interfaces
 {
     public interface ICharacterRepository
     {

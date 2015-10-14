@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
 using Microsoft.AspNet.Mvc;
 
