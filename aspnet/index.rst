@@ -16,6 +16,7 @@ Frameworks
 ----------
 
 * :ref:`MVC <mvc:index>`
+* `WebHooks <http://docs.asp.net/projects/webhooks>`__
 
 Topics
 ------
