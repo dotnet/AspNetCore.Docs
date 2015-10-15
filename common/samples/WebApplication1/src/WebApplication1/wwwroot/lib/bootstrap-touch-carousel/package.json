@@ -1,0 +1,39 @@
+{
+  "name": "bootstrap-touch-carousel",
+  "description": "A drop-in perfection for Twitter Bootstrap's Carousel (v3) to enable gestures on touch devices.",
+  "version": "0.8.0",
+  "keywords": [
+    "bootstrap",
+    "touch",
+    "carousel"
+  ],
+  "author": "(ixisio) Andreas Klein",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ixisio/bootstrap-touch-carousel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ixisio/bootstrap-touch-carousel/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ixisio/bootstrap-touch-carousel/blob/master/LICENSE-MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-qunit": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-bump": "0.0.13",
+    "grunt-contrib-connect": "~0.6.0"
+  }
+}
