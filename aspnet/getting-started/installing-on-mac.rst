@@ -6,8 +6,8 @@ By `Steve Smith`_, `Daniel Roth`_
 ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including OS X. This article describes how to install DNX, and therefore ASP.NET 5, on OS X using .NET Core and Mono.
 
 In this article:
-	- `Install the .NET Version Manager (DNVM)`_
-	- `Install the .NET Execution Environment (DNX)`_
+  - `Install the .NET Version Manager (DNVM)`_
+  - `Install the .NET Execution Environment (DNX)`_
 
 Install the .NET Version Manager (DNVM)
 ---------------------------------------
@@ -27,7 +27,12 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 **To install DNX for .NET Core:**
 
-1. Use DNVM to install DNX for .NET Core::
+1. Install the DNX prerequisites using `Homebrew <http://brew.sh/>`__::
+
+    brew update
+    brew install icu4c
+
+2. Use DNVM to install DNX for .NET Core::
 
     dnvm upgrade -r coreclr
 
