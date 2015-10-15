@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Test for jQuery validate() plugin</title>
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
+<script src="../lib/jquery.js" type="text/javascript"></script>
+<script src="firebug/firebug.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$().ready(function() {
+	var handler = {
+		focusin: function() {
+			$(this).addClass("focus");
+		},
+		focusout: function() {
+			$(this).removeClass("focus");
+		}
+	}
+	$("#commentForm").delegate("focusin focusout", ":text, textarea", function(event) {
+		/*
+		this.addClass("focus").one("blur", function() {
+			$(this).removeClass("focus");
+		});
+		*/
+		handler[event.type].call(this, arguments);
+	});
+	$("#remove").click(function() {
+		$("#commentForm").unbind("focusin");
+	})
+});
+</script>
+
+<style type="text/css">
+#commentForm { width: 500px; }
+#commentForm label { width: 250px; display: block; float: left; }
+#commentForm label.error, #commentForm input.submit { margin-left: 253px; }
+.focus { background-color: red; }
+</style>
+
+</head>
+<body>
+<form class="cmxform" id="commentForm" method="get" action="">
+	<fieldset>
+		<legend>A simple comment form with submit validation and default messages</legend>
+		<p>
+			<label for="cname">Name (required, at least 2 characters)</label>
+			<input id="cname" name="name" class="some other styles {required:true,minLength:2}" />
+		<p>
+			<label for="cemail">E-Mail (required)</label>
+			<input id="cemail" name="email" class="{required:true,email:true}" />
+		</p>
+		<p>
+			<label for="curl">URL (optional)</label>
+			<input id="curl" name="url" class="{url:true}" value="" />
+		</p>
+		<p>
+			<label for="ccomment">Your comment (required)</label>
+			<textarea id="ccomment" name="comment" class="{required:true}"></textarea>
+		</p>
+		<p>
+			<input class="submit" type="submit" value="Submit"/>
+		</p>
+	</fieldset>
+</form>
+
+<button id="remove">Remove focus handler</button>
+
+</body>
+</html>
