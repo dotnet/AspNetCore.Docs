@@ -55,16 +55,16 @@ The following diagram show the basic design of the app.
 Install Fiddler
 ---------------
 
-*This step is optional but recommended.*
+*This step is optional.*
 
-Because we're not building a client, we need a way to call the API. In this tutorial, I’ll show that by using `Fiddler <http://www.fiddler2.com/fiddler2/>`__. Fiddler is a web debugging tool that lets you compose HTTP requests and view the raw HTTP responses. Fiddler lets you make direct HTTP requests to the API as we develop the app.
+Because we're not building a client, we need a way to call the API. In this tutorial, I’ll show that by using `Fiddler <http://www.fiddler2.com/fiddler2/>`__. Fiddler which is a web debugging tool that lets you compose HTTP requests and view the raw HTTP responses. That lets use make direct HTTP requests to the API as we develop the app.
 
 Create the project
 ------------------
 
 Start Visual Studio 2015. From the **File** menu, select **New** > **Project**.
 
-Select the **ASP.NET Web Application** project template. Name the project ``TodoApi`` and click **OK**.
+Select the **ASP.NET Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **Web**. Name the project ``TodoApi`` and click **OK**.
 
 .. image:: first-web-api/_static/new-project.png
  
@@ -77,7 +77,7 @@ Add a model class
 
 A model is an object that represents the data in your application. In this case, the only model is a to-do item. 
 
-Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+First, add a folder named "Models". In Solution Explorer, right-click the project. (The project appears under the "src" folder.) Select **Add** > **New Folder**. Name the folder *Models*.
  
 .. image:: first-web-api/_static/add-folder.png
  
@@ -89,7 +89,7 @@ In the **Add New Item** dialog, select the **Class** template. Name the class ``
  
 .. image:: first-web-api/_static/add-class.png 
 
-Replace the generated code with:
+Replace the boilerplate code with:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Models/TodoItem.cs
     :language: c#
@@ -97,7 +97,7 @@ Replace the generated code with:
 Add a repository class
 ----------------------
 
-A *repository* is an object that encapsulates the data layer, and contains logic for retrieving data and mapping it to an entity model. Even though the example app doesn’t use a database, it’s useful to see how you can inject a repository into your controllers. Create the repository code in the *Models* folder.
+A *repository* is an object that encapsulates the data layer, and contains logic for retrieving data and mapping it to an entity model. Even though the example app doesn’t use a database, it’s useful to see how you can inject a repository into your controllers. 
 
 Start by defining a repository interface named ``ITodoRepository``. Use the class template (**Add New Item**  > **Class**).
 
@@ -111,7 +111,6 @@ Next, add a ``TodoRepository`` class that implements ``ITodoRepository``:
 .. literalinclude:: first-web-api/sample/src/TodoApi/Models/TodoRepository.cs
     :language: c#
 
-Build the app to verify you don't have any errors.
 
 Register the repository
 -----------------------
@@ -122,14 +121,16 @@ This approach makes it easier to unit test your controllers. Unit tests should i
 
 In order to inject the repository into the controller, we need to register it with the DI container. Open the *Startup.cs* file. Add the following using directive:
 
-``using TodoApi.Models;``
+.. literalinclude:: first-web-api/sample/src/TodoApi/Startup.cs
+    :language: c#
+    :lines: 4
 
 In the ``ConfigureServices`` method, add the highlighted code:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Startup.cs
     :language: c#
-    :lines: 21-27
-    :emphasize-lines: 5
+    :lines: 22-28
+    :emphasize-lines: 6
     :dedent: 8
 
 Add a controller
@@ -137,15 +138,17 @@ Add a controller
 
 In Solution Explorer, right-click the *Controllers* folder. Select **Add** > **New Item**. In the **Add New Item** dialog, select the **Web  API Controller Class** template. Name the class ``TodoController``.
 
-Replace the generated code with the following:
+Replace the boilerplate code with the following:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
     :language: c#
     :lines: 1-11,68-70
 
-This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromServicesAttribute.cs>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered in the ``Startup`` class.    
+This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromServicesAttribute.cs>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered earlier.    
 
 Delete the *ValuesController.cs* file from the *Controllers* folder. The project template adds it as an example controller, but we don’t need it.
+ 
+.. image:: first-web-api/_static/delete-values-controller.png 
  
 Getting to-do items
 -------------------
@@ -172,16 +175,14 @@ Here is an example HTTP response for the ``GetAll`` method::
 
     [{"Key":"4f67d7c5-a2a9-4aae-b030-16003dd829ae","Name":"Item1","IsComplete":false}]
 
-Later in the tutorial I'll show how you can view the HTTP response using the Fiddler tool.
-
 Routing and URL paths 
 ^^^^^^^^^^^^^^^^^^^^^
 
 The `[HttpGet] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpGetAttribute.cs>`_ attribute specifies that these are HTTP GET methods. The URL path for each method is constructed as follows:
 
-- Take the template string in the controller’s route attribute,  ``[Route("api/[controller]")]``
-- Replace "[controller]" with the root name of the controller class ( the name of the controller class minus the ``Controller`` suffix). For this sample, the controller class name is **Todo**\Controller and the root name is "todo". ASP.NET MVC is not case sensitive.
-- If the ``[HttpGet]`` attribute also has a template string, append that to the path. This sample doesn't use a template string. 
+- Take the template string in the controller’s route attribute,  [Route("api/[controller]")]
+- Replace "[controller]" with the the name of the controller class, minus the ``Controller`` suffix. For this sample, that's "todo". 
+- If the ``[HttpGet]`` attribute also has a template string, append that to the path.
 
 For the ``GetById`` method,  "{id}" is a placeholder variable. In the actual HTTP request, the client will use the ID of the ``todo`` item. At runtime, when MVC invokes ``GetById``, it assigns the value of "{id}" in the URL the method's ``id`` parameter.
 
@@ -196,9 +197,9 @@ To learn more about request routing in MVC 6, see :doc:`../controllers/routing`.
 Return values
 ^^^^^^^^^^^^^
 
-The ``GetAll`` method returns a CLR object. MVC automatically serializes the object to `JSON <http://www.json.org/>`__ and writes the ``JSON`` into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. (Unhandled exceptions are translated into 5xx errors.)
+The ``GetAll`` method returns a CLR object. MVC automatically serializes the object to JSON and writes the JSON into the body of the response message. The response code for this method is 200, assuming there are no unhandled exceptions. (Unhandled exceptions are translated into 5xx errors.)
 
-In contrast, the ``GetById`` method returns the more general ``IActionResult`` type, which represents a generic result type. That’s because ``GetById`` has two different return types:
+In contrast, the ``GetById`` method returns an ``IActionResult`` type, which represents a generic result type. That’s because ``GetById`` has two expected return values:
 
 - If no item matches the requested ID, the method returns a 404 error.  This is done by returning ``HttpNotFound``.
 - Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ObjectResult.cs>`_. 
@@ -207,7 +208,7 @@ Use Fiddler to call the API
 ---------------------------
 
 This step is optional, but it’s useful to see the raw HTTP responses from the web API. 
-In Visual Studio, press ^F5 to launch the app. Visual Studio launches a browser and navigates to ``http://localhost:port/api/todo``, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the *todo* data will be displayed. If you're using IE, IE will prompt to you open or save the *todo.json* file.
+In Visual Studio, press F5 to start debugging the app. Visual Studio launches a browser and navigates to ``http://localhost:port/api/todo``, where *port* is a randomly chosen port number. If you're using Chrome, the *todo* data will be displayed. If you're using IE, IE will prompt to you open or save the *todo.json* file.
 
 Launch Fiddler. From the **File** menu, uncheck the **Capture Traffic** option. This turns off capturing HTTP traffic. 
 
@@ -241,15 +242,14 @@ The `CreatedAtRoute <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet
 We can use Fiddler to send a Create request:
 
 #.  In the **Composer** page, select POST from the drop-down.
-#.  In the request headers text box, add a ``Content-Type`` header with the value ``application/json``. Fiddler automatically adds the Content-Length header.
-#.  In the request body text box, enter the following: ``{"Name":"<your to-do item>"}``
+#.  In the request headers text box, add a Content-Type header with the value ``application/json``. Fiddler automatically adds the Content-Length header.
+#.  In the request body text box, type the following: ``{"Name":"<your to-do item>"}``
 #.  Click **Execute**.
 
 .. image:: first-web-api/_static/fiddler4.png
 
 
 Here is an example HTTP session. Use the **Raw** tab to see the session data in this format.
-
 Request::
 
     POST http://localhost:29359/api/todo HTTP/1.1
@@ -283,8 +283,6 @@ Update
 ``Update`` is similar to ``Create``, but uses HTTP PUT. The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`_.
 According to the HTTP spec, a PUT request requires the client to send the entire updated entity, not just the deltas. To support partial updates, use HTTP PATCH.
 
-.. image:: first-web-api/_static/put.png
-
 Delete
 ^^^^^^
 
@@ -299,8 +297,6 @@ The void return type returns a 204 (No Content) response. That means the client 
 - "Delete" means "ensure the item is not in the collection." The item is already not in the collection, so return a 204. 
 
 Either approach is reasonable. If you return 404, the client will need to handle that case. 
-
-.. image:: first-web-api/_static/delete.png
 
 Next steps
 ----------
