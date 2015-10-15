@@ -164,19 +164,11 @@ In addition to working with `TraceSourceLogger`, you can also log directly to th
 Configuring Other Providers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the built-in loggers, you can configure logging to use other providers, such as `NLog <https://github.com/aspnet/Logging/tree/1.0.0-beta7/src/Microsoft.Framework.Logging.NLog>`_ or `Serilog <https://github.com/serilog/serilog-framework-logging>`_. Add the appropriate package to your ``project.json`` file, and then configure it just like any other provider. Typically, these packages should include extension methods on ``ILoggerFactory`` to make it easy to add them. For example, to add support for NLog you would just call:
+In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your ``project.json`` file, and then configure it just like any other provider. Typically, these packages should include extension methods on ``ILoggerFactory`` to make it easy to add them.
 
-.. code-block:: c#
+.. note:: The ASP.NET team is still working with third party logging providers to publish support for this logging model. Once these ship, we will include links to them here.
 
-	loggerFactory.AddNLog(new NLog.LogFactory());
-
-For Serilog, the code is similar:
-
-.. code-block:: c#
-
-	loggerFactory.AddSerilog();
-
-You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements. The links above for NLog and Serilog provide good references to help you get started.
+You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements.
 
 Logging Recommendations
 -----------------------
