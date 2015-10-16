@@ -1,7 +1,7 @@
 ﻿{
   "version": "1.0.0-*",
   "description": "ClassLibrary1 Class Library",
-  "authors": [ "daroth" ],
+  "authors": [ "tarcher" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
@@ -10,11 +10,11 @@
     "dnx451": { },
     "dnxcore50": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23225",
-        "System.Collections": "4.0.11-beta-23225",
-        "System.Linq": "4.0.1-beta-23225",
-        "System.Runtime": "4.0.21-beta-23225",
-        "System.Threading": "4.0.11-beta-23225"
+        "Microsoft.CSharp": "4.0.1-beta-23409",
+        "System.Collections": "4.0.11-beta-23409",
+        "System.Linq": "4.0.1-beta-23409",
+        "System.Runtime": "4.0.21-beta-23409",
+        "System.Threading": "4.0.11-beta-23409"
       }
     }
   }
