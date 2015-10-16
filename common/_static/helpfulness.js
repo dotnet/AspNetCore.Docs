@@ -29,7 +29,7 @@ $.throttle = function (fn, threshhold, scope) {
 	$.Helpfulness = function (options)
 	{
 		var documentId = $("[data-documentid]").attr("data-documentid");
-		var docId = typeof (READTHEDOCS_DATA) != 'undefined' ? READTHEDOCS_DATA.docroot + READTHEDOCS_DATA.page : options.domain != "" ? window.location.href : "";
+		var docId = typeof (READTHEDOCS_DATA) !== 'undefined' ? READTHEDOCS_DATA.docroot + READTHEDOCS_DATA.page : options.domain !== "" ? window.location.href : "";
 
 		return {
 			targetDocumentId: documentId,
@@ -64,6 +64,9 @@ $.throttle = function (fn, threshhold, scope) {
 					$(".helpfulness-form-no").show();
 				});
 
+				$("#txt-helpfulness").attr("maxlength", options.maxCharacters);
+				$("#helpfulness-characters-left").prepend(options.maxCharacters + " ");
+
 				$("#txt-helpfulness").on('input propertychange paste', function ()
 				{
 					var left = options.maxCharacters - $(this).val().length;
@@ -71,18 +74,12 @@ $.throttle = function (fn, threshhold, scope) {
 					{
 						left = 0;
 					}
-					$("#helpfulness-characters-left").text(left + " character" + (left == 1 ? "" : "s") + " remaining");
+					$("#helpfulness-characters-left").text(left + " character" + (left === 1 ? "" : "s") + " remaining");
 				});
 
 				$("#helpfulness-btn-submit").click(function ()
 				{
-					var reason = $("#txt-helpfulness").val().substring(0, 160);
-
-					if (reason == "Please let us know why this wasn't helpful")
-					{
-						reason = "";
-					}
-
+					var reason = $("#txt-helpfulness").val().substring(0, options.maxCharacters);
 					_this.submitNo(reason);
 				});
 
@@ -96,17 +93,17 @@ $.throttle = function (fn, threshhold, scope) {
 					_this.closed = true;
 					$("#helpful").slideUp('fast');
 				});
-
+				
 				$(document).keyup(function (e)
 				{
-					if (e.keyCode == 27)
+					if (e.keyCode === 27)
 					{
 						_this.closed = true;
 						$("#helpful").slideUp('fast');
 					}
 				});
 
-				$(window).scroll($.throttle(function (event)
+				$(window).scroll($.throttle(function ()
 				{
 					_this.updateFixed();
 					_this.show();
@@ -116,7 +113,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 			initLoad: function ()
 			{
-				if (this.getStorage(this.targetKeyId) == null)
+				if (this.getStorage(this.targetKeyId) === null)
 				{
 					this.shouldShow = true;
 					this.updateFixed();
@@ -125,7 +122,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 				$.ajax({
 					context: this,
-					url: options.domain + "/base/HelpfulnessLibrary/ReportSummaryById",
+					url: options.domain + "/umbraco/api/helpfulnessapi/reportsummarybyid",
 					type: "POST",
 					data: {
 						contentId: this.targetDocumentId,
@@ -133,9 +130,9 @@ $.throttle = function (fn, threshhold, scope) {
 					},
 					success: function (data)
 					{
-						if (data != null && data != "")
+						if (data !== null && data !== "")
 						{
-							if (options.isDocs && $("#helpfulness-data").length == 0)
+							if (options.isDocs && $("#helpfulness-data").length === 0)
 							{
 								$("h1").after("<div id='helpfulness-data' class='helpful-text'>" + data + "</div>");
 							}
@@ -144,10 +141,6 @@ $.throttle = function (fn, threshhold, scope) {
 								$("#helpfulness-data").text(data).css("visibility", "visible");
 							}
 						}
-					},
-					error: function (error)
-					{
-
 					}
 				});
 			},
@@ -206,7 +199,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 					$.ajax({
 						context: this,
-						url: options.domain + "/base/HelpfulnessLibrary/SubmitYes",
+						url: options.domain + "/umbraco/api/helpfulnessapi/submityes",
 						type: "POST",
 						data: {
 							pickerId: this.targetPickerId,
@@ -215,7 +208,7 @@ $.throttle = function (fn, threshhold, scope) {
 						},
 						success: function (data)
 						{
-							if (data != null && data == "success")
+							if (data !== null && data === "success")
 							{
 								this.showMessage(".success");
 
@@ -229,7 +222,7 @@ $.throttle = function (fn, threshhold, scope) {
 								this.showMessage(".error");
 							}
 						},
-						error: function (error)
+						error: function ()
 						{
 							this.showMessage(".error");
 						}
@@ -246,7 +239,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 					$.ajax({
 						context: this,
-						url: options.domain + "/base/HelpfulnessLibrary/SubmitNo",
+						url: options.domain + "/umbraco/api/helpfulnessapi/submitno",
 						type: "POST",
 						data: {
 							pickerId: this.targetPickerId,
@@ -256,7 +249,7 @@ $.throttle = function (fn, threshhold, scope) {
 						},
 						success: function (data)
 						{
-							if (data != null && data == "success")
+							if (data !== null && data === "success")
 							{
 								this.showMessage(".success");
 
@@ -270,7 +263,7 @@ $.throttle = function (fn, threshhold, scope) {
 								this.showMessage(".error");
 							}
 						},
-						error: function (error)
+						error: function ()
 						{
 							this.showMessage(".error");
 						}
@@ -299,14 +292,7 @@ $.throttle = function (fn, threshhold, scope) {
 					}
 					catch (e)
 					{
-						if (e.name === 'QUOTA_EXCEEDED_ERR' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED')
-						{
-							return false;
-						}
-						else
-						{
-							return false;
-						}
+						return false;
 					}
 				}
 
@@ -325,7 +311,7 @@ $.throttle = function (fn, threshhold, scope) {
 $(function ()
 {
 	$.Helpfulness({
-		maxCharacters: 160,
+		maxCharacters: 1000,
 		alwaysFixed: true,
 		domain: "http://www.asp.net",
 		isDocs: true
@@ -335,11 +321,7 @@ $(function ()
 
 /* msc-helpfulness.js overrides - start */
 $(function ()
-{
-	$("[data-uitype='autoreset']").focus(function () { if ($(this).val() == $(this).attr("data-uitext")) { $(this).val(""); } });
-	$("[data-uitype='autoreset']").blur(function () { if ($(this).val() == "") { $(this).val($(this).attr("data-uitext")); } });
-	$("[data-uitype='autoreset']").each(function () { if ($(this).val() == "") { $(this).val($(this).attr("data-uitext")); } });
-	
+{	
 	$("#helpful").appendTo("body");	
 });
 /* msc-helpfulness.js overrides - end */
