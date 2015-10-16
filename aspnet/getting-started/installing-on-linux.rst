@@ -133,7 +133,7 @@ To build libuv you should do the following::
     sudo yum install automake libtool wget
     wget http://dist.libuv.org/dist/v1.4.2/libuv-v1.4.2.tar.gz
     tar -zxf libuv-v1.4.2.tar.gz
-    cd libuv-v1.6.2
+    cd libuv-v1.4.2
     sudo sh autogen.sh
     sudo ./configure
     sudo make
