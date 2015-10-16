@@ -20,7 +20,7 @@ Install the .NET Version Manager (DNVM)
 
 Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
 
-1. Install ``upzip`` if you don't already have it::
+1. Install ``unzip`` if you don't already have it::
 
     sudo apt-get install unzip
 
