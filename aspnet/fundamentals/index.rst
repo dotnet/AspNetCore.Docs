@@ -24,5 +24,4 @@ Fundamentals
     servers
     owin
     hosting
-    testing
 
