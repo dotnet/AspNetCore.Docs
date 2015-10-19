@@ -105,11 +105,8 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-rst_prolog = """
+rst_epilog = """
 .. raw:: html
-
-	<noscript><img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/></noscript>
-	
 .. include:: /../common/authors.txt
 """
 
@@ -126,12 +123,13 @@ html_context = {
 }
 
 if not on_rtd:
-	import sphinx_rtd_theme
-	html_theme = 'sphinx_rtd_theme'
-	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 def setup(app):
-    app.add_stylesheet('custom.css')   
+    app.add_stylesheet('custom.css?v=1')
+    app.add_javascript('helpfulness.js') 
     if on_rtd:
         app.add_javascript('wedc.js')
 

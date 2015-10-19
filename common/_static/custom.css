@@ -147,3 +147,43 @@ h1, h2, h3, h4, h5, h6, legend {
     background-color: #0054a3 !important;
     color: #fff !important;
 }
+
+
+
+
+
+/* helpfulness.css - start */
+.helpfulness-container { background: #0054a3; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
+.helpfulness-container.fixed { position:fixed; }
+.helpfulness { margin: 0 auto; max-width:1160px; padding:0 20px; }
+.helpfulness:after { clear: both;content: '.';display: block;visibility: hidden;height: 0; }
+.helpfulness .helpfulness-form h2 { color:#fff; margin-bottom:0; margin-right:10px; float:left; font-size:18px; line-height:28px; }
+.helpfulness .helpfulness-form span { line-height:28px; }
+.helpfulness .common-btn { padding:5px 15px; margin: 0 10px 0 0; }
+.helpfulness .common-btn.secondary { background-color: #777; }
+.helpfulness .common-btn.secondary:hover { background-color: #888; }
+.helpfulness .first { margin-left:10px; }
+.helpfulness input { display:block; margin:10px 0 0; width:50%; padding:5px; font-family:"Segoe UI",Tahoma,Arial,Helvetica,sans-serif; color:#666; font-size:100%; border: 1px solid #d2d2d2; }
+.helpfulness .helpfulness-form-no h2 { color:#fff; margin-bottom:10px; font-size:18px; line-height:28px; }
+.helpfulness .helpfulness-form-no span { float:right; margin-right:50%; margin-top:10px; }
+.helpfulness .helpfulness-form-no .common-btn {margin-top:10px;}
+.helpfulness .messages { line-height:28px; }
+a.helpfulness-close { position:absolute; right:15px; top:20px; color:#fff; font-size:20px; }
+a.helpfulness-close:hover { text-decoration:none; color:#3BABD0; }
+
+@media only screen and (max-width : 480px) {
+	.helpfulness .helpfulness-form span { display: none; }
+	.helpfulness .helpfulness-form-no span { margin-right:auto; }
+	.helpfulness input {width:100%;}
+}
+/* helpfulness.css - end */
+
+/* helpfulness.css overrides - start */
+.helpfulness { max-width:none; }
+
+.common-btn, .btn-install {background:#6CB200;color:#fff;border:0;padding:10px 15px;font-size:14px;display:inline-block;text-transform:uppercase;}
+.common-btn:hover, .btn-install:hover {background-color:#89C33F;text-decoration:none;}
+a.common-btn, a.btn-install { color: #fff;}
+
+.helpful-text {text-align:right;margin:10px 0;}
+/* helpfulness.css overrides - end */
