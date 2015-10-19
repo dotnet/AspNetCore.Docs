@@ -27,6 +27,7 @@ Topics
     tutorials/index
     conceptual-overview/index
     fundamentals/index
+    testing/index
     dnx/index
     frameworks/index
     data/index
