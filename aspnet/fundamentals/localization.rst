@@ -173,7 +173,7 @@ In order to specify a different cookie name, you simply set the ``CookieRequestC
 Using the AcceptLanguageHeaderRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``AcceptLanguageHeaderRequestCultureProvider`` attempts to determine the culture by inspecting the Accept-Language value in the request header. If an Accept-Language value is not present or doesn't contain at least one culture value, ``AcceptLanguageHeaderRequestCultureProvider`` will return null. In addition, since the Accept-Language value can hold multiple cultures,  ``AcceptLanguageHeaderRequestCultureProvider`` attempts to find a valid culture by inspecting the first `n` cultures found where `n` is represented by the ``AcceptLanguageHeaderRequestCultureProvider.MaximumAcceptLanguageHeaderValuesToTry`` property.
+The ``AcceptLanguageHeaderRequestCultureProvider`` attempts to determine the culture by inspecting the Accept-Language value in the request header. If an Accept-Language value is not present or doesn't contain at least one culture value, ``AcceptLanguageHeaderRequestCultureProvider`` will return null. In addition, since the Accept-Language value can hold multiple cultures, the ``AcceptLanguageHeaderRequestCultureProvider.MaximumAcceptLanguageHeaderValuesToTry`` property, which defaults to 3, defines the maximum number of cultures to try.
 
 As Internet Explorer (IE) honors your operating system language settings, testing the ``AcceptLanguageHeaderRequestCultureProvider`` is easy. The following screen shot shows the request header in the Fiddler tool after setting the Windows language to Spanish.
 
