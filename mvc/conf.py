@@ -106,7 +106,6 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 rst_epilog = """
-.. raw:: html
 .. include:: /../common/authors.txt
 """
 
