@@ -38,11 +38,11 @@ At its simplest, the ``Configuration`` class is just a collection of ``Sources``
 
 .. note:: You must set at least one configuration source.
 
-It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following ``config.json`` file:
+It's not unusual to store configuration values in a hierarchical structure, especially when using external files (e.g. JSON, XML, INI). In this case, configuration values can be retrieved using a ``:`` separated key, starting from the root of the hierarchy. For example, consider the following *appsettings.json* file:
 
 .. _config-json:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/config.json
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/appsettings.json
   :linenos:
   :language: json
 
@@ -67,7 +67,7 @@ Adding support for additional configuration file sources is accomplished through
   :language: c#
   :lines: 14-17
 
-The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both ``config.json`` and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
+The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both *appsettings.json* and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
 
 .. note:: To override nested keys through environment variables in shells that don't support ``:`` in variable names replace them with ``__`` (double underscore).
 
@@ -78,7 +78,7 @@ It can be useful to have environment-specific configuration files. This can be a
   :dedent: 8
   :language: c#
   :lines: 25-41
-  :emphasize-lines: 1,7
+  :emphasize-lines: 1,8
 
 The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``config.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
 
@@ -142,11 +142,11 @@ You configure options using the ``Configure<TOption>`` extension method. You can
   :dedent: 8
   :emphasize-lines: 7,10-13
 
-When you bind options to configuration each property in your options type is bound to a configuration key of the form ``property:subproperty:...``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in ``config.json``. Note that configuration keys are case insensitive.
+When you bind options to configuration each property in your options type is bound to a configuration key of the form ``property:subproperty:...``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in *appsettings.json*. Note that configuration keys are case insensitive.
 
 Each call to ``Configure<TOption>`` adds an ``IConfigureOptions<TOption>`` service to the service container that is used by the ``IOptions<TOption>`` service to provide the configured options to the application or framework. If you want to configure your options some other way (ex. reading settings from a data base) you can use the ``ConfigureOptions<TOptions>`` extension method to you specify a custom ``IConfigureOptions<TOption>`` service directly. 
 
-You can have multiple ``IConfigureOptions<TOption>`` services for the same option type and they are all applied in order. In the :ref:`example <options-example>` above value of Option1 and Option2 are both specified in `config.json`, but the value of Option1 is overridden by the configured delegate.
+You can have multiple ``IConfigureOptions<TOption>`` services for the same option type and they are all applied in order. In the :ref:`example <options-example>` above value of Option1 and Option2 are both specified in `appsettings.json`, but the value of Option1 is overridden by the configured delegate.
 
 .. _custom-config-providers:
 
@@ -192,7 +192,7 @@ By convention we also add an ``AddEntityFramework`` extension method for adding 
   :lines: 48-54
   :dedent: 4
 
-You can see an example of how to use this custom ``ConfigurationSource`` in your application in the following example. Create a new ``ConfigurationBuilder`` to setup your configuration sources. To add the ``EntityFrameworkConfigurationSource`` you first need to specify the data provider and connection string. How should you configure the connection string? Using configuration of course! Add a ``config.json`` file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationSource``. By reusing the same ``ConfigurationBuilder`` any settings specified in the database will override settings specified in ``config.json``:
+You can see an example of how to use this custom ``ConfigurationSource`` in your application in the following example. Create a new ``ConfigurationBuilder`` to setup your configuration sources. To add the ``EntityFrameworkConfigurationSource`` you first need to specify the data provider and connection string. How should you configure the connection string? Using configuration of course! Add a *appsettings.json* file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationSource``. By reusing the same ``ConfigurationBuilder`` any settings specified in the database will override settings specified in *appsettings.json*:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationSource/Program.cs
   :linenos:

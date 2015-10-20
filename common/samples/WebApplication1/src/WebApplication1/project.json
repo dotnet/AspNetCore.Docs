@@ -1,36 +1,36 @@
 ﻿{
   "webroot": "wwwroot",
-  "userSecretsId": "aspnet5-WebApplication1-548ce350-baba-4abb-8f34-ff954c866e09",
+  "userSecretsId": "aspnet5-WebApplication1-3ce49aae-711e-451b-bc7e-98ac021b2ef7",
   "version": "1.0.0-*",
 
   "dependencies": {
-    "EntityFramework.Commands": "7.0.0-beta7",
-    "EntityFramework.SqlServer": "7.0.0-beta7",
-    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta7",
-    "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta7",
-    "Microsoft.AspNet.Authentication.Google": "1.0.0-beta7",
-    "Microsoft.AspNet.Authentication.MicrosoftAccount": "1.0.0-beta7",
-    "Microsoft.AspNet.Authentication.Twitter": "1.0.0-beta7",
-    "Microsoft.AspNet.Diagnostics": "1.0.0-beta7",
-    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta7",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta7",
-    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
-    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta7",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7",
-    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta7",
-    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta7",
-    "Microsoft.Framework.Configuration.Json": "1.0.0-beta7",
-    "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta7",
-    "Microsoft.Framework.Logging": "1.0.0-beta7",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta7",
-    "Microsoft.Framework.Logging.Debug" : "1.0.0-beta7",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta7"
+    "EntityFramework.Commands": "7.0.0-beta8",
+    "EntityFramework.SqlServer": "7.0.0-beta8",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta8",
+    "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta8",
+    "Microsoft.AspNet.Authentication.Google": "1.0.0-beta8",
+    "Microsoft.AspNet.Authentication.MicrosoftAccount": "1.0.0-beta8",
+    "Microsoft.AspNet.Authentication.Twitter": "1.0.0-beta8",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-beta8",
+    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta8",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8",
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta8",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta8",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta8",
+    "Microsoft.Framework.Logging": "1.0.0-beta8",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
+    "Microsoft.Framework.Logging.Debug" : "1.0.0-beta8",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta8"
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+    "web": "Microsoft.AspNet.Server.Kestrel",
     "ef": "EntityFramework.Commands"
   },
 
@@ -41,13 +41,9 @@
 
   "exclude": [
     "wwwroot",
-    "node_modules",
-    "bower_components"
+    "node_modules"
   ],
   "publishExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
     "**.user",
     "**.vspscc"
   ],
