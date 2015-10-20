@@ -1,27 +1,30 @@
 Publishing to IIS
 =============================
 
-By `Rick Anderson`_
+By `Rick Anderson`_ and `Luke Latham <https://github.com/GuardRex>`_
 
-In this article:
+	- `Install the HTTP Platform Handler`_
 	- `Publish from Visual Studio`_
-	- `Xcopy to IIS Server`_
+	- `Deploy to IIS server`_
+	- `IIS server configuration`_
+	- `Supported operating systems`_
+	- `Common errors`_
 	- `Additional Resources`_
-	
+
+Install the HTTP Platform Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Install the HTTP Platform Handler version 1.2 or higher:
+
+	- `64 bit HTTP Platform Handler <http://go.microsoft.com/fwlink/?LinkID=690721>`_
+	- `32 bit HTTP Platform Handler <http://go.microsoft.com/fwlink/?LinkId=690722>`_
+
+If you need to enable IIS, see `IIS server configuration`_.
+
 Publish from Visual Studio  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. Create an ASP.NET 5 app. In this sample, I'll create a MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**. If you're not using the ``web`` and ``gen`` commands in your development and production work flow, you can remove them from the *project.json* file.
-
-.. code-block:: javascript
-
-	"commands": {
-		"web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-		"gen": "Microsoft.Framework.CodeGeneration"
-	  },
-  
-With these commands in the *project.json* file, the publish folder will contain web and gen scripts. See `DNX Commands <http://docs.asp.net/en/latest/dnx/overview.html?highlight=command#dnx-concept-commands>`_ for more information.
-
-2. In **Solution Explorer**, right-click on the project and select **Publish**.
+1. Create an ASP.NET 5 app. In this sample, I'll create an MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**.
+2. In **Solution Explorer**, right-click the project and select **Publish**.
 
 .. image:: pubIIS/_static/p1.png
 
@@ -30,18 +33,78 @@ With these commands in the *project.json* file, the publish folder will contain 
 .. image:: pubIIS/_static/fs.png
 
 4. Enter a profile name. Click **Next**.
-5. On the **Connection** tab you can change the publishing target path from the default *..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder*. Click **Next**.
-6. On the **Settings** tab you can select the configuration, target DNX version and publish options. Currently your deployment server must have .NET 4.5.1 or higher to use DNX core. We hope to have a native module in the future that will allow you to use DNX core in the app pool regardless of the full CLR. If you select **Precompile during publishing**, the *Publish\\approot\\src* directory and source files will not be created. If you don't check **Precompile during publishing**, your source files will be found in the  *Publish\\approot\\src* directory. Click **Next**.
-7. The **Preview** tab shows you the publish path (by default, the same directory as the ".sln" solution file).
+5. On the **Connection** tab, you can change the publishing target path from the default *..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish* folder. Click **Next**.
+6. On the **Settings** tab, you can select the configuration, target DNX version, and publish options. Click **Next**.
 
-Xcopy to IIS Server
+The **Preview** tab shows you the publish path (by default, the same directory as the ".sln" solution file).
+
+Deploy to IIS server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Navigate to the the publish folder (*..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder* in this sample). 
-#. Copy the **approot** and **wwwroot** directories to the target IIS server.
-#. In IIS manager, configure the app with application path to the **wwwroot** path. You can click on **Browse *.80(http)** to see your deployed app in the browser. 
+#. Navigate to the publish folder (*..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder* in this sample). 
+#. Copy the **approot** and **wwwroot** directories to the target IIS server. Note: MSDeploy is the recommended mechanism for deployment, but you can use Xcopy, Robocopy or another approach.
+#. In IIS Manager, create a new web site and set the physical path to **wwwroot**. You can click on **Browse *.80(http)** to see your deployed app in the browser. Note: The HTTP Platform Handler currently requires `this work-around <https://github.com/aspnet/Hosting/issues/416>`_ to support apps. If you get an HTTP error, see `IIS server configuration`_.
 
 .. image:: pubIIS/_static/b8.png
+
+IIS server configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Enable the **Web Server (IIS)** server role. In client operating systems (Windows 7 through Windows 10) select **Control Panel > Programs > Programs and Features > Turn Windows features on or off**, and then select **Internet Information Services**.
+
+.. image:: pubIIS/_static/rs.png
+
+2. On the **Role Services** step, remove any items you don't need. The defaults are shown below.
+
+.. image:: pubIIS/_static/role-services.png
+
+3. Unlock the configuration section.
+
+	- Launch IIS Manager and select the server in the **Connections** pane on the left (see image below).
+	- Double-click **Connection Editor**.
+	- In the **Section** drop-down, select **system.webServer/handlers**, and then click **Unlock Section**.
+
+.. image:: pubIIS/_static/config-edit.png
+.. image:: pubIIS/_static/unlock.png
+
+- Set the application pool to **No Managed Code**. ASP.NET 5 runs in a separate process and manages the runtime.
+
+ .. image:: pubIIS/_static/appPool.png 
+
+
+Supported operating systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following operations systems are supported:
+
+- Windows 7 and newer
+- Windows 2008 R2 and newer
+
+Common errors
+^^^^^^^^^^^^^^^^
+
+The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below along with the reason for the error and how you fixed it.
+
+- HTTP 500.19 : ** This configuration section cannot be used at this path.**
+
+	- You haven't enabled the proper roles. See `IIS server configuration`_.
+
+- HTTP 500.19 : The requested page cannot be accessed because the related configuration data for the page is invalid. 
+
+	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
+	- The *wwwroot* folder doesn't have the correct permissions. See `IIS server configuration`_.
+
+- The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
+
+	- Enable IIS; see `IIS server configuration`_.
+
+- HTTP 502.3 Bad Gateway 
+
+	- 	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
+	
+- HTTP 500.21 Internal Server Error.
+
+	- No module installed. See `IIS server configuration`_.
 
 Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^
