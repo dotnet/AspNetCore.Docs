@@ -28,14 +28,14 @@ This should be the environment used when developing an application. When using V
 
 .. image:: environments/_static/project-properties-debug.png
 
-When you modify the default settings created with the project, your changes are persisted in ``launchSettings.json`` in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.js`` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.js`` file in our sample project is shown below:
 
 .. literalinclude:: environments/sample/src/Environments/Properties/launchSettings.json
 	:language: javascript
 	:caption: launchSettings.json
 	:emphasize-lines: 7,13
 
-.. note:: Changes made to project profiles or to ``launchSettings.json`` directly will not take effect until the web server being used is restarted.
+.. note:: Changes made to project profiles or to *launchSettings.json* directly will not take effect until the web server being used is restarted.
 
 Staging
 ^^^^^^^
@@ -68,7 +68,7 @@ For example, you can use the following code in you Configure method to setup env
 	:language: c#
 	:linenos:
 	:dedent: 12
-	:lines: 96-107
+	:lines: 82-93
 
 If the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
@@ -108,6 +108,5 @@ ASP.NET 5 provides a number of features and conventions that allow developers to
 Additional Resources
 --------------------
 
-- `Tag Helpers in ASP.NET MVC 6 <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ including the Environment Tag Helper
 - :doc:`configuration`
 

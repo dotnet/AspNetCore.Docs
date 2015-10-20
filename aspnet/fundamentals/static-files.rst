@@ -18,10 +18,9 @@ Serving static files
 
 By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``project.json`` file where the default is `wwwroot`.
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
-  :linenos:
-  :language: json
-  :lines: 2
+.. code-block:: json 
+
+  "webroot": "wwwroot"
 
 Static files can be stored in any folder under the webroot and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the webroot folder - ``css``, ``images``, and ``js``. In order to directly access an image in the ``images`` subfolder, the URL would look like the following:
 
