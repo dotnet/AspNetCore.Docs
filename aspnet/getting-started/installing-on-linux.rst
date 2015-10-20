@@ -145,7 +145,60 @@ To build libuv you should do the following::
 Using Docker
 ------------
 
-Instructions on how to use the ASP.NET 5 Docker image can be found here: http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx
+The following instructions were tested with Docker 1.8.3 and Ubuntu 14.04.
+
+Install Docker
+^^^^^^^^^^^^^^
+
+Instructions on how to install Docker can be found in the `Docker Documentation <https://docs.docker.com/installation/>`_.
+
+Create a Container
+^^^^^^^^^^^^^^^^^^
+
+Inside your application folder, you need to create a ``Dockerfile`` which should looks something like this::
+
+    # Mono based runtime
+    FROM microsoft/aspnet:latest
+
+    # CoreCLR runtime
+    #FROM microsoft/aspnet:1.0.0-beta8-coreclr
+
+    COPY . /app
+    WORKDIR /app
+    RUN ["dnu","restore"]
+
+    EXPOSE 5004
+    ENTRYPOINT ["dnx",".","kestrel"]
+
+One important thing to note is that the port that you ``EXPOSE`` should match the port in your ``kestrel`` command in ``project.json``::
+
+    Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004
+
+Build a Container
+^^^^^^^^^^^^^^^^^
+
+Inside your application folder, run the following command to build your contianer::
+
+    docker build -t aspnetapp .
+
+The ``-t`` option is used to give your container a name. You can make sure the container was created by running::
+
+    docker images
+
+Run a Container
+^^^^^^^^^^^^^^^
+
+Now that you have built a container, you can run it using the following command::
+
+    docker run -t -d -p 8080:5004 aspnetapp
+
+To confirm the container is running::
+
+    docker ps
+
+You can manually test your container by opening your web browser and navigating to http://localhost:8080.
+
+
 
 Summary
 -------
