@@ -23,7 +23,7 @@ Dependency injection (DI) is a technique for achieving loose coupling between ob
 
 When classes are designed with DI in mind, they are more loosely coupled because they do not have direct, hard-coded dependencies on their collaborators. This follows the `Dependency Inversion Principle <http://deviq.com/dependency-inversion-principle/>`_, which states that *"high level modules should not depend on low level modules; both should depend on abstractions."* Instead of referencing specific implementations, classes request abstractions (typically ``interfaces``) which are provided to them when they are constructed. Extracting dependencies into interfaces and providing implementations of these interfaces as parameters is also an example of the `Strategy design pattern <http://deviq.com/strategy-design-pattern/>`_.
 
-When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, `Inversion of Control (IoC) <https://en.wikipedia.org/wiki/Inversion_of_control>`_ containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
+When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, `Inversion of Control (IoC) <http://deviq.com/inversion-of-control/>`_ containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
 
 ASP.NET 5 includes a simple built-in container (represented by the IServiceProvider interface) that supports constructor and property injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET 5's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
 
@@ -108,7 +108,7 @@ This interface is in turn implemented by a concrete type, ``CharacterRepository`
 
 Note that ``CharacterRepository`` requests an ``ApplicationDbContext`` in its constructor. It is not unusual for dependency injection to be used in a chained fashion like this, with each requested dependency in turn requesting its own dependencies. The container is responsible for resolving all of the dependencies in the tree and returning the fully resolved object graph.
 
-In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext`` must be registered with the services container in ``ConfigureServices`` in ``Startup``. ``ApplicationDbContext`` is configured via the call to the extension method ``AddEntityFramework`` which includes an extenstion for adding a ``DbContext`` (``AddDbContext<T>``). Registration of the repository is done at the bottom end of ``ConfigureServices``:
+In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext`` must be registered with the services container in ``ConfigureServices`` in ``Startup``. ``ApplicationDbContext`` is configured via the call to the extension method ``AddEntityFramework`` which includes an extension for adding a ``DbContext`` (``AddDbContext<T>``). Registration of the repository is done at the bottom end of ``ConfigureServices``:
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
 	:language: c#
@@ -149,9 +149,9 @@ Next, in ``ConfigureServices``, each type is added to the container according to
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
 	:language: c#
-	:lines: 88-93
+	:lines: 83-88
 	:linenos:
-	:dedent: 12
+	:dedent: 8
 
 Note that the *instance* lifetime type has been added with a known ID of ``Guid.Empty`` so it will be clear when this type is in use. We have also registered an ``OperationService`` that depends on each of the other ``Operation`` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type.
 
@@ -186,7 +186,7 @@ The services available within an ASP.NET request from ``HttpContext`` fall into 
 
 Request Services represent the services you configure and request as part of your application. These are the services that are available on a per-request basis. Application Services are limited to those things that are available on application startup. These are services that are outside the scope of one request, such as ``IHostingEnvironment``. Anything that is scoped is only available as part of Request Services, not Application Services. When your objects specify dependencies, these are satisfied by the types found in ``RequestServices``, not ``ApplicationServices``.
 
-Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to :doc:`test <testing>` and are more loosely coupled. However, there may be instances in which you need to use a service locator pattern to gain access to a particular service. This should be the exception, rather thant he rule, since there are substantial drawbacks to this pattern (hence it is commonly considered to be an `antipattern <http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/>`_). If you do find yourself with no other choice but to use service location, a static service locator is available in the framework:
+Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to :doc:`test <testing>` and are more loosely coupled. However, there may be instances in which you need to use a service locator pattern to gain access to a particular service. This should be the exception, rather than the rule, since there are substantial drawbacks to this pattern (hence it is commonly considered to be an `antipattern <http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/>`_). If you do find yourself with no other choice but to use service location, a static service locator is available in the framework:
 
 .. code-block:: c#
 
