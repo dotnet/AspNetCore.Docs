@@ -145,7 +145,40 @@ To build libuv you should do the following::
 Using Docker
 ------------
 
-Instructions on how to use the ASP.NET 5 Docker image can be found here: http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx
+The following instructions were tested with Docker 1.8.3 and Ubuntu 14.04.
+
+Install Docker
+^^^^^^^^^^^^^^
+
+Instructions on how to install Docker can be found in the `Docker Documentation <https://docs.docker.com/installation/>`_.
+
+Create a Container
+^^^^^^^^^^^^^^^^^^
+
+Inside your application folder, you create a ``Dockerfile`` which should looks something like this::
+
+    # Base of your container
+    FROM microsoft/aspnet:latest
+
+    # Copy the project into folder and then restore packages
+    COPY . /app
+    WORKDIR /app
+    RUN ["dnu","restore"]
+
+    # Open this port in the container
+    EXPOSE 5000
+    # Start application
+    ENTRYPOINT ["dnx","-p","project.json", "web"]
+
+You also have a choice to use CoreCLR or Mono. At this time the ``microsoft/aspnet:latest`` repository is based on Mono. You can use the `Microsoft Docker Hub <https://hub.docker.com/r/microsoft/aspnet/>`_ to pick a different base running either an older version or CoreCLR.
+
+Run a Container
+^^^^^^^^^^^^^^^
+
+When you have an application, you can build and run your container using the following commands::
+
+    docker build -t yourapplication .
+    docker run -t -d -p 8080:5000 yourapplication
 
 Summary
 -------
