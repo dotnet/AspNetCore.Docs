@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using System.Diagnostics;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
@@ -35,6 +36,17 @@ namespace TodoApi
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
+
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+#if DNX451
+            var sourceSwitch = new SourceSwitch("LoggingSample");
+            sourceSwitch.Level = SourceLevels.Critical;
+            loggerFactory.AddTraceSource(sourceSwitch,
+                new ConsoleTraceListener(false));
+            loggerFactory.AddTraceSource(sourceSwitch,
+                new EventLogTraceListener("Application"));
+#endif
+
         }
     }
 }

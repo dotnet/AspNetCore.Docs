@@ -148,10 +148,25 @@ The following example demonstrates how to configure two separate ``TraceSourceLo
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 46-71
-	:emphasize-lines: 4,6-13
+	:lines: 40-48
 
-The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this level is simply the default, and can be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener``s. When the application is run (using the ``TraceLogging`` environment, on Windows), and a request is made to ``http://localhost:5000/boom``, the following is shown in the console output:
+The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListeners``. 
+
+To test out this code, replace the catch-all response with the following ``app.Run`` block:
+
+.. code-block:: c#
+
+	app.Run(async context =>
+	{
+		if (context.Request.Path.Value.Contains("boom"))
+		{
+			throw new Exception("boom!");
+		}
+		await context.Response.WriteAsync("Hello World!");
+	});
+
+
+With this change in place, when the application is run (on Windows), and a request is made to ``http://localhost:5000/boom``, the following is shown in the console output:
 
 .. image:: logging/_static/console-trace-boom.png
 
