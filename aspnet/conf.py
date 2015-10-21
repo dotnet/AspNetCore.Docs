@@ -120,7 +120,7 @@ if not on_rtd:
 
 def setup(app):
     app.add_stylesheet('custom.css?v=1')
-    app.add_javascript('helpfulness.js')
+#    app.add_javascript('helpfulness.js')
     if on_rtd:
         app.add_javascript('wedc.js')
 
