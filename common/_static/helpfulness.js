@@ -310,14 +310,12 @@ $.throttle = function (fn, threshhold, scope) {
 
 $(function ()
 {
-	/*
 	$.Helpfulness({
 		maxCharacters: 1000,
 		alwaysFixed: true,
 		domain: "http://www.asp.net",
 		isDocs: true
 	}).init();
-	*/
 });
 /* msc-helpfulness.js - end */
 
