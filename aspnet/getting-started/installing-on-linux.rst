@@ -155,49 +155,23 @@ Instructions on how to install Docker can be found in the `Docker Documentation 
 Create a Container
 ^^^^^^^^^^^^^^^^^^
 
-Inside your application folder, you need to create a ``Dockerfile`` which should looks something like this::
+Inside your application folder, you create a ``Dockerfile`` which should looks something like this::
 
-    # Mono based runtime
+    # Base of your container
     FROM microsoft/aspnet:latest
 
-    # CoreCLR runtime
-    #FROM microsoft/aspnet:1.0.0-beta8-coreclr
-
-    COPY . /app
+    # Copy the project into folder and then restore packages
+    COPY project.json /app/
     WORKDIR /app
     RUN ["dnu","restore"]
+    COPY . /app
 
-    EXPOSE 5004
-    ENTRYPOINT ["dnx",".","kestrel"]
+    # Open this port in the container
+    EXPOSE 5000
+    # Start application
+    ENTRYPOINT ["dnx","-p","project.json", "web"]
 
-One important thing to note is that the port that you ``EXPOSE`` should match the port in your ``kestrel`` command in ``project.json``::
-
-    Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004
-
-Build a Container
-^^^^^^^^^^^^^^^^^
-
-Inside your application folder, run the following command to build your contianer::
-
-    docker build -t aspnetapp .
-
-The ``-t`` option is used to give your container a name. You can make sure the container was created by running::
-
-    docker images
-
-Run a Container
-^^^^^^^^^^^^^^^
-
-Now that you have built a container, you can run it using the following command::
-
-    docker run -t -d -p 8080:5004 aspnetapp
-
-To confirm the container is running::
-
-    docker ps
-
-You can manually test your container by opening your web browser and navigating to http://localhost:8080.
-
+You also have a choice to use CoreCLR or Mono. At this time the ``microsoft/aspnet:latest`` repository is based on Mono. You can use the `Microsoft Docker Hub <https://hub.docker.com/r/microsoft/aspnet/>`_ to pick a different base running either an older version or CoreCLR.
 
 
 Summary
