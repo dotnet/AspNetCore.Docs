@@ -3,7 +3,7 @@ Enabling authentication using external providers
 
 By `Pranav Rastogi`_
 
-This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
+This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google (we all know that OAuth 2.0 is not really about [authentication](http://oauth.net/articles/authentication/) - but yeah - who cares). For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
 
 Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
 
