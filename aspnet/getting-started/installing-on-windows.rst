@@ -29,6 +29,7 @@ To enable a full command-line experience after installing Visual Studio, open a 
   dnvm upgrade
 
 This will setup the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
+Note: If you see message that dnvm is not found navigate to %USERPROFILE%/.dnx/bin and run commands again
 
 Install ASP.NET Standalone
 --------------------------
