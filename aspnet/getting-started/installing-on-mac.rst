@@ -20,6 +20,8 @@ To install DNVM run the following::
     
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
+If you got error like "cURL error 60: SSL certificate problem: unable to get local issuer certificate" you should pass "-k" param after "-sSL" param. 
+
 Install the .NET Execution Environment (DNX)
 --------------------------------------------
 
