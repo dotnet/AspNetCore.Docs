@@ -8,6 +8,8 @@
 ASP.NET 5 Documentation
 =======================
 
+.. attention:: ASP.NET 5 beta8 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
+
 .. include:: ../common/stub-overview.txt
 
 Frameworks
@@ -25,7 +27,9 @@ Topics
     tutorials/index
     conceptual-overview/index
     fundamentals/index
+    testing/index
     dnx/index
+    frameworks/index
     data/index
     publishing/index
     client-side/index

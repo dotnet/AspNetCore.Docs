@@ -8,3 +8,4 @@
 .. _Pranav Rastogi: https://github.com/rustd
 .. _Tom Archer: https://github.com/tomarcher
 .. _Scott Sargent:https://github.com/ssargent
+.. _David Paquette: https://github.com/dpaquette

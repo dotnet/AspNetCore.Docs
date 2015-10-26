@@ -58,7 +58,7 @@ If you're referencing your own local versions of Bootstrap, you'll need to refer
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :linenos:
-  :emphasize-lines: 9,14,54,63
+  :emphasize-lines: 9,14,54,64
 
 .. note:: If you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery.
 
@@ -124,7 +124,7 @@ Next, add additional ``<div>`` elements for each column, and specify the number 
 +--------------------+--------------------------+------------+ 
 | col-md-            | Desktops                 | >= 992px   | 
 +--------------------+--------------------------+------------+ 
-| col-lq-            | Larger Desktop Displays  | >= 1200px  | 
+| col-lg-            | Larger Desktop Displays  | >= 1200px  | 
 +--------------------+--------------------------+------------+ 
 
 When specifying two columns both with "col-md-6" the resulting layout will be two columns at desktop resolutions, but these two columns will stack vertically when rendered on smaller devices (or a narrower browser window on a desktop), allowing users to easily view content without the need to scroll horizontally.
