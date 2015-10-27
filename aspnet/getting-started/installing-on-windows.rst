@@ -40,7 +40,7 @@ Install the .NET Version Manager (DNVM)
 
 Use .NET Version Manager to install different versions of the .NET Execution Environment (DNX). 
 
-To install DNVM open a command prompt and run the following::
+To install DNVM open a command prompt (`cmd`, not powershell!) and run the following::
 
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
