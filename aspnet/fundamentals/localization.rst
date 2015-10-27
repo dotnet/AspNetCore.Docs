@@ -3,12 +3,24 @@ ASP.NET Localization
 
 By `Tom Archer`_
 
-The ASP.NET 5 localization support provides middleware for establishing the correct culture and UI culture on the thread based on the request, and mechanisms for accessing localized content based on the current culture. In this article, you'll learn how to enable localization and establish the culture using both built-in culture providers. You'll also see how to implement your own custom culture provider.
+The ASP.NET 5 localization support enables you to customize your application for a given culture and locale. Localization consists primarily of translating the user interface. The ASP.NET 5 localization support provides middleware for establishing the correct culture and UI culture on the thread based on the request, and mechanisms for accessing localized content based on the current culture. In this article, you'll learn how to enable localization and establish the culture using both built-in culture providers. You'll also see how to implement your own custom culture provider.
 
 Enabling localization and establishing culture
 -----------------------------------------------
 
-To enable localization, add the request localization middleware to the request pipeline from the ``Startup`` class with a call to the ``IApplicationBuilder.UseRequestLocalization`` extension method. The ``IApplicationBuilder.UseRequestLocalization`` extension method has two overloaded versions: a parameter-less version that instantiates and uses a default ``RequestLocalizationOptions`` object and a version that allows you to specify a ``RequestLocalizationOptions`` object as a parameter.
+The first step to enabling localization for an ASP.NET 5 app is to add the necessary packages to the project's *project.json* file.
+
+.. code-block:: json
+	:emphasize-lines: 4-5
+
+	"dependencies": {
+		"Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+		"Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+		"Microsoft.AspNet.Localization": "1.0.0-beta8",
+		"Microsoft.Framework.Localization": "1.0.0-beta8"
+  },
+
+ASP.NET provides request localization middleware for determining the user's locale and culture based on the request data and then persisting the user's culture on the current thread. Add the request localization middleware to the request pipeline from the ``Startup`` class with a call to the ``IApplicationBuilder.UseRequestLocalization`` extension method. The ``IApplicationBuilder.UseRequestLocalization`` extension method has two overloaded versions: a parameter-less version that instantiates and uses a default ``RequestLocalizationOptions`` object and a version that allows you to specify a ``RequestLocalizationOptions`` object as a parameter.
 
 .. code-block:: c#
 	:emphasize-lines: 5-6
@@ -55,7 +67,7 @@ To remove, add to, or change the ordering of the providers used - including spec
 
 Using the QueryStringRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When you instantiate a ``RequestLocalizationOptions`` object, the ``QueryStringRequestCultureProvider`` is added to the list of providers as the first provider to be used in attempting to determine the culture. The ``QueryStringRequestCultureProvider`` looks for the existence of two keys in the query string: "culture" and "ui-culture". If the provider finds a value for "culture", but not for "ui-culture", the UI culture is set to the culture value. Likewise, if the provider finds a value for "ui-culture", but not for culture, the culture is set to the UI culture value. Therefore, when using the ``QueryStringRequestCultureProvider``, all of the following URIs will result in a culture and UI culture of Spanish.
+When you instantiate a ``RequestLocalizationOptions`` object, the ``QueryStringRequestCultureProvider`` is added to the list of providers as the first provider to be used in attempting to determine the culture. The ``QueryStringRequestCultureProvider`` looks for the existence of two keys in the query string: "culture" and "ui-culture". If the provider finds a value for "culture", but not for "ui-culture", the UI culture is set to the culture value. Likewise, if the provider finds a value for "ui-culture", but not for culture, the culture is set to the UI culture value. Therefore, when using the ``QueryStringRequestCultureProvider``, all of the following URIs will result in a culture and UI culture of "Spanish-Spain".
 
 ::
 
@@ -77,125 +89,24 @@ One last note about the ``QueryStringRequestLocalizationProvider`` is that if ei
 Using the CookieRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``CookieRequestCultureProvider`` looks for the existence of a cookie whose name is represented by ``CookieRequestCultureProvider.CookieName``. When you instantiate a ``CookieRequestCultureProvider`` object, the ``CookieRequestCultureProvider.CookieName`` value is set to the value of ``CookieRequestCultureProvider.DefaultCookieName``. The following example illustrates an example of allowing the user to create (and clear) the cookie.
+The ``CookieRequestCultureProvider`` looks for the existence of a cookie whose name is represented by ``CookieRequestCultureProvider.CookieName``. When you instantiate a ``CookieRequestCultureProvider`` object, the ``CookieRequestCultureProvider.CookieName`` value is set to the value of ``CookieRequestCultureProvider.DefaultCookieName``.
 
-.. code-block:: c#
-	:emphasize-lines: 6-9,17-28
+The cookie consists of a single string value of the following format:
 
-	public void Configure(IApplicationBuilder app, IStringLocalizer<Startup> SR)
-	{
-		// Add the platform handler to the request pipeline.
-		app.UseIISPlatformHandler();
+::
 
-		var options = new RequestLocalizationOptions();
-		options.RequestCultureProviders.Clear();
-		options.RequestCultureProviders.Add(new CookieRequestCultureProvider());
-		app.UseRequestLocalization(options);
+	c=[culture]|uic=[ui-culture]
 
-		app.Run(async (context) =>
-		{
-			await context.Response.WriteAsync(
-	$@"<!doctype html>
-	<html>
-	<head>
-	<script>
-	function createCookie() {{
-		var cookieValue = '{CookieRequestCultureProvider.DefaultCookieName}=c=es-ES|uic=es-ES';
-		document.cookie = cookieValue;
-		window.location = window.location.href.split('?')[0];
-	}}
-
-	function clearCookie() {{
-		document.cookie='{CookieRequestCultureProvider.DefaultCookieName}=""""';
-		window.location = window.location.href.split('?')[0];
-	}}
-	</script>
-	</head>
-	<body>");
-
-		await context.Response.WriteAsync($"<h1>{SR["Hello"]}</h1>");
-		await context.Response.WriteAsync($"<input type=\"button\" value=\"Create es-ES culture cookie\" onclick='createCookie();' /> ");
-		await context.Response.WriteAsync($"<input type=\"button\" value=\"Clear es-ES culture cookie\" onclick='clearCookie();' /> ");
-		await context.Response.WriteAsync(
-	@"</body>
-	</html>");
-		});
-	}
-
-As you can see from the code above, the culture is prefixed with "c=" and the UI culture is prefixed with "uic=". The two values are then delimited with a vertical bar.
-
-In order to specify a different cookie name, you simply set the ``CookieRequestCultureProvider.CookieName`` when you instantiate the ``CookieRequestCultureProvider`` object. You then specify the ``CookieRequestCultureProvider.CookieName`` when you create or clear the cookie. The following code snippet illustrates doing this.
-
-.. code-block:: c#
-	:emphasize-lines: 8,20,26
-
-	public void Configure(IApplicationBuilder app, IStringLocalizer<Startup> SR)
-	{
-		// Add the platform handler to the request pipeline.
-		app.UseIISPlatformHandler();
-
-		var options = new RequestLocalizationOptions();
-		options.RequestCultureProviders.Clear();
-		var cookieRequestCultureProvider = new CookieRequestCultureProvider { CookieName = "TestCookie" };
-		options.RequestCultureProviders.Add(cookieRequestCultureProvider);
-		app.UseRequestLocalization(options);
-
-		app.Run(async (context) =>
-		{
-			await context.Response.WriteAsync(
-	$@"<!doctype html>
-	<html>
-	<head>
-	<script>
-	function createCookie() {{
-		var cookieValue = '{cookieRequestCultureProvider.CookieName}=c=es-ES|uic=es-ES';
-		document.cookie = cookieValue;
-		window.location = window.location.href.split('?')[0];
-	}}
-
-	function clearCookie() {{
-		document.cookie='{cookieRequestCultureProvider.CookieName}=""""';
-		window.location = window.location.href.split('?')[0];
-	}}
-	</script>
-	</head>
-	<body>");
-
-		await context.Response.WriteAsync($"<h1>{SR["Hello"]}</h1>");
-		await context.Response.WriteAsync($"<input type=\"button\" value=\"Create es-ES culture cookie\" onclick='createCookie();' /> ");
-		await context.Response.WriteAsync($"<input type=\"button\" value=\"Clear es-ES culture cookie\" onclick='clearCookie();' /> ");
-		await context.Response.WriteAsync(
-	@"</body>
-	</html>");
-		});
-	}
+As you can see from the syntax above, the culture is prefixed with "c=" and the UI culture is prefixed with "uic=". The two values are then delimited with a vertical bar (pipe character).
 
 Using the AcceptLanguageHeaderRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``AcceptLanguageHeaderRequestCultureProvider`` attempts to determine the culture by inspecting the Accept-Language value in the request header. If an Accept-Language value is not present or doesn't contain at least one culture value, ``AcceptLanguageHeaderRequestCultureProvider`` will return null. In addition, since the Accept-Language value can hold multiple cultures, the ``AcceptLanguageHeaderRequestCultureProvider.MaximumAcceptLanguageHeaderValuesToTry`` property, which defaults to 3, defines the maximum number of cultures to try.
+The ``AcceptLanguageHeaderRequestCultureProvider`` attempts to determine the culture by inspecting the `Accept-Language <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4>`_ value in the request header. If an Accept-Language value is not present or doesn't contain at least one culture value, ``AcceptLanguageHeaderRequestCultureProvider`` will return null. In addition, since the Accept-Language value can hold multiple cultures,  ``AcceptLanguageHeaderRequestCultureProvider`` attempts to find a valid culture by inspecting the first `n` cultures found where `n` is represented by the ``AcceptLanguageHeaderRequestCultureProvider.MaximumAcceptLanguageHeaderValuesToTry`` property.
 
 As Internet Explorer (IE) honors your operating system language settings, testing the ``AcceptLanguageHeaderRequestCultureProvider`` is easy. The following screen shot shows the request header in the Fiddler tool after setting the Windows language to Spanish.
 
 .. image:: localization/_static/accept-language-header.png
-
-With the Accept-Language request value being set, you would need to simply specify that the ``AcceptLanguageHeaderRequestCultureProvider`` as the provider you want to use.
-
-.. code-block:: c#
-	:emphasize-lines: 6-9
-
-	public void Configure(IApplicationBuilder app, IStringLocalizer<Startup> SR)
-	{
-		// Add the platform handler to the request pipeline.
-		app.UseIISPlatformHandler();
-
-		var options = new RequestLocalizationOptions();
-		options.RequestCultureProviders.Clear();
-		options.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider() );
-		app.UseRequestLocalization(options);
-
-		...
-	}
 
 Implementing a custom IRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -239,7 +150,7 @@ In the following code snippet, I've defined a class called ``MyRequestCulturePro
 Accessing localized content with IStringLocalizer
 -------------------------------------------------
 
-Once the request localization middleware establishes the current culture, the ``IStringLocalizer`` service then provides access to localized content based on the current culture. To enable support for these localization services, you call the ``IServiceCollection.AddLocalization`` extension method specifying a setup action to configure the service. The most common way to call ``IServiceCollection.AddLocalization`` is as follows where the ``ResourcePath`` specifies the path where the localized resources are located. In this example, the resource files reside in a directory named `My/Resources` relative to the application root.
+Once the request localization middleware establishes the current culture, the ``IStringLocalizer`` then provides access to localized content based on the current culture. To enable support for these localization services, you call the ``IServiceCollection.AddLocalization`` extension method specifying a setup action to configure the service. The most common way to call ``IServiceCollection.AddLocalization`` is as follows where the ``ResourcePath`` specifies the path where the localized resources are located. In this example, the resource files reside in a directory named `My/Resources` relative to the application root.
 
 .. code-block:: c#
 	:emphasize-lines: 3
@@ -259,19 +170,15 @@ As you can see from the figure, your resx files must be named according to a spe
 
 	<type>.<locale>.resx
 
+To access your localized strings, simply use the IStringLocalizer indexer as follows:
+
+	await context.Response.WriteAsync(SR["Hello"]);
 
 
+IStringLocalizer Example
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-Implementing a custom IStringLocalizer
---------------------------------------
-
-The default implementations of the localization services is based on `System.Resources.ResourceManager`, which supports accessing localized content in satellite assemblies based on resx files. You can alternatively provide your own implementations for accessing localized content from different sources, like form a database. In this section, we'll take a look at how to implement your own custom ``IStringLocalizer``.
-
-Sample Walkthrough
-------------------
-
-Now, that you've seen the
+Now, that you've seen the steps needed to set up localization in your ASP.NET 5 app, let's look at a full example of how to put it all together.
 
 #. Create an empty ASP.NET 5 Web app project called `LocalizationFromResourceFiles`.
 #. Open `project.json` and add the following highlighted dependencies:
@@ -307,7 +214,7 @@ Now, that you've seen the
 		using Microsoft.Framework.Localization;
 		using Microsoft.AspNet.Localization;
 
-#. From the ``Startup.ConfigureServices`` method, call the ``IServiceCollection.AddLocalization`` extension methodto to enable localization and tell the framework where to find the localized resources in the project.
+#. From the ``Startup.ConfigureServices`` method, call the ``IServiceCollection.AddLocalization`` extension method to to enable localization and tell the framework where to find the localized resources in the project.
 
 	.. code-block:: c#
 		:emphasize-lines: 3
@@ -335,3 +242,122 @@ Now, that you've seen the
 	.. code-block:: c#
 
 		await context.Response.WriteAsync(SR["Hello"]);
+
+#. Run the app and test localization by specifying a query string as shown in the following figure.
+
+.. image:: localization/_static/querystring.png
+
+Custom IStringLocalizer Example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default implementation of the localization services is based on `System.Resources.ResourceManager`, which supports accessing localized content in satellite assemblies based on resx files. You can alternatively provide your own implementations for accessing localized content from different sources, like from a database. In this section, we'll walk through a sample that illustrates how to implement your own custom ``IStringLocalizer``.
+
+#. Create an empty ASP.NET 5 Web app project called `LocalizationFromCustomStringLocalizer`.
+#. Open `project.json` and add the following highlighted dependencies:
+
+	.. code-block:: c#
+	  :emphasize-lines: 8-9
+
+		{
+		  "webroot": "wwwroot",
+		  "version": "1.0.0-*",
+
+		  "dependencies": {
+		    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+		    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+		    "Microsoft.AspNet.Localization": "1.0.0-beta8",
+		    "Microsoft.Framework.Localization": "1.0.0-beta8"
+		  },
+
+#. Create a class that implements ``IStringLocalizer``. This class is where you'll do the localization.
+
+.. code-block:: c#
+
+	public class MyStringLocalizer : IStringLocalizer
+	{
+			LocalizedString IStringLocalizer.this[string name]
+			{
+					get
+					{
+							throw new NotImplementedException();
+					}
+			}
+
+			LocalizedString IStringLocalizer.this[string name, params object[] arguments]
+			{
+					get
+					{
+							throw new NotImplementedException();
+					}
+			}
+
+			IEnumerable<LocalizedString> IStringLocalizer.GetAllStrings(bool includeAncestorCultures)
+			{
+					throw new NotImplementedException();
+			}
+
+			IStringLocalizer IStringLocalizer.WithCulture(CultureInfo culture)
+			{
+					throw new NotImplementedException();
+			}
+	}
+
+#. Create a class that implements ``IStringLocalizerFactory`` and builds a ``MyStringLocalizer``.
+
+.. code-block:: c#
+
+	public class MyStringLocalizerFactory : IStringLocalizerFactory
+	{
+			IStringLocalizer IStringLocalizerFactory.Create(Type resourceSource)
+			{
+					return new MyStringLocalizer();
+			}
+
+			IStringLocalizer IStringLocalizerFactory.Create(string baseName, string location)
+			{
+					return new MyStringLocalizer();
+			}
+	}
+
+#. Open `Startup.cs` and add the following ``using`` directives.
+
+	.. code-block:: c#
+
+		using Microsoft.Framework.Localization;
+		using Microsoft.AspNet.Localization;
+
+#. From the ``Startup.ConfigureServices`` method, tell the runtime that you have your own custom string localizer.
+
+	.. code-block:: c#
+		:emphasize-lines: 3
+
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddTransient<IStringLocalizerFactory, MyStringLocalizerFactory>();
+		}
+
+#. Modify the ``Startup.Configure`` method as follows to take an ``IStringLocalizer`` object as a parameter.
+
+	.. code-block:: c#
+
+		public void Configure(IApplicationBuilder app, IStringLocalizer<Startup>SR)
+
+#. Add the following code to the ``Startup.Configure`` method.
+
+	.. code-block:: c#
+
+		var options = new RequestLocalizationOptions();
+		app.UseRequestLocalization(options);
+
+#. Change the default line of code that writes the "Hello, World" text as follows:
+
+	.. code-block:: c#
+
+		await context.Response.WriteAsync(SR["Hello"]);
+
+#. Run the app and test localization by specifying a query string as shown in the following figure.
+
+.. image:: localization/_static/querystring.png
+
+Summary
+-------
