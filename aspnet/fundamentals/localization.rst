@@ -333,6 +333,7 @@ The default implementation of the localization services is based on `System.Reso
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddLocalization();
 			services.AddTransient<IStringLocalizerFactory, MyStringLocalizerFactory>();
 		}
 
