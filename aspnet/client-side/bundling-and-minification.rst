@@ -3,7 +3,7 @@ Bundling and Minification
 
 By `Erik Reitan`_ 
 
-Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes.
+Bundling and minification are two techniques you can use in ASP.NET 5 to improve page load performance for your web application. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes.
 
 This article explains and shows how to use the bundling and minification features included with the ASP.NET 5 Web Application template in `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=517106>`_. 
 
@@ -50,9 +50,9 @@ The ASP.NET 5 Web Application project template is used to help you get started d
 
 Gulp
 ----
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific Visual Studio event occurs. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event occurs in a build environment. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
 
-Visual Studio 2015 automatically installs gulp and the npm. Gulp functionality is included within the ASP.NET 5 Web Application template. When you create a new web project using this template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
+Visual Studio 2015 automatically installs gulp and npm. Gulp functionality is included within the ASP.NET 5 Web Application template. When you create a new web project using this template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
 
 .. code-block:: javascript
 
@@ -99,11 +99,11 @@ The above code specifies which Node modules are required. The ``require`` functi
 =============  ===============================================================================================================================  
 Module Name	   Description    
 =============  ===============================================================================================================================  
-gulp	       The gulp streaming build system. For more information, see gulp.
-rimraf	       A Node deletion module. For more information, see rimraf.
-gulp-concat	   A module that will concatenate files based on your operating systems newline character. For more information, see gulp-concat.
-gulp-cssmin	   A module that will minify CSS files. For more information see gulp-cssmin.
-gulp-uglify	   A module that minifies files using the UglifyJS toolkit. For more information, see gulp-uglify. 
+gulp	       The gulp streaming build system. For more information, see `gulp <https://www.npmjs.com/package/gulp>`_.
+rimraf	       A Node deletion module. For more information, see `rimraf <https://www.npmjs.com/package/rimraf>`_.
+gulp-concat	   A module that will concatenate files based on your operating systems newline character. For more information, see `gulp-concat <https://www.npmjs.com/package/gulp-concat>`_.
+gulp-cssmin	   A module that will minify CSS files. For more information see `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`_.
+gulp-uglify	   A module that minifies *.js* files using the `UglifyJS <https://www.npmjs.com/package/gulp-cssmin>`_ toolkit. For more information, see `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`_. 
 =============  =============================================================================================================================== 
 
 Once modules are registered from *gulpfile.js*, the tasks are specified. Visual Studio 2015 registers six tasks based on the following code contained in *gulpfile.js*:
@@ -142,11 +142,11 @@ The following table gives an explanation of the tasks specified in the code abov
 =============  ===============================================================================================================================  
 Task Name	   Description    
 =============  ===============================================================================================================================  
-clean:js	   A task that uses the rimraf Node deletion module to remove unneeded text from *.js* files.
-clean:css	   A task that uses the rimraf Node deletion module to remove unneeded text from *.css* files.
+clean:js	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
+clean:css	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
 clean	       A task that calls both the ``clean:js`` and ``clean:css`` tasks.
-min:js	       A task that matches files based on the specified JavaScript file path, concatenates the files into a destination location, removes unneeded characters using the ``uglify()`` function, and re-writes the file to the destination location.
-min:css	       A task that matches files based on the specified CSS file path, concatenates the files into a destination location, minimizes the CSS file using the ``cssmin()`` function, and re-writes the file to the destination location.
+min:js	       A task that minifies and concatenates *.js* files.
+min:css	       A task that minifies and concatenates *.css* files.
 min	           A task that calls both the ``min:js`` and ``min:css`` tasks.
 =============  =============================================================================================================================== 
 
