@@ -3,7 +3,7 @@ Bundling and Minification
 
 By `Erik Reitan`_ 
 
-Bundling and minification are two techniques you can use in ASP.NET 5 to improve page load performance for your web application. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes.
+Bundling and minification are two techniques you can use in ASP.NET 5 to improve page load performance for your web application. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes. Bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files.)
 
 This article explains and shows how to use the bundling and minification features included with the ASP.NET 5 Web Application template in `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=517106>`_. 
 
@@ -32,7 +32,7 @@ After minification, the function is reduced to the following:
 
 .. code-block:: javascript
 
-	AddAltToImg = function (n, t) { var i = $(n, t); i.attr("alt", i.attr("id").replace(/ID/, "")) }
+	AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
 	
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
@@ -229,7 +229,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
  
 IntelliSense
 ------------
-IntelliSense, which provide coding details while you code, helps you write code faster and with fewer errors. Because the gulp tasks are created using JavaScript, you can use IntelliSense to help code. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. You can select a coding option from the pop-up list provided by IntelliSense to complete the code.
+IntelliSense provides code completion, parameter info and other features to help you author code more productively and with fewer errors. Gulp tasks are written in JavaScript, therefore you can use IntelliSense to help code. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. You can select a coding option from the pop-up list provided by IntelliSense to complete the code.
 
 	.. image:: bundling-and-minification/_static/08-IntelliSense.png 
 
@@ -294,22 +294,6 @@ The gulp community provides gulp `recipes <https://github.com/gulpjs/gulp/blob/m
 
 Summary
 -------
-Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs gulp along with a set of gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
+Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Bundling and minification primarily improve the first page request load time. Once a webpage has been requested, the browser caches the assets (JavaScript, CSS, and images files), so bundling and minification won’t provide any performance boost when requesting the same same assets more than once. If you don’t set the expires header correctly on your assets, and you don’t use bundling and minification, the browsers freshness heuristics will mark the assets as stale after a few days and the browser will require a validation request for each asset, which will degrade performance.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs gulp along with a set of gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
