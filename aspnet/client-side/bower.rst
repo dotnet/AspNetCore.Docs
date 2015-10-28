@@ -1,7 +1,7 @@
 Manage Client-Side Packages with Bower
 ======================================
 
-By `Noel Rice`_ and `Scott Addie <http://scottaddie.com>`_
+By `Noel Rice`_, `Scott Addie`_
 
 Bower is a "package manager for the web." Bower lets you install and restore client-side packages, including JavaScript and CSS libraries. For example, with Bower you can install CSS files, fonts, client frameworks, and JavaScript libraries from external sources. Bower resolves dependencies and will automatically download and install all the packages you need. For example, if you configure Bower to load the Bootstrap package, the necessary jQuery package will automatically come along for the ride. For server-side libraries like the MVC 6 framework, you will still use NuGet Package Manager.
 
@@ -19,7 +19,7 @@ Client-side packages are listed in the bower.json file. The ASP.NET 5 Starter We
 
 Let’s add support for photo albums by installing the `Fotorama <http://fotorama.io/>`_ jQuery plugin. 
 
-#.	At the end of the ``dependencies`` section in bower.json, add a comma and type "fotorama". Notice as you type that you get Intellisense with a list of available packages. Select "fotorama" from the list. 
+#.	At the end of the ``dependencies`` section in bower.json, add a comma and type "fotorama". Notice as you type that you get IntelliSense with a list of available packages. Select "fotorama" from the list. 
 
 	.. image:: bower/_static/add-package.png
 		:width: 150px
