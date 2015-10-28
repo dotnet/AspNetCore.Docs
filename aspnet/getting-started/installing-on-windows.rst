@@ -3,8 +3,8 @@ Installing ASP.NET 5 On Windows
 
 By `Steve Smith`_, `Daniel Roth`_, `Rick Anderson`_
 
-  - `Install ASP.NET with Visual Studio`_
-  - `Install ASP.NET Standalone`_
+- `Install ASP.NET with Visual Studio`_
+- `Install ASP.NET Standalone`_
 
 Install ASP.NET with Visual Studio
 ----------------------------------
@@ -12,20 +12,23 @@ Install ASP.NET with Visual Studio
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the free Community edition). 
 
 1. Install `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__
-	Be sure to specify that you want to include the Microsoft Web Developer Tools.
 
-.. image:: installing-on-windows/_static/web-dev-tools.png
+  Be sure to specify that you want to include the Microsoft Web Developer Tools.
 
-2. Install the latest `ASP.NET 5 preview (Beta8) <http://go.microsoft.com/fwlink/?LinkId=690242>`_. Select the appropriate version of the .NET Version Manager (x64 or x86) and the web tools extensions for Visual Studio. The installer will tell you if you've selected the wrong version of the .NET Version Manager.
+  .. image:: installing-on-windows/_static/web-dev-tools.png
 
-.. image:: installing-on-windows/_static/install2.png
+2. Install the latest `ASP.NET 5 preview (Beta8) <http://go.microsoft.com/fwlink/?LinkId=690242>`_. 
+
+  Select the appropriate version of the .NET Version Manager (x64 or x86) and the web tools extensions for Visual Studio. The installer will tell you if you've selected the wrong version of the .NET Version Manager.
+
+  .. image:: installing-on-windows/_static/install2.png
 
 3. Enable ASP.NET 5 command-line tools. Open a **Developer Command Prompt for VS2015** and run the following commands::
 
-	dnvm setup
-	dnvm upgrade
+  dnvm setup
+  dnvm upgrade
 
-This will set up the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
+  This will set up the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
 
 Install ASP.NET Standalone
 --------------------------
