@@ -1,34 +1,34 @@
 Installing ASP.NET 5 On Windows
 ===============================
 
-By `Steve Smith`_, `Daniel Roth`_
+By `Steve Smith`_, `Daniel Roth`_, `Rick Anderson`_
 
-This article describes how to install ASP.NET 5 on Windows, showing both standalone installation as well as installation with Visual Studio 2015. 
-
-In this article:
-  - `Install ASP.NET with Visual Studio`_
-  - `Install ASP.NET Standalone`_
+- `Install ASP.NET with Visual Studio`_
+- `Install ASP.NET Standalone`_
 
 Install ASP.NET with Visual Studio
 ----------------------------------
 
-The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the freely available Community edition). Visual Studio is an Integrated Development Environment (IDE), which means it's not just an editor, but also has many of the tools you need to build applications, in this case ASP.NET 5 web applications. 
+The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the free Community edition). 
 
 1. Install `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__
-2. Install the latest `ASP.NET 5 preview (Beta8) <http://go.microsoft.com/fwlink/?LinkId=690242>`_
 
-When installing Visual Studio 2015, you'll want to be sure to specify that you want to install the Microsoft Web Developer Tools.
+  Be sure to specify that you want to include the Microsoft Web Developer Tools.
 
-.. image:: installing-on-windows/_static/web-dev-tools.png
+  .. image:: installing-on-windows/_static/web-dev-tools.png
 
-Once Visual Studio is installed, follow the instructions on the Download Center page for installing the latest `ASP.NET 5 preview (Beta8)`_.
+2. Install the latest `ASP.NET 5 preview (Beta8) <http://go.microsoft.com/fwlink/?LinkId=690242>`_. 
 
-To enable a full command-line experience after installing Visual Studio, open a **Developer Command Prompt for VS2015** and run the following commands::
+  Select the appropriate version of the .NET Version Manager (x64 or x86) and the web tools extensions for Visual Studio. The installer will tell you if you've selected the wrong version of the .NET Version Manager.
+
+  .. image:: installing-on-windows/_static/install2.png
+
+3. Enable ASP.NET 5 command-line tools. Open a **Developer Command Prompt for VS2015** and run the following commands::
 
   dnvm setup
   dnvm upgrade
 
-This will setup the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
+  This will set up the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
 
 Install ASP.NET Standalone
 --------------------------
@@ -61,14 +61,10 @@ To install DNX for the full .NET Framework run::
 
 By default DNVM will install DNX for the full .NET Framework if no runtime is specified.
 
-Summary
--------
-
-You can install ASP.NET 5 on Windows either as a standalone installation, or as part of Visual Studio 2015. In either case, installation is straightforward. You're now ready to build :doc:`your first ASP.NET application </tutorials/your-first-aspnet-application>`!
-
 Related Resources
 ^^^^^^^^^^^^^^^^^
 
 - :doc:`/tutorials/your-first-aspnet-application`
 - :doc:`/fundamentals/index`
+
 
