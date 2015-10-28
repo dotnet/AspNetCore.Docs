@@ -25,8 +25,8 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
 
 3. Enable ASP.NET 5 command-line tools. Open a **Developer Command Prompt for VS2015** and run the following commands::
 
-  dnvm setup
-  dnvm upgrade
+    dnvm setup
+    dnvm upgrade
 
   This will set up the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
 
