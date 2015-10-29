@@ -5,6 +5,8 @@ using Microsoft.Data.Entity.Storage;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
 namespace ContosoBooks.Controllers
 {
     public class AuthorController : Controller
@@ -13,7 +15,7 @@ namespace ContosoBooks.Controllers
         public BookContext BookContext { get; set; }
 
         public IActionResult Index()
-        {
+        {   
             return View(BookContext.Authors);
         }
 
@@ -46,7 +48,7 @@ namespace ContosoBooks.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
@@ -77,7 +79,7 @@ namespace ContosoBooks.Controllers
                 BookContext.Authors.Remove(author);
                 await BookContext.SaveChangesAsync();
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 return RedirectToAction("Delete", new { id = id, retry = true });
             }
@@ -107,7 +109,7 @@ namespace ContosoBooks.Controllers
                 await BookContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
