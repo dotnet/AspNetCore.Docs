@@ -173,6 +173,13 @@ Inside your application folder, you create a ``Dockerfile`` which should looks s
 
 You also have a choice to use CoreCLR or Mono. At this time the ``microsoft/aspnet:latest`` repository is based on Mono. You can use the `Microsoft Docker Hub <https://hub.docker.com/r/microsoft/aspnet/>`_ to pick a different base running either an older version or CoreCLR.
 
+Run a Container
+^^^^^^^^^^^^^^^
+
+When you have an application, you can build and run your container using the following commands::
+
+    docker build -t yourapplication .
+    docker run -t -d -p 8080:5000 yourapplication
 
 Summary
 -------
