@@ -184,7 +184,7 @@ The "``add Initial``" command adds code to the project that allows EF to update 
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
-- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-beta8`` instructs the .NET Version Manager to add the 1.0.0-beta8 ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5 Beta 5, the following is displayed:
+- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-beta8`` instructs the .NET Version Manager to add the 1.0.0-beta8 ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5 Beta 8, the following is displayed:
 
 .. code-block:: none
 
