@@ -80,7 +80,7 @@ Error
 Critical
 	A critical log level should be reserved for unrecoverable application or system crashes, or catastrophic failure that requires immediate attention. Examples: data loss scenarios, stack overflows, out of disk space
 
-The ``Logging`` package provides `helper extension methods <https://github.com/aspnet/Logging/blob/1.0.0-beta7/src/Microsoft.Framework.Logging.Abstractions/LoggerExtensions.cs>`_ for each of these standard ``LogLevels``, allowing you to call ``LogInformation`` rather than the more verbose Log(LogLevel.Information, ...) method. Each of the ``LogLevel``-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
+The ``Logging`` package provides `helper extension methods <https://github.com/aspnet/Logging/blob/1.0.0-beta7/src/Microsoft.Framework.Logging.Abstractions/LoggerExtensions.cs>`_ for each of these standard ``LogLevel`` values, allowing you to call ``LogInformation`` rather than the more verbose Log(LogLevel.Information, ...) method. Each of the ``LogLevel``-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
 
 string data
 	The message to log.
@@ -143,14 +143,14 @@ First, be sure to add the ``Microsoft.Framework.Logging.TraceSource`` package to
 	:lines: 5-12
 	:emphasize-lines: 8
 
-The following example demonstrates how to configure two separate ``TraceSourceLogger``s for an application, both logging only ``Critical`` messages. Each call to ``AddTraceSource`` takes a ``TraceListener``. The first call configures a ``ConsoleTraceListener``; the second one configures an ``EventLogTraceListener`` to write to the ``Application`` event log. These two listeners are not available in DNX Core, so their configuration is wrapped in a conditional compilation statement (``#if DNX451``).
+The following example demonstrates how to configure two separate ``TraceSourceLogger`` instances for an application, both logging only ``Critical`` messages. Each call to ``AddTraceSource`` takes a ``TraceListener``. The first call configures a ``ConsoleTraceListener``; the second one configures an ``EventLogTraceListener`` to write to the ``Application`` event log. These two listeners are not available in DNX Core, so their configuration is wrapped in a conditional compilation statement (``#if DNX451``).
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
 	:language: c#
 	:linenos:
 	:lines: 40-48
 
-The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListeners``. 
+The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener`` instances. 
 
 To test out this code, replace the catch-all response with the following ``app.Run`` block:
 
