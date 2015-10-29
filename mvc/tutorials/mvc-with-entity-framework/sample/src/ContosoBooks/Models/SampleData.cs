@@ -10,7 +10,8 @@ namespace ContosoBooks.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService<BookContext>();
-            if (context.Database.AsRelational().Exists())
+            
+            if (context.Database.EnsureCreated())
             {
                 if (!context.Books.Any())
                 {

@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Storage;
 using Microsoft.Framework.Logging;
 using System;
 using System.Collections.Generic;
@@ -57,7 +56,7 @@ namespace ContosoBooks.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
@@ -88,7 +87,7 @@ namespace ContosoBooks.Controllers
                 BookContext.Books.Remove(book);
                 await BookContext.SaveChangesAsync();
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 return RedirectToAction("Delete", new { id = id, retry = true });
             }
@@ -120,7 +119,7 @@ namespace ContosoBooks.Controllers
                 await BookContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch (DataStoreException)
+            catch (DbUpdateException)
             {
                 ModelState.AddModelError(string.Empty, "Unable to save changes.");
             }
