@@ -87,7 +87,7 @@ The following figure illustrates the results of browsing to the Web app's ``imag
 
 .. image:: static-files/_static/dir-browse.png
 
-Now, let's say that you have a project hierarchy where you want the user to be able to browse a directory that is not in the webroot. For example,let's take a simple layout like the following:
+Now, let's say that you have a project hierarchy where you want the user to be able to browse a directory that is not in the webroot. For example, let's take a simple layout like the following:
 
   - wwwroot
 
