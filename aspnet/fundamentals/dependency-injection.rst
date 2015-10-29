@@ -113,6 +113,8 @@ The `ICharacterRepository` simply defines the two methods the controller needs t
 
 This interface is in turn implemented by a concrete type, ``CharacterRepository``, that is used at runtime.
 
+.. note:: The way DI is used with the ``CharacterRepository`` class is a general model you can follow for all of your application services, not just in "repositories" or data access classes.
+
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Models/CharacterRepository.cs
 	:language: c#
 	:linenos:
@@ -201,20 +203,12 @@ The services available within an ASP.NET request from ``HttpContext`` fall into 
 
 .. image:: dependency-injection/_static/application_request_services.png
 
-Request Services represent the services you configure and request as part of your application. These are the services that are available on a per-request basis. Application Services are limited to those things that are available on application startup. These are services that are outside the scope of one request, such as ``IHostingEnvironment``. Anything that is scoped is only available as part of Request Services, not Application Services. When your objects specify dependencies, these are satisfied by the types found in ``RequestServices``, not ``ApplicationServices``.
+Request Services represent the services you configure and request as part of your application. These are the services that are available on a per-request basis. Application Services are limited to those things that are available on application startup. These are services that are outside the scope of one request, such as ``IHostingEnvironment``. When your objects specify dependencies, these are satisfied by the types found in ``RequestServices``, not ``ApplicationServices``.
 
-.. note:: The important thing to remember is that your application will almost always use ``RequestServices``. The small set of ``ApplicationServices`` are mainly relevant during ``Startup``.
+Generally, you shouldn't use these properties directly, and prefer instead to request the types your classes require via your class's constructor, and let the framework inject these dependencies. This yields classes that are easier to :doc:`test <testing>` and are more loosely coupled.
 
-Generally, you shouldn't use these properties directly, and prefer instead to request the types your classes you require via your class's constructor, and let the framework inject these dependencies. This yields classes that are easier to :doc:`test <testing>` and are more loosely coupled. However, there may be instances in which you need to use a service locator pattern to gain access to a particular service. This should be the exception, rather than the rule, since there are substantial drawbacks to this pattern (hence it is commonly considered to be an `antipattern <http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/>`_). If you do find yourself with no other choice but to use service location, a static service locator is available in the framework:
+.. note:: The important things to remember are that your application will almost always use ``RequestServices``, and in any case you shouldn't access these properties directly. Instead, request the services you need via your class's constructor. 
 
-.. code-block:: c#
-
-	// using Microsoft.Dnx.Runtime.Infrastructure
-	var hostingEnv = CallContextServiceLocator.Locator.ServiceProvider
-		.GetService(typeof(IHostingEnvironment)) as IHostingEnvironment;
-	string environmentName = hostingEnv.EnvironmentName;
-
-.. warning:: Prefer the use of dependency injection over service location in your application code, since it provides looser coupling and better testability. Service location may be the best (or only) choice in some framework or test code scenarios, however.
 
 Designing Your Services For Dependency Injection
 ------------------------------------------------
