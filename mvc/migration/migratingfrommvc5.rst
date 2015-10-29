@@ -1,79 +1,92 @@
 Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
 
-By `Steve Smith`_ 
+By `Steve Smith`_  and `Rick Anderson`_
 
-Migrating from ASP.NET MVC 5 to ASP.NET 5 and MVC 6 requires a few steps to complete, since ASP.NET 5 introduces a number of new concepts. In this article you will learn how to migrate from the ASP.NET MVC 5 default project template to ASP.NET MVC 6, including initial setup, basic controllers and views, static content, and client side dependencies.
+While this article shows how to migrate an ASP.NET MVC 5 project to ASP.NET MVC 6, it's arguably more valuable in showing what has changed from MVC 5 to MVC 6. The migration process in this (part 1 tutorial) includes initial setup, basic controllers and views, static content, and client side dependencies. The tutorial creates the MVC 6 app with the empty template and adds all the assets needed to complete the conversion. An alternative approach to migrations is to create the MVC 6 app with the full MVC app template, and then copy your custom code.
 
-In this article:
-	- `Create the Initial Project`_
-	- `Create the Destination Solution`_
+	- `Create the starter MVC 5 project`_
+	- `Create the MVC 6  project`_
+	- `Configure the site to use MVC`_
 	- `Migrate Basic Controllers, Views, and Static Content`_
 	- `Configure Bundling`_
 
-Download the `finished source <https://github.com/aspnet/Docs/tree/master/samples/MigratingFromMvc5/NewMvc6Project>`_ from the project created in this article.
+Create the starter MVC 5 project
+----------------------------------
 
-Create the Initial Project
---------------------------
-
-For the purposes of this article, we will be starting from the default ASP.NET MVC 5 starter web project, which you can create in Visual Studio 2015 by adding a new web project and choosing MVC 5.
+For the purposes of this article, we will start by creating an new ASP.NET MVC 5 app. Create it with the name *WebApp1* so the namespace will match the MVC 6 project we create in the next step.
 
 .. image:: migratingfrommvc5/_static/new-project.png
 
 .. image:: migratingfrommvc5/_static/new-project-select-mvc-template.png
 
-If you prefer, you can `view or download the MVC 5 Project used in this article <https://github.com/aspnet/Docs/tree/master/samples/MigratingFromMvc5/Mvc5Project>`_.
+This sample will demonstrate how to migrate an MVC 5 web project that includes controllers, views, ASP.NET Identity models, startup and configuration code which is common to many MVC 5 projects.
 
-This sample web project will demonstrate how to migrate an MVC 5 web project that includes controllers, views, and ASP.NET Identity models, as well as startup and configuration logic common to many MVC 5 projects.
+*Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio will display the new solution name (*Mvc5*), which will make it easier to tell this project from the next project. 
 
-Create the Destination Solution
+Create the MVC 6 project
 -------------------------------
 
-We will begin our migration by creating a new, empty ASP.NET 5 solution. Create a new project in Visual Studio 2015, choose an ASP.NET Web Application, and then choose the ASP.NET 5 Empty template.
-
-.. image:: migratingfrommvc5/_static/new-project-mvc6.png
+Create a new empty MVC 6 web app with the same name as the previous project (*WebApp1*) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. You'll have to create this project in a different directory than the previous project to use the same name.
 
 .. image:: migratingfrommvc5/_static/new-project-select-empty-aspnet5-template.png
 
-This migration will start from an empty template. If you're already familiar with ASP.NET 5 and its starter templates and there are features in a starter template you would like to take advantage of, you may wish to start from another template. The next step is to configure the site to use MVC. This requires changes to the project.json file and Startup.cs file. First, open project.json and add "Microsoft.AspNet.Mvc" to the "dependencies" property:
+- *Optional:* Create a new MVC 6 app named *WebApp1* with the full template. You can look at the template generated code to see where we're going.
 
-.. code-block:: javascript
+Configure the site to use MVC
+-------------------------------
 
-	"dependencies": {
-		"Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-		"Microsoft.AspNet.Mvc": "6.0.0-beta4"
-	},
+- Open the *project.json* file and add ``Microsoft.AspNet.Mvc`` to the ``dependencies`` property:
 
-Now open Startup.cs and modify it as follows:
+.. code-block:: json
 
-.. code-block:: c#
+  "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8"
+  },
+  
+ For more information see `The project.json file <https://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html#the-project-json-file>`_ and (:doc:`learn more about .NET Core <dotnetcore>`).
 
-	public void ConfigureServices(IServiceCollection services)
-	{
-		services.AddMvc();
-	}
+- Open the *Startup.cs* file and change the code to match the following:
 
-	public void Configure(IApplicationBuilder app)
-	{
-		app.UseMvc(routes =>
-		{
-			routes.MapRoute(
-				name: "default",
-				template: "{controller=Home}/{action=Index}/{id?}");
-		});
-	}
 
-At this point we are ready to create a simple Controller and View. Add a Controllers folder and a Views folder to the project. Add an MVC Controller called HomeController.cs class to the Controllers folder and a Home folder in the Views folder. Finally, add an Index.cshtml MVC View Page to the Views/Home folder. The project structure should be as shown:
+.. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/Startup.cs
+	:language: c#
+	:emphasize-lines: 6, 14-20
+	:linenos:  
+	:lines: 11-32
+	:dedent: 4
+
+.. The following relative path is correct, not sure why it doesn't resolve.
+
+See :doc:`../../aspnet/fundamentals/startup`  zzz
+
+See :doc:`../index`
+
+See :doc:`../../aspnet/index`
+
+
+Add a controller and view
+---------------------------
+
+- Add a *Controllers* folder.
+- Add an MVC controller class with the name *HomeController.cs* to the *Controllers* folder.
+- Add a *Views* folder. 
+- Add and a *Views/Home* folder.
+- Add an *Index.cshtml* MVC view page to the *Views/Home* folder. 
+
+The project structure is shown below:
 
 .. image:: migratingfrommvc5/_static/project-structure-controller-view.png
 
-Modify Index.cshtml to show a welcome message:
+Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 .. code-block:: html
 
 	<h1>Hello world!</h1>
 
-Run the application - you should see Hello World output in your browser.
+Run the app.
 
 .. image:: migratingfrommvc5/_static/hello-world.png
 
@@ -82,7 +95,7 @@ Run the application - you should see Hello World output in your browser.
 Migrate Basic Controllers, Views, and Static Content
 ----------------------------------------------------
 
-Now that we've confirmed we have a simple, working ASP.NET MVC 6 project, it's time to start migrating functionality from the source project. There are many different ways one can approach this task. We will need to move all of the client-side content files (CSS, fonts, scripts), all of the controllers, views, and models, and migrate configured features like bundling, filters, and identity. Let's begin by replacing our simple "hello world" implementation of HomeController with the actual HomeController and Views from the source project.
+Now that we have the basic working MVC 6 project, we can start migrating functionality from the source project. There are many different ways one can approach this task. We will need to move all of the client-side content files (CSS, fonts, scripts), all of the controllers, views, and models, and migrate configured features like bundling, filters, and identity. Let's begin by replacing our simple "hello world" implementation of HomeController with the actual HomeController and Views from the source project.
 
 Copy each of the methods from the source HomeController to the HomeController we added to the project in the previous section. Note that in MVC 5, actions typically returned ActionResult, but in MVC 6 this has changed to IActionResult (though it will still compile if you leave it as ActionResult).
 
@@ -132,7 +145,7 @@ Bower will automatically download the specified dependencies, but for now the fi
 
 Next, we will configure Gulp to process these files and place them where we want them in the wwwroot folder. First, we need to make sure Gulp is installed locally for the project. This is accomplished using NPM, which is similar to Bower but requires a different configuration file, "package.json". Add a new NPM configuration file to the root of the project, called package.json. Add *gulp*, *rimraf*, and *gulp-concat* to the devDependencies property (you should get Intellisense as you type each package name). When you're finished, your file should look similar to this one:
 
-.. literalinclude:: migratingfrommvc5/samples/NewMvc6Project/src/NewMvc6Project/package.json
+.. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/package.json
 	:language: javascript
 	:emphasize-lines: 6-8
 	:linenos: 
@@ -231,7 +244,7 @@ To simply bundle the jQuery and bootstrap scripts together into a single, minifi
 
 Save the package.json file and the new package should be installed. You can confirm by checking in the Dependencies/NPM folder to see that the gulp-concat package is listed there. Next, we will add a concat task to Gulpfile.js. Add the highlighted sections:
 
-.. literalinclude:: migratingfrommvc5/samples//NewMvc6Project/src/NewMvc6Project/Gulpfile.js
+.. literalinclude:: migratingfrommvc5/samples/NewMvc6Project/src/NewMvc6Project/Gulpfile.js
 	:language: javascript
 	:emphasize-lines: 8,34-39
 	:linenos: 
