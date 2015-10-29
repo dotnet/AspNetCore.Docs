@@ -140,14 +140,14 @@ Open the *Startup.cs* file. In the ``ConfigureServices`` method, add:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :lines: 32-37
+    :lines: 35-40
     :dedent: 12
 
 Add the following code at the end of the *Configure* method:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :lines: 74
+    :lines: 77
     :dedent: 12
 
 Notice in *ConfigureServices* that we call ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *config.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *config.json*.
@@ -156,7 +156,7 @@ Here is the complete *Startup.cs* after these changes:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
-    :emphasize-lines: 1,5,32-37,74
+    :emphasize-lines: 1,4,35-40,77
 
 Use data migrations to create the database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -229,7 +229,7 @@ Add the following method to the ``BooksController`` class:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 28-39
+    :lines: 27-39
     :dedent: 8
 
 This code looks up a book by ID. In the EF query:
@@ -270,7 +270,7 @@ Now let’s write the controller action to handle the form post. In the ``BookCo
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 47-65
+    :lines: 46-65
     :dedent: 8
 
 The ``[HttpPost]`` attribute tells MVC that this action applies to HTTP POST requests. The ``[ValidateAntiForgeryToken]`` attribute is a security feature that guards against cross-site request forgery. For more information, see :doc:`../../security/anti-request-forgery`.
@@ -314,14 +314,14 @@ Add the following methods to ``BookController``:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 98-133
+    :lines: 97-133
     :dedent: 8
 
 This code is very similar to adding a new entity, except for the code needed to update the database:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 119-120
+    :lines: 118-119
     :dedent: 16
 
 Add a view named *Views/Book/Edit.cshtml* view with the following code:
@@ -338,7 +338,7 @@ Add the following code to ``BookController``.
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Controllers/BookController.cs
     :language: c#
-    :lines: 67-96
+    :lines: 66-96
     :dedent: 8
 
 Add a view named *Views/Book/Delete.cshtml* view with the following code:
