@@ -80,7 +80,7 @@ It can be useful to have environment-specific configuration files. This can be a
   :lines: 25-41
   :emphasize-lines: 1,8
 
-The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``config.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
+The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``appsettings.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
 
 .. warning:: You should never store passwords or other sensitive data in source code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the source repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
 

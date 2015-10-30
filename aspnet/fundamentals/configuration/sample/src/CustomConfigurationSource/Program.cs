@@ -12,7 +12,7 @@ namespace CustomConfigurationSource
         public void Main(string[] args)
         {
             var builder = new ConfigurationBuilder(".");
-            builder.AddJsonFile("config.json");
+            builder.AddJsonFile("appsettings.json");
             builder.AddEnvironmentVariables();
             var config = builder.Build();
 
