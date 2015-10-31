@@ -15,22 +15,22 @@ In this article:
 	- `Server Side Dependency Management`_
 	- `Configuring the Application`_
 	- `Application Startup`_
-	
+
 .. `View or download <https://github.com/aspnet/docs/tree/master/docs/conceptual-overview/understanding-aspnet5-apps/sample>`_ the finished source from the project created in this article.
 
 ASP.NET Project Structure
 -------------------------
 
-ASP.NET 5's project structure adds new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here: 
+ASP.NET 5's project structure adds new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here:
 
 .. image:: understanding-aspnet5-apps/_static/solution-explorer.png
 
-The first thing you may notice about this new structure is that it includes a Solution Items folder with a *global.json* file, and the web 
-project itself is located within a *src* folder within the solution. The new structure also includes a special *wwwroot* folder and a 
-Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this 
-version). In the root the project there are also several new files such as *bower.json, config.json, gulpfile.js, package.json, project.json*, 
-and *Startup.cs*. You may notice that the files *global.asax, packages.config*, and *web.config* are gone. In previous versions of 
-ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic 
+The first thing you may notice about this new structure is that it includes a Solution Items folder with a *global.json* file, and the web
+project itself is located within a *src* folder within the solution. The new structure also includes a special *wwwroot* folder and a
+Dependencies section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this
+version). In the root the project there are also several new files such as *bower.json, appsettings.json, gulpfile.js, package.json, project.json*,
+and *Startup.cs*. You may notice that the files *global.asax, packages.config*, and *web.config* are gone. In previous versions of
+ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic
 has been refactored into files that are generally smaller and more focused.
 
 Framework Target
@@ -39,7 +39,7 @@ Framework Target
 ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default applications will target the full version of .NET, but they can also target the .NET Core. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate NuGet packages (:doc:`learn more about .NET Core <dotnetcore>`).
 
 You can see which framework is currently being targeted in the web application project's properties, by right-clicking on the web project in Solution Explorer and selecting Properties:
- 
+
 .. image:: understanding-aspnet5-apps/_static/project-properties.png
 
 By default, the checkbox for *Use specific DNX version* is unchecked. To target a specific version, check the box and choose the appropriate *Version*, *Platform*, and *Architecture*.
@@ -105,7 +105,7 @@ In previous versions of ASP.NET, the root of the project was typically the root 
 
 The file based approach presented several problems. First, protecting sensitive project files required framework-level protection of certain filenames or extensions, to prevent having things like *web.config* or *global.asax* served to a client in response to a request. Having to specifically block access (also know as blacklisting) to certain files is much less secure than granting access only to those files which should be accessible(also known as whitelisting). Typically different versions were required for dev/test and production (for example *web.config*).  Scripts would typically be referenced individually and in a readable format during development, but would be minified and bundled together when deployed for production. It’s beneficial to deploy only production files to production, but handling these kinds of scenarios was difficult with the previous file structure.
 
-Enter the *wwwroot* folder in ASP.NET 5. The *wwwroot* folder represents the actual root of the web app when running on a web server. Static files, like *config.json*, which are not located in *wwwroot* will never be accessible, and there is no need to create special rules to block access to sensitive files. Instead of blacklisting access to sensitive files, a more secure whitelist approach is taken whereby only those files in the *wwwroot* folder are accessible via web requests.
+Enter the *wwwroot* folder in ASP.NET 5. The *wwwroot* folder represents the actual root of the web app when running on a web server. Static files, like *appsettings.json*, which are not located in *wwwroot* will never be accessible, and there is no need to create special rules to block access to sensitive files. Instead of blacklisting access to sensitive files, a more secure whitelist approach is taken whereby only those files in the *wwwroot* folder are accessible via web requests.
 
 In addition to the security benefits, the *wwwroot* folder also simplifies common tasks like bundling and minification, which can now be more easily incorporated into a standard build process and automated using tools like Grunt.
 
@@ -133,32 +133,58 @@ By default, the bower task is executed using gulp, which is configured in *gulpf
 Server Side Dependency Management
 ---------------------------------
 
-The *References* folder details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets, such as the full ASP.NET 5.0 vs. ASP.NET Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under Options – NuGet Package Manager – Package Sources).	
+The *References* folder details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets, such as the full ASP.NET 5.0 vs. ASP.NET Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under Options – NuGet Package Manager – Package Sources).
 
 .. image:: understanding-aspnet5-apps/_static/references.png
 
 Configuring the Application
 ---------------------------
 
-ASP.NET 5 no longer stores configuration settings in XML files (*web.config* and *machine.config*). Configuration is now stored in *config.json*, which was designed specifically for storing app configuration settings. The default ASP.NET project template includes Entity Framework, and so specifies the database connection string details in the *config.json* file included in the project.
+ASP.NET 5 no longer stores configuration settings in XML files (*web.config* and *machine.config*). Configuration is now stored in *appsettings.json*, which was designed specifically for storing app configuration settings. The default ASP.NET project template includes Entity Framework, and so specifies the database connection string details in the *appsettings.json* file included in the project.
 
-.. image:: understanding-aspnet5-apps/_static/config-json.png
+.. code-block:: JSON
 
-Individual entries within *config.json* are not limited to name-value pairs, but can specify rich objects. Entries can also reference other entries, as you can see the EF configuration does above.
+	{
+		"Data": {
+			"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-FundamentalConcepts"
+		},
 
-There's nothing special about the *config.json* filename - it's specified by name in Startup.cs_. You can add as many different configuration files as makes sense for your app, rather than having to add to an ever-growing *web.config* file. You're also not limited to just JSON-formatted files - you can still use XML or even .INI files if you prefer.
+		"Entity": {
+			"ApplicationDbContext": {
+				"ConnectionString": "Data:DefaultConnection:ConnectionString"
+			}
+		}
+	}
 
-Accessing configuration data from your app is best done by injecting the `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.ConfigurationModel.Interfaces/IConfiguration.cs>`_ interface into your controller, and then simply calling its ``Get`` method with the name of the configuration element you need. For example, to store the application name in config and display it on the About page, you would need to make three changes to the default project. First, add the entry to *config.json*.
+Individual entries within *appsettings.json* are not limited to name-value pairs, but can specify rich objects. Entries can also reference other entries, as you can see the EF configuration does above.
 
-.. image:: understanding-aspnet5-apps/_static/add-config.png
+There's nothing special about the *appsettings.json* filename - it's specified by name in Startup.cs_. You can add as many different configuration files as makes sense for your app, rather than having to add to an ever-growing *web.config* file. You're also not limited to just JSON-formatted files - you can still use XML or even .INI files if you prefer.
 
-Next, make sure ASP.NET knows what to return when a constructor requires an instance of ``IConfiguration``. In this case, we can specify that the configuration value is a singleton, since we don't expect it to change throughout the life of the application. We'll address *Startup.cs* in a moment, but for this step just add one line to the end of the ``ConfigureServices()`` method in *Startup.cs*:
+Accessing configuration data from your app is best done by injecting the `IConfiguration <https://github.com/aspnet/Configuration/blob/dev/src/Microsoft.Framework.ConfigurationModel.Interfaces/IConfiguration.cs>`_ interface into your controller, and then simply using the indexer with the name of the configuration element you need. For example, to store the application name in config and display it on the About page, you would need to make three changes to the default project. First, add the entry to *appsettings.json*.
+
+.. code-block:: JSON
+	:emphasize-lines: 11
+
+	{
+		"Data": {
+			"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-FundamentalConcepts"
+		},
+
+		"Entity": {
+			"ApplicationDbContext": {
+				"ConnectionString": "Data:DefaultConnection:ConnectionString"
+			}
+		},
+		"ApplicationName":"Fundamental Concepts"
+	}
+
+Next, make sure ASP.NET knows what to return when a constructor requires an instance of ``IConfiguration``. In this case, we can specify that the configuration value is a service. We'll address *Startup.cs* in a moment, but for this step just add one line to the end of the ``ConfigureServices()`` method in *Startup.cs*:
 
 .. code-block:: c#
-	
-	services.AddSingleton(_ => Configuration);
 
-The third and final step is to specify that your controller expects an ``IConfiguration`` instance via its constructor. Following the `Explicit Dependencies Principle`_ with your classes is a good habit to get into, and will allow ASP.NET 5's built-in support for Dependency Injection to work correctly. Assign the instance to a local field, and then access the configuration value by calling the ``Get`` method on this instance.
+	services.AddInstance(typeof(IConfiguration), Configuration);
+
+The third and final step is to specify that your controller expects an ``IConfiguration`` instance via its constructor. Following the `Explicit Dependencies Principle`_ with your classes is a good habit to get into, and will allow ASP.NET 5's built-in support for Dependency Injection to work correctly. Assign the instance to a local field, and then access the configuration value by utilizing its' indexer on this instance.
 
 .. _`Explicit Dependencies Principle`: http://deviq.com/explicit-dependencies-principle/
 
@@ -166,17 +192,40 @@ You will need to ensure you have this using statement:
 
 .. code-block:: c#
 
-	using Microsoft.Framework.ConfigurationModel;
-	
+	using Microsoft.Framework.Configuration;
+
 Then, update the controller as shown:
 
-.. image:: understanding-aspnet5-apps/_static/get-config.png
+.. code-block:: c#
+	:emphasize-lines: 3,5-7,9-15
+
+	public class HomeController : Controller
+	{
+		private readonly IConfiguration _config;
+
+		public HomeController(IConfiguration config){
+			_config = config;
+		}
+
+		public IActionResult About()
+		{
+			string appName = _config["ApplicationName"];
+			ViewData["Message"] = "You application name: " + appName;
+
+			return View();
+		}
+
+		public IActionResult Index(){
+			return View();
+		}
+	}
+
 
 Run the application and navigate to the About page and you should see the result.
 
 .. image:: understanding-aspnet5-apps/_static/about-page.png
 
-.. _Startup.cs: 
+.. _Startup.cs:
 .. _fundamentalconcepts-application-startup:
 
 Application Startup
@@ -184,19 +233,22 @@ Application Startup
 
 ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure middleware.
 
-The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template wires up ``Configuration`` to use a *config.json* and environment variables.
+The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a ``ConfigurationBuilder`` to create a ``IConfiguration`` that loads *appsettings.json* and environment variables.
 
 .. code-block:: c#
 
-	public Startup(IHostingEnvironment env)
+	public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
 	{
 		// Setup configuration sources.
-		Configuration = new Configuration()
-			.AddJsonFile("config.json")
+		var builder = new ConfigurationBuilder()
+			.SetBasePath(appEnv.ApplicationBasePath)
+			.AddJsonFile("appsettings.json")
 			.AddEnvironmentVariables();
+
+		Configuration = builder.Build();
 	}
-	
-The ``ConfigureServices`` method is used to specify which services are available to the app. The default template uses helper methods to add a variety of services used for EF, Identity, and MVC. This is also where you can add your own services, as we did above to expose the configuration as a service. The complete ``ConfigureServices`` method, including the call to add ``Configuration`` as a singleton, is shown here:
+
+The ``ConfigureServices`` method is used to specify which services are available to the app. The default template uses helper methods to add a variety of services used for EF, Identity, and MVC. This is also where you can add your own services, as we did above to expose the configuration as a service. The complete ``ConfigureServices`` method, including the call to add ``Configuration`` as a service, is shown here:
 
 .. code-block:: c#
 
@@ -215,9 +267,9 @@ The ``ConfigureServices`` method is used to specify which services are available
 		// Add MVC services to the services container.
 		services.AddMvc();
 
-		services.AddSingleton(_ => Configuration);
+		services.AddInstance(typeof(IConfiguration), Configuration);
 	}
-	
+
 Finally, the ``Configure`` method will be called by the runtime after ``ConfigureServices``. In the sample project, ``Configure`` is used to wire up a console logger, add several useful features for the development environment, add support for static files, Identity, and MVC routing. Note that adding Identity and MVC in ``ConfigureServices`` isn’t sufficient - they also need to be configured in  the request pipeline via these calls in ``Configure``.
 
 .. code-block:: c#
@@ -259,12 +311,11 @@ Finally, the ``Configure`` method will be called by the runtime after ``Configur
 		});
 	}
 
-As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the ``Startup`` class, as opposed to using HTTP Modules and Handlers managed via *web.config*. 
+As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the ``Startup`` class, as opposed to using HTTP Modules and Handlers managed via *web.config*.
 
 .. TODO: You can learn more about how the request pipeline is configured as well as how to write your own middleware components.
-	
+
 Summary
 -------
 
 ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
-
