@@ -39,20 +39,22 @@ In addition to removing the comments and unnecessary whitespace, the following p
 ==================  =======  
 Original            Renamed      
 ==================  =======  
-imageTagAndImageID  n  
-imageContext        t  
-imageElement        i   
+imageTagAndImageID  t  
+imageContext        a  
+imageElement        r   
 ==================  =======  
-
-ASP.NET Web Application Template 
---------------------------------
-The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application. It contains default functionality that demonstrates many aspects of ASP.NET. The template also includes the Node Package Manager (`npm <https://www.npmjs.com/>`_) and gulp by default.
 
 Bundling and Minification in Visual Studio using Gulp
 -----------------------------------------------------
+You may be familiar with *runtime* bundling and minification using ASP.NET Web Optimization. In ASP.NET 5, you can bundle and minify your client-side resources during *design-time*. Using design-time bundling and minification, you build your minified files up front and then deploy them with your app as static files. By bundling and minifying up front, you have the advantage of fewer moving parts and reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only work with static files.
+
 Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event occurs in a build environment. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
 
-Visual Studio 2015 automatically installs gulp and npm. Gulp functionality is included within the ASP.NET 5 Web Application template. When you create a new web project using this template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
+The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality that demonstrates many aspects of ASP.NET. The template also includes the Node Package Manager (`npm <https://www.npmjs.com/>`_) and gulp by default, which makes it easy to add bundling and minification to a project.
+
+.. note:: You don't need ASP.NET 5 Web Application project template or Visual Studio to implement bundling and minification. For instance, you can create an ASP.NET project using Yeoman, push it to GitHub, clone it on a Mac, and then bundle and minify the project.
+
+When you create a new web project using ASP.NET 5 Web Application template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
 
 .. code-block:: javascript
 
