@@ -161,10 +161,9 @@ Inside your application folder, you create a ``Dockerfile`` which should looks s
     FROM microsoft/aspnet:latest
 
     # Copy the project into folder and then restore packages
-    COPY project.json /app/
+    COPY . /app
     WORKDIR /app
     RUN ["dnu","restore"]
-    COPY . /app
 
     # Open this port in the container
     EXPOSE 5000
