@@ -55,7 +55,7 @@ Building Applications with .NET Core
 		// utilize resource only available with .NET Framework
 	#endif
 
-The recommendation from the ASP.NET team is to target both frameworks with new applications. If you want to only target .NET Core, remove *dnx451*, or only target .NET Framework, remove *dnxcore50*, from the *frameworks* listed in *project.json*. Note that ASP.NET 4.6 and earlier target and require the .NET Framework, as they always have.
+The recommendation from the ASP.NET team is to target both frameworks with new applications. If you want to only target .NET Core, remove *dnx451*; or to only target .NET Framework, remove *dnxcore50* from the *frameworks* listed in *project.json*. Note that ASP.NET 4.6 and earlier target and require the .NET Framework, as they always have.
 
 .NET Core and NuGet
 ^^^^^^^^^^^^^^^^^^^
