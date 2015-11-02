@@ -47,5 +47,39 @@ namespace mvcOrderManagerSample.Controllers
         {
             return View(new OrderViewModel() {OrderID = orderId});
         }
-    }
+
+        [Route("~/my-orders")]
+        public IActionResult GetMyOrders()
+        {
+            var orderList = new List<OrderModel>()
+            {
+                new OrderModel()
+                {
+                    OrderID = 1000,
+                    Client = "Scott",
+                    Cost = 10m,
+                    Description = "Erasers"
+                },
+                new OrderModel()
+                {
+                    OrderID = 1001,
+                    Client = "Rob",
+                    Cost = 12m,
+                    Description = "Markers"
+                },
+                new OrderModel()
+                {
+                    OrderID = 1002,
+                    Client = "ScottHa",
+                    Cost = 14m,
+                    Description = "BluRay"
+                }
+            };
+
+            // Normally we'd not hard code this :)
+            return View(orderList.Where(o => o.Client == "Scott").ToList());
+        }
+      
+
+}
 }
