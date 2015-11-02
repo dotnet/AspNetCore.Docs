@@ -256,7 +256,7 @@ When you use gulp to optimize your client-side files for staging and production,
 		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
 				asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
 				asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
-		<link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
 	</environment>
 	
 Switching Between Environments
