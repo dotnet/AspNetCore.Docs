@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "mvcOrderManagerSample"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-mvcOrderManagerSample-cbfeaa0b-13db-4f92-b19e-4a9baf2994fd;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}

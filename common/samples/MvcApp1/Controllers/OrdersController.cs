@@ -8,12 +8,12 @@ using Microsoft.AspNet.Mvc;
 
 namespace MvcApp1.Controllers
 {
-    public class BooksController : Controller
+    public class OrdersController : Controller
     {
-        [Route("books/{bookName}")] 
-        public IActionResult FindBook(string bookName)
+        [Route("orders/{orderid}")]
+        public IActionResult GetOrderByID(int orderid)
         {
-            return View();
-        }     
+            return View(new { OrderID = orderid });
+        }
     }
 }

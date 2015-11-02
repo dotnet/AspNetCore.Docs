@@ -1,0 +1,10 @@
+﻿@model mvcOrderManagerSample.Models.OrderViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>@Model.OrderID</h2>
+
+@Html.ActionLink("View Order", "GetByOrderID", "Orders", new {orderId = 5678})
