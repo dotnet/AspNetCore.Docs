@@ -5,4 +5,294 @@
 
 .. include:: /../common/stub-notice.txt
 
+Routing at The Action Level
+**********************************************
+A simple example that specifies the entire route at the action level.
+ .. code-block:: c#
+  :emphasize-lines: 3
+  
+  public class OrdersController : Controller
+  {
+       [Route("orders/{orderId}")]
+       public IActionResult GetByOrderID(int orderId)
+       {
+           return View(new OrderViewModel() {OrderID = orderId});
+       }
+  }
+	
+ In this example we have fully declared the route at the Action level.  We do this by using the Route attribute.  Our route specifies a name for the controller Orders, and a parameter orderId.  If we were to use this to find a Order say 1234 then our route would look like this /orders/1234.
+Using Html Helpers to create an action link for this route.  
+ .. code-block:: none
+  :emphasize-lines: 1
+  
+  @Html.ActionLink("View Order", "GetByOrderID", "Orders", new {orderId = 5678})
+  
+Will produce a url like /orders/5678 
+This works really well if we have a single action, but that’s rarely going to be the case and repeating the name of the controller over and over again is not a great practice – simply because it could change or we might want to refer to it differently.  The fewer places to change it, the better.
+
+Routing at the Class Level
+**********************************************
+
+Now let's take a look at our orders controller.  Instead of handling all of the routing at the action level, we can handle some of it at the class level and build up the routes in the actions ensuring that we don't repeat ourselves and reuse our routing logic.
+
+ .. code-block:: c#
+  :emphasize-lines: 1
+  
+   [Route("orders")]
+   public class OrdersController : Controller
+   {
+        [Route("")]
+        public IActionResult ViewOrders()
+        {
+            var orderList = new List<OrderModel>()
+            {
+                new OrderModel()
+                {
+                    OrderID = 1000,
+                    Client = "Scott",
+                    Cost = 10m,
+                    Description = "Erasers"
+                },
+                new OrderModel()
+                {
+                    OrderID = 1001,
+                    Client = "Rob",
+                    Cost = 12m,
+                    Description = "Markers"
+                },
+                new OrderModel()
+                {
+                    OrderID = 1002,
+                    Client = "ScottHa",
+                    Cost = 14m,
+                    Description = "BluRay"
+                }
+            };
+            return View(orderList);
+        }
+
+        [Route("{orderId}")]
+        public IActionResult GetByOrderID(int orderId)
+        {
+            return View(new OrderViewModel() {OrderID = orderId});
+        }
+    }
+
+Using Constraints 
+---------------------------------
+We also can use constraints to help route to our controller actions.  Let’s say that we have two concepts, an OrderID which is an integer and an Order Subject which is a string.  If we use constraints on our routes we can support both concepts easily.  
+
+Our goal will be to be able to use the route /orders/1234 to view an order by its Integer ID,  but also to use /orders/mybacktoschoolorder to view an order by its subject.  
+
+ .. code-block:: c#
+  :emphasize-lines: 1,7
+
+   [Route("{orderId:int}")]
+   public IActionResult GetByOrderID(int orderId)
+   {
+       return View(new OrderViewModel() {OrderID = orderId}); 
+   }
+
+   [Route("{subject:alpha}")]
+   public IActionResult GetByOrderSubject(string subject)
+   {
+       return View(new OrderViewModel() { Subject = subject });
+   }
+
+By simply putting in a constraint for the parameter, ASP.net is able to route requests for an integer to the action that is prepared to handle them, and the requests with the string value to the other action.  This lets us create a nice experience from a url point of view in that we can keep our urls, short and simple.
+
+Using HTTP Verbs
+-----------------------------
+Another common scenario is wanting the same route to react differently depending upon what the http verb is.  For example, I might want a page that displays an order by id with the route /orders/1234 but also on that page be able to edit the order, change a quantity or a price etc..  Then I’d want to post that data back to the server and have it updated in the database.  
+ 
+Our requirements here: 
+GET /orders/1234 shows the order and lets us build a form.  
+POST /orders/1234 allows us to post the edited order back to the server for processing.  
+
+ .. code-block:: c#
+  :emphasize-lines: 1,8
+
+   [HttpPost]
+   [Route("{orderId:int}")]
+   public IActionResult UpdateOrderById(int orderId, OrderViewModel order)
+   {
+       return Redirect($"/orders/{orderId}");
+   }
+
+   [HttpGet]
+   [Route("{orderId:int}")]
+   public IActionResult GetByOrderID(int orderId)
+   {
+      var order = new OrderViewModel()
+      {
+           OrderID = orderId,
+           Cost = 100m,
+           Subject = "BackToSchoolOrder"
+      };
+       return View(order);
+   }
+	
+By supplying an additional Attribute, we are able to give asp.net the context it needs to make the correct decision when it routes the request to our action.  Http Verbs are used extensively when creating APIs, as we’ll see more examples of when it comes time to look at inheritance. 
+
+Overriding the Route
+------------------------------------
+
+This is great functionality, its very useful, but what if we don’t want the routes to build upon one another.  Let’s say we have a business requirement to support urls like 
+
+===========  =========================
+Url                       Desired Goal  
+===========  =========================
+orders/1234       list a specific order
+orders                list all orders 
+my-orders          list all orders for the current user
+===========  =========================
+ 
+In that case, two of our routes can use the information specified by the controller, but the third cannot.  And create a whole separate controller for this seems like a bad idea.  What option do we have? 
+Luckily we can choose to override the information specified for the route in previous Route attributes (either inherited, or from controller).  To do this we append ~/ to the start of the route.
+Here’s what that looks like.
+
+
+ .. code-block:: c#
+  :emphasize-lines: 1,4
+  
+  [Route("orders")]
+  public class OrdersController : Controller
+  {
+      [Route("~/my-orders")]
+      public IActionResult GetMyOrders()
+      {
+          var orderList = new List<OrderModel>()
+          {
+              new OrderModel()
+              {
+                  OrderID = 1000,
+                  Client = "Scott",
+                  Cost = 10m,
+                  Description = "Erasers"
+              },
+              new OrderModel()
+              {
+                  OrderID = 1001,
+                  Client = "Rob",
+                  Cost = 12m,
+                  Description = "Markers"
+              },
+              new OrderModel()
+              {
+                  OrderID = 1002,
+                  Client = "ScottHa",
+                  Cost = 14m,
+                  Description = "BluRay"
+              }
+          };
+
+		  // Normally we'd not hard code this :)
+          return View(orderList.Where(o => o.Client == "Scott").ToList());
+      }
+      
+The route on line 1 sets up the route for the controller, but to meet our requirement of having a url /my-orders we append ~/ to the route on line 4.  Now when we make a request to /my-orders asp.net will route that request to our action here.
+
+With a route like this we’ll be able to view this at /my-orders instead of /orders/my-orders.  
+
+Using Inheritance
+**********************************************
+For this next section, I want to illustrate a slightly more advanced use of routing that when used in your applications can bring some pretty interesting capabilities to the table.  
+We want to make our applications intuitive, but sometimes despite our best results its important to offer some help for our users.  By using inheritance with Routing you can create a great system that’s very easy to maintain. 
+Here’s our Requirements:  Have a default help page that can be accessed by /something/help where something is a controller – ie Orders or Products.  Also have the ability to very easily override that functionality and supply different content at the view or even at the functional level in the controller.  
+To do this we’ll create a new Controller called BaseController
+
+ .. code-block:: c#
+  :emphasize-lines: 1,4
+     
+  [Route("[controller]")]
+  public class BaseController : Controller
+  {
+      [Route("help")]
+      public virtual IActionResult Help()
+      {
+          return View();
+      }
+  }
+  
+There are a few things to take note of with this code.  First, look at the Route attribute it uses the new Data Token syntax, where [controller] is replaced with the name of the controller at runtime.  
+For this action, I’ve created a simple view in the Shared folder called Help with some default help content.
+
+ .. code-block:: javascript
+  :emphasize-lines: 1,4
+  
+  @model dynamic
+
+  @{
+      ViewBag.Title = "title";
+      Layout = "_Layout";
+  }
+
+  <h2>This is the Help Page</h2>
+
+We’ll then replace the inheritance for our Orders controller so that it will inherit from this new controller instead.
+ .. code-block:: c#
+  :emphasize-lines: 2
+  
+    [Route("orders")]
+    public class OrdersController : BaseController
+    {
+       // Methods snipped for brevity.
+    }
+
+We’ll also add a new controller called Products 
+ .. code-block:: c#
+  :emphasize-lines: 1
+  
+    public class ProductsController : BaseController
+    {
+        // GET: /<controller>/
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+
+Once we compile the code we’ll quickly see that we can view the new help action from both the Orders and Products controllers just the way we expect.  Both controllers display the help text that we put into the shared view folder.
+
+Now let’s push this a bit further, let’s say that we need to supply different content for the orders controller.  To accomplish this we create a help view in the Orders view folder.
+
+/Views/Orders/Help.cshtml
+ .. code-block:: javascript
+  :emphasize-lines: 2
+  
+  @model dynamic
+
+  @{
+      ViewBag.Title = "title";
+      Layout = "_Layout";
+  }
+
+  <h2>Orders Help Page</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum mauris at diam pharetra, a rhoncus magna lobortis. Mauris lacinia magna massa, ut dapibus ligula cursus in. Aliquam vel dolor lectus. Etiam blandit non odio at lobortis. Aliquam erat volutpat. Nullam libero nisl, porttitor sit amet fermentum vel, luctus nec massa. Phasellus in erat vitae enim tempus imperdiet. In non felis quis ante ultricies ultricies. Curabitur finibus enim vitae gravida bibendum. Sed hendrerit vitae mauris at scelerisque. Vivamus aliquam laoreet odio, at porttitor neque condimentum ac. Nullam ornare finibus felis a suscipit. Cras pellentesque sem vel semper consequat. Aenean ullamcorper non ligula a dignissim. Aenean purus nunc, luctus quis nisi in, efficitur sollicitudin purus.
+  </p>
+  
+Now compile and let’s try it.  For Orders we see a different set of help content just as we wanted.  Ok let’s take it one step further.  Let’s introduce a new controller Finance and let’s assume that if you need Finance help there’s a special support site you go to.  So for that scenario we’ll need to redirect the user to specialsupportsite.example.com 
+Here’s how we can do this.  Create a new controller FinanceController.  Don’t forget to derive from BaseController instead of Controller.
+ 
+ .. code-block:: c#
+  :emphasize-lines: 9,11
+   
+    public class FinanceController : BaseController
+    {
+        // GET: /<controller>/
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public override IActionResult Help()
+        {
+            return Redirect("https://specialsupportsite.example.com");
+        }
+    }
+  }
+
+
+	
 .. _issue: https://github.com/aspnet/Docs/issues/117

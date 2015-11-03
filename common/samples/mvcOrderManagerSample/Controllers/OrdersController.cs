@@ -10,7 +10,7 @@ using Microsoft.AspNet.Mvc;
 namespace mvcOrderManagerSample.Controllers
 {
     [Route("orders")]
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         [Route("")]
         public IActionResult ViewOrders()
@@ -42,10 +42,31 @@ namespace mvcOrderManagerSample.Controllers
             return View(orderList);
         }
 
-        [Route("{orderId}")]
+        [HttpPost]
+        [Route("{orderId:int}")]
+        public IActionResult UpdateOrderById(int orderId, OrderViewModel order)
+        {
+            return Redirect($"/orders/{orderId}");
+        }
+
+        [HttpGet]
+        [Route("{orderId:int}")]
         public IActionResult GetByOrderID(int orderId)
         {
-            return View(new OrderViewModel() {OrderID = orderId});
+            var order = new OrderViewModel()
+            {
+                OrderID = orderId,
+                Cost = 100m,
+                Subject = "BackToSchoolOrder"
+            };
+
+            return View(order);
+        }
+
+        [Route("{subject:alpha}")]
+        public IActionResult GetByOrderSubject(string subject)
+        {
+            return View(new OrderViewModel() { Subject = subject });
         }
 
         [Route("~/my-orders")]
@@ -79,7 +100,5 @@ namespace mvcOrderManagerSample.Controllers
             // Normally we'd not hard code this :)
             return View(orderList.Where(o => o.Client == "Scott").ToList());
         }
-      
-
-}
+      }
 }
