@@ -8,6 +8,7 @@
 Routing at The Action Level
 **********************************************
 A simple example that specifies the entire route at the action level.
+ 
  .. code-block:: c#
   :emphasize-lines: 3
   
@@ -21,7 +22,9 @@ A simple example that specifies the entire route at the action level.
   }
 	
  In this example we have fully declared the route at the Action level.  We do this by using the Route attribute.  Our route specifies a name for the controller Orders, and a parameter orderId.  If we were to use this to find a Order say 1234 then our route would look like this /orders/1234.
-Using Html Helpers to create an action link for this route.  
+
+ Using Html Helpers to create an action link for this route.  
+
  .. code-block:: none
   :emphasize-lines: 1
   
@@ -230,6 +233,7 @@ For this action, I’ve created a simple view in the Shared folder called Help w
   <h2>This is the Help Page</h2>
 
 We’ll then replace the inheritance for our Orders controller so that it will inherit from this new controller instead.
+
  .. code-block:: c#
   :emphasize-lines: 2
   
@@ -240,6 +244,7 @@ We’ll then replace the inheritance for our Orders controller so that it will i
     }
 
 We’ll also add a new controller called Products 
+
  .. code-block:: c#
   :emphasize-lines: 1
   
@@ -256,7 +261,6 @@ Once we compile the code we’ll quickly see that we can view the new help actio
 
 Now let’s push this a bit further, let’s say that we need to supply different content for the orders controller.  To accomplish this we create a help view in the Orders view folder.
 
-/Views/Orders/Help.cshtml
  .. code-block:: javascript
   :emphasize-lines: 2
   
