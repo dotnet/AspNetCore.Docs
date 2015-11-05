@@ -427,7 +427,7 @@ List of include/exclude properties
 +---------------------+--------------------------------------+-----------------------------------+
 | sharedExclude       |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
-| bundleExclude       | ``bin/**;obj/**;**/.*/**``           |                                   |
+| publishExclude      | ``bin/**;obj/**;**/.*/**``           |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
 | exclude             |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
@@ -503,8 +503,8 @@ The following describes the exact lists that are built up with the following not
       -ResourcesList
       +contentFiles
     
-    BundleExcludeList =
-      +Glob ( +bundleExclude )
+    PublishExcludeList =
+      +Glob ( +publishExclude )
 
 Sharing files
 ^^^^^^^^^^^^^
