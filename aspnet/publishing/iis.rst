@@ -69,7 +69,7 @@ IIS server configuration
 
 - Set the application pool to **No Managed Code**. ASP.NET 5 runs in a separate process and manages the runtime.
 
- .. image:: pubIIS/_static/appPool.png 
+ .. image:: pubIIS/_static/appPool.PNG
 
 
 Supported operating systems
