@@ -29,6 +29,9 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
     dnvm upgrade
 
   This will set up the .NET Version Manager (DNVM) on the path and install the latest .NET Execution Environment (DNX).
+  
+  You are all set up to go.
+  
 
 Install ASP.NET Standalone
 --------------------------
