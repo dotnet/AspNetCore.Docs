@@ -100,7 +100,7 @@ The following is not a complete list of errors. Should you encounter an error no
 
 - HTTP 502.3 Bad Gateway 
 
-	- 	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
+	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
 	
 - HTTP 500.21 Internal Server Error.
 
