@@ -3,7 +3,7 @@ Bundling and Minification
 
 By `Erik Reitan`_ 
 
-Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes.
+Bundling and minification are two techniques you can use in ASP.NET 5 to improve page load performance for your web application. Bundling makes it easy to combine or bundle multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller file sizes. Bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files.)
 
 This article explains and shows how to use the bundling and minification features included with the ASP.NET 5 Web Application template in `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=517106>`_. 
 
@@ -32,27 +32,29 @@ After minification, the function is reduced to the following:
 
 .. code-block:: javascript
 
-	AddAltToImg = function (n, t) { var i = $(n, t); i.attr("alt", i.attr("id").replace(/ID/, "")) }
+	AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
 	
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
 ==================  =======  
 Original            Renamed      
 ==================  =======  
-imageTagAndImageID  n  
-imageContext        t  
-imageElement        i   
+imageTagAndImageID  t  
+imageContext        a  
+imageElement        r   
 ==================  =======  
 
-ASP.NET Web Application Template 
---------------------------------
-The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application. It contains default functionality that demonstrates many aspects of ASP.NET. The template also includes the Node Package Manager (`npm <https://www.npmjs.com/>`_) and gulp by default.
+Bundling and Minification in Visual Studio using Gulp
+-----------------------------------------------------
+You may be familiar with *runtime* bundling and minification using ASP.NET Web Optimization. In ASP.NET 5, you can bundle and minify your client-side resources during *design-time*. Using design-time bundling and minification, you build your minified files up front and then deploy them with your app as static files. By bundling and minifying up front, you have the advantage of fewer moving parts and reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only work with static files.
 
-Gulp
-----
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific Visual Studio event occurs. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event occurs in a build environment. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
 
-Visual Studio 2015 automatically installs gulp and the npm. Gulp functionality is included within the ASP.NET 5 Web Application template. When you create a new web project using this template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
+The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality that demonstrates many aspects of ASP.NET. The template also includes the Node Package Manager (`npm <https://www.npmjs.com/>`_) and gulp by default, which makes it easy to add bundling and minification to a project.
+
+.. note:: You don't need ASP.NET 5 Web Application project template or Visual Studio to implement bundling and minification. For instance, you can create an ASP.NET project using Yeoman, push it to GitHub, clone it on a Mac, and then bundle and minify the project.
+
+When you create a new web project using ASP.NET 5 Web Application template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The dependencies for the project are declared in the package.json file:
 
 .. code-block:: javascript
 
@@ -99,11 +101,11 @@ The above code specifies which Node modules are required. The ``require`` functi
 =============  ===============================================================================================================================  
 Module Name	   Description    
 =============  ===============================================================================================================================  
-gulp	       The gulp streaming build system. For more information, see gulp.
-rimraf	       A Node deletion module. For more information, see rimraf.
-gulp-concat	   A module that will concatenate files based on your operating systems newline character. For more information, see gulp-concat.
-gulp-cssmin	   A module that will minify CSS files. For more information see gulp-cssmin.
-gulp-uglify	   A module that minifies files using the UglifyJS toolkit. For more information, see gulp-uglify. 
+gulp	       The gulp streaming build system. For more information, see `gulp <https://www.npmjs.com/package/gulp>`_.
+rimraf	       A Node deletion module. For more information, see `rimraf <https://www.npmjs.com/package/rimraf>`_.
+gulp-concat	   A module that will concatenate files based on your operating systems newline character. For more information, see `gulp-concat <https://www.npmjs.com/package/gulp-concat>`_.
+gulp-cssmin	   A module that will minify CSS files. For more information see `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`_.
+gulp-uglify	   A module that minifies *.js* files using the `UglifyJS <https://www.npmjs.com/package/gulp-cssmin>`_ toolkit. For more information, see `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`_. 
 =============  =============================================================================================================================== 
 
 Once modules are registered from *gulpfile.js*, the tasks are specified. Visual Studio 2015 registers six tasks based on the following code contained in *gulpfile.js*:
@@ -142,11 +144,11 @@ The following table gives an explanation of the tasks specified in the code abov
 =============  ===============================================================================================================================  
 Task Name	   Description    
 =============  ===============================================================================================================================  
-clean:js	   A task that uses the rimraf Node deletion module to remove unneeded text from *.js* files.
-clean:css	   A task that uses the rimraf Node deletion module to remove unneeded text from *.css* files.
+clean:js	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
+clean:css	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
 clean	       A task that calls both the ``clean:js`` and ``clean:css`` tasks.
-min:js	       A task that matches files based on the specified JavaScript file path, concatenates the files into a destination location, removes unneeded characters using the ``uglify()`` function, and re-writes the file to the destination location.
-min:css	       A task that matches files based on the specified CSS file path, concatenates the files into a destination location, minimizes the CSS file using the ``cssmin()`` function, and re-writes the file to the destination location.
+min:js	       A task that minifies and concatenates *.js* files.
+min:css	       A task that minifies and concatenates *.css* files.
 min	           A task that calls both the ``min:js`` and ``min:css`` tasks.
 =============  =============================================================================================================================== 
 
@@ -229,7 +231,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
  
 IntelliSense
 ------------
-IntelliSense, which provide coding details while you code, helps you write code faster and with fewer errors. Because the gulp tasks are created using JavaScript, you can use IntelliSense to help code. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. You can select a coding option from the pop-up list provided by IntelliSense to complete the code.
+IntelliSense provides code completion, parameter info and other features to help you author code more productively and with fewer errors. Gulp tasks are written in JavaScript, therefore you can use IntelliSense to help code. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. You can select a coding option from the pop-up list provided by IntelliSense to complete the code.
 
 	.. image:: bundling-and-minification/_static/08-IntelliSense.png 
 
@@ -254,7 +256,7 @@ When you use gulp to optimize your client-side files for staging and production,
 		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
 				asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
 				asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
-		<link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
 	</environment>
 	
 Switching Between Environments
@@ -294,22 +296,6 @@ The gulp community provides gulp `recipes <https://github.com/gulpjs/gulp/blob/m
 
 Summary
 -------
-Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs gulp along with a set of gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
+Bundling and minification are two techniques you can use in ASP.NET 5 to improve performance. Bundling and minification primarily improve the first page request load time. Once a webpage has been requested, the browser caches the assets (JavaScript, CSS, and images files), so bundling and minification won’t provide any performance boost when requesting the same same assets more than once. If you don’t set the expires header correctly on your assets, and you don’t use bundling and minification, the browsers freshness heuristics will mark the assets as stale after a few days and the browser will require a validation request for each asset, which will degrade performance.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs gulp along with a set of gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
