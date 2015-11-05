@@ -70,7 +70,7 @@ The **frameworks** section designates which targeted frameworks will be built, a
 
 .. TODO Update this section
 
-The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **bundleExclude** is used to identify content portions of the project that should be excluded when bundling the site (for example, in production).
+The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **publishExclude** is used to identify content portions of the project that should be excluded when publishing the site (for example, in production).
 
 .. image:: understanding-aspnet5-apps/_static/excludes.png
 
