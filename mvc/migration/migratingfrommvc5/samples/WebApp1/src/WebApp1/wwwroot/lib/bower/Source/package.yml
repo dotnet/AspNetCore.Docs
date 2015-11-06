@@ -1,0 +1,19 @@
+name: "AtomJS"
+
+exports: "atom.js"
+
+web: "[atomjs.com](http://atomjs.com/)"
+
+description: "Atom, The JavaScript framework"
+
+license:
+	- "[GNU Lesser General Public License](http://opensource.org/licenses/lgpl-license.php)"
+	- "[MIT License](http://opensource.org/licenses/mit-license.php)"
+
+copyright: "&copy; [AtomJS](http://atomjs.com)"
+
+authors: "[AtomJS Development Team](http://atomjs.com)"
+
+sources: "*.js"
+
+overall: "overall.js"

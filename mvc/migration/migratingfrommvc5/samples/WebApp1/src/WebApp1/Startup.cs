@@ -21,6 +21,8 @@ namespace WebApp1
             // Add the platform handler to the request pipeline.
             app.UseIISPlatformHandler();
 
+            app.UseStaticFiles();
+
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {

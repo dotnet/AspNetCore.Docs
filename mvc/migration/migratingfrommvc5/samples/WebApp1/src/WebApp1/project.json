@@ -5,6 +5,7 @@
   "dependencies": {
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta8",
     "Microsoft.AspNet.Mvc": "6.0.0-beta8"
   },
 
@@ -21,8 +22,11 @@
     "wwwroot",
     "node_modules"
   ],
-  "publishExclude": [
+ "publishExclude": [
     "**.user",
     "**.vspscc"
-  ]
+  ],
+  "scripts": {
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]
+  }
 }

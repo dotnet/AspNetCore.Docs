@@ -1,0 +1,13 @@
+{
+  "name": "bower",
+  "homepage": "https://github.com/theshock/atomjs",
+  "_release": "8fcc3209e9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8fcc3209e9b49727fd30c1b15194f895054ad6dc"
+  },
+  "_source": "git://github.com/theshock/atomjs.git",
+  "_target": "*",
+  "_originalSource": "bower"
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../atom-full-compiled.js"></script>
+		<link rel="stylesheet" href="../Source/atom.css" />
+		<style>
+			.action {
+				position: absolute;
+				left    : 100px;
+				width   : 50px;
+				height  : 40px;
+			}
+		</style>
+	</head>
+	<body style="background: url('cells.png')">
+		<code></code>
+	</body>
+	<script>
+(function () {
+	var element = {
+		first : 3,
+		second: 345,
+		get color () {
+			return atom.dom( 'code' ).css( 'background-color' );
+		},
+		set color (color) {
+			atom.dom( 'code' ).css( 'background-color', color );
+		}
+	};
+
+	function logTime () {
+		atom.dom.create('p').html(Date.now()).appendTo('body');
+	}
+	var update = function () {
+		atom.dom( 'code' ).html( '[' +element.first.toFixed(3) + '] ' + element.second.round() );
+	};
+
+	logTime();
+	update();
+
+	var colors = '#b22222 #4169e1 #daa520 #228b22'.split(' ');
+
+	new atom.Animatable(element)
+		.animate({
+			time: 3000,
+			props: {
+				first : 0,
+				second: 7890,
+				color : '#0f0'
+			},
+			onTick    : update,
+			onComplete: logTime
+		});
+
+	function create(i) {
+		var elem = atom.dom.create('div')
+			.addClass('action')
+			.css({ top: 5 + 50 * i, background: colors.random })
+			.html(i)
+			.appendTo('body');
+		elem.animate({
+			fn: 'sine',
+			time: 3000,
+			props: {
+				'left': 300 + 50 * i,
+				'background-color': colors.random
+			}
+		});
+		elem.animate({
+			props: { top: 200 },
+			time: 1000,
+			onComplete: function () {
+				setTimeout(function () {
+					elem.animate({
+						top : atom.number.random(0,  800),
+						left: atom.number.random(0, 1200)
+					});
+				}, 500);
+			}
+		});
+
+		atom.dom.create('button')
+			.html(i)
+			.appendTo('body')
+			.bind('click', function (e) {
+				elem.stopAnimation(e.ctrlKey);
+			});
+	}
+	for (var i = 12; i--;) create(i);
+})();
+	</script>
+</html>
