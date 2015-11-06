@@ -11,7 +11,7 @@ By `Steve Smith`_
 In this article:
 	- `Getting started`_
 	- `Viewing activity`_
-	
+
 `View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights/sample>`_.
 
 Getting started
@@ -21,7 +21,7 @@ Getting started
 
 To get started with Application Insights, you will need a subscription to Microsoft Azure. If your team or organization already has a subscription, you can ask the owner to add you to it using your Microsoft account.
 
-Sign in to the `Azure portal <http://portal.azure.com/>`_ with your account and create a new Application Insights resource. 
+Sign in to the `Azure portal <http://portal.azure.com/>`_ with your account and create a new Application Insights resource.
 
 .. image:: application-insights/_static/azure-create-appinsight.png
 
@@ -33,11 +33,11 @@ Next, update ``project.json`` to add a new reference to ``Microsoft.ApplicationI
   :linenos:
   :language: json
   :lines: 6-30
-  :dedent: 4
-  :emphasize-lines: 29
+  :dedent: 2
+  :emphasize-lines: 24
 
 Saving the ``project.json`` file will download and install the required packages.
-	
+
 Next, edit (or create) the ``config.json`` file, adding the instrumentation key you noted above from your Application Insights resource in Windows Azure. Specify an "ApplicationInsights" section with a key named "InstrumentationKey". Set its value to the instrumentation key.
 
 .. literalinclude:: application-insights/sample/AppInsightsDemo/src/AppInsightsDemo/config.json
@@ -122,4 +122,3 @@ Additional Resources
 
 - `Application Insights API for custom events and metrics <http://azure.microsoft.com/documentation/articles/app-insights-api-custom-events-metrics/>`_
 - `Application Insights for ASP.NET 5 <http://blogs.msdn.com/b/webdev/archive/2015/05/19/application-insights-for-asp-net-5-you-re-in-control.aspx>`_
-
