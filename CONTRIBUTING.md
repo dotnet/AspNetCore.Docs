@@ -5,7 +5,7 @@ Information on contributing to this repo is in the [Contributing Guide](https://
 The documentation is built using [Sphinx](http://sphinx-doc.org) and [reStructuredText](http://sphinx-doc.org/rest.html), and then hosted by [ReadTheDocs](http://aspnet.readthedocs.org).
 
 ## Video: Getting Started ##
-[Watch a video](http://ardalis.com/contributing-to-asp-net-5-documentation) showing how to get started building the documentation locally:
+[Watch a video](http://ardalis.com/contributing-to-asp-net-5-documentation) showing how to get started building the documentation locally.
 
 ## Building the Docs ##
 
