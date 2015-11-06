@@ -83,8 +83,8 @@ To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTa
 
 .. code-block:: c#
 
-	@addTagHelper "AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers"
-	@addTagHelper "AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers"
+	@addTagHelper AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers
+	@addTagHelper AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers
 
 As mentioned previously, adding the ``@addTagHelper`` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the ``@addTagHelper`` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
 
