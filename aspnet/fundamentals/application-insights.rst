@@ -34,7 +34,7 @@ Next, update ``project.json`` to add a new reference to ``Microsoft.ApplicationI
   :language: json
   :lines: 6-30
   :dedent: 2
-  :emphasize-lines: 29
+  :emphasize-lines: 24
 
 Saving the ``project.json`` file will download and install the required packages.
 
