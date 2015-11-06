@@ -141,7 +141,7 @@ Delete all of the methods except for the Get() method, and update the Get() meth
 .. literalinclude:: your-first-aspnet-application/sample/src/WebApplication1/Controllers/ProcessesController.cs
 	:language: c#
 	:linenos:
-	:emphasize-lines: 4-5,14,16,18
+	:emphasize-lines: 2,4-5,14,16,18
 
 At this point, you should be able to test the API by navigating to the /api/processes path in your browser. You should see some JSON-formatted process names.
 
