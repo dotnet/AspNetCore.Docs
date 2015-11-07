@@ -574,11 +574,19 @@ To specify this in the *project.json* file you create a key for each of the meta
       "description": "A wonderful library that does nice stuff"
     }
     
-* Version: The version of the NuGet package and assemblies generated if you pack/publish your application.
-* Authors: The authors and owners section of the NuGet packages nuspec.
-* Description: The description of the NuGet package.
+* version: The version of the NuGet package and assemblies generated if you pack/publish your application.
+* authors: A JSON array of the authors and owners section of the NuGet packages nuspec
+* description: A long description of the NuGet package.
 
-.. note:: There is additional metadata that can be put into the *project.json* file.
+Additional optional metadata that can be put into the project.json file:
+
+* copyright: Copyright details for the NuGet package.
+* projectUrl: A URL for the home page of the NuGet package.
+* licenseUrl: A link to the license that the NuGet package is under.
+* requireLicenseAcceptance: A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the NuGet package is installed.
+* language: The locale ID for the NuGet package, such as en-us.
+* tags: A JSON array of tags and keywords that describe the NuGet package.
+* title: The human-friendly title of the NuGet package.
 
 Publishing
 ----------
