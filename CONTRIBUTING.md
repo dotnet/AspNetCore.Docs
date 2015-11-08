@@ -25,7 +25,7 @@ Once you have cloned the Docs to your local machine, the following instructions 
 
 5. Navigate to one of the main project subdirectories in the Docs repo - such as `mvc`, `aspnet`, or `webhooks`.
 
-6. Run the `make.bat` file using `html` argument to build the stand-alone version of the project in question.
+6. Use the `make` build script appropriate for your system passing the `html` argument to build the stand-alone version of the project in question.
 
     ```make html```
 
@@ -33,7 +33,7 @@ Once you have cloned the Docs to your local machine, the following instructions 
 
 ## Use autobuild to easily view site changes locally ##
 
-You can also install sphinx-autobuild which will run a local web server and automatically refresh whenever changes to the source files are detected. To do so:
+You can also install [sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild) which will run a local web server and automatically refresh whenever changes to the source files are detected. To do so:
     
 1. Install sphinx-autobuild
 
@@ -42,6 +42,10 @@ You can also install sphinx-autobuild which will run a local web server and auto
 2. Run sphinx-autobuild from the one of the main project subdirectories in the Docs repo, such as `mvc`, `aspnet`, or `webhooks`
  
     ```sphinx-autobuild . _build/html```
+
+3. Browse to `http://127.0.0.1:8000` to see the locally built documentation. 
+
+4. Hit `^C` to stop the local server.
 
 ## Adding Content ##
 
