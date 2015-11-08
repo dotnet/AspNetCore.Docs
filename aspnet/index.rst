@@ -16,6 +16,7 @@ Frameworks
 ----------
 
 * :ref:`MVC <mvc:index>`
+* `EF <https://ef.readthedocs.org>`
 
 Topics
 ------
