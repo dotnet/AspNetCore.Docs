@@ -3,7 +3,7 @@
 Specifying a CORS Policy
 ========================
 
-By `Mike Wasson`_ 
+By `Mike Wasson`_
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
 
@@ -17,25 +17,25 @@ In your project.json file, add the following:
 
 .. literalinclude:: cors-policy/sample/project.json
     :language: json
-    :lines: 5,9-10
+    :lines: 5,11,12
     :emphasize-lines: 2
 
 
 Configure CORS
 --------------
 
-To configure CORS, call ``ConfigureCors`` in the ``ConfigureServices`` method of your ``Startup`` class, as shown here:
+To configure CORS, call ``AddCors`` in the ``ConfigureServices`` method of your ``Startup`` class, as shown here:
 
 .. literalinclude:: cors-policy/sample/Startup.cs
     :language: csharp
-    :lines: 10-21,27
+    :lines: 13-24,30
     :dedent: 8
 
-This example defines a CORS policy named "AllowSpecificOrigin" that allows cross-origin requests from "http://example.com" and no other origins. The lambda takes a ``CorsPolicyBuilder`` object. To learn more about the various CORS policy settings, see :ref:`aspnet:cors-policy-options`. 
+This example defines a CORS policy named "AllowSpecificOrigin" that allows cross-origin requests from "http://example.com" and no other origins. The lambda takes a ``CorsPolicyBuilder`` object. To learn more about the various CORS policy settings, see :ref:`aspnet:cors-policy-options`.
 
 Apply CORS Policies
 -------------------
-    
+
 The next step is to apply the policies. You can apply a CORS policy per action, per controller, or globally for all controllers in your application.
 
 Per action
@@ -65,11 +65,11 @@ Add the ``CorsAuthorizationFilterFactory`` filter to the global filter collectio
 
 .. literalinclude:: cors-policy/sample/Startup.cs
     :language: csharp
-    :lines: 10-12,22-26
+    :lines: 13-15,26-30
     :dedent: 8
-    
-The precedence order is: Action, controller, global. Action-level policies take precedence over controller-level policies, and controller-level policies take precedence over global policies.          
-    
+
+The precedence order is: Action, controller, global. Action-level policies take precedence over controller-level policies, and controller-level policies take precedence over global policies.
+
 Disable CORS
 ^^^^^^^^^^^^
 
