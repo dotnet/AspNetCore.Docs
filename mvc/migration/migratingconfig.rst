@@ -24,20 +24,19 @@ For this article, we are starting with the partially-migrated ASP.NET MVC 6 proj
 
 	public IConfiguration Configuration { get; set; }
 
-	public Startup(IHostingEnvironment env)
+	public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
 	{
-		// Setup configuration sources.
-		Configuration = new Configuration()
-			.AddJsonFile("config.json")
-			.AddEnvironmentVariables();
-	}
+		var configurationBuilder = new ConfigurationBuilder()
+			.SetBasePath(appEnv.ApplicationBasePath)
+			.AddJsonFile("config.json");
+		Configuration = configurationBuilder.Build();
+	}	
 
 Note that at this point the Startup.cs file will not compile, as we still need to add some using statements and pull in some dependencies. Add the following two using statements:
 
 .. code-block:: c#
 
-	using Microsoft.Framework.ConfigurationModel;
-	using Microsoft.AspNet.Hosting;
+	using Microsoft.Framework.Configuration;
 
 Next, open project.json and add the Microsoft.Framework.ConfigurationModel.Json dependency:
 
@@ -47,9 +46,9 @@ Next, open project.json and add the Microsoft.Framework.ConfigurationModel.Json 
 		"webroot": "wwwroot",
 		"version": "1.0.0-*",
 		"dependencies": {
-			"Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
-			"Microsoft.AspNet.Mvc": "6.0.0-beta3",
-			"Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3"
+			...
+			"Microsoft.Framework.Configuration": "1.0.0-beta8",
+			"Microsoft.Framework.Configuration.Json": "1.0.0-beta8"
 		},
 		...
 	}
