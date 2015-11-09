@@ -25,7 +25,7 @@ Once you have cloned the Docs to your local machine, the following instructions 
 
 5. Navigate to one of the main project subdirectories in the Docs repo - such as `mvc`, `aspnet`, or `webhooks`.
 
-6. Use the `make` build script appropriate for your system passing the `html` argument to build the stand-alone version of the project in question.
+6. Run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
 
     ```make html```
 
@@ -39,13 +39,15 @@ You can also install [sphinx-autobuild](https://github.com/GaretJax/sphinx-autob
 
     ```pip install sphinx-autobuild```
 
-2. Use the `make` build script appropriate for your system passing the `livehtml` argument to automatically build and locally host the docs for the project in question.
+2. Navigate to one of the main project subdirectories in the Docs repo - such as `mvc`, `aspnet`, or `webhooks`.
+
+3. Run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
  
     ```make livehtml```
 
-3. Browse to `http://127.0.0.1:8000` to see the locally built documentation. 
+4. Browse to `http://127.0.0.1:8000` to see the locally built documentation. 
 
-4. Hit `^C` to stop the local server.
+5. Hit `^C` to stop the local server.
 
 ## Adding Content ##
 
