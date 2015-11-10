@@ -1,8 +1,24 @@
-.. include:: /../common/stub-topic.txt
-
-|stub-icon| Building Web Applications with Entity Framework 6
+Building Web Applications with Entity Framework 6
 ===========================================================
 
-.. include:: /../common/stub-notice.txt
+By `Damien Pontifex <https://github.com/DamienPontifex>`_
 
-.. _issue: https://github.com/aspnet/Docs/issues/72
+.. code-block:: c#
+    :linenos:
+
+    [DbConfigurationType(typeof(CodeConfig))] // point to the class that inherit from DbConfiguration
+	public class ApplicationDbContext : DbContext
+	{
+		[...]
+	}
+	
+	public class CodeConfig : DbConfiguration
+	{
+		public CodeConfig()
+		{
+			SetDefaultConnectionFactory(new System.Data.Entity.Infrastructure.SqlConnectionFactory());
+			SetProviderServices("System.Data.SqlClient",
+				System.Data.Entity.SqlServer.SqlProviderServices.Instance);
+			}
+		}
+	}
