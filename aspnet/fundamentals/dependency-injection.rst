@@ -189,34 +189,51 @@ With regard to data access specifically, you can easily inject Entity Framework 
 Replacing the default services container
 ----------------------------------------
 
-The built-in services container is mean to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are `many IOC containers available for .NET <https://github.com/danielpalme/IocPerformance/blob/master/README.md>`_. This article will attempt to add links to DNX implementations of containers as they become available. In this example, the `StructureMap.Dnx <https://github.com/structuremap/structuremap.dnx>`_ package is used.
+The built-in services container is mean to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are `many IOC containers available for .NET <https://github.com/danielpalme/IocPerformance/blob/master/README.md>`_. This article will attempt to add links to DNX implementations of containers as they become available. In this example, the `Autofac <http://autofac.org/>`_ package is used.
 
-First, add the appropriate container to the dependencies property in project.json:
+First, add the appropriate container package(s) to the dependencies property in project.json:
 
 .. code-block:: javascript
 
 	"dependencies" : {
-		"StructureMap.Dnx": "0.4.0-alpha"
+		"Autofac": "4.0.0-beta8",
+		"Autofac.Framework.DependencyInjection": "4.0.0-beta8"
 	},
-
-.. note:: Currently StructureMap does not support .NET Core.
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:
 
 .. code-block:: c#
+	:emphasize-lines: 1,11
+	:linenos:
 
 	public IServiceProvider ConfigureServices(IServiceCollection services)
 	{
 		services.AddMvc();
-		// add other services
+		// add other framework services
 		
-		// Add StructureMap
-		var container = new StructureMap.Container();
-		container.Populate(services);
-		return container.GetInstance<IServiceProvider>();
+		// Add Autofac
+		var containerBuilder = new ContainerBuilder();
+		containerBuilder.RegisterModule<DefaultModule>();
+		containerBuilder.Populate(services);
+		var container = containerBuilder.Build();
+		return container.Resolve<IServiceProvider>();
 	}
 
-.. note:: If you add StructureMap to the sample project, you will need to add a ``[DefaultConstructor]`` attribute to the default constructor for ``Operation``.
+.. note:: When using a third-party DI container, you must change ``ConfigureServices`` so that it returns ``IServiceProvider`` instead of ``void``.
+
+Finally, configure Autofaq as normal in ``DefaultModule``:
+
+.. code-block:: c#
+
+	public class DefaultModule : Module
+	{
+		protected override void Load(ContainerBuilder builder)
+		{
+			builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+		}
+	}
+
+Now at runtime, Autofaq will be used to resolve types and inject dependencies.
 
 .. list-table:: ASP.NET 5 / DNX Containers (in alphabetical order)
    :header-rows: 1
