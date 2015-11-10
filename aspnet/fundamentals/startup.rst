@@ -9,11 +9,12 @@ In this article:
 	- `The Startup class`_
 	- `The Configure method`_
 	- `The ConfigureServices method`_
+	- `Services Available in Startup`_
 
 The Startup class
 -----------------
 
-In ASP.NET 5, the ``Startup`` class provides the entry point for an application. It's possible to have environment-specific startup classes and methods (see :doc:`environments`), but regardless, one ``Startup`` class will serve as the entry point for the application. ASP.NET searches the primary assembly for a class named ``Startup`` (in any namespace). You can specify a different assembly to search using the `Hosting:Application` configuration key. It doesn't matter whether the class is defined as ``public``; ASP.NET will still load it if it conforms to the naming convention. If there are multiple ``Startup`` classes, this will not trigger an exception. ASP.NET will select one based on its namespace (matching the project's root namespace first, otherwise using the class in the alphabetically first namespace).
+In ASP.NET 5, the ``Startup`` class provides the entry point for an application, and is required for all applications. It's possible to have environment-specific startup classes and methods (see :doc:`environments`), but regardless, one ``Startup`` class will serve as the entry point for the application. ASP.NET searches the primary assembly for a class named ``Startup`` (in any namespace). You can specify a different assembly to search using the `Hosting:Application` configuration key. It doesn't matter whether the class is defined as ``public``; ASP.NET will still load it if it conforms to the naming convention. If there are multiple ``Startup`` classes, this will not trigger an exception. ASP.NET will select one based on its namespace (matching the project's root namespace first, otherwise using the class in the alphabetically first namespace).
 
 The ``Startup`` class can optionally accept dependencies in its constructor that are provided through :doc:`dependency injection <dependency-injection>`.  Typically, the way an application will be configured is defined within its Startup class's constructor (see :doc:`configuration`). The Startup class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started.
 
@@ -38,7 +39,7 @@ You can learn all about middleware and using ``IApplicationBuilder`` to define y
 The ConfigureServices method
 ----------------------------
 
-Your ``Startup`` class can optionally include a ``ConfigureServices`` method for configuring services that are used by your application. The ``ConfigureServices`` method is a public method on your ``Startup`` class that take a ``IServiceCollection`` as a parameter and optionally returns an ``IServiceProvider``. The ``ConfigureServices`` method is called before ``Configure``. This is important, because some features like ASP.NET MVC require certain services to be added in ``ConfigureServices`` before they can be wired up to the request pipeline.
+Your ``Startup`` class can optionally include a ``ConfigureServices`` method for configuring services that are used by your application. The ``ConfigureServices`` method is a public method on your ``Startup`` class that takes an ``IServiceCollection`` instance as a parameter and optionally returns an ``IServiceProvider``. The ``ConfigureServices`` method is called before ``Configure``. This is important, because some features like ASP.NET MVC require certain services to be added in ``ConfigureServices`` before they can be wired up to the request pipeline.
 
 Just as with ``Configure``, it is recommended that features that require substantial setup within ``ConfigureServices`` be wrapped up in extension methods on ``IServiceCollection``. You can see in this example from the default web site template that several ``Add[Something]`` extension methods are used to configure the app to use services from Entity Framework, Identity, and MVC:
 
@@ -53,10 +54,47 @@ Adding services to the services container makes them available within your appli
 
 The ``ConfigureServices`` method is also where you should add configuration option classes, like ``AppSettings`` in the example above, that you would like to have available in your application. See the :doc:`configuration` topic to learn more about configuring options.
 
+Services Available in Startup
+-----------------------------
+ASP.NET 5 provides certain application services and objects during your application's startup. You can request certain sets of these services by simply including the appropriate interface as a parameter on your ``Startup`` class's constructor or one of its ``Configure`` or ``ConfigureServices`` methods. The services available to each method in the ``Startup`` class are described below. The framework services and objects include:
+
+IApplicationBuilder (`source <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta7/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs>`_)
+	Used to build the application request pipeline. Available only to the ``Configure`` method in ``Startup``. Learn more about :doc:`request-features`.
+	
+IApplicationEnvironment (`source <https://github.com/aspnet/dnx/blob/1.0.0-beta7/src/Microsoft.Dnx.Runtime.Abstractions/IApplicationEnvironment.cs>`_)
+	Provides access to the application properties, such as ``ApplicationName``, ``ApplicationVersion``, and ``ApplicationBasePath``. Available to the ``Startup`` constructor and ``Configure`` method.
+	
+IHostingEnvironment (`source <https://github.com/aspnet/Hosting/blob/1.0.0-beta7/src/Microsoft.AspNet.Hosting.Abstractions/IHostingEnvironment.cs>`_)
+	Provides the current ``EnvironmentName``, ``WebRootPath``, and web root file provider. Available to the ``Startup`` constructor and ``Configure`` method. Learn more about :doc:`hosting`.
+	
+ILoggerFactory (`source <https://github.com/aspnet/Logging/blob/1.0.0-beta7/src/Microsoft.Framework.Logging.Abstractions/ILoggerFactory.cs>`_)
+	Provides a mechanism for creating loggers. Available to the ``Startup`` constructor and ``Configure`` method. Learn more about :doc:`logging`.
+	
+IServiceCollection (`source <https://github.com/aspnet/DependencyInjection/blob/1.0.0-beta7/src/Microsoft.Framework.DependencyInjection.Abstractions/IServiceCollection.cs>`_)
+	The current set of services configured in the container. Available only to the ``ConfigureServices`` method, and used by that method to configure the services available to an application.
+
+Looking at each method in the ``Startup`` class in the order in which they are called, the following services may be requested as parameters:
+
+Startup Constructor
+	- ``IApplicationEnvironment``
+	- ``IHostingEnvironment``
+	- ``ILoggerFactory``
+	
+ConfigureServices
+	- ``IServiceCollection``
+
+Configure
+	- ``IApplicationBuilder``
+	- ``IApplicationEnvironment``
+	- ``IHostingEnvironment``
+	- ``ILoggerFactory``
+
+.. note:: Although ``ILoggerFactory`` is available in the constructor, it is typically configured in the ``Configure`` method. Learn more about :doc:`logging`.
+
 Summary
 -------
 
-In ASP.NET 5, the ``Startup`` class is responsible for setting up the application, including its configuration, the services it will use, and how it will process requests. 
+In ASP.NET 5, the ``Startup`` class is responsible for setting up the application, including its configuration, the services it will use, and how it will process requests. It is required in every ASP.NET application.
 
 Additional Resources
 --------------------

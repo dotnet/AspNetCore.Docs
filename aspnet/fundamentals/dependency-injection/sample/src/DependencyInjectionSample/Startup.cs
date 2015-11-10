@@ -1,32 +1,30 @@
 ﻿using System;
 using DependencyInjectionSample.Interfaces;
-using Microsoft.AspNet.Authentication.Facebook;
-using Microsoft.AspNet.Authentication.MicrosoftAccount;
+using DependencyInjectionSample.Models;
+using DependencyInjectionSample.Services;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics.Entity;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Diagnostics;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using DependencyInjectionSample.Models;
-using DependencyInjectionSample.Services;
 
 namespace DependencyInjectionSample
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env,
-            IApplicationEnvironment appEnv,
-            ILoggerFactory loggerFactory)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
 
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
-                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
@@ -52,21 +50,6 @@ namespace DependencyInjectionSample
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
-            // Configure the options for the authentication middleware.
-            // You can add options for Google, Twitter and other middleware as shown below.
-            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            services.Configure<FacebookAuthenticationOptions>(options =>
-            {
-                options.AppId = Configuration["Authentication:Facebook:AppId"];
-                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            });
-
-            services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
-            {
-                options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
-                options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
-            });
 
             // Add MVC services to the services container.
             services.AddMvc();
@@ -104,14 +87,14 @@ namespace DependencyInjectionSample
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage();
+                app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // sends the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Add static files to the request pipeline.

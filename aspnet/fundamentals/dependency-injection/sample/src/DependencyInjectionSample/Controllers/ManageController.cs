@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using DependencyInjectionSample.Interfaces;
+using DependencyInjectionSample.Models;
+using DependencyInjectionSample.ViewModels.Manage;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
-using DependencyInjectionSample.Models;
-using DependencyInjectionSample.Services;
-using DependencyInjectionSample.ViewModels.Manage;
 
 namespace DependencyInjectionSample.Controllers
 {
@@ -354,7 +353,7 @@ namespace DependencyInjectionSample.Controllers
 
         private async Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await _userManager.FindByIdAsync(Context.User.GetUserId());
+            return await _userManager.FindByIdAsync(HttpContext.User.GetUserId());
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
