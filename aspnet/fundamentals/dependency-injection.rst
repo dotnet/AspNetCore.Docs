@@ -256,7 +256,7 @@ When working with dependency injection, keep the following recommendations in mi
 - Avoid service location in your application code.
 - Avoid static access to ``HttpContext``.
 
-.. note:: There are exceptions to these recommendations, for instance MVC internally uses the ``IActionContextAccessor`` service to access very short-lived ``ActionContext`` instances. In typical applications, the need for this kind of service should be rare.
+.. note:: Like all sets of recommendations, you may encounter situations where ignoring one is required. We have found exceptions to be rare -- mostly very special cases within the framework itself.
 
 Remember, dependency injection is an *alternative* to static/global object access patterns. You will not be able to realize the benefits of DI if you mix it with static object access.
 
