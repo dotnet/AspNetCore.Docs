@@ -28,7 +28,7 @@ This should be the environment used when developing an application. When using V
 
 .. image:: environments/_static/project-properties-debug.png
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.js`` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.json`` file in our sample project is shown below:
 
 .. literalinclude:: environments/sample/src/Environments/Properties/launchSettings.json
 	:language: javascript
