@@ -120,5 +120,5 @@ Summary
 Additional Resources
 --------------------
 
-- `Entity Framework - Code-Based Configuration <https://msdn.microsoft.com/en-us/data/jj680699.aspx>`
-- `BleedingNEdge.com - Entity Framework 6 With ASP.NET 5 <http://bleedingnedge.com/2015/11/01/entity-framework-6-with-asp-net-5/>` original article
+- `Entity Framework - Code-Based Configuration <https://msdn.microsoft.com/en-us/data/jj680699.aspx>`_
+- `BleedingNEdge.com - Entity Framework 6 With ASP.NET 5 <http://bleedingnedge.com/2015/11/01/entity-framework-6-with-asp-net-5/>`_
