@@ -69,7 +69,7 @@ You chain multiple request delegates together making a different call, with a ``
 
 .. warning:: Be wary of modifying ``HttpResponse`` after invoking next, since one of the components further down the pipeline may have written to the response, causing it to be sent to the client.
 	
-.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in ``hosting.ini`` to listen on ``http://localhost:5000``. See also :doc:`startup`.
+.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in ``project.json``. See also :doc:`startup`.
 
 In the above example, the call to ``await next.Invoke()`` will call into the delegate on line 14. The client will receive the expected response ("Hello from LogInline"), and the server's console output includes both the before and after messages, as you can see here:
 
