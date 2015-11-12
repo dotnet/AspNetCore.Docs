@@ -34,7 +34,7 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['_templates', '../common/_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -97,11 +97,7 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
-rst_prolog = """
-.. raw:: html
-
-	<noscript><img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/></noscript>
-	
+rst_epilog = """
 .. include:: /../common/authors.txt
 """
 
@@ -113,13 +109,18 @@ rst_prolog = """
 # This allows sphinx_rtd_theme to work locally
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
+html_context = {
+    'on_rtd' : on_rtd
+}
+
 if not on_rtd:
-	import sphinx_rtd_theme
-	html_theme = 'sphinx_rtd_theme'
-	html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-	
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
 def setup(app):
-    app.add_stylesheet('custom.css')   
+    app.add_stylesheet('custom.css?v=1')
+#    app.add_javascript('helpfulness.js')
     if on_rtd:
         app.add_javascript('wedc.js')
 
@@ -147,7 +148,7 @@ def setup(app):
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'favicon.ico'
+html_favicon = '../common/_static/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

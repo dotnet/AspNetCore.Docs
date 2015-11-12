@@ -1,51 +1,74 @@
 Installing ASP.NET 5 On Linux
-================================
+=============================
 
 By `Daniel Roth`_
 
-ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including Linux. This article describes how to install DNX, and therefore ASP.NET 5, on Linux using Mono.
-
-.. note::
-
-    You can also run DNX on Mac and Linux using .NET Core. .NET Core for Mac and Linux is still in the early stages of development, but if you want to experiment with it please follow along on `GitHub <https://github.com/aspnet/home>`_.
+ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including Linux. This article describes how to install DNX, and therefore ASP.NET 5, on Linux using .NET Core and Mono.
 
 In this article:
-  - `Using Docker`_
   - `Installing on Debian, Ubuntu and derivatives`_
   - `Installing on CentOS, Fedora and derivatives`_
-
-Using Docker
-------------
-
-Instructions on how to use the ASP.NET 5 Docker image can be found here: http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx
-
-The rest of this section deals with setting up a machine to run applications without the Docker image.
+  - `Using Docker`_
 
 Installing on Debian, Ubuntu and derivatives
 --------------------------------------------
 
-The following instructions were tested using Ubuntu 14.04 and Mint 17.01
+The following instructions were tested using Ubuntu 14.04.
+
+Install the .NET Version Manager (DNVM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
+
+1. Install ``unzip`` and ``curl`` if you don't already have them::
+
+    sudo apt-get install unzip curl
+
+2. Download and install DNVM::
+
+    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
     
-Install Mono
-^^^^^^^^^^^^
+Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
-`Mono <http://mono-project.com>`_ is an ongoing effort to port the .NET Framework to other platforms. Mono is one of the ways .NET applications can run on platforms other than Windows. ASP.NET 5 requires a version of Mono greater than 4.0.1.
+Install the .NET Execution Environment (DNX)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To install Mono::
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ or .NET Core (see :doc:`choosing-the-right-dotnet`).
 
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-    sudo apt-get update
-    sudo apt-get install mono-complete
+**To install DNX for .NET Core:**
+
+1. Install the DNX prerequisites::
+
+    sudo apt-get install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
+
+2. Use DNVM to install DNX for .NET Core::
+
+    dnvm upgrade -r coreclr
+
+.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
+
+**To install DNX for Mono:**
+
+1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/linux/#debian-ubuntu-and-derivatives>`__ via the ``mono-complete`` package.
+
+2. Ensure that the ``ca-certificates-mono`` package is also installed as `noted <http://www.mono-project.com/docs/getting-started/install/linux/#notes>`__ in the Mono installation instructions.
+
+3. Use DNVM to install DNX for Mono::
+
+    dnvm upgrade -r mono
+
+By default DNVM will install DNX for Mono if no runtime is specified.
+
+.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (ex. 2000).
 
 Install libuv
 ^^^^^^^^^^^^^
 
-`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by the `KestrelHttpServer <https://github.com/aspnet/KestrelHttpServer>`_ that we will use to host our ASP.NET 5 web applications.
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
 
 To build libuv you should do the following::
 
-    sudo apt-get install automake libtool curl
+    sudo apt-get install make automake libtool curl
     curl -sSL https://github.com/libuv/libuv/archive/v1.4.2.tar.gz | sudo tar zxfv - -C /usr/local/src
     cd /usr/local/src/libuv-1.4.2
     sudo sh autogen.sh
@@ -58,52 +81,112 @@ To build libuv you should do the following::
 .. note::
 
     ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ```ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
-    
-Install the .NET Version Manager (DNVM)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now let's get DNVM. To do this run::
-
-    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    
-Once this step is complete you should be able to run ``dnvm`` and see some help text.
-
-.. note::
-
-    ``dnvm`` needs unzip to function properly. If you don't have it installed, run ``sudo apt-get install unzip`` to install it before installing a runtime.
-
-Add NuGet sources
-^^^^^^^^^^^^^^^^^
-
-Now that we have DNVM and the other tools needed to run an ASP.NET 5 application you can configure additional NuGet package sources to get access to the dev builds of all the ASP.NET 5 packages.
-
-The nightly package source is: `https://www.myget.org/F/aspnetvnext/api/v2/`
-
-You specify your package sources through your NuGet.Config file.
-
-Edit: ``~/.config/NuGet/NuGet.Config``
-
-The NuGet.Config file should look something like the following
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <configuration>
-      <packageSources>
-        <add key="AspNetVNext" value="https://www.myget.org/F/aspnetvnext/api/v2/" />
-        <add key="nuget.org" value="https://www.nuget.org/api/v2/" />
-      </packageSources>
-      <disabledPackageSources />
-    </configuration>
-
-You should now be able to restore packages from both the official public feed on https://nuget.org and also from the ASP.NET 5 dev builds.
-
 
 Installing on CentOS, Fedora and derivatives
+--------------------------------------------
+
+The following instructions were tested using CentOS 7.
+
+Install the .NET Version Manager (DNVM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on Linux.
+
+1. Install ``unzip`` if you don't already have it::
+
+    sudo yum install unzip
+
+2. Download and install DNVM::
+
+    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+
+Once this step is complete you should be able to run ``dnvm`` and see some help text.
+
+Install the .NET Execution Environment (DNX)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note::
+The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ (see :doc:`choosing-the-right-dotnet`).
 
-    Installation steps for CentOS, Fedora and derivatives are not currently available but should be available soon. The commands are mostly the same, with some differences to account for the different package managers used on these systems. Learn how you can `contribute <https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md>`_ on GitHub.
-  
+.. note:: DNX support for .NET Core is not available for CentOS, Fedora and derivative in this release, but will be enabled in a future release.
 
+**To install DNX for Mono:**
+
+1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/linux/#centos-fedora-and-derivatives>`__ via the ``mono-complete`` package.
+
+2. Ensure that the ``ca-certificates-mono`` package is also installed as `noted <http://www.mono-project.com/docs/getting-started/install/linux/#notes>`__ in the Mono installation instructions.
+
+3. Use DNVM to install DNX for Mono::
+
+    dnvm upgrade -r mono
+
+By default DNVM will install DNX for Mono if no runtime is specified.
+
+.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (ex. 2000).
+
+Install Libuv
+^^^^^^^^^^^^^
+
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
+
+To build libuv you should do the following::
+
+    sudo yum install automake libtool wget
+    wget http://dist.libuv.org/dist/v1.4.2/libuv-v1.4.2.tar.gz
+    tar -zxf libuv-v1.4.2.tar.gz
+    cd libuv-v1.4.2
+    sudo sh autogen.sh
+    sudo ./configure
+    sudo make
+    sudo make check
+    sudo make install
+    ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
+    ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
+
+Using Docker
+------------
+
+The following instructions were tested with Docker 1.8.3 and Ubuntu 14.04.
+
+Install Docker
+^^^^^^^^^^^^^^
+
+Instructions on how to install Docker can be found in the `Docker Documentation <https://docs.docker.com/installation/>`_.
+
+Create a Container
+^^^^^^^^^^^^^^^^^^
+
+Inside your application folder, you create a ``Dockerfile`` which should looks something like this::
+
+    # Base of your container
+    FROM microsoft/aspnet:latest
+
+    # Copy the project into folder and then restore packages
+    COPY . /app
+    WORKDIR /app
+    RUN ["dnu","restore"]
+
+    # Open this port in the container
+    EXPOSE 5000
+    # Start application
+    ENTRYPOINT ["dnx","-p","project.json", "web"]
+
+You also have a choice to use CoreCLR or Mono. At this time the ``microsoft/aspnet:latest`` repository is based on Mono. You can use the `Microsoft Docker Hub <https://hub.docker.com/r/microsoft/aspnet/>`_ to pick a different base running either an older version or CoreCLR.
+
+Run a Container
+^^^^^^^^^^^^^^^
+
+When you have an application, you can build and run your container using the following commands::
+
+    docker build -t yourapplication .
+    docker run -t -d -p 8080:5000 yourapplication
+
+Summary
+-------
+
+ASP.NET 5 is built on the cross-platform .NET Execution Environment (DNX), which can be installed on Linux as well as :doc:`Mac <installing-on-mac>` and :doc:`Windows <installing-on-windows>`. Installing DNX and ASP.NET 5 on Linux takes just a few minutes, using a few simple commands. You're now  ready to build :doc:`your first ASP.NET application </tutorials/your-first-mac-aspnet>`!
+
+Related Resources
+-----------------
+
+- :doc:`/tutorials/your-first-mac-aspnet`
+- :doc:`/fundamentals/index`

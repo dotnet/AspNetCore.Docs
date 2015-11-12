@@ -12,7 +12,7 @@ In this article:
 	- `The runtime info page`_
 	- `The welcome page`_
 	
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/diagnostics/sample>`_.
+`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/diagnostics/sample>`_.
 
 .. _configure-error-page:
 

@@ -12,7 +12,6 @@ Fundamentals
     routing
     configuration
     dependency-injection
-    options
     diagnostics
     application-insights
     logging
@@ -25,5 +24,4 @@ Fundamentals
     servers
     owin
     hosting
-    testing
 

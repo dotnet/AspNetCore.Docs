@@ -55,7 +55,7 @@ Download the ASP.NET 5 starter project
 .. code-block:: none
 
 	dnvm use 1.0.0-beta5  
-	dnx . ef migration apply
+	dnx ef migration apply
 
 - **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-beta5`` instructs the .NET Version Manager to add the 1.0.0-beta5 version of the ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5 Beta 5, the following is displayed: 
 
@@ -64,7 +64,7 @@ Download the ASP.NET 5 starter project
 	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-beta5\\bin to process PATH 
 
 - `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. 
-- **dnx . ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code.
+- **dnx ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code.
 
 Run the app
 ^^^^^^^^^^^^^^^^^^^^^

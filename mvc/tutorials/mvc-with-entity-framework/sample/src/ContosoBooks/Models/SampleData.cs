@@ -2,6 +2,7 @@
 using Microsoft.Framework.DependencyInjection;
 using System;
 using System.Linq;
+using Microsoft.Data.Entity.Storage;
 
 namespace ContosoBooks.Models
 {
@@ -10,7 +11,8 @@ namespace ContosoBooks.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService<BookContext>();
-            if (context.Database.AsRelational().Exists())
+            
+            if(serviceProvider.GetService<IRelationalDatabaseCreator>().Exists())
             {
                 if (!context.Books.Any())
                 {

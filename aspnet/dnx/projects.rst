@@ -1,16 +1,23 @@
 Working with DNX Projects
 =========================
 
-DNX projects are used to build and run .NET applications for Windows, Mac and Linux. DNX provides a host process, CLR hosting logic and managed entry point discovery. 
+DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
-.. note:: To see and create an example of a DNX project, follow the steps provided in the tutorial `Create an ASP.NET 5 web app in Visual Studio Code <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_. After creating the app and opening it in VSCode, you will be able to view the **project.json** file.
+In this article:
+  - `Creating a new project`_
+  - `Targeting frameworks`_
+  - `Adding dependencies`_
+  - `Restoring packages`_
+  - `Using commands`_
+  - `Running your app`_
+  - `Building`_
+  - `Publishing`_
+  - `Scripts`_
 
 Creating a new project 
 ----------------------
 
-At its simplest form, a DNX project is a **project.json** file along with a code file:
-
-::
+At its simplest form, a DNX project is a **project.json** file along with a code file::
 
     -MyApp (folder)
     --project.json
@@ -104,7 +111,7 @@ The .NET Development Utility (DNU) is responsible for all operations involving p
 	
 For a list of usage, arguments, and options of the ``install`` command, enter the following in the command windows::
 
-	dnu help install
+	dnu install --help
 	
 For more information about ``dnu`` commands, see `.NET Development Utility (DNU) <https://github.com/aspnet/Home/wiki/DNX-utility>`_.
 
@@ -300,7 +307,7 @@ To run commands out of a different project, you can use the ``--project`` option
 For a Console Application, the entry point is the ``Main`` method of the ``Program`` class. For more information about the Web Application startup process, see :doc:`/fundamentals/startup`.
 
 
-When your run your app, you can specify whether to compile in Debug mode or in Release mode. You can specify the ``configuration`` option as follows::
+When you run your app, you can specify whether to compile in Debug mode or in Release mode. You can specify the ``configuration`` option as follows::
 
 	dnx --configuration Debug
 
@@ -362,7 +369,7 @@ When building a DNX based application, such as by using ``dnu build`` or via pac
 
 For a list of usage, arguments, and options of the ``build`` command, enter the following in the command windows::
 
-	dnu help build
+	dnu build --help
 
 Including/Excluding files
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -392,7 +399,7 @@ The most common sections that you will see for including and excluding files are
 
 * The *publishExclude* section allows you to exclude files from the publish output of your project. In this example, all *.xproj*, *.user*, and *.vspscc* files from the output of the publish command. 
 
-.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_programming>`_, which often called wildcards. 
+.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_programming>`_, which are often called wildcards. 
 
 List of include/exclude properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -420,7 +427,7 @@ List of include/exclude properties
 +---------------------+--------------------------------------+-----------------------------------+
 | sharedExclude       |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
-| bundleExclude       | ``bin/**;obj/**;**/.*/**``           |                                   |
+| publishExclude      | ``bin/**;obj/**;**/.*/**``           |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
 | exclude             |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
@@ -496,8 +503,8 @@ The following describes the exact lists that are built up with the following not
       -ResourcesList
       +contentFiles
     
-    BundleExcludeList =
-      +Glob ( +bundleExclude )
+    PublishExcludeList =
+      +Glob ( +publishExclude )
 
 Sharing files
 ^^^^^^^^^^^^^
@@ -567,11 +574,19 @@ To specify this in the *project.json* file you create a key for each of the meta
       "description": "A wonderful library that does nice stuff"
     }
     
-* Version: The version of the NuGet package and assemblies generated if you pack/publish your application.
-* Authors: The authors and owners section of the NuGet packages nuspec.
-* Description: The description of the NuGet package.
+* version: The version of the NuGet package and assemblies generated if you pack/publish your application.
+* authors: A JSON array of the authors and owners section of the NuGet packages nuspec
+* description: A long description of the NuGet package.
 
-.. note:: There is additional metadata that can be put into the *project.json* file.
+Additional optional metadata that can be put into the project.json file:
+
+* copyright: Copyright details for the NuGet package.
+* projectUrl: A URL for the home page of the NuGet package.
+* licenseUrl: A link to the license that the NuGet package is under.
+* requireLicenseAcceptance: A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the NuGet package is installed.
+* language: The locale ID for the NuGet package, such as en-us.
+* tags: A JSON array of tags and keywords that describe the NuGet package.
+* title: The human-friendly title of the NuGet package.
 
 Publishing
 ----------
@@ -588,7 +603,7 @@ The appName directory will contain all of your applications code, if you have pr
 
 The publish command will also hoist any commands from your *project.json* file into batch files. Running any of these commands is the same as running  ``dnx <command>``. For a list of usage, arguments, and options of the ``publish`` command, enter the following in the command windows::
 
-	dnu help publish
+	dnu publish --help
 
 Scripts
 -------
@@ -638,3 +653,9 @@ Token                Replaced with
 ==================== =============================
 
 If any of the above tokens appear in the value of the script key they will be replaced with the associated value.
+
+Related Resources
+-----------------
+
+- :doc:`/dnx/overview`
+- `Create an ASP.NET 5 web app in Visual Studio Code  <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_

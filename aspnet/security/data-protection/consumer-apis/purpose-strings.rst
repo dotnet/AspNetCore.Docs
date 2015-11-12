@@ -24,13 +24,13 @@ Since the purposes parameter to CreateProtector is a string array, the above cou
 .. WARNING::
   Components should not allow untrusted user input to be the sole source of input for the purposes chain. 
 
-  For example, consider a component Contoso.Messaging.SecureMessage which is responsible for storing secure messages. If the secure messaging component were to call CreatePurpose([ username ]) , then a malicious user might create an account with username "Contoso.Security.BearerToken" in an attempt to get the component to call CreatePurpose([ "Contoso.Security.BearerToken" ]), thus inadvertently causing the secure messaging system to mint payloads that could be perceived as authentication tokens. 
+  For example, consider a component Contoso.Messaging.SecureMessage which is responsible for storing secure messages. If the secure messaging component were to call CreateProtector([ username ]), then a malicious user might create an account with username "Contoso.Security.BearerToken" in an attempt to get the component to call CreateProtector([ "Contoso.Security.BearerToken" ]), thus inadvertently causing the secure messaging system to mint payloads that could be perceived as authentication tokens. 
 
-  A better purposes chain for the messaging component would be CreatePurpose([ "Contoso.Messaging.SecureMessage", "User: username" ]), which provides proper isolation.
+  A better purposes chain for the messaging component would be CreateProtector([ "Contoso.Messaging.SecureMessage", "User: username" ]), which provides proper isolation.
 
 The isolation provided by and behaviors of IDataProtectionProvider, IDataProtector, and purposes are as follows:
 
-* For a given IDataProtectionProvider object, the CreatePurpose method will create an IDataProtector object uniquely tied to both the IDataProtectionProvider object which created it and the purposes parameter which was passed into the method.
+* For a given IDataProtectionProvider object, the CreateProtector method will create an IDataProtector object uniquely tied to both the IDataProtectionProvider object which created it and the purposes parameter which was passed into the method.
 * The purpose parameter must not be null. (If purposes is specified as an array, this means that the array must not be of zero length and all elements of the array must be non-null.) An empty string purpose is technically allowed but is discouraged.
 * Two purposes arguments are equivalent if and only if they contain the same strings (using an ordinal comparer) in the same order. A single purpose argument is equivalent to the corresponding single-element purposes array.
 * Two IDataProtector objects are equivalent if and only if they are created from equivalent IDataProtectionProvider objects with equivalent purposes parameters.

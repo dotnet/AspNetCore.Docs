@@ -76,7 +76,7 @@ The second approach is to define one or more named CORS policies, and then selec
 
 .. literalinclude:: cors/sample/src/CorsExample2/Startup.cs
 	:language: csharp
-	:lines: 9-18,20-23,27
+	:lines: 9-18,20-26,27
 	:dedent: 8
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.  

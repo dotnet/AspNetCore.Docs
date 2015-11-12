@@ -1,12 +1,12 @@
-﻿using ContosoBooks.Models;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Runtime;
+using ContosoBooks.Models;
+using Microsoft.Dnx.Runtime;
 
 namespace ContosoBooks
 {
@@ -14,10 +14,13 @@ namespace ContosoBooks
     {
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
+            
             // Setup configuration sources.
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
+                
             Configuration = builder.Build();
         }
 
@@ -33,7 +36,7 @@ namespace ContosoBooks
                 .AddSqlServer()
                 .AddDbContext<BookContext>(options =>
                 {
-                    options.UseSqlServer(Configuration.Get("Data:ConnectionString"));
+                    options.UseSqlServer(Configuration["Data:ConnectionString"]);
                 });
         }
 
@@ -49,13 +52,13 @@ namespace ContosoBooks
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Add static files to the request pipeline.

@@ -7,7 +7,7 @@ namespace ServersDemo
 {
     /// <summary>
     /// This demonstrates how the application can be launched in a console application. 
-    /// "dnx . run" command in the application folder will invoke this.
+    /// Executing the "dnx run" command in the application folder will run this app.
     /// </summary>
     public class Program
     {

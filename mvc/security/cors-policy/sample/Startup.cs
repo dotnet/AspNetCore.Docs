@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Cors;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
 
 namespace CorsMvc
 {
@@ -10,7 +13,7 @@ namespace CorsMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.ConfigureCors(options =>
+            services.AddCors(options =>
             {
                 // Define one or more CORS policies
                 options.AddPolicy("AllowSpecificOrigin",
@@ -26,7 +29,7 @@ namespace CorsMvc
             });
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseMvc();
         }

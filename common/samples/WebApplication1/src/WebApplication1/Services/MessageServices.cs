@@ -22,13 +22,4 @@ namespace WebApplication1.Services
             return Task.FromResult(0);
         }
     }
-    public interface IEmailSender
-    {
-        Task SendEmailAsync(string email, string subject, string message);
-    }
-
-    public interface ISmsSender
-    {
-        Task SendSmsAsync(string number, string message);
-    }
 }

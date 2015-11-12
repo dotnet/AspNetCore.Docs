@@ -210,7 +210,7 @@ Knockout includes bindings that can perform conditional and looping operations. 
 				<th>Result</th>
 			</tr>
 		</thead>
-		<tbody data-bind:"foreach: gameResults">
+		<tbody data-bind="foreach: gameResults">
 			<tr>
 				<td data-bind="text:opponent"></td>
 				<td data-bind="text:result"></td>
@@ -286,9 +286,9 @@ To build the win-loss record string, we can use a computed observable. Note that
 .. code-block:: javascript
 
 	self.displayRecord = ko.computed(function () {
-		var wins = self.gameResults().filter(function (value.result() == "Win"; } ).length;
-		var losses = self.gameResults().filter(function (value.result() == "Loss"; } ).length;
-		var ties = self.gameResults().filter(function (value.result() == "Tie"; } ).length;
+		var wins = self.gameResults().filter(function (value) { return value.result() == "Win"; }).length;
+		var losses = self.gameResults().filter(function (value) { return value.result() == "Loss"; }).length;
+		var ties = self.gameResults().filter(function (value) { return value.result() == "Tie"; }).length;
 		return wins + " - " + losses + " - " + ties;
 	}, this);
 
@@ -320,7 +320,7 @@ Knockout has support for templates, so that you can easily separate your UI from
  .. code-block:: html
 	:emphasize-lines: 1,3
 
-	<tbody data-bind:"template: { name: 'rowTemplate', foreach: gameResults">
+	<tbody data-bind="template: { name: 'rowTemplate', foreach: gameResults }">
 	</tbody>
 	<script type="text/html" id="rowTemplate">
 		<tr>
