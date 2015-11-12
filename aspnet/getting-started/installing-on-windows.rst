@@ -1,7 +1,12 @@
 Installing ASP.NET 5 On Windows
 ===============================
 
-By `Steve Smith`_, `Daniel Roth`_, `Rick Anderson`_
+By `Rick Anderson`_, `Steve Smith`_, `Daniel Roth`_
+
+This page shows you how to prepare Windows for ASP.NET development. To run ASP.NET 5 apps on IIS, see :doc:`/publishing/iis`.
+
+Sections
+-----------
 
 - `Install ASP.NET with Visual Studio`_
 - `Install ASP.NET Standalone`_
