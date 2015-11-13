@@ -141,6 +141,15 @@ To build libuv you should do the following::
     sudo make install
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
     ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
+    
+Install Openssl
+^^^^^^^^^^^^^^^
+
+`Openssl <https://www.openssl.org/>`_ is a open source implementation of the Transport Layer Security (TLS) and secure sockets layer (SSL) protocols. It is use bei the coreclr.
+
+To install it run the following command::
+
+    sudo yum install openssl-devel
 
 Using Docker
 ------------
