@@ -93,48 +93,46 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 - Open a Command Prompt and navigate to the folder of project.json for your project.
 
-- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta5**
+- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta8**
 
 .. image:: sociallogins/_static/SM1.PNG
 
-- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install SecretManager**
+- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install Microsoft.Framework.SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
-- Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret 862373430475128**
+- Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>**
 - The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
 
 .. code-block:: c#
 
-         var configuration = new Configuration()
-        .AddJsonFile("config.json")
-        .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
-
-        if (env.IsEnvironment("Development"))
-        {
-            // This reads the configuration keys from the secret store.
-            // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-            configuration.AddUserSecrets();
-        }
+	// Setup configuration sources.
+	var builder = new ConfigurationBuilder()
+		.SetBasePath(appEnv.ApplicationBasePath)
+		.AddJsonFile("appsettings.json")
+		.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+	
+	if (env.IsDevelopment())
+	{
+		builder.AddUserSecrets();
+	}
+	
+	builder.AddEnvironmentVariables();
+	
+	// Build configuration from configuration sources and store in class member: 
+	Configuration = builder.Build();
 
 
 Enable Facebook middleware
 --------------------------
 
-- You can add the options for Facebook middleware such as Facebook AppId and AppSecret in the ConfigureServices method in Startup.
+- Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
 
-	services.Configure<FacebookAuthenticationOptions>(options =>
+	app.UseFacebookAuthentication(options =>
 	{
-	    options.AppId = Configuration["Authentication:Facebook:AppId"];
-	    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+		options.AppId = Configuration["Authentication:Facebook:AppId"];
+		options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 	});
-
-
-- Add the Facebook middleware by adding it to the HTTP request pipeline by uncommenting the following line in the Configure method in Startup.
-
-.. code-block:: c#
-
-	app.UseFacebookAuthentication();		
 
 
 Login with Facebook
