@@ -3,12 +3,18 @@ Installing ASP.NET 5 On Linux
 
 By `Daniel Roth`_
 
-ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including Linux. This article describes how to install DNX, and therefore ASP.NET 5, on Linux using .NET Core and Mono.
+.. contents:: In this article
+  :local:
+  :depth: 1
 
-In this article:
-  - `Installing on Debian, Ubuntu and derivatives`_
-  - `Installing on CentOS, Fedora and derivatives`_
-  - `Using Docker`_
+Install using prebuild binaries
+-------------------------------
+
+Prebuild binaries for ASP.NET 5 are available (`.tar.gz <http://go.microsoft.com/fwlink/?LinkId=703941>`__) and can be installed as appropriate based on your system configuration. 
+
+Alternatively you can use the .NET Version Manager (DNVM) to install ASP.NET 5 as described below.
+
+For either method of installation you will need to install the prerequisites for your specific distribution as described in the following sections.
 
 Installing on Debian, Ubuntu and derivatives
 --------------------------------------------
@@ -39,13 +45,11 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 1. Install the DNX prerequisites::
 
-    sudo apt-get install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
+    sudo apt-get install libunwind8 gettext libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev
 
 2. Use DNVM to install DNX for .NET Core::
 
     dnvm upgrade -r coreclr
-
-.. note:: .NET Core on Linux is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
 
 **To install DNX for Mono:**
 
@@ -80,7 +84,7 @@ To build libuv you should do the following::
 
 .. note::
 
-    ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ```ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
+    ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ``ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
 
 Installing on CentOS, Fedora and derivatives
 --------------------------------------------
@@ -179,11 +183,6 @@ When you have an application, you can build and run your container using the fol
 
     docker build -t yourapplication .
     docker run -t -d -p 8080:5000 yourapplication
-
-Summary
--------
-
-ASP.NET 5 is built on the cross-platform .NET Execution Environment (DNX), which can be installed on Linux as well as :doc:`Mac <installing-on-mac>` and :doc:`Windows <installing-on-windows>`. Installing DNX and ASP.NET 5 on Linux takes just a few minutes, using a few simple commands. You're now  ready to build :doc:`your first ASP.NET application </tutorials/your-first-mac-aspnet>`!
 
 Related Resources
 -----------------
