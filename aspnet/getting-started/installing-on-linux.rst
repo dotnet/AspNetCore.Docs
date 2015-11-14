@@ -82,7 +82,7 @@ To build libuv you should do the following::
 
 .. note::
 
-    ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ```ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
+    ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ``ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
 
 Installing on CentOS, Fedora and derivatives
 --------------------------------------------
