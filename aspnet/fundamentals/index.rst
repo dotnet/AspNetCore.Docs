@@ -8,6 +8,7 @@ Fundamentals
     http-abstractions
     middleware
     static-files
+    localization 
     file-system
     routing
     configuration
