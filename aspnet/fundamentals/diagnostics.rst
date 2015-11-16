@@ -34,7 +34,7 @@ Notice that the call to ``UseDeveloperExceptionPage()`` is wrapped inside an ``i
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()`` and only a 500 response code will be sent back to the browser unless an exception handler is configured such as ``UseExceptionHandler()``
+Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()`` and only a HTTP 500 response code with no message details will be sent back to the browser unless an exception handler is configured such as ``UseExceptionHandler()``.
 
 We will cover the features provided by the error page in the next section (ensure ``ASPNET_ENV`` is reset to Development if you are following along).
 
