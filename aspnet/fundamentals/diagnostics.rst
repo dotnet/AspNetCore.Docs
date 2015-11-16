@@ -34,7 +34,7 @@ Notice that the call to ``UseDeveloperExceptionPage()`` is wrapped inside an ``i
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()``, and thus any exceptions will be handled by the underlying web server package(in this case, ``Microsoft.AspNet.Server.IIS``) as shown here:
+Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()``, and thus any exceptions will be handled by the underlying web server package(in this case, ``Microsoft.AspNet.IISPlatformHandler``) as shown here:
 
 .. image:: diagnostics/_static/oops-500.png
 
