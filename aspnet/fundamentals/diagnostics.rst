@@ -28,15 +28,13 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 	:linenos:
 	:emphasize-lines: 2,21
 
-The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseErrorPage()`` to enable the error page middleware. 
+The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseDeveloperExceptionPage()`` to enable the error page middleware. 
 
-Notice that the call to ``UseErrorPage()`` is wrapped inside an ``if`` condition that checks the current ``EnvironmentName``. This is a good practice, since you typically do not want to share detailed diagnostic information about your application publicly once it is in production. This check uses the ``ASPNET_ENV`` environment variable. If you are using Visual Studio 2015, you can customize the environment variables used when the application runs in the web application project's properties, under the Debug tab, as shown here:
+Notice that the call to ``UseDeveloperExceptionPage()`` is wrapped inside an ``if`` condition that checks the current ``EnvironmentName``. This is a good practice, since you typically do not want to share detailed diagnostic information about your application publicly once it is in production. This check uses the ``ASPNET_ENV`` environment variable. If you are using Visual Studio 2015, you can customize the environment variables used when the application runs in the web application project's properties, under the Debug tab, as shown here:
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseErrorPage()``, and thus any exceptions will be handled by the underlying web server package(in this case, ``Microsoft.AspNet.Server.IIS``) as shown here:
-
-.. image:: diagnostics/_static/oops-500.png
+Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()`` and only a HTTP 500 response code with no message details will be sent back to the browser, unless an exception handler is configured such as ``UseExceptionHandler()``.
 
 We will cover the features provided by the error page in the next section (ensure ``ASPNET_ENV`` is reset to Development if you are following along).
 
@@ -60,7 +58,7 @@ In this case, you can see the value of the ``throw`` parameter that was passed t
 HTTP 500 errors on Azure
 -------------------------
 
-If your app throws an exception before the ``Configure`` method in *Startup.cs* completes, the error page won't be configured. For local development using IIS Express, you'll still get a call stack showing where the exception occurred. The same app deployed to Azure (or another production server) will return an HTTP 500 error with no message details. ASP.NET 5 uses a new configuration model that is not based on *web.config*, and when you create a new web app with Visual Studio 2015, the project no longer contains a *web.config* file. (See `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_.)
+If your app throws an exception before the ``Configure`` method in *Startup.cs* completes, the error page won't be configured. The app deployed to Azure (or another production server) will return an HTTP 500 error with no message details. ASP.NET 5 uses a new configuration model that is not based on *web.config*, and when you create a new web app with Visual Studio 2015, the project no longer contains a *web.config* file. (See `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_.)
 
 The publish wizard in Visual Studio 2015 creates a *web.config* file if you don't have one. If you have a *web.config* file in the *wwwroot* folder, deploy inserts the markup into the the *web.config* file it generates. 
 
@@ -95,7 +93,7 @@ The path for this page can be optionally specified in the call to ``UseRuntimeIn
 
 	app.UseRuntimeInfoPage("/info");
 
-As with ``UseErrorPage()``, it is a good idea to limit public access to diagnostic information about your application. As such, in our sample we are only implementing ``UseRuntimeInfoPage()`` when the EnvironmentName is set to Development.
+As with ``UseDeveloperExceptionPage()``, it is a good idea to limit public access to diagnostic information about your application. As such, in our sample we are only implementing ``UseRuntimeInfoPage()`` when the EnvironmentName is set to Development.
 
 .. note:: Remember that the ``Configure()`` method in ``Startup.cs`` is defining the pipeline that will be used by all requests to your application, which means the order is important. If for example you move the call to ``UseRuntimeInfoPage()`` after the call to ``app.Run()`` in the examples shown here, it will never be called because ``app.Run()`` will handle the request before it reaches the call to ``UseRuntimeInfoPage``.
 

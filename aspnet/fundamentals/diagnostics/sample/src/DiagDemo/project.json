@@ -2,17 +2,17 @@
     "webroot": "wwwroot",
     "version": "1.0.0-*",
 
-    "dependencies": {
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta6",
-        "Kestrel": "1.0.0-beta6"
-    },
+  "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta8",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-beta8"
+  },
 
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:12334",
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:12333"
-    },
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel",
+    "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:12333"
+  },
 
     "frameworks": {
         "dnx451": { },
