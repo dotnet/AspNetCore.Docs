@@ -26,7 +26,7 @@ namespace DiagDemo
             {
                 // specify production behavior for error handling, for example:
                 // app.UseExceptionHandler("/Home/Error");
-                // if nothing is set here, web server error page will be displayed
+                // if nothing is set here, exception will not be handled.
             }
 
             app.UseWelcomePage("/welcome");
