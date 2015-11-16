@@ -4,7 +4,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNET_ENV": "Development"
+        "ASPNET_ENV": "Production"
       }
     },
     "kestrel": {
