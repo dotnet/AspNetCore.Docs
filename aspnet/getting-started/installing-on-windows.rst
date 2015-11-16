@@ -24,8 +24,7 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
 
 3. Enable the ASP.NET 5 command-line tools. Open a command-prompt and run::
 
-    dnvm alias default 1.0.0-rc1-final
-    dnvm use default -p
+    dnvm upgrade
 
   This will make the default :doc:`/dnx/index` active on the path.
   
