@@ -1,7 +1,7 @@
 Your First ASP.NET 5 Web App Using Visual Studio
 ================================================
 
-By `Erik Reitan`_ and `Rick Anderson`_
+By `Erik Reitan`_ 
 
 Introduction
 ------------
@@ -217,17 +217,7 @@ In the **Solution Explorer** you'll see that the new controllers were added with
 
 .. image:: mvc-with-entity-framework/_static/15e-updated-solution-explorer.png
 
-Add sample data
-^^^^^^^^^^^^^^^
-
-Rather than entering several sample records by hand, you will add code that will by used to populate your database. Add a class named ``SampleData`` in the *Models* folder with the following code:
-
-.. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Models/SampleData.cs
-    :language: c#
-
-You wouldn’t put this sample data class into production code, but it’s okay for this sample app scenario. 
-	
-Configure the web app to use the sample data
+Configure the web app before including sample data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Next, you'll add the ``Microsoft.Framework.DependencyInjection`` package to your app. 
@@ -246,7 +236,17 @@ After the above line has been added, the ``dependencies`` section of your *proje
     :lines: 8-29
     :emphasize-lines: 21
 
-In **Solution Explorer**, open the *Startup.cs* file. Add the following line of code at the end of the *Configure* method:
+Add sample data
+^^^^^^^^^^^^^^^
+
+Rather than entering several sample records by hand, you will add code that will by used to populate your database. Add a class named ``SampleData`` in the *Models* folder with the following code:
+
+.. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Models/SampleData.cs
+    :language: c#
+
+You wouldn’t put this sample data class into production code, but it’s okay for this sample app scenario. 
+	
+Next, in **Solution Explorer**, open the *Startup.cs* file. Add the following line of code at the end of the *Configure* method:
 
 .. literalinclude:: mvc-with-entity-framework/sample/src/ContosoBooks/Startup.cs
     :language: c#
