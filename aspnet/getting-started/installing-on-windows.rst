@@ -21,13 +21,17 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
   .. image:: installing-on-windows/_static/web-dev-tools.png
 
 2. Install `ASP.NET 5 <http://go.microsoft.com/fwlink/?LinkId=627627>`_. 
-
+  
+  This will install the latest ASP.NET 5 runtime and tooling.
+  
 3. Enable the ASP.NET 5 command-line tools. Open a command-prompt and run::
 
     dnvm upgrade
 
   This will make the default :doc:`/dnx/index` active on the path.
-  
+
+4. On Windows 7 and Windows Server 2008 R2 you will also need to install the `Visual C++ Redistributable for Visual Studio 2012 Update 4 <https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679>`__.
+    
 You are all set up and ready to write :doc:`your first ASP.NET 5 application </tutorials/your-first-aspnet-application>`!
 
 Install ASP.NET 5 from the command-line
