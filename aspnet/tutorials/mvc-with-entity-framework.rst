@@ -218,7 +218,7 @@ In the **Solution Explorer** you'll see that the new controllers were added with
 .. image:: mvc-with-entity-framework/_static/15e-updated-solution-explorer.png
 
 Configure the web app before including sample data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Next, you'll add the ``Microsoft.Framework.DependencyInjection`` package to your app. 
 In **Solution Explorer** find and open *project.json*. In the ``dependencies`` section, begin by typing the following line at the end of the section. 
