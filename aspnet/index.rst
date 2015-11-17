@@ -43,7 +43,7 @@ Related Resources
 -----------------
 
 * :ref:`.NET Core Documentation <dotnet:index>`
-* `Entity Framework <http://ef.readthedocs.org>`_
+* `Entity Framework <http://docs.efproject.net>`_
 
 Contribute
 ----------
