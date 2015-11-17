@@ -72,7 +72,7 @@ By default DNVM will install DNX for the full .NET Framework if no runtime is sp
 Related Resources
 ^^^^^^^^^^^^^^^^^
 
-- :doc:`/tutorials/your-first-aspnet-application`
+- :doc:`/tutorials/mvc-with-entity-framework`
 - :doc:`/fundamentals/index`
 
 
