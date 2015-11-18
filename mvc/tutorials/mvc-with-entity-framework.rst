@@ -5,7 +5,7 @@ By `Mike Wasson`_  and `Rick Anderson`_
 
 In this tutorial, you’ll create a simple web app using ASP.NET MVC and Entity Framework (EF). The app stores records in a SQL database and supports the basic CRUD operations (create, read, update, delete).
 
-.. note:: This tutorial uses Visual Studio 2015. If you are completely new to ASP.NET MVC or Visual Studio, read :doc:`../getting-started/first-mvc-app` first.
+.. note:: This tutorial uses Visual Studio 2015. If you are completely new to ASP.NET MVC or Visual Studio, read :doc:`/getting-started/first-mvc-app/index` first.
 
 The sample app that you'll build manages a list of authors and books. Here is a screen shot of the app:
 
