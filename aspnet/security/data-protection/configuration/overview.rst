@@ -1,3 +1,5 @@
+.. _data-protection-configuring:
+
 Configuring Data Protection
 ===========================
 
