@@ -79,16 +79,20 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 Use SecretManager to store Facebook AppId and AppSecret
 -----------------------------------------------------------
 
-The project created has the following code in Startup which reads the configuration values from a secret store. As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
+The project created has code in Startup which reads the configuration values from a secret store. As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
 - Open a Command Prompt and navigate to the folder of project.json for your project.
-- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta8**
-- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install Microsoft.Framework.SecretManager**
+- Use DNVM (.NET Version Manager) to set the DNX runtime version to RC1 by running **dnvm use 1.0.0-rc1-final**
+
+.. image:: sociallogins/_static/SM1.PNG
+
+- Install the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_ tool using DNU by running **dnu commands install Microsoft.Extensions.SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>**
-- The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
+
+The following code reads the configuration values stored by the `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
@@ -100,7 +104,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 Enable Facebook middleware
 --------------------------
 
-- Add the Facebook middleware in the Configure method in Startup.
+Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
   :linenos:
@@ -115,19 +119,20 @@ Enable Facebook middleware
 Login with Facebook
 -------------------
 
-- Run your application and click Login. You will see an option for Facebook.
+Run your application and click Login. You will see an option for Facebook.
 
 .. image:: sociallogins/_static/FBLogin1.PNG
 
-- When you click on Facebook, you will be redirected to Facebook for authentication.
+When you click on Facebook, you will be redirected to Facebook for authentication.
 
 .. image:: sociallogins/_static/FBLogin2.PNG
 
-- Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
+Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
 
-- You are now logged in using your Facebook credentials.
+You are now logged in using your Facebook credentials.
 
 .. image:: sociallogins/_static/FBLogin3.PNG
+
 
 Optionally set password
 -----------------------
