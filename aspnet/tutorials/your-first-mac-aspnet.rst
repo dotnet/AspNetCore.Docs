@@ -5,12 +5,9 @@ By `Steve Smith`_, `Daniel Roth`_
 
 ASP.NET 5 is cross-platform and can be developed and run on Mac OS X as well as Linux and Windows. See how you can quickly install, scaffold, run, debug, and deploy ASP.NET applications on a Mac.
 
-In this article:
-  - `Setting Up Your Development Environment`_
-  - `Scaffolding Applications Using Yeoman`_
-  - `Developing ASP.NET Applications on a Mac With Visual Studio Code`_
-  - `Running Locally Using Kestrel`_
-  - `Publishing to Azure`_
+.. contents:: In this article:
+  :local:
+  :depth: 1
 
 Setting Up Your Development Environment
 ---------------------------------------
@@ -30,18 +27,7 @@ Install the `OmniSharp ASP.NET generators <https://github.com/omnisharp/generato
 
 Create a folder for your solution and then add an ``src`` subfolder for your project source code.
 
-In your solution folder add a global.json file to indicate the DNX version:
-
-.. code-block:: json
-  :linenos:
-
-  {
-    "sdk": {
-      "version": "1.0.0-beta7"
-    }
-  }
-
-From your ``src`` folder run the aspnet generator::
+Run the aspnet generator::
 
   yo aspnet
 
@@ -103,30 +89,28 @@ The sample we're using is configured to use Kestrel as its web server. You can s
 
 .. code-block:: json
   :linenos:
-  :emphasize-lines: 8,12
+  :emphasize-lines: 7,11
   
   {
     "webroot": "wwwroot",
     "version": "1.0.0-*",
   
     "dependencies": {
-      "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
-      "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7"
+      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
+      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8"
     },
   
     "commands": {
-      "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --config hosting.ini",
-      "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --config hosting.ini"
+      "kestrel": "Microsoft.AspNet.Server.Kestrel"
     },
     // more deleted
   }
 
-Run the ``dnx . kestrel`` command to launch the web application locally:
+Run the ``dnx kestrel`` command to launch the web application locally:
 
 .. image:: your-first-mac-aspnet/_static/dnx-kestrel.png
 
-Navigate to ``localhost:5000`` (as specified in ``hosting.ini``) and you should see:
+Navigate to ``localhost:5000`` and you should see:
 
 .. image:: your-first-mac-aspnet/_static/hello-world.png
 
@@ -207,15 +191,10 @@ Save the changes. Commit them using the git viewlet. Run ``git push azure master
 
 .. image:: your-first-mac-aspnet/_static/azure-hello-from-vscode.png
 
-Summary
--------
+Additional Resources
+--------------------
 
-ASP.NET 5 and DNX support installation on Mac OS X. Developers can quickly install the necessary tools to get started, including Yeoman for app scaffolding and `Visual Studio Code <https://code.visualstudio.com>`__ for rapid lightweight editing with built-in support for debugging, Git integration, and IntelliSense.
-
-Additional Reading
-------------------
-
-  - `Visual Studio Code <https://code.visualstudio.com>`__
-  - :doc:`/client-side/yeoman`
-  - :doc:`ASP.NET Fundamentals </fundamentals/index>`
+- `Visual Studio Code <https://code.visualstudio.com>`__
+- :doc:`/client-side/yeoman`
+- :doc:`ASP.NET Fundamentals </fundamentals/index>`
 
