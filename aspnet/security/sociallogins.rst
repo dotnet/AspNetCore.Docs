@@ -7,17 +7,9 @@ This tutorial shows you how to build an ASP.NET 5 Web application that enables u
 
 Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
 
-
-In this article:
-	- `Create a New ASP.NET 5 Project`_
-	- `Running the Application`_
-	- `Creating the app in Facebook`_
-	- `Use SecretManager to store Facebook AppId and AppSecret`_
-	- `Enable Facebook middleware`_
-	- `Login with Facebook`_
-	- `Optionally set password`_
-	- `Next steps`_
-	- `Summary`_
+.. contents:: In this article:
+  :local:
+  :depth: 1
 
 Create a New ASP.NET 5 Project
 ------------------------------
@@ -29,7 +21,7 @@ To get started, open Visual Studio 2015. Next, create a New Project (from the St
 Next you should see another dialog, the New ASP.NET Project window:
  
 .. image:: sociallogins/_static/select-project.png
-	
+
 Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio is downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
@@ -92,49 +84,32 @@ The project created has the following code in Startup which reads the configurat
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
 - Open a Command Prompt and navigate to the folder of project.json for your project.
-
-- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta5**
-
-.. image:: sociallogins/_static/SM1.PNG
-
-- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install SecretManager**
+- Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta8**
+- Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install Microsoft.Framework.SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
-- Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret 862373430475128**
+- Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>**
 - The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
 
-.. code-block:: c#
-
-         var configuration = new Configuration()
-        .AddJsonFile("config.json")
-        .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
-
-        if (env.IsEnvironment("Development"))
-        {
-            // This reads the configuration keys from the secret store.
-            // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-            configuration.AddUserSecrets();
-        }
-
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :linenos:
+  :language: c#
+  :lines: 29-40
+  :emphasize-lines: 10
+  :dedent: 12
 
 Enable Facebook middleware
 --------------------------
 
-- You can add the options for Facebook middleware such as Facebook AppId and AppSecret in the ConfigureServices method in Startup.
+- Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
-
-	services.Configure<FacebookAuthenticationOptions>(options =>
-	{
-	    options.AppId = Configuration["Authentication:Facebook:AppId"];
-	    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-	});
-
-
-- Add the Facebook middleware by adding it to the HTTP request pipeline by uncommenting the following line in the Configure method in Startup.
-
-.. code-block:: c#
-
-	app.UseFacebookAuthentication();		
+  :linenos:
+  
+  app.UseFacebookAuthentication(options =>
+  {
+    options.AppId = Configuration["Authentication:Facebook:AppId"];
+    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+  });
 
 
 Login with Facebook
@@ -176,8 +151,4 @@ Next steps
 - Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
-Summary
--------
-
-ASP.NET Identity and Security middleware can be used to authenticate with external providers.
 
