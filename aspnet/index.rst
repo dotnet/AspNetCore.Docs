@@ -8,7 +8,7 @@
 ASP.NET 5 Documentation
 =======================
 
-.. attention:: ASP.NET 5 beta8 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
+.. attention:: ASP.NET 5 RC1 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
 
 .. include:: ../common/stub-overview.txt
 
