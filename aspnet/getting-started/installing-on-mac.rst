@@ -12,7 +12,7 @@ Install ASP.NET 5 with Visual Studio Code
 
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio Code.
 
-1. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534107>`__
+1. Install `Visual Studio Code <https://code.visualstudio.com/Docs/?dv=osx>`__
 
 2. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
   
