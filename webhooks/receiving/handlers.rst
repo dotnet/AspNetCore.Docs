@@ -1,7 +1,7 @@
 Processing WebHooks
 ===================
 
-Once WebHooks requests has been validate by a WebHook receiver, it is 
+Once WebHooks requests has been validated by a WebHook receiver, it is 
 ready to be processed by user code. This is where *handlers* come in. 
 Handlers derive from the `IWebHookHandler 
 <https://github.com/aspnet/WebHooks/blob/master/src/Microsoft.AspNet.Web 
