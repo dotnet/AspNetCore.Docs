@@ -1,19 +1,15 @@
 Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
-
 By `Rick Anderson`_ and `Steve Smith`_
 
-While this article shows how to migrate an ASP.NET MVC 5 project to ASP.NET MVC 6, it's arguably more valuable in showing what has changed from MVC 5 to MVC 6. The migration process in this (part 1 tutorial) includes initial setup, basic controllers and views, static content, and client side dependencies. The tutorial creates the MVC 6 app with the empty template and adds all the assets from the legacy MVC 5 app needed to complete the conversion. An alternative approach to migrations is to create the MVC 6 app with the full MVC app template, and then copy the assets and your custom code.
+This article shows how to get started migrating an ASP.NET MVC 5 project to ASP.NET MVC 6. In the process it highlights many of the things that have changed from MVC 5 to MVC 6. Migrating from MVC 5 to MVC 6 is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client side dependencies. Additional articles cover migrating ASP.NET Identity models, and startup and configuration code found in many MVC 5 projects.
 
-	- `Create the starter MVC 5 project`_
-	- `Create the MVC 6  project`_
-	- `Configure the site to use MVC`_
-	- `Controllers and views`_
-	- `Static content`_
-	- `Migrate the layout file`_
+.. contents:: In this article:
+  :local:
+  :depth: 1
 
 Create the starter MVC 5 project
-========================================
+--------------------------------
 
 To demonstrate the upgrade, we'll start by creating an new ASP.NET MVC 5 app. Create it with the name *WebApp1* so the namespace will match the MVC 6 project we create in the next step.
 
@@ -21,12 +17,10 @@ To demonstrate the upgrade, we'll start by creating an new ASP.NET MVC 5 app. Cr
 
 .. image:: migratingfrommvc5/_static/new-project-select-mvc-template.png
 
-The completed sample (this tutorial and the next two) will demonstrate how to migrate an MVC 5 web project that includes controllers, views, ASP.NET Identity models, startup and configuration code found in many MVC 5 projects.
-
 *Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio will display the new solution name (*Mvc5*), which will make it easier to tell this project from the next project. 
 
 Create the MVC 6 project
-========================================
+------------------------
 
 Create a new empty MVC 6 web app with the same name as the previous project (*WebApp1*) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. You'll have to create this project in a different directory than the previous project to use the same name.
 
@@ -35,15 +29,15 @@ Create a new empty MVC 6 web app with the same name as the previous project (*We
 - *Optional:* Create a new MVC 6 app named *WebApp1* with the full template. You can look at the template generated code to see the end result or to copy code to the conversion project. It's also helpful when you get stuck on a conversion step to compare with the template generated project.
 
 Configure the site to use MVC
-========================================
+-----------------------------
 
 - Open the *project.json* file and add ``Microsoft.AspNet.Mvc`` to the ``dependencies`` property and the scripts section as highlighted below:
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/project.json
-	:language: json
-	:emphasize-lines: 8-9, 29-31
+  :language: json
+  :emphasize-lines: 8-9, 29-31
   
-``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files.
+``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :ref:`aspnet:static-files`).
 
 The ``scripts`` section is used to specify when specified build automation scripts should run. Visual Studio now has built-in support for running scripts before and after specific events. The ``scripts`` section above specifies `NPM <https://docs.npmjs.com/>`__, `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__ scripts should run on the ``prepublish`` stage.  We'll talk about NPM, Bower, and Gulp later in the tutorial.
 
@@ -52,17 +46,16 @@ For more information see `project.json <https://docs.asp.net/en/latest/conceptua
 - Open the *Startup.cs* file and change the code to match the following:
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/Startup.cs
-	:language: c#
-	:emphasize-lines: 6, 14-22
-	:linenos:  
-	:lines: 11-32
-	:dedent: 4
-
+  :language: c#
+  :emphasize-lines: 6, 14-22
+  :linenos:  
+  :lines: 11-32
+  :dedent: 4
 
 ``UseStaticFiles`` adds the static file handlers. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.html>`_ and `Routing <https://docs.asp.net/en/latest/fundamentals/routing.html>`__.
 
 Add a controller and view
-========================================
+-------------------------
 
 In this section you'll add a minimal controller and view to serve as place holders for the MVC 5 controller and views you'll migrate in the next section.
 
@@ -80,7 +73,7 @@ Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 .. code-block:: html
 
-	<h1>Hello world!</h1>
+  <h1>Hello world!</h1>
 
 Run the app.
 
@@ -101,22 +94,22 @@ Now that we have a minimal working MVC 6 project, we can start migrating functio
 - Log in/out, identity (This will be done in the next tutorial.)
 
 Controllers and views
-========================================
+---------------------
 
 - Copy each of the methods from the MVC 5 ``HomeController`` to the MVC 6 ``HomeController``. Note that in MVC 5, the built in template generated return type is `ActionResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ActionResult.cs>`_, in MVC 6 the templates generate `IActionResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Abstractions/IActionResult.cs>`__ methods. ``ActionResult`` is the only implementation of ``IActionResult``, so there is no need to change the return type of your action methods.
 - Delete the *Views/Home/Index.cshtml* view in the MVC 6 project.
 - Copy the *About.cshtml*, *Contact.cshtml* and *Index.cshtml* razor view files from the MVC 5 project to the MVC 6 project. 
 - Run the MVC 6 app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the ``About`` and ``Contact`` views, so you'll have to invoke them from the browser (replace **2468** with the port number used in your project).
 - 
-	- http://localhost:2468/home/about
-	- http://localhost:2468/home/contact
-	
+  - http://localhost:2468/home/about
+  - http://localhost:2468/home/contact
+
 .. image:: migratingfrommvc5/_static/contact-page.png
 
 Note the lack of styling and menu items, we'll fix that in the next section.
 
 Static content
-========================================
+--------------
 
 In previous versions of MVC (including MVC 5), static content was hosted from the root of the web project and was intermixed with server-side files. In MVC 6, static content is hosted in the *wwwroot* folder. You'll want to copy the static content from your MVC 5 app to the *wwwroot* folder in your MVC 6 project. In this sample conversion:
 
@@ -129,16 +122,16 @@ In the new project, we'll add support for Bootstrap (and other client-side libra
 - Add a `Bower <http://bower.io/>`__ configuration file named *bower.json* to the project root (Right click on the project, and then **Add > New Item > Bower Configuration File**).
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/bower.json
-	:language: javascript
+  :language: javascript
 
 When you save the file, Bower will automatically download the dependencies to the *wwwroot/lib* folder. You can use the **Search Solution Explorer** box to find the path of the assets.
 
 .. image:: migratingfrommvc5/_static/search.png
 
 Gulp
-^^^^^^^^^^^^^^^^^^^^
+----
 
-When you create a new web project using the ASP.NET 5 Web Application template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of `Gulp <http://gulpjs.com/>`__ dependencies. *Gulp.js* is a `Node.js <https://nodejs.org/en/>`_ based streaming build system for client-side code (HTML, LESS, SASS, etc.). It's a popular alternative to `Grunt <http://gruntjs.com/>`__. Grunt is a task runner that does the *grunt* work such as bundling and minification. The ``Gulp.js`` NuGet package contains all that is needed to install, run, update, and uninstall gulp. *gulpfile.js* contains JavaScript that defines a set of gulp tasks that you can set to run automatically on build events or you can run manually using **Task Runner Explorer** in Visual Studio. In this section we'll show how to use the MVC 6 template generated *gulpfile.js* Gulp file to bundle and minify the JavaScript and CSS files in the project. 
+When you create a new web project using the ASP.NET 5 Web Application template, the project is setup to use `Gulp <http://gulpjs.com>`__. Gulp is a streaming build system for client-side code (HTML, LESS, SASS, etc.). The included *gulpfile.js* in the project contains JavaScript that defines a set of gulp tasks that you can set to run automatically on build events or you can run manually using the **Task Runner Explorer** in Visual Studio. In this section we'll show how to use the MVC 6 template generated *gulpfile.js* Gulp file to bundle and minify the JavaScript and CSS files in the project. 
 
 If you created a new ASP.NET MVC 6 web app with individual user accounts, add *gulpfile.js* from that project to the project we are updating. Right click  **web app > Add > Existing Item**.
 
@@ -147,7 +140,7 @@ If you created a new ASP.NET MVC 6 web app with individual user accounts, add *g
 Navigate to *gulpfile.js* from the new ASP.NET MVC 6 web app with individual user accounts and add the add *gulpfile.js* file. Alternatively, right click **web app > Add > New Item**, and then select **Gulp Configuration file**. Name the file *gulpfile.js*. Replace the contents of the gulp file with the following:
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/gulpfile.js
-	:language: javascript
+  :language: javascript
 
 The code above performs these functions:
 
@@ -155,83 +148,77 @@ The code above performs these functions:
 - Minifies the JavaScript and CSS files.
 - Bundles (concatenates) the JavaScript and CSS files.
 
-See `Bundling and Minification <http://docs.asp.net/en/latest/client-side/bundling-and-minification.html>`__ for more information. See also `Using Gulp <http://docs.asp.net/en/latest/client-side/using-gulp.html>`__.
-
 NPM
-^^^^^^^^^^^^^^^^^^^^^^^
+---
+
 `NPM <https://docs.npmjs.com/>`__ (Node Package manager) is a package manager for `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__  and is supported in Visual Studio 2015. We'll use NPM to manage Grunt and Gulp.
 
 If you created a new ASP.NET MVC 6 web app with individual user accounts, add the *package.json* NPM file from that project to the project we are updating. The *package.json* NPM file lists the dependencies for the client side build processes Grunt and Gulp. Right click  **web app > Add > Existing Item** and add the *package.json* NPM file. Alternatively, you can add a new NPM configuration file.
 
-1.	In Solution Explorer, right-click the project.
+1. In Solution Explorer, right-click the project.
 
-#.	Select **Add** > **New Item**.
+#. Select **Add** > **New Item**.
 
-#.	Select **NPM configuration file**.
+#. Select **NPM configuration file**.
 
-#.	Leave the default name, "package.json".
+#. Leave the default name, "package.json".
 
-#.	Click **Add**.
+#. Click **Add**.
 
 Open the *package.json* file and replace the contents with the following:
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/package.json
-	:language: javascript
+  :language: javascript
 
 Right click on the *Gulpfile.js* and select **Task Runner Explorer**. Double-click on a task to run it.
 For more information, see:
 
-- `Using Gulp <http://docs.asp.net/en/latest/client-side/using-gulp.html>`__
-- `Using Grunt with ASP.NET <http://docs.asp.net/en/latest/client-side/using-grunt.html>`_
 - `Client-Side Development in ASP.NET 5 <http://docs.asp.net/en/latest/client-side/index.html>`_
-- `Manage Client-Side Packages with Bower <http://docs.asp.net/en/latest/client-side/bower.html>`_
-- `Bundling and Minification <http://docs.asp.net/en/latest/client-side/bundling-and-minification.html>`__
-- `Bootstrap for ASP.NET 5 <http://docs.asp.net/en/latest/client-side/bootstrap.html>`_
 
 Migrate the layout file
-==============================
+-----------------------
 
 - Copy the *_ViewStart.cshtml* file from the MVC 5 project's *Views* folder into the MVC 6 project's *Views* folder. The *_ViewStart.cshtml* file has not changed in MVC 6. 
 - Create a *Views/Shared* folder. 
 
  Open *_Layout.cshtml* file and make the following changes:
 
-	- Replace @Styles.Render("~/Content/css") with a <link> element to load *bootstrap.css* (see below)
-	- Remove @Scripts.Render("~/bundles/modernizr")
-	- Comment out the @Html.Partial("_LoginPartial") line (surround the line with @*...*@) - we'll return to it shortly 
-	- Replace @Scripts.Render("~/bundles/jquery") with a <script> element (see below)
-	- Replace @Scripts.Render("~/bundles/bootstrap") with a <script> element (see below)
+  - Replace @Styles.Render("~/Content/css") with a <link> element to load *bootstrap.css* (see below)
+  - Remove @Scripts.Render("~/bundles/modernizr")
+  - Comment out the @Html.Partial("_LoginPartial") line (surround the line with @*...*@) - we'll return to it shortly 
+  - Replace @Scripts.Render("~/bundles/jquery") with a <script> element (see below)
+  - Replace @Scripts.Render("~/bundles/bootstrap") with a <script> element (see below)
 
 The replacement CSS link:
 
 .. code-block:: html
 
-	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
 
 The replacement script tags:
 
 .. code-block:: html
 
-	<script src="~/lib/jquery/jquery.js"></script>
-	<script src="~/lib/bootstrap/js/bootstrap.js"></script>
+  <script src="~/lib/jquery/jquery.js"></script>
+  <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 
 The updated _Layout.cshtml file is shown below:
 
 .. literalinclude:: migratingfrommvc5/samples/WebApp1/src/WebApp1/Views/Shared/_Layout.cshtml
-	:language: html
-	:emphasize-lines: 7,26,38-39
+  :language: html
+  :emphasize-lines: 7,26,38-39
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
 .. (*TODO - in part 2 (Migrating Configuration From ASP.NET MVC 5 to MVC 6) Convert Views/web.config to _GlobalImport.cshtml with @using statements *)
 
 Configure Bundling
-========================================
+------------------
 
 The MVC 5 starter web template utilized the MVC runtime support for bundling. In ASP.NET MVC 6, this functionality is performed as part of the build process using `Gulp <http://gulpjs.com/>`__. We've previously configured bundling and minification, all that's left is to change the references to Bootstrap, jQuery and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See `Bundling and Minification <http://docs.asp.net/en/latest/client-side/bundling-and-minification.html>`__ for more information.
 
 Additional Resources
-=======================
+--------------------
 
 - `Migrating an ASP.NET MVC 5 App to ASP.NET 5 <https://weblogs.asp.net/paullitwin/migrating-an-asp-net-mvc-5-app-to-asp-net-5>`__
 - `Using Gulp <http://docs.asp.net/en/latest/client-side/using-gulp.html>`__
