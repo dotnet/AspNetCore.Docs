@@ -77,8 +77,8 @@ Then add the user secrets configuration source:
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
   :language: c#
-  :lines: 29-40
-  :emphasize-lines: 10
+  :lines: 22-33
+  :emphasize-lines: 8
   :dedent: 12
 
 You can now access user secrets via the configuration API:

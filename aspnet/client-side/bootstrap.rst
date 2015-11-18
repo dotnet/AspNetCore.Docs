@@ -58,7 +58,7 @@ If you're referencing your own local versions of Bootstrap, you'll need to refer
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :linenos:
-  :emphasize-lines: 9,14,54,64
+  :emphasize-lines: 9,14,51,59
 
 .. note:: If you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery.
 

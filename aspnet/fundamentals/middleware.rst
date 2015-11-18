@@ -33,9 +33,9 @@ You can see an example of setting up a request pipeline, using a variety of requ
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 73-103,128-138
+	:lines: 59-72,85-101
 	:dedent: 8
-	:emphasize-lines: 12-14,20,27,30,33
+	:emphasize-lines: 8-10,14,19,21,25
 
 Because of the order in which this pipeline was constructed, the middleware configured by the ``UseExceptionHandler`` method will catch any exceptions that occur in later calls (in non-development environments). Also, in this example a design decision has been made that static files will not be protected by any authentication. This is a tradeoff that improves performance when handling static files since no other middleware (such as authentication middleware) needs to be called when handling these requests (ASP.NET 5 uses a specific ``wwwroot`` folder for all files that should be accessible by default, so there is typically no need to perform authentication before sending these files). If the request is not for a static file, it will flow to the next piece of middleware defined in the pipeline (in this case, Identity). Learn more about :doc:`static-files`.
 

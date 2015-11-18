@@ -26,9 +26,9 @@ Your ``Configure`` method must accept an ``IApplicationBuilder`` parameter. Addi
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 73-103,128-138
+  :lines: 59-72,85-101
   :dedent: 8
-  :emphasize-lines: 12-14,20,27,30,33
+  :emphasize-lines: 8-10,14,19,21,25
 
 You can see what each of these extensions does by examining the source. For instance, the ``UseMvc`` extension method is defined in ``BuilderExtensions`` available on `GitHub <https://github.com/aspnet/Mvc/blob/6.0.0-beta5/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_. Its primary responsibility is to ensure that MVC was added as a service (in ``ConfigureServices``) and to correctly set up routing for an ASP.NET MVC application. 
 
@@ -44,9 +44,9 @@ Just as with ``Configure``, it is recommended that features that require substan
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 47-70
+  :lines: 39-56
   :dedent: 8
-  :emphasize-lines: 4,10,15
+  :emphasize-lines: 4,9,13
 
 Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`. Just as the ``Startup`` class is able to specify dependencies its methods require as parameters, rather than hard-coding to a specific implementation, so too can your middleware, MVC controllers and other classes in your application.
 

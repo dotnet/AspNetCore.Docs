@@ -33,9 +33,9 @@ The ``ConfigureServices`` method in the ``Startup`` class is responsible for def
 .. literalinclude:: ../../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 47-70
+  :lines: 39-56
   :dedent: 8
-  :emphasize-lines: 4,10,15
+  :emphasize-lines: 4,9,13
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single ``AddService()`` extension method to register all of the services required by that feature. 
 
@@ -51,7 +51,7 @@ In the default web template example above, two application services are added to
 .. literalinclude:: ../../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 67-69
+  :lines: 53-55
   :dedent: 12
   :emphasize-lines: 2-3
 

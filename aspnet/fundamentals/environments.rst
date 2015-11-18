@@ -68,9 +68,9 @@ For example, you can use the following code in you Configure method to setup env
 	:language: c#
 	:linenos:
 	:dedent: 12
-	:lines: 82-93
+	:lines: 64-72,85
 
-If the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
+If the app is running in a ``Development`` environment, then it enables BrowserLink and development specific error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
 Startup conventions
 -------------------
