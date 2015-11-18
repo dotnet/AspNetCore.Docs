@@ -61,7 +61,7 @@ Download the ASP.NET 5 starter project
 
 .. code-block:: none
 
-	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-beta5\\bin to process PATH 
+	Adding C:\Users\<user>\.dnx\runtimes\dnx-clr-win-x86.1.0.0-beta5\bin to process PATH 
 
 - `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. 
 - **dnx ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code.
@@ -78,7 +78,7 @@ Run the app, click the **Todo** link and create a couple *Todo* items. Make at l
 Examine the view component class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Examine the *src\TodoList\ViewComponents\PriorityListViewComponent.cs* file:
+- Examine the *src\\TodoList\\ViewComponents\\PriorityListViewComponent.cs* file:
 
 .. code-block:: c#
 
