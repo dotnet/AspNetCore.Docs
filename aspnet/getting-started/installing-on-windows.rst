@@ -14,13 +14,13 @@ Install ASP.NET 5 with Visual Studio
 
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the free Community edition). 
 
-1. Install `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__
+1. Install `Visual Studio 2015 <https://go.microsoft.com/fwlink/?LinkId=532606>`__
 
   Be sure to specify that you want to include the Microsoft Web Developer Tools.
 
   .. image:: installing-on-windows/_static/web-dev-tools.png
 
-2. Install `ASP.NET 5 <http://go.microsoft.com/fwlink/?LinkId=627627>`_. 
+2. Install `ASP.NET 5 <https://go.microsoft.com/fwlink/?LinkId=627627>`_. 
   
   This will install the latest ASP.NET 5 runtime and tooling.
   
