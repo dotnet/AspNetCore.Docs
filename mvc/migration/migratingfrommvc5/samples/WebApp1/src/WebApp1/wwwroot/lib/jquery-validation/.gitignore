@@ -1,9 +1,0 @@
-dist
-build/dist
-docs
-.project
-*~
-*.diff
-*.patch
-.DS_Store
-node_modules
