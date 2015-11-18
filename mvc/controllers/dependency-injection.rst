@@ -1,5 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
+.. _dependency-injection-controllers:
+
 |stub-icon| Dependency Injection and Controllers
 ================================================
 
