@@ -7,17 +7,9 @@ This tutorial shows you how to build an ASP.NET 5 Web application that enables u
 
 Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
 
-
-In this article:
-	- `Create a New ASP.NET 5 Project`_
-	- `Running the Application`_
-	- `Creating the app in Facebook`_
-	- `Use SecretManager to store Facebook AppId and AppSecret`_
-	- `Enable Facebook middleware`_
-	- `Login with Facebook`_
-	- `Optionally set password`_
-	- `Next steps`_
-	- `Summary`_
+.. contents:: In this article:
+  :local:
+  :depth: 1
 
 Create a New ASP.NET 5 Project
 ------------------------------
@@ -29,7 +21,7 @@ To get started, open Visual Studio 2015. Next, create a New Project (from the St
 Next you should see another dialog, the New ASP.NET Project window:
  
 .. image:: sociallogins/_static/select-project.png
-	
+
 Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio is downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
@@ -92,34 +84,18 @@ The project created has the following code in Startup which reads the configurat
 Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
 
 - Open a Command Prompt and navigate to the folder of project.json for your project.
-
 - Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta8**
-
-.. image:: sociallogins/_static/SM1.PNG
-
 - Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install Microsoft.Framework.SecretManager**
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>**
 - The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
 
-.. code-block:: c#
-
-	// Setup configuration sources.
-	var builder = new ConfigurationBuilder()
-		.SetBasePath(appEnv.ApplicationBasePath)
-		.AddJsonFile("appsettings.json")
-		.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-	
-	if (env.IsDevelopment())
-	{
-		builder.AddUserSecrets();
-	}
-	
-	builder.AddEnvironmentVariables();
-	
-	// Build configuration from configuration sources and store in class member: 
-	Configuration = builder.Build();
-
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :linenos:
+  :language: c#
+  :lines: 29-40
+  :emphasize-lines: 10
+  :dedent: 12
 
 Enable Facebook middleware
 --------------------------
@@ -127,12 +103,13 @@ Enable Facebook middleware
 - Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
-
-	app.UseFacebookAuthentication(options =>
-	{
-		options.AppId = Configuration["Authentication:Facebook:AppId"];
-		options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-	});
+  :linenos:
+  
+  app.UseFacebookAuthentication(options =>
+  {
+    options.AppId = Configuration["Authentication:Facebook:AppId"];
+    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+  });
 
 
 Login with Facebook
@@ -174,8 +151,4 @@ Next steps
 - Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
 
-Summary
--------
-
-ASP.NET Identity and Security middleware can be used to authenticate with external providers.
 
