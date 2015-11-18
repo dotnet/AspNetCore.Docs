@@ -37,7 +37,7 @@ In your solution folder add a global.json file to indicate the DNX version:
 
   {
     "sdk": {
-      "version": "1.0.0-beta7"
+      "version": "1.0.0-beta8"
     }
   }
 
@@ -110,9 +110,9 @@ The sample we're using is configured to use Kestrel as its web server. You can s
     "version": "1.0.0-*",
   
     "dependencies": {
-      "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
-      "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7"
+      "Microsoft.AspNet.Server.IIS": "1.0.0-beta8",
+      "Microsoft.AspNet.Server.WebListener": "1.0.0-beta8",
+      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8"
     },
   
     "commands": {
