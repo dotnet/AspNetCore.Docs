@@ -32,6 +32,7 @@ import shlex
 # ones.
 extensions = [
     'sphinx.ext.intersphinx',
+    'yasfb'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -381,3 +382,8 @@ epub_exclude_files = ['search.html']
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'aspnet': ('http://docs.asp.net/en/latest', 'aspnet.inv')}
 
+feed_num_items = 15
+feed_skip_regex = '(.)*index'
+feed_base_url = 'http://docs.asp.net/projects/mvc/en/latest'
+feed_description = 'ASP.NET MVC Documentation'
+feed_author = 'Microsoft'
