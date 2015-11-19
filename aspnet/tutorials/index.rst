@@ -9,5 +9,5 @@ Tutorials
    /dnx/create-package
    publish-to-azure-webapp-using-vs
    nano-server
-   azure-service-fabric
+   ASP.NET 5 and Azure Service Fabric <https://azure.microsoft.com/en-us/documentation/articles/service-fabric-add-a-web-frontend/>
    
