@@ -24,7 +24,7 @@ Select the **ASP.NET Web Application** project template. It appears under **Inst
 
 .. image:: your-first-aspnet-application/_static/02-new-project.png
 
-In the **New Project** dialog, select **Web Site** under **ASP.NET 5 Preview Templates**.
+In the **New ASP.NET Project** dialog, select **Web Application** under **ASP.NET 5 Preview Templates**. Also, make sure the **Host in the cloud** checkbox is not selected and click **OK**.
 
 .. image:: your-first-aspnet-application/_static/03-web-site-template.png
 
