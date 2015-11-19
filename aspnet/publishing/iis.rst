@@ -69,7 +69,7 @@ IIS server configuration
 3. Unlock the configuration section.
 
 	- Launch IIS Manager and select the server in the **Connections** pane on the left (see image below).
-	- Double-click **Connection Editor**.
+	- Double-click **Configuration Editor**.
 	- In the **Section** drop-down, select **system.webServer/handlers**, and then click **Unlock Section**.
 
 .. image:: pubIIS/_static/config-edit.png
