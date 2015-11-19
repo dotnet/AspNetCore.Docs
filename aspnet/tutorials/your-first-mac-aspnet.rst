@@ -101,12 +101,12 @@ The sample we're using is configured to use Kestrel as its web server. You can s
     },
   
     "commands": {
-      "kestrel": "Microsoft.AspNet.Server.Kestrel"
+      "web": "Microsoft.AspNet.Server.Kestrel"
     },
     // more deleted
   }
 
-Run the ``dnx kestrel`` command to launch the web application locally:
+Run the ``dnx web`` command to launch the web application locally:
 
 .. image:: your-first-mac-aspnet/_static/dnx-kestrel.png
 
