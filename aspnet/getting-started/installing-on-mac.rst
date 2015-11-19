@@ -14,7 +14,7 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
 
 1. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534107>`__
 
-2. Install `ASP.NET 5 for Mac OS X <http://go.microsoft.com/fwlink/?LinkId=703940>`__
+2. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
   
 You are all set up and ready to write :doc:`your first ASP.NET 5 application on a Mac </tutorials/your-first-mac-aspnet>`!
 

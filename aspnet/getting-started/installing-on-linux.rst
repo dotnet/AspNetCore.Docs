@@ -10,7 +10,7 @@ By `Daniel Roth`_
 Install using prebuild binaries
 -------------------------------
 
-Prebuild binaries for ASP.NET 5 are available (`.tar.gz <http://go.microsoft.com/fwlink/?LinkId=703941>`__) and can be installed as appropriate based on your system configuration. 
+Prebuild binaries for ASP.NET 5 are available (`.tar.gz <https://go.microsoft.com/fwlink/?LinkId=703941>`__) and can be installed as appropriate based on your system configuration. 
 
 Alternatively you can use the .NET Version Manager (DNVM) to install ASP.NET 5 as described below.
 

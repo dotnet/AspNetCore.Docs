@@ -14,15 +14,17 @@ Install ASP.NET 5 with Visual Studio
 
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio 2015 (including the free Community edition). 
 
-1. Install `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__
+1. Install `Visual Studio 2015 <https://go.microsoft.com/fwlink/?LinkId=532606>`__
 
   Be sure to specify that you want to include the Microsoft Web Developer Tools.
 
   .. image:: installing-on-windows/_static/web-dev-tools.png
 
-2. Install `ASP.NET 5 <http://go.microsoft.com/fwlink/?LinkId=627627>`_. 
+2. Install `ASP.NET 5 <https://go.microsoft.com/fwlink/?LinkId=627627>`_. 
   
   This will install the latest ASP.NET 5 runtime and tooling.
+  
+  *NOTE: There is currently a known issue with the ASP.NET 5 RC installer. If you run the installer from a folder that contains previous versions of the MSI installers for DNVM (DotNetVersionManager-x64.msi or DotNetVersionManager-x86.msi) or the ASP.NET tools for Visual Studio (WebToolsExtensionsVS14.msi or WebToolsExtensionsVWD14.msi), the installer will fail with an error "0x80091007 - The hash value is not correct". To work around this issue, run the installer from a folder that does not contain previous versions of the installer files.*
   
 3. Enable the ASP.NET 5 command-line tools. Open a command-prompt and run::
 
