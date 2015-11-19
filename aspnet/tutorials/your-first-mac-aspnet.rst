@@ -96,8 +96,8 @@ The sample we're using is configured to use Kestrel as its web server. You can s
     "version": "1.0.0-*",
   
     "dependencies": {
-      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8"
+      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+      "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
     },
   
     "commands": {
