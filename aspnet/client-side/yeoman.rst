@@ -40,7 +40,11 @@ be loaded into Visual Studio 2015 or run from the command line. The generator cr
 
 This walkthrough demonstrates how to use Yeoman to generate an ASP.NET 5 web application. 
  
-1. Follow the instructions on http://yeoman.io/learning/ to install **yo** and other required tools. 
+1. On the command line, install **yo** and its required tooling:
+
+.. code-block:: console
+
+ npm install -g yo bower gulp
 
 2. On the command line, install the ASP.NET generator:  
 
@@ -90,6 +94,8 @@ The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ create
  yo aspnet --grunt
  
 The generator also configures **package.json** to load Grunt or Gulp dependencies and adds bower.json and .bowerrc files to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
+
+.. note:: To support the use of Grunt, open a command shell and install the Grunt command line interface globally like so: ``npm install -g grunt-cli``
 
 Building and Running from Visual Studio
 ---------------------------------------
