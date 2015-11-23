@@ -131,7 +131,7 @@ In order for your Web app to serve a default page without the user having to ful
     app.UseStaticFiles();
     ...
 
-If you call the ``'UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
+If you call the ``UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
 
   - default.htm
   - default.html
