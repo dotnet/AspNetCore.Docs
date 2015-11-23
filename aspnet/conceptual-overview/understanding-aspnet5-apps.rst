@@ -210,7 +210,7 @@ Then, update the controller as shown:
 		public IActionResult About()
 		{
 			string appName = _config["ApplicationName"];
-			ViewData["Message"] = "You application name: " + appName;
+			ViewData["Message"] = "Your application name: " + appName;
 
 			return View();
 		}
