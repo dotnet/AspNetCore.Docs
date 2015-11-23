@@ -230,7 +230,7 @@ namespace MvcMovie.Controllers
 
             var GenreList = new List<string>();
             GenreList.AddRange(GenreQry.Distinct());
-            ViewData["GenreList"]= new SelectList(GenreList);
+            ViewData["movieGenre"]= new SelectList(GenreList);
 
             var movies = from m in _context.Movie
                          select m;
