@@ -17,7 +17,7 @@ First, make sure you have :doc:`installed ASP.NET on your Mac OS X machine </get
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
-You can quickly scaffold a new ASP.NET 5 or DNX application on a Mac using :doc:`Yeoman </client-side/yeoman>`. 
+You can quickly scaffold a new ASP.NET 5 or DNX application on a Mac using :doc:`Yeoman </client-side/yeoman>`.
 
 First install Yeoman by following the `instructions <http://yeoman.io/learning/index.html>`__ on the Yeoman site.
 
@@ -46,7 +46,7 @@ To get started with your first ASP.NET application on a Mac, select File -> Open
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
-Visual Studio Code may detect that you need to restore dependencies, as shown in this screenshot: 
+Visual Studio Code may detect that you need to restore dependencies, as shown in this screenshot:
 
 .. image:: your-first-mac-aspnet/_static/vscode-restore.png
 
@@ -62,7 +62,7 @@ This empty project template simply displays "Hello World!". Open ``Startup.cs`` 
 
 .. image:: your-first-mac-aspnet/_static/vscode-startupcs.png
 
-If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
+If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
 
 In the left navigation bar, there are four icons, representing four viewlets:
   - Explore
@@ -89,24 +89,23 @@ The sample we're using is configured to use Kestrel as its web server. You can s
 
 .. code-block:: json
   :linenos:
-  :emphasize-lines: 7,11
-  
+  :emphasize-lines: 6,10
+
   {
-    "webroot": "wwwroot",
     "version": "1.0.0-*",
-  
+
     "dependencies": {
-      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8"
+      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+      "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
     },
-  
+
     "commands": {
-      "kestrel": "Microsoft.AspNet.Server.Kestrel"
+      "web": "Microsoft.AspNet.Server.Kestrel"
     },
     // more deleted
   }
 
-Run the ``dnx kestrel`` command to launch the web application locally:
+Run the ``dnx web`` command to launch the web application locally:
 
 .. image:: your-first-mac-aspnet/_static/dnx-kestrel.png
 
@@ -120,10 +119,11 @@ We can update the application to output information to the console whenever a re
 
 .. code-block:: c#
   :linenos:
-  :emphasize-lines: 5
-  
+  :emphasize-lines: 6
+
   public void Configure(IApplicationBuilder app)
   {
+      app.UseIISPlatformHandler();
       app.Run(async (context) =>
       {
           Console.WriteLine("Request for " + context.Request.Path);
@@ -140,7 +140,7 @@ As you can see, it's quite straightforward, especially if you're already familia
 Publishing to Azure
 -------------------
 
-Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on `Microsoft Azure <http://azure.microsoft.com>`_. 
+Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on `Microsoft Azure <http://azure.microsoft.com>`_.
 
 Initialize Git
 ^^^^^^^^^^^^^^
@@ -156,7 +156,7 @@ Initialize Azure Website
 
 You can deploy to Azure Web Apps directly using Git. Azure also supports other publishing workflows, but being able to simply perform a ``git push`` to a remote can be a very convenient way to make updates.
 
-First, `create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
+First, `create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__.
 
 Next, configure the Web App in Azure to support `continuous deployment using Git <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`__.
 
@@ -176,10 +176,11 @@ At this point, you can make additional changes to the application, commit them, 
 
 .. code-block:: c#
   :linenos:
-  :emphasize-lines: 6
-  
+  :emphasize-lines: 7
+
   public void Configure(IApplicationBuilder app)
   {
+      app.UseIISPlatformHandler();
       app.Run(async (context) =>
       {
           Console.WriteLine("Request for " + context.Request.Path);
