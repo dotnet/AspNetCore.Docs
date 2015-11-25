@@ -1,95 +1,92 @@
 Building Projects with Yeoman
 =============================
-By `Noel Rice`_, `Scott Addie`_
+By `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
 
-`Yeoman <http://yeoman.io/>`_ generates complete, running projects for a given set of client-tools. You may be overwhelmed by "feature-shock" for the latest glut of client-tools (NPM, Gulp, Angular, etc.) or have simply run out of time to work through each feature set, much less the details, of every client tool. Yeoman generates everything you need to get over your first hurdle, the "hello world" that demonstrates that a group of technologies function together. 
+`Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client-tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
 
-Yeoman is an open-source tool that works like a Visual Studio project template, but targets a wide developer audience that ranges from Ruby, browser extensions, PhoneGap, Facebook React, jQuery Mobile, and Microsoft technologies like ASP.NET.
+.. contents:: Sections:
+ :local:
+ :depth: 1
 
-Yeoman is opinionated; it prescribes tools and best practices for your target technologies so you don't have to decide "Use version X or Y?" or "What directory structure should I use?" Yeoman gets you started with a known-good project that runs.
+Install Node.js, npm, and Yeoman
+------------------------------------
 
-The Yeoman command line tool **yo** works alongside a Yeoman generator. Generators define the technologies that go into a project. Here are a few sample `generators <http://yeoman.io/generators/>`_:
-
-- `AngularJS Generator <https://github.com/yeoman/generator-angular>`_ creates a starting point for a new Angular single page application. 
-- `JQuery Generator <https://github.com/yeoman/generator-jquery>`_ creates the shell code for a jQuery plugin.
-- `Chrome App Generator <https://github.com/yeoman/generator-chromeapp>`_ generates everything you need to create an extension for the Chrome browser.
-- The `Flux-React generator <https://github.com/banderson/generator-flux-react>`_ creates an application based on Facebook's Flux/React architecture.
-- `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates ASP.NET 5 DNX projects.
-- You can even `generate your own Yeoman generator <https://github.com/yeoman/generator-generator>`_.
-
-In this article:
-  - `Getting Started`_
-  - `Building and Running from Visual Studio`_
-  - `Client-Side Build Support`_
-  - `Restoring, Building, and Hosting from the Command Line`_
-  - `Adding to Your Project with Sub Generators`_
-
-Getting Started
----------------
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates ASP.NET 5 DNX projects that can 
-be loaded into Visual Studio 2015 or run from the command line. The generator creates the following project types:
-
-- **Empty Application**: An empty Web application with minimal dependencies.     
-- **Console Application**: A DNX-based console application.
-- **Web Application**: A complete MVC web application with a simple home page and examples for managing accounts and login.
-- **Web Application Basic**: A simpler MVC web application lacking membership and authorization, among other advanced features which are found only in the **Web Application** generator.   
-- **Web API Application**: A Web API built with MVC.   
-- **Nancy ASP.NET Application**: A lightweight HTTP service with one module built using `Nancy <http://nancyfx.org/>`_.
-- **Class Library**: A DNX-based class library.
-- **Unit Test project**: A simple `XUnit <http://xunit.github.io/>`_ test project. 
-
-This walkthrough demonstrates how to use Yeoman to generate an ASP.NET 5 web application. 
+- Install `Node.js <https://nodejs.org/en/>`__. The installer includes `Node.js <https://nodejs.org/en/>`__ and `npm <https://www.npmjs.com/>`__.
  
-1. Follow the instructions on http://yeoman.io/learning/ to install **yo** and other required tools. 
+- Follow the instructions on http://yeoman.io/learning/ to install `yo <https://github.com/yeoman/yo>`__, bower, grunt, and gulp.
 
-2. On the command line, install the ASP.NET generator:  
+	- ``npm install -g yo bower grunt-cli gulp``
+	
+.. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` Run the command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
+
+- From the command line, install the ASP.NET generator: 
 
 .. code-block:: console
 
  npm install -g generator-aspnet
-
-.. note:: The ``–g`` flag installs the generator globally, so that it can be used from any path on your system.
  
-3. Create the new directory in which the project will be generated:
+.. note:: If you get a permission error, run the command under ``sudo`` as described above.
+
+- 	- The ``–g`` flag installs the generator globally, so that it can be used from any path.
+
+Create an ASP.NET app
+-------------------------
+ 
+- Create a directory for the project
 
 .. code-block:: console
 
  mkdir C:\MyYo
-
-4. On the command line, make the new directory the current directory:
-
-.. code-block:: console
- 
  cd C:\MyYo
 
-5. Run the ``yo`` command, providing the ``aspnet`` alias for the ASP.NET generator:
+- Run the ASP.NET generator for ``yo``
 
 .. code-block:: console 
 
  yo aspnet
-
-6. The generator displays a menu. Arrow down to the **Web Application** project type and press ``Enter`` to select it:
+ 
+- The generator displays a menu. Arrow down to the **Web Application** project and tap **Enter**:
 
 .. image:: yeoman/_static/yeoman-yo-aspnet.png
 
-7. Provide an application name of "MyWebApp" and press ``Enter``:
+- Use "MyWebApp" for the app name and then tap **Enter** :
 
-.. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
+	.. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
 
-Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands. 
+	Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands. 
 
-.. image:: yeoman/_static/yeoman-yo-aspnet-created.png
+	.. image:: yeoman/_static/yeoman-yo-aspnet-created.png
 
-Client-Side Build Support
--------------------------
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET 5 DNX projects that can be loaded into Visual Studio 2015 or run from the command line. 
 
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A `Grunt or a Gulp task runner <http://docs.asp.net/en/latest/client-side/grunt-gulp.html>`_ file is added to your project to automate build tasks for Web Application projects. By default, the generator creates **gulpfile.js** to run tasks. Running the generator with the ``--grunt`` argument generates **Gruntfile.js** instead:
+If you were redirected to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
+
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates the following project types:
+
+- **Empty Application**: An empty Web application with minimal dependencies. 
+- **Console Application**: A DNX-based console application.
+- **Web Application**: A complete MVC web application with a simple home page and examples for managing accounts and login.
+- **Web Application Basic**: A simpler MVC web application lacking membership and authorization, among other advanced features which are found only in the **Web Application** generator. 
+- **Web API Application**: A Web API built with MVC. 
+- **Nancy ASP.NET Application**: A lightweight HTTP service with one module built using `Nancy <http://nancyfx.org/>`_.
+- **Class Library**: A DNX-based class library.
+- **Unit Test project**: A simple `XUnit <http://xunit.github.io/>`_ test project. 
+
+Setting Grunt as the task runner
+---------------------------------
+
+:doc:`Grunt </client-side/using-grunt>`
+:doc:`Gulp </client-side/using-gulp>`
+
+The ASP.NET 5 Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio 2015. 
+
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` task runner file is added to your project to automate build tasks for Web projects. The default generator creates *gulpfile.js* to run tasks. Running the generator with the ``--grunt`` argument generates *Gruntfile.js*:
 
 .. code-block:: console 
 
  yo aspnet --grunt
  
-The generator also configures **package.json** to load Grunt or Gulp dependencies and adds bower.json and .bowerrc files to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_.  
+The generator also configures *package.json* to load :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` dependencies. It also adds *bower.json* and *.bowerrc* files to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_. 
 
 Building and Running from Visual Studio
 ---------------------------------------
@@ -109,14 +106,13 @@ You can load your generated ASP.NET 5 web project directly into Visual Studio 20
 3.	When all the dependencies are restored, press **F5** to run the project. The default home page displays in the browser.
  
  .. image:: yeoman/_static/yeoman-home-page.png 
- 
+
 Restoring, Building, and Hosting from the Command Line
 ------------------------------------------------------
 
-You can prepare and host your web application using commands **dnu** (Microsoft .NET Development Utility) and 
-**dnx** (Micorosft .NET Execution Environment). 
+You can prepare and host your web application using commands **dnu** (Microsoft .NET Development Utility) and **dnx** (Micorosft .NET Execution Environment). 
 
-.. note:: For more information on DNX, see :doc:`/dnx/overview`  
+.. note:: For more information on DNX, see :doc:`/dnx/overview` 
 
 1. From the command line, change the current directory to the folder containing the project (that is, the folder containing the `project.json` file):
 
@@ -124,7 +120,7 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 
  cd C:\MyYo\MyWebApp 
  
-2. From the command line, restore the project's NuGet package dependencies:   
+2. From the command line, restore the project's NuGet package dependencies: 
 
 .. code-block:: console
 
@@ -145,15 +141,15 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 This will execute the corresponding ``web`` command in the ``commands`` section of the project.json file:
 
 .. code-block:: c#
-  :linenos:
-  :emphasize-lines: 2
+ :linenos:
+ :emphasize-lines: 2
 
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
+ "commands": {
+ "web": "Microsoft.AspNet.Server.Kestrel",
+ "ef": "EntityFramework.Commands"
+ },
 
-The cross-platform Kestrel web server will begin listening on port 5000:
+The cross-platform `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ web server will begin listening on port 5000:
 
 .. image:: yeoman/_static/yeoman-web-server-started.png
 
@@ -175,21 +171,24 @@ The result is a file named Person.cs with a class named ``Person``:
 
 .. code-block:: c#
 
-  using System;
-  using System.Collections.Generic;
-  using System.Linq;
-  using System.Threading.Tasks;
-  
-  namespace MyNamespace
-  {
-      public class Person
-      {
-          public Person()
-          {
-          }
-      }
-  }
+ using System;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Threading.Tasks;
  
-Summary
--------
-Yeoman generates complete running projects for a wide range of technology combinations. The generated files can be loaded into Visual Studio. Task Runner Explorer and other Visual Studio tooling help configure and automate unfamiliar technologies in a familiar environment. 
+ namespace MyNamespace
+ {
+ public class Person
+ {
+ public Person()
+ {
+ }
+ }
+ }
+ 
+Related Resources
+-----------------
+
+- `HttpPlatformHandler, Kestrel and WebListener <https://github.com/aspnet/Home/wiki/Servers>`__
+- :doc:`/tutorials/your-first-mac-aspnet`
+- :doc:`/fundamentals/index` 
