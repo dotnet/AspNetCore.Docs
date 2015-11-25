@@ -10,7 +10,7 @@ In this article:
 	- `Built-in middleware`_
 	- `Writing middleware`_
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/middleware/_static/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/middleware/sample>`_. 
 
 What is middleware
 ------------------
