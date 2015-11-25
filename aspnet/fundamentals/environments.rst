@@ -10,7 +10,7 @@ In this article:
 	- `Determining the environment at runtime`_
 	- `Startup conventions`_
 
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/environments/sample>`_.
+`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/environments/sample>`_.
 
 Development, Staging, Production
 --------------------------------
