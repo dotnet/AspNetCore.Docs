@@ -137,9 +137,9 @@ Next, add a task to run less, using the syntax shown here:
 .. code-block:: javascript
 
 	gulp.task("less", function () {
-    return gulp.src('Styles/main.less')
-            .pipe(less())
-            .pipe(gulp.dest(project.webroot + '/css'))
+		return gulp.src('Styles/main.less')
+			.pipe(less())
+			.pipe(gulp.dest(project.webroot + '/css'));
 	});
 
 Open the Task Runner Explorer (view>Other Windows > Task Runner Explorer). Among the tasks, you should see a new task named ``less``. Run it, and you should have output similar to what is shown here:
@@ -363,7 +363,7 @@ Next, modify gulpfile.js to add a sass variable and a task to compile your Sass 
 	gulp.task("sass", function () {
 		return gulp.src('Styles/main2.scss')
 			.pipe(sass())
-			.pipe(gulp.dest(project.webroot + '/css'))
+			.pipe(gulp.dest(project.webroot + '/css'));
 	});
 
 Now you can add the Sass file main2.scss to the Styles folder in the root of the project:
