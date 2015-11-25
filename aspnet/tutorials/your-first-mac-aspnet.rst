@@ -133,7 +133,7 @@ Initialize Git in the folder you're working in. Tap on the Git viewlet and click
 
 Add a commit message and tap enter or tap the checkmark icon to commit the staged files. 
 
-.. image:: your-first-mac-aspnet/_static/init_commit.png
+.. image:: your-first-mac-aspnet/_static/init_commit.PNG
 
 Git is tracking changes, so if you make an update to a file, the Git viewlet will display the files that have changed since your last commit.
 
