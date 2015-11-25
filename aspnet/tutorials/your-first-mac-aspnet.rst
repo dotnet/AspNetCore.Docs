@@ -1,60 +1,46 @@
 Your First ASP.NET 5 Application on a Mac
 =========================================
 
-By `Steve Smith`_, `Daniel Roth`_
+By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
 
-ASP.NET 5 is cross-platform and can be developed and run on Mac OS X as well as Linux and Windows. See how you can quickly install, scaffold, run, debug, and deploy ASP.NET applications on a Mac.
+ASP.NET 5 is cross-platform; you can develop and run web apps on Mac OS X, Linux and Windows. This article will show you how to write your first ASP.NET 5 application on a Mac.
 
-.. contents:: In this article:
+.. contents:: Sections:
   :local:
   :depth: 1
 
 Setting Up Your Development Environment
 ---------------------------------------
 
-First, make sure you have :doc:`installed ASP.NET on your Mac OS X machine </getting-started/installing-on-mac>`. This step will include installing the .NET Execution Environment (DNX) and the .NET Version Manager (DNVM). You can check which DNX version you have active by running ``dnvm list``.
+- :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`
+
+- Check which DNX version you have active by running ``dnvm list``
 
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
-You can quickly scaffold a new ASP.NET 5 or DNX application on a Mac using :doc:`Yeoman </client-side/yeoman>`. 
-
-First install Yeoman by following the `instructions <http://yeoman.io/learning/index.html>`__ on the Yeoman site.
-
-Install the `OmniSharp ASP.NET generators <https://github.com/omnisharp/generator-aspnet>`__ by running::
-
-  npm install -g generator-aspnet
-
-Create a folder for your solution and then add an ``src`` subfolder for your project source code.
-
-Run the aspnet generator::
-
-  yo aspnet
-
-For the purposes of this tutorial select `Empty Application` to create an empty ASP.NET 5 app.
-
-.. image:: your-first-mac-aspnet/_static/yo-aspnet.png
+Follow the instruction in :doc:`/client-side/yeoman` to create an MVC 6 project.
 
 Developing ASP.NET Applications on a Mac With Visual Studio Code
 ----------------------------------------------------------------
 
-Now, install Visual Studio Code from https://code.visualstudio.com. The first time you run Visual Studio Code should see a welcome screen:
+- Start **Visual Studio Code**
 
 .. image:: your-first-mac-aspnet/_static/vscode-welcome.png
 
-To get started with your first ASP.NET application on a Mac, select File -> Open and choose the folder with your ASP.NET application.
+.. note:: If **Visual Studio Code** is not installed, see :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`. 
+
+- Tap **File > Open** and navigate to your ASP.NET app
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
-Visual Studio Code may detect that you need to restore dependencies, as shown in this screenshot: 
+.. TODO When I run ``command shift p`` and then type ``>dnx restore`` I get the error omnisharp server is not running.
 
-.. image:: your-first-mac-aspnet/_static/vscode-restore.png
+From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` and then type ``>d`` as shown:
 
-From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can press ``command shift p`` and then type ``>d`` as shown:
+.. image:: your-first-mac-aspnet/_static/dnx_restore.png
 
-.. image:: your-first-mac-aspnet/_static/vscode-commands.png
-
-This will allow you to run commands directly from within Visual Studio Code, including ``dnu restore`` and any commands defined in ``project.json``.
+This will allow you to run commands directly from within Visual Studio Code, including ``dnx restore`` and any commands defined in the *project.json* file.
 
 At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
 
@@ -65,10 +51,11 @@ This empty project template simply displays "Hello World!". Open ``Startup.cs`` 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
 
 In the left navigation bar, there are four icons, representing four viewlets:
-  - Explore
-  - Search
-  - Git
-  - Debug
+
+- Explore
+- Search
+- Git
+- Debug
 
 The Explore viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
 
@@ -85,57 +72,53 @@ Finally, Code's editor has a ton of great features. You should note right away t
 Running Locally Using Kestrel
 -----------------------------
 
-The sample we're using is configured to use Kestrel as its web server. You can see it configured in the ``project.json`` file, where it is specified as a dependency and as a command.
+The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency and as a :doc:`command </dnx/commands>`.
 
 .. code-block:: json
-  :linenos:
-  :emphasize-lines: 7,11
-  
+ :linenos:
+ :emphasize-lines: 14, 18
+ 
   {
-    "webroot": "wwwroot",
     "version": "1.0.0-*",
-  
+    "userSecretsId": "aspnet5-MyWebApp-a1b07c55-6f20-4aaf-9852-9c964160a00c",
+    "compilationOptions": {
+      "emitEntryPoint": true
+    },
+    "tooling": {
+      "defaultNamespace": "MyWebApp"
+    },
+
     "dependencies": {
-      "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+      "EntityFramework.Commands": "7.0.0-rc1-final",
+      // Dependencies deleted for brevity.
       "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
     },
-  
+
     "commands": {
-      "web": "Microsoft.AspNet.Server.Kestrel"
+      "web": "Microsoft.AspNet.Server.Kestrel",
+      "ef": "EntityFramework.Commands"
     },
-    // more deleted
+
+    // Markup deleted for brevity.
+
+    "scripts": {
+      "prepublish": [
+        "npm install",
+        "bower install",
+        "gulp clean",
+        "gulp min"
+      ]
+    }
   }
 
-Run the ``dnx web`` command to launch the web application locally:
+- Run the ``dnx web`` command to launch the app
 
-.. image:: your-first-mac-aspnet/_static/dnx-kestrel.png
-
-Navigate to ``localhost:5000`` and you should see:
+- Navigate to ``localhost:5000``:
 
 .. image:: your-first-mac-aspnet/_static/hello-world.png
 
-To stop the web server once you've started it simply press ``Ctrl+C``.
+- To stop the web server enter ``Ctrl+C``.
 
-We can update the application to output information to the console whenever a request is received. Update the ``Configure`` method as follows:
-
-.. code-block:: c#
-  :linenos:
-  :emphasize-lines: 5
-  
-  public void Configure(IApplicationBuilder app)
-  {
-      app.Run(async (context) =>
-      {
-          Console.WriteLine("Request for " + context.Request.Path);
-          await context.Response.WriteAsync("Hello World!");
-      });
-  }
-
-Save the file and restart the web server. Make a few requests to the URL. You should see the request information output in the Terminal window (recall that most browsers will automatically attempt to request a ``favicon.ico`` file when making a request to a new domain):
-
-.. image:: your-first-mac-aspnet/_static/kestrel-logging.png
-
-As you can see, it's quite straightforward, especially if you're already familiar with command line tooling, to get started building ASP.NET applications using Visual Studio Code on Mac OS X.
 
 Publishing to Azure
 -------------------
@@ -145,51 +128,43 @@ Once you've developed your application, you can easily use the Git integration b
 Initialize Git
 ^^^^^^^^^^^^^^
 
-First, if you haven't already done so, initialize Git in the folder you're working in. Simply click on the Git viewlet and click the ``Initialize Git repository`` button.
+Initialize Git in the folder you're working in. Tap on the Git viewlet and click the ``Initialize Git repository`` button.
 
 .. image:: your-first-mac-aspnet/_static/vscode-git-commit.png
 
-Add a commit message as shown in the image above, and press enter or click the checkmark icon to commit the staged files. Now Git is tracking changes, so if you make an update to a file, the Git viewlet will display how many files have changed since your last commit.
+Add a commit message and tap enter or tap the checkmark icon to commit the staged files. 
+
+.. image:: your-first-mac-aspnet/_static/init_commit.PNG 
+
+Git is tracking changes, so if you make an update to a file, the Git viewlet will display the files that have changed since your last commit.
 
 Initialize Azure Website
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can deploy to Azure Web Apps directly using Git. Azure also supports other publishing workflows, but being able to simply perform a ``git push`` to a remote can be a very convenient way to make updates.
+You can deploy to Azure Web Apps directly using Git. 
 
-First, `create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
+- `Create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
 
-Next, configure the Web App in Azure to support `continuous deployment using Git <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`__.
+- Configure the Web App in Azure to support `continuous deployment using Git <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`__.
 
-Note the Git URL for the Web App from the Azure portal:
+Record the Git URL for the Web App from the Azure portal:
 
 .. image:: your-first-mac-aspnet/_static/azure-portal.png
 
-In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously, and then perform ``git push azure master`` to deploy. You should see output similar to the following:
+- In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
 
-.. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
+  - ``git remote add azure https://Rick-Anderson@rickmac.scm.azurewebsites.net:443/rickmac.git``
+	
+- Push to master.
 
-Now you can browse to your Web App and you should see your newly deployed application.
+  - ``git push azure master`` to deploy. 
 
-.. image:: your-first-mac-aspnet/_static/azure-hello-world.png
+	.. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
-At this point, you can make additional changes to the application, commit them, and whenever you're ready to deploy, simply perform another ``git push azure master`` from a Terminal prompt. To demonstrate, let's update the message being printed:
+- Browse to the newly deployed web app.
 
-.. code-block:: c#
-  :linenos:
-  :emphasize-lines: 6
-  
-  public void Configure(IApplicationBuilder app)
-  {
-      app.Run(async (context) =>
-      {
-          Console.WriteLine("Request for " + context.Request.Path);
-          await context.Response.WriteAsync("Hello Azure from ASP.NET 5 and Visual Studio Code!");
-      });
-  }
+.. image:: your-first-mac-aspnet/_static/azure.png
 
-Save the changes. Commit them using the git viewlet. Run ``git push azure master`` from a Terminal prompt, once more. Then refresh your browser:
-
-.. image:: your-first-mac-aspnet/_static/azure-hello-from-vscode.png
 
 Additional Resources
 --------------------
@@ -197,4 +172,3 @@ Additional Resources
 - `Visual Studio Code <https://code.visualstudio.com>`__
 - :doc:`/client-side/yeoman`
 - :doc:`ASP.NET Fundamentals </fundamentals/index>`
-
