@@ -34,7 +34,6 @@ Cons:
 
 - A subset of .NET Framework
 - Modular runtime and library
-- Feature complete on Windows, and in-progress builds exist for both Linux and OS X. 
 - Open-source. You can follow progress on the project, track issues, and contribute to it on `GitHub <https://github.com/dotnet>`_.
 - Componentized set of libraries which allows you to limit the API surface area your app. You just add the components you need. 
 - Allows you to run .NET Core based apps on much more constrained environments (for example, `Windows Server Nano <http://blogs.technet.com/b/windowsserver/archive/2015/04/08/microsoft-announces-nano-server-for-modern-apps-and-cloud.aspx>`_).
@@ -48,7 +47,7 @@ The CoreCLR runtime and CoreFX libraries are distributed via `NuGet <https://www
 
 The API factoring in .NET Core was architected for componentization. This means that existing libraries built for the .NET Framework generally need to be recompiled to run on .NET Core. The ecosystem is relatively new, but it is rapidly growing with the support of popular .NET packages like `JSON.NET <https://github.com/JamesNK/Newtonsoft.Json>`__, `AutoFac <http://autofac.org/>`__, `xUnit <https://github.com/xunit/xunit>`__  and many others.
 
-Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. However, the .NET Core support for Mac and Linux is still very new and not ready for production workloads.
+Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. 
 
 Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET Core has to offer.
 
