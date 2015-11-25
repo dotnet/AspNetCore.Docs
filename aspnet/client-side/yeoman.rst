@@ -2,7 +2,7 @@ Building Projects with Yeoman
 =============================
 By `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
 
-`Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client-tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
+`Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
 
 .. contents:: Sections:
  :local:
@@ -140,7 +140,7 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 
 This will execute the corresponding ``web`` command in the ``commands`` section of the project.json file:
 
-.. code-block:: c#
+.. code-block:: json
  :linenos:
  :emphasize-lines: 2
 
