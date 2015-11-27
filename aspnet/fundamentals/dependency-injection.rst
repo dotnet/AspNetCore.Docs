@@ -130,7 +130,7 @@ Next, in ``ConfigureServices``, each type is added to the container according to
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 88-93
+  :lines: 66-71
   :linenos:
   :dedent: 12
 
