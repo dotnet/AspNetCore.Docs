@@ -86,7 +86,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 - Open a Command Prompt and navigate to the folder of project.json for your project.
 - Use DNVM (.NET Version Manager) to set a runtime version by running **dnvm use 1.0.0-beta8**
 - Install the SecretManager tool using DNU (Microsoft .NET Development Utility) by running **dnu commands install Microsoft.Framework.SecretManager**
-- Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId 862373430475128**
+- Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId <value-from-app-Id-field>**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>**
 - The following code in the template reads the configuration values from the SecretManager. To learn more about SecretManager see `Secret Manager <https://github.com/aspnet/Home/wiki/DNX-Secret-Configuration>`_
 
