@@ -10,6 +10,11 @@ In this article:
     - `Migrate configuration from config to code`_
     - `Notes on Automatic Migrations`_
     
+Prerequisites
+-------------
+    
+Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7. 
+
 Setup connection strings and dependency injection
 -------------------------------------------------
 
@@ -27,7 +32,7 @@ In your ``DbContext`` subclass, ensure you have a constructor which takes the co
         }
     }
 
-And in your ``Startup`` class in ``ConfigureServices`` add your context with it's connection string as so:
+In the ``Startup`` class within ``ConfigureServices`` add factory method of your context with it's connection string. Context should be resolved once per scope to ensure performance and ensure reliable operation of Entity Framework. 
 
 .. code-block:: c#
     :linenos:
@@ -118,10 +123,11 @@ Notes on Automatic Migrations
 
 .. note:: Valid with RC1 (early November 2015)
 
-As noted by `Rowan Miller on GitHub <https://github.com/aspnet/Docs/issues/633#issuecomment-158542498>`_ Migration commands won't work because xproj does not support loading commands into Package Manager Console (this will change for RTM though).
+As noted by `Rowan Miller on GitHub <https://github.com/aspnet/Docs/issues/633#issuecomment-158542498>`_ Migration commands won't work because .xproj does not support loading commands into Package Manager Console (this will change for RTM though).
 
 Summary
 -------
+Entity Framework 6 is an object relational mapping (ORM) library, that is capable of mapping your classes to database entities with little effort. These features made it very popular so migrating large portions of code may be undesirable for many projects. This article shows how to avoid migration to focus on other new features of ASP.NET.
 
 Additional Resources
 --------------------
