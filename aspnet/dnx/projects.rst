@@ -1,6 +1,8 @@
 Working with DNX Projects
 =========================
 
+By `Erik Reitan`_ 
+
 DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
 In this article:
