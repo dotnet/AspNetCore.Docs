@@ -4,5 +4,5 @@ Getting Started
 .. toctree::
    :titlesonly:
 
-   first-mvc-app
+   first-mvc-app/index
    first-web-api

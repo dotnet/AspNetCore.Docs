@@ -93,8 +93,8 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
   :language: c#
-  :lines: 29-40
-  :emphasize-lines: 10
+  :lines: 22-33
+  :emphasize-lines: 8
   :dedent: 12
 
 Enable Facebook middleware

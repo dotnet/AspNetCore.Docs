@@ -31,7 +31,7 @@ import shlex
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.intersphinx',
+    'sphinx.ext.intersphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -125,6 +125,13 @@ if not on_rtd:
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+else:
+    extensions.append('yasfb')
+    feed_num_items = 15
+    feed_skip_regex = '(.)*index'
+    feed_base_url = 'http://docs.asp.net/projects/mvc/en/latest'
+    feed_description = 'ASP.NET MVC Documentation'
+    feed_author = 'Microsoft'
 
 def setup(app):
     app.add_stylesheet('custom.css?v=1')

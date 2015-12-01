@@ -8,7 +8,7 @@
 ASP.NET 5 Documentation
 =======================
 
-.. attention:: ASP.NET 5 beta8 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
+.. attention:: ASP.NET 5 RC1 is now available! Please see the :doc:`Getting Started <getting-started/index>` instructions for installing the latest version.
 
 .. include:: ../common/stub-overview.txt
 
@@ -43,7 +43,7 @@ Related Resources
 -----------------
 
 * :ref:`.NET Core Documentation <dotnet:index>`
-* `Entity Framework <http://ef.readthedocs.org>`_
+* `Entity Framework <http://docs.efproject.net>`_
 
 Contribute
 ----------

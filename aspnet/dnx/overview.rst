@@ -79,7 +79,7 @@ A command is a named execution of a .NET entry point with specific arguments. Yo
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
   :linenos:
   :language: json
-  :lines: 32-35
+  :lines: 30-33
   :dedent: 2
 
 You can then use DNX to execute the commands defined by your project, like this::

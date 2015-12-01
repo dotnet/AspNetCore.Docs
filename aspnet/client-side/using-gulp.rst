@@ -1,220 +1,284 @@
 Using Gulp
-========================================
+==========
 
-By `Noel Rice`_ and `Mike Wasson`_
+By `Erik Reitan`_  
 
 Modern web development has lots of moving parts. To build a typical web app, you might:
 
+-	Bundle and minify your JS  and CSS files.
+-	Run tools to that call your bundling and minifying tasks before each build.
 -	Compile LESS or SASS files to CSS.
 -	Compile CoffeeScript or TypeScript files to JS.
--	Bundle and minify your JS files.
--	Run tools like JSHint.
 
-A *task runner* is an app that automates these routine development tasks. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners, `Gulp <http://gulpjs.com>`_ and `Grunt <http://gruntjs.com/>`_. 
+A *task runner* is an app that automates these routine development tasks. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners, `Gulp <http://gulpjs.com>`__ and `Grunt <http://gruntjs.com/>`_. 
 
-Using Gulp
-----------
-This topic will cover the following typical steps in using Gulp in your ASP.NET project.
+Bundling and Minification in Visual Studio using Gulp
+-----------------------------------------------------
+You may be familiar with *runtime* bundling and minification using ASP.NET Web Optimization. In ASP.NET 5, you can bundle and minify your client-side resources during *design-time*. Using design-time bundling and minification, you build your minified files up front and then deploy them with your app as static files. By bundling and minifying up front, you have the advantage of fewer moving parts and reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only work with static files.
 
--	Use NPM to add the Gulp.js package.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event occurs in a build environment. The advantages of using gulp include automating common development processes, simplifying repetitive tasks, and speeding up overall development. For instance, you can use gulp to automate your minification processes or clean your development environment before a new build.
 
--	Use NPM to add one or more `Gulp plugins <http://gulpjs.com/plugins>`_. By itself, Gulp is just an engine for running tasks. Plugins are the modules that actually do the work.
+The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality that demonstrates many aspects of ASP.NET. The template also includes the Node Package Manager (`npm <https://www.npmjs.com/>`_) and gulp by default, which makes it easy to add bundling and minification to a project.
 
--	Define Gulp tasks.
+.. note:: You don't need ASP.NET 5 Web Application project template or Visual Studio to implement bundling and minification. For instance, you can create an ASP.NET project using Yeoman, push it to GitHub, clone it on a Mac, and then bundle and minify the project.
 
--	Run tasks in Task Runner Explorer.
-
--	Bind tasks to build events.
-
-ASP.NET Project Templates
--------------------------
-New ASP.NET Web Applications created in Visual Studio 2015 start with the *Empty*, *Web API", and *Web Site* templates. The *Web Site* template includes NPM and Gulp by default. NPM is preconfigured to add the Gulp.js package. Gulp is configured to copy Bootstrap, Hammer and jQuery client libraries to your web app directory.       
-
-Add the Gulp package
---------------------
-NPM (Node Package Manager) is a package manager that was originally created for Node.js. We'll use NPM to install the Gulp.js package.
-Add an NPM configuration file.
-
-1.	In Solution Explorer, right-click the project.
-
-#.	Select **Add** > **New Item**.
-
-#.	Select **NPM configuration file**.
-
-#.	Leave the default name, "package.json".
-
-#.	Click **Add**.
-
-Open package.json. In the dependencies section, add an entry for "gulp":
+When you create a new web project using ASP.NET 5 Web Application template, Visual Studio includes the `Gulp.js NuGet package <https://github.com/koistya/nuget-gulp>`_, the *gulpfile.js* file, and a set of gulp dependencies. The NuGet package contains all that is needed to install, run, update, and uninstall gulp for your Visual Studio project. The *gulpfile.js* file contains JavaScript that defines a set of gulp tasks that you can run using the **Task Runner Explorer** in Visual Studio. The ```devDependencies`` in the *package.json* file specifies the build tools to download. You can add new packages to ``devDependencies`` and save the file:
 
 .. code-block:: javascript
-   :emphasize-lines: 6
 
 	{
-	  "version": "1.0.0",
-	  "name": "MyWebApp",
-	  "private": true,
+	  "name": "ASP.NET",
+	  "version": "0.0.0",
 	  "devDependencies": {
-	    "gulp": "3.9.0"
+		"gulp": "3.8.11",
+		"gulp-concat": "2.5.2",
+		"gulp-cssmin": "0.1.7",
+		"gulp-uglify": "1.2.0",
+		"rimraf": "2.2.8"
 	  }
 	}
 
-The packages are identified using the numbering scheme **<major>.<minor>.<patch>** according to the `SemVer <http://semver.org/>`_ (semantic versioning) standard.
+Visual Studio will download any packages you add. In **Solution Explorer** you can find the gulp packages in **Dependencies** > **NPM**. 
 
-After typing the name of the package and a colon, Intellisense shows a simplified list of versions with the most common choices:  
-
-.. image:: using-gulp/_static/semver.png
-
--  The top item in the Intellisense list is considered the latest stable version of the package. 
--  The carat ^ symbol matches the most recent major version.
--  The tilde ~ matches the most recent minor version. 
-
-Add the Gulp config file
-------------------------
-1.	In Solution Explorer, right-click the project.
-
-#.	Select Add > New Item.
-
-#.	Select **Gulp Configuration file**.
-
-#.	Leave the default name, "gulpfile.js".
-
-#.	Click **Add**.
-
-#.  Right-click **Dependencies** > **NPM** and select **Restore Packages** from the context menu.
-
-Define a "Hello World" task
----------------------------
-Now you're ready to define some Gulp tasks. Open gulpfile.js and add the following line.
-
-.. code-block:: javascript
-   :emphasize-lines: 4
-
-	var gulp = require('gulp');
-
-	gulp.task('default', function () {
-	    console.log('hello, world');
-	});
-
-In Solution Explorer, right-click gulpfile.js and select Task Runner Explorer. This opens the Task Runner Explorer window.
-Task Runner Explorer shows the list of Gulp tasks. So far, we've only defined one ('default').
- 
-.. image:: using-gulp/_static/task-runner-1.png
-
-Right-click the default task and select **Run**.
- 
-.. image:: using-gulp/_static/task-runner-2.png
-
-You will see the output from the task. In this case, the task just writes "hello, world" to the console.
-
-.. image:: using-gulp/_static/task-runner-3.png
-
-Use Gulp to copy files
-----------------------
-Here is an example of a more useful task.
+Gulp Default Tasks in Visual Studio
+-----------------------------------
+A default set of gulp tasks are defined in *gulpfile.js*. These tasks allow you to clean and minimize CSS and JavaScript files. The following JavaScript, from the first half of *gulpfile.js*, includes gulp modules and also specify file paths:
 
 .. code-block:: javascript
 
-	var gulp = require('gulp');
+	var gulp = require("gulp"),
+		rimraf = require("rimraf"),
+		concat = require("gulp-concat"),
+		cssmin = require("gulp-cssmin"),
+		uglify = require("gulp-uglify"),
+		project = require("./project.json");
 
 	var paths = {
-	    src: "./Assets/**/*.js",
-	    dest: "./wwwroot/js/"
-	}
+		webroot: "./" + project.webroot + "/"
+	};
 
-	gulp.task('default', function () {
-	    return gulp.src(paths.src)         // Returns a stream
-	        .pipe(gulp.dest(paths.dest))   // Pipes the stream somewhere
+	paths.js = paths.webroot + "js/**/*.js";
+	paths.minJs = paths.webroot + "js/**/*.min.js";
+	paths.css = paths.webroot + "css/**/*.css";
+	paths.minCss = paths.webroot + "css/**/*.min.css";
+	paths.concatJsDest = paths.webroot + "js/site.min.js";
+	paths.concatCssDest = paths.webroot + "css/site.min.css";
+
+The above code specifies which Node modules are required. The ``require`` function registers each module so that the related tasks can be run. Then, each module is assigned to a variable. These modules can be specified by their name or their path. You’ll see that the modules named ``gulp``, ``rimraf``, ``gulp-concat``, ``gulp-cssmin``, and ``gulp-uglify`` are specified using their name. The variable project is assigned based on the module at the path *./project.json*. Additionally, a series of paths are created so that the locations of CSS and JavaScript files can be referenced. The following table provides a list of modules and descriptions included in *gulpfile.js*.
+
+=============  ===============================================================================================================================  
+Module Name	   Description    
+=============  ===============================================================================================================================  
+gulp	       The gulp streaming build system. For more information, see `gulp <https://www.npmjs.com/package/gulp>`__.
+rimraf	       A Node deletion module. For more information, see `rimraf <https://www.npmjs.com/package/rimraf>`_.
+gulp-concat	   A module that will concatenate files based on your operating systems newline character. For more information, see `gulp-concat <https://www.npmjs.com/package/gulp-concat>`_.
+gulp-cssmin	   A module that will minify CSS files. For more information see `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`_.
+gulp-uglify	   A module that minifies *.js* files using the `UglifyJS <https://www.npmjs.com/package/gulp-cssmin>`_ toolkit. For more information, see `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`_. 
+=============  =============================================================================================================================== 
+
+Once modules are registered from *gulpfile.js*, the tasks are specified. Visual Studio 2015 registers six tasks based on the following code contained in *gulpfile.js*:
+
+.. code-block:: javascript
+	:emphasize-lines: 1,5,9,11,18,25
+
+	gulp.task("clean:js", function (cb) {
+		rimraf(paths.concatJsDest, cb);
 	});
 
-This task copies JS files from an *Assets* folder into *wwwroot/js*.
+	gulp.task("clean:css", function (cb) {
+		rimraf(paths.concatCssDest, cb);
+	});
+
+	gulp.task("clean", ["clean:js", "clean:css"]);
+
+	gulp.task("min:js", function () {
+		gulp.src([paths.js, "!" + paths.minJs], { base: "." })
+			.pipe(concat(paths.concatJsDest))
+			.pipe(uglify())
+			.pipe(gulp.dest("."));
+	});
+
+	gulp.task("min:css", function () {
+		gulp.src([paths.css, "!" + paths.minCss])
+			.pipe(concat(paths.concatCssDest))
+			.pipe(cssmin())
+			.pipe(gulp.dest("."));
+	});
+
+	gulp.task("min", ["min:js", "min:css"]);
+
+The following table gives an explanation of the tasks specified in the code above:
+
+=============  ===============================================================================================================================  
+Task Name	   Description    
+=============  ===============================================================================================================================  
+clean:js	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
+clean:css	   A task that uses the rimraf Node deletion module to remove unneeded files and directories files.
+clean	       A task that calls both the ``clean:js`` and ``clean:css`` tasks.
+min:js	       A task that minifies and concatenates *.js* files.
+min:css	       A task that minifies and concatenates *.css* files.
+min	           A task that calls both the ``min:js`` and ``min:css`` tasks.
+=============  =============================================================================================================================== 
+
+Running Default Tasks
+---------------------
+
+If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio 2015.
+
+1.	Select **File** > **New** > **Project** from the menu bar. The **New Project** dialog box is displayed.
+
+	.. image:: using-gulp/_static/01-NewProjectDB.png
+	
+2.	Select the **ASP.NET Web Application** template, choose a project name and click **OK**.
+3.	In the **New ASP.NET Project** dialog box select the **Web Application** template from the **ASP.NET 5 Templates** and click **OK**.
+4.	In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer**. 
+
+	.. image:: using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png
+	
+	**Task Runner Explorer** shows the list of gulp tasks. In the default ASP.NET 5 Web Application template in Visual Studio 2015 there are six tasks included from *gulpfile.js*.
+
+	.. image:: using-gulp/_static/03-TaskRunnerExplorer.png 
+
+5.	Underneath **Tasks** in **Task Runner Explorer** right-click **clean** and select **Run** from the pop-up menu.
+
+	.. image:: using-gulp/_static/04-TaskRunner-clean.png 
+
+**Task Runner Explorer** will create a new tab named **clean** and execute the related clean task as it is defined in *gulpfile.js*.
+
+6.	Next, right-click the **clean** task, then select **Bindings** > **Before Build**.
+
+ 	.. image:: using-gulp/_static/05-TaskRunner-BeforeBuild.png 
+
+	The **Before Build** binding option will allow the clean task to be automatically run before each time you build your project.
+
+Defining and Running a New Task
+-------------------------------
+
+To define a new gulp task, you must modify *gulpfile.js*.
  
--	The gulp.src method returns a stream of files. You can use `file globbing <https://github.com/isaacs/node-glob>`_ to match multiple files. In this case, we are matching every .js file under Assets. 
--	The gulp.dest method writes the streamed files to a destination folder.
--	The pipe method pipes the files from src to dest.
-
-The real power of Gulp is that you can pipe a file through multiple plugins. The output from each stage becomes the input to the next. For example, your pipeline might have these stages:
-
-compile TypeScript > run JSHint > minify 
-
-Using Gulp to run JSHint
-------------------------
-To do real work with Gulp, you'll use `plugins <http://gulpjs.com/plugins/>`_. This section shows an example of using the *JSHint* plugin to detect JavaScript problems. The example also demonstrates creating a "cleanup" task to remove files and directories.
-
-Open package.json and add entries for "gulp-jshint" and "del":
-
-.. code-block:: javascript
-   :emphasize-lines: 7,8
-
-	{
-	  "version": "1.0.0",
-	  "name": " MyWebApp",
-	  "private": true,
-	  "devDependencies": {
-	    "gulp": "3.9.0",
-	    "gulp-jshint": "1.11.0",
-	    "del": "1.2.0"
-	  }
-	}
-
-In the Solution Explorer, right-click Dependencies > NPM and choose **Restore Packages** from the context menu.  
-
-Edit gulpfile.js:
+1.	Add the following JavaScript to the end of *gulpfile.js*:
 
 .. code-block:: javascript
 
-	var gulp = require('gulp');
-	var jshint = require('gulp-jshint');
-	var del = require('del');
-
-	var paths = {
-	    src: "./Assets/**/*.js",
-	    dest: "./wwwroot/js/"
-	}
-
-	gulp.task("clean", function () {
-	    del(paths.dest + '**/*');    // Delete everything in 'wwwroot/js'
+	gulp.task("first", function () {
+		console.log('first task! <-----');
 	});
+	
+This task is named ``first`` and simply displays a string. 
 
-	gulp.task('default', ['clean'], function () {
-	    return gulp.src(paths.src)         // Returns a stream
-	        .pipe(jshint())
-	        .pipe(jshint.reporter('default'))
-	        .pipe(gulp.dest(paths.dest))   // Pipes the stream somewhere
+2.	Save *gulpfile.js*.
+3.	In **Solution Explorer**, right-click *gulpfile.js** and select *Task Runner Explorer*. 
+4.	In **Task Runner Explorer**, right-click **first** and select **Run**.
+
+	.. image:: using-gulp/_static/06-TaskRunner-First.png 
+
+	You’ll see that the output text is displayed. If you are interested in examples based on a common scenario, see Gulp Recipes.
+
+Defining and Running Tasks in a Series
+--------------------------------------
+When you run multiple tasks, the tasks run concurrently by default. However, if you need to run tasks in a specific order, you must specify when each task is complete, as well as which tasks depend on the completion of another task. 
+
+1.	To define a series of tasks to run in order, replace the ``first`` task that you added above in *gulpfile.js* with the following:
+
+.. code-block:: javascript
+
+	gulp.task("series:first", function () {
+		console.log('first task! <-----');
 	});
+	gulp.task("series:second", ["series:first"], function () {
+		console.log('second task! <-----');
+	});
+	gulp.task("series", ["series:first", "series:second"], function () {});
 
-Now the 'default' task includes JSHint in the pipeline:
+	You now have three tasks: ``series:first``, ``series:second``, and ``series``. The ``series:second`` task includes a second parameter that specifies an array of tasks that must be run and completed before the ``series:second`` task will run.  As specified in the code above, only the ``series:first`` task must be completed before the ``series:second`` task will run.	
+
+2.	Save *gulpfile.js*.
+3.	In **Solution Explorer**, right-click *gulpfile.js* and select **Task Runner Explorer** if it isn’t already open. 
+4.	In **Task Runner Explorer**, right-click **series** and select **Run**.
+
+	.. image:: using-gulp/_static/07-TaskRunner-Series.png 
+ 
+IntelliSense
+------------
+IntelliSense provides code completion, parameter info and other features to help you author code more productively and with fewer errors. Gulp tasks are written in JavaScript, therefore you can use IntelliSense to help code. As you work with JavaScript, IntelliSense lists the objects, functions, properties, and parameters that are available based on your current context. You can select a coding option from the pop-up list provided by IntelliSense to complete the code.
+
+	.. image:: using-gulp/_static/08-IntelliSense.png 
+
+	For more information about IntelliSense, see `JavaScript IntelliSense <https://msdn.microsoft.com/en-us/library/bb385682.aspx>`_.
+	
+Development, Staging, and Production Environments
+-------------------------------------------------
+
+When you use gulp to optimize your client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag to provide two different versions of CSS files. One version of CSS files is for development and the other version is for both staging and production. In Visual Studio 2015, when you change the **ASPNET_ENV** environment variable to ``Production``, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tags containing link tags to the ``Development`` CSS files and the minimized ``Staging, Production`` CSS files.
 
 .. code-block:: javascript
 
-	.pipe(jshint())
-	.pipe(jshint.reporter('default'))
+	<environment names="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/dist/css/bootstrap-touch-carousel.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
+	<environment names="Staging,Production">
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/css/bootstrap.min.css"
+				asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+				asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
+		<link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/css/bootstrap-touch-carousel.css"
+				asp-fallback-href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css"
+				asp-fallback-test-class="carousel-caption" asp-fallback-test-property="display" asp-fallback-test-value="none" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
+	</environment>
+	
+Switching Between Environments
+------------------------------
 
-In addition, 'default' now includes the 'clean' task as a dependency:
+To switch between compiling for different environments, you can change the ``ASPNET_ENV`` environment variable.
 
-.. code-block:: javascript
+1.	In **Task Runner Explorer**, verify that the **min** task has been set to occur **Before Build**.
+2.	In **Solution Explorer**, right-click the project name and select **Properties**.
 
-	gulp.task('default', ['clean'], function () {
+	The property sheet for the Web app is displayed.
+	
+3.	Set the value of the **ASPNET_ENV** environment variable to ``Production``.
+4.	Press **F5** to run the application in a browser.
+5.	In the browser window, right-click the page and select **View Source** to see the html for the page.
 
-The 'clean' task deletes everything under wwwooot/js, using the `del <https://github.com/sindresorhus/del>`_ module. (For more information, see https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md) Now when you run the 'default' task, Gulp will run 'clean' first.
+	You will notice that the stylesheet links point to the minified CSS files.
 
-In Task Runner Explorer, right-click the **default** task and select **Run**. 
+6.	Close the browser to stop the Web app.
+7.	In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
+8.	Press **F5** to run the application in a browser again.
+9.	In the browser window, right-click the page and select **View Source** to see the html for the page.
 
-.. image:: using-gulp/_static/running-default-task.png
+	You will notice that the stylesheet links point to the full version of the CSS files.
+	
+For more information related to Visual Studio 2015 environments, see `Working with Multiple Environments <http://docs.asp.net/en/latest/fundamentals/environments.html>`_.
+	
+Task and Module Details
+-----------------------
+A gulp task is registered with a function name.  You can specify dependencies if other tasks must run before the current task. Additional functions allow you to run and watch the gulp tasks, as well as set the source (src) and destination (dest) of the files that you are modifying. The following are the primary gulp functions:
 
-Now the Task Runner Explorer first runs the 'clean' task, then the 'default' task.
+===============  ==========================================  =================================================================================================================  
+Gulp Function	 Syntax                                      Description
+===============  ==========================================  =================================================================================================================  
+task             ``gulp.task(name[, deps], fn) { }``         The ``task`` function is used to define a ``task``. The ``name`` parameters sets the name of the task. The ``deps`` parameter sets an array of tasks to be completed before this task runs. The ``fn`` parameter sets a function that performs the opterations of the task. 
+run              ``gulp.run(tasks) { }``                     The ``run`` function runs one or more tasks.
+watch            ``gulp.watch(glob [, opts], tasks) { }``    The ``watch`` function monitors files and runs tasks when a file change occurs. The ``glob`` parameter is a ``string`` or ``array`` that determines which files to watch. The ``opts`` parameter provides additional file watching options.
+src  	         ``gulp.src(globs[, options]) { }``          The ``src`` function provides files that match the ``glob`` value(s). The ``glob`` parameter is a ``string`` or ``array`` that determines which files to read. The ``options`` parameter provides additional file options.
+dest             ``gulp.dest(path[, options]) { }``          The ``dest`` function provides a destination of where files can be written. The ``path`` parameter is a string or function that determines the destination folder. The ``options`` parameter is an object that specifies output folder options.
+===============  ==========================================  =================================================================================================================  
 
-Bind tasks to build events
---------------------------
-Unless you want to manually start every task in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events. 
+For additional gulp API reference information, see `Gulp Docs API <https://github.com/gulpjs/gulp/blob/master/docs/API.md>`_. 
 
-Let's bind 'default' so that it runs every time Visual Studio builds the project. In Task Runner Explorer, right-click the 'default' task and select **Bindings > After Build** from the context menu. 
+Gulp Recipes
+------------
+The gulp community provides gulp `recipes <https://github.com/gulpjs/gulp/blob/master/docs/recipes/README.md>`_. These recipes are common scenarios to accomplish gulp tasks. 
 
-.. image:: using-gulp/_static/task-binding.png
-
-In the Solution Explorer, right-click and **Build** the project. After the project build, the 'default' task runs automatically.
+Summary
+-------
+Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs gulp along with a set of gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
 
 See Also
 --------
 
+	- :doc:`bundling-and-minification`
 	- :doc:`using-grunt`

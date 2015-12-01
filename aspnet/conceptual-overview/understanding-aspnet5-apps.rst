@@ -86,7 +86,7 @@ The global.json File
 The global.json file is used to configure the solution as a whole. It includes just two sections, ``projects`` and ``sdk`` by default.
 
 .. literalinclude:: /../common/samples/WebApplication1/global.json
-	:language: javascript
+	:language: json
 
 The *projects* property designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
 
