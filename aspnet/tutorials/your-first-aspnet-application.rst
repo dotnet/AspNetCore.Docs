@@ -164,7 +164,7 @@ In the **Solution Explorer** you'll see that the new controllers were added with
 Configure the web app before including sample data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Next, you'll add the ``Microsoft.Framework.DependencyInjection`` package to your app. 
+Next, you'll add the ``Microsoft.Extensions.DependencyInjection`` package to your app. 
 In **Solution Explorer** find and open *project.json*. In the ``dependencies`` section, begin by typing the following line at the end of the section. 
 
 .. image:: your-first-aspnet-application/_static/15d2-di-intellisense.png
