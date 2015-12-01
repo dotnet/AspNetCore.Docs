@@ -12,7 +12,7 @@ In this article:
 	- `Getting started`_
 	- `Viewing activity`_
 
-`View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/application-insights/sample>`_.
+`View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/application-insights/sample>`_.
 
 Getting started
 ---------------
