@@ -6,7 +6,7 @@ By `Erik Reitan`_
 Modern web development has lots of moving parts. To build a typical web app, you might:
 
 -	Bundle and minify your JS  and CSS files.
--	Run tools to that call your bundling and minifying tasks before each build.
+-	Run tools that call your bundling and minifying tasks before each build.
 -	Compile LESS or SASS files to CSS.
 -	Compile CoffeeScript or TypeScript files to JS.
 
