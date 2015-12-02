@@ -1,7 +1,7 @@
 sudo: false
 language: python
 python:
-  - "3.3"
+  - "3.4"
 # command to install dependencies
 install: "pip install -q -r requirements.txt"
 # command to run tests
