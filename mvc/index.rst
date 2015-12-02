@@ -14,7 +14,6 @@ ASP.NET MVC Documentation
     :titlesonly:
 
     overview
-    getting-started/index
     tutorials/index
     models/index
     views/index
@@ -23,5 +22,3 @@ ASP.NET MVC Documentation
     migration/index
 
 .. include:: ../common/contribute.txt
-
-
