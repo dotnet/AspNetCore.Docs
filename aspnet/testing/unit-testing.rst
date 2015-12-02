@@ -115,7 +115,7 @@ With dnx-watch running, you can make updates to your tests and/or your applicati
 
 One of the major benefits of automated testing is the rapid feedback tests provide, reducing the time between the introduction of a bug and its discovery. With continuously running tests, whether using ``dnx-watch`` or Visual Studio, developers can almost immediately discover when they've introduced behavior that breaks existing expectations about how the application should behave.
 
-.. tip:: View the `sample <https://github.com/aspnet/docs/tree/1.0.0-beta8/aspnet/testing/unit-testing/sample>`_ to see the complete set of tests and service behavior. You can run the web application and navigate to ``/checkprime?5`` to test whether numbers are prime. You can learn more about testing and refactoring this checkprime web behavior in :doc:`integration-testing`.
+.. tip:: View the `sample <https://github.com/aspnet/docs/tree/1.0.0-rc1/aspnet/testing/unit-testing/sample>`_ to see the complete set of tests and service behavior. You can run the web application and navigate to ``/checkprime?5`` to test whether numbers are prime. You can learn more about testing and refactoring this checkprime web behavior in :doc:`integration-testing`.
 
 Additional Resources
 --------------------
