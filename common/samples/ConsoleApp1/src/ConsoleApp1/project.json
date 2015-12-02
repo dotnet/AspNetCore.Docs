@@ -14,7 +14,7 @@
   },
 
   "commands": {
-    "ConsoleApp1": "ConsoleApp1"
+    "ConsoleApp1": "run"
   },
 
   "frameworks": {
