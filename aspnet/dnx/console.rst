@@ -28,7 +28,7 @@ Creating a console application is extremely straightforward. For this article, w
 	:linenos:
 	:language: c#
 	
-It really doesn't get any simpler than this. Create a file with these contents and save it as ``Program.cs`` in your current folder.
+It really doesn't get any simpler than this. First create a new folder named `ConsoleApp1` (the name is important, so don't try to use another name). Then, create a file with these contents and save it as `Program.cs` in the `ConsoleApp1` folder.
 
 Specifying Project Settings
 ---------------------------
