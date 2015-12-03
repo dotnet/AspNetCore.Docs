@@ -21,7 +21,7 @@ The CoreCLR runtime (Microsoft.CoreCLR) and CoreFX libraries are distributed via
 
 The API factoring in .NET Core was updated to enable better componentization. This means that existing libraries built for the .NET Framework generally need to be recompiled to run on .NET Core. The .NET Core ecosystem is relatively new, but it is rapidly growing with the support of popular .NET packages like JSON.NET, AutoFac, xUnit.net and many others.
 
-Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. However, the .NET Core support for Mac and Linux is still very new and not ready for production workloads.
+Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. 
 
 Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET Core has to offer.
 
