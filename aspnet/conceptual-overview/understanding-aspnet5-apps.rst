@@ -104,8 +104,6 @@ The bower dependencies are controlled by the *bower.json* files, located in each
 
 Dependency are then further configured in their own section within each *bower.json* file, indicating how it should be deployed to the *wwwroot* folder. For more information, see :doc:`/client-side/index`.
 
-.. _`server side dependencies` :
-
 Server Side Dependency Management
 ---------------------------------
 
@@ -113,10 +111,7 @@ The *References* folder, shown within **Solution Explorer** in Visual Studio, de
 
 .. image:: understanding-aspnet5-apps/_static/references.png
 
-For more information, see `NuGet <https://docs.nuget.org>`_ and :doc:`/fundamentals/configuration`.
-
-.. _Startup.cs:
-.. _fundamentalconcepts-application-startup:
+For more information, see `NuGet <https://docs.nuget.org>`_.
 
 Application Startup
 -------------------
@@ -144,7 +139,7 @@ Finally, the ``Configure`` method will be called by the runtime after ``Configur
     :lines: 59-102
     :dedent: 8
 
-As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the ``Startup`` class, as opposed to using HTTP Modules and Handlers managed via *web.config*. For more information, see :doc:`/fundamentals/index`.
+As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the ``Startup`` class, as opposed to using HTTP Modules and Handlers managed via *web.config*. For more information, see :doc:`/fundamentals/startup`, :doc:`/fundamentals/configuration` and :doc:`/fundamentals/index`.
 
 .. TODO: You can learn more about how the request pipeline is configured as well as how to write your own middleware components.
 
