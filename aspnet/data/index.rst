@@ -5,3 +5,4 @@ Working with Data
    :titlesonly:
    
    entity-framework
+   entity-framework-6
