@@ -3,7 +3,7 @@ Installing ASP.NET 5 On Mac OS X
 
 By `Steve Smith`_, `Daniel Roth`_
 
-.. contents:: In this article
+.. contents:: Sections:
   :local:
   :depth: 1
 
@@ -12,9 +12,11 @@ Install ASP.NET 5 with Visual Studio Code
 
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio Code.
 
-1. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534106>`__
+1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/mac/>`__ for OS X (required by Visual Studio Code). 
+  
+2. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534106>`__
 
-2. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
+3. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
   
 You are all set up and ready to write :doc:`your first ASP.NET 5 application on a Mac </tutorials/your-first-mac-aspnet>`!
 
