@@ -313,7 +313,7 @@ When you run your app, you can specify whether to compile in Debug mode or in Re
 
 	dnx --configuration Debug
 
-For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`).
+For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`.
 
 Building
 --------
