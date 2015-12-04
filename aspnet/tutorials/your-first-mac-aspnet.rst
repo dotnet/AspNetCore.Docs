@@ -35,6 +35,8 @@ For the purposes of this tutorial select `Empty Application` to create an empty 
 
 .. image:: your-first-mac-aspnet/_static/yo-aspnet.png
 
+.. note:: You cannot build DNX projects that target the full .NET Framework (ex dnx451, dnx46) using the .NET Core based DNX on OS X and Linux. The aspnet generator adds the dnx451 target to the project.json file by default which will cause build errors.  To work around this issue remove the corresponding targets (dnx451, dnx46) from the frameworks section in project.json.
+
 Developing ASP.NET Applications on a Mac With Visual Studio Code
 ----------------------------------------------------------------
 
