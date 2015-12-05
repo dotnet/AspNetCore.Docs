@@ -21,8 +21,8 @@
   "dependencies": {
     "PrimeWeb": "1.0.0",
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-beta6-build191",
-    "Microsoft.AspNet.TestHost": "1.0.0-beta8"
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final"
   },
   "commands": {
     "test": "xunit.runner.dnx"
