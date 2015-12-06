@@ -2,8 +2,8 @@
 using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DiagDemo
 {
