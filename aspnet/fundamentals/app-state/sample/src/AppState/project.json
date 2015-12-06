@@ -3,13 +3,13 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Diagnostics": "1.0.0-beta8",
-    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
-    "Microsoft.AspNet.Session": "1.0.0-beta8",
-    "Microsoft.Framework.Caching.Memory": "1.0.0-beta8",
-    "Microsoft.Framework.Logging": "1.0.0-beta8",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Newtonsoft.Json": "7.0.1"
   },
 
@@ -18,7 +18,8 @@
   },
 
   "frameworks": {
-    "dnx451": { }
+    "dnx451": { },
+    "dnxcore50": { }
   },
 
   "exclude": [

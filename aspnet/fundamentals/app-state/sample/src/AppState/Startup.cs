@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using AppState.Model;
 using Microsoft.AspNet.Hosting;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace AppState
@@ -48,7 +43,7 @@ namespace AppState
                 subApp.Run(async context =>
                 {
                     await context.Response.WriteAsync("<html><body>");
-                    await context.Response.WriteAsync("Requested at: " + DateTime.Now.ToLongTimeString() + "<br>");
+                    await context.Response.WriteAsync("Requested at: " + DateTime.Now.ToString() + "<br>");
                     await context.Response.WriteAsync("This part of the application isn't referencing Session...<br><a href=\"/\">Return</a>");
                     await context.Response.WriteAsync("</body></html>");
                 });
@@ -68,7 +63,7 @@ namespace AppState
                     SaveEntries(context, collection);
                     if (context.Session.GetString("StartTime") == null)
                     {
-                        context.Session.SetString("StartTime", DateTime.Now.ToLongTimeString());
+                        context.Session.SetString("StartTime", DateTime.Now.ToString());
                     }
                     await context.Response.WriteAsync("<html><body>");
                     await context.Response.WriteAsync($"Counting: You have made {collection.TotalCount()} requests to this application.<br><a href=\"/\">Return</a>");
@@ -86,7 +81,7 @@ namespace AppState
                 {
                     await context.Response.WriteAsync("<html><body>");
                     await context.Response.WriteAsync("Your session has not been established.<br>");
-                    await context.Response.WriteAsync(DateTime.Now.ToLongTimeString() + "<br>");
+                    await context.Response.WriteAsync(DateTime.Now.ToString() + "<br>");
                     await context.Response.WriteAsync("<a href=\"/session\">Establish session</a>.<br>");
                 }
                 else
@@ -133,5 +128,8 @@ namespace AppState
 
             context.Session.Set("RequestEntries", serializedResult);
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => Microsoft.AspNet.Hosting.WebApplication.Run<Startup>(args);
     }
 }
