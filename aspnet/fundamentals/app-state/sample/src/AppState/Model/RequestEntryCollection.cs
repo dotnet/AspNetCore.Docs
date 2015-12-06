@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AppState.Model
 {
-    [Serializable]
+    
     public class RequestEntryCollection
     {
         public List<RequestEntry> Entries { get; set; } = new List<RequestEntry>();
