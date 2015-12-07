@@ -1,8 +1,31 @@
-.. include:: /../common/stub-topic.txt
+Model Binding
+=============
 
-|stub-icon| Model Binding Request Data
-======================================
+.. TODO: Once we get the API reference docs, add mref links to all APIs. 
 
-.. include:: /../common/stub-notice.txt
+By `Rachel Appel <http://github.com/rachelappel>`_
 
-.. _issue: https://github.com/aspnet/Docs/issues/114
+In this article
+
+  `Introduction to model binding`_
+  `Binding data from the request URI`_
+  `Binding formatted data from the request body`_
+  `Configuring input formatters`_
+  `Resources`
+
+Introduction to model binding
+-----------------------------
+
+Binding data from the request URI
+---------------------------------
+
+Binding formatted data from the request body
+--------------------------------------------
+
+Configuring input formatters
+----------------------------
+
+
+Resources
+---------
+
