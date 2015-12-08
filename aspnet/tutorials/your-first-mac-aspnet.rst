@@ -72,7 +72,7 @@ Finally, Code's editor has a ton of great features. You should note right away t
 Running Locally Using Kestrel
 -----------------------------
 
-The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ for the web server. You can see it configured in the ``project.json`` file, where it is specified as a dependency and as a :doc:`command </dnx/commands>`.
+The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency and as a :doc:`command </dnx/commands>`.
 
 .. code-block:: json
  :linenos:
