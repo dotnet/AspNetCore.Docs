@@ -36,14 +36,14 @@ Create an ASP.NET app
 
 .. code-block:: console
 
- mkdir C:\MyYo
- cd C:\MyYo
+  mkdir C:\MyYo
+  cd C:\MyYo
 
 - Run the ASP.NET generator for ``yo``
 
 .. code-block:: console 
 
- yo aspnet
+  yo aspnet
  
 - The generator displays a menu. Arrow down to the **Web Application** project and tap **Enter**:
 
