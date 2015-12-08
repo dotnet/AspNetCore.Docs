@@ -4,16 +4,15 @@ Installing ASP.NET 5 On Mac OS X
 By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
 
 .. contents:: Sections
- :local:
- :depth: 1
+  :local:
+  :depth: 1
 
 Install ASP.NET 5 with Visual Studio Code
 -----------------------------------------
 
 The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio Code.
 
-#. `Update OS X for Visual Studio Code <https://code.visualstudio.com/docs/supporting/howtoupdate#_updating-on-os-x>`__
-
+#. `Install or Update OS X for Visual Studio Code <https://code.visualstudio.com/docs/supporting/howtoupdate#_updating-on-os-x>`__
 #. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
  
 You are all set up and ready to write :doc:`your first ASP.NET 5 application on a Mac </tutorials/your-first-mac-aspnet>`!
@@ -28,14 +27,18 @@ Install the .NET Version Manager (DNVM)
 
 To install DNVM:
 
-#. Open a Terminal.
-#. Type ``cd ~/`` to go to your home folder.
-#. Enter ``touch .bash_profile`` to create a new bash profile.
+.. This is only necessary if you don't already have a bash profile and the install script will tell you to do this if you need to.
+.. #. Open a Terminal.
+.. #. Type ``cd ~/`` to go to your home folder.
+.. #. Enter ``touch .bash_profile`` to create a new bash profile.
+
+
 #. Run the following ``curl`` command::
 
-	curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+    curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
 
-#. Run ``dnvm list`` to show the default DNX version
+#. Run ``dnvm list`` to show the DNX versions installed
+
 #. Run ``dnvm`` to get DNVM help
 
 The .NET Version Manager (DNVM) is used to install different versions of the .NET Execution Environment (DNX) on OS X.
@@ -49,15 +52,15 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 1. Use DNVM to install DNX for .NET Core:
 
-	``dnvm upgrade -r coreclr``
+  ``dnvm upgrade -r coreclr``
 
 **To install DNX for Mono:**
 
 1. Install `Mono <http://www.mono-project.com/docs/getting-started/install/mac/>`__ for OS X. Alternatively you can install Mono via `Homebrew <http://brew.sh/>`__.
 
-2. Use DNVM to install DNX for Mono:
+2. Use DNVM to install DNX for Mono::
 
-	``dnvm upgrade -r mono``
+    dnvm upgrade -r mono
 
 By default DNVM will install DNX for Mono if no runtime is specified.
 
@@ -68,4 +71,3 @@ Related Resources
 
 - :doc:`/tutorials/your-first-mac-aspnet`
 - :doc:`/fundamentals/index`
-- `HttpPlatformHandler, Kestrel and WebListener <https://github.com/aspnet/Home/wiki/Servers>`__
