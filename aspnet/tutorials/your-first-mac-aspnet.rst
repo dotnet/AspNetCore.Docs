@@ -172,5 +172,3 @@ Additional Resources
 - `Visual Studio Code <https://code.visualstudio.com>`__
 - :doc:`/client-side/yeoman`
 - :doc:`ASP.NET Fundamentals </fundamentals/index>`
-- `HttpPlatformHandler, Kestrel and WebListener <https://github.com/aspnet/Home/wiki/Servers>`__
-
