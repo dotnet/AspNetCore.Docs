@@ -1,10 +1,7 @@
-﻿using System;
+﻿using System.Threading;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Primitives;
 using Xunit;
-using CachingSample.Abstractions;
-using Microsoft.Framework.Caching;
-using Microsoft.Framework.Caching.Memory;
-using System.Threading;
-using Microsoft.Framework.Primitives;
 
 namespace CachingSample.Tests
 {

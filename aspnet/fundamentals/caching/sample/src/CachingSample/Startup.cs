@@ -1,10 +1,8 @@
 ﻿using CachingSample.Abstractions;
 using CachingSample.Services;
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
-using Microsoft.Framework.Caching.Memory;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CachingSample
 {

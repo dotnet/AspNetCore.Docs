@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.Caching.Memory;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using CachingSample.Abstractions;
 using System;
 

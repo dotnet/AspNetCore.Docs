@@ -1,24 +1,30 @@
-Caching
-=======
+In Memory Caching
+=================
 
 By `Steve Smith`_
 
-Caching involves keeping a copy of data in a location that can be accessed more quickly than the source data. ASP.NET 5 has rich support for caching in a variety of ways, from caching the content sent in response to requests to caching individual pieces of data, either in memory or using a distributed cache engine.
+Caching involves keeping a copy of data in a location that can be accessed more quickly than the source 
+data. ASP.NET 5 has rich support for caching in a variety of ways, including keeping data in memory on the 
+local server, which is referred to as *in memory caching*.
 
 In this article:
-	- `Working with an In Memory Cache`_
-	- `Working with a Distributed Cache`_
-	- `Working with Redis`_
-	
+	- `Caching Basics`_
+	- `Configuring In Memory Caching`_
+	- `Reading and Writing to a Memory Cache`_
+	- `Cache Dependencies and Callbacks`_
+
 `View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-beta8/aspnet/fundamentals/caching/sample>`_.
 
-Working with an In Memory Cache
--------------------------------
-Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that hasn't changed since it was last requested. ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/IMemoryCache.cs>`_ interface, which represents a cache stored in the memory of the local web server. 
+Caching Basics
+--------------
+Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that hasn't changed since it was last requested. ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/IMemoryCache.cs>`_ interface, which represents a cache stored in the memory of the local web server.
 
-Setup
-^^^^^
+An in-memory cache is stored in the memory of a single server hosting an ASP.NET application. Thus, if an application is hosted by multiple servers in a web farm or cloud hosting environment, it is possible that different servers will have different values in their local in-memory caches. If this is an issue for the application, a :doc:`distributed-cache` may be a better alternative.
 
+.. note:: Caching in all forms (in-memory or distributed, including session state) involves making a copy of data in order to optimize performance. The copied data should be considered ephemeral - it could disappear at any time. You should always write your application such that it can use cached data if it's available, but otherwise will work correctly using the underlying data source.
+
+Configuring In Memory Caching
+-----------------------------
 To get started working with an in memory cache in your ASP.NET application, you should first add the following dependencies to your ``project.json`` file:
 
 .. literalinclude:: caching/sample/src/CachingSample/project.json
@@ -30,7 +36,7 @@ Caching in ASP.NET 5 is a *service* that should be referenced from your applicat
 
 .. literalinclude:: caching/sample/src/CachingSample/Startup.cs
 	:linenos:
-	:lines: 11-14
+	:lines: 12-15
 	:dedent: 8
 	:emphasize-lines: 3
 
@@ -43,7 +49,7 @@ Once this is done, you can work with caching within your application by requesti
 	:emphasize-lines: 2,7
 	
 Reading and Writing to a Memory Cache
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------
 The middleware's ``Invoke`` method uses caching to avoid having to reproduce the same result again and again when the inputs and underlying data haven't changed. A common example of this kind of caching is data-driven navigation menus, which rarely change but are frequently ready for display within an application. Caching results that do not vary often but which are requested frequently can greatly improve performance by reducing round trips to out of process data stores or unnecessary computation.
 
 There are two approaches to attempting to read entries from the cache: ``Get`` and ``TryGet``. ``Get`` will return the value if it exists, but otherwise returns ``null``. ``TryGet`` will assign the cached value to an ``out`` parameter and return true if the entry exists, otherwise it returns false.
@@ -92,9 +98,9 @@ When you do want to explicitly remove an item from the cache, you can do so easi
 
 	cache.Remove(cacheKey);
 
-Dependencies and Callbacks
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can also configure cache entries depend on other cache entries, the file system, or programmatic tokens, evicting the entry in response to changes. In addition, when a cache entry is evicted, you can register a callback to allow you to execute some code in response to this event. 
+Cache Dependencies and Callbacks
+--------------------------------
+You can also configure cache entries to depend on other cache entries, the file system, or programmatic tokens, evicting the entry in response to changes. In addition, when a cache entry is evicted, you can register a callback to allow you to execute some code in response to this event. 
 
 .. literalinclude:: caching/sample/test/CachingSample.Tests/MemoryCacheTests.cs
 	:linenos:
@@ -146,12 +152,6 @@ You can use a cache entry link, ``IEntryLink`` to specify that one cache entry i
 
 .. note:: When one cache entry is linked to another, it copies that entry's expiration token and time-based expiration settings, if any. It is not expired in response to manual removal or updating of the linked entry.
 
-
-Working with a Distributed Cache
---------------------------------
-
-Working with Redis
-------------------
-
-Summary
--------
+Other Resources
+---------------
+- :doc:`distributed-cache`
