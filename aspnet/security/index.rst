@@ -4,10 +4,7 @@ Security
 .. toctree::
    :titlesonly:
 
-   introduction-to-aspnet-identity
-   sociallogins
-   accconfirm
-   2fa
+   authentication/index
    authorization/index
    data-protection/index
    app-secrets
