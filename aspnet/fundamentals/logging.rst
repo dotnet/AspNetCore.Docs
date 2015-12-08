@@ -10,7 +10,7 @@ ASP.NET 5 has built-in support for logging, and allows developers to easily leve
 In this article:
 	- `Implementing Logging in your Application`_
 	- `Configuring Logging in your Application`_
-	
+
 `View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/fundamentals/logging/sample>`_.
 
 Implementing Logging in your Application
@@ -18,7 +18,7 @@ Implementing Logging in your Application
 
 Adding logging to a component in your application is done by requesting either an ``ILoggerFactory`` or an ``ILogger<T>`` via :doc:`dependency-injection`. If an ``ILoggerFactory`` is requested, a logger must be created using its ``CreateLogger`` method. The following example shows how to do this within the ``Configure`` method in the ``Startup`` class:
 
-.. literalinclude:: logging/sample/src/TodoApi/Startup.cs
+.. literalinclude:: logging/sample/src/TodoApi/Startup.cs 
 	:language: c#
 	:linenos:
 	:lines: 21-38
@@ -66,7 +66,7 @@ ASP.NET 5 defines six levels of logging verbosity:
 
 Debug
 	Used for the most detailed log messages, typically only valuable to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. *Disabled by default.* Example: ``Credentials: {"User":"someuser", "Password":"P@ssword"}``
-	
+
 Verbose
 	These messages have short-term usefulness during development. They contain information that may be useful for debugging, but have no long-term value. This is the default most verbose level of logging. Example: ``Entering method Configure with flag set to true``
 
@@ -130,14 +130,14 @@ Configuring Logging in your Application
 
 To configure logging in your ASP.NET application, you should resolve ``ILoggerFactory`` in the ``Configure`` method in your ``Startup`` class. ASP.NET will automatically provide an instance of ``ILoggerFactory`` using :doc:`dependency-injection` when you add a parameter of this type to the ``Configure`` method. Once you've added ``ILoggerFactory`` as a parameter, you configure loggers within the ``Configure`` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by simply calling ``loggerFactory.AddConsole``. In addition to adding loggers, you can also control the verbosity of the application's logging by setting the ``MinimumLevel`` property on the logger factory. The default verbosity is ``Verbose``.
 
-.. note:: You can specify the minimum logging level each logger provider will use as well. For example, the ``AddConsole`` extension method supports an optional parameter for setting its minimum ``LogLevel``.  
+.. note:: You can specify the minimum logging level each logger provider will use as well. For example, the ``AddConsole`` extension method supports an optional parameter for setting its minimum ``LogLevel``.
 
 Configuring TraceSource Logging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The built-in `TraceSourceLogger <https://github.com/aspnet/Logging/blob/1.0.0-rc1/src/Microsoft.Extensions.Logging.TraceSource/TraceSourceLogger.cs>`_ provides a simple way to configure log messages to use the existing `System.Diagnostics.TraceSource <https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource(v=vs.110).aspx>`_ libraries and providers, including easy access to the Windows event log. This proven means of routing messages to a variety of listeners is already in use by many organizations, and the ``TraceSourceLogger`` allows developers to continue leveraging this existing investment.
 
-First, be sure to add the ``Microsoft.Framework.Logging.TraceSource`` package to your project (in ``project.json``):
+First, be sure to add the ``Microsoft.Extensions.Logging.TraceSource`` package to your project (in ``project.json``):
 
 .. literalinclude:: logging/sample/src/TodoApi/project.json
 	:language: javascript
@@ -152,7 +152,7 @@ The following example demonstrates how to configure two separate ``TraceSourceLo
 	:linenos:
 	:lines: 40-48
 
-The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener`` instances. 
+The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener`` instances.
 
 To test out this code, replace the catch-all response with the following ``app.Run`` block:
 
@@ -176,7 +176,7 @@ Examining the Application event log in the Windows Event Viewer, the following e
 
 .. image:: logging/_static/eventlog.png
 
-In addition to working with `TraceSourceLogger`, you can also log directly to the event log using the `EventLog logging provider <https://www.nuget.org/packages/microsoft.framework.logging.eventlog>`_. Support for logging using `System.Diagnostics.Debug.WriteLine` is also available using the `Debug logging provider <https://www.nuget.org/packages/Microsoft.Framework.Logging.Debug>`_, the output of which can be seen in Visual Studio's Output window.
+In addition to working with `TraceSourceLogger`, you can also log directly to the event log using the `EventLog logging provider <https://www.nuget.org/packages/Microsoft.Extensions.logging.eventlog>`_. Support for logging using `System.Diagnostics.Debug.WriteLine` is also available using the `Debug logging provider <https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug>`_, the output of which can be seen in Visual Studio's Output window.
 
 Configuring Other Providers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -210,4 +210,3 @@ Summary
 -------
 
 ASP.NET provides built-in support for logging, which can easily be configured within the ``Startup`` class and used throughout the application. Logging verbosity can be configured globally and per logging provider to ensure actionable information is logged appropriately. Built-in providers for console and trace source logging are included in the framework; other logging frameworks can easily be configured as well.
-
