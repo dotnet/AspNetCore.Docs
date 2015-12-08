@@ -1,7 +1,6 @@
 Model Binding
 =============
 
-<<<<<<< HEAD
 By `Rachel Appel <http://github.com/rachelappel>`_
 
 In this article
@@ -43,35 +42,11 @@ You can also exclude specific fields if you wish.
 
   public ActionResult Edit([Bind(Exclude = "ID,Price")] Book book)
 
-=======
-.. TODO: Once we get the API reference docs, add mref links to all APIs. 
-
-By `Rachel Appel <http://github.com/rachelappel>`_
-
-In this article
-
-  `Introduction to model binding`_
-  `Binding data from the request URI`_
-  `Binding formatted data from the request body`_
-  `Configuring input formatters`_
-  `Resources`
-
-Introduction to model binding
------------------------------
->>>>>>> model-binding
-
-Binding data from the request URI
----------------------------------
-
-<<<<<<< HEAD
-=======
-Binding formatted data from the request body
---------------------------------------------
->>>>>>> model-binding
-
 Configuring input formatters
 ----------------------------
 
+Binding data from the request URI
+---------------------------------
 
 Resources
 ---------
