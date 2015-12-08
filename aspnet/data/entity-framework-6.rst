@@ -8,12 +8,28 @@ This article will show you how to use Entity Framework 6 inside an ASP.NET 5 app
 In this article:
     - `Setup connection strings and dependency injection`_
     - `Migrate configuration from config to code`_
-    - `Notes on Automatic Migrations`_
+    - `Notes on Migrations`_
     
 Prerequisites
 -------------
     
-Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7. 
+Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7.
+
+In your project.json file under frameworks remove any reference to ``dnxcore50`` or ``dotnet5.4``. Valid identifiers for the .NET Framework are listed on the `corefx repo documentation <https://github.com/dotnet/corefx/blob/master/Documentation/project-docs/standard-platform.md#specific-platform-mapping>`_, but for targeting DNX 4.5.1 the frameworks section should be:
+
+.. code-block:: javascript
+    
+    "frameworks": {
+        "dnx451": {}
+    }
+    
+And .NET 4.5.1 in a class library the frameworks section should be
+
+.. code-block:: javascript
+    
+    "frameworks": {
+        "net451": {}
+    }
 
 Setup connection strings and dependency injection
 -------------------------------------------------
@@ -82,44 +98,18 @@ The ``defaultConnectionFactory`` element sets the factory for connections. If th
     {
         public CodeConfig()
         {
-            SetDefaultConnectionFactory(new System.Data.Entity.Infrastructure.SqlConnectionFactory());
-            SetProviderServices("System.Data.SqlClient",
-                System.Data.Entity.SqlServer.SqlProviderServices.Instance);
-            }
-        }
-    }
-    
-SQL Server and SQL Server Express
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This is the default and so no explicit configuration is needed. Optionally the above ``CodeConfig`` class can be used to explicitly set the connection factory and provider services.
-
-SQL Server Express LocalDB
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The below code configures code first to utilize local db.
-
-.. code-block:: c#
-    :linenos:
-    
-    [DbConfigurationType(typeof(CodeConfig))] // point to the class that inherit from DbConfiguration
-    public class ApplicationDbContext : DbContext
-    {
-        [...]
-    }
-    
-    public class CodeConfig : DbConfiguration
-    {
-        public CodeConfig()
-        {
-            SetDefaultConnectionFactory(new System.Data.Entity.Infrastructure.LocalDbConnectionFactory("mssqllocaldb"));
             SetProviderServices("System.Data.SqlClient",
                 System.Data.Entity.SqlServer.SqlProviderServices.Instance);
         }
     }
+    
+SQL Server, SQL Server Express and LocalDB
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Notes on Automatic Migrations
------------------------------
+This is the default and so no explicit configuration is needed. The above ``CodeConfig`` class can be used to explicitly set the provider services and the appropriate connection string should be passed to the ``DbContext`` constructor as shown `above <#setup-connection-strings-and-dependency-injection>`_.
+
+Notes on Migrations
+-------------------
 
 .. note:: Valid with RC1 (early November 2015)
 
