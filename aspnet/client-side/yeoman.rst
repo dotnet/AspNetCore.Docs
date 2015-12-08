@@ -51,9 +51,9 @@ Create an ASP.NET app
 
 - Use "MyWebApp" for the app name and then tap **Enter** :
 
-.. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
+  .. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
 
-    Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands. 
+Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands. 
 
   .. image:: yeoman/_static/yeoman-yo-aspnet-created.png
 

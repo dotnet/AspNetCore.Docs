@@ -50,9 +50,9 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 **To install DNX for .NET Core:**
 
-1. Use DNVM to install DNX for .NET Core:
+1. Use DNVM to install DNX for .NET Core::
 
-  ``dnvm upgrade -r coreclr``
+    dnvm upgrade -r coreclr
 
 **To install DNX for Mono:**
 
