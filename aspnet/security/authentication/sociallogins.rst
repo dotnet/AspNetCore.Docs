@@ -3,7 +3,7 @@ Enabling authentication using external providers
 
 By `Pranav Rastogi`_
 
-This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
+This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google.
 
 Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
 
@@ -19,7 +19,7 @@ To get started, open Visual Studio 2015. Next, create a New Project (from the St
 .. image:: sociallogins/_static/new-project.png
 
 Next you should see another dialog, the New ASP.NET Project window:
- 
+
 .. image:: sociallogins/_static/select-project.png
 
 Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
@@ -62,7 +62,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 
 .. image:: sociallogins/_static/FBApp05.png
 
-- On the **Basic** settings section of the page select Add Platform to specify that you are adding a website application. 
+- On the **Basic** settings section of the page select Add Platform to specify that you are adding a website application.
 
 .. image:: sociallogins/_static/FBApp06.png
 
@@ -72,7 +72,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 
 - Add your Site URL (http://localhost:port/)
 
-- Make a note of your App ID and your App Secret so that you can add both into your ASP.NET 5 Web site later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application. 
+- Make a note of your App ID and your App Secret so that you can add both into your ASP.NET 5 Web site later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application.
 
 .. image:: sociallogins/_static/FBApp08.png
 
@@ -88,7 +88,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId <value-from-app-Id-field>**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>** In this example the AppId value is 862373430475128, corresponding to the previous image.
 
-The following code reads the configuration values stored by the :doc:`Secret Manager <app-secrets>`.
+The following code reads the configuration values stored by the :doc:`Secret Manager <../app-secrets>`.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
@@ -104,7 +104,7 @@ Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
   :linenos:
-  
+
   app.UseFacebookAuthentication(options =>
   {
     options.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -149,7 +149,5 @@ To set the password once you have logged in with an external provider:
 Next steps
 ----------
 - This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
-- Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal. 
+- Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal.
 - Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
-
-
