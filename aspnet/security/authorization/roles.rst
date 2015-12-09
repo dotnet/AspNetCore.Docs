@@ -3,7 +3,7 @@
 Role based Authorization
 ========================
 
-When an identity is created it may belong to one or more roles, for example Tracy may belong to the Administrator and User roles whilst Scott may only belong to the user role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the `IsInRole <https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal.isinrole(v=vs.110).aspx>`_ property on the `ClaimsPrinciple <https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal(v=vs.110).aspx>`_ class.
+When an identity is created it may belong to one or more roles, for example Tracy may belong to the Administrator and User roles whilst Scott may only belong to the user role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the `IsInRole <https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal.isinrole(v=vs.110).aspx>`_ property on the `ClaimsPrincipal <https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal(v=vs.110).aspx>`_ class.
 
 Adding role checks
 ------------------
@@ -81,7 +81,7 @@ You can also lock down a controller but allow anonymous, unauthenticated access 
 Policy based role checks
 ------------------------
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally takes part in`` ConfigureServices()`` in your ``startup.cs`` file.
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally takes part in ``ConfigureServices()`` in your ``startup.cs`` file.
 
 .. code-block:: c#
 
