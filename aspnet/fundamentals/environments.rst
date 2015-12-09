@@ -15,7 +15,7 @@ In this article:
 Development, Staging, Production
 --------------------------------
 
-ASP.NET 5 references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``ASPNET_ENV``, to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET 5.
+ASP.NET 5 references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``ASPNET_ENV`` (or ``Hosting:Environment``), to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET 5.
 
 The current environment setting can be detected programmatically from within ASP.NET 5. In addition, ASP.NET MVC 6 introduces an :ref:`Environment Tag Helper <mvc:tag-helpers-index>` that allows MVC Views to include certain sections based on the current application environment.
 
@@ -28,14 +28,15 @@ This should be the environment used when developing an application. When using V
 
 .. image:: environments/_static/project-properties-debug.png
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.json`` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in :doc:`servers`). After modifying the ``ASPNET_ENV`` (or ``Hosting:Environment``) variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.json`` file in our sample project is shown below:
 
 .. literalinclude:: environments/sample/src/Environments/Properties/launchSettings.json
 	:language: javascript
 	:caption: launchSettings.json
-	:emphasize-lines: 7,13
+	:emphasize-lines: 18,21
+	:linenos:
 
-.. note:: Changes made to project profiles or to *launchSettings.json* directly will not take effect until the web server being used is restarted.
+.. note:: Changes made to project profiles or to *launchSettings.json* directly may not take effect until the web server used is restarted (in particular, kestrel must be restarted before it will detect changes made to its environment).
 
 Staging
 ^^^^^^^
@@ -51,7 +52,7 @@ The ``Production`` environment is the environment in which the application runs 
 - Ensure all client-side resources are bundled, minified, and potentially served from a CDN
 - Turn off diagnostic ErrorPages
 - Turn on friendly error pages
-- Enable production logging and monitoring (e.g. AppInsights)
+- Enable production logging and monitoring (for example, :doc:`application-insights`)
 
 This is by no means meant to be a complete list. It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's ``Startup`` class(es) wherever possible
 
@@ -77,7 +78,7 @@ Startup conventions
 
 ASP.NET 5 supports a convention-based approach to configuring an application's startup based on the current environment. You can also programmatically control how your application behaves according to which environment it is in, allowing you to create and manage your own conventions.
 
-When an ASP.NET 5 application starts, the ``Startup`` class is used to bootstrap the application, load its configuration settings, etc. (:doc:`learn more about ASP.NET startup <startup>`). However, if a class exists named ``Startup{EnvironmentName}``, e.g. ``StartupDevelopment``, and the ``ASPNET_ENV`` environment variable matches that name, then that ``Startup`` class is used instead. Thus, you could configure ``Startup`` for development, but have a separate ``StartupProduction`` that would be used when the app is run in production. Or vice versa.
+When an ASP.NET 5 application starts, the ``Startup`` class is used to bootstrap the application, load its configuration settings, etc. (:doc:`learn more about ASP.NET startup <startup>`). However, if a class exists named ``Startup{EnvironmentName}`` (for example ``StartupDevelopment``), and the ``ASPNET_ENV`` environment variable matches that name, then that ``Startup`` class is used instead. Thus, you could configure ``Startup`` for development, but have a separate ``StartupProduction`` that would be used when the app is run in production. Or vice versa.
 
 The following ``StartupDevelopment`` file from this article's sample project is run when the application is set to run in a Development environment:
 
@@ -95,7 +96,7 @@ Run the application in development, and a welcome screen is displayed. The sampl
 	:linenos:
 	:emphasize-lines: 6
 
-When the application is run with ``ASPNET_ENV`` set to ``Staging``, this ``Startup`` class is used, and the application will simply display a string stating it's running in a staging environment. The application's default ``Startup`` class will only run when the environment is not set to either ``Development`` or ``Staging`` (presumably, this would be when it is set to ``Production``, but you're not limited to only these three options. Also note that if no environment is set, the default ``Startup`` will run).
+When the application is run with ``ASPNET_ENV`` set to ``Staging``, the ``StartupStaging`` class is used, and the application will simply display a string stating it's running in a staging environment. The application's default ``Startup`` class will only run when the environment is not set to either ``Development`` or ``Staging`` (presumably, this would be when it is set to ``Production``, but you're not limited to only these three options. Also note that if no environment is set, the default ``Startup`` will run).
 
 In addition to using an entirely separate ``Startup`` class based on the current environment, you can also make adjustments to how the application is configured within a ``Startup`` class. The ``Configure()`` and ``ConfigureServices()`` methods support environment-specific versions similar to the ``Startup`` class itself, of the form ``Configure[Environment]()`` and ``Configure[Environment]Services()``. If you define a method ``ConfigureDevelopment()`` it will be called instead of ``Configure()`` when the environment is set to development. Likewise, ``ConfigureDevelopmentServices()`` would be called instead of ``ConfigureServices()`` in the same environment.
 
@@ -109,4 +110,3 @@ Additional Resources
 --------------------
 
 - :doc:`configuration`
-
