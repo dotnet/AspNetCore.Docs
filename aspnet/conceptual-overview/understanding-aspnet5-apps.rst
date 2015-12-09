@@ -50,9 +50,9 @@ The **version** property specifies the current version of the project. You can a
 
 You can use the **compilationOptions** section to set app settings, such as the `languageVersion` and `useOssSigning`. 
 
-Typically values located in the **dependencies** section refer to an installed NuGet package or to another  project. 
+Typically values located in the **dependencies** section refer to an installed NuGet package or to another  project. Package versions can be specified specifically, as shown above, or using wildcards to allow dependencies on a major version but automatically pull in minor version updates. 
 
-ASP.NET 5 has a great deal of support for command line tooling, and the **commands** section allows you to configure what certain command line commands should do (for instance, launch a web site or run tests).
+ASP.NET 5 has a great deal of support for command line tooling, and the **commands** section allows you to configure commands that can be run from a command line(for instance, launch a web site or run tests).
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
     :language: json
@@ -62,7 +62,7 @@ The **frameworks** section designates which targeted frameworks will be built, a
 
 The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **publishExclude** is used to identify content portions of the project that should be excluded when publishing the site (for example, in production).
 
-The **scripts** section is used to specify when certain build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after certain events. The default ASP.NET project template has scripts in place to run during ``postrestore`` and ``prepare`` that install `client side dependencies`_ using npm and bower. For more information about bower, see :doc:`/client-side/bower`.
+The **scripts** section is used to specify when build automation scripts should run. Visual Studio now has built-in support for running such scripts before and after specified events. The default ASP.NET project template has scripts in place to run during ``postrestore`` and ``prepare`` that install `client side dependencies`_ using npm and bower. For more information about bower, see :doc:`/client-side/bower`.
 
 The global.json File
 --------------------
@@ -107,7 +107,7 @@ Each dependency is then further configured within its corresponding section usin
 Server Side Dependency Management
 ---------------------------------
 
-The *References* folder, shown within **Solution Explorer** in Visual Studio, details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets, such as the full DNX 4.5.1 vs. DNX Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under **Options** –> **NuGet Package Manager** –> **Package Sources**).
+The *References* folder, shown within **Solution Explorer** in Visual Studio, details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets, such as the full DNX 4.5.1 vs. DNX Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under **Tools** > **NuGet Package Manager** > **Package Manager Settings** > **Package Sources**).
 
 .. image:: understanding-aspnet5-apps/_static/references.png
 
@@ -116,14 +116,16 @@ For more information, see `NuGet <https://docs.nuget.org>`_.
 Application Startup
 -------------------
 
-ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure middleware.
+ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure :doc:`/fundamentals/middleware`.
 
-The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a ``ConfigurationBuilder`` to create a ``IConfiguration`` that loads *appsettings.json* and environment variables.
+The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a ``ConfigurationBuilder`` to create an `IConfiguration <https://github.com/aspnet/Configuration/blob/1.0.0-rc1/src/Microsoft.Extensions.Configuration.Abstractions/IConfiguration.cs>`_ instance that loads *appsettings.json* and environment variables.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
     :language: c#
     :lines: 19-34
     :dedent: 8
+
+Learn more about :doc:`/fundamentals/configuration`.
 
 The ``ConfigureServices`` method is used to specify which services are available to the app. The default template uses helper methods to add a variety of services used for EF, Identity, and MVC. This is also where you can add your own services, as we did above to expose the configuration as a service. The complete ``ConfigureServices`` method, including the call to add ``Configuration`` as a service, is shown here:
 
