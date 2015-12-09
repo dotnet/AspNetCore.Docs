@@ -144,7 +144,7 @@ To build libuv you should do the following::
     sudo make check
     sudo make install
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
-    ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
+    ln -s /usr/local/lib/libuv.so.1.0.0 /usr/lib64/libuv.so
 
 Using Docker
 ------------
