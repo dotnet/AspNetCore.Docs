@@ -122,7 +122,7 @@ ASP.NET ships with the following middleware components:
 
 	*  - Middleware
 	   - Description
-	*  - :doc:`Authentication <../../security/authentication/sociallogins>`
+	*  - :doc:`Authentication </security/authentication/sociallogins>`
 	   - Provides authentication support.
 	*  - `CORS <https://github.com/aspnet/CORS/tree/1.0.0-beta6>`_
 	   - Configures Cross-Origin Resource Sharing.

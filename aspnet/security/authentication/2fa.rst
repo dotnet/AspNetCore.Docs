@@ -42,7 +42,7 @@ Setup up SMS for two-factor authentication with Twilio
 
 .. note:: Twilio cannot target dnxcore50: You will get compilation errors if you build your project when dnxcore50 is included because Twilio does not have a package for dnxcore50. You can remove dnxcore50 from the *project.json* file or you can call the Twilio REST API to send SMS messages.
 
-.. note:: You can remove ``//`` line comment characters from the ``System.Diagnostics.Debug.WriteLine(message);`` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in :doc:`../../fundamentals/logging`.
+.. note:: You can remove ``//`` line comment characters from the ``System.Diagnostics.Debug.WriteLine(message);`` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in :doc:`/fundamentals/logging`.
 
 Configure the SMS provider key/value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
