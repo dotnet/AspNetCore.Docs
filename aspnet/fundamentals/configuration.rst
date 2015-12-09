@@ -1,3 +1,5 @@
+.. _fundamentals-configuration:
+
 Configuration
 =============
 By `Steve Smith`_ and `Daniel Roth`_

@@ -73,12 +73,14 @@ Our minimum age handler might look like so;
  {
      protected override void Handle(AuthorizationContext context, MinimumAgeRequirement requirement)
      {
-         if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && c.Issuer == "http://contoso.com"))
+         if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
+                                    c.Issuer == "http://contoso.com"))
          {
              return;
          }
 
-         var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(c => c.Type == ClaimTypes.DateOfBirth && c.Issuer == "http://contoso.com").Value);
+         var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(
+             c => c.Type == ClaimTypes.DateOfBirth && c.Issuer == "http://contoso.com").Value);
 
          int calculatedAge = DateTime.Today.Year - dateOfBirth.Year;
          if (dateOfBirth > DateTime.Today.AddYears(-calculatedAge))
