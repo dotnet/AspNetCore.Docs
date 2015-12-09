@@ -24,19 +24,19 @@ If you need to enable IIS, see `IIS server configuration`_.
 Create Data Protection Registry Hive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To persist Data Protection keys you must create registry hives for each application pool to store the keys. You should use the 
+To persist Data Protection keys you must create registry hives for each application pool to store the keys. You should use the
 `Provisioning PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`_ for each application pool you will be hosting ASP.NET 5 applications under.
 
 For web farm scenarios developers can configure their applications to use a UNC path to store the data protection key ring. By default this does not encrypt the key ring. You can deploy an x509 certificate to each machine and use that to encrypt the keyring. See the :ref:`configuration APIs <data-protection-configuring>` for more details.
 
-Publish from Visual Studio  
+Publish from Visual Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Create an ASP.NET 5 app. In this sample, I'll create an MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**.
 2. In **Solution Explorer**, right-click the project and select **Publish**.
 
 .. image:: pubIIS/_static/p1.png
 
-3. In the **Publish Web** dialog, on the **Profile** tab, select **File System**. 
+3. In the **Publish Web** dialog, on the **Profile** tab, select **File System**.
 
 .. image:: pubIIS/_static/fs.png
 
@@ -49,8 +49,8 @@ The **Preview** tab shows you the publish path (by default, the same directory a
 Deploy to IIS server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Navigate to the publish folder (*..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder* in this sample). 
-#. Copy the **approot** and **wwwroot** directories to the target IIS server. Note: MSDeploy is the recommended mechanism for deployment, but you can use Xcopy, Robocopy or another approach.
+#. Navigate to the publish folder (*..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder* in this sample).
+#. Copy the **approot** and **wwwroot** directories to the target IIS server. Note: MSDeploy is the recommended mechanism for deployment, but you can use Xcopy, Robocopy or another approach. For information on using `Web Deploy` see :doc:`iis-with-msdeploy`.
 #. In IIS Manager, create a new web site and set the physical path to **wwwroot**. You can click on **Browse *.80(http)** to see your deployed app in the browser. Note: The HTTP Platform Handler currently requires `this work-around <https://github.com/aspnet/Hosting/issues/416>`_ to support apps. If you get an HTTP error, see `IIS server configuration`_.
 
 .. image:: pubIIS/_static/b8.png
@@ -97,7 +97,7 @@ The following is not a complete list of errors. Should you encounter an error no
 
 	- You haven't enabled the proper roles. See `IIS server configuration`_.
 
-- HTTP 500.19 : The requested page cannot be accessed because the related configuration data for the page is invalid. 
+- HTTP 500.19 : The requested page cannot be accessed because the related configuration data for the page is invalid.
 
 	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
 	- The *wwwroot* folder doesn't have the correct permissions. See `IIS server configuration`_.
@@ -106,10 +106,10 @@ The following is not a complete list of errors. Should you encounter an error no
 
 	- Enable IIS; see `IIS server configuration`_.
 
-- HTTP 502.3 Bad Gateway 
+- HTTP 502.3 Bad Gateway
 
 	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
-	
+
 - HTTP 500.21 Internal Server Error.
 
 	- No module installed. See `IIS server configuration`_.
