@@ -5,6 +5,8 @@
 
 .. include:: /../common/stub-notice.txt
 
+ What is Routing?  Routing is the term we use to describe the process through which we expose our content or application features to the world.  In the early days of the web we didn’t think about routing as most web sites or applications simply referenced folders and files on a disk.  So if you had a url for http://example.com/books/mybook.htm then there actually was a folder called books with a file called mybook.htm on the disk someplace.  With modern web frameworks like ASP.net MVC we do not have to structure our content or application exactly how the world will see it.  We can present it however we choose and organize our software in the way that makes sense.  Routing is what we use to connect our code to the urls and features our application exposes.  Routes can be public, they can be private, we can specify who can see a route and what incoming data is allowable.  We can also create multiple routes that lead to the same content if we desire.
+
 Routing at The Action Level
 **********************************************
 A simple example that specifies the entire route at the action level.
