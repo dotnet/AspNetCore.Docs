@@ -20,18 +20,21 @@ namespace CachingSample.Tests
         [Fact]
         public void RemovalFiresCallback()
         {
+            var pause = new ManualResetEvent(false);
+
             _memoryCache.Set(_cacheKey, _cacheItem,
                 new MemoryCacheEntryOptions()
                 .RegisterPostEvictionCallback(
                     (key, value, reason, substate) =>
                     {
                         _result = $"'{key}':'{value}' was evicted because: {reason}";
+                        pause.Set();
                     }
                 ));
 
             _memoryCache.Remove(_cacheKey);
 
-            Pause();
+            Assert.True(pause.WaitOne(500));
 
             Assert.Equal("'key':'value' was evicted because: Removed", _result);
         }
@@ -40,6 +43,7 @@ namespace CachingSample.Tests
         public void CancellationTokenFiresCallback()
         {
             var cts = new CancellationTokenSource();
+            var pause = new ManualResetEvent(false);
             _memoryCache.Set(_cacheKey, _cacheItem,
                 new MemoryCacheEntryOptions()
                 .AddExpirationToken(new CancellationChangeToken(cts.Token))
@@ -47,13 +51,14 @@ namespace CachingSample.Tests
                     (key, value, reason, substate) =>
                     {
                         _result = $"'{key}':'{value}' was evicted because: {reason}";
+                        pause.Set();
                     }
                 ));
 
             // trigger the token
             cts.Cancel();
 
-            Pause();
+            Assert.True(pause.WaitOne(500));
 
             Assert.Equal("'key':'value' was evicted because: TokenExpired", _result);
         }
@@ -62,6 +67,8 @@ namespace CachingSample.Tests
         public void CacheEntryDependencies()
         {
             var cts = new CancellationTokenSource();
+            var pause = new ManualResetEvent(false);
+
             using (var cacheLink = _memoryCache.CreateLinkingScope())
             {
                 _memoryCache.Set("master key", "some value",
@@ -75,6 +82,7 @@ namespace CachingSample.Tests
                         (key, value, reason, substate) =>
                         {
                             _result = $"'{key}':'{value}' was evicted because: {reason}";
+                            pause.Set();
                         }
                     ));
             }
@@ -82,16 +90,9 @@ namespace CachingSample.Tests
             // trigger the token to expire the master item
             cts.Cancel();
 
-            Pause();
+            Assert.True(pause.WaitOne(500));
 
             Assert.Equal("'key':'value' was evicted because: TokenExpired", _result);
-        }
-
-        private void Pause()
-        {
-            var pause = new ManualResetEvent(false);
-            pause.WaitOne(500);
-            pause.Set();
         }
     }
 }
