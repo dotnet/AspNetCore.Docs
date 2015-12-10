@@ -1,0 +1,22 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "CachingSample.Tests Class Library",
+  "authors": [ "stevesmith" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+  "dependencies": {
+    "CachingSample": "1.0.0-*",
+    "xunit":"2.1.0-rc1-build3168",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  }
+}
