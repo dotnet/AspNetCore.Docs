@@ -17,7 +17,7 @@ In this article:
 
 Caching Basics
 --------------
-Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that hasn't changed since it was last requested. ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/IMemoryCache.cs>`_ interface, which represents a cache stored in the memory of the local web server.
+Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that changes less frequently than it is read. ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/IMemoryCache.cs>`_ interface, which represents a cache stored in the memory of the local web server.
 
 An in-memory cache is stored in the memory of a single server hosting an ASP.NET application. Thus, if an application is hosted by multiple servers in a web farm or cloud hosting environment, it is possible that different servers will have different values in their local in-memory caches. If this is an issue for the application, a :doc:`distributed-cache` may be a better alternative.
 
@@ -29,7 +29,7 @@ To get started working with an in memory cache in your ASP.NET application, you 
 
 .. literalinclude:: caching/sample/src/CachingSample/project.json
 	:linenos:
-	:lines: 5-10
+	:lines: 4-11
 	:emphasize-lines: 4-5
 
 Caching in ASP.NET 5 is a *service* that should be referenced from your application via :doc:`dependency-injection`. To register the caching service and make it available within your application, add the following line to your ``ConfigureServices`` method in ``Startup``:
@@ -56,7 +56,7 @@ There are two approaches to attempting to read entries from the cache: ``Get`` a
 
 Writing to the cache is done via the ``Set`` method, which accepts the key to use to look up the value, the value to be cached, and a set of ``MemoryCacheEntryOptions``. These options allow you to specify absolute or sliding time-based cache expiration, caching priority, callbacks, and dependencies.
 
-In the ``GreetingMiddleware`` example, greetings are cached for one minute. This is implemented using the ``SetAbsoluteExpiration`` method on ``MemoryCacheOptions`` as shown here:
+In the ``GreetingMiddleware`` example, greetings are cached for one minute. This is implemented using the ``SetAbsoluteExpiration`` method on ``MemoryCacheEntryOptions`` as shown here:
 
 .. literalinclude:: caching/sample/src/CachingSample/Middleware/GreetingMiddleware.cs
 	:linenos:
@@ -84,7 +84,7 @@ To avoid having very active cache entries growing too stale, you can combine abs
 		.SetSlidingExpiration(TimeSpan.FromMinutes(5))
 		.SetAbsoluteExpiration(TimeSpan.FromHours(1))
 
-By default, an instance of ``MemoryCache`` will automatically manage the items stored, removing entries when necessary to make room for new entries. You can influence the way cache entries are managed by setting their `CacheItemPriority <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/CacheItemPriority.cs>`_ when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the ``NeverRemove`` priority option:
+By default, an instance of ``MemoryCache`` will automatically manage the items stored, removing entries when necessary in response to memory pressure in the application. You can influence the way cache entries are managed by setting their `CacheItemPriority <https://github.com/aspnet/Caching/blob/dev/src/Microsoft.Extensions.Caching.Abstractions/CacheItemPriority.cs>`_ when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the ``NeverRemove`` priority option:
 
 .. code-block:: c#
 

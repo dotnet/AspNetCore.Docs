@@ -31,8 +31,7 @@ namespace CachingSample.Tests
 
             _memoryCache.Remove(_cacheKey);
 
-            // wait for it
-            Thread.Sleep(100);
+            Pause();
 
             Assert.Equal("'key':'value' was evicted because: Removed", _result);
         }
@@ -54,8 +53,7 @@ namespace CachingSample.Tests
             // trigger the token
             cts.Cancel();
 
-            // wait for it
-            Thread.Sleep(100);
+            Pause();
 
             Assert.Equal("'key':'value' was evicted because: TokenExpired", _result);
         }
@@ -84,10 +82,16 @@ namespace CachingSample.Tests
             // trigger the token to expire the master item
             cts.Cancel();
 
-            // wait for it
-            Thread.Sleep(100);
+            Pause();
 
             Assert.Equal("'key':'value' was evicted because: TokenExpired", _result);
+        }
+
+        private void Pause()
+        {
+            var pause = new ManualResetEvent(false);
+            pause.WaitOne(500);
+            pause.Set();
         }
     }
 }
