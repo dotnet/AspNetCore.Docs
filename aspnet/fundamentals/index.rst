@@ -19,6 +19,7 @@ Fundamentals
     environments
     websockets
     caching
+    distributed-cache
     error-handling
     request-features
     servers
