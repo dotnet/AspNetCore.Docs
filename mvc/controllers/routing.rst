@@ -206,33 +206,15 @@ We want to make our applications intuitive, but sometimes despite our best resul
 Here’s our Requirements:  Have a default help page that can be accessed by /something/help where something is a controller – ie Orders or Products.  Also have the ability to very easily override that functionality and supply different content at the view or even at the functional level in the controller.  
 To do this we’ll create a new Controller called BaseController
 
- .. code-block:: c#
-  :emphasize-lines: 1,4
-     
-  [Route("[controller]")]
-  public class BaseController : Controller
-  {
-      [Route("help")]
-      public virtual IActionResult Help()
-      {
-          return View();
-      }
-  }
+ .. literalinclude:: routing/sample/routingSample/Controllers/BaseController.cs
+  :language: C#
   
 There are a few things to take note of with this code.  First, look at the Route attribute it uses the new Data Token syntax, where [controller] is replaced with the name of the controller at runtime.  
 For this action, I’ve created a simple view in the Shared folder called Help with some default help content.
 
- .. code-block:: javascript
-  :emphasize-lines: 1,4
-  
-  @model dynamic
 
-  @{
-      ViewBag.Title = "title";
-      Layout = "_Layout";
-  }
-
-  <h2>This is the Help Page</h2>
+ .. literalinclude:: routing/sample/routingSample/Views/Shared/Help.cshtml
+   :language: javascript
 
 We’ll then replace the inheritance for our Orders controller so that it will inherit from this new controller instead.
 
@@ -247,57 +229,25 @@ We’ll then replace the inheritance for our Orders controller so that it will i
 
 We’ll also add a new controller called Products 
 
- .. code-block:: c#
-  :emphasize-lines: 1
-  
-    public class ProductsController : BaseController
-    {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+ .. literalinclude:: routing/sample/routingSample/Controllers/ProductsController.cs
+  :language: C#
 
 Once we compile the code we’ll quickly see that we can view the new help action from both the Orders and Products controllers just the way we expect.  Both controllers display the help text that we put into the shared view folder.
 
 Now let’s push this a bit further, let’s say that we need to supply different content for the orders controller.  To accomplish this we create a help view in the Orders view folder.
 
- .. code-block:: javascript
-  :emphasize-lines: 2
-  
-  @model dynamic
-
-  @{
-      ViewBag.Title = "title";
-      Layout = "_Layout";
-  }
-
-  <h2>Orders Help Page</h2>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum mauris at diam pharetra, a rhoncus magna lobortis. Mauris lacinia magna massa, ut dapibus ligula cursus in. Aliquam vel dolor lectus. Etiam blandit non odio at lobortis. Aliquam erat volutpat. Nullam libero nisl, porttitor sit amet fermentum vel, luctus nec massa. Phasellus in erat vitae enim tempus imperdiet. In non felis quis ante ultricies ultricies. Curabitur finibus enim vitae gravida bibendum. Sed hendrerit vitae mauris at scelerisque. Vivamus aliquam laoreet odio, at porttitor neque condimentum ac. Nullam ornare finibus felis a suscipit. Cras pellentesque sem vel semper consequat. Aenean ullamcorper non ligula a dignissim. Aenean purus nunc, luctus quis nisi in, efficitur sollicitudin purus.
-  </p>
+ .. literalinclude:: routing/sample/routingSample/Views/Orders/Help.cshtml
+   :language: javascript
+   
   
 Now compile and let’s try it.  For Orders we see a different set of help content just as we wanted.  Ok let’s take it one step further.  Let’s introduce a new controller Finance and let’s assume that if you need Finance help there’s a special support site you go to.  So for that scenario we’ll need to redirect the user to specialsupportsite.example.com 
 Here’s how we can do this.  Create a new controller FinanceController.  Don’t forget to derive from BaseController instead of Controller.
  
- .. code-block:: c#
+ .. literalinclude:: routing/sample/routingSample/Controllers/FinanceController.cs
   :emphasize-lines: 9,11
+  :language: C#
    
-    public class FinanceController : BaseController
-    {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public override IActionResult Help()
-        {
-            return Redirect("https://specialsupportsite.example.com");
-        }
-    }
-  }
+    
 
 
 	
