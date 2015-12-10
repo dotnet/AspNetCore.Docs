@@ -1,3 +1,5 @@
+.. _security-data-protection-getting-started:
+
 Getting Started with the Data Protection APIs
 =============================================
 

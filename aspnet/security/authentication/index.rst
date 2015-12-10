@@ -9,3 +9,5 @@ Authentication
    accconfirm
    2fa
    oauth2
+   cookieauthentication
+   

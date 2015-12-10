@@ -1,3 +1,5 @@
+.. _fundamentals-middleware:
+
 Middleware
 ==========
 By `Steve Smith`_
