@@ -1,9 +1,6 @@
 Dependency Injection and Controllers
 ====================================
 
-.. _dependency-injection-controllers:
-
-|stub-icon| Dependency Injection and Controllers
 By `Steve Smith`_
 
 ASP.NET MVC 6 controllers should request their dependencies explicitly via their constructors. In some instances, individual controller actions may require a service, and it may not make sense to request at the controller level. In this case, you can also choose to inject a service as a parameter on the action method.
