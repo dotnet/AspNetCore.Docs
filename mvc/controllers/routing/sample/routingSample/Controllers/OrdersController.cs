@@ -10,7 +10,7 @@ using Microsoft.AspNet.Mvc;
 namespace mvcOrderManagerSample.Controllers
 {
     [Route("orders")]
-    public class OrdersController : BaseController
+    public class OrdersController : Controller
     {
         [Route("")]
         public IActionResult ViewOrders()
@@ -100,5 +100,23 @@ namespace mvcOrderManagerSample.Controllers
             // Normally we'd not hard code this :)
             return View(orderList.Where(o => o.Client == "Scott").ToList());
         }
-      }
+
+#if not_a_symbol
+       
+        [Route("orders/{orderId}")]
+        public IActionResult GetByOrderID(int orderId)
+        {
+            var order = new OrderViewModel()
+            {
+                OrderID = orderId,
+                Cost = 100m,
+                Subject = "BackToSchoolOrder"
+            };
+
+            return View(order);
+        }
+
+#endif
+
+    }
 }

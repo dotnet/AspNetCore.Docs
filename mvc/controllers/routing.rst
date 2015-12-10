@@ -11,17 +11,9 @@ Routing at The Action Level
 **********************************************
 A simple example that specifies the entire route at the action level.
  
- .. code-block:: c#
-  :emphasize-lines: 3
-  
-  public class OrdersController : Controller
-  {
-       [Route("orders/{orderId}")]
-       public IActionResult GetByOrderID(int orderId)
-       {
-           return View(new OrderViewModel() {OrderID = orderId});
-       }
-  }
+ .. literalinclude:: routing/sample/routingSample/Controllers/OrdersController.cs
+  :language: C#
+  :lines: 106-117  
 	
  In this example we have fully declared the route at the Action level.  We do this by using the Route attribute.  Our route specifies a name for the controller Orders, and a parameter orderId.  If we were to use this to find a Order say 1234 then our route would look like this /orders/1234.
 
@@ -40,69 +32,22 @@ Routing at the Class Level
 
 Now let's take a look at our orders controller.  Instead of handling all of the routing at the action level, we can handle some of it at the class level and build up the routes in the actions ensuring that we don't repeat ourselves and reuse our routing logic.
 
- .. code-block:: c#
-  :emphasize-lines: 1
+ .. literalinclude:: routing/sample/routingSample/Controllers/OrdersController.cs
+  :language: C#
+  :lines: 12-50,121-123
+  :emphasize-lines: 53,66
   
-   [Route("orders")]
-   public class OrdersController : Controller
-   {
-        [Route("")]
-        public IActionResult ViewOrders()
-        {
-            var orderList = new List<OrderModel>()
-            {
-                new OrderModel()
-                {
-                    OrderID = 1000,
-                    Client = "Scott",
-                    Cost = 10m,
-                    Description = "Erasers"
-                },
-                new OrderModel()
-                {
-                    OrderID = 1001,
-                    Client = "Rob",
-                    Cost = 12m,
-                    Description = "Markers"
-                },
-                new OrderModel()
-                {
-                    OrderID = 1002,
-                    Client = "ScottHa",
-                    Cost = 14m,
-                    Description = "BluRay"
-                }
-            };
-            return View(orderList);
-        }
-
-        [Route("{orderId}")]
-        public IActionResult GetByOrderID(int orderId)
-        {
-            return View(new OrderViewModel() {OrderID = orderId});
-        }
-    }
-
+ 
 Using Constraints 
 ---------------------------------
 We also can use constraints to help route to our controller actions.  Let’s say that we have two concepts, an OrderID which is an integer and an Order Subject which is a string.  If we use constraints on our routes we can support both concepts easily.  
 
 Our goal will be to be able to use the route /orders/1234 to view an order by its Integer ID,  but also to use /orders/mybacktoschoolorder to view an order by its subject.  
 
- .. code-block:: c#
-  :emphasize-lines: 1,7
-
-   [Route("{orderId:int}")]
-   public IActionResult GetByOrderID(int orderId)
-   {
-       return View(new OrderViewModel() {OrderID = orderId}); 
-   }
-
-   [Route("{subject:alpha}")]
-   public IActionResult GetByOrderSubject(string subject)
-   {
-       return View(new OrderViewModel() { Subject = subject });
-   }
+ .. literalinclude:: routing/sample/routingSample/Controllers/OrdersController.cs
+  :language: C#
+  :lines: 53-70
+  :emphasize-lines: 53,66
 
 By simply putting in a constraint for the parameter, ASP.net is able to route requests for an integer to the action that is prepared to handle them, and the requests with the string value to the other action.  This lets us create a nice experience from a url point of view in that we can keep our urls, short and simple.
 
@@ -114,28 +59,10 @@ Our requirements here:
 GET /orders/1234 shows the order and lets us build a form.  
 POST /orders/1234 allows us to post the edited order back to the server for processing.  
 
- .. code-block:: c#
-  :emphasize-lines: 1,8
+ .. literalinclude:: routing/sample/routingSample/Controllers/OrdersController.cs
+  :language: C#
+  :lines: 45-64
 
-   [HttpPost]
-   [Route("{orderId:int}")]
-   public IActionResult UpdateOrderById(int orderId, OrderViewModel order)
-   {
-       return Redirect($"/orders/{orderId}");
-   }
-
-   [HttpGet]
-   [Route("{orderId:int}")]
-   public IActionResult GetByOrderID(int orderId)
-   {
-      var order = new OrderViewModel()
-      {
-           OrderID = orderId,
-           Cost = 100m,
-           Subject = "BackToSchoolOrder"
-      };
-       return View(order);
-   }
 	
 By supplying an additional Attribute, we are able to give asp.net the context it needs to make the correct decision when it routes the request to our action.  Http Verbs are used extensively when creating APIs, as we’ll see more examples of when it comes time to look at inheritance. 
 
@@ -157,43 +84,10 @@ Luckily we can choose to override the information specified for the route in pre
 Here’s what that looks like.
 
 
- .. code-block:: c#
-  :emphasize-lines: 1,4
+ .. literalinclude:: routing/sample/routingSample/Controllers/OrdersController.cs
+  :language: C#
+  :lines: 72-102
   
-  [Route("orders")]
-  public class OrdersController : Controller
-  {
-      [Route("~/my-orders")]
-      public IActionResult GetMyOrders()
-      {
-          var orderList = new List<OrderModel>()
-          {
-              new OrderModel()
-              {
-                  OrderID = 1000,
-                  Client = "Scott",
-                  Cost = 10m,
-                  Description = "Erasers"
-              },
-              new OrderModel()
-              {
-                  OrderID = 1001,
-                  Client = "Rob",
-                  Cost = 12m,
-                  Description = "Markers"
-              },
-              new OrderModel()
-              {
-                  OrderID = 1002,
-                  Client = "ScottHa",
-                  Cost = 14m,
-                  Description = "BluRay"
-              }
-          };
-
-		  // Normally we'd not hard code this :)
-          return View(orderList.Where(o => o.Client == "Scott").ToList());
-      }
       
 The route on line 1 sets up the route for the controller, but to meet our requirement of having a url /my-orders we append ~/ to the route on line 4.  Now when we make a request to /my-orders asp.net will route that request to our action here.
 
