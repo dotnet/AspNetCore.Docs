@@ -70,7 +70,7 @@ To run a console app, you can use the following command::
 
 Global commands
 ---------------
-Global commands are DNX console applications (in a NuGet package) that are installed globally and runnable from your command line. The difference between global commands and commands that your add in the ``commands`` section of the *project.json* file of a project is that global commands are made available to everything that runs under a user profile. You can install, run, uninstall, build, and publish global commands. 
+Global commands are DNX console applications (in a NuGet package) that are installed globally and runnable from your command line. The difference between global commands and commands that you add in the ``commands`` section of the *project.json* file of a project is that global commands are made available to everything that runs under a user profile. You can install, run, uninstall, build, and publish global commands. 
 
 The ``dnu commands install`` command will use the NuGet sources contained in the local XML *NuGet.Config* file to determine where it looks for NuGet packages. The main sections for this file are ``packageRestore``, ``packageSources``, ``disabledPackageSources``, and ``activePackageSource``.
 

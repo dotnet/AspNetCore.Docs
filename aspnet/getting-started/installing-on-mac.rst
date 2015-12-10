@@ -1,42 +1,61 @@
 Installing ASP.NET 5 On Mac OS X
 ================================
 
-By `Steve Smith`_, `Daniel Roth`_
+By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
 
-ASP.NET 5 runs on the .NET Execution Environment (DNX), which is available on multiple platforms, including OS X. This article describes how to install DNX, and therefore ASP.NET 5, on OS X using .NET Core and Mono.
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-In this article:
-  - `Install the .NET Version Manager (DNVM)`_
-  - `Install the .NET Execution Environment (DNX)`_
+Install ASP.NET 5 with Visual Studio Code
+-----------------------------------------
 
-Install the .NET Version Manager (DNVM)
+The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio Code.
+
+#. Install `Mono <http://www.mono-project.com/docs/getting-started/install/mac/>`__ for OS X (required by Visual Studio Code). 
+  
+#. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534106>`__
+
+#. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
+  
+You are all set up and ready to write :doc:`your first ASP.NET 5 application on a Mac </tutorials/your-first-mac-aspnet>`!
+
+Install ASP.NET 5 from the command-line
 ---------------------------------------
 
-Use the .NET Version Manager (DNVM) to install different versions of the .NET Execution Environment (DNX) on OS X.
+You can also install ASP.NET 5 from the command-line. There are a few steps involved, since we'll need to install and configure the environment in which ASP.NET runs, the :doc:`/dnx/index`. To install DNX, we need one more tool, the .NET Version Manager (DNVM).
 
-To install DNVM run the following::
+Install the .NET Version Manager (DNVM)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To install DNVM:
+
+.. This is only necessary if you don't already have a bash profile and the install script will tell you to do this if you need to.
+.. #. Open a Terminal.
+.. #. Type ``cd ~/`` to go to your home folder.
+.. #. Enter ``touch .bash_profile`` to create a new bash profile.
+
+
+#. Run the following ``curl`` command::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    
-Once this step is complete you should be able to run ``dnvm`` and see some help text.
+
+#. Run ``dnvm list`` to show the DNX versions installed
+
+#. Run ``dnvm`` to get DNVM help
+
+The .NET Version Manager (DNVM) is used to install different versions of the .NET Execution Environment (DNX) on OS X.
 
 Install the .NET Execution Environment (DNX)
---------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The .NET Execution Environment (DNX) is used to build and run .NET projects. Use DNVM to install DNX for `Mono <http://mono-project.com>`_ or .NET Core (see :doc:`choosing-the-right-dotnet`).
 
 **To install DNX for .NET Core:**
 
-1. Install the DNX prerequisites using `Homebrew <http://brew.sh/>`__::
-
-    brew update
-    brew install icu4c
-
-2. Use DNVM to install DNX for .NET Core::
+1. Use DNVM to install DNX for .NET Core::
 
     dnvm upgrade -r coreclr
-
-.. note:: .NET Core on OS X is still in early preview. Please refer to the latest `Release Notes <https://github.com/aspnet/home/releases>`__ for known issues and limitations.
 
 **To install DNX for Mono:**
 
@@ -48,12 +67,7 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 By default DNVM will install DNX for Mono if no runtime is specified.
 
-.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (ex. 2000).
-
-Summary
--------
-
-ASP.NET 5 is built on the cross-platform .NET Execution Environment (DNX), which can be installed on OS X as well as :doc:`Linux <installing-on-linux>` and :doc:`Windows <installing-on-windows>`. Installing DNX and ASP.NET 5 on OS X takes just a few minutes, using a few simple commands. You're now  ready to build :doc:`your first ASP.NET application </tutorials/your-first-mac-aspnet>`!
+.. note:: Restoring packages using DNX on Mono may fail with multiple canceled requests. You may be able to work around this issue by setting ``MONO_THREADS_PER_CPU`` to a larger number (2000).
 
 Related Resources
 -----------------

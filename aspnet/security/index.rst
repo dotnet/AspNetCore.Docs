@@ -4,9 +4,7 @@ Security
 .. toctree::
    :titlesonly:
 
-   sociallogins
-   accconfirm
-   2fa
+   authentication/index
    authorization/index
    data-protection/index
    app-secrets

@@ -8,7 +8,7 @@ registered subscribers. The POST request contains information about the
 event which makes it possible for the receiver to act accordingly. 
 
 Because of their simplicity, WebHooks are already exposed by a large 
-number of services including `Dropbox <http://dropbox.com/>`_, `GitHub <http://www.github.com/>`_, 
+number of services including `Dropbox <http://dropbox.com/>`_, `GitHub <http://www.github.com/>`_, `Bitbucket <https://bitbucket.org/>`_, 
 `MailChimp <http://www.mailchimp.com/>`_, `PayPal <http://www.paypal.com/>`_, `Slack <http://www.slack.com>`_, 
 `Stripe <http://www.stripe.com>`_, `Trello <http://www.trello.com/>`_, and many more. For example, a WebHook can indicate that a file 
 has changed in Dropbox_, or a code change has been committed in GitHub, 
@@ -19,7 +19,7 @@ Microsoft ASP.NET WebHooks makes it easier to both send and receive WebHooks as 
 
 * On the receiving side, it provides a common model for receiving and 
   processing WebHooks from any number of WebHook providers. It comes out 
-  of the box with support for Dropbox_, GitHub_, MailChimp_, PayPal_, `Pusher <http://www.pusher.com>`_, 
+  of the box with support for Dropbox_, GitHub_, Bitbucket_, MailChimp_, PayPal_, `Pusher <http://www.pusher.com>`_, 
   `Salesforce <http://www.salesforce.com>`_, Slack_, Stripe_, Trello_, and `WordPress <http://www.wordpress.com>`_ but it is easy to add support for 
   more. 
 

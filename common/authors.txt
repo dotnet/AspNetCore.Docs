@@ -1,5 +1,5 @@
 .. _Daniel Roth: https://github.com/danroth27
-.. _Rick Anderson: https://github.com/rick-anderson
+.. _Rick Anderson: https://twitter.com/RickAndMSFT
 .. _Steve Smith: http://blog.falafel.com/author/steve-smith/
 .. _Noel Rice: http://blog.falafel.com/author/noel-rice/
 .. _Venkata Koppaka: http://blog.falafel.com/author/venkata-koppaka/
@@ -9,3 +9,5 @@
 .. _Tom Archer: https://github.com/tomarcher
 .. _Scott Sargent: https://github.com/ssargent
 .. _David Paquette: https://github.com/dpaquette
+.. _Scott Addie: http://scottaddie.com
+.. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi

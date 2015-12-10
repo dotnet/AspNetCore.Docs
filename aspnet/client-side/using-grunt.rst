@@ -40,7 +40,6 @@ To begin, set up a new empty web application and add TypeScript example files. T
 .. image:: using-grunt/_static/typescript-options.png
 
 6.	Right-click the ``TypeScript`` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file **Tastes.ts** (note the \*.ts extension). Copy the line of TypeScript code below into the file (when you save, a new Tastes.js file will appear with the JavaScript source).
-enum Tastes { Sweet, Sour, Salty, Bitter }
 
 .. code-block:: javascript
 
@@ -84,7 +83,7 @@ Next, configure NPM to download grunt and grunt-tasks.
 
 .. image:: using-grunt/_static/devdependencies-grunt.png
 
-.. note:: NPM uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (0.4.5 in the example above) is considered the latest stable version of the package. The carat ^ symbol matches the most recent major version and the tilde ~ matches the most recent minor version. See the `NPM semver version parser reference <https://www.npmjs.com/package/semver>`_ as a guide to the full expressivity that SemVer provides.
+.. note:: NPM uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (0.4.5 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version. See the `NPM semver version parser reference <https://www.npmjs.com/package/semver>`_ as a guide to the full expressivity that SemVer provides.
 
 3.	Add more dependencies to load grunt-contrib* packages for *clean, jshint, concat, uglify and watch* as shown in the example below. The versions do not need to match the example.
 
@@ -105,7 +104,7 @@ The packages for each devDependencies item will download, along with any files t
 
 .. image:: using-grunt/_static/node-modules.png
 
-.. note:: If you need to, you can manually restore dependencies in Solution Explorer by right-clicking on ``Dependencies\\NPM`` and selecting the **Restore Packages** menu option.
+.. note:: If you need to, you can manually restore dependencies in Solution Explorer by right-clicking on ``Dependencies\NPM`` and selecting the **Restore Packages** menu option.
 
 .. image:: using-grunt/_static/restore-packages.png
 
@@ -256,7 +255,7 @@ Add a call to ``loadNpmTasks()`` to show the ``watch`` task in Task Runner Explo
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-Right-click the watch task in Task Runner Explorer and select Run from the context menu. The command window that shows the watch task running will display a waiting… message. Open one of the TypeScript files, add a space, and then save the file. This will trigger the watch task and trigger the other tasks to run in order. The screenshot below shows a sample run.
+Right-click the watch task in Task Runner Explorer and select Run from the context menu. The command window that shows the watch task running will display a "Waiting…" message. Open one of the TypeScript files, add a space, and then save the file. This will trigger the watch task and trigger the other tasks to run in order. The screenshot below shows a sample run.
 
 .. image:: using-grunt/_static/watch-running.png
 

@@ -10,12 +10,12 @@ In this article:
 	- `Built-in middleware`_
 	- `Writing middleware`_
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/middleware/_static/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/middleware/sample>`_.
 
 What is middleware
 ------------------
 
-Middleware are components that are assembled into an application pipeline to handle requests and responses. Each component can choose whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component in the pipeline. Request delegates are used to build this request pipeline, which are then used to handle each incoming HTTP request to your application. 
+Middleware are components that are assembled into an application pipeline to handle requests and responses. Each component can choose whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component in the pipeline. Request delegates are used to build this request pipeline, which are then used to handle each HTTP request to your application. 
 
 Request delegates are configured using ``Run``, ``Map``, and ``Use`` extension methods on the ``IApplicationBuilder`` type that is passed into the ``Configure`` method in the ``Startup`` class. An individual request delegate can be specified in-line as an anonymous method, or it can be defined in a reusable class. These reusable classes  are `middleware`, or `middleware components`. Each middleware component in the request pipeline is responsible for invoking the next component in the chain, or choosing to short-circuit the chain if appropriate.
 
@@ -33,11 +33,11 @@ You can see an example of setting up a request pipeline, using a variety of requ
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
 	:linenos:
-	:lines: 73-103,128-138
+	:lines: 59-72,85-101
 	:dedent: 8
-	:emphasize-lines: 12-14,20,27,30,33
+	:emphasize-lines: 8-10,14,19,21,25
 
-Because of the order in which this pipeline was constructed, the middleware configured by the ``UseErrorHandler`` method will catch any exceptions that occur in later calls (in non-development environments). Also, in this example a design decision has been made that static files will not be protected by any authentication. This is a tradeoff that improves performance when handling static files since no other middleware (such as authentication middleware) needs to be called when handling these requests (ASP.NET 5 uses a specific ``wwwroot`` folder for all files that should be accessible by default, so there is typically no need to perform authentication before sending these files). If the request is not for a static file, it will flow to the next piece of middleware defined in the pipeline (in this case, Identity). Learn more about :doc:`static-files`.
+Because of the order in which this pipeline was constructed, the middleware configured by the ``UseExceptionHandler`` method will catch any exceptions that occur in later calls (in non-development environments). Also, in this example a design decision has been made that static files will not be protected by any authentication. This is a tradeoff that improves performance when handling static files since no other middleware (such as authentication middleware) needs to be called when handling these requests (ASP.NET 5 uses a specific ``wwwroot`` folder for all files that should be accessible by default, so there is typically no need to perform authentication before sending these files). If the request is not for a static file, it will flow to the next piece of middleware defined in the pipeline (in this case, Identity). Learn more about :doc:`static-files`.
 
 .. note:: **Remember:** the order in which you arrange your ``Use[Middleware]`` statements in your application's ``Configure`` method is very important. Be sure you have a good understanding of how your application's request pipeline will behave in various scenarios.
 
@@ -68,8 +68,8 @@ You chain multiple request delegates together making a different call, with a ``
 	:dedent: 8
 
 .. warning:: Be wary of modifying ``HttpResponse`` after invoking next, since one of the components further down the pipeline may have written to the response, causing it to be sent to the client.
-	
-.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in ``hosting.ini`` to listen on ``http://localhost:5000``. See also :doc:`startup`.
+
+.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in ``project.json``. See also :doc:`startup`.
 
 In the above example, the call to ``await next.Invoke()`` will call into the delegate on line 14. The client will receive the expected response ("Hello from LogInline"), and the server's console output includes both the before and after messages, as you can see here:
 
@@ -99,7 +99,7 @@ We've already seen several examples of how to build a request pipeline with ``Us
 	:dedent: 8
 
 .. note:: When ``Map`` is used, the matched path segment(s) are removed from ``HttpRequest.Path`` and appended to ``HttpRequest.PathBase`` for each request.
-	
+
 In addition to path-based mapping, the ``MapWhen`` method supports predicate-based middleware branching, allowing separate pipelines to be constructed in a very flexible fashion. Any predicate of type ``Func<HttpContext, bool>`` can be used to map requests to a new branch of the pipeline. In the following example, a simple predicate is used to detect the presence of a querystring variable ``branch``:
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
@@ -119,10 +119,10 @@ ASP.NET ships with the following middleware components:
 
 .. list-table:: Middleware
 	:header-rows: 1
-	
+
 	*  - Middleware
 	   - Description
-	*  - :doc:`Authentication </security/sociallogins>`
+	*  - :ref:`Authentication <security-authentication-social-logins>`
 	   - Provides authentication support.
 	*  - `CORS <https://github.com/aspnet/CORS/tree/1.0.0-beta6>`_
 	   - Configures Cross-Origin Resource Sharing.
@@ -164,7 +164,7 @@ Using the extension method and associated middleware class, the ``Configure`` me
 	:lines: 51-62
 	:emphasize-lines: 6
 	:dedent: 8
-	
+
 Although ``RequestLoggerMiddleware`` requires an ``ILoggerFactory`` parameter in its constructor, neither the ``Startup`` class nor the ``UseRequestLogger`` extension method need to explicitly supply it. Instead, it is automatically provided through dependency injection performed within ``UseMiddleware<T>``.
 
 Testing the middleware (by setting the ``ASPNET_ENV`` environment variable to ``LogMiddleware``) should result in output like the following (when using WebListener):

@@ -3,8 +3,12 @@ Publish to a Docker Image
 
 `Docker <https://www.docker.com/whatisdocker/>`_ is a lightweight container engine, similar in some ways to a virtual machine, which you can use to host applications and services.
 
-This example shows you how to use the Visual Studio 2015 RC Tools for Docker extension to publish an ASP.NET 5 app to an Ubuntu Linux virtual machine (referred to here as a Docker host) on Azure with the Docker extension installed along with an ASP.NET 5 web application. You can publish the app to a new Docker host hosted on Azure, or to an on-premise server, Hyper-V, or Boot2Docker host by using the **Custom Host** setting. After publishing your app to a Docker host, you can use Docker command-line tools to interact with the container your app has been published to.
+This example shows you how to use the Visual Studio 2015 Tools for Docker extension to publish an ASP.NET 5 app to an Ubuntu Linux virtual machine (referred to here as a Docker host) on Azure with the Docker extension installed along with an ASP.NET 5 web application. You can publish the app to a new Docker host hosted on Azure, or to an on-premise server, Hyper-V, or Boot2Docker host by using the **Custom Host** setting. After publishing your app to a Docker host, you can use Docker command-line tools to interact with the container your app has been published to.
 
+.. contents:: In this article:
+  :local:
+  :depth: 1
+  
 Create and publish a new Docker container
 -----------------------------------------
 
@@ -27,7 +31,7 @@ Publish the project
 
 #. In the **Select a publish target** section of the **Publish Web** dialog box, choose the **Docker Containers** button.
 
-   If you don't see a Docker Containers option, make sure you have installed the `Visual Studio 2015 RC Tools for Docker <https://visualstudiogallery.msdn.microsoft.com/6f638067-027d-4817-bcc7-aa94163338f0>`_ and that you selected an ASP.NET 5 Web Site template in the previous step.
+   If you don't see a Docker Containers option, make sure you have installed the `Visual Studio 2015 Tools for Docker <https://aka.ms/DockerToolsForVS>`_ and that you selected an ASP.NET 5 Web Site template in the previous step.
 
    .. image:: docker/_static/publish-dialog.png
    
@@ -59,7 +63,7 @@ Publish the project
    Username                           Enter a unique user name for the virtual machine.
    Password                           Enter a password for the local user and then confirm it.
    Location                           Change this setting to the region closest to your location.
-   Auto-generate Docker certificates  Check this box if you want certificates and keys to be automatically generated for you. Clear this box if you want to provide existing certificates and keys.
+   Certificates Directory             Enter Path to folder with keys. 
    =================================  ======= 
    
 #. After you choose **OK**, the virtual machine will begin to be created.
@@ -135,8 +139,8 @@ Next steps
 
 Now that you have a Docker host, you can issue Docker commands to it. To learn more about Docker, see the `Docker documentation <https://docs.docker.com/>`_ and the `Docker online tutorial <https://www.docker.com/tryit/>`_.
 
-See also
---------
+Additional Resources
+--------------------
 
 `Troubleshooting Docker Errors <https://msdn.microsoft.com/en-US/library/azure/mt125442.aspx>`_
 

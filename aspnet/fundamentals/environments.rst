@@ -10,14 +10,14 @@ In this article:
 	- `Determining the environment at runtime`_
 	- `Startup conventions`_
 
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/environments/sample>`_.
+`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/environments/sample>`_.
 
 Development, Staging, Production
 --------------------------------
 
 ASP.NET 5 references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``ASPNET_ENV``, to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET 5.
 
-The current environment setting can be detected programmatically from within ASP.NET 5. In addition, ASP.NET MVC 6 introduces an `Environment Tag Helper <http://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ that allows MVC Views to include certain sections based on the current application environment.
+The current environment setting can be detected programmatically from within ASP.NET 5. In addition, ASP.NET MVC 6 introduces an :ref:`Environment Tag Helper <mvc:tag-helpers-index>` that allows MVC Views to include certain sections based on the current application environment.
 
 .. note:: The specified environment name is case insensitive. Whether you set the variable to ``Development`` or ``development`` or ``DEVELOPMENT`` the results will be the same.
 
@@ -28,7 +28,7 @@ This should be the environment used when developing an application. When using V
 
 .. image:: environments/_static/project-properties-debug.png
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.js`` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the ``Properties`` folder. After modifying the ``ASPNET_ENV`` variable in the ``web`` profile to be set to ``Staging``, the ``launchSettings.json`` file in our sample project is shown below:
 
 .. literalinclude:: environments/sample/src/Environments/Properties/launchSettings.json
 	:language: javascript
@@ -68,9 +68,9 @@ For example, you can use the following code in you Configure method to setup env
 	:language: c#
 	:linenos:
 	:dedent: 12
-	:lines: 82-93
+	:lines: 64-72,85
 
-If the app is running in a ``Development`` environment, then it enables BrowserLink and error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
+If the app is running in a ``Development`` environment, then it enables BrowserLink and development specific error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
 Startup conventions
 -------------------

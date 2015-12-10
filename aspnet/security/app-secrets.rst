@@ -1,3 +1,5 @@
+.. _security-app-secrets:
+
 Safe Storage of Application Secrets
 ===================================
 
@@ -30,9 +32,9 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 Installing the Secret Manager tool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Install the Secret Manager tool using the .NET Development Utility (DNU). The Secret Manager tool is installed as a :doc:`DNX command </dnx/commands>` via the Microsoft.Framework.SecretManager package::
+- Install the Secret Manager tool using the .NET Development Utility (DNU). The Secret Manager tool is installed as a :doc:`DNX command </dnx/commands>` via the Microsoft.Extensions.SecretManager package::
 
-    dnu commands install Microsoft.Framework.SecretManager
+    dnu commands install Microsoft.Extensions.SecretManager
 
 - Test the Secret Manager tool by running the following command::
 
@@ -70,15 +72,15 @@ You can access user secrets stored using the Secret Manager tool via the configu
 
 First install the user secrets configuration source to your project::
 
-  dnu install Microsoft.Framework.Configuration.UserSecrets
+  dnu install Microsoft.Extensions.Configuration.UserSecrets
 
 Then add the user secrets configuration source:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
   :language: c#
-  :lines: 29-40
-  :emphasize-lines: 10
+  :lines: 22-33
+  :emphasize-lines: 8
   :dedent: 12
 
 You can now access user secrets via the configuration API:

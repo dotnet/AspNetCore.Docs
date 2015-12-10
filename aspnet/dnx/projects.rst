@@ -1,6 +1,8 @@
 Working with DNX Projects
 =========================
 
+By `Erik Reitan`_ 
+
 DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
 In this article:
@@ -311,7 +313,7 @@ When you run your app, you can specify whether to compile in Debug mode or in Re
 
 	dnx --configuration Debug
 
-For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`).
+For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`.
 
 Building
 --------
@@ -399,7 +401,7 @@ The most common sections that you will see for including and excluding files are
 
 * The *publishExclude* section allows you to exclude files from the publish output of your project. In this example, all *.xproj*, *.user*, and *.vspscc* files from the output of the publish command. 
 
-.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_programming>`_, which are often called wildcards. 
+.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_(programming)>`_, which are often called wildcards. 
 
 List of include/exclude properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -427,7 +429,7 @@ List of include/exclude properties
 +---------------------+--------------------------------------+-----------------------------------+
 | sharedExclude       |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
-| bundleExclude       | ``bin/**;obj/**;**/.*/**``           |                                   |
+| publishExclude      | ``bin/**;obj/**;**/.*/**``           |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
 | exclude             |                                      |                                   |
 +---------------------+--------------------------------------+-----------------------------------+
@@ -503,8 +505,8 @@ The following describes the exact lists that are built up with the following not
       -ResourcesList
       +contentFiles
     
-    BundleExcludeList =
-      +Glob ( +bundleExclude )
+    PublishExcludeList =
+      +Glob ( +publishExclude )
 
 Sharing files
 ^^^^^^^^^^^^^
@@ -574,11 +576,19 @@ To specify this in the *project.json* file you create a key for each of the meta
       "description": "A wonderful library that does nice stuff"
     }
     
-* Version: The version of the NuGet package and assemblies generated if you pack/publish your application.
-* Authors: The authors and owners section of the NuGet packages nuspec.
-* Description: The description of the NuGet package.
+* version: The version of the NuGet package and assemblies generated if you pack/publish your application.
+* authors: A JSON array of the authors and owners section of the NuGet packages nuspec
+* description: A long description of the NuGet package.
 
-.. note:: There is additional metadata that can be put into the *project.json* file.
+Additional optional metadata that can be put into the project.json file:
+
+* copyright: Copyright details for the NuGet package.
+* projectUrl: A URL for the home page of the NuGet package.
+* licenseUrl: A link to the license that the NuGet package is under.
+* requireLicenseAcceptance: A Boolean value that specifies whether the client needs to ensure that the package license (described by licenseUrl) is accepted before the NuGet package is installed.
+* language: The locale ID for the NuGet package, such as en-us.
+* tags: A JSON array of tags and keywords that describe the NuGet package.
+* title: The human-friendly title of the NuGet package.
 
 Publishing
 ----------

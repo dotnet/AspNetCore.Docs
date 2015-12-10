@@ -87,7 +87,7 @@ The following figure illustrates the results of browsing to the Web app's ``imag
 
 .. image:: static-files/_static/dir-browse.png
 
-Now, let's say that you have a project hierarchy where you want the user to be able to browse a directory that is not in the webroot. For example,let's take a simple layout like the following:
+Now, let's say that you have a project hierarchy where you want the user to be able to browse a directory that is not in the webroot. For example, let's take a simple layout like the following:
 
   - wwwroot
 
@@ -131,7 +131,7 @@ In order for your Web app to serve a default page without the user having to ful
     app.UseStaticFiles();
     ...
 
-If you call the ``'UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
+If you call the ``UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
 
   - default.htm
   - default.html

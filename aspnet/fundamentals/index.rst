@@ -8,6 +8,7 @@ Fundamentals
     http-abstractions
     middleware
     static-files
+    localization 
     file-system
     routing
     configuration
@@ -19,7 +20,7 @@ Fundamentals
     environments
     websockets
     caching
-    error-handling
+    distributed-cache
     request-features
     servers
     owin

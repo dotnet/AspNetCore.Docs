@@ -101,7 +101,7 @@ ASP.NET 5 uses a new configuration model for handling of simple name-value pairs
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 29-42
+  :lines: 22-33
   :dedent: 12
 
 See :doc:`/fundamentals/configuration` for more details on the new configuration system and :doc:`/fundamentals/environments` for details on how to work with environments in ASP.NET 5.

@@ -8,6 +8,7 @@ Using the .NET Execution environment (DNX), it's very easy to run a simple conso
 In this article:
 	- `Creating a Console App`_
 	- `Specifying Project Settings`_
+	- `Restoring Packages`_
 	- `Running the App`_
 	
 You can `view and download the source <https://github.com/aspnet/Docs/tree/master/common/samples/ConsoleApp1>`_ from the project created in this article.
@@ -18,6 +19,7 @@ Creating a Console App
 Before you begin, make sure you have successfully installed DNX on your system:
 	- :doc:`Installing on Windows </getting-started/installing-on-windows>`
 	- :doc:`Installing on Mac OS X </getting-started/installing-on-mac>`
+	- :doc:`Installing on Linux </getting-started/installing-on-linux>`
 
 Open a console or terminal window in an empty working folder, where ``dnx`` is configured.
 
@@ -27,7 +29,7 @@ Creating a console application is extremely straightforward. For this article, w
 	:linenos:
 	:language: c#
 	
-It really doesn't get any simpler than this. Create a file with these contents and save it as ``Program.cs`` in your current folder.
+It really doesn't get any simpler than this. First create a new folder named `ConsoleApp1` (the name is important, so don't try to use another name). Then, create a file with these contents and save it as `Program.cs` in the `ConsoleApp1` folder.
 
 Specifying Project Settings
 ---------------------------
@@ -41,6 +43,13 @@ Next, we need to provide the project settings DNX will use. Create a new ``proje
 The ``project.json`` files defines the app dependencies and target frameworks in addition to various metadata properties about the app. See :doc:`projects` for more details.
 
 Save your changes.
+
+Restoring Packages
+------------------
+
+Now that we've specified the project dependencies, we can download all the required packages. Enter ``dnu restore`` at the command prompt to download all the missing packages.
+
+.. note:: Packages need to be downloaded every time you edit ``dependencies`` in ``project.json``. Use the ``dnu restore`` command after editing this section of the project file.
 
 Running the App
 ---------------

@@ -15,13 +15,13 @@ The .NET Framework runs on Windows only. It is also a monolithic component with 
 .NET Core
 ---------
 
-.NET Core 5 is a modular runtime and library implementation that includes a subset of the .NET Framework. Currently it is feature complete on Windows, and in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on `GitHub <https://github.com/dotnet>`_.
+.NET Core 5 is a modular runtime and library implementation that includes a subset of the .NET Framework. .NET Core is supported on Windows, Mac and Linux. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on `GitHub <https://github.com/dotnet>`_.
 
 The CoreCLR runtime (Microsoft.CoreCLR) and CoreFX libraries are distributed via `NuGet <https://www.nuget.org>`_. Because .NET Core has been built as a componentized set of libraries you can limit the API surface area your application uses to just the pieces you need. You can also run .NET Core based applications on much more constrained environments (ex. `Windows Server Nano <http://blogs.technet.com/b/windowsserver/archive/2015/04/08/microsoft-announces-nano-server-for-modern-apps-and-cloud.aspx>`_).
 
 The API factoring in .NET Core was updated to enable better componentization. This means that existing libraries built for the .NET Framework generally need to be recompiled to run on .NET Core. The .NET Core ecosystem is relatively new, but it is rapidly growing with the support of popular .NET packages like JSON.NET, AutoFac, xUnit.net and many others.
 
-Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. However, the .NET Core support for Mac and Linux is still very new and not ready for production workloads.
+Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. 
 
 Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET Core has to offer.
 

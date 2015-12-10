@@ -1,3 +1,5 @@
+.. _fundamentals-configuration:
+
 Configuration
 =============
 By `Steve Smith`_ and `Daniel Roth`_
@@ -67,7 +69,7 @@ Adding support for additional configuration file sources is accomplished through
   :language: c#
   :lines: 14-17
 
-The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both *appsettings.json* and in an environment variable, the setting from the environment variable will be the one that is used. Essentially, the last configuration source specified "wins" if a setting exists in more than one location.
+The order in which configuration sources are specified is important, as this establishes the precedence with which settings will be applied if they exist in multiple locations. In the example above, if the same setting exists in both *appsettings.json* and in an environment variable, the setting from the environment variable will be the one that is used. The last configuration source specified "wins" if a setting exists in more than one location. The ASP.NET team recommends specifying environment variables last, so that the local environment can override anything set in deployed configuration files.
 
 .. note:: To override nested keys through environment variables in shells that don't support ``:`` in variable names replace them with ``__`` (double underscore).
 
@@ -77,10 +79,10 @@ It can be useful to have environment-specific configuration files. This can be a
   :linenos:
   :dedent: 8
   :language: c#
-  :lines: 25-41
-  :emphasize-lines: 1,8
+  :lines: 19-34
+  :emphasize-lines: 1,6
 
-The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``config.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
+The ``IHostingEnvironment`` service is used to get the current environment. In the ``Development`` environment, the highlighted line of code above would look for a file named ``appsettings.Development.json`` and use its values, overriding any other values, if it's present. Learn more about :doc:`environments`.
 
 .. warning:: You should never store passwords or other sensitive data in source code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the source repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
 

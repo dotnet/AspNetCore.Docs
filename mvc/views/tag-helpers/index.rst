@@ -1,3 +1,5 @@
+.. _tag-helpers-index:
+
 Tag Helpers
 -----------
 
