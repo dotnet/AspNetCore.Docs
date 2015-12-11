@@ -39,7 +39,7 @@ Select the **ASP.NET Web Application** project template. It appears under **Inst
 
 .. image:: mvc-with-entity-framework/_static/new-project.png
 
-In the **New Project** dialog, select **Web Site** under **ASP.NET 5 Preview Templates**.
+In the **New Project** dialog, select **Web Site** under **ASP.NET 5 Templates**.
 
 .. image:: mvc-with-entity-framework/_static/web-site-template.png
 
@@ -73,7 +73,7 @@ Open the *project.json* file. In the dependencies section, add the following lin
 
   "dependencies": {
     ...
-    "EntityFramework.SqlServer": "7.0.0-beta8"
+    "EntityFramework.SqlServer": "7.0.0-rc1-final"
   },
 
 When you save *project.json*, Visual Studio automatically resolves the new package reference.
@@ -176,21 +176,21 @@ Open a command prompt in the project directory (ContosoBooks/src/ContosoBooks) a
 
 .. code-block:: none
 
-    dnvm use 1.0.0-beta8
-    dnx ef . migration add Initial
-    dnx ef . migration apply
+    dnvm use 1.0.0-rc1-update1
+    dnx ef migrations add Initial
+    dnx ef database update
 
-The "``add Initial``" command adds code to the project that allows EF to update the database schema. The "``apply``" command creates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
+The "``add Initial``" command adds code to the project that allows EF to update the database schema. The "``upate``" command creates or updates the actual database. After you run the run these commands, your project has a new folder named *Migrations*:
 
 .. image:: mvc-with-entity-framework/_static/migrations.png
 
-- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-beta8`` instructs the .NET Version Manager to add the 1.0.0-beta8 ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5 Beta 8, the following is displayed:
+- **dnvm** : The .NET Version Manager, a set of command line utilities that are used to update and configure .NET Runtime. The command ``dnvm use 1.0.0-rc1-update1`` instructs the .NET Version Manager to add the 1.0.0-rc1-update1 ASP.NET 5 runtime to the ``PATH`` environment variable for the current shell. For ASP.NET 5, the following is displayed:
 
 .. code-block:: none
 
-	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-beta8\\bin to process PATH
+	Adding C:\\Users\\<user>\\.dnx\\runtimes\\dnx-clr-win-x86.1.0.0-rc1-update1\\bin to process PATH
 
-- **dnx ef migration add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
+- **dnx ef migrations add Initial** :  `DNX <http://docs.asp.net/en/latest/dnx/overview.html>`_ is the .NET Execution Environment. The ``ef migration apply`` command runs pending migration code. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :ref:`DNX Overview <aspnet:dnx-overview>`.
 
 Add an index page
 -----------------

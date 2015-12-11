@@ -5,7 +5,7 @@ namespace Environments
 {
     public class StartupStaging
     {
-        public async void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app)
         {
             app.Run(async context =>
             {
