@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/diagnostics/src/Microsoft.AspNet.Diagnostics.Elm/ElmPageMiddleware.cs>`_
+`View on GitHub <https://github.com/aspnet/diagnostics/blob/master/src/Microsoft.AspNet.Diagnostics.Elm/ElmPageMiddleware.cs>`_
 
 
 

@@ -39,7 +39,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/mvc/src/Microsoft.AspNet.Mvc.Abstractions/ModelBinding/Metadata/ModelMetadataKind.cs>`_
+`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Abstractions/ModelBinding/Metadata/ModelMetadataKind.cs>`_
 
 
 

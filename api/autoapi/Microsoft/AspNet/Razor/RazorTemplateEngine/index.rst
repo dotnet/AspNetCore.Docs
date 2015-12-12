@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/razor/src/Microsoft.AspNet.Razor/RazorTemplateEngine.cs>`_
+`View on GitHub <https://github.com/aspnet/razor/blob/master/src/Microsoft.AspNet.Razor/RazorTemplateEngine.cs>`_
 
 
 

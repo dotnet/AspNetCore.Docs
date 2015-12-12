@@ -48,7 +48,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/httpabstractions/src/Microsoft.Net.Http.Headers/MediaTypeHeaderValueComparer.cs>`_
+`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Net.Http.Headers/MediaTypeHeaderValueComparer.cs>`_
 
 
 

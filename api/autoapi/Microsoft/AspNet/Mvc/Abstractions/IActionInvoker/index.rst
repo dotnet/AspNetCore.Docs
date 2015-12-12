@@ -34,7 +34,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/mvc/src/Microsoft.AspNet.Mvc.Abstractions/Abstractions/IActionInvoker.cs>`_
+`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Abstractions/Abstractions/IActionInvoker.cs>`_
 
 
 

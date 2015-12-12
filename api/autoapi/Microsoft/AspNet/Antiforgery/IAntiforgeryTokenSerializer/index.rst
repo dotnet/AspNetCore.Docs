@@ -34,7 +34,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/antiforgery/src/Microsoft.AspNet.Antiforgery/IAntiforgeryTokenSerializer.cs>`_
+`View on GitHub <https://github.com/aspnet/antiforgery/blob/master/src/Microsoft.AspNet.Antiforgery/IAntiforgeryTokenSerializer.cs>`_
 
 
 

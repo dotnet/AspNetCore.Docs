@@ -39,7 +39,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/eventnotification/src/Microsoft.Extensions.DiagnosticAdapter/Infrastructure/IProxyFactory.cs>`_
+`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Infrastructure/IProxyFactory.cs>`_
 
 
 

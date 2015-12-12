@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/localization/src/Microsoft.AspNet.Localization/ApplicationBuilderExtensions.cs>`_
+`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.AspNet.Localization/ApplicationBuilderExtensions.cs>`_
 
 
 

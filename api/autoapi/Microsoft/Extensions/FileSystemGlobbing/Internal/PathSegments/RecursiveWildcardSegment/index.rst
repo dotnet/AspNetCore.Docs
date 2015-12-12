@@ -42,7 +42,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/filesystem/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PathSegments/RecursiveWildcardSegment.cs>`_
+`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PathSegments/RecursiveWildcardSegment.cs>`_
 
 
 

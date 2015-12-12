@@ -48,7 +48,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/configuration/src/Microsoft.Extensions.Configuration.Xml/XmlConfigurationProvider.cs>`_
+`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.Xml/XmlConfigurationProvider.cs>`_
 
 
 

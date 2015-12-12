@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/jsonpatch/src/Microsoft.AspNet.JsonPatch/Helpers/JsonPatchProperty.cs>`_
+`View on GitHub <https://github.com/aspnet/jsonpatch/blob/master/src/Microsoft.AspNet.JsonPatch/Helpers/JsonPatchProperty.cs>`_
 
 
 

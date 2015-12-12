@@ -42,7 +42,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/weblistener/src/Microsoft.Net.WebSockets/WebSocketConstants.cs>`_
+`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.WebSockets/WebSocketConstants.cs>`_
 
 
 

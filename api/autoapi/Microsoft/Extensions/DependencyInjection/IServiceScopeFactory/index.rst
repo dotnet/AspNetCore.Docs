@@ -34,7 +34,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/dependencyinjection/src/Microsoft.Extensions.DependencyInjection.Abstractions/IServiceScopeFactory.cs>`_
+`View on GitHub <https://github.com/aspnet/dependencyinjection/blob/master/src/Microsoft.Extensions.DependencyInjection.Abstractions/IServiceScopeFactory.cs>`_
 
 
 

@@ -48,7 +48,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/security/src/Microsoft.AspNet.Authentication.OAuth/Events/OAuthCreatingTicketContext.cs>`_
+`View on GitHub <https://github.com/aspnet/security/blob/master/src/Microsoft.AspNet.Authentication.OAuth/Events/OAuthCreatingTicketContext.cs>`_
 
 
 

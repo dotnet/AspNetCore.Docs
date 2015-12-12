@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/weblistener/src/Microsoft.Net.Http.Server/WebListener.cs>`_
+`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/WebListener.cs>`_
 
 
 

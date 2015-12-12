@@ -48,7 +48,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/localization/src/Microsoft.AspNet.Localization/QueryStringRequestCultureProvider.cs>`_
+`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.AspNet.Localization/QueryStringRequestCultureProvider.cs>`_
 
 
 

@@ -39,7 +39,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/identity/src/Microsoft.AspNet.Identity/PasswordHasherCompatibilityMode.cs>`_
+`View on GitHub <https://github.com/aspnet/identity/blob/master/src/Microsoft.AspNet.Identity/PasswordHasherCompatibilityMode.cs>`_
 
 
 

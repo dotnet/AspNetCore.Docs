@@ -34,7 +34,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/options/src/Microsoft.Extensions.OptionsModel/IConfigureOptions.cs>`_
+`View on GitHub <https://github.com/aspnet/options/blob/master/src/Microsoft.Extensions.OptionsModel/IConfigureOptions.cs>`_
 
 
 

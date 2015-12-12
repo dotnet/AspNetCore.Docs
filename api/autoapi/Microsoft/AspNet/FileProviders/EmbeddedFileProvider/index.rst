@@ -48,7 +48,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/filesystem/src/Microsoft.AspNet.FileProviders.Embedded/EmbeddedFileProvider.cs>`_
+`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.AspNet.FileProviders.Embedded/EmbeddedFileProvider.cs>`_
 
 
 

@@ -39,7 +39,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/cors/src/Microsoft.AspNet.Cors/ICorsPolicyProvider.cs>`_
+`View on GitHub <https://github.com/aspnet/cors/blob/master/src/Microsoft.AspNet.Cors/ICorsPolicyProvider.cs>`_
 
 
 

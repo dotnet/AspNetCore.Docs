@@ -43,7 +43,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/security/src/Microsoft.Owin.Security.Cookies.Interop/AspNetTicketDataFormat.cs>`_
+`View on GitHub <https://github.com/aspnet/security/blob/master/src/Microsoft.Owin.Security.Cookies.Interop/AspNetTicketDataFormat.cs>`_
 
 
 

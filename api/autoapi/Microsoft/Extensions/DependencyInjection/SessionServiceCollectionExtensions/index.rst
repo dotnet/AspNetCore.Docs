@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/session/src/Microsoft.AspNet.Session/SessionServiceCollectionExtensions.cs>`_
+`View on GitHub <https://github.com/aspnet/session/blob/master/src/Microsoft.AspNet.Session/SessionServiceCollectionExtensions.cs>`_
 
 
 

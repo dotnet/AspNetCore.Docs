@@ -42,7 +42,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/testing/src/Microsoft.Dnx.TestHost/TestAdapter/TestHostLoggerProvider.cs>`_
+`View on GitHub <https://github.com/aspnet/testing/blob/master/src/Microsoft.Dnx.TestHost/TestAdapter/TestHostLoggerProvider.cs>`_
 
 
 

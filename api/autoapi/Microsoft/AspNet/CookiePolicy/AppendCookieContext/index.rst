@@ -42,7 +42,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/security/src/Microsoft.AspNet.CookiePolicy/AppendCookieContext.cs>`_
+`View on GitHub <https://github.com/aspnet/security/blob/master/src/Microsoft.AspNet.CookiePolicy/AppendCookieContext.cs>`_
 
 
 

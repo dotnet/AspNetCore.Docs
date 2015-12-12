@@ -39,7 +39,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/localization/src/Microsoft.Extensions.Localization.Abstractions/IStringLocalizer.cs>`_
+`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization.Abstractions/IStringLocalizer.cs>`_
 
 
 

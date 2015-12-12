@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/httpabstractions/src/Microsoft.AspNet.WebUtilities/FormReader.cs>`_
+`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.AspNet.WebUtilities/FormReader.cs>`_
 
 
 

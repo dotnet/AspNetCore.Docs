@@ -47,7 +47,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/testing/src/Microsoft.Extensions.WebEncoders.Testing/NullTestEncoder.cs>`_
+`View on GitHub <https://github.com/aspnet/testing/blob/master/src/Microsoft.Extensions.WebEncoders.Testing/NullTestEncoder.cs>`_
 
 
 

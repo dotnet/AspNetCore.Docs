@@ -49,7 +49,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/razor/src/Microsoft.AspNet.Razor/Parser/TagHelpers/TagHelperDirectiveSpanVisitor.cs>`_
+`View on GitHub <https://github.com/aspnet/razor/blob/master/src/Microsoft.AspNet.Razor/Parser/TagHelpers/TagHelperDirectiveSpanVisitor.cs>`_
 
 
 

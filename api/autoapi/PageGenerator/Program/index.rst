@@ -42,7 +42,7 @@ Syntax
 GitHub
 ------
 
-`View on GitHub <https://github.com/aspnet/apidocs/blob/master/aspnet/diagnostics/src/PageGenerator/Program.cs>`_
+`View on GitHub <https://github.com/aspnet/diagnostics/blob/master/src/PageGenerator/Program.cs>`_
 
 
 
