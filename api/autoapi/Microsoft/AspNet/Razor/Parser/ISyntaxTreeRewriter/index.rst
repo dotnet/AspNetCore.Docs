@@ -59,7 +59,7 @@ Methods
     
         
     
-        Rewrites the provided ``context``s :dn:prop:`Microsoft.AspNet.Razor.Parser.RewritingContext.SyntaxTree`\.
+        Rewrites the provided ``context`s`` :dn:prop:`Microsoft.AspNet.Razor.Parser.RewritingContext.SyntaxTree`\.
     
         
         

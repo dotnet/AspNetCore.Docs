@@ -85,7 +85,7 @@ Methods
         :type scheme: System.String
         
         
-        :param host: +, *, IPv4, [IPv6], or a dns name. Http.Sys does not permit punycode (xn--), use Unicode instead.
+        :param host: +, \*, IPv4, [IPv6], or a dns name. Http.Sys does not permit punycode (xn--), use Unicode instead.
         
         :type host: System.String
         
@@ -117,7 +117,7 @@ Methods
         :type scheme: System.String
         
         
-        :param host: +, *, IPv4, [IPv6], or a dns name. Http.Sys does not permit punycode (xn--), use Unicode instead.
+        :param host: +, \*, IPv4, [IPv6], or a dns name. Http.Sys does not permit punycode (xn--), use Unicode instead.
         
         :type host: System.String
         

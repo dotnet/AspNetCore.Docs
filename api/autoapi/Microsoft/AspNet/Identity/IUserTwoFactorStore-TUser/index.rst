@@ -59,7 +59,7 @@ Methods
     
         
     
-        Returns a flag indicating whether the specified ``user ``has two factor authentication enabled or not,
+        Returns a flag indicating whether the specified ``user`` has two factor authentication enabled or not,
         as an asynchronous operation.
     
         
@@ -74,8 +74,7 @@ Methods
         
         :type cancellationToken: System.Threading.CancellationToken
         :rtype: System.Threading.Tasks.Task{System.Boolean}
-        :return: The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing a flag indicating whether the specified
-            <paramref name="user " />has two factor authentication enabled or not.
+        :return: The <see cref="T:System.Threading.Tasks.Task" /> that represents the asynchronous operation, containing a flag indicating whether the specified ``user`` has two factor authentication enabled or not.
     
         
         .. code-block:: csharp
@@ -86,7 +85,7 @@ Methods
     
         
     
-        Sets a flag indicating whether the specified ``user ``has two factor authentication enabled or not,
+        Sets a flag indicating whether the specified ``user`` has two factor authentication enabled or not,
         as an asynchronous operation.
     
         

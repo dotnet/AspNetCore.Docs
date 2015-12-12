@@ -120,7 +120,7 @@ Microsoft.AspNet.Razor.TagHelpers Namespace
 
 
     class :dn:cls:`Microsoft.AspNet.Razor.TagHelpers.ReadOnlyTagHelperAttributeList\<TAttribute>`
-        A read-only collection of ``TAttribute``s.
+        A read-only collection of ``TAttribute`s``.
 
 
     class :dn:cls:`Microsoft.AspNet.Razor.TagHelpers.RestrictChildrenAttribute`

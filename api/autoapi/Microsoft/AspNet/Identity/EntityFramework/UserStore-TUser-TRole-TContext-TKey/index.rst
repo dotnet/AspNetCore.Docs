@@ -737,7 +737,7 @@ Methods
     
         
     
-        Returns a flag indicating whether the specified ``user ``has two factor authentication enabled or not,
+        Returns a flag indicating whether the specified ``user`` has two factor authentication enabled or not,
         as an asynchronous operation.
     
         
@@ -1388,7 +1388,7 @@ Methods
     
         
     
-        Sets a flag indicating whether the specified ``user ``has two factor authentication enabled or not,
+        Sets a flag indicating whether the specified ``user`` has two factor authentication enabled or not,
         as an asynchronous operation.
     
         

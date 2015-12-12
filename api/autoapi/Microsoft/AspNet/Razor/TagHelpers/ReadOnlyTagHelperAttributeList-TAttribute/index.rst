@@ -13,7 +13,7 @@ ReadOnlyTagHelperAttributeList<TAttribute> Class
 Summary
 -------
 
-A read-only collection of ``TAttribute``s.
+A read-only collection of ``TAttribute`s``.
 
 
 
@@ -292,7 +292,7 @@ Properties
     
         
     
-        The underlying collection of ``TAttribute``s.
+        The underlying collection of ``TAttribute`s``.
     
         
         :rtype: System.Collections.Generic.List{{TAttribute}}

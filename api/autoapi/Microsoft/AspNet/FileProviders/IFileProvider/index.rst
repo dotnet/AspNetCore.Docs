@@ -104,7 +104,7 @@ Methods
         
         
         
-        :param filter: Filter string used to determine what files or folders to monitor. Example: **/*.cs, *.*, subFolder/**/*.cshtml.
+        :param filter: Filter string used to determine what files or folders to monitor. Example: \*\*/\*.cs, \*.\*, subFolder/\*\*/\*.cshtml.
         
         :type filter: System.String
         :rtype: Microsoft.Extensions.Primitives.IChangeToken
