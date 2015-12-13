@@ -1,3 +1,5 @@
+.. _bower-index:
+
 Manage Client-Side Packages with Bower
 ======================================
 
