@@ -43,7 +43,7 @@ The IIS PlatformHandler module allows you specify environment variables for the 
         <httpPlatform processPath="..\approot\web.cmd"
                 arguments=""
                 stdoutLogEnabled="false"
-                stdoutLogFile="..\logs\stdout.log"
+                stdoutLogFile="..\logs\stdout"
                 startupTimeLimit="3600">
           <environmentVariables>
             <environmentVariable name="DEMO" value="demo_value" />

@@ -5,12 +5,12 @@ Servicing
 
 By `Sourabh Shirhatti`
 
-ASP.NET 5 supports servicing of runtime components (DNX) and packages through Windows Update Services which will deliver updates to patch any vulnerabilities if and when they are discovered. This document provides an overview of how to setup your Windows Server correctly to receive updates.
+ASP.NET 5 supports servicing of runtime components (DNX) and packages through Microsoft Update, which will deliver updates to patch any vulnerabilities when they are discovered. This document provides an overview of how to setup your Windows Server correctly to receive updates.
 
 Breadcrumbs Directory
 ---------------------
 
-All serviceable assemblies will leave a breadcrumb in the ``BreadcrumbStore`` Directory. At the time of servicing Windows Update looks in this directory to figure out which assemblies are used on the server and need patching. This directory must be correctly protected by ACLs to prevent rogue applications from deleting entries from this directory. Run the powershell snippet below in an elevated prompt to create the ``BreadcrumbStore`` directory and ACL it correctly.
+All serviceable assemblies will leave a breadcrumb in the ``BreadcrumbStore`` Directory. At the time of servicing Microsoft Update looks in this directory to figure out which assemblies are used on the server and require patching. This directory must be protected by ACLs to prevent rogue applications from deleting entries from this directory. Run the powershell snippet below in an elevated prompt to create the ``BreadcrumbStore`` directory and set ACLs on it correctly.
 
 
 .. code-block:: powershell
@@ -27,7 +27,7 @@ All serviceable assemblies will leave a breadcrumb in the ``BreadcrumbStore`` Di
 Servicing Directory
 -------------------
 
-At the time of loading an asset DNX will check against an index file in the ``Servicing`` directory to determine whether it should load a patched version instead of what it would normally load. This index file is updated by Windows Update during servicing to point to location of the patched version of the asset on disk which will reside in the the ``Servicing`` directory. The index file defaults to ``%PROGRAMFILES%\Microsoft DNX\Servicing``, but you can change this by setting ``DNX_SERVICING`` environment variable to a different path.
+At the time of loading an asset DNX will check against an index file in the ``Servicing`` directory to determine whether it should load a patched version instead of what it would normally load. This index file is updated by Microsoft Update during servicing to point to location of the patched version of the asset on disk which will reside in the the ``Servicing`` directory. The index file defaults to ``%PROGRAMFILES%\Microsoft DNX\Servicing``, but you can change this by setting ``DNX_SERVICING`` environment variable to a different path.
 
 
 

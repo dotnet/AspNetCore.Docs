@@ -13,7 +13,7 @@ Folder    Description
 =======   ===========  
 approot   Contains the application, app config files, packages and the DNX runtime.
 logs      The default folder for HTTP PlatformHandler to redirect logs to.
-wwwroot   Contains the statics assets
+wwwroot   Contains the static assets
 =======   ===========
 
-The **wwwroot** directory represents the web root of the application. The physical path for the IIS site should point to the web root directory. During deployment of a web site, an end user will require access to the entire application directory.
+The **wwwroot** directory represents the web root of the application. The physical path for the IIS site should point to the web root directory. During deployment of a web site, a developer will require access to the entire application directory.
