@@ -66,6 +66,8 @@ IIS server configuration
 
 .. image:: pubIIS/_static/role-services.png
 
+.. _unlock-handlers:
+
 3. Unlock the configuration section.
 
 	- Launch IIS Manager and select the server in the **Connections** pane on the left (see image below).

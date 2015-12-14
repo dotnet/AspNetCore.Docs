@@ -21,6 +21,9 @@ Configuring the HTTP Platform Handler
 
 The HTTP Platform Handler is configured via a site or application's web.config file and has its own configuration section within **system.webServer - httpPlatform**. The `HTTP Platform Handler configuration reference whitepaper <http://www.iis.net/learn/extensions/httpplatformhandler/httpplatformhandler-configuration-reference>`_ describes in detail how to modify Configuration Attributes for the HTTP PlatformHandler module.
 
+.. note::
+    You may need to unlock the handlers section of ``web.config``. Follow the instructions :ref:`here <unlock-handlers>`.
+
 Environment Variables
 ---------------------
 
