@@ -31,7 +31,7 @@ To grant the IIS worker process access to your application, you will need to mod
 
 .. image:: apppool/_static/apppool-adduser.jpg
 
-5. Enter **IIS AppPool\DefaultAppPool** in **Enter the object names to select** textbox.
+5. Enter **IIS AppPool\\DefaultAppPool** in **Enter the object names to select** textbox.
 6. Click the **Check Names** button and then click **OK**.
 
 You can also do this via the command-line by using **ICACLS** tool.
