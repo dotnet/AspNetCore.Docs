@@ -260,4 +260,3 @@ Additional Reading
 ------------------
 
 - :doc:`request-features`
-- :doc:`hosting`

@@ -1,7 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
-|stub-icon| Hosting
-===================
+|stub-icon| Data Protection
+===========================
 
 .. include:: /../common/stub-notice.txt
 

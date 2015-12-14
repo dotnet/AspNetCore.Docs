@@ -24,5 +24,4 @@ Fundamentals
     request-features
     servers
     owin
-    hosting
 
