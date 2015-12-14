@@ -1,4 +1,4 @@
-Configuring Entity Framework 6
+Getting Started with ASP.NET 5 and Entity Framework 6
 ===========================================================
 
 By `Paweł Grudzień <https://github.com/pgrudzien12>`_, `Damien Pontifex <https://github.com/DamienPontifex>`_
