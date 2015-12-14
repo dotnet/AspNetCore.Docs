@@ -1,30 +1,30 @@
 .. _http-platformhandler:
 
-HTTP PlatformHandler
+HTTP Platform Handler
 ====================
 
 By `Sourabh Shirhatti`
 
-In ASP.NET 5 the web application is hosted by an external process outside of IIS. The HTTP PlatformHandler is an IIS 8.0+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP PlatformHandler module for shared ASP.NET 5 hosting.
+In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared ASP.NET 5 hosting.
 
-Installing the HTTP PlatformHandler
+Installing the HTTP Platform Handler
 -----------------------------------
 
-To get started with hosting with ASP.NET 5 applications you will need to install the HTTP PlatformHandler version 1.2 or higher on an IIS 8 or higher server. Download links are below
+To get started with hosting with ASP.NET 5 applications you will need to install the HTTP Platform Handler version 1.2 or higher on an IIS 7.5 or higher server. Download links are below
 
-* `64 bit HTTP PlatformHandler <http://go.microsoft.com/fwlink/?LinkID=690721>`_ 
-* `32 bit HTTP PlatformHandler <http://go.microsoft.com/fwlink/?LinkId=690722>`_ 
+* `64 bit HTTP PlatformHandler (x64) <http://go.microsoft.com/fwlink/?LinkID=690721>`_ 
+* `32 bit HTTP PlatformHandler (x86) <http://go.microsoft.com/fwlink/?LinkId=690722>`_ 
 
 
-Configuring the HTTP PlatformHandler
+Configuring the HTTP Platform Handler
 ------------------------------------
 
-The HttpPlatformHandler is configured via a site or applications web.config file and has its own configuration section within **system.webServer - httpPlatform**. The `HTTP PlatformHandler configuration reference whitepaper <http://www.iis.net/learn/extensions/httpplatformhandler/httpplatformhandler-configuration-reference>`_ describes in detail how to modify Configuration Attributes for the HTTP PlatformHandler module.
+The HTTP Platform Handler is configured via a site or application's web.config file and has its own configuration section within **system.webServer - httpPlatform**. The `HTTP Platform Handler configuration reference whitepaper <http://www.iis.net/learn/extensions/httpplatformhandler/httpplatformhandler-configuration-reference>`_ describes in detail how to modify Configuration Attributes for the HTTP PlatformHandler module.
 
 Environment Variables
 ---------------------
 
-The IIS PlatformHandler module allows you specify environment variables for the process specified in the **processPath** setting by specifying them in **environmentVariables** child attribute to the **httpPlatform** attribute. The example below illustrates how you would use it.
+The HTTP Platform Handler module allows you specify environment variables for the process specified in the **processPath** setting by specifying them in **environmentVariables** child attribute to the **httpPlatform** attribute. The example below illustrates how you would use it.
 
 
 .. code:: xml
