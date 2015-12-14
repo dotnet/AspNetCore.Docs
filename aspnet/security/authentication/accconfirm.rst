@@ -69,7 +69,7 @@ You generally want to prevent new users from posting any data to your web site b
 Configure email provider
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :doc:`../fundamentals/configuration`.
+We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :ref:`configuration <fundamentals-configuration>`.
 
  - Create a class to fetch the secure email key. For this sample, the ``AuthMessageSenderOptions`` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 

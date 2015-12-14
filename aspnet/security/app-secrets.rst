@@ -1,3 +1,5 @@
+.. _security-app-secrets:
+
 Safe Storage of Application Secrets
 ===================================
 

@@ -1,3 +1,5 @@
+.. _fundamentals-logging:
+
 Logging
 =======
 

@@ -42,12 +42,12 @@ Setup up SMS for two-factor authentication with Twilio
 
 .. note:: Twilio cannot target dnxcore50: You will get compilation errors if you build your project when dnxcore50 is included because Twilio does not have a package for dnxcore50. You can remove dnxcore50 from the *project.json* file or you can call the Twilio REST API to send SMS messages.
 
-.. note:: You can remove ``//`` line comment characters from the ``System.Diagnostics.Debug.WriteLine(message);`` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in :doc:`../fundamentals/logging`.        
+.. note:: You can remove ``//`` line comment characters from the ``System.Diagnostics.Debug.WriteLine(message);`` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in :ref:`logging <fundamentals-logging>`.
 
 Configure the SMS provider key/value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :doc:`../fundamentals/configuration`.
+We'll use the :ref:`Options pattern <options-config-objects>` to access the user account and key settings. For more information, see :ref:`configuration <fundamentals-configuration>`.
 
  - Create a class to fetch the secure SMS key. For this sample, the ``AuthMessageSMSSenderOptions`` class is created in the *Services/AuthMessageSMSSenderOptions.cs* file.
 

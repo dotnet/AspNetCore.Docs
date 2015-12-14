@@ -81,7 +81,7 @@ The ``sdk`` property specifies the version of the DNX (.Net Execution Environmen
 The wwwroot Folder
 ------------------
 
-In previous versions of ASP.NET, the root of the project was typically the root of the web app. If you placed a *Default.aspx* file in the project root of an early version of ASP.NET, it would load if a request was made to the web application’s root. In later versions of ASP.NET, support for routing was added, making it possible to decouple the locations of files from their corresponding URLs (thus, ``HomeController`` in the *Controllers* folder is able to serve requests made to the root of the site, using a default route implementation). However, this routing  was used only for ASP.NET-specific application logic, not static files needed by the client to properly render the resulting page. Resources like images, script files, and stylesheets were generally still loaded based on their location within the file structure of the application, based off of the root of the project.
+In previous versions of ASP.NET, the root of the project was typically the root of the web app. If you placed a *Default.aspx* file in the project root of an early version of ASP.NET, it would load if a request was made to the web application’s root. In later versions of ASP.NET, support for routing was added, making it possible to decouple the locations of files from their corresponding URLs (thus, ``HomeController`` in the *Controllers* folder is able to serve requests made to the root of the site, using a default route implementation). However, this routing was used only for ASP.NET-specific application logic, not static files needed by the client to properly render the resulting page. Resources like images, script files, and stylesheets were generally still loaded based on their location within the file structure of the application, based off of the root of the project.
 
 .. image:: understanding-aspnet5-apps/_static/wwwroot.png
 
@@ -102,7 +102,7 @@ The bower dependencies are controlled by the *bower.json* files, located in each
 
 .. image:: understanding-aspnet5-apps/_static/bower-files.png
 
-Dependency are then further configured in their own section within each *bower.json* file, indicating how it should be deployed to the *wwwroot* folder. For more information, see :doc:`/client-side/index`.
+Each dependency is then further configured within its corresponding section using its own *bower.json* file, indicating how it should be deployed to the *wwwroot* folder. For more information, see :doc:`/client-side/index`.
 
 Server Side Dependency Management
 ---------------------------------

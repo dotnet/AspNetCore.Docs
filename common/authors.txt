@@ -9,3 +9,4 @@
 .. _Tom Archer: https://github.com/tomarcher
 .. _David Paquette: https://github.com/dpaquette
 .. _Scott Addie: http://scottaddie.com
+.. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi

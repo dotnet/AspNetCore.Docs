@@ -8,13 +8,13 @@ In ASP.NET 5, application state can be managed in a variety of ways, depending o
 	:local:
 	:depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/app-state/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/app-state/sample>`_.
 
 Application State Options
 -------------------------
-`Application state` refers to any data that is used to represent the current representation of the application. This includes both global and user-specific data. Previous versions of ASP.NET (and even ASP) have had built-in support for global ``Application`` and ``Session`` state stores, as well as a variety of other options. 
+`Application state` refers to any data that is used to represent the current representation of the application. This includes both global and user-specific data. Previous versions of ASP.NET (and even ASP) have had built-in support for global ``Application`` and ``Session`` state stores, as well as a variety of other options.
 
-.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET 5, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET 5 replace ``Application`` with a :doc:`caching` implementation.
+.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET 5, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET 5 replace ``Application`` with a :doc:`caching` implementation. 
 
 Application developers are free to use different state storage providers depending on a variety of factors:
 
@@ -142,7 +142,7 @@ Once session is installed and configured, you refer to it via HttpContext, which
 .. code-block:: c#
 
 	public interface ISession
-	{	
+	{
 		Task LoadAsync();
 		Task CommitAsync();
 		bool TryGetValue(string key, out byte[] value);
@@ -151,7 +151,7 @@ Once session is installed and configured, you refer to it via HttpContext, which
 		void Clear();
 		IEnumerable<string> Keys { get; }
 	}
-	
+
 Because``Session`` is built on top of ``IDistributedCache``, you must always serialize the object instances being stored. Thus, the interface works with ``byte[]`` not simply ``object``. However, there are extension methods that make working with simple types such as ``String`` and ``Int32`` easier, as well as making it easier to get a byte[] value from session.
 
 .. code-block:: c#
@@ -172,7 +172,7 @@ The associated sample application demonstrates how to work with Session, includi
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 20-28
+	:lines: 15-23
 	:dedent: 8
 	:emphasize-lines: 3,5-8
 
@@ -185,7 +185,7 @@ This default behavior is produced by the following middleware in ``Startup.cs``,
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 79-110
+	:lines: 75-103
 	:dedent: 12
 	:emphasize-lines: 4,6,8-11,28-29
 
@@ -194,7 +194,7 @@ This default behavior is produced by the following middleware in ``Startup.cs``,
 .. literalinclude:: app-state/sample/src/AppState/Model/RequestEntry.cs
 	:linenos:
 	:language: c#
-	:lines: 8-13
+	:lines: 5-10
 	:dedent: 4
 
 .. literalinclude:: app-state/sample/src/AppState/Model/RequestEntryCollection.cs
@@ -210,7 +210,7 @@ Fetching the current instance of ``RequestEntryCollection`` is done via the ``Ge
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 112-127
+	:lines: 107-122
 	:dedent: 8
 	:emphasize-lines: 4,8-9
 
@@ -229,7 +229,7 @@ Establishing the session is done in the middleware that handles requests to "/se
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 59-78
+	:lines: 54-73
 	:dedent: 12
 	:emphasize-lines: 2,8-14
 
@@ -238,20 +238,19 @@ Requests to this path will get or create a ``RequestEntryCollection``, will add 
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 129-137
+	:lines: 124-130
 	:dedent: 8
 	:emphasize-lines: 6
 
 ``SaveEntries`` demonstrates how to serialize a custom object into a ``byte[]`` for storage in ``Session`` using a ``MemoryStream`` and a ``BinaryFormatter``.
-	
+
 The sample includes one more piece of middleware worth mentioning, which is mapped to the "/untracked" path. You can see its configuration here:
 
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
 	:linenos:
 	:language: c#
-	:lines: 45-58
+	:lines: 40-53
 	:dedent: 12
 	:emphasize-lines: 2,13
 
 Note that this middleware is configured **before** the call to ``app.UseSession()`` is made (on line 13). Thus, the ``Session`` feature is not available to this middleware, and requests made to it do not reset the session ``IdleTimeout``. You can confirm this behavior in the sample application by refreshing the untracked path several times within 10 seconds, and then return to the application root. You will find that your session has expired, despite no more than 10 seconds having passed between your requests to the application.
-

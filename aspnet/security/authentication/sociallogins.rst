@@ -1,3 +1,5 @@
+.. _security-authentication-social-logins:
+
 Enabling authentication using external providers
 ================================================
 
@@ -88,7 +90,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 - Set the Facebook AppId by running **user-secret set Authentication:Facebook:AppId <value-from-app-Id-field>**
 - Set the Facebook AppSecret by running **user-secret set Authentication:Facebook:AppSecret <value-from-app-secret-field>** In this example the AppId value is 862373430475128, corresponding to the previous image.
 
-The following code reads the configuration values stored by the :doc:`Secret Manager <app-secrets>`.
+The following code reads the configuration values stored by the :ref:`Secret Manager <security-app-secrets>`.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
