@@ -42,7 +42,7 @@ To create a cookie holding your user information you must construct a `ClaimsPri
 
  .. code-block:: c#
   
-  await HttpContext.Authentication.SignInAsync("MyCookieMiddlewareInstrance", principal);
+  await HttpContext.Authentication.SignInAsync("MyCookieMiddlewareInstance", principal);
 
 This will create an encrypted cookie and add it to the current response. The ``AuthenticationScheme`` specified during :ref:`configuration <security-authentication-cookie-middleware-configuring>` must also be used when calling ``SignInAsync``.
 
