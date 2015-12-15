@@ -76,11 +76,12 @@ Writing a handler for resource based authorization is not that much different to
       }
   }
 
-Don't forget to :ref:`register your handlers <security-authorization-policies-based-handler-registration>` during service configuration;
+Don't forget you also need to register your handler in the ``ConfigureServices`` method;
 
-.. code-block:: c#
+.. code-block :: c#
 
- services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+    services.AddInstance<IAuthorizationHandler>(
+        new DocumentAuthorizationHandler());
 
 Operational Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,3 +119,18 @@ Your handler could then be implemented as follows, using a hypothetical Document
   }
 
 You can see the handler works on ``OperationAuthorizationRequirement``. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
+
+To call an operational resource handler you need to specify the operation when calling ``AuthorizeAsync()`` in your action. For example
+
+.. code-block:: c#
+
+ if (await authorizationService.AuthorizeAsync(User, document, Operations.Read))
+ {
+     return View(document);
+ }
+ else
+ {
+     return new ChallengeResult();
+ }
+
+This example checks if the ``User`` is able to perform the Read operation for the current ``document`` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning ChallengeResult() will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
