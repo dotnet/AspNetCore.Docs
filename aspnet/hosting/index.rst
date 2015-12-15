@@ -11,6 +11,5 @@ The hosting docs provide an overview of the features on ASP.NET 5. Hosters who o
    http-platformhandler
    directory-structure
    apppool
-   dataprotection
    servicing
-
+   dataprotection
