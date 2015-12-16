@@ -17,6 +17,6 @@ namespace DependencyInjectionSample.Models
 
         [Key]
         public Guid Id { get; private set; } = Guid.NewGuid();
-        public string Name { get; } = String.Empty;
+        public string Name { get; private set; } = String.Empty;
     }
 }
