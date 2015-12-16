@@ -24,36 +24,24 @@ The HTTP Platform Handler is configured via a site or application's web.config f
 .. note::
     You may need to unlock the handlers section of ``web.config``. Follow the instructions :ref:`here <unlock-handlers>`.
 
-Environment Variables
----------------------
+Log Redirection
+---------------
+
+The HTTP Platform Handler module can redirect ``stdout`` and ``stderr`` logs to disk by setting the ``stdoutLogEnabled``  and ``stdoutLogFile`` properties of the ``httpPlatform`` attribute. However, the HTTP Platform Handler module does not rotate logs and it is the responsibilty of the developer to limit the disk space their application consumes.
+
+.. literalinclude:: http-platformhandler/sample/web.config
+  :language: xml
+  :lines: 12-16,20
+
+
+Setting Environment Variables
+-----------------------------
 
 The HTTP Platform Handler module allows you specify environment variables for the process specified in the **processPath** setting by specifying them in **environmentVariables** child attribute to the **httpPlatform** attribute. The example below illustrates how you would use it.
 
-
-.. code:: xml
-
-    <configuration>
-      <system.webServer>
-        <handlers>
-          <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
-          <remove name="OPTIONSVerbHandler" />
-          <remove name="TRACEVerbHandler" />
-          <add name="httpplatformhandler"
-                path="*" verb="*"
-                modules="httpPlatformHandler"
-                resourceType="Unspecified" />
-        </handlers>
-        <httpPlatform processPath="..\approot\web.cmd"
-                arguments=""
-                stdoutLogEnabled="false"
-                stdoutLogFile="..\logs\stdout"
-                startupTimeLimit="3600">
-          <environmentVariables>
-            <environmentVariable name="DEMO" value="demo_value" />
-          </environmentVariables>
-        </httpPlatform>
-      </system.webServer>
-    </configuration>
+.. literalinclude:: http-platformhandler/sample/web.config
+  :language: xml
+  :lines: 12-20
 
 .. note::
     There is a `known issue <https://github.com/aspnet/dnx/issues/3062>`_ known issue with ``dnu publish`` where it removes all child attributes of the ``httpPlatform`` attribute.
