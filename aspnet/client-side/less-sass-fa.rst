@@ -173,7 +173,7 @@ Open main.css and you should see something like the following:
 	  color: #221114;
 	}
 
-Add a simple HTML page to the wwwroot folder and reference main.css to see the color palette in action. 
+Add a simple HTML page to the wwwroot folder and reference main.css to see the color palette in action.
 
 .. code-block:: html
 
@@ -228,7 +228,7 @@ Less also provides support for nested rules, as well as nested media queries. Fo
 	}
 
 
-Ideally all of the related style rules will be placed together within the CSS file, but in practice there is nothing enforcing this rule except convention and perhaps block comments. 
+Ideally all of the related style rules will be placed together within the CSS file, but in practice there is nothing enforcing this rule except convention and perhaps block comments.
 
 Defining these same rules using Less looks like this:
 
@@ -332,7 +332,7 @@ To install Sass, typically you would first install Ruby (pre-installed on Mac), 
 
 .. code-block:: console
 
-	gem install sass-lang
+	gem install sass
 
 However, assuming you're running Visual Studio, you can get started with Sass in much the same way as you would with Less. Open package.json and add the "gulp-sass" package to ``devDependencies``:
 
@@ -357,9 +357,9 @@ Next, modify gulpfile.js to add a sass variable and a task to compile your Sass 
 		fs = require("fs"),
 		less = require("gulp-less"),
 		sass = require("gulp-sass");
-	
+
 	// other content removed
-	
+
 	gulp.task("sass", function () {
 		return gulp.src('Styles/main2.scss')
 			.pipe(sass())
@@ -449,7 +449,7 @@ Examine the output in main2.css after running the sass task in Task Runner Explo
 	  color: #333333;
 	  color: red;
 	  border-color: red;
-	  font-weight: bold; 
+	  font-weight: bold;
 	}
 
 Notice that all of the common properties of the alert mixin are repeated in each class. The mixin did a good job of helping use eliminate duplication at development time, but it's still creating CSS with a lot of duplication in it, resulting in larger than necessary CSS files - a potential performance issue. It would be great if we could follow the `Don't Repeat Yourself (DRY) Principle <http://deviq.com/don-t-repeat-yourself/>`_ at both development time and runtime.
@@ -535,7 +535,7 @@ Of course, you can also quickly add it to your Visual Studio 2015 project by add
 		}
 	}
 
- 
+
 Then, to get the stylesheet added to the wwwroot folder, modify gulpfile.js as follows:
 
 .. code-block:: javascript
@@ -588,10 +588,9 @@ This produces the following in the browser - note the icon beside each item:
 
 You can view a complete list of the available icons here:
 
-http://fortawesome.github.io/Font-Awesome/icons/ 
+http://fortawesome.github.io/Font-Awesome/icons/
 
 Summary
 -------
 
 Modern web applications increasingly demand responsive, fluid designs that are clean, intuitive, and easy to use from a variety of devices. Managing the complexity of the CSS stylesheets required to achieve these goals is best done using a pre-processor like Less or Sass. In addition, toolkits like Font Awesome quickly provide well-known icons to textual navigation menus and buttons, improving the overall user experience of your application.
-
