@@ -192,8 +192,8 @@ First, add the appropriate container package(s) to the dependencies property in 
 .. code-block:: json
 
   "dependencies" : {
-    "Autofac": "4.0.0-beta8",
-    "Autofac.Framework.DependencyInjection": "4.0.0-beta8"
+    "Autofac": "4.0.0-rc1",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1"
   },
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:
