@@ -81,7 +81,7 @@ The code above uses the wildcard syntax to specify all the tag helpers in our as
    :lines: 1-3
    :emphasize-lines: 3
 
-To add a tag helper to a view using a FQN, you first add the FQN (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), and then the assembly name (*AuthoringTagHelpers*). Most developers will prefer to use the wildcard syntax. :doc:`using` goes into detail on tag helper adding, removing, hierarchy, and wildcard syntax. 
+To add a tag helper to a view using a FQN, you first add the FQN (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), and then the assembly name (*AuthoringTagHelpers*). Most developers will prefer to use the wildcard syntax. :doc:`intro` goes into detail on tag helper adding, removing, hierarchy, and wildcard syntax. 
 
 3. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
 
