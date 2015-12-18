@@ -1,3 +1,5 @@
+.. _fundamentals-dependency-injection:
+
 Dependency Injection
 ====================
 By `Steve Smith`_
