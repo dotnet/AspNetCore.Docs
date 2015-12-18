@@ -12,6 +12,7 @@ ASP.NET provides both declarative and imperative authorization functionality to 
    roles
    claims
    policies
-   resourcebased
+   dependencyinjection
+   resourcebased   
    views
    limitingidentitybyscheme

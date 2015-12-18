@@ -76,6 +76,12 @@ Writing a handler for resource based authorization is not that much different to
       }
   }
 
+Don't forget to :ref:`register your handlers <security-authorization-policies-based-handler-registration>` during service configuration;
+
+.. code-block:: c#
+
+ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
+
 Operational Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

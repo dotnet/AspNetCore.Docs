@@ -16,7 +16,7 @@ An authorization policy is made up of one or more requirements and registered at
      services.AddAuthorization(options =>
      {
          options.AddPolicy("Over21", 
-                           policy => policy.Requirements.Add(new Authorization.MinimumAgeRequirement(21)));
+                           policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
      }
  }
 
@@ -110,13 +110,13 @@ Handlers must be registered in the services collection during configuration, for
      services.AddAuthorization(options =>
      {
          options.AddPolicy("Over21", 
-                           policy => policy.Requirements.Add(new Authorization.MinimumAgeRequirement(21)));
+                           policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
      });
 
-     services.AddInstance<IAuthorizationHandler>(new Authorization.MinimumAgeHandler());
+     services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
  }
 
-Each handler is added to the services collection by using ``services.AddInstance<IAuthorizationHandler>()`` and passing in an instance of the handler.
+Each handler is added to the services collection by using ``services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();`` passing in your handler class.
 
 What should a handler return?
 -----------------------------
@@ -187,7 +187,3 @@ As the use of the Resource property is framework specific using information it w
      // Examine MVC specific things like routing data.
  }
 
-Dependency Injection in Handlers
---------------------------------
-
-As :ref:`handlers must be registered <security-authorization-policies-based-handler-registration>` in the service collection they support dependency injection. If, for example, you had a repository of rules you want to evaluate inside a handler and that repository is registered in the service collection authorization will resolve and inject that into your constructor.
