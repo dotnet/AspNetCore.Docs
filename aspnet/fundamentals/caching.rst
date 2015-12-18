@@ -15,6 +15,8 @@ Sections:
 
 `View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-beta8/aspnet/fundamentals/caching/sample>`_.
 
+.. _caching-basics:
+
 Caching Basics
 --------------
 Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that changes infrequently.
