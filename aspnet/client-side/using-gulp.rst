@@ -38,7 +38,7 @@ When you create a new web project using ASP.NET 5 Web Application template, Visu
 	  }
 	}
 
-After adding a new key-value pair in ``devDependencies`` and saving the file, Visual Studio will download and install the corresponding version of the package. In **Solution Explorer**, these packages are found in **Dependencies** > **NPM**. 
+After adding a new key-value pair in ``devDependencies`` and saving the file, Visual Studio will download and install the corresponding version of the package. In **Solution Explorer**, these packages are found in **Dependencies** > **npm**. 
 
 Gulp Starter Tasks in Visual Studio
 -----------------------------------
