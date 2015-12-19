@@ -123,7 +123,7 @@ Now open gulpfile.js. Add a variable at the top to represent less:
 
 	var gulp = require("gulp"),
             rimraf = require("rimraf"),
-            fx = require("fs"),
+            fs = require("fs"),
             less = require("gulp-less");
 
 add another variable to allow you to access project properties:
