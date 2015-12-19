@@ -16,7 +16,7 @@ An authorization policy is made up of one or more requirements and registered at
      services.AddAuthorization(options =>
      {
          options.AddPolicy("Over21", 
-                           policy => policy.Requirements.Add(new Authorization.MinimumAgeRequirement(21)));
+                           policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
      }
  }
 
@@ -110,7 +110,7 @@ Handlers must be registered in the services collection during configuration, for
      services.AddAuthorization(options =>
      {
          options.AddPolicy("Over21", 
-                           policy => policy.Requirements.Add(new Authorization.MinimumAgeRequirement(21)));
+                           policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
      });
 
      services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();

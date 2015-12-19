@@ -58,7 +58,7 @@ If you prefer to specify the desired schemes in :ref:`policy <security-authoriza
  {
      policy.AuthenticationSchemes.Add("Bearer");
      policy.RequireAuthenticatedUser();
-     policy => policy.Requirements.Add(new Authorization.Over18Requirement());
+     policy => policy.Requirements.Add(new Over18Requirement());
  });
 
 In this example the Over18 policy will only run against the identity created by the Bearer middleware.
