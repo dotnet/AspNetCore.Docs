@@ -27,7 +27,7 @@ The HTTP Platform Handler is configured via a site or application's web.config f
 Log Redirection
 ---------------
 
-The HTTP Platform Handler module can redirect ``stdout`` and ``stderr`` logs to disk by setting the ``stdoutLogEnabled``  and ``stdoutLogFile`` properties of the ``httpPlatform`` attribute. However, the HTTP Platform Handler module does not rotate logs and it is the responsibilty of the developer to limit the disk space their application consumes.
+The HTTP Platform Handler module can redirect ``stdout`` and ``stderr`` logs to disk by setting the ``stdoutLogEnabled``  and ``stdoutLogFile`` properties of the ``httpPlatform`` attribute. However, the HTTP Platform Handler module does not rotate logs and it is the responsibilty of the hoster to limit the disk space the logs consume.
 
 .. literalinclude:: http-platformhandler/sample/web.config
   :language: xml
