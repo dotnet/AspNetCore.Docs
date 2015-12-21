@@ -1,7 +1,0 @@
-﻿{
-    "Data": {
-        "DefaultConnection": { 
-            "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=NewMvc6Project;Trusted_Connection=True;"
-        }
-    }
-}
