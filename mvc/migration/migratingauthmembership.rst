@@ -107,7 +107,7 @@ Our application is now ready to support authentication and identity services - i
 Migrate Registration and Login Logic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-With identity services configured for the application and data access configured using Entity Framework and SQL Server, we are now ready to add support for registration and login to the application. Recall that :ref:`earlier in the migration process <migrate-controllers-views-static>` we commented out a reference to _LoginPartial in _Layout.cshtml. Now it's time to return to that code, uncomment it, and add in the necessary controllers and views to support login functionality.
+With identity services configured for the application and data access configured using Entity Framework and SQL Server, we are now ready to add support for registration and login to the application. Recall that :ref:`earlier in the migration process <migrate-layout-file>` we commented out a reference to _LoginPartial in _Layout.cshtml. Now it's time to return to that code, uncomment it, and add in the necessary controllers and views to support login functionality.
 
 Update _Layout.cshtml; uncomment the @Html.Partial line:
 

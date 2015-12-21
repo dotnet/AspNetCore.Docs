@@ -38,7 +38,7 @@ Configure the site to use MVC
   :emphasize-lines: 8-9, 30-33
   :linenos:
   
-``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :ref:`aspnet:static-files`).
+``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :ref:`aspnet:fundamentals-static-files`).
 
 The ``scripts`` section is used to denote when specified build automation scripts should run. Visual Studio now has built-in support for running scripts before and after specific events. The ``scripts`` section above specifies `NPM <https://docs.npmjs.com/>`__, `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__ scripts should run on the ``prepublish`` stage.  We'll talk about NPM, Bower, and Gulp later in the tutorial. Note the trailing "," added to the end of the ``publishExclude`` section.
 
@@ -181,6 +181,8 @@ Open the *package.json* file and replace the contents with the following:
 Right click on the *Gulpfile.js* and select **Task Runner Explorer**. Double-click on a task to run it.
 
 For more information, see `Client-Side Development in ASP.NET 5 <http://docs.asp.net/en/latest/client-side/index.html>`_
+
+.. _migrate-layout-file:
 
 Migrate the layout file
 -----------------------

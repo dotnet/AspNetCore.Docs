@@ -1,3 +1,5 @@
+.. _fundamentals-static-files:
+
 Working with Static Files
 =========================
 By `Tom Archer`_

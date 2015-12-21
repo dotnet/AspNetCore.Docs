@@ -113,6 +113,8 @@ The *References* folder, shown within **Solution Explorer** in Visual Studio, de
 
 For more information, see `NuGet <https://docs.nuget.org>`_.
 
+.. _fundamentalconcepts-application-startup:
+
 Application Startup
 -------------------
 
