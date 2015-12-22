@@ -108,7 +108,7 @@ In order for the user to browse the ``MyStaticFiles`` directory, you can configu
   {
     ...
     // Add the ability for the user to browse the MyStaticFiles directory.
-    app.UseDirectoryBrowser(new DirectoryBrowserptions()
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions()
     {
         FileProvider = new PhysicalFileProvider(@"D:\Source\WebApplication1\src\WebApplication1\MyStaticFiles"),
         RequestPath = new PathString("/StaticFiles")
