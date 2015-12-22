@@ -141,6 +141,8 @@ To add a scaffolding, right-click the **Controllers** folder in **Solution Explo
 
 .. image:: your-first-aspnet-application/_static/15a-scaffold-menu.png
 
+.. note:: If you don't see the **New Scaffolded Item** option, make sure you have created the project using **Individual User Accounts**. 
+
 From the **Add Scaffold** dialog box, select **MVC 6 Controller with views, using Entity Framework**, then click the **Add** button.
 
 .. image:: your-first-aspnet-application/_static/15b-add-scaffold-db.png
@@ -218,6 +220,8 @@ The **Output** window is displayed, and if all went well, you see a succeeded me
 
 If you run into an error, re-check the above steps. The information in the **Output** window will indicate which file has a problem and where in the file a change is required. This information will enable you to determine what part of the above steps need to be reviewed and fixed in your project.
 
+.. note:: Before running the app, you must first create the database using the data migrations.
+
 Using data migrations to create the database
 --------------------------------------------
 Data migrations in EF are used to perform model updates throughout your entire application. By initially using data migrations to create your database, you can modify your database after the model has changed with simple steps. This will allow you to build and maintain your web app more efficiently. The alternative to data migrations, where model or schema changes are required after the database has been created, involves recreating your entire database.
@@ -240,7 +244,7 @@ Run each of the following commands from the **Command Prompt**:
 	dnx ef migrations add Initial
 	dnx ef database update
 
-.. note:: If ``dnu restore`` is not a recognized command, you may have missed a prerequisite step (or part of a prerequisites step) at the beginning of this topic. For general EF command help, enter the following in the command window: ``dnx ef -?``. For help with the ``add`` command, enter the following in the command window: ``dnx ef migrations add -?``. And, for help with the ``update`` command, enter the following in the command window: ``dnx ef database update -?``.
+.. note:: If ``dnu restore`` is not a recognized command, you may have missed a prerequisite step (or part of a prerequisites step) at the beginning of this topic. However, first check if the **Active** version of the .NET Version Manager (dnvm) is checked. To do this, enter ``dnvm list`` in the command window. If there is no ***** next to any of the versions, set the active version by entering ``dnvm use 1.0.0-rc1-update1 -p``, so that the appropriate version is selected.
 	
 The .NET Version Manager (**dnvm**) is a set of command line utilities that are used to update and configure .NET Runtime. 
 
@@ -249,6 +253,8 @@ The .NET Version Manager (**dnvm**) is a set of command line utilities that are 
 The "``add Initial``" command creates a migration named "Initial" that adds code to the project, allowing EF to update the database schema. The ``update`` command creates the actual database. After you run this command, the *Migrations* folder of your project will be updated as follows:
 
 .. image:: your-first-aspnet-application/_static/16-migrations.png
+
+.. note:: For general EF command help, enter the following in the command window: ``dnx ef -?``. For help with the ``add`` command, enter the following in the command window: ``dnx ef migrations add -?``. And, for help with the ``update`` command, enter the following in the command window: ``dnx ef database update -?``.
 
 Also, you will be able to view the newly created database within **SQL Server Object Explorer**. 
 
