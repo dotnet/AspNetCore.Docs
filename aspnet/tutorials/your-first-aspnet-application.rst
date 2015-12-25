@@ -63,7 +63,7 @@ Visual Studio creates some initial folders and files for your project. The prima
      - This file allows you to include additional project information, such as connection string values. For more information, see `Configuration <http://docs.asp.net/en/latest/fundamentals/configuration.html>`_.  
 
    * - Statup.cs       
-     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see the application is started. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.htm>`_.
+     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.htm>`_.
 
    * - Index.cshtml       
      - This ``view`` contains the HTML for the default page of the view.  
