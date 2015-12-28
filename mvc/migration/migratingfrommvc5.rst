@@ -42,7 +42,7 @@ Configure the site to use MVC
 
 The ``scripts`` section is used to denote when specified build automation scripts should run. Visual Studio now has built-in support for running scripts before and after specific events. The ``scripts`` section above specifies `NPM <https://docs.npmjs.com/>`__, `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__ scripts should run on the ``prepublish`` stage.  We'll talk about NPM, Bower, and Gulp later in the tutorial. Note the trailing "," added to the end of the ``publishExclude`` section.
 
-For more information, see `project.json <https://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html#the-project-json-file>`_ and `Introducing .NET Core <http://docs.asp.net/en/latest/conceptual-overview/dotnetcore.html>`_.
+For more information, see :ref:`project.json <aspnet:the-project-json-file>` and :ref:`Introducing .NET Core <aspnet:introducing-dotnet-core>`.
 
 - Open the *Startup.cs* file and change the code to match the following:
 
@@ -53,7 +53,7 @@ For more information, see `project.json <https://docs.asp.net/en/latest/conceptu
   :lines: 11-34
   :dedent: 4
 
-``UseStaticFiles`` adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.html>`_ and `Routing <https://docs.asp.net/en/latest/fundamentals/routing.html>`__.
+``UseStaticFiles`` adds the static file handler. As mentioned previously, the ASP.NET runtime is modular, and you must explicitly opt in to serve static files. For more information, see :ref:`Application Startup <aspnet:application-startup>` and :ref:`Routing <aspnet:routing-index>`.
 
 Add a controller and view
 -------------------------
@@ -133,7 +133,7 @@ Upon saving the file, Bower will automatically download the dependencies to the 
 
 .. image:: migratingfrommvc5/_static/search.png
 
-See `Manage Client-Side Packages with Bower <https://docs.asp.net/en/latest/client-side/bower.html>`__ for more information.
+See :ref:`Manage Client-Side Packages with Bower <aspnet:bower-index>` for more information.
 
 Gulp
 ----
@@ -155,7 +155,7 @@ The code above performs these functions:
 - Minifies the JavaScript and CSS files.
 - Bundles (concatenates) the JavaScript and CSS files.
 
-See `Using Gulp with ASP.NET 5 and Visual Studio <https://docs.asp.net/en/latest/client-side/using-gulp.html>`__.
+See :ref:`Using Gulp with ASP.NET 5 and Visual Studio <aspnet:using-gulp>`.
 
 NPM
 ---
@@ -181,7 +181,7 @@ Open the *package.json* file, and replace the contents with the following:
 
 Right-click on *gulpfile.js* and select **Task Runner Explorer**. Double-click on a task to run it.
 
-For more information, see `Client-Side Development in ASP.NET 5 <http://docs.asp.net/en/latest/client-side/index.html>`_.
+For more information, see :ref:`Client-Side Development in ASP.NET 5 <aspnet:client-side-development-index>`.
 
 .. _migrate-layout-file:
 
@@ -226,14 +226,14 @@ View the site in the browser. It should now load correctly, with the expected st
 Configure Bundling
 ------------------
 
-The MVC 5 starter web template utilized the MVC runtime support for bundling. In ASP.NET MVC 6, this functionality is performed as part of the build process using `Gulp <http://gulpjs.com/>`__. We've previously configured bundling and minification; all that's left is to change the references to Bootstrap, jQuery and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See `Bundling and Minification <http://docs.asp.net/en/latest/client-side/bundling-and-minification.html>`__ for more information.
+The MVC 5 starter web template utilized the MVC runtime support for bundling. In ASP.NET MVC 6, this functionality is performed as part of the build process using `Gulp <http://gulpjs.com/>`__. We've previously configured bundling and minification; all that's left is to change the references to Bootstrap, jQuery and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See :ref:`Bundling and Minification <aspnet:bundling-minification-index>` for more information.
 
 Additional Resources
 --------------------
 
 - `Migrating an ASP.NET MVC 5 App to ASP.NET 5 <https://weblogs.asp.net/paullitwin/migrating-an-asp-net-mvc-5-app-to-asp-net-5>`__
-- `Using Gulp <http://docs.asp.net/en/latest/client-side/using-gulp.html>`__
-- `Client-Side Development in ASP.NET 5 <http://docs.asp.net/en/latest/client-side/index.html>`_
-- `Manage Client-Side Packages with Bower <http://docs.asp.net/en/latest/client-side/bower.html>`_
-- `Bundling and Minification <http://docs.asp.net/en/latest/client-side/bundling-and-minification.html>`__
-- `Bootstrap for ASP.NET 5 <http://docs.asp.net/en/latest/client-side/bootstrap.html>`_
+- :ref:`Using Gulp <aspnet:using-gulp>`
+- :ref:`Client-Side Development in ASP.NET 5 <aspnet:client-side-development-index>`
+- :ref:`Manage Client-Side Packages with Bower <aspnet:bower-index>`
+- :ref:`Bundling and Minification <aspnet:bundling-minification-index>`
+- :ref:`Bootstrap for ASP.NET 5 <aspnet:bootstrap-index>`
