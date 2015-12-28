@@ -253,7 +253,7 @@ To switch between compiling for different environments, modify the **ASPNET_ENV*
 
 	Notice that the stylesheet links point to the unminified versions of the CSS files.
 	
-For more information related to Visual Studio 2015 environments, see `Working with Multiple Environments <http://docs.asp.net/en/latest/fundamentals/environments.html>`_.
+For more information related to Visual Studio 2015 environments, see :doc:`Working with Multiple Environments <../fundamentals/environments>`.
 	
 Task and Module Details
 -----------------------
