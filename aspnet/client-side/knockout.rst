@@ -18,7 +18,7 @@ Getting Started with Knockout in ASP.NET 5
 
 Knockout is deployed as a single JavaScript file, so installing and using it is very straightforward. In Visual Studio 2015, you can simply add knockout as a dependency and Visual Studio will use bower to retrieve it. Assuming you already have bower and gulp configured (the ASP.NET 5 Starter Template comes with them already set up), open bower.json in your ASP.NET 5 project, and add the knockout dependency as shown here:
 
-.. code-block:: javascript
+.. code-block:: json
    :emphasize-lines: 5
 
 	{
