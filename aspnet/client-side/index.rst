@@ -1,3 +1,5 @@
+.. _client-side-development-index:
+
 Client-Side Development
 -----------------------
 

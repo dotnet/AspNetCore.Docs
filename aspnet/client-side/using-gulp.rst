@@ -1,3 +1,5 @@
+.. _using-gulp:
+
 Using Gulp
 ==========
 
