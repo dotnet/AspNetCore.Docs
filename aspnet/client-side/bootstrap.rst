@@ -1,3 +1,5 @@
+.. _bootstrap-index:
+
 Building Beautiful, Responsive Sites with Bootstrap
 ===================================================
 

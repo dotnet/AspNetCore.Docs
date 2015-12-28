@@ -1,5 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
+.. _routing-index:
+
 |stub-icon| Routing
 ===================
 

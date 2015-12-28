@@ -1,5 +1,7 @@
 ﻿.. include:: /../common/stub-topic.txt
 
+.. _bundling-minification-index:
+
 |stub-icon| Bundling and Minification
 =====================================
 

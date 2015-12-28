@@ -35,6 +35,8 @@ You can see which framework is currently being targeted in the web application p
 
 By default, the **Use Specific Runtime** checkbox within the **Debug** tab is unchecked. To target a specific version, check the box and choose the appropriate *Version*, *Platform*, and *Architecture*.
 
+.. _the-project-json-file:
+
 The project.json File
 ---------------------
 
