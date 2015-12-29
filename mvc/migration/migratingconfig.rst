@@ -24,10 +24,10 @@ For this article, we are starting with the partially-migrated ASP.NET MVC 6 proj
 
 	public IConfiguration Configuration { get; set; }
 
-	public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+	public Startup(IHostingEnvironment env)
 	{
 		var configurationBuilder = new ConfigurationBuilder()
-			.SetBasePath(appEnv.ApplicationBasePath)
+			.SetBasePath(env.WebRootPath)
 			.AddJsonFile("config.json");
 		Configuration = configurationBuilder.Build();
 	}	
