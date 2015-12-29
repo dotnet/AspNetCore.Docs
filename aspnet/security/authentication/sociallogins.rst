@@ -102,6 +102,8 @@ The following code reads the configuration values stored by the :ref:`Secret Man
 Enable Facebook middleware
 --------------------------
 
+**Note:** You will need to use NuGet to install the Microsoft.AspNet.Authentication.Facebook package if it hasn't already been installed.
+
 Add the Facebook middleware in the Configure method in Startup.
 
 .. code-block:: c#
