@@ -24,7 +24,7 @@ By default, static files are stored in the `webroot` of your project. The locati
 
   "webroot": "wwwroot"
 
-Static files can be stored in any folder under the webroot and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the webroot folder - ``css``, ``images``, and ``js``. In order to directly access an image in the ``images`` subfolder, the URL would look like the following:
+Static files can be stored in any folder under the webroot and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the webroot folder - ``css``, ``images`` and ``js``. In order to directly access an image in the ``images`` subfolder, the URL would look like the following:
 
   http://<yourApp>/images/<imageFileName>
 
