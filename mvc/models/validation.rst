@@ -7,13 +7,14 @@ In this article:
 - `Introduction to model validation in ASP.NET MVC`_
 - `Configure model validation with Data Annotations`_
 - `Client side validation`_ 
+- `Server side validation and Model State`_
 - `Resources`_
 
-Introduction to data validation
--------------------------------
+Introduction to model validation in ASP.NET MVC
+-----------------------------------------------
 Any data that your web app uses or stores needs to be thoroughly inspected for the purposes of both security and data integrity. Validation happens in several places, starting with client side validation, and many developers validate again on the server. Databases also check data against integrity rules before storing data. Using Data Annotations in ASP.NET MVC, you can customize models to look and behave just like the underlying backing store. This way you can enforce integrity rules against classes but using metadata, or attributes, reducing the amount of code you must write to perform validation.
 
-Configure model metadata with Data Annotations
+Configure model validation with Data Annotations
 ------------------------------------------------
 ASP.NET uses the model's metadata to generate unobtrusive JavaScript for client side validation. It also uses the metatdata for server side valiation as well. You can customize your models to include proper data types plus extra information about them.
 
@@ -45,7 +46,7 @@ Server side validation and Model State
 --------------------------------------
 Once the user fills in and submits the form, the corresponding HTTP request routes to an action method of a controller. If it's an HTTP POST, then the form fields go as key value pairs that you can interrogate. In classic ASP, this would be in the Request object's form property, e.g., Request.Form("Name"). If it's an HTTP GET, then these values are found in the Request.QueryString property. To validate these, you would need to loop through the collection and manually check each one. However, because of model binding in ASP.NET MVC, all you need to do now is reference an argument passed into the action method to access that form field value. The argument may be an individual type or it may be a property of one of your models. Around the time MVC does model binding, it also add values to a ``ModelStateDictionary`` signifying whether there are any errors. You can check for errors by querying ModelState.IsValid in the action method, and you can see the various model states in Visual Studio's Watch Window when in an action method, as the image below demonstrates. 
 
-.. image:: mvc/models/valiation/_static/debugger.png
+.. image:: validation/_static/debugger.png
 
 Resources
 ---------
