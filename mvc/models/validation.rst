@@ -1,5 +1,5 @@
 Model Validation 
-=============
+================
 By `Rachel Appel <http://github.com/rachelappel>`_
 
 In this article:
@@ -43,11 +43,9 @@ ASP.NET MVC uses the type data from the properties and metadata from the data an
 
 Server side validation and Model State
 --------------------------------------
-Once the user fills in and submits the form, the corresponding HTTP request contacts an action method of a controller. 
-If it's an HTTP POST, then the form fields go as key value pairs
-ASP.NET adds them to the ModelStateDictionary 
-you can see this in the debugger
+Once the user fills in and submits the form, the corresponding HTTP request routes to an action method of a controller. If it's an HTTP POST, then the form fields go as key value pairs that you can interrogate. In classic ASP, this would be in the Request object's form property, e.g., Request.Form("Name"). If it's an HTTP GET, then these values are found in the Request.QueryString property. To validate these, you would need to loop through the collection and manually check each one. However, because of model binding in ASP.NET MVC, all you need to do now is reference an argument passed into the action method to access that form field value. The argument may be an individual type or it may be a property of one of your models. Around the time MVC does model binding, it also add values to a ``ModelStateDictionary`` signifying whether there are any errors. You can check for errors by querying ModelState.IsValid in the action method, and you can see the various model states in Visual Studio's Watch Window when in an action method, as the image below demonstrates. 
 
+.. image:: mvc/models/valiation/_static/debugger.png
 
 Resources
 ---------
