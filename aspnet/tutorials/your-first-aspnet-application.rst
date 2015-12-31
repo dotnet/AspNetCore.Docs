@@ -96,7 +96,7 @@ Open the *project.json* file. In the dependencies section, you will see the foll
     :language: json
     :lines: 8-10
 
-These lines show that you can issues EF commands from the command window and that the EF NuGet package is included with your project.
+These lines show that you can issue EF commands from the command window and that the EF NuGet package is included with your project.
 	
 	
 Create a data model and scaffolding
