@@ -8,7 +8,7 @@ In ASP.NET 5, application state can be managed in a variety of ways, depending o
 	:local:
 	:depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/app-state/sample>`_.
+`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample>`_.
 
 Application State Options
 -------------------------
