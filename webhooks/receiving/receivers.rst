@@ -34,7 +34,7 @@ WebHooks to the URI above.
 The *<receiver>* component is the name of the receiver, for example *github* or *slack*.
 
 The *{id}* is an optional identifier which can be used to identify a particular WebHook receiver configuration. This can
-be used to register N WebHoks with a particular receiver. For example, the following three URIs can be used to register
+be used to register N WebHooks with a particular receiver. For example, the following three URIs can be used to register
 for three independent WebHooks::
 
   https://<host>/api/webhooks/incoming/github
