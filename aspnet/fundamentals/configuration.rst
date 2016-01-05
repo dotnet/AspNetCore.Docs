@@ -12,7 +12,7 @@ In this article:
   - `Using Options and configuration objects`_
   - `Writing custom providers`_
 
-`Download sample from GitHub <https://github.com/aspnet/docs>`_. 
+`Download sample from GitHub <https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample>`_. 
 
 Getting and setting configuration settings
 ------------------------------------------
