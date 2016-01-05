@@ -16,7 +16,7 @@ Setup Configuration
 
 ASP.NET 5 and ASP.NET MVC 6 no longer use the *Global.asax* and *web.config* files that previous versions of ASP.NET utilized. In earlier versions of ASP.NET, application startup logic was placed in an ``Application_StartUp`` method within *Global.asax*. Later, in ASP.NET MVC 5, a *Startup.cs* file was included in the root of the project; and, it was called using an ``OwinStartupAttribute`` when the application started. ASP.NET 5 (and ASP.NET MVC 6) have adopted this approach completely, placing all startup logic in the *Startup.cs* file.
 
-The *web.config* file has also been replaced in ASP.NET 5. Configuration itself can now be configured, as part of the application startup procedure described in *Startup.cs*. Configuration can still utilize XML files, if desired, but typically ASP.NET 5 projects will place configuration values in a JSON-formatted file, such as *appsettings.json*. ASP.NET 5's configuration system can also easily access environment variables, which can provide a more secure and robust location for environment-specific values. This is especially true for secrets like connection strings and API keys that should not be checked into source control.
+The *web.config* file has also been replaced in ASP.NET 5. Configuration itself can now be configured, as part of the application startup procedure described in *Startup.cs*. Configuration can still utilize XML files, but typically ASP.NET 5 projects will place configuration values in a JSON-formatted file, such as *appsettings.json*. ASP.NET 5's configuration system can also easily access environment variables, which can provide a more secure and robust location for environment-specific values. This is especially true for secrets like connection strings and API keys that should not be checked into source control.
 
 For this article, we are starting with the partially-migrated ASP.NET MVC 6 project from :doc:`the previous article <migratingfrommvc5>`. To setup configuration using the default MVC 6 settings, add the following constructor and property to the *Startup.cs* class located in the root of the project:
 
@@ -32,7 +32,7 @@ Note that at this point the *Startup.cs* file will not compile, as we still need
 
 	using Microsoft.Extensions.Configuration;
 
-Finally, add an *appsettings.json* file to the root of the project using the appropriate item template:
+Add an *appsettings.json* file to the root of the project using the appropriate item template:
 
 .. image:: migratingconfig/_static/add-appsettings-json.png
     :width: 955px
@@ -47,7 +47,7 @@ Our ASP.NET MVC 5 project included the required database connection string in *w
   :emphasize-lines: 4
   :linenos:
 
-In the highlighted line depicted above, change the name of the database from **_CHANGE_ME**. In the case of this migration, we are going to point to a new database, which we'll name *NewMvc6Project* to match our migrated project name.
+In the highlighted line depicted above, change the name of the database from **_CHANGE_ME**. We are going to point to a new database, which will be named *NewMvc6Project* to match our migrated project name.
 
 Summary
 -------
