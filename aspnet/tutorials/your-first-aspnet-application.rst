@@ -54,16 +54,16 @@ Visual Studio creates some initial folders and files for your project. The prima
      - Purpose	
 
    * - project.json      	
-     - The presence of a *project.json* file defines a .NET Execution Environment (DNX) project. It is the *project.json* file that contains all the information that DNX needs to run and package your project. For additional details, including the *project.json* file schema, see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`_.
+     - The presence of a *project.json* file defines a .NET Execution Environment (DNX) project. It is the *project.json* file that contains all the information that DNX needs to run and package your project. For additional details, including the *project.json* file schema, see :doc:`/dnx/projects`.
 
    * - global.json    
      - Visual Studio uses this file to configure the project.
 
    * - config.json      
-     - This file allows you to include additional project information, such as connection string values. For more information, see `Configuration <http://docs.asp.net/en/latest/fundamentals/configuration.html>`_.  
+     - This file allows you to include additional project information, such as connection string values. For more information, see  :doc:`/fundamentals/configuration`.  
 
    * - Statup.cs       
-     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.htm>`_.
+     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see :doc:`/fundamentals/startup`.
 
    * - Index.cshtml       
      - This ``view`` contains the HTML for the default page of the view.  
