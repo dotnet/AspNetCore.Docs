@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConfigConsole": {
+      "commandName": "ConfigConsole",
+      "commandLineArgs": "--username Steve"
+    }
+  }
+}

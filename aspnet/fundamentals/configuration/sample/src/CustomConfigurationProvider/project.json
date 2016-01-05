@@ -1,18 +1,23 @@
 {
   "version": "1.0.0-*",
-  "description": "ConfigConsole Console Application",
-  "authors": [ "" ],
+  "description": "CustomConfigurationProvider Console Application",
+  "authors": [ "daroth" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
 
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
   "dependencies": {
-    "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0-rc1-final"
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final"
   },
 
   "commands": {
-    "ConfigConsole": "ConfigConsole"
+    "CustomConfigurationProvider": "CustomConfigurationProvider"
   },
 
   "frameworks": {
