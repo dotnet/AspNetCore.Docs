@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.Configuration;
+using Microsoft.Extensions.Configuration;
 
-namespace CustomConfigurationSource
+namespace CustomConfigurationProvider
 {
-    public class EntityFrameworkConfigurationSource : ConfigurationSource
+    public class EntityFrameworkConfigurationProvider : ConfigurationProvider
     {
-        public EntityFrameworkConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
+        public EntityFrameworkConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)
         {
             OptionsAction = optionsAction;
         }
@@ -33,10 +33,10 @@ namespace CustomConfigurationSource
         private IDictionary<string, string> CreateAndSaveDefaultValues(ConfigurationContext dbContext)
         {
             var configValues = new Dictionary<string, string>
-            {
-                { "key1", "value_from_ef_1" },
-                { "key2", "value_from_ef_2" }
-            };
+                {
+                    { "key1", "value_from_ef_1" },
+                    { "key2", "value_from_ef_2" }
+                };
             dbContext.Values.AddRange(configValues
                 .Select(kvp => new ConfigurationValue() { Id = kvp.Key, Value = kvp.Value })
                 .ToArray());
@@ -49,7 +49,7 @@ namespace CustomConfigurationSource
     {
         public static IConfigurationBuilder AddEntityFramework(this IConfigurationBuilder builder, Action<DbContextOptionsBuilder> setup)
         {
-            return builder.Add(new EntityFrameworkConfigurationSource(setup));
+            return builder.Add(new EntityFrameworkConfigurationProvider(setup));
         }
     }
 }

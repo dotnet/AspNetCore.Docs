@@ -1,33 +1,31 @@
 {
-    "webroot": "wwwroot",
-    "version": "1.0.0-*",
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
-    "dependencies": {
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-        "Microsoft.AspNet.Mvc": "6.0.0-beta6",
-        "Microsoft.Framework.Configuration.Json": "1.0.0-beta6",
-    },
+  "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final"
+  },
 
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --config hosting.ini"
-    },
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel"
+  },
 
-    "frameworks": {
-        "dnx451": { },
-        "dnxcore50": { }
-    },
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
 
-    "publishExclude": [
-        "node_modules",
-        "bower_components",
-        "**.xproj",
-        "**.user",
-        "**.vspscc"
-    ],
-    "exclude": [
-        "wwwroot",
-        "node_modules",
-        "bower_components"
-    ]
+  "exclude": [
+    "wwwroot",
+    "node_modules"
+  ],
+  "publishExclude": [
+    "**.user",
+    "**.vspscc"
+  ]
 }

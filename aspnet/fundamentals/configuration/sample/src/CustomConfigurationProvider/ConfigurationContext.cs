@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
+﻿using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 
-namespace CustomConfigurationSource
+namespace CustomConfigurationProvider
 {
     public class ConfigurationContext : DbContext
     {
@@ -14,5 +10,6 @@ namespace CustomConfigurationSource
         }
 
         public DbSet<ConfigurationValue> Values { get; set; }
+
     }
 }
