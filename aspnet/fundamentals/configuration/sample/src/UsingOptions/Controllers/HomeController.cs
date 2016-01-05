@@ -12,7 +12,7 @@ namespace UsingOptions.Controllers
     {
         public HomeController(IOptions<MyOptions> optionsAccessor)
         {
-            Options = optionsAccessor.Options;
+            Options = optionsAccessor.Value;
         }
 
         MyOptions Options { get; }
