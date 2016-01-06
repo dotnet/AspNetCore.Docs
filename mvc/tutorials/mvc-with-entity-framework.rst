@@ -73,7 +73,7 @@ Open the *project.json* file. In the dependencies section, add the following lin
 
   "dependencies": {
     ...
-    "EntityFramework.SqlServer": "7.0.0-rc1-final"
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final"
   },
 
 When you save *project.json*, Visual Studio automatically resolves the new package reference.
