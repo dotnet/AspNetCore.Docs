@@ -1,4 +1,4 @@
-View Components in MVC 6
+View Components
 ======================================================
 
 By `Rick Anderson`_
@@ -10,7 +10,7 @@ By `Rick Anderson`_
 Introducing view components
 ---------------------------
 
-New to ASP.NET MVC 6, view components are similar to partial views, but they are much more powerful. View components include the same separation-of-concerns and testability benefits found between a controller and view. You can think of a view component as a mini-controller—it’s responsible for rendering a chunk rather than a whole response. You can use view components to solve any problem that you feel is too complex with a partial, such as:  
+New to ASP.NET MVC 6, view components are similar to partial views, but they are much more powerful. View components include the same separation-of-concerns and testability benefits found between a controller and view. A view component is responsible for rendering a chunk rather than a whole response. You can use view components to solve any problem that you feel is too complex with a partial, such as:  
 
 - Dynamic navigation menus
 - Tag cloud (where it queries the database)
