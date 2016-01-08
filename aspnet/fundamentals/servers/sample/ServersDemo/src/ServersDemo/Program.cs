@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNet.Builder;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNet.Server.Kestrel;
 
 namespace ServersDemo
 {
@@ -17,6 +20,7 @@ namespace ServersDemo
         {
             _serviceProvider = serviceProvider;
         }
+
         public Task<int> Main(string[] args)
         {
             //Add command line configuration source to read command line parameters.
@@ -24,8 +28,8 @@ namespace ServersDemo
             builder.AddCommandLine(args);
             var config = builder.Build();
 
-            using (new WebHostBuilder(_serviceProvider, config)
-                .UseServer("Microsoft.AspNet.Server.WebListener")
+            using (new WebHostBuilder(config)
+                .UseServer("Microsoft.AspNet.Server.Kestrel")
                 .Build()
                 .Start())
             {
