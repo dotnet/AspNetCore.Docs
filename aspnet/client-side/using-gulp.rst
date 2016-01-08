@@ -154,6 +154,10 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
  	.. image:: using-gulp/_static/05-TaskRunner-BeforeBuild.png 
 
 	The **Before Build** binding option allows the clean task to run automatically before each build of the project.
+	
+It's worth noting that the bindings you set up with **Task Runner Explorer** are **not** stored in the *project.json*.  Rather they are stored in the form of a comment at the top of your *gulpfile.js*.  It is possible (as demonstrated in the default project templates) to have gulp tasks kicked off by the *scripts* section of your *project.json*.  **Task Runner Explorer** is a way you can configure tasks to run using Visual Studio.  If you are using a different editor (for example, Visual Studio Code) then using the *project.json* will probably be the most straightforward way to bring together the various stages (prebuild, build, etc.)  and the running of gulp tasks. 
+
+.. note:: *project.json* stages are not triggered when building in Visual Studio by default.  If you want to ensure that they are set this option in the Visual Studio project properties: Build tab -> Produce outputs on build.  This will add a *ProduceOutputsOnBuild* element to your *.xproj* file which will cause Visual studio to trigger the *project.json* stages when building.
 
 Defining and Running a New Task
 -------------------------------
