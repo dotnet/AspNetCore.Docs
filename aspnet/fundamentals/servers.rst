@@ -100,7 +100,7 @@ ASP.NET defines a number of :doc:`request-features` which may be supported on di
 	  - Yes
 	  - No
 	  
-To add support for web sockets, use the `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/c86b157ad3cd00e8848c4895fe29de2f9d81a0b4/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_
+To add support for web sockets, use the `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/1.0.0-rc1/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_
 
 Configuration options
 ^^^^^^^^^^^^^^^^^^^^^
@@ -124,14 +124,14 @@ Then, ``hosting.json`` can include the settings the server will use (including t
 .. code-block:: json
 
 	{
-	  "server": "Microsoft.AspNet.Server.WebListener",
+	  "server": "Microsoft.AspNet.Server.Kestrel",
 	  "server.urls": "http://localhost:5004/"
 	}
 
 Programmatic configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to specifying configuration options, the server hosting the application can be referenced programmatically via the `IApplicationBuilder interface <https://github.com/aspnet/HttpAbstractions/blob/e7bf0e71bb2ee6e08dca82d8d7485fc89e98d0b7/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs>`_, available in the ``Configure`` method in ``Startup``. ``IApplicationBuilder`` exposes Server Features of type `IFeatureCollection <https://github.com/aspnet/HttpAbstractions/blob/e7bf0e71bb2ee6e08dca82d8d7485fc89e98d0b7/src/Microsoft.AspNet.Http.Features/IFeatureCollection.cs>`_. ``IServerAddressesFeature`` only expose a ``Addresses`` property, but different server implementations may expose additional functionality. For instance, WebListener exposes ``AuthenticationManager`` that can be used to configure the server's authentication:
+In addition to specifying configuration options, the server hosting the application can be referenced programmatically via the `IApplicationBuilder interface <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-rc1/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs>`_, available in the ``Configure`` method in ``Startup``. ``IApplicationBuilder`` exposes Server Features of type `IFeatureCollection <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-rc1/src/Microsoft.AspNet.Http.Features/IFeatureCollection.cs>`_. ``IServerAddressesFeature`` only expose a ``Addresses`` property, but different server implementations may expose additional functionality. For instance, WebListener exposes ``AuthenticationManager`` that can be used to configure the server's authentication:
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/Startup.cs
 	:linenos:
@@ -149,7 +149,7 @@ Working with IIS as your server for your ASP.NET application is the default opti
 HTTPPlatformHandler
 ^^^^^^^^^^^^^^^^^^^
 
-In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. 
+In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages.
 
 
 
