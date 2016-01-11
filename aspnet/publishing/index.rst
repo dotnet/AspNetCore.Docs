@@ -12,3 +12,4 @@ Publishing and Deployment
     docker
     how-to-customize
     iis-with-msdeploy
+    web-publishing-vs
