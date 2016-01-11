@@ -3,10 +3,8 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Hosting.Server.Abstractions": "1.0.0-rc1-final",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final"
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-rc1-final"
   },
 
   "commands": {
