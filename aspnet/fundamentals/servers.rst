@@ -3,7 +3,7 @@ Servers
 
 By `Steve Smith`_
 
-ASP.NET 5 is completely decoupled from the web server environment that hosts the application. As released, ASP.NET 5 supports WebListener, and Kestrel web servers, which run on a variety of platforms. Developers and third party software vendors can create their own custom servers as well within which to host their ASP.NET 5 applications.
+ASP.NET 5 is completely decoupled from the web server environment that hosts the application. As released, ASP.NET 5 supports hosting in IIS and IIS Express, and self-hosting scenarios using the Kestrel and WebListener http servers. Additonally, developers and third party software vendors can create their own custom servers within which to host their ASP.NET 5 applications.
 
 In this article:
 	- `Servers and commands`_
@@ -19,9 +19,7 @@ In this article:
 Servers and commands
 --------------------
 
-ASP.NET 5 is designed to decouple web applications from the underlying web server that hosts them. Traditionally, ASP.NET applications have been windows-only (unless `hosted via mono <http://www.mono-project.com/docs/web/aspnet/>`_) and hosted on the built-in web server for windows, Internet Information Server (IIS) (or a development server, like `IIS Express <http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview>`_ or earlier development web servers). While running IIS as a reverse proxy server in front of Kestrel is the recommended way to host production ASP.NET 5 applications on Windows, the cross-platform nature of ASP.NET allows it to be hosted in any number of different web servers, on multiple operating systems.
-
-ASP.NET 5 ships with two different servers:
+ASP.NET 5 is designed to decouple web applications from the underlying web server that hosts them. Traditionally, ASP.NET applications have been windows-only (unless `hosted via mono <http://www.mono-project.com/docs/web/aspnet/>`_) and hosted on the built-in web server for windows, Internet Information Server (IIS) (or a development server, like `IIS Express <http://www.iis.net/learn/extensions/introduction-to-iis-express/iis-express-overview>`_ or earlier development web servers). The recommended way to run ASP.NET 5 applications on Windows is using IIS as a reverse-proxy server. The HttpPlatformHandler module in IIS manages and proxies requests to an http server hosted out-of-process. ASP.NET 5 ships with two different  http servers:
 
 - Microsoft.AspNet.Server.WebListener (WebListener)
 - Microsoft.AspNet.Server.Kestrel (Kestrel)
@@ -38,12 +36,12 @@ I've configured the sample project for this article to support each of the diffe
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/project.json
 	:lines: 1-17
-	:emphasize-lines: 14-15
+	:emphasize-lines: 12-13
 	:linenos:
 	:language: javascript
 	:caption: project.json (truncated)
 
-The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``. In this case, this has been set up to configure and start an instance of ``Kestrel``. This is not a typical means of launching a server, but is shown to demonstrate the possibility (the `Music Store sample application <https://github.com/aspnet/MusicStore>`_ also demonstrates this option).
+The ``run`` command will execute the application via its ``void main()`` method defined in ``program.cs``. In this case, this has been set up to configure and start an instance of ``Kestrel``.
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/Program.cs
 	:linenos:
@@ -151,12 +149,10 @@ HTTPPlatformHandler
 
 In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages.
 
-
-
 WebListener
 -----------
 
-WebListener is a Windows-only application server for ASP.NET 5. It runs directly on the `Http.Sys kernel driver <http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture>`_, and has very little overhead. It supports the same feature interfaces as IIS; in fact, you can think of WebListener as a library version of IIS.
+WebListener is a Windows-only http server for ASP.NET 5. It runs directly on the `Http.Sys kernel driver <http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture>`_, and has very little overhead.
 
 You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNet.Server.WebListener" dependency in project.json and the following command:
 
@@ -176,7 +172,9 @@ Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-
 Choosing a server
 -----------------
 
-If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel. Choose WebListener instead of Kestrel if you are deploying to a Windows environment and require Domain Authentication.
+If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel.
+
+For self-hosting scenarios, such as WCF services or `Service Fabric <https://azure.microsoft.com/en-us/services/service-fabric/>`_, we recommend using Kestrel without IIS. However, if you require Windows Authentication in a self-hosting scenario, you should choose WebListener.
 
 Custom Servers
 --------------
@@ -185,42 +183,7 @@ In addition to the options listed above, you can create your own server in which
 
 Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server. In fact, like all of ASP.NET 5, you're welcome to `contribute <https://github.com/aspnet/KestrelHttpServer/blob/dev/CONTRIBUTING.md>`_ any improvements you make back to the project.
 
-Kestrel currently supports a limited number of feature interfaces, but additional features will be added in the future. You can see how these interfaces are implemented and supported by Kestrel in its ``Frame`` class. For example, the ``IHttpUpgradeFeature`` interface consists of only one property and one method. Kestrel's implementation of this interface is shown here for reference:
-
-.. code-block:: c#
-	:caption: Kestrel IHttpUpgradeFeature implementation
-
-	bool IHttpUpgradeFeature.IsUpgradableRequest
-	{
-	    get
-	    {
-	        StringValues values;
-	        if (RequestHeaders.TryGetValue("Connection", out values))
-	        {
-	            return values.Any(value => value.IndexOf("upgrade", StringComparison.OrdinalIgnoreCase) != -1);
-	        }
-	        return false;
-	    }
-	}
-
-	async Task<Stream> IHttpUpgradeFeature.UpgradeAsync()
-	{
-	    StatusCode = 101;
-	    ReasonPhrase = "Switching Protocols";
-	    ResponseHeaders["Connection"] = "Upgrade";
-	    if (!ResponseHeaders.ContainsKey("Upgrade"))
-	    {
-	        StringValues values;
-	        if (RequestHeaders.TryGetValue("Upgrade", out values))
-	        {
-	            ResponseHeaders["Upgrade"] = values;
-	        }
-	    }
-
-	    await ProduceStartAndFireOnStarting(immediate: true);
-
-	    return DuplexStream;
-	}
+Kestrel currently supports a limited number of `feature interfaces <https://github.com/aspnet/KestrelHttpServer/blob/1.0.0-rc1/src/Microsoft.AspNet.Server.Kestrel/Http/Frame.FeatureCollection.cs#L16>`_, but additional features will be added in the future. You can see how these interfaces are implemented and supported by Kestrel in its ``Frame`` class. For example, the ``IHttpUpgradeFeature`` interface consists of only one property and one method. You can look at Kestrel's implementation `here <https://github.com/aspnet/KestrelHttpServer/blob/1.0.0-rc1/src/Microsoft.AspNet.Server.Kestrel/Http/Frame.FeatureCollection.cs#L265-L280>`_.
 
 Summary
 -------
