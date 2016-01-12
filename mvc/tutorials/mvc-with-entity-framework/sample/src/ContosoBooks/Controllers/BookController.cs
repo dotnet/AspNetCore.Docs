@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +39,7 @@ namespace ContosoBooks.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Items = GetAuthorsListItems();            
+            ViewBag.Items = GetAuthorsListItems();
             return View();
         }
 
@@ -145,7 +145,7 @@ namespace ContosoBooks.Controllers
                     Selected = author.AuthorID == selected
                 });
         }
-   
+
         private IEnumerable<SelectListItem> GetAuthorsListItems2246(int selected = -1)
         {
             return BookContext.Authors
@@ -155,7 +155,7 @@ namespace ContosoBooks.Controllers
                     Text = String.Format("{0}, {1}", author.LastName, author.FirstMidName),
                     Value = author.AuthorID.ToString(),
                     Selected = author.AuthorID == selected
-                });   
+                });
         }
     }
 }
