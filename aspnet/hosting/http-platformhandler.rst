@@ -5,7 +5,7 @@ HTTP Platform Handler
 
 By `Sourabh Shirhatti`
 
-In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared ASP.NET 5 hosting.
+In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared hosting of ASP.NET 5.
 
 Installing the HTTP Platform Handler
 ------------------------------------
@@ -19,10 +19,10 @@ To get started with hosting with ASP.NET 5 applications you will need to install
 Configuring the HTTP Platform Handler
 -------------------------------------
 
-The HTTP Platform Handler is configured via a site or application's web.config file and has its own configuration section within **system.webServer - httpPlatform**. The `HTTP Platform Handler configuration reference whitepaper <http://www.iis.net/learn/extensions/httpplatformhandler/httpplatformhandler-configuration-reference>`_ describes in detail how to modify Configuration Attributes for the HTTP PlatformHandler module.
+The HTTP Platform Handler is configured via a site or application's *web.config* file and has its own configuration section within ``system.webServer - httpPlatform``. The `HTTP Platform Handler configuration reference whitepaper <http://www.iis.net/learn/extensions/httpplatformhandler/httpplatformhandler-configuration-reference>`_ describes in detail how to modify Configuration Attributes for the HTTP PlatformHandler module.
 
 .. note::
-    You may need to unlock the handlers section of ``web.config``. Follow the instructions :ref:`here <unlock-handlers>`.
+    You may need to unlock the handlers section of *web.config*. Follow the instructions :ref:`here <unlock-handlers>`.
 
 Log Redirection
 ---------------
@@ -37,7 +37,7 @@ The HTTP Platform Handler module can redirect ``stdout`` and ``stderr`` logs to 
 Setting Environment Variables
 -----------------------------
 
-The HTTP Platform Handler module allows you specify environment variables for the process specified in the **processPath** setting by specifying them in **environmentVariables** child attribute to the **httpPlatform** attribute. The example below illustrates how you would use it.
+The HTTP Platform Handler module allows you specify environment variables for the process specified in the ``processPath`` setting by specifying them in ``environmentVariables`` child attribute to the ``httpPlatform`` attribute. The example below illustrates how you would use it.
 
 .. literalinclude:: http-platformhandler/sample/web.config
   :language: xml
