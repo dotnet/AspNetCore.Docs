@@ -14,8 +14,8 @@ namespace ContosoBooks.Migrations
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta8-15964")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("ContosoBooks.Models.Author", b =>
                 {
@@ -53,7 +53,7 @@ namespace ContosoBooks.Migrations
                 {
                     b.HasOne("ContosoBooks.Models.Author")
                         .WithMany()
-                        .ForeignKey("AuthorID");
+                        .HasForeignKey("AuthorID");
                 });
         }
     }
