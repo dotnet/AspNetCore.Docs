@@ -24,15 +24,15 @@ ASP.NET 5 was designed to decouple web applications from the underlying HTTP ser
 - Microsoft.AspNet.Server.WebListener (AKA WebListener, Windows-only)
 - Microsoft.AspNet.Server.Kestrel (AKA Kestrel, cross-platform)
 
-ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :doc:`feature interfaces <request-features>` composed into an HttpContext. While WebListener is Windows-only; Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your ``project.json`` file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx run``) rather than hosting it in a separate process.
+ASP.NET 5 does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :doc:`feature interfaces <request-features>` composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your *project.json* file. You can even specify an application entry point for your application, and run it as an executable (using ``dnx run``) rather than hosting it in a separate process.
 
-The default web host for ASP.NET apps developed using Visual Studio 2015 is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNet.Server.Kestrel" and "Microsoft.AspNet.IISPlatformHandler" dependencies are included in ``project.json`` by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in ``project.json``. You can manage these profiles and their settings in the Debug tab of your web application project's Properties menu or from the ``launchSettings.json`` file.
+The default web host for ASP.NET apps developed using Visual Studio 2015 is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNet.Server.Kestrel" and "Microsoft.AspNet.IISPlatformHandler" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in *project.json*. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
 
 .. image:: /fundamentals/servers/_static/serverdemo-properties.png
 
 .. note:: IIS doesn't support commands. Visual Studio launches IIS Express and loads the application with the selected profile.
 
-The sample project for this article is configured to support each server option in the ``project.json`` file:
+The sample project for this article is configured to support each server option in the *project.json* file:
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/project.json
 	:lines: 1-17
@@ -107,7 +107,7 @@ You can provide configuration options (by command line parameters or a configura
 
 The ``Microsoft.AspNet.Hosting`` command supports server parameters (such as ``Kestrel`` or ``WebListener``) and a ``server.urls`` configuration key. The ``server.urls`` configuration key is a semicolon-separated list of URL prefixes that the server should handle.
 
-The ``project.json`` file shown above demonstrates how to pass the ``server.urls`` parameter directly:
+The *project.json* file shown above demonstrates how to pass the ``server.urls`` parameter directly:
 
 .. code-block:: javascript
 
@@ -167,7 +167,7 @@ You can add support for WebListener to your ASP.NET application by adding the "M
 Kestrel
 -------
 
-Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. Kestrel is open-source, and you can `view the Kestrel source on GitHub <https://github.com/aspnet/KestrelHttpServer>`_. You add support for Kestrel by including "Kestrel" in your project's dependencies listed in ``project.json``.
+Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. Kestrel is open-source, and you can `view the Kestrel source on GitHub <https://github.com/aspnet/KestrelHttpServer>`_. You add support for Kestrel by including "Kestrel" in your project's dependencies listed in *project.json*.
 
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
