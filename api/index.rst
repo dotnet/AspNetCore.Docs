@@ -1,3 +1,5 @@
+.. _aspnet-api:
+
 ASP.NET 5 API Reference Documentation
 =====================================
 
