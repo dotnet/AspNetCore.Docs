@@ -599,7 +599,7 @@ Among the packages listed, you should see the following packages.
 
 .. code-block:: none
 
-  mkdir "C:\inetpub\temp\IIS Temporary Compresse Files\DefaultAppPool"
+  mkdir "C:\inetpub\temp\IIS Temporary Compressed Files\DefaultAppPool"
 
   mkdir "C:\inetpub\temp\IIS Temporary Compressed Files\aspnet5"
 
