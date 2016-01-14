@@ -59,10 +59,10 @@ Visual Studio creates some initial folders and files for your project. The prima
    * - global.json    
      - Visual Studio uses this file to configure the project.
 
-   * - config.json      
+   * - appsettings.json      
      - This file allows you to include additional project information, such as connection string values. For more information, see  :doc:`/fundamentals/configuration`.  
 
-   * - Statup.cs       
+   * - Startup.cs       
      - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see :doc:`/fundamentals/startup`.
 
    * - Index.cshtml       

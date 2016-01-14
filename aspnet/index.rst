@@ -38,6 +38,7 @@ Topics
     performance/index
     migration/index
     contribute/index
+    hosting/index
 
 Related Resources
 -----------------
