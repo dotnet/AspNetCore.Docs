@@ -1229,6 +1229,7 @@ Additional Resources
 * `Nano Server and Azure PowerShell <https://channel9.msdn.com/Series/Nano-Server-Team/Nano-Server-and-Azure-PowerShell>`_
 * `PowerShell: Windows Server 2016 Technical Preview and Windows 10 <https://technet.microsoft.com/en-us/library/mt156917.aspx>`_
 * `What is DISM? <https://technet.microsoft.com/en-us/library/hh825236.aspx>`_
+* `Azure Resource Manager Cmdlets <https://msdn.microsoft.com/en-us/library/mt125356.aspx>`_
 
 Acknowledgements
 ----------------
