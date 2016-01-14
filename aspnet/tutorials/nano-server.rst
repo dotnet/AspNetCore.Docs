@@ -3,7 +3,7 @@
 ASP.NET 5 on Nano Server
 ========================
 
-By `Luke Latham <http://www.guardrex.com/>`_ 
+By `Luke Latham`_
 
 In this tutorial, you'll deploy an ASP.NET 5 web app to a Microsoft Azure Nano Server virtual machine and learn how to safely manage Nano Server using a Microsoft Azure Windows Server 2012 R2 management virtual machine.
 
