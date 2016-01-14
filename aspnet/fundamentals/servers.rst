@@ -131,14 +131,16 @@ Alternately, a configuration file can be referenced, instead:
 
 .. code-block:: javascript
 
-	"kestrel": "Microsoft.AspNet.Hosting --config hosting.ini"
+	"kestrel": "Microsoft.AspNet.Hosting --config hosting.json"
 
-Then, ``hosting.ini`` can include the settings the server will use (including the server parameter, as well):
+Then, ``hosting.json`` can include the settings the server will use (including the server parameter, as well):
 
-.. code-block:: text
-
-	server=Kestrel
-	server.urls=http://localhost:5004
+.. code-block:: json
+	
+	{
+		"server": "Kestrel",
+		"server.urls": "http://localhost:5004"
+	}
 
 Programmatic configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
