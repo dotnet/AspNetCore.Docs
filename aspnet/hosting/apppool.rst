@@ -24,9 +24,9 @@ Securing Resources
 
 The IIS management process creates a secure identifier with the name of the application pool in the Windows Security System. Resources can be secured by using this identity, however this identity is not a real user account and will not show up in the Windows User Management Console.
 
-To grant the IIS worker process access to your application, you will need to modify the Access Control List (ACL) for the the directory containing your application. 
+To grant the IIS worker process access to your application, you will need to modify the Access Control List (ACL) for the the directory containing your application.
 
-1. Open Windows Explorer and naviagate to the directory.
+1. Open Windows Explorer and navigate to the directory.
 2. Right click on the directory and click properties.
 3. Under the **Security** tab, click the **Edit** button and then the **Add** button
 4. Click the **Locations** and make sure you select your server.
