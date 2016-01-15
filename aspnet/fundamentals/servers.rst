@@ -144,11 +144,10 @@ The server hosting the application can be referenced programmatically via the `I
 IIS and IIS Express
 -------------------
 
-IIS is the most feature rich server, and includes IIS management functionality and access to other IIS modules. Hosting ASP.NET 5 on IIS bypasses the legacy ``System.Web`` infrastructure used by prior versions of ASP.NET, providing a substantial performance gain.
+IIS is the most feature rich server, and includes IIS management functionality and access to other IIS modules. Hosting ASP.NET 5 no longer uses the ``System.Web`` infrastructure used by prior versions of ASP.NET.
 
 HTTPPlatformHandler
 ^^^^^^^^^^^^^^^^^^^
-
 In ASP.NET 5 on Windows, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of HTTP listeners and used to proxy requests to the processes that it manages.
 
 WebListener
@@ -156,7 +155,7 @@ WebListener
 
 WebListener is a Windows-only HTTP server for ASP.NET 5. It runs directly on the `Http.Sys kernel driver <http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture>`_, and has very little overhead.
 
-You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNet.Server.WebListener" dependency in project.json and the following command:
+You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNet.Server.WebListener" dependency in *project.json* and the following command:
 
 .. code-block:: javascript
 
