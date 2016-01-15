@@ -43,8 +43,8 @@ h1, h2, h3, h4, h5, h6, legend {
 {
     text-indent: -9999px;
     width: 100%;
-    background: url('nav-logo-microsoft.png') 1em no-repeat, 
-                url('nav-logo-aspnet.png') right 1em center no-repeat;
+    background: url('nav-logo-microsoft-white.svg') 1em no-repeat, 
+                url('nav-logo-aspnet-white.svg') right 1em center no-repeat;
     padding: 7px 23px 7px 10px;
 }
 
