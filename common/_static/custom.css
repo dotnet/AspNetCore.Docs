@@ -15,6 +15,8 @@ h1, h2, h3, h4, h5, h6, legend {
     font-family: 'Segoe UI Light','Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
 }
 
+a, a:link, a:visited { color: #2b59a9; }
+
 .wy-nav-side {
     background: #ddd;
     overflow-y: auto;
@@ -68,7 +70,7 @@ h1, h2, h3, h4, h5, h6, legend {
 .wy-menu-vertical li.toctree-l2 a:hover span.toctree-expand,
 .wy-menu-vertical li.toctree-l1.current>a.current,
 .wy-menu-vertical li.toctree-l2.current>a {
-    background-color: #0054a3;
+    background-color: #2b3990;
     color: #fff;
 }
 
@@ -100,7 +102,7 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 
 .rst-content .note .admonition-title {
-    background: #0054a3;
+    background: #2b3990;
     font-weight: normal;
 }
 
@@ -112,7 +114,7 @@ h1, h2, h3, h4, h5, h6, legend {
 .rst-content .toctree-wrapper ul li a:hover,
 .rst-content .toctree-wrapper ul li a:visited
 {
-    color: #267cb2;
+    color: #2b59a9;
 }
 
 .rst-content .toctree-wrapper ul li a:hover,
@@ -144,7 +146,7 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 
 .btn-neutral:hover {
-    background-color: #0054a3 !important;
+    background-color: #2b3990 !important;
     color: #fff !important;
 }
 
@@ -153,9 +155,9 @@ h1, h2, h3, h4, h5, h6, legend {
 
 
 /* helpfulness.css - start */
-.helpfulness-container { background: #0054a3; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
+.helpfulness-container { background: #2b3990; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
 .helpfulness-container.fixed { position:fixed; }
-.helpfulness { margin: 0 auto; max-width:1160px; padding:0 20px; }
+.helpfulness { margin: 0 auto; max-width:1160px; padding:0 35px 0 20px; }
 .helpfulness:after { clear: both;content: '.';display: block;visibility: hidden;height: 0; }
 .helpfulness .helpfulness-form h2 { color:#fff; margin-bottom:0; margin-right:10px; float:left; font-size:18px; line-height:28px; }
 .helpfulness .helpfulness-form span { line-height:28px; }
@@ -179,6 +181,9 @@ a.helpfulness-close:hover { text-decoration:none; color:#3BABD0; }
 /* helpfulness.css - end */
 
 /* helpfulness.css overrides - start */
+.helpfulness-container { padding-left:300px; }
+@media screen and (max-width: 768px) { .helpfulness-container { padding-left:0; } }
+
 .helpfulness { max-width:none; }
 
 .common-btn, .btn-install {background:#6CB200;color:#fff;border:0;padding:10px 15px;font-size:14px;display:inline-block;text-transform:uppercase;}
