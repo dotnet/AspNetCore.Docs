@@ -7,6 +7,7 @@
 .. _Erik Reitan: https://github.com/Erikre
 .. _Pranav Rastogi: https://github.com/rustd
 .. _Tom Archer: https://github.com/tomarcher
+.. _Scott Sargent: https://github.com/ssargent
 .. _David Paquette: https://github.com/dpaquette
 .. _Scott Addie: http://scottaddie.com
 .. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi

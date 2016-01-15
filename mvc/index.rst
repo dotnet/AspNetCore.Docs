@@ -19,6 +19,7 @@ ASP.NET MVC Documentation
     models/index
     views/index
     controllers/index
+    routing/index
     security/index
     migration/index
 
