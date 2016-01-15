@@ -5,7 +5,7 @@ ASP.NET 5 on Nano Server
 
 By `Luke Latham`_
 
-In this tutorial, you'll deploy an ASP.NET 5 web app to a Microsoft Azure Nano Server virtual machine and learn how to safely manage Nano Server using a Microsoft Azure Windows Server 2012 R2 management virtual machine.
+In this tutorial, you'll deploy an ASP.NET 5 web application to a Microsoft Azure Nano Server virtual machine and learn how to safely manage Nano Server using a Microsoft Azure Windows Server 2012 R2 virtual machine.
 
 .. contents:: In this article:
   :local:
@@ -15,7 +15,7 @@ Introduction
 ------------
 Prerequisites
 ^^^^^^^^^^^^^
-Before you start, make sure that you have the followed the getting started steps for :doc:`/getting-started/installing-on-windows` and created (or obtained) a working ASP.NET 5 64-bit Core CLR app. This tutorial assumes you have already installed `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`_ and the latest `ASP.NET 5  <http://go.microsoft.com/fwlink/?LinkId=627627>`_ runtime and tooling. For more information on creating your first ASP.NET 5 app, see :doc:`/tutorials/your-first-aspnet-application`.
+Before you start, make sure that you have the followed the getting started steps for :doc:`/getting-started/installing-on-windows` and created (or obtained) a working ASP.NET 5 64-bit Core CLR app. For more information on creating your first ASP.NET 5 app, see :doc:`/tutorials/your-first-aspnet-application`.
 
 .. note:: For additional information on installing ASP.NET 5 on other platforms, see :doc:`/getting-started/index`.
 
@@ -27,7 +27,9 @@ Windows Server is an all-purpose industry standard operating system for producti
 
 Nano Server is an optimized version of Windows Server for private clouds and datacenters. Nano Server features vastly reduced disk space requirements, fewer update requirements, added uptime due to reduced server restarts, and faster performance owing to fewer running processes. Nano Server is ideal as a compute host Hyper-V Virtual Machine, storage host, DNS server, or host for applications running behind IIS (or outside of IIS) inside or outside of a container.
 
-This tutorial will walk you through setting up a Microsoft Azure Nano Server Virtual Machine and deploying an ASP.NET 5 application to your Nano Server. Because Nano Server is a "headless server," which means that no graphical user interface is available, we'll also spin up a Microsoft Azure Windows Server 2012 R2 Virtual Machine to safely manage our Nano Server. This tutorial cross-demonstrates important security concepts for reducing the attack surface of your Nano Server. Follow this tutorial to get started quickly with ASP.NET 5 on Nano Server and visit the linked content in the `Additional Resources <../tutorials/nano-server.html#id9>`_ section at the end of the tutorial to learn more about Nano Server.
+This tutorial will walk you through setting up a Microsoft Azure Nano Server Virtual Machine and deploying an ASP.NET 5 application to your Nano Server. Because Nano Server is a "headless server," which means that no graphical user interface is available, we'll also spin up a Microsoft Azure Windows Server 2012 R2 Virtual Machine to safely manage our Nano Server. This tutorial cross-demonstrates important security concepts for reducing the attack surface of your Nano Server.
+
+Follow this tutorial to get started quickly with ASP.NET 5 on Nano Server. Visit the linked content in the `Additional Resources <../tutorials/nano-server.html#id9>`_ section at the end of the tutorial to learn more about Nano Server.
 
 Windows Server 2016 (Nano Server) Technical Preview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -35,32 +37,32 @@ Nano Server is distributed with the `Windows Server 2016 Technical Preview (TP4)
 
 Deployment options for Nano Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This tutorial demonstrates deploying an ASP.NET 5 application to Nano Server running on a Microsoft Azure Resource Manager (ARM) Virtual Machine (VM). Other options include deployment to an on-premises Hyper-V virtual machine or Server Core on a physical computer. For more information on these alternative hosting options, see `Getting Started with Nano Server <https://technet.microsoft.com/en-us/library/mt126167.aspx>`_.
+This tutorial demonstrates deploying an ASP.NET 5 application to Nano Server running on a Microsoft Azure Resource Manager (ARM) Virtual Machine (VM). Other options include deployment to an on-premises Hyper-V virtual machine or Server Core on a physical computer. For more information on these alternative deployment options, see `Getting Started with Nano Server <https://technet.microsoft.com/en-us/library/mt126167.aspx>`_.
 
 Interacting with Nano Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-*Windows PowerShell Remoting*
-
-This tutorial demonstrates interacting with Nano Server via Windows PowerShell remoting using the Remote PowerShell Tab feature of the PowerShell Integrated Scripting Environment (ISE) application.
+Windows PowerShell Remoting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This tutorial demonstrates interacting with Nano Server via Windows PowerShell remoting using the Remote PowerShell Tab feature of the `PowerShell Integrated Scripting Environment (ISE) <https://technet.microsoft.com/en-us/library/dd315244.aspx>`_ application.
 
 If you prefer not to work with the PowerShell ISE Remote PowerShell Tab feature or if you are using Windows PowerShell, you can manually create a session with your Nano Server by using the following commands (but this approach is not used in this tutorial).
 
 .. code-block:: powershell
 
-  $ip = "<NANO_SERVER_VM_PUBLIC_IP_ADDRESS>"
-  Set-Item WSMan:\localhost\Client\TrustedHosts $ip
-  $s = New-PSSession -ComputerName $ip -Credential <username>
+  $a = "<NANO_SERVER_DNS_ADDRESS>"
+  Set-Item WSMan:\localhost\Client\TrustedHosts $a
+  $s = New-PSSession -ComputerName $a -Credential <username>
   Enter-PSSession -Session $s
 
 For information on additional ways to interact with Nano Server, see `Getting Started with Nano Server <https://technet.microsoft.com/en-us/library/mt126167.aspx>`_.
 
-*Working with files and folders*
-
+Working with files and folders
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This tutorial utilizes a Server Message Block (SMB) file share using Microsoft Azure Files. An SMB file share is a convenient way to share files across computers on a network, including the Internet.
 
 .. note:: If you install PowerShell v5.0 on the management VM, be aware that PowerShell v5.0 introduces a new feature in the ``Copy-Item`` command that also allows files and folders to be moved in and out of a remote PowerShell session (but this approach is not used in this tutorial). For more information on using ``Copy-Item``'s new ``-ToSession`` and ``-FromSession`` extensions, see `Copy To or From a PowerShell Session <http://blogs.technet.com/b/poshchap/archive/2015/10/30/copy-from-one-powershell-session-to-another.aspx>`_.
 
-When working with a network share to move files and folders, you can drag-and-drop files and folders to the mapped network drive (locally only, because Nano Server doesn't have a GUI) or use PowerShell (locally or remotely). The commands shown below work equally well in a local or remote PowerShell tab.
+When working with a network share to move files and folders, you can drag-and-drop files and folders to a mapped network drive (locally only, because Nano Server doesn't have a GUI) or use PowerShell (locally or remotely). The commands shown below work equally well in a local or remote PowerShell tab.
 
 Use the ``Copy-Item`` command to move files and folders to or from the share. In PowerShell, the period (``.``) refers to the current directory.
 
@@ -90,7 +92,7 @@ Moving a folder from the share to the current directory:
 
   Copy-Item -Path <DRIVE_LETTER>:\some-folder -Destination . -Recurse
 
-The ``-Path`` and ``-Destination`` parameters are optional. The ``-Recurse`` switch can be replaced with ``-r``. The ``cp`` command will also invoke the ``Copy-Item`` command. The following commands accomplish the same results as shown with the longer commands above.
+The ``-Path`` and ``-Destination`` parameters are optional. The ``-Recurse`` switch can be replaced with ``-r``. The ``cp`` command will also invoke the ``Copy-Item`` command. The following commands accomplish the same results as the longer commands above.
 
 Move a file to the share:
 
@@ -118,7 +120,7 @@ Move a folder from the share:
 
 Conventions used
 ^^^^^^^^^^^^^^^^
-In this tutorial, commands will be shown with placeholders [in angle brackets (``<...>``)] for custom values that you must provide. Commands will also be shown with a set of naming conventions that will allow you to simply cut-and-paste the command for direct use, thus enhancing your enjoyment of the tutorial. The naming conventions used in this tutorial are:
+In this tutorial, commands will be shown with placeholders [in angle brackets (``<...>``)] for custom values that you must provide. Commands will also be shown with a set of naming conventions that will allow you to simply cut-and-paste the command for direct use, thus enhancing your enjoyment of the tutorial. The naming conventions used in this tutorial are shown in the table below.
 
 .. list-table:: 
    :header-rows: 1
@@ -127,10 +129,10 @@ In this tutorial, commands will be shown with placeholders [in angle brackets (`
      - Name
 
    * - WS 2012 R2 Admin Username
-     - adminuser (See note)
+     - adminuser
 
    * - Nano Server Admin Username
-     - nanouser (See note)
+     - nanouser
 
    * - Azure Files File Share Container Name
      - data
@@ -145,10 +147,10 @@ In this tutorial, commands will be shown with placeholders [in angle brackets (`
      - aspnet5
 
    * - IIS Website Project Location on Nano Server
-     - *c:\output*
+     - *c:\\output*
 
    * - IIS Website IIS Physical Path
-     - *c:\output\wwwroot*
+     - *c:\\output\\wwwroot*
 
    * - IIS Website Application Pool
      - aspnet5
@@ -159,19 +161,19 @@ Cyberattacks are a serious threat to company operations, and we should adopt str
 
 A doctrine of infrastructure security is to limit the attack surface of our enterprise IT assets in part by limiting the number of management points to one or a few tightly-controlled management servers. Our goal is to limit our web servers' exposure to attacks from the public Internet by opening access to only those services that we require the web servers to perform for the public.
 
-We're creating a web server, so our goal is to open only ports 80 (HTTP) and 443 (HTTPS) to the public Internet and lockdown all other public ports. Management and monitoring ports, such as 5985/5986 (WinRM ports for PowerShell remoting), will be open on a Virtual Network, where only our management server can gain access. As we add additional web servers to such an arrangement, we tremendously reduce the attack surface area compared to opening management and monitoring ports to the Internet on our web servers.
+We will be creating a web server in this tutorial, so our goal is to only open ports 80 and 8000 (HTTP) and 443 (HTTPS) to the public Internet while locking-down all other public ports. Management and monitoring ports, such as 5985/5986 (WinRM ports for PowerShell remoting), will be open on a Virtual Network, where only our management server can gain access. As we add additional web servers to such a zone, we tremendously reduce the attack surface area compared to opening management and monitoring ports to the Internet on all of our web servers.
 
-The importance of adopting strong security best practices cannot be understated. The number and sophistication of cyberattacks on enterprise IT infrastructure has ballooned in recent years. This tutorial cannot hope to instruct you in all of the best practices for secure server management to keep your organization safe from cyberattacks; however, we will adopt one important approach in this tutorial: limiting management points. This is merely one of many important practices that should be adopted. For more information and good starting points for further reading, visit `Windows Server Security (Microsoft TechNet) <https://technet.microsoft.com/en-us/library/windows-server-security.aspx>`_, `Microsoft Cloud Services and Network Security <https://azure.microsoft.com/en-us/documentation/articles/best-practices-network-security/>`_, and `Enterprise Security Best Practices <https://technet.microsoft.com/en-us/library/dd277328.aspx>`_.
+The importance of adopting strong security best practices cannot be understated. The number and sophistication of cyberattacks on enterprise IT infrastructure has ballooned in recent years. This tutorial cannot hope to instruct you in all of the best practices for secure server management to keep your organization safe from cyberattacks; however, we will adopt one important approach in this tutorial: limiting management points. This is one of many important practices that should be adopted. For more information and good starting points for further reading, visit `Windows Server Security (Microsoft TechNet) <https://technet.microsoft.com/en-us/library/windows-server-security.aspx>`_, `Microsoft Cloud Services and Network Security <https://azure.microsoft.com/en-us/documentation/articles/best-practices-network-security/>`_, and `Enterprise Security Best Practices <https://technet.microsoft.com/en-us/library/dd277328.aspx>`_.
 
 Azure Services Configuration
 ----------------------------
-In our preliminary steps, let's create an Azure Resource Group, an Azure Storage Account (and an Azure Files network file share to go along with it), an Azure Virtual Network, and a pair of Network Security Groups (one for the management VM, one for the Nano Server). By preconfiguring these services, we will save time later when deploying our VM's.
+Before we get started creating our VM's, let's create an Azure Resource Group, an Azure Storage Account (and an Azure Files network file share to go along with it), an Azure Virtual Network, and a pair of Network Security Groups (one for the management VM and one for the Nano Server). By preconfiguring these services, we will save time later when deploying our VM's.
 
-.. note:: Azure service names frequently expose public endpoints or require unique names internally, and the names of services are only available on a first-come, first-served basis. You should choose an alphanumeric postfix to use with your Azure service names as you work through the tutorial. For example, we will use the number "1234" in the tutorial and name our management VM *vmm1234*, name our virtual network *vnet1234*, and name our Nano Sever *nano1234*. You should choose a postfix alphanumeric value to use for your tutorial experience. This will provide a consistent way for you to name your services while working though the tutorial without the likelihood of using a service name in use by someone else's Azure subscription.
+.. note:: Azure service names frequently expose public endpoints or require unique names internally, so the names we give to several Azure services are only available on a first-come, first-served basis. You should choose an alphanumeric postfix to use with your Azure service names as you work through the tutorial. For example, we will use the number "1234" in the tutorial and name our management VM *vmm1234*, name our virtual network *vnet1234*, and name our Nano Sever *nano1234*. You should choose a postfix alphanumeric value to use for your tutorial experience. This will provide a consistent way for you to name your services while working though the tutorial without the likelihood of trying to use a service name in use by someone else's Azure subscription.
 
 Azure Resource Group
 ^^^^^^^^^^^^^^^^^^^^
-1. Navigate to the `**Azure Portal** <https://portal.azure.com/>`_. Click the button for **Resource Groups**.
+1. Navigate to the **`Azure Portal <https://portal.azure.com/>`_**. Click the button for **Resource Groups**.
 
 .. image:: nano-server/_static/pre-01.png
  
@@ -193,11 +195,11 @@ Azure Storage Account
 
 .. image:: nano-server/_static/pre-05.png
  
-3. Provide a **Name**. We will use *storage1234* for this tutorial. Downgrade the storage **Type** to **Standard-LRS** and set **Diagnostics** to **Disabled**, which will be sufficient for demonstration purposes. Select the **Subscription** and choose the **Resource Group** we established earlier. Click the **Create** button to establish the storage account. Wait for the deployment to complete.
+3. Provide a **Name**. We will use *storage1234* for this tutorial. Downgrade the storage **Type** to **Standard-LRS** and set **Diagnostics** to **Disabled**, which will be sufficient for demonstration purposes in this tutorial. Select the **Subscription** and choose the **Resource Group** we established earlier. Click the **Create** button to establish the storage account. Wait for the deployment to complete.
 
 .. image:: nano-server/_static/pre-06.png
  
-4. Create an Azure Files file share container and map it to a local network drive. The storage account properties blade will appear when the storage account deployment is complete. Click the **Files** button in the **Services** area.
+4. Create an Azure Files network file share container and map it to a local network drive. The storage account properties blade will appear when the storage account deployment is complete. Click the **Files** button in the **Services** area.
 
 .. image:: nano-server/_static/pre-07.png
  
@@ -229,11 +231,11 @@ Azure Virtual Network
  
 Azure Network Security Group (management VM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Network Security Group (NSG) for the management VM will be different than for our Nano Server. Our management VM will only have Remote Desktop Protocol (RDP, port 3389) open to the Internet, while the Nano Server will only open HTTP (port 80) and HTTPS (port 443) to the Internet. The management port that we will be using, WinRM (port 5985), will only be open on the VNet between the two servers. Because we're locking-down management traffic to the VNet, we are vastly reducing the attack surface of our Nano Server.
+The Network Security Group (NSG) for the management VM will be different than for our Nano Server. Our management VM will only have Remote Desktop Protocol (RDP, port 3389) open to the Internet, while the Nano Server will only open HTTP (ports 80 and 8000) and HTTPS (port 443) to the Internet. The management port that we will be using, Windows Remote Management (WinRM, port 5985), will only be open on the VNet between the two servers. Because we're locking-down management traffic to the VNet, we are vastly reducing the public attack surface of our Nano Server.
 
 .. note:: Naming network VNets, like naming servers, should adhere to a standard convention throughout the enterprise but is beyond the scope of this tutorial. If you are not familiar with naming conventions in networks, research the subject further.
 
-.. note:: Another best practice in server security is to use non-standard ports for services where possible. Ordinarily, we would port map RDP (port 3389) to some high non-standard port. This is not necessary for the tutorial and would overly complicate our demonstration, because to configure such a port mapping, we would need to add an Azure Load Balancer (LB) with Network Address Translation (NAT) rules. This is well beyond the scope of this tutorial; however, you can obtain more information on the subject in `Get started configuring an internet facing load balancer using Azure Resource Manager <https://azure.microsoft.com/en-us/documentation/articles/load-balancer-arm-powershell/>`_.
+.. note:: Another best practice in server security is to use non-standard ports for services where possible. Ordinarily, we would choose a non-standard port for Remote Desktop and map it to the correct internal port for Remote Desktop (RDP, port 3389). This is not necessary for the tutorial and would overly complicate our demonstration, because to configure such a port mapping, we would need to add an Azure Load Balancer (LB) with Network Address Translation (NAT) rules. This is well beyond the scope of this tutorial; however, you can obtain more information on the subject in `Get started configuring an internet facing load balancer using Azure Resource Manager <https://azure.microsoft.com/en-us/documentation/articles/load-balancer-arm-powershell/>`_.
 
 1. In the **Azure Portal**, click the **Browse** button and scroll down to click the **Network security groups** button. Be careful **not** to accidently click the **Network security groups (classic)** button.
 
@@ -247,11 +249,11 @@ The Network Security Group (NSG) for the management VM will be different than fo
 
 .. image:: nano-server/_static/pre-16.png
  
-4. When the deployment completes, the **Azure Portal** will open to the NSG we just created. It's time to add an Inbound security rule for RDP (port 3389). In the **Settings**, click the **Inbound security rules** button, followed by the **Add** button in the **Inbound security rules** blade.
+4. When the deployment completes, the **Azure Portal** will open to the NSG we just created. It's time to add an inbound security rule for RDP (port 3389). In the **Settings**, click the **Inbound security rules** button, followed by the **Add** button in the **Inbound security rules** blade.
 
 .. image:: nano-server/_static/pre-17.png
  
-5. We will add one rule for RDP (port 3389). In the **Name** field, provide the name *default-allow-rdp*. Bump the **Priority** up to 1000. Click the **OK** button to create the rule.
+5. We will add one rule for RDP (port 3389). In the **Name** field, provide the name *default-allow-rdp*. Bump the **Priority** up to 1000. Click the **OK** button to create the rule. After you click the **OK** button, there will be a short delay of a few seconds before the new rule will appear in the Azure Portal UI in the list of **Inbound security rules**. Wait for the rule to appear in the UI before proceeding.
 
 .. image:: nano-server/_static/pre-18.png
  
@@ -259,7 +261,7 @@ The Network Security Group (NSG) for the management VM will be different than fo
 
 .. warning:: There are additional security considerations for security rules beyond the scope of this tutorial. Good starting points for learning more are `Security considerations for Azure Resource Manager <https://azure.microsoft.com/en-us/documentation/articles/best-practices-resource-manager-security/>`_ and `Azure Network Security Groups <https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/>`_.
 
-.. note:: As with naming NVets and servers, naming schemes for security rules are also worthy of your further research. In the tutorial, we will simply prefix names with "default" to denote that they are the default rules to apply in each group, the action of the rule ("allow" or "deny"), and the protocol of the rule.
+.. note:: As with naming NVets and servers, naming schemes for security rules are also worthy of your further research. In the tutorial, we will prefix names with "default" to denote that they are the default rules to apply in each group, provide the action of the rule ("allow" or "deny"), and specify the protocol/port of the rule.
 
 .. tip:: Rules are processed in priority order lowest to highest (e.g., a rule with a **Priority** of 100 would be processed before a rule with a **Priority** of 200). Leave gaps between the rules that you create. When you return later to add new rules, you can add new rules in-between existing rules without editing existing rules. Note that once a rule is matched and applied, no further rules will be applied. If an early rule (lower **Priority** number) matches to deny the traffic and a later rule (higher **Priority** number) matches to allow the traffic, the traffic will be denied because the first rule (deny) matches and applies.
 
@@ -271,9 +273,9 @@ Azure Network Security Group (Nano Server VM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Let's turn our attention to the NSG that we need for our Nano Server. The Nano Server will require open services for HTTP (port 80) and HTTPS (port 443) to receive and respond to requests from the Internet. Later, our ASP.NET 5 application will be bound to HTTP on port 8000, so we will also open port 8000 in the NSG. Perform the following steps to create the NSG and add the inbound rules.
 
-1. Go back to the **Network security groups** blade. Click the **Add** button. **Name** the NSG. For this tutorial, we will use *nano1234*, which will match the name of the Nano Server that we will create shortly. Set the **Subscription** and select the **Resource Group** you are using. In the tutorial, our Resource Group is called *group1234*. Click the **Create** button to create the NSG. Wait for the NSG to deploy. When it has deployed, the **Azure Portal** will open to the NSG.
+1. Go back to the **Network security groups** blade by clicking **Browse > Network security groups**. Click the **Add** button and provide a **Name** the NSG. In this tutorial, we will use *nano1234*, which will match the name of the Nano Server that we will create shortly. Set the **Subscription** and select the **Resource Group** you are using. In the tutorial, our Resource Group is called *group1234*. Click the **Create** button to create the NSG. Wait for the NSG to deploy. When it has deployed, the **Azure Portal** will open a blade to the NSG.
 
-2. We will create the inbound rules for the Nano Server. There is no need to provide screenshots for this step, as the **Azure Portal** blades are identical to the ones we just used working with the management VM NSG. Click the **Inbound security rules** button. For each new rule, click the **Add** button, provide the rule information from the data shown below, and click the **OK** button to create each rule. A screenshot is shown for the final NSG. Compare your NSG rules to the screenshot below and confirm your rules are correct.
+2. We will create the inbound rules for the Nano Server. There is no need to provide screenshots for this step, as the **Azure Portal** blades are identical to the ones we just used working with the management VM NSG. Click the **Inbound security rules** button. For each new rule, click the **Add** button, provide the rule information from the data shown below, and click the **OK** button to create each rule. You can create these rules one after the other without delaying between each addition; however, recall that you will need to wait for a few seconds after the final rule has been added to see it appear in the **Inbound security rules** blade. A screenshot is shown for the final NSG. Compare your NSG rules to the screenshot below and confirm your rules are correct.
 
 .. note:: We do not need to open ports for management traffic between the management VM and the Nano Server on the VNet. A default rule is applied by Azure that allows inbound and outbound traffic on the VNet. For more information, see the *Default Rules* section of `What is a Network Security Group (NSG)? <https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/>`_.
 
@@ -309,11 +311,11 @@ Let's turn our attention to the NSG that we need for our Nano Server. The Nano S
 
 .. image:: nano-server/_static/pre-20.png
  
-Create a Microsoft Azure Windows Server 2012R2 VM
--------------------------------------------------
+Create a Microsoft Azure Windows Server 2012 R2 VM
+--------------------------------------------------
 First, we will create a management Azure VM to interact with our Nano Server, which we will be spinning up in a few minutes. The management VM shouldn't be used for any other purpose than managing other VM's. Because it will likely only be used in times of management, you can stop (deallocate) the VM in the **Azure Portal** when it isn't needed to reduce costs and start (allocate/deploy) the VM whenever you need it.
 
-.. note:: If you stop (deallocate) the management VM when not in use, you will obtain an even higher level of security, because no one can use a management VM for malicious purposes that isn't running. The most restrictive and safest management point philosophy is to have as few management points as possible, limit their exposure to attack, limit administrative scope for using them in the organization, and disable them when they are not actively serving a management role.
+.. note:: If you stop (deallocate) the management VM when not in use, you will obtain an even higher level of security, because no one can use a management VM for malicious purposes that isn't actually running. The most restrictive and safest management point philosophy is to have as few management points as possible, limit their exposure to attack, limit administrative scope for using them in the organization, and disable them when they are not actively serving a management role.
 
 .. note:: Storage charges for a stopped (deallocated) VM apply. See `Azure Pricing <https://azure.microsoft.com/en-us/pricing/>`_ for details.
 
@@ -347,11 +349,13 @@ First, we will create a management Azure VM to interact with our Nano Server, wh
 
 .. image:: nano-server/_static/vmm-setup-06.png
  
-**Size** blade: Select a VM size. Click **View All** to see all of the available VM sizes. For this tutorial, we will use an **A1 Standard** VM. Select the VM and click the **Select** button.
+**Size** blade: Select a VM size. Click **View All** to see all of the available VM sizes. For this tutorial, we will use an **A1 Standard** VM size. Select a VM size and click the **Select** button.
 
 .. image:: nano-server/_static/vmm-setup-07.png
  
-**Storage** blade: For the **Disk type**, we will accept the default **Standard**. Use the storage account and VNet we created earlier. For the new **Public IP address**, open the **Choose public IP address** blade, which will default to **Create new**; and on the **Create public IP address** blade, set the **Assignment** to **Static** and click **OK**. The **Azure Portal** will default to a new **Network security group**, but we want to select the one we created earlier for the management VM. For the tutorial, this is the *vmm1234* NSG. We will set **Diagnostics** to **Disabled** and leave the **Availability set** on the default **None** value. Click the **OK** button to see the **Summary** blade.
+**Storage** blade: For the **Disk type**, we will accept the default **Standard**. Use the storage account and VNet we created earlier. Click the **Public IP address** button to open the **Choose public IP address** blade, which will default to **Create new** and further open the **Create public IP address** blade. On the **Create public IP address** blade, accept the default **Name** and set the **Assignment** to **Static**. Click **OK**.
+
+The **Azure Portal** will default to a new **Network security group**, but we want to select the one we created earlier for the management VM. For the tutorial, this is the *vmm1234* NSG. We will set **Diagnostics** to **Disabled** and leave the **Availability set** on the default **None** value. Click the **OK** button to see the **Summary** blade.
 
 .. image:: nano-server/_static/vmm-setup-08.png
 
@@ -395,11 +399,13 @@ Create a Microsoft Azure Nano Server VM
 
 .. image:: nano-server/_static/nano-setup-06.png
  
-**Size** blade: Select a VM size. Click **View All** to see all of the available VM sizes. For this tutorial, we will use an **A1 Standard VM**. Select the VM and click the **Select** button.
+**Size** blade: Select a VM size. Click **View All** to see all of the available VM sizes. For this tutorial, we will use an **A1 Standard VM**. Select the VM size and click the **Select** button.
 
 .. image:: nano-server/_static/nano-setup-07.png
  
-**Storage** blade: For the **Disk type**, we will accept the default **Standard**. Use the storage account and VNet we created earlier. We will accept the dynamic public IP address, since we have no intention of ever using Remote Desktop Connection with our Nano Server or have any other need for a static public IP address. The **Azure Portal** will default to a new **Network security group**, but we want to select the one we created earlier for the Nano Server VM. For the tutorial, this is the *nano1234* NSG. We will leave the **Availability set** on the default **None** value. Click the **OK** button to see the **Summary** blade.
+**Storage** blade: For the **Disk type**, we will accept the default **Standard**. Use the storage account and VNet we created earlier. We will accept the dynamic public IP address, since we have no intention of ever using Remote Desktop Connection with our Nano Server or have any other need for a static public IP address.
+
+The **Azure Portal** will default to a new **Network security group**, but we want to select the one we created earlier for the Nano Server. For the tutorial, this is the *nano1234* NSG. We will leave the **Availability set** on the default **None** value. Click the **OK** button to see the **Summary** blade.
 
 .. image:: nano-server/_static/nano-setup-08.png
  
@@ -447,31 +453,16 @@ When the connection is successful, Windows will immediately open a window to the
  
 Access the Nano Server and mount the Azure Files share
 ------------------------------------------------------
-1. Earlier, we downloaded the Remote Desktop Connection (RDP) settings file. Open the connection to the server by double-clicking the file. When you open the connection, you will be greeted by the Windows Security window. Click on **Use another account**, and provide the username ("adminuser" for the tutorial) and the password you created for the management VM.
+
+1. Earlier, we downloaded the Remote Desktop Connection (RDP) settings file for the management VM. Open the connection to the server by double-clicking the file. When you open the connection, you will be greeted by the Windows Security window. Click on **Use another account**, and provide the username ("adminuser" for the tutorial) and the password you created for the management VM.
 
 .. warning:: Although there is a convenient **Remember my credentials** checkbox available, **never** check this box to store credentials on the client machine, as there is a significant security risk in doing so.
 
 .. image:: nano-server/_static/nano-access-01.png
- 
-2. Open a local PowerShell ISE session on the management VM by running the PowerShell ISE application as an Administrator. Right-click its icon and select **Run as administrator** from the pop-up menu.
 
-3. Provide access to the share. Provide the drive letter, storage account, container, and storage account key and execute the PowerShell command shown below.
+2. Run the PowerShell ISE application on the management VM as an Administrator. Right-click its icon and select **Run as administrator** from the pop-up menu.
 
-.. code-block:: none
-
-  net use <DRIVE_LETTER>: \\<STORAGE_ACCOUNT>.file.core.windows.net\<CONTAINER> <STORAGE_ACCOUNT_KEY> /user:<STORAGE_ACCOUNT> /persistent:no
-
-For the tutorial naming, we will use the following command.
-
-.. code-block:: none
-
-  net use s: \\storage1234.file.core.windows.net\data Tg3dg...d7w= /user:storage1234 /persistent:no
-
-When successful, PowerShell will respond with the statement, **The command completed successfully**. You can now navigate to the drive in your local PowerShell session.
-
-.. note:: We are not persisting our credentials for the share across reboots of any VM in this tutorial. If you would like to persist the credentials with ``cmdkey`` so that the share is persisted across reboots, change ``/persistent:no`` to ``/persistent:yes`` and see `Persisting connections to Microsoft Azure Files <http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>`_ for instructions on the use of ``cmdkey`` to persist the credentials.
-
-4. Add the Nano Server DNS name label to your local Trusted Hosts on the management VM. In the tutorial, we use *nano1234*. You should use the DNS address label for your Nano Server.
+3. Add the Nano Server DNS name label to your local Trusted Hosts on the management VM. In the tutorial, we use *nano1234*. You should use the DNS address label for your Nano Server.
 
 .. code-block:: none
 
@@ -488,8 +479,8 @@ Grant WinRM security configuration by clicking **Yes** in the pop-up window.
 .. image:: nano-server/_static/nano-access-02.png
  
 .. note:: If you receive an exception when attempting to add the Nano Server to the Trusted Hosts list, confirm that your WinRM service is running in Windows OS Services.
-
-5. Open a remote PowerShell session to your Nano Server using **File > New Remote PowerShell Tab...** command in the **File** menu.
+ 
+4. Open a remote PowerShell session to your Nano Server using **File > New Remote PowerShell Tab...** command in the **File** menu.
 
 .. image:: nano-server/_static/nano-access-03.png
 
@@ -505,7 +496,7 @@ When the remote session opens, you will find yourself in the *Documents* folder 
  
 .. image:: nano-server/_static/nano-access-06.png
  
-6. Execute the share drive mapping command a second time in your **remote** PowerShell tab.
+5. Execute the share drive mapping command in your **remote** PowerShell tab.
 
 .. code-block:: none
 
@@ -542,7 +533,7 @@ In this section, we will install the IIS and Reverse Forwarders packages on the 
     <cpi:offlineImage cpi:source="" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
   </unattend>
 
-Be sure to save the file in XML format with an *.xml* file extension. You can save the *unattend.xml* file directly to the share.
+Be sure to save the file in XML format with an *.xml* file extension. You can save the *unattend.xml* file directly to the share. Be careful when saving the file from a text editor, such as NotePad. When you have extensions for known file types hidden in your local operating system, an XML file may appear in directories as some-file.xml but will actually be known as some-file.xml.txt to the OS. The file's actual extension will show correctly in your PowerShell session tabs and in the file's properties.
 
 2. Copy the *unattend.xml* file to the Nano Server *Documents* directory in your **remote** PowerShell tab.
 
@@ -576,7 +567,7 @@ You will receive a ``0x80004005 error ("DISM failed. No operation was performed"
 
 .. note:: Reverse Forwarders provide shims for Win API calls to earlier libraries and new OneCore libraries allowing the calls to succeed without recompiling and linking for the new libraries. The Reverse Forwarders packages are currently required for ``libuv``, which is a key library supporting the Kestrel server of ASP.NET 5. For more information, see `Moving to Nano Server, the new deployment option in Windows Server 2016 <http://blogs.technet.com/b/windowsserver/archive/2015/11/16/moving-to-nano-server-the-new-deployment-option-in-windows-server-2016.aspx#Reverse%20Forwarders>`_.
 
-.. note:: You can navigate to the *c:\Packages* folder on your Nano Server to see other installable packages. Notable packages include Containers, Defender, DNS, Failover, OEM Drivers, Storage, and SCVMM.
+.. note:: You can navigate to the *c:\\Packages* folder on your Nano Server to see other installable packages. Notable packages include Containers, Defender, DNS, Failover, OEM Drivers, Storage, and SCVMM.
 
 5. Confirm that the IIS and Reverse Forwarders packages and their associated language packs are installed correctly with the following command.
 
@@ -586,10 +577,10 @@ You will receive a ``0x80004005 error ("DISM failed. No operation was performed"
 
 Among the packages listed, you should see the following packages.
 
-* Feature Package: Microsoft-NanoServer-IIS-Package
-* Language Package: Microsoft-NanoServer-IIS-Package
-* Feature Package: Microsoft-OneCore-ReverseForwarders
-* Language Package: Microsoft-OneCore-ReverseForwarders
+* **Feature Package**: Microsoft-NanoServer-IIS-Package
+* **Language Package**: Microsoft-NanoServer-IIS-Package
+* **Feature Package**: Microsoft-OneCore-ReverseForwarders
+* **Language Package**: Microsoft-OneCore-ReverseForwarders
 
 .. image:: nano-server/_static/nano-install-01.png
  
@@ -599,7 +590,7 @@ Among the packages listed, you should see the following packages.
 
 .. code-block:: none
 
-  mkdir "C:\inetpub\temp\IIS Temporary Compresse Files\DefaultAppPool"
+  mkdir "C:\inetpub\temp\IIS Temporary Compressed Files\DefaultAppPool"
 
   mkdir "C:\inetpub\temp\IIS Temporary Compressed Files\aspnet5"
 
@@ -650,7 +641,7 @@ The *HttpPlatformHandler.dll* on Windows normally resides at *%windir%\\System32
 
 .. note:: Installation of the HttpPlatformHandler is a manual operation at this time. An installer for the module will be provided in the future.
 
-1. Copy the *HttpPlatformHandler.dll* and its schema file from your local system to the share. Not all local installs of the HttpPlatformHandler install the schema file. Check your local system to determine if the schema file is present by opening *c:\\Windows\\System32\\inetserv\\config\\schemas* and looking for a file named *httpplatform_schema.xml*. If the file is not present, create it in a text editor with the following contents.
+1. Copy the *HttpPlatformHandler.dll* and its schema file from your local system to the share. Not all local installs of the HttpPlatformHandler install the schema file. Check your local system to determine if the schema file is present by opening *c:\\Windows\\System32\\inetsrv\\config\\schema* and looking for a file named *httpplatform_schema.xml*. If the file is not present, create it in a text editor with the following contents.
 
 .. code-block:: xml
 
@@ -691,23 +682,9 @@ The *HttpPlatformHandler.dll* on Windows normally resides at *%windir%\\System32
 
 Be sure to save the file in XML format with an *.xml* file extension. Be careful when saving the file from a text editor, such as NotePad. When you have extensions for known file types hidden in your local operating system, an XML file may appear in directories as *some-file.xml* but will actually be known as *some-file.xml.txt* to the OS. The file's actual extension will show correctly in your PowerShell session tabs and in the file's properties.
 
-You may drag-and-drop the files to the share or use these PowerShell commands in your **local** PowerShell tab.
+Drag-and-drop the the module DLL and the schema file to the share on your local client computer.
 
-.. code-block:: none
-
-  cp c:\Windows\System32\inetsrv\httpPlatformHandler.dll <DRIVE_LETTER>:
-
-  cp c:\Windows\System32\inetsrv\config\schema\httpplatform_schema.xml <DRIVE_LETTER>:
-
-For the tutorial conventions, we will use the following commands.
-
-.. code-block:: none
-
-  cp c:\Windows\System32\inetsrv\httpPlatformHandler.dll s:
-
-  cp c:\Windows\System32\inetsrv\config\schema\httpplatform_schema.xml s:
-
-2. Copy the *HttpPlatformHandler.dll* and schema file into the *inetserv* and *inetserv\\config\\schema* directories in your **remote** PowerShell tab.
+2. Copy the *HttpPlatformHandler.dll* and *httpplatform_schema.xml* schema file into the *inetserv* and *inetserv\\config\\schema* directories in your **remote** PowerShell tab on the management VM.
 
 .. code-block:: none
 
@@ -731,7 +708,7 @@ For the tutorial Nano Server, we will use the following commands.
 
 Close the **remote** PowerShell tab. We will open a new tab in a moment after the VM restarts.
 
-In the **Azure Portal**, click the **Restart** button on the Nano Server **Virtual machine** blade. When the Nano Server restarts, it will retain its DNS address label. Reconnect to the VM in PowerShell by selecting **File > New Remote PowerShell Tab...** and providing your credentials for the Nano Server VM Administrator account. Re-attach the share with the following command.
+In the **Azure Portal**, click the **Restart** button on the Nano Server **Virtual machine** blade. Wait for the Nano Server to restart. Reconnect to the VM in PowerShell by selecting **File > New Remote PowerShell Tab...** and providing your credentials for the Nano Server VM Administrator account. Wait for a few seconds while the session is established by PowerShell ISE. Re-attach the share with the following command.
 
 .. code-block:: none
 
@@ -755,13 +732,11 @@ For the tutorial Nano Server, we will use the following command.
 
   cp c:\Windows\System32\inetsrv\config\applicationHost.config s:
 
-5. Install the *IISAdministration* module in the **remote** PowerShell tab.
+5. Install the *IISAdministration* module in the **remote** PowerShell tab. The *IISAdministration* module provides commands for working with IIS in a PowerShell session. For more information, see `IIS Administration Cmdlets <https://technet.microsoft.com/en-us/library/mt270166.aspx>`_.
 
 .. code-block:: none
 
   Import-Module IISAdministration
-
-The *IISAdministration* module provides commands for working with IIS in a PowerShell session. For more information, see `IIS Administration Cmdlets <https://technet.microsoft.com/en-us/library/mt270166.aspx>`_.
 
 6. Update the *applicationHost.config* file on the Nano Server VM to provide IIS with access to the module. Paste the following PowerShell script into the script area of the **remote** PowerShell tab:
 
@@ -798,7 +773,7 @@ Close the script tab without saving. We will never want to run this script again
 
 .. image:: nano-server/_static/nano-install-06.png
  
-.. warning:: Do not run this script multiple times. If you execute commands in this script multiple times, you will add elements more than once, and the *applicationHost.config* file will become corrupt and break IIS. If the file is corrupted by accident: (1) Restore the file from the known-good version previously saved to the share, (2) Run this script once on the restored *applicationHost.config* file, and (3) Close the script tab and do not save the script.
+.. warning:: **Do not** run this script multiple times. If you execute commands in this script multiple times, you will add elements more than once, and the *applicationHost.config* file will become corrupt and break IIS. If the file is corrupted by accident: (1) Restore the file from the known-good version previously saved to the share, (2) Run this script once on the restored *applicationHost.config* file, and (3) Close the script tab and do not save the script.
 
 .. note:: When an installer is created for the HttpPlatformHandler for Nano Server, the manual modifications we just made to the *applicationHost.config* file will be executed automatically by the installer.
 
@@ -810,17 +785,7 @@ Web Deploy will eventually be supported for Nano Server, and XCopy should work n
 
 .. note:: Nano Server does not support .NET Framework or 32-bit (``clr``) projects. The project must depend on a 64-bit Core CLR runtime and packages.
 
-2. Move your ASP.NET 5 project to the share. Drag-and-drop your published output folder to the share locally or use the ``cp`` command with ``-r`` (``-Recurse``) in your **local** PowerShell tab. We will demonstrate using PowerShell.
-
-.. code-block:: none
-
-  cp <PATH_TO_LOCAL_PUBLISH_OUTPUT_FOLDER> <DRIVE_LETTER>:\ -r
-
-For the tutorial local computer, we will use the following command in our **local** PowerShell tab.
-
-.. code-block:: none
-
-  cp c:\output s:\ -r
+2. Move your ASP.NET 5 project to the share. Drag-and-drop your published output folder to the share on your local client computer. Because even a small .NET 5 project will be over 100MB, this might take several minutes to complete on a slow Internet connection. Wait for the project copy operation to complete before proceeding.
 
 3. Copy the project from the share to the Nano Server using the ``cp`` command with ``-r`` (``-Recurse``) in your **remote** PowerShell tab. We will place the application at the root of the *c:* drive.
 
@@ -862,13 +827,13 @@ For the tutorial AppPool, we will use the following commands.
   $ap = Get-IISAppPool -Name "aspnet5"
   $ap.Start()
 
-Confirm the AppPool is running.
+Confirm the AppPool is running with the following command.
 
 .. code-block:: powershell
 
   $sm.ApplicationPools
 
-6. Create an IIS website on port 8000 and use the AppPool we created for it.
+6. Create an IIS website on port 8000 and assign the AppPool we created for it.
 
 .. code-block:: powershell
 
@@ -877,7 +842,7 @@ Confirm the AppPool is running.
   $mysite.Applications["/"].ApplicationPoolName = "<IIS_WEBSITE_NAME>"
   Stop-IISCommitDelay
 
-For the tutorial Nano Server application, we will use the following command.
+For the tutorial Nano Server application, we will use the following commands.
 
 .. code-block:: powershell
 
@@ -924,7 +889,7 @@ Congratulations & Enjoy!
 
 Clean up
 --------
-1. Exit the PowerShell **remote** session.
+1. Exit the PowerShell **remote** session with the following command.
 
 .. code-block:: powershell
 
@@ -958,7 +923,7 @@ For our tutorial Nano Server, we will use the following command.
 
 Agree to modify the Trusted Hosts list for the WinRM client by typing *y* (yes) and pressing *Enter* on your keyboard when the pop-up window appears.
 
-3. Obtain the subnet address of the Nano Server from the **Azure Portal** on the Nano Server's **Virtual machine** blade. For the tutorial Nano Server, the subnet address is *10.5.0.5*. Add the subnet address of the Nano Server to our management VM's *Hosts* file. Open *File Explorer* and paste the address of the hosts file into the address bar.
+3. Obtain the subnet address of the Nano Server from the **Azure Portal** on the **Virtual network** blade. The **IP ADDRESS** for the Nano Server will appear in the **Connected devices** area next to the **Network interface** connected to the Nano Server. For the tutorial Nano Server, the subnet address is *10.5.0.5*. Add the subnet address of the Nano Server to our management VM's *Hosts* file. Open *File Explorer* and paste the address of the hosts file into the address bar.
 
 *C:\\Windows\\system32\\drivers\\etc\\hosts*
 
@@ -968,7 +933,7 @@ The OS will request how you would like to open the file. Select **Notepad** from
 
 .. image:: nano-server/_static/management-1-02.png
  
-Enter the Nano Server's subnet address and its DNS address label with at least one space in between. Save the file and close *File Explorer*. See the example below for the tutorial Nano Server.
+Enter the Nano Server's subnet address and its DNS address label with at least one space in between. Save the file and close *File Explorer*. See the example below for the tutorial Nano Server. This addition to the file will take effect immediately, so there is no need to restart the server.
 
 .. image:: nano-server/_static/management-1-03.png
 
@@ -1064,7 +1029,7 @@ Connecting to a remote Event Log
 
 Agree to modify the Trusted Hosts list for the WinRM client by typing *y* and pressing *Enter* on your keyboard.
 
-3. Open a remote PowerShell session tab to the Nano Server. We need to ensure remote Event Log management ports are open on the Nano Server to allow access by the Event Viewer on the remote management server.
+3. We need to ensure several ports are open on the Nano Server to allow access by the remote Event Log. Open a **remote** PowerShell tab to the Nano Server by selecting **File > New Remote PowerShell Tab...** and entering the credentials for the Nano Server's Administrator account.
 
 The following ports must be open.
 
