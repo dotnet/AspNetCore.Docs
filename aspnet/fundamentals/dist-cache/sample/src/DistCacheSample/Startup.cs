@@ -56,23 +56,16 @@ namespace DistCacheSample
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app,
+            IDistributedCache cache)
         {
             app.UseIISPlatformHandler();
 
             var serverStartTimeString = DateTime.Now.ToString();
             byte[] val = Encoding.UTF8.GetBytes(serverStartTimeString);
+            cache.Set("lastServerStartTime", val);
 
-            var cache = app.ApplicationServices.GetService(typeof(IDistributedCache)) as IDistributedCache;
-            cache.Set("serverStartTime", val);
-
-
-            app.UseStartTimeFooter();
-
-            app.Use(next => async context =>
-            {
-                await next.Invoke(context);
-            });
+            app.UseStartTimeHeader();
 
             app.Run(async (context) =>
             {

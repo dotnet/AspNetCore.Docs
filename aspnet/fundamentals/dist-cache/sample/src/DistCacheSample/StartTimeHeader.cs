@@ -3,17 +3,16 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text;
-using Microsoft.Extensions.Caching.SqlServer;
 
 namespace DistCacheSample
 {
     // You may need to install the Microsoft.AspNet.Http.Abstractions package into your project
-    public class StartTimeFooter
+    public class StartTimeHeader
     {
         private readonly RequestDelegate _next;
         private readonly IDistributedCache _cache;
 
-        public StartTimeFooter(RequestDelegate next,
+        public StartTimeHeader(RequestDelegate next,
             IDistributedCache cache)
         {
             _next = next;
@@ -22,25 +21,25 @@ namespace DistCacheSample
 
         public async Task Invoke(HttpContext httpContext)
         {
-            await _next.Invoke(httpContext);
-
             string startTimeString = "Not found.";
-            var value = await _cache.GetAsync("serverStartTime");
-            if(value != null)
+            var value = await _cache.GetAsync("lastServerStartTime");
+            if (value != null)
             {
                 startTimeString = Encoding.UTF8.GetString(value);
             }
 
-            await httpContext.Response.WriteAsync("<hr />Server Started At: " + startTimeString);
+            httpContext.Response.Headers.Append("Last-Server-Start-Time", startTimeString);
+
+            await _next.Invoke(httpContext);
         }
     }
 
     // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class StartTimeFooterExtensions
+    public static class StartTimeHeaderExtensions
     {
-        public static IApplicationBuilder UseStartTimeFooter(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseStartTimeHeader(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<StartTimeFooter>();
+            return builder.UseMiddleware<StartTimeHeader>();
         }
     }
 }

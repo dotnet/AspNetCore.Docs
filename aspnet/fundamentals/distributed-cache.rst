@@ -110,8 +110,8 @@ When deciding which implementation of ``IDistributedCache`` is right for your ap
 Redis Cache is a caching solution which gives you high throughput and low latency as compared to SQL Cache. Also, you should avoid using the in-memory implementation (``MemoryCache``) in multi-server environments.
 
 Azure Resources:
-* `Redis Cache on Azure <https://azure.microsoft.com/en-us/documentation/services/redis-cache/>`_
-* `SQL Database on Azure <https://azure.microsoft.com/en-us/documentation/services/sql-database/>`_
+	- `Redis Cache on Azure <https://azure.microsoft.com/en-us/documentation/services/redis-cache/>`_
+	- `SQL Database on Azure <https://azure.microsoft.com/en-us/documentation/services/sql-database/>`_
 
 .. tip:: The in-memory implementation of ``IDistributedCache`` should only be used for testing purposes or for applications that are hosted on just one server instance.
 
