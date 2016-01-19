@@ -3,7 +3,7 @@ Request Features
 
 By `Steve Smith`_
 
-Individual web server features related to how HTTP requests and responses are handled have been factored into separate interfaces, defined in the `HttpAbstractions repository <https://github.com/aspnet/HttpAbstractions>`_ (the `Microsoft.AspNet.Http.Features package <https://www.nuget.org/packages/Microsoft.AspNet.Http.Features/1.0.0-beta5>`_). These abstractions are used by individual server implementations and middleware to create and modify the application's hosting pipeline.
+Individual web server features related to how HTTP requests and responses are handled have been factored into separate interfaces, defined in the `HttpAbstractions repository <https://github.com/aspnet/HttpAbstractions>`_ (the `Microsoft.AspNet.Http.Features package <https://www.nuget.org/packages/Microsoft.AspNet.Http.Features>`_). These abstractions are used by individual server implementations and middleware to create and modify the application's hosting pipeline.
 
 In this article:
 	- `Feature interfaces`_
@@ -13,58 +13,58 @@ In this article:
 Feature interfaces
 ------------------
 
-ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/1.0.0-beta5/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
+ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/master/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
 
-`IHttpRequestFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpRequestFeature.cs>`_
+`IHttpRequestFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpRequestFeature.cs>`_
 	Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body.
 
-`IHttpResponseFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpResponseFeature.cs>`_
+`IHttpResponseFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpResponseFeature.cs>`_
 	Defines the structure of an HTTP response, including the status code, headers, and body of the response.
 
-`IHttpAuthenticationFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/Authentication/IHttpAuthenticationFeature.cs>`_
+`IHttpAuthenticationFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/Authentication/IHttpAuthenticationFeature.cs>`_
 	Defines support for identifying users based on a ``ClaimsPrincipal`` and specifying an authentication handler.
 
-`IHttpUpgradeFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpUpgradeFeature.cs>`_
+`IHttpUpgradeFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpUpgradeFeature.cs>`_
 	Defines support for `HTTP Upgrades <http://tools.ietf.org/html/rfc2616#section-14.42>`_, which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
 
-`IHttpBufferingFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpBufferingFeature.cs>`_
+`IHttpBufferingFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpBufferingFeature.cs>`_
 	Defines methods for disabling buffering of requests and/or responses.
 
-`IHttpConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpConnectionFeature.cs>`_
+`IHttpConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpConnectionFeature.cs>`_
 	Defines properties for local and remote addresses and ports.
 
-`IHttpRequestLifetimeFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpRequestLifetimeFeature.cs>`_
+`IHttpRequestLifetimeFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpRequestLifetimeFeature.cs>`_
 	Defines support for aborting connections, or detecting if a request has been terminated prematurely, such as by a client disconnect.
 
-`IHttpSendFileFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpSendFileFeature.cs>`_
+`IHttpSendFileFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpSendFileFeature.cs>`_
 	Defines a method for sending files asynchronously.
 
-`IHttpWebSocketFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IHttpWebSocketFeature.cs>`_
+`IHttpWebSocketFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpWebSocketFeature.cs>`_
 	Defines an API for supporting web sockets.
 
-`IRequestIdentifierFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/IRequestIdentifierFeature.cs>`_
+`IHttpRequestIdentifierFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpRequestIdentifierFeature.cs>`_
 	Adds a property that can be implemented to uniquely identify requests.
 
-`ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
+`ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
 	Defines ``ISessionFactory`` and ``ISession`` abstractions for supporting user sessions.
 	
-`ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
+`ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
 	Defines an API for retrieving client certificates.
 
-`ITlsTokenBindingFeature <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Features/ITlsTokenBindingFeature.cs>`_
+`ITlsTokenBindingFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/ITlsTokenBindingFeature.cs>`_
 	Defines methods for working with TLS token binding parameters.
 
-.. note:: ``ISessionFeature`` is not a server feature, but is implemented by `SessionMiddleware <https://github.com/aspnet/Session/blob/1.0.0-beta5/src/Microsoft.AspNet.Session/SessionMiddleware.cs>`_.
+.. note:: ``ISessionFeature`` is not a server feature, but is implemented by `SessionMiddleware <https://github.com/aspnet/Session/blob/master/src/Microsoft.AspNet.Session/SessionMiddleware.cs>`_.
 	
 Feature collections
 -------------------
 
-The HttpAbstractions repository includes a FeatureModel package. Its main ingredient is the `FeatureCollection <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.FeatureModel/FeatureCollection.cs>`_ type, which is used frequently by :doc:`servers` and their requests, as well as :doc:`middleware`, to identify which features they support. The `HttpContext <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Abstractions/HttpContext.cs>`_ type defined in ``Microsoft.AspNet.Http.Abstractions`` (not to be confused with the ``HttpContext`` defined in ``System.Web``) provides an interface for getting and setting these features. Since feature collections are mutable, even within the context of a request, middleware can be used to modify the collection and add support for additional features.
+The HttpAbstractions repository includes a FeatureModel package. Its main ingredient is the `FeatureCollection <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/FeatureCollection.cs>`_ type, which is used frequently by :doc:`servers` and their requests, as well as :doc:`middleware`, to identify which features they support. The `HttpContext <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Abstractions/HttpContext.cs>`_ type defined in ``Microsoft.AspNet.Http.Abstractions`` (not to be confused with the ``HttpContext`` defined in ``System.Web``) provides an interface for getting and setting these features. Since feature collections are mutable, even within the context of a request, middleware can be used to modify the collection and add support for additional features.
 
 Middleware and request features
 -------------------------------
 
-While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware  <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta5/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs>`_ accesses a feature (``IHttpSendFileFeature``) through the `StaticFileContext <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta5/src/Microsoft.AspNet.StaticFiles/StaticFileContext.cs>`_:
+While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware  <https://github.com/aspnet/StaticFiles/blob/master/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs>`_ accesses a feature (``IHttpSendFileFeature``) through the `StaticFileContext <https://github.com/aspnet/StaticFiles/blob/master/src/Microsoft.AspNet.StaticFiles/StaticFileContext.cs>`_:
 
 .. code-block:: c#
 	:caption: StaticFileContext.cs
@@ -99,7 +99,7 @@ In the code above, the ``StaticFileContext`` class's ``SendAsync`` method access
 
 Additionally, middleware can add to the feature collection established by the server, by calling ``SetFeature<>``. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.
 
-The `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/1.0.0-beta5/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_ follows this approach, first detecting if the server supports upgrading (``IHttpUpgradeFeature``), and then adding a new ``IHttpWebSocketFeature`` to the feature collection if it doesn't already exist. Alternately, if configured to replace the existing implementation (via ``_options.ReplaceFeature``), it will overwrite any existing implementation with its own.
+The `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/master/src/Microsoft.AspNet.WebSockets.Server/WebSocketMiddleware.cs>`_ follows this approach, first detecting if the server supports upgrading (``IHttpUpgradeFeature``), and then adding a new ``IHttpWebSocketFeature`` to the feature collection if it doesn't already exist. Alternately, if configured to replace the existing implementation (via ``_options.ReplaceFeature``), it will overwrite any existing implementation with its own.
 
 .. code-block:: c#
 	:emphasize-lines: 4,7,9-10
