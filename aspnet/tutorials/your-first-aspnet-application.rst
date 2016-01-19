@@ -205,7 +205,7 @@ After the above line has been added, the completed *Startup.cs* file will appear
     :language: c#
     :emphasize-lines: 101
 
-Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *config.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *config.json*.
+Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
 	
 Build the web application
 ^^^^^^^^^^^^^^^^^^^^^^^^^
