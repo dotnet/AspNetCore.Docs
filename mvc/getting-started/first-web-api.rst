@@ -182,7 +182,7 @@ Routing and URL paths
 The `[HttpGet] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpGetAttribute.cs>`_ attribute specifies that these are HTTP GET methods. The URL path for each method is constructed as follows:
 
 - Take the template string in the controller’s route attribute,  ``[Route("api/[controller]")]``
-- Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample the name of the controller is "todo" (case insensitive). For this sample, the controller class name is **Todo**\Controller and the root name is "todo". ASP.NET MVC is not case sensitive.
+- Replace "[Controller]" with the root name of the controller, which is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**\Controller and the root name is "todo". ASP.NET MVC is not case sensitive.
 - If the ``[HttpGet]`` attribute also has a template string, append that to the path. This sample doesn't use a template string. 
 
 For the ``GetById`` method,  "{id}" is a placeholder variable. In the actual HTTP request, the client will use the ID of the ``todo`` item. At runtime, when MVC invokes ``GetById``, it assigns the value of "{id}" in the URL the method's ``id`` parameter.
