@@ -10,7 +10,7 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET 5, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
 
-.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`../../migration/migratingfromwebapi2`
+.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/migration/migratingfromwebapi2`
 
 In this article:
 
@@ -50,7 +50,7 @@ The following diagram show the basic design of the app.
 - The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial.  
 - A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
 - A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller. 
-- To keep the tutorial simple and focused on MVC 6, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`../tutorials/mvc-with-entity-framework`.
+- To keep the tutorial simple and focused on MVC 6, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
 
 Install Fiddler
 ---------------
