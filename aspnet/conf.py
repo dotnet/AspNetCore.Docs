@@ -119,10 +119,10 @@ if not on_rtd:
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 def setup(app):
-    app.add_stylesheet('custom.css?v=1')
-    app.add_javascript('helpfulness.js')
+    app.add_stylesheet('custom.css?v=3')
+    app.add_javascript('helpfulness.js?v=3')
     if on_rtd:
-        app.add_javascript('wedc.js')
+        app.add_javascript('wedc.js?v=3')
 
 #html_theme = 'default'
 
