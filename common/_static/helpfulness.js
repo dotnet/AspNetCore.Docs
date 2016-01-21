@@ -313,7 +313,7 @@ $(function ()
 	$.Helpfulness({
 		maxCharacters: 1000,
 		alwaysFixed: true,
-		domain: "http://www.asp.net",
+		domain: "https://www.asp.net",
 		isDocs: true
 	}).init();
 });
