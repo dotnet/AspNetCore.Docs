@@ -54,7 +54,7 @@ Publishing with Visual Studio 2015
 After you have configured your web server, the next thing to do is to create a
 publish profile in Visual Studio. The easiest way to get started with publishing
 an ASP.NET 5 application to a standard IIS host is to use a publish profile. If
-you’re hosting provider has support for creating a publish profile, download
+your hosting provider has support for creating a publish profile, download
 that and then import it into the Visual Studio publish dialog with the Import
 button. You can see that dialog shown below.
 
