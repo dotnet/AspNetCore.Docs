@@ -150,7 +150,9 @@ a, a:link, a:visited { color: #2b59a9; }
     color: #fff !important;
 }
 
-
+@media only screen and (max-width : 720px) {
+    .wy-grid-for-nav {overflow-x:hidden;}
+}
 
 
 
