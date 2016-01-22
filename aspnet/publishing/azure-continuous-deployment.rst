@@ -125,8 +125,8 @@ In this section, you will create a local Git repository using Visual Studio and 
 	
 	* Commit your project changes.
 	
-	* Push your project changes from your local repository to Azure using the remote reference.
-
+	* Push your project changes from your local repository to your remote repository on Azure.
+	
 1. In **Solution Explorer** right-click **Solution 'SampleWebAppDemo'** and select **Commit**. The **Team Explorer** will be displayed. 
 
 	.. image:: azure-continuous-deployment/_static/10-team-explorer.png
@@ -143,7 +143,7 @@ In this section, you will create a local Git repository using Visual Studio and 
 	
 	|
 	
-	.. note:: As an alternative, you can add the remote reference from the **Command Window** by opening the **Command Window**, changing to your project directory, and entering the command. For example:
+	.. note:: As an alternative, you can specify the remote repository from the **Command Window** by opening the **Command Window**, changing to your project directory, and entering the command. For example:
 	
 		``git remote add Azure-SampleApp https://me@sampleapp.scm.azurewebsites.net:443/SampleApp.git``
 	
@@ -243,7 +243,7 @@ View your updated web app by selecting **Browse** from the web app blade in the 
 
 Additional Resources
 --------------------
-- ASP.NET 5 :doc:`/publishing/index`
+- :doc:`ASP.NET 5 Publishing </publishing/index>`
 - `Project Kudu <https://github.com/projectkudu/kudu/wiki>`_
 - :doc:`/conceptual-overview/understanding-aspnet5-apps`
-- ASP.NET 5 :doc:`/fundamentals/index`
+- :doc:`ASP.NET 5 Fundamentals </fundamentals/index>`
