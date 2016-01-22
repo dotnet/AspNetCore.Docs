@@ -5,6 +5,8 @@ By `Erik Reitan`_
 
 This tutorial shows you how to create an ASP.NET 5 web app using Visual Studio and deploy it from Visual Studio to Azure App Service using continuous deployment.
 
+.. note:: To complete this tutorial, you need a Microsoft Azure account. If you don't have an account, you can `activate your MSDN subscriber benefits <http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F>`_ or `sign up for a free trial <http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F>`_.
+
 .. contents:: In this article:
   :local:
   :depth: 1
@@ -119,7 +121,7 @@ Publish your web app to Azure App Service
 
 In this section, you will create a local Git repository using Visual Studio and push from that repository to Azure to deploy your web app. The steps involved include the following:
 
-	* Add the remote git reference to deploy your local repository to Azure.
+	* Add the remote repository setting using your GIT URL value, so you can deploy your local repository to Azure.
 	
 	* Commit your project changes.
 	
@@ -135,7 +137,7 @@ In this section, you will create a local Git repository using Visual Studio and 
 
 4. Set the **Name** of the remote to **Azure-SampleApp**.
 
-5. Set the value for **Fetch** to the **Git URL** that you copied from Azure earlier in this tutorial. Note that this is the URL ends with **.git**.
+5. Set the value for **Fetch** to the **Git URL** that you copied from Azure earlier in this tutorial. Note that this is the URL that ends with **.git**.
 
 	.. image:: azure-continuous-deployment/_static/11-add-remote.png
 	
@@ -181,7 +183,7 @@ This command will start the process of pushing your local project files to Azure
 |	Branch master set up to track remote branch master from Azure-SampleApp.
 |
 
-.. note:: If you need to collaborate on a project, you should consider pushing to GitHub in between pushing to Azure.
+.. note:: If you need to collaborate on a project, you should consider pushing to `GitHub <https://github.com>`_ in between pushing to Azure.
 
 Verify the Active Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -241,6 +243,7 @@ View your updated web app by selecting **Browse** from the web app blade in the 
 
 Additional Resources
 --------------------
-- :doc:`/publishing/index`. 
-- :doc:`/conceptual-overview/understanding-aspnet5-apps`.
-- `ASP.NET 5 Fundamentals <https://docs.asp.net/en/latest/fundamentals/index.html>`_
+- ASP.NET 5 :doc:`/publishing/index`
+- `Project Kudu <https://github.com/projectkudu/kudu/wiki>`_
+- :doc:`/conceptual-overview/understanding-aspnet5-apps`
+- ASP.NET 5 :doc:`/fundamentals/index`
