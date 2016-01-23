@@ -11,7 +11,7 @@ In this article:
 	- `Migrate Configuration`_
 	- `Migrate Models and Controllers`_
 
-You can view the finished source from the project created in this article `on GitHub <https://github.com/aspnet/Docs/tree/master/docs/mvc/migration/migratingfromwebapi2/sample>`_.
+You can view the finished source from the project created in this article `on GitHub <https://github.com/aspnet/Docs/tree/master/mvc/migration/migratingfromwebapi2/sample>`_.
 
 Review Web API 2 Project
 ------------------------
