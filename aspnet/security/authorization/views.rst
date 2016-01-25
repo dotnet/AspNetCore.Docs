@@ -21,7 +21,7 @@ In some cases the resource will be your view model, and you can call ``Authorize
  @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
  {
      <p><a class="btn btn-default" role="button" 
-         href="@Url.Action("Edit", "Document", new {id= Model.Id})"">Edit</a></p>        
+         href="@Url.Action("Edit", "Document", new {id= Model.Id})">Edit</a></p>        
  }    
 
 Here you can see the model is passed as the resource authorization should take into consideration.
