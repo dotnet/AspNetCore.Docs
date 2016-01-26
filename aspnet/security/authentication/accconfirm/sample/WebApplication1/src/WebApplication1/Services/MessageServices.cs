@@ -13,7 +13,7 @@ namespace WebApplication1.Services
     {
         public AuthMessageSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
         {
-            Options = optionsAccessor.Options;
+            Options = optionsAccessor.Value;
         }
 
         public AuthMessageSenderOptions Options { get; }  // set only via Secret Manager

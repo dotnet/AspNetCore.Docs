@@ -18,7 +18,7 @@ An authorization policy is made up of one or more requirements and registered at
          options.AddPolicy("Over21", 
                            policy => policy.Requirements.Add(new MinimumAgeRequirement(21)));
      }
- }
+ });
 
 Here you can see an Over21 policy is created with a single requirement, that of a minimum age, which is passed as a parameter to the requirement.
 

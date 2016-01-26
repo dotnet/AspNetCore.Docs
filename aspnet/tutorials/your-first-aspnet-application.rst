@@ -59,10 +59,10 @@ Visual Studio creates some initial folders and files for your project. The prima
    * - global.json    
      - Visual Studio uses this file to configure the project.
 
-   * - config.json      
+   * - appsettings.json      
      - This file allows you to include additional project information, such as connection string values. For more information, see  :doc:`/fundamentals/configuration`.  
 
-   * - Statup.cs       
+   * - Startup.cs       
      - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see :doc:`/fundamentals/startup`.
 
    * - Index.cshtml       
@@ -205,7 +205,7 @@ After the above line has been added, the completed *Startup.cs* file will appear
     :language: c#
     :emphasize-lines: 101
 
-Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *config.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *config.json*.
+Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
 	
 Build the web application
 ^^^^^^^^^^^^^^^^^^^^^^^^^

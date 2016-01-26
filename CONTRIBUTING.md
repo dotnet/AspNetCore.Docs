@@ -23,13 +23,17 @@ Once you have cloned the Docs to your local machine, the following instructions 
 
     ```pip install -U sphinx_rtd_theme```
 
-5. Navigate to one of the main project subdirectories in the Docs repo - such as `mvc`, `aspnet`, or `webhooks`.
+5. Install the Sphinx .NET domain:
 
-6. Run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
+    ```pip install sphinxcontrib-dotnetdomain```
+    
+6. Navigate to one of the main project subdirectories in the Docs repo - such as `mvc`, `aspnet`, or `webhooks`.
+
+7. Run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
 
     ```make html```
 
-7. Once make completes, the generated docs will be in the .../docs/<project>/_build/html directory. Simply open the `index.html` file in your browser to see the built docs for that project.
+8. Once make completes, the generated docs will be in the .../docs/<project>/_build/html directory. Simply open the `index.html` file in your browser to see the built docs for that project.
 
 ## Use autobuild to easily view site changes locally ##
 

@@ -72,7 +72,7 @@ namespace MiddlewareSample
 
         public void ConfigureEnvironmentTwo(IApplicationBuilder app)
         {
-            app.Use(next => async context =>
+            app.Use(async (context, next) =>
             {
                 await context.Response.WriteAsync("Hello from " + _environment);
             });
