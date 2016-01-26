@@ -25,13 +25,13 @@ Create Data Protection Registry Hive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To persist Data Protection keys you must create registry hives for each application pool to store the keys. You should use the
-`Provisioning PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`_ for each application pool you will be hosting ASP.NET 5 applications under.
+`Provisioning PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`_ for each application pool you will be hosting ASP.NET Core applications under.
 
 For web farm scenarios developers can configure their applications to use a UNC path to store the data protection key ring. By default this does not encrypt the key ring. You can deploy an x509 certificate to each machine and use that to encrypt the keyring. See the :ref:`configuration APIs <data-protection-configuring>` for more details.
 
 Publish from Visual Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. Create an ASP.NET 5 app. In this sample, I'll create an MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**.
+1. Create an ASP.NET Core app. In this sample, I'll create an MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**.
 2. In **Solution Explorer**, right-click the project and select **Publish**.
 
 .. image:: pubIIS/_static/p1.png
@@ -77,7 +77,7 @@ IIS server configuration
 .. image:: pubIIS/_static/config-edit.png
 .. image:: pubIIS/_static/unlock.png
 
-- Set the application pool to **No Managed Code**. ASP.NET 5 runs in a separate process and manages the runtime.
+- Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
 
  .. image:: pubIIS/_static/appPool.PNG
 
