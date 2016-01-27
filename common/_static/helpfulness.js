@@ -122,7 +122,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 				$.ajax({
 					context: this,
-					url: options.domain + "/umbraco/api/helpfulnessapi/reportsummarybyid",
+					url: options.domain + "/base/HelpfulnessLibrary/ReportSummaryById",
 					type: "POST",
 					data: {
 						contentId: this.targetDocumentId,
@@ -199,7 +199,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 					$.ajax({
 						context: this,
-						url: options.domain + "/umbraco/api/helpfulnessapi/submityes",
+						url: options.domain + "/base/HelpfulnessLibrary/SubmitYes",
 						type: "POST",
 						data: {
 							pickerId: this.targetPickerId,
@@ -239,7 +239,7 @@ $.throttle = function (fn, threshhold, scope) {
 
 					$.ajax({
 						context: this,
-						url: options.domain + "/umbraco/api/helpfulnessapi/submitno",
+						url: options.domain + "/base/HelpfulnessLibrary/SubmitNo",
 						type: "POST",
 						data: {
 							pickerId: this.targetPickerId,
@@ -313,7 +313,7 @@ $(function ()
 	$.Helpfulness({
 		maxCharacters: 1000,
 		alwaysFixed: true,
-		domain: "https://www.asp.net",
+		domain: "http://www.asp.net",
 		isDocs: true
 	}).init();
 });
