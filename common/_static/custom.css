@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'wf_segoe-ui_light';
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.eot");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.eot");
     src: local("Segoe UI Light"), local("Segoe WP Light"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/light/latest.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
@@ -8,29 +8,29 @@
 }
 @font-face {
     font-family: 'wf_segoe-ui_normal';
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.eot");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.eot");
     src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/normal/latest.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
 @font-face {
     font-family: 'wf_segoe-ui_semibold';
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/Semibold/latest.eot");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/Semibold/latest.eot");
     src: local("Segoe UI Semibold"), local("Segoe Semibold"), local("Segoe WP Semibold"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/Semibold/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/Semibold/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/Semibold/latest.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
 @font-face {
     font-family: 'wf_segoe-ui_semilight';
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.eot");
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.eot");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/semilight/latest.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
 @font-face {
     font-family: 'wf_segoe-ui_bold';
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.eot");
-    src: url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.eot");
+    src: url("https://i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.eot?#iefix") format("embedded-opentype"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.woff") format("woff"), url("//i.s-microsoft.com/fonts/segoe-ui/west-european/bold/latest.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
@@ -60,7 +60,7 @@ b,
 body {
     font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif
     color: #505050;
-    font-size: .813em;
+    font-size: 13px;
     line-height: 1.4em;
 }
 
@@ -76,6 +76,11 @@ h2 {
 
 a {
   color: #2b59a9;
+}
+
+p {
+  font-size: 13px;
+  color: #505050;
 }
 
 .hr {
@@ -126,13 +131,6 @@ a {
 .wy-side-nav-search > a:before {
     content: "";
 }
-.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
-  background: #2b3990;
-}
-
-.wy-menu-vertical li.toctree-l3.current li.toctree-l4>a {
-  background: #2b3990;
-}
 
 .wy-menu-vertical li.toctree-l2.current li.toctree-l3>a:hover,
  {
@@ -146,26 +144,33 @@ a {
 .wy-menu-vertical a {
   background: #2b3990;
   color: #bdc0d7;
-  font: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
+  font-family: 'Segoe UI',Tahoma,Arial,Helvetica,sans-serif;
   font-size: 14px;
 }
 
 .wy-menu-vertical a:hover,
 .wy-menu-vertical li.current a:hover,
 .wy-menu-vertical a:hover span.toctree-expand,
-.wy-menu-vertical li.toctree-l2 a:hover span.toctree-expand,
-.wy-menu-vertical li.toctree-l1.current>a.current,
-.wy-menu-vertical li.toctree-l2.current>a {
-  border-color: #2b3990;
+.wy-menu-vertical li.toctree-l2 a:hover span.toctree-expand {
   background: #253278;
-  color: #ffffff;
 }
 
-.wy-menu-vertical li.current a {
+.wy-menu-vertical li.current a,
+.wy-menu-vertical li.toctree-l2.current>a,
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a,
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4>a {
   border-color: #2b3990;
   background: #2b3990;
   color: #bdc0d7;
-  padding-left: 39px;
+}
+
+.wy-menu-vertical li.toctree-l1.current>a.current,
+.wy-menu-vertical li.toctree-l2.current>a.current,
+.wy-menu-vertical li.toctree-l3.current>a.current,
+.wy-menu-vertical li.toctree-l4.current>a.current
+ {
+  color: #ffffff !important;
+  background: #1e194f !important;
 }
 
 .wy-menu-vertical li span.toctree-expand {
@@ -188,7 +193,7 @@ a {
 }
 
 .rst-content {
-    font-size: 16px;
+    font-size: 13px;
     font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
@@ -245,7 +250,7 @@ a {
 
 .btn-neutral {
   color: #ffffff !important;
-  font:wf_segoe-ui_semibold, wf_segoe-ui_normal, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: wf_segoe-ui_semibold, wf_segoe-ui_normal, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .btn-neutral,
@@ -262,6 +267,7 @@ a {
 footer,
 footer p {
   color: #505050;
+  font-size: 13px;
 }
 
 .fa:before, .wy-menu-vertical li span.toctree-expand:before, .wy-menu-vertical li.on a span.toctree-expand:before, .wy-menu-vertical li.current>a span.toctree-expand:before, .rst-content .admonition-title:before, .rst-content h1 .headerlink:before, .rst-content h2 .headerlink:before, .rst-content h3 .headerlink:before, .rst-content h4 .headerlink:before, .rst-content h5 .headerlink:before, .rst-content h6 .headerlink:before, .rst-content dl dt .headerlink:before, .rst-content p.caption .headerlink:before, .rst-content tt.download span:first-child:before, .rst-content code.download span:first-child:before, .icon:before, .wy-dropdown .caret:before, .wy-inline-validate.wy-inline-validate-success .wy-input-context:before, .wy-inline-validate.wy-inline-validate-danger .wy-input-context:before, .wy-inline-validate.wy-inline-validate-warning .wy-input-context:before, .wy-inline-validate.wy-inline-validate-info .wy-input-context:before {
