@@ -19,7 +19,9 @@ For either method of installation you will need to install the prerequisites for
 Installing on Debian, Ubuntu and derivatives
 --------------------------------------------
 
-The following instructions were tested using Ubuntu 14.04.
+The following instructions were tested using Ubuntu 14.04.  
+
+There are `known <https://github.com/aspnet/dnx/issues/3059>`__  `issues <https://github.com/aspnet/dnx/issues/3007>`__ using these instructions with different Ubuntu versions, resulting in DNX and DNU failing silently.
 
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
