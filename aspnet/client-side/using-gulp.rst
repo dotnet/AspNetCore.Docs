@@ -3,7 +3,7 @@
 Using Gulp
 ==========
 
-By `Erik Reitan`_, `Scott Addie`_ 
+By `Erik Reitan`_, `Scott Addie`_, `Daniel Roth`_ 
 
 In a typical modern web application, the build process might:
 
@@ -14,11 +14,10 @@ In a typical modern web application, the build process might:
 
 A *task runner* is a tool which automates these routine development tasks and more. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners: `Gulp <http://gulpjs.com>`__ and `Grunt <http://gruntjs.com/>`_.
 
-Bundling and Minification in Visual Studio using Gulp
------------------------------------------------------
-You may be familiar with *runtime* bundling and minification using ASP.NET Web Optimization. In ASP.NET 5, you can bundle and minify the client-side resources during *design-time*. Using design-time bundling and minification, the minified files are created prior to the application's deployment. By bundling and minifying ahead of time, the advantages of fewer moving parts and reduced server load are realized. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+Introducing Gulp
+----------------
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. Some advantages of using Gulp include the automation of common development tasks, the simplification of repetitive tasks, and a decrease in overall development time. For instance, Gulp can be used to automate the asset minification processes or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. Some advantages of using Gulp include the automation of common development tasks, the simplification of repetitive tasks, and a decrease in overall development time. For instance, Gulp can be used to automate :doc:`bundling and minification <bundling-and-minification>` or the cleansing of a development environment before a new build.
 
 The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality to demonstrate many aspects of ASP.NET. The template also includes Node Package Manager (`npm <https://www.npmjs.com/>`_) and Gulp, making it easier to add bundling and minification to a project.
 
