@@ -24,7 +24,7 @@ Select the **ASP.NET Web Application** project template. It appears under **Inst
 
 .. image:: your-first-aspnet-application/_static/02-new-project.png
 
-In the **New Project** dialog, select **Web Site** under **ASP.NET 5 Preview Templates**.
+In the **New ASP.NET Project** dialog, select **Web Application** under **ASP.NET 5 Preview Templates**. Also, make sure the **Host in the cloud** checkbox is not selected and click **OK**.
 
 .. image:: your-first-aspnet-application/_static/03-web-site-template.png
 
@@ -54,16 +54,16 @@ Visual Studio creates some initial folders and files for your project. The prima
      - Purpose	
 
    * - project.json      	
-     - The presence of a *project.json* file defines a .NET Execution Environment (DNX) project. It is the *project.json* file that contains all the information that DNX needs to run and package your project. For additional details, including the *project.json* file schema, see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`_.
+     - The presence of a *project.json* file defines a .NET Execution Environment (DNX) project. It is the *project.json* file that contains all the information that DNX needs to run and package your project. For additional details, including the *project.json* file schema, see :doc:`/dnx/projects`.
 
    * - global.json    
      - Visual Studio uses this file to configure the project.
 
-   * - config.json      
-     - This file allows you to include additional project information, such as connection string values. For more information, see `Configuration <http://docs.asp.net/en/latest/fundamentals/configuration.html>`_.  
+   * - appsettings.json      
+     - This file allows you to include additional project information, such as connection string values. For more information, see  :doc:`/fundamentals/configuration`.  
 
-   * - Statup.cs       
-     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see the application is started. For more information, see `Application Startup <http://docs.asp.net/en/latest/fundamentals/startup.htm>`_.
+   * - Startup.cs       
+     - The ``Startup`` class provides the entry point for an application. The ``Startup`` class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started. For more information, see :doc:`/fundamentals/startup`.
 
    * - Index.cshtml       
      - This ``view`` contains the HTML for the default page of the view.  
@@ -96,7 +96,7 @@ Open the *project.json* file. In the dependencies section, you will see the foll
     :language: json
     :lines: 8-10
 
-These lines show that you can issues EF commands from the command window and that the EF NuGet package is included with your project.
+These lines show that you can issue EF commands from the command window and that the EF NuGet package is included with your project.
 	
 	
 Create a data model and scaffolding
@@ -140,6 +140,8 @@ Scaffolding saves you time and coding effort by automatically generating the sta
 To add a scaffolding, right-click the **Controllers** folder in **Solution Explorer**. Select **Add** –> **New Scaffolded Item**.
 
 .. image:: your-first-aspnet-application/_static/15a-scaffold-menu.png
+
+.. note:: If you don't see the **New Scaffolded Item** option, make sure you have created the project using **Individual User Accounts**. 
 
 From the **Add Scaffold** dialog box, select **MVC 6 Controller with views, using Entity Framework**, then click the **Add** button.
 
@@ -203,7 +205,7 @@ After the above line has been added, the completed *Startup.cs* file will appear
     :language: c#
     :emphasize-lines: 101
 
-Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *config.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *config.json*.
+Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
 	
 Build the web application
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -217,6 +219,8 @@ The **Output** window is displayed, and if all went well, you see a succeeded me
 .. image:: your-first-aspnet-application/_static/19-vs-build-output.png
 
 If you run into an error, re-check the above steps. The information in the **Output** window will indicate which file has a problem and where in the file a change is required. This information will enable you to determine what part of the above steps need to be reviewed and fixed in your project.
+
+.. note:: Before running the app, you must first create the database using the data migrations.
 
 Using data migrations to create the database
 --------------------------------------------
@@ -240,7 +244,7 @@ Run each of the following commands from the **Command Prompt**:
 	dnx ef migrations add Initial
 	dnx ef database update
 
-.. note:: If ``dnu restore`` is not a recognized command, you may have missed a prerequisite step (or part of a prerequisites step) at the beginning of this topic. For general EF command help, enter the following in the command window: ``dnx ef -?``. For help with the ``add`` command, enter the following in the command window: ``dnx ef migrations add -?``. And, for help with the ``update`` command, enter the following in the command window: ``dnx ef database update -?``.
+.. note:: If ``dnu restore`` is not a recognized command, you may have missed a prerequisite step (or part of a prerequisites step) at the beginning of this topic. However, first check if the **Active** version of the .NET Version Manager (dnvm) is checked. To do this, enter ``dnvm list`` in the command window. If there is no ***** next to any of the versions, set the active version by entering ``dnvm use 1.0.0-rc1-update1 -p``, so that the appropriate version is selected.
 	
 The .NET Version Manager (**dnvm**) is a set of command line utilities that are used to update and configure .NET Runtime. 
 
@@ -249,6 +253,8 @@ The .NET Version Manager (**dnvm**) is a set of command line utilities that are 
 The "``add Initial``" command creates a migration named "Initial" that adds code to the project, allowing EF to update the database schema. The ``update`` command creates the actual database. After you run this command, the *Migrations* folder of your project will be updated as follows:
 
 .. image:: your-first-aspnet-application/_static/16-migrations.png
+
+.. note:: For general EF command help, enter the following in the command window: ``dnx ef -?``. For help with the ``add`` command, enter the following in the command window: ``dnx ef migrations add -?``. And, for help with the ``update`` command, enter the following in the command window: ``dnx ef database update -?``.
 
 Also, you will be able to view the newly created database within **SQL Server Object Explorer**. 
 

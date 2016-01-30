@@ -1,3 +1,5 @@
+.. _introducing-dotnet-core:
+
 Introducing .NET Core
 =====================
 

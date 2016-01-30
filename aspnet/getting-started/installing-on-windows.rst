@@ -24,8 +24,6 @@ The easiest way to get started building applications with ASP.NET 5 is to instal
   
   This will install the latest ASP.NET 5 runtime and tooling.
   
-  *NOTE: There is currently a known issue with the ASP.NET 5 RC installer. If you run the installer from a folder that contains previous versions of the MSI installers for DNVM (DotNetVersionManager-x64.msi or DotNetVersionManager-x86.msi) or the ASP.NET tools for Visual Studio (WebToolsExtensionsVS14.msi or WebToolsExtensionsVWD14.msi), the installer will fail with an error "0x80091007 - The hash value is not correct". To work around this issue, run the installer from a folder that does not contain previous versions of the installer files.*
-  
 3. Enable the ASP.NET 5 command-line tools. Open a command-prompt and run::
 
     dnvm upgrade

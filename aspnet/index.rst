@@ -37,7 +37,9 @@ Topics
     security/index
     performance/index
     migration/index
+    API <https://docs.asp.net/projects/api> 
     contribute/index
+    hosting/index
 
 Related Resources
 -----------------
@@ -45,12 +47,4 @@ Related Resources
 * :ref:`.NET Core Documentation <dotnet:index>`
 * `Entity Framework <http://docs.efproject.net>`_
 
-Contribute
-----------
-
-The documentation on this site is the handiwork of our many `contributors <https://github.com/aspnet/docs/contributors>`_.
-
-**We accept pull requests!** But you're more likely to have yours accepted if you follow these guidelines:
-
-	1. Read https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
-	2. Follow the :ref:`ASP.NET Docs Style Guide <style-guide>`
+.. include:: ../common/contribute.txt

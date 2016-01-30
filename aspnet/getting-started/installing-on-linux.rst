@@ -73,13 +73,13 @@ Install libuv
 To build libuv you should do the following::
 
     sudo apt-get install make automake libtool curl
-    curl -sSL https://github.com/libuv/libuv/archive/v1.4.2.tar.gz | sudo tar zxfv - -C /usr/local/src
-    cd /usr/local/src/libuv-1.4.2
+    curl -sSL https://github.com/libuv/libuv/archive/v1.8.0.tar.gz | sudo tar zxfv - -C /usr/local/src
+    cd /usr/local/src/libuv-1.8.0
     sudo sh autogen.sh
     sudo ./configure
     sudo make 
     sudo make install
-    sudo rm -rf /usr/local/src/libuv-1.4.2 && cd ~/
+    sudo rm -rf /usr/local/src/libuv-1.8.0 && cd ~/
     sudo ldconfig
 
 .. note::
@@ -135,16 +135,16 @@ Install Libuv
 To build libuv you should do the following::
 
     sudo yum install automake libtool wget
-    wget http://dist.libuv.org/dist/v1.4.2/libuv-v1.4.2.tar.gz
-    tar -zxf libuv-v1.4.2.tar.gz
-    cd libuv-v1.4.2
+    wget http://dist.libuv.org/dist/v1.8.0/libuv-v1.8.0.tar.gz
+    tar -zxf libuv-v1.8.0.tar.gz
+    cd libuv-v1.8.0
     sudo sh autogen.sh
     sudo ./configure
     sudo make
     sudo make check
     sudo make install
     ln -s /usr/lib64/libdl.so.2 /usr/lib64/libdl
-    ln -s /usr/local/lib/libuv.so /usr/lib64/libuv.so.1
+    ln -s /usr/local/lib/libuv.so.1.0.0 /usr/lib64/libuv.so
 
 Using Docker
 ------------

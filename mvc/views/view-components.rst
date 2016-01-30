@@ -1,4 +1,4 @@
-View Components in MVC 6
+View Components
 ======================================================
 
 By `Rick Anderson`_
@@ -10,7 +10,7 @@ By `Rick Anderson`_
 Introducing view components
 ---------------------------
 
-New to ASP.NET MVC 6, view components are similar to partial views, but they are much more powerful. View components include the same separation-of-concerns and testability benefits found between a controller and view. You can think of a view component as a mini-controller—it’s responsible for rendering a chunk rather than a whole response. You can use view components to solve any problem that you feel is too complex with a partial, such as:  
+New to ASP.NET MVC 6, view components are similar to partial views, but they are much more powerful. View components include the same separation-of-concerns and testability benefits found between a controller and view. A view component is responsible for rendering a chunk rather than a whole response. You can use view components to solve any problem that you feel is too complex with a partial, such as:  
 
 - Dynamic navigation menus
 - Tag cloud (where it queries the database)
@@ -93,7 +93,7 @@ Examine the view component view
 
 .. note:: View Component views are more typically added to the *Views\\Shared\\Components* folder, because view components are typically not controller specific.
 
-2. Examine the *Views\\Todo\\Components\\PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the the ``ViewComponent`` attribute, the class name would need to match the attribute designation. 
+2. Examine the *Views\\Todo\\Components\\PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the the ``ViewComponent`` attribute, the folder name would need to match the attribute designation. 
 3. Examine the *Views\\Todo\\Components\\PriorityList\\Default.cshtml* Razor view. 
 
   .. code-block:: html

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CorsExample4
 {
@@ -12,8 +12,8 @@ namespace CorsExample4
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            services.ConfigureCors(options =>
+            
+            services.AddCors(options =>
             {
                 // BEGIN01
                 options.AddPolicy("AllowSpecificOrigins",

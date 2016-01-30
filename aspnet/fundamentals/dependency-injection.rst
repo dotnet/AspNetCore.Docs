@@ -1,8 +1,10 @@
+.. _fundamentals-dependency-injection:
+
 Dependency Injection
 ====================
 By `Steve Smith`_
 
-ASP.NET 5 is designed from the ground up to support and leverage dependency injection. ASP.NET 5 applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. If desired, developers can replace the built-in services container with a custom or third party implementation.
+ASP.NET 5 is designed from the ground up to support and leverage dependency injection. ASP.NET 5 applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET 5 provides a minimal feature set and is not intended to replace other containers.
 
 .. contents:: In this article:
   :local:
@@ -19,7 +21,7 @@ When classes are designed with DI in mind, they are more loosely coupled because
 
 When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, `Inversion of Control (IoC) <http://deviq.com/inversion-of-control/>`_ containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
 
-ASP.NET 5 includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor and property injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET 5's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
+ASP.NET 5 includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET 5's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
 
 .. note:: Martin Fowler has written an extensive article on `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_. Microsoft Patterns and Practices also has a great description of `Dependency Injection <https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx>`_.
 
@@ -130,7 +132,7 @@ Next, in ``ConfigureServices``, each type is added to the container according to
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 88-93
+  :lines: 66-71
   :linenos:
   :dedent: 12
 
@@ -190,8 +192,8 @@ First, add the appropriate container package(s) to the dependencies property in 
 .. code-block:: json
 
   "dependencies" : {
-    "Autofac": "4.0.0-beta8",
-    "Autofac.Framework.DependencyInjection": "4.0.0-beta8"
+    "Autofac": "4.0.0-rc1",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1"
   },
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:

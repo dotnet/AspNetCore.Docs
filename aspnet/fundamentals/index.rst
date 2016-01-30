@@ -20,8 +20,8 @@ Fundamentals
     environments
     websockets
     caching
+    distributed-cache
     request-features
     servers
     owin
-    hosting
 

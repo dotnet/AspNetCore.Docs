@@ -76,7 +76,7 @@ Use data migrations to create the database
 .. code-block:: PHP
 
 	dnu restore
-	dnvm use 1.0.0-rc1-final -p
+	dnvm use 1.0.0-rc1-update1 -p
 	dnx ef migrations add Initial
 	dnx ef database update
 	

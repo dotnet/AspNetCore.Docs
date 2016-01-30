@@ -1,6 +1,8 @@
 Working with DNX Projects
 =========================
 
+By `Erik Reitan`_ 
+
 DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
 In this article:
@@ -311,7 +313,7 @@ When you run your app, you can specify whether to compile in Debug mode or in Re
 
 	dnx --configuration Debug
 
-For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`).
+For more compilation related information, see :ref:`dnx-projects-CompiliationSettings`.
 
 Building
 --------
@@ -399,7 +401,7 @@ The most common sections that you will see for including and excluding files are
 
 * The *publishExclude* section allows you to exclude files from the publish output of your project. In this example, all *.xproj*, *.user*, and *.vspscc* files from the output of the publish command. 
 
-.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_programming>`_, which are often called wildcards. 
+.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_(programming)>`_, which are often called wildcards. 
 
 List of include/exclude properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

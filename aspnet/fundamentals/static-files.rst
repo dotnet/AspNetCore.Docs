@@ -1,3 +1,5 @@
+.. _fundamentals-static-files:
+
 Working with Static Files
 =========================
 By `Tom Archer`_
@@ -16,7 +18,7 @@ In this article:
 Serving static files
 --------------------
 
-By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``project.json`` file where the default is `wwwroot`.
+By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``hosting.json`` file where the default is `wwwroot`.
 
 .. code-block:: json 
 
@@ -106,7 +108,7 @@ In order for the user to browse the ``MyStaticFiles`` directory, you can configu
   {
     ...
     // Add the ability for the user to browse the MyStaticFiles directory.
-    app.UseDirectoryBrowser(new DirectoryBrowserptions()
+    app.UseDirectoryBrowser(new DirectoryBrowserOptions()
     {
         FileProvider = new PhysicalFileProvider(@"D:\Source\WebApplication1\src\WebApplication1\MyStaticFiles"),
         RequestPath = new PathString("/StaticFiles")
@@ -131,7 +133,7 @@ In order for your Web app to serve a default page without the user having to ful
     app.UseStaticFiles();
     ...
 
-If you call the ``'UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
+If you call the ``UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
 
   - default.htm
   - default.html
@@ -154,7 +156,7 @@ To specify a different default file from the ones listed above, instantiate a ``
     app.UseStaticFiles();
     ...
 
-Now, if the user browses to a directory in the webroot with a file named ``mydefault.htm``, that file will be served as though the user typed in the fully qualified URI.
+Now, if the user browses to a directory in the webroot with a file named ``mydefault.html``, that file will be served as though the user typed in the fully qualified URI.
 
 But, what if you want to serve a default page from a directory that is outside the webroot directory? You could call both the ``UseStaticFiles`` and ``UseDefaultFiles`` methods passing in identical values for each method's parameters. However, it's much more convenient and recommended to call the ``UseFileServer`` method, which is covered in the next section.
 

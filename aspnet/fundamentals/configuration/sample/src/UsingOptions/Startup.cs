@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Runtime;
+﻿using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using UsingOptions.Models;
 
 namespace UsingOptions
 {
     public class Startup
     {
-        public Startup(IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
-            var configBuilder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json");
-            Configuration = configBuilder.Build();
+            // Set up configuration sources.
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; set; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
@@ -37,12 +35,21 @@ namespace UsingOptions
                 myOptions.Option1 = "value1_from_action";
             });
 
+            // Add framework services.
             services.AddMvc();
+
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
+            app.UseIISPlatformHandler();
+
             app.UseMvcWithDefaultRoute();
+
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

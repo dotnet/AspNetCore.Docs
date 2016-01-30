@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Environments
 {
@@ -13,6 +13,8 @@ namespace Environments
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");

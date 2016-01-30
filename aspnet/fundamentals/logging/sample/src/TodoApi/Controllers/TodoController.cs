@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 using TodoApi.Core;
 using TodoApi.Core.Interfaces;
 using TodoApi.Core.Model;

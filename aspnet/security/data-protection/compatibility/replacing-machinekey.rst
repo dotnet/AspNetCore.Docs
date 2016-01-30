@@ -3,7 +3,7 @@
 Replacing <machineKey> in ASP.NET 4.5.1
 =======================================
 
-As of ASP.NET 4.5, the implementation of the <machineKey> element `is replaceable <http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx>`_. This allows most calls to ASP.NET 4.5+'s cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
+As of ASP.NET 4.5, the implementation of the <machineKey> element `is replaceable <http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx>`_. This allows most calls to ASP.NET 4.x (but not 5.x) cryptographic routines to be routed through a replacement data protection mechanism, including the new data protection system.
 
 Package installation
 --------------------

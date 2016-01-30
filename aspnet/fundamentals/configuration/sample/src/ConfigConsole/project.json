@@ -1,30 +1,30 @@
 {
-    "version": "1.0.0-*",
-    "description": "",
-    "authors": [ "" ],
-    "tags": [ "" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "version": "1.0.0-*",
+  "description": "ConfigConsole Console Application",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
-    "dependencies": {
-        "Microsoft.Framework.Configuration": "1.0.0-beta6",
-        "Microsoft.Framework.Configuration.CommandLine": "1.0.0-beta6"
-    },
+  "dependencies": {
+    "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0-rc1-final"
+  },
 
-    "commands": {
-        "ConfigConsole": "ConfigConsole"
-    },
+  "commands": {
+    "ConfigConsole": "ConfigConsole"
+  },
 
-    "frameworks": {
-        "dnx451": { },
-        "dnxcore50": {
-            "dependencies": {
-                "System.Console": "4.0.0-beta-23109",
-                "System.Collections": "4.0.10-beta-23109",
-                "System.Linq": "4.0.0-beta-23109",
-                "System.Threading": "4.0.10-beta-23109",
-                "Microsoft.CSharp": "4.0.0-beta-23109"
-            }
-        }
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Console": "4.0.0-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
     }
+  }
 }

@@ -3,9 +3,9 @@ Enabling Cross-Origin Requests (CORS)
 
 By `Mike Wasson`_
 
-Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app. 
+Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
 
-`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application. 
+`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application.
 
 In this article:
     - `What is "same origin"?`_
@@ -42,7 +42,7 @@ In your project.json file, add the following:
 
 .. literalinclude:: cors/sample/src/CorsExample1/project.json
 	:language: json
-	:lines: 5,8-9
+	:lines: 5,6,9
 	:emphasize-lines: 2
 
 Configure CORS in your app
@@ -55,7 +55,7 @@ This section shows how to configure CORS. First, add the CORS service. In Startu
 	:lines: 9-12
 	:dedent: 8
 
-Next, configure a cross-origin policy, using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:  
+Next, configure a cross-origin policy, using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
 	:language: csharp
@@ -76,27 +76,27 @@ The second approach is to define one or more named CORS policies, and then selec
 
 .. literalinclude:: cors/sample/src/CorsExample2/Startup.cs
 	:language: csharp
-	:lines: 9-18,20-26,27
+	:lines: 9-17,19-26,27
 	:dedent: 8
 
-This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.  
+This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.
 
 .. _cors-policy-options:
 
 CORS policy options
 -------------------
-		
-This section describes the various options that you can set in a CORS policy.	
+
+This section describes the various options that you can set in a CORS policy.
 
     - `Set the allowed origins`_
     - `Set the allowed HTTP methods`_
     - `Set the allowed request headers`_
     - `Set the exposed response headers`_
-    - `Credentials in cross-origin requests`_	
+    - `Credentials in cross-origin requests`_
     - `Set the preflight expiration time`_
 
 For some options it may be helpful to read `How CORS works`_ first.
-    
+
 Set the allowed origins
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -107,7 +107,7 @@ To allow one or more specific origins:
 	:start-after: BEGIN01
 	:end-before: END01
 	:dedent: 16
-	
+
 To allow all origins:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
@@ -121,28 +121,28 @@ Consider carefully before allowing requests from any origin. It means that liter
 Set the allowed HTTP methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To specify which HTTP methods are allowed to access the resource. 
+To specify which HTTP methods are allowed to access the resource.
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
 	:language: csharp
 	:start-after: BEGIN03
 	:end-before: END03
 	:dedent: 16
-					
+
 To allow all HTTP methods:
-					
+
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
 	:language: csharp
 	:start-after: BEGIN04
 	:end-before: END04
 	:dedent: 16
 
-This affects pre-flight requests and Access-Control-Allow-Methods header. 
+This affects pre-flight requests and Access-Control-Allow-Methods header.
 
 Set the allowed request headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A CORS preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers"). 
+A CORS preflight request might include an Access-Control-Request-Headers header, listing the HTTP headers set by the application (the so-called "author request headers").
 
 To whitelist specific headers:
 
@@ -160,7 +160,7 @@ To allow all author request headers:
 	:end-before: END06
 	:dedent: 16
 
-Browsers are not entirely consistent in how they set Access-Control-Request-Headers. If you set headers to anything other than "*", you should include at least "accept", "content-type", and "origin", plus any custom headers that you want to support. 
+Browsers are not entirely consistent in how they set Access-Control-Request-Headers. If you set headers to anything other than "*", you should include at least "accept", "content-type", and "origin", plus any custom headers that you want to support.
 
 Set the exposed response headers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -214,7 +214,7 @@ In addition, the server must allow the credentials. To allow cross-origin creden
 	:end-before: END08
 	:dedent: 16
 
-Now the HTTP response will include an Access-Control-Allow-Credentials header, which tells the browser that the server allows credentials for a cross-origin request. 
+Now the HTTP response will include an Access-Control-Allow-Credentials header, which tells the browser that the server allows credentials for a cross-origin request.
 
 If the browser sends credentials, but the response does not include a valid Access-Control-Allow-Credentials header, the browser will not expose the response to the application, and the AJAX request fails.
 
@@ -238,7 +238,7 @@ How CORS works
 
 This section describes what happens in a CORS request, at the level of the HTTP messages. It’s important to understand how CORS works, so that you can configure the your CORS policy correctly, and troubleshoot if things don’t work as you expect.
 
-The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code. 
+The CORS specification introduces several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests; you don’t need to do anything special in your JavaScript code.
 
 Here is an example of a cross-origin request. The "Origin" header gives the domain of the site that is making the request::
 
@@ -251,7 +251,7 @@ Here is an example of a cross-origin request. The "Origin" header gives the doma
     User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
     Host: myservice.azurewebsites.net
 
-If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "*", meaning that any origin is allowed.:: 
+If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "*", meaning that any origin is allowed.::
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -260,7 +260,7 @@ If the server allows the request, it sets the Access-Control-Allow-Origin header
     Access-Control-Allow-Origin: http://myclient.azurewebsites.net
     Date: Wed, 20 May 2015 06:27:30 GMT
     Content-Length: 12
-    
+
     Test message
 
 If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.
@@ -268,12 +268,12 @@ If the response does not include the Access-Control-Allow-Origin header, the AJA
 Preflight Requests
 ^^^^^^^^^^^^^^^^^^
 
-For some CORS requests, the browser sends an additional request, called a "preflight request", before it sends the actual request for the resource. 
+For some CORS requests, the browser sends an additional request, called a "preflight request", before it sends the actual request for the resource.
 The browser can skip the preflight request if the following conditions are true:
 
 - The request method is GET, HEAD, or POST, and
 - The application does not set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, and
-- The Content-Type header (if set) is one of the following: 
+- The Content-Type header (if set) is one of the following:
 
 	- application/x-www-form-urlencoded
 	- multipart/form-data
@@ -295,7 +295,7 @@ Here is an example of a preflight request::
 
 The pre-flight request uses the HTTP OPTIONS method. It includes two special headers:
 
-- Access-Control-Request-Method: The HTTP method that will be used for the actual request. 
+- Access-Control-Request-Method: The HTTP method that will be used for the actual request.
 - Access-Control-Request-Headers: A list of request headers that the application set on the actual request. (Again, this does not include headers that the browser sets.)
 
 Here is an example response, assuming that the server allows the request::
@@ -310,4 +310,3 @@ Here is an example response, assuming that the server allows the request::
     Date: Wed, 20 May 2015 06:33:22 GMT
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.
-

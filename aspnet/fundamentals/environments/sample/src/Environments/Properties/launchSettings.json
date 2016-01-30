@@ -1,4 +1,12 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:40088/",
+      "sslPort": 0
+    }
+  },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
@@ -10,7 +18,7 @@
     "web": {
       "commandName": "web",
       "environmentVariables": {
-        "ASPNET_ENV": "Staging"
+        "Hosting:Environment": "Staging"
       }
     }
   }

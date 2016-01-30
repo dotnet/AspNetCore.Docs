@@ -1,3 +1,5 @@
+.. _tag-helpers-index:
+
 Tag Helpers
 -----------
 
@@ -5,7 +7,6 @@ Tag Helpers
     :titlesonly:
     
     intro
-    using
     authoring
     advanced
 
