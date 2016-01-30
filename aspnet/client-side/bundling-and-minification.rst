@@ -170,7 +170,6 @@ Gulp is a JavaScript-based streaming build toolkit for client-side code. It is c
 See Also
 --------
 - :doc:`using-gulp`
-- `Using CDNs and Expires to Improve Web Site Performance <http://blogs.msdn.com/b/rickandy/archive/2011/05/21/using-cdns-to-improve-web-site-performance.aspx/>`_
 - `Bundler & Minifier <https://visualstudiogallery.msdn.microsoft.com/9ec27da7-e24b-4d56-8064-fd7e88ac1c40>`_
 - `Cutting Edge - Programming CSS: Bundling and Minification <https://msdn.microsoft.com/en-us/magazine/dn451436.aspx>`_
 - `Fiddler tool <http://www.telerik.com/fiddler>`_
