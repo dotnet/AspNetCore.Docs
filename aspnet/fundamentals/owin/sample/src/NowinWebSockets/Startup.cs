@@ -4,6 +4,7 @@ using Microsoft.AspNet.Http;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 using System.Threading;
+using Microsoft.AspNet.Hosting;
 
 namespace NowinWebSockets
 {
@@ -49,5 +50,8 @@ namespace NowinWebSockets
             await webSocket.CloseAsync(webSocket.CloseStatus.Value, 
                 webSocket.CloseStatusDescription, CancellationToken.None);
         }
+
+        // Entry point for the application.        
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
