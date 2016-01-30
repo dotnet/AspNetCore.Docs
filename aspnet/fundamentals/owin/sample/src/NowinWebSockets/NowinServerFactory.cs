@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.FeatureModel;
 using Microsoft.AspNet.Hosting.Server;
+using Microsoft.AspNet.Http.Features;
 using Microsoft.AspNet.Owin;
-using Microsoft.Framework.Configuration;
+using Microsoft.Extensions.Configuration;
 using Nowin;
 
 namespace NowinWebSockets
@@ -17,10 +16,10 @@ namespace NowinWebSockets
 
         private Task HandleRequest(IDictionary<string, object> env)
         {
-            return _callback(new OwinFeatureCollection(env));
+            return _callback(new FeatureCollection(new OwinFeatureCollection(env)));
         }
-
-        public IServerInformation Initialize(IConfiguration configuration)
+        
+        public IFeatureCollection Initialize(IConfiguration configuration)
         {
             // TODO: Parse config
             var builder = ServerBuilder.New()
@@ -28,19 +27,21 @@ namespace NowinWebSockets
                                        .SetPort(5000)
                                        .SetOwinApp(OwinWebSocketAcceptAdapter.AdaptWebSockets(HandleRequest));
 
-            return new NowinServerInformation(builder);
+            var serverFeatures = new FeatureCollection();
+            serverFeatures.Set<INowinServerInformation>(new NowinServerInformation(builder));
+            return serverFeatures;
         }
 
-        public IDisposable Start(IServerInformation serverInformation, Func<IFeatureCollection, Task> application)
+        public IDisposable Start(IFeatureCollection serverFeatures, Func<IFeatureCollection, Task> application)
         {
-            var information = (NowinServerInformation)serverInformation;
+            var information = serverFeatures.Get<INowinServerInformation>();
             _callback = application;
             INowinServer server = information.Builder.Build();
             server.Start();
             return server;
         }
 
-        private class NowinServerInformation : IServerInformation
+        private class NowinServerInformation : INowinServerInformation
         {
             public NowinServerInformation(ServerBuilder builder)
             {

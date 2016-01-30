@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting.Server;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.AspNet.Http.Features;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NowinSample
 {
@@ -16,8 +17,11 @@ namespace NowinSample
         {
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World via " + ((IServerInformation)app.Server).Name + "!");
+                await context.Response.WriteAsync("Hello World via " + app.ServerFeatures.Get<INowinServerInformation>().Name + "!");
             });
         }
+        
+        // Entry point for the application.        
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
