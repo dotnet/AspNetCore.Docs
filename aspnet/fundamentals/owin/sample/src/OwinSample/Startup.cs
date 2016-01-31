@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.AspNet.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -37,5 +38,8 @@ namespace OwinSample
 
             return responseStream.WriteAsync(responseBytes, 0, responseBytes.Length);
         }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
