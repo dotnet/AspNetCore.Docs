@@ -116,7 +116,7 @@ You can optionally configure the welcome page to only respond to certain paths. 
 
 .. code-block:: c#
 
-	app.UseWelcomePage("/welcome"));
+	app.UseWelcomePage("/welcome");
 
 Configured in this manner, the :ref:`startup.cs <diag-startup>` shown above will respond to requests as follows:
 
