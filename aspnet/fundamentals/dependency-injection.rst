@@ -91,7 +91,7 @@ In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext``
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 61-65
+  :lines: 62-63
   :linenos:
   :dedent: 12
   :emphasize-lines: 4
@@ -126,13 +126,13 @@ To demonstrate the difference between these four lifetime and registration optio
   :linenos:
   :emphasize-lines: 7
 
-We also implement all of these interfaces using a single class, ``Operation``, that simply accepts a ``Guid`` in its constructor, or uses a new ``Guid`` if none is provided..
+We also implement all of these interfaces using a single class, ``Operation``, that simply accepts a ``Guid`` in its constructor, or uses a new ``Guid`` if none is provided.
 
 Next, in ``ConfigureServices``, each type is added to the container according to its named lifetime:
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 66-71
+  :lines: 65-69
   :linenos:
   :dedent: 12
 
