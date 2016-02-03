@@ -123,7 +123,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 
 def setup(app):
     app.add_stylesheet('custom.css?v=4')
-    # app.add_javascript('helpfulness.js?v=4')
+    app.add_javascript('helpfulness.js?v=4')
     app.add_javascript('disqus.js')
     if on_rtd:
         app.add_javascript('wedc.js?v=4')
