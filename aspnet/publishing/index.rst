@@ -13,3 +13,4 @@ Publishing and Deployment
     how-to-customize
     iis-with-msdeploy
     web-publishing-vs
+	Hosting Web Apps in Docker <https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/>
