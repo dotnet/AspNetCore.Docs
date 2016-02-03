@@ -52,7 +52,7 @@ The ``Production`` environment is the environment in which the application runs 
 - Ensure all client-side resources are bundled, minified, and potentially served from a CDN
 - Turn off diagnostic ErrorPages
 - Turn on friendly error pages
-- Enable production logging and monitoring (for example, :doc:`application-insights`)
+- Enable production logging and monitoring (for example, `Application Insights <https://azure.microsoft.com/en-us/documentation/articles/app-insights-asp-net-five/>`_)
 
 This is by no means meant to be a complete list. It's best to avoid scattering environment checks in many parts of your application. Instead, the recommended approach is to perform such checks within the application's ``Startup`` class(es) wherever possible
 
