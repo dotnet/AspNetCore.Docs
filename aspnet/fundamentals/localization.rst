@@ -1,5 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
+You can view draft notes `here <http://bit.ly/1SuoZJl>`_.
+
 |stub-icon| Localization
 ========================
 
