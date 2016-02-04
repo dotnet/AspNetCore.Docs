@@ -16,10 +16,10 @@ Alternatively you can use the .NET Version Manager (DNVM) to install ASP.NET 5 a
 
 For either method of installation you will need to install the prerequisites for your specific distribution as described in the following sections.
 
-Installing on Debian, Ubuntu and derivatives
+Installing on Ubuntu 14.04
 --------------------------------------------
 
-The following instructions were tested using Ubuntu 14.04.
+The following instructions were tested using Ubuntu 14.04. Other versions of Ubuntu and other Debian based distros are unlikely to work correctly.
 
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,10 +86,10 @@ To build libuv you should do the following::
 
     ``make install`` puts ``libuv.so.1`` in ``/usr/local/lib``, in the above commands ``ldconfig`` is used to update ``ld.so.cache`` so that ``dlopen`` (see ``man dlopen``) can load it. If you are getting libuv some other way or not running ``make install`` then you need to ensure that dlopen is capable of loading ``libuv.so.1``.
 
-Installing on CentOS, Fedora and derivatives
+Installing on CentOS 7
 --------------------------------------------
 
-The following instructions were tested using CentOS 7.
+The following instructions were tested using CentOS 7.  Other versions of CentOS or other Red Hat based distros are unlikely to work correctly.
 
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
