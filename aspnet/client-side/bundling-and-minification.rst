@@ -98,8 +98,8 @@ Controlling Bundling and Minification
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug. 
 
-Setting the Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Setting the environment
+^^^^^^^^^^^^^^^^^^^^^^^
 
 When working with an app created using the **ASP.NET 5 Web Application** template in Visual Studio, bundling and minification is enabled by setting the ``Hosting:Environment`` value to ``Production``. 
 
@@ -114,7 +114,7 @@ The property sheet for the app will be displayed.
 
 The next time you run your app, the bundled and minified assets will be used rather than the regular assets. The **Web Application** template includes code that recognizes when it use the bundled and minified assets. 
 
-Viewing the App Based on Environment
+Viewing the app based on environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To see an example of the app template using the ``Hosting:Environment`` value, use the following steps:

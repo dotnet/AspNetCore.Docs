@@ -38,7 +38,6 @@ Topics
     performance/index
     migration/index
     API <https://docs.asp.net/projects/api> 
-    samples/index
     contribute/index
     hosting/index
 
