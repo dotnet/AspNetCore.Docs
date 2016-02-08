@@ -19,7 +19,7 @@ namespace AuthoringTagHelpers.TagHelpers
                 (await output.GetChildContentAsync()).GetContent();
 
             // Find Urls in the content and replace them with their anchor tag equivalent.
-            output.Content.SetContent(Regex.Replace(
+            output.Content.SetHtmlContent(Regex.Replace(
                  childContent,
                  @"\b(?:https?://)(\S+)\b",
                   "<a target=\"_blank\" href=\"$0\">$0</a>"));  // http link version}
@@ -35,7 +35,7 @@ namespace AuthoringTagHelpers.TagHelpers
                 (await output.GetChildContentAsync()).GetContent();
   
             // Find Urls in the content and replace them with their anchor tag equivalent.
-            output.Content.SetContent(Regex.Replace(
+            output.Content.SetHtmlContent(Regex.Replace(
                  childContent,
                  @"\b(www\.)(\S+)\b",
                  "<a target=\"_blank\" href=\"http://$0\">$0</a>"));  // www version

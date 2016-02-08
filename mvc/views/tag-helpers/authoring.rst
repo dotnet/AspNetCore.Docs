@@ -176,7 +176,7 @@ The bold Tag Helper
 **Notes:** 
 
 - The ``[HtmlTargetElement]`` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the ``Process`` override method in the class will run. In our sample, the ``Process``  method removes the "bold" attribute and surrounds the containing markup with ``<strong></strong>``.
--  Because we don't want to replace the existing tag content, we must write the opening ``<strong>`` tag with the ``PreContent.SetContent`` method and the closing ``</strong>`` tag with the ``PostContent.SetContent`` method.
+-  Because we don't want to replace the existing tag content, we must write the opening ``<strong>`` tag with the ``PreContent.SetHtmlContent`` method and the closing ``</strong>`` tag with the ``PostContent.SetHtmlContent`` method.
 
 2. Modify the *About.cshtml* view to contain a ``bold`` attribute value. The completed code is shown below.
 
