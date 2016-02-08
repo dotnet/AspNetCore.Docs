@@ -175,7 +175,7 @@ The bold Tag Helper
 
 **Notes:** 
 
-- The ``[TargetElement]`` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the ``Process`` override method in the class will run. In our sample, the ``Process``  method removes the "bold" attribute and surrounds the containing markup with ``<strong></strong>``.
+- The ``[HtmlTargetElement]`` attribute passes an attribute parameter that specifies that any HTML element that contains an HTML attribute named "bold" will match, and the ``Process`` override method in the class will run. In our sample, the ``Process``  method removes the "bold" attribute and surrounds the containing markup with ``<strong></strong>``.
 -  Because we don't want to replace the existing tag content, we must write the opening ``<strong>`` tag with the ``PreContent.SetContent`` method and the closing ``</strong>`` tag with the ``PostContent.SetContent`` method.
 
 2. Modify the *About.cshtml* view to contain a ``bold`` attribute value. The completed code is shown below.
@@ -187,13 +187,13 @@ The bold Tag Helper
   
 3. Run the app. You can use your favorite browser to inspect the source and verify that the markup has changed as promised.
 
-The ``[TargetElement]`` attribute above only targets HTML markup that provides an attribute name of "bold". The ``<bold>`` element was not modified by the tag helper.  
+The ``[HtmlTargetElement]`` attribute above only targets HTML markup that provides an attribute name of "bold". The ``<bold>`` element was not modified by the tag helper.  
 
-4. Comment out the ``[TargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is, HTML markup of the form ``<bold>``. Remember, the default naming convention will match the class name **Bold**\TagHelper to ``<bold>`` tags.
+4. Comment out the ``[HtmlTargetElement]`` attribute line and it will default to targeting ``<bold>`` tags, that is, HTML markup of the form ``<bold>``. Remember, the default naming convention will match the class name **Bold**\TagHelper to ``<bold>`` tags.
 
 5. Run the app and verify that the ``<bold>`` tag is processed by the tag helper.
 
-Decorating a class with multiple ``[TargetElement]`` attributes results in a logical-OR of the targets. For example, using the code below, a bold tag or a bold attribute will match.
+Decorating a class with multiple ``[HtmlTargetElement]`` attributes results in a logical-OR of the targets. For example, using the code below, a bold tag or a bold attribute will match.
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/zBoldTagHelperCopy.cs
    :language: c#
@@ -203,15 +203,15 @@ When multiple attributes are added to the same statement, the runtime treats the
 
 .. code-block:: c#
 
-        [TargetElement("bold", Attributes = "bold")]
+        [HtmlTargetElement("bold", Attributes = "bold")]
 
 For a good example of a bootstrap progress bar that targets a tag and an attribute, see `Creating custom MVC 6 Tag Helpers <http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx>`__.
 
-You can also use the ``[TargetElement]`` to change the name of the targeted element. For example if you wanted the ``BoldTagHelper`` to target ``<MyBold>`` tags, you would use the following attribute:
+You can also use the ``[HtmlTargetElement]`` to change the name of the targeted element. For example if you wanted the ``BoldTagHelper`` to target ``<MyBold>`` tags, you would use the following attribute:
 
 .. code-block:: c#
 
-	    [TargetElement("MyBold")]
+	    [HtmlTargetElement("MyBold")]
 
 Web site information Tag Helper
 ------------------------------------
@@ -230,17 +230,17 @@ Web site information Tag Helper
 **Notes:** 
 
 - As mentioned previously, tag helpers translates Pascal-cased C# class names and properties for tag helpers into `lower kebab case <http://c2.com/cgi/wiki?KebabCase>`__. Therefore, to use the ``WebsiteInformationTagHelper`` in Razor, you'll write ``<website-information />``.
-- We are not explicitly identifying the target element with the ``[TargetElement]`` attribute, so the default of ``website-information`` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
+- We are not explicitly identifying the target element with the ``[HtmlTargetElement]`` attribute, so the default of ``website-information`` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
 
 .. code-block:: c#
 
-	    [TargetElement("WebsiteInformation")]
+	    [HtmlTargetElement("WebsiteInformation")]
 
-The lower kebab case tag ``<website-information />`` would not match. If you want use the ``[TargetElement]`` attribute, you would use kebab case as shown below:
+The lower kebab case tag ``<website-information />`` would not match. If you want use the ``[HtmlTargetElement]`` attribute, you would use kebab case as shown below:
 
 .. code-block:: c#
 
-	    [TargetElement("Website-Information")]
+	    [HtmlTargetElement("Website-Information")]
 
 - Elements that are self-closing have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a `section <http://www.w3.org/TR/html5/sections.html#the-section-element>`__ element (which is not self-closing and we are writing content inside the ``section`` element). Therefore, we need to set ``TagMode`` to ``StartTagAndEndTag`` to write output. Alternatively, you can comment out the line setting ``TagMode`` and write markup with a closing tag. (Example markup is provided later in this tutorial.)
 - The ``$`` (dollar sign) in the following line uses an `interpolated string <https://msdn.microsoft.com/en-us/library/Dn961160.aspx>`__:
