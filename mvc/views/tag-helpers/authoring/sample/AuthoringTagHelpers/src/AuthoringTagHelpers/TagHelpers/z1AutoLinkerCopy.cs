@@ -10,7 +10,7 @@ namespace AuthoringTagHelpers.TagHe1pers
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             var childContent = output.Content.IsModified ? output.Content.GetContent() :
-                (await context.GetChildContentAsync()).GetContent();
+                (await output.GetChildContentAsync()).GetContent();
 
             // Find Urls in the content and replace them with their anchor tag equivalent.
             output.Content.SetContent(Regex.Replace(
@@ -26,7 +26,7 @@ namespace AuthoringTagHelpers.TagHe1pers
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             var childContent = output.Content.IsModified ? output.Content.GetContent() : 
-                (await context.GetChildContentAsync()).GetContent();
+                (await output.GetChildContentAsync()).GetContent();
   
             // Find Urls in the content and replace them with their anchor tag equivalent.
             output.Content.SetContent(Regex.Replace(

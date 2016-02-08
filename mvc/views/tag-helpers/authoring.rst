@@ -154,7 +154,7 @@ In this section we'll write an asynchronous email helper.
 **Notes:**
 
 - This version uses the asynchronous ``ProcessAsync`` method. The asynchronous ``GetChildContentAsync`` returns a ``Task`` containing the ``TagHelperContent``. 
-- We use the ``context`` parameter to get contents of the HTML element.
+- We use the ``output`` parameter to get contents of the HTML element.
 
 2. Make the following change to the *Views/Home/Contact.cshtml* file so the tag helper can get the target email.
 
@@ -355,7 +355,7 @@ Because these two helpers are closely related and we may refactor them in the fu
    :lines: 12
    :dedent: 12
    
-That is, we call ``GetChildContentAsync`` using the ``TagHelperContext`` passed into the ``ProcessAsync`` method. As mentioned previously, because the output is cached, the last tag helper to run wins. We fixed that problem with the following code:
+That is, we call ``GetChildContentAsync`` using the ``TagHelperOutput`` passed into the ``ProcessAsync`` method. As mentioned previously, because the output is cached, the last tag helper to run wins. We fixed that problem with the following code:
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z2AutoLinkerCopy.cs
    :language: c#
