@@ -11,7 +11,7 @@ namespace AuthoringTagHelpers.TagHelpers
       public override void Process(TagHelperContext context, TagHelperOutput output)
       {
          output.TagName = "section";
-         output.Content.SetContent(
+         output.Content.SetHtmlContent(
 $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
 <li><strong>Copyright Year:</strong> {Info.CopyrightYear}</li>
 <li><strong>Approved:</strong> {Info.Approved}</li>
