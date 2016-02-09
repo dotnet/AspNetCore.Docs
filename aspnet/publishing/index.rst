@@ -13,8 +13,4 @@ Publishing and Deployment
     how-to-customize
     iis-with-msdeploy
     web-publishing-vs
-
-Related Resources
------------------
-
-* :doc:`/tutorials/publish-to-azure-webapp-using-vs`
+    /tutorials/publish-to-azure-webapp-using-vs
