@@ -121,4 +121,5 @@ Additional Resources
 --------------------
 
 - `Application Insights API for custom events and metrics <http://azure.microsoft.com/documentation/articles/app-insights-api-custom-events-metrics/>`_
-- `Application Insights for ASP.NET 5 <http://blogs.msdn.com/b/webdev/archive/2015/05/19/application-insights-for-asp-net-5-you-re-in-control.aspx>`_
+- `Application Insights for ASP.NET 5 <https://azure.microsoft.com/en-us/documentation/articles/app-insights-asp-net-five/>`_
+- `Application Insights - Blog post <http://blogs.msdn.com/b/webdev/archive/2015/05/19/application-insights-for-asp-net-5-you-re-in-control.aspx>`_
