@@ -128,7 +128,7 @@ That approach works for the attribute "href" as long as it doesn't currently exi
  
 4. Run the app and verify that it generates the correct links.
 
-**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``), the final output would also be self-closing. To enable the ability to write the tag with only a start tag ``<email mail-to="Rick">``) you must decorate the class with the following:
+**Note:** If you were to write the email tag self-closing (``<email mail-to="Rick" />``), the final output would also be self-closing. To enable the ability to write the tag with only a start tag (``<email mail-to="Rick">``) you must decorate the class with the following:
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/EmailTagHelperMailVoid.cs
    :lines: 6
