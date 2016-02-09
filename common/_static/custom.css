@@ -53,6 +53,16 @@ b,
     font-family: wf_segoe-ui_bold, wf_segoe-ui_semibold, wf_segoe-ui_normal, Arial, sans-serif
 }*/
 
+.wy-nav-top {
+  background: #2b3990;
+}
+
+.wy-nav-top > a,
+.wy-nav-top > a:link,
+.wy-nav-top > a.visited {
+  color: #ffffff;
+}
+
 .wy-nav-content-wrap, .wy-nav-content {
     background: #fff;
 }
