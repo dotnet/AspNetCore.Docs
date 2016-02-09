@@ -1,3 +1,5 @@
+.. _security-authentication-account-confirmation:
+
 Account Confirmation and Password Recovery with ASP.NET Identity
 ================================================================
 

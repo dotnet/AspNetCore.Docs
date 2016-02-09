@@ -1,3 +1,5 @@
+.. _migration-auth-membership:
+
 Migrating Authentication and Identity From ASP.NET MVC 5 to MVC 6
 =================================================================
 
