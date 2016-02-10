@@ -84,7 +84,7 @@ With this in place, all that's required to run an ASP.NET application using this
 When run, this command (equivalent to running ``dnx web`` from a command line) will search for a package called "NowinSample" that contains an implementation of ``IServerFactory``. If it finds one, it will initialize and start the server as detailed above. Learn more about the built-in ASP.NET :doc:`/fundamentals/servers`.
 
 Run ASP.NET Core on an OWIN-based server and use its WebSockets support
---------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web application that supports Web Sockets and simply echos back anything sent to the server via WebSockets.
 
