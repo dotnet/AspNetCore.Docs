@@ -1,93 +1,102 @@
-Injecting a Service Into a View
-===============================
+Injecting Services Into Views
+=============================
 
-ASP.NET MVC 6 now supports injection into a view from a class. For this example, we'll create a simple class that exposes the total *todo* count, completed count and average priority. 
+By `Steve Smith`_
 
-1. Examine the *Services\\StatisticsService.cs* class.
+ASP.NET MVC 6 supports `dependency injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain `separation of concerns <http://deviq.com/separation-of-concerns>`_ between your controllers and views. Most of the data your views display should be passed in from the controller.
 
-  .. code-block:: c#
-    :linenos:
-    
-    using System.Linq;
-    using System.Threading.Tasks;
-    using TodoList.Models;
+.. TODO: Add localization sample in RC2 timeframe.
 
-    namespace TodoList.Services
-    {
-      public class StatisticsService
-      {
-        private readonly ApplicationDbContext db;
+Sections:
+	- `A Simple Example`_
+	- `Populating Lookup Data`_
+	- `Overriding Services`_
 
-        public StatisticsService(ApplicationDbContext context)
-        {
-          db = context;
-        }
+`View sample files <https://github.com/aspnet/Docs/tree/1.0.0-rc1/mvc/views/dependency-injection/sample>`_
 
-        public async Task<int> GetCount()
-        {
-          return await Task.FromResult(db.TodoItems.Count());
-        }
+A Simple Example
+----------------
+You can inject a service into a view using the ``@inject`` directive. You can think of ``@inject`` as adding a property to your view, and populating the property using DI.
 
-        public async Task<int> GetCompletedCount()
-        {
-          return await Task.FromResult(
-            db.TodoItems.Count(x => x.IsDone == true));
-        }
+The syntax for ``@inject``:
+	``@inject <type> <name>``
 
-        public async Task<double> GetAveragePriority()
-        {
-          if (db.TodoItems.Count() == 0)
-          {
-            return 0.0;
-          }
+An example of ``@inject`` in action:
 
-          return await Task.FromResult(
-            db.TodoItems.Average(x =>x.Priority));
-        }
-      }
-    }
-
-2. Update the *Index* view to inject the *todo* statistical data. Add the ``inject`` statement to the top of the file:
-
-.. code-block:: html 
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Todo/Index.cshtml
   :linenos:
+  :language: c#
+  :emphasize-lines: 4-5,15-17
+
+This view displays a list of ``ToDoItem`` instances, along with a summary showing overall statistics. The summary is populated from the injected ``StatisticsService``. This service is registered for dependency injection in ``ConfigureServices`` in ``Startup.cs``:
+
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Startup.cs
+  :linenos:
+  :lines: 15-22
+  :language: c#
+  :emphasize-lines: 5-6
+  :dedent: 8
   
-  @inject TodoList.Services.StatisticsService Statistics
+The ``StatisticsService`` performs some calculations on the set of ``ToDoItem`` instances, which it accesses via a repository:
 
-3. Add markup calling the StatisticsService to the end of the file:
 
-  .. code-block:: html
-    :linenos:
-    :emphasize-lines: 6-11
-    
-    @* Markup removed for brevity *@
-    <div>@Html.ActionLink("Create New Todo", "Create", "Todo") </div>
-    </div>
-      <div class="col-md-4">
-        @await Component.InvokeAsync("PriorityList", 4, true)
-        <h3>Stats</h3>
-        <ul>
-          <li>Items: @await Statistics.GetCount()</li>
-          <li>Completed:@await Statistics.GetCompletedCount()</li>
-          <li>Average Priority:@await Statistics.GetAveragePriority()</li>
-        </ul>
-      </div>
-    </div>
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs
+  :linenos:
+  :language: c#
+  :emphasize-lines: 16,21,27
 
-4. Register the ``StatisticsService`` class in the *Startup.cs* file: 
+The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.
 
-  .. code-block:: c#
-    :linenos:
-    :emphasize-lines: 8
-    
-    public void ConfigureServices(IServiceCollection services)
-    {
-      // Code removed for brevity.
-      // Add MVC services to the services container.
-      services.AddMvc();
-      services.AddTransient<TodoList.Services.StatisticsService>();
-    }
+The sample displays data from the model bound to the view and the service injected into the view:
 
-The statistics are displayed:
- 
-.. image:: dependency-injection/_static/stat.png
+.. image:: dependency-injection/_static/screenshot.png
+
+Populating Lookup Data
+----------------------
+View injection can be useful to populate options in UI elements, such as dropdown lists. Consider a user profile form that includes options for specifying gender, state, and other preferences. Rendering such a form using a standard MVC approach would require the controller to request data access services for each of these sets of options, and then populate a model or ``ViewBag`` with each set of options to be bound.
+
+An alternative approach injects services directly into the view to obtain the options. This minimizes the amount of code required by the controller, moving this view element construction logic into the view itself. The controller action to display a profile editing form only needs to pass the form the profile instance:
+
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Controllers/ProfileController.cs
+  :linenos:
+  :language: c#
+  :emphasize-lines: 9,19
+
+The HTML form used to update these preferences includes dropdown lists for three of the properties:
+
+.. image:: dependency-injection/_static/updateprofile.png
+
+These lists are populated by a service that has been injected into the view:
+
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Profile/Index.cshtml
+  :linenos:
+  :language: c#
+  :emphasize-lines: 4,16-17,21-22,26-27
+
+The ``ProfileOptionsService`` is a UI-level service designed to provide just the data needed for this form:
+
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Model/Services/ProfileOptionsService.cs
+  :linenos:
+  :language: c#
+  :emphasize-lines: 7,13,24
+
+.. tip:: Don't forget to register types you will request through dependency injection in the  ``ConfigureServices`` method in ``Startup.cs``.
+
+Overriding Services
+-------------------
+In addition to injecting new services, this technique can also be used to override previously injected services on a page. The figure below shows all of the fields available on the page used in the first example:
+
+.. image:: dependency-injection/_static/razor-fields.png
+
+As you can see, the default fields include ``Html``, ``Component``, and ``Url`` (as well as the ``StatsService`` that we injected). If for instance you wanted to replace the default HTML Helpers with your own, you could easily do so using ``@inject``:
+
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Helper/Index.cshtml
+  :linenos:
+  :language: html
+  :emphasize-lines: 5,13
+
+If you want to extend existing services, you can simply use this technique while inheriting from or wrapping the existing implementation with your own.
+
+See Also
+--------
+* Simon Timms Blog: `Getting Lookup Data Into Your View <http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/>`_

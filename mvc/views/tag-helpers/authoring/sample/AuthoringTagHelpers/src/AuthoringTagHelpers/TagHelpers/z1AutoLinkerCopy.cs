@@ -10,10 +10,10 @@ namespace AuthoringTagHelpers.TagHe1pers
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             var childContent = output.Content.IsModified ? output.Content.GetContent() :
-                (await context.GetChildContentAsync()).GetContent();
+                (await output.GetChildContentAsync()).GetContent();
 
             // Find Urls in the content and replace them with their anchor tag equivalent.
-            output.Content.SetContent(Regex.Replace(
+            output.Content.SetHtmlContent(Regex.Replace(
                  childContent,
                  @"\b(?:https?://)(\S+)\b",
                   "<a target=\"_blank\" href=\"$0\">$0</a>"));  // http link version}
@@ -26,10 +26,10 @@ namespace AuthoringTagHelpers.TagHe1pers
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             var childContent = output.Content.IsModified ? output.Content.GetContent() : 
-                (await context.GetChildContentAsync()).GetContent();
+                (await output.GetChildContentAsync()).GetContent();
   
             // Find Urls in the content and replace them with their anchor tag equivalent.
-            output.Content.SetContent(Regex.Replace(
+            output.Content.SetHtmlContent(Regex.Replace(
                  childContent,
                  @"\b(www\.)(\S+)\b",
                  "<a target=\"_blank\" href=\"http://$0\">$0</a>"));  // www version

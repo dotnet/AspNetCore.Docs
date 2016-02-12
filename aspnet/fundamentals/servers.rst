@@ -175,7 +175,7 @@ Choosing a server
 
 If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel.
 
-For self-hosting scenarios, such as WCF services or `Service Fabric <https://azure.microsoft.com/en-us/services/service-fabric/>`_, we recommend using Kestrel without IIS. However, if you require Windows Authentication in a self-hosting scenario, you should choose WebListener.
+For self-hosting scenarios, such as running in `Service Fabric <https://azure.microsoft.com/en-us/services/service-fabric/>`_, we recommend using Kestrel without IIS. However, if you require Windows Authentication in a self-hosting scenario, you should choose WebListener.
 
 Custom Servers
 --------------

@@ -1,3 +1,6 @@
+.. _security-authentication-2fa:
+
+
 Two-factor authentication with SMS using ASP.NET Identity
 =========================================================
 

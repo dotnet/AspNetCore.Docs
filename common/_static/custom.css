@@ -53,6 +53,16 @@ b,
     font-family: wf_segoe-ui_bold, wf_segoe-ui_semibold, wf_segoe-ui_normal, Arial, sans-serif
 }*/
 
+.wy-nav-top {
+  background: #2b3990;
+}
+
+.wy-nav-top > a,
+.wy-nav-top > a:link,
+.wy-nav-top > a.visited {
+  color: #ffffff;
+}
+
 .wy-nav-content-wrap, .wy-nav-content {
     background: #fff;
 }
@@ -86,6 +96,8 @@ p {
 .hr {
   border-top: 1px solid #dddddd;
 }
+
+a, a:link, a:visited { color: #2b59a9; }
 
 .wy-nav-side {
     background: #2b3990;
@@ -274,10 +286,14 @@ footer p {
     color: #ffffff;
 }
 
+@media only screen and (max-width : 720px) {
+    .wy-grid-for-nav {overflow-x:hidden;}
+}
+
 /* helpfulness.css - start */
-.helpfulness-container { background: #0054a3; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
+.helpfulness-container { background: #2b3990; color: ##bdc0d7; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
 .helpfulness-container.fixed { position:fixed; }
-.helpfulness { margin: 0 auto; max-width:1160px; padding:0 20px; }
+.helpfulness { margin: 0 auto; max-width:1160px; padding:0 35px 0 20px; }
 .helpfulness:after { clear: both;content: '.';display: block;visibility: hidden;height: 0; }
 .helpfulness .helpfulness-form h2 { color:#fff; margin-bottom:0; margin-right:10px; float:left; font-size:18px; line-height:28px; }
 .helpfulness .helpfulness-form span { line-height:28px; }
@@ -285,7 +301,7 @@ footer p {
 .helpfulness .common-btn.secondary { background-color: #777; }
 .helpfulness .common-btn.secondary:hover { background-color: #888; }
 .helpfulness .first { margin-left:10px; }
-.helpfulness input { display:block; margin:10px 0 0; width:50%; padding:5px; font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.helpfulness input { display:block; margin:10px 0 0; width:50%; padding:5px; font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .helpfulness .helpfulness-form-no h2 { color:#fff; margin-bottom:10px; font-size:18px; line-height:28px; }
 .helpfulness .helpfulness-form-no span { float:right; margin-right:50%; margin-top:10px; }
 .helpfulness .helpfulness-form-no .common-btn {margin-top:10px;}
@@ -301,6 +317,9 @@ a.helpfulness-close:hover { text-decoration:none; color:#3BABD0; }
 /* helpfulness.css - end */
 
 /* helpfulness.css overrides - start */
+.helpfulness-container { padding-left:300px; }
+@media screen and (max-width: 768px) { .helpfulness-container { padding-left:0; } }
+
 .helpfulness { max-width:none; }
 
 .common-btn, .btn-install {background:#6CB200;color:#fff;border:0;padding:10px 15px;font-size:14px;display:inline-block;text-transform:uppercase;}

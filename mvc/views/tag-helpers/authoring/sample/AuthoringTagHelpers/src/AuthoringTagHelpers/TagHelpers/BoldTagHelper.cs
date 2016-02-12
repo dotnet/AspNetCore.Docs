@@ -8,8 +8,8 @@ namespace AuthoringTagHelpers.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.Attributes.RemoveAll("bold");
-            output.PreContent.SetContent("<strong>");
-            output.PostContent.SetContent("</strong>");
+            output.PreContent.SetHtmlContent("<strong>");
+            output.PostContent.SetHtmlContent("</strong>");
         }
     }
 }

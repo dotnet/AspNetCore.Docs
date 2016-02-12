@@ -136,8 +136,8 @@ For additional information and guidance on migrating your existing apps to the A
 Next Steps 
 ----------
 
-- `Migrating Authentication and Identity From ASP.NET MVC 5 to MVC 6 <http://docs.asp.net/projects/mvc/en/latest/migration/migratingauthmembership.html?highlight=identity>`_
-- `Migrating from ASP.NET Identity 2.x to 3.x <http://docs.asp.net/en/latest/migration/identity.html>`_
-- `Account Confirmation and Password Recovery with ASP.NET Identity <http://docs.asp.net/en/latest/security/accconfirm.html>`_
-- `Two-factor Authentication with SMS Using ASP.NET Identity <http://docs.asp.net/en/latest/security/2fa.html>`_
-- `Enabling authentication using external providers <http://docs.asp.net/en/latest/security/sociallogins.html>`_
+- :ref:`mvc:migration-auth-membership`
+- :ref:`migration-identity`
+- :ref:`security-authentication-account-confirmation`
+- :ref:`security-authentication-2fa`
+- :ref:`security-authentication-social-logins`

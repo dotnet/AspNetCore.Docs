@@ -93,7 +93,8 @@ Examine the view component view
 
 .. note:: View Component views are more typically added to the *Views\\Shared\\Components* folder, because view components are typically not controller specific.
 
-2. Examine the *Views\\Todo\\Components\\PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the the ``ViewComponent`` attribute, the folder name would need to match the attribute designation. 
+2. Examine the *Views\\Todo\\Components\\PriorityList* folder. This folder name must match the name of the view component (name of the class minus the suffix if we followed convention and used the *ViewComponent* suffix in the class name). If you used the the ``ViewComponent`` attribute, the folder name would need to match the attribute designation. 
+
 3. Examine the *Views\\Todo\\Components\\PriorityList\\Default.cshtml* Razor view. 
 
   .. code-block:: html

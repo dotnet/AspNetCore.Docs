@@ -54,6 +54,8 @@ ASP.NET 5 applications are defined using a public ``Startup`` class:
          public void Configure(IApplicationBuilder app)
          {
          }
+         
+         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 
 The ``ConfigureServices`` method defines the services used by your application and the ``Configure`` method is used to define what middleware makes up your request pipeline. See :doc:`understanding-aspnet5-apps` for more details.

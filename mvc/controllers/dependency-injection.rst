@@ -1,3 +1,5 @@
+.. _dependency-injection-controllers:
+
 Dependency Injection and Controllers
 ====================================
 
