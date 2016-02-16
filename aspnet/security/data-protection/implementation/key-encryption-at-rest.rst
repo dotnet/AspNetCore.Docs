@@ -84,7 +84,7 @@ There is also a parameterless overload of ProtectKeysWithDpapiNG. This is a conv
      configure.ProtectKeysWithDpapiNG();
    });
 
-In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user will be able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under his identity).
+In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user will be able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
 
 Certificate-based encryption with Windows DPAPI-NG
 --------------------------------------------------
@@ -105,4 +105,4 @@ Any application which is pointed at this repository must be running on Windows 8
 Custom key encryption
 ---------------------
 
-If the in-box mechanisms are not appropriate, the developer can specify his own key encryption mechanism by providing a custom IXmlEncryptor.
+If the in-box mechanisms are not appropriate, the developer can specify their own key encryption mechanism by providing a custom IXmlEncryptor.
