@@ -279,7 +279,7 @@ The Gulp community provides Gulp `recipes <https://github.com/gulpjs/gulp/blob/m
 
 Summary
 -------
-Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs Gulp along with a set of Gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about Gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
+Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs Gulp along with a set of Gulp plugins. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about Gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
 
 See Also
 --------
