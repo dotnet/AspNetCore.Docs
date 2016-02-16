@@ -24,6 +24,8 @@ The HTTP Platform Handler is configured via a site or application's *web.config*
 .. note::
     You may need to unlock the handlers section of *web.config*. Follow the instructions :ref:`here <unlock-handlers>`.
 
+.. _log-redirection:
+
 Log Redirection
 ---------------
 
