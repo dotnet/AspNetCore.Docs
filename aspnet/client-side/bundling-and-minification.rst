@@ -23,7 +23,7 @@ Bundling
 
 Bundling is a feature that makes it easy to combine or bundle multiple files into a single file. Because bundling combines multiple files into a single file, it reduces the number of requests to the server that is required to retrieve and display a web asset, such as a web page. You can create CSS, JavaScript and other bundles. Fewer files, means fewer HTTP requests from your browser to the server or from the service providing your application. This results in improved first page load performance.
 
-Bundling can be accomplished using the `gulp-concat <https://www.npmjs.com/package/gulp-concat>`__ task, which is installed with the Node Package Manager (`npm <https://www.npmjs.com/>`__). Add the ``gulp-concat`` package to the ``devDependencies`` section of your *package.json* file. To edit your *package.json* file from Visual Studio right-click on the **npm** node under **Dependencies** in the solution explorer and select **Open package.json**:
+Bundling can be accomplished using the `gulp-concat <https://www.npmjs.com/package/gulp-concat>`__ plugin, which is installed with the Node Package Manager (`npm <https://www.npmjs.com/>`__). Add the ``gulp-concat`` package to the ``devDependencies`` section of your *package.json* file. To edit your *package.json* file from Visual Studio right-click on the **npm** node under **Dependencies** in the solution explorer and select **Open package.json**:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
