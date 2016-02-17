@@ -243,16 +243,17 @@ To switch between compiling for different environments, modify the **ASPNET_ENV*
 
 	The property sheet for the Web app is displayed.
 	
-3.	Set the value of the **ASPNET_ENV** environment variable to ``Production``.
-4.	Press **F5** to run the application in a browser.
-5.	In the browser window, right-click the page and select **View Source** to view the HTML for the page.
+3.	Click the **Debug** tab.	
+4.	Set the value of the **ASPNET_ENV** environment variable to ``Production``.
+5.	Press **F5** to run the application in a browser.
+6.	In the browser window, right-click the page and select **View Source** to view the HTML for the page.
 
 	Notice that the stylesheet links point to the minified CSS files.
 
-6.	Close the browser to stop the Web app.
-7.	In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
-8.	Press **F5** to run the application in a browser again.
-9.	In the browser window, right-click the page and select **View Source** to see the HTML for the page.
+7.	Close the browser to stop the Web app.
+8.	In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
+9.	Press **F5** to run the application in a browser again.
+10.	In the browser window, right-click the page and select **View Source** to see the HTML for the page.
 
 	Notice that the stylesheet links point to the unminified versions of the CSS files.
 	
