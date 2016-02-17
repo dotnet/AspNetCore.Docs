@@ -17,11 +17,11 @@ This example uses the Empty ASP.NET 5 project template as its starting point, to
 The finished example cleans the target deployment directory, combines JavaScript files, checks code quality, condenses JavaScript file content and deploys to the root of your web application. We will use the following packages: 
 
 - **grunt**: The Grunt task runner package.
-- **grunt-contrib-clean**: A task that removes files or directories.
-- **grunt-contrib-jshint**: A task that reviews JavaScript code quality.
-- **grunt-contrib-concat**: A task that joins files into a single file.
-- **grunt-contrib-uglify**: A task that minifies JavaScript to reduce size.
-- **grunt-contrib-watch**: A task that watches file activity.
+- **grunt-contrib-clean**: A plugin that removes files or directories.
+- **grunt-contrib-jshint**: A plugin that reviews JavaScript code quality.
+- **grunt-contrib-concat**: A plugin that joins files into a single file.
+- **grunt-contrib-uglify**: A plugin that minifies JavaScript to reduce size.
+- **grunt-contrib-watch**: A plugin that watches file activity.
 
 Preparing the application
 -------------------------
