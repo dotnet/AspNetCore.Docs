@@ -10,7 +10,7 @@ ASP.NET 5 is designed from the ground up to support and leverage dependency inje
   :local:
   :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/dependency-injection/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/dependency-injection/sample>`_. 
 
 What is Dependency Injection?
 -----------------------------

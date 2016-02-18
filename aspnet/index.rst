@@ -24,6 +24,7 @@ Topics
     :titlesonly:
 
     getting-started/index
+    API <https://docs.asp.net/projects/api>
     tutorials/index
     conceptual-overview/index
     fundamentals/index
@@ -31,15 +32,15 @@ Topics
     dnx/index
     frameworks/index
     data/index
-    publishing/index
     client-side/index
     mobile/index
+    publishing/index
+    hosting/index
     security/index
     performance/index
     migration/index
-    API <https://docs.asp.net/projects/api> 
     contribute/index
-    hosting/index
+    
 
 Related Resources
 -----------------

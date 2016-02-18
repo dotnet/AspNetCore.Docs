@@ -16,7 +16,7 @@ namespace DiagDemo
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (string.Equals(env.EnvironmentName, "Development", StringComparison.OrdinalIgnoreCase))
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 

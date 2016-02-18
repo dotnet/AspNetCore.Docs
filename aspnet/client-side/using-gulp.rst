@@ -3,7 +3,7 @@
 Using Gulp
 ==========
 
-By `Erik Reitan`_, `Scott Addie`_ 
+By `Erik Reitan`_, `Scott Addie`_, `Daniel Roth`_ 
 
 In a typical modern web application, the build process might:
 
@@ -14,11 +14,10 @@ In a typical modern web application, the build process might:
 
 A *task runner* is a tool which automates these routine development tasks and more. Visual Studio 2015 provides built-in support for two popular JavaScript-based task runners: `Gulp <http://gulpjs.com>`__ and `Grunt <http://gruntjs.com/>`_.
 
-Bundling and Minification in Visual Studio using Gulp
------------------------------------------------------
-You may be familiar with *runtime* bundling and minification using ASP.NET Web Optimization. In ASP.NET 5, you can bundle and minify the client-side resources during *design-time*. Using design-time bundling and minification, the minified files are created prior to the application's deployment. By bundling and minifying ahead of time, the advantages of fewer moving parts and reduced server load are realized. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+Introducing Gulp
+----------------
 
-Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. Some advantages of using Gulp include the automation of common development tasks, the simplification of repetitive tasks, and a decrease in overall development time. For instance, Gulp can be used to automate the asset minification processes or the cleansing of a development environment before a new build.
+Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. Some advantages of using Gulp include the automation of common development tasks, the simplification of repetitive tasks, and a decrease in overall development time. For instance, Gulp can be used to automate :doc:`bundling and minification <bundling-and-minification>` or the cleansing of a development environment before a new build.
 
 The ASP.NET 5 Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality to demonstrate many aspects of ASP.NET. The template also includes Node Package Manager (`npm <https://www.npmjs.com/>`_) and Gulp, making it easier to add bundling and minification to a project.
 
@@ -244,16 +243,17 @@ To switch between compiling for different environments, modify the **ASPNET_ENV*
 
 	The property sheet for the Web app is displayed.
 	
-3.	Set the value of the **ASPNET_ENV** environment variable to ``Production``.
-4.	Press **F5** to run the application in a browser.
-5.	In the browser window, right-click the page and select **View Source** to view the HTML for the page.
+3.	Click the **Debug** tab.	
+4.	Set the value of the **ASPNET_ENV** environment variable to ``Production``.
+5.	Press **F5** to run the application in a browser.
+6.	In the browser window, right-click the page and select **View Source** to view the HTML for the page.
 
 	Notice that the stylesheet links point to the minified CSS files.
 
-6.	Close the browser to stop the Web app.
-7.	In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
-8.	Press **F5** to run the application in a browser again.
-9.	In the browser window, right-click the page and select **View Source** to see the HTML for the page.
+7.	Close the browser to stop the Web app.
+8.	In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
+9.	Press **F5** to run the application in a browser again.
+10.	In the browser window, right-click the page and select **View Source** to see the HTML for the page.
 
 	Notice that the stylesheet links point to the unminified versions of the CSS files.
 	
@@ -280,7 +280,7 @@ The Gulp community provides Gulp `recipes <https://github.com/gulpjs/gulp/blob/m
 
 Summary
 -------
-Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs Gulp along with a set of Gulp tasks. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about Gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
+Gulp is a JavaScript-based streaming build toolkit that can be used for bundling and minification. Visual Studio 2015 automatically installs Gulp along with a set of Gulp plugins. Gulp is maintained on `GitHub <https://github.com/gulpjs/gulp>`_. For additional information about Gulp, see the `Gulp Documentation <https://github.com/gulpjs/gulp/blob/master/docs/README.md>`_ on GitHub.
 
 See Also
 --------

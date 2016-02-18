@@ -590,6 +590,8 @@ Additional optional metadata that can be put into the project.json file:
 * tags: A JSON array of tags and keywords that describe the NuGet package.
 * title: The human-friendly title of the NuGet package.
 
+.. _dnu-publish:
+
 Publishing
 ----------
 
