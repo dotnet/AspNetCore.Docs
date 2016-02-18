@@ -16,7 +16,6 @@ Fundamentals
     logging
     app-state
     environments
-    websockets
     caching
     distributed-cache
     request-features
