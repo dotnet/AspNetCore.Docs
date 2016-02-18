@@ -1,7 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
-|stub-icon| File System
-=======================
+|stub-icon| File Providers
+==========================
 
 .. include:: /../common/stub-notice.txt
 

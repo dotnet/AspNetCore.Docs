@@ -8,7 +8,7 @@ Fundamentals
     middleware
     static-files
     localization 
-    file-system
+    file-providers
     routing
     configuration
     dependency-injection
