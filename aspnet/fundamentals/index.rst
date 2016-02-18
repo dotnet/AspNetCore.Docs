@@ -7,18 +7,18 @@ Fundamentals
     startup
     middleware
     static-files
-    localization 
-    file-providers
     routing
-    configuration
-    dependency-injection
     diagnostics
+    localization
+    configuration
     logging
-    app-state
+    file-providers
+    dependency-injection
     environments
+    app-state
     caching
     distributed-cache
-    request-features
     servers
+    request-features
     owin
 
