@@ -3,7 +3,7 @@
 HTTP Platform Handler
 =====================
 
-By `Sourabh Shirhatti`
+By `Sourabh Shirhatti`_
 
 In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared hosting of ASP.NET 5.
 

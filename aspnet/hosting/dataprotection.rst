@@ -3,7 +3,7 @@
 Data Protection
 ===============
 
-By `Sourabh Shirhatti`
+By `Sourabh Shirhatti`_
 
 The ASP.NET 5 data protection stack provides a simple and easy to use cryptographic API a developer can use to protect data, including key management and rotation. This document provides an overview of how to configure Data Protection on your server to enable developers to use data protection.
 
