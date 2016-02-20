@@ -5,8 +5,8 @@
 
 .. _index:
 
-ASP.NET 5 Documentation
-=======================
+ASP.NET Core Documentation
+==========================
 
 .. attention:: ASP.NET 5 is being renamed to ASP.NET Core 1.0. Read `more <https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/>`_.
 

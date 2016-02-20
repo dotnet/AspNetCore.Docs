@@ -3,12 +3,12 @@ OWIN
 
 By `Steve Smith`_
 
-ASP.NET 5 supports OWIN, the Open Web Interface for .NET, which allows web applications to be decoupled from web servers. In addition, OWIN defines a standard way for middleware to be used in a pipeline to handle individual requests and associated responses. ASP.NET 5 applications and middleware can interoperate with OWIN-based applications, servers, and middleware.
+ASP.NET Core supports OWIN, the Open Web Interface for .NET, which allows web applications to be decoupled from web servers. In addition, OWIN defines a standard way for middleware to be used in a pipeline to handle individual requests and associated responses. ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middleware.
 
 In this article:
 	- `Running OWIN middleware in the ASP.NET pipeline`_
 	- `Using ASP.NET Hosting on an OWIN-based server`_
-	- `Run ASP.NET 5 on an OWIN-based server and use its WebSockets support`_
+	- `Run ASP.NET Core on an OWIN-based server and use its WebSockets support`_
 	- `OWIN keys`_
 
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample>`_.
@@ -16,7 +16,7 @@ In this article:
 Running OWIN middleware in the ASP.NET pipeline
 -----------------------------------------------
 
-ASP.NET 5's OWIN support is deployed as part of the `Microsoft.AspNet.Owin <https://www.nuget.org/packages/Microsoft.AspNet.Owin/1.0.0-rc1-final>`_ package, and the source is in the `HttpAbstractions repository <https://github.com/aspnet/HttpAbstractions/tree/1.0.0-beta5/src/Microsoft.AspNet.Owin>`_. You can import OWIN support into your project by adding this package as a dependency in your ``project.json`` file, as shown here:
+ASP.NET Core's OWIN support is deployed as part of the `Microsoft.AspNet.Owin <https://www.nuget.org/packages/Microsoft.AspNet.Owin/1.0.0-rc1-final>`_ package, and the source is in the `HttpAbstractions repository <https://github.com/aspnet/HttpAbstractions/tree/1.0.0-beta5/src/Microsoft.AspNet.Owin>`_. You can import OWIN support into your project by adding this package as a dependency in your ``project.json`` file, as shown here:
 
 .. literalinclude:: owin/sample/src/OwinSample/project.json
 	:language: javascript
@@ -55,12 +55,12 @@ You can of course configure other actions to take place within the OWIN pipeline
 		});
 	});
 
-.. note:: The OWIN support in ASP.NET 5 is an evolution of the work that was done for the `Katana project <http://katanaproject.codeplex.com/>`_. Katana's ``IAppBuilder`` component has been replaced by ``IApplicationBuilder``, but if you have existing Katana-based middleware, you can use it within your ASP.NET 5 application through the use of a bridge, as shown in the `Owin.IAppBuilderBridge example on GitHub <https://github.com/aspnet/Entropy/tree/dev/samples/Owin.IAppBuilderBridge>`_. 
+.. note:: The OWIN support in ASP.NET Core is an evolution of the work that was done for the `Katana project <http://katanaproject.codeplex.com/>`_. Katana's ``IAppBuilder`` component has been replaced by ``IApplicationBuilder``, but if you have existing Katana-based middleware, you can use it within your ASP.NET Core application through the use of a bridge, as shown in the `Owin.IAppBuilderBridge example on GitHub <https://github.com/aspnet/Entropy/tree/dev/samples/Owin.IAppBuilderBridge>`_. 
 
 Using ASP.NET Hosting on an OWIN-based server
 ---------------------------------------------
 
-OWIN-based servers can host ASP.NET applications, since ASP.NET conforms to the OWIN specification. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server. In the sample for this article, I've included a very simple project that references Nowin and uses it to create a simple server capable of self-hosting ASP.NET 5.
+OWIN-based servers can host ASP.NET applications, since ASP.NET conforms to the OWIN specification. One such server is `Nowin <https://github.com/Bobris/Nowin>`_, a .NET OWIN web server. In the sample for this article, I've included a very simple project that references Nowin and uses it to create a simple server capable of self-hosting ASP.NET Core.
 
 .. literalinclude:: owin/sample/src/NowinSample/NowinServerFactory.cs
 	:emphasize-lines: 13,19,22,27,41
@@ -83,10 +83,10 @@ With this in place, all that's required to run an ASP.NET application using this
 
 When run, this command (equivalent to running ``dnx web`` from a command line) will search for a package called "NowinSample" that contains an implementation of ``IServerFactory``. If it finds one, it will initialize and start the server as detailed above. Learn more about the built-in ASP.NET :doc:`/fundamentals/servers`.
 
-Run ASP.NET 5 on an OWIN-based server and use its WebSockets support
---------------------------------------------------------------------
+Run ASP.NET Core on an OWIN-based server and use its WebSockets support
+-----------------------------------------------------------------------
 
-Another example of how OWIN-based servers' features can be leveraged by ASP.NET 5 is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET 5 application. The example below shows a simple web application that supports Web Sockets and simply echos back anything sent to the server via WebSockets.
+Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web application that supports Web Sockets and simply echos back anything sent to the server via WebSockets.
 
 .. literalinclude:: owin/sample/src/NowinWebSockets/Startup.cs
 	:lines: 11-
@@ -102,7 +102,7 @@ This sample (`available on GitHub <https://github.com/aspnet/Docs/tree/master/do
 OWIN keys
 ---------
 
-OWIN depends heavily on an ``IDictionary<string,object>`` used to communicate information throughout an HTTP Request/Response exchange. ASP.NET 5 implements all of the required and optional keys outlined in the OWIN specification, as well as some of its own. Note that any keys not required in the OWIN specification are optional and may only be used in some scenarios. When working with OWIN keys, it's a good idea to review the list of `OWIN Key Guidelines and Common Keys <http://owin.org/spec/spec/CommonKeys.html>`_
+OWIN depends heavily on an ``IDictionary<string,object>`` used to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements all of the required and optional keys outlined in the OWIN specification, as well as some of its own. Note that any keys not required in the OWIN specification are optional and may only be used in some scenarios. When working with OWIN keys, it's a good idea to review the list of `OWIN Key Guidelines and Common Keys <http://owin.org/spec/spec/CommonKeys.html>`_
 
 Request Data (OWIN v1.0.0)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -302,7 +302,7 @@ WebSocket v0.3.0
 Summary
 -------
 
-ASP.NET 5 has built-in support for the OWIN specification, providing compatibility to run ASP.NET 5 applications within OWIN-based servers as well as supporting OWIN-based middleware within ASP.NET 5 servers.
+ASP.NET Core has built-in support for the OWIN specification, providing compatibility to run ASP.NET Core applications within OWIN-based servers as well as supporting OWIN-based middleware within ASP.NET Core servers.
 
 Additional Resources
 --------------------
