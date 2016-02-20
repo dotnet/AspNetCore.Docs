@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNet.Mvc.Localization
+@using Localization.StarterWeb.Services
+
+@inject IViewLocalizer Localizer
+@inject LocService SharedLocalizer
+
+@{
+    ViewData["Title"] = Localizer["About"];
+}
+<h2>@ViewData["Title"].</h2>
+
+<h1>@SharedLocalizer.GetLocalizedHtmlString("Hello!")</h1>
