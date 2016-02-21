@@ -93,7 +93,7 @@ imageContext        a
 imageElement        r   
 ==================  =======  
 
-To minify your JavaScript files you can use the `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`__ task. For CSS you can use the `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`__ task. Install these packages using npm as before:
+To minify your JavaScript files you can use the `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`__ plugin. For CSS you can use the `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`__ plugin. Install these packages using npm as before:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
