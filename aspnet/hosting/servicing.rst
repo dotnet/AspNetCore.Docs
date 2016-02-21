@@ -5,7 +5,7 @@ Servicing
 
 By `Sourabh Shirhatti`_
 
-ASP.NET 5 supports servicing of runtime components (DNX) and packages through Microsoft Update, which will deliver updates to patch any vulnerabilities when they are discovered. This document provides an overview of how to setup your Windows Server correctly to receive updates.
+ASP.NET 5 supports servicing of runtime components (DNX) and packages through Microsoft Update, which will deliver updates to patch any vulnerability when they are discovered. This document provides an overview of how to setup your Windows Server correctly to receive updates.
 
 Breadcrumbs Directory
 ---------------------
