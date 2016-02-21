@@ -365,7 +365,7 @@ HttpContext itself
 ^^^^^^^^^^^^^^^^^^
 **HttpContext.Items** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>01b
         :end-before: //<01b
         :language: c#
@@ -375,7 +375,7 @@ HttpContext itself
 
 Gives you a unique id for each request. Very useful to include in your logs.
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>01
         :end-before: //<01
         :language: c#
@@ -385,7 +385,7 @@ HttpContext.Request
 ^^^^^^^^^^^^^^^^^^^
 **HttpContext.Request.HttpMethod** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>02
         :end-before: //<02
         :language: c#
@@ -393,7 +393,7 @@ HttpContext.Request
 
 **HttpContext.Request.QueryString** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>03
         :end-before: //<03
         :language: c#
@@ -401,7 +401,7 @@ HttpContext.Request
 
 **HttpContext.Request.Url and HttpContext.Request.RawUrl** translate to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>04
         :end-before: //<04
         :language: c#
@@ -409,7 +409,7 @@ HttpContext.Request
 
 **HttpContext.Request.IsSecureConnection** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>05
         :end-before: //<05
         :language: c#
@@ -417,7 +417,7 @@ HttpContext.Request
 
 **HttpContext.Request.UserHostAddress** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>06
         :end-before: //<06
         :language: c#
@@ -425,7 +425,7 @@ HttpContext.Request
 
 **HttpContext.Request.Cookies** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>07
         :end-before: //<07
         :language: c#
@@ -433,7 +433,7 @@ HttpContext.Request
 
 **HttpContext.Request.Headers** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>08
         :end-before: //<08
         :language: c#
@@ -441,7 +441,7 @@ HttpContext.Request
 
 **HttpContext.Request.UserAgent** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>12
         :end-before: //<12
         :language: c#
@@ -449,7 +449,7 @@ HttpContext.Request
 
 **HttpContext.Request.UrlReferrer** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>13
         :end-before: //<13
         :language: c#
@@ -457,7 +457,7 @@ HttpContext.Request
 
 **HttpContext.Request.ContentType** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>14
         :end-before: //<14
         :language: c#
@@ -465,7 +465,7 @@ HttpContext.Request
 
 **HttpContext.Request.Form** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>15
         :end-before: //<15
         :language: c#
@@ -476,7 +476,7 @@ HttpContext.Request
 
 **HttpContext.Request.InputStream** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>16
         :end-before: //<16
         :language: c#
@@ -499,7 +499,7 @@ HttpContext.Response
 
 **HttpContext.Response.Status and HttpContext.Response.StatusDescription** translate to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>30
         :end-before: //<30
         :language: c#
@@ -507,7 +507,7 @@ HttpContext.Response
 
 **HttpContext.Response.ContentEncoding and HttpContext.Response.ContentType** translate to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>31
         :end-before: //<31
         :language: c#
@@ -515,7 +515,7 @@ HttpContext.Response
 
 **HttpContext.Response.ContentType** on its own also translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>32
         :end-before: //<32
         :language: c#
@@ -523,7 +523,7 @@ HttpContext.Response
 
 **HttpContext.Response.Output** translates to:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>33
         :end-before: //<33
         :language: c#
@@ -550,7 +550,7 @@ This code sets a callback method called ``SetHeaders``:
 
 Your ``SetHeaders`` callback method would look like this:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>41
         :end-before: //<41
         :language: c#
@@ -571,7 +571,7 @@ Cookies travel to the browser in a *Set-Cookie* response header. As a result, se
 
 Your ``SetCookies`` callback method would look like this:
 
-    .. literalinclude:: http-modules/sample/Asp.Net5\src\Asp.Net5\Middleware\HttpContextDemoMiddleware.cs
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>42
         :end-before: //<42
         :language: c#
