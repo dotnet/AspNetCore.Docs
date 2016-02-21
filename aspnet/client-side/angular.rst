@@ -97,7 +97,7 @@ Other primitive directives in AngularJS include:
   Used to initialize the application data in the form of an expression for the current scope.
 
 ``ng-if``
-  If clause used within your AngularJS application; usually used with an expression.
+  Removes or adds the given HTML element from the dom entirely based on the truthiness of expression provided.
 
 ``ng-repeat``
   Repeats a given block of HTML over a set of data.
