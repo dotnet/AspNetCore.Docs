@@ -11,3 +11,4 @@
 .. _Scott Addie: http://scottaddie.com
 .. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi
 .. _Sourabh Shirhatti: https://twitter.com/sshirhatti
+.. _Matt Perdeck: http://www.linkedin.com/in/mattperdeck

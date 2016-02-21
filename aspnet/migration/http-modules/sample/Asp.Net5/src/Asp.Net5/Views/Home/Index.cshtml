@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNet.Http.Extensions
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>index</title>
+</head>
+<body>
+    <h1>index</h1>
+    <p>
+        To execute the middleware ReportHandler for the .report extension, visit this url:
+    </p>
+
+    <a target="_blank" href="/x.report?title=abc">@Context.Request.Scheme://@Context.Request.Host/x.report?title=abc</a>
+    <p>
+        To be denied access to this page by middleware SimpleAuthorizeMiddleware, visit:
+    </p>
+    <a href="?iamevil=true">@Context.Request.Scheme://@Context.Request.Host?iamevil=true</a>
+</body>
+</html>
+
