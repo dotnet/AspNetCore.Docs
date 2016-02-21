@@ -20,14 +20,14 @@ Before proceeding to ASP.NET 5 middleware, let's first recap the use of handlers
 Handlers are:
 	* Classes that implement `IHttpHandler <https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx>`_;
 	* Used to handle only requests with a given file name or extension, such as *.report*;
-	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`_ in your *web.config* file.
+	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`__ in your *web.config* file.
 
 Modules are:
 	* Classes that implement `IHttpModule <https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx>`_;
 	* Invoked in principle for every request;
 	* Able to stop further processing of a request;
 	* Able to add to the HTTP response, or create their own; 
-	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`_ in your web.config file.
+	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in your web.config file.
 
 **The order in which modules process incoming requests is determined by:**
 
