@@ -154,7 +154,7 @@ In your ASP.NET 4 application, your handler will look similar to this:
 
 In your ASP.NET 5 project, you would translate this to a middleware similar to this:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/reporthandlermiddleware.cs
+.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/ReportHandlerMiddleware.cs
 	:language: c#
 	:linenos:
 	:emphasize-lines: 7,9,13, 20-23, 29, 31, 33
