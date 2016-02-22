@@ -1,6 +1,4 @@
-﻿#define S
-#if S1
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,22 +53,17 @@ namespace Localization.StarterWeb
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Add the localization services to the services container
-               services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddMvc()
-                // Add support for finding localized views, based on file name suffix, e.g. Index.fr.cshtml
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                // Add support for localizing strings in data annotations (e.g. validation messages) via the
-                // IStringLocalizer abstractions.
-                .AddDataAnnotationsLocalization();
+              .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+              .AddDataAnnotationsLocalization();
 
-            services.AddTransient<LocService>();
-            // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Configure supported cultures and localization options
+            /*
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[]
@@ -97,16 +90,21 @@ namespace Localization.StarterWeb
                 // - QueryStringRequestCultureProvider, sets culture via "culture" and "ui-culture" query string values, useful for testing
                 // - CookieRequestCultureProvider, sets culture via "ASPNET_CULTURE" cookie
                 // - AcceptLanguageHeaderRequestCultureProvider, sets culture via the "Accept-Language" request header
+                //
                 //options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
                 //{
                 //  // My custom request culture logic
                 //  return new ProviderCultureResult("en");
                 //}));
             });
+            */
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory )
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -136,10 +134,29 @@ namespace Localization.StarterWeb
                 catch { }
             }
 
-            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(locOptions.Value);
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("en-AU"),
+                new CultureInfo("en-GB"),
+                new CultureInfo("en"),
+                new CultureInfo("es-ES"),
+                new CultureInfo("es-MX"),
+                new CultureInfo("es"),
+                new CultureInfo("fr-FR"),
+                new CultureInfo("fr"),
+            };
 
-            // Remaining code ommited for brevity.
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+
+            // Remaining code omitted for brevity.
 
             var options = new IISPlatformHandlerOptions();
             options.AuthenticationDescriptions.Clear();
@@ -172,4 +189,3 @@ namespace Localization.StarterWeb
         }
     }
 }
-#endif

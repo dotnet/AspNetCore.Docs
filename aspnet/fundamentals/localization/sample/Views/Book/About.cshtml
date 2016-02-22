@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNet.Mvc.Localization
-@using Localization.StarterWeb.Services
 @using System.Globalization
 @using Microsoft.AspNet.Localization;
 
 @inject IViewLocalizer Localizer
-@inject LocService SharedLocalizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
 @{
     ViewData["Title"] = Localizer["About"];
     var requestCultureFeature = (IRequestCultureFeature)ViewData["requestCultureFeature"];
@@ -14,7 +14,7 @@
 <h2>@ViewData["Title"].</h2>
 @ViewData["Message"]
 <p>@Localizer["Use this area to provide additional information."]</p>
-<h1>SL @SharedLocalizer.GetLocalizedHtmlString("Hello!")</h1>
+<h1>SL @SharedLocalizer["Hello!"]</h1>
 
 <table>
     <tr>

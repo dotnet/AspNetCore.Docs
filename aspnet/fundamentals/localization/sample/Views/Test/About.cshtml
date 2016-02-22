@@ -2,11 +2,11 @@
 @using Localization.StarterWeb.Services
 
 @inject IViewLocalizer Localizer
-@inject LocService SharedLocalizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
 
 @{
     ViewData["Title"] = Localizer["About"];
 }
 <h2>@ViewData["Title"].</h2>
 
-<h1>@SharedLocalizer.GetLocalizedHtmlString("Hello!")</h1>
+<h1>@SharedLocalizer["Hello!"]</h1>
