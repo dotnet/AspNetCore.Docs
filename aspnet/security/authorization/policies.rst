@@ -88,7 +88,7 @@ Our minimum age handler might look like so;
              calculatedAge--;
          }
 
-         if (calculatedAge >= MinimumAge)
+         if (calculatedAge >= requirement.MinimumAge)
          {
              context.Succeed(requirement);
          }
