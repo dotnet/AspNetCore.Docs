@@ -1,4 +1,4 @@
-Enabling Cross-Origin Requests (CORS)
+﻿Enabling Cross-Origin Requests (CORS)
 =====================================
 
 By `Mike Wasson`_
@@ -71,6 +71,8 @@ Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 	:lines: 21-24
 	:dedent: 12
 	:emphasize-lines: 3
+
+Make sure to call `app.UseCors` before calling `app.UseMvc`.
 
 The second approach is to define one or more named CORS policies, and then select the policy by name at run time.
 
