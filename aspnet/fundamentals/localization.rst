@@ -11,10 +11,10 @@ This sample is based on the **Localization.StarterWeb** project on `GitHub <http
   :local:
   :depth: 1
   
-.. note:: Currently, resource files are not read when the project is run from Visual Studio. See `this issue <https://github.com/aspnet/dnx/issues/3047>`_ for more information.
+.. note:: Currently, resource files are not read when the project is run from Visual Studio. See `this issue <https://github.com/aspnet/dnx/issues/3047>`_ for more information. Until the issue with Visual Studio is addressed, you can test the project by running it from the command line.
 
 IStringLocalizer
------------------------------------
+---------------------------------
 
 Introduced in ASP.NET Core, ``IStringLocalizer`` was architected to improve productivity when developing localized apps. 
 

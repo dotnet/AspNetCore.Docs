@@ -27,6 +27,9 @@ namespace Localization.StarterWeb.Controllers
             return View();
         }
 
+        // Pass the requestCultureFeature and requestCulture objects to the view
+        // so we can get Culture/UICulture information.
+         
         public IActionResult About()
         {
             IRequestCultureFeature requestCultureFeature = HttpContext.Features.Get<IRequestCultureFeature>();
@@ -37,11 +40,6 @@ namespace Localization.StarterWeb.Controllers
 
             return View();
         }
-
-        //title="@Localizer["Log in using your {0} account", @provider.DisplayName]"> 
-        // @provider.AuthenticationScheme</button>
-
-
 
         public IActionResult Contact()
         {
@@ -64,6 +62,6 @@ namespace Localization.StarterWeb.Controllers
         public IActionResult Error()
         {
             return View();
-        }
+        } 
     }
 }
