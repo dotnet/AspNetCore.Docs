@@ -261,12 +261,12 @@ The terms used so far:
 
 ASP.NET Core allows you to specify two culture values, ``SupportedCultures`` and ``SupportedUICultures``. The `CultureInfo <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo(v=vs.110).aspx>`__ object for ``SupportedCultures`` determines the results of culture-dependent functions, such as date, time, number, and currency formatting. ``SupportedCultures`` also determines the sorting order of text, casing conventions, and string comparisons. See `CultureInfo.CurrentCulture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.currentculture%28v=vs.110%29.aspx>`__ for more info on how the server gets the Culture. The ``SupportedUICultures`` determines which resources are to be loaded for the page by the ResourceManager. The ResourceManager simply looks up culture-specific resources that is determined by ``CurrentUICulture``. Every thread in .NET has ``CurrentCulture`` and ``CurrentUICulture`` objects. ASP.NET Core inspects these values when rendering culture-dependent functions. For example, if the current thread's culture is set to "en-US" (English, United States), DateTime.Now.ToLongDateString() shows "Thursday, February 18, 2016", but if CurrentCulture is set to "es-ES" (Spanish, Spain) the result will be "jueves, 18 de febrero de 2016".
 
-This sample **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ contains UI to set the ``Culture``. The *views/shared/_selectlanguagepartial.cshtml* file allows you to select the culture from the list of supported cultures:
+This sample **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ contains UI to set the ``Culture``. The *views/shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
-.. literalinclude:: localization/sample/views/shared/_selectlanguagepartial.cshtml
+.. literalinclude:: localization/sample/views/shared/_SelectLanguagePartial.cshtml
   :language: HTML
   
-The *views/shared/_selectlanguagepartial.cshtml* file is added to the ``footer`` section of the layout file so it will be available to all views:
+The *views/shared/_SelectLanguagePartial.cshtml* file is added to the ``footer`` section of the layout file so it will be available to all views:
 
 .. literalinclude:: localization/sample/views/shared/_Layout.cshtml
   :language: HTML
@@ -281,5 +281,5 @@ The ``SetLanguage`` method sets the culture cookie.
   :lines: 57-67
   :dedent: 6
   
-You can't simply plug in the *_selectlanguagepartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ has code to flow the
+You can't simply plug in the *_SelectLanguagePartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ has code to flow the
 ``RequestLocalizationOptions`` to a Razor partial through the :doc:`/fundamentals/dependency-injection` container.
