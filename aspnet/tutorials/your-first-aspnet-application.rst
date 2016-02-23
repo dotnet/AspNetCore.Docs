@@ -28,6 +28,8 @@ In the **New ASP.NET Project** dialog, select **Web Application** under **ASP.NE
 
 .. image:: your-first-aspnet-application/_static/03-web-site-template.png
 
+.. note:: Do not change the authentication method. Leave it as the default **Individual User Accounts** for this tutorial. 
+
 Running the default app
 ^^^^^^^^^^^^^^^^^^^^^^^
 
