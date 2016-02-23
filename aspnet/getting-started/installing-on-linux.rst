@@ -45,7 +45,7 @@ The .NET Execution Environment (DNX) is used to build and run .NET projects. Use
 
 1. Install the DNX prerequisites::
 
-    sudo apt-get install libunwind8 gettext libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev
+    sudo apt-get install libunwind8 gettext libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev unzip
 
 2. Use DNVM to install DNX for .NET Core::
 
