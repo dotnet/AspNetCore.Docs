@@ -268,7 +268,7 @@ This sample **Localization.StarterWeb** project on `GitHub <https://github.com/a
   
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the ``footer`` section of the layout file so it will be available to all views:
 
-.. literalinclude:: localization/sample/views/shared/_Layout.cshtml
+.. literalinclude:: localization/sample/Views/Shared/_Layout.cshtml
   :language: HTML
   :lines: 48-61
   :linenos:
