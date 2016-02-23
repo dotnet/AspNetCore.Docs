@@ -52,7 +52,7 @@ Handlers and modules do the job, but are overly complicated:
 ASP.NET 5 middleware dramatically simplifies the request pipeline:
 	* Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone;
 	* Middleware is configured using code;
-	* `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the url but also on request headers, etc.
+	* `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware is very similar to modules:
 	* Invoked in principle for every request;
@@ -207,7 +207,7 @@ However, in ASP.NET 5 you can no longer do that.
 
 The new ASP.NET 5 :ref:`configuration system <fundamentals-configuration>` gives you these options to solve this:
 
-* Use the `options pattern <../fundamentals/configuration.html#options-config-objects>`_, as used with MVC controllers. This section shows how.
+* Use the `options pattern <../fundamentals/configuration.html#options-config-objects>`_, as used with MVC. This section shows how.
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
 
 1. Create a class to hold your middleware options
@@ -339,7 +339,7 @@ and passes it to ``UseMiddleware``. When you call
 Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by 
 the middleware constructor.
 
-To use ``OptionsWrapper``, add namespace ``Microsoft.Extensions.Options``. If that isn't available yet when you read this, simpy add ``OptionsWrapper`` 
+To use ``OptionsWrapper``, add namespace ``Microsoft.Extensions.Options``. If that isn't available yet when you read this, simply add ``OptionsWrapper`` 
 yourself for now:
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
