@@ -44,15 +44,11 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 From handlers and modules to middleware
 ---------------------------------------
-Handlers and modules do the job, but are overly complicated:
-	* Seeing that modules can create responses themselves, there is no need for handlers;
-	* The order in which modules run can be determined solely by the order in which they are inserted into the request pipeline, making the life cycle events superfluous;
-	* Configuring modules in code instead of in the web.config file is simpler and more powerful.
-
-ASP.NET 5 middleware dramatically simplifies the request pipeline:
-	* Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone;
-	* Middleware is configured using code;
-	* `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
+ASP.NET 5 middleware is simpler than ASP.NET 4's modules and handlers:
+    * Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone;
+    * The roles of both modules and handlers have been taken over by middleware;
+    * Middleware is configured using code instead of in the web.config file;
+    * `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware is very similar to modules:
 	* Invoked in principle for every request;
