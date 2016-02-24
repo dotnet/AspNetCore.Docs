@@ -106,7 +106,7 @@ Service Lifetimes and Registration Options
 ASP.NET services can be configured with the following lifetimes:
 
 Transient
-  Transient lifetime services are created each time they are requested. This lifetime works best for lightweight, stateless service.
+  Transient lifetime services are created each time they are requested. This lifetime works best for lightweight, stateless services.
 
 Scoped
   Scoped lifetime services are created once per request.
