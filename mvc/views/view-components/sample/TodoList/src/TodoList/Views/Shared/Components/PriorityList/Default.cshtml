@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TodoList.Models.TodoItem>
+
+<h2>From the Shared folder!</h2>
+<h4>@ViewBag.PriorityMessage</h4>
+
+<h3>Priority Items</h3>
+<ul>
+    @foreach (var todo in Model)
+    {
+        <li>@todo.Title</li>
+    }
+</ul>

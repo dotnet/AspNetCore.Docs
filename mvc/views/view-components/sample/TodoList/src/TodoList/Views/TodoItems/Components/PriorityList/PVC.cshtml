@@ -1,0 +1,10 @@
+﻿@model IEnumerable<TodoList.Models.TodoItem>
+
+<h2> PVC Named Priority Component View</h2>
+<h4>@ViewBag.PriorityMessage</h4>
+<ul>
+    @foreach (var todo in Model)
+    {
+        <li>@todo.Title</li>
+    }
+</ul>
