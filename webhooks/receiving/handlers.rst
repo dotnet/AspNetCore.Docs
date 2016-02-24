@@ -58,7 +58,7 @@ Hooks.Receivers.Custom/WebHooks/CustomNotifications.cs>`_ as follows::
 
     public class MyWebHookHandler : WebHookHandler
     {
-        public CustomWebHookHandler()
+        public MyWebHookHandler()
         {
             this.Receiver = "custom";
         }
