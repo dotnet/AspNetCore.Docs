@@ -46,7 +46,7 @@ Middleware is simpler than HTTP modules and handlers:
     * Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone
     * The roles of both modules and handlers have been taken over by middleware
     * Middleware is configured using code instead of in the web.config
-    * `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
+    * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware is very similar to modules:
 	* Invoked in principle for every request
@@ -79,7 +79,7 @@ an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taki
 	:emphasize-lines: 9, 13, 20, 24, 28, 30, 32
 
 The middleware template used here is the same as that shown in the section on 
-`writing middleware <../fundamentals/middleware.html#writing-middleware>`_.
+:ref:`writing middleware <middleware-writing-middleware>`.
 
 The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class. 
 The ``UseMyMiddleware`` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
@@ -200,7 +200,7 @@ However, in ASP.NET 5 a new configuration model is used in place of web.config.
 
 The new ASP.NET 5 :ref:`configuration system <fundamentals-configuration>` gives you these options to solve this:
 
-* Use the `options pattern <../fundamentals/configuration.html#options-config-objects>`_, as used with MVC. This section shows how.
+* Use the :ref:`options pattern <options-config-objects>`, as used with MVC. This section shows how.
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
 
 1. Create a class to hold your middleware options
