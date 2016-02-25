@@ -1,11 +1,33 @@
-ASP.NET Core Internationalization: Localization and Globalization 
-==================================================================
+Globalization and Localization   
+==============================
 
-By `Rick Anderson`_ with assistance from `Damien Bowden <https://twitter.com/damien_bod>`_, `Bart Calixto <https://twitter.com/bartmax>`_, and `Nadeem Afana <https://twitter.com/NadeemAfana>`__ 
+By `Rick Anderson`_, `Damien Bowden <https://twitter.com/damien_bod>`_, `Bart Calixto <https://twitter.com/bartmax>`_, and `Nadeem Afana <https://twitter.com/NadeemAfana>`__ 
 
-Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET has :doc:`/fundamentals/request-features` that provide support for localizing into different languages and cultures.
+Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
-This sample is based on the **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__.
+Internationalization involves `Globalization <https://msdn.microsoft.com/en-us/library/aa292081(v=vs.71).aspx>`__ and `Localization <https://msdn.microsoft.com/en-us/library/aa292137(v=vs.71).aspx>`__. Globalization is the process of designing apps that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.
+
+Localization is the process of adapting a globalized app, which you have already processed for localizability, to a particular culture/locale. The process of localizing your app also requires a basic understanding of relevant character sets commonly used in modern software development and an understanding of the issues associated with them. Although all computers store text as numbers (codes), different systems store the same text using different numbers. The localization process refers to translating the app user interface (UI) for a specific culture/locale. 
+
+`Localizability <https://msdn.microsoft.com/en-us/library/aa292135(v=vs.71).aspx>`__ is an intermediate process for verifying that a globalized app is ready for localization.
+
+The `RFC 4646 <https://www.ietf.org/rfc/rfc4646.txt>`__ format for the culture name is "<languagecode2>-<country/regioncode2>", where <languagecode2> is the language code and <country/regioncode2> is the subculture code. For example, ``es-CL`` for Spanish (Chile), ``en-US`` for English (United States), and ``en-AU`` for English (Australia). `RFC 4646 <https://www.ietf.org/rfc/rfc4646.txt>`__ is a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region.  See `Language Culture Name <https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx>`__.
+
+Internationalization is often abbreviated to "I18N". The abbreviation takes the first and last letters and the number of letters between them, so 18 stands for the number of letters between the first "I" and the last "N". The same applies to Globalization (G11N), and Localization (L10N).
+
+Terms:
+
+- Globalization (G11N): The process of making an app support different languages and regions.
+- Localization (L10N): The process of customizing an app for a given language and region.
+- Internationalization (I18N): Describes both globalization and localization.
+- Culture: It is a language and, optionally, a region.
+- Neutral culture: A culture that has a specified language, but not a region. (for example "en", "es")
+- Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
+- Locale: A locale is the same as a culture. 
+
+ASP.NET Core allows you to specify two culture values, ``SupportedCultures`` and ``SupportedUICultures``. The `CultureInfo <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo(v=vs.110).aspx>`__ object for ``SupportedCultures`` determines the results of culture-dependent functions, such as date, time, number, and currency formatting. ``SupportedCultures`` also determines the sorting order of text, casing conventions, and string comparisons. See `CultureInfo.CurrentCulture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.currentculture%28v=vs.110%29.aspx>`__ for more info on how the server gets the Culture. The ``SupportedUICultures`` determines which resources are to be loaded for the page by the ResourceManager. The ResourceManager simply looks up culture-specific resources that is determined by ``CurrentUICulture``. Every thread in .NET has ``CurrentCulture`` and ``CurrentUICulture`` objects. ASP.NET Core inspects these values when rendering culture-dependent functions. For example, if the current thread's culture is set to "en-US" (English, United States), DateTime.Now.ToLongDateString() shows "Thursday, February 18, 2016", but if CurrentCulture is set to "es-ES" (Spanish, Spain) the result will be "jueves, 18 de febrero de 2016".
+
+The sample code used in the article is based on the **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__.
 
 .. contents:: In this article:
   :local:
@@ -13,17 +35,52 @@ This sample is based on the **Localization.StarterWeb** project on `GitHub <http
   
 .. note:: Currently, resource files are not read when the project is run from Visual Studio. See `this issue <https://github.com/aspnet/dnx/issues/3047>`_ for more information. Until the issue with Visual Studio is addressed, you can test the project by running it from the command line.
 
-IStringLocalizer
----------------------------------
+Working with resource files
+-----------------------------
 
-Introduced in ASP.NET Core, ``IStringLocalizer`` was architected to improve productivity when developing localized apps. 
+A resource file is a useful mechanism for separating localizable strings from code. Translated strings for the non-default language are isolated *.resx* resource files. For example, you might want to create Spanish resource file named *Welcome.es.resx* containing translated strings. "es" is the language code for Spanish. To create this resource file in Visual Studio:
 
-The simple interface has an indexer and an ``IEnumerable`` for returning localized strings. Unlike previous localization approaches, ``IStringLocalizer`` doesn't require you to store the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development. We anticipate that many developers will **not** create a default language resource file. In previous versions of ASP.NET, you had to move all your localization strings into a resource (.resx) file and change your app everywhere the strings were used, even for the default language. You no longer need to move your localized strings, you simply wrap them.
+#. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
+
+.. image:: localization/_static/newi.png
+
+2. In the **Search installed templates** box, enter "resource" and name the file.
+
+.. image:: localization/_static/res.png
+
+3. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
+
+.. image:: localization/_static/hola.png
+
+Visual Studio shows the *Welcome.es.resx* file.
+
+.. image:: localization/_static/se.png
+
+Later on in this article I'll show how your ASP.NET app can use the key "Hello" to fetch the string "Hola".
+
+Generating resource files with Visual Studio
+-----------------------------------------------
+
+If you create a resource file in Visual Studio without a culture in the file name (for example, *Welcome.resx*), Visual Studio will create a C# class with a property for each string.  That's usually not what you want with ASP.NET Core; you typically don't have a default *.resx* resource file (A *.resx* file without the culture name). We suggest you create the *.resx* file with a culture name (for example *Welcome.fr.resx*). When you create a *.resx* file with a culture name, Visual Studio will not generate the class file.
+
+If you remove the ".fr" culture designator AND you have the culture set to French (via cookie or other mechanism), the default resource file is read and strings are localized. This is expected behavior. \*.resx designates a default or fallback resource, so that when nothing meets your requested culture you're served \*.resx. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.
+
+
+Adding Other Cultures  
+-----------------------
+ 
+Each language and culture combination (other than the default language) requires a unique resource file. You can create resource files for different cultures and locales by creating new resource files in which the ISO language codes are part of the file name (for example, **en-us**, **fr-ca**, and **en-gb**). These ISO codes are placed between the file name and the .resx file name extension, as in *Welcome.es-MX.resx* (Spanish/Mexico). To specify a culturally neutral language, you would eliminate the country code, such as Welcome.fr.resx for the French language. 
+
+
+Preparing your app for localization
+----------------------------------------
+
+Introduced in ASP.NET Core, ``IStringLocalizer`` was architected to improve productivity when developing localized apps. The simple interface has an indexer and an ``IEnumerable`` for returning localized strings. ``IStringLocalizer`` doesn't require you to store the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development. We anticipate that many developers will **not** create a default language resource file. The code below shows how to wrap the string "About Title" for localization.
 
 .. literalinclude:: localization/sample/Controllers/AboutController.cs
   :language: c#
 
-In the code above, the ``IStringLocalizer`` implementation comes from :doc:`/fundamentals/dependency-injection`. If the localized value of "About Title" is not found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer. You can develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language "resx" file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
+In the code above, the ``IStringLocalizer`` implementation comes from :doc:`/fundamentals/dependency-injection`. I'll show how the ``IStringLocalizer`` service gets added in the **Configuring localization** section below. If the localized value of "About Title" is not found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer. You can develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
 
 Use the ``IHtmlLocalizer`` implementation for resources that contain markup. ``IHtmlLocalizer`` HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the ``name`` parameter is HTML encoded.
 
@@ -55,12 +112,12 @@ You can partition your localized strings by controller, area, or have just one c
 View localization
 --------------------
 
-The ``IViewLocalizer`` service provides localized strings for a view. The ``ViewLocalizer`` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of ``IViewLocalizer``:
+The ``IViewLocalizer`` service provides localized strings for a `view <http://docs.asp.net/projects/mvc/en/latest/views/index.html>`_. The ``ViewLocalizer`` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of ``IViewLocalizer``:
 
 .. literalinclude:: localization/sample/Views/Home/About.cshtml
   :language: HTML
   
-The default implementation of ``IViewLocalizer`` finds the resource file based on the view name, there is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using ``IHtmlLocalizer``, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
+The default implementation of ``IViewLocalizer`` finds the resource file based on the view name. There is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using ``IHtmlLocalizer``, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
 .. code-block:: HTML
 
@@ -96,14 +153,29 @@ DataAnnotations error messages are localized with ``IStringLocalizer<Type>``. Us
   :lines: 9-26
   :dedent: 3
   
-Currently, the run time doesn't look up localized strings for non-validation attributes. In the code above, the "Email" (from ``[Display(Name = "Email")]``) will not be localized.
+The run time doesn't look up localized strings for non-validation attributes. In the code above, the "Email" (from ``[Display(Name = "Email")]``) will not be localized.
+
+Configuring localization
+----------------------------------
+
+Localization is configured in the ``ConfigureServices`` method:
+
+.. literalinclude:: localization/sample/Startup.cs
+  :language: c#
+  :linenos:
+  :lines: 44-45,55-61
+  :dedent: 6
+
+- ``AddLocalization`` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
+- ``AddViewLocalization`` Adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+- ``AddDataAnnotationsLocalization`` Adds support for localized ``DataAnnotations`` validation messages through ``IStringLocalizer`` abstractions.
   
 Localization middleware
 -----------------------------------
 
 The current culture on a request is set in the localization :doc:`/fundamentals/middleware`. The localization middleware is enabled in the ``Configure`` method of *Startup.cs* file.
 
-.. literalinclude:: localization/sample/StartupConfig.cs
+.. literalinclude:: localization/sample/Startup.cs
   :language: c#
   :linenos:
   :lines: 106-107, 136-159
@@ -136,9 +208,23 @@ Production apps will often provide a mechanism to set the culture with the ``ASP
 The Accept-Language HTTP header
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Accept-Language HTTP header from a browser request is not an infallible way to detect the user's preferred language. This setting indicates what the browser has been set to send or has inherited from the underlying operating system. A production app should include a way for a user to customize their choice of culture.
+The `Accept-Language header <https://www.w3.org/International/questions/qa-accept-lang-locales>`__ is settable in most browsers and was originally intended to specify the user's language. This setting indicates what the browser has been set to send or has inherited from the underlying operating system. The Accept-Language HTTP header from a browser request is not an infallible way to detect the user's preferred language (see `Setting language preferences in a browser <https://www.w3.org/International/questions/qa-lang-priorities.en.php>`__). A production app should include a way for a user to customize their choice of culture.
 
-Use ``RequestLocalizationOptions`` to add or remove localization providers. 
+Setting the Accept-Language HTTP header in IE 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. From the gear icon, tap **Internet Options**.
+#. Tap **Languages**.
+
+.. image:: localization/_static/lang.png
+
+3. Tap **Set Language Preferences**.
+#. Tap **Add a language**.
+#. Add the language.
+#. Tap the language, then tap **Move Up**.
+
+Using a custom provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
 
@@ -163,21 +249,7 @@ Suppose you want to let your customers store their language and culture in your 
         }));
     });
 
-Configuring localization
-----------------------------------
-
-Localization is configured in the ``ConfigureServices`` method:
-
-.. literalinclude:: localization/sample/StartupConfig.cs
-  :language: c#
-  :linenos:
-  :lines: 44-45,55-61
-  :dedent: 6
-
-- ``AddLocalization`` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
-- ``AddViewLocalization`` Adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
-- ``AddDataAnnotationsLocalization`` Adds support for localized ``DataAnnotations`` validation messages through ``IStringLocalizer`` abstractions.
-
+Use ``RequestLocalizationOptions`` to add or remove localization providers. 
 
 Resource file naming
 ---------------------
@@ -229,37 +301,10 @@ Resource files using ``@inject IViewLocalizer`` in Razor views follow a similar 
 
 If you don't use the ``ResourcesPath`` option, the *.resx* file for a view would be located in the same folder as the view.
 
-Generating resource files with Visual Studio
------------------------------------------------
 
-If you create a resource file in Visual Studio without a culture in the file name (for example, *MyStrings.resx*), Visual Studio will create a C# class with a property for each string.  That's usually not what you want with ASP.NET Core; you typically don't have a default resx resource file (A resx file without the culture name). We suggest you create the .resx file with a culture name (for example *MyStrings.fr.resx*). When you create a .resx file with a culture name, Visual Studio will not generate the class file.
 
-If you remove the ".fr" culture designator AND you have the culture set to French (via cookie or other mechanism), the default resource file is read and strings are localized. This is expected behavior. \*.resx designates a default or fallback resource, so that when nothing meets your requested culture you're served \*.resx. If you want to just return the key when missing a resource for the requested culture you must not have a default resource file.
-
-Globalization and Localization in ASP.NET Core
--------------------------------------------------------
-
-Internationalization involves `Globalization <https://msdn.microsoft.com/en-us/library/aa292081(v=vs.71).aspx>`__ and `Localization <https://msdn.microsoft.com/en-us/library/aa292137(v=vs.71).aspx>`__. Globalization is the process of designing applications that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas. 
-
-Localization is the process of adapting a globalized application, which you have already processed for localizability, to a particular culture/locale. The process of localizing your application also requires a basic understanding of relevant character sets commonly used in modern software development and an understanding of the issues associated with them. Although all computers store text as numbers (codes), different systems can (and do) store the same text using different numbers. The localization process refers to translating the application user interface (UI) for a specific culture/locale. 
-
-`Localizability <https://msdn.microsoft.com/en-us/library/aa292135(v=vs.71).aspx>`__ is an intermediate process for verifying that a globalized application is ready for localization.
-
-The format for the culture name is "<languagecode2>-<country/regioncode2>", where <languagecode2> is the language code and <country/regioncode2> is the subculture code. Examples include ``es-CL`` for Spanish (Chile), ``en-US`` for English (United States), and ``en-AU`` for English (Australia). See `Language Culture Name <https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx>`__.
-
-Internationalization is often abbreviated to "I18N". The abbreviation takes the first and last letters and the number of letters between them, so 18 stands for the number of letters between the first "I" and the last "N". The same applies to Globalization (G11N), and Localization (L10N).
-
-The terms used so far:
-
-- Globalization (G11N): The process of making an application support different languages and regions.
-- Localization (L10N): The process of customizing an application for a given language and region.
-- Internationalization (I18N): Describes both globalization and localization.
-- Culture: It is a language and, optionally, a region.
-- Neutral culture: A culture that has a specified language, but not a region. (for example "en", "es")
-- Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
-- Locale: A locale is the same as a culture. 
-
-ASP.NET Core allows you to specify two culture values, ``SupportedCultures`` and ``SupportedUICultures``. The `CultureInfo <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo(v=vs.110).aspx>`__ object for ``SupportedCultures`` determines the results of culture-dependent functions, such as date, time, number, and currency formatting. ``SupportedCultures`` also determines the sorting order of text, casing conventions, and string comparisons. See `CultureInfo.CurrentCulture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.currentculture%28v=vs.110%29.aspx>`__ for more info on how the server gets the Culture. The ``SupportedUICultures`` determines which resources are to be loaded for the page by the ResourceManager. The ResourceManager simply looks up culture-specific resources that is determined by ``CurrentUICulture``. Every thread in .NET has ``CurrentCulture`` and ``CurrentUICulture`` objects. ASP.NET Core inspects these values when rendering culture-dependent functions. For example, if the current thread's culture is set to "en-US" (English, United States), DateTime.Now.ToLongDateString() shows "Thursday, February 18, 2016", but if CurrentCulture is set to "es-ES" (Spanish, Spain) the result will be "jueves, 18 de febrero de 2016".
+TODO TItle Here
+-------------------------
 
 This sample **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ contains UI to set the ``Culture``. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
@@ -283,3 +328,9 @@ The ``SetLanguage`` method sets the culture cookie.
   
 You can't simply plug in the *_SelectLanguagePartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ has code to flow the
 ``RequestLocalizationOptions`` to a Razor partial through the :doc:`/fundamentals/dependency-injection` container.
+
+Additional Resources
+---------------------
+
+- `Resource Files in Visual Studio <https://msdn.microsoft.com/en-us/library/xbx3z216(v=vs.110).aspx#VSResFiles>`__
+- `Resources in .resx Files <https://msdn.microsoft.com/en-us/library/xbx3z216(v=vs.110).aspx#ResourcesFiles>`__
