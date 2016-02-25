@@ -3,9 +3,7 @@ Migrating HTTP Modules to Middleware
 
 By `Matt Perdeck`_
 
-`Modules and HTTP Handlers <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_
-are no longer available in ASP.NET 5. 
-This article shows how to migrate your modules and handlers to the new ASP.NET 5 :ref:`middleware <fundamentals-middleware>`.
+This article shows how to migrate existing ASP.NET `HTTP modules and handlers <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_ to ASP.NET 5 :ref:`middleware <fundamentals-middleware>`.
 
 .. contents:: In this article:
   :local:
@@ -13,21 +11,21 @@ This article shows how to migrate your modules and handlers to the new ASP.NET 5
 
 Handlers and modules revisited
 ------------------------------
-Before proceeding to ASP.NET 5 middleware, let's first recap the use of handlers and modules in ASP.NET 4 and below: 
+Before proceeding to ASP.NET 5 middleware, let's first recap how HTTP modules and handlers work: 
 
 .. image:: http-modules/_static/moduleshandlers.png
 
 Handlers are:
-	* Classes that implement `IHttpHandler <https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx>`_;
-	* Used to handle only requests with a given file name or extension, such as *.report*;
-	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`__ in your *web.config* file.
+	* Classes that implement `IHttpHandler <https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx>`_
+	* Used to handle requests with a given file name or extension, such as *.report*
+	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`__ in the *web.config*
 
 Modules are:
-	* Classes that implement `IHttpModule <https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx>`_;
-	* Invoked in principle for every request;
-	* Able to stop further processing of a request;
-	* Able to add to the HTTP response, or create their own; 
-	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in your web.config file.
+	* Classes that implement `IHttpModule <https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx>`_
+	* Invoked for every request
+	* Able to stop further processing of a request
+	* Able to add to the HTTP response, or create their own
+	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in the web.config
 
 **The order in which modules process incoming requests is determined by:**
 
@@ -36,34 +34,34 @@ Modules are:
 		- 
 		`BeginRequest <https://msdn.microsoft.com/en-us/library/system.web.httpapplication.beginrequest(v=vs.100).aspx>`_,
 		`AuthenticateRequest <https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest(v=vs.100).aspx>`_, etc.
-		Each module can create a handler for one or more events;
+		Each module can create a handler for one or more events.
 
-	2. When handling the same event, the order in which they are configured in the web.config file.
+	2. When handling the same event, the order in which they are configured in the web.config.
 
 In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
 
 From handlers and modules to middleware
 ---------------------------------------
-ASP.NET 5 middleware is simpler than ASP.NET 4's modules and handlers:
-    * Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone;
-    * The roles of both modules and handlers have been taken over by middleware;
-    * Middleware is configured using code instead of in the web.config file;
+Middleware is simpler than HTTP modules and handlers:
+    * Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone
+    * The roles of both modules and handlers have been taken over by middleware
+    * Middleware is configured using code instead of in the web.config
     * `Pipeline branching <../fundamentals/middleware.html#run-map-and-use>`_ lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware is very similar to modules:
-	* Invoked in principle for every request;
-	* Able to stop further processing of a request;
-	* Able to add to the HTTP response, or create their own.
+	* Invoked in principle for every request
+	* Able to stop further processing of a request
+	* Able to add to the HTTP response, or create their own
 
 Middleware and modules are processed in a different order:
-	* While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules;
-	* But while the response is going back to the browser, middleware is processed in the reverse order.
+	* While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules
+	* But while the response is going back to the browser, middleware is processed in the reverse order
 
 .. image:: http-modules/_static/middleware.png
 
 Migrating module code to middleware
 ------------------------------------
-In your ASP.NET 4 application, your module will look similar to this:
+An existing HTTP module will look similar to this:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyModule.cs
 	:language: c#
@@ -83,9 +81,8 @@ an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taki
 The middleware template used here is the same as that shown in the section on 
 `writing middleware <../fundamentals/middleware.html#writing-middleware>`_.
 
-Towards the bottom is a helper class to make it easier to configure your middleware in your ``Startup`` class. 
-This calls the ``UseMiddleware`` method, which instantiates your middleware class, dependency injecting all objects required by 
-its constructor.
+The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class. 
+The ``UseMyMiddleware`` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
 Maybe your module sometimes terminates the request, for example if the user is not authorized:
 
@@ -112,7 +109,7 @@ has changed greatly in ASP.NET 5. `Later on <#migrating-to-the-new-httpcontext>`
 
 Migrating module insertion into the request pipeline
 -----------------------------------------------------
-In your ASP.NET 4 application, you will have inserted your module in the request pipeline in your web.config file:
+HTTP modules are typically added to the request pipeline using web.config:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Web.config
 	:language: xml
@@ -130,7 +127,7 @@ to the request pipeline in your ``Startup`` class:
 	:emphasize-lines: 12
 
 The exact spot in the pipeline where you insert your new middleware depends on the event 
-that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in your web.config file.
+that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in your web.config.
 
 However, as you saw there is no more application life cycle in ASP.NET 5
 and the order in which responses are processed by middleware differs from the order used by modules.
@@ -140,7 +137,7 @@ If ordering becomes a problem, you could split your module into multiple middlew
 
 Migrating handler code to middleware
 -------------------------------------
-In your ASP.NET 4 application, your handler will look similar to this:
+An HTTP handler looks something like this:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs
 	:language: c#
@@ -161,7 +158,7 @@ call to ``_next.Invoke(context)``. That makes sense, because the handler is at t
 
 Migrating handler insertion into the request pipeline
 ------------------------------------------------------
-In your ASP.NET 4 application, you will have inserted your HTTP handler in the request pipeline in your web.config file:
+Configuring an HTTP handler is done in web.config and looks something like this:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Web.config
 	:language: xml
@@ -187,7 +184,7 @@ This happens in the same ``Configure`` method where you add the other middleware
 ``MapWhen`` takes these parameters:
 
 1. A lambda that takes the ``HttpContext`` and returns ``true`` if the request should go down the branch.
-   This means you can branch requests not just based on their extension, but also on request headers, query string parameters, etc.;
+   This means you can branch requests not just based on their extension, but also on request headers, query string parameters, etc.
 
 2. A lambda that takes an ``IApplicationBuilder`` and adds all the middleware for the branch.
    This means you can add additional middleware to the branch in front of your handler middleware.
@@ -198,8 +195,8 @@ and for requests not going down the branch.
 Loading middleware options using the options pattern
 ----------------------------------------------------
 
-Some modules and handlers have configuration options. In your ASP.NET 4 application, you would have stored these options in your web.config file.
-However, in ASP.NET 5 you can no longer do that.
+Some modules and handlers have configuration options, which would be stored in the web.config.
+However, in ASP.NET 5 a new configuration model is used in place of web.config.
 
 The new ASP.NET 5 :ref:`configuration system <fundamentals-configuration>` gives you these options to solve this:
 
@@ -276,7 +273,7 @@ Finally inject the options into your middleware's constructor. This is similar t
 This works, because the `UseMiddleware <#http-modules-usemiddleware>`_ extension method that adds your middleware to the
 ``IApplicationBuilder`` takes care of dependency injection.
 
-This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be dependency injected this way.
+This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be injected this way.
 
 Loading middleware options through direct injection
 ---------------------------------------------------
@@ -333,10 +330,7 @@ and passes it to ``UseMiddleware``. When you call
 	:emphasize-lines: 17-22
 
 Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by 
-the middleware constructor.
-
-To use ``OptionsWrapper``, add namespace ``Microsoft.Extensions.Options``. If that isn't available yet when you read this, simply add ``OptionsWrapper`` 
-yourself for now:
+the middleware constructor:
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
 	:language: c#
@@ -352,13 +346,13 @@ You saw earlier that the ``Invoke`` method in your middleware takes a parameter 
 
     public async Task Invoke(HttpContext context)
 
-``HttpContext`` has significantly changed in ASP.NET 5. This section shows how to translate the most commonly used properties from the ASP.NET 4 version of ``HttpContext`` to 
-the `ASP.NET 5 version of HttpContext <https://github.com/aspnet/HttpAbstractions>`_.
+``HttpContext`` has significantly changed in ASP.NET 5. This section shows how to translate the most commonly used properties of 
+`System.Web.HttpContext <https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx>`__ to the 
+new `Microsoft.AspNet.Http.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/HttpContext/index.html>`__.
 
-The section headers below refer to the old ``HttpContext``, while the code snippets show the corresponding new usage.
 
-HttpContext itself
-^^^^^^^^^^^^^^^^^^
+HttpContext
+^^^^^^^^^^^
 **HttpContext.Items** translates to:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
@@ -367,7 +361,7 @@ HttpContext itself
         :language: c#
         :dedent: 12
 
-**Unique request ID (no ASP.NET 4 counterpart)**
+**Unique request ID (no System.Web.HttpContext counterpart)**
 
 Gives you a unique id for each request. Very useful to include in your logs.
 
