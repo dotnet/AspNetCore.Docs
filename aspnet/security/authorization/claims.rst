@@ -25,7 +25,7 @@ First you need to build and register the policy. This takes place as part of the
      services.AddAuthorization(options =>
      {
          options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-     }
+     });
  }
 
 In this case the EmployeeOnly policy checks for the presence of an EmployeeNumber claim on the current identity.
