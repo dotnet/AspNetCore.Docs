@@ -160,7 +160,7 @@ Configuring localization
 
 Localization is configured in the ``ConfigureServices`` method:
 
-.. literalinclude:: localization/sample/StartupConfig.cs
+.. literalinclude:: localization/sample/Startup.cs
   :language: c#
   :linenos:
   :lines: 44-45,55-61
@@ -175,7 +175,7 @@ Localization middleware
 
 The current culture on a request is set in the localization :doc:`/fundamentals/middleware`. The localization middleware is enabled in the ``Configure`` method of *Startup.cs* file.
 
-.. literalinclude:: localization/sample/StartupConfig.cs
+.. literalinclude:: localization/sample/Startup.cs
   :language: c#
   :linenos:
   :lines: 106-107, 136-159
