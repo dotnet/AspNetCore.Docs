@@ -55,7 +55,9 @@ This section shows how to configure CORS. First, add the CORS service. In Startu
 	:lines: 9-12
 	:dedent: 8
 
-Next, configure a cross-origin policy, using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
+Next, add the CORS middleware to your request pipeline using the ``UseCors`` extension method. Note that the CORS middleware must proceed any defined endpoints in your app that you want to support cross-origin requests (ex. before any call to ``UseMvc``).
+
+You can specify a cross-origin policy when adding the CORS middleware using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
 	:language: csharp
@@ -71,8 +73,6 @@ Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 	:lines: 21-24
 	:dedent: 12
 	:emphasize-lines: 3
-
-Make sure to call `app.UseCors` before calling `app.UseMvc`.
 
 The second approach is to define one or more named CORS policies, and then select the policy by name at run time.
 
