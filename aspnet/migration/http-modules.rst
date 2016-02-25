@@ -68,7 +68,7 @@ An existing HTTP module will look similar to this:
 	:linenos:
 	:emphasize-lines: 6, 8, 24, 31
 
-As shown in the :ref:`introduction to middleware <fundamentals-middleware>`,
+As shown in the :doc:`../fundamentals/middleware` page,
 an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taking an ``HttpContext`` and returning a ``Task``. Your new middleware will look like this:
 
 .. _http-modules-usemiddleware:
@@ -198,7 +198,7 @@ Loading middleware options using the options pattern
 Some modules and handlers have configuration options, which would be stored in the web.config.
 However, in ASP.NET 5 a new configuration model is used in place of web.config.
 
-The new ASP.NET 5 :ref:`configuration system <fundamentals-configuration>` gives you these options to solve this:
+The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gives you these options to solve this:
 
 * Use the :ref:`options pattern <options-config-objects>`, as used with MVC. This section shows how.
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
