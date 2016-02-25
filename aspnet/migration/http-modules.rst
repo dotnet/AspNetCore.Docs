@@ -570,9 +570,8 @@ Your ``SetCookies`` callback method would look like this:
 Additional Resources
 --------------------
 
-    * `ASP.NET 4 Modules and HTTP Handlers <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_
-    * `ASP.NET 5 Configuration <../fundamentals/configuration.html>`_
-    * `ASP.NET 5 Startup <../fundamentals/startup.html>`_
-    * `ASP.NET 5 Middleware <../fundamentals/middleware.html>`_
+    * `HTTP Handlers and HTTP Modules Overview <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_
+    *  :doc:`../fundamentals/configuration`
+    *  :doc:`../fundamentals/startup`
+    *  :doc:`../fundamentals/middleware`
     * `Sources of HttpRequest, HttpResponse, etc. <https://github.com/aspnet/HttpAbstractions>`_
-
