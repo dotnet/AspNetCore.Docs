@@ -7,12 +7,12 @@ using Microsoft.Extensions.Localization;
 
 namespace Localization.StarterWeb.Controllers
 {
-    public class ZebraController : Controller
+    public class InfoController : Controller
     {
-        private readonly IStringLocalizer<ZebraController> _localizer;
+        private readonly IStringLocalizer<InfoController> _localizer;
         private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
 
-        public ZebraController(IStringLocalizer<ZebraController> localizer,
+        public InfoController(IStringLocalizer<InfoController> localizer,
                        IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _localizer = localizer;
@@ -23,7 +23,7 @@ namespace Localization.StarterWeb.Controllers
         public string TestLoc()
         {
             string msg = "Shared resx: " + _sharedLocalizer["Hello!"] + 
-                         " Zebra resx " + _localizer["Hello!"];
+                         " Info resx " + _localizer["Hello!"];
             return msg;
         }
         public IActionResult Index()
