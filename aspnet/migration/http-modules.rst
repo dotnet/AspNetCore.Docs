@@ -204,76 +204,75 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
 
 1. Create a class to hold your middleware options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For example:
+    For example:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
-	:language: c#
-	:linenos:
-	:lines: 8-12
-	:dedent: 4
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
+        :language: c#
+        :linenos:
+        :lines: 8-12
+        :dedent: 4
 
 2. Store the option values
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-The new configuration system allows you to essentially store option values anywhere you want. However, most sites will use
-*appsettings.json*, so lets use that here too:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
-	:language: json
-	:linenos:
-	:lines: 1, 6-10
+    The new configuration system allows you to essentially store option values anywhere you want. However, most sites will use
+    *appsettings.json*, so lets use that here too:
 
-*MyMiddlewareOptionsSection* here is simply a section name. It doesn't have to be the same as the name of your options class.
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
+        :language: json
+        :linenos:
+        :lines: 1, 6-10
+
+    *MyMiddlewareOptionsSection* here is simply a section name. It doesn't have to be the same as the name of your options class.
 
 3. Associate the option values with the options class
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The options pattern uses ASP.NET 5's dependency injection framework to associate the options type (such as ``MyMiddlewareOptions``)
-with an ``MyMiddlewareOptions`` object that has the actual options.
 
-To make this work, update your ``Startup`` class:
+    The options pattern uses ASP.NET 5's dependency injection framework to associate the options type (such as ``MyMiddlewareOptions``)
+    with an ``MyMiddlewareOptions`` object that has the actual options.
 
-	a. If you're using *appsettings.json*, make sure it is added to the configuration builder in the ``Startup`` constructor:
+    To make this work, update your ``Startup`` class:
 
-	.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
-		:language: c#
-		:linenos:
-		:lines: 14-23, 106, 109
-		:emphasize-lines: 7
-		:dedent: 4
+        a. If you're using *appsettings.json*, make sure it is added to the configuration builder in the ``Startup`` constructor:
 
-	b. Make sure that the options service is configured:
+        .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
+            :language: c#
+            :linenos:
+            :lines: 14-23, 106, 109
+            :emphasize-lines: 7
+            :dedent: 4
 
-	.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
-		:language: c#
-		:linenos:
-		:lines: 14-15, 28-29, 31-33, 43, 109
-		:emphasize-lines: 5
-		:dedent: 4
+        b. Make sure that the options service is configured:
 
-	c. Associate your options with your options class:
+        .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
+            :language: c#
+            :linenos:
+            :lines: 14-15, 28-29, 31-33, 43, 109
+            :emphasize-lines: 5
+            :dedent: 4
 
-	.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
-		:language: c#
-		:linenos:
-		:lines: 14-15, 28-29, 31-32, 36-39, 43, 109
-		:emphasize-lines: 7,8
-		:dedent: 4
+        c. Associate your options with your options class:
+
+        .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
+            :language: c#
+            :linenos:
+            :lines: 14-15, 28-29, 31-32, 36-39, 43, 109
+            :emphasize-lines: 7,8
+            :dedent: 4
 
 4. Inject the options into your middleware constructor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Finally inject the options into your middleware's constructor. This is similar to injecting options into a controller.
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
-	:language: c#
-	:linenos:
-	:lines: 6-7, 24-47
-	:emphasize-lines: 7,10,13,19,24
+    Finally inject the options into your middleware's constructor. This is similar to injecting options into a controller.
 
-This works, because the `UseMiddleware <#http-modules-usemiddleware>`_ extension method that adds your middleware to the
-``IApplicationBuilder`` takes care of dependency injection.
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
+        :language: c#
+        :linenos:
+        :lines: 6-7, 24-47
+        :emphasize-lines: 7,10,13,19,24
 
-This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be injected this way.
+    This works, because the `UseMiddleware <#http-modules-usemiddleware>`_ extension method that adds your middleware to the
+    ``IApplicationBuilder`` takes care of dependency injection.
+
+    This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be injected this way.
 
 Loading middleware options through direct injection
 ---------------------------------------------------
@@ -287,55 +286,55 @@ used in different branches allowing different roles. You can't associate two dif
 The solution is to get the options objects with the actual options values in your ``Startup`` class and pass those directly to each instance of your middleware.
 
 1. Add a second key to appsettings.json
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To add a second set of options to the 
-*appsettings.json* file, simply use a new key to uniquely identify it:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
-	:language: json
-	:linenos:
-	:emphasize-lines: 2-5
+    To add a second set of options to the 
+    *appsettings.json* file, simply use a new key to uniquely identify it:
+
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
+        :language: json
+        :linenos:
+        :emphasize-lines: 2-5
 
 2. Retrieve options values
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-In the ``Configure`` method in your ``Startup`` class, the ``Get`` method on the ``Configuration`` property lets you retrieve options values, like so:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
-	:language: c#
-	:linenos:
-	:lines: 1-2, 12-15, 46-48, 54-55, 62-66, 67, 70, 71, 105, 109, 110
-	:emphasize-lines: 12-16
+    In the ``Configure`` method in your ``Startup`` class, the ``Get`` method on the ``Configuration`` property lets you retrieve options values, like so:
+
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
+        :language: c#
+        :linenos:
+        :lines: 1-2, 12-15, 46-48, 54-55, 62-66, 67, 70, 71, 105, 109, 110
+        :emphasize-lines: 12-16
  
 3. Pass options values to middleware
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The ``Use...`` extension method with which you add your middleware to the pipeline would be the logical place
-to pass in the option values:
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
-	:language: c#
-	:linenos:
-	:lines: 1-2, 12-15, 46-48, 54-55, 62-72, 105, 109, 110
-	:emphasize-lines: 18-22
+    The ``Use...`` extension method with which you add your middleware to the pipeline would be the logical place
+    to pass in the option values:
+
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
+        :language: c#
+        :linenos:
+        :lines: 1-2, 12-15, 46-48, 54-55, 62-72, 105, 109, 110
+        :emphasize-lines: 18-22
 
 4. Enable middleware to take options parameter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To make this work, you'll need an overload of your ``Use...`` extension method that takes the options parameter
-and passes it to ``UseMiddleware``. When you call  
-``UseMiddleware`` with parameters, it passes those to your middleware constructor when it instantiates the middleware object.
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
-	:language: c#
-	:linenos:
-	:lines: 1-7, 48-64
-	:emphasize-lines: 17-22
+    To make this work, you'll need an overload of your ``Use...`` extension method that takes the options parameter
+    and passes it to ``UseMiddleware``. When you call  
+    ``UseMiddleware`` with parameters, it passes those to your middleware constructor when it instantiates the middleware object.
 
-Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by 
-the middleware constructor:
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
+        :language: c#
+        :linenos:
+        :lines: 1-7, 48-64
+        :emphasize-lines: 17-22
 
-.. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
-	:language: c#
-	:linenos:
-	:lines: 14-23
+    Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by 
+    the middleware constructor:
+
+    .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
+        :language: c#
+        :linenos:
+        :lines: 14-23
 
 
 Migrating to the new HttpContext
