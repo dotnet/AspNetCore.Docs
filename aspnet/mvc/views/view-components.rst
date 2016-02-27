@@ -14,12 +14,12 @@ Introducing view components
 
 New to ASP.NET MVC Core, view components are similar to partial views, but they are much more powerful. A View component:
 
+- Renders a chunk rather than a whole response
 - Includes the same separation-of-concerns and testability benefits found between a controller and view
-- Is responsible for rendering a chunk rather than a whole response
 - Can have parameters and business logic
 - Is typically invoked from a layout page
 
-You can use view components to solve any problem that you feel is too complex for a partial, such as:  
+View Components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as: 
 
 - Dynamic navigation menus
 - Tag cloud (where it queries the database)
@@ -34,9 +34,11 @@ One use of a view component could be to create a login panel that would be displ
 - If the user is logged in, links to log out and manage account are rendered
 - If the user is in the admin role, an admin panel is rendered
 
-You can also create a view component that gets and renders data depending on the user's claims. You can add this view component view to the layout page and have it get and render user-specific data throughout the whole application. View components don’t use model binding, and only depend on the data you provide when calling into it. 
+The view component ``User`` property gives you access to a user's claims, so you can render data depending on the user's claims. You can add this view component view to the layout page and have it render user-specific data throughout the whole application. View components don’t use model binding, and only depend on the data you provide when calling into it. 
 
 A view component consists of two parts, the class (typically derived from  ``ViewComponent``) and the Razor view which calls methods in the view component class). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from ``ViewComponent``.
+
+See `ViewComponent properties <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html#properties>`__ and `ViewComponent Class <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__.
 
 Creating a view component
 ---------------------------
@@ -59,7 +61,11 @@ View component methods
 
 - Contain ``Invoke`` or ``InvokeAsync`` methods that return an ``IViewComponentResult``
 - Fully support constructor `Dependency Injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__
-- Typically initialize a model and pass it to a view by calling the ``ViewComponent`` ``View`` method 
+- Typically initialize a model and pass it to a view by calling the ``ViewComponent`` ``View`` method. 
+- Parameters come from the calling method, not HTTP, there is no model binding. This allows you to overload ``Invoke``/``InvokeAsync``  (which you can't do with controllers).
+- Do not take part in the controller lifecycle, which means you can't use action filters in a view component
+- Are not reachable directly as an HTTP endpoint, they are invoked from your code (usually in a view). A View Component never handles a request.
+- Are overloaded on the signature rather than any details from the current HTTP request
 
 View search path
 ^^^^^^^^^^^^^^^^^^
@@ -73,13 +79,13 @@ View search path
 Invoking a view component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``PriorityList`` view component developed in the article is invoked from the *Views/TodoItems/Index.cshtml* view file. In this example the synchronous ``Invoke`` method is called and 3 is passed to the view component:
+To use the view component, call the synchronous ``@Component.Invoke("Name of View Component", <parameters>)`` or asynchronous ``@Component.InvokeAsync("Name of View Component", <parameters>)`` from a view. The parameters will be passed to the ``Invoke`` or ``InvokeAsync`` method with a matching signature.  The ``PriorityList`` view component developed in the article is invoked from the *Views/TodoItems/Index.cshtml* view file. In this example the synchronous ``Invoke`` method is called and 3 is passed to the view component:
 
 .. code-block:: HTML
 
    @Component.Invoke("PriorityList", 3)
 
-In the following, the ``InvokeAsync`` method is called and the parameters 2 and ``false`` are passed:
+In the following, the ``InvokeAsync`` method is called with two parameters:
 
 .. code-block:: HTML
 
@@ -93,6 +99,7 @@ In this example, the view component is called directly from the controller:
      {
          return ViewComponent("PriorityList", 3);
      }
+
 
 Creating the starter sample
 ---------------------------
@@ -247,6 +254,24 @@ Examine the view path
 7. Test the shared component view.
     
 .. image:: view-components/_static/shared.png
+
+Avoiding magic strings
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you want compile time safety you can replace the hard coded View Component name with the class name. Create the View Component without the "ViewComponent" suffix:
+
+.. code-block:: c#
+
+    public class PriorityList : ViewComponent
+
+Add a ``using`` statement to your Razor view file and use the ``nameof`` operator:
+
+.. code-block:: HTML
+
+   @using TodoList.ViewComponents;
+   
+   await Component.InvokeAsync(nameof(PriorityList), 4, true)
+
 
 Additional Resources
 --------------------
