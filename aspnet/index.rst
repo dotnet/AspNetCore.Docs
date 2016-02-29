@@ -12,11 +12,6 @@ ASP.NET 5 Documentation
 
 .. include:: ../common/stub-overview.txt
 
-Frameworks
-----------
-
-* :ref:`MVC <mvc:index>`
-
 Topics
 ------
 
@@ -28,9 +23,9 @@ Topics
     tutorials/index
     conceptual-overview/index
     fundamentals/index
+    mvc/index
     testing/index
     dnx/index
-    frameworks/index
     data/index
     client-side/index
     mobile/index
@@ -47,5 +42,6 @@ Related Resources
 
 * :ref:`.NET Core Documentation <dotnet:index>`
 * `Entity Framework <http://docs.efproject.net>`_
+* `WebHooks <http://docs.asp.net/projects/aspnetwebhooks>`_
 
 .. include:: ../common/contribute.txt
