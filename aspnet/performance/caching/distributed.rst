@@ -47,13 +47,13 @@ To use the ``IDistributedCache`` interface:
 
 	1. Specify the dependencies needed in ``project.json``.
 	2. Configure the specific implementation of ``IDistributedCache`` in your ``Startup`` class's ``ConfigureServices`` method, and add it to the container there.
-	3. From the app's :doc:`middleware` or MVC controller classes, request an instance of ``IDistributedCache`` from the constructor. The instance will be provided by :doc:`dependency-injection` (DI).
+	3. From the app's :doc:`/fundamentals/middleware` or MVC controller classes, request an instance of ``IDistributedCache`` from the constructor. The instance will be provided by :doc:`/fundamentals/dependency-injection` (DI).
 
-.. note:: There is no need to use a Singleton or Scoped lifetime for ``IDistributedCache`` instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using :doc:`dependency-injection`), but this can make your code harder to test, and violates the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_.
+.. note:: There is no need to use a Singleton or Scoped lifetime for ``IDistributedCache`` instances (at least for the built-in implementations). You can also create an instance wherever you might need one (instead of using :doc:`/fundamentals/dependency-injection`), but this can make your code harder to test, and violates the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_.
 
 The following example shows how to use an instance of ``IDistributedCache`` in a simple middleware component:
 
-.. literalinclude:: dist-cache/sample/src/DistCacheSample/StartTimeHeader.cs
+.. literalinclude:: distributed/sample/src/DistCacheSample/StartTimeHeader.cs
   :language: c#
   :linenos:
   :emphasize-lines: 13,16,19,25-29
@@ -62,7 +62,7 @@ In the code above, the cached value is read, but never written. In this sample, 
 
 The following code from ``Startup.cs`` shows the value being set:
 
-.. literalinclude:: dist-cache/sample/src/DistCacheSample/Startup.cs
+.. literalinclude:: distributed/sample/src/DistCacheSample/Startup.cs
   :language: c#
   :linenos:
   :lines: 59-68
@@ -78,7 +78,7 @@ You configure the Redis implementation in ``ConfigureServices`` and access it in
 
 In the sample code, a ``RedisCache`` implementation is used when the server is configured for a ``Staging`` environment. Thus the ``ConfigureStagingServices`` method configures the ``RedisCache``:
 
-.. literalinclude:: dist-cache/sample/src/DistCacheSample/Startup.cs
+.. literalinclude:: distributed/sample/src/DistCacheSample/Startup.cs
   :language: c#
   :linenos:
   :lines: 27-40
@@ -90,13 +90,13 @@ Using a SQL Server Distributed Cache
 ------------------------------------
 The `SqlServerCache <https://github.com/aspnet/Caching/tree/1.0.0-rc1/src/Microsoft.Extensions.Caching.SqlServer>`_ implementation allows the distributed cache to use a SQL Server database as its backing store. The installation script installs a table with the name you specify. The table will have the following schema:
 
-.. image:: dist-cache/_static/SqlServerCacheTable.png
+.. image:: distributed/_static/SqlServerCacheTable.png
 
 .. note:: If you're working with the RC1 version of ``SqlServerCache``, there isn't a working installer. You can install the required table using the scripts found in the `SqlQueries.cs file <https://github.com/aspnet/Caching/blob/1.0.0-rc1/src/Microsoft.Extensions.Caching.SqlConfig/SqlQueries.cs>`_. This will be addressed in RC2.
 
 Like all cache implementations, your app should get and set cache values using an instance of ``IDistributedCache``, not a ``SqlServerCache``. The sample implements ``SqlServerCache`` in the ``Production`` environment (so it is configured in ``ConfigureProductionServices``).
 
-.. literalinclude:: dist-cache/sample/src/DistCacheSample/Startup.cs
+.. literalinclude:: distributed/sample/src/DistCacheSample/Startup.cs
   :language: c#
   :linenos:
   :lines: 42-56

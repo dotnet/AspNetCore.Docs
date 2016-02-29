@@ -9,8 +9,6 @@ Sections:
 	- `What is a Controller`_
 	- `Defining Actions`_
 
-`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-rc1/mvc/performance/response-caching/sample>`_.
-
 What is a Controller
 --------------------
 
@@ -28,13 +26,13 @@ Within the Model-View-Controller pattern, a Controller is responsible for the in
 
 .. note:: The Model should be a `Plain Old CLR Object (POCO)`, not a ``DbContext`` or database-related type.
 
-The controller takes the result of the model's processing (if any), returns the proper view along with the associated view data. Learn more: :doc:`/overview` and :doc:`/getting-started/first-mvc-app/start-mvc`.
+The controller takes the result of the model's processing (if any), returns the proper view along with the associated view data. Learn more: :doc:`/mvc/overview` and :doc:`/getting-started/first-mvc-app/start-mvc`.
 
 .. tip:: The Controller is a `UI level` abstraction. Its responsibility is to ensure incoming request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps it will not directly include data access or business logic, but instead will delegate to services handling these responsibilities.
  
 Defining Actions
 ----------------
-Any public method on a controller type is an action. Parameters on actions are bound to request data and validated using :doc:`model binding </models/model-binding>`.
+Any public method on a controller type is an action. Parameters on actions are bound to request data and validated using :doc:`model binding </mvc/models/model-binding>`.
 
 .. warning:: Action methods that accept parameters should verify the ``ModelState.IsValid`` property is true.
 
@@ -47,7 +45,7 @@ Controller Helper Methods
 
 Although not required, most developers will want to have their controllers inherit from the base ``Controller`` class. Doing so provides controllers with access to many properties and helpful methods, including the following helper methods designed to assist in returning various responses:
 
-:doc:`View </views/index>`
+:doc:`View </mvc/views/index>`
 	Returns a view that uses a model to render HTML. Example: ``return View(customer);``
 
 HTTP Status Code
@@ -62,17 +60,17 @@ Content negotiated response
 Redirect
 	Returns a redirect to another action or destination (using ``Redirect``,``LocalRedirect``,``RedirectToAction`` or ``RedirectToRoute``). Example: ``return RedirectToAction("Complete", new {id = 123});``
 
-In addition to the methods above, an action can also simply return an object. In this case, the object will be formatted based on the client's request. Learn more about :doc:`/models/formatting`
+In addition to the methods above, an action can also simply return an object. In this case, the object will be formatted based on the client's request. Learn more about :doc:`/mvc/models/formatting`
 
 Cross-Cutting Concerns
 ######################
 
 In most apps, many actions will share parts of their workflow. For instance, most of an app might be available only to authenticated users, or might benefit from caching. When you want to perform some logic before or after an action method runs, you can use a `filter`. You can help keep your actions from growing too large by using :doc:`filters` to handle these cross-cutting concerns. This can help eliminate duplication within your actions, allowing them to follow the `Don't Repeat Yourself (DRY) principle <http://deviq.com/don-t-repeat-yourself/>`_.
 
-In the case of authorization and authentication, you can apply the ``Authorize`` attribute to any actions that require it. Adding it to a controller will apply it to all actions within that controller. Adding this attribute will ensure the appropriate filter is applied to any request for this action. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior. Learn more: :doc:`filters` and :doc:`/security/authorization-filters`.
+In the case of authorization and authentication, you can apply the ``Authorize`` attribute to any actions that require it. Adding it to a controller will apply it to all actions within that controller. Adding this attribute will ensure the appropriate filter is applied to any request for this action. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior. Learn more: :doc:`filters` and :doc:`/security/authorization/authorization-filters`.
 
 Other examples of cross-cutting concerns in MVC apps may include:
 	* :doc:`error-handling`
-	* :doc:`/performance/response-caching`
+	* :doc:`/performance/caching/response`
 
 .. note:: Many cross-cutting concerns can be handled using filters in MVC apps. Another option to keep in mind that is available to any ASP.NET app is `custom middleware <https://docs.asp.net/en/latest/fundamentals/middleware.html>`_.

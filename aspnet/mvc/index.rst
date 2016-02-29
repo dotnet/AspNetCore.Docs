@@ -12,5 +12,4 @@ MVC
     models/index
     views/index
     controllers/index
-    performance/index
     migration/index
