@@ -16,3 +16,4 @@ ASP.NET provides both declarative and imperative authorization functionality to 
    resourcebased   
    views
    limitingidentitybyscheme
+   authorization-filters
