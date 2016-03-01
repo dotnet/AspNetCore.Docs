@@ -78,7 +78,7 @@ Visual Studio creates some initial folders and files for your project. The prima
 	 
 Understanding MVC
 ^^^^^^^^^^^^^^^^^
-This project uses :ref:`ASP.NET MVC <mvc:index>`. MVC stands for model-view-controller. MVC is a pattern for developing applications that are well architected, testable, and easy to maintain. MVC-based applications contain:
+This project uses :doc:`MVC </mvc/overview>`. MVC stands for Model-View-Controller. MVC is a pattern for developing applications that are well architected, testable, and easy to maintain. MVC-based applications contain:
 
 	- **Models**: Classes that represent the data of the application  and that use validation logic to enforce business rules for that data.
 	- **Views**: Template files that your application uses to dynamically  generate HTML responses.

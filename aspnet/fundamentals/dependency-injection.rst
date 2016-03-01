@@ -25,7 +25,7 @@ ASP.NET 5 includes a simple built-in container (represented by the ``IServicePro
 
 .. note:: Martin Fowler has written an extensive article on `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_. Microsoft Patterns and Practices also has a great description of `Dependency Injection <https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx>`_.
 
-.. note:: This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within ASP.NET MVC is covered in :ref:`Dependency Injection and Controllers <mvc:dependency-injection-controllers>`.
+.. note:: This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in :doc:`/mvc/controllers/dependency-injection`.
 
 Using Framework-Provided Services
 ---------------------------------
