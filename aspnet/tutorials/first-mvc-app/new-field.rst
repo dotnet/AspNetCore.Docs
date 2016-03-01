@@ -37,7 +37,7 @@ Edit the */Views/Movies/Index.cshtml* file and add a ``Rating`` field:
 	:linenos:
 	:lines: 24-61
 	
-Update the */Views/Movies/Create.cshtml* with a ``Rating`` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with :doc:`Tag Helpers </views/tag-helpers/intro>`.
+Update the */Views/Movies/Create.cshtml* with a ``Rating`` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with :doc:`Tag Helpers </mvc/views/tag-helpers/intro>`.
 
 .. image:: new-field/_static/cr.png
 

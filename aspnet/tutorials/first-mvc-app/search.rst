@@ -132,7 +132,7 @@ Because the search parameter is in the request body and not the URL, you can't c
 
 .. image:: search/_static/int_get.png
 
-Notice the distinctive font in the ``<form>`` tag. That distinctive font indicates the tag is supported by :doc:`Tag Helpers </views/tag-helpers/intro>`. 
+Notice the distinctive font in the ``<form>`` tag. That distinctive font indicates the tag is supported by :doc:`Tag Helpers </mvc/views/tag-helpers/intro>`. 
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the ``HttpGet Index`` action method, even if you have a ``HttpPost Index`` method.
 

@@ -26,7 +26,7 @@ Within the Model-View-Controller pattern, a Controller is responsible for the in
 
 .. note:: The Model should be a `Plain Old CLR Object (POCO)`, not a ``DbContext`` or database-related type.
 
-The controller takes the result of the model's processing (if any), returns the proper view along with the associated view data. Learn more: :doc:`/mvc/overview` and :doc:`/getting-started/first-mvc-app/start-mvc`.
+The controller takes the result of the model's processing (if any), returns the proper view along with the associated view data. Learn more: :doc:`/mvc/overview` and :doc:`/tutorials/first-mvc-app/start-mvc`.
 
 .. tip:: The Controller is a `UI level` abstraction. Its responsibility is to ensure incoming request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps it will not directly include data access or business logic, but instead will delegate to services handling these responsibilities.
  
