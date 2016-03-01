@@ -16,8 +16,6 @@ Fundamentals
     dependency-injection
     environments
     app-state
-    caching
-    distributed-cache
     servers
     request-features
     owin

@@ -14,7 +14,7 @@ Application State Options
 -------------------------
 `Application state` refers to any data that is used to represent the current representation of the application. This includes both global and user-specific data. Previous versions of ASP.NET (and even ASP) have had built-in support for global ``Application`` and ``Session`` state stores, as well as a variety of other options.
 
-.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET 5, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET 5 replace ``Application`` with a :doc:`caching` implementation. 
+.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET 5, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET 5 replace ``Application`` with a :doc:`/performance/caching/index` implementation. 
 
 Application developers are free to use different state storage providers depending on a variety of factors:
 
@@ -44,7 +44,7 @@ Session storage relies on a cookie-based identifier to access data related to a 
 
 Cache
 ^^^^^
-Caching provides a means of storing and efficiently retrieving arbitrary application data based on developer-defined keys. It provides rules for expiring cached items based on time and other considerations. Learn more about :doc:`caching`.
+Caching provides a means of storing and efficiently retrieving arbitrary application data based on developer-defined keys. It provides rules for expiring cached items based on time and other considerations. Learn more about :doc:`/performance/caching/index`.
 
 Configuration
 ^^^^^^^^^^^^^
