@@ -126,7 +126,7 @@ Copy over the published output of your existing application to the Nano server.
 
   $ip = "10.83.181.14" # replace with the correct IP address
   $s = New-PSSession -ComputerName $ip -Credential ~\Administrator
-  Copy-Item -ToSession $s -Path <path-to-src>\bin\output\* -Destination C:\HelloAspNet5 -Recurse
+  Copy-Item -ToSession $s -Path <path-to-src>\bin\output\ -Destination C:\HelloAspNet5 -Recurse
 
 Use the following PowerShell snippet to create a new site in IIS for our published app. This script uses the ``DefaultAppPool`` for simplicity. For more considerations on running under an application pool, see :ref:`apppool`.
 
