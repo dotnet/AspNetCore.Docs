@@ -10,4 +10,3 @@ MVC
     models/index
     views/index
     controllers/index
-    migration/index
