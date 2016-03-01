@@ -40,7 +40,7 @@ Topics
 Related Resources
 -----------------
 
-* :ref:`.NET Core Documentation <dotnet:index>`
+* `.NET Core Documentation <https://dotnet.github.io>`__
 * `Entity Framework <http://docs.efproject.net>`_
 * `WebHooks <http://docs.asp.net/projects/aspnetwebhooks>`_
 
