@@ -206,14 +206,14 @@ Because the ``Model`` object is strongly typed (as an ``IEnumerable<Movie>`` obj
 
 .. image:: adding-model/_static/ints.png
 
-.. note:: The RC1 version of the scaffolding engine generates HTML Helpers to display fields (``@Html.DisplayNameFor(model => model.Genre)``). The next version will use :doc:`/views/tag-helpers/index` to render fields.
+.. note:: The RC1 version of the scaffolding engine generates HTML Helpers to display fields (``@Html.DisplayNameFor(model => model.Genre)``). The next version will use :doc:`/mvc/views/tag-helpers/index` to render fields.
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
   
 Additional resources
 ------------------------
 
-- :doc:`/views/tag-helpers/index` 
+- :doc:`/mvc/views/tag-helpers/index` 
 - `Create a secure ASP.NET MVC app and deploy to Azure <https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/>`__
 - `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ 
 - `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__

@@ -92,7 +92,7 @@ Run your app and browse to:
 
 	http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4 
 
-(Replace xxxx with your port number.) You can try different values for ``name`` and ``numtimes`` in  the URL. The MVC model binding system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See :doc:`/models/model-binding` for more information.
+(Replace xxxx with your port number.) You can try different values for ``name`` and ``numtimes`` in  the URL. The MVC model binding system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See :doc:`/mvc/models/model-binding` for more information.
 
 .. image:: adding-controller/_static/rick4.png
 

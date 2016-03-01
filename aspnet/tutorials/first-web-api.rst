@@ -10,7 +10,7 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET 5, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
 
-.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/migration/migratingfromwebapi2`
+.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/mvc/migration/migratingfromwebapi2`
 
 In this article:
 
@@ -193,7 +193,7 @@ Open the *src\\TodoApi\\Properties\\launchSettings.json* file and replace the ``
     :language: json
     :emphasize-lines: 6
 
-To learn more about request routing in MVC 6, see :doc:`../controllers/routing`.
+To learn more about request routing in MVC 6, see :doc:`/mvc/controllers/routing`.
 
 Return values
 ^^^^^^^^^^^^^
@@ -307,9 +307,9 @@ Either approach is reasonable. If you return 404, the client will need to handle
 Next steps
 ----------
 
-To learn about creating a backend for a native mobile app, see :doc:`../tutorials/native-mobile-backend`.
+To learn about creating a backend for a native mobile app, see :doc:`/mobile/native-mobile-backend`.
 
-For information about deploying your API, see :ref:`Publishing and Deployment <aspnet:publishing-and-deployment>`.
+For information about deploying your API, see :doc:`Publishing and Deployment </publishing/index>`.
 
 
 
