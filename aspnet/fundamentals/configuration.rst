@@ -109,7 +109,7 @@ A simple ``MyOptions`` class is shown here:
   :lines: 8-12
   :dedent: 4
 
-Options can be injected into your application using the ``IOptions<TOptions>`` service. For example, the following :ref:`MVC <mvc:index>` controller uses ``IOptions<MyOptions>`` to access the settings it needs to render the ``Index`` view:
+Options can be injected into your application using the ``IOptions<TOptions>`` service. For example, the following :doc:`controller </mvc/controllers/index>`  uses ``IOptions<MyOptions>`` to access the settings it needs to render the ``Index`` view:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Controllers/HomeController.cs
   :linenos:

@@ -11,7 +11,7 @@ In this article:
 	- `Migrate Configuration`_
 	- `Migrate Models and Controllers`_
 
-You can view the finished source from the project created in this article `on GitHub <https://github.com/aspnet/Docs/tree/master/mvc/migration/migratingfromwebapi2/sample>`_.
+You can view the finished source from the project created in this article `on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/migration/webapi/sample>`_.
 
 Review Web API 2 Project
 ------------------------
@@ -20,14 +20,14 @@ This article uses the sample project, *ProductsApp*, created in the article `Get
 
 In *Global.asax.cs*, a call is made to ``WebApiConfig.Register``:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/Global.asax.cs
+.. literalinclude:: webapi/sample/ProductsApp/Global.asax.cs
 	:language: c#
 	:emphasize-lines: 14
 	:linenos:
 
 ``WebApiConfig`` is defined in *App_Start*, and has just one static ``Register`` method:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/App_Start/WebApiConfig.cs
+.. literalinclude:: webapi/sample/ProductsApp/App_Start/WebApiConfig.cs
 	:language: c#
 	:emphasize-lines: 15-20
 	:linenos:
@@ -36,14 +36,14 @@ This class configures `attribute routing <http://www.asp.net/web-api/overview/we
 
 The *ProductsApp* project includes just one simple controller, which inherits from ``ApiController`` and exposes two methods:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/Controllers/ProductsController.cs
+.. literalinclude:: webapi/sample/ProductsApp/Controllers/ProductsController.cs
 	:language: c#
 	:emphasize-lines: 19,24
 	:linenos:
 
 Finally, the model, *Product*, used by the *ProductsApp*, is a simple class:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsApp/Models/Product.cs
+.. literalinclude:: webapi/sample/ProductsApp/Models/Product.cs
 	:language: c#
 	:linenos:
 
@@ -54,15 +54,15 @@ Create the Destination Project
 
 Using Visual Studio 2015, create a new, empty solution, and add the existing *ProductsApp* project to it. Then, add a new Web Project to the solution. Name the new project 'ProductsDnx'.
 
-.. image:: migratingfromwebapi2/_static/add-web-project.png
+.. image:: webapi/_static/add-web-project.png
 
 Next, choose the ASP.NET 5 Web API project template. We will migrate the *ProductsApp* contents to this new project.
 
-.. image:: migratingfromwebapi2/_static/aspnet-5-webapi.png
+.. image:: webapi/_static/aspnet-5-webapi.png
 
 Delete the ``Project_Readme.html`` file from the new project. Your solution should now look like this:
 
-.. image:: migratingfromwebapi2/_static/webapimigration-solution.png
+.. image:: webapi/_static/webapimigration-solution.png
 
 .. migrate-webapi-config:
 
@@ -71,14 +71,14 @@ Migrate Configuration
 
 ASP.NET 5 no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project, and static configuration files can be wired up from there if needed (learn more about :ref:`ASP.NET 5 Application Startup <fundamentalconcepts-application-startup>`). Since Web API is now built into MVC 6, there is less need to configure it. Attribute-based routing is now included by default when ``UseMvc()`` is called, and this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsDnx/Startup.cs
+.. literalinclude:: webapi/sample/ProductsDnx/Startup.cs
 	:language: c#
 	:emphasize-lines: 43
 	:linenos:
 	
 Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample ``ValuesController`` class that is included in the Web API starter project:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsDnx/Controllers/ValuesController.cs
+.. literalinclude:: webapi/sample/ProductsDnx/Controllers/ValuesController.cs
 	:language: c#
 	:emphasize-lines: 8,12,19,26,32,38
 	:linenos:
@@ -125,7 +125,7 @@ Fortunately, these are all very easy to correct:
 
 Once these changes have been made and unused using statements removed, the migrated *ProductsController* class looks like this:
 
-.. literalinclude:: migratingfromwebapi2/sample/ProductsDnx/Controllers/ProductsController.cs
+.. literalinclude:: webapi/sample/ProductsDnx/Controllers/ProductsController.cs
 	:language: c#
 	:emphasize-lines: 1,2,6,8-9,27,32,34
 	:linenos:

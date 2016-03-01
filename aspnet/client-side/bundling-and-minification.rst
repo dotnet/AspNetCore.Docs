@@ -142,7 +142,7 @@ Controlling Bundling and Minification
 
 In general, you want to use the bundled and minified files of your app only in a production environment. During development, you want to use your original files so your app is easier to debug. 
 
-You can specify which scripts and CSS files to include in your pages using the environment tag helper in your layout pages(See :ref:`mvc:tag-helpers-index`). The environment tag helper will only render its contents when running in specific environments. See :doc:`/fundamentals/environments` for details on specifying the current environment.
+You can specify which scripts and CSS files to include in your pages using the environment tag helper in your layout pages(See :doc:`/mvc/views/tag-helpers/index`). The environment tag helper will only render its contents when running in specific environments. See :doc:`/fundamentals/environments` for details on specifying the current environment.
 
 The following environment tag will render the unprocessed CSS files when running in the ``Development`` environment:
 
@@ -167,5 +167,5 @@ See Also
 - :doc:`using-gulp`
 - :doc:`using-grunt`	
 - :doc:`/fundamentals/environments`
-- :ref:`mvc:tag-helpers-index`
+- :doc:`/mvc/views/tag-helpers/index`
 	
