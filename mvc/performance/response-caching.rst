@@ -41,7 +41,7 @@ Location `ResponseCacheLocation <https://github.com/aspnet/Mvc/blob/6.0.0-rc1/sr
 	The location where the response may be cached. May be ``Any``, ``None``, or ``Client``. Default is ``Any``.
 
 NoStore ``bool``
-	Determines whether the value should be stored or not, and overrides other property values. When ``true``, ``Duration`` is ignored and ``Location`` is ignored for valuse other than ``None``.
+	Determines whether the value should be stored or not, and overrides other property values. When ``true``, ``Duration`` is ignored and ``Location`` is ignored for values other than ``None``.
 
 VaryByHeader ``string``
 	When set, a ``vary`` response header will be written with the response.
