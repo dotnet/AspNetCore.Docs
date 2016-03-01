@@ -193,7 +193,7 @@ In the next part of the series, we'll review the application and make some impro
 Additional resources
 ------------------------
 - `Globalization and localization <http://docs.asp.net/en/latest/fundamentals/localization.html>`__ 
-- :doc:`/views/tag-helpers/intro`
-- :doc:`/views/tag-helpers/authoring`
+- :doc:`/mvc/views/tag-helpers/intro`
+- :doc:`/mvc/views/tag-helpers/authoring`
 
 .. TODO link to globalize
