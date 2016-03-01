@@ -10,7 +10,7 @@ In this tutorial, you’ll build a simple web API for managing a list of "to-do"
 
 Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET 5, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
 
-.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/mvc/migration/migratingfromwebapi2`
+.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/migration/webapi`
 
 In this article:
 
