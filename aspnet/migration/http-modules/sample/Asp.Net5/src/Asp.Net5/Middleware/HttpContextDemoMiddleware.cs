@@ -126,8 +126,8 @@ namespace MyApp.Middleware
 
             IHeaderDictionary headersDictionary = httpContext.Request.Headers;
 
-            // RequestHeaders property provides strongly typed access to many headers
-            var requestHeaders = new RequestHeaders(headersDictionary);
+            // GetTypedHeaders extension method provides strongly typed access to many headers
+            var requestHeaders = httpContext.Request.GetTypedHeaders();
             CacheControlHeaderValue cacheControlHeaderValue = requestHeaders.CacheControl;
 
             // For unknown header, unknownheaderValues has zero items and unknownheaderValue is ""
@@ -258,8 +258,8 @@ namespace MyApp.Middleware
             // Or
             httpContext.Response.Redirect("http://www.example.com");
 
-            // ResponseHeaders provides strongly typed access to many headers
-            var responseHeaders = new ResponseHeaders(httpContext.Response.Headers);
+            // GetTypedHeaders extension method provides strongly typed access to many headers
+            var responseHeaders = httpContext.Response.GetTypedHeaders();
 
             // Translating ASP.NET 4's HttpContext.Response.CacheControl 
             responseHeaders.CacheControl = new CacheControlHeaderValue
