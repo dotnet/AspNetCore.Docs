@@ -17,7 +17,7 @@ In this article:
 What is .NET Core
 ^^^^^^^^^^^^^^^^^
 
-.NET Core 5 is a modular runtime and library implementation that includes a subset of the .NET Framework. Currently it is feature complete on Windows, and in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
+.NET Core is a modular runtime and library implementation that includes a subset of the .NET Framework. Currently it is feature complete on Windows, and in-progress builds exist for both Linux and OS X. .NET Core consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub:
 
 	- `.NET Core Libraries (CoreFX) <https://github.com/dotnet/corefx>`_
 	- `.NET Core Common Language Runtime (CoreCLR) <https://github.com/dotnet/coreCLR>`_
@@ -49,7 +49,7 @@ Building Applications with .NET Core
 		"dnxcore50": { }
 	},
 
-``dnx451`` represents the .NET Framework, while ``dnxcore50`` represents .NET Core 5 (5.0). You can use compiler directives (``#if``) to check for symbols that correspond to the two frameworks: ``DNX451`` and ``DNXCORE50``. If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
+``dnx451`` represents the .NET Framework, while ``dnxcore50`` represents .NET Core (1.0). You can use compiler directives (``#if``) to check for symbols that correspond to the two frameworks: ``DNX451`` and ``DNXCORE50``. If for instance you have code that uses resources that are not available as part of .NET Core, you can surround them in a conditional compilation directive:
 
 .. code-block:: c#
 
@@ -79,7 +79,7 @@ Additional Reading
 Learn more about .NET Core:
 	- `Immo Landwerth Explains .NET Core <http://blogs.msdn.com/b/dotnet/archive/2014/12/04/introducing-net-core.aspx>`_
 	- `What is .NET Core 5 and ASP.NET 5 <http://blogs.msdn.com/b/cesardelatorre/archive/2014/11/18/what-is-net-core-5-and-asp-net-5-within-net-2015-preview.aspx>`_
-	- `.NET Core 5 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore>`_
+	- `.NET Core 1.0 on dotnetfoundation.org <https://www.dotnetfoundation.org/netcore>`_
 	- `.NET Core is Open Source <http://blogs.msdn.com/b/dotnet/archive/2014/11/12/net-core-is-open-source.aspx>`_
 	- `.NET Core on GitHub <https://github.com/dotnet/corefx>`_
 
