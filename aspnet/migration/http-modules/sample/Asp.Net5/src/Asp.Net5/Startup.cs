@@ -5,8 +5,6 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-using Asp.Net5.Middleware;
 using MyApp.Middleware;
 
 namespace Asp.Net5
@@ -75,7 +73,7 @@ namespace Asp.Net5
 
             app.UseIISPlatformHandler();
 
-            app.UseSimpleAuthorize();
+            
 
             // Create branch to the MyHandlerMiddleware. 
             // All requests ending in .report will follow this branch.
