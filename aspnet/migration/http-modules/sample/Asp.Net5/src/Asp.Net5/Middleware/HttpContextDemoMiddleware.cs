@@ -171,7 +171,7 @@ namespace MyApp.Middleware
             requestHeaders = new RequestHeaders(httpContext.Request.Headers);
             contentSubType = requestHeaders.ContentType?.SubType;
 
-            if ((contentSubType == "x-www-form-urlencoded") || (contentSubType == "form-data"))
+            if (httpContext.Request.HasFormContentType)
             {
                 IFormCollection form;
 
