@@ -2,8 +2,8 @@
 using Microsoft.AspNet.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Http.Headers;
 using Microsoft.Net.Http.Headers;
+using Microsoft.AspNet.Http.Extensions;
 
 namespace MyApp.Middleware
 {
@@ -80,12 +80,8 @@ namespace MyApp.Middleware
 
             // ASP.NET 4 - HttpContext.Request.Url and HttpContext.Request.RawUrl
             //>04
-            string scheme = httpContext.Request.Scheme;
-            string host = httpContext.Request.Host.Value;
-            string pathBase = httpContext.Request.PathBase.Value;
-            string path = httpContext.Request.Path.Value;
-            string queryString = httpContext.Request.QueryString.Value;
-            string url = scheme + "://" + host + pathBase + path + queryString;
+            // using Microsoft.AspNet.Http.Extensions;
+            var url = httpContext.Request.GetDisplayUrl();
             //<04
 
             // ASP.NET 4 - HttpContext.Request.IsSecureConnection
@@ -209,7 +205,7 @@ namespace MyApp.Middleware
             // ASP.NET 4 - HttpContext.Response.Status  
             // ASP.NET 4 - HttpContext.Response.StatusDescription (obsolete, removed from HTTP/2) 
             //>30
-            // using Microsoft.AspNet.Http;
+            // using Microsoft.AspNetCore.Http;
             httpContext.Response.StatusCode = StatusCodes.Status200OK;
             //<30
 
