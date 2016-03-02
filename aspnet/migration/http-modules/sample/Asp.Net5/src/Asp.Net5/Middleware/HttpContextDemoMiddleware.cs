@@ -257,6 +257,8 @@ namespace MyApp.Middleware
 
             // Translating ASP.NET 4's HttpContext.Response.RedirectLocation  
             httpContext.Response.Headers["Location"] = "http://www.example.com";
+            // Or
+            httpContext.Response.Redirect("http://www.example.com");
 
             // ResponseHeaders provides strongly typed access to many headers
             var responseHeaders = new ResponseHeaders(httpContext.Response.Headers);
