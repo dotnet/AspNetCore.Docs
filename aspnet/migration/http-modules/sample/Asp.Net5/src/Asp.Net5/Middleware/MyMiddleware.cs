@@ -21,7 +21,7 @@ namespace MyApp.Middleware
 
             await _next.Invoke(context);
 
-            // Do something with context near the end of request processing.
+            // Clean up.
         }
     }
 

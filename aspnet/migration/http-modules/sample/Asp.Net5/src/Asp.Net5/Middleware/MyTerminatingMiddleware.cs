@@ -22,7 +22,7 @@ namespace MyApp.Middleware
             if (!TerminateRequest())
                 await _next.Invoke(context);
 
-            // Do something with context near the end of request processing.
+            // Clean up.
         }
 
         private bool TerminateRequest()
