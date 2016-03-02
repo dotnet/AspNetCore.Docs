@@ -92,7 +92,7 @@ namespace Asp.Net5
                     appBranch.UseHttpContextDemoMiddleware();
                 });
 
-            app.UseAddLines();
+            
 
             app.UseStaticFiles();
 
