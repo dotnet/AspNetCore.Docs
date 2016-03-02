@@ -5,7 +5,9 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
 using MyApp.Middleware;
+
 
 namespace Asp.Net5
 {

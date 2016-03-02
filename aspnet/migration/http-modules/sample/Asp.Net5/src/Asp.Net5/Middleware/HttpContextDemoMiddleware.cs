@@ -205,7 +205,7 @@ namespace MyApp.Middleware
             // ASP.NET 4 - HttpContext.Response.Status  
             // ASP.NET 4 - HttpContext.Response.StatusDescription (obsolete, removed from HTTP/2) 
             //>30
-            // using Microsoft.AspNetCore.Http;
+            // using Microsoft.AspNet.Http;
             httpContext.Response.StatusCode = StatusCodes.Status200OK;
             //<30
 
