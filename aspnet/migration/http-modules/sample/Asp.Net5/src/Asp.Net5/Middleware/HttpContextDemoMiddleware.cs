@@ -168,9 +168,6 @@ namespace MyApp.Middleware
 
             // ASP.NET 4 - HttpContext.Request.Form 
             //>15
-            requestHeaders = new RequestHeaders(httpContext.Request.Headers);
-            contentSubType = requestHeaders.ContentType?.SubType;
-
             if (httpContext.Request.HasFormContentType)
             {
                 IFormCollection form;
