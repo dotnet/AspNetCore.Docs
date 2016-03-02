@@ -51,7 +51,7 @@ Middleware is simpler than HTTP modules and handlers:
 Middleware is very similar to modules:
 	* Invoked in principle for every request
 	* Able to stop further processing of a request
-	* Able to add to the HTTP response, or create their own
+	* Able to create their own HTTP response
 
 Middleware and modules are processed in a different order:
 	* While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules
