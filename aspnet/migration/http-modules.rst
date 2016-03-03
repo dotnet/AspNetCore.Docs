@@ -502,6 +502,8 @@ HttpContext.Response
         :language: c#
         :dedent: 12
 
+**HttpContext.Response.TransmitFile**
+
 Serving up a file is discussed `here <../fundamentals/request-features.html#middleware-and-request-features>`_.
 
 **HttpContext.Response.Headers**

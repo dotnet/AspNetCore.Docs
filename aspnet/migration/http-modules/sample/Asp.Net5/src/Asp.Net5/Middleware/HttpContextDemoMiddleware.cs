@@ -225,9 +225,6 @@ namespace MyApp.Middleware
             // ----------------------
             // ASP.NET 4 - HttpContext.Response.Output  
             //
-            // If you want to serve up the contents of a file, see
-            // http://docs.asp.net/en/latest/fundamentals/request-features.html#middleware-and-request-features
-            //
             //>33
             string responseContent = GetResponseContent();
             await httpContext.Response.WriteAsync(responseContent);
