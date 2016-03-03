@@ -23,7 +23,7 @@ Handlers are:
 Modules are:
 	* Classes that implement `IHttpModule <https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx>`_
 	* Invoked for every request
-	* Able to stop further processing of a request
+	* Able to short-circuit (stop further processing of a request)
 	* Able to add to the HTTP response, or create their own
 	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in *Web.config*
 
@@ -45,19 +45,22 @@ From handlers and modules to middleware
 Middleware are simpler than HTTP modules and handlers:
     * Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
     * The roles of both modules and handlers have been taken over by middleware
-    * Middleware are configured using code instead of in *Web.config*
+    * Middleware are configured using code rather than in *Web.config*
     * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware are very similar to modules:
 	* Invoked in principle for every request
-	* Able to stop further processing of a request
+	* Able to short-circuit a request. (Each delegate has the opportunity to perform operations before and after the next delegate. Any delegate can choose to stop passing the request on to the next delegate, and instead handle the request itself. For more information see the :doc:`../fundamentals/middleware` page)
 	* Able to create their own HTTP response
 
 Middleware and modules are processed in a different order:
-	* While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules
-	* But while the response is going back to the browser, middleware is processed in the reverse order
+    * While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules
+    * But while the response is going back to the browser, middleware is processed in the reverse order
+    * See `Creating a middleware pipeline with IApplicationBuilder <../fundamentals/middleware.html#creating-a-middleware-pipeline-with-iapplicationbuilder>`_
 
 .. image:: http-modules/_static/middleware.png
+
+Note how in the image above, the authentication middleware short-circuited the request.
 
 Migrating module code to middleware
 ------------------------------------
