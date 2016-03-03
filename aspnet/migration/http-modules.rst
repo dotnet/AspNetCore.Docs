@@ -50,7 +50,7 @@ Middleware are simpler than HTTP modules and handlers:
 
 Middleware are very similar to modules:
 	* Invoked in principle for every request
-	* Able to short-circuit a request. (Each delegate has the opportunity to perform operations before and after the next delegate. Any delegate can choose to stop passing the request on to the next delegate, and instead handle the request itself. For more information see the :doc:`../fundamentals/middleware` page)
+	* Able to short-circuit a request, by :ref:`not passing the request to the next middleware <http-modules-shortcircuiting-middleware>`
 	* Able to create their own HTTP response
 
 Middleware and modules are processed in a different order:
@@ -86,6 +86,8 @@ The middleware template used here is the same as that shown in the section on
 
 The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class. 
 The ``UseMyMiddleware`` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
+
+.. _http-modules-shortcircuiting-middleware:
 
 Maybe your module sometimes terminates the request, for example if the user is not authorized:
 
