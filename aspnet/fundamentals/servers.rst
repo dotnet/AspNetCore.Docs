@@ -3,7 +3,7 @@ Servers
 
 By `Steve Smith`_
 
-ASP.NET 5 is completely decoupled from the web server environment that hosts the application. ASP.NET 5 supports hosting in IIS and IIS Express, and self-hosting scenarios using the Kestrel and WebListener HTTP servers. Additonally, developers and third party software vendors can create custom servers to host their ASP.NET 5 apps.
+ASP.NET 5 is completely decoupled from the web server environment that hosts the application. ASP.NET 5 supports hosting in IIS and IIS Express, and self-hosting scenarios using the Kestrel and WebListener HTTP servers. Additionally, developers and third party software vendors can create custom servers to host their ASP.NET 5 apps.
 
 Sections:
 	- `Servers and commands`_

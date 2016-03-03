@@ -5,4 +5,5 @@ Performance
    :titlesonly:
    
    measuring
+   caching/index
 

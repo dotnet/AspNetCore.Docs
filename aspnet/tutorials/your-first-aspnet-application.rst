@@ -28,6 +28,8 @@ In the **New ASP.NET Project** dialog, select **Web Application** under **ASP.NE
 
 .. image:: your-first-aspnet-application/_static/03-web-site-template.png
 
+.. note:: Do not change the authentication method. Leave it as the default **Individual User Accounts** for this tutorial. 
+
 Running the default app
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -76,7 +78,7 @@ Visual Studio creates some initial folders and files for your project. The prima
 	 
 Understanding MVC
 ^^^^^^^^^^^^^^^^^
-This project uses :ref:`ASP.NET MVC <mvc:index>`. MVC stands for model-view-controller. MVC is a pattern for developing applications that are well architected, testable, and easy to maintain. MVC-based applications contain:
+This project uses :doc:`MVC </mvc/overview>`. MVC stands for Model-View-Controller. MVC is a pattern for developing applications that are well architected, testable, and easy to maintain. MVC-based applications contain:
 
 	- **Models**: Classes that represent the data of the application  and that use validation logic to enforce business rules for that data.
 	- **Views**: Template files that your application uses to dynamically  generate HTML responses.
@@ -205,7 +207,7 @@ After the above line has been added, the completed *Startup.cs* file will appear
     :language: c#
     :emphasize-lines: 101
 
-Notice in *ConfigureServices* the app calls ``Configuration.Get`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
+Notice in *ConfigureServices* the app calls ``Configuration["Data:DefaultConnection:ConnectionString"]`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the Configuration API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
 	
 Build the web application
 ^^^^^^^^^^^^^^^^^^^^^^^^^

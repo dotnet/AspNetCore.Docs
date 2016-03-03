@@ -1,4 +1,4 @@
-Enabling Cross-Origin Requests (CORS)
+﻿Enabling Cross-Origin Requests (CORS)
 =====================================
 
 By `Mike Wasson`_
@@ -7,14 +7,9 @@ Browser security prevents a web page from making AJAX requests to another domain
 
 `Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application.
 
-In this article:
-    - `What is "same origin"?`_
-    - `Add the CORS package`_
-    - `Configure CORS in your app`_
-    - `CORS policy options`_
-    - `How CORS works`_
-
-.. note:: This topic covers general ASP.NET 5 apps. For information about CORS support in ASP.NET MVC 6, see :ref:`Specifying a CORS Policy <mvc:cors-policy>`.
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 What is "same origin"?
 ----------------------
@@ -35,65 +30,114 @@ These URLs have different origins than the previous two:
 
 .. note:: Internet Explorer does not consider the port when comparing origins.
 
-Add the CORS package
---------------------
+Setting up CORS
+---------------
 
-In your project.json file, add the following:
+To setup CORS for your application you use the ``Microsoft.AspNet.Cors`` package. In your project.json file, add the following:
 
 .. literalinclude:: cors/sample/src/CorsExample1/project.json
-	:language: json
-	:lines: 5,6,9
-	:emphasize-lines: 2
-
-Configure CORS in your app
---------------------------
-
-This section shows how to configure CORS. First, add the CORS service. In Startup.cs:
+  :language: json
+  :lines: 5,6,9
+  :emphasize-lines: 2
+  
+Add the CORS services in Startup.cs:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
-	:language: csharp
-	:lines: 9-12
-	:dedent: 8
+  :language: csharp
+  :lines: 9-12
+  :dedent: 8
 
-Next, configure a cross-origin policy, using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
+Enabling CORS with middleware
+-----------------------------
+
+To enable CORS for your entire application add the CORS middleware to your request pipeline using the ``UseCors`` extension method. Note that the CORS middleware must proceed any defined endpoints in your app that you want to support cross-origin requests (ex. before any call to ``UseMvc``).
+
+You can specify a cross-origin policy when adding the CORS middleware using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs
-	:language: csharp
-	:lines: 15-18, 24
-	:dedent: 8
+  :language: csharp
+  :lines: 15-18, 24
+  :dedent: 8
 
 The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
 .. literalinclude:: cors/sample/src/CorsExample3/Startup.cs
-	:language: csharp
-	:lines: 21-24
-	:dedent: 12
-	:emphasize-lines: 3
+  :language: csharp
+  :lines: 21-24
+  :dedent: 12
+  :emphasize-lines: 3
 
 The second approach is to define one or more named CORS policies, and then select the policy by name at run time.
 
 .. literalinclude:: cors/sample/src/CorsExample2/Startup.cs
-	:language: csharp
-	:lines: 9-17,19-26,27
-	:dedent: 8
+  :language: csharp
+  :lines: 9-17,19-26,27
+  :dedent: 8
 
 This example adds a CORS policy named "AllowSpecificOrigin". To select the policy, pass the name to UseCors.
 
 .. _cors-policy-options:
+
+Enabling CORS in MVC
+--------------------
+
+You can alternatively use MVC to apply specific CORS per action, per controller, or globally for all controllers. When using MVC to enable CORS the same CORS services are used, but the CORS middleware is not.
+
+Per action
+^^^^^^^^^^
+
+To specify a CORS policy for a specific action add the ``[EnableCors]`` attribute to the action. Specify the policy name.
+
+.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
+    :language: csharp
+    :lines: 7-13
+    :dedent: 4
+
+Per controller
+^^^^^^^^^^^^^^
+
+To specify the CORS policy for a specific controller add the ``[EnableCors]`` attribute to the controller class. Specify the policy name.
+
+.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
+    :language: csharp
+    :lines: 6-8
+    :dedent: 4
+
+Globally
+^^^^^^^^
+
+You can enable CORS globally for all controllers by adding the ``CorsAuthorizationFilterFactory`` filter to the global filter collection:
+
+.. literalinclude:: cors/sample/src/CorsMvc/Startup.cs
+    :language: csharp
+    :lines: 13-15,26-30
+    :dedent: 8
+
+The precedence order is: Action, controller, global. Action-level policies take precedence over controller-level policies, and controller-level policies take precedence over global policies.
+
+Disable CORS
+^^^^^^^^^^^^
+
+To disable CORS for a controller or action, use the ``[DisableCors]`` attribute.
+
+.. literalinclude:: cors/sample/src/CorsMvc/Controllers/HomeController.cs
+    :language: csharp
+    :lines: 15-19
+    :dedent: 4
 
 CORS policy options
 -------------------
 
 This section describes the various options that you can set in a CORS policy.
 
-    - `Set the allowed origins`_
-    - `Set the allowed HTTP methods`_
-    - `Set the allowed request headers`_
-    - `Set the exposed response headers`_
-    - `Credentials in cross-origin requests`_
-    - `Set the preflight expiration time`_
+- `Set the allowed origins`_
+- `Set the allowed HTTP methods`_
+- `Set the allowed request headers`_
+- `Set the exposed response headers`_
+- `Credentials in cross-origin requests`_
+- `Set the preflight expiration time`_
 
 For some options it may be helpful to read `How CORS works`_ first.
 

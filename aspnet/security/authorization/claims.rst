@@ -25,7 +25,7 @@ First you need to build and register the policy. This takes place as part of the
      services.AddAuthorization(options =>
      {
          options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-     }
+     });
  }
 
 In this case the EmployeeOnly policy checks for the presence of an EmployeeNumber claim on the current identity.
@@ -106,4 +106,4 @@ If you apply multiple policies to a controller or action then all policies must 
 
 In the above example any identity which fulfills the EmployeeOnly policy can access the Payslip action as that policy is enforced on the controller. However in order to call the UpdateSalary action the identity must fulfill *both* the EmployeeOnly policy and the HumanResources policy.
 
-If you want more complicated policies, such as taking a Date of Birth claim, calculating an age from it then checking the age is 21 or older then you need to write :ref:`custom policy handlers <security-authorization-policies-based>`.
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write :ref:`custom policy handlers <security-authorization-policies-based>`.

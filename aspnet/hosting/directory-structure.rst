@@ -3,7 +3,7 @@
 Directory Structure
 ===================
 
-By `Sourabh Shirhatti`
+By `Sourabh Shirhatti`_
 
 
 In ASP.NET 5, the application directory comprises of three sub-directories. This is unlike previous versions of ASP.NET where the entire application lived inside the web root directory. The recommended permissions for each of the directories are specified in the table below.

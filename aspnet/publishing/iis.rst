@@ -21,13 +21,15 @@ Install the HTTP Platform Handler
 
 If you need to enable IIS, see `IIS server configuration`_.
 
-Create Data Protection Registry Hive
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configure Data Protection
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To persist Data Protection keys you must create registry hives for each application pool to store the keys. You should use the
 `Provisioning PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`_ for each application pool you will be hosting ASP.NET Core applications under.
 
 For web farm scenarios developers can configure their applications to use a UNC path to store the data protection key ring. By default this does not encrypt the key ring. You can deploy an x509 certificate to each machine and use that to encrypt the keyring. See the :ref:`configuration APIs <data-protection-configuring>` for more details.
+
+.. include:: ./dataProtectionWarning.txt
 
 Publish from Visual Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

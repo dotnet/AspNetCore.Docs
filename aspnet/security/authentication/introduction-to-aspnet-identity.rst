@@ -131,12 +131,11 @@ These dependencies are needed to use the ASP.NET Identity system in ASP.NET appl
 Migrating to ASP.NET Identity 3.x
 ---------------------------------
 
-For additional information and guidance on migrating your existing apps to the ASP.NET Identity 3.x system, see `Migrating from ASP.NET Identity 2.x to 3.x <http://docs.asp.net/en/latest/migration/identity.html>`_. 
+For additional information and guidance on migrating your existing ASP.NET Identity store see :doc:`/migration/identity`
 
 Next Steps 
 ----------
 
-- :ref:`mvc:migration-auth-membership`
 - :ref:`migration-identity`
 - :ref:`security-authentication-account-confirmation`
 - :ref:`security-authentication-2fa`
