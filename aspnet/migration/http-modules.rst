@@ -42,13 +42,13 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 From handlers and modules to middleware
 ---------------------------------------
-Middleware is simpler than HTTP modules and handlers:
+Middleware are simpler than HTTP modules and handlers:
     * Modules, handlers, Global.asax.cs, web.config (except for IIS configuration) and the application life cycle are gone
     * The roles of both modules and handlers have been taken over by middleware
-    * Middleware is configured using code instead of in the web.config
+    * Middleware are configured using code instead of in the web.config
     * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
-Middleware is very similar to modules:
+Middleware are very similar to modules:
 	* Invoked in principle for every request
 	* Able to stop further processing of a request
 	* Able to create their own HTTP response
