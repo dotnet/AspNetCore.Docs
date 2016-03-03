@@ -131,20 +131,20 @@ namespace MyApp.Middleware
             string unknownheaderValue = headersDictionary["unknownheader"].ToString();
 
             // For known header, knownheaderValues has 1 item and knownheaderValue is the value
-            IList<string> knownheaderValues = headersDictionary["Accept-Language"];
-            string knownheaderValue = headersDictionary["Accept-Language"].ToString();
+            IList<string> knownheaderValues = headersDictionary[HeaderNames.AcceptLanguage];
+            string knownheaderValue = headersDictionary[HeaderNames.AcceptLanguage].ToString();
             //<08
 
             // ----------
 
             // ASP.NET 4 - HttpContext.Request.UserAgent
             //>12
-            string userAgent = headersDictionary["User-Agent"].ToString();
+            string userAgent = headersDictionary[HeaderNames.UserAgent].ToString();
             //<12
 
             // ASP.NET 4 - HttpContext.Request.UrlReferrer
             //>13
-            string urlReferrer = headersDictionary["Referer"].ToString();
+            string urlReferrer = headersDictionary[HeaderNames.Referer].ToString();
             //<13
 
             // ASP.NET 4 - HttpContext.Request.ContentType 
@@ -250,7 +250,7 @@ namespace MyApp.Middleware
             httpContext.Response.Headers["ResponseHeaderName"] = responseHeaderValues;
 
             // Translating ASP.NET 4's HttpContext.Response.RedirectLocation  
-            httpContext.Response.Headers["Location"] = "http://www.example.com";
+            httpContext.Response.Headers[HeaderNames.Location] = "http://www.example.com";
             // Or
             httpContext.Response.Redirect("http://www.example.com");
 
