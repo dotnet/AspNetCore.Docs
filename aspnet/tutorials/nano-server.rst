@@ -5,7 +5,7 @@ ASP.NET 5 on Nano Server
 
 By `Sourabh Shirhatti`_
 
-.. attention:: This tutorial uses a pre-lease version of the Nano Server installation option of Windows Server Technical Preview 4. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see https://go.microsoft.com/fwlink/?LinkId=624232 for specific information about the end date for the preview.
+.. attention:: This tutorial uses a pre-release version of the Nano Server installation option of Windows Server Technical Preview 4. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see https://go.microsoft.com/fwlink/?LinkId=624232 for specific information about the end date for the preview.
 
 In this tutorial, you'll take an existing ASP.NET 5 application and deploy it to a Nano Server instance running IIS.
 
