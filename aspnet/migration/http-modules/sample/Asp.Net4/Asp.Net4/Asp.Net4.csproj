@@ -170,7 +170,6 @@
     <Compile Include="HttpHandlers\ReportHandler.cs" />
     <Compile Include="Modules\MyTerminatingModule.cs" />
     <Compile Include="Modules\MyModule.cs" />
-    <Compile Include="Modules\SimpleAuthorizeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
