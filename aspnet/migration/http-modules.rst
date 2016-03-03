@@ -46,7 +46,7 @@ Middleware are simpler than HTTP modules and handlers:
     * Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
     * The roles of both modules and handlers have been taken over by middleware
     * Middleware are configured using code rather than in *Web.config*
-    * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
+    * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 Middleware are very similar to modules:
 	* Invoked in principle for every request
@@ -304,11 +304,7 @@ The solution is to get the options objects with the actual options values in you
         :lines: 1-2, 12-15, 46-48, 54-55, 62-72, 105, 109, 110
         :emphasize-lines: 18-22
 
-4. Enable middleware to take options parameter
-
-    To make this work, you'll need an overload of your ``Use...`` extension method that takes the options parameter
-    and passes it to ``UseMiddleware``. When you call  
-    ``UseMiddleware`` with parameters, it passes those to your middleware constructor when it instantiates the middleware object.
+4. Enable middleware to take an options parameter. Provide an overload of the ``Use...`` extension method (that takes the options parameter and passes it to ``UseMiddleware``). When ``UseMiddleware`` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
         :language: c#
@@ -449,7 +445,7 @@ HttpContext.Request
         :dedent: 12
 
 .. caution::
-    Only read form values if the content sub type is *x-www-form-urlencoded* or *form-data*.
+    Read form values only if the content sub type is *x-www-form-urlencoded* or *form-data*.
 
 **HttpContext.Request.InputStream** translates to:
 
@@ -460,9 +456,9 @@ HttpContext.Request
         :dedent: 12
 
 .. caution::
-    Only use this code in a handler type middleware, at the end of a pipeline. 
+    Use this code only in a handler type middleware, at the end of a pipeline. 
 
-    You can read the raw body as shown here only once per request. If later on another middleware tries to read the raw body, it will read nothing.
+    You can read the raw body as shown above only once per request. Middleware trying to read the body after the first read will read an empty body.
 
     This does not apply to reading a form as shown earlier, because that is done from a buffer.
 
@@ -516,7 +512,7 @@ response body, they will not be sent.
 The solution is to set a callback method that will be called right before writing to the response starts. This is best done at the
 start of the ``Invoke`` method in your middleware. It is this callback method that sets your response headers.
 
-This code sets a callback method called ``SetHeaders``:
+The following code sets a callback method called ``SetHeaders``:
 
     .. code-block:: c#
 
@@ -525,7 +521,7 @@ This code sets a callback method called ``SetHeaders``:
             // ...
             httpContext.Response.OnStarting(SetHeaders, state: httpContext);
 
-Your ``SetHeaders`` callback method would look like this:
+The ``SetHeaders`` callback method would look like this:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>41
@@ -546,7 +542,7 @@ Cookies travel to the browser in a *Set-Cookie* response header. As a result, se
                 httpContext.Response.OnStarting(SetCookies, state: httpContext);
                 httpContext.Response.OnStarting(SetHeaders, state: httpContext);
 
-Your ``SetCookies`` callback method would look like this:
+The ``SetCookies`` callback method would look like the following:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs
         :start-after: //>42
