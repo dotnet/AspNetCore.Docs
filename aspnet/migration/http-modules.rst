@@ -54,8 +54,8 @@ Middleware are very similar to modules:
 	* Able to create their own HTTP response
 
 Middleware and modules are processed in a different order:
-    * While the request is going up the pipeline, middleware is processed in the order in which it is inserted into the request pipeline, similar to modules
-    * But while the response is going back to the browser, middleware is processed in the reverse order
+    * Order of middleware is based on the order in which they are inserted into the request pipeline, while order of modules is mainly based on `application life cycle <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`_ events
+    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
     * See `Creating a middleware pipeline with IApplicationBuilder <../fundamentals/middleware.html#creating-a-middleware-pipeline-with-iapplicationbuilder>`_
 
 .. image:: http-modules/_static/middleware.png
