@@ -81,7 +81,7 @@ an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taki
 	:linenos:
 	:emphasize-lines: 9, 13, 20, 24, 28, 30, 32
 
-The middleware template used here is the same as that shown in the section on 
+The above middleware template was taken from the section on 
 :ref:`writing middleware <middleware-writing-middleware>`.
 
 The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class. 
@@ -89,7 +89,7 @@ The ``UseMyMiddleware`` method adds your middleware class to the request pipelin
 
 .. _http-modules-shortcircuiting-middleware:
 
-Maybe your module sometimes terminates the request, for example if the user is not authorized:
+Your module might terminate a request, for example if the user is not authorized:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs
 	:language: c#
@@ -99,8 +99,7 @@ Maybe your module sometimes terminates the request, for example if the user is n
 	:dedent: 8
 
 A middleware handles this by simply not calling ``Invoke`` on the next middleware in the pipeline. Keep in mind that this does not 
-fully terminate the request, because previous middlewares will still be invoked when the response makes it way back through the pipeline
-to the browser.
+fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyTerminatingMiddleware.cs
 	:language: c#
@@ -110,7 +109,7 @@ to the browser.
 	:dedent: 8
 
 When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the ``HttpContext`` class 
-has changed greatly in ASP.NET 5. `Later on <#migrating-to-the-new-httpcontext>`_, you'll see how to migrate to the new ASP.NET 5 HttpContext.
+has significantly changed in ASP.NET 5. `Later on <#migrating-to-the-new-httpcontext>`_, you'll see how to migrate to the new ASP.NET 5 HttpContext.
 
 Migrating module insertion into the request pipeline
 -----------------------------------------------------
@@ -134,11 +133,9 @@ to the request pipeline in your ``Startup`` class:
 The exact spot in the pipeline where you insert your new middleware depends on the event 
 that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in *Web.config*.
 
-However, as you saw there is no more application life cycle in ASP.NET 5
-and the order in which responses are processed by middleware differs from the order used by modules.
-This could make your ordering decision more challenging.
+As previously stated, there is no more application life cycle in ASP.NET 5 and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
 
-If ordering becomes a problem, you could split your module into multiple middleware that can then be ordered separately.
+If ordering becomes a problem, you could split your module into multiple middleware that can be ordered independently.
 
 Migrating handler code to middleware
 -------------------------------------
@@ -171,14 +168,10 @@ Configuring an HTTP handler is done in *Web.config* and looks something like thi
 	:emphasize-lines: 7,8
 	:lines: 1-3, 29, 42-46, 48, 105
 
-You could convert this by adding your new handler middleware to the request pipeline in your ``Startup`` class, similar to 
-middleware converted from modules.
+You could convert this by adding your new handler middleware to the request pipeline in your ``Startup`` class, similar to middleware converted from modules. The problem with that approach; it would send all requests to your new handler middleware. However, you only want requests with a given extension to reach your middleware. That would give you the same functionality you had with your HTTP handler.
 
-Problem is that this would send all requests to your new handler middleware. However, you only want requests with a given
-extension to reach your middleware. That would give you the same situation you had with your HTTP handler.
-
-A solution is to branch the pipeline for requests with a given extension, using the ``MapWhen`` extension method.
-This happens in the same ``Configure`` method where you add the other middleware:
+One solution is to branch the pipeline for requests with a given extension, using the ``MapWhen`` extension method.
+You do this in the same ``Configure`` method where you add the other middleware:
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
 	:language: c#
@@ -194,23 +187,20 @@ This happens in the same ``Configure`` method where you add the other middleware
 2. A lambda that takes an ``IApplicationBuilder`` and adds all the middleware for the branch.
    This means you can add additional middleware to the branch in front of your handler middleware.
 
-The middleware that was added to the pipeline before the branch will be invoked for both requests going down the branch
-and for requests not going down the branch.
+Middleware added to the pipeline before the branch will be invoked on all requests; the branch will have no impact on them.
 
 Loading middleware options using the options pattern
 ----------------------------------------------------
 
-Some modules and handlers have configuration options, which would be stored in *Web.config*.
+Some modules and handlers have configuration options that are stored in *Web.config*.
 However, in ASP.NET 5 a new configuration model is used in place of *Web.config*.
 
 The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gives you these options to solve this:
 
-* Use the :ref:`options pattern <options-config-objects>`, as used with MVC. This section shows how.
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
+* Use the :ref:`options pattern <options-config-objects>`:
 
-1. Create a class to hold your middleware options
-
-    For example:
+1. Create a class to hold your middleware options, for example:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
         :language: c#
@@ -220,8 +210,8 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
 
 2. Store the option values
 
-    The new configuration system allows you to essentially store option values anywhere you want. However, most sites will use
-    *appsettings.json*, so lets use that here too:
+    The new configuration system allows you to essentially store option values anywhere you want. However, most sites use
+    *appsettings.json*, so we'll take that approach:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
         :language: json
@@ -235,9 +225,9 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
     The options pattern uses ASP.NET 5's dependency injection framework to associate the options type (such as ``MyMiddlewareOptions``)
     with an ``MyMiddlewareOptions`` object that has the actual options.
 
-    To make this work, update your ``Startup`` class:
+    Update your ``Startup`` class:
 
-        a. If you're using *appsettings.json*, make sure it is added to the configuration builder in the ``Startup`` constructor:
+        a. If you're using *appsettings.json*, add it to the configuration builder in the ``Startup`` constructor:
 
         .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
             :language: c#
@@ -246,7 +236,7 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
             :emphasize-lines: 7
             :dedent: 4
 
-        b. Make sure that the options service is configured:
+        b. Configure the options service:
 
         .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
             :language: c#
@@ -264,9 +254,7 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
             :emphasize-lines: 7,8
             :dedent: 4
 
-4. Inject the options into your middleware constructor
-
-    Finally inject the options into your middleware's constructor. This is similar to injecting options into a controller.
+4. Inject the options into your middleware constructor. This is similar to injecting options into a controller.
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
         :language: c#
@@ -274,7 +262,7 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
         :lines: 6-7, 24-47
         :emphasize-lines: 7,10,13,19,24
 
-    This works, because the `UseMiddleware <#http-modules-usemiddleware>`_ extension method that adds your middleware to the
+    The `UseMiddleware <#http-modules-usemiddleware>`_ extension method that adds your middleware to the
     ``IApplicationBuilder`` takes care of dependency injection.
 
     This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be injected this way.
@@ -283,14 +271,14 @@ Loading middleware options through direct injection
 ---------------------------------------------------
 The options pattern has the advantage that it creates loose coupling between options values and their consumers.
 Once you've associated an options class with the actual options values, any other class can get access to the options
-through the dependency injection framework. So there is no need to pass around options values.
+through the dependency injection framework. There is no need to pass around options values.
 
 This breaks down though if you want to use the same middleware twice, with different options. For example an authorization middleware
 used in different branches allowing different roles. You can't associate two different options objects with the one options class.
 
 The solution is to get the options objects with the actual options values in your ``Startup`` class and pass those directly to each instance of your middleware.
 
-1. Add a second key to appsettings.json
+1. Add a second key to *appsettings.json*
 
     To add a second set of options to the 
     *appsettings.json* file, simply use a new key to uniquely identify it:
@@ -300,9 +288,7 @@ The solution is to get the options objects with the actual options values in you
         :linenos:
         :emphasize-lines: 2-5
 
-2. Retrieve options values
-
-    In the ``Configure`` method in your ``Startup`` class, the ``Get`` method on the ``Configuration`` property lets you retrieve options values, like so:
+2. Retrieve options values. The ``Get`` method on the ``Configuration`` property lets you retrieve options values:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
         :language: c#
@@ -310,10 +296,7 @@ The solution is to get the options objects with the actual options values in you
         :lines: 1-2, 12-15, 46-48, 54-55, 62-66, 67, 70, 71, 105, 109, 110
         :emphasize-lines: 12-16
  
-3. Pass options values to middleware
-
-    The ``Use...`` extension method with which you add your middleware to the pipeline would be the logical place
-    to pass in the option values:
+3. Pass options values to middleware. The ``Use...`` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
         :language: c#
