@@ -18,14 +18,14 @@ Before proceeding to ASP.NET 5 middleware, let's first recap how HTTP modules an
 Handlers are:
 	* Classes that implement `IHttpHandler <https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx>`_
 	* Used to handle requests with a given file name or extension, such as *.report*
-	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`__ in *web.config*
+	* `Configured <https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx>`__ in *Web.config*
 
 Modules are:
 	* Classes that implement `IHttpModule <https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx>`_
 	* Invoked for every request
 	* Able to stop further processing of a request
 	* Able to add to the HTTP response, or create their own
-	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in *web.config*
+	* `Configured <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`__ in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 
@@ -36,16 +36,16 @@ Modules are:
 		`AuthenticateRequest <https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest(v=vs.100).aspx>`_, etc.
 		Each module can create a handler for one or more events.
 
-	2. For the same event, the order in which they are configured in *web.config*.
+	2. For the same event, the order in which they are configured in *Web.config*.
 
 In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
 
 From handlers and modules to middleware
 ---------------------------------------
 Middleware are simpler than HTTP modules and handlers:
-    * Modules, handlers, *Global.asax.cs*, *web.config* (except for IIS configuration) and the application life cycle are gone
+    * Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
     * The roles of both modules and handlers have been taken over by middleware
-    * Middleware are configured using code instead of in *web.config*
+    * Middleware are configured using code instead of in *Web.config*
     * :ref:`Pipeline branching <middleware-run-map-use>` lets you send requests to specific middleware, based on not only the URL but also on request headers, etc.
 
 Middleware are very similar to modules:
@@ -109,7 +109,7 @@ has changed greatly in ASP.NET 5. `Later on <#migrating-to-the-new-httpcontext>`
 
 Migrating module insertion into the request pipeline
 -----------------------------------------------------
-HTTP modules are typically added to the request pipeline using *web.config*:
+HTTP modules are typically added to the request pipeline using *Web.config*:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Web.config
 	:language: xml
@@ -127,7 +127,7 @@ to the request pipeline in your ``Startup`` class:
 	:emphasize-lines: 12
 
 The exact spot in the pipeline where you insert your new middleware depends on the event 
-that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in *web.config*.
+that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in *Web.config*.
 
 However, as you saw there is no more application life cycle in ASP.NET 5
 and the order in which responses are processed by middleware differs from the order used by modules.
@@ -158,7 +158,7 @@ call to ``_next.Invoke(context)``. That makes sense, because the handler is at t
 
 Migrating handler insertion into the request pipeline
 ------------------------------------------------------
-Configuring an HTTP handler is done in *web.config* and looks something like this:
+Configuring an HTTP handler is done in *Web.config* and looks something like this:
 
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Web.config
 	:language: xml
@@ -195,8 +195,8 @@ and for requests not going down the branch.
 Loading middleware options using the options pattern
 ----------------------------------------------------
 
-Some modules and handlers have configuration options, which would be stored in *web.config*.
-However, in ASP.NET 5 a new configuration model is used in place of *web.config*.
+Some modules and handlers have configuration options, which would be stored in *Web.config*.
+However, in ASP.NET 5 a new configuration model is used in place of *Web.config*.
 
 The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gives you these options to solve this:
 
