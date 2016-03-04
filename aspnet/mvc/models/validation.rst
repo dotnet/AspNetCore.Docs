@@ -9,7 +9,7 @@ In this article:
 - `Model state`_
 - `Custom validation`_
 - `Client side validation`_ 
-- 'Remote valiation'_
+- `Remote valiation`_
 
 Introduction to model validation
 --------------------------------
