@@ -24,7 +24,7 @@ Data annotations are a way to configure model validation so it's similar to vali
 Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the fields are required, the ``Id`` field is a primary key, and several string properties have length requirements. Additionally, there is a numeric range in place for the ``Price`` property from 0 to $999.99, along with two custom annotations.
 
 .. literalinclude:: validation/sample/Movie.cs
-   :language: html
+   :language: c#
    :lines: 7-37
    :dedent: 4
 
