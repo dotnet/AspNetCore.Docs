@@ -45,7 +45,9 @@ Simply reading through the model reveals the rules about data for this app, maki
 - ``[StringLength]``: The maximum length for a string field.
 - ``[Url]``: Formats the property as a URL.
 
-A complete list of annotations is at the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_ namespace docs. Note that this namespace is not specific to MVC, but in a shared .NET namespace. Many annotations provide actions similar to constraint checking in database tables, or in popular business logic patterns. However, there are intances where business rules don't fit into these common scenarios. For those times, you can create custom validation attributes to apply to model properties.  
+A complete list of annotations is at the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_ namespace docs. Note that this namespace is not specific to MVC, but in a shared .NET namespace. 
+
+Many annotations provide actions similar to constraint checking in database tables, or in popular business logic patterns. However, there are intances where business rules don't fit into these common scenarios. For those times, you can create custom validation attributes to apply to model properties.  
 
 Model State
 -----------
