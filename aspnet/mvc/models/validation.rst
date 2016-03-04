@@ -26,6 +26,7 @@ Below is an annotated ``Movie`` model from an app that stores information about 
 .. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/Movie.cs
    :language: html
    :lines: 7-37
+   :dedent: 4
 
 Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in data annotations:
 
@@ -59,6 +60,7 @@ If you have some logic that can produce a validation error, add that error to th
    :language: c#
    :lines: 48-69   
    :emphasize-lines: 52-59
+   :dedent: 8
    
 After model binding and validation are complete, you may want to repeat parts of it. For example, a user may have entered text in a field expecting an integer. You can invoke model binding to update the values of the model by using the ``UpdateModel`` or ``TryUpdateModel`` methods. When using ``UpdateModel``, you must put your code in `try-catch` block. It will attempt to update the model, but if it fails, it will throw an ``InvalidOperationException`` you must catch. ``TryUpdateModel`` attempts to update the model, but comes with a built-in exception handling in case it fails. Both methods will attempt to update the model state with validation errors, and then your view will display those errors. There is a similar pair of methods for validation called ``ValidateModel`` and ``TryValidateModel``. They work in the same manner but attempt to perform validation instead. 
 
@@ -78,6 +80,7 @@ In the following sample, a business rule that states that movies released before
 .. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/ClassicMovieAttribute.cs
    :language: c#
    :lines: 11-36
+   :dedent: 4
    
 The ``movie`` variable above represents a ``Movie`` object that contains the data from the form submission to validate. In this case, the validation code checks the date and genre in the ``IsValid`` method of the ``ClassicMovieAttribute`` class as per the rules. Upon successful validation ``isValid`` returns a ``ValidationResult.Success`` code, and when validation fails, a ``ValidationResult`` with an error message. When a user modifies the ``Genre`` field and submits the form, the `IsValid` method of the ``ClassicMovieAttribute`` will verify whether the movie is a classic. Like any built-in attribute, apply the ``ClassicMovieAttribute`` to a property such as ``ReleaseDate`` to ensure validation happens, as shown in the previous code sample. 
 
@@ -110,11 +113,13 @@ You can implement remote validation in a two step process. First, you must annot
 .. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/User.cs
  :language: c#
  :lines: 9-17
+ :dedent: 4
  
 The second step is putting the validation code in the corresponding action method. In this case it's the ``VerifyEmail`` method in the ``UsersController``. It returns a ``JsonResult`` that the client side can use to proceed or pause and display a validation error if needed.
  
 .. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Controllers/UsersController.cs
  :language: c#
  :lines: 9-17   
+ :dedent: 4
 
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.  
