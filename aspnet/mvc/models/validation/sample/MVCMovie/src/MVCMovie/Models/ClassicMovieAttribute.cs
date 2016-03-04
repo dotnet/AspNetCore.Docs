@@ -28,7 +28,8 @@ namespace MVCMovie.Models
                 }
                 else
                 {
-                    return new ValidationResult("Classic movies must have a release year earlier than " + this._year);
+                    return new ValidationResult(
+                        "Classic movies must have a release year earlier than " + this._year);
                 }
             }
             return ValidationResult.Success;

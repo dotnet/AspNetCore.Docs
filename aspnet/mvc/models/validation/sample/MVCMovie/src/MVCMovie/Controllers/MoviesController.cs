@@ -54,7 +54,8 @@ namespace MVCMovie.Controllers
                 if (movie.Audience != Audience.Everyone)
                 {
                     ModelState.AddModelError("GenreAudienceMismatch", 
-                        "'Family' movies must be rated for an audience of 'Everyone'. Are you sure you have the correct genre?");
+                        "'Family' movies must be rated for an audience of 'Everyone'. " + 
+                        "Are you sure you have the correct genre?");
                 }
             }
 

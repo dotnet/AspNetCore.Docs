@@ -31,7 +31,6 @@ namespace MVCMovie.Models
 
         [Required]
         public Audience Audience { get; set; }
-
         public List<Review> Reviews { get; set; }
     }
 }
