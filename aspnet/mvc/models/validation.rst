@@ -23,7 +23,7 @@ Data annotations are a way to configure model validation so it's similar to vali
 
 Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the fields are required, the ``Id`` field is a primary key, and several string properties have length requirements. Additionally, there is a numeric range in place for the ``Price`` property from 0 to $999.99, along with two custom annotations.
 
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/Movie.cs
+.. literalinclude:: validation/sample/Movie.cs
    :language: html
    :lines: 7-37
    :dedent: 4
@@ -56,7 +56,7 @@ Model state gives you insight as to which form fields have not passed validation
 
 If you have some logic that can produce a validation error, add that error to the model state's collection of errors by calling ``AddModelStateError`` as demonstrated below. Doing so will return the error message to the client and the view will display it.
 
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Controllers/MoviesController.cs
+.. literalinclude:: validation/sample/MoviesController.cs
    :language: c#
    :lines: 48-69   
    :emphasize-lines: 52-59
@@ -66,7 +66,7 @@ After model binding and validation are complete, you may want to repeat parts of
 
 MVC will continue validating fields until reaches the maximum number of errors (200). You can configure this number by inserting the following code into the ``ConfigureServices`` method in the ``Startup.cs`` file, like so:
 
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Startup.cs
+.. literalinclude:: validation/sample/Startup.cs
    :language: c#
    :lines: 40-41,53-56,66
    :dedent: 8
@@ -77,7 +77,7 @@ Data annotations work for most validation needs. However, some validation rules 
 
 In the following sample, a business rule that states that movies released before 1960 belong to the classic movie genre. The ``[ClassicMovie]`` attribute checks the genre against the release date. If it is released before 1960, genre the property must be categorized as a classic movie. The attribute accepts an integer parameter representing the year that you can use to validate data. You can capture the value of the parameter in the attribute's constructor, as shown here:
 					 
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/ClassicMovieAttribute.cs
+.. literalinclude:: validation/sample/ClassicMovieAttribute.cs
    :language: c#
    :lines: 11-36
    :dedent: 4
@@ -110,14 +110,14 @@ Remote validation is a great feature to use when you need to validate data on th
 
 You can implement remote validation in a two step process. First, you must annotate your model with the ``[Remote]`` attribute. The ``[Remote]`` attribute accepts multiple overloads you can use to direct client side JavaScript to the appropriate code to call. The example points to the ``VerifyEmail`` action method of the ``Users`` controller. 
 
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Models/User.cs
+.. literalinclude:: validation/sample/User.cs
  :language: c#
  :lines: 9-17
  :dedent: 4
  
 The second step is putting the validation code in the corresponding action method. In this case it's the ``VerifyEmail`` method in the ``UsersController``. It returns a ``JsonResult`` that the client side can use to proceed or pause and display a validation error if needed.
  
-.. literalinclude:: validation/sample/MVCMovie/src/MVCMovie/Controllers/UsersController.cs
+.. literalinclude:: validation/sample/UsersController.cs
  :language: c#
  :lines: 9-17   
  :dedent: 4
