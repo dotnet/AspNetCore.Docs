@@ -5,7 +5,7 @@ ASP.NET 5 on Nano Server
 
 By `Sourabh Shirhatti`_
 
-.. attention:: This tutorial uses a pre-lease version of the Nano Server installation option of Windows Server Technical Preview 4. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see https://go.microsoft.com/fwlink/?LinkId=624232 for specific information about the end date for the preview.
+.. attention:: This tutorial uses a pre-release version of the Nano Server installation option of Windows Server Technical Preview 4. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see https://go.microsoft.com/fwlink/?LinkId=624232 for specific information about the end date for the preview.
 
 In this tutorial, you'll take an existing ASP.NET 5 application and deploy it to a Nano Server instance running IIS.
 
@@ -41,7 +41,7 @@ Open an elevated PowerShell window to add your remote Nano Server instance to yo
 .. code:: ps1
 
   $ip = "10.83.181.14" # replace with the correct IP address
-  Set-Item WSMan:\localhost\Client\TrustedHosts "$ip" -Force
+  Set-Item WSMan:\localhost\Client\TrustedHosts "$ip" -Concatenate -Force
 
 Once you have added your Nano Server instance to your ``TrustedHosts``, you can connect to it using PowerShell remoting
 
@@ -56,7 +56,7 @@ If you have successfully connected then your prompt will look like this ``[10.83
 Installing the HttpPlatformHandler Module
 -----------------------------------------
 
-The :ref:`HttpPlatformHandler <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. At the moment, the process to install the HttpPlatformHandler Module for IIS is manual. You will need to install the latest 64-bit version of the `HttpPlatformHandler <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
+The :ref:`HttpPlatformHandler <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the HttpPlatformHandler Module for IIS is manual. You will need to install the latest 64-bit version of the `HttpPlatformHandler <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
 
 * *%windir%\\System32\\inetsrv\\HttpPlatformHandler.dll*
 * *%windir%\\System32\\inetsrv\\config\\schema\\httpplatform_schema.xml*
