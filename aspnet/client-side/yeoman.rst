@@ -67,7 +67,7 @@ Setting Grunt as the task runner
 :doc:`Grunt </client-side/using-grunt>`
 :doc:`Gulp </client-side/using-gulp>`
 
-The ASP.NET 5 Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio 2015. 
+The ASP.NET Core 1 Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio 2015. 
 
 The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` task runner file is added to your project to automate build tasks for Web projects. The default generator creates *gulpfile.js* to run tasks. Running the generator with the ``--grunt`` argument generates *Gruntfile.js*:
 
@@ -80,7 +80,7 @@ The generator also configures *package.json* to load :doc:`Grunt </client-side/u
 Building and Running from Visual Studio
 ---------------------------------------
 
-You can load your generated ASP.NET 5 web project directly into Visual Studio 2015, then build and run your project from there.
+You can load your generated ASP.NET Core 1 web project directly into Visual Studio 2015, then build and run your project from there.
 
 1. Open Visual Studio 2015. From the File menu, select :menuselection:`Open --> Project/Solution`.
 
