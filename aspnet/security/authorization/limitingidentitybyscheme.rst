@@ -38,7 +38,7 @@ As no authentication middleware is configured to automatically run and create an
  [Authorize(AuthenticationSchemes = "Cookie,Bearer")]
  public class MixedController : Controller
 
-In the example above both the cookie and bearer middlewares will run and have a change to create and append an identity for the current user. By specifying a single scheme only the specified middleware will run;
+In the example above both the cookie and bearer middlewares will run and have a chance to create and append an identity for the current user. By specifying a single scheme only the specified middleware will run;
 
 .. code-block:: c#
 
