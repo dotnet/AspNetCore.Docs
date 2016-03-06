@@ -17,7 +17,7 @@ In this article:
 Getting Started
 ---------------
 
-There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET 5, in which case Bootstrap will come pre-installed:
+There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core 1, in which case Bootstrap will come pre-installed:
 
 .. image:: bootstrap/_static/bootstrap-in-starter-template.png
  
@@ -28,7 +28,7 @@ Adding Bootstrap to an ASP.NET 5 project is simply a matter of adding it to ``bo
   :linenos:
   :emphasize-lines: 5
 
-This is the recommended way to add Bootstrap to an ASP.NET 5 project.
+This is the recommended way to add Bootstrap to an ASP.NET Core 1 project.
  
 You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
 
