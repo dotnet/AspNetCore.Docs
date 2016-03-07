@@ -22,11 +22,11 @@ In ASP.NET MVC 5, authentication and identity features are configured in Startup
 .. code-block:: json
 
 	"dependencies": {
-		"Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
-		"Microsoft.AspNet.Mvc": "6.0.0-beta3",
-		"Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
-		"Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta3",
-		"Microsoft.AspNet.Security.Cookies": "1.0.0-beta3"
+    		"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+  		"Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    		"Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+    		"Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
+    		"Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
 	},
 
 Now, open Startup.cs and update the ConfigureServices() method to use Entity Framework and Identity services:
@@ -35,14 +35,15 @@ Now, open Startup.cs and update the ConfigureServices() method to use Entity Fra
 
 	public void ConfigureServices(IServiceCollection services)
 	{
-		// Add EF services to the services container.
-		services.AddEntityFramework(Configuration)
-			.AddSqlServer()
-			.AddDbContext<ApplicationDbContext>();
+                // Add framework services.
+        	services.AddEntityFramework()
+                	.AddSqlServer()
+                        .AddDbContext<ApplicationDbContext>(options =>
+                        	options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
-		// Add Identity services to the services container.
-		services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
-			.AddEntityFrameworkStores<ApplicationDbContext>();
+                services.AddIdentity<ApplicationUser, IdentityRole>()
+                        .AddEntityFrameworkStores<ApplicationDbContext>()
+                        .AddDefaultTokenProviders();
 
 		services.AddMvc();
 	}
@@ -53,7 +54,7 @@ ApplicationUser.cs:
 
 .. code-block:: c#
 
-	using Microsoft.AspNet.Identity;
+	using Microsoft.AspNet.Identity.EntityFramework;
 
 	namespace NewMvc6Project.Models
 	{
@@ -78,7 +79,7 @@ ApplicationDbContext.cs:
 			{
 				// Create the database and schema if it doesn't exist
 				// This is a temporary workaround to create database until Entity Framework database migrations 
-				// are supported in ASP.NET 5
+				// are supported in ASP.NET Core 1
 				if (!_created)
 				{
 					Database.AsMigrationsEnabled().ApplyMigrations();
@@ -86,10 +87,6 @@ ApplicationDbContext.cs:
 				}
 			}
 
-			protected override void OnConfiguring(DbContextOptions options)
-			{
-				options.UseSqlServer();
-			}
 		}
 	}
 
