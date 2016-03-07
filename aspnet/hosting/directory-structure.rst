@@ -11,7 +11,7 @@ In ASP.NET 5, the application directory comprises of three sub-directories. This
 =======  ==============  ===========
 Folder   Permissions     Description     
 =======  ==============  ===========  
-approot  Read & Execute  Contains the application, app config files, packages and the DNX runtime.
+approot  Read & Execute  Contains the application, app config files, packages and the runtime.
 logs     Read & Write    The default folder for HTTP Platform Handler to redirect logs to.
 wwwroot  Read & Execute  Contains the static assets
 =======  ==============  ===========

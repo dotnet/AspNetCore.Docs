@@ -30,7 +30,7 @@ To get set up to run integration tests, you'll need to create a test project, re
 
 The Test Host
 ^^^^^^^^^^^^^
-ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit <https://xunit.github.io/>`_ and the Test Host, as you can see from this excerpt from its ``project.json`` file:
+ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its ``project.json`` file:
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/project.json
   :linenos:

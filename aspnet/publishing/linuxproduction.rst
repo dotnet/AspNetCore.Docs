@@ -20,7 +20,7 @@ Prerequisites
    sudo privilege.
 2. An exisiting ASP.NET 5 application.
 
-Before getting started you require the CoreCLR dependencies and LibUV. Follow the instructions on the :doc:`/getting-started/installing-on-linux` page.
+Before getting started you require the CoreCLR dependencies and LibUV. Follow the instructions in the `.NET Core` documentation.
 
 Copy over your app
 ------------------

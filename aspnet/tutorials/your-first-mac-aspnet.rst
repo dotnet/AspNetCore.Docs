@@ -12,9 +12,7 @@ ASP.NET 5 is cross-platform; you can develop and run web apps on Mac OS X, Linux
 Setting Up Your Development Environment
 ---------------------------------------
 
-- :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`
-
-- Check which DNX version you have active by running ``dnvm list``
+To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_.
 
 Scaffolding Applications Using Yeoman
 -------------------------------------
@@ -28,19 +26,15 @@ Developing ASP.NET Applications on a Mac With Visual Studio Code
 
 .. image:: your-first-mac-aspnet/_static/vscode-welcome.png
 
-.. note:: If **Visual Studio Code** is not installed, see :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`. 
-
 - Tap **File > Open** and navigate to your ASP.NET app
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
-.. TODO When I run ``command shift p`` and then type ``>dnx restore`` I get the error omnisharp server is not running.
-
-From a Terminal / bash prompt, run ``dnu restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` and then type ``>d`` as shown:
+From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` and then type ``>d`` as shown:
 
 .. image:: your-first-mac-aspnet/_static/dnx_restore.png
 
-This will allow you to run commands directly from within Visual Studio Code, including ``dnu restore`` and any commands defined in the *project.json* file.
+This will allow you to run commands directly from within Visual Studio Code, including ``dotnet restore`` and any tools referenced in the *project.json* file.
 
 At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
 
@@ -72,7 +66,7 @@ Finally, Code's editor has a ton of great features. You should note right away t
 Running Locally Using Kestrel
 -----------------------------
 
-The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency and as a :doc:`command </dnx/commands>`.
+The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
 
 .. code-block:: json
  :linenos:
@@ -111,7 +105,7 @@ The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundame
     }
   }
 
-- Run the ``dnx web`` command to launch the app
+- Run ``dotnet run`` command to launch the app
 
 - Navigate to ``localhost:5000``:
 

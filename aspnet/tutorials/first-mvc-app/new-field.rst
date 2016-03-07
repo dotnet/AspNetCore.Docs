@@ -78,8 +78,8 @@ Build the solution then open a command prompt. Enter the following commands:
 
 .. code-block:: PHP
 
-	dnx ef migrations add Rating
-	dnx ef database update
+	dotnet ef migrations add Rating
+	dotnet ef database update
 	
 The ``migrations add`` command tells the migration framework to examine the current ``Movie`` model with the current ``Movie`` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating"" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step. 
 

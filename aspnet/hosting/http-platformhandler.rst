@@ -45,5 +45,3 @@ The HTTP Platform Handler module allows you specify environment variables for th
   :language: xml
   :lines: 12-20
 
-.. note::
-    There is a `known issue <https://github.com/aspnet/dnx/issues/3062>`_ known issue with ``dnu publish`` where it removes all child attributes of the ``httpPlatform`` attribute.

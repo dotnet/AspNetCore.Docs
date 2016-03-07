@@ -78,10 +78,10 @@ With this in place, all that's required to run an ASP.NET application using this
 .. literalinclude:: owin/sample/src/NowinSample/project.json
 	:emphasize-lines: 14
 	:linenos:
-	:language: javascript
+	:language: json
 	:lines: 1-16
 
-When run, this command (equivalent to running ``dnx web`` from a command line) will search for a package called "NowinSample" that contains an implementation of ``IServerFactory``. If it finds one, it will initialize and start the server as detailed above. Learn more about the built-in ASP.NET :doc:`/fundamentals/servers`.
+When run, this command will search for a package called "NowinSample" that contains an implementation of ``IServerFactory``. If it finds one, it will initialize and start the server as detailed above. Learn more about the built-in ASP.NET :doc:`/fundamentals/servers`.
 
 Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 -----------------------------------------------------------------------

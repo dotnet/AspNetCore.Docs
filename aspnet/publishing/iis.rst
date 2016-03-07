@@ -44,7 +44,7 @@ Publish from Visual Studio
 
 4. Enter a profile name. Click **Next**.
 5. On the **Connection** tab, you can change the publishing target path from the default *..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish* folder. Click **Next**.
-6. On the **Settings** tab, you can select the configuration, target DNX version, and publish options. Click **Next**.
+6. On the **Settings** tab, you can select the configuration, target runtime version, and publish options. Click **Next**.
 
 The **Preview** tab shows you the publish path (by default, the same directory as the ".sln" solution file).
 

@@ -1,7 +1,7 @@
 Understanding ASP.NET 5 Web Apps
 ================================
 
-By `Steve Smith`_ and `Erik Reitan`_
+By `Steve Smith`_, `Erik Reitan`_
 
 ASP.NET 5 introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
 
@@ -27,7 +27,7 @@ has been refactored into files that are generally smaller and more focused.
 Framework Target
 ----------------
 
-ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default, applications will target the full version of .NET, but they can also target the :doc:`.NET Core </conceptual-overview/dotnetcore>`. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate `NuGet <https://docs.nuget.org>`_ packages.
+ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default, applications will target the full version of .NET, but they can also target `.NET Core`_. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate `NuGet`_ packages.
 
 You can see which framework is currently being targeted in the web application project's properties, by right-clicking on the web project in **Solution Explorer** and selecting **Properties**:
 
@@ -60,7 +60,7 @@ ASP.NET 5 has a great deal of support for command line tooling, and the **comman
     :language: json
     :lines: 30-33
 
-The **frameworks** section designates which targeted frameworks will be built, and what dependencies need to be included. For instance, if you were using LINQ and collections, you could ensure these were included with your .NET Core build by adding them to the ``dnxcore50`` list of dependencies as shown.
+The **frameworks** section designates which targeted frameworks will be built, and what dependencies need to be included. For instance, if you were using LINQ and collections, you could ensure these were included with your .NET Core build by adding them to the list of dependencies as shown.
 
 The **exclude** section is used to identify files and folders that should be excluded from builds. Likewise, **publishExclude** is used to identify content portions of the project that should be excluded when publishing the site (for example, in production).
 
@@ -78,7 +78,7 @@ The ``projects`` property designates which folders contain source code for the s
 
 .. image:: understanding-aspnet5-apps/_static/solution-files.png
 
-The ``sdk`` property specifies the version of the DNX (.Net Execution Environment) that Visual Studio will use when opening the solution. It's set here, rather than in *project.json*, to avoid scenarios where different projects within a solution are targeting different versions of the SDK. For more information about DNX, see :doc:`/dnx/overview`.
+The ``sdk`` property specifies the version of the .NET Core SDK that Visual Studio will use when opening the solution. It's set here, rather than in *project.json*, to avoid scenarios where different projects within a solution are targeting different versions of the SDK. 
 
 The wwwroot Folder
 ------------------
@@ -109,11 +109,11 @@ Each dependency is then further configured within its corresponding section usin
 Server Side Dependency Management
 ---------------------------------
 
-The *References* folder, shown within **Solution Explorer** in Visual Studio, details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets, such as the full DNX 4.5.1 vs. DNX Core 5.0.  Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under **Tools** > **NuGet Package Manager** > **Package Manager Settings** > **Package Sources**).
+The *References* folder, shown within **Solution Explorer** in Visual Studio, details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets. Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under **Tools** > **NuGet Package Manager** > **Package Manager Settings** > **Package Sources**).
 
 .. image:: understanding-aspnet5-apps/_static/references.png
 
-For more information, see `NuGet <https://docs.nuget.org>`_.
+For more information, see `NuGet`_.
 
 .. _fundamentalconcepts-application-startup:
 
@@ -122,7 +122,7 @@ Application Startup
 
 ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure :doc:`/fundamentals/middleware`.
 
-The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a ``ConfigurationBuilder`` to create an `IConfiguration <https://github.com/aspnet/Configuration/blob/1.0.0-rc1/src/Microsoft.Extensions.Configuration.Abstractions/IConfiguration.cs>`_ instance that loads *appsettings.json* and environment variables.
+The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a `ConfigurationBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationBuilder/index.html>`__ to create an `IConfiguration <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfiguration/index.html>`__ instance that loads *appsettings.json* and environment variables.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
     :language: c#
@@ -146,8 +146,6 @@ Finally, the ``Configure`` method will be called by the runtime after ``Configur
     :dedent: 8
 
 As you can see, configuring which services are available and how the request pipeline is configured is now done completely in code in the ``Startup`` class, as opposed to using HTTP Modules and Handlers managed via *web.config*. For more information, see :doc:`/fundamentals/startup`, :doc:`/fundamentals/configuration` and :doc:`/fundamentals/index`.
-
-.. TODO: You can learn more about how the request pipeline is configured as well as how to write your own middleware components.
 
 Summary
 -------

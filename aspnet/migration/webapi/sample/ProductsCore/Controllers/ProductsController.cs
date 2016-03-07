@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNet.Mvc;
-using ProductsDnx.Models;
+using ProductsCore.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProductsDnx.Controllers
+namespace ProductsCore.Controllers
 {
     [Route("api/[controller]")]
     public class ProductsController : Controller

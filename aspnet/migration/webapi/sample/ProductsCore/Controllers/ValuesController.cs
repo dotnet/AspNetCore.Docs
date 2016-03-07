@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 
-namespace ProductsDnx.Controllers
+namespace ProductsCore.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller

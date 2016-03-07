@@ -20,11 +20,7 @@ Windows Server 2016 Technical Preview offers a new installation option: Nano Ser
 
 In this tutorial, we will be using the pre-built `Virtual Hard Disk (VHD) for Nano Server <https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula>`_  from Windows Server Technical Preview 4. This pre-built VHD already includes the Reverse Forwarders and IIS packages which are required for this tutorial.
 
-Before proceeding with this tutorial, you will need the :ref:`published <dnu-publish>` output of an existing ASP.NET 5 application. Ensure your application is built targeting the **64-bit** version of ``coreclr``.
-
-.. code:: ps1
-
-  dnu publish --runtime dnx-coreclr-win-x64.1.0.0-rc1-update1
+Before proceeding with this tutorial, you will need the :doc:`published </publishing/index>` output of an existing ASP.NET 5 application. Ensure your application is built to run in a **64-bit** process.
 
 Setting up the Nano Server Instance
 -----------------------------------

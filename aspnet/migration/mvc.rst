@@ -42,8 +42,6 @@ Configure the site to use MVC
 
 The ``scripts`` section is used to denote when specified build automation scripts should run. Visual Studio now has built-in support for running scripts before and after specific events. The ``scripts`` section above specifies `NPM <https://docs.npmjs.com/>`__, `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__ scripts should run on the ``prepublish`` stage.  We'll talk about NPM, Bower, and Gulp later in the tutorial. Note the trailing "," added to the end of the ``publishExclude`` section.
 
-For more information, see :ref:`project.json <the-project-json-file>` and :doc:`/conceptual-overview/dotnetcore`.
-
 - Open the *Startup.cs* file and change the code to match the following:
 
 .. literalinclude:: mvc/samples/WebApp1/src/WebApp1/Startup.cs

@@ -10,8 +10,8 @@ In ASP.NET 5 the publish process has been simplified, we no longer store a refer
 
   1. A publish profile is created at ``Properties\PublishProfiles\profilename.pubxml``. The publish profile is an MSBuild file.
   2. A PowerShell script is created at ``Properties\PublishProfiles\profilename.ps1``.
-  3. dnu publish is called to gather the files to publish to a temporary folder.
-  4. A PowerShell script is called passing in the properties from the publish profile and the location where dnu publish has placed the files to publish.
+  3. ``dotnet publish`` is called to gather the files to publish to a temporary folder.
+  4. A PowerShell script is called passing in the properties from the publish profile and the location where ``dotnet publish`` has placed the files to publish.
 
 To create a publish profile in Visual Studio 2015, right click on the project in Solution Explorer and then select Publish.
 
@@ -21,11 +21,11 @@ The following image shows a visualization of this process.
 
 In the image above each black circle ● indicates an extension point, we will cover each extension point later in this document.
 
-When you start a publish operation, the publish dialog is closed and then MSBuild is called to start the process. Visual Studio calls MSBuild to do this so that you can have parity with publishing when using Visual Studio or the command line. The MSBuild layer is pretty thin, for the most part it just calls dnu publish. Let’s take a closer look at dnu publish.
+When you start a publish operation, the publish dialog is closed and then MSBuild is called to start the process. Visual Studio calls MSBuild to do this so that you can have parity with publishing when using Visual Studio or the command line. The MSBuild layer is pretty thin, for the most part it just calls ``dotnet publish``. Let’s take a closer look at ``dotnet publish``.
 
-dnu publish is a command line utility that is shipped with the Dot Net Version Manager (DNVM). It will inspect project.json and the project folder to determine the files which need to be published. It will place the files needed to run the application in a single folder ready to be transferred to the final destination.
+The ``dotnet publish`` command will inspect project.json and the project folder to determine the files which need to be published. It will place the files needed to run the application in a single folder ready to be transferred to the final destination.
 
-After dnu publish has completed, the PowerShell script for the publish profile is called. Now that we have briefly discussed how publishing works at a high level let’s take a look at the structure of the PowerShell script created for publishing.
+After ``dotnet publish`` has completed, the PowerShell script for the publish profile is called. Now that we have briefly discussed how publishing works at a high level let’s take a look at the structure of the PowerShell script created for publishing.
 
 When you create a publish profile in Visual Studio for an ASP.NET 5 project a PowerShell script is created that has the following structure.
 
@@ -79,13 +79,13 @@ In the previous section we saw the visualization of the publish process. The ima
 
 The image above shows the three main extension points, you’re most likely to use is #3.
 
-  1. Customize the call to dnu publish
+  1. Customize the call to ``dotnet publish``
 
-Most developers will not need to customize this extension point. Visual Studio starts the publish process by calling an MSBuild target. This target will take care of initializing the environment and calling dnu publish to layout the files. If you need to customize that call in a way that is not enabled by the publish dialog then you can use MSBuild elements in either the project file (.xproj file) or the publish profile (.pubxml file). We won’t get into details of how to do that here as it’s an advanced scenario that few will need to extend.
+Most developers will not need to customize this extension point. Visual Studio starts the publish process by calling an MSBuild target. This target will take care of initializing the environment and calling ``dotnet publish`` to layout the files. If you need to customize that call in a way that is not enabled by the publish dialog then you can use MSBuild elements in either the project file (.xproj file) or the publish profile (.pubxml file). We won’t get into details of how to do that here as it’s an advanced scenario that few will need to extend.
 
-  2. Customize dnu publish
+  2. Customize ``dotnet publish``
 
-As stated previously dnu publish is a command line utility that can be used to help publish your ASP.NET 5 application. This is a cross platform command line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to use dnu commands to script building and publishing. When dnu publish is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the `scripts section <https://docs.asp.net/en/latest/dnx/projects.html>`_
+As stated previously ``dotnet publish`` is a command line utility that can be used to help publish your ASP.NET 5 application. This is a cross platform command line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to script building and publishing. When ``dotnet publish`` is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the scripts section.
 
 The supported scripts for publish are prepublish and postpublish. The ASP.NET 5 Web Application template uses the prepublish step by default. The relevant snippet from ``project.json`` is shown below.
 
@@ -97,19 +97,19 @@ The supported scripts for publish are prepublish and postpublish. The ASP.NET 5 
 
 Here multiple comma separated calls are declared.
 
-When Visual Studio is used the prepublish and postpublish steps are executed as a part of the call to dnu publish. The postpublish script from ``project.json`` is executed before the files are published to the remote destination because that takes place immediately after dnu publish completes.  In the next step we cover customizing the PowerShell script to control what happens to the files after they reach the target destination.
+When Visual Studio is used the prepublish and postpublish steps are executed as a part of the call to ``dotnet publish``. The postpublish script from ``project.json`` is executed before the files are published to the remote destination because that takes place immediately after ``dotnet publish`` completes.  In the next step we cover customizing the PowerShell script to control what happens to the files after they reach the target destination.
 
   3. Customize the publish profile PowerShell Script
 
 After creating a publish profile in Visual Studio the PowerShell script ``Properties\PublishProfiles\ProfileName.ps1`` is created. The script does the following:
 
-    1. Runs  dnu publish, which will package the web project into a temporary folder to prepare it for the next phase of publishing.
+    1. Runs  ``dotnet publish``, which will package the web project into a temporary folder to prepare it for the next phase of publishing.
 
     2. The profile PowerShell script is directly invoked. The publish properties and the path to the temporary folder are passed in as parameters. Note, the temporary folder will be deleted on each publish.
 
 As mentioned previously the most important line in the default publish script is the call to ``Publish-AspNet``. The call to Publish-AspNet:
 
-  - Takes the contents of the folder at $packOutput, which contains the results of dnu publish, and publishes it to the destination.
+  - Takes the contents of the folder at $packOutput, which contains the results of ``dotnet publish``, and publishes it to the destination.
 
   - The publish properties are passed in the script parameter ``$publishProperties``.
 

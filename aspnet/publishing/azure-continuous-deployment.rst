@@ -13,13 +13,11 @@ This tutorial shows you how to create an ASP.NET 5 web app using Visual Studio a
 
 Prerequisites
 -------------
-Before you start, make sure that you have the followed the getting started steps for :doc:`/getting-started/installing-on-windows`. This tutorial assumes you have already installed the following:
+This tutorial assumes you have already installed the following:
 
-- `Visual Studio Community 2015 <https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx>`_
+- `Visual Studio`_
 - `ASP.NET 5  <http://go.microsoft.com/fwlink/?LinkId=627627>`_ (runtime and tooling)
 - `Git <http://git-scm.com/downloads>`_ for Windows
-
-.. note:: For additional information about installing ASP.NET 5, including information about installing on other platforms, see :doc:`/getting-started/index`.
 
 Create an ASP.NET 5 web app
 ---------------------------

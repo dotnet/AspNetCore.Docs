@@ -52,7 +52,7 @@ Now that we have a simple project from which to start, we can demonstrate how to
 Create the Destination Project
 ------------------------------
 
-Using Visual Studio 2015, create a new, empty solution, and add the existing *ProductsApp* project to it. Then, add a new Web Project to the solution. Name the new project 'ProductsDnx'.
+Using Visual Studio 2015, create a new, empty solution, and add the existing *ProductsApp* project to it. Then, add a new Web Project to the solution. Name the new project 'ProductsCore'.
 
 .. image:: webapi/_static/add-web-project.png
 
@@ -71,14 +71,14 @@ Migrate Configuration
 
 ASP.NET 5 no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project, and static configuration files can be wired up from there if needed (learn more about :ref:`ASP.NET 5 Application Startup <fundamentalconcepts-application-startup>`). Since Web API is now built into MVC 6, there is less need to configure it. Attribute-based routing is now included by default when ``UseMvc()`` is called, and this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
 
-.. literalinclude:: webapi/sample/ProductsDnx/Startup.cs
+.. literalinclude:: webapi/sample/ProductsCore/Startup.cs
 	:language: c#
 	:emphasize-lines: 43
 	:linenos:
 	
 Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample ``ValuesController`` class that is included in the Web API starter project:
 
-.. literalinclude:: webapi/sample/ProductsDnx/Controllers/ValuesController.cs
+.. literalinclude:: webapi/sample/ProductsCore/Controllers/ValuesController.cs
 	:language: c#
 	:emphasize-lines: 8,12,19,26,32,38
 	:linenos:
@@ -107,7 +107,7 @@ At this point, routing is configured correctly; however, we can't yet test it. A
 Migrate Models and Controllers
 ------------------------------
 
-The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy *Controllers/ProductsController.cs* from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (`ProductsDnx`).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:
+The last step in the migration process for this simple Web API project is to copy over the Controllers and any Models they use. In this case, simply copy *Controllers/ProductsController.cs* from the original project to the new one. Then, copy the entire Models folder from the original project to the new one. Adjust the namespaces to match the new project name (`ProductsCore`).  At this point, you can build the application, and you will find a number of compilation errors. These should generally fall into the following categories:
 
 	- `ApiController` does not exist
 	- `System.Web.Http` namespace does not exist
@@ -125,7 +125,7 @@ Fortunately, these are all very easy to correct:
 
 Once these changes have been made and unused using statements removed, the migrated *ProductsController* class looks like this:
 
-.. literalinclude:: webapi/sample/ProductsDnx/Controllers/ProductsController.cs
+.. literalinclude:: webapi/sample/ProductsCore/Controllers/ProductsController.cs
 	:language: c#
 	:emphasize-lines: 1,2,6,8-9,27,32,34
 	:linenos:

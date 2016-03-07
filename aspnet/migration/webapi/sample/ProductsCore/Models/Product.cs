@@ -1,5 +1,5 @@
 ﻿
-namespace ProductsDnx.Models
+namespace ProductsCore.Models
 {
     public class Product
     {

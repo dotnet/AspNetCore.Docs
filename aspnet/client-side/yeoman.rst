@@ -57,7 +57,7 @@ Yeoman will scaffold the project and its supporting files. Suggested next steps 
 
   .. image:: yeoman/_static/yeoman-yo-aspnet-created.png
 
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET 5 DNX projects that can be loaded into Visual Studio 2015 or run from the command line. 
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET 5 projects that can be loaded into Visual Studio 2015 or run from the command line. 
 
 If you were redirected to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
 
@@ -99,9 +99,7 @@ You can load your generated ASP.NET 5 web project directly into Visual Studio 20
 Restoring, Building, and Hosting from the Command Line
 ------------------------------------------------------
 
-You can prepare and host your web application using commands **dnu** (Microsoft .NET Development Utility) and **dnx** (Micorosft .NET Execution Environment). 
-
-.. note:: For more information on DNX, see :doc:`/dnx/overview` 
+You can prepare and host your web application using the `.NET Core`_ command-line interface. 
 
 1. From the command line, change the current directory to the folder containing the project (that is, the folder containing the `project.json` file):
 
@@ -113,38 +111,21 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 
 .. code-block:: console
 
-  dnu restore
+  dotnet restore
 
-3. Also from the command line, build the project assemblies: 
-
-.. code-block:: console
-
-  dnu build
-
-4. To run the development web server, use this **dnx** command:
+3. Run the application:
 
 .. code-block:: console
 
-  dnx web
-
-This will execute the corresponding ``web`` command in the ``commands`` section of the project.json file:
-
-.. code-block:: json
-  :linenos:
-  :emphasize-lines: 2
-
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
+  dotnet run
 
 The cross-platform `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ web server will begin listening on port 5000:
 
 .. image:: yeoman/_static/yeoman-web-server-started.png
 
-5. Open a web browser, and navigate to http://localhost:5000. 
+4. Open a web browser, and navigate to http://localhost:5000. 
 
-  .. image:: yeoman/_static/yeoman-home-page_5000.png 
+.. image:: yeoman/_static/yeoman-home-page_5000.png 
 
 Adding to Your Project with Sub Generators
 ------------------------------------------

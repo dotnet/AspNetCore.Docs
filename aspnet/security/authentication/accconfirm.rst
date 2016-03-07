@@ -135,12 +135,12 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
    :lines: 12-51
    :dedent: 4 
 
-.. note:: SendGrid doesn't currently target dnxcore50: If you build your project you will get compilation errors. This is because SendGrid does not have a package for dnxcore50 and some APIs such as System.Mail are not available on .NET Core. You can remove dnxcore50 from *project.json* or call the REST API from SendGrid to send email. The code below shows the updated *project.json* file with ``"dnxcore50": { }`` removed.
+.. note:: SendGrid does not yet support .NET Core. To use SendGrid in your application you need to either target the full .NET Framework (as shown below) or call the REST API from SendGrid to send email. 
 
 .. code-block:: json
 
 	 "frameworks": {
-    "dnx451": { }
+    "net46": { }
   },
 
 Enable account confirmation and password recovery

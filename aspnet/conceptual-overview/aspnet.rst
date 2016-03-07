@@ -13,19 +13,19 @@ ASP.NET 5 is a new open-source and cross-platform framework for building modern 
 Why build ASP.NET 5?
 --------------------
 
-The first preview release of ASP.NET 1.0 came out almost 15 years ago.  Since then millions of developers have used it to build and run great web applications, and over the years we have added and evolved many, many capabilities to it.
+The first preview release of ASP.NET came out almost 15 years ago as part of the .NET Framework.  Since then millions of developers have used it to build and run great web applications, and over the years we have added and evolved many, many capabilities to it.
 
 With ASP.NET 5 we are making a number of architectural changes that make the core web framework much leaner and more modular. ASP.NET 5 is no longer based on System.Web.dll, but is instead based on a set of granular and well factored NuGet packages allowing you to optimize your app to have just what you need. You can reduce the surface area of your application to improve security, reduce your servicing burden and also to improve performance in a true pay-for-what-you-use model.
 
 ASP.NET 5 is built with the needs of modern Web applications in mind, including a unified story for building Web UI and Web APIs that integrate with today's modern client-side frameworks and development workflows. ASP.NET 5 is also built to be cloud-ready by introducing environment-based configuration and by providing built-in dependency injection support.
 
-To appeal to a broader audience of developers, ASP.NET 5 supports cross-platform development on Windows, Mac and Linux. The entire ASP.NET 5 stack is open source and encourages community contributions and engagement. ASP.NET 5  comes with a new, agile project system in Visual Studio while also providing a complete command-line interface so that you can develop using the tools of your choice.
+To appeal to a broader audience of developers, ASP.NET 5 supports cross-platform development on Windows, Mac and Linux. The entire ASP.NET 5 stack is open source and encourages community contributions and engagement. ASP.NET 5 comes with a new, agile project system in Visual Studio while also providing a complete command-line interface so that you can develop using the tools of your choice.
 
 In summary, with ASP.NET 5 you gain the following foundational improvements:
 
 - New light-weight and modular HTTP request pipeline
 - Ability to host on IIS or self-host in your own process
-- Built on .NET Core, which supports true side-by-side app versioning
+- Built on `.NET Core`_, which supports true side-by-side app versioning
 - Ships entirely as NuGet packages
 - Integrated support for creating and using NuGet packages
 - Single aligned web stack for Web UI and Web APIs
@@ -38,27 +38,22 @@ In summary, with ASP.NET 5 you gain the following foundational improvements:
 Application anatomy
 -------------------
 
-ASP.NET 5 applications are built and run using the new :doc:`.NET Execution Environment (DNX) </dnx/overview>`. Every ASP.NET 5 project is a :doc:`DNX project </dnx/projects>`. ASP.NET 5 integrates with DNX through the `ASP.NET Application Hosting <https://nuget.org/packages/Microsoft.AspNet.Hosting>`_ package.
-
 ASP.NET 5 applications are defined using a public ``Startup`` class:
 
 .. code-block:: c#
-    :linenos:
 
-    public class Startup
-    {
-         public void ConfigureServices(IServiceCollection services)
-         {
-         }
+  public class Startup
+  {
+      public void ConfigureServices(IServiceCollection services)
+      {
+      }
 
-         public void Configure(IApplicationBuilder app)
-         {
-         }
-         
-         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
-    }
+      public void Configure(IApplicationBuilder app)
+      {
+      }
+  }
 
-The ``ConfigureServices`` method defines the services used by your application and the ``Configure`` method is used to define what middleware makes up your request pipeline. See :doc:`understanding-aspnet5-apps` for more details.
+The ``ConfigureServices`` method defines the services used by your application and the ``Configure`` method is used to define what middleware makes up your request pipeline. See :doc:`/fundamentals/startup` for more details.
 
 Services
 --------
@@ -77,7 +72,7 @@ ASP.NET 5 comes with a rich set of prebuilt middleware:
 - :doc:`/fundamentals/static-files`
 - :doc:`/fundamentals/routing`
 - :doc:`/fundamentals/diagnostics`
-- :doc:`Authentication </security/index>`
+- :doc:`/security/authentication/index`
 
 You can also author your own :doc:`custom middleware </fundamentals/middleware>`.
 
@@ -102,7 +97,6 @@ ASP.NET 5 uses a new configuration model for handling of simple name-value pairs
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :linenos:
   :lines: 22-33
   :dedent: 12
 

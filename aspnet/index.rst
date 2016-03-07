@@ -25,7 +25,6 @@ Topics
     fundamentals/index
     mvc/index
     testing/index
-    dnx/index
     data/index
     client-side/index
     mobile/index
@@ -40,8 +39,8 @@ Topics
 Related Resources
 -----------------
 
-* `.NET Core Documentation <https://dotnet.github.io>`__
-* `Entity Framework <http://docs.efproject.net>`_
+* `.NET Core`_
+* `Entity Framework`_
 * `WebHooks <http://docs.asp.net/projects/aspnetwebhooks>`_
 
 .. include:: ../common/contribute.txt
