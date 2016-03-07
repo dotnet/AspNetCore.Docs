@@ -4,7 +4,7 @@ Middleware
 ==========
 By `Steve Smith`_
 
-Small application components that can be incorporated into an HTTP request pipeline are known collectively as middleware. ASP.NET 5 has integrated support for middleware, which are wired up in an application's ``Configure`` method during :doc:`startup`.
+Small application components that can be incorporated into an HTTP request pipeline are known collectively as middleware. ASP.NET Core 1 has integrated support for middleware, which are wired up in an application's ``Configure`` method during :doc:`startup`.
 
 In this article:
 	- `What is middleware`_
