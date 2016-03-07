@@ -2,7 +2,7 @@ Integration Testing
 ===================
 By `Steve Smith`_
 
-Integration testing ensures that an application's components function correctly when assembled together. ASP.NET 5 supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
+Integration testing ensures that an application's components function correctly when assembled together. ASP.NET Core 1 supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
 
 In this article:
   - `Introduction to Integration Testing`_
@@ -151,7 +151,7 @@ Following this refactoring, we are confident that the web application still work
 
 Summary
 -------
-Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET 5 is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
+Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET Core 1 is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
 
 Additional Resources
 --------------------
