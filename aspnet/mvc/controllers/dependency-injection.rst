@@ -17,13 +17,13 @@ In this article:
 
 Dependency Injection
 --------------------
-Dependency injection is a technique that follows the `Dependency Inversion Principle <http://deviq.com/dependency-inversion-principle>`_, allowing for applications to be composed of loosely coupled modules. ASP.NET 5, which ASP.NET MVC 6 is built on, has built-in support for `dependency injection (learn more) <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_, and expects applications built for ASP.NET 5 to implement this technique (rather than static access or direct instantiation).
+Dependency injection is a technique that follows the `Dependency Inversion Principle <http://deviq.com/dependency-inversion-principle>`_, allowing for applications to be composed of loosely coupled modules. ASP.NET Core 1, which ASP.NET MVC 6 is built on, has built-in support for `dependency injection (learn more) <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_, and expects applications built for ASP.NET Core 1 to implement this technique (rather than static access or direct instantiation).
 
-.. tip:: It's important that you have a good understanding of how ASP.NET 5 implements Dependency Injection (DI). If you haven't already done so, please read `dependency injection  <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ in `ASP.NET 5 Fundamentals <http://docs.asp.net/en/latest/fundamentals/index.html>`_.
+.. tip:: It's important that you have a good understanding of how ASP.NET Core 1 implements Dependency Injection (DI). If you haven't already done so, please read `dependency injection  <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ in `ASP.NET 5 Fundamentals <http://docs.asp.net/en/latest/fundamentals/index.html>`_.
 
 Constructor Injection
 ---------------------
-ASP.NET 5's built-in support for constructor-based dependency injection extends to ASP.NET MVC 6 controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
+ASP.NET Core 1's built-in support for constructor-based dependency injection extends to ASP.NET MVC 6 controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Interfaces/IDateTime.cs
   :linenos:
