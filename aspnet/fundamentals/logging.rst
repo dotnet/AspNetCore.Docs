@@ -5,7 +5,7 @@ Logging
 
 By `Steve Smith`_
 
-ASP.NET 5 has built-in support for logging, and allows developers to easily leverage their preferred logging framework's functionality as well. Implementing logging in your application requires a minimal amount of setup code. Once this is in place, logging can be added wherever it is desired.
+ASP.NET Core 1 has built-in support for logging, and allows developers to easily leverage their preferred logging framework's functionality as well. Implementing logging in your application requires a minimal amount of setup code. Once this is in place, logging can be added wherever it is desired.
 
 In this article:
 	- `Implementing Logging in your Application`_
@@ -62,7 +62,7 @@ Logging Verbosity Levels
 
 When adding logging statements to your application, you must specify a `LogLevel <https://github.com/aspnet/Logging/blob/1.0.0-rc1/src/Microsoft.Extensions.Logging.Abstractions/LogLevel.cs>`_. The LogLevel allows you to control the verbosity of the logging output from your application, as well as the ability to pipe different kinds of log messages to different loggers. For example, you may wish to log debug messages to a local file, but log errors to the machine's event log or a database.
 
-ASP.NET 5 defines six levels of logging verbosity:
+ASP.NET Core 1 defines six levels of logging verbosity:
 
 Debug
 	Used for the most detailed log messages, typically only valuable to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. *Disabled by default.* Example: ``Credentials: {"User":"someuser", "Password":"P@ssword"}``
