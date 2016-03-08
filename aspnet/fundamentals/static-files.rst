@@ -280,21 +280,9 @@ Now, if the user attempts to browse to any file with an extension of ``.myapp``,
 IIS Considerations
 ------------------
 
-IIS (Internet Information Server) has a native static file module that is independent of the ASP.NET static file middleware components that you've learned about in this article. As the ASP.NET modules are run before the IIS native module, they take precedence over the IIS native module. As of `ASP.NET Beta 7 <https://github.com/aspnet/Announcements#54>`_, the IIS host has changed so that requests that are not handled by ASP.NET will return empty 404 responses instead of allowing the IIS native modules to run. To opt into running the IIS native modules, add the following call to the end of ``Startup.Configure``.
+IIS (Internet Information Server) acts as a reverse proxy which means that IIS HTTP Platform Handler doesn’t treat requests over static files any different from requests over dynamic content. It implies that the ASP.NET Core application should serves its static content (through the static file middleware) because the IIS native static file module won’t do it.
 
-.. code-block:: c#
-  :emphasize-lines: 9
-
-  public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-  {
-    ...
-
-    ...
-    // Enable the IIS native module to run after the ASP.NET middleware components.
-    // This call should be placed at the end of your Startup.Configure method so that
-    // it doesn't interfere with other middleware functionality.
-    app.RunIISPipeline();
-  }
+As a reverse proxy, IIS might still be helpful to apply compression or caching upon static files. This can be done using the classic ``web.config`` file or using the Internet Information Services (IIS) Manager.
 
 Best practices
 --------------
