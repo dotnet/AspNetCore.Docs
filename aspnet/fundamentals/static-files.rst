@@ -280,21 +280,7 @@ Now, if the user attempts to browse to any file with an extension of ``.myapp``,
 IIS Considerations
 ------------------
 
-IIS (Internet Information Server) has a native static file module that is independent of the ASP.NET static file middleware components that you've learned about in this article. As the ASP.NET modules are run before the IIS native module, they take precedence over the IIS native module. As of `ASP.NET Beta 7 <https://github.com/aspnet/Announcements#54>`_, the IIS host has changed so that requests that are not handled by ASP.NET will return empty 404 responses instead of allowing the IIS native modules to run. To opt into running the IIS native modules, add the following call to the end of ``Startup.Configure``.
-
-.. code-block:: c#
-  :emphasize-lines: 9
-
-  public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-  {
-    ...
-
-    ...
-    // Enable the IIS native module to run after the ASP.NET middleware components.
-    // This call should be placed at the end of your Startup.Configure method so that
-    // it doesn't interfere with other middleware functionality.
-    app.RunIISPipeline();
-  }
+ASP.NET 5 applications hosted in IIS use the HTTP platform handler to forward all requests to the application including requests for static files. The IIS static file handler is not used because it won’t get a chance to handle the request before it is handled by the HTTP platform handler.
 
 Best practices
 --------------
