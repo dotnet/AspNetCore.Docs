@@ -218,7 +218,7 @@ You configure this ``IRouter`` implementation as the ``DefaultHandler`` for a ``
 
 Data Tokens
 ^^^^^^^^^^^
-Data tokens represent data that is carried along if the route matches. They're implemented as a property bag for develoer-specified data. You can use data tokens to store data you want to associate with a route, when you don't want the semantics of defaults. Data tokens have no impact on the **behavior** of the route, while defaults do. Data tokens can also be any arbitrary types, while defaults really need to be things that can be converted to/from strings.
+Data tokens represent data that is carried along if the route matches. They're implemented as a property bag for developer-specified data. You can use data tokens to store data you want to associate with a route, when you don't want the semantics of defaults. Data tokens have no impact on the **behavior** of the route, while defaults do. Data tokens can also be any arbitrary types, while defaults really need to be things that can be converted to/from strings.
 
 .. _link-generation:
 
