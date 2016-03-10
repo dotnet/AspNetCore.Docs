@@ -1,8 +1,6 @@
-using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
-using MVCMovie.Models;
+using System.Text.RegularExpressions;
 
 namespace MVCMovie.Controllers
 {
@@ -12,7 +10,13 @@ namespace MVCMovie.Controllers
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyEmail(string email)
         {
-            return Json(data: string.Format("/UsersController/VerifyEmail {0}.", email));
+            RegEx reg = new Regex("[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
+            Match match = reg.Match(text);
+            if (match.Success)
+            {
+                return true; 
+            }
+            return Json(data: string.Format("Invalid email format: {0}", email));            
         }
     }
 }

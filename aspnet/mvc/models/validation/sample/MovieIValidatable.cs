@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MVCMovie.Models
 {
-    public class Movie      
+    public class MovieIValidatable : IValidatableObject
     {
         public int Id { get; set; }
 
@@ -13,23 +15,35 @@ namespace MVCMovie.Models
         public string Title { get; set; }
 
         [Required]
-        [ClassicMovie(1960)]
         public DateTime ReleaseDate { get; set; }
-        
+
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }
- 
+
         [Required()]
-        [Range(0, 999.99)]        
+        [Range(0, 999.99)]
         public float Price { get; set; }
-        
+
         [Required]
         public Genre Genre { get; set; }
 
         [Required]
         public Audience Audience { get; set; }
-
         public List<Review> Reviews { get; set; }
+
+        public IEnumerable<ValidationResult> 
+            Validate(ValidationContext validationContext)
+        {
+            if (Genre == Genre.Classic)
+            {
+                if (ReleaseDate.Year > 1960)
+                {
+                    yield return new ValidationResult(
+                        "Classic movies must have a release year earlier than 1960", 
+                        new[] { "ReleaseDate" });
+                }
+            }
+        }
     }
 }

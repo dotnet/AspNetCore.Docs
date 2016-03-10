@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MVCMovie.Models
 {
-    public class ClassicMovieAttribute : ValidationAttribute 
+    public class ClassicMovieAttribute : ValidationAttribute, IClientModelValidator
     {
-        private int _year;
+        private int _classicYear;
         public ClassicMovieAttribute(int Year)
         {
-            _year = Year;                
+            _classicYear = Year;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,36 +22,25 @@ namespace MVCMovie.Models
 
             if (movie.Genre == Genre.Classic)
             {
-                if (movie.ReleaseDate.Year < this._year)
+                if (movie.ReleaseDate.Year > this._classicYear)
                 {
-                    return ValidationResult.Success;
+                    return new ValidationResult(
+                        "Classic movies must have a release date earlier than " + this._classicYear);
+
                 }
                 else
                 {
-                    return new ValidationResult(
-                        "Classic movies must have a release year earlier than " + this._year);
+                    return ValidationResult.Success;
                 }
             }
             return ValidationResult.Success;
         }
+
+        public IEnumerable<ModelClientValidationRule>
+        GetClientValidationRules(ClientModelValidationContext context)
+        {
+            yield return new ModelClientValidationRule("classicmovie",
+                "Classic movies must have a release date earlier than " + this._classicYear);
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//, IClientModelValidator
-//IEnumerable<ModelClientValidationRule> IClientModelValidator.GetClientValidationRules(ClientModelValidationContext context)
-//{
-//    var rule = new ModelClientValidationRule("classicmovie","Classic movies must have a release year earlier than " + this._year);
-//    yield return rule;
-//}
