@@ -91,7 +91,7 @@ View components are typically invoked from a view, but you can invoke them direc
 
 In this example, the view component is called directly from the controller:
 
-.. literalinclude:: view-components\sample\ViewCompFinal\Controllers\ToDoController.cs
+.. literalinclude:: view-components/sample/ViewCompFinal/Controllers/ToDoController.cs
  :language: c#
  :lines: 23-26
  :dedent: 6
