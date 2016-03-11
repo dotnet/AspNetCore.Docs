@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Microsoft.AspNet.Mvc;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
@@ -25,7 +26,7 @@ namespace TestingControllersSample.Api
             {
                 return HttpNotFound(sessionId);
             }
-            return new ObjectResult(session.Ideas);
+            return new ObjectResult(session.Ideas.Select(i => new { id = i.Id, name=i.Name, description = i.Description, dateCreated = i.DateCreated}));
         }
 
         public class NewIdeaModel

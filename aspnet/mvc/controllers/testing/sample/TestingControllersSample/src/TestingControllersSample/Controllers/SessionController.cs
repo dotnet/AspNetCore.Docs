@@ -33,8 +33,8 @@ namespace TestingControllersSample.Controllers
             var viewModel = new StormSessionViewModel()
                 {
                     DateCreated = session.DateCreated,
-                    IdeaCount = 123,
-                    Name = session.Name
+                    Name = session.Name,
+                    Id=session.Id
                 };
             return View(viewModel);
         }
