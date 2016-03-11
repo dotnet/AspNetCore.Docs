@@ -13,7 +13,7 @@
         {
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#">@storm.Name</a> - @storm.DateCreated.ToString()
+                    <a href="@Url.Action("Index","Session", new {id=@storm.Id})">@storm.Name</a> - @storm.DateCreated.ToString()
                 </div>
                 <div class="panel-body">
                     @storm.IdeaCount ideas

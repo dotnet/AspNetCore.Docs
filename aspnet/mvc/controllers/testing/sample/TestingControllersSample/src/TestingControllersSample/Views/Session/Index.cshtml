@@ -1,0 +1,46 @@
+﻿@using TestingControllersSample.ViewModels
+@model StormSessionViewModel
+
+@{
+    ViewBag.Title = "Brainstormer Session : " + Model.Name;
+    Layout = "_Layout";
+}
+
+<h2>BrainStorm Session: @Model.Name</h2>
+<div class="small">@Model.DateCreated</div>
+
+<div class="row">
+    <div class="col-md-9">
+        List IDEAS
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                IDEA NAME  [Like] [Dislike]
+            </div>
+            <div class="panel-body">
+                IDEA Description
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add New Idea
+            </div>
+            <div class="panel-body">
+                <form method="post">
+                    <fieldset class="form-group">
+                        <label for="ideaName">New Idea</label>
+                        <input type="text" class="form-control" id="ideaName" name="ideaName"
+                               placeholder="New Idea" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="ideaDescription">New Idea</label>
+                        <textarea class="form-control" id="ideaDescription" name="ideaDescription"
+                               placeholder="Description" />
+                    </fieldset>
+                    <input type="submit" value="Save" id="SaveButton" name="SaveButton" class="btn btn-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

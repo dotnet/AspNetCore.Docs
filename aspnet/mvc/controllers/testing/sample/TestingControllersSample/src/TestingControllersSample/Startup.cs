@@ -3,6 +3,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Infrastructure;
 
 namespace TestingControllersSample
@@ -16,6 +17,7 @@ namespace TestingControllersSample
                 .AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase());
 
             services.AddMvc();
+            services.AddScoped<IBrainStormSessionRepository, EfStormSessionRepository>();
         }
 
         public void Configure(IApplicationBuilder app, 
