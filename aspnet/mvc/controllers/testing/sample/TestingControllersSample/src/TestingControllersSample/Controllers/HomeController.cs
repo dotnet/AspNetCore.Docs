@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
-using TestingControllersSample.Infrastructure;
 using TestingControllersSample.ViewModels;
 
 namespace TestingControllersSample.Controllers
@@ -27,7 +25,7 @@ namespace TestingControllersSample.Controllers
                     Id = s.Id,
                     DateCreated = s.DateCreated,
                     Name = s.Name,
-                    IdeaCount = 123
+                    IdeaCount = s.Ideas.Count
                 });
 
             return View(model);

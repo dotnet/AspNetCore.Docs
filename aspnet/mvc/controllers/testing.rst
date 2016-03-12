@@ -28,4 +28,4 @@ Typical controller responsibilities:
 
 Unit Testing
 ------------
-:doc:`Unit testing </testing/unit-testing>` involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action should be tested.
+:doc:`Unit testing </testing/unit-testing>` involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action should be tested, not the behavior of its dependencies.

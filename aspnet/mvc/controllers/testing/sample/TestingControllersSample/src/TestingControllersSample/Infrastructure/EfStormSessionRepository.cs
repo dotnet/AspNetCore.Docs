@@ -25,6 +25,7 @@ namespace TestingControllersSample.Infrastructure
         public List<BrainStormSession> List()
         {
             return _dbContext.BrainStormSessions
+                .Include(s=>s.Ideas)
                 .OrderByDescending(s => s.DateCreated)
                 .ToList();
         }
