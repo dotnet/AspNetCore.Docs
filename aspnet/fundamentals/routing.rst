@@ -93,7 +93,7 @@ The following table demonstrates some route template and their expected behavior
 	  - Will map to ``Products`` controller and ``List`` method; Since ``id`` was not supplied in the URL, it's ignored.
 	* - {controller}/{action}/{id?}
 	  - /Products/Details/123
-	  - Will map to ``Products`` controller and ``List`` method, with ``id`` set to ``123``.
+	  - Will map to ``Products`` controller and ``Details`` method, with ``id`` set to ``123``.
 	* - {controller=Home}/{action=Index}/{id?}
 	  - /
 	  - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
