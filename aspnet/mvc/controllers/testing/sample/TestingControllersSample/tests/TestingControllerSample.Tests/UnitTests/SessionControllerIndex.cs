@@ -35,6 +35,23 @@ namespace TestingControllerSample.Tests.UnitTests
             Assert.Equal("Session not found.", result.Content);
         }
 
+        [Fact]
+        public void ReturnsViewResultWithStormSessionViewModel()
+        {
+            var mockRepo = new Mock<IBrainStormSessionRepository>();
+            int testSessionId = 1;
+            mockRepo.Setup(r => r.GetById(testSessionId))
+                .Returns(GetTestSessions().FirstOrDefault(s => s.Id == testSessionId));
+            var controller = new SessionController(mockRepo.Object);
+
+            var result = Assert.IsType<ViewResult>(controller.Index(testSessionId));
+            var model = Assert.IsType<StormSessionViewModel>(result.ViewData.Model);
+
+            Assert.Equal("Test One", model.Name);
+            Assert.Equal(2, model.DateCreated.Day);
+            Assert.Equal(testSessionId, model.Id);
+        }
+
         private List<BrainStormSession> GetTestSessions()
         {
             var sessions = new List<BrainStormSession>();
