@@ -93,7 +93,7 @@ The following table demonstrates some route template and their expected behavior
 	  - Will map to ``Products`` controller and ``List`` method; Since ``id`` was not supplied in the URL, it's ignored.
 	* - {controller}/{action}/{id?}
 	  - /Products/Details/123
-	  - Will map to ``Products`` controller and ``List`` method, with ``id`` set to ``123``.
+	  - Will map to ``Products`` controller and ``Details`` method, with ``id`` set to ``123``.
 	* - {controller=Home}/{action=Index}/{id?}
 	  - /
 	  - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
@@ -128,7 +128,7 @@ Adding a colon ``:`` after the name allows additional inline constraints to be s
 	  - {price:decimal}
 	  - 49.99
 	  - Matches a valid ``decimal`` value
-	* - ``decimal``
+	* - ``double``
 	  - {price:double}
 	  - 4.234
 	  - Matches a valid ``double`` value
@@ -165,7 +165,7 @@ Adding a colon ``:`` after the name allows additional inline constraints to be s
 	  - 91
 	  - Value must be no more than 120.
 	* - ``range(min,max)``
-	  - {age:max(18,120)}
+	  - {age:range(18,120)}
 	  - 91
 	  - Value must be at least 18 but no more than 120.
 	* - ``alpha``
