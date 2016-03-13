@@ -105,7 +105,7 @@ Policies are applied using the ``Policy`` parameter on the ``Authorize`` attribu
      return View();
  }
 
-If you want to specify multiple allowed roles in a requirement then you you can specify them as parameters to the ``RequireRole`` method;
+If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the ``RequireRole`` method;
 
 .. code-block:: c#
 
