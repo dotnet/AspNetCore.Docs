@@ -15,7 +15,7 @@ Prerequisites
     
 Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7.
 
-In your project.json file under frameworks remove any reference to ``dnxcore50`` or ``dotnet5.4``. Valid identifiers for the .NET Framework are listed on the `corefx repo documentation <https://github.com/dotnet/corefx/blob/master/Documentation/project-docs/standard-platform.md#specific-platform-mapping>`_, but for targeting DNX 4.5.1 the frameworks section should be:
+In your project.json file under frameworks remove any reference to ``dnxcore50`` or ``dotnet5.1``. Valid identifiers for the .NET Framework are listed on the `corefx repo documentation <https://github.com/dotnet/corefx/blob/master/Documentation/project-docs/standard-platform.md#specific-platform-mapping>`_, but for targeting DNX 4.5.1 the frameworks section should be:
 
 .. code-block:: javascript
     
