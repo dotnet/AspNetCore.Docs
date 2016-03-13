@@ -26,7 +26,13 @@ namespace TestingControllersSample.Api
             {
                 return HttpNotFound(sessionId);
             }
-            return new ObjectResult(session.Ideas.Select(i => new { id = i.Id, name=i.Name, description = i.Description, dateCreated = i.DateCreated}));
+            return new ObjectResult(session.Ideas.Select(i => new
+            {
+                id = i.Id,
+                name =i.Name,
+                description = i.Description,
+                dateCreated = i.DateCreated
+            }));
         }
 
         public class NewIdeaModel
