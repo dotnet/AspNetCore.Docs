@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
+using TestingControllersSample.ClientModels;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
 
@@ -10,9 +10,9 @@ namespace TestingControllersSample.Api
     [Route("api/ideas")]
     public class IdeasController : Controller
     {
-        private readonly IBrainStormSessionRepository _sessionRepository;
+        private readonly IBrainstormSessionRepository _sessionRepository;
 
-        public IdeasController(IBrainStormSessionRepository sessionRepository)
+        public IdeasController(IBrainstormSessionRepository sessionRepository)
         {
             _sessionRepository = sessionRepository;
         }
@@ -26,23 +26,14 @@ namespace TestingControllersSample.Api
             {
                 return HttpNotFound(sessionId);
             }
-            return new ObjectResult(session.Ideas.Select(i => new
+            var result = session.Ideas.Select(i => new IdeaDTO()
             {
                 id = i.Id,
-                name =i.Name,
+                name = i.Name,
                 description = i.Description,
                 dateCreated = i.DateCreated
-            }));
-        }
-
-        public class NewIdeaModel
-        {
-            [Required]
-            public string Name { get; set; }
-            [Required]
-            public string Description { get; set; }
-            [Required]
-            public int SessionId { get; set; }
+            }).ToList();
+            return Ok(result);
         }
 
         [Route("create")]
@@ -51,7 +42,7 @@ namespace TestingControllersSample.Api
         {
             if (!ModelState.IsValid)
             {
-                return new BadRequestObjectResult(ModelState);
+                return HttpBadRequest(ModelState);
             }
             var session = _sessionRepository.GetById(model.SessionId);
             if (session == null)
@@ -60,13 +51,13 @@ namespace TestingControllersSample.Api
             }
             var idea = new Idea()
             {
-                DateCreated = DateTime.Now,
+                DateCreated = DateTimeOffset.Now,
                 Description = model.Description,
                 Name = model.Name
             };
             session.AddIdea(idea);
             _sessionRepository.Update(session);
-            return new ObjectResult(session);
+            return Ok(session);
         }
     }
 }

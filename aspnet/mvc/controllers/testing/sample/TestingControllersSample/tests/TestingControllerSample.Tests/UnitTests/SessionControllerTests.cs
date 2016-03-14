@@ -10,12 +10,12 @@ using TestingControllersSample.ViewModels;
 using Xunit;
 namespace TestingControllerSample.Tests.UnitTests
 {
-    public class SessionControllerIndex
+    public class SessionControllerTests
     {
         [Fact]
-        public void ReturnsARedirectToIndexHomeWhenIdIsNull()
+        public void IndexReturnsARedirectToIndexHomeWhenIdIsNull()
         {
-            var controller = new SessionController(null);
+            var controller = new SessionController(sessionRepository:null);
 
             var result = Assert.IsType<RedirectToActionResult>(controller.Index(null));
             Assert.Equal("Home", result.ControllerName);
@@ -23,12 +23,12 @@ namespace TestingControllerSample.Tests.UnitTests
         }
 
         [Fact]
-        public void ReturnsContentWithSessionNotFoundWhenSessionNotFound()
+        public void IndexReturnsContentWithSessionNotFoundWhenSessionNotFound()
         {
-            var mockRepo = new Mock<IBrainStormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormSessionRepository>();
             int testSessionId = 1;
             mockRepo.Setup(r => r.GetById(testSessionId))
-                .Returns((BrainStormSession)null);
+                .Returns((BrainstormSession)null);
             var controller = new SessionController(mockRepo.Object);
 
             var result = Assert.IsType<ContentResult>(controller.Index(testSessionId));
@@ -36,9 +36,9 @@ namespace TestingControllerSample.Tests.UnitTests
         }
 
         [Fact]
-        public void ReturnsViewResultWithStormSessionViewModel()
+        public void IndexReturnsViewResultWithStormSessionViewModel()
         {
-            var mockRepo = new Mock<IBrainStormSessionRepository>();
+            var mockRepo = new Mock<IBrainstormSessionRepository>();
             int testSessionId = 1;
             mockRepo.Setup(r => r.GetById(testSessionId))
                 .Returns(GetTestSessions().FirstOrDefault(s => s.Id == testSessionId));
@@ -52,16 +52,16 @@ namespace TestingControllerSample.Tests.UnitTests
             Assert.Equal(testSessionId, model.Id);
         }
 
-        private List<BrainStormSession> GetTestSessions()
+        private List<BrainstormSession> GetTestSessions()
         {
-            var sessions = new List<BrainStormSession>();
-            sessions.Add(new BrainStormSession()
+            var sessions = new List<BrainstormSession>();
+            sessions.Add(new BrainstormSession()
             {
                 DateCreated = new DateTime(2016, 7, 2),
                 Id = 1,
                 Name = "Test One"
             });
-            sessions.Add(new BrainStormSession()
+            sessions.Add(new BrainstormSession()
             {
                 DateCreated = new DateTime(2016, 7, 1),
                 Id = 2,

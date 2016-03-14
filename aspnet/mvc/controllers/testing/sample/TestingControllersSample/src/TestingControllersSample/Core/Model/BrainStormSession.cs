@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace TestingControllersSample.Core.Model
 {
-    public class BrainStormSession
+    public class BrainstormSession
     {
         public int Id { get; set; } 
         public string Name { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTimeOffset DateCreated { get; set; }
 
-        public List<Idea> Ideas { get; private set; } = new List<Idea>();
+        public List<Idea> Ideas { get; } = new List<Idea>();
 
         public void AddIdea(Idea idea)
         {
@@ -22,6 +22,6 @@ namespace TestingControllersSample.Core.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTimeOffset DateCreated { get; set; }
     }
 }

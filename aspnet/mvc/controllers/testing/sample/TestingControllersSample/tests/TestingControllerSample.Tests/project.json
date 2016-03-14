@@ -1,15 +1,10 @@
 ﻿{
-  "version": "1.0.0-*",
-  "description": "TestingControllerSample.Tests Class Library",
-  "authors": [ "Steve Smith (@ardalis)" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-
   "frameworks": {
     "dnx451": { }
   },
   "dependencies": {
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
+    "Microsoft.AspNet.WebApi.Client":  "5.2.3",
     "TestingControllersSample": "1.0.0",
     "xunit": "2.1.0-rc1-build3168",
     "xunit.runner.dnx": "2.1.0-rc1-build204",

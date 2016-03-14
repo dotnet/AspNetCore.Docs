@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 
-<h2>BrainStorm Sessions</h2>
+<h2>Brainstorm Sessions</h2>
 <div class="row">
     <div class="col-md-9">
         @foreach (var storm in Model)
@@ -28,7 +28,7 @@
             </div>
             <div class="panel-body">
                 @Html.ValidationSummary()
-                <form method="post">
+                <form method="post" asp-controller="Home" asp-action="Index">
                     <fieldset class="form-group">
                         <label for="sessionName">New Session Name</label>
                         <input type="text" class="form-control" id="sessionName" name="SessionName"

@@ -6,7 +6,7 @@ using TestingControllersSample.Core.Model;
 
 namespace TestingControllersSample.Infrastructure
 {
-    public class EfStormSessionRepository :IBrainStormSessionRepository
+    public class EfStormSessionRepository :IBrainstormSessionRepository
     {
         private readonly AppDbContext _dbContext;
 
@@ -15,34 +15,34 @@ namespace TestingControllersSample.Infrastructure
             _dbContext = dbContext;
         }
 
-        public BrainStormSession GetById(int id)
+        public BrainstormSession GetById(int id)
         {
-            return _dbContext.BrainStormSessions
+            return _dbContext.BrainstormSessions
                 .Include(s => s.Ideas)
                 .FirstOrDefault(s => s.Id == id);
         }
 
-        public List<BrainStormSession> List()
+        public List<BrainstormSession> List()
         {
-            return _dbContext.BrainStormSessions
+            return _dbContext.BrainstormSessions
                 .Include(s=>s.Ideas)
                 .OrderByDescending(s => s.DateCreated)
                 .ToList();
         }
 
-        public void Add(BrainStormSession session)
+        public void Add(BrainstormSession session)
         {
             int maxId = 0;
-            if (_dbContext.BrainStormSessions.Any())
+            if (_dbContext.BrainstormSessions.Any())
             {
-                maxId = _dbContext.BrainStormSessions.Max(s => s.Id);
+                maxId = _dbContext.BrainstormSessions.Max(s => s.Id);
             }
             session.Id = maxId + 1;
-            _dbContext.BrainStormSessions.Add(session);
+            _dbContext.BrainstormSessions.Add(session);
             _dbContext.SaveChanges();
         }
 
-        public void Update(BrainStormSession session)
+        public void Update(BrainstormSession session)
         {
             _dbContext.Entry(session).State = EntityState.Modified;
             _dbContext.SaveChanges();

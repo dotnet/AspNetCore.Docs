@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Razor.Chunks.Generators;
 using TestingControllersSample.Core.Model;
 
 namespace TestingControllersSample.Core.Interfaces
 {
-    public interface IBrainStormSessionRepository
+    public interface IBrainstormSessionRepository
     {
-        BrainStormSession GetById(int id);
-        List<BrainStormSession> List();
-        void Add(BrainStormSession session);
-        void Update(BrainStormSession session);
+        BrainstormSession GetById(int id);
+        List<BrainstormSession> List();
+        void Add(BrainstormSession session);
+        void Update(BrainstormSession session);
     }
 }

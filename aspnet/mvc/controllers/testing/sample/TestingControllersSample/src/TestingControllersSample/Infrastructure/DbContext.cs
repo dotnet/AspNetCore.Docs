@@ -5,6 +5,6 @@ namespace TestingControllersSample.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<BrainStormSession> BrainStormSessions { get; set; }
+        public DbSet<BrainstormSession> BrainstormSessions { get; set; }
     }
 }
