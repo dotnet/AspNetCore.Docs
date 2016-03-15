@@ -36,7 +36,7 @@ Replace the contents of *Controllers/HelloWorldController.cs* with the following
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
 	:language: c#
 	:linenos: 
-	:lines: 6-28
+	:lines: 5-28
 	
 Every ``public`` method in a controller is callable. In the sample above, both methods return a string.  Note the comments preceding each method:
 
