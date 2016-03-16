@@ -2,7 +2,7 @@ Integration Testing
 ===================
 By `Steve Smith`_
 
-Integration testing ensures that an application's components function correctly when assembled together. ASP.NET 5 supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
+Integration testing ensures that an application's components function correctly when assembled together. ASP.NET Core 1.0 supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
 
 In this article:
   - `Introduction to Integration Testing`_
@@ -10,7 +10,7 @@ In this article:
   - `Refactoring to use Middleware`_
 
 
-`Download sample from GitHub <https://github.com/aspnet/docs/tree/master/aspnet/testing/integration-testing/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/docs/tree/master/aspnet/testing/integration-testing/sample>`_.
 
 Introduction to Integration Testing
 -----------------------------------
@@ -117,9 +117,9 @@ Refactoring is the process of changing an application's code to improve its desi
         });
     }
 
-This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET application, even as simple a one as this is. Imagine what the ``Configure`` method would look like if we needed to add this much code to it every time we added another URL endpoint! 
+This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET application, even as simple a one as this is. Imagine what the ``Configure`` method would look like if we needed to add this much code to it every time we added another URL endpoint!
 
-One option we can consider is adding `MVC <http://docs.asp.net/projects/mvc>`_ to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill. 
+One option we can consider is adding `MVC <http://docs.asp.net/projects/mvc>`_ to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill.
 
 We can, however, take advantage of ASP.NET's :doc:`/fundamentals/middleware` support, which will help us encapsulate the prime checking logic in its own class and achieve better `separation of concerns <http://deviq.com/separation-of-concerns/>`_ within the ``Configure`` method.
 
@@ -151,7 +151,7 @@ Following this refactoring, we are confident that the web application still work
 
 Summary
 -------
-Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET 5 is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
+Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET Core 1.0 is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
 
 Additional Resources
 --------------------

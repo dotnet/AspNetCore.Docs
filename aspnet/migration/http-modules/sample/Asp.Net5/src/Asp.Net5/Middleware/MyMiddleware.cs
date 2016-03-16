@@ -1,4 +1,4 @@
-﻿// ASP.NET 5 middleware
+﻿// ASP.NET Core 1.0 middleware
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;

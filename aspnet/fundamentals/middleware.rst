@@ -4,7 +4,7 @@ Middleware
 ==========
 By `Steve Smith`_
 
-Small application components that can be incorporated into an HTTP request pipeline are known collectively as middleware. ASP.NET 5 has integrated support for middleware, which are wired up in an application's ``Configure`` method during :doc:`startup`.
+Small application components that can be incorporated into an HTTP request pipeline are known collectively as middleware. ASP.NET Core 1.0 has integrated support for middleware, which are wired up in an application's ``Configure`` method during :doc:`startup`.
 
 In this article:
 	- `What is middleware`_
@@ -17,7 +17,7 @@ In this article:
 What is middleware
 ------------------
 
-Middleware are components that are assembled into an application pipeline to handle requests and responses. Each component can choose whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component in the pipeline. Request delegates are used to build this request pipeline, which are then used to handle each HTTP request to your application. 
+Middleware are components that are assembled into an application pipeline to handle requests and responses. Each component can choose whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component in the pipeline. Request delegates are used to build this request pipeline, which are then used to handle each HTTP request to your application.
 
 Request delegates are configured using ``Run``, ``Map``, and ``Use`` extension methods on the ``IApplicationBuilder`` type that is passed into the ``Configure`` method in the ``Startup`` class. An individual request delegate can be specified in-line as an anonymous method, or it can be defined in a reusable class. These reusable classes  are `middleware`, or `middleware components`. Each middleware component in the request pipeline is responsible for invoking the next component in the chain, or choosing to short-circuit the chain if appropriate.
 
@@ -39,7 +39,7 @@ You can see an example of setting up a request pipeline, using a variety of requ
 	:dedent: 8
 	:emphasize-lines: 8-10,14,19,21,25
 
-Because of the order in which this pipeline was constructed, the middleware configured by the ``UseExceptionHandler`` method will catch any exceptions that occur in later calls (in non-development environments). Also, in this example a design decision has been made that static files will not be protected by any authentication. This is a tradeoff that improves performance when handling static files since no other middleware (such as authentication middleware) needs to be called when handling these requests (ASP.NET 5 uses a specific ``wwwroot`` folder for all files that should be accessible by default, so there is typically no need to perform authentication before sending these files). If the request is not for a static file, it will flow to the next piece of middleware defined in the pipeline (in this case, Identity). Learn more about :doc:`static-files`.
+Because of the order in which this pipeline was constructed, the middleware configured by the ``UseExceptionHandler`` method will catch any exceptions that occur in later calls (in non-development environments). Also, in this example a design decision has been made that static files will not be protected by any authentication. This is a tradeoff that improves performance when handling static files since no other middleware (such as authentication middleware) needs to be called when handling these requests (ASP.NET Core 1.0 uses a specific ``wwwroot`` folder for all files that should be accessible by default, so there is typically no need to perform authentication before sending these files). If the request is not for a static file, it will flow to the next piece of middleware defined in the pipeline (in this case, Identity). Learn more about :doc:`static-files`.
 
 .. note:: **Remember:** the order in which you arrange your ``Use[Middleware]`` statements in your application's ``Configure`` method is very important. Be sure you have a good understanding of how your application's request pipeline will behave in various scenarios.
 

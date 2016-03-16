@@ -1,13 +1,13 @@
 .. _nano-server:
 
-ASP.NET 5 on Nano Server
-========================
+ASP.NET Core 1.0 on Nano Server
+================================
 
 By `Sourabh Shirhatti`_
 
 .. attention:: This tutorial uses a pre-release version of the Nano Server installation option of Windows Server Technical Preview 4. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see https://go.microsoft.com/fwlink/?LinkId=624232 for specific information about the end date for the preview.
 
-In this tutorial, you'll take an existing ASP.NET 5 application and deploy it to a Nano Server instance running IIS.
+In this tutorial, you'll take an existing ASP.NET Core 1.0 application and deploy it to a Nano Server instance running IIS.
 
 .. contents:: Sections:
   :local:
@@ -20,7 +20,7 @@ Windows Server 2016 Technical Preview offers a new installation option: Nano Ser
 
 In this tutorial, we will be using the pre-built `Virtual Hard Disk (VHD) for Nano Server <https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula>`_  from Windows Server Technical Preview 4. This pre-built VHD already includes the Reverse Forwarders and IIS packages which are required for this tutorial.
 
-Before proceeding with this tutorial, you will need the :ref:`published <dnu-publish>` output of an existing ASP.NET 5 application. Ensure your application is built targeting the **64-bit** version of ``coreclr``.
+Before proceeding with this tutorial, you will need the :ref:`published <dnu-publish>` output of an existing ASP.NET Core 1.0 application. Ensure your application is built targeting the **64-bit** version of ``coreclr``.
 
 .. code:: ps1
 
@@ -117,8 +117,8 @@ Additionally, add ``httpPlatformHandler`` to the ``modules`` section
   :dedent: 8
   :emphasize-lines: 2
 
-Installing an ASP.NET 5 application
------------------------------------
+Installing an ASP.NET Core 1.0 application
+-------------------------------------------
 
 Copy over the published output of your existing application to the Nano server.
 

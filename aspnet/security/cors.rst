@@ -5,7 +5,7 @@ By `Mike Wasson`_
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
 
-`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application.
+`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET Core 1.0 application.
 
 .. contents:: Sections:
   :local:
@@ -39,7 +39,7 @@ To setup CORS for your application you use the ``Microsoft.AspNet.Cors`` package
   :language: json
   :lines: 5,6,9
   :emphasize-lines: 2
-  
+
 Add the CORS services in Startup.cs:
 
 .. literalinclude:: cors/sample/src/CorsExample1/Startup.cs

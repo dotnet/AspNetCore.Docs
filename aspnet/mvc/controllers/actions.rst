@@ -14,7 +14,7 @@ What is a Controller
 
 In ASP.NET MVC, a `Controller` is used to define and group a set of actions. An `action` (or `action method`) is a method on a controller that handles incoming requests. Controllers provide a logical means of grouping similar actions together, allowing common sets of rules (e.g. routing, caching, authorization) to be applied collectively. Incoming requests are mapped to actions through :doc:`routing <routing>`.
 
-In ASP.NET 5, a controller can be any instantiable class that ends in "Controller" or inherits from a class that ends with "Controller". Controllers should follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle>`_ and request any dependencies their actions require through their constructor using :doc:`dependency injection <dependency-injection>`.
+In ASP.NET Core 1.0, a controller can be any instantiable class that ends in "Controller" or inherits from a class that ends with "Controller". Controllers should follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle>`_ and request any dependencies their actions require through their constructor using :doc:`dependency injection <dependency-injection>`.
 
 By convention, controller classes:
 	* are located in the root-level "Controllers" folder
@@ -29,7 +29,7 @@ Within the Model-View-Controller pattern, a Controller is responsible for the in
 The controller takes the result of the model's processing (if any), returns the proper view along with the associated view data. Learn more: :doc:`/mvc/overview` and :doc:`/tutorials/first-mvc-app/start-mvc`.
 
 .. tip:: The Controller is a `UI level` abstraction. Its responsibility is to ensure incoming request data is valid and to choose which view (or result for an API) should be returned. In well-factored apps it will not directly include data access or business logic, but instead will delegate to services handling these responsibilities.
- 
+
 Defining Actions
 ----------------
 Any public method on a controller type is an action. Parameters on actions are bound to request data and validated using :doc:`model binding </mvc/models/model-binding>`.

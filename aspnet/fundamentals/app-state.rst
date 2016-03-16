@@ -2,7 +2,7 @@ Managing Application State
 ==========================
 By `Steve Smith`_
 
-In ASP.NET 5, application state can be managed in a variety of ways, depending on when and how the state is to be retrieved. This article provides a brief overview of several options, and focuses on installing and configuring Session state support in ASP.NET 5 applications.
+In ASP.NET Core 1.0, application state can be managed in a variety of ways, depending on when and how the state is to be retrieved. This article provides a brief overview of several options, and focuses on installing and configuring Session state support in ASP.NET Core 1.0 applications.
 
 .. contents:: Sections
 	:local:
@@ -14,7 +14,7 @@ Application State Options
 -------------------------
 `Application state` refers to any data that is used to represent the current representation of the application. This includes both global and user-specific data. Previous versions of ASP.NET (and even ASP) have had built-in support for global ``Application`` and ``Session`` state stores, as well as a variety of other options.
 
-.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET 5, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET 5 replace ``Application`` with a :doc:`/performance/caching/index` implementation. 
+.. note:: The ``Application`` store had the same characteristics as the ASP.NET ``Cache``, with fewer capabilities. In ASP.NET Core 1.0, ``Application`` no longer exists; applications written for previous versions of ASP.NET that are migrating to ASP.NET Core 1.0 replace ``Application`` with a :doc:`/performance/caching/index` implementation.
 
 Application developers are free to use different state storage providers depending on a variety of factors:
 
@@ -24,7 +24,7 @@ Application developers are free to use different state storage providers dependi
 - Can it be serialized?
 - How sensitive was the data? Could it be stored on the client?
 
-Based on answers to these questions, application state in ASP.NET 5 apps can be stored or managed in a variety of ways.
+Based on answers to these questions, application state in ASP.NET Core 1.0 apps can be stored or managed in a variety of ways.
 
 HttpContext.Items
 ^^^^^^^^^^^^^^^^^
@@ -84,7 +84,7 @@ and later in the pipeline, another piece of middleware could access it:
 Installing and Configuring Session
 ----------------------------------
 
-ASP.NET 5 ships a session package that provides middleware for managing session state. You can install it by including a reference to the package in your project.json file:
+ASP.NET Core 1.0 ships a session package that provides middleware for managing session state. You can install it by including a reference to the package in your project.json file:
 
 .. literalinclude:: app-state/sample/src/AppState/project.json
 	:language: javascript

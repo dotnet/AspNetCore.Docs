@@ -3,7 +3,7 @@ Migrating HTTP Modules to Middleware
 
 By `Matt Perdeck`_
 
-This article shows how to migrate existing ASP.NET `HTTP modules and handlers <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_ to ASP.NET 5 :ref:`middleware <fundamentals-middleware>`.
+This article shows how to migrate existing ASP.NET `HTTP modules and handlers <https://msdn.microsoft.com/en-us/library/bb398986.aspx>`_ to ASP.NET Core 1.0 :ref:`middleware <fundamentals-middleware>`.
 
 .. contents:: In this article:
   :local:
@@ -11,7 +11,7 @@ This article shows how to migrate existing ASP.NET `HTTP modules and handlers <h
 
 Handlers and modules revisited
 ------------------------------
-Before proceeding to ASP.NET 5 middleware, let's first recap how HTTP modules and handlers work: 
+Before proceeding to ASP.NET Core 1.0 middleware, let's first recap how HTTP modules and handlers work:
 
 .. image:: http-modules/_static/moduleshandlers.png
 
@@ -29,9 +29,9 @@ Modules are:
 
 **The order in which modules process incoming requests is determined by:**
 
-	1.	The `application life cycle <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`_, 
+	1.	The `application life cycle <https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx>`_,
 		which is a series events fired by ASP.NET
-		- 
+		-
 		`BeginRequest <https://msdn.microsoft.com/en-us/library/system.web.httpapplication.beginrequest(v=vs.100).aspx>`_,
 		`AuthenticateRequest <https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest(v=vs.100).aspx>`_, etc.
 		Each module can create a handler for one or more events.
@@ -72,7 +72,7 @@ An existing HTTP module will look similar to this:
 	:emphasize-lines: 6, 8, 24, 31
 
 As shown in the :doc:`../fundamentals/middleware` page,
-an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taking an ``HttpContext`` and returning a ``Task``. Your new middleware will look like this:
+an ASP.NET Core 1.0 middleware is simply a class that exposes an ``Invoke`` method taking an ``HttpContext`` and returning a ``Task``. Your new middleware will look like this:
 
 .. _http-modules-usemiddleware:
 
@@ -81,10 +81,10 @@ an ASP.NET 5 middleware is simply a class that exposes an ``Invoke`` method taki
 	:linenos:
 	:emphasize-lines: 9, 13, 20, 24, 28, 30, 32
 
-The above middleware template was taken from the section on 
+The above middleware template was taken from the section on
 :ref:`writing middleware <middleware-writing-middleware>`.
 
-The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class. 
+The `MyMiddlewareExtensions` helper class makes it easier to configure your middleware in your ``Startup`` class.
 The ``UseMyMiddleware`` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
 .. _http-modules-shortcircuiting-middleware:
@@ -98,7 +98,7 @@ Your module might terminate a request, for example if the user is not authorized
 	:lines: 18-31
 	:dedent: 8
 
-A middleware handles this by simply not calling ``Invoke`` on the next middleware in the pipeline. Keep in mind that this does not 
+A middleware handles this by simply not calling ``Invoke`` on the next middleware in the pipeline. Keep in mind that this does not
 fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyTerminatingMiddleware.cs
@@ -108,8 +108,8 @@ fully terminate the request, because previous middlewares will still be invoked 
 	:lines: 16-26
 	:dedent: 8
 
-When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the ``HttpContext`` class 
-has significantly changed in ASP.NET 5. `Later on <#migrating-to-the-new-httpcontext>`_, you'll see how to migrate to the new ASP.NET 5 HttpContext.
+When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the ``HttpContext`` class
+has significantly changed in ASP.NET Core 1.0. `Later on <#migrating-to-the-new-httpcontext>`_, you'll see how to migrate to the new ASP.NET Core 1.0 HttpContext.
 
 Migrating module insertion into the request pipeline
 -----------------------------------------------------
@@ -130,10 +130,10 @@ to the request pipeline in your ``Startup`` class:
 	:lines: 1-2, 12-15, 46-48, 54-58, 105, 109, 110
 	:emphasize-lines: 12
 
-The exact spot in the pipeline where you insert your new middleware depends on the event 
+The exact spot in the pipeline where you insert your new middleware depends on the event
 that it handled as a module (``BeginRequest``, ``EndRequest``, etc.) and its order in your list of modules in *Web.config*.
 
-As previously stated, there is no more application life cycle in ASP.NET 5 and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
+As previously stated, there is no more application life cycle in ASP.NET Core 1.0 and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
 
 If ordering becomes a problem, you could split your module into multiple middleware that can be ordered independently.
 
@@ -147,7 +147,7 @@ An HTTP handler looks something like this:
 	:emphasize-lines: 5, 7, 13-16
 	:lines: 1-19, 31-32
 
-In your ASP.NET 5 project, you would translate this to a middleware similar to this:
+In your ASP.NET Core 1.0 project, you would translate this to a middleware similar to this:
 
 .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/ReportHandlerMiddleware.cs
 	:language: c#
@@ -193,9 +193,9 @@ Loading middleware options using the options pattern
 ----------------------------------------------------
 
 Some modules and handlers have configuration options that are stored in *Web.config*.
-However, in ASP.NET 5 a new configuration model is used in place of *Web.config*.
+However, in ASP.NET Core 1.0 a new configuration model is used in place of *Web.config*.
 
-The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gives you these options to solve this:
+The new ASP.NET Core 1.0 :doc:`configuration system <../fundamentals/configuration>` gives you these options to solve this:
 
 * Directly inject the options into the middleware, as shown in the `next section <#loading-middleware-options-through-direct-injection>`_.
 * Use the :ref:`options pattern <options-config-objects>`:
@@ -222,7 +222,7 @@ The new ASP.NET 5 :doc:`configuration system <../fundamentals/configuration>` gi
 
 3. Associate the option values with the options class
 
-    The options pattern uses ASP.NET 5's dependency injection framework to associate the options type (such as ``MyMiddlewareOptions``)
+    The options pattern uses ASP.NET Core 1.0's dependency injection framework to associate the options type (such as ``MyMiddlewareOptions``)
     with an ``MyMiddlewareOptions`` object that has the actual options.
 
     Update your ``Startup`` class:
@@ -280,7 +280,7 @@ The solution is to get the options objects with the actual options values in you
 
 1. Add a second key to *appsettings.json*
 
-    To add a second set of options to the 
+    To add a second set of options to the
     *appsettings.json* file, simply use a new key to uniquely identify it:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json
@@ -295,7 +295,7 @@ The solution is to get the options objects with the actual options values in you
         :linenos:
         :lines: 1-2, 12-15, 46-48, 54-55, 62-66, 67, 70, 71, 105, 109, 110
         :emphasize-lines: 12-16
- 
+
 3. Pass options values to middleware. The ``Use...`` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs
@@ -312,7 +312,7 @@ The solution is to get the options objects with the actual options values in you
         :lines: 1-7, 48-64
         :emphasize-lines: 17-22
 
-    Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by 
+    Note how this wraps the options object in an ``OptionsWrapper`` object. This implements ``IOptions``, as expected by
     the middleware constructor:
 
     .. literalinclude:: http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs
@@ -329,8 +329,8 @@ You saw earlier that the ``Invoke`` method in your middleware takes a parameter 
 
     public async Task Invoke(HttpContext context)
 
-``HttpContext`` has significantly changed in ASP.NET 5. This section shows how to translate the most commonly used properties of 
-`System.Web.HttpContext <https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx>`__ to the 
+``HttpContext`` has significantly changed in ASP.NET Core 1.0. This section shows how to translate the most commonly used properties of
+`System.Web.HttpContext <https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx>`__ to the
 new `Microsoft.AspNet.Http.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/HttpContext/index.html>`__.
 
 
@@ -456,13 +456,13 @@ HttpContext.Request
         :dedent: 12
 
 .. caution::
-    Use this code only in a handler type middleware, at the end of a pipeline. 
+    Use this code only in a handler type middleware, at the end of a pipeline.
 
     You can read the raw body as shown above only once per request. Middleware trying to read the body after the first read will read an empty body.
 
     This does not apply to reading a form as shown earlier, because that is done from a buffer.
 
-**HttpContext.Request.RequestContext.RouteData** 
+**HttpContext.Request.RequestContext.RouteData**
 
 RouteData is not available in middleware in RC1.
 

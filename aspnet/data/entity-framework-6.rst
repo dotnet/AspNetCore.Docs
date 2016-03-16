@@ -1,32 +1,32 @@
-Getting Started with ASP.NET 5 and Entity Framework 6
-===========================================================
+Getting Started with ASP.NET Core 1.0 and Entity Framework 6
+============================================================
 
 By `Paweł Grudzień <https://github.com/pgrudzien12>`_, `Damien Pontifex <https://github.com/DamienPontifex>`_
 
-This article will show you how to use Entity Framework 6 inside an ASP.NET 5 application.
+This article will show you how to use Entity Framework 6 inside an ASP.NET Core 1.0 application.
 
 In this article:
     - `Setup connection strings and dependency injection`_
     - `Migrate configuration from config to code`_
     - `Notes on Migrations`_
-    
+
 Prerequisites
 -------------
-    
+
 Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7.
 
 In your project.json file under frameworks remove any reference to ``dnxcore50`` or ``dotnet5.4``. Valid identifiers for the .NET Framework are listed on the `corefx repo documentation <https://github.com/dotnet/corefx/blob/master/Documentation/project-docs/standard-platform.md#specific-platform-mapping>`_, but for targeting DNX 4.5.1 the frameworks section should be:
 
 .. code-block:: javascript
-    
+
     "frameworks": {
         "dnx451": {}
     }
-    
+
 And .NET 4.5.1 in a class library the frameworks section should be
 
 .. code-block:: javascript
-    
+
     "frameworks": {
         "net451": {}
     }
@@ -34,13 +34,13 @@ And .NET 4.5.1 in a class library the frameworks section should be
 Setup connection strings and dependency injection
 -------------------------------------------------
 
-The simplest change is to explicitly get your connection string and setup dependency injection of your ``DbContext`` instance. 
+The simplest change is to explicitly get your connection string and setup dependency injection of your ``DbContext`` instance.
 
 In your ``DbContext`` subclass, ensure you have a constructor which takes the connection string as so:
 
 .. code-block:: c#
     :linenos:
-    
+
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(string nameOrConnectionString) : base(nameOrConnectionString)
@@ -48,22 +48,22 @@ In your ``DbContext`` subclass, ensure you have a constructor which takes the co
         }
     }
 
-In the ``Startup`` class within ``ConfigureServices`` add factory method of your context with it's connection string. Context should be resolved once per scope to ensure performance and ensure reliable operation of Entity Framework. 
+In the ``Startup`` class within ``ConfigureServices`` add factory method of your context with it's connection string. Context should be resolved once per scope to ensure performance and ensure reliable operation of Entity Framework.
 
 .. code-block:: c#
     :linenos:
-    
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddScoped((_) => new ApplicationDbContext(Configuration["Data:DefaultConnection:ConnectionString"]));
-        
+
         // Configure remaining services
     }
 
 Migrate configuration from config to code
 -----------------------------------------
 
-Entity Framework 6 allows configuration to be specified in xml (in web.config or app.config) or through code. As of ASP.NET 5, all configuration is code-based.
+Entity Framework 6 allows configuration to be specified in xml (in web.config or app.config) or through code. As of ASP.NET Core 1.0, all configuration is code-based.
 
 Code-based configuration is achieved by creating a subclass of ``System.Data.Entity.Config.DbConfiguration`` and applying ``System.Data.Entity.DbConfigurationTypeAttribute`` to your ``DbContext`` subclass.
 
@@ -71,7 +71,7 @@ Our config file typically looked like this:
 
 .. code-block:: xml
     :linenos:
-    
+
     <entityFramework>
         <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
             <parameters>
@@ -93,7 +93,7 @@ The ``defaultConnectionFactory`` element sets the factory for connections. If th
     {
         [...]
     }
-    
+
     public class CodeConfig : DbConfiguration
     {
         public CodeConfig()
@@ -102,7 +102,7 @@ The ``defaultConnectionFactory`` element sets the factory for connections. If th
                 System.Data.Entity.SqlServer.SqlProviderServices.Instance);
         }
     }
-    
+
 SQL Server, SQL Server Express and LocalDB
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -123,4 +123,4 @@ Additional Resources
 --------------------
 
 - `Entity Framework - Code-Based Configuration <https://msdn.microsoft.com/en-us/data/jj680699.aspx>`_
-- `BleedingNEdge.com - Entity Framework 6 With ASP.NET 5 <http://bleedingnedge.com/2015/11/01/entity-framework-6-with-asp-net-5/>`_
+- `BleedingNEdge.com - Entity Framework 6 With ASP.NET Core 1.0 <http://bleedingnedge.com/2015/11/01/entity-framework-6-with-asp-net-5/>`_

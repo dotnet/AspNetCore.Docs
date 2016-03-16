@@ -1,7 +1,7 @@
 Working with DNX Projects
 =========================
 
-By `Erik Reitan`_ 
+By `Erik Reitan`_
 
 DNX projects are used to build and run .NET applications for Windows, Mac and Linux. This article describes how you can create, build, run and manage DNX projects
 
@@ -16,7 +16,7 @@ In this article:
   - `Publishing`_
   - `Scripts`_
 
-Creating a new project 
+Creating a new project
 ----------------------
 
 At its simplest form, a DNX project is a **project.json** file along with a code file::
@@ -25,7 +25,7 @@ At its simplest form, a DNX project is a **project.json** file along with a code
     --project.json
     --Program.cs
 
-There are two mandatory conditions for a project. The *project.json* file must contain valid json, where brackets *{ }* are used inside the file, and that your *program.cs* file contains valid C#. 
+There are two mandatory conditions for a project. The *project.json* file must contain valid json, where brackets *{ }* are used inside the file, and that your *program.cs* file contains valid C#.
 
 The presence of a *project.json* file defines a DNX project. It is the *project.json* file that contains all the information that DNX needs to run and package your project. For additional details, including the *project.json* file schema, see `Project.json <https://github.com/aspnet/Home/wiki/Project.json-file>`_.
 
@@ -45,7 +45,7 @@ One of the sections you can add to the *project.json* is the ``frameworks`` sect
       }
     }
 
-Each of the values in the ``frameworks`` section of the *project.json* file is a framework that your project will compile. The above snippet will build for the full .NET Framework (dnx451) and .NET Core (dnxcore50). 
+Each of the values in the ``frameworks`` section of the *project.json* file is a framework that your project will compile. The above snippet will build for the full .NET Framework (dnx451) and .NET Core (dnxcore50).
 
 If you pack this project, using ``dnu pack`` then you will get a NuGet package that looks like the following:
 
@@ -101,23 +101,23 @@ The schema for dependency types adheres to following pattern:
 			}
 		}
 	}
-		
+
 For additional information about how dependency versions are chosen, see `Dependency Resolution <https://github.com/aspnet/Home/wiki/Dependency-Resolution>`_.
-		
+
 Package dependencies
 ^^^^^^^^^^^^^^^^^^^^
 
 The .NET Development Utility (DNU) is responsible for all operations involving packages in your application. You use the **Install** command to download a package based on the package id and add it to your application::
 
 	dnu install <package id>
-	
+
 For a list of usage, arguments, and options of the ``install`` command, enter the following in the command windows::
 
 	dnu install --help
-	
+
 For more information about ``dnu`` commands, see `.NET Development Utility (DNU) <https://github.com/aspnet/Home/wiki/DNX-utility>`_.
 
-The more common way of installing packages is to just edit the *project.json* file. Editors like Visual Studio provide IntelliSense for all packages, making editing the file far easier than running ``dnu install``. However, you can use ``dnu install`` if you prefer. 
+The more common way of installing packages is to just edit the *project.json* file. Editors like Visual Studio provide IntelliSense for all packages, making editing the file far easier than running ``dnu install``. However, you can use ``dnu install`` if you prefer.
 
 Assembly references
 ^^^^^^^^^^^^^^^^^^^
@@ -138,9 +138,9 @@ You can also specify a list of framework assemblies for some frameworks:
 
 Generally, you use this frameworkAssemblies section when you want to depend on an assembly that is:
 - In the Global Assembly Cache (GAC)
-- Part of the framework you are targeting 
+- Part of the framework you are targeting
 
-The *frameworkAssemblies* section is separate from the rest of the dependencies list to remove the possibility of accidentally depending on a NuGet package that happens to have the same name as a .NET Framework assembly. 
+The *frameworkAssemblies* section is separate from the rest of the dependencies list to remove the possibility of accidentally depending on a NuGet package that happens to have the same name as a .NET Framework assembly.
 
 Project references
 ^^^^^^^^^^^^^^^^^^
@@ -163,10 +163,10 @@ The ``projects`` property designates which folders contain source code for the s
 Specifying required SDK version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``sdk`` property specifies the version of DNX (.NET Execution Environment) that Visual Studio will use when opening the solution. It’s set in the *global.json* file, rather than in *project.json* file, to avoid scenarios where different projects within a solution are targeting different versions of the SDK. 
+The ``sdk`` property specifies the version of DNX (.NET Execution Environment) that Visual Studio will use when opening the solution. It’s set in the *global.json* file, rather than in *project.json* file, to avoid scenarios where different projects within a solution are targeting different versions of the SDK.
 
 .. note:: The SDK version of *global.json* does not determine DNX version used when run from the command line. You will still need to use DNVM to select the correct DNX version.
-	
+
 Referencing non-DNX projects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -204,7 +204,7 @@ For instructions about how to get development builds of the latest ASP.NET and D
 Using DNU Restore
 ^^^^^^^^^^^^^^^^^
 
-The restore command will look at the dependencies listed in the *project.json* file and download them, adding them to your app's packages directory. It downloads the entire graph of dependencies, even though you only explicitly declare the top level dependency that you directly require. It uses NuGet internally to download packages. 
+The restore command will look at the dependencies listed in the *project.json* file and download them, adding them to your app's packages directory. It downloads the entire graph of dependencies, even though you only explicitly declare the top level dependency that you directly require. It uses NuGet internally to download packages.
 
 The following is an example of using the ``restore`` command from the command window, where the command is executed from the folder containing the application (including the *project.json* file)::
 
@@ -229,7 +229,7 @@ By using the lock file, this process is reduced to:
 
 There is significantly less disk IO involved in the second list.
 
-The lock file ensures that after you run ``dnu restore``, you have a fixed set of packages that you are referencing. When restoring, the DNU generates the lock file which specifies the exact versions that your project will use. This way, versions only get modified when you run ``dnu restore``, not during run-time. Restoring also ends up improving performance at run-time since DNX no longer has to probe the packages directory to find the right version to use, DNX just does what the lock file instructs DNX to do. 
+The lock file ensures that after you run ``dnu restore``, you have a fixed set of packages that you are referencing. When restoring, the DNU generates the lock file which specifies the exact versions that your project will use. This way, versions only get modified when you run ``dnu restore``, not during run-time. Restoring also ends up improving performance at run-time since DNX no longer has to probe the packages directory to find the right version to use, DNX just does what the lock file instructs DNX to do.
 
 .. Note:: The primary advantage of the lock file is to prevent the application from be affected by someone else installing a package into your global install directory. For this reason, the lock file is mandatory to run. If you do not have a lock file, DNX will fail to load your application.
 
@@ -240,8 +240,8 @@ Specifying an alternative package locations
 
 You can add ``nupkg`` (NuGet packages) and ``source`` packages (not on a NuGet feed) to a project. To specify the location of these packages you must include the path to the NuGet package or to a packages folder, such as::
 
-	 dnu packages add newPackage.1.0.0.nupkg c:\packageStore  
-	 
+	 dnu packages add newPackage.1.0.0.nupkg c:\packageStore
+
 For additional details, run the help command::
 
 	dnu packages add --help
@@ -279,8 +279,8 @@ A command is an alias for a package to use as an entry point and also provides a
       }
     }
 
-The commands are a set of arguments that will be passed to DNX. The entry-point provided by a command should either be the name of a project within your solution, or an assembly provided by a package that your application depends on. 
-	
+The commands are a set of arguments that will be passed to DNX. The entry-point provided by a command should either be the name of a project within your solution, or an assembly provided by a package that your application depends on.
+
 Running your app
 ----------------
 
@@ -291,21 +291,21 @@ By specifying a command as an argument that is passed to DNX, you can run your a
 To view the running web application, you can open a browser and navigate to the path specified in the *project.json* file::
 
 	http://localhost:5001
-	
+
 To run a Console Application using the Command Window from the project directory, you can use the following statement::
 
 	dnx run
-	
+
 To run a Web API application, you can use the following command from the Command Window::
 
 	dnx web
-	
+
 In the case of the *web* command, the ``Microsoft.AspNet.Hosting`` assembly has a ``Main`` entry point method that is called whenever you run the web command. The rest of the values in the *web* command are used by the hosting assembly to host your web application.
 
 To run commands out of a different project, you can use the ``--project`` option. The short form of ``--project`` is ``--p``. For example::
 
 	dnx -p tests\MyTestProject test
-	
+
 For a Console Application, the entry point is the ``Main`` method of the ``Program`` class. For more information about the Web Application startup process, see :doc:`/fundamentals/startup`.
 
 
@@ -318,16 +318,16 @@ For more compilation related information, see :ref:`dnx-projects-CompiliationSet
 Building
 --------
 
-You use DNX projects to build NuGet packages. You can use the .NET Development Utility (DNU) to build, package, and publish DNX projects. 
+You use DNX projects to build NuGet packages. You can use the .NET Development Utility (DNU) to build, package, and publish DNX projects.
 
 DNU build
 ^^^^^^^^^
 
-The *project.json* file defines your package metadata, your project dependencies, and which frameworks that you want to target your build. 
+The *project.json* file defines your package metadata, your project dependencies, and which frameworks that you want to target your build.
 
 All the files in the folder are by default part of the project unless explicitly excluded in *project.json*. You specify which frameworks to target by using the "frameworks" property. DNX will cross-compile for each specified framework and create the corresponding *lib* folder in the built NuGet package.
 
-Building a project produces the binary outputs for the project. 
+Building a project produces the binary outputs for the project.
 
 .. _dnx-projects-CompiliationSettings:
 
@@ -367,7 +367,7 @@ Configurations are named groups of compilation settings. There are two default c
       }
     }
 
-When building a DNX based application, such as by using ``dnu build`` or via pack/publish with ``dnu pack`` or ``dnu publish``, you can pass ``--configuration <configuration>`` to have DNX use the named configuration. 
+When building a DNX based application, such as by using ``dnu build`` or via pack/publish with ``dnu pack`` or ``dnu publish``, you can pass ``--configuration <configuration>`` to have DNX use the named configuration.
 
 For a list of usage, arguments, and options of the ``build`` command, enter the following in the command windows::
 
@@ -399,9 +399,9 @@ The most common sections that you will see for including and excluding files are
 
 * The *exclude* section excludes any files in the ``node_modules`` and ``bower_components`` directories. Even if sections have .cs extensions.
 
-* The *publishExclude* section allows you to exclude files from the publish output of your project. In this example, all *.xproj*, *.user*, and *.vspscc* files from the output of the publish command. 
+* The *publishExclude* section allows you to exclude files from the publish output of your project. In this example, all *.xproj*, *.user*, and *.vspscc* files from the output of the publish command.
 
-.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_(programming)>`_, which are often called wildcards. 
+.. note:: Most sections of the *project.json* file that deal with files allow `glob patterns <https://en.wikipedia.org/wiki/Glob_(programming)>`_, which are often called wildcards.
 
 List of include/exclude properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -480,31 +480,31 @@ The following describes the exact lists that are built up with the following not
 ::
 
     CompileList =
-      +Glob( +compile +compileBuiltIn -compileExclude -exclude -excludeBuiltIn) 
+      +Glob( +compile +compileBuiltIn -compileExclude -exclude -excludeBuiltIn)
       -SharedList
       -PreprocessList
       +compileFiles
-    
+
     PreprocessList =
-      +Glob( +preprocess -preprocessExclude -exclude -excludeBuiltIn) 
+      +Glob( +preprocess -preprocessExclude -exclude -excludeBuiltIn)
       +preprocessFiles
-    
+
     SharedList =
-      +Glob( +shared -sharedExclude -exclude -excludeBuiltIn) 
+      +Glob( +shared -sharedExclude -exclude -excludeBuiltIn)
       +sharedFiles
-    
+
     ResourceList =
-      +Glob( +resource -resourceExclude -exclude -excludeBuiltIn) 
+      +Glob( +resource -resourceExclude -exclude -excludeBuiltIn)
       +resourceFiles
-    
+
     ContentList =
-      +Glob( +content -contentExclude -exclude -excludeBuiltIn) 
+      +Glob( +content -contentExclude -exclude -excludeBuiltIn)
       -CompileList
       -PreprocessList
       -SharedList
       -ResourcesList
       +contentFiles
-    
+
     PublishExcludeList =
       +Glob ( +publishExclude )
 
@@ -575,7 +575,7 @@ To specify this in the *project.json* file you create a key for each of the meta
       "authors": ["John Doe"],
       "description": "A wonderful library that does nice stuff"
     }
-    
+
 * version: The version of the NuGet package and assemblies generated if you pack/publish your application.
 * authors: A JSON array of the authors and owners section of the NuGet packages nuspec
 * description: A long description of the NuGet package.
@@ -642,14 +642,14 @@ The values of the scripts are commands that will be run in your environment as i
         "prepare": [ "gulp copy" ]
       }
     }
-	
+
 Token substitution
 ^^^^^^^^^^^^^^^^^^
 
 There are also several tokens that will be replaced if they appear inside the scripts value:
 
 ==================== =============================
-Token                Replaced with                
+Token                Replaced with
 ==================== =============================
 %project:Directory%  The project directory
 %project:Name%       The project name
@@ -662,4 +662,4 @@ Related Resources
 -----------------
 
 - :doc:`/dnx/overview`
-- `Create an ASP.NET 5 web app in Visual Studio Code  <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_
+- `Create an ASP.NET Core 1.0 web app in Visual Studio Code  <https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-app-using-vscode/>`_

@@ -9,7 +9,7 @@ In this article:
   - `Getting Started`_
   - `Key Components`_
   - `Angular 2.0`_
-  
+
 `View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`_.
 
 What is AngularJS?
@@ -29,7 +29,7 @@ To start using AngularJS in your ASP.NET application, you must either install it
 Installation
 ^^^^^^^^^^^^
 
-There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET 5 web application in Visual Studio 2015, you can add AngularJS using the built-in :ref:`Bower <bower-index>` support. Simply open ``bower.json``, and add an entry to the ``dependencies`` property:
+There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core 1.0 web application in Visual Studio 2015, you can add AngularJS using the built-in :ref:`Bower <bower-index>` support. Simply open ``bower.json``, and add an entry to the ``dependencies`` property:
 
 .. _angular-bower-json:
 
@@ -37,7 +37,7 @@ There are several ways to add AngularJS to your application. If you’re startin
   :language: json
   :linenos:
   :emphasize-lines: 9
-  
+
 Upon saving the ``bower.json`` file, Angular will be installed in your project's ``wwwroot/lib`` folder. Additionally, it will be listed within the ``Dependencies/Bower`` folder. See the screenshot below.
 
 .. image:: angular/_static/angular-solution-explorer.png
@@ -81,7 +81,7 @@ One of the primitive directives used in all AngularJS applications is the ``ng-a
   :linenos:
   :emphasize-lines: 5,7
 
-To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the ``ng-app`` directive to indicate this page is an AngularJS application. The ``{{2+2}}`` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application: 
+To keep these samples independent of one another, I'm not using the shared layout file. You can see that we decorated the body tag with the ``ng-app`` directive to indicate this page is an AngularJS application. The ``{{2+2}}`` is an Angular data binding expression that you will learn more about in a moment. Here is the result if you run this application:
 
 .. image:: angular/_static/simple-directive.png
 
@@ -135,7 +135,7 @@ Add another view to demonstrate templates, and add the following to it:
   :linenos:
   :emphasize-lines: 8-10
 
-The template has AngularJS directives like ``ng-app``, ``ng-init``, ``ng-model`` and data binding expression syntax to bind the ``personName`` property. Running in the browser, the view looks like the screenshot below: 
+The template has AngularJS directives like ``ng-app``, ``ng-init``, ``ng-model`` and data binding expression syntax to bind the ``personName`` property. Running in the browser, the view looks like the screenshot below:
 
 .. image:: angular/_static/simple-templates-1.png
 
@@ -146,7 +146,7 @@ If you change the name by typing in the input field, you will see the text next 
 Expressions
 ^^^^^^^^^^^
 
-`Expressions <https://docs.angularjs.org/guide/expression>`_ in AngularJS are JavaScript-like code snippets that are written inside the ``{{ expression }}`` syntax. The data from these expressions is bound to HTML the same way as ``ng-bind`` directives. The main difference between AngularJS expressions and regular JavaScript expressions is that AngularJS expressions are evaluated against the ``$scope`` object in AngularJS. 
+`Expressions <https://docs.angularjs.org/guide/expression>`_ in AngularJS are JavaScript-like code snippets that are written inside the ``{{ expression }}`` syntax. The data from these expressions is bound to HTML the same way as ``ng-bind`` directives. The main difference between AngularJS expressions and regular JavaScript expressions is that AngularJS expressions are evaluated against the ``$scope`` object in AngularJS.
 
 The AngularJS expressions in the sample below bind ``personName`` and a simple JavaScript calculated expression:
 
@@ -162,7 +162,7 @@ The example running in the browser displays the ``personName`` data and the resu
 Repeaters
 ^^^^^^^^^
 
-Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. The ``ng-repeat`` directive repeats a given HTML element in a view over the length of a repeating data array. Repeaters in AngularJS can repeat over an array of strings or objects. Here is a sample usage of repeating over an array of strings: 
+Repeating in AngularJS is done via a primitive directive called ``ng-repeat``. The ``ng-repeat`` directive repeats a given HTML element in a view over the length of a repeating data array. Repeaters in AngularJS can repeat over an array of strings or objects. Here is a sample usage of repeating over an array of strings:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters.cshtml
   :language: html
@@ -193,7 +193,7 @@ Angular provides some additional directives that can help provide behavior based
 ``$first`` and ``$last``
   Use ``$first`` in the ``ng-repeat`` loop to determine whether the current index in your loop is the first row. Similarly, use ``$last`` to determine if the current index is the last row.
 
-Below is a sample that shows ``$index``, ``$even``, ``$odd``, ``$first``, and ``$last`` in action: 
+Below is a sample that shows ``$index``, ``$even``, ``$odd``, ``$first``, and ``$last`` in action:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Repeaters3.cshtml
   :language: html
@@ -208,7 +208,7 @@ Here is the resulting output:
 $scope
 ^^^^^^
 
-``$scope`` is a JavaScript object that acts as glue between the view (template) and the controller (explained below). A view template in AngularJS only knows about the values attached to the ``$scope`` object in the controller. 
+``$scope`` is a JavaScript object that acts as glue between the view (template) and the controller (explained below). A view template in AngularJS only knows about the values attached to the ``$scope`` object in the controller.
 
 .. note:: In the MVVM world, the ``$scope`` object in AngularJS is often defined as the ViewModel. The AngularJS team refers to the ``$scope`` object as the Data-Model. `Learn more about Scopes in AngularJS <https://docs.angularjs.org/guide/scope>`_.
 
@@ -219,9 +219,9 @@ Below is a simple example showing how to set properties on ``$scope`` within a s
   :linenos:
   :emphasize-lines: 2-3
 
-Observe the ``$scope`` parameter passed to the controller on line 2. This object is what the view knows about. On line 3, we are setting a property called "name" to "Mary Jane". 
+Observe the ``$scope`` parameter passed to the controller on line 2. This object is what the view knows about. On line 3, we are setting a property called "name" to "Mary Jane".
 
-What happens when a particular property is not found by the view? The view defined below refers to "name" and "age" properties: 
+What happens when a particular property is not found by the view? The view defined below refers to "name" and "age" properties:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Scope.cshtml
   :language: html
@@ -235,7 +235,7 @@ Notice on line 9 that we are asking Angular to show the "name" property using ex
 Modules
 ^^^^^^^
 
-A `module <https://docs.angularjs.org/guide/module>`_ in AngularJS is a collection of controllers, services, directives, etc. The ``angular.module()`` function call is used to create, register, and retrieve modules in AngularJS. All modules, including those shipped by the AngularJS team and third party libraries, should be registered using the ``angular.module()`` function. 
+A `module <https://docs.angularjs.org/guide/module>`_ in AngularJS is a collection of controllers, services, directives, etc. The ``angular.module()`` function call is used to create, register, and retrieve modules in AngularJS. All modules, including those shipped by the AngularJS team and third party libraries, should be registered using the ``angular.module()`` function.
 
 Below is a snippet of code that shows how to create a new module in AngularJS. The first parameter is the name of the module. The second parameter defines dependencies on other modules. Later in this article, we will be showing how to pass these dependencies to an ``angular.module()`` method call.
 
@@ -261,7 +261,7 @@ Below is a snippet of code that registers a new controller. The ``personApp`` va
   :linenos:
   :emphasize-lines: 2,5
 
-The view using the ``ng-controller`` directive assigns the controller name: 
+The view using the ``ng-controller`` directive assigns the controller name:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Controllers.cshtml
   :language: html
@@ -276,16 +276,16 @@ The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``last
 Services
 ^^^^^^^^
 
-`Services <https://docs.angularjs.org/guide/services>`_ in AngularJS are commonly used for shared code that is abstracted away into a file which can be used throughout the lifetime of an Angular application. Services are lazily instantiated, meaning that there will not be an instance of a service unless a component that depends on the service gets used. Factories are an example of a service used in AngularJS applications. Factories are created using the ``myApp.factory()`` function call, where ``myApp`` is the module. 
+`Services <https://docs.angularjs.org/guide/services>`_ in AngularJS are commonly used for shared code that is abstracted away into a file which can be used throughout the lifetime of an Angular application. Services are lazily instantiated, meaning that there will not be an instance of a service unless a component that depends on the service gets used. Factories are an example of a service used in AngularJS applications. Factories are created using the ``myApp.factory()`` function call, where ``myApp`` is the module.
 
-Below is an example that shows how to use factories in AngularJS: 
+Below is an example that shows how to use factories in AngularJS:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/simpleFactory.js
   :language: javascript
   :linenos:
   :emphasize-lines: 1
 
-To call this factory from the controller, pass ``personFactory`` as a parameter to the ``controller`` function: 
+To call this factory from the controller, pass ``personFactory`` as a parameter to the ``controller`` function:
 
 .. code-block:: javascript
 
@@ -296,7 +296,7 @@ To call this factory from the controller, pass ``personFactory`` as a parameter 
 Using services to talk to a REST endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an end-to-end example using services in AngularJS to interact with an ASP.NET 5 Web API endpoint. The example gets data from the Web API and displays the data in a view template. Let's start with the view first: 
+Below is an end-to-end example using services in AngularJS to interact with an ASP.NET Core 1.0 Web API endpoint. The example gets data from the Web API and displays the data in a view template. Let's start with the view first:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/People/Index.cshtml
   :language: html
@@ -326,7 +326,7 @@ In ``personController.js``, we are calling the module’s ``controller`` method 
   :linenos:
   :emphasize-lines: 6-7,13
 
-Let's take a quick look at the ASP.NET 5 Web API and the model behind it. The ``Person`` model is a POCO (Plain Old CLR Object) with ``Id``, ``FirstName``, and ``LastName`` properties:
+Let's take a quick look at the ASP.NET Core 1.0 Web API and the model behind it. The ``Person`` model is a POCO (Plain Old CLR Object) with ``Id``, ``FirstName``, and ``LastName`` properties:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Models/Person.cs
   :language: csharp
@@ -339,7 +339,7 @@ The ``Person`` controller returns a JSON-formatted list of ``Person`` objects:
   :linenos:
   :emphasize-lines: 9-10,19
 
-Let's see the application in action: 
+Let's see the application in action:
 
 .. image:: angular/_static/rest-bound.png
 
@@ -362,7 +362,7 @@ Now let's take the Person App we have been building and add navigation to it. Fi
   :language: html
   :linenos:
   :emphasize-lines: 6,11-16
-  
+
 Let's take a look at ``personModule.js`` file to see how we are instantiating the module with routing. We are passing ``ngRoute`` as a library into the module. This module handles routing in our application.
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/personModule.js
@@ -376,7 +376,7 @@ The ``personRoutes.js`` file, below, defines routes based on the route provider.
   :linenos:
   :emphasize-lines: 4-7, 8-11, 13
 
-The ``personlist.html`` file is a partial view containing only the HTML needed to display person list. 
+The ``personlist.html`` file is a partial view containing only the HTML needed to display person list.
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/partials/personlist.html
   :language: html
@@ -394,7 +394,7 @@ If we run this application and navigate to the ``people/spa#/persons`` URL, we w
 
 .. image:: angular/_static/spa-persons.png
 
-If we navigate to a detail page, for example ``people/spa#/persons/2``, we will see the detail partial view: 
+If we navigate to a detail page, for example ``people/spa#/persons/2``, we will see the detail partial view:
 
 .. image:: angular/_static/spa-persons-2.png
 
@@ -444,7 +444,7 @@ For more detail on AngularJS built-in event handler directives, be sure to head 
 Angular 2.0
 -----------
 
-Angular 2.0 is the next version of AngularJS, which is completely reimagined with ES6 and mobile in mind. It's built using Microsoft's TypeScript language. Angular 2.0 is currently a beta product and is expected to be released in early 2016. Several breaking changes will be introduced in the Angular 2.0 release, so the Angular team is working hard to provide guidance to developers. A migration path will become more clear as the release date approaches. If you wish to play with Angular 2.0 now, the Angular team has created `Angular.io <http://angular.io>`_ to show their progress, to provide early documentation, and to gather feedback. 
+Angular 2.0 is the next version of AngularJS, which is completely reimagined with ES6 and mobile in mind. It's built using Microsoft's TypeScript language. Angular 2.0 is currently a beta product and is expected to be released in early 2016. Several breaking changes will be introduced in the Angular 2.0 release, so the Angular team is working hard to provide guidance to developers. A migration path will become more clear as the release date approaches. If you wish to play with Angular 2.0 now, the Angular team has created `Angular.io <http://angular.io>`_ to show their progress, to provide early documentation, and to gather feedback.
 
 Summary
 -------

@@ -1,4 +1,4 @@
-﻿// ASP.NET 5 middleware migrated from a handler
+﻿// ASP.NET Core 1.0 middleware migrated from a handler
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;

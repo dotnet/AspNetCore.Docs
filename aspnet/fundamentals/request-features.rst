@@ -9,11 +9,11 @@ In this article:
 	- `Feature interfaces`_
 	- `Feature collections`_
 	- `Middleware and request features`_
-	
+
 Feature interfaces
 ------------------
 
-ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/master/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
+ASP.NET Core 1.0 defines a number of `Http Feature Interfaces <https://github.com/aspnet/HttpAbstractions/tree/master/src/Microsoft.AspNet.Http.Features>`_, which are used by servers to identify which features they support. The most basic features of a web server are the ability to handle requests and return responses, as defined by the following feature interfaces:
 
 `IHttpRequestFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/IHttpRequestFeature.cs>`_
 	Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body.
@@ -47,7 +47,7 @@ ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspne
 
 `ISessionFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/ISessionFeature.cs>`_
 	Defines ``ISessionFactory`` and ``ISession`` abstractions for supporting user sessions.
-	
+
 `ITlsConnectionFeature <https://github.com/aspnet/HttpAbstractions/blob/master/src/Microsoft.AspNet.Http.Features/ITlsConnectionFeature.cs>`_
 	Defines an API for retrieving client certificates.
 
@@ -55,7 +55,7 @@ ASP.NET 5 defines a number of `Http Feature Interfaces <https://github.com/aspne
 	Defines methods for working with TLS token binding parameters.
 
 .. note:: ``ISessionFeature`` is not a server feature, but is implemented by `SessionMiddleware <https://github.com/aspnet/Session/blob/master/src/Microsoft.AspNet.Session/SessionMiddleware.cs>`_.
-	
+
 Feature collections
 -------------------
 
@@ -112,7 +112,7 @@ The `WebSocketMiddleware <https://github.com/aspnet/WebSockets/blob/master/src/M
 		{
 			if (_options.ReplaceFeature || context.GetFeature<IHttpWebSocketFeature>() == null)
 			{
-				context.SetFeature<IHttpWebSocketFeature>(new UpgradeHandshake(context, 
+				context.SetFeature<IHttpWebSocketFeature>(new UpgradeHandshake(context,
 					upgradeFeature, _options));
 			}
 		}
@@ -126,7 +126,7 @@ Summary
 -------
 
 Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
-	
+
 Additional Resources
 --------------------
 
@@ -134,14 +134,13 @@ Additional Resources
 - :doc:`middleware`
 - :doc:`owin`
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+

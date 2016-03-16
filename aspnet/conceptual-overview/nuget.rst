@@ -7,4 +7,4 @@
 
 .. _issue: https://github.com/aspnet/Docs/issues/205
 
-`NuGet <https://www.nuget.org>`_ is the package management system used by the :doc:`.NET Execution Environment </dnx/overview>` and :doc:`ASP.NET 5 <aspnet>`. You can learn all about NuGet and working with NuGet packages at https://docs.nuget.org.
+`NuGet <https://www.nuget.org>`_ is the package management system used by the :doc:`.NET Execution Environment </dnx/overview>` and :doc:`ASP.NET Core 1.0 <aspnet>`. You can learn all about NuGet and working with NuGet packages at https://docs.nuget.org.

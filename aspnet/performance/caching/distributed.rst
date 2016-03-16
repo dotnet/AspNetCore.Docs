@@ -2,13 +2,13 @@ Working with a Distributed Cache
 ================================
 By `Steve Smith`_
 
-Distributed caches can improve the performance and scalability of ASP.NET 5 apps, especially when hosted in a cloud or server farm environment. This article explains how to work with ASP.NET 5's built-in distributed cache abstractions and implementations.
+Distributed caches can improve the performance and scalability of ASP.NET Core 1.0 apps, especially when hosted in a cloud or server farm environment. This article explains how to work with ASP.NET Core 1.0's built-in distributed cache abstractions and implementations.
 
 .. contents:: Sections:
   :local:
   :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/distributed-cache/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/docs/aspnet/fundamentals/distributed-cache/sample>`_.
 
 What is a Distributed Cache
 ---------------------------
@@ -33,13 +33,13 @@ Connect, ConnectAsync
 
 Get, GetAsync
 	Takes a string key and retrieves a cached item as a ``byte[]`` if found in the cache.
-	
+
 Set, SetAsync
 	Adds an item (as ``byte[]``) to the cache using a string key.
-	
+
 Refresh, RefreshAsync
 	Refreshes an item in the cache based on its key, resetting its sliding expiration timeout (if any).
-	
+
 Remove, RemoveAsync
 	Removes a cache entry based on its key.
 
@@ -72,7 +72,7 @@ The following code from ``Startup.cs`` shows the value being set:
 
 Using a Redis Distributed Cache
 -------------------------------
-`Redis <redis.io>`_ is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an `Azure Redis Cache <https://azure.microsoft.com/en-us/services/cache/>`_ for your Azure-hosted ASP.NET 5 apps. Your ASP.NET 5 app configures the cache implementation using a ``RedisDistributedCache`` instance.
+`Redis <redis.io>`_ is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an `Azure Redis Cache <https://azure.microsoft.com/en-us/services/cache/>`_ for your Azure-hosted ASP.NET Core 1.0 apps. Your ASP.NET Core 1.0 app configures the cache implementation using a ``RedisDistributedCache`` instance.
 
 You configure the Redis implementation in ``ConfigureServices`` and access it in your app code by requesting an instance of ``IDistributedCache`` (see the code above).
 

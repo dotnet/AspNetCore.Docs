@@ -5,7 +5,7 @@ By `Sourabh Shirhatti`_
 
 In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 14.04 Server.
 
-We will take an existing ASP.NET 5 application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
+We will take an existing ASP.NET Core 1.0 application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
 
 Additionally we will ensure our web application runs on startup as a daemon and configure a process management tool to help restart our web application in the event of a crash to guarantee high availibility.
 
@@ -18,7 +18,7 @@ Prerequisites
 
 1. Acess to an Ubuntu 14.04 Server with a standard user account with
    sudo privilege.
-2. An exisiting ASP.NET 5 application.
+2. An exisiting ASP.NET Core 1.0 application.
 
 Before getting started you require the CoreCLR dependencies and LibUV. Follow the instructions on the :doc:`/getting-started/installing-on-linux` page.
 
@@ -28,7 +28,7 @@ Copy over your app
 Run ``dnu publish --runtime dnx-coreclr-linux-x64.1.0.0-rc1-update1`` from your dev environment to package your
 application into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET 5 application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to ``http://<serveraddress>:<port>`` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
+Before we proceed, copy your ASP.NET Core 1.0 application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to ``http://<serveraddress>:<port>`` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
 
 If you do not have an application, I recommend using the `Yeoman generators <https://github.com/omnisharp/generator-aspnet>`_ to quickly scaffold a skeleton app.
 
