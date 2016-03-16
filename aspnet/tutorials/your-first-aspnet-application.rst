@@ -225,7 +225,7 @@ Run each of the following commands from the **Command Prompt**:
 
 .. note:: If ``dnu restore`` is not a recognized command, you may have missed a prerequisite step (or part of a prerequisites step) at the beginning of this topic. See :ref:`install-dnvm-windows` and :ref:`install-dnx-windows`.
 	
-Running ``dnu restore`` will restore the package dependencies specified in your **project.json** file. The ``ef`` command is specificed in the *project.json* file of your project. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :doc:`/dnx/overview`.
+Running ``dnu restore`` will restore the package dependencies specified in your **project.json** file. The ``ef`` command is specified in the *project.json* file of your project. For more information about ``dnvm``, ``dnu``, and ``dnx``, see :doc:`/dnx/overview`.
 
 The ``add Initial`` command creates a migration named "Initial" that adds code to the project, allowing EF to update the database schema. The ``update`` command creates the actual database. After you run this command, the *Migrations* folder of your project will be updated as follows:
 
