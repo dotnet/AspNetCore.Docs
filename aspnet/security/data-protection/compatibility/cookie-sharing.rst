@@ -6,7 +6,7 @@ Web sites commonly consist of many individual web applications, all working toge
 To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core 1.0 cookie authentication tickets.
 
 Sharing authentication cookies between ASP.NET Core 1.0 applications.
---------------------------------------------------------------
+---------------------------------------------------------------------
 
 To share authentication cookies between two different ASP.NET Core 1.0 applications, configure each application that should share cookies as follows.
 
@@ -48,7 +48,7 @@ Caution: When used in this manner, the DirectoryInfo should point to a key stora
 The cookie authentication middleware will use the explicitly provided implementation of the DataProtectionProvider, which due to taking an explicit directory in its constructor is isolated from the data protection system used by other parts of the application.
 
 Sharing authentication cookies between ASP.NET 4.x and ASP.NET Core 1.0 applications.
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
 ASP.NET 4.x applications which use Katana cookie authentication middleware can be configured to generate authentication cookies which are compatible with the ASP.NET Core 1.0 cookie authentication middleware. This allows upgrading a large site's individual applications piecemeal while still providing a smooth single sign on experience across the site.
 

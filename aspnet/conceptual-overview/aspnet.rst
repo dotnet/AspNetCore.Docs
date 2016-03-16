@@ -1,17 +1,17 @@
 Introduction to ASP.NET Core 1.0
-=========================
+================================
 
 By `Daniel Roth`_
 
 ASP.NET Core 1.0 is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET Core 1.0 and explains how they help you develop modern web apps.
 
 What is ASP.NET Core 1.0?
-------------------
+-------------------------
 
 ASP.NET Core 1.0 is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET. We built it from the ground up to provide an optimized development framework for apps that are either deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run your ASP.NET Core 1.0 applications cross-platform on Windows, Mac and Linux. ASP.NET Core 1.0 is fully open source on `GitHub <https://github.com/aspnet/home>`_.
 
 Why build ASP.NET Core 1.0?
---------------------
+---------------------------
 
 The first preview release of ASP.NET 1.0 came out almost 15 years ago.  Since then millions of developers have used it to build and run great web applications, and over the years we have added and evolved many, many capabilities to it.
 

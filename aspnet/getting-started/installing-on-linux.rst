@@ -1,5 +1,5 @@
 Installing ASP.NET Core 1.0 On Linux
-=============================
+====================================
 
 By `Daniel Roth`_
 

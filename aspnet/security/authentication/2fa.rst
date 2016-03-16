@@ -19,7 +19,7 @@ In this article:
 	- `Debugging  Twilio`_
 
 Create a new ASP.NET Core 1.0 project
-------------------------------
+-------------------------------------
 
 Create a new ASP.NET Core 1.0 web app with individual user accounts.
 

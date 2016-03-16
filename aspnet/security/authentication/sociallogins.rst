@@ -14,7 +14,7 @@ Enabling these credentials in your web sites provides a significant advantage be
   :depth: 1
 
 Create a New ASP.NET Core 1.0 Project
-------------------------------
+-------------------------------------
 
 To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 

@@ -1,5 +1,5 @@
 Getting Started with ASP.NET Core 1.0 and Entity Framework 6
-===========================================================
+============================================================
 
 By `Paweł Grudzień <https://github.com/pgrudzien12>`_, `Damien Pontifex <https://github.com/DamienPontifex>`_
 

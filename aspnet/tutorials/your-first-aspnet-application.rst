@@ -1,5 +1,5 @@
 Your First ASP.NET Core 1.0 Web App Using Visual Studio
-================================================
+========================================================
 
 By `Erik Reitan`_
 
@@ -16,7 +16,7 @@ Before you start, make sure that you have the followed the getting started steps
 .. note:: For additional information about installing ASP.NET Core 1.0 on other platforms, see :doc:`/getting-started/index`.
 
 Create a new ASP.NET Core 1.0 project
-------------------------------
+--------------------------------------
 
 Start Visual Studio 2015. From the **File** menu, select **New** > **Project**.
 

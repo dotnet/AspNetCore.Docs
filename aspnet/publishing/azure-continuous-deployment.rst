@@ -22,7 +22,7 @@ Before you start, make sure that you have the followed the getting started steps
 .. note:: For additional information about installing ASP.NET Core 1.0, including information about installing on other platforms, see :doc:`/getting-started/index`.
 
 Create an ASP.NET Core 1.0 web app
----------------------------
+----------------------------------
 
 1. Start Visual Studio 2015.
 

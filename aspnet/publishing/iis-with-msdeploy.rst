@@ -19,7 +19,7 @@ are required.
 In this document we will walk through each step.
 
 Preparing your web server for ASP.NET Core 1.0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first step is to ensure that your remote server is configured for ASP.NET Core 1.0.
 At a high level you’ll need.

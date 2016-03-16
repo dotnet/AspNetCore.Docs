@@ -1,5 +1,5 @@
 Installing ASP.NET Core 1.0 On Windows
-===============================
+======================================
 
 By `Rick Anderson`_, `Steve Smith`_, `Daniel Roth`_
 
@@ -10,7 +10,7 @@ This page shows you how to install ASP.NET Core 1.0 on Windows. To run ASP.NET C
   :depth: 1
 
 Install ASP.NET Core 1.0 with Visual Studio
-------------------------------------
+-------------------------------------------
 
 The easiest way to get started building applications with ASP.NET Core 1.0 is to install the latest version of Visual Studio 2015 (including the free Community edition).
 
@@ -35,7 +35,7 @@ The easiest way to get started building applications with ASP.NET Core 1.0 is to
 You are all set up and ready to write :doc:`your first ASP.NET Core 1.0 application </tutorials/your-first-aspnet-application>`!
 
 Install ASP.NET Core 1.0 from the command-line
----------------------------------------
+----------------------------------------------
 
 You can also install ASP.NET Core 1.0 from the command-line. There are a few steps involved, since we'll need to install and configure the environment in which ASP.NET runs, the :doc:`/dnx/index`. To install DNX, we need one more tool, the .NET Version Manager (DNVM).
 

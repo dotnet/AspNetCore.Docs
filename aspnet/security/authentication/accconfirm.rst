@@ -18,7 +18,7 @@ In this article:
 	- `Combine social and local login accounts`_
 
 Create a New ASP.NET Core 1.0 Project
-------------------------------
+-------------------------------------
 
 Create a new ASP.NET Core 1.0 web app with individual user accounts.
 

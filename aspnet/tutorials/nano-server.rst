@@ -1,7 +1,7 @@
 .. _nano-server:
 
 ASP.NET Core 1.0 on Nano Server
-========================
+================================
 
 By `Sourabh Shirhatti`_
 
@@ -118,7 +118,7 @@ Additionally, add ``httpPlatformHandler`` to the ``modules`` section
   :emphasize-lines: 2
 
 Installing an ASP.NET Core 1.0 application
------------------------------------
+-------------------------------------------
 
 Copy over the published output of your existing application to the Nano server.
 
