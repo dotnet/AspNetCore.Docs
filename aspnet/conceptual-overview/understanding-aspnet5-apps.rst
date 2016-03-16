@@ -1,5 +1,5 @@
 Understanding ASP.NET Core 1.0 Web Apps
-================================
+=======================================
 
 By `Steve Smith`_ and `Erik Reitan`_
 
