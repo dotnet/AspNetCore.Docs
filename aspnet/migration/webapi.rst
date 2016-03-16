@@ -48,7 +48,7 @@ Finally, the model, *Product*, used by the *ProductsApp*, is a simple class:
 	:linenos:
 
 Now that we have a simple project from which to start, we can demonstrate how to migrate this Web API 2 project to ASP.NET MVC 6.
-	
+
 Create the Destination Project
 ------------------------------
 
@@ -56,7 +56,7 @@ Using Visual Studio 2015, create a new, empty solution, and add the existing *Pr
 
 .. image:: webapi/_static/add-web-project.png
 
-Next, choose the ASP.NET 5 Web API project template. We will migrate the *ProductsApp* contents to this new project.
+Next, choose the ASP.NET Core 1.0 Web API project template. We will migrate the *ProductsApp* contents to this new project.
 
 .. image:: webapi/_static/aspnet-5-webapi.png
 
@@ -69,13 +69,13 @@ Delete the ``Project_Readme.html`` file from the new project. Your solution shou
 Migrate Configuration
 ---------------------
 
-ASP.NET 5 no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project, and static configuration files can be wired up from there if needed (learn more about :ref:`ASP.NET 5 Application Startup <fundamentalconcepts-application-startup>`). Since Web API is now built into MVC 6, there is less need to configure it. Attribute-based routing is now included by default when ``UseMvc()`` is called, and this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
+ASP.NET Core 1.0 no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project, and static configuration files can be wired up from there if needed (learn more about :ref:`ASP.NET Core 1.0 Application Startup <fundamentalconcepts-application-startup>`). Since Web API is now built into MVC 6, there is less need to configure it. Attribute-based routing is now included by default when ``UseMvc()`` is called, and this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
 
 .. literalinclude:: webapi/sample/ProductsDnx/Startup.cs
 	:language: c#
 	:emphasize-lines: 43
 	:linenos:
-	
+
 Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample ``ValuesController`` class that is included in the Web API starter project:
 
 .. literalinclude:: webapi/sample/ProductsDnx/Controllers/ValuesController.cs
@@ -98,7 +98,7 @@ You also need to add the ``[HttpGet]`` attribute to the two methods, since they 
 	// /api/products
 	[HttpGet]
 	...
-	
+
 	// /api/products/1
 	[HttpGet("{id}")]
 
@@ -114,7 +114,7 @@ The last step in the migration process for this simple Web API project is to cop
 	- `IHttpActionResult` does not exist
 	- `NotFound` does not exist
 	- `Ok` does not exist
-	
+
 Fortunately, these are all very easy to correct:
 
 	- Change `ApiController` to `Controller` (you may need to add `using Microsoft.AspNet.Mvc`)
@@ -129,13 +129,13 @@ Once these changes have been made and unused using statements removed, the migra
 	:language: c#
 	:emphasize-lines: 1,2,6,8-9,27,32,34
 	:linenos:
-	
+
 You should now be able to run the migrated project and browse to */api/products*; and, you should see the full list of 3 products. Browse to */api/products/1* and you should see the first product.
 
 Summary
 -------
 
-Migrating a simple Web API 2 project to MVC 6 is fairly straightforward, thanks to the merging of Web API into MVC 6 within ASP.NET 5. The main pieces every Web API 2 project will need to migrate are routes, controllers, and models, along with updates to the types used by MVC 6 controllers and actions.
+Migrating a simple Web API 2 project to MVC 6 is fairly straightforward, thanks to the merging of Web API into MVC 6 within ASP.NET Core 1.0. The main pieces every Web API 2 project will need to migrate are routes, controllers, and models, along with updates to the types used by MVC 6 controllers and actions.
 
 Related Resources
 -----------------

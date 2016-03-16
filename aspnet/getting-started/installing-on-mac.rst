@@ -1,4 +1,4 @@
-Installing ASP.NET 5 On Mac OS X
+Installing ASP.NET Core 1.0 On Mac OS X
 ================================
 
 By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
@@ -7,23 +7,23 @@ By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
   :local:
   :depth: 1
 
-Install ASP.NET 5 with Visual Studio Code
+Install ASP.NET Core 1.0 with Visual Studio Code
 -----------------------------------------
 
-The easiest way to get started building applications with ASP.NET 5 is to install the latest version of Visual Studio Code.
+The easiest way to get started building applications with ASP.NET Core 1.0 is to install the latest version of Visual Studio Code.
 
-#. Install `Mono <http://www.mono-project.com/docs/getting-started/install/mac/>`__ for OS X (required by Visual Studio Code). 
-  
+#. Install `Mono <http://www.mono-project.com/docs/getting-started/install/mac/>`__ for OS X (required by Visual Studio Code).
+
 #. Install `Visual Studio Code <https://go.microsoft.com/fwlink/?LinkID=534106>`__
 
-#. Install `ASP.NET 5 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
-  
-You are all set up and ready to write :doc:`your first ASP.NET 5 application on a Mac </tutorials/your-first-mac-aspnet>`!
+#. Install `ASP.NET Core 1.0 for Mac OS X <https://go.microsoft.com/fwlink/?LinkId=703940>`__
 
-Install ASP.NET 5 from the command-line
+You are all set up and ready to write :doc:`your first ASP.NET Core 1.0 application on a Mac </tutorials/your-first-mac-aspnet>`!
+
+Install ASP.NET Core 1.0 from the command-line
 ---------------------------------------
 
-You can also install ASP.NET 5 from the command-line. There are a few steps involved, since we'll need to install and configure the environment in which ASP.NET runs, the :doc:`/dnx/index`. To install DNX, we need one more tool, the .NET Version Manager (DNVM).
+You can also install ASP.NET Core 1.0 from the command-line. There are a few steps involved, since we'll need to install and configure the environment in which ASP.NET runs, the :doc:`/dnx/index`. To install DNX, we need one more tool, the .NET Version Manager (DNVM).
 
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

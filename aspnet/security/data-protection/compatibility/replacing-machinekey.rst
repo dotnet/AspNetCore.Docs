@@ -8,7 +8,7 @@ As of ASP.NET 4.5, the implementation of the <machineKey> element `is replaceabl
 Package installation
 --------------------
 
-.. note:: 
+.. note::
   The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or higher. Installation will fail if the application targets .NET 4.5 or lower.
 
 To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNet.DataProtection.SystemWeb. This will instantiate the data protection system using the :ref:`default configuration <data-protection-default-settings>` settings.
@@ -19,7 +19,7 @@ When you install the package, it inserts a line into Web.config that tells ASP.N
 
   <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
 
-.. tip:: 
+.. tip::
   You can tell if the new data protection system is active by inspecting fields like __VIEWSTATE, which should begin with "CfDJ8" as in the below example. "CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.
 
 .. code-block:: html
@@ -65,7 +65,7 @@ To enable this custom configuration, go back to Web.config and look for the <app
 
 	<appSettings>
 	  <!--
-	  If you want to customize the behavior of the ASP.NET 5 Data Protection stack, set the
+	  If you want to customize the behavior of the ASP.NET Core 1.0 Data Protection stack, set the
 	  "aspnet:dataProtectionStartupType" switch below to be the fully-qualified name of a
 	  type which subclasses Microsoft.AspNet.DataProtection.SystemWeb.DataProtectionStartup.
 	  -->

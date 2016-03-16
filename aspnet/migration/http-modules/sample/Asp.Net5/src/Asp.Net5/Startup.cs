@@ -1,4 +1,4 @@
-﻿// ASP.NET 5 Startup class
+﻿// ASP.NET Core 1.0 Startup class
 
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
@@ -43,7 +43,7 @@ namespace Asp.Net5
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -59,10 +59,10 @@ namespace Asp.Net5
 
             app.UseMyMiddlewareWithParams();
 
-            var myMiddlewareOptions = 
+            var myMiddlewareOptions =
                 Configuration.Get<MyMiddlewareOptions>("MyMiddlewareOptionsSection");
 
-            var myMiddlewareOptions2 = 
+            var myMiddlewareOptions2 =
                 Configuration.Get<MyMiddlewareOptions>("MyMiddlewareOptionsSection2");
 
             app.UseMyMiddlewareWithParams(myMiddlewareOptions);
@@ -75,9 +75,9 @@ namespace Asp.Net5
 
             app.UseIISPlatformHandler();
 
-            
 
-            // Create branch to the MyHandlerMiddleware. 
+
+            // Create branch to the MyHandlerMiddleware.
             // All requests ending in .report will follow this branch.
             app.MapWhen(
                 context => context.Request.Path.ToString().EndsWith(".report"),
@@ -92,7 +92,7 @@ namespace Asp.Net5
                     appBranch.UseHttpContextDemoMiddleware();
                 });
 
-            
+
 
             app.UseStaticFiles();
 

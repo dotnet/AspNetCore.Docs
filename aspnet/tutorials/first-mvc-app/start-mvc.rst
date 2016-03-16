@@ -3,7 +3,7 @@ Getting started with ASP.NET MVC 6
 
 By `Rick Anderson`_
 
-This tutorial will teach you the basics of building an ASP.NET MVC 6 web app using `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__. 
+This tutorial will teach you the basics of building an ASP.NET MVC 6 web app using `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__.
 
 Sections
 ^^^^^^^^^^^^^^^^
@@ -13,9 +13,9 @@ Sections
 Install Visual Studio and ASP.NET
 --------------------------------------
 
-Visual Studio is an IDE (integrated development environment) for building apps. Similar to using Microsoft Word to write documents, you'll use Visual Studio to create web apps. 
+Visual Studio is an IDE (integrated development environment) for building apps. Similar to using Microsoft Word to write documents, you'll use Visual Studio to create web apps.
 
-Install `ASP.NET 5 and Visual Studio 2015 <http://docs.asp.net/en/latest/getting-started/installing-on-windows.html>`__. 
+Install `ASP.NET Core 1.0 and Visual Studio 2015 <http://docs.asp.net/en/latest/getting-started/installing-on-windows.html>`__.
 
 Create a web app
 --------------------------------------

@@ -17,13 +17,13 @@ In this article:
 
 Dependency Injection
 --------------------
-Dependency injection is a technique that follows the `Dependency Inversion Principle <http://deviq.com/dependency-inversion-principle>`_, allowing for applications to be composed of loosely coupled modules. ASP.NET 5, which ASP.NET MVC 6 is built on, has built-in support for `dependency injection (learn more) <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_, and expects applications built for ASP.NET 5 to implement this technique (rather than static access or direct instantiation).
+Dependency injection is a technique that follows the `Dependency Inversion Principle <http://deviq.com/dependency-inversion-principle>`_, allowing for applications to be composed of loosely coupled modules. ASP.NET Core 1.0, which ASP.NET MVC 6 is built on, has built-in support for `dependency injection (learn more) <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_, and expects applications built for ASP.NET Core 1.0 to implement this technique (rather than static access or direct instantiation).
 
-.. tip:: It's important that you have a good understanding of how ASP.NET 5 implements Dependency Injection (DI). If you haven't already done so, please read `dependency injection  <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ in `ASP.NET 5 Fundamentals <http://docs.asp.net/en/latest/fundamentals/index.html>`_.
+.. tip:: It's important that you have a good understanding of how ASP.NET Core 1.0 implements Dependency Injection (DI). If you haven't already done so, please read `dependency injection  <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ in `ASP.NET Core 1.0 Fundamentals <http://docs.asp.net/en/latest/fundamentals/index.html>`_.
 
 Constructor Injection
 ---------------------
-ASP.NET 5's built-in support for constructor-based dependency injection extends to ASP.NET MVC 6 controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
+ASP.NET Core 1.0's built-in support for constructor-based dependency injection extends to ASP.NET MVC 6 controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Interfaces/IDateTime.cs
   :linenos:
@@ -58,16 +58,16 @@ This error occurs when we have not configured a service in the ``ConfigureServic
   :emphasize-lines: 6
   :lines: 29-30,43-47
   :dedent: 8
-  
+
 .. note:: This particular service could be implemented using any of several different lifetime options (``Transient``, ``Scoped``, or ``Singleton``). Be sure you understand how each of these scope options will affect the behavior of your service. `Learn more <http://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_.
 
 Once the service has been configured, running the application and navigating to the home page should display the time-based message as expected:
 
 .. image:: dependency-injection/_static/server-greeting.png
 
-.. tip:: To see how `explicitly requesting dependencies <http://deviq.com/explicit-dependencies-principle>`_ in controllers makes code easier to test, learn more about `unit testing <https://docs.asp.net/en/latest/testing/unit-testing.html>`_ ASP.NET 5 applications.
+.. tip:: To see how `explicitly requesting dependencies <http://deviq.com/explicit-dependencies-principle>`_ in controllers makes code easier to test, learn more about `unit testing <https://docs.asp.net/en/latest/testing/unit-testing.html>`_ ASP.NET Core 1.0 applications.
 
-ASP.NET 5's built-in dependency injection supports having only a single constructor for classes requesting services. If you have more than one constructor, you may get an exception stating:
+ASP.NET Core 1.0's built-in dependency injection supports having only a single constructor for classes requesting services. If you have more than one constructor, you may get an exception stating:
 
 	An unhandled exception occurred while processing the request.
 
@@ -86,7 +86,7 @@ Sometimes you don't need a service for more than one action within your controll
   :emphasize-lines: 1
   :lines: 33-38
   :dedent: 8
-  
+
 Accessing Settings from a Controller
 ------------------------------------
 Accessing application or configuration settings from within a controller is a common pattern. This access should use the Options pattern described in :doc:`configuration </fundamentals/configuration>`. You generally should not request settings directly from your controller using dependency injection. A better approach is to request an ``IOptions<T>`` instance, where ``T`` is the configuration class you need.
@@ -105,7 +105,7 @@ Then you need to configure the application to use the options model and add your
   :emphasize-lines: 3-5,8,15,18
   :lines: 18-47
   :dedent: 8
-  
+
 .. note:: In the above listing, we are configuring the application to read the settings from a JSON-formatted file. You can also configure the settings entirely in code, as is shown in the commented code above. `Learn more about ASP.NET Configuration options <https://docs.asp.net/en/latest/fundamentals/configuration.html>`_
 
 Once you've specified a strongly-typed configuration object (in this case, ``SampleWebSettings``) and added it to the services collection, you can request it from any Controller or Action method by requesting an instance of ``IOptions<T>`` (in this case, ``IOptions<SampleWebSettings>``). The following code shows how one would request the settings from a controller:

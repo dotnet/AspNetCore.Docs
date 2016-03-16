@@ -3,8 +3,8 @@ In Memory Caching
 
 By `Steve Smith`_
 
-Caching involves keeping a copy of data in a location that can be accessed more quickly than the source 
-data. ASP.NET 5 has rich support for caching in a variety of ways, including keeping data in memory on the 
+Caching involves keeping a copy of data in a location that can be accessed more quickly than the source
+data. ASP.NET Core 1.0 has rich support for caching in a variety of ways, including keeping data in memory on the
 local server, which is referred to as *in memory caching*.
 
 Sections:
@@ -40,7 +40,7 @@ To use an in memory cache in your ASP.NET application, add the following depende
 	:lines: 4-11
 	:emphasize-lines: 4-5
 
-Caching in ASP.NET 5 is a *service* that should be referenced from your application by :doc:`/fundamentals/dependency-injection`. To register the caching service and make it available within your app, add the following line to your ``ConfigureServices`` method in ``Startup``:
+Caching in ASP.NET Core 1.0 is a *service* that should be referenced from your application by :doc:`/fundamentals/dependency-injection`. To register the caching service and make it available within your app, add the following line to your ``ConfigureServices`` method in ``Startup``:
 
 .. literalinclude:: memory/sample/src/CachingSample/Startup.cs
 	:linenos:
@@ -55,10 +55,10 @@ You utilize caching in your app by requesting an instance of ``IMemoryCache`` in
 	:lines: 19-28
 	:dedent: 8
 	:emphasize-lines: 2,7
-	
+
 Reading and Writing to a Memory Cache
 -------------------------------------
-The middleware's ``Invoke`` method returns the cached data when it's available. 
+The middleware's ``Invoke`` method returns the cached data when it's available.
 
 There are two methods for accessing cache entries:
 
@@ -114,7 +114,7 @@ When you do want to explicitly remove an item from the cache, you can do so easi
 
 Cache Dependencies and Callbacks
 --------------------------------
-You can configure cache entries to depend on other cache entries, the file system, or programmatic tokens, evicting the entry in response to changes. You can register a callback, which will run when a cache item is evicted. 
+You can configure cache entries to depend on other cache entries, the file system, or programmatic tokens, evicting the entry in response to changes. You can register a callback, which will run when a cache item is evicted.
 
 .. literalinclude:: memory/sample/test/CachingSample.Tests/MemoryCacheTests.cs
 	:linenos:
@@ -133,16 +133,16 @@ None
 
 Removed
 	The item was manually removed by a call to ``Remove()``
-	
+
 Replaced
 	The item was overwritten.
-	
+
 Expired
 	The item timed out.
-	
+
 TokenExpired
 	The token the item depended upon fired an event.
-	
+
 Capacity
 	The item was removed as part of the cache's memory management process.
 

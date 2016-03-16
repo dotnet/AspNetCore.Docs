@@ -4,13 +4,13 @@ Dependency Injection
 ====================
 By `Steve Smith`_
 
-ASP.NET 5 is designed from the ground up to support and leverage dependency injection. ASP.NET 5 applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET 5 provides a minimal feature set and is not intended to replace other containers.
+ASP.NET Core 1.0 is designed from the ground up to support and leverage dependency injection. ASP.NET Core 1.0 applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET Core 1.0 provides a minimal feature set and is not intended to replace other containers.
 
 .. contents:: In this article:
   :local:
   :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/dependency-injection/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/dependency-injection/sample>`_.
 
 What is Dependency Injection?
 -----------------------------
@@ -21,7 +21,7 @@ When classes are designed with DI in mind, they are more loosely coupled because
 
 When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, `Inversion of Control (IoC) <http://deviq.com/inversion-of-control/>`_ containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
 
-ASP.NET 5 includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET 5's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
+ASP.NET Core 1.0 includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET Core 1.0's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
 
 .. note:: Martin Fowler has written an extensive article on `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_. Microsoft Patterns and Practices also has a great description of `Dependency Injection <https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx>`_.
 
@@ -39,7 +39,7 @@ The ``ConfigureServices`` method in the ``Startup`` class is responsible for def
   :dedent: 8
   :emphasize-lines: 4,9,13
 
-The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single ``AddService()`` extension method to register all of the services required by that feature. 
+The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single ``AddService()`` extension method to register all of the services required by that feature.
 
 .. note:: You can request certain framework-provided services within ``Startup`` methods - see :doc:`startup` for more details.
 
@@ -48,7 +48,7 @@ Of course, in addition to configuring the application to take advantage of vario
 Registering Your Own Services
 -----------------------------
 
-In the default web template example above, two application services are added to the ``IServiceCollection``. 
+In the default web template example above, two application services are added to the ``IServiceCollection``.
 
 .. literalinclude:: ../../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
@@ -171,7 +171,7 @@ Request Services represent the services you configure and request as part of you
 
 Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see :doc:`/testing/index`) and are more loosely coupled.
 
-.. note:: The important things to remember are that your application will almost always use ``RequestServices``, and in any case you shouldn't access these properties directly. Instead, request the services you need via your class's constructor. 
+.. note:: The important things to remember are that your application will almost always use ``RequestServices``, and in any case you shouldn't access these properties directly. Instead, request the services you need via your class's constructor.
 
 Designing Your Services For Dependency Injection
 ------------------------------------------------
@@ -206,7 +206,7 @@ Next, configure the container in ``ConfigureServices`` and return an ``IServiceP
   {
     services.AddMvc();
     // add other framework services
-    
+
     // Add Autofac
     var containerBuilder = new ContainerBuilder();
     containerBuilder.RegisterModule<DefaultModule>();
@@ -231,7 +231,7 @@ Finally, configure Autofac as normal in ``DefaultModule``:
 
 Now at runtime, Autofac will be used to resolve types and inject dependencies.
 
-.. list-table:: ASP.NET 5 / DNX Containers (in alphabetical order)
+.. list-table:: ASP.NET Core 1.0 / DNX Containers (in alphabetical order)
    :header-rows: 1
 
    * - Package (Nuget)

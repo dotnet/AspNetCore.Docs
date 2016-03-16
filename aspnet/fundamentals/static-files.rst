@@ -4,7 +4,7 @@ Working with Static Files
 =========================
 By `Tom Archer`_
 
-Static files, which include HTML files, CSS files, image files, and JavaScript files, are assets that the app will serve directly to clients. In this article, we'll cover the following topics as they relate to ASP.NET 5 and static files.
+Static files, which include HTML files, CSS files, image files, and JavaScript files, are assets that the app will serve directly to clients. In this article, we'll cover the following topics as they relate to ASP.NET Core 1.0 and static files.
 
 In this article:
   - `Serving static files`_
@@ -20,7 +20,7 @@ Serving static files
 
 By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``hosting.json`` file where the default is `wwwroot`.
 
-.. code-block:: json 
+.. code-block:: json
 
   "webroot": "wwwroot"
 
@@ -305,7 +305,7 @@ This section includes a list of best practices for working with static files:
 
 Summary
 -------
-In this article, you learned how the static files middleware component in ASP.NET 5 allows you to serve static files, enable directory browsing, and serve default files. You also saw how to work with content types that ASP.NET doesn't recognize. Finally, the article explained some IIS considerations and presented some best practices for working with static files.
+In this article, you learned how the static files middleware component in ASP.NET Core 1.0 allows you to serve static files, enable directory browsing, and serve default files. You also saw how to work with content types that ASP.NET doesn't recognize. Finally, the article explained some IIS considerations and presented some best practices for working with static files.
 
 Additional Resources
 --------------------

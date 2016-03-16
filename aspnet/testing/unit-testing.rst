@@ -2,13 +2,13 @@ Unit Testing
 ============
 By `Steve Smith`_
 
-ASP.NET 5 has been designed with testability in mind, so that creating unit tests for your applications is easier than ever before. This article briefly introduces unit tests (and how they differ from other kinds of tests) and demonstrates how to add a test project to your solution and then run unit tests using either the command line or Visual Studio.
+ASP.NET Core 1.0 has been designed with testability in mind, so that creating unit tests for your applications is easier than ever before. This article briefly introduces unit tests (and how they differ from other kinds of tests) and demonstrates how to add a test project to your solution and then run unit tests using either the command line or Visual Studio.
 
 .. contents:: In this article:
   :local:
   :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/tree/1.0.0-beta8/aspnet/testing/unit-testing/sample>`_. 
+`Download sample from GitHub <https://github.com/aspnet/docs/tree/1.0.0-beta8/aspnet/testing/unit-testing/sample>`_.
 
 Getting Started with Testing
 ----------------------------

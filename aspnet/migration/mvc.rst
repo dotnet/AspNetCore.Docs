@@ -1,6 +1,6 @@
 Migrating From ASP.NET MVC 5 to MVC 6
 =====================================
-By `Rick Anderson`_, `Daniel Roth`_, `Steve Smith`_, and `Scott Addie`_ 
+By `Rick Anderson`_, `Daniel Roth`_, `Steve Smith`_, and `Scott Addie`_
 
 This article shows how to get started migrating an ASP.NET MVC 5 project to ASP.NET MVC 6. In the process, it highlights many of the things that have changed from MVC 5 to MVC 6. Migrating from MVC 5 to MVC 6 is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies. Additional articles cover migrating ASP.NET Identity models, and startup and configuration code found in many MVC 5 projects.
 
@@ -37,7 +37,7 @@ Configure the site to use MVC
   :language: json
   :emphasize-lines: 8-9, 30-33
   :linenos:
-  
+
 ``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :doc:`/fundamentals/static-files`).
 
 The ``scripts`` section is used to denote when specified build automation scripts should run. Visual Studio now has built-in support for running scripts before and after specific events. The ``scripts`` section above specifies `NPM <https://docs.npmjs.com/>`__, `Bower <http://bower.io/>`__ and `Gulp <http://gulpjs.com/>`__ scripts should run on the ``prepublish`` stage.  We'll talk about NPM, Bower, and Gulp later in the tutorial. Note the trailing "," added to the end of the ``publishExclude`` section.
@@ -49,7 +49,7 @@ For more information, see :ref:`project.json <the-project-json-file>` and :doc:`
 .. literalinclude:: mvc/samples/WebApp1/src/WebApp1/Startup.cs
   :language: c#
   :emphasize-lines: 7, 14-
-  :linenos:  
+  :linenos:
   :lines: 11-34
   :dedent: 4
 
@@ -65,9 +65,9 @@ In this section, you'll add a minimal controller and view to serve as placeholde
 
 .. image:: mvc/_static/add_mvc_ctl.png
 
-- Add a *Views* folder. 
+- Add a *Views* folder.
 - Add a *Views/Home* folder.
-- Add an *Index.cshtml* MVC view page to the *Views/Home* folder. 
+- Add an *Index.cshtml* MVC view page to the *Views/Home* folder.
 
 .. image:: mvc/_static/view.png
 
@@ -93,7 +93,7 @@ Now that we have a minimal working MVC 6 project, we can start migrating functio
 - controllers
 - views
 - models
-- bundling 
+- bundling
 - filters
 - Log in/out, identity (This will be done in the next tutorial.)
 
@@ -102,7 +102,7 @@ Controllers and views
 
 - Copy each of the methods from the MVC 5 ``HomeController`` to the MVC 6 ``HomeController``. Note that in MVC 5, the built-in template's controller action method return type is `ActionResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ActionResult.cs>`_; in MVC 6, the templates generate `IActionResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Abstractions/IActionResult.cs>`__ methods. ``ActionResult`` is the only implementation of ``IActionResult``, so there is no need to change the return type of your action methods.
 - Delete the *Views/Home/Index.cshtml* view in the MVC 6 project.
-- Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the MVC 5 project to the MVC 6 project. 
+- Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the MVC 5 project to the MVC 6 project.
 - Run the MVC 6 app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the ``About`` and ``Contact`` views, so you'll have to invoke them from the browser (replace **2468** with the port number used in your project).
 
   - http://localhost:2468/home/about
@@ -119,9 +119,9 @@ In previous versions of MVC (including MVC 5), static content was hosted from th
 
 - Copy the *favicon.ico* file from the MVC 5 project to the *wwwroot* folder in the MVC 6 project.
 
-The MVC 5 project uses `Bootstrap <http://getbootstrap.com/>`__ for its styling and stores the Bootstrap files in the *Content* and *Scripts* folders. The template-generated MVC 5 project references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). You could copy the *bootstrap.js* and *bootstrap.css* files from the MVC 5 project to the *wwwroot* folder in the new project, but that approach doesn't use the improved mechanism for managing client-side dependencies in ASP.NET 5.
+The MVC 5 project uses `Bootstrap <http://getbootstrap.com/>`__ for its styling and stores the Bootstrap files in the *Content* and *Scripts* folders. The template-generated MVC 5 project references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). You could copy the *bootstrap.js* and *bootstrap.css* files from the MVC 5 project to the *wwwroot* folder in the new project, but that approach doesn't use the improved mechanism for managing client-side dependencies in ASP.NET Core 1.0.
 
-In the new project, we'll add support for Bootstrap (and other client-side libraries) using `Bower <http://bower.io/>`__: 
+In the new project, we'll add support for Bootstrap (and other client-side libraries) using `Bower <http://bower.io/>`__:
 
 - Add a `Bower <http://bower.io/>`__ configuration file named *bower.json* to the project root (Right-click on the project, and then **Add > New Item > Bower Configuration File**). Add `Bootstrap <http://getbootstrap.com/>`__ and jquery to the file (see the highlighted lines below).
 
@@ -138,9 +138,9 @@ See :doc:`/client-side/bower` for more information.
 Gulp
 ----
 
-When you create a new web app using the ASP.NET 5 Web Application template, the project is setup to use `Gulp <http://gulpjs.com>`__. Gulp is a streaming build system for client-side code (HTML, LESS, SASS, etc.). The included *gulpfile.js* in the project contains JavaScript that defines a set of gulp tasks that you can set to run automatically on build events or you can run manually using the **Task Runner Explorer** in Visual Studio. In this section, we'll show how to use the MVC 6 template's generated *gulpfile.js* file to bundle and minify the JavaScript and CSS files in the project. 
+When you create a new web app using the ASP.NET Core 1.0 Web Application template, the project is setup to use `Gulp <http://gulpjs.com>`__. Gulp is a streaming build system for client-side code (HTML, LESS, SASS, etc.). The included *gulpfile.js* in the project contains JavaScript that defines a set of gulp tasks that you can set to run automatically on build events or you can run manually using the **Task Runner Explorer** in Visual Studio. In this section, we'll show how to use the MVC 6 template's generated *gulpfile.js* file to bundle and minify the JavaScript and CSS files in the project.
 
-If you created the optional *FullMVC6* project (a new ASP.NET MVC 6 web app with Individual User Accounts), add *gulpfile.js* from that project to the project we are updating. In Solution Explorer, right-click the web app project and choose **Add > Existing Item**. 
+If you created the optional *FullMVC6* project (a new ASP.NET MVC 6 web app with Individual User Accounts), add *gulpfile.js* from that project to the project we are updating. In Solution Explorer, right-click the web app project and choose **Add > Existing Item**.
 
 .. image:: mvc/_static/addExisting.png
 
@@ -188,15 +188,15 @@ For more information, see :doc:`/client-side/index`.
 Migrate the layout file
 -----------------------
 
-- Copy the *_ViewStart.cshtml* file from the MVC 5 project's *Views* folder into the MVC 6 project's *Views* folder. The *_ViewStart.cshtml* file has not changed in MVC 6. 
-- Create a *Views/Shared* folder. 
-- Copy the *_Layout.cshtml* file from the MVC 5 project's *Views/Shared* folder into the MVC 6 project's *Views/Shared* folder. 
+- Copy the *_ViewStart.cshtml* file from the MVC 5 project's *Views* folder into the MVC 6 project's *Views* folder. The *_ViewStart.cshtml* file has not changed in MVC 6.
+- Create a *Views/Shared* folder.
+- Copy the *_Layout.cshtml* file from the MVC 5 project's *Views/Shared* folder into the MVC 6 project's *Views/Shared* folder.
 
  Open *_Layout.cshtml* file and make the following changes (the completed code is shown below):
 
   - Replace @Styles.Render("~/Content/css") with a <link> element to load *bootstrap.css* (see below)
   - Remove @Scripts.Render("~/bundles/modernizr")
-  - Comment out the @Html.Partial("_LoginPartial") line (surround the line with @*...*@) - we'll return to it in a future tutorial 
+  - Comment out the @Html.Partial("_LoginPartial") line (surround the line with @*...*@) - we'll return to it in a future tutorial
   - Replace @Scripts.Render("~/bundles/jquery") with a <script> element (see below)
   - Replace @Scripts.Render("~/bundles/bootstrap") with a <script> element (see below)
 

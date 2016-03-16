@@ -11,17 +11,17 @@ This tutorial will show you how to set up two-factor authentication (2FA) using 
 .. Add Set up SMS for ASPSMS just after "Setup for Twilio"
 
 In this article:
-	- `Create a new ASP.NET 5 project`_
+	- `Create a new ASP.NET Core 1.0 project`_
 	- `Setup up SMS for two-factor authentication with Twilio`_
 	- `Enable two-factor authentication`_
 	- `Log in with two-factor authentication`_
 	- `Account lockout for protecting against brute force attacks`_
 	- `Debugging  Twilio`_
 
-Create a new ASP.NET 5 project
+Create a new ASP.NET Core 1.0 project
 ------------------------------
 
-Create a new ASP.NET 5 web app with individual user accounts.
+Create a new ASP.NET Core 1.0 web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 

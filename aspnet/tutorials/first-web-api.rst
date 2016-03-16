@@ -5,10 +5,10 @@ By `Mike Wasson`_  and `Rick Anderson`_
 
 HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
 
-In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial. 
+In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial.
 
 
-Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET 5, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
+Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET Core 1.0, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline.
 
 .. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/migration/webapi`
 
@@ -43,13 +43,13 @@ PUT /api/todo/{id}     Update an existing item   To-do item    None
 DELETE /api/todo/{id}  Delete an item.           None          None
 =====================  ========================  ============  =============
 
-The following diagram show the basic design of the app. 
- 
+The following diagram show the basic design of the app.
+
 .. image:: first-web-api/_static/architecture.png
 
-- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial.  
+- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial.
 - A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
-- A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller. 
+- A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller.
 - To keep the tutorial simple and focused on MVC 6, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
 
 Install Fiddler
@@ -67,27 +67,27 @@ Start Visual Studio 2015. From the **File** menu, select **New** > **Project**.
 Select the **ASP.NET Web Application** project template. Name the project ``TodoApi`` and click **OK**.
 
 .. image:: first-web-api/_static/new-project.png
- 
-In the **New Project** dialog, select **Web API** under **ASP.NET 5 Preview Templates**. Click **OK**.
- 
+
+In the **New Project** dialog, select **Web API** under **ASP.NET Core 1.0 Preview Templates**. Click **OK**.
+
 .. image:: first-web-api/_static/web-api-project.png
 
 Add a model class
 -----------------
 
-A model is an object that represents the data in your application. In this case, the only model is a to-do item. 
+A model is an object that represents the data in your application. In this case, the only model is a to-do item.
 
 Add a folder named "Models". In Solution Explorer, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
- 
+
 .. image:: first-web-api/_static/add-folder.png
- 
+
 .. note:: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
-Next, add a ``TodoItem`` class. Right-click the *Models* folder and select **Add** > **New Item**. 
+Next, add a ``TodoItem`` class. Right-click the *Models* folder and select **Add** > **New Item**.
 
 In the **Add New Item** dialog, select the **Class** template. Name the class ``TodoItem`` and click **OK**.
- 
-.. image:: first-web-api/_static/add-class.png 
+
+.. image:: first-web-api/_static/add-class.png
 
 Replace the generated code with:
 
@@ -104,7 +104,7 @@ Start by defining a repository interface named ``ITodoRepository``. Use the clas
 .. literalinclude:: first-web-api/sample/src/TodoApi/Models/ITodoRepository.cs
     :language: c#
 
-This interface defines basic CRUD operations. In practice, you might have domain-specific methods. 
+This interface defines basic CRUD operations. In practice, you might have domain-specific methods.
 
 Next, add a ``TodoRepository`` class that implements ``ITodoRepository``:
 
@@ -116,7 +116,7 @@ Build the app to verify you don't have any errors.
 Register the repository
 -----------------------
 
-By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of newing up a ``TodoRepository`` inside the controller, we will inject an ``ITodoRepository``, using the ASP.NET 5 dependency injection (DI) container.
+By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of newing up a ``TodoRepository`` inside the controller, we will inject an ``ITodoRepository``, using the ASP.NET Core 1.0 dependency injection (DI) container.
 
 This approach makes it easier to unit test your controllers. Unit tests should inject a mock or stub version of ``ITodoRepository``. That way, the test narrowly targets the controller logic and not the data access layer.
 
@@ -145,10 +145,10 @@ Replace the generated code with the following:
     :language: c#
     :lines: 1-11,68-70
 
-This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromServicesAttribute.cs>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered in the ``Startup`` class.    
+This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromServicesAttribute.cs>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered in the ``Startup`` class.
 
-Delete the *ValuesController.cs* file from the *Controllers* folder. The project template adds it as an example controller, but we don’t need it. 
- 
+Delete the *ValuesController.cs* file from the *Controllers* folder. The project template adds it as an example controller, but we don’t need it.
+
 Getting to-do items
 -------------------
 
@@ -176,14 +176,14 @@ Here is an example HTTP response for the ``GetAll`` method::
 
 Later in the tutorial I'll show how you can view the HTTP response using the Fiddler tool.
 
-Routing and URL paths 
+Routing and URL paths
 ^^^^^^^^^^^^^^^^^^^^^
 
 The `[HttpGet] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpGetAttribute.cs>`_ attribute specifies that these are HTTP GET methods. The URL path for each method is constructed as follows:
 
 - Take the template string in the controller’s route attribute,  ``[Route("api/[controller]")]``
 - Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample the name of the controller is "todo" (case insensitive). For this sample, the controller class name is **Todo**\Controller and the root name is "todo". ASP.NET MVC is not case sensitive.
-- If the ``[HttpGet]`` attribute also has a template string, append that to the path. This sample doesn't use a template string. 
+- If the ``[HttpGet]`` attribute also has a template string, append that to the path. This sample doesn't use a template string.
 
 For the ``GetById`` method,  "{id}" is a placeholder variable. In the actual HTTP request, the client will use the ID of the ``todo`` item. At runtime, when MVC invokes ``GetById``, it assigns the value of "{id}" in the URL the method's ``id`` parameter.
 
@@ -203,15 +203,15 @@ The ``GetAll`` method returns a CLR object. MVC automatically serializes the obj
 In contrast, the ``GetById`` method returns the more general ``IActionResult`` type, which represents a generic result type. That’s because ``GetById`` has two different return types:
 
 - If no item matches the requested ID, the method returns a 404 error.  This is done by returning ``HttpNotFound``.
-- Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ObjectResult.cs>`_. 
+- Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ObjectResult.cs>`_.
 
 Use Fiddler to call the API
 ---------------------------
 
-This step is optional, but it’s useful to see the raw HTTP responses from the web API. 
+This step is optional, but it’s useful to see the raw HTTP responses from the web API.
 In Visual Studio, press ^F5 to launch the app. Visual Studio launches a browser and navigates to ``http://localhost:port/api/todo``, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the *todo* data will be displayed. If you're using IE, IE will prompt to you open or save the *todo.json* file.
 
-Launch Fiddler. From the **File** menu, uncheck the **Capture Traffic** option. This turns off capturing HTTP traffic. 
+Launch Fiddler. From the **File** menu, uncheck the **Capture Traffic** option. This turns off capturing HTTP traffic.
 
 .. image:: first-web-api/_static/fiddler1.png
 
@@ -235,8 +235,8 @@ Create
     :language: c#
     :lines: 30-39
     :dedent: 8
-        
-This is an HTTP POST method, indicated by the `[HttpPost] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpPostAttribute.cs>`_ attribute. The `[FromBody] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromBodyAttribute.cs>`_ attribute tells MVC to get the value of the to-do item from the body of the HTTP request. 
+
+This is an HTTP POST method, indicated by the `[HttpPost] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpPostAttribute.cs>`_ attribute. The `[FromBody] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromBodyAttribute.cs>`_ attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
 The `CreatedAtRoute <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Extensions/Controller.cs#L854-L900>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
 
@@ -298,9 +298,9 @@ Delete
 The void return type returns a 204 (No Content) response. That means the client receives a 204 even if the item has already been deleted, or never existed. There are two ways to think about a request to delete a non-existent resource:
 
 - "Delete" means "delete an existing item", and the item doesn’t exist, so return 404.
-- "Delete" means "ensure the item is not in the collection." The item is already not in the collection, so return a 204. 
+- "Delete" means "ensure the item is not in the collection." The item is already not in the collection, so return a 204.
 
-Either approach is reasonable. If you return 404, the client will need to handle that case. 
+Either approach is reasonable. If you return 404, the client will need to handle that case.
 
 .. image:: first-web-api/_static/delete.png
 

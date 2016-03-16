@@ -17,19 +17,19 @@ In this article:
 Getting Started
 ---------------
 
-There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET 5, in which case Bootstrap will come pre-installed:
+There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core 1.0, in which case Bootstrap will come pre-installed:
 
 .. image:: bootstrap/_static/bootstrap-in-starter-template.png
- 
-Adding Bootstrap to an ASP.NET 5 project is simply a matter of adding it to ``bower.json`` as a dependency:
+
+Adding Bootstrap to an ASP.NET Core 1.0 project is simply a matter of adding it to ``bower.json`` as a dependency:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/bower.json
   :language: json
   :linenos:
   :emphasize-lines: 5
 
-This is the recommended way to add Bootstrap to an ASP.NET 5 project.
- 
+This is the recommended way to add Bootstrap to an ASP.NET Core 1.0 project.
+
 You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
 
 Bower
@@ -38,22 +38,22 @@ Bower
 .. code-block:: console
 
   bower install bootstrap
-  
+
 npm
 ^^^
 
 .. code-block:: console
 
   npm install bootstrap
-  
+
 NuGet
 ^^^^^
 
 .. code-block:: console
 
   Install-Package bootstrap
-  
-.. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET 5 is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
+
+.. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET Core 1.0 is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
 
 If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the ``_Layout.cshtml`` file does so like this:
 
@@ -111,23 +111,23 @@ One of the most popular features of Bootstrap is its grid layout system. Modern 
 
   <div class="container">
     <div class="row">
-    
+
     </div>
   </div>
 
 Next, add additional ``<div>`` elements for each column, and specify the number of columns that ``<div>`` should occupy (out of 12) as part of a CSS class starting with "col-md-". For instance, if you want to simply have two columns of equal size, you would use a class of "col-md-6" for each one. In this case "md" is short for "medium" and refers to standard-sized desktop computer display sizes. There are four different options you can choose from, and each will be used for higher widths unless overridden (so if you want the layout to be fixed regardless of screen width, you can just specify xs classes).
 
-+--------------------+--------------------------+------------+ 
-| CSS Class Prefix   | Device Tier              | Width      | 
-+====================+==========================+============+ 
-| col-xs-            | Phones                   | < 768px    | 
-+--------------------+--------------------------+------------+ 
-| col-sm-            | Tablets                  | >= 768px   | 
-+--------------------+--------------------------+------------+ 
-| col-md-            | Desktops                 | >= 992px   | 
-+--------------------+--------------------------+------------+ 
-| col-lg-            | Larger Desktop Displays  | >= 1200px  | 
-+--------------------+--------------------------+------------+ 
++--------------------+--------------------------+------------+
+| CSS Class Prefix   | Device Tier              | Width      |
++====================+==========================+============+
+| col-xs-            | Phones                   | < 768px    |
++--------------------+--------------------------+------------+
+| col-sm-            | Tablets                  | >= 768px   |
++--------------------+--------------------------+------------+
+| col-md-            | Desktops                 | >= 992px   |
++--------------------+--------------------------+------------+
+| col-lg-            | Larger Desktop Displays  | >= 1200px  |
++--------------------+--------------------------+------------+
 
 When specifying two columns both with "col-md-6" the resulting layout will be two columns at desktop resolutions, but these two columns will stack vertically when rendered on smaller devices (or a narrower browser window on a desktop), allowing users to easily view content without the need to scroll horizontally.
 
@@ -185,7 +185,7 @@ Additional Elements
 
 The default theme can also be used to present HTML tables in a nicely formatted style, including support for striped views. There are labels with styles that are similar to those of the buttons. You can create custom Dropdown menus that support additional styling options beyond the standard HTML ``<select>`` element, along with Navbars like the one our default starter site is already using. If you need a progress bar, there are several styles to choose from, as well as List Groups and panels that include a title and content.  Explore additional options within the standard Bootstrap Theme here:
 
-http://getbootstrap.com/examples/theme/ 
+http://getbootstrap.com/examples/theme/
 
 More Themes
 -----------
@@ -194,12 +194,12 @@ You can extend the standard Bootstrap Theme by overriding some or all of its CSS
 
 .. image:: bootstrap/_static/theme-inspinia.png
 
-If you're interested in building your own dashboard, you may wish to start from the free example available here: http://getbootstrap.com/examples/dashboard/. 
+If you're interested in building your own dashboard, you may wish to start from the free example available here: http://getbootstrap.com/examples/dashboard/.
 
 Components
 ----------
 
-In addition to those elements already discussed, Bootstrap includes support for a variety of `built-in UI components <http://getbootstrap.com/components/>`_. 
+In addition to those elements already discussed, Bootstrap includes support for a variety of `built-in UI components <http://getbootstrap.com/components/>`_.
 
 Glyphicons
 ^^^^^^^^^^
@@ -223,10 +223,10 @@ Breadcrumbs are a common UI component used to show a user their recent history o
 JavaScript Support
 ------------------
 
-Bootstrap's JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, bootstrap.js includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There's not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit http://getbootstrap.com/javascript/. 
+Bootstrap's JavaScript library includes API support for the included components, allowing you to control their behavior programmatically within your application. In addition, bootstrap.js includes over a dozen custom jQuery plugins, providing additional features like transitions, modal dialogs, scroll detection (updating styles based on where the user has scrolled in the document), collapse behavior, carousels, and affixing menus to the window so they do not scroll off the screen. There's not sufficient room to cover all of the JavaScript add-ons built into Bootstrap – to learn more please visit http://getbootstrap.com/javascript/.
 
 Summary
 -------
 
-Bootstrap provides a web framework that can be used to quickly and productively lay out and style a wide variety of websites and applications. Its basic typography and styles provide a pleasant look and feel that can easily be manipulated through custom theme support, which can be hand-crafted or purchased commercially. It supports a host of web components that in the past would have required expensive third-party controls to accomplish, while supporting modern and open web standards. 
+Bootstrap provides a web framework that can be used to quickly and productively lay out and style a wide variety of websites and applications. Its basic typography and styles provide a pleasant look and feel that can easily be manipulated through custom theme support, which can be hand-crafted or purchased commercially. It supports a host of web components that in the past would have required expensive third-party controls to accomplish, while supporting modern and open web standards.
 

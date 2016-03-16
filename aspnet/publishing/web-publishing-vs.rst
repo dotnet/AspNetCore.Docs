@@ -2,11 +2,11 @@ How Web Publishing In Visual Studio Works
 ---------------------------------------------------
 By `Sayed Ibrahim Hashimi`_
 
-The web publish experience for ASP.NET 5 projects has significantly changed from ASP.NET 4. This doc will provide an overview of the changes and instructions on how to customize the publish process. Unless stated otherwise, the instructions in this article are for publishing from Visual Studio. For an overview of how to publish a web app on ASP.NET 5 see `Publish To Azure Using VS <https://docs.asp.net/en/latest/tutorials/publish-to-azure-webapp-using-vs.html>`_
+The web publish experience for ASP.NET Core 1.0 projects has significantly changed from ASP.NET 4. This doc will provide an overview of the changes and instructions on how to customize the publish process. Unless stated otherwise, the instructions in this article are for publishing from Visual Studio. For an overview of how to publish a web app on ASP.NET Core 1.0 see `Publish To Azure Using VS <https://docs.asp.net/en/latest/tutorials/publish-to-azure-webapp-using-vs.html>`_
 
 In ASP.NET 4 when you publish a Visual Studio web project MSBuild is used to drive the entire process. The project file (.csproj or .vbproj) is used to gather the files that need to be published as well as perform any updates during publish (for example updating web.config). The project file contains the full list of files as well as their type. That information is used to determine the files to publish. The logic was implemented in an MSBuild .targets file. During the publish process MSBuild will call Web Deploy (msdeploy.exe) to transfer the files to the final location. To customize the publish process you would need to update the publish profile, or project file, with custom MSBuild elements.
 
-In ASP.NET 5 the publish process has been simplified, we no longer store a reference to files that the project contains. All files are included in the project by default (files can be excluded from the project or from publish by updating ``project.json``). When you publish an ASP.NET 5 project from Visual Studio the following happens:
+In ASP.NET Core 1.0 the publish process has been simplified, we no longer store a reference to files that the project contains. All files are included in the project by default (files can be excluded from the project or from publish by updating ``project.json``). When you publish an ASP.NET Core 1.0 project from Visual Studio the following happens:
 
   1. A publish profile is created at ``Properties\PublishProfiles\profilename.pubxml``. The publish profile is an MSBuild file.
   2. A PowerShell script is created at ``Properties\PublishProfiles\profilename.ps1``.
@@ -27,7 +27,7 @@ dnu publish is a command line utility that is shipped with the Dot Net Version M
 
 After dnu publish has completed, the PowerShell script for the publish profile is called. Now that we have briefly discussed how publishing works at a high level let’s take a look at the structure of the PowerShell script created for publishing.
 
-When you create a publish profile in Visual Studio for an ASP.NET 5 project a PowerShell script is created that has the following structure.
+When you create a publish profile in Visual Studio for an ASP.NET Core 1.0 project a PowerShell script is created that has the following structure.
 
 .. code-block:: powershell
 
@@ -85,9 +85,9 @@ Most developers will not need to customize this extension point. Visual Studio s
 
   2. Customize dnu publish
 
-As stated previously dnu publish is a command line utility that can be used to help publish your ASP.NET 5 application. This is a cross platform command line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to use dnu commands to script building and publishing. When dnu publish is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the `scripts section <https://docs.asp.net/en/latest/dnx/projects.html>`_
+As stated previously dnu publish is a command line utility that can be used to help publish your ASP.NET Core 1.0 application. This is a cross platform command line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to use dnu commands to script building and publishing. When dnu publish is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the `scripts section <https://docs.asp.net/en/latest/dnx/projects.html>`_
 
-The supported scripts for publish are prepublish and postpublish. The ASP.NET 5 Web Application template uses the prepublish step by default. The relevant snippet from ``project.json`` is shown below.
+The supported scripts for publish are prepublish and postpublish. The ASP.NET Core 1.0 Web Application template uses the prepublish step by default. The relevant snippet from ``project.json`` is shown below.
 
 .. code-block:: javascript
 

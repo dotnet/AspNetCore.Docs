@@ -1,4 +1,4 @@
-Installing ASP.NET 5 On Linux
+Installing ASP.NET Core 1.0 On Linux
 =============================
 
 By `Daniel Roth`_
@@ -10,9 +10,9 @@ By `Daniel Roth`_
 Install using prebuild binaries
 -------------------------------
 
-Prebuild binaries for ASP.NET 5 are available (`.tar.gz <https://go.microsoft.com/fwlink/?LinkId=703941>`__) and can be installed as appropriate based on your system configuration. 
+Prebuild binaries for ASP.NET Core 1.0 are available (`.tar.gz <https://go.microsoft.com/fwlink/?LinkId=703941>`__) and can be installed as appropriate based on your system configuration.
 
-Alternatively you can use the .NET Version Manager (DNVM) to install ASP.NET 5 as described below.
+Alternatively you can use the .NET Version Manager (DNVM) to install ASP.NET Core 1.0 as described below.
 
 For either method of installation you will need to install the prerequisites for your specific distribution as described in the following sections.
 
@@ -33,7 +33,7 @@ Use the .NET Version Manager (DNVM) to install different versions of the .NET Ex
 2. Download and install DNVM::
 
     curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-    
+
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
 
 Install the .NET Execution Environment (DNX)
@@ -68,7 +68,7 @@ By default DNVM will install DNX for Mono if no runtime is specified.
 Install libuv
 ^^^^^^^^^^^^^
 
-`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET Core 1.0 web applications.
 
 To build libuv you should do the following::
 
@@ -77,7 +77,7 @@ To build libuv you should do the following::
     cd /usr/local/src/libuv-1.8.0
     sudo sh autogen.sh
     sudo ./configure
-    sudo make 
+    sudo make
     sudo make install
     sudo rm -rf /usr/local/src/libuv-1.8.0 && cd ~/
     sudo ldconfig
@@ -130,7 +130,7 @@ By default DNVM will install DNX for Mono if no runtime is specified.
 Install Libuv
 ^^^^^^^^^^^^^
 
-`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET 5 web applications.
+`Libuv <https://github.com/libuv/libuv>`_ is a multi-platform asynchronous IO library that is used by :ref:`kestrel`, a cross-platform HTTP server for hosting ASP.NET Core 1.0 web applications.
 
 To build libuv you should do the following::
 

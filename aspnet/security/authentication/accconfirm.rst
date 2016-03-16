@@ -5,22 +5,22 @@ Account Confirmation and Password Recovery with ASP.NET Identity
 
 By `Rick Anderson`_
 
-This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using ASP.NET Identity.
+This tutorial shows you how to build an ASP.NET Core 1.0 Web site with email confirmation and password reset using ASP.NET Identity.
 
 In this article:
-	- `Create a New ASP.NET 5 Project`_
+	- `Create a New ASP.NET Core 1.0 Project`_
 	- `Require SSL`_
 	- `Require email confirmation`_
 	- `Configure email provider`_
 	- `Enable account confirmation and password recovery`_
 	- `Register, confirm email, and reset password`_
 	- `Require email confirmation before login`_
-	- `Combine social and local login accounts`_ 
+	- `Combine social and local login accounts`_
 
-Create a New ASP.NET 5 Project
+Create a New ASP.NET Core 1.0 Project
 ------------------------------
 
-Create a new ASP.NET 5 web app with individual user accounts.
+Create a new ASP.NET Core 1.0 web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 
@@ -43,7 +43,7 @@ In this section we'll set up our Visual Studio project to use SSL and our projec
 Enable SSL in Visual Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. From the **Project** menu, select **Web app Properties**. 
+1. From the **Project** menu, select **Web app Properties**.
 2. Select **Debug** in the left pane (see image below).
 3. Check **Enable SSL**, and then save changes (this step is necessary to populate the URL box).
 4. Copy the **URL** and paste it into the **Launch URL** box.
@@ -133,7 +133,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
 .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Services/MessageServices.cs
    :language: c#
    :lines: 12-51
-   :dedent: 4 
+   :dedent: 4
 
 .. note:: SendGrid doesn't currently target dnxcore50: If you build your project you will get compilation errors. This is because SendGrid does not have a package for dnxcore50 and some APIs such as System.Mail are not available on .NET Core. You can remove dnxcore50 from *project.json* or call the REST API from SendGrid to send email. The code below shows the updated *project.json* file with ``"dnxcore50": { }`` removed.
 
@@ -163,7 +163,7 @@ The template already has the code for account confirmation and password recovery
 
 	//await _signInManager.SignInAsync(user, isPersistent: false);
 
-- Enable password recovery by uncommenting the code in the ``ForgotPassword`` action in the *Controllers/AccountController.cs* file. 
+- Enable password recovery by uncommenting the code in the ``ForgotPassword`` action in the *Controllers/AccountController.cs* file.
 
 .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
    :language: c#
@@ -188,7 +188,7 @@ In this section, run the web app and show the account confirmation and password 
 
 - Check your email for the account confirmation link. If you don't get the email notification:
 
-	* Check the SendGrid web site to verify your sent mail messages. 
+	* Check the SendGrid web site to verify your sent mail messages.
 	* Check your spam folder.
 	* Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
 	* In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
@@ -203,7 +203,7 @@ Test password reset
 - Login and select **Forgot your password?**
 - Enter the email you used to register the account.
 - An email with a link to reset your password will be sent. Check your email and click the link to reset your password.  After your password has been successfully reset, you can login with your email and new password.
-         
+
 Require email confirmation before login
 ----------------------------------------
 
@@ -234,4 +234,4 @@ Click the link to another login service and accept the app requests. In the imag
 
 .. image:: accconfirm/_static/fb.png
 
-The two accounts have been combined. You will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account. 
+The two accounts have been combined. You will be able to log on with either account. You might want your users to add local accounts in case their social log in authentication service is down, or more likely they have lost access to their social account.

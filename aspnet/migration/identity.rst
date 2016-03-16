@@ -77,8 +77,8 @@ ApplicationDbContext.cs:
 			public ApplicationDbContext()
 			{
 				// Create the database and schema if it doesn't exist
-				// This is a temporary workaround to create database until Entity Framework database migrations 
-				// are supported in ASP.NET 5
+				// This is a temporary workaround to create database until Entity Framework database migrations
+				// are supported in ASP.NET Core 1.0
 				if (!_created)
 				{
 					Database.AsMigrationsEnabled().ApplyMigrations();
@@ -104,7 +104,7 @@ With these files in place, the Startup.cs file can be made to compile by updatin
 	using NewMvc6Project.Models;
 	using Microsoft.AspNet.Identity;
 
-Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users. 
+Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users.
 
 Migrate Registration and Login Logic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,9 +155,9 @@ Update _LoginPartial.cshtml with the following code (replace all of its contents
 At this point, you should be able to refresh the site in your browser.
 
 
-	
+
 Summary
 ^^^^^^^
 
-ASP.NET 5 and MVC 6 introduce changes to the ASP.NET Identity 2 features that shipped with ASP.NET MVC 5. In this article, you have seen how to migrate the authentication and user management features of an ASP.NET MVC 5 project to MVC 6.
+ASP.NET Core 1.0 and MVC 6 introduce changes to the ASP.NET Identity 2 features that shipped with ASP.NET MVC 5. In this article, you have seen how to migrate the authentication and user management features of an ASP.NET MVC 5 project to MVC 6.
 

@@ -1,9 +1,9 @@
-Your First ASP.NET 5 Application on a Mac
+Your First ASP.NET Core 1.0 Application on a Mac
 =========================================
 
 By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
 
-ASP.NET 5 is cross-platform; you can develop and run web apps on Mac OS X, Linux and Windows. This article will show you how to write your first ASP.NET 5 application on a Mac.
+ASP.NET Core 1.0 is cross-platform; you can develop and run web apps on Mac OS X, Linux and Windows. This article will show you how to write your first ASP.NET Core 1.0 application on a Mac.
 
 .. contents:: Sections:
   :local:
@@ -28,7 +28,7 @@ Developing ASP.NET Applications on a Mac With Visual Studio Code
 
 .. image:: your-first-mac-aspnet/_static/vscode-welcome.png
 
-.. note:: If **Visual Studio Code** is not installed, see :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`. 
+.. note:: If **Visual Studio Code** is not installed, see :doc:`Install ASP.NET on your Mac with OS X </getting-started/installing-on-mac>`.
 
 - Tap **File > Open** and navigate to your ASP.NET app
 
@@ -48,7 +48,7 @@ This empty project template simply displays "Hello World!". Open ``Startup.cs`` 
 
 .. image:: your-first-mac-aspnet/_static/vscode-startupcs.png
 
-If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
+If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
 
 In the left navigation bar, there are four icons, representing four viewlets:
 
@@ -77,7 +77,7 @@ The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundame
 .. code-block:: json
  :linenos:
  :emphasize-lines: 14, 18
- 
+
   {
     "version": "1.0.0-*",
     "userSecretsId": "aspnet5-MyWebApp-a1b07c55-6f20-4aaf-9852-9c964160a00c",
@@ -123,7 +123,7 @@ The sample is configured to use `Kestrel <https://docs.asp.net/en/latest/fundame
 Publishing to Azure
 -------------------
 
-Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on `Microsoft Azure <http://azure.microsoft.com>`_. 
+Once you've developed your application, you can easily use the Git integration built into Visual Studio Code to push updates to production, hosted on `Microsoft Azure <http://azure.microsoft.com>`_.
 
 Initialize Git
 ^^^^^^^^^^^^^^
@@ -132,18 +132,18 @@ Initialize Git in the folder you're working in. Tap on the Git viewlet and click
 
 .. image:: your-first-mac-aspnet/_static/vscode-git-commit.png
 
-Add a commit message and tap enter or tap the checkmark icon to commit the staged files. 
+Add a commit message and tap enter or tap the checkmark icon to commit the staged files.
 
-.. image:: your-first-mac-aspnet/_static/init_commit.PNG 
+.. image:: your-first-mac-aspnet/_static/init_commit.PNG
 
 Git is tracking changes, so if you make an update to a file, the Git viewlet will display the files that have changed since your last commit.
 
 Initialize Azure Website
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can deploy to Azure Web Apps directly using Git. 
+You can deploy to Azure Web Apps directly using Git.
 
-- `Create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
+- `Create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__.
 
 - Configure the Web App in Azure to support `continuous deployment using Git <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`__.
 
@@ -154,10 +154,10 @@ Record the Git URL for the Web App from the Azure portal:
 - In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
 
   - ``git remote add azure https://Rick-Anderson@rickmac.scm.azurewebsites.net:443/rickmac.git``
-	
+
 - Push to master.
 
-  - ``git push azure master`` to deploy. 
+  - ``git push azure master`` to deploy.
 
 	.. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 

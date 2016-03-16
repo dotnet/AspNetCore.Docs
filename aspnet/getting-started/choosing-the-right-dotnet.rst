@@ -3,7 +3,7 @@ Choosing the Right .NET For You on the Server
 
 By `Daniel Roth`_
 
-ASP.NET 5 is based on the :doc:`.NET Execution Environment (DNX) </dnx/overview>`, which supports running cross-platform on Windows, Mac and Linux. When selecting a DNX to use you also have a choice of .NET flavors to pick from: .NET Framework (CLR), :doc:`.NET Core </conceptual-overview/dotnetcore>` (CoreCLR) or `Mono <http://mono-project.com>`_. Which .NET flavor should you choose? Let's look at the pros and cons of each one.
+ASP.NET Core 1.0 is based on the :doc:`.NET Execution Environment (DNX) </dnx/overview>`, which supports running cross-platform on Windows, Mac and Linux. When selecting a DNX to use you also have a choice of .NET flavors to pick from: .NET Framework (CLR), :doc:`.NET Core </conceptual-overview/dotnetcore>` (CoreCLR) or `Mono <http://mono-project.com>`_. Which .NET flavor should you choose? Let's look at the pros and cons of each one.
 
 .NET Framework
 --------------
@@ -21,7 +21,7 @@ The CoreCLR runtime (Microsoft.CoreCLR) and CoreFX libraries are distributed via
 
 The API factoring in .NET Core was updated to enable better componentization. This means that existing libraries built for the .NET Framework generally need to be recompiled to run on .NET Core. The .NET Core ecosystem is relatively new, but it is rapidly growing with the support of popular .NET packages like JSON.NET, AutoFac, xUnit.net and many others.
 
-Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms. 
+Developing on .NET Core allows you to target a single consistent platform that can run on multiple platforms.
 
 Please see :doc:`/conceptual-overview/dotnetcore` for more details on what .NET Core has to offer.
 

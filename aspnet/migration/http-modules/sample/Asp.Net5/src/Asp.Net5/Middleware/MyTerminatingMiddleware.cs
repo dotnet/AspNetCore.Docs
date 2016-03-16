@@ -13,7 +13,7 @@ namespace MyApp.Middleware
             _next = next;
         }
 
-        // ASP.NET 5 middleware that may terminate the request
+        // ASP.NET Core 1.0 middleware that may terminate the request
 
         public async Task Invoke(HttpContext context)
         {

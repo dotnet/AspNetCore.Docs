@@ -3,7 +3,7 @@ Introduction
 
 Web applications often need to store security-sensitive data. Windows provides DPAPI for desktop applications but this is unsuitable for web applications. The ASP.NET data protection stack provide a simple, easy to use cryptographic API a developer can use to protect data, including key management and rotation.
 
-The ASP.NET 5 data protection stack is designed to serve as the long-term replacement for the <machineKey> element in ASP.NET 1.x - 4.x. It was designed to address many of the shortcomings of the old cryptographic stack while providing an out-of-the-box solution for the majority of use cases modern applications are likely to encounter.
+The ASP.NET Core 1.0 data protection stack is designed to serve as the long-term replacement for the <machineKey> element in ASP.NET 1.x - 4.x. It was designed to address many of the shortcomings of the old cryptographic stack while providing an out-of-the-box solution for the majority of use cases modern applications are likely to encounter.
 
 Problem statement
 -----------------
@@ -21,18 +21,18 @@ Design philosophy
 -----------------
 We started by identifying problems with the existing stack. Once we had that, we surveyed the landscape of existing solutions and concluded that no existing solution quite had the capabilities we sought. We then engineered a solution based on several guiding principles.
 
-* The system should offer simplicity of configuration. 
+* The system should offer simplicity of configuration.
   Ideally the system would be zero-configuration and developers could hit the ground running. In situations where developers need to configure a specific aspect (such as the key repository), consideration should be given to making those specific configurations simple.
-* Offer a simple consumer-facing API. 
+* Offer a simple consumer-facing API.
   The APIs should be easy to use correctly and difficult to use incorrectly.
-* Developers should not learn key management principles. 
+* Developers should not learn key management principles.
   The system should handle algorithm selection and key lifetime on the developer's behalf. Ideally the developer should never even have access to the raw key material.
 * Keys should be protected at rest when possible.
   The system should figure out an appropriate default protection mechanism and apply it automatically.
 
 With these principles in mind we developed a simple, :doc:`easy to use <using-data-protection>` data protection stack.
 
-The ASP.NET 5 data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like `Windows CNG DPAPI <https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794%28v=vs.85%29.aspx>`_ and `Azure Rights Management <https://technet.microsoft.com/en-us/library/jj585024.aspx>`_ are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there is nothing prohibiting a developer from using the ASP.NET 5 data protection APIs for long-term protection of confidential data.
+The ASP.NET Core 1.0 data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like `Windows CNG DPAPI <https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794%28v=vs.85%29.aspx>`_ and `Azure Rights Management <https://technet.microsoft.com/en-us/library/jj585024.aspx>`_ are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there is nothing prohibiting a developer from using the ASP.NET Core 1.0 data protection APIs for long-term protection of confidential data.
 
 Audience
 --------
@@ -41,7 +41,7 @@ The data protection system is divided into five main packages. Various aspects o
 1. The :doc:`consumer-apis/overview` target application and framework developers.
 
   "I don't want to learn about how the stack operates or about how it is configured. I simply want to perform some operation in as simple a manner as possible with high probability of using the APIs successfully."
-  
+
 2. The :doc:`configuration APIs <configuration/overview>` target application developers and system administrators.
 
   "I need to tell the data protection system that my environment requires non-default paths or settings."

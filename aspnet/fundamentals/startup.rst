@@ -5,7 +5,7 @@ Application Startup
 
 By `Steve Smith`_
 
-ASP.NET 5 provides complete control of how individual requests are handled by your application. The ``Startup`` class is the entry point to the application, setting up configuration and wiring up services the application will use. Developers configure a request pipeline in the ``Startup`` class that is used to handle all requests made to the application.
+ASP.NET Core 1.0 provides complete control of how individual requests are handled by your application. The ``Startup`` class is the entry point to the application, setting up configuration and wiring up services the application will use. Developers configure a request pipeline in the ``Startup`` class that is used to handle all requests made to the application.
 
 .. contents:: In this article:
   :local:
@@ -14,7 +14,7 @@ ASP.NET 5 provides complete control of how individual requests are handled by yo
 The Startup class
 -----------------
 
-In ASP.NET 5, the ``Startup`` class provides the entry point for an application, and is required for all applications. It's possible to have environment-specific startup classes and methods (see :doc:`environments`), but regardless, one ``Startup`` class will serve as the entry point for the application. ASP.NET searches the primary assembly for a class named ``Startup`` (in any namespace). You can specify a different assembly to search using the `Hosting:Application` configuration key. It doesn't matter whether the class is defined as ``public``; ASP.NET will still load it if it conforms to the naming convention. If there are multiple ``Startup`` classes, this will not trigger an exception. ASP.NET will select one based on its namespace (matching the project's root namespace first, otherwise using the class in the alphabetically first namespace).
+In ASP.NET Core 1.0, the ``Startup`` class provides the entry point for an application, and is required for all applications. It's possible to have environment-specific startup classes and methods (see :doc:`environments`), but regardless, one ``Startup`` class will serve as the entry point for the application. ASP.NET searches the primary assembly for a class named ``Startup`` (in any namespace). You can specify a different assembly to search using the `Hosting:Application` configuration key. It doesn't matter whether the class is defined as ``public``; ASP.NET will still load it if it conforms to the naming convention. If there are multiple ``Startup`` classes, this will not trigger an exception. ASP.NET will select one based on its namespace (matching the project's root namespace first, otherwise using the class in the alphabetically first namespace).
 
 The ``Startup`` class can optionally accept dependencies in its constructor that are provided through :doc:`dependency injection <dependency-injection>`.  Typically, the way an application will be configured is defined within its Startup class's constructor (see :doc:`configuration`). The Startup class must define a ``Configure`` method, and may optionally also define a ``ConfigureServices`` method, which will be called when the application is started.
 
@@ -32,7 +32,7 @@ Your ``Configure`` method must accept an ``IApplicationBuilder`` parameter. Addi
   :dedent: 8
   :emphasize-lines: 8-10,14,19,21,25
 
-You can see what each of these extensions does by examining the source. For instance, the ``UseMvc`` extension method is defined in ``BuilderExtensions`` available on `GitHub <https://github.com/aspnet/Mvc/blob/6.0.0-beta5/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_. Its primary responsibility is to ensure that MVC was added as a service (in ``ConfigureServices``) and to correctly set up routing for an ASP.NET MVC application. 
+You can see what each of these extensions does by examining the source. For instance, the ``UseMvc`` extension method is defined in ``BuilderExtensions`` available on `GitHub <https://github.com/aspnet/Mvc/blob/6.0.0-beta5/src/Microsoft.AspNet.Mvc/BuilderExtensions.cs>`_. Its primary responsibility is to ensure that MVC was added as a service (in ``ConfigureServices``) and to correctly set up routing for an ASP.NET MVC application.
 
 You can learn all about middleware and using ``IApplicationBuilder`` to define your request pipeline in the :doc:`middleware` topic.
 
@@ -56,7 +56,7 @@ The ``ConfigureServices`` method is also where you should add configuration opti
 
 Services Available in Startup
 -----------------------------
-ASP.NET 5 provides certain application services and objects during your application's startup. You can request certain sets of these services by simply including the appropriate interface as a parameter on your ``Startup`` class's constructor or one of its ``Configure`` or ``ConfigureServices`` methods. The services available to each method in the ``Startup`` class are described below. The framework services and objects include:
+ASP.NET Core 1.0 provides certain application services and objects during your application's startup. You can request certain sets of these services by simply including the appropriate interface as a parameter on your ``Startup`` class's constructor or one of its ``Configure`` or ``ConfigureServices`` methods. The services available to each method in the ``Startup`` class are described below. The framework services and objects include:
 
 IApplicationBuilder
   Used to build the application request pipeline. Available only to the ``Configure`` method in ``Startup``. Learn more about :doc:`request-features`.
