@@ -12,7 +12,7 @@ public class Program
             "myapp-keys");
  
         // instantiate the data protection system at this folder
-        var dataProtectionProvider = new DataProtectionProvider(
+        var dataProtectionProvider = DataProtectionProvider.Create(
             new DirectoryInfo(destFolder));
  
         var protector = dataProtectionProvider.CreateProtector("Program.No-DI");
