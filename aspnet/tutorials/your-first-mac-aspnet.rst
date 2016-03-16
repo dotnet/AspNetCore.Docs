@@ -1,5 +1,5 @@
 Your First ASP.NET Core 1.0 Application on a Mac
-=========================================
+================================================
 
 By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
 
