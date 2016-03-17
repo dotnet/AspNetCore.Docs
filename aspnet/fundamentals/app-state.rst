@@ -8,8 +8,6 @@ In ASP.NET 5, application state can be managed in a variety of ways, depending o
 	:local:
 	:depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample>`_.
-
 Application State Options
 -------------------------
 `Application state` refers to any data that is used to represent the current representation of the application. This includes both global and user-specific data. Previous versions of ASP.NET (and even ASP) have had built-in support for global ``Application`` and ``Session`` state stores, as well as a variety of other options.
