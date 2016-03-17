@@ -39,6 +39,8 @@ Install ASP.NET 5 from the command-line
 
 You can also install ASP.NET 5 from the command-line. There are a few steps involved, since we'll need to install and configure the environment in which ASP.NET runs, the :doc:`/dnx/index`. To install DNX, we need one more tool, the .NET Version Manager (DNVM).
 
+.. _install-dnvm-windows:
+
 Install the .NET Version Manager (DNVM)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -49,6 +51,8 @@ To install DNVM open a command prompt and run the following::
   @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
 Once this step is complete you should be able to run ``dnvm`` and see some help text.
+
+.. _install-dnx-windows:
 
 Install the .NET Execution Environment (DNX)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

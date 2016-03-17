@@ -12,7 +12,7 @@ Sections:
 	- `Populating Lookup Data`_
 	- `Overriding Services`_
 
-`View sample files <https://github.com/aspnet/Docs/tree/1.0.0-rc1/mvc/views/dependency-injection/sample>`_
+`View sample files <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/dependency-injection/sample>`__
 
 A Simple Example
 ----------------

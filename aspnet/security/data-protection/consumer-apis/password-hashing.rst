@@ -13,4 +13,4 @@ The package currently offers a method KeyDerivation.Pbkdf2 which allows hashing 
         :language: c#
         :linenos:
 
-See also the source code for ASP.NET Identity's `PasswordHasher <https://github.com/aspnet/Identity/blob/dev/src/Microsoft.AspNet.Identity/PasswordHasher.cs>`_ type for a real-world use case.
+See also the source code for ASP.NET Identity's `PasswordHasher <https://github.com/aspnet/Identity/blob/master/src/Microsoft.AspNet.Identity/PasswordHasher.cs>`_ type for a real-world use case.
