@@ -173,7 +173,7 @@ Using the extension method and associated middleware class, the ``Configure`` me
 
 Although ``RequestLoggerMiddleware`` requires an ``ILoggerFactory`` parameter in its constructor, neither the ``Startup`` class nor the ``UseRequestLogger`` extension method need to explicitly supply it. Instead, it is automatically provided through dependency injection performed within ``UseMiddleware<T>``.
 
-Testing the middleware (by setting the ``ASPNET_ENV`` environment variable to ``LogMiddleware``) should result in output like the following (when using WebListener):
+Testing the middleware (by setting the ``Hosting:Environment`` environment variable to ``LogMiddleware``) should result in output like the following (when using WebListener):
 
 .. image:: middleware/_static/console-logmiddleware.png
 

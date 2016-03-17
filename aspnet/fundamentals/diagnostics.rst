@@ -8,7 +8,7 @@ ASP.NET 5 includes a number of new features that can assist with diagnosing prob
 .. contents:: Sections
 	:local:
 	:depth: 1
-	
+
 `Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/diagnostics/sample>`_.
 
 The runtime info page
