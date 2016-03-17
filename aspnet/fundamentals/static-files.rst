@@ -282,8 +282,6 @@ IIS Considerations
 
 ASP.NET 5 applications hosted in IIS use the HTTP platform handler to forward all requests to the application including requests for static files. The IIS static file handler is not used because it won’t get a chance to handle the request before it is handled by the HTTP platform handler.
 
-As a reverse proxy, IIS might still be helpful to apply compression or caching upon static files. This can be done using the classic ``web.config`` file or using the Internet Information Services (IIS) Manager.
-
 Best practices
 --------------
 
