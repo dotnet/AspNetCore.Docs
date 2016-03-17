@@ -30,13 +30,13 @@ In ASP.NET 5, you configure the pipeline for each request in the ``Startup`` cla
 
 The above code, which is built from the ASP.NET 5 Empty template, includes a simple mechanism for creating an exception on line 36. If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. Line 21 makes the call to ``UseDeveloperExceptionPage()`` to enable the error page middleware. 
 
-Notice that the call to ``UseDeveloperExceptionPage()`` is wrapped inside an ``if`` condition that checks the current ``EnvironmentName``. This is a good practice, since you typically do not want to share detailed diagnostic information about your application publicly once it is in production. This check uses the ``ASPNET_ENV`` environment variable. If you are using Visual Studio 2015, you can customize the environment variables used when the application runs in the web application project's properties, under the Debug tab, as shown here:
+Notice that the call to ``UseDeveloperExceptionPage()`` is wrapped inside an ``if`` condition that checks the current ``EnvironmentName``. This is a good practice, since you typically do not want to share detailed diagnostic information about your application publicly once it is in production. This check uses the ``Hosting:Environment`` environment variable. If you are using Visual Studio 2015, you can customize the environment variables used when the application runs in the web application project's properties, under the Debug tab, as shown here:
 
 .. image:: diagnostics/_static/project-properties-env-vars.png
 	
-Setting the ``ASPNET_ENV`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()`` and only a HTTP 500 response code with no message details will be sent back to the browser, unless an exception handler is configured such as ``UseExceptionHandler()``.
+Setting the ``Hosting:Environment`` variable to anything other than Development (e.g. Production) will cause the application not to call ``UseDeveloperExceptionPage()`` and only a HTTP 500 response code with no message details will be sent back to the browser, unless an exception handler is configured such as ``UseExceptionHandler()``.
 
-We will cover the features provided by the error page in the next section (ensure ``ASPNET_ENV`` is reset to Development if you are following along).
+We will cover the features provided by the error page in the next section (ensure ``Hosting:Environment`` is reset to Development if you are following along).
 
 Using the error page during development
 ---------------------------------------
