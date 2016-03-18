@@ -1,0 +1,7 @@
+﻿@model FormsTagHelper.ViewModels.CountryViewModelIEnumerable
+
+
+<form asp-controller="Home" asp-action="IndexMS" method="post">
+    <select asp-for="CountryCodes" asp-items="Model.Countries"></select> 
+    <br /><button type="submit">Register</button>
+</form>

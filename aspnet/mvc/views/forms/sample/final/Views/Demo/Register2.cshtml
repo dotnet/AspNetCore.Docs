@@ -1,0 +1,8 @@
+﻿@model FormsTagHelper.ViewModels.RegisterViewModel2
+
+<form asp-controller="DemoReg" asp-action="Register2" method="post">
+    Email:  <input asp-for="Email" /> <br>
+    Password: <input asp-for="Password" /><br>
+    Address: <input asp-for="Address.AddressLine1" /><br />
+    <button type="submit">Register</button>
+</form>
