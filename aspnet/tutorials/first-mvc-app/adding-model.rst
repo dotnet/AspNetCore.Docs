@@ -10,6 +10,11 @@ Adding Model Classes
 --------------------------
 
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**.
+- In the **Add New Item - MvcMovie** dialog
+	- In the **Name** box, enter *Movie.cs*
+	- Tap **Add**
+
+Replace the contents of *Models/Movie.cs* with the following:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
 	:language: c#
@@ -20,7 +25,7 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**.
 
 In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key.
 
-Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**\odel to our **M**\VC app.
+Build the project (CTRL+SHIFT+B). If you don't build the app, you'll get an error in the next section. We've finally added a **M**\odel to our **M**\VC app.
 
 Scaffolding a controller
 -------------------------
@@ -38,7 +43,7 @@ In the **Add Scaffold** dialog, tap **MVC 6 Controller with views, using Entity 
 	- **Model class:** *Movie(MvcMovie.Models)*
 	- **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
 	- **Controller name:** Keep the default MoviesController
-	- **Views:**: Keep the default of each option checked
+	- **Views:** Keep the default of each option checked
 	- **Controller name:** Keep the default *MoviesController*
 	- Tap **Add**
 
@@ -46,7 +51,7 @@ In the **Add Scaffold** dialog, tap **MVC 6 Controller with views, using Entity 
 
 The Visual Studio scaffolding engine creates the following:
 
-- A movies controller (MoviesController.c)
+- A movies controller (MoviesController.cs)
 - Create, Delete, Details, Edit and Index Razor view files
 - Migrations classes
 
@@ -79,14 +84,16 @@ Use data migrations to create the database
 	dnvm use 1.0.0-rc1-update1 -p
 	dnx ef migrations add Initial
 	dnx ef database update
-	
+
+.. note:: If 'dnu restore' is not recognized as a command, the 'dnvm use' or 'dnvm upgrade' commands will add dnu to your PATH if required.
+
 .. image:: adding-model/_static/cmd.png
 
 - ``dnu restore`` This command looks at the dependencies in the *project.json* file and downloads them. For more information see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ and `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__.
 - ``dnvm use <version>`` **dnvm** is the .NET Version Manager, which is a set of command line utilities that are used to update and configure .NET Runtime. In this case we're asking **dnvm** add the 1.0.0-rc1 ASP.NET 5 runtime to the ``PATH`` environment variable of the current shell. 
 - ``dnx`` DNX stands for .NET Execution Environment.
 
-	- ``dnx ef`` The ``ef`` command is specified in the *project.json* file:
+- ``dnx ef`` The ``ef`` command is specified in the *project.json* file:
 	
 .. literalinclude:: start-mvc/sample/src/MvcMovie/project.json
 	:language: JSON
@@ -112,6 +119,8 @@ Test the app
 - Tap the **Create New** link and create a movie
 
 .. image:: adding-model/_static/movies.png
+
+.. note:: If tapping **Create** fails to return you back to the `/Movies` URL it could be due to a ModelState error. When the form values are posted to the server Model Binding checks these values against the data types of your entity model. If there is an error the Controller returns you back to the Create view, usually there would be a validation error shown. e.g. If your environment's timezone format is day/month/year the above example date 11-18-15 will be invalid and fail to post. If you set a breakpoint in your *MoviesController Create HttpPost* action you can check if *ModelState.IsValid* has returned false, and see the ModelState>Values>Index>ValidationState.
 
 .. note:: You may not be able to enter decimal points or commas in the ``Price`` field. To support `jQuery validation <http://jqueryvalidation.org/>`__ for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See `Additional resources`_ for more information. For now, just enter whole numbers like 10.
 
