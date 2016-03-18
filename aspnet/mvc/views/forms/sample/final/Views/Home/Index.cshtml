@@ -1,0 +1,7 @@
+﻿@model FormsTH.ViewModels.CountryViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<form asp-controller="Home" asp-action="Index" method="post">
+    <select asp-for="Country" asp-items="Model.Countrys"></select> 
+    <br /><button type="submit">Register</button>
+</form>

@@ -1,0 +1,7 @@
+﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@model FormsTH.ViewModels.MyNumber
+
+<form asp-controller="DemoReg" asp-action="Format" method="post">
+    SomeNumber:  <input asp-for="SomeNumber" asp-format="{0:N4}" /> <br>
+    <button type="submit">Post</button>
+</form>

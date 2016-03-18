@@ -1,0 +1,8 @@
+﻿@model FormsTH.ViewModels.RegisterViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<form asp-controller="DemoReg" asp-action="Register" method="post">
+    Email:  <input id="Email" name="Email" /> <br>
+    Password: <input type="password" id="Password" name="Password" /><br>
+    <button type="submit">Log in</button>
+</form>
