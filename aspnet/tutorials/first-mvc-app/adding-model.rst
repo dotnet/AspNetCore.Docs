@@ -93,7 +93,7 @@ Use data migrations to create the database
 - ``dnvm use <version>`` **dnvm** is the .NET Version Manager, which is a set of command line utilities that are used to update and configure .NET Runtime. In this case we're asking **dnvm** add the 1.0.0-rc1 ASP.NET 5 runtime to the ``PATH`` environment variable of the current shell. 
 - ``dnx`` DNX stands for .NET Execution Environment.
 
-	- ``dnx ef`` The ``ef`` command is specified in the *project.json* file:
+- ``dnx ef`` The ``ef`` command is specified in the *project.json* file:
 	
 .. literalinclude:: start-mvc/sample/src/MvcMovie/project.json
 	:language: JSON
