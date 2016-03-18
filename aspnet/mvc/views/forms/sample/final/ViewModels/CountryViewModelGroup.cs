@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNet.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace FormsTH.ViewModels
+namespace FormsTagHelper.ViewModels
 {
     public class CountryViewModelGroup
     {
         public string Country { get; set; }
 
-        public List<SelectListItem> Countrys { get; private set; }
+        public List<SelectListItem> Countries { get; private set; }
         public CountryViewModelGroup()
         {
             var NorthAmericaGroup = new SelectListGroup { Name = "North America" };
             var EuropeGroup = new SelectListGroup { Name = "Europe" };
 
-            Countrys = new List<SelectListItem>
+            Countries = new List<SelectListItem>
         {
                 new SelectListItem
             {

@@ -16,21 +16,26 @@ The Form Tag Helper
   
 The `Form <https://www.w3.org/TR/html401/interact/forms.html>`__ Tag Helper generates the HTML ``action`` attribute value to a MVC controller action or named route. In the following code the ``action`` attribute value will be set to ``action="/DemoReg/Register"``.
 
-.. literalinclude::   forms/sample/final/Views/DemoReg/RegisterFormOnly.cshtml
+.. literalinclude::   forms/sample/final/Views/Demo/RegisterFormOnly.cshtml
   :language: HTML
-  :emphasize-lines: 4
+  :emphasize-lines: 1
   
-The markup above is a simplified version of the *Views/Account/Login.cshtml* Razor view generated when you create a new ASP.NET 5 Web app with individual user accounts. The ``@addTagHelper`` line brings in :doc:`Tag Helpers <tag-helpers/intro>`, which are needed for the Form Tag Helper.  The ``RegisterViewModel`` contains the email address and password for registration.
+The markup above is a simplified version of the *Views/Account/Login.cshtml* Razor view generated when you create a new ASP.NET 5 Web app with individual user accounts. The ``RegisterViewModel`` contains the email address and password for registration.
 
 .. literalinclude::  forms/sample/final/ViewModels/RegisterViewModelFirst.cs
   :language: c#
   :lines: 8-13
   :dedent: 3
 
+The  *Views/_ViewImports.cshtml* file line brings in :doc:`Tag Helpers <tag-helpers/intro>`:
+
+.. literalinclude::   forms/sample/final/Views/_ViewImports.cshtml
+  :language: HTML
+
 `Download the starter app <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/forms/sample>`__ to follow along.
   
 #. Run the app and navigate to DemoReg/Register.
-#. View the HTML source. ( In most browsers right click > **View Source**. )
+#. View the HTML source. (In most browsers right click > **View Source**.)
   
 .. code-block:: HTML
 
@@ -48,7 +53,7 @@ Using a named route
 
 The ``asp-route`` Tag Helper attribute can also generate markup for the HTML ``action`` attribute. An app with a :doc:`route </fundamentals/routing>`  named ``register`` could use the following markup for the registration page:
  
-.. literalinclude::  forms/sample/final/Views/DemoReg/RegRoute.cshtml 
+.. literalinclude::  forms/sample/final/Views/Demo/RegRoute.cshtml 
   :language: HTML
   :emphasize-lines: 4
 
@@ -64,7 +69,7 @@ Add the ``DataType.Password`` attribute to the *RegisterViewModel.cs*.
 
 The input Tag Helper binds an HTML input element to a model property in your razor view. Replace the ``input`` elements in the *Register.cshtml* Razor view with the following markup: 
 
-.. literalinclude::  forms/sample/final/Views/DemoReg/RegisterInput.cshtml
+.. literalinclude::  forms/sample/final/Views/Demo/RegisterInput.cshtml
   :language: HTML
   :emphasize-lines: 5-6
   
@@ -129,7 +134,7 @@ Add the following highlighted `DataAnnotations <https://msdn.microsoft.com/en-us
   :language: c#
   :lines: 8-17
   :dedent: 3
-  :emphasize-lines: 3,7,8
+  :emphasize-lines: 3,4,7
 
 Run the app and view the generated HTML:
 
@@ -153,7 +158,7 @@ The data annotations applied to the ``Email`` and ``Password`` generated several
 
 The browser validation is a start, but it's not robust or complete. For example, enter a valid email address and an empty password, then tap the **Register** button. The form data will be posted to the server, but because the ``ModelState`` is not valid, the HTTP POST Register method will send the data back to the Register view. We have not hooked up jQuery validation or provided any validation markup, so there is no error message to tell the client what has gone wrong. If you enter a valid email address and an empty password, the registration will fail but you won't get an error message indicating why. You see this by setting a break point in the ``HTTP POST Register`` method, and posting the form with an empty password. ``ModelState`` will be invalid, and action method will return the view with the posted model. The highlighted return line (when ``ModelState`` is not valid) returns the ``model`` posted to the server back to the ``HTTP GET Register`` method, so any data you entered will not be lost and will populate the form. This data round tripping eliminates re-entering correctly entered data.
 
-.. literalinclude:: forms/sample/final/Controllers/DemoRegisterController.cs
+.. literalinclude:: forms/sample/final/Controllers/DemoController.cs
   :language: c#
   :lines: 15-27
   :dedent: 6
@@ -172,11 +177,11 @@ You can also navigate to child properties of your view model. Consider a more co
   :dedent: 3
   :emphasize-lines: 1-4,11
 
-In the view, we bind to `` Address.AddressLine1``:
+In the view, we bind to `` Address.AddressLine1``: 
 
-.. literalinclude::  forms/sample/final/Views/DemoReg/Register2.cshtml
+.. literalinclude::  forms/sample/final/Views/Demo/Register2.cshtml
   :language: HTML
-  :emphasize-lines: 7
+  :emphasize-lines: 6
 
 The following HTML is generated for `` Address.AddressLine1``:
 
@@ -209,7 +214,7 @@ The Validation Summary Tag Helper is used to display a summary of validation mes
 
 Update the *Register.cshtml* Razor view with the following markup: 
 
-..  literalinclude::  forms/sample/final/Views/DemoReg/RegisterVal.cshtml
+..  literalinclude::  forms/sample/final/Views/Demo/RegisterVal.cshtml
   :language: HTML
   :emphasize-lines: 5,7,9
 
@@ -246,7 +251,7 @@ You can use your browsers tools (such as the `F12 Edge developer tools <https://
 
 While the server validation errors are a big improvement over no errors, it's best to catch these errors on the client side. We'll do that by adding `jQuery <https://jquery.com/>`__ :
 
-..  literalinclude::  forms/sample/final/Views/DemoReg/RegisterJQuery.cshtml
+..  literalinclude::  forms/sample/final/Views/Demo/RegisterJQuery.cshtml
   :language: HTML
   :emphasize-lines: 13-
 
@@ -257,7 +262,7 @@ The Label Tag Helper
 
 The Label Tag Helper generates a label element for a property on your model. Update the *Register.cshtml* view with the Label Tag Helper:
 
-..  literalinclude::  forms/sample/final/Views/DemoReg/RegisterLabel.cshtml
+..  literalinclude::  forms/sample/final/Views/Demo/RegisterLabel.cshtml
   :language: HTML
   :lines: 4-13
   :emphasize-lines: 3,6
@@ -298,7 +303,7 @@ The Textarea Tag Helper
 
 The Textarea Tag Helper tag helper is  similar to the Input Tag Helper.  Consider the following form:
 
-..  literalinclude::  forms/sample/final/Views/DemoReg/RegisterTA.cshtml
+..  literalinclude::  forms/sample/final/Views/Demo/RegisterTA.cshtml
   :language: HTML
   :emphasize-lines: 5
 

@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNet.Mvc;
-using FormsTH.ViewModels;
+﻿using FormsTagHelper.ViewModels;
+using Microsoft.AspNet.Mvc;
 
 namespace FormsTH
 {
     public class HomeController : Controller
     {
-        static string _message;
-
         public IActionResult Index()
         {
             var model = new CountryViewModel();
@@ -20,8 +18,8 @@ namespace FormsTH
         {
             if (ModelState.IsValid)
             {
-                _message = model.Country +  " selected";
-                return RedirectToAction("IndexSuccess");
+                string message = model.Country +  " selected";
+                return RedirectToAction("IndexSuccess", new {id=message});
             }
 
             // If we got this far, something failed, redisplay form.
@@ -42,10 +40,10 @@ namespace FormsTH
             {
                 string strCountriesSelected="";
                 foreach (string s in model.CountryCodes)
+                {
                     strCountriesSelected = strCountriesSelected + " " + s;
-                _message = strCountriesSelected;
-
-                return RedirectToAction("IndexSuccess");
+                }
+                return RedirectToAction("IndexSuccess", new { id = strCountriesSelected });
             }
 
             // If we got this far, something failed, redisplay form.
@@ -65,8 +63,8 @@ namespace FormsTH
         {
             if (ModelState.IsValid)
             {
-                _message = model.Country + " selected";
-                return RedirectToAction("IndexSuccess");
+                string message = model.Country + " selected";
+                return RedirectToAction("IndexSuccess", new {id=message});
             }
 
             // If we got this far, something failed, redisplay form.
@@ -86,16 +84,16 @@ namespace FormsTH
         {
             if (ModelState.IsValid)
             {
-                _message = model.EnumCountry + " selected";
-                return RedirectToAction("IndexSuccess");
+                string message = model.EnumCountry + " selected";
+                return RedirectToAction("IndexSuccess", new {id=message});
             }
 
             // If we got this far, something failed, redisplay form.
             return View(model);
         }
-        public IActionResult IndexSuccess()
+        public IActionResult IndexSuccess(string ID)
         {
-            ViewData["Message"] = _message;
+            ViewData["Message"] = ID;
             return View();
         }
     }

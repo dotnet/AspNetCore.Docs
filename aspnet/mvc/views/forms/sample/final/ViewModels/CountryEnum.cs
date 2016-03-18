@@ -1,7 +1,7 @@
 ﻿//#define EnumOnly
 #if EnumOnly
 
-namespace FormsTH.ViewModels
+namespace FormsTagHelper.ViewModels
 {
     public enum CountryEnum
     {

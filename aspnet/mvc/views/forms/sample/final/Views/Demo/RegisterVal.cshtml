@@ -1,8 +1,8 @@
-﻿@model FormsTH.ViewModels.RegisterViewModel
-@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+﻿@model FormsTagHelper.ViewModels.RegisterViewModel
+
 
 <form asp-controller="DemoReg" asp-action="Register" method="post">
-    <div asp-validation-summary="ValidationSummary.All"></div>
+    <div asp-validation-summary="ValidationSummary.ModelOnly"></div>
     Email:  <input asp-for="Email" /> <br>
     <span asp-validation-for="Email"></span><br>
     Password: <input asp-for="Password" /><br>

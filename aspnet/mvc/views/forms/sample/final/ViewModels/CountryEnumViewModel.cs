@@ -1,4 +1,4 @@
-﻿namespace FormsTH.ViewModels
+﻿namespace FormsTagHelper.ViewModels
 {
     public class CountryEnumViewModel
     {

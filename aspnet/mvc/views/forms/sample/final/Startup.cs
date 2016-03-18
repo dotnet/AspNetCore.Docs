@@ -11,9 +11,12 @@ namespace FormsTH
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();  
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             app.UseIISPlatformHandler();
             app.UseMvcWithDefaultRoute();
         }

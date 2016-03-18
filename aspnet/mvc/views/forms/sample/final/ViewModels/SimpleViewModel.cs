@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FormsTH.ViewModels
+namespace FormsTagHelper.ViewModels
 {
     public class SimpleViewModel
     {

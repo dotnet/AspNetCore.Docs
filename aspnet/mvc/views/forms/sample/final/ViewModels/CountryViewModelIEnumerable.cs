@@ -2,17 +2,17 @@
 using Microsoft.AspNet.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace FormsTH.ViewModels
+namespace FormsTagHelper.ViewModels
 {
     public class CountryViewModelIEnumerable
     {
         public IEnumerable<string> CountryCodes { get; set; }
     
-    public List<SelectListItem> Countrys { get; private set; }
+    public List<SelectListItem> Countries { get; private set; }
         public CountryViewModelIEnumerable()
         {
 
-            Countrys = new List<SelectListItem>
+            Countries = new List<SelectListItem>
         {
                 new SelectListItem
             {
