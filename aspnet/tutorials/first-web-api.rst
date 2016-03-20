@@ -145,7 +145,7 @@ Replace the generated code with the following:
     :language: c#
     :lines: 1-11,68-70
 
-This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromServicesAttribute.cs>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered in the ``Startup`` class.    
+This defines an empty controller class. In the next sections, we'll add methods to implement the API. The `[FromServices] <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/FromServicesAttribute/index.html>`_ attribute tells MVC to inject the ``ITodoRepository`` that we registered in the ``Startup`` class.    
 
 Delete the *ValuesController.cs* file from the *Controllers* folder. The project template adds it as an example controller, but we don’t need it. 
  
@@ -179,7 +179,7 @@ Later in the tutorial I'll show how you can view the HTTP response using the Fid
 Routing and URL paths 
 ^^^^^^^^^^^^^^^^^^^^^
 
-The `[HttpGet] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpGetAttribute.cs>`_ attribute specifies that these are HTTP GET methods. The URL path for each method is constructed as follows:
+The `[HttpGet] <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/HttpGetAttribute/index.html>`_ attribute specifies that these are HTTP GET methods. The URL path for each method is constructed as follows:
 
 - Take the template string in the controller’s route attribute,  ``[Route("api/[controller]")]``
 - Replace "[Controller]" with the name of the controller, which is the controller class name minus the "Controller" suffix. For this sample the name of the controller is "todo" (case insensitive). For this sample, the controller class name is **Todo**\Controller and the root name is "todo". ASP.NET MVC is not case sensitive.
@@ -203,7 +203,7 @@ The ``GetAll`` method returns a CLR object. MVC automatically serializes the obj
 In contrast, the ``GetById`` method returns the more general ``IActionResult`` type, which represents a generic result type. That’s because ``GetById`` has two different return types:
 
 - If no item matches the requested ID, the method returns a 404 error.  This is done by returning ``HttpNotFound``.
-- Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/ObjectResult.cs>`_. 
+- Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ObjectResult/index.html>`_. 
 
 Use Fiddler to call the API
 ---------------------------
@@ -236,9 +236,9 @@ Create
     :lines: 30-39
     :dedent: 8
         
-This is an HTTP POST method, indicated by the `[HttpPost] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/HttpPostAttribute.cs>`_ attribute. The `[FromBody] <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Core/FromBodyAttribute.cs>`_ attribute tells MVC to get the value of the to-do item from the body of the HTTP request. 
+This is an HTTP POST method, indicated by the `[HttpPost] <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/HttpPostAttribute/index.html>`_ attribute. The `[FromBody] <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/FromBodyAttribute/index.html>`_ attribute tells MVC to get the value of the to-do item from the body of the HTTP request. 
 
-The `CreatedAtRoute <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Extensions/Controller.cs#L854-L900>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
+The `CreatedAtRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Controller/index.html>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
 
 We can use Fiddler to send a Create request:
 
