@@ -82,7 +82,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 	:linenos: 
 	:emphasize-lines: 2, 5
 	
-Line number 2 in the code above sets the ``Title`` property of the `ViewDataDictionary <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Razor/RazorPageOfT.cs>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
+Line number 2 in the code above sets the ``Title`` property of the `ViewDataDictionary <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Razor/RazorPageOfT.cs>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
 
 .. code-block:: HTML
 
