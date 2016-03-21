@@ -72,7 +72,7 @@ The following code from ``Startup.cs`` shows the value being set:
 
 Using a Redis Distributed Cache
 -------------------------------
-`Redis <redis.io>`_ is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an `Azure Redis Cache <https://azure.microsoft.com/en-us/services/cache/>`_ for your Azure-hosted ASP.NET 5 apps. Your ASP.NET 5 app configures the cache implementation using a ``RedisDistributedCache`` instance.
+`Redis <http://redis.io>`_ is an open source in-memory data store, which is often used as a distributed cache. You can use it locally, and you can configure an `Azure Redis Cache <https://azure.microsoft.com/en-us/services/cache/>`_ for your Azure-hosted ASP.NET 5 apps. Your ASP.NET 5 app configures the cache implementation using a ``RedisDistributedCache`` instance.
 
 You configure the Redis implementation in ``ConfigureServices`` and access it in your app code by requesting an instance of ``IDistributedCache`` (see the code above).
 
