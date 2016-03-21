@@ -83,7 +83,7 @@ Format specific items using these rules:
 Links
 ^^^^^
 
-Inline hyperlinks are formatted like this:
+Links should use HTTPS when possible. Inline hyperlinks are formatted like this:
 
 .. code-block:: rst
 
@@ -113,7 +113,7 @@ Lists can be started with a ``-`` or ``*`` character:
   - This is one item
   - This is a second item
 
-Numbered lists can start with a number, or they can be autonumbered by starting each item with the \# character. Please use the \# syntax.
+Numbered lists can start with a number, or they can be auto numbered by starting each item with the \# character. Please use the \# syntax.
 
 .. code-block:: rst
 
@@ -126,7 +126,7 @@ Numbered lists can start with a number, or they can be autonumbered by starting 
 Source Code
 ^^^^^^^^^^^
 
-Source code is very commonly included in these articles. Images should never be used to display source code - instead use ``code-block`` or ``literalinclude``. You can refer to it using the ``code-block`` element, which must be declared precisely as shown, including spaces, blank lines, and indentation:
+Source code is very commonly included in these articles. Images should never be used to display source code. Prefer ``literalinclude`` for most code samples. Reserve ``code-block`` for small snippets that are not included in the sample project. A ``code-block`` can be declared as shown below, including spaces, blank lines, and indentation:
 
 .. code-block:: rst
 
@@ -154,7 +154,7 @@ The code block ends when you begin a new paragraph without indentation. `Sphinx 
 
 .. _Captions: 
 
-Code blocks also support line numbers and emphasizing or highlighting certain lines:
+Line numbers should only be used while editing to assist in find the line numbers to emphasize. Code blocks also support line numbers and emphasizing or highlighting certain lines:
 
 .. code-block:: rst
 
@@ -177,6 +177,8 @@ This results in:
   {
     // Foo all the things!
   }
+
+.. note:: Once the ``emphasize-lines`` is determined, remove ``:linenos:``. When updating a doc, remove all occurrences of ``:linenos:``.
 
 .. note:: ``caption`` and ``name`` will result in a code-block not being displayed due to our builds using a Sphinx version prior to version 1.3. If you don't see a code block displayed above this note, it's most likely because the version of Sphinx is < 1.3.
 
@@ -247,10 +249,12 @@ This would include the first and fourth line, and then line 20 through the end o
 
 Literal includes also support `Captions`_ and names, as with ``code-block`` elements. If the ``caption`` is left blank, the file name will be used as the caption. Note that captions and names are available with Sphinx 1.3, which the ReadTheDocs theme used by this system is not yet updated to support.
 
+Format code to eliminate or minimize horizontal scroll bars.
+
 Tables
 ^^^^^^
 
-Tables can be constructed using grid-like "ASCII Art" style text. In general they should only be used where it makes sense to present some tabular data. Rather than include all of the syntax options here, you will find a detailed reference at `<http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables>`_.
+Tables should never render with horizontal scroll bars. Tables can be constructed using grid-like "ASCII Art" style text. In general they should only be used where it makes sense to present some tabular data. Rather than include all of the syntax options here, you will find a detailed reference at `<http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables>`_.
 
 UI navigation
 ^^^^^^^^^^^^^
