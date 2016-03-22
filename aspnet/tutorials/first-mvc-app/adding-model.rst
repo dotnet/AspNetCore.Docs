@@ -9,7 +9,7 @@ You’ll use a .NET Framework data-access technology known as the `Entity Framew
 Adding Model Classes
 --------------------------
 
-In Solution Explorer, right click the *Models* folder > **Add** > **Class**.
+In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
 	:language: c#
@@ -82,7 +82,7 @@ Use data migrations to create the database
 	
 .. image:: adding-model/_static/cmd.png
 
-- ``dnu restore`` This command looks at the dependencies in the *project.json* file and downloads them. For more information see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ and `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__.
+- ``dnu restore`` This command looks at the dependencies in the *project.json* file and downloads them. For more information see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ and `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__. If this command is not recognized, run ``dnvm upgrade`` first.
 - ``dnvm use <version>`` **dnvm** is the .NET Version Manager, which is a set of command line utilities that are used to update and configure .NET Runtime. In this case we're asking **dnvm** add the 1.0.0-rc1 ASP.NET 5 runtime to the ``PATH`` environment variable of the current shell. 
 - ``dnx`` DNX stands for .NET Execution Environment.
 
