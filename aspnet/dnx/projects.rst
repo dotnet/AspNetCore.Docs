@@ -456,9 +456,9 @@ In addition to the above table there are some extra properties that you will not
 +---------------------+-------------------------------------+-----------------------------------+
 | preprocessFiles     |                                     | Wildcard is not allowed           |
 +---------------------+-------------------------------------+-----------------------------------+
-| resourceFiles       |                                     | Wildecard is not allowed          |
+| resourceFiles       |                                     | Wildcard is not allowed           |
 +---------------------+-------------------------------------+-----------------------------------+
-| sharedFiles         |                                     | Wildecard is not allowed          |
+| sharedFiles         |                                     | Wildcard is not allowed           |
 +---------------------+-------------------------------------+-----------------------------------+
 
 Precedence
