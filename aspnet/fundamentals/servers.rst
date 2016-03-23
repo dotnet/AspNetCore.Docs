@@ -14,8 +14,6 @@ Sections:
 	- `Choosing a server`_
 	- `Custom Servers`_
 
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/servers/sample>`_.
-
 Servers and commands
 --------------------
 

@@ -11,8 +11,6 @@ In this article:
 	- `Run ASP.NET 5 on an OWIN-based server and use its WebSockets support`_
 	- `OWIN keys`_
 
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample>`_.
-
 Running OWIN middleware in the ASP.NET pipeline
 -----------------------------------------------
 

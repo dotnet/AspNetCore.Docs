@@ -11,8 +11,6 @@ In this article:
 	- `HTTP 500 errors on Azure`_
 	- `The runtime info page`_
 	- `The welcome page`_
-	
-`Browse or download samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/diagnostics/sample>`_.
 
 .. _configure-error-page:
 

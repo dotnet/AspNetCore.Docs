@@ -11,8 +11,6 @@ In this article:
 	- `Implementing Logging in your Application`_
 	- `Configuring Logging in your Application`_
 
-`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/fundamentals/logging/sample>`_.
-
 Implementing Logging in your Application
 ----------------------------------------
 
