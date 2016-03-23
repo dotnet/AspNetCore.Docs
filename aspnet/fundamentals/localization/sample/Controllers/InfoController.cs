@@ -4,7 +4,6 @@ using Microsoft.AspNet.Localization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Localization;
 
-
 namespace Localization.StarterWeb.Controllers
 {
     public class InfoController : Controller
@@ -18,7 +17,6 @@ namespace Localization.StarterWeb.Controllers
             _localizer = localizer;
             _sharedLocalizer = sharedLocalizer;
         }
-
 
         public string TestLoc()
         {
@@ -38,12 +36,7 @@ namespace Localization.StarterWeb.Controllers
             return View();
         }
 
-        //title="@Localizer["Log in using your {0} account", @provider.DisplayName]"> 
-        // @provider.AuthenticationScheme</button>
-
-
-
-        public IActionResult Contact()
+         public IActionResult Contact()
         {
             ViewData["Message"] = _sharedLocalizer["Your contact page."];
             return View();
