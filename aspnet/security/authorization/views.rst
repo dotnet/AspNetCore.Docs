@@ -5,7 +5,7 @@ View Based Authorization
 
 Often a developer will want to show, hide or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views by injecting it. To inject the authorization service into a view you use the ``@inject IAuthorizationService AuthorizationService``. If you want the authorization service in every view the place the ``@inject`` keyword into the ``_ViewImports.cshtml`` file in the ``Views`` directory.
 
-Once you have injected the authorization service you use it by calling the ``AuthorizeSync`` method in exactly the same way as you would check during :ref:`resource based authorization <security-authorization-resource-based-imperative>`. 
+Once you have injected the authorization service you use it by calling the ``AuthorizeAsync`` method in exactly the same way as you would check during :ref:`resource based authorization <security-authorization-resource-based-imperative>`. 
 
 .. code-block:: c#
 

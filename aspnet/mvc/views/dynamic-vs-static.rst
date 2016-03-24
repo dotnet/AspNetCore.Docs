@@ -5,6 +5,6 @@
 
 .. include:: /../common/stub-notice.txt
 
-.. _issue: https://github.com/aspnet/Docs/issues/134
+.. _issue: https://github.com/aspnet/Docs/issues/132
 
 Learn more about `Dynamic vs Strongly Typed Views <http://www.asp.net/mvc/overview/views/dynamic-v-strongly-typed-views>`_.

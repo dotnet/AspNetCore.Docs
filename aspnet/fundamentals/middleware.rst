@@ -77,6 +77,8 @@ In the above example, the call to ``await next.Invoke()`` will call into the del
 
 .. image:: middleware/_static/console-loginline.png
 
+..  _middleware-run-map-use:
+
 Run, Map, and Use
 ^^^^^^^^^^^^^^^^^
 
@@ -136,6 +138,8 @@ ASP.NET ships with the following middleware components:
 	   - Provides support for managing user sessions.
 	*  - :doc:`Static Files <static-files>`
 	   - Provides support for serving static files, and directory browsing.
+
+.. _middleware-writing-middleware:
 
 Writing middleware
 ------------------

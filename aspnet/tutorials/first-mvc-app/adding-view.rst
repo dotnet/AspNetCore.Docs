@@ -21,7 +21,7 @@ The ``Index`` method above uses a view template to generate an HTML response to 
 .. image:: adding-view/_static/add_folder.png
 
 - Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
-- In the **Add New Item - Movie** dialog
+- In the **Add New Item - MvcMovie** dialog
 
 	- In the search box in the upper-right, enter *view*
 	- Tap **MVC View Page**
@@ -82,7 +82,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 	:linenos: 
 	:emphasize-lines: 2, 5
 	
-Line number 2 in the code above sets the ``Title`` property of the `ViewDataDictionary <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNet.Mvc.Razor/RazorPageOfT.cs>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
+Line number 2 in the code above sets the ``Title`` property of the `ViewDataDictionary <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewFeatures/ViewDataDictionary/index.html>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
 
 .. code-block:: HTML
 
@@ -103,7 +103,7 @@ Before we go to a database and talk about models, though, let's first talk about
 
 Controllers are responsible for providing whatever data or objects are required in order for a view template to render a response to the browser. A best practice: A view template should never perform business logic or interact with a database directly. Instead, a view template should work only with the data that's provided to it by the controller. Maintaining this "separation of concerns" helps keep your code clean, testable and more maintainable.
 
-Currently, the ``Welcome`` method in the ``HelloWorldController`` class takes a ``name`` and a ``numTimes`` parameter and then outputs the values directly to the browser. Rather than have the controller render this response as a string, let’s change the controller to use a view template instead. The view template will generate a dynamic response, which means that you need to pass appropriate bits of data from the controller to the view in order to generate the response. You can do this by having the controller put the dynamic data (parameters) that the view template needs in a ``ViewData`` dictionary that the view template can then access.
+Currently, the ``Welcome`` method in the ``HelloWorldController`` class takes a ``name`` and a ``ID`` parameter and then outputs the values directly to the browser. Rather than have the controller render this response as a string, let’s change the controller to use a view template instead. The view template will generate a dynamic response, which means that you need to pass appropriate bits of data from the controller to the view in order to generate the response. You can do this by having the controller put the dynamic data (parameters) that the view template needs in a ``ViewData`` dictionary that the view template can then access.
 
 Return to the *HelloWorldController.cs* file and change the ``Welcome`` method to add a ``Message`` and ``NumTimes`` value to the ``ViewData`` dictionary. The ``ViewData`` dictionary is a dynamic object, which means you can put whatever you want in to it; the ``ViewData`` object has no defined properties until you put something inside it. The `MVC model binding system <http://docs.asp.net/projects/mvc/en/latest/models/index.html>`__ automatically maps the named parameters (``name`` and ``numTimes``) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 	
@@ -114,7 +114,7 @@ Return to the *HelloWorldController.cs* file and change the ``Welcome`` method t
 The ``ViewData`` dictionary object contains data that will be passed to the view. Next, you need a Welcome view template.
 
 - Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
-- In the **Add New Item - Movie** dialog
+- In the **Add New Item - MvcMovie** dialog
 
 	- In the search box in the upper-right, enter *view*
 	- Tap **MVC View Page**
