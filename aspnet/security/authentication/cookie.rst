@@ -1,16 +1,16 @@
 .. _security-authentication-cookie-middleware:
 
-Using Cookie Middleware without ASP.NET Identity
-================================================
+Using Cookie Middleware without ASP.NET Core Identity
+=====================================================
 
-ASP.NET v5 provides cookie :ref:`middleware <fundamentals-middleware>` which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the ``User`` property on ``HttpContext``. If you want to provide your own login screens and user databases you can use the cookie middleware as a standalone feature.
+ASP.NET Core provides cookie :ref:`middleware <fundamentals-middleware>` which serializes a user principal into an encrypted cookie and then, on subsequent requests, validates the cookie, recreates the principal and assigns it to the ``User`` property on ``HttpContext``. If you want to provide your own login screens and user databases you can use the cookie middleware as a standalone feature.
 
 .. _security-authentication-cookie-middleware-configuring:
 
 Adding and configuring
 ----------------------
 
-The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNet.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your ``Startup.cs`` file;
+The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNet.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your *Startup.cs* file;
 
 .. code-block:: c#
 
@@ -73,7 +73,7 @@ To implement an override for the ``ValidateAsync()`` event you must write a meth
 
  Task ValidateAsync(CookieValidatePrincipalContext context);
 
-ASP.NET Identity implements this check as part of its `SecurityStampValidator <https://github.com/aspnet/Identity/blob/dev/src/Microsoft.AspNet.Identity/SecurityStampValidator.cs>`_. A simple example would look something like as follows;
+ASP.NET Core Identity implements this check as part of its SecurityStampValidator_. A simple example would look something like as follows;
 
 .. code-block:: c#
 
@@ -164,3 +164,5 @@ This code snippet will create an identity and corresponding cookie which will be
 This code snippet will create an identity and corresponding cookie which will be last for 20 minutes. This ignores any sliding expiration settings previously configured via :ref:`cookie options <security-authentication-cookie-options>`.
 
 The ExpiresUtc and IsPersistent properties are mutually exclusive.
+
+.. _SecurityStampValidator: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Identity/SecurityStampValidator/index.html

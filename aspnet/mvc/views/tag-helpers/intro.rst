@@ -3,17 +3,10 @@ Introduction to Tag Helpers
 
 By `Rick Anderson`_ 
 
-.. _issue: https://github.com/aspnet/Docs/issues/125
-
-    - `What are Tag Helpers?`_
-    - `What Tag Helpers provide`_ 
-    - `Managing Tag Helper scope`_
-    - `IntelliSense support for Tag Helpers`_
-    - `Tag Helpers compared to HTML Helpers`_ 
-    - `Tag Helpers compared to Web Server Controls`_
-    - `Customizing the Tag Helper element font`_
-    - `Additional Resources`_
-
+.. contents:: Sections:
+  :local:
+  :depth: 1
+  
 What are Tag Helpers?
 ------------------------------------
 
@@ -55,14 +48,14 @@ Tag Helpers scope is controlled by a combination of ``@addTagHelper``, ``@remove
 ``@addTagHelper`` makes Tag Helpers available
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you create a new ASP.NET 5 web app named *AuthoringTagHelpers* (with no authentication), the following *Views/_ViewImports.cshtml* file will be added to your project:
+If you create a new ASP.NET Core web app named *AuthoringTagHelpers* (with no authentication), the following *Views/_ViewImports.cshtml* file will be added to your project:
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml
    :language: html
    :emphasize-lines: 2
    :lines: 1-2
 
-The ``@addTagHelper`` directive makes Tag Helpers available to the view. In this case, the view file is *Views/_ViewImports.cshtml*, which by default is inherited by all view files in the *Views* folder and sub-directories; making Tag Helpers available. The code above uses the wildcard syntax ("*") to specify that all Tag Helpers in the specified assembly (*Microsoft.AspNet.Mvc.TagHelpers*) will be available to every view file in the *Views* directory or sub-directory. The first parameter after ``@addTagHelper`` specifies the Tag Helpers to load (we are using "\*" for all Tag Helpers), and the second parameter "Microsoft.AspNet.Mvc.TagHelpers" specifies the assembly containing the Tag Helpers. *Microsoft.AspNet.Mvc.TagHelpers* is the assembly for the built-in ASP.NET 5 Tag Helpers.
+The ``@addTagHelper`` directive makes Tag Helpers available to the view. In this case, the view file is *Views/_ViewImports.cshtml*, which by default is inherited by all view files in the *Views* folder and sub-directories; making Tag Helpers available. The code above uses the wildcard syntax ("*") to specify that all Tag Helpers in the specified assembly (*Microsoft.AspNet.Mvc.TagHelpers*) will be available to every view file in the *Views* directory or sub-directory. The first parameter after ``@addTagHelper`` specifies the Tag Helpers to load (we are using "\*" for all Tag Helpers), and the second parameter "Microsoft.AspNet.Mvc.TagHelpers" specifies the assembly containing the Tag Helpers. *Microsoft.AspNet.Mvc.TagHelpers* is the assembly for the built-in Tag Helpers.
    
 To expose all of the Tag Helpers in this project (which creates an assembly named *AuthoringTagHelpers*), you would use the following:
 
@@ -83,8 +76,8 @@ To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTa
 
 .. code-block:: c#
 
-	@addTagHelper "AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers"
-	@addTagHelper "AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers"
+  @addTagHelper "AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers"
+  @addTagHelper "AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers"
 
 As mentioned previously, adding the ``@addTagHelper`` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the ``@addTagHelper`` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
 
@@ -105,7 +98,7 @@ You can disable a Tag Helper at the element level with the Tag Helper opt-out ch
 
 .. code-block:: html
 
-	<!span asp-validation-for="Email" class="text-danger"></!span>
+  <!span asp-validation-for="Email" class="text-danger"></!span>
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
@@ -166,7 +159,7 @@ Tag Helpers attach to HTML elements in Razor views, while `HTML Helpers <http://
 
 .. code-block:: html
 
-	@Html.Label("FirstName", "First Name:", new {@class="caption"})
+  @Html.Label("FirstName", "First Name:", new {@class="caption"})
 
 The at (``@``) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`_ can't help. The last argument:
 
@@ -192,7 +185,7 @@ generates:
  
  .. code-block:: html
 
-	<label class="caption" for="FirstName">First Name</label>
+  <label class="caption" for="FirstName">First Name</label>
 
 The  camel-cased to sentence-cased content is not used if you add content to the ``<label>``. For example:
 
@@ -204,7 +197,7 @@ generates:
  
   <label class="caption" for="FirstName">Name First</label>
 
-The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the legacy ASP.NET 4.5.x MVC template included with Visual Studio 2015.
+The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the legacy ASP.NET 4.5.x MVC template included with Visual Studio.
 
 .. image:: intro/_static/regCS.png 
 
@@ -212,7 +205,7 @@ The Visual Studio editor displays C# code with a grey background. For example, t
 
 .. code-block:: html
 
-	@Html.AntiForgeryToken()
+  @Html.AntiForgeryToken()
  
 is displayed with a grey background. Most of the markup in the Register view is C#. Compare that to the equivalent approach using Tag Helpers:
  
@@ -259,10 +252,3 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 .. image:: intro/_static/fontoptions2.png
 
-
-   
-Additional Resources
-----------------------
- 
-- `TagHelperSamples on GitHub <https://github.com/dpaquette/TagHelperSamples>`__ contains Tag Helper samples for working with `Bootstrap <http://getbootstrap.com/>`__. 
-- `Channel 9 video on advanced Tag Helpers <https://channel9.msdn.com/Shows/Web+Camps+TV/Update-on-TagHelpers-with-Taylor-Mullen>`_. This is a great video on more advanced features. It's a couple of versions out-of-date but the comments contain a list of changes to the current version. The updated code can be found `here <https://github.com/NTaylorMullen/WebCampsTV_TagHelpers1>`__.

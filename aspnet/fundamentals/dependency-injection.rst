@@ -2,15 +2,16 @@
 
 Dependency Injection
 ====================
-By `Steve Smith`_
 
-ASP.NET 5 is designed from the ground up to support and leverage dependency injection. ASP.NET 5 applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET 5 provides a minimal feature set and is not intended to replace other containers.
+`Steve Smith`_
 
-.. contents:: In this article:
+ASP.NET Core is designed from the ground up to support and leverage dependency injection. ASP.NET Core applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET Core provides a minimal feature set and is not intended to replace other containers.
+
+.. contents:: Sections:
   :local:
   :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/dependency-injection/sample>`_. 
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/dependency-injection/sample>`__
 
 What is Dependency Injection?
 -----------------------------
@@ -21,9 +22,9 @@ When classes are designed with DI in mind, they are more loosely coupled because
 
 When a system is designed to use DI, with many classes requesting their dependencies via their constructor (or properties), it's helpful to have a class dedicated to creating these classes with their associated dependencies. These classes are referred to as *containers*, or more specifically, `Inversion of Control (IoC) <http://deviq.com/inversion-of-control/>`_ containers or Dependency Injection (DI) containers. A container is essentially a factory that is responsible for providing instances of types that are requested from it. If a given type has declared that it has dependencies, and the container has been configured to provide the dependency types, it will create the dependencies as part of creating the requested instance. In this way, complex dependency graphs can be provided to classes without the need for any hard-coded object construction. In addition to creating objects with their dependencies, containers typically manage object lifetimes within the application.
 
-ASP.NET 5 includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET 5's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
+ASP.NET Core includes a simple built-in container (represented by the ``IServiceProvider`` interface) that supports constructor injection by default, and ASP.NET makes certain services available through DI. ASP.NET's container refers to the types it manages as *services*. Throughout the rest of this article, *services* will refer to types that are managed by ASP.NET Core's IoC container. You configure the built-in container's services in the ``ConfigureServices`` method in your application's ``Startup`` class.
 
-.. note:: Martin Fowler has written an extensive article on `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_. Microsoft Patterns and Practices also has a great description of `Dependency Injection <https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx>`_.
+.. note:: Martin Fowler has written an extensive article on `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_. Microsoft Patterns and Practices also has a great description of `Dependency Injection <https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx>`__.
 
 .. note:: This article covers Dependency Injection as it applies to all ASP.NET applications. Dependency Injection within MVC controllers is covered in :doc:`/mvc/controllers/dependency-injection`.
 
@@ -182,10 +183,12 @@ What if you find that your classes tend to have way too many dependencies being 
 
 With regard to data access specifically, you can easily inject Entity Framework ``DbContext`` types into your controllers, assuming you've configured EF in your ``Startup`` class. However, it is best to avoid depending directly on ``DbContext`` in your UI project. Instead, depend on an abstraction (like a Repository interface), and restrict knowledge of EF (or any other specific data access technology) to the implementation of this interface. This will reduce the coupling between your application and a particular data access strategy, and will make testing your application code much easier.
 
+.. _replacing-the-default-services-container:
+
 Replacing the default services container
 ----------------------------------------
 
-The built-in services container is mean to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are `many IOC containers available for .NET <https://github.com/danielpalme/IocPerformance/blob/master/README.md>`_. In this example, the `Autofac <http://autofac.org/>`_ package is used.
+The built-in services container is mean to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the `Autofac <http://autofac.org/>`_ package is used.
 
 First, add the appropriate container package(s) to the dependencies property in project.json:
 

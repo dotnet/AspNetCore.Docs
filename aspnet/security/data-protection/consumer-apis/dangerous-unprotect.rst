@@ -3,7 +3,7 @@
 Unprotecting payloads whose keys have been revoked
 ==================================================
 
-The ASP.NET 5 data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like `Windows CNG DPAPI <https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794%28v=vs.85%29.aspx>`_ and `Azure Rights Management <https://technet.microsoft.com/en-us/library/jj585024.aspx>`_ are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there is nothing prohibiting a developer from using the ASP.NET 5 data protection APIs for long-term protection of confidential data. Keys are never removed from the key ring, so IDataProtector.Unprotect can always recover existing payloads as long as the keys are available and valid.
+The ASP.NET Core data protection APIs are not primarily intended for indefinite persistence of confidential payloads. Other technologies like `Windows CNG DPAPI <https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794%28v=vs.85%29.aspx>`_ and `Azure Rights Management <https://technet.microsoft.com/en-us/library/jj585024.aspx>`_ are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. That said, there is nothing prohibiting a developer from using the ASP.NET Core data protection APIs for long-term protection of confidential data. Keys are never removed from the key ring, so IDataProtector.Unprotect can always recover existing payloads as long as the keys are available and valid.
 
 However, an issue arises when the developer tries to unprotect data that has been protected with a revoked key, as IDataProtector.Unprotect will throw an exception in this case. This might be fine for short-lived or transient payloads (like authentication tokens), as these kinds of payloads can easily be recreated by the system, and at worst the site visitor might be required to log in again. But for persisted payloads, having Unprotect throw could lead to unacceptable data loss.
 
@@ -32,5 +32,5 @@ This API takes the protected payload (as a byte array) and returns the unprotect
 
 
 .. literalinclude:: dangerous-unprotect/samples/dangerous-unprotect.cs
-	:language: c#
-	:linenos:
+  :language: c#
+  :linenos:

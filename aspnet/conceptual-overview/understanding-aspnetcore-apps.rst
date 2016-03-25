@@ -1,9 +1,9 @@
-Understanding ASP.NET 5 Web Apps
-================================
+Understanding ASP.NET Core Web Apps
+===================================
 
-By `Steve Smith`_, `Erik Reitan`_
+By `Steve Smith`_ and `Erik Reitan`_
 
-ASP.NET 5 introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
+ASP.NET Core introduces several new fundamental concepts of web programming that are important to understand in order to productively create web apps. These concepts are not necessarily new to web programming in general, but are new to ASP.NET and thus are likely new to many developers whose experience with web programming has mainly been using ASP.NET and Visual Studio.
 
 .. contents:: Sections:
   :local:
@@ -12,26 +12,26 @@ ASP.NET 5 introduces several new fundamental concepts of web programming that ar
 ASP.NET Project Structure
 -------------------------
 
-ASP.NET 5's project structure adds new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here:
+ASP.NET Core's project structure adds new concepts and replaces some legacy elements found in previous versions of ASP.NET projects. The new default web project template creates a solution and project structure like the one shown here:
 
-.. image:: understanding-aspnet5-apps/_static/solution-explorer.png
+.. image:: understanding-aspnetcore-apps/_static/solution-explorer.png
 
 The first thing you may notice about this new structure is that it includes a **Solution Items** folder with a *global.json* file, and the web
 project itself is located within a *src* folder within the solution. The new structure also includes a special *wwwroot* folder and a
 **Dependencies** section in addition to the References section that was present in past versions of ASP.NET (but which has been updated in this
 version). In the root of the project, there are also several new files such as *bower.json, appsettings.json, gulpfile.js, package.json, project.json*,
 and *Startup.cs*. You may notice that the files *global.asax, packages.config*, and *web.config* are gone. In previous versions of
-ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET 5, this information and logic
+ASP.NET, a great deal of application configuration was stored in these files and in the project file. In ASP.NET Core, this information and logic
 has been refactored into files that are generally smaller and more focused.
 
 Framework Target
 ----------------
 
-ASP.NET 5 can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default, applications will target the full version of .NET, but they can also target `.NET Core`_. Most legacy apps will target the full ASP.NET 5, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate `NuGet`_ packages.
+ASP.NET Core can target multiple frameworks, allowing the application to be deployed into different hosting environments. By default, applications will target the full version of .NET, but they can also target `.NET Core`_. Most legacy apps will target the full ASP.NET Core, at least initially, since they're likely to have dependencies that include framework base class libraries that are not available in .NET Core today. .NET Core is a small version of the .NET framework that is optimized for web apps and supports Linux and Mac environments. It can be deployed with an application, allowing multiple apps on the same server to target different versions of .NET Core. It is also modular, allowing additional functionality to be added only when it is required, as separate `NuGet`_ packages.
 
 You can see which framework is currently being targeted in the web application project's properties, by right-clicking on the web project in **Solution Explorer** and selecting **Properties**:
 
-.. image:: understanding-aspnet5-apps/_static/project-properties.png
+.. image:: understanding-aspnetcore-apps/_static/project-properties.png
 
 By default, the **Use Specific Runtime** checkbox within the **Debug** tab is unchecked. To target a specific version, check the box and choose the appropriate *Version*, *Platform*, and *Architecture*.
 
@@ -40,11 +40,11 @@ By default, the **Use Specific Runtime** checkbox within the **Debug** tab is un
 The project.json File
 ---------------------
 
-The *project.json* file is new to ASP.NET 5. It is used to define the project's server side dependencies (discussed below), as well as other project-specific information. The top-level default sections included in *project.json* of the default web project template are highlighted below:
+The *project.json* file is new to ASP.NET Core. It is used to define the project's server side dependencies (discussed below), as well as other project-specific information. The top-level default sections included in *project.json* of the default web project template are highlighted below:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
     :language: json
-    :emphasize-lines: 1-4,8,30,35,40,44,48	
+    :emphasize-lines: 1-4,8,30,35,40,44,48
 
 The **userSecretsId** property contains a value that acts as a unique ID for your web app. For more information, see :doc:`/security/app-secrets`.
 
@@ -54,7 +54,7 @@ You can use the **compilationOptions** section to set app settings, such as the 
 
 Typically values located in the **dependencies** section refer to an installed NuGet package or to another  project. Package versions can be specified specifically, as shown above, or using wildcards to allow dependencies on a major version but automatically pull in minor version updates. 
 
-ASP.NET 5 has a great deal of support for command line tooling, and the **commands** section allows you to configure commands that can be run from a command line(for instance, launch a web site or run tests).
+ASP.NET Core has a great deal of support for command line tooling, and the **commands** section allows you to configure commands that can be run from a command line(for instance, launch a web site or run tests).
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/project.json
     :language: json
@@ -72,11 +72,11 @@ The global.json File
 The *global.json* file is used to configure the solution as a whole. It includes just two sections, ``projects`` and ``sdk`` by default.
 
 .. literalinclude:: /../common/samples/WebApplication1/global.json
-	:language: json
+  :language: json
 
 The ``projects`` property designates which folders contain source code for the solution. By default the project structure places source files in a *src* folder, allowing build artifacts to be placed in a sibling folder, making it easier to exclude such things from source control.
 
-.. image:: understanding-aspnet5-apps/_static/solution-files.png
+.. image:: understanding-aspnetcore-apps/_static/solution-files.png
 
 The ``sdk`` property specifies the version of the .NET Core SDK that Visual Studio will use when opening the solution. It's set here, rather than in *project.json*, to avoid scenarios where different projects within a solution are targeting different versions of the SDK. 
 
@@ -85,11 +85,11 @@ The wwwroot Folder
 
 In previous versions of ASP.NET, the root of the project was typically the root of the web app. If you placed a *Default.aspx* file in the project root of an early version of ASP.NET, it would load if a request was made to the web application’s root. In later versions of ASP.NET, support for routing was added, making it possible to decouple the locations of files from their corresponding URLs (thus, ``HomeController`` in the *Controllers* folder is able to serve requests made to the root of the site, using a default route implementation). However, this routing was used only for ASP.NET-specific application logic, not static files needed by the client to properly render the resulting page. Resources like images, script files, and stylesheets were generally still loaded based on their location within the file structure of the application, based off of the root of the project.
 
-.. image:: understanding-aspnet5-apps/_static/wwwroot.png
+.. image:: understanding-aspnetcore-apps/_static/wwwroot.png
 
 The file based approach presented several problems. First, protecting sensitive project files required framework-level protection of certain filenames or extensions, to prevent having things like *web.config* or *global.asax* served to a client in response to a request. Having to specifically block access (also known as blacklisting) to certain files is much less secure than granting access only to those files which should be accessible (also known as whitelisting). Typically, different versions were required for dev/test and production (for example *web.config*).  Scripts would typically be referenced individually and in a readable format during development. It’s beneficial to deploy only production files to production, but handling these kinds of scenarios was difficult with the previous file structure.
 
-Enter the *wwwroot* folder in ASP.NET 5. The *wwwroot* folder represents the actual root of the web app when running on a web server. Static files, like *appsettings.json*, which are not located in *wwwroot* will never be accessible, and there is no need to create special rules to block access to sensitive files. Instead of blacklisting access to sensitive files, a more secure whitelist approach is taken whereby only those files in the *wwwroot* folder are accessible via web requests. Additionally, while the *wwwroot* folder is default web root folder, the specific web root folder can be configured in *project.json*.
+Enter the *wwwroot* folder in ASP.NET Core. The *wwwroot* folder represents the actual root of the web app when running on a web server. Static files, like *appsettings.json*, which are not located in *wwwroot* will never be accessible, and there is no need to create special rules to block access to sensitive files. Instead of blacklisting access to sensitive files, a more secure whitelist approach is taken whereby only those files in the *wwwroot* folder are accessible via web requests. Additionally, while the *wwwroot* folder is default web root folder, the specific web root folder can be configured in *project.json*.
 
 .. _`client side dependencies` :
 
@@ -98,11 +98,11 @@ Client Side Dependency Management
 
 The *Dependencies* folder contains two subfolders: *Bower* and *NPM*. These folders correspond to two package managers by the same names, and they’re used to pull in client-side dependencies and tools (e.g. `jQuery <http://jquery.com/>`_, `Bootstrap <http://getbootstrap.com/>`_, or `Gulp <http://gulpjs.com/>`_). Expanding the folders reveals which dependencies are currently managed by each tool, and the current version being used by the project.
 
-.. image:: understanding-aspnet5-apps/_static/dependencies.png
+.. image:: understanding-aspnetcore-apps/_static/dependencies.png
 
 The bower dependencies are controlled by the *bower.json* files, located in each of the sub-folders of *wwwroot/lib*. You'll notice that each of the items listed in the figure above correspond to dependencies listed in the *bower.json* files:
 
-.. image:: understanding-aspnet5-apps/_static/bower-files.png
+.. image:: understanding-aspnetcore-apps/_static/bower-files.png
 
 Each dependency is then further configured within its corresponding section using its own *bower.json* file, indicating how it should be deployed to the *wwwroot* folder. For more information, see :doc:`/client-side/index`.
 
@@ -111,7 +111,7 @@ Server Side Dependency Management
 
 The *References* folder, shown within **Solution Explorer** in Visual Studio, details the server-side references for the project. It should be familiar to ASP.NET developers, but it has been modified to differentiate between references for different framework targets. Within each framework target, you will find individual references, with icons indicating whether the reference is to an assembly, a NuGet package, or a project. Note that these dependencies are checked at compile time, with missing dependencies downloaded from the configured NuGet package source (specified under **Tools** > **NuGet Package Manager** > **Package Manager Settings** > **Package Sources**).
 
-.. image:: understanding-aspnet5-apps/_static/references.png
+.. image:: understanding-aspnetcore-apps/_static/references.png
 
 For more information, see `NuGet`_.
 
@@ -120,7 +120,7 @@ For more information, see `NuGet`_.
 Application Startup
 -------------------
 
-ASP.NET 5 has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure :doc:`/fundamentals/middleware`.
+ASP.NET Core has decomposed its feature set into a variety of modules that can be individually added to a web app. This allows for lean web apps that do not import or bring in features they don't use. When your ASP.NET app starts, the ASP.NET runtime calls ``Configure`` in the ``Startup`` class. If you create a new ASP.NET web project using the Empty template, you will find that the *Startup.cs* file has only a couple lines of code. The default Web project’s ``Startup`` class wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app. There are three parts to the sample startup class: a constructor, ``ConfigureServices``, and ``Configure``. The ``Configure`` method is called after ``ConfigureServices`` and is used to configure :doc:`/fundamentals/middleware`.
 
 The constructor specifies how configuration will be handled by the app. Configuration is a property of the ``Startup`` class and can be read from a variety of file formats as well as from environment variables. The default project template uses a `ConfigurationBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationBuilder/index.html>`__ to create an `IConfiguration <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfiguration/index.html>`__ instance that loads *appsettings.json* and environment variables.
 
@@ -150,4 +150,4 @@ As you can see, configuring which services are available and how the request pip
 Summary
 -------
 
-ASP.NET 5 introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.
+ASP.NET Core introduces a few concepts that didn't exist in previous versions of ASP.NET. Rather than working with *web.config*, packages.config, and a variety of project properties stored in the .csproj/.vbproj file, developers can now work with specific files and folders devoted to specific purposes. Although at first there is some learning curve, the end result is more secure, more maintainable, works better with source control, and has better separation of concerns than the approach used in previous versions of ASP.NET.

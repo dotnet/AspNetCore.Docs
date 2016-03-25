@@ -35,22 +35,22 @@ The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows
 Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor is assumed to wrap one specific key. This means that for any given IAuthenticatedEncryptorDescriptor instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.
 
 .. code-block:: c#
-	
-	// we have an IAuthenticatedEncryptorDescriptor instance
-	IAuthenticatedEncryptorDescriptor descriptor = ...;
-	 
-	// get an encryptor instance and perform an authenticated encryption operation
-	ArraySegment<byte> plaintext = new ArraySegment<byte>(Encoding.UTF8.GetBytes("plaintext"));
-	ArraySegment<byte> aad = new ArraySegment<byte>(Encoding.UTF8.GetBytes("AAD"));
-	var encryptor1 = descriptor.CreateEncryptorInstance();
-	byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
-	 
-	// get another encryptor instance and perform an authenticated decryption operation
-	var encryptor2 = descriptor.CreateEncryptorInstance();
-	byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad);
-	 
 
-	// the 'roundTripped' and 'plaintext' buffers should be equivalent
+  // we have an IAuthenticatedEncryptorDescriptor instance
+  IAuthenticatedEncryptorDescriptor descriptor = ...;
+
+  // get an encryptor instance and perform an authenticated encryption operation
+  ArraySegment<byte> plaintext = new ArraySegment<byte>(Encoding.UTF8.GetBytes("plaintext"));
+  ArraySegment<byte> aad = new ArraySegment<byte>(Encoding.UTF8.GetBytes("AAD"));
+  var encryptor1 = descriptor.CreateEncryptorInstance();
+  byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
+
+  // get another encryptor instance and perform an authenticated decryption operation
+  var encryptor2 = descriptor.CreateEncryptorInstance();
+  byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad);
+
+
+  // the 'roundTripped' and 'plaintext' buffers should be equivalent
 
 XML Serialization
 -----------------

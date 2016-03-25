@@ -3,23 +3,20 @@ Injecting Services Into Views
 
 By `Steve Smith`_
 
-ASP.NET MVC 6 supports `dependency injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain `separation of concerns <http://deviq.com/separation-of-concerns>`_ between your controllers and views. Most of the data your views display should be passed in from the controller.
+ASP.NET Core supports :doc:`dependency injection </fundamentals/dependency-injection>` into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain `separation of concerns <http://deviq.com/separation-of-concerns>`_ between your controllers and views. Most of the data your views display should be passed in from the controller.
 
-.. TODO: Add localization sample in RC2 timeframe.
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-Sections:
-	- `A Simple Example`_
-	- `Populating Lookup Data`_
-	- `Overriding Services`_
-
-`View sample files <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/dependency-injection/sample>`__
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/dependency-injection/sample>`__
 
 A Simple Example
 ----------------
 You can inject a service into a view using the ``@inject`` directive. You can think of ``@inject`` as adding a property to your view, and populating the property using DI.
 
 The syntax for ``@inject``:
-	``@inject <type> <name>``
+  ``@inject <type> <name>``
 
 An example of ``@inject`` in action:
 
@@ -28,7 +25,7 @@ An example of ``@inject`` in action:
   :language: c#
   :emphasize-lines: 4-5,15-17
 
-This view displays a list of ``ToDoItem`` instances, along with a summary showing overall statistics. The summary is populated from the injected ``StatisticsService``. This service is registered for dependency injection in ``ConfigureServices`` in ``Startup.cs``:
+This view displays a list of ``ToDoItem`` instances, along with a summary showing overall statistics. The summary is populated from the injected ``StatisticsService``. This service is registered for dependency injection in ``ConfigureServices`` in *Startup.cs*:
 
 .. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Startup.cs
   :linenos:
@@ -80,7 +77,7 @@ The ``ProfileOptionsService`` is a UI-level service designed to provide just the
   :language: c#
   :emphasize-lines: 7,13,24
 
-.. tip:: Don't forget to register types you will request through dependency injection in the  ``ConfigureServices`` method in ``Startup.cs``.
+.. tip:: Don't forget to register types you will request through dependency injection in the  ``ConfigureServices`` method in *Startup.cs*.
 
 Overriding Services
 -------------------

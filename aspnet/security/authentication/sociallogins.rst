@@ -5,18 +5,18 @@ Enabling authentication using external providers
 
 By `Pranav Rastogi`_
 
-This tutorial shows you how to build an ASP.NET 5 Web application that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
+This tutorial shows you how to build an ASP.NET Core app that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, or Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google. 
 
 Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember a new set of credentials.
 
-.. contents:: In this article:
+.. contents:: Sections:
   :local:
   :depth: 1
 
-Create a New ASP.NET 5 Project
-------------------------------
+Create a New ASP.NET Core Project
+---------------------------------
 
-To get started, open Visual Studio 2015. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
+To get started, open Visual Studio. Next, create a New Project (from the Start Page, or via File - New - Project).  On the left part of the New Project window, make sure the Visual C# templates are open and "Web" is selected, as shown:
 
 .. image:: sociallogins/_static/new-project.png
 
@@ -24,7 +24,7 @@ Next you should see another dialog, the New ASP.NET Project window:
  
 .. image:: sociallogins/_static/select-project.png
 
-Select the ASP.NET 5 Web site template from the set of ASP.NET 5 templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
+Select the ASP.NET Core Web Application template from the set of ASP.NET Core templates. Make sure you have Individual Authentication selected for this template. After selecting, click OK.
 
 At this point, the project is created. It may take a few moments to load, and you may notice Visual Studio's status bar indicates that Visual Studio is downloading some resources as part of this process.  Visual Studio ensures some required files are pulled into the project when a solution is opened (or a new project is created), and other files may be pulled in at compile time.
 
@@ -74,7 +74,7 @@ For Facebook OAuth2 authentication, you need to copy to your project some settin
 
 - Add your Site URL (http://localhost:port/)
 
-- Make a note of your App ID and your App Secret so that you can add both into your ASP.NET 5 Web site later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application. 
+- Make a note of your App ID and your App Secret so that you can add both into your ASP.NET Core app later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application. 
 
 .. image:: sociallogins/_static/FBApp08.png
 

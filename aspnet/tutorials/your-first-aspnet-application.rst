@@ -1,9 +1,9 @@
-Your First ASP.NET 5 Web App Using Visual Studio
-================================================
+Your First ASP.NET Core Web App Using Visual Studio
+===================================================
 
 By `Erik Reitan`_ 
 
-In this tutorial, you’ll create a simple web app using ASP.NET 5. The app stores data in a SQL database using Entity Framework (EF) and uses ASP.NET MVC to support the basic CRUD operations (create, read, update, delete).  
+In this tutorial, you’ll create a simple web app using ASP.NET Core. The app stores data in a SQL database using Entity Framework (EF) and uses ASP.NET MVC to support the basic CRUD operations (create, read, update, delete).  
 
 .. contents:: Sections:
   :local:
@@ -12,18 +12,18 @@ In this tutorial, you’ll create a simple web app using ASP.NET 5. The app stor
 Prerequisites
 -------------
 
-This tutorial assumes you have already installed `Visual Studio`_ and the latest `ASP.NET 5  <http://go.microsoft.com/fwlink/?LinkId=627627>`_ runtime and tooling.
+This tutorial assumes you have already installed `Visual Studio`_ and the latest `ASP.NET Core  <http://go.microsoft.com/fwlink/?LinkId=627627>`_ runtime and tooling.
 
-Create a new ASP.NET 5 project
-------------------------------
+Create a new ASP.NET Core project
+---------------------------------
 
-Start Visual Studio 2015. From the **File** menu, select **New** > **Project**. 
+Start Visual Studio. From the **File** menu, select **New** > **Project**. 
 
 Select the **ASP.NET Web Application** project template. It appears under **Installed** > **Templates** > **Visual C#** > **Web**. Name the project ``ContosoBooks`` and click **OK**.
 
 .. image:: your-first-aspnet-application/_static/02-new-project.png
 
-In the **New ASP.NET Project** dialog, select **Web Application** under **ASP.NET 5 Preview Templates**. Also, make sure the **Host in the cloud** checkbox is not selected and click **OK**.
+In the **New ASP.NET Project** dialog, select the ASP.NET Core **Web Application** template. Also, make sure the **Host in the cloud** checkbox is not selected and click **OK**.
 
 .. image:: your-first-aspnet-application/_static/03-web-site-template.png
 
@@ -34,7 +34,7 @@ Running the default app
 
 Once Visual Studio finishes creating the app, run the app by selecting **Debug** -> **Start Debugging**. As an alternative, you can press **F5**.
 
-It may take time to initialize Visual Studio and the new app. Once it is complete, the browser will show the running app.				
+It may take time to initialize Visual Studio and the new app. Once it is complete, the browser will show the running app.
 
 .. image:: your-first-aspnet-application/_static/05-browser-runapp.png
 
@@ -42,6 +42,7 @@ After reviewing the running Web app, close the browser and click the "Stop Debug
 
 Review the project
 ^^^^^^^^^^^^^^^^^^
+
 In Visual Studio, the **Solution Explorer** window lets you manage files for the project. The web application template that you used to create this web app adds the following basic folder structure:
 
 .. image:: your-first-aspnet-application/_static/06-solution-explorer.png
@@ -52,9 +53,9 @@ Visual Studio creates some initial folders and files for your project. The prima
    :header-rows: 1
 
    * - File name
-     - Purpose	
+     - Purpose
 
-   * - project.json      	
+   * - project.json
      - Defines your `.NET Core`_ project settings and dependencies.
 
    * - global.json    
@@ -75,23 +76,26 @@ Visual Studio creates some initial folders and files for your project. The prima
    * - HomeController.cs     
      - This ``controller`` contains the classes that handle incoming browser requests, retrieve model data, and then specify view templates that return a response to the browser. 
 
-In addition to these files the project is also setup to handle authenticating  users. To learn more about authentication and identity in ASP.NET 5 see :doc:`/security/authentication/index`. For a more complete overview of the structure of an ASP.NET 5 project see :doc:`/conceptual-overview/understanding-aspnet5-apps`. In this tutorial we will focus on adding functionality to our app using MVC and EF.
+In addition to these files the project is also setup to handle authenticating  users. To learn more about authentication and identity in ASP.NET Core see :doc:`/security/authentication/index`. For a more complete overview of the structure of an ASP.NET Core project see :doc:`/conceptual-overview/understanding-aspnetcore-apps`. In this tutorial we will focus on adding functionality to our app using MVC and EF.
 
 Understanding MVC
 ^^^^^^^^^^^^^^^^^
+
 This project uses :doc:`MVC </mvc/index>`. MVC stands for Model-View-Controller. MVC is a pattern for developing applications that are well architected, testable, and easy to maintain. MVC-based applications contain:
 
-	- **Models**: Classes that represent the data of the application  and that use validation logic to enforce business rules for that data.
-	- **Views**: Template files that your application uses to dynamically  generate HTML responses.
-	- **Controllers**: Classes that handle incoming browser requests, retrieve model data, and then specify view templates that return a response to the browser.
-	
+  - **Models**: Classes that represent the data of the application  and that use validation logic to enforce business rules for that data.
+  - **Views**: Template files that your application uses to dynamically  generate HTML responses.
+  - **Controllers**: Classes that handle incoming browser requests, retrieve model data, and then specify view templates that return a response to the browser.
+
 Understanding .NET Core
 ^^^^^^^^^^^^^^^^^^^^^^^
-.NET Core 5 is a modular runtime and library implementation that includes a subset of the .NET Framework. .NET Core 5 has been designed for Windows, Linux and OS X. It consists of a set of libraries, called “CoreFX”, and a small, optimized runtime, called “CoreCLR”. .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub. For more information, see :doc:`/conceptual-overview/choosing-the-right-dotnet`.
-	 
-Entity Framework
-----------------
-`Entity Framework`_ (EF) is an object-relational mapping (ORM) framework. It lets you work with relational data as objects, eliminating most of the data-access code that you'd usually need to write. Using EF, you can issue queries using LINQ, then retrieve and manipulate data as strongly typed objects. LINQ provides patterns for querying and updating data. Using EF allows you to focus on creating the rest of your application, rather than focusing on the data access fundamentals. 
+
+`.NET Core`_ is a modular runtime and library implementation that includes a subset of the .NET Framework. .NET Core has been designed for Windows, Linux and OS X. It consists of a set of libraries, called "CoreFX", and a small, optimized runtime, called "CoreCLR". .NET Core is open-source, so you can follow progress on the project and contribute to it on GitHub. For more information, see :doc:`/conceptual-overview/choosing-the-right-dotnet`.
+
+Entity Framework Core
+---------------------
+
+`Entity Framework Core`_ (EF) is an object-relational mapping (ORM) framework. It lets you work with relational data as objects, eliminating most of the data-access code that you'd usually need to write. Using EF, you can issue queries using LINQ, then retrieve and manipulate data as strongly typed objects. LINQ provides patterns for querying and updating data. Using EF allows you to focus on creating the rest of your application, rather than focusing on the data access fundamentals. 
 
 Open the *project.json* file. In the dependencies section, you will see the following lines related to EF:
 
@@ -100,8 +104,7 @@ Open the *project.json* file. In the dependencies section, you will see the foll
     :lines: 8-10
 
 These lines show that you can issue EF commands from the command window and that the EF NuGet package is included with your project.
-	
-	
+
 Create a data model and scaffolding
 -----------------------------------
 
@@ -109,6 +112,7 @@ Entity Framework supports a development paradigm called Code First. Code First l
 
 Create entity classes
 ^^^^^^^^^^^^^^^^^^^^^
+
 The classes you create to define the schema of the data are called entity classes. If you’re new to database design, think of the entity classes as table definitions of a database. Each property in the class specifies a column in the table of the database. These classes provide a lightweight, object-relational interface between object-oriented code and the relational table structure of the database.
 
 The Web app will have two new entities:
@@ -138,6 +142,7 @@ To keep the app simple, each book has a single author. The ``Author`` property p
 
 Add Scaffolding
 ^^^^^^^^^^^^^^^
+
 Scaffolding saves you time and coding effort by automatically generating the starting point for your application's CRUD (Create, Read, Update and Delete) operations. Starting from a simple model class, and, without writing a single line of code, you will create two controllers that will contain the CRUD operations related to books and authors, as well as the all the necessary views. 
 
 To add a scaffolding, right-click the **Controllers** folder in **Solution Explorer**. Select **Add** –> **New Scaffolded Item**.
@@ -146,7 +151,7 @@ To add a scaffolding, right-click the **Controllers** folder in **Solution Explo
 
 .. note:: If you don't see the **New Scaffolded Item** option, make sure you have created the project using **Individual User Accounts**. 
 
-From the **Add Scaffold** dialog box, select **MVC 6 Controller with views, using Entity Framework**, then click the **Add** button.
+From the **Add Scaffold** dialog box, select **MVC Controller with views, using Entity Framework**, then click the **Add** button.
 
 .. image:: your-first-aspnet-application/_static/15b-add-scaffold-db.png
 
@@ -175,7 +180,7 @@ Rather than entering several sample records by hand, you will add code that will
     :language: c#
 
 You wouldn’t put this sample data class into production code, but it’s okay for this sample app scenario. 
-	
+
 Next, in **Solution Explorer**, open the *Startup.cs* file. Add the following line of code at the end of the *Configure* method:
 
 .. literalinclude:: your-first-aspnet-application/sample/src/ContosoBooks/Startup.cs
@@ -184,7 +189,7 @@ Next, in **Solution Explorer**, open the *Startup.cs* file. Add the following li
     :dedent: 12
 
 Notice in *ConfigureServices* the app calls ``Configuration["Data:DefaultConnection:ConnectionString"]`` to get the database connection string. During development, this setting comes from the *appsettings.json* file. When you deploy the app to a production environment, you set the connection string in an environment variable on the host. If the :doc:`Configuration </fundamentals/configuration>` API finds an environment variable with the same key, it returns the environment variable instead of the value that is in *appsettings.json*.
-	
+
 Build the web application
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -202,6 +207,7 @@ If you run into an error, re-check the above steps. The information in the **Out
 
 Using data migrations to create the database
 --------------------------------------------
+
 Data migrations in EF are used to perform model updates throughout your entire application. By initially using data migrations to create your database, you can modify your database after the model has changed with simple steps. This will allow you to build and maintain your web app more efficiently. The alternative to data migrations, where model or schema changes are required after the database has been created, involves recreating your entire database.
 
 Open a **Command Prompt** in the project directory (ContosoBooks/src/ContosoBooks). 
@@ -210,8 +216,8 @@ Open a **Command Prompt** in the project directory (ContosoBooks/src/ContosoBook
 
 To find the project directory, in Visual Studio you can right-click the project name (ContosoBooks) in the **Solution Explorer** and select **Open Folder in File Explorer**. Copy your project path from **File Explorer** so you can copy it to the **Command Prompt**. For example, enter the following from the **Command Prompt** to change directories::
 
-	cd C:\Projects\ContosoBooks\src\ContosoBooks
-	
+  cd C:\Projects\ContosoBooks\src\ContosoBooks
+
 .. note:: Make sure that you have navigated to the *ContosoBooks* folder within the *src* folder.
 
 Run each of the following commands from the **Command Prompt**:
@@ -236,6 +242,7 @@ Also, you will be able to view the newly created database within **SQL Server Ob
 
 Adding navigation
 -----------------
+
 Update the navigation for the web app. From **Solution Explorer**, open the *Views/Shared/_Layout.cshtml* file. Find the following markup:
 
 .. code-block:: aspx-cs
@@ -248,8 +255,8 @@ Replace the above markup with the following markup:
 
 .. code-block:: aspx-cs
 
-	<li><a asp-controller="Books" asp-action="Index">Books</a></li>
-	<li><a asp-controller="Authors" asp-action="Index">Authors</a></li>
+  <li><a asp-controller="Books" asp-action="Index">Books</a></li>
+  <li><a asp-controller="Authors" asp-action="Index">Authors</a></li>
 
 The above changes will add a link to view Books and a link to view Authors. You created each of these views when you added scaffolding to the project.
 
@@ -279,36 +286,37 @@ Publish the web app to Azure App Service
 
 In **Solution Explorer** of **Visual Studio**, right-click on the project and select **Publish**.
 
-	.. image:: your-first-aspnet-application/_static/20-vs-publish.png
+  .. image:: your-first-aspnet-application/_static/20-vs-publish.png
 
 In the **Publish Web** window, click on **Microsoft Azure Web Apps** and log into your Azure subscription.
 
-	.. image:: your-first-aspnet-application/_static/21-vs-publishwebdb.png
-	
+  .. image:: your-first-aspnet-application/_static/21-vs-publishwebdb.png
+
 Make sure you are signed in to Azure with your Microsoft account, then click **New** to create a new Web app in Azure.
 
-	.. image:: your-first-aspnet-application/_static/22-vs-selectexistingdb.png
+  .. image:: your-first-aspnet-application/_static/22-vs-selectexistingdb.png
 
 Enter a unique site name, and select an app service plan, resource group, and region. Also, choose to create a database server, along with a database username and password. If you’ve created a database server in the past, use that. When you’re ready to continue, click **Create**.
 
-	.. image:: your-first-aspnet-application/_static/23-vs-createwebappdb.png
-	
+  .. image:: your-first-aspnet-application/_static/23-vs-createwebappdb.png
+
 On the **Connection** tab of the **Publish Web** window, click **Publish**.
 
-	.. image:: your-first-aspnet-application/_static/24-vs-publishwebdb-target.png
-	
+  .. image:: your-first-aspnet-application/_static/24-vs-publishwebdb-target.png
+
 You can view the publishing progress in either the **Output** window or the **Azure App Service Activity** window within Visual Studio.
 
-	.. image:: your-first-aspnet-application/_static/25-vs-webpubactivity.png
-	
+  .. image:: your-first-aspnet-application/_static/25-vs-webpubactivity.png
+
 When publishing to Azure is complete, your web app will be displayed in a browser running on Azure.
 
-	.. image:: your-first-aspnet-application/_static/26-browserazure.png
+  .. image:: your-first-aspnet-application/_static/26-browserazure.png
 
 For additional publishing information, see :doc:`/publishing/index`.
 
 Additional Resources
 --------------------
+
 - :doc:`/conceptual-overview/aspnet`
-- :doc:`/conceptual-overview/understanding-aspnet5-apps`
+- :doc:`/conceptual-overview/understanding-aspnetcore-apps`
 - :doc:`/fundamentals/index`

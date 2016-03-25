@@ -4,16 +4,11 @@ Working with Static Files
 =========================
 By `Tom Archer`_
 
-Static files, which include HTML files, CSS files, image files, and JavaScript files, are assets that the app will serve directly to clients. In this article, we'll cover the following topics as they relate to ASP.NET 5 and static files.
+Static files, which include HTML files, CSS files, image files, and JavaScript files, are assets that the app will serve directly to clients. In this article, we'll cover the following topics as they relate to ASP.NET Core and static files.
 
-In this article:
-  - `Serving static files`_
-  - `Enabling directory browsing`_
-  - `Serving default files`_
-  - `Using the UseFileServer method`_
-  - `Working with content types`_
-  - `IIS Considerations`_
-  - `Best practices`_
+.. contents:: Sections::
+  :local:
+  :depth: 1
 
 Serving static files
 --------------------
@@ -209,7 +204,7 @@ Using the example hierarchy and code snippet from above, here's what happens if 
 Working with content types
 --------------------------
 
-The ASP.NET static files middleware defines `almost 400 known file content types <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/FileExtensionContentTypeProvider.cs>`_. If the user attempts to reach a file of an unknown file type, the ASP.NET middleware will not attempt to serve the file.
+The ASP.NET static files middleware understands almost 400 known file content types. If the user attempts to reach a file of an unknown file type, the static file middleware will not attempt to serve the file.
 
 Let's take the following directory/file hierarchy example to illustrate:
 
@@ -280,7 +275,7 @@ Now, if the user attempts to browse to any file with an extension of ``.myapp``,
 IIS Considerations
 ------------------
 
-ASP.NET 5 applications hosted in IIS use the HTTP platform handler to forward all requests to the application including requests for static files. The IIS static file handler is not used because it won’t get a chance to handle the request before it is handled by the HTTP platform handler.
+ASP.NET Core applications hosted in IIS use the HTTP platform handler to forward all requests to the application including requests for static files. The IIS static file handler is not used because it won’t get a chance to handle the request before it is handled by the HTTP platform handler.
 
 Best practices
 --------------
@@ -291,7 +286,7 @@ This section includes a list of best practices for working with static files:
 
 Summary
 -------
-In this article, you learned how the static files middleware component in ASP.NET 5 allows you to serve static files, enable directory browsing, and serve default files. You also saw how to work with content types that ASP.NET doesn't recognize. Finally, the article explained some IIS considerations and presented some best practices for working with static files.
+In this article, you learned how the static files middleware component in ASP.NET Core allows you to serve static files, enable directory browsing, and serve default files. You also saw how to work with content types that ASP.NET doesn't recognize. Finally, the article explained some IIS considerations and presented some best practices for working with static files.
 
 Additional Resources
 --------------------

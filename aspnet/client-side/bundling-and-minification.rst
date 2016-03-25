@@ -1,13 +1,13 @@
 Bundling and Minification
 =========================
 
-By `Rick Anderson`_, `Erik Reitan`_, `Daniel Roth`_
+By `Rick Anderson`_, `Erik Reitan`_ and `Daniel Roth`_
 
 Bundling and minification are two techniques you can use in ASP.NET to improve page load performance for your web application. Bundling combines multiple files into a single file. Minification performs a variety of different code optimizations to scripts and CSS, which results in smaller payloads. Used together, bundling and minification improves load time performance by reducing the number of requests to the server and reducing the size of the requested assets (such as CSS and JavaScript files).
 
-This article explains the benefits of using bundling and minification, including how these features can be used with ASP.NET 5 applications. 
+This article explains the benefits of using bundling and minification, including how these features can be used with ASP.NET Core applications. 
 
-.. contents:: In this article:
+.. contents:: Sections:
   :local:
   :depth: 1
 
@@ -66,23 +66,23 @@ Consider the following JavaScript function:
 
 .. code-block:: javascript
 
-	AddAltToImg = function (imageTagAndImageID, imageContext) {
-		///<signature>
-		///<summary> Adds an alt tab to the image
-		// </summary>
-		//<param name="imgElement" type="String">The image selector.</param>
-		//<param name="ContextForImage" type="String">The image context.</param>
-		///</signature>
-		var imageElement = $(imageTagAndImageID, imageContext);
-		imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
-	}
+  AddAltToImg = function (imageTagAndImageID, imageContext) {
+    ///<signature>
+    ///<summary> Adds an alt tab to the image
+    // </summary>
+    //<param name="imgElement" type="String">The image selector.</param>
+    //<param name="ContextForImage" type="String">The image context.</param>
+    ///</signature>
+    var imageElement = $(imageTagAndImageID, imageContext);
+    imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
+  }
 
 After minification, the function is reduced to the following:
 
 .. code-block:: javascript
 
-	AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
-	
+  AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
+
 In addition to removing the comments and unnecessary whitespace, the following parameters and variable names were renamed (shortened) as follows:
 
 ==================  =======  
@@ -165,7 +165,6 @@ This environment tag will render the bundled and minified CSS files only when ru
 See Also
 --------
 - :doc:`using-gulp`
-- :doc:`using-grunt`	
+- :doc:`using-grunt`
 - :doc:`/fundamentals/environments`
 - :doc:`/mvc/views/tag-helpers/index`
-	

@@ -25,32 +25,32 @@ We'll be covering all these concepts in this tutorial series and show you how to
 
 - In the **Add New Item - Movie** dialog
 
-	- Tap **MVC Controller Class**
-	- Enter the name "HelloWorldController"
-	- Tap **Add**
-	
+  - Tap **MVC Controller Class**
+  - Enter the name "HelloWorldController"
+  - Tap **Add**
+  
 .. image:: adding-controller/_static/new_hell_ctl.png
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
-	:language: c#
-	:linenos: 
-	:lines: 5-28
-	
+  :language: c#
+  :linenos: 
+  :lines: 5-28
+  
 Every ``public`` method in a controller is callable. In the sample above, both methods return a string.  Note the comments preceding each method:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
-	:language: c#
-	:linenos: 
-	:lines: 10-28
-	:dedent: 4
-	:emphasize-lines: 4,12
+  :language: c#
+  :linenos: 
+  :lines: 10-28
+  :dedent: 4
+  :emphasize-lines: 4,12
 
 The first comment states this is an `HTTP GET <http://www.w3schools.com/tags/ref_httpmethods.asp>`__ method that is invoked by appending "/HelloWorld/" to the URL. The second comment specifies an `HTTP GET <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate ``HTTP POST`` methods.
 
 Let's test these methods with a browser. 
-	
+  
 Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, http://localhost:1234/HelloWorld is used, but you'll have to replace *1234* with the port number of your app.) The ``Index method`` returns a string. You told the system to return some HTML, and it did! 
 
 .. image:: adding-controller/_static/hell1.png
@@ -62,11 +62,11 @@ MVC invokes controller classes (and the action methods within them) depending on
 You set the format for routing in the *Startup.cs* file.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
-	:language: c#
-	:linenos: 
-	:lines: 83-88
-	:dedent: 8
-	:emphasize-lines: 5
+  :language: c#
+  :linenos: 
+  :lines: 83-88
+  :dedent: 8
+  :emphasize-lines: 5
 
 When you run the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above. 
 
@@ -77,20 +77,20 @@ Browse to ``http://localhost:xxxx/HelloWorld/Welcome``. The ``Welcome`` method r
 .. image:: adding-controller/_static/welcome.png
 
 Let's modify the example slightly so that you can pass some parameter information  from the URL to the controller (for example, ``/HelloWorld/Welcome?name=Scott&numtimes=4``).  Change the ``Welcome`` method  to include two parameters as shown below. Note that the code uses the C# optional-parameter feature to indicate that the ``numTimes`` parameter defaults to 1 if no value is passed for that parameter.
-	
+  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
-	:language: c#
-	:linenos: 
-	:lines: 51-55
-	:dedent: 8
+  :language: c#
+  :linenos: 
+  :lines: 51-55
+  :dedent: 8
 
 .. note:: The code above uses ``HtmlEncoder.Default.HtmlEncode`` to protect the app from malicious input (namely JavaScript).
 
-.. note:: In Visual Studio 2015, when you are running without debugging (Ctl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
+.. note:: In Visual Studio, when you are running without debugging (Ctl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
 
 Run your app and browse to:
 
-	http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4 
+  http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4 
 
 (Replace xxxx with your port number.) You can try different values for ``name`` and ``numtimes`` in  the URL. The MVC model binding system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See :doc:`/mvc/models/model-binding` for more information.
 
@@ -101,11 +101,11 @@ In the sample above, the URL segment (``Parameters``) is not used, the ``name`` 
 Replace the ``Welcome`` method with the following code:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
-	:language: c#
-	:linenos: 
-	:lines: 80-84
-	:dedent: 8
-	
+  :language: c#
+  :linenos: 
+  :lines: 80-84
+  :dedent: 8
+  
 Run the application and enter the following URL:  ``http://localhost:xxx/HelloWorld/Welcome/3?name=Rick``
 
 .. image:: adding-controller/_static/rick_routedata.png
@@ -113,10 +113,10 @@ Run the application and enter the following URL:  ``http://localhost:xxx/HelloWo
 This time the third URL segment  matched the route parameter ``id``. The ``Welcome``  method contains a parameter  ``id`` that matched the URL template in the ``MapRoute`` method. The trailing ``?``  (in ``id?``) indicates the ``id`` parameter is optional.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
-	:language: c#
-	:linenos: 
-	:lines: 83-88
-	:dedent: 8
-	:emphasize-lines: 5
-	
+  :language: c#
+  :linenos: 
+  :lines: 83-88
+  :dedent: 8
+  :emphasize-lines: 5
+
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.

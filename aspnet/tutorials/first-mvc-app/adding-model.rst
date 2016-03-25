@@ -1,5 +1,6 @@
 Adding a model
 ==================================================
+
 By `Rick Anderson`_
 
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**\odel" part of the **M**\VC app.
@@ -12,11 +13,11 @@ Adding Model Classes
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
-	:language: c#
-	:lines: 3-12
-	:dedent: 0
-	:linenos:
-	:emphasize-lines: 5
+  :language: c#
+  :lines: 3-12
+  :dedent: 0
+  :linenos:
+  :emphasize-lines: 5
 
 In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key.
 
@@ -29,18 +30,18 @@ In **Solution Explorer**, right-click the *Controllers* folder **> Add > Control
 
 .. image:: adding-model/_static/add_controller.png
 
-In the **Add Scaffold** dialog, tap **MVC 6 Controller with views, using Entity Framework > Add**.
+In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
 .. image:: adding-model/_static/add_scaffold2.png
 
 - Complete the **Add Controller** dialog
 
-	- **Model class:** *Movie(MvcMovie.Models)*
-	- **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
-	- **Controller name:** Keep the default MoviesController
-	- **Views:**: Keep the default of each option checked
-	- **Controller name:** Keep the default *MoviesController*
-	- Tap **Add**
+  - **Model class:** *Movie(MvcMovie.Models)*
+  - **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
+  - **Controller name:** Keep the default MoviesController
+  - **Views:**: Keep the default of each option checked
+  - **Controller name:** Keep the default *MoviesController*
+  - Tap **Add**
 
 .. image:: adding-model/_static/add_controller2.png
 
@@ -50,8 +51,8 @@ The Visual Studio scaffolding engine creates the following:
 - Create, Delete, Details, Edit and Index Razor view files
 - Migrations classes
 
-	- The ``CreateIdentitySchema`` class creates the `ASP.NET Identity membership database <https://docs.asp.net/en/latest/security/introduction-to-aspnet-identity.html>`__ tables. The Identity database stores user login information that is needed for authentication. We won't cover authentication in this tutorial, for that you can follow `Additional resources`_ at the end of this tutorial.
-	- The ``ApplicationDbContextModelSnapshot`` class creates the EF entities used to access the Identity database. We'll talk more about EF entities later in the tutorial.
+  - The ``CreateIdentitySchema`` class creates the :doc:`membership database </security/authentication/identity>` tables. The Identity database stores user login information that is needed for authentication. We won't cover authentication in this tutorial, for that you can follow `Additional resources`_ at the end of this tutorial.
+  - The ``ApplicationDbContextModelSnapshot`` class creates the EF entities used to access the Identity database. We'll talk more about EF entities later in the tutorial.
 
 Visual Studio automatically created the CRUD (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as *scaffolding*). You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
@@ -60,16 +61,16 @@ Use data migrations to create the database
 
 - Open a command prompt in the project directory (MvcMovie/src/MvcMovie). Follow these instructions for a quick way to open a folder in the project directory.
 
- 	- Open a file in the root of the project (for this example, use *Startup.cs*.)
- 	- Right click on *Startup.cs*  **> Open Containing Folder**.	
+  - Open a file in the root of the project (for this example, use *Startup.cs*.)
+  - Right click on *Startup.cs*  **> Open Containing Folder**.
 
-	.. image:: adding-model/_static/quick.png
+  .. image:: adding-model/_static/quick.png
 
-	- Shift + right click a folder > **Open command window here**
-	
-	.. image:: adding-model/_static/folder.png
+  - Shift + right click a folder > **Open command window here**
 
- 	- Run ``cd ..`` to move back up to the project directory
+  .. image:: adding-model/_static/folder.png
+
+  - Run ``cd ..`` to move back up to the project directory
 
 - Run the following commands in the command prompt:
 
@@ -82,19 +83,19 @@ Use data migrations to create the database
 .. image:: adding-model/_static/cmd.png
 
 - The ``ef`` command is specified in the *project.json* file:
-	
+
 .. literalinclude:: start-mvc/sample/src/MvcMovie/project.json
-	:language: JSON
-	:lines: 30-34
-	:dedent: 0
-	:linenos:
-	:emphasize-lines: 3
+  :language: JSON
+  :lines: 30-34
+  :dedent: 0
+  :linenos:
+  :emphasize-lines: 3
 
 - ``dotnet ef migrations add Initial`` Creates a class named ``Initial``
-	
-.. code-block:: C#	
 
-	public partial class Initial : Migration
+.. code-block:: c#
+
+  public partial class Initial : Migration
 
 The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. You can safely ignore the warning ``may result in the loss of data``, it is dropping foreign key constraints and not any data. The warning is a result of the initial create migration for the ``Identity`` model not being up-to-date.  This will be fixed in the next version.
 
@@ -127,7 +128,7 @@ Open the *Controllers/MoviesController.cs* file and examine the generated ``Inde
  :dedent: 4
 
 
-The constructor uses `Dependency Injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__ to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
+The constructor uses :doc:`Dependency Injection </fundamentals/dependency-injection>` to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
 
 A request to the Movies controller returns all the entries in the ``Movies`` table and then passes the data to the ``Index`` view.
  
@@ -150,16 +151,16 @@ The ``id`` parameter is generally passed as route data, for example ``http://loc
 - The controller to the ``movies`` controller (the first URL segment)
 - The action to ``details`` (the second URL segment)
 - The id to 1 (the last URL segment)
-	
+
 You could also pass in the ``id`` with a query string as follows:
 
 ``http://localhost:1234/movies/details?id=1``
 
 If a Movie is found, an instance of the ``Movie`` model is passed to the ``Details`` view:
 
-.. code-block:: C#	
+.. code-block:: c#
 
-	return View(movie);
+  return View(movie);
 
 Examine the contents of the *Views/Movies/Details.cshtml* file:
 
@@ -171,7 +172,7 @@ By including a ``@model`` statement at the top of the view template file, you ca
 
 .. code-block:: HTML
 
-	@model MvcMovie.Models.Movie
+  @model MvcMovie.Models.Movie
 
 This ``@model`` directive allows you to access the movie that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the ``DisplayNameFor`` and ``DisplayFor`` HTML Helpers with the strongly typed ``Model`` object. The ``Create`` and ``Edit`` methods and view templates also pass a ``Movie`` model object.
 
@@ -181,7 +182,7 @@ Examine the *Index.cshtml* view template and the ``Index`` method in the Movies 
 
  public IActionResult Index()
  {
-	return View(_context.Movie.ToList());
+  return View(_context.Movie.ToList());
  }
  
 When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
@@ -193,9 +194,9 @@ When you created the movies controller, Visual Studio automatically included the
 The ``@model`` directive allows you to access the list of movies that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies with a ``foreach`` statement over the strongly typed ``Model`` object:
  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index.cshtml
-	:language: HTML 
-	:linenos:
-	:emphasize-lines: 29, 32, 35, 38, 41, 44-46
+  :language: HTML 
+  :linenos:
+  :emphasize-lines: 29, 32, 35, 38, 41, 44-46
  
 Because the ``Model`` object is strongly typed (as an ``IEnumerable<Movie>`` object), each item in the loop is typed as ``Movie``. Among other benefits, this means that you get compile-time checking of the code and full `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ support in the code editor:
 

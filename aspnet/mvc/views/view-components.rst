@@ -7,12 +7,12 @@ By `Rick Anderson`_
   :local:
   :depth: 1
 
-`View or download sample on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/view-components/sample>`__.
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/view-components/sample>`__
 
 Introducing view components
 ---------------------------
 
-New to ASP.NET MVC 6, view components are similar to partial views, but they are much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
+New to ASP.NET Core MVC, view components are similar to partial views, but they are much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
 
 - Renders a chunk rather than a whole response
 - Includes the same separation-of-concerns and testability benefits found between a controller and view
@@ -45,11 +45,11 @@ A view component class can be created by any of the following:
 - Decorating a class with the ``[ViewComponent]`` attribute, or deriving from a class with the ``[ViewComponent]`` attribute
 - Creating a class where the name ends with the suffix *ViewComponent*
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponentAttribute/index.html#prop-Microsoft.AspNet.Mvc.ViewComponentAttribute.Name>`__ property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name`_ property.
 
 A view component class:
 
-- Fully supports constructor `Dependency Injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__
+- Fully supports constructor :doc:`dependency injection </fundamentals/dependency-injection>`
 - Does not take part in the controller lifecycle, which means you can't use :doc:`filters </mvc/controllers/filters>` in a view component
 
 View component methods
@@ -125,7 +125,7 @@ Notes on the code:
     public class XYZ : ViewComponent
 
 - The ``[ViewComponent]`` attribute above tells the view component selector to use the name ``PriorityList`` when looking for the views associated with the component, and to use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later. 
-- The component uses `dependency injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__ to make the data context available. 
+- The component uses :doc:`dependency injection </fundamentals/dependency-injection>` to make the data context available. 
 - ``InvokeAsync`` exposes a method which can be called from a view, and it can take an arbitrary number of arguments. 
 - The ``InvokeAsync`` method returns the set of ``ToDo`` items that are not completed and have priority lower than or equal to ``maxPriority``.
 
@@ -233,5 +233,7 @@ Additional Resources
 ----------------------
 
 - :doc:`dependency-injection`
-- `View component class <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__ 
-- `View <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__
+- ViewComponent_
+
+.. _ViewComponent: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html
+.. _ViewComponentAttribute.Name: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponentAttribute/index.html#prop-Microsoft.AspNet.Mvc.ViewComponentAttribute.Name

@@ -1,19 +1,19 @@
 Integration Testing
 ===================
+
 By `Steve Smith`_
 
-Integration testing ensures that an application's components function correctly when assembled together. ASP.NET 5 supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
+Integration testing ensures that an application's components function correctly when assembled together. ASP.NET Core supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
 
-In this article:
-  - `Introduction to Integration Testing`_
-  - `Integration Testing ASP.NET`_
-  - `Refactoring to use Middleware`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-
-`Download sample from GitHub <https://github.com/aspnet/docs/tree/master/aspnet/testing/integration-testing/sample>`_. 
+`View or download sample code <https://github.com/aspnet/docs/tree/master/aspnet/testing/integration-testing/sample>`__
 
 Introduction to Integration Testing
 -----------------------------------
+
 Integration tests verify that different parts of an application work correctly together. Unlike :doc:`unit-testing`, integration tests frequently involve application infrastructure concerns, such as a database, file system, network resources, or web requests and responses. Unit tests use fakes or mock objects in place of these concerns, but the purpose of integration tests is to confirm that the system works as expected with these systems.
 
 Integration tests, because they exercise larger segments of code and because they rely on infrastructure elements, tend to be orders of magnitude slower than unit tests. Thus, it's a good idea to limit how many integration tests you write, especially if you can test the same behavior with a unit test.
@@ -24,13 +24,15 @@ Testing the logic within your own methods is usually the domain of unit tests. T
 
 Integration Testing ASP.NET
 ---------------------------
+
 To get set up to run integration tests, you'll need to create a test project, refer to your ASP.NET web project, and install a test runner. This process is described in the :doc:`unit-testing` documentation, along with more detailed instructions on running tests and recommendations for naming your tests and test classes.
 
 .. tip:: Separate your unit tests and your integration tests using different projects. This helps ensure you don't accidentally introduce infrastructure concerns into your unit tests, and lets you easily choose to run all tests, or just one set or the other.
 
 The Test Host
 ^^^^^^^^^^^^^
-ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its ``project.json`` file:
+
+ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its *project.json* file:
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/project.json
   :linenos:
@@ -71,6 +73,7 @@ Now that we have a set of passing tests, it's a good time to think about whether
 
 Refactoring to use Middleware
 -----------------------------
+
 Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in our web application, we see:
 
 .. code-block:: c#
@@ -121,11 +124,9 @@ This code works, but it's far from how we would like to implement this kind of f
 
 One option we can consider is adding `MVC <http://docs.asp.net/projects/mvc>`_ to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill. 
 
-We can, however, take advantage of ASP.NET's :doc:`/fundamentals/middleware` support, which will help us encapsulate the prime checking logic in its own class and achieve better `separation of concerns <http://deviq.com/separation-of-concerns/>`_ within the ``Configure`` method.
+We can, however, take advantage of ASP.NET Core :doc:`middleware </fundamentals/middleware>`, which will help us encapsulate the prime checking logic in its own class and achieve better `separation of concerns <http://deviq.com/separation-of-concerns/>`_ within the ``Configure`` method.
 
-.. tip:: This scenario is perfectly suited to using middleware. Learn more about :doc:`/fundamentals/middleware` and how to plug it into your application's request pipeline.
-
-Since our middleware is simply going to respond to a particular path, we can model it after the `Microsoft.AspNet.Diagnostics.WelcomePage <https://github.com/aspnet/Diagnostics/tree/1.0.0-beta8/src/Microsoft.AspNet.Diagnostics/WelcomePage>`_ middleware, which has similar behavior. We want to allow the path the middleware uses to be specified as a parameter, so the middleware class expects a ``RequestDelegate`` and a ``PrimeCheckerOptions`` instance in its constructor. If the path of the request doesn't match what this middleware is configured to expect, we simply call the next middleware in the chain and do nothing further. The rest of the implementation code that was in ``Configure`` is now in the ``Invoke`` method.
+We want to allow the path the middleware uses to be specified as a parameter, so the middleware class expects a ``RequestDelegate`` and a ``PrimeCheckerOptions`` instance in its constructor. If the path of the request doesn't match what this middleware is configured to expect, we simply call the next middleware in the chain and do nothing further. The rest of the implementation code that was in ``Configure`` is now in the ``Invoke`` method.
 
 .. note:: Since our middleware depends on the ``PrimeService`` service, we are also requesting an instance of this service via the constructor. The framework will provide this service via :doc:`/fundamentals/dependency-injection`, assuming it has been configured (e.g. in ``ConfigureServices``).
 
@@ -151,9 +152,11 @@ Following this refactoring, we are confident that the web application still work
 
 Summary
 -------
-Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET 5 is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
+
+Integration testing provides a higher level of verification than unit testing. It tests application infrastructure and how different parts of an application work together. ASP.NET Core is very testable, and ships with a ``TestServer`` that makes wiring up integration tests for web server endpoints very easy.
 
 Additional Resources
 --------------------
+
 - :doc:`unit-testing`
 - :doc:`/fundamentals/middleware`

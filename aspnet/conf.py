@@ -102,9 +102,10 @@ rst_epilog = """
 .. _.NET Core: https://dotnet.github.io
 .. _Visual Studio: https://www.visualstudio.com
 .. _Visual Studio Code: https://code.visualstudio.com
-.. _Entity Framework: https://docs.efproject.net
+.. _Entity Framework Core: https://docs.efproject.net
 .. _NuGet: https://nuget.org
 .. _xUnit: https://xunit.github.io
+.. _Dependency Injection: :doc:`</fundamentals/dependency-injection>`
 """
 
 # -- Options for HTML output ----------------------------------------------

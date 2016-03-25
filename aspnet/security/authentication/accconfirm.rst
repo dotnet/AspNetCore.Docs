@@ -1,26 +1,20 @@
 .. _security-authentication-account-confirmation:
 
-Account Confirmation and Password Recovery with ASP.NET Identity
-================================================================
+Account Confirmation and Password Recovery
+==========================================
 
 By `Rick Anderson`_
 
-This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using ASP.NET Identity.
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset support.
 
-In this article:
-	- `Create a New ASP.NET 5 Project`_
-	- `Require SSL`_
-	- `Require email confirmation`_
-	- `Configure email provider`_
-	- `Enable account confirmation and password recovery`_
-	- `Register, confirm email, and reset password`_
-	- `Require email confirmation before login`_
-	- `Combine social and local login accounts`_ 
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-Create a New ASP.NET 5 Project
-------------------------------
+Create a New ASP.NET Core Project
+----------------------------------
 
-Create a new ASP.NET 5 web app with individual user accounts.
+Create a new ASP.NET Core web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 
@@ -80,12 +74,12 @@ We'll use the :ref:`Options pattern <options-config-objects>` to access the user
    :lines: 3-7
    :dedent: 4
 
-Set the ``SendGridUser`` and ``SendGridKey`` with the `secret-manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_. For example:
+Set the ``SendGridUser`` and ``SendGridKey`` with the :doc:`secret-manager tool </security/app-secrets>`. For example:
 
 .. code-block:: none
 
-	C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
-	info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
+  C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
+  info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
 
@@ -98,12 +92,12 @@ At this time, the contents of the *project.json* file are not encrypted. The *pr
 
 .. code-block:: json
 
-	{
-	  "SendGridUser": "RickAndMSFT",
-	  "SendGridKey": "",
-	  "Authentication:Facebook:AppId": "",
-	  "Authentication:Facebook:AppSecret": ""
-	}
+  {
+    "SendGridUser": "RickAndMSFT",
+    "SendGridKey": "",
+    "Authentication:Facebook:AppId": "",
+    "Authentication:Facebook:AppSecret": ""
+  }
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,7 +133,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
 
 .. code-block:: json
 
-	 "frameworks": {
+   "frameworks": {
     "net46": { }
   },
 
@@ -161,7 +155,7 @@ The template already has the code for account confirmation and password recovery
 
 .. code-block:: c#
 
-	//await _signInManager.SignInAsync(user, isPersistent: false);
+  //await _signInManager.SignInAsync(user, isPersistent: false);
 
 - Enable password recovery by uncommenting the code in the ``ForgotPassword`` action in the *Controllers/AccountController.cs* file. 
 
@@ -188,10 +182,10 @@ In this section, run the web app and show the account confirmation and password 
 
 - Check your email for the account confirmation link. If you don't get the email notification:
 
-	* Check the SendGrid web site to verify your sent mail messages. 
-	* Check your spam folder.
-	* Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-	* In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
+  * Check the SendGrid web site to verify your sent mail messages. 
+  * Check your spam folder.
+  * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
+  * In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
 
 - Click the link to confirm your email.
 - Log in with your email and password.

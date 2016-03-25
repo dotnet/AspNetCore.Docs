@@ -7,9 +7,9 @@ By `Steve Smith`_
 
 This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
-In this article:
-	- `Article Structure`_
-	- `ReStructuredText Syntax`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 Article Structure
 -----------------
@@ -31,14 +31,14 @@ Subsection headings can be used to organize content within a section. `Headings`
 
 .. code-block:: rst
 
-	Title (H1)
-	==========
-	
-	Section heading (H2)
-	--------------------
-	
-	Subsection heading (H3)
-	^^^^^^^^^^^^^^^^^^^^^^^
+  Title (H1)
+  ==========
+
+  Section heading (H2)
+  --------------------
+
+  Subsection heading (H3)
+  ^^^^^^^^^^^^^^^^^^^^^^^
 
 For section headings, only the first word should be capitalized:
 
@@ -69,16 +69,16 @@ Escaping is done using the ``\`` backslash.
 Format specific items using these rules:
 
 - *Italics* (surround with \*)
-	- Files, folders, paths (for long items, split onto their own line)
-	- New terms
-	- URLs (unless rendered as links, which is the default)
+  - Files, folders, paths (for long items, split onto their own line)
+  - New terms
+  - URLs (unless rendered as links, which is the default)
 - **Strong** (surround with \**)
-	- UI elements
+  - UI elements
 - ``Code Elements`` (surround with \``)
-	- Classes and members
-	- Command-line commands
-	- Database table and column names
-	- Language keywords
+  - Classes and members
+  - Command-line commands
+  - Database table and column names
+  - Language keywords
 
 Links
 ^^^^^
@@ -87,18 +87,18 @@ Inline hyperlinks are formatted like this:
 
 .. code-block:: rst
 
-	Learn more about `ASP.NET <http://www.asp.net>`_.
-	
+  Learn more about `ASP.NET <http://www.asp.net>`_.
+
 Learn more about `ASP.NET <http://www.asp.net>`_.
-	
+
 Surround the link text with backticks. Within the backticks, place the target in angle brackets, and ensure there is a space between the end of the link text and the opening angle bracket. Follow the closing backtick with an underscore.
 
 In addition to URLs, documents and document sections can also be linked by name:
 
 .. code-block:: rst
 
-	For example, here is a link to the `Inline Markup`_ section, above.
-	
+  For example, here is a link to the `Inline Markup`_ section, above.
+
 For example, here is a link to the `Inline Markup`_ section, above.
 
 Any element that is rendered as a link should not have any additional formatting or styling.
@@ -110,18 +110,18 @@ Lists can be started with a ``-`` or ``*`` character:
 
 .. code-block:: rst
 
-	- This is one item
-	- This is a second item
+  - This is one item
+  - This is a second item
 
 Numbered lists can start with a number, or they can be autonumbered by starting each item with the \# character. Please use the \# syntax.
 
 .. code-block:: rst
 
-	1. Numbered list item one.(don't use numbers)
-	2. Numbered list item two.(don't use numbers)
+  1. Numbered list item one.(don't use numbers)
+  2. Numbered list item two.(don't use numbers)
 
-	#. Auto-numbered one.
-	#. Auto-numbered two.
+  #. Auto-numbered one.
+  #. Auto-numbered two.
 
 Source Code
 ^^^^^^^^^^^
@@ -130,21 +130,21 @@ Source code is very commonly included in these articles. Images should never be 
 
 .. code-block:: rst
 
-	.. code-block:: c#
-	
-	public void Foo()
-	{
-		// Foo all the things!
-	}
+  .. code-block:: c#
+
+  public void Foo()
+  {
+    // Foo all the things!
+  }
 
 This results in:
 
 .. code-block:: c#
 
-	public void Foo()
-	{
-		// Foo all the things!
-	}
+  public void Foo()
+  {
+    // Foo all the things!
+  }
 
 The code block ends when you begin a new paragraph without indentation. `Sphinx supports quite a few different languages <http://pygments.org/docs/lexers/>`_. Some common language strings that are available include:
 
@@ -158,25 +158,25 @@ Code blocks also support line numbers and emphasizing or highlighting certain li
 
 .. code-block:: rst
 
-	.. code-block:: c#
-	   :linenos:
-	   :emphasize-lines: 3
+  .. code-block:: c#
+    :linenos:
+    :emphasize-lines: 3
 
-	public void Foo()
-	{
-		// Foo all the things!
-	}
+    public void Foo()
+    {
+      // Foo all the things!
+    }
 
 This results in:
 
 .. code-block:: c#
-   :linenos:
-   :emphasize-lines: 3
+  :linenos:
+  :emphasize-lines: 3
 
-	public void Foo()
-	{
-		// Foo all the things!
-	}
+  public void Foo()
+  {
+    // Foo all the things!
+  }
 
 .. note:: ``caption`` and ``name`` will result in a code-block not being displayed due to our builds using a Sphinx version prior to version 1.3. If you don't see a code block displayed above this note, it's most likely because the version of Sphinx is < 1.3.
 
@@ -191,8 +191,8 @@ To include an image in an article, use the ``.. image`` directive:
 
 .. code-block:: rst
 
-	.. image:: style-guide/_static/asp-net.png
-	
+  .. image:: style-guide/_static/asp-net.png
+
 .. note:: No quotes are needed around the file name.
 
 Here's an example using the above syntax:
@@ -208,8 +208,8 @@ To add a note callout, like the ones shown in this document, use the ``.. note::
 
 .. code-block:: rst
 
-	.. note:: This is a note.
-	
+  .. note:: This is a note.
+
 This results in:
 
 .. note:: This is a note.
@@ -223,25 +223,25 @@ External file references can specify a language, emphasize certain lines, displa
 
 .. code-block:: rst
 
-	.. literalinclude:: style-guide/_static/startup.cs
-		:language: c#
-		:emphasize-lines: 19,25-27
-		:linenos:
+  .. literalinclude:: style-guide/_static/startup.cs
+    :language: c#
+    :emphasize-lines: 19,25-27
+    :linenos:
 
 .. literalinclude:: style-guide/_static/startup.cs
-	:language: c#
-	:emphasize-lines: 19,25-27
-	:linenos:
+  :language: c#
+  :emphasize-lines: 19,25-27
+  :linenos:
 
 You can also include just a section of a larger file, if desired:
 
 .. code-block:: rst
-   :emphasize-lines: 3
+  :emphasize-lines: 3
 
-	.. literalinclude:: style-guide/_static/startup.cs
-		:language: c#
-		:lines: 1,4,20-
-		:linenos:
+  .. literalinclude:: style-guide/_static/startup.cs
+    :language: c#
+    :lines: 1,4,20-
+    :linenos:
 
 This would include the first and fourth line, and then line 20 through the end of the file.
 
@@ -259,16 +259,17 @@ When documenting how a user should navigate a series of menus, use the ``:menuse
 
 .. code-block:: rst
 
-	:menuselection:`Windows --> Views --> Other...`
-	
+  :menuselection:`Windows --> Views --> Other...`
+
 This will result in :menuselection:`Windows --> Views --> Other...`.
 
 Additional Reading
 ------------------
 
 Learn more about Sphinx and ReStructuredText:
-	- `Sphinx documentation <http://sphinx-doc.org/contents.html>`_
-	- `RST Quick Reference <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
+
+- `Sphinx documentation <http://sphinx-doc.org/contents.html>`_
+- `RST Quick Reference <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
 
 
 Summary

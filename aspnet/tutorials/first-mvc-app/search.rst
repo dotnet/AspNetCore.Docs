@@ -47,7 +47,7 @@ If you change the signature of the ``Index`` method to have a parameter named ``
 
 .. code-block:: c#
 
-	template: "{controller=Home}/{action=Index}/{id?}");
+  template: "{controller=Home}/{action=Index}/{id?}");
 
 You can quickly rename the ``searchString`` parameter to ``id`` with the **rename** command. Right click on ``searchString`` **> Rename**.
 
@@ -92,12 +92,12 @@ However, you can't expect users to modify the URL every time they want to search
  :dedent: 8
 
 Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below: 
- 	
+   
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index2.cshtml
-	:language: HTML
-	:lines: 1-21
-	:emphasize-lines: 13-18
-	:linenos:
+  :language: HTML
+  :lines: 1-21
+  :emphasize-lines: 13-18
+  :linenos:
 
 The HTML ``<form>`` tag is super-charged by the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__, so when you submit the form, the filter string is posted to the ``Index`` action of the movies controller. Save your changes and then test the filter.
 
@@ -120,7 +120,7 @@ However, even if you add this ``[HttpPost]`` version of the ``Index`` method, th
 
 .. image:: search/_static/f12.png
 
-Double tap the **http://localhost:1235/Movies	HTTP POST 200** line and then tap **Request body**. 
+Double tap the **http://localhost:1235/Movies  HTTP POST 200** line and then tap **Request body**. 
 
 .. image:: search/_static/f12_rb.png
 
@@ -176,11 +176,11 @@ Adding search by genre to the Index view
 Add an ``Html.DropDownList`` helper to the *Views/Movies/Index.cshtml* file. The completed markup is shown below:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexGenre.cshtml
-	:language: HTML
-	:lines: 12-21
-	:emphasize-lines: 3
-	:linenos:
-	
+  :language: HTML
+  :lines: 12-21
+  :emphasize-lines: 3
+  :linenos:
+  
 .. note:: The next version of this tutorial will replace the ``Html.DropDownList`` helper with the `Select Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc6-select-tag-helper.aspx>`__.
 
 Test the app by searching by genre, by movie title, and by both.

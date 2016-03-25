@@ -7,11 +7,9 @@ By `Rick Anderson`_, `Daniel Roth`_
 
 This tutorial shows how your application can securely store and access secrets in the local development environment. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the :doc:`configuration </fundamentals/configuration>` system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The :doc:`configuration </fundamentals/configuration>` system can read secrets stored with the Secret Manager tool described in this article. 
 
-In this article:
-  - `Environment variables`_
-  - `Installing the secret manager tool`_
-  - `How the secret manager tool works`_
-  - `Additional Resources`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 Environment variables
 ^^^^^^^^^^^^^^^^^^^^^

@@ -1,16 +1,15 @@
 Using Angular for Single Page Applications (SPAs)
 =================================================
-By `Venkata Koppaka`_, `Scott Addie`_
+
+By `Venkata Koppaka`_ and `Scott Addie`_
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
-In this article:
-  - `What is AngularJS?`_
-  - `Getting Started`_
-  - `Key Components`_
-  - `Angular 2.0`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
   
-`View this article's samples on GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`_.
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample>`__
 
 What is AngularJS?
 ------------------
@@ -29,7 +28,7 @@ To start using AngularJS in your ASP.NET application, you must either install it
 Installation
 ^^^^^^^^^^^^
 
-There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET 5 web application in Visual Studio 2015, you can add AngularJS using the built-in :ref:`Bower <bower-index>` support. Simply open ``bower.json``, and add an entry to the ``dependencies`` property:
+There are several ways to add AngularJS to your application. If you’re starting a new ASP.NET Core web application in Visual Studio, you can add AngularJS using the built-in :ref:`Bower <bower-index>` support. Simply open ``bower.json``, and add an entry to the ``dependencies`` property:
 
 .. _angular-bower-json:
 
@@ -296,7 +295,7 @@ To call this factory from the controller, pass ``personFactory`` as a parameter 
 Using services to talk to a REST endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Below is an end-to-end example using services in AngularJS to interact with an ASP.NET 5 Web API endpoint. The example gets data from the Web API and displays the data in a view template. Let's start with the view first: 
+Below is an end-to-end example using services in AngularJS to interact with an ASP.NET Core Web API endpoint. The example gets data from the Web API and displays the data in a view template. Let's start with the view first: 
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/People/Index.cshtml
   :language: html
@@ -326,7 +325,7 @@ In ``personController.js``, we are calling the module’s ``controller`` method 
   :linenos:
   :emphasize-lines: 6-7,13
 
-Let's take a quick look at the ASP.NET 5 Web API and the model behind it. The ``Person`` model is a POCO (Plain Old CLR Object) with ``Id``, ``FirstName``, and ``LastName`` properties:
+Let's take a quick look at the Web API and the model behind it. The ``Person`` model is a POCO (Plain Old CLR Object) with ``Id``, ``FirstName``, and ``LastName`` properties:
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Models/Person.cs
   :language: csharp

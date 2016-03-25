@@ -5,7 +5,7 @@ Custom Policy-Based Authorization
 
 Underneath the covers the :ref:`role authorization <security-authorization-role-based>` and :ref:`claims authorization <security-authorization-claims-based>` make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure. 
 
-An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, which normally takes part in`` ConfigureServices()`` in your ``startup.cs`` file.
+An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, which normally takes part in`` ConfigureServices()`` in your *Startup.cs* file.
 
 .. code-block:: c#
 

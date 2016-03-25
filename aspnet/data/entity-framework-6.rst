@@ -1,19 +1,18 @@
-Getting Started with ASP.NET 5 and Entity Framework 6
+Getting Started with ASP.NET Core and Entity Framework 6
 ===========================================================
 
-By `Paweł Grudzień <https://github.com/pgrudzien12>`_, `Damien Pontifex <https://github.com/DamienPontifex>`_
+By `Paweł Grudzień`_ and `Damien Pontifex`_
 
-This article will show you how to use Entity Framework 6 inside an ASP.NET 5 application.
+This article will show you how to use Entity Framework 6 inside an ASP.NET Core application.
 
-In this article:
-    - `Setup connection strings and dependency injection`_
-    - `Migrate configuration from config to code`_
-    - `Notes on Migrations`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
     
 Prerequisites
 -------------
     
-Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to Entity Framework 7.
+Before you start, make sure that you compile against full .NET Framework in your project.json as Entity Framework 6 does not support .NET Core. If you need cross platform features you will need to upgrade to `Entity Framework Core`_.
 
 In your project.json file specify a single target for the full .NET Framework:
 
@@ -55,7 +54,7 @@ In the ``Startup`` class within ``ConfigureServices`` add factory method of your
 Migrate configuration from config to code
 -----------------------------------------
 
-Entity Framework 6 allows configuration to be specified in xml (in web.config or app.config) or through code. As of ASP.NET 5, all configuration is code-based.
+Entity Framework 6 allows configuration to be specified in xml (in web.config or app.config) or through code. As of ASP.NET Core, all configuration is code-based.
 
 Code-based configuration is achieved by creating a subclass of ``System.Data.Entity.Config.DbConfiguration`` and applying ``System.Data.Entity.DbConfigurationTypeAttribute`` to your ``DbContext`` subclass.
 
@@ -100,13 +99,6 @@ SQL Server, SQL Server Express and LocalDB
 
 This is the default and so no explicit configuration is needed. The above ``CodeConfig`` class can be used to explicitly set the provider services and the appropriate connection string should be passed to the ``DbContext`` constructor as shown `above <#setup-connection-strings-and-dependency-injection>`_.
 
-Notes on Migrations
--------------------
-
-.. note:: Valid with RC1 (early November 2015)
-
-As noted by `Rowan Miller on GitHub <https://github.com/aspnet/Docs/issues/633#issuecomment-158542498>`_ Migration commands won't work because .xproj does not support loading commands into Package Manager Console (this will change for RTM though).
-
 Summary
 -------
 Entity Framework 6 is an object relational mapping (ORM) library, that is capable of mapping your classes to database entities with little effort. These features made it very popular so migrating large portions of code may be undesirable for many projects. This article shows how to avoid migration to focus on other new features of ASP.NET.
@@ -115,4 +107,4 @@ Additional Resources
 --------------------
 
 - `Entity Framework - Code-Based Configuration <https://msdn.microsoft.com/en-us/data/jj680699.aspx>`_
-- `BleedingNEdge.com - Entity Framework 6 With ASP.NET 5 <http://bleedingnedge.com/2015/11/01/entity-framework-6-with-asp-net-5/>`_
+

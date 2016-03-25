@@ -1,9 +1,9 @@
-Your First ASP.NET 5 Application on a Mac
-=========================================
+Your First ASP.NET Core Application on a Mac
+====================================================
 
-By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_
+By `Daniel Roth`_, `Steve Smith`_ and `Rick Anderson`_
 
-ASP.NET 5 is cross-platform; you can develop and run web apps on Mac OS X, Linux and Windows. This article will show you how to write your first ASP.NET 5 application on a Mac.
+ASP.NET Core is cross-platform; you can develop and run web apps on Mac OS X, Linux and Windows. This article will show you how to write your first ASP.NET Core application on a Mac.
 
 .. contents:: Sections:
   :local:
@@ -17,7 +17,7 @@ To setup your development machine download and install `.NET Core`_ and `Visual 
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
-Follow the instruction in :doc:`/client-side/yeoman` to create an MVC 6 project.
+Follow the instruction in :doc:`/client-side/yeoman` to create an ASP.NET Core project.
 
 Developing ASP.NET Applications on a Mac With Visual Studio Code
 ----------------------------------------------------------------
@@ -38,7 +38,7 @@ This will allow you to run commands directly from within Visual Studio Code, inc
 
 At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
 
-This empty project template simply displays "Hello World!". Open ``Startup.cs`` in Visual Studio Code to see how this is configured:
+This empty project template simply displays "Hello World!". Open *Startup.cs* in Visual Studio Code to see how this is configured:
 
 .. image:: your-first-mac-aspnet/_static/vscode-startupcs.png
 
@@ -148,12 +148,12 @@ Record the Git URL for the Web App from the Azure portal:
 - In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
 
   - ``git remote add azure https://Rick-Anderson@rickmac.scm.azurewebsites.net:443/rickmac.git``
-	
+
 - Push to master.
 
   - ``git push azure master`` to deploy. 
 
-	.. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
+  .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
 - Browse to the newly deployed web app.
 

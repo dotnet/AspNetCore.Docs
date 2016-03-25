@@ -1,5 +1,5 @@
-Building your first MVC 6 application
---------------------------------------
+Building your first ASP.NET Core MVC application
+------------------------------------------------
 
 .. toctree::
    :titlesonly:

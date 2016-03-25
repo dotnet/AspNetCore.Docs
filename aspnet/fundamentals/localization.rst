@@ -1,7 +1,7 @@
 Globalization and localization   
 ==============================
 
-By `Rick Anderson`_, `Damien Bowden <https://twitter.com/damien_bod>`_, `Bart Calixto <https://twitter.com/bartmax>`_, and `Nadeem Afana <https://twitter.com/NadeemAfana>`__ 
+`Rick Anderson`_, `Damien Bowden`_, `Bart Calixto`_, `Nadeem Afana`_ 
 
 Creating a multilingual website with ASP.NET Core will allow your site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
@@ -15,7 +15,7 @@ App localization involves the following:
 #. Provide localized resources for the languages and cultures you support
 #. Implement a strategy to select the language/culture for each request
 
-.. contents:: In this article:
+.. contents:: Sections:
   :local:
   :depth: 1
 
@@ -112,9 +112,10 @@ Provide localized resources for the languages and cultures you support
 
 SupportedCultures and SupportedUICultures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 ASP.NET Core allows you to specify two culture values, ``SupportedCultures`` and ``SupportedUICultures``. The `CultureInfo <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo(v=vs.110).aspx>`__ object for ``SupportedCultures`` determines the results of culture-dependent functions, such as date, time, number, and currency formatting. ``SupportedCultures`` also determines the sorting order of text, casing conventions, and string comparisons. See `CultureInfo.CurrentCulture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.currentculture%28v=vs.110%29.aspx>`__ for more info on how the server gets the Culture. The ``SupportedUICultures`` determines which translates strings (from *.resx* files) are looked up by the `ResourceManager <https://msdn.microsoft.com/en-us/library/system.resources.resourcemanager(v=vs.110).aspx>`__. The ``ResourceManager`` simply looks up culture-specific strings that is determined by ``CurrentUICulture``. Every thread in .NET has ``CurrentCulture`` and ``CurrentUICulture`` objects. ASP.NET Core inspects these values when rendering culture-dependent functions. For example, if the current thread's culture is set to "en-US" (English, United States), ``DateTime.Now.ToLongDateString()`` displays "Thursday, February 18, 2016", but if ``CurrentCulture`` is set to "es-ES" (Spanish, Spain) the output will be "jueves, 18 de febrero de 2016".
 
-.. contents:: In this article:
+.. contents:: Sections:
   :local:
   :depth: 1
   
