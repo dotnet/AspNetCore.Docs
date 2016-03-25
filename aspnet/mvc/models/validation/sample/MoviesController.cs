@@ -1,41 +1,61 @@
+using System.Net.Http;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using MVCMovie.Models;
+using System.Net;
+using System.Web.Http;
+using System;
 
 namespace MVCMovie.Controllers
 {
-    public class MoviesControllerx : Controller
+    public class MoviesController : Controller
     {
         private MVCMovieContext _context;
-
-        public MoviesControllerx(MVCMovieContext context)
+        public MoviesController(MVCMovieContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Movie movie)
+        public IActionResult Edit(
+            string title, DateTime? releaseDate, 
+            string description, bool preorder)
         {
-            if (movie.Genre == Genre.Family)                    
+            DateTime? modifiedReleaseDate = releaseDate;
+            if (releaseDate == null) {
+                modifiedReleaseDate = DateTime.Today;
+            }
+
+            var movie = new Movie
             {
-                if (movie.Audience != Audience.Everyone)
+                Title = title,
+                ReleaseDate = modifiedReleaseDate,
+                Description = description,
+            };
+            preorder = true;
+
+            if (preorder) {
+                if (modifiedReleaseDate.Value.Date <= DateTime.Today)
                 {
-                    ModelState.AddModelError("GenreAudienceMismatch", 
-                        "'Family' movies must be rated for an audience of 'Everyone'. " + 
-                        "Are you sure you have the correct genre or audience?");
-                }
-            }                          
+                    ModelState.AddModelError("preorder", "Movies already released may not also be preorder movies.");
+                }                
+            }
+                        
+            TryValidateModel(movie);
 
             if (ModelState.IsValid)
             {
                 _context.Movie.Add(movie);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                _context.SaveChanges();           
+                return RedirectToAction("Index","Home");    
             }
-            return View(movie);
+            else
+            {
+                return HttpBadRequest();
+            }            
         }
     }
 }

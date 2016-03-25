@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVCMovie.Models
 {
-    public class Movie      
+    public class Movie   
     {
         public int Id { get; set; }
 
@@ -14,7 +14,7 @@ namespace MVCMovie.Models
 
         [Required]
         [ClassicMovie(1960)]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         
         [Required]
         [StringLength(1000)]
@@ -29,7 +29,8 @@ namespace MVCMovie.Models
 
         [Required]
         public Audience Audience { get; set; }
-
-        public List<Review> Reviews { get; set; }
+        public List<Review> Reviews { get; set; }  
     }
+
 }
+
