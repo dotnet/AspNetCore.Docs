@@ -8,7 +8,7 @@
 ASP.NET Core Documentation
 ==========================
 
-.. attention:: ASP.NET 5 has being renamed to ASP.NET Core 1.0. Read `more <https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/>`_.
+.. attention:: ASP.NET 5 has been renamed to ASP.NET Core 1.0. Read `more <https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/>`_.
 
 .. include:: ../common/stub-overview.txt
 
