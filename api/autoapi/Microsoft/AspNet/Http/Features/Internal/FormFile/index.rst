@@ -33,7 +33,7 @@ Syntax
 
 .. code-block:: csharp
 
-   public class FormFile : IFormFile
+   public class FormFile : `IFormFile <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/IFormFile/index.html?highlight=iformfile>`_
 
 
 
