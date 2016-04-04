@@ -37,7 +37,6 @@ In the **Add Scaffold** dialog, tap **MVC 6 Controller with views, using Entity 
 
 	- **Model class:** *Movie(MvcMovie.Models)*
 	- **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
-	- **Controller name:** Keep the default MoviesController
 	- **Views:**: Keep the default of each option checked
 	- **Controller name:** Keep the default *MoviesController*
 	- Tap **Add**
