@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Diagnostics;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using System;
@@ -18,8 +17,6 @@ namespace DiagDemo
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-
                 app.UseRuntimeInfoPage(); // default path is /runtimeinfo
             }
             else
@@ -39,6 +36,7 @@ namespace DiagDemo
                 await context.Response.WriteAsync("<ul>");
                 await context.Response.WriteAsync("<li><a href=\"/welcome\">Welcome Page</a></li>");
                 await context.Response.WriteAsync("<li><a href=\"/?throw=true\">Throw Exception</a></li>");
+                await context.Response.WriteAsync("<li><a href=\"/runtimeinfo\">Runtime Info</a></li>");
                 await context.Response.WriteAsync("</ul>");
                 await context.Response.WriteAsync("</body></html>");
             });
