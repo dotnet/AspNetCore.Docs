@@ -15,7 +15,7 @@ In this article:
 Development, Staging, Production
 --------------------------------
 
-ASP.NET 5 references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``Hosting:Environment``, to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET 5.
+ASP.NET 5 references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``Hosting:Environment`` (or ``Hosting__Environment`` on \*nix systems), to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET 5.
 
 The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment :doc:`Tag Helper </mvc/views/tag-helpers/index>` to include certain sections in your :doc:`view </mvc/views/index>` based on the current application environment.
 
