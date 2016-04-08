@@ -16,9 +16,9 @@ In the ``commands`` section of the below *project.json* example, four commands a
 .. code-block:: json
 
     {
-	  "webroot": "wwwroot",
-	  "version": "1.0.0-*",
-	
+      "webroot": "wwwroot",
+      "version": "1.0.0-*",
+
       "dependencies": {
         "Kestrel": "1.0.0-beta7",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta7",
@@ -28,10 +28,10 @@ In the ``commands`` section of the below *project.json* example, four commands a
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
       },
       "commands": {
-		"web": "Microsoft.AspNet.Hosting --config hosting.ini",
-		"kestrel": "Microsoft.AspNet.Hosting --config hosting.ini",
-		"gen": "Microsoft.Framework.CodeGeneration",
-		"ef": "EntityFramework.Commands"
+        "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+        "kestrel": "Microsoft.AspNet.Hosting --config hosting.ini",
+        "gen": "Microsoft.Framework.CodeGeneration",
+        "ef": "EntityFramework.Commands"
       },
       "frameworks": {
         "dnx451": { },

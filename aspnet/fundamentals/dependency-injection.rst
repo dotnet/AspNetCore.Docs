@@ -262,5 +262,6 @@ Additional Resources
 - :doc:`startup`
 - :doc:`/testing/index`
 - :ref:`options-config-objects`
+- `Container-Managed Application Design, Prelude: Where does the Container Belong? <http://blogs.msdn.com/b/nblumhardt/archive/2008/12/27/container-managed-application-design-prelude-where-does-the-container-belong.aspx>`__
 - `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_
 - `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_ (Fowler)

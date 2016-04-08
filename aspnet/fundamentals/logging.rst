@@ -7,9 +7,9 @@ By `Steve Smith`_
 
 ASP.NET 5 has built-in support for logging, and allows developers to easily leverage their preferred logging framework's functionality as well. Implementing logging in your application requires a minimal amount of setup code. Once this is in place, logging can be added wherever it is desired.
 
-In this article:
-	- `Implementing Logging in your Application`_
-	- `Configuring Logging in your Application`_
+.. contents:: Sections
+	:local:
+	:depth: 1
 
 `View or download sample from GitHub <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/fundamentals/logging/sample>`_.
 
@@ -20,7 +20,6 @@ Adding logging to a component in your application is done by requesting either a
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs 
 	:language: c#
-	:linenos:
 	:lines: 21-38
 	:dedent: 8
 	:emphasize-lines: 3,14
@@ -35,7 +34,6 @@ The call to the log method can utilize a format string with named placeholders (
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 35
 	:dedent: 16
 
@@ -45,7 +43,6 @@ The logic for the API is contained within the `TodoController`, which uses :doc:
 
 .. literalinclude:: logging/sample/src/TodoApi/Controllers/TodoController.cs
 	:language: c#
-	:linenos:
 	:lines: 11-30
 	:dedent: 4
 	:emphasize-lines: 5,8,11,17
@@ -105,7 +102,6 @@ In the ``TodoController`` example, event id constants are defined for each event
 
 .. literalinclude:: logging/sample/src/TodoApi/Controllers/TodoController.cs
 	:language: c#
-	:linenos:
 	:lines: 24-43
 	:dedent: 4
 	:emphasize-lines: 4,12,16
@@ -141,15 +137,13 @@ First, be sure to add the ``Microsoft.Extensions.Logging.TraceSource`` package t
 
 .. literalinclude:: logging/sample/src/TodoApi/project.json
 	:language: javascript
-	:linenos:
 	:lines: 5-12
-	:emphasize-lines: 8
+	:emphasize-lines: 7
 
 The following example demonstrates how to configure two separate ``TraceSourceLogger`` instances for an application, both logging only ``Critical`` messages. Each call to ``AddTraceSource`` takes a ``TraceListener``. The first call configures a ``ConsoleTraceListener``; the second one configures an ``EventLogTraceListener`` to write to the ``Application`` event log. These two listeners are not available in DNX Core, so their configuration is wrapped in a conditional compilation statement (``#if DNX451``).
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 40-48
 
 The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener`` instances.
