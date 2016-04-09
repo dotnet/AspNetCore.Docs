@@ -74,13 +74,14 @@ To build libuv you should do the following::
 
     sudo apt-get install make automake libtool curl
     curl -sSL https://github.com/libuv/libuv/archive/v1.8.0.tar.gz | sudo tar zxfv - -C /usr/local/src
+    chown -R $USER /usr/local/src/libuv-1.8.0
     cd /usr/local/src/libuv-1.8.0
-    sudo sh autogen.sh
-    sudo ./configure
-    sudo make 
+    sh autogen.sh
+    ./configure
+    make 
     sudo make install
-    sudo rm -rf /usr/local/src/libuv-1.8.0 && cd ~/
     sudo ldconfig
+    cd - && sudo rm -rf /usr/local/src/libuv-1.8.0
 
 .. note::
 
