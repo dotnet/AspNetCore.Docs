@@ -10,32 +10,34 @@ In this article:
 
 Introduction to model validation
 --------------------------------
-Before an app stores data in a database, the app must validate the data. Data must be scrubbed for security, verified that it is appropriately formatted by type and size, and it must conform to your rules. Validation is necessary although it can be redundant and tedious to implement. In MVC, validation happens on both the client and server. 
 
-Fortunately, .NET has abstracted validation into data annotations. These attributes contain validation code, thereby reducing the amount of code you must write. 
+Before an app stores data in a database, the app must validate the data. Data must be checked for potential security threats, verified that it is appropriately formatted by type and size, and it must conform to your rules. Validation is necessary although it can be redundant and tedious to implement. In MVC, validation happens on both the client and server. 
 
-Data annotations
-----------------
-Data annotations are a way to configure model validation so it's similar conceptually to validation on fields in tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Data annotations make enforcing these requirements much simpler and easier to use.
+Fortunately, .NET has abstracted validation into validation attributes. These attributes contain validation code, thereby reducing the amount of code you must write. 
 
-Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the properties are required, the ``Id`` property is a primary key, and several string properties have length requirements. Additionally, there is a numeric range in place for the ``Price`` property from 0 to $999.99, along with a custom annotation.
+Validation Attributes
+---------------------
+
+Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
+
+Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there is a numeric range restriction in place for the ``Price`` property from 0 to $999.99, along with a custom annotation.
 
 .. literalinclude:: validation/sample/Movie.cs
    :language: c#
    :lines: 7-34
    :dedent: 4
 
-Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in data annotations:
+Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in validation attributes:
 
-- ``[CreditCard]``: Specifies the property as a credit card type.
+- ``[CreditCard]``: Validates the property as a credit card type.
 - ``[Compare]``: Compares two properties in a model. It works with various types, such as int, string, or date. 
-- ``[EmailAddress]``: Specifies the property with an email format.
-- ``[Phone]``: Specifies the property as a telephone format.
+- ``[EmailAddress]``: Validates the property with an email format.
+- ``[Phone]``: Validates the property as a telephone format.
 - ``[Range]``: Sets the minimum and maximum values for multiple types of properties.
-- ``[RegularExpression]``: Forces the data to match a regular expression.
+- ``[RegularExpression]``: Validates that the data matches a regular expression.
 - ``[Required]``: Makes a property required.
-- ``[StringLength]``: The maximum length for a string field.
-- ``[Url]``: Specifies the property as a URL.
+- ``[StringLength]``: The maximum length for a string property.
+- ``[Url]``: Validates the property as a URL.
 
 MVC supports any attribute that derives from ``ValidationAttribute`` for validation purposes. Many useful validation attributes can be found in the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_.
 
@@ -43,7 +45,8 @@ There may be intances where you need more features than built-in attributes prov
 
 Model State
 -----------
-Model state represents validation errors that were submitted with HTML form values. You can then send back model state errors to the client. For example, if a movie is marked as a preorder, it should not already be released to the public. The view will display any errors discovered and added to ``ModelState`` as shown in the example below:
+
+Model state represents validation errors that were submitted with HTML form values. You can then send back model state errors to the client. For example, if a movie is marked as a preorder, it should not already be released to the public. Errors added to the ``ModelState`` such as in the example code below, will display in views at runtime.
 
 .. literalinclude:: validation/sample/MoviesController.cs
    :language: c#
@@ -60,18 +63,20 @@ MVC will continue validating fields until reaches the maximum number of errors (
 
 Manual validation
 -----------------
+
 After model binding and validation are complete, you may want to repeat parts of it. For example, a user may have entered text in a field expecting an integer, or you may need to compute a value for a model's property. You can then reset the invalid value to something acceptable. If you change the model like this, you'll want to run validation again. To run validation manually, call the ``TryValidateModel`` method, as shown here: 
 
 .. literalinclude:: validation/sample/MoviesController.cs
    :emphasize-lines: 51
    :language: c#
-   :lines: 13-60
-   :dedent: 4
+   :lines: 40-48
+   :dedent: 8
    
   
 Custom validation
 -----------------
-Data annotations work for most validation needs. However, some validation rules are specific to your business, as they're not just generic data validation such as ensuring a field is required or that it conforms to a range of values. For these scenarios, custom validation attributes are a great solution. Creating your own custom validation attributes in MVC is easy. Just inherit from the ``ValidationAttribute``, and override the ``IsValid`` method. The ``IsValid`` method accepts two parameters, the first is an object named `value` and the second is a ``ValidationContext`` object named `validationContext`. `Value` refers to the actual value from the field that your custom validator is validating. 
+
+Validation attributes work for most validation needs. However, some validation rules are specific to your business, as they're not just generic data validation such as ensuring a field is required or that it conforms to a range of values. For these scenarios, custom validation attributes are a great solution. Creating your own custom validation attributes in MVC is easy. Just inherit from the ``ValidationAttribute``, and override the ``IsValid`` method. The ``IsValid`` method accepts two parameters, the first is an object named `value` and the second is a ``ValidationContext`` object named `validationContext`. `Value` refers to the actual value from the field that your custom validator is validating. 
 
 In the following sample, a business rule that states that users may not set the genre to `Classic` for a movie released after 1960. The ``[ClassicMovie]`` attribute checks the genre first, and if it is a classic, then it checks the release date to see that it is later than 1960. If it is released after 1960, validation fails. The attribute accepts an integer parameter representing the year that you can use to validate data. You can capture the value of the parameter in the attribute's constructor, as shown here:
 					 
@@ -91,9 +96,10 @@ Alternatively, this same code could be placed in the model instead by implementi
   
 Client side validation
 ----------------------
+
 Client side validation is a great convenience for users. It saves time they would otherwise spend waiting for a round trip to the server. In business terms, even a few fractions of seconds multiplied hundreds of times each day adds up to be a lot of time, expense, and frustration. Straightforward and immediate validation enables users to work more efficiently and produce better quality input and output. 
 
-You must have a view with the proper JavaScript script references in place for client side validation to work. 
+You must have a view with the proper JavaScript script references in place for client side validation to work as you see here. 
 
 .. code-block:: html
 
@@ -101,7 +107,7 @@ You must have a view with the proper JavaScript script references in place for c
   <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
   <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
-MVC uses data annotations in addition to type metadata from model properties to validate data and display any error messages using JavaScript. When you use MVC to render form elements from a model using `Tag Helpers <https://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ or `HTML helpers <https://docs.asp.net/en/latest/mvc/views/html-helpers.html>`_ it will add HTML 5 `data- attributes <http://w3c.github.io/html/dom.html#embedding-custom-non-visible-data-with-the-data-attributes>`_ in the form elements that need validation, as shown below. MVC generates the ``data-`` attributes for both built-in and custom attributes. The ``data-val-required`` attribute below contains an error message to display if the user doesn't fill in the release date field, and that message displays in the accompanying ``<span>`` element. You can display validation errors on the client using the relevant tag helpers as shown here:
+MVC uses validation attributes in addition to type metadata from model properties to validate data and display any error messages using JavaScript. When you use MVC to render form elements from a model using `Tag Helpers <https://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ or `HTML helpers <https://docs.asp.net/en/latest/mvc/views/html-helpers.html>`_ it will add HTML 5 `data- attributes <http://w3c.github.io/html/dom.html#embedding-custom-non-visible-data-with-the-data-attributes>`_ in the form elements that need validation, as shown below. MVC generates the ``data-`` attributes for both built-in and custom attributes. The ``data-val-required`` attribute below contains an error message to display if the user doesn't fill in the release date field, and that message displays in the accompanying ``<span>`` element. You can display validation errors on the client using the relevant tag helpers as shown here:
 
 .. code-block:: html
  :emphasize-lines: 7, 8
@@ -119,9 +125,10 @@ MVC uses data annotations in addition to type metadata from model properties to 
     </div>  
   </form>
 
-The tag helpers above render the HTML below. Notice that the ``data-`` attributes in the HTML output correspond to the data annotations for the ``ReleaseDate`` property. 
+The tag helpers above render the HTML below. Notice that the ``data-`` attributes in the HTML output correspond to the validation annotations for the ``ReleaseDate`` property. 
 
 .. code-block:: html
+ :emphasize-lines: 8-12
 
   <form action="/movies/Create" method="post">
     <div class="form-horizontal">
@@ -142,8 +149,11 @@ The tag helpers above render the HTML below. Notice that the ``data-`` attribute
             
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages. 
 
+MVC determines type attribute values based on the .NET datatype of a property, possibly overridden using ``[DataType]`` attributes. The base ``[DataType]`` attribute does no real server-side validation. Browsers choose their own error messages and display those errors however they wish, however the jQuery Validation Unobtrusive package can override the messages and display them consistently with others. This happens most obviously when users apply ``[DataType]`` subclasses such as ``[EmailAddress]``.
+
 IClientModelValidator
 ---------------------
+
 You may create client side logic for your custom attribute, and `unobtrusive validation <http://jqueryvalidation.org/documentation/>`_ will execute it on the client for you automatically as part of validation. The first step is to control what data- attributes are added by implementing the ``IClientModelValidator`` interface as shown here:  
 
 .. literalinclude:: validation/sample/ClassicMovieAttribute.cs
@@ -161,7 +171,7 @@ Attributes that implement this interface can add HTML attributes to generated fi
   data-val-required="The ReleaseDate field is required." 
   id="ReleaseDate" name="ReleaseDate" value="" />
 
-Unobtrusive validation uses the data in the ``data-`` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's ``validator`` object. This is shown in the example below that adds a method named ``classicmovie`` containing custom client validation code to the jQuery ``validator`` object, then rules and errors. 
+Unobtrusive validation uses the data in the ``data-`` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's ``validator`` object. This is shown in the example below that adds a method named ``classicmovie`` containing custom client validation code to the jQuery ``validator`` object. 
 
 .. code-block:: javascript
    
@@ -181,50 +191,21 @@ Unobtrusive validation uses the data in the ``data-`` attributes to display erro
 
 Now jQuery has the information to execute the custom JavaScript validation as well as the error message to display if that validation code returns false. 
 
-Remote valiation
-----------------
+Remote validation
+-----------------
+
 Remote validation is a great feature to use when you need to validate data on the client against data on the server. For example, your app may need to verify whether an email or user name is already in use, and it must query a large amount of data to do so. Downloading large sets of data for validating one or a few fields consumes too many resources. It may also expose sensitive information. An alternative is to make a round-trip request to validate a field.
 
 You can implement remote validation in a two step process. First, you must annotate your model with the ``[Remote]`` attribute. The ``[Remote]`` attribute accepts multiple overloads you can use to direct client side JavaScript to the appropriate code to call. The example points to the ``VerifyEmail`` action method of the ``Users`` controller. 
 
-.. code-block:: c#
-
-  public class User : IUserRepository
-  {
-    public int Id { get; set; }
-
-    [Remote(action: "VerifyEmail", controller: "Users")]
-    public string Email { get; set; }    
-	public string FullName { get; set; }    
-	
-	public bool VerifyEmail()
-    {
-      // code to check for existing email
-    }
-    public void Save()
-    {
-      // code to save user
-    }
-  }
+.. literalinclude:: validation/sample/User.cs
+ :language: c#
+ :lines: 6-24
  
 The second step is putting the validation code in the corresponding action method as defined in the ``[Remote]`` attribute. It returns a ``JsonResult`` that the client side can use to proceed or pause and display an error if needed.
  
-.. code-block:: c#
+.. literalinclude:: validation/sample/UsersController.cs
+ :language: c#
+ :lines: 3-9
  
-  public class UsersController : Controller
-  {   
-    [AcceptVerbs("Get", "Post")]
-    public IActionResult VerifyEmail(string email)
-    {
-      User user = new User();
-
-      if (!user.VerifyEmail()) {
-        return Json(data: string.Format("Email {0} is already in use.", email));              
-      }
-
-      user.Save();
-      return Json(new { success = true }); ;
-    }
-  }
-
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.  

@@ -14,7 +14,7 @@ namespace MVCMovie.Models
 
         [Required]
         [ClassicMovie(1960)]
-        public DateTime? ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         
         [Required]
         [StringLength(1000)]
@@ -26,6 +26,8 @@ namespace MVCMovie.Models
         
         [Required]
         public Genre Genre { get; set; }
+
+        public bool Preorder { get; set; }
 
         [Required]
         public Audience Audience { get; set; }
