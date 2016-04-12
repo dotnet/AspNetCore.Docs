@@ -64,7 +64,7 @@ You may need to run validation manually. To do so, call the ``TryValidateModel``
 
 .. code-block:: c#
 
-TryValidateModel(movie);
+  TryValidateModel(movie);
    
   
 Custom validation
