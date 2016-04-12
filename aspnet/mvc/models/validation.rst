@@ -54,7 +54,7 @@ Model state represents validation errors that were submitted with HTML form valu
    :lines: 21-59
    :dedent: 4   
 
-MVC will continue validating fields until reaches the maximum number of errors (200). You can configure this number by inserting the following code into the ``ConfigureServices`` method in the ``Startup.cs`` file:
+MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the ``ConfigureServices`` method in the ``Startup.cs`` file:
 
 .. literalinclude:: validation/sample/Startup.cs
    :language: c#
@@ -64,11 +64,13 @@ MVC will continue validating fields until reaches the maximum number of errors (
 Manual validation
 -----------------
 
-After model binding and validation are complete, you may want to repeat parts of it. For example, a user may have entered text in a field expecting an integer, or you may need to compute a value for a model's property. You can then reset the invalid value to something acceptable. If you change the model like this, you'll want to run validation again. To run validation manually, call the ``TryValidateModel`` method, as shown here: 
+After model binding and validation are complete, you may want to repeat parts of it. For example, a user may have entered text in a field expecting an integer, or you may need to compute a value for a model's property. 
+
+You may need to run validation manually. To do so, call the ``TryValidateModel`` method, as shown here: 
 
 .. literalinclude:: validation/sample/MoviesController.cs
    :emphasize-lines: 51
-   :language: c#
+   :language: c#d
    :lines: 40-48
    :dedent: 8
    
@@ -206,6 +208,6 @@ The second step is putting the validation code in the corresponding action metho
  
 .. literalinclude:: validation/sample/UsersController.cs
  :language: c#
- :lines: 3-9
+ :lines: 6-24
  
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.  
