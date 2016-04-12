@@ -29,30 +29,24 @@ Below is an annotated ``Movie`` model from an app that stores information about 
 
 Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in validation attributes:
 
-- ``[CreditCard]``: Validates the property as a credit card type.
+- ``[CreditCard]``: Validates the property has a credit card format.
 - ``[Compare]``: Compares two properties in a model. It works with various types, such as int, string, or date. 
 - ``[EmailAddress]``: Validates the property with an email format.
 - ``[Phone]``: Validates the property as a telephone format.
-- ``[Range]``: Sets the minimum and maximum values for multiple types of properties.
+- ``[Range]``: Validates the property value falls within the given range.
 - ``[RegularExpression]``: Validates that the data matches a regular expression.
 - ``[Required]``: Makes a property required.
-- ``[StringLength]``: The maximum length for a string property.
+- ``[StringLength]``: Validates that a string property has at most the given maximum length.
 - ``[Url]``: Validates the property as a URL.
 
-MVC supports any attribute that derives from ``ValidationAttribute`` for validation purposes. Many useful validation attributes can be found in the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_.
+MVC supports any attribute that derives from ``ValidationAttribute`` for validation purposes. Many useful validation attributes can be found in the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_ namespace.
 
-There may be intances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from ``ValidationAttribute`` or change your model to subclass ``IValidatableObject``.
+There may be instances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from ``ValidationAttribute`` or change your model to subclass ``IValidatableObject``.
 
 Model State
 -----------
 
-Model state represents validation errors that were submitted with HTML form values. You can then send back model state errors to the client. For example, if a movie is marked as a preorder, it should not already be released to the public. Errors added to the ``ModelState`` such as in the example code below, will display in views at runtime.
-
-.. literalinclude:: validation/sample/MoviesController.cs
-   :language: c#
-   :emphasize-lines: 44-49
-   :lines: 21-59
-   :dedent: 4   
+Model state represents validation errors that were submitted with HTML form values. 
 
 MVC will continue validating fields until reaches the maximum number of errors (200 by default). You can configure this number by inserting the following code into the ``ConfigureServices`` method in the ``Startup.cs`` file:
 
@@ -68,11 +62,9 @@ After model binding and validation are complete, you may want to repeat parts of
 
 You may need to run validation manually. To do so, call the ``TryValidateModel`` method, as shown here: 
 
-.. literalinclude:: validation/sample/MoviesController.cs
-   :emphasize-lines: 51
-   :language: c#
-   :lines: 40-48
-   :dedent: 8
+.. code-block:: c#
+
+TryValidateModel(movie);
    
   
 Custom validation
