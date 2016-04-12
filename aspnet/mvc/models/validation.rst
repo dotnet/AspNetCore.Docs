@@ -20,11 +20,11 @@ Validation Attributes
 
 Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
 
-Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there is a numeric range restriction in place for the ``Price`` property from 0 to $999.99, along with a custom annotation.
+Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there is a numeric range restriction in place for the ``Price`` property from 0 to $999.99, along with a custom validation attribute.
 
 .. literalinclude:: validation/sample/Movie.cs
    :language: c#
-   :lines: 7-34
+   :lines: 7-35
    :dedent: 4
 
 Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in validation attributes:
@@ -70,7 +70,7 @@ You may need to run validation manually. To do so, call the ``TryValidateModel``
 
 .. literalinclude:: validation/sample/MoviesController.cs
    :emphasize-lines: 51
-   :language: c#d
+   :language: c#
    :lines: 40-48
    :dedent: 8
    
@@ -127,7 +127,7 @@ MVC uses validation attributes in addition to type metadata from model propertie
     </div>  
   </form>
 
-The tag helpers above render the HTML below. Notice that the ``data-`` attributes in the HTML output correspond to the validation annotations for the ``ReleaseDate`` property. 
+The tag helpers above render the HTML below. Notice that the ``data-`` attributes in the HTML output correspond to the validation attributes for the ``ReleaseDate`` property. 
 
 .. code-block:: html
  :emphasize-lines: 8-12

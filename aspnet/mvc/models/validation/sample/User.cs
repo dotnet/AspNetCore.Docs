@@ -3,17 +3,16 @@ using System;
 
 namespace MVCMovie.Models
 {
-public class UserRepository : IUserRepository
-{
-    public int Id { get; set; }
-
-    [Remote(action: "VerifyEmail", controller: "Users")]
-    public string Email { get; set; }
-    public string FullName { get; set; }
-    public bool VerifyEmail()
+    public class UserRepository : IUserRepository
     {
-        throw new NotImplementedException();
+        [Remote(action: "VerifyEmail", controller: "Users")]
+        public string Email { get; set; }
+
+        public bool VerifyEmail()
+        {
+            // in the real world this would actually verify the email
+            throw new NotImplementedException();
+        }
     }
-}
 }
 
