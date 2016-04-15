@@ -8,6 +8,7 @@ namespace MVCMovie.Models
 {
     public class MovieIValidatable : IValidatableObject
     {
+        private const int _classicYear = 1960;
         public int Id { get; set; }
 
         [Required]
@@ -37,10 +38,10 @@ namespace MVCMovie.Models
         {
             if (Genre == Genre.Classic)
             {
-                if (ReleaseDate.Year > 1960)
+                if (ReleaseDate.Year > _classicYear)
                 {
                     yield return new ValidationResult(
-                        "Classic movies must have a release year earlier than 1960", 
+                        "Classic movies must have a release year earlier than " + _classicYear, 
                         new[] { "ReleaseDate" });
                 }
             }

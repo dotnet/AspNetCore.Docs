@@ -22,15 +22,11 @@ namespace MVCMovie.Models
 
             if (movie.Genre == Genre.Classic)
             {
-                if (movie.ReleaseDate.Year < this._year)
+                if (movie.ReleaseDate.Year < _year)
                 {
                     return new ValidationResult(
                         "Classic movies must have a release year earlier than " + this._year);
 
-                }
-                else
-                {
-                    return ValidationResult.Success;
                 }
             }
             return ValidationResult.Success;

@@ -30,14 +30,14 @@ Below is an annotated ``Movie`` model from an app that stores information about 
 Simply reading through the model reveals the rules about data for this app, making it easier to maintain the code. Below are several popular built-in validation attributes:
 
 - ``[CreditCard]``: Validates the property has a credit card format.
-- ``[Compare]``: Compares two properties in a model. It works with various types, such as int, string, or date. 
-- ``[EmailAddress]``: Validates the property with an email format.
-- ``[Phone]``: Validates the property as a telephone format.
+- ``[Compare]``: Validates two properties in a model match. 
+- ``[EmailAddress]``: Validates the property has an email format.
+- ``[Phone]``: Validates the property has a telephone format.
 - ``[Range]``: Validates the property value falls within the given range.
 - ``[RegularExpression]``: Validates that the data matches a regular expression.
 - ``[Required]``: Makes a property required.
 - ``[StringLength]``: Validates that a string property has at most the given maximum length.
-- ``[Url]``: Validates the property as a URL.
+- ``[Url]``: Validates the property has a URL format.
 
 MVC supports any attribute that derives from ``ValidationAttribute`` for validation purposes. Many useful validation attributes can be found in the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_ namespace.
 
@@ -79,9 +79,9 @@ In the following sample, a business rule that states that users may not set the 
    :lines: 11-37
    :dedent: 4
    
-The ``movie`` variable above represents a ``Movie`` object that contains the data from the form submission to validate. In this case, the validation code checks the date and genre in the ``IsValid`` method of the ``ClassicMovieAttribute`` class as per the rules. Upon successful validation ``IsValid`` returns a ``ValidationResult.Success`` code, and when validation fails, a ``ValidationResult`` with an error message. When a user modifies the ``Genre`` field and submits the form, the ``IsValid`` method of the ``ClassicMovieAttribute`` will verify whether the movie is a classic. Like any built-in attribute, apply the ``ClassicMovieAttribute`` to a property such as ``ReleaseDate`` to ensure validation happens, as shown in the previous code sample. 
+The ``movie`` variable above represents a ``Movie`` object that contains the data from the form submission to validate. In this case, the validation code checks the date and genre in the ``IsValid`` method of the ``ClassicMovieAttribute`` class as per the rules. Upon successful validation ``IsValid`` returns a ``ValidationResult.Success`` code, and when validation fails, a ``ValidationResult`` with an error message. When a user modifies the ``Genre`` field and submits the form, the ``IsValid`` method of the ``ClassicMovieAttribute`` will verify whether the movie is a classic. Like any built-in attribute, apply the ``ClassicMovieAttribute`` to a property such as ``ReleaseDate`` to ensure validation happens, as shown in the previous code sample. Since the example works only with ``Movie`` types, a better option is to use ``IValidatableObject`` as shown in the following paragraph.
 
-Alternatively, this same code could be placed in the model instead by implementing ``IValidatableObject`` which contains a ``Validate`` method. While custom validation attributes work well for validating individual properties, implementing IValidatableObject can be used to implement class-level validation.
+Alternatively, this same code could be placed in the model instead by implementing ``IValidatableObject`` which contains a ``Validate`` method. While custom validation attributes work well for validating individual properties, implementing ``IValidatableObject`` can be used to implement class-level validation as seen here.
 
  .. literalinclude:: validation/sample/MovieIValidatable.cs
    :language: c#
