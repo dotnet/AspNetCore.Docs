@@ -26,7 +26,7 @@ In this article:
     - `Implement the other CRUD operations`_
     - `Next steps`_
 
-You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/getting-started/first-web-api/sample>`__.
+You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample>`__.
 
 
 Overview
