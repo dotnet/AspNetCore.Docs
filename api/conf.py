@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'ASP.NET API Reference'
-copyright = str(date.today().year) + ', Microsoft'
+copyright = date.today().year + ', Microsoft'
 author = 'Microsoft'
 
 # The version info for the project you're documenting, acts as replacement for
