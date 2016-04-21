@@ -117,10 +117,10 @@ In order for the user to browse the ``MyStaticFiles`` directory, you can configu
 
 At this point, if the user enters an address of ``http://<yourApp>/StaticFiles``, the browser will display the files in the ``MyStaticFiles`` directory.
 
-Serving default files
----------------------
+Serving a default document
+--------------------------
 
-In order for your Web app to serve a default page without the user having to fully qualify the URI, call the ``UseDefaultFiles`` extension method from ``Startup.Configure`` as follows. Note that you must still call ``UseStaticFiles`` as well. This is because ``UseDefaultFiles`` is a `URL re-writer` that doesn't actually serve the file. You must still specify middleware (``UseStaticFiles``, in this case) to serve the file.
+Setting a default home page gives site visitors a place to start when visiting your site. Without a default site users will see a blank page unless they enter a fully qualified URI to a document.  In order for your Web app to serve a default page without the user having to fully qualify the URI, call the ``UseDefaultFiles`` extension method from ``Startup.Configure`` as follows.
 
 .. code-block:: c#
   :emphasize-lines: 5-6
@@ -132,6 +132,8 @@ In order for your Web app to serve a default page without the user having to ful
     app.UseDefaultFiles();
     app.UseStaticFiles();
     ...
+
+.. note:: ``UseDefaultFiles`` must be called before ``UseStaticFiles`` or it will not serve up the default home page. You must still call ``UseStaticFiles``. ``UseDefaultFiles`` is a URL re-writer that doesn't actually serve the file. You must still specify middleware (UseStaticFiles, in this case) to serve the file.
 
 If you call the ``UseDefaultFiles`` extension method and the user enters a URI of a folder, the middleware will search (in order) for one of the following files. If one of these files is found, that file will be used as if the user had entered the fully qualified URI (although the browser URL will continue to show the URI entered by the user).
 
