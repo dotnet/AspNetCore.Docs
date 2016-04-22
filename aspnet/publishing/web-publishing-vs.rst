@@ -113,7 +113,7 @@ As mentioned previously the most important line in the default publish script is
 
   - The publish properties are passed in the script parameter ``$publishProperties``.
 
-  - ``$publishProperties`` is a PowerShell hashtable which contains all the properties declared in the profile .pubxml file. It also includes values for file text replacements or files to exclude. For more info on the values for ``$publishProperties use Get-Help publish-aspnet –Examples``.
+  - ``$publishProperties`` is a PowerShell hashtable which contains all the properties declared in the profile .pubxml file. It also includes values for file text replacements or files to exclude. For more info on the values for ``$publishProperties`` use ``Get-Help publish-aspnet –Examples``.
 
 To customize this process, you can edit the PowerShell script directly. To perform an action before publish starts, add the action before the call to ``Publish-AspNet``. To have an action performed after publish, add the appropriate calls after Publish-AspNet. When Publish-AspNet is called the contents of the $packOutput directory are published to the destination. For example, if you need add a file to the publish process, just copy it to the correct location in ``$packOutput`` before ``Publish-AspNet`` is called. The snippet below shows how to do that.
 
@@ -137,4 +137,4 @@ In this snippet external images are copied from ``c:\resources\external-images t
 
 You are free to customize, or even completely replace, the Publish-AspNet script provided. As previously mentioned, you will need to preserve the parameter declaration, but the rest is up to you.
 
- 
+
