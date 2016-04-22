@@ -72,23 +72,6 @@ For example, you can use the following code in you Configure method to setup env
 
 If the app is running in a ``Development`` environment, then it enables BrowserLink and development specific error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
-You may need to determine which content to send to the client at runtime, depending on the current environment. A common scenario when this happens is when a developer uses full scripts and style sheets for development and debugging vs. their minified counterparts for staging or production. You can do this by setting the ``names`` attribute of the ``<environment>`` Tag Helper that corresponds to the environment you want it to work in - ``Development``, ``Staging`` or ``Production``. The settings are defined in the project's debug settings (``launchSettings.json``). 
-
-.. code-block:: html
-
-  <environment names="Development">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-  </environment>
-  <environment names="Staging,Production">
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
-      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" 
-	  asp-fallback-test-value="absolute" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-  </environment>
-
-
 Startup conventions
 -------------------
 
