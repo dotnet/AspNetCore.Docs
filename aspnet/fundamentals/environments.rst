@@ -16,7 +16,7 @@ Development, Staging, Production
 
 ASP.NET Core references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``Hosting:Environment`` (or ``Hosting__Environment`` on \*nix systems), to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET Core.
 
-The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment :doc:`Tag Helper </mvc/views/tag-helpers/index>` to include certain sections in your :doc:`view </mvc/views/index>` based on the current application environment.
+The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment :doc:`tag helper </mvc/views/tag-helpers/index>` to include certain sections in your :doc:`view </mvc/views/index>` based on the current application environment.
 
 .. note:: The specified environment name is case insensitive. Whether you set the variable to ``Development`` or ``development`` or ``DEVELOPMENT`` the results will be the same.
 
@@ -72,6 +72,15 @@ For example, you can use the following code in you Configure method to setup env
 
 If the app is running in a ``Development`` environment, then it enables BrowserLink and development specific error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
+You may need to determine which content to send to the client at runtime, depending on the current environment. For example, in a development environment you generally serve non-minimized scripts and style sheets, which makes debugging easier. Production and test environments should serve the minified versions and generally from a CDN. You can do this using the Environment :doc:`tag helper </mvc/views/tag-helpers/intro>`. The Environment tag helper will only render its contents if the current environment matches one of the environments specified using the ``names`` attribute.
+
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
+  :language: html
+  :lines: 8-17
+  :dedent: 8
+
+To get started with using tag helpers in your application see :doc:`/mvc/views/tag-helpers/intro`.
+
 Startup conventions
 -------------------
 
@@ -109,3 +118,4 @@ Additional Resources
 --------------------
 
 - :doc:`configuration`
+- :doc:`/mvc/views/tag-helpers/intro`
