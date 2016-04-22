@@ -47,7 +47,7 @@ In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Fr
 
 The Visual Studio scaffolding engine creates the following:
 
-- A movies controller (MoviesController.c)
+- A movies controller (MoviesController.cs)
 - Create, Delete, Details, Edit and Index Razor view files
 - Migrations classes
 

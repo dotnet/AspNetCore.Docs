@@ -11,6 +11,7 @@ ASP.NET Core has built-in support for logging, and allows developers to easily l
   :local:
   :depth: 1
 
+
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/logging/sample>`__
 
 Implementing Logging in your Application
@@ -20,7 +21,6 @@ Adding logging to a component in your application is done by requesting either a
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs 
   :language: c#
-  :linenos:
   :lines: 21-38
   :dedent: 8
   :emphasize-lines: 3,14
@@ -35,7 +35,6 @@ The call to the log method can utilize a format string with named placeholders (
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
-  :linenos:
   :lines: 35
   :dedent: 16
 
@@ -45,7 +44,6 @@ The logic for the API is contained within the `TodoController`, which uses :doc:
 
 .. literalinclude:: logging/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :linenos:
   :lines: 11-30
   :dedent: 4
   :emphasize-lines: 5,8,11,17
@@ -105,7 +103,6 @@ In the ``TodoController`` example, event id constants are defined for each event
 
 .. literalinclude:: logging/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :linenos:
   :lines: 24-43
   :dedent: 4
   :emphasize-lines: 4,12,16
@@ -141,7 +138,6 @@ First, be sure to add the ``Microsoft.Extensions.Logging.TraceSource`` package t
 
 .. literalinclude:: logging/sample/src/TodoApi/project.json
   :language: javascript
-  :linenos:
   :lines: 5-12
   :emphasize-lines: 8
 
@@ -149,7 +145,6 @@ The following example demonstrates how to configure two separate ``TraceSourceLo
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
-  :linenos:
   :lines: 40-48
 
 The sample above also demonstrates setting the ``MinimumLevel`` on the logger factory. However, this specified level is simply the default for new factories, but can still be overridden by individually configured loggers. In this case, the ``sourceSwitch`` is configured to use ``SourceLevels.Critical``, so only ``Critical`` log messages are picked up by the two ``TraceListener`` instances.

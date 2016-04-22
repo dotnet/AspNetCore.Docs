@@ -223,7 +223,7 @@ IntelliSense provides code completion, parameter descriptions, and other feature
 Development, Staging, and Production Environments
 -------------------------------------------------
 
-When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio, when you change the **ASPNET_ENV** environment variable to ``Production``, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tag helpers containing link tags to the ``Development`` CSS files and the minified ``Staging, Production`` CSS files.
+When Gulp is used to optimize client-side files for staging and production, the processed files are saved to a local staging and production location. The *_Layout.cshtml* file uses the **environment** tag helper to provide two different versions of CSS files. One version of CSS files is for development and the other version is optimized for both staging and production. In Visual Studio 2015, when you change the **Hosting:Environment** environment variable to ``Production``, Visual Studio will build the Web app and link to the minimized CSS files. The following markup shows the **environment** tag helpers containing link tags to the ``Development`` CSS files and the minified ``Staging, Production`` CSS files.
 
 .. code-block:: html
 
@@ -241,7 +241,7 @@ When Gulp is used to optimize client-side files for staging and production, the 
 Switching Between Environments
 ------------------------------
 
-To switch between compiling for different environments, modify the **ASPNET_ENV** environment variable's value.
+To switch between compiling for different environments, modify the **Hosting:Environment** environment variable's value.
 
 1. In **Task Runner Explorer**, verify that the **min** task has been set to run **Before Build**.
 2. In **Solution Explorer**, right-click the project name and select **Properties**.
@@ -249,14 +249,14 @@ To switch between compiling for different environments, modify the **ASPNET_ENV*
   The property sheet for the Web app is displayed.
 
 3. Click the **Debug** tab.
-4. Set the value of the **ASPNET_ENV** environment variable to ``Production``.
+4. Set the value of the **Hosting:Environment** environment variable to ``Production``.
 5. Press **F5** to run the application in a browser.
 6. In the browser window, right-click the page and select **View Source** to view the HTML for the page.
 
   Notice that the stylesheet links point to the minified CSS files.
 
 7. Close the browser to stop the Web app.
-8. In Visual Studio, return to the property sheet for the Web app and change the **ASPNET_ENV** environment variable back to ``Development``.
+8. In Visual Studio, return to the property sheet for the Web app and change the **Hosting:Environment** environment variable back to ``Development``.
 9. Press **F5** to run the application in a browser again.
 10. In the browser window, right-click the page and select **View Source** to see the HTML for the page.
 

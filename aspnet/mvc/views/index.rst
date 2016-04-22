@@ -5,6 +5,7 @@ Views
     :titlesonly:
     
     razor
+    layout
     dynamic-vs-static
     html-helpers
     tag-helpers/index

@@ -18,7 +18,6 @@ ASP.NET Core has built-in support for MVC building Web APIs. Unifying the two fr
 
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/getting-started/first-web-api/sample>`__
 
-
 Overview
 --------
 Here is the API that you’ll create:

@@ -23,7 +23,7 @@ You can specify multiple roles as a comma separated list;
 
 .. code-block:: c#
 
-  [Authorize(Roles = "HRManager, Finance")]
+  [Authorize(Roles = "HRManager,Finance")]
   public class SalaryController : Controller
   {  
   }

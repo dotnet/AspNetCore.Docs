@@ -9,6 +9,7 @@ Fundamentals
     static-files
     routing
     diagnostics
+    error-handling
     localization
     configuration
     logging
