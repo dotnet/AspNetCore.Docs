@@ -302,7 +302,7 @@ To run a Web API application, you can use the following command from the Command
 	
 In the case of the *web* command, the ``Microsoft.AspNet.Hosting`` assembly has a ``Main`` entry point method that is called whenever you run the web command. The rest of the values in the *web* command are used by the hosting assembly to host your web application.
 
-To run commands out of a different project, you can use the ``--project`` option. The short form of ``--project`` is ``--p``. For example::
+To run commands out of a different project, you can use the ``--project`` option. The short form of ``--project`` is ``-p``. For example::
 
 	dnx -p tests\MyTestProject test
 	
