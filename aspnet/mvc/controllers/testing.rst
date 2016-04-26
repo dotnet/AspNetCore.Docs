@@ -43,20 +43,20 @@ To demonstrate unit testing, review the following controller. It displays a list
 
 The controller is following the `explicit dependencies principle <http://deviq.com/explicit-dependencies-principle/>`_, expecting dependency injection to provide it with an instance of ``IBrainstormSessionRepository``. This makes it fairly easy to test using a mock object framework, like `Moq <https://www.nuget.org/packages/Moq/>`_. The ``HTTP GET Index`` method has no looping or branching and only calls one method. To test this ``Index`` method, we need to verify that a ``ViewResult`` is returned, with a ``ViewModel`` from the repository's ``List`` method.
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerIndex.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
   :emphasize-lines: 16-17,23-26
 
 The ``HTTP POST Index`` method (shown below) should verify:
 
 - The action method returns a ``ViewResult`` with the appropriate data when ``ModelState.IsValid`` is ``false``
-- The ``Add`` method on the repository is called and a ``RedirectToActionResult`` is returned with the correct arguments when ``ModelState.IsValid`` is false.
+- The ``Add`` method on the repository is called and a ``RedirectToActionResult`` is returned with the correct arguments when ``ModelState.IsValid`` is true.
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerIndexPost.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
-  :lines: 12-61
+  :lines: 29-57
   :dedent: 4
-  :emphasize-lines: 3-4,9,17-18,21,30
+  :emphasize-lines: 1-2,10-12,15-16,19,24-25,28
 
 The first test confirms when ``ModelState`` is not valid, the same ``ViewResult`` is returned as for a ``GET`` request. Note that the test doesn't attempt to pass in an invalid model. That wouldn't work anyway since model binding isn't running - we're just calling the method directly. However, we're not trying to test model binding - we're only testing what our code in the action method does. The simplest approach is to add an error to ``ModelState``.
 
@@ -72,7 +72,7 @@ Another controller in the app displays information related to a particular brain
 
 The controller action has three cases to test, one for each ``return`` statement:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/SessionControllerIndex.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/SessionControllerTests.cs
   :language: c#
   :emphasize-lines: 16,26,39
 
@@ -86,17 +86,11 @@ The app exposes functionality as a web API (a list of ideas associated with a br
 
 The ``ForSession`` method returns a list of ``IdeaDTO`` types, with property names camel cased to match JavaScript conventions. Avoid returning your business domain entities directly via API calls, since frequently they include more data than the API client requires, and they unnecessarily couple your app's internal domain model with the API you expose externally. Mapping between domain entities and the types you will return over the wire can be done manually (using a LINQ ``Select`` as shown here) or using a library like `AutoMapper <https://github.com/AutoMapper/AutoMapper>`_
 
-The unit tests for the ``ForSession`` API:
+The unit tests for the ``Create`` and ``ForSession`` API methods:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/ApiIdeasControllerForSession.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/ApiIdeasControllerTests.cs
   :language: c#
-  :emphasize-lines: 15-16,26-27
-
-The unit tests for ``Create``:
-
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/ApiIdeasControllerCreate.cs
-  :language: c#
-  :emphasize-lines: 15-16,20,25-26,30,37-38,54,59
+  :emphasize-lines: 16-17,26-27,37-38,65-66,76-77
 
 As stated previously, to test the behavior of the method when ``ModelState`` is invalid, add a model error to the controller as part of the test. Don't try to test model validation or model binding in your unit tests - just test your action method's behavior when confronted with a particular ``ModelState`` value.
 
@@ -140,7 +134,7 @@ Each integration test class configures the ``TestServer`` that will run the ASP.
 
 To correct this issue, you need to configure the server to use the ``ApplicationBasePath`` and ``ApplicationName`` of the web project. This is done in the call to ``UseServices`` in the integration test class shown:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/HomeControllerIndex.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/HomeControllerTests.cs
   :language: c#
   :emphasize-lines: 20,22-32,36-37,42
 
@@ -153,9 +147,9 @@ If your app exposes web APIs, it's a good idea to have automated tests confirm t
 
 The following set of tests target the ``Create`` method in the :ref:`IdeasController <ideas-controller>` class shown above:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/ApiIdeasControllerCreatePost.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/ApiIdeasControllerTests.cs
   :language: c#
-  :lines: 40-93
+  :lines: 48-101
   :dedent: 8
   :emphasize-lines: 1-2,9-10,17-18,25-26,33-34,42-43,51
 
