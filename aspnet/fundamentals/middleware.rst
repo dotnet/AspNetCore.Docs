@@ -70,7 +70,7 @@ The first ``App.Run`` delegate terminates the pipeline. In the following example
 	:emphasize-lines: 5
 	:dedent: 8
 
-You chain multiple request delegates together; the ``next`` parameter represents the next delegate in the pipeline. You can typically perform actions both before and after the next delegate, as this example demonstrates:
+You chain multiple request delegates together; the ``next`` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the `next` parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
@@ -91,11 +91,10 @@ In the above example, the call to ``await next.Invoke()`` will call into the nex
 Run, Map, and Use
 ^^^^^^^^^^^^^^^^^
 
-You configure the HTTP pipeline using the `extensions <https://github.com/aspnet/HttpAbstractions/tree/dev/src/Microsoft.AspNet.Http.Abstractions/Extensions>`_ ``Run``, ``Map``, and ``Use``. The ``Run`` method short circuits the pipeline (that is, it will not call a ``next`` request delegate). Thus, ``Run`` should only be called at the end of your pipeline. ``Run`` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two middleware are equivalent as the ``Use`` version doesn't use the ``next`` parameter:
+You configure the HTTP pipeline using `Run <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/RunExtensions/index.html>`__, `Map <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/MapExtensions/index.html?highlight=microsoft.aspnet.builder.mapextensions#Microsoft.AspNet.Builder.MapExtensions.Map>`__,  and `Use <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/UseExtensions/index.html?highlight=microsoft.aspnet.builder.useextensions#Microsoft.AspNet.Builder.UseExtensions.Use>`__. The ``Run`` method short circuits the pipeline (that is, it will not call a ``next`` request delegate). Thus, ``Run`` should only be called at the end of your pipeline. ``Run`` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two middleware are equivalent as the ``Use`` version doesn't use the ``next`` parameter:
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 65-79
 	:emphasize-lines: 3,11
 	:dedent: 8
@@ -106,7 +105,6 @@ We've already seen several examples of how to build a request pipeline with ``Us
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 81-93
 	:emphasize-lines: 11
 	:dedent: 8
@@ -117,7 +115,6 @@ In addition to path-based mapping, the ``MapWhen`` method supports predicate-bas
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 95-113
 	:emphasize-lines: 5,11-13
 	:dedent: 8
@@ -168,12 +165,13 @@ ASP.NET ships with the following middleware components:
 Writing middleware
 ------------------
 
+The `CodeLabs middleware tutorial <https://github.com/Microsoft-Build-2016/CodeLabs-WebDev/tree/master/Module2-AspNetCore>`__ provides a good introduction to writing middleware.
+
 For more complex request handling functionality, the ASP.NET team recommends implementing the middleware in its own class, and exposing an ``IApplicationBuilder`` extension method that can be called from the ``Configure`` method. The simple logging middleware shown in the previous example can be converted into a middleware class that takes in the next ``RequestDelegate`` in its constructor and supports an ``Invoke`` method as shown:
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs
 	:language: c#
 	:caption: RequestLoggerMiddleware.cs
-	:linenos:
 	:emphasize-lines: 13, 19
 
 The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T> <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta6/src/Microsoft.AspNet.Http.Abstractions/Extensions/UseMiddlewareExtensions.cs>`_ extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a ``params`` array of arguments to be used for non-injected parameters.
@@ -181,7 +179,6 @@ The middleware follows the `Explicit Dependencies Principle <http://deviq.com/ex
 .. literalinclude:: middleware/sample/src/MiddlewareSample/RequestLoggerExtensions.cs
 	:language: c#
 	:caption: RequestLoggerExtensions.cs
-	:linenos:
 	:lines: 5-11
 	:emphasize-lines: 5
 	:dedent: 4
@@ -190,7 +187,6 @@ Using the extension method and associated middleware class, the ``Configure`` me
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
-	:linenos:
 	:lines: 51-62
 	:emphasize-lines: 6
 	:dedent: 8
@@ -201,7 +197,7 @@ Testing the middleware (by setting the ``Hosting:Environment`` environment varia
 
 .. image:: middleware/_static/console-logmiddleware.png
 
-.. note:: You can see another example of ``UseMiddleware<T>`` in action in the `UseStaticFiles <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileExtensions.cs#L44>`_ extension method, which is used to create the `StaticFileMiddleware <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs#L30>`_ with its required constructor parameters. In this case, the ``StaticFileOptions`` parameter is passed in, but other constructor parameters are supplied by ``UseMiddleware<T>`` and dependency injection.
+.. note:: The `UseStaticFiles <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileExtensions.cs#L44>`_ extension method (which creates the `StaticFileMiddleware <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs#L30>`_) also uses ``UseMiddleware<T>``. In this case, the ``StaticFileOptions`` parameter is passed in, but other constructor parameters are supplied by ``UseMiddleware<T>`` and dependency injection.
 
 Additional Resources
 --------------------
