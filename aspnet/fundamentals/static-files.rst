@@ -6,14 +6,9 @@ By `Tom Archer`_
 
 Static files, which include HTML files, CSS files, image files, and JavaScript files, are assets that the app will serve directly to clients. In this article, we'll cover the following topics as they relate to ASP.NET 5 and static files.
 
-In this article:
-  - `Serving static files`_
-  - `Enabling directory browsing`_
-  - `Serving default files`_
-  - `Using the UseFileServer method`_
-  - `Working with content types`_
-  - `IIS Considerations`_
-  - `Best practices`_
+.. contents:: Sections
+  :local:
+  :depth: 1
 
 Serving static files
 --------------------
