@@ -7,7 +7,7 @@ Response Caching
   :local:
   :depth: 1
 
-`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/performance/response-caching/sample>`_
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/performance/caching/response-caching/sample>`_
 
 What is Response Caching
 ------------------------

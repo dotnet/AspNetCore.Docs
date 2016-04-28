@@ -3,7 +3,7 @@ Adding a New Field
 
 By `Rick Anderson`_
 
-In this section you'll use `Entity Framework <http://ef.readthedocs.org/en/latest/getting-started/index.html>`__ Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
+In this section you'll use `Entity Framework <http://ef.readthedocs.io/en/latest/getting-started.html>`__ Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
 
 By default, when you use Entity Framework Code First to automatically create a database, as you did earlier in this tutorial, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, the Entity Framework throws an error. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
 

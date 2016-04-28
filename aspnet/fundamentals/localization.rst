@@ -68,7 +68,7 @@ The `IViewLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microso
 .. literalinclude:: localization/sample/Views/Home/About.cshtml
   :language: HTML
   
-The default implementation of ``IViewLocalizer`` finds the resource file based on the view's file name. There is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using `IHtmlLocalizer <IHtmlLocalizer>`__, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
+The default implementation of ``IViewLocalizer`` finds the resource file based on the view's file name. There is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using `IHtmlLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/IHtmlLocalizer/index.html>`__, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
 .. code-block:: HTML
 

@@ -20,7 +20,7 @@ ASP.NET Core defines a number of `HTTP feature interfaces <https://docs.asp.net/
 `IHttpResponseFeature <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IHttpResponseFeature/index.html>`_
   Defines the structure of an HTTP response, including the status code, headers, and body of the response.
 
-`IHttpAuthenticationFeature <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IHttpAuthenticationFeature/index.html>`_
+`IHttpAuthenticationFeature <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/Authentication/IHttpAuthenticationFeature/index.html>`_
   Defines support for identifying users based on a ``ClaimsPrincipal`` and specifying an authentication handler.
 
 `IHttpUpgradeFeature <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IHttpUpgradeFeature/index.html>`_

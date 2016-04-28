@@ -9,7 +9,7 @@ ASP.NET Core has been designed with testability in mind, so that creating unit t
   :local:
   :depth: 1
 
-`View or download sample code <sample>`__
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/testing/unit-testing/sample>`__
 
 Getting Started with Testing
 ----------------------------

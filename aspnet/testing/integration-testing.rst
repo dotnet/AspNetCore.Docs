@@ -122,7 +122,7 @@ Refactoring is the process of changing an application's code to improve its desi
 
 This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET application, even as simple a one as this is. Imagine what the ``Configure`` method would look like if we needed to add this much code to it every time we added another URL endpoint! 
 
-One option we can consider is adding `MVC <http://docs.asp.net/projects/mvc>`_ to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill. 
+One option we can consider is adding :doc:`MVC </mvc/index>` to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill. 
 
 We can, however, take advantage of ASP.NET Core :doc:`middleware </fundamentals/middleware>`, which will help us encapsulate the prime checking logic in its own class and achieve better `separation of concerns <http://deviq.com/separation-of-concerns/>`_ within the ``Configure`` method.
 
