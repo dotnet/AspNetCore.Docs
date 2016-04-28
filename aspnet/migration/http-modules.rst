@@ -192,7 +192,7 @@ However, in ASP.NET Core a new configuration model is used in place of *Web.conf
 
 The new :doc:`configuration system </fundamentals/configuration>` gives you these options to solve this:
 
-* Directly inject the options into the middleware, as shown in the `next section <loading-middleware-options-through-direct-injection>`_.
+* Directly inject the options into the middleware, as shown in the :ref:`next section <loading-middleware-options-through-direct-injection>`.
 * Use the :ref:`options pattern <options-config-objects>`:
 
 1. Create a class to hold your middleware options, for example:
@@ -261,6 +261,8 @@ The new :doc:`configuration system </fundamentals/configuration>` gives you thes
     ``IApplicationBuilder`` takes care of dependency injection.
 
     This is not limited to ``IOptions`` objects. Any other object that your middleware requires can be injected this way.
+
+.. _loading-middleware-options-through-direct-injection:
 
 Loading middleware options through direct injection
 ---------------------------------------------------

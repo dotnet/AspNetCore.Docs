@@ -124,7 +124,7 @@ Double tap the **http://localhost:1235/Movies  HTTP POST 200** line and then tap
 
 .. image:: search/_static/f12_rb.png
 
-You can see the search parameter and `XSRF <:doc:../../security/anti-request-forgery>`__ token in the request body. Note, as mentioned in the previous tutorial, the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__ generates an `XSRF <:doc:../../security/anti-request-forgery>`__ anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
+You can see the search parameter and :doc:`XSRF <../../security/anti-request-forgery>` token in the request body. Note, as mentioned in the previous tutorial, the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__ generates an :doc:`XSRF <../../security/anti-request-forgery>` anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. We'll fix this by specifying the request should be ``HTTP GET``. Notice how intelliSense helps us update the markup.
 
@@ -138,7 +138,7 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 .. image:: search/_static/search_get.png
 
-The `XSRF <:doc:../../security/anti-request-forgery>`__ token and any other posted form elements will also be added to the URL.
+The :doc:`XSRF <../../security/anti-request-forgery>` token and any other posted form elements will also be added to the URL.
 
 Adding Search by Genre
 --------------------------

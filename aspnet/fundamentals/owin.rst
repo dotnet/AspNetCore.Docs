@@ -92,7 +92,7 @@ Another example of how OWIN-based servers' features can be leveraged by ASP.NET 
   :linenos:
   :emphasize-lines: 7, 9-10
 
-This `sample  <https://github.com/aspnet/Docs/tree/master/docs/fundamentals/owin/sample>`__ is configured using the same ``NowinServerFactory`` as the previous one - the only difference is in how the application is configured in its ``Configure`` method. A simple test using `a simple websocket client <https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en>`_ demonstrates that the application works as expected:
+This `sample  <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample>`__ is configured using the same ``NowinServerFactory`` as the previous one - the only difference is in how the application is configured in its ``Configure`` method. A simple test using `a simple websocket client <https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en>`_ demonstrates that the application works as expected:
 
 .. image:: owin/_static/websocket-test.png
 

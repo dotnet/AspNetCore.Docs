@@ -83,7 +83,7 @@ Run, Map, and Use
 You configure the HTTP pipeline using the extensions methods Run_, Map_, and Use_. By convention, the ``Run`` method is simply a shorthand way of adding middleware to the pipeline that doesn't call any other middleware (that is, it will not call a ``next`` request delegate). Thus, ``Run`` should only be called at the end of your pipeline. ``Run`` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two examples (one using ``Run`` and the other ``Use``) are equivalent to one another, since the second one doesn't use its ``next`` parameter:
 
 .. _Run: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/RunExtensions/index.html#meth-Microsoft.AspNet.Builder.RunExtensions.Run
-.. _Map: Map https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/MapExtensions/index.html#meth-Microsoft.AspNet.Builder.MapExtensions.Map
+.. _Map: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/MapExtensions/index.html#meth-Microsoft.AspNet.Builder.MapExtensions.Map
 .. _Use: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/UseExtensions/index.html#meth-Microsoft.AspNet.Builder.UseExtensions.Use
 
 
