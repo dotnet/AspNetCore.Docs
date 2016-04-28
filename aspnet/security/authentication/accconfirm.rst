@@ -58,7 +58,7 @@ Add the ``[RequireHttps]`` attribute to each controller. The ``[RequireHttps]`` 
 Require email confirmation
 ----------------------------
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob\@example.com" from registering as "joe\@contoso.com". Without email confirmation, "joe\@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib\@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
 You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, an SMS text message, or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
 
@@ -216,7 +216,7 @@ Combine social and local login accounts
 
 To complete this section, you must first enable an external authentication provider. See :doc:`sociallogins`.
 
-You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
+You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT\@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 
 .. image:: accconfirm/_static/rick.png
 

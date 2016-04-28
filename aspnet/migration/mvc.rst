@@ -103,8 +103,8 @@ Controllers and views
 - Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project. 
 - Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the ``About`` and ``Contact`` views, so you'll have to invoke them from the browser (replace **2468** with the port number used in your project).
 
-  - http://localhost:2468/home/about
-  - http://localhost:2468/home/contact
+  - \http://localhost:2468/home/about
+  - \http://localhost:2468/home/contact
 
 .. image:: mvc/_static/contact-page.png
 

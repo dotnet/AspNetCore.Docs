@@ -194,11 +194,11 @@ QueryStringRequestCultureProvider
 
 Some apps will use a query string to set the `culture and UI culture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx#Current>`__. For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. Unless you change the ``RequestCultureProvider`` list, a query string will always win as the localization provider. You pass the query string parameters ``culture`` and ``ui-culture``. The following example sets the specific culture (language and region) to Spanish/Mexico:
 
-  http://localhost:5000/?culture=es-MX&ui-culture=es-MX
+  \http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 
 If you only pass in one of the two (``culture`` or ``ui-culture``), the query string provider will set both values using the one you passed in. For example, setting just the culture will set both the ``Culture`` and the ``UICulture``:
 
-  http://localhost:5000/?culture=es-MX
+  \http://localhost:5000/?culture=es-MX
 
 CookieRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -51,7 +51,7 @@ The first comment states this is an `HTTP GET <http://www.w3schools.com/tags/ref
 
 Let's test these methods with a browser. 
   
-Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, http://localhost:1234/HelloWorld is used, but you'll have to replace *1234* with the port number of your app.) The ``Index method`` returns a string. You told the system to return some HTML, and it did! 
+Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, "\http://localhost:1234/HelloWorld" is used, but you'll have to replace *1234* with the port number of your app.) The ``Index method`` returns a string. You told the system to return some HTML, and it did! 
 
 .. image:: adding-controller/_static/hell1.png
 
@@ -90,7 +90,7 @@ Let's modify the example slightly so that you can pass some parameter informatio
 
 Run your app and browse to:
 
-  http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4 
+  \http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4 
 
 (Replace xxxx with your port number.) You can try different values for ``name`` and ``numtimes`` in  the URL. The MVC model binding system automatically maps the named parameters from  the query string in the address bar to parameters in your method. See :doc:`/mvc/models/model-binding` for more information.
 

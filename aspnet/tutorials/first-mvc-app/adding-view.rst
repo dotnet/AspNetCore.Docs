@@ -128,7 +128,7 @@ You'll create a loop in the *Welcome.cshtml* view template that displays "Hello"
 
 Save your changes and browse to the following URL:
 
-http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4
+  \http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4
 
 Data is taken from the URL and passed to the controller using the `model binder <http://docs.asp.net/projects/mvc/en/latest/models/index.html>`__. The controller packages the data into a ``ViewData`` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 

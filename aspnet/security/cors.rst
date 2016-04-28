@@ -18,15 +18,15 @@ Two URLs have the same origin if they have identical schemes, hosts, and ports. 
 
 These two URLs have the same origin:
 
-- http://example.com/foo.html
-- http://example.com/bar.html
+- \http://example.com/foo.html
+- \http://example.com/bar.html
 
 These URLs have different origins than the previous two:
 
-- http://example.net - Different domain
-- http://example.com:9000/foo.html - Different port
-- https://example.com/foo.html - Different scheme
-- http://www.example.com/foo.html - Different subdomain
+- \http://example.net - Different domain
+- \http://example.com:9000/foo.html - Different port
+- \https://example.com/foo.html - Different scheme
+- \http://www.example.com/foo.html - Different subdomain
 
 .. note:: Internet Explorer does not consider the port when comparing origins.
 
@@ -59,7 +59,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
   :lines: 15-18, 24
   :dedent: 8
 
-The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
+The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "\http://example.com" and no other origins.
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 

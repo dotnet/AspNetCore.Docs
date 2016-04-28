@@ -177,7 +177,7 @@ This command will start the process of pushing your local project files to Azure
 | remote: Finished successfully.
 | remote: Running post deployment command(s)...
 | remote: Deployment successful.
-| To https://username@samplewebappdemo01.scm.azurewebsites.net:443/SampleWebAppDemo01.git
+| To \https://username\@samplewebappdemo01.scm.azurewebsites.net:443/SampleWebAppDemo01.git
 | * [new branch]      master -> master
 | Branch master set up to track remote branch master from Azure-SampleApp.
 |

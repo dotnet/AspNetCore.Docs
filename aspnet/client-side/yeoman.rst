@@ -124,7 +124,7 @@ The cross-platform :ref:`Kestrel <kestrel>` web server will begin listening on p
 
 .. image:: yeoman/_static/yeoman-web-server-started.png
 
-4. Open a web browser, and navigate to http://localhost:5000. 
+4. Open a web browser, and navigate to \http://localhost:5000. 
 
 .. image:: yeoman/_static/yeoman-home-page_5000.png 
 

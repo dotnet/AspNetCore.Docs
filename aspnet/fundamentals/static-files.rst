@@ -21,7 +21,7 @@ By default, static files are stored in the `webroot` of your project. The locati
 
 Static files can be stored in any folder under the webroot and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the webroot folder - ``css``, ``images``, and ``js``. In order to directly access an image in the ``images`` subfolder, the URL would look like the following:
 
-  http://<yourApp>/images/<imageFileName>
+  \http://<yourApp>/images/<imageFileName>
 
 In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. This is accomplished by calling the ``UseStaticFiles`` extension method from  ``Startup.Configure`` as follows:
 
