@@ -5,4 +5,4 @@
 
 .. include:: /../common/stub-notice.txt
 
-.. _issue: https://github.com/aspnet/Docs/issues/93
+.. _issue: https://github.com/aspnet/Docs/issues/89
