@@ -3,7 +3,7 @@ Formatting Response Data
 
 By `Steve Smith`_
 
-ASP.NET MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
+ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
 .. contents:: Sections
     :local:
@@ -14,7 +14,25 @@ ASP.NET MVC has built-in support for formatting response data, using fixed forma
 Format-Specific Action Results
 ------------------------------
 
-Some ActionResult options are specific to a particular format, such as JsonResult and ContentResult (note strings are simply returned as text).
+Actions can return specific results that are always formatted in a particular manner. For example, returning a ``JsonResult`` will return JSON-formatted data, regardless of client preferences. Likewise, returning a ``ContentResult`` will return plain text formatted string data.
+
+To return data using a specific result type, assuming you're inheriting from the base ``Controller`` class, it's recommended that you use the built-in helper methods ``Json`` and ``Content``. These methods check to see if the data being formatted implements ``IDisposable`` and register the object for disposal if required. Your action method should return either the specific result type (for instance, ``JsonResult``) or ``IActionResult``.
+
+Returning JSON-formatted data:
+
+(include)
+
+Response
+
+(screenshot)
+
+Returning plain text formatted data:
+
+(include)
+
+Response
+
+(screenshot)
 
 Content Negotiation
 -------------------
@@ -35,3 +53,5 @@ Recommendations
 ---------------
 
 Prefer IActionResult as your return type for data since it allows you to handle error states and different HTTP status codes.
+
+imaginethatemb@aol.com
