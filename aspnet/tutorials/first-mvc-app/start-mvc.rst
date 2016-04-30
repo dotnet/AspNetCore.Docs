@@ -61,4 +61,4 @@ Right out of the box the default template gives you Home, Contact, About, Regist
 
 .. image:: start-mvc/_static/2.png
 
-In the next part of this tutorial, we'll learn a about MVC and start writing some code.
+In the next part of this tutorial, we'll learn about MVC and start writing some code.
