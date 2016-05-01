@@ -20,24 +20,44 @@ To return data using a specific result type, assuming you're inheriting from the
 
 Returning JSON-formatted data:
 
-(include)
+.. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
+  :language: c#
+  :lines: 17-22
+  :emphasize-lines: 3,5
+  :dedent: 8
 
-Response
+Sample response from this action:
 
-(screenshot)
+.. image:: formatting/_static/json-response.png
 
-Returning plain text formatted data:
+Note that the content type of the response is ``application/json``, shown both in the list of network requests and in the Response Headers section. Also note the list of options presented by the browser (in this case, Microsoft Edge) in the Accept header, in the Request Headers section. The current technique is ignoring this header; obeying it is discussed below.
 
-(include)
+To return plain text formatted data, use ``ContentResult`` and the ``Content`` helper:
 
-Response
+.. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
+  :language: c#
+  :lines: 31-36
+  :emphasize-lines: 3,5
+  :dedent: 8
 
-(screenshot)
+A response from this action:
+
+.. image:: formatting/_static/text-response.png
+
+Note in this case the ``Content-Type`` returned is ``text/plain``. You can also achieve this same behavior using just a string response type:
+
+.. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
+  :language: c#
+  :lines: 38-43
+  :emphasize-lines: 3,5
+  :dedent: 8
+
+.. tip:: For non-trivial actions with multiple return types or options (for example, different HTTP status codes based on the result of operations performed), prefer ``IActionResult`` as the return type.
 
 Content Negotiation
 -------------------
 
-Content negotiation (conneg for short) occurs when client specifies an Accept header. The default format used by ASP.NET Core MVC is JSON. Negotiation occurs automatically for IActionResult types, including Ok, BadRequest, Created, etc. You can also return a model type and the framework will automatically wrap it in an ObjectResult for you.
+Content negotiation (*conneg* for short) occurs when client specifies an Accept header. The default format used by ASP.NET Core MVC is JSON. Negotiation occurs automatically for IActionResult types, including Ok, BadRequest, Created, etc. You can also return a model type and the framework will automatically wrap it in an ObjectResult for you.
 
 Configuring Formatters
 ----------------------

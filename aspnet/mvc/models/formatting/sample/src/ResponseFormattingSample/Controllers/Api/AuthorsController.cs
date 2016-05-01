@@ -28,10 +28,18 @@ namespace ResponseFormattingSample.Controllers.Api
             return _authorRepository.GetByAlias(alias);
         }
 
+        // GET api/authors/about
         [HttpGet("About")]
         public ContentResult About()
         {
             return Content("An API listing authors of docs.asp.net.");
+        }
+
+        // GET api/authors/version
+        [HttpGet("version")]
+        public string Version()
+        {
+            return "Version 1.0.0";
         }
     }
 }
