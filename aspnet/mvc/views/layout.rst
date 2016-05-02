@@ -1,14 +1,13 @@
 Layout
 =======
+
 By `Steve Smith`_
 
 Views frequently share visual and programmatic elements. In this article, you'll learn how to use common layouts, share directives, and run common code before rendering views in your ASP.NET app.
 
 .. contents:: Sections
-	:local:
-	:depth: 1
-	
-`View sample files <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/layout/sample>`_
+  :local:
+  :depth: 1
 
 What is a Layout
 ----------------
@@ -105,9 +104,9 @@ If you have code you need to run before every view, this should be placed in the
 
 A sample ``_ViewStart.cshtml`` file:
 
-.. literalinclude:: ../../../common/samples/WebApplication1/src/WebApplication1/Views/_ViewStart.cshtml
+.. literalinclude::  /../common/samples/WebApplication1/src/WebApplication1/Views/_ViewStart.cshtml
   :language: html
 
 The file above specifies that all views will use the ``_Layout.cshtml`` layout.
 
-.. note:: Neither ``_ViewStart.cshtml`` nor ``_ViewImports.cshtml`` are placed in the ``/Views/Shared`` folder. The app-level versions of these files should be placed directly int he ``/Views`` folder.
+.. note:: Neither ``_ViewStart.cshtml`` nor ``_ViewImports.cshtml`` are placed in the ``/Views/Shared`` folder. The app-level versions of these files should be placed directly in the ``/Views`` folder.
