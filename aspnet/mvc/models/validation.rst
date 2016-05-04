@@ -113,7 +113,7 @@ MVC uses validation attributes in addition to type metadata from model propertie
           <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>
           <div class="col-md-10">
             <input asp-for="ReleaseDate" class="form-control" />
-            <span asp-validation-for="ReleaseDate" class="text-danger" />
+            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
           </div>		
       </div>	
     </div>  
@@ -135,7 +135,7 @@ The tag helpers above render the HTML below. Notice that the ``data-`` attribute
           data-val="true" data-val-required="The ReleaseDate field is required." 
           id="ReleaseDate" name="ReleaseDate" value="" />		
           <span class="text-danger field-validation-valid" 
-          data-valmsg-for="ReleaseDate" data-valmsg-replace="true" />
+          data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
         </div>
       </div>	  
       </div>
