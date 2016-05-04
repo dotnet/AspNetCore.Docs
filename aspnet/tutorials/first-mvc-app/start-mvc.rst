@@ -13,12 +13,11 @@ Sections
 Install Visual Studio and ASP.NET
 --------------------------------------
 
-Visual Studio is an IDE (integrated development environment) for building apps. Similar to using Microsoft Word to write documents, you'll use Visual Studio to create web apps. 
+Visual Studio is an IDE (integrated development environment) for building apps. Similar to using Microsoft Word to write documents, you'll use Visual Studio to create web apps. Install :doc:`ASP.NET Core and Visual Studio 2015 </getting-started/installing-on-windows>`
 
-Install `ASP.NET 5 and Visual Studio 2015 <http://docs.asp.net/en/latest/getting-started/installing-on-windows.html>`__. 
 
 Create a web app
---------------------------------------
+------------------------------------
 
 From the Visual Studio **Start** page, tap **New Project**.
 
@@ -37,7 +36,9 @@ Complete the **New Project** dialog:
 
 .. image:: start-mvc/_static/new_project2.png
 
-In the **New ASP.NET Project - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
+In the **New ASP.NET Core Web Application - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
+
+:Warning: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffold to work.
 
 .. image:: start-mvc/_static/p3.png
 
