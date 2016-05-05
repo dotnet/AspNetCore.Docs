@@ -112,9 +112,15 @@ You must apply the Tag Helper opt-out character to the opening and closing tag. 
 Using ``@tagHelperPrefix`` to make Tag Helper usage explicit
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``@tagHelperPrefix`` directive allows you to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit. In the code image below, the Tag Helper prefix is set to "th:", so only those elements using the prefix "th:" support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The ``<label>`` and ``<span>`` elements have the Tag Helper prefix and are Tag Helper-enabled, while the ``<input>`` element does not.
+The ``@tagHelperPrefix`` directive allows you to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit. In the code below, the Tag Helper prefix is set to ``th:``, so only those elements using the prefix ``th:`` support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The ``<label>`` and ``<span>`` elements have the Tag Helper prefix and are Tag Helper-enabled, while the ``<input>`` element does not.
 
-.. image:: intro/_static/thp.png 
+.. code-block:: html
+
+   @tagHelperPrefix th:
+   
+   <th:label asp-for="Email" class="col-md-2 control-label"></th:label>
+   <input asp-for="Email" class="form-control" />
+   <th:span asp-validation-for="Email" class="text-danger"></th:span>
 
 The same hierarchy rules that apply to ``@addTagHelper`` also apply to ``@tagHelperPrefix``.
 
