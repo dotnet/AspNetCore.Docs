@@ -103,24 +103,25 @@ Opting out of individual elements
 
 You can disable a Tag Helper at the element level with the Tag Helper opt-out character ("!"). For example, ``Email`` validation is disabled in the ``<span>`` with the Tag Helper opt-out character:
 
-.. code-block:: html
+.. code-block:: c#
 
 	<!span asp-validation-for="Email" class="text-danger"></!span>
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
 Using ``@tagHelperPrefix`` to make Tag Helper usage explicit
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``@tagHelperPrefix`` directive allows you to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit. In the code below, the Tag Helper prefix is set to ``th:``, so only those elements using the prefix ``th:`` support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The ``<label>`` and ``<span>`` elements have the Tag Helper prefix and are Tag Helper-enabled, while the ``<input>`` element does not.
+The ``@tagHelperPrefix`` directive allows you to specify a tag prefix string to enable Tag Helper support and to make Tag Helper usage explicit. In the code image below, the Tag Helper prefix is set to ``th:``, so only those elements using the prefix ``th:`` support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The ``<label>`` and ``<span>`` elements have the Tag Helper prefix and are Tag Helper-enabled, while the ``<input>`` element does not.
+
+.. image:: intro/_static/thp.png 
+
+:Note: Quotes are optional with the ``@tagHelperPrefix`` directive. The following two directives are equivalent:
 
 .. code-block:: html
 
    @tagHelperPrefix th:
-   
-   <th:label asp-for="Email" class="col-md-2 control-label"></th:label>
-   <input asp-for="Email" class="form-control" />
-   <th:span asp-validation-for="Email" class="text-danger"></th:span>
+   @tagHelperPrefix "th:"
 
 The same hierarchy rules that apply to ``@addTagHelper`` also apply to ``@tagHelperPrefix``.
 
