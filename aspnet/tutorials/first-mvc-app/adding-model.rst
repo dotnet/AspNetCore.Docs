@@ -2,6 +2,7 @@ Adding a model
 ==================================================
 By `Rick Anderson`_
 
+
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**\odel" part of the **M**\VC app.
 
 You’ll use a .NET Framework data-access technology known as the `Entity Framework <http://ef.readthedocs.org/>`__ to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development. 
@@ -9,14 +10,13 @@ You’ll use a .NET Framework data-access technology known as the `Entity Framew
 Adding Model Classes
 --------------------------
 
-In Solution Explorer, right click the *Models* folder > **Add** > **Class**.
+In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
 	:language: c#
-	:lines: 3-12
+	:lines: 3-15
 	:dedent: 0
-	:linenos:
-	:emphasize-lines: 5
+	:emphasize-lines: 7
 
 In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key.
 
@@ -29,15 +29,14 @@ In **Solution Explorer**, right-click the *Controllers* folder **> Add > Control
 
 .. image:: adding-model/_static/add_controller.png
 
-In the **Add Scaffold** dialog, tap **MVC 6 Controller with views, using Entity Framework > Add**.
+In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Framework > Add**.
 
 .. image:: adding-model/_static/add_scaffold2.png
 
-- Complete the **Add Controller** dialog
+- Complete the **Add Controller** dialog 
 
 	- **Model class:** *Movie(MvcMovie.Models)*
 	- **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
-	- **Controller name:** Keep the default MoviesController
 	- **Views:**: Keep the default of each option checked
 	- **Controller name:** Keep the default *MoviesController*
 	- Tap **Add**
@@ -199,7 +198,6 @@ The ``@model`` directive allows you to access the list of movies that the contro
  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index.cshtml
 	:language: HTML 
-	:linenos:
 	:emphasize-lines: 29, 32, 35, 38, 41, 44-46
  
 Because the ``Model`` object is strongly typed (as an ``IEnumerable<Movie>`` object), each item in the loop is typed as ``Movie``. Among other benefits, this means that you get compile-time checking of the code and full `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ support in the code editor:
