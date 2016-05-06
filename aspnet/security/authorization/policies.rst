@@ -27,7 +27,7 @@ Policies are applied using the ``Authorize`` attribute simply by specifying the 
 .. code-block:: c#
 
   [Authorize(Policy="Over21")]
-  public class AlcholPurchaseRequirementsController : Controller
+  public class AlcoholPurchaseRequirementsController : Controller
   {  
       public ActionResult Login()
       {      
