@@ -18,9 +18,7 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Nam
 	:dedent: 0
 	:emphasize-lines: 7
 
-In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key.
-
-Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**\odel to our **M**\VC app.
+In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**\odel to our **M**\VC app.
 
 Scaffolding a controller
 -------------------------
@@ -47,12 +45,25 @@ The Visual Studio scaffolding engine creates the following:
 
 - A movies controller (MoviesController.cs)
 - Create, Delete, Details, Edit and Index Razor view files
-- Migrations classes
+- Migrations classes (in the *Data/Migrations* folder.)
 
-	- The ``CreateIdentitySchema`` class creates the `ASP.NET Identity membership database <https://docs.asp.net/en/latest/security/introduction-to-aspnet-identity.html>`__ tables. The Identity database stores user login information that is needed for authentication. We won't cover authentication in this tutorial, for that you can follow `Additional resources`_ at the end of this tutorial.
+	- The ``CreateIdentitySchema`` class creates the :doc:`ASP.NET Identity membership database </security/authentication/introduction-to-aspnet-identity>` tables. The Identity database stores user login information that is needed for authentication. We won't cover authentication in this tutorial, for that you can follow `Additional resources`_ at the end of this tutorial.
 	- The ``ApplicationDbContextModelSnapshot`` class creates the EF entities used to access the Identity database. We'll talk more about EF entities later in the tutorial.
 
-Visual Studio automatically created the CRUD (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as *scaffolding*). You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
+Visual Studio automatically created the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as *scaffolding*). You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
+
+Run the app and click on the **Mvc Movie** link. You'll get the following error:
+
+.. code-block:: html
+
+  A database operation failed while processing the request.
+  SqlException: Invalid object name 'Movie'. 
+  There are pending model changes for ApplicationDbContext
+  Scaffold a new migration for these changes and apply them to the database from the command line:
+  > dotnet ef migrations add [migration name] 
+  > dotnet ef database update 
+
+That's a great error message, we'll follow those instructions to get the database ready for our Movie app.
 
 Use data migrations to create the database
 --------------------------------------------
@@ -74,35 +85,14 @@ Use data migrations to create the database
 
 .. code-block:: PHP
 
-	dnu restore
-	dnvm use 1.0.0-rc1-update1 -p
-	dnx ef migrations add Initial
-	dnx ef database update
-	
-.. image:: adding-model/_static/cmd.png
+	dotnet ef migrations add Initial
+	dotnet ef database update	
 
-- ``dnu restore`` This command looks at the dependencies in the *project.json* file and downloads them. For more information see `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ and `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__.
-- ``dnvm use <version>`` **dnvm** is the .NET Version Manager, which is a set of command line utilities that are used to update and configure .NET Runtime. In this case we're asking **dnvm** add the 1.0.0-rc1 ASP.NET 5 runtime to the ``PATH`` environment variable of the current shell. 
-- ``dnx`` DNX stands for .NET Execution Environment.
+- ``dotnet`` (.NET Core) is a cross-platform implementation of .NET. You can read about it `here <http://dotnet.github.io/about/>`__.
+- ``dotnet ef migrations add Initial`` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/2016<date-time>_Initial.cs* file containing the migration commands to add (or drop) the `Movie` table to the database.
 
-	- ``dnx ef`` The ``ef`` command is specified in the *project.json* file:
-	
-.. literalinclude:: start-mvc/sample/src/MvcMovie/project.json
-	:language: JSON
-	:lines: 30-34
-	:dedent: 0
-	:linenos:
-	:emphasize-lines: 3
+- ``dotnet ef database update``  Updates the database with the migration we just created.	
 
-- ``dnx ef migrations add Initial`` Creates a class named ``Initial``
-	
-.. code-block:: C#	
-
-	public partial class Initial : Migration
-
-The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. You can safely ignore the warning ``may result in the loss of data``, it is dropping foreign key constraints and not any data. The warning is a result of the initial create migration for the ``Identity`` model not being up-to-date.  This will be fixed in the next version.
-
-- ``dnx ef database update`` Updates the database, that is, applies the migrations.
 
 Test the app
 ------------------
@@ -140,13 +130,13 @@ Strongly typed models and the @model keyword
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view template using the ``ViewData`` dictionary. The ``ViewData`` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed objects to a view template. This strongly typed approach enables better compile-time checking of your code and richer `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ in the Visual Studio editor. The scaffolding mechanism in Visual Studio used this approach (that is, passing a strongly typed model) with the ``MoviesController`` class and view templates when it created the methods and views.
+MVC also provides the ability to pass strongly typed objects to a view template. This strongly typed approach enables better compile-time checking of your code and richer `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ in Visual Studio (VS). The scaffolding mechanism in VS used this approach (that is, passing a strongly typed model) with the ``MoviesController`` class and view templates when it created the methods and views.
 
-Examine the generated ``Details`` method in the *Controllers/MoviesController.cs* file. The ``Details`` method is shown below.
+Examine the generated ``Details`` method in the *Controllers/MoviesController.cs* file:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 24-40
+ :lines: 28-43
  :dedent: 8
 
 The ``id`` parameter is generally passed as route data, for example ``http://localhost:1234/movies/details/1`` sets:
@@ -181,12 +171,10 @@ This ``@model`` directive allows you to access the movie that the controller pas
 
 Examine the *Index.cshtml* view template and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View helper method in the ``Index`` action method. The code then passes this ``Movies`` list from the ``Index`` action method to the view:
 
-.. code-block:: c#
-
- public IActionResult Index()
- {
-	return View(_context.Movie.ToList());
- }
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+ :language: c#
+ :lines: 23-26
+ :dedent: 8
  
 When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
 
@@ -198,22 +186,24 @@ The ``@model`` directive allows you to access the list of movies that the contro
  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index.cshtml
 	:language: HTML 
-	:emphasize-lines: 29, 32, 35, 38, 41, 44-46
+	:linenos:
+	:emphasize-lines: 1,31, 34,37,40,43,46-48
  
 Because the ``Model`` object is strongly typed (as an ``IEnumerable<Movie>`` object), each item in the loop is typed as ``Movie``. Among other benefits, this means that you get compile-time checking of the code and full `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ support in the code editor:
 
 .. image:: adding-model/_static/ints.png
 
-.. note:: The RC1 version of the scaffolding engine generates HTML Helpers to display fields (``@Html.DisplayNameFor(model => model.Genre)``). The next version will use :doc:`/mvc/views/tag-helpers/index` to render fields.
 
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
   
 Additional resources
 ------------------------
 
+- Source code for this sample `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/views/tag-helpers/authoring/sample>`__
 - :doc:`/mvc/views/tag-helpers/index` 
 - `Create a secure ASP.NET MVC app and deploy to Azure <https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/>`__
 - `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ 
 - `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__
+- :doc:`/fundamentals/localization`
 
 ..  TODO link to globalize

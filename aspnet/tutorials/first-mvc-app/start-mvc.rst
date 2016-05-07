@@ -1,9 +1,9 @@
-Getting started with ASP.NET MVC 6
+Getting started with ASP.NET MVC Core
 ==================================================
 
 By `Rick Anderson`_
 
-This tutorial will teach you the basics of building an ASP.NET MVC 6 web app using `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__. 
+This tutorial will teach you the basics of building an ASP.NET MVC Core web app using `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__. 
 
 Sections
 ^^^^^^^^^^^^^^^^

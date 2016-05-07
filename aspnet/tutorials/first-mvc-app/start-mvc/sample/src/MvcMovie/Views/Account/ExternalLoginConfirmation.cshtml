@@ -1,10 +1,7 @@
 ﻿@model ExternalLoginConfirmationViewModel
-@tagHelperPrefix th
 @{
     ViewData["Title"] = "Register";
 }
-
-
 
 <h2>@ViewData["Title"].</h2>
 <h3>Associate your @ViewData["LoginProvider"] account.</h3>
@@ -22,7 +19,7 @@
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <th:input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>

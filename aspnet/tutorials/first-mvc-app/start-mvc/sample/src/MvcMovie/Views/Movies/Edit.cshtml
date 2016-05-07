@@ -10,8 +10,8 @@
     <div class="form-horizontal">
         <h4>Movie</h4>
         <hr />
-        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="ID" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
         <div class="form-group">
             <label asp-for="Genre" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -53,7 +53,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

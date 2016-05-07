@@ -61,7 +61,7 @@ You set the format for routing in the *Startup.cs* file.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
     :language: c#
-    :lines: 96-101
+    :lines: 91-96
     :dedent: 8
     :emphasize-lines: 5
 
