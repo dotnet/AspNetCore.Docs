@@ -183,8 +183,10 @@ When you created the movies controller, Visual Studio automatically included the
  :lines: 1
 
 The ``@model`` directive allows you to access the list of movies that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies with a ``foreach`` statement over the strongly typed ``Model`` object:
+
+.. Copy Index.cshtml to IndexOriginal.cshtml
  
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index.cshtml
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
 	:language: HTML 
 	:linenos:
 	:emphasize-lines: 1,31, 34,37,40,43,46-48

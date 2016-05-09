@@ -1,12 +1,13 @@
-#define First
-#if First
+#define SearchPost
+#define SearchGenre
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MvcMovie.Controllers
 {
@@ -16,15 +17,15 @@ namespace MvcMovie.Controllers
 
         public MoviesController(ApplicationDbContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
-        /*  */
+        /* 
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-
+         */
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -147,7 +148,147 @@ namespace MvcMovie.Controllers
         {
             return _context.Movie.Any(e => e.ID == id);
         }
-    }
-}
+
+#if Search1  // on 152  // copy IndexOriginal.cshtml to Index.cshtml
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
+        }
+
+
+#endif    // on 168
+
+
+#if SearchID
+
+        public async Task<IActionResult> Index(string id)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                movies = movies.Where(s => s.Title.Contains(id));
+            }
+
+            return View(await movies.ToListAsync());
+        }
 
 #endif
+
+
+#if SearchView
+
+        public IActionResult Index(string searchString)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(movies);
+        }
+
+
+
+#endif
+
+
+#if SearchPost
+
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
+
+#endif
+
+#if SearchGenre    // lin2 221
+
+        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        {
+            IQueryable<string> genreQuery = from m in _context.Movie
+                                            orderby m.Genre
+                                            select m.Genre;
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            var movieGenreVM = new MovieGenreViewModel();
+            movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            movieGenreVM.movies = await movies.ToListAsync();
+
+            return View(movieGenreVM);
+        }
+
+
+
+#endif    // line 252
+
+
+#if IndexTest
+
+        // This is never in .rst
+
+        public IActionResult Index(string movieGenre, string searchString)
+        {
+            var GenreQry = from m in _context.Movie
+                           orderby m.Genre
+                           select m.Genre;
+
+            var GenreList = new List<string>();
+            GenreList.AddRange(GenreQry.Distinct());
+            ViewData["movieGenre"] = new SelectList(GenreList);
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            return View("IndexGenreRating",movies);
+        }
+
+#endif
+
+        private void testAdd()
+        {
+            Movie movie = new Movie();
+            movie.Title = "Gone with the Wind";
+            _context.Movie.Add(movie);
+            _context.SaveChanges();        // <= Will throw server side validation exception 
+        }
+    }
+}

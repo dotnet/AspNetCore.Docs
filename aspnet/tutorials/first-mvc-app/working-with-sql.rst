@@ -7,7 +7,6 @@ The ``ApplicationDbContext`` class handles the task of connecting to the databas
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
 	:language: c#
-	:linenos: 
 	:lines: 39-45
 	:dedent: 8
 	:emphasize-lines: 5,6
@@ -16,7 +15,6 @@ The ASP.NET 5 `Configuration <https://docs.asp.net/en/latest/fundamentals/config
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/appsettings.json
 	:language: javascript
-	:linenos: 
 	:lines: 1-6
 	:dedent: 0
 	:emphasize-lines: 3
@@ -68,7 +66,6 @@ Add the seed initializer to the end of the ``Configure`` method in the *Startup.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
 	:language: c#
-	:linenos: 
 	:lines: 91-99
 	:dedent: 8
 	:emphasize-lines: 8

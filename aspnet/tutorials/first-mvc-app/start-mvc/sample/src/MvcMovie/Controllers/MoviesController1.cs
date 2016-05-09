@@ -1,5 +1,6 @@
 #define SearchGenre
 //#define SearchPost
+#if Never
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using MvcMovie.Models;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 
 
 
-#if Never
+
 namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
