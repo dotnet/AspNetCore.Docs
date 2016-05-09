@@ -172,7 +172,7 @@ Inside your application folder, you create a ``Dockerfile`` which should looks s
     # Open this port in the container
     EXPOSE 5000
     # Start application
-    ENTRYPOINT ["dnx","-p","project.json", "web"]
+    ENTRYPOINT ["dnx","-p","project.json", "Microsoft.AspNet.Server.Kestrel", "--server.urls", "http://0.0.0.0:5000"]
 
 You also have a choice to use CoreCLR or Mono. At this time the ``microsoft/aspnet:latest`` repository is based on Mono. You can use the `Microsoft Docker Hub <https://hub.docker.com/r/microsoft/aspnet/>`_ to pick a different base running either an older version or CoreCLR.
 
