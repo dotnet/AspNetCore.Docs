@@ -3,9 +3,9 @@ Adding a New Field
 
 By `Rick Anderson`_
 
-In this section you'll use `Entity Framework <http://ef.readthedocs.org/en/latest/getting-started/index.html>`__ Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
+In this section you'll use `Entity Framework <http://ef.readthedocs.io/en/latest/platforms/aspnetcore/new-db.html>`__ Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
 
-By default, when you use Entity Framework Code First to automatically create a database, as you did earlier in this tutorial, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, the Entity Framework throws an error. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
+By default, when you use Entity Framework Code First to automatically create a database, as you did earlier in this tutorial, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, Entity Framework throws an error. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
 
 Adding a Rating Property to the Movie Model
 ---------------------------------------------
@@ -16,7 +16,6 @@ Open the *Models/Movie.cs* file and add a ``Rating`` property:
 	:language: c#
 	:lines: 7-18
 	:dedent: 4
-	:linenos:
 	:emphasize-lines: 11
 
 Build the app (Ctrl+Shift+B).
@@ -33,22 +32,13 @@ Edit the */Views/Movies/Index.cshtml* file and add a ``Rating`` field:
  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexGenreRating.cshtml
 	:language: HTML
-	:emphasize-lines: 16,36
-	:linenos:
+	:emphasize-lines: 16,37
 	:lines: 24-61
 	
 Update the */Views/Movies/Create.cshtml* with a ``Rating`` field. You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with :doc:`Tag Helpers </mvc/views/tag-helpers/intro>`.
 
 .. image:: new-field/_static/cr.png
 
-The changed are highlighted below:
-
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml
-	:language: HTML
-	:emphasize-lines: 13-20
-	:linenos:
-	:lines: 16-42
-	
 The app won't work until we update the DB to include the new field. If you run it now, you'll get the following ``SqlException``:
 
 .. image:: new-field/_static/se.png
@@ -69,7 +59,6 @@ Update the ``SeedData`` class so that it provides a value for the new column. A 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/SeedDataRating.cs
 	:language: c#
-	:linenos: 
 	:lines: 38-45
 	:dedent: 8
 	:emphasize-lines: 6
@@ -78,10 +67,10 @@ Build the solution then open a command prompt. Enter the following commands:
 
 .. code-block:: PHP
 
-	dnx ef migrations add Rating
-	dnx ef database update
+	dotnet ef migrations add Rating
+	dotnet ef database update
 	
-The ``migrations add`` command tells the migration framework to examine the current ``Movie`` model with the current ``Movie`` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating"" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step. 
+The ``migrations add`` command tells the migration framework to examine the current ``Movie`` model with the current ``Movie`` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step. 
 
 If you delete all the records in the DB, the initialize will seed the DB and include the ``Rating`` field. You can do this with the delete links in the browser or from SSOX.
 

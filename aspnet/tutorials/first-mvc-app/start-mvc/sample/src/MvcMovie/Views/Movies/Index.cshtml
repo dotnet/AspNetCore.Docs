@@ -35,6 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.movies[0].Title)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movies[0].Rating)
+        </th>
         <th></th>
     </tr>
     <tbody>
@@ -52,6 +55,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

@@ -115,11 +115,9 @@ Examining the Generated Code
 
 Open the *Controllers/MoviesController.cs* file and examine the generated ``Index`` method. A portion of the movie controller with the ``Index`` method is shown below:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController1.cs
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 14-26
- :dedent: 4
-
+ :lines: 296-308
 
 The constructor uses `Dependency Injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__ to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
 
@@ -136,7 +134,7 @@ Examine the generated ``Details`` method in the *Controllers/MoviesController.cs
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 28-43
+ :lines: 29-45
  :dedent: 8
 
 The ``id`` parameter is generally passed as route data, for example ``http://localhost:1234/movies/details/1`` sets:
@@ -154,8 +152,9 @@ If a Movie is found, an instance of the ``Movie`` model is passed to the ``Detai
 .. code-block:: C#	
 
 	return View(movie);
-
-Examine the contents of the *Views/Movies/Details.cshtml* file:
+	
+.. make a copy of details - later we add Ratings to it.
+Examine the contents of the *Views/Movies/DetailsOriginal.cshtml* file:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Details.cshtml
  :language: HTML
@@ -173,12 +172,14 @@ Examine the *Index.cshtml* view template and the ``Index`` method in the Movies 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 23-26
+ :lines: 24-27
  :dedent: 8
  
-When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
+When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file: 
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index.cshtml
+.. Copy Index.cshtml to IndexOriginal.cshtml
+
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
  :language: HTML
  :lines: 1
 

@@ -54,7 +54,7 @@ namespace MvcMovie.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Genre,Price,ReleaseDate,Title")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Genre,Price,ReleaseDate,Title,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MvcMovie.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Genre,Price,ReleaseDate,Title")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Genre,Price,ReleaseDate,Title,Rating")] Movie movie)
         {
             if (id != movie.ID)
             {
@@ -283,12 +283,44 @@ namespace MvcMovie.Controllers
 
 #endif
 
-        private void testAdd()
+        public void testAdd()
         {
             Movie movie = new Movie();
-            movie.Title = "Gone with the Wind";
             _context.Movie.Add(movie);
             _context.SaveChanges();        // <= Will throw server side validation exception 
         }
+
+        /*  This is a copy because Index gets changed
+
+        public class MoviesController : Controller
+        {
+            private readonly ApplicationDbContext _context;
+
+            public MoviesController(ApplicationDbContext context)
+            {
+                _context = context;
+            }
+
+            public async Task<IActionResult> Index()
+            {
+                return View(await _context.Movie.ToListAsync());
+            }
+
+            */
+
+#if NotUsed
+
+        // POST: Movies/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, bool notUsed)
+        {
+            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Movie.Remove(movie);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+#endif
     }
 }
