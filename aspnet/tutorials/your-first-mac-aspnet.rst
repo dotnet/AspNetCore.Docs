@@ -1,5 +1,5 @@
 Your First ASP.NET Core Application on a Mac
-====================================================
+============================================
 
 By `Daniel Roth`_, `Steve Smith`_ and `Rick Anderson`_
 
@@ -26,17 +26,15 @@ Developing ASP.NET Applications on a Mac With Visual Studio Code
 
 .. image:: your-first-mac-aspnet/_static/vscode-welcome.png
 
-- Tap **File > Open** and navigate to your ASP.NET app
+- Tap **File > Open** and navigate to your Empty ASP.NET template app
 
-.. image:: your-first-mac-aspnet/_static/file-open.png
+.. image:: your-first-mac-aspnet/_static/file-open.png 
 
-From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` and then type ``>d`` as shown:
+From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` in Visual Studio Code and then type ``dot`` as shown:
 
-.. image:: your-first-mac-aspnet/_static/dnx_restore.png
+.. image:: your-first-mac-aspnet/_static/dotnet-restore.png
 
-This will allow you to run commands directly from within Visual Studio Code, including ``dotnet restore`` and any tools referenced in the *project.json* file.
-
-At this point, you should be able to host and browse to this simple ASP.NET web application, which we'll see in a moment.
+You can run commands directly from within Visual Studio Code, including ``dotnet restore`` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*.
 
 This empty project template simply displays "Hello World!". Open *Startup.cs* in Visual Studio Code to see how this is configured:
 
@@ -59,9 +57,9 @@ The Search viewlet allows you to quickly search within the folder structure, sea
 
 .. image:: your-first-mac-aspnet/_static/vscode-git.png
 
-The Debug viewlet supports interactive debugging of applications. Currently only node.js and mono applications are supported by the interactive debugger.
+The Debug viewlet supports interactive debugging of applications. Currently only node.js and `mono applications <https://code.visualstudio.com/Docs/editor/debugging#_mono-debugging>`_ are supported by the interactive debugger.
 
-Finally, Code's editor has a ton of great features. You should note right away that several using statements are underlined, because Code has determined they are not necessary. Note that classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the keyboard shortcuts you're used to, such as ``command k c`` to comment a block of code, and ``command k u`` to uncomment.
+Finally, Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using ``command .`` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as ``command k c`` to comment a block of code, and ``command k u`` to uncomment.
 
 Running Locally Using Kestrel
 -----------------------------
@@ -69,41 +67,26 @@ Running Locally Using Kestrel
 The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
 
 .. code-block:: json
- :linenos:
- :emphasize-lines: 14, 18
+ :emphasize-lines: 11-12
  
   {
     "version": "1.0.0-*",
-    "userSecretsId": "aspnet5-MyWebApp-a1b07c55-6f20-4aaf-9852-9c964160a00c",
     "compilationOptions": {
       "emitEntryPoint": true
     },
-    "tooling": {
-      "defaultNamespace": "MyWebApp"
-    },
-
     "dependencies": {
-      "EntityFramework.Commands": "7.0.0-rc1-final",
-      // Dependencies deleted for brevity.
-      "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
-    },
-
-    "commands": {
-      "web": "Microsoft.AspNet.Server.Kestrel",
-      "ef": "EntityFramework.Commands"
-    },
-
-    // Markup deleted for brevity.
-
-    "scripts": {
-      "prepublish": [
-        "npm install",
-        "bower install",
-        "gulp clean",
-        "gulp min"
-      ]
+      "Microsoft.NETCore.App": {
+        "type": "platform",
+        "version": "1.0.0-rc2-3002416"
+      },
+  "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-*",
+      "Microsoft.AspNetCore.Server.Kestrel.Https": "1.0.0-*",
+      "Microsoft.Extensions.Logging.Console": "1.0.0-*"  },
+    "frameworks": {
+      "netcoreapp1.0": {}
     }
   }
+
 
 - Run ``dotnet run`` command to launch the app
 
@@ -147,7 +130,7 @@ Record the Git URL for the Web App from the Azure portal:
 
 - In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
 
-  - ``git remote add azure https://Rick-Anderson@rickmac.scm.azurewebsites.net:443/rickmac.git``
+  - ``git remote add azure https://ardalis-git@firstaspnetcoremac.scm.azurewebsites.net:443/firstaspnetcoremac.git``
 
 - Push to master.
 
@@ -155,9 +138,9 @@ Record the Git URL for the Web App from the Azure portal:
 
   .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
-- Browse to the newly deployed web app.
+- Browse to the newly deployed web app. You should see ``Hello world!``
 
-.. image:: your-first-mac-aspnet/_static/azure.png
+.. .. image:: your-first-mac-aspnet/_static/azure.png 
 
 
 Additional Resources
