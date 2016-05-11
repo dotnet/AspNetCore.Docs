@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,3 +28,4 @@ namespace MvcMovie.Models
 
 
 }
+*/

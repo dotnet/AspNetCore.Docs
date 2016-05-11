@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿//#define First
+#if First
+using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Data;
 using System;
 using System.Linq;
 
@@ -58,3 +61,4 @@ namespace MvcMovie.Models
     }
 }
 
+#endif
