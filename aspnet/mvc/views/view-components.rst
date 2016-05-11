@@ -19,7 +19,7 @@ New to ASP.NET MVC 6, view components are similar to partial views, but they are
 - Can have parameters and business logic
 - Is typically invoked from a layout page
 
-View Components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as: 
+View Components should be used anywhere you have reusable rendering logic that is too complex for a partial view, such as: 
 
 - Dynamic navigation menus
 - Tag cloud (where it queries the database)
