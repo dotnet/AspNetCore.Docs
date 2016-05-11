@@ -23,7 +23,7 @@ Static files can be stored in any folder under the webroot and accessed with a r
 
   \http://<yourApp>/images/<imageFileName>
 
-In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. This is accomplished by calling the ``UseStaticFiles`` extension method from  ``Startup.Configure`` as follows:
+In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. This specific middleware can be configured by adding a dependency on the Microsoft.AspNetCore.StaticFiles package to your project and then calling the ``UseStaticFiles`` extension method from ``Startup.Configure`` as follows:
 
 .. code-block:: c#
   :emphasize-lines: 5
