@@ -33,7 +33,7 @@ We'll be covering all these concepts in this tutorial series and show you how to
     
 .. image:: adding-controller/_static/hwc.png
 
-Replace the contents of *Controllers/HelloWorldController.cs* with the following:
+Replace the contents of *Controllers/HelloWorldController.cs* with the following: 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
     :language: c#

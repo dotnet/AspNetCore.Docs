@@ -5,29 +5,27 @@ By `Rick Anderson`_
 
 In this this section you'll add validation logic to the ``Movie`` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie.
 
-Keeping Things DRY
+Keeping things DRY
 ---------------------
 
-One of the core design tenets of ASP.NET MVC is `DRY <http://en.wikipedia.org/wiki/Don't_repeat_yourself>`__ ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an application. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
+One of the design tenets of ASP.NET MVC is `DRY <http://en.wikipedia.org/wiki/Don't_repeat_yourself>`__ ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
-The validation support provided by ASP.NET MVC and Entity Framework Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the application.
+The validation support provided by ASP.NET MVC and Entity Framework Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-Let's look at how you can take advantage of this validation support in the movie application.
+Let's look at how you can take advantage of this validation support in the movie app.
 
-Adding Validation Rules to the Movie Model
---------------------------------------------------
+Adding validation rules to the movie model
+-------------------------------------------------
 	
-You'll begin by adding some validation logic to the ``Movie`` class.
+Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation attributes that you apply declaratively to any class or property. (It also contains formatting attributes like ``DataType`` that help with formatting and don't provide any validation.)
 
-Open the *Movie.cs* file. Notice the ``System.ComponentModel.DataAnnotations`` namespace does not contain ``Microsoft.AspNet.Mvc``. DataAnnotations provides a built-in set of validation attributes that you can apply declaratively to any class or property. (It also contains formatting attributes like ``DataType`` that help with formatting and don't provide any validation.)
-
-Now update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes. 
+Update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes. 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
-	:language: c#
-	:lines: 8-31
-	:dedent: 4
-	:emphasize-lines: 5, 12-14, 17-18, 21,22
+   :language: c#
+   :lines: 8-31
+   :dedent: 4
+   :emphasize-lines: 5, 12-14, 17-18, 21,22
 
 The validation attributes specify behavior that you want to enforce on the model properties they are applied to. The ``Required`` and ``MinimumLength`` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. The ``RegularExpression`` attribute is used to limit what characters can be input. In the code above, ``Genre`` and ``Rating`` must use only letters (white space, numbers and special characters are not allowed). The ``Range`` attribute constrains a value to within a specified range. The ``StringLength`` attribute lets you set the maximum length of a string property, and optionally its minimum length. Value types (such as ``decimal``, ``int``, ``float``, ``DateTime``) are inherently required and don't need the ``[Required]`` attribute.
 
@@ -60,13 +58,13 @@ You might wonder how the validation UI was generated without any updates to the 
  :lines: 46-66
  :dedent: 8
 
-The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The HttpPost version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method calling ``ModelState.IsValid`` to check whether the movie has any validation errors.
+The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The HttpPost version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method ``ModelState.IsValid`` detecting any validation errors.
 
 You can set a break point in the ``[HttpPost] Create`` method and verify the method is never called, client side validation will not submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. The following image shows how to disable JavaScript in Internet Explorer.
 
 .. image:: validation/_static/p8_IE9_disableJavaScript.png
 
-The following image shows how to disable JavaScript in the FireFox browser.
+The following image shows how to disable JavaScript in the FireFox browser. 
 
 .. image:: validation/_static/ff.png
 

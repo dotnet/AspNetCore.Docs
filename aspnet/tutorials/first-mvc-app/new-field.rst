@@ -3,9 +3,9 @@ Adding a New Field
 
 By `Rick Anderson`_
 
-In this section you'll use `Entity Framework <http://ef.readthedocs.io/en/latest/platforms/aspnetcore/new-db.html>`__ Code First Migrations to migrate some changes to the model classes so the change is applied to the database.
+In this section you'll use `Entity Framework <http://ef.readthedocs.io/en/latest/platforms/aspnetcore/new-db.html>`__ Code First Migrations to add a new field to the model and migrate that change to the database.
 
-By default, when you use Entity Framework Code First to automatically create a database, as you did earlier in this tutorial, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, Entity Framework throws an error. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
+When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
 
 Adding a Rating Property to the Movie Model
 ---------------------------------------------
@@ -43,7 +43,7 @@ The app won't work until we update the DB to include the new field. If you run i
 
 .. image:: new-field/_static/se.png
 
-You're seeing this error because the updated Movie model class in the application is now different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.) 
+You're seeing this error because the updated Movie model class is different than the schema of the Movie table of the existing database. (There's no Rating column in the database table.) 
 
 There are a few approaches to resolving the error:
 
@@ -59,8 +59,8 @@ Update the ``SeedData`` class so that it provides a value for the new column. A 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/SeedDataRating.cs
 	:language: c#
-	:lines: 38-45
-	:dedent: 8
+	:lines: 37-45
+	:dedent: 16
 	:emphasize-lines: 6
 	
 Build the solution then open a command prompt. Enter the following commands:
