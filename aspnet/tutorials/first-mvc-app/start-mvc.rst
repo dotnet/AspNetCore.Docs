@@ -30,7 +30,7 @@ Alternatively, you can use the menus to create a new project. Tap **File > New >
 Complete the **New Project** dialog:
 
 - In the left pane, tap **Web**
-- In the center pane, tap **ASP.NET Web Application**
+- In the center pane, tap **ASP.NET Core Web Application**
 - Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match. )
 - Tap **OK**
 
@@ -38,7 +38,7 @@ Complete the **New Project** dialog:
 
 In the **New ASP.NET Core Web Application - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
 
-:Warning: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffold to work.
+:Warning: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
 
 .. image:: start-mvc/_static/p3.png
 
@@ -58,7 +58,7 @@ Tap **F5** to run the app in debug mode or **Ctl-F5** in non-debug mode.
 
 .. image:: start-mvc/_static/iis_express.png
 
-Right out of the box the default template gives you Home, Contact, About, Register and Log in pages. The browser image above doesn't show theses links. Depending on the size of your browser, you might need to click the navigation icon to show them.
+The default template gives you working **Home, Contact, About, Register** and **Log in** links. The browser image above doesn't show theses links. Depending on the size of your browser, you might need to click the navigation icon to show them. 
 
 .. image:: start-mvc/_static/2.png
 

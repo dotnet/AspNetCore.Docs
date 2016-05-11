@@ -69,7 +69,7 @@ When you run the app and don't supply any URL segments, it defaults to the "Home
 
 The first URL segment determines the controller class to run. So ``localhost:xxxx/HelloWorld`` maps to the ``HelloWorldController`` class. The second part of the URL segment determines the action method on the class. So ``localhost:xxxx/HelloWorld/Index`` would cause the ``Index`` method of the ``HelloWorldController`` class to run. Notice that we only had to browse to ``localhost:xxxx/HelloWorld`` and the ``Index`` method was called by default. This is because ``Index`` is the default method that will be called on a controller if a method name is not explicitly specified. The third part of the URL segment ( ``Parameters``) is for route data. We'll see route data later on in this tutorial.
 
-Browse to ``http://localhost:xxxx/HelloWorld/Welcome``. The ``Welcome`` method runs and returns the string "This is the Welcome action method...". The default MVC routing is ``/[Controller]/[ActionName]/[Parameters]``. For this URL, the controller is ``HelloWorld`` and ``Welcome`` is the action method. You haven't used the ``[Parameters]`` part of the URL yet.
+Browse to ``http://localhost:xxxx/HelloWorld/Welcome``. The ``Welcome`` method runs and returns the string "This is the Welcome action method...". The default MVC routing is ``/[Controller]/[ActionName]/[Parameters]``. For this URL, the controller is ``HelloWorld`` and ``Welcome`` is the action method. We haven't used the ``[Parameters]`` part of the URL yet.
 
 .. image:: adding-controller/_static/welcome.png
 
@@ -108,9 +108,9 @@ Run the app and enter the following URL:  ``http://localhost:xxx/HelloWorld/Welc
 This time the third URL segment  matched the route parameter ``id``. The ``Welcome``  method contains a parameter  ``id`` that matched the URL template in the ``MapRoute`` method. The trailing ``?``  (in ``id?``) indicates the ``id`` parameter is optional.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
-    :language: c#
-    :lines: 96-101
-    :dedent: 8
-    :emphasize-lines: 5
-    
+  :language: c#
+  :lines: 91-96
+  :dedent: 12
+  :emphasize-lines: 5
+	
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.

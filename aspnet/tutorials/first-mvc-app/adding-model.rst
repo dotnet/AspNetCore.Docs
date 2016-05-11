@@ -5,16 +5,16 @@ By `Rick Anderson`_
 
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**\odel" part of the **M**\VC app.
 
-You’ll use a .NET Framework data-access technology known as the `Entity Framework <http://ef.readthedocs.org/>`__ to define and work with these model classes. The Entity Framework (often referred to as EF) supports a development paradigm called *Code First*. Code First allows you to create model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") You can then have the database created on the fly from your classes, which enables a very clean and rapid development workflow. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development. 
+You’ll use a .NET Framework data-access technology known as the `Entity Framework <http://ef.readthedocs.org/>`__ to define and work with these data model classes. Entity Framework (often referred to as **EF**) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development. 
 
-Adding Model Classes
+Adding data model classes
 --------------------------
 
-In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
+In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
 	:language: c#
-	:lines: 3-15
+	:lines: 4-16
 	:dedent: 0
 	:emphasize-lines: 7
 
@@ -43,12 +43,8 @@ In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Fr
 
 The Visual Studio scaffolding engine creates the following:
 
-- A movies controller (MoviesController.cs)
-- Create, Delete, Details, Edit and Index Razor view files
-- Migrations classes (in the *Data/Migrations* folder.)
-
-	- The ``CreateIdentitySchema`` class creates the :doc:`ASP.NET Identity membership database </security/authentication/introduction-to-aspnet-identity>` tables. The Identity database stores user login information that is needed for authentication. We won't cover authentication in this tutorial, for that you can follow `Additional resources`_ at the end of this tutorial.
-	- The ``ApplicationDbContextModelSnapshot`` class creates the EF entities used to access the Identity database. We'll talk more about EF entities later in the tutorial.
+- A movies controller (*Controllers/MoviesController.cs*)
+- Create, Delete, Details, Edit and Index Razor view files (*Views/Movies*)
 
 Visual Studio automatically created the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as *scaffolding*). You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
@@ -117,7 +113,7 @@ Open the *Controllers/MoviesController.cs* file and examine the generated ``Inde
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 296-308
+ :lines: 295-307
 
 The constructor uses `Dependency Injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`__ to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
 
@@ -154,9 +150,10 @@ If a Movie is found, an instance of the ``Movie`` model is passed to the ``Detai
 	return View(movie);
 	
 .. make a copy of details - later we add Ratings to it.
-Examine the contents of the *Views/Movies/DetailsOriginal.cshtml* file:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Details.cshtml
+Examine the contents of the *Views/Movies/Details.cshtml* file:
+
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/DetailsOriginal.cshtml
  :language: HTML
  :emphasize-lines: 1
  
@@ -168,7 +165,7 @@ By including a ``@model`` statement at the top of the view template file, you ca
 
 This ``@model`` directive allows you to access the movie that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the ``DisplayNameFor`` and ``DisplayFor`` HTML Helpers with the strongly typed ``Model`` object. The ``Create`` and ``Edit`` methods and view templates also pass a ``Movie`` model object.
 
-Examine the *Index.cshtml* view template and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View helper method in the ``Index`` action method. The code then passes this ``Movies`` list from the ``Index`` action method to the view:
+Examine the *Index.cshtml* view template and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View method. The code passes this ``Movies`` list from the ``Index`` action method to the view:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
@@ -189,24 +186,17 @@ The ``@model`` directive allows you to access the list of movies that the contro
  
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
 	:language: HTML 
-	:linenos:
 	:emphasize-lines: 1,31, 34,37,40,43,46-48
  
 Because the ``Model`` object is strongly typed (as an ``IEnumerable<Movie>`` object), each item in the loop is typed as ``Movie``. Among other benefits, this means that you get compile-time checking of the code and full `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ support in the code editor:
 
 .. image:: adding-model/_static/ints.png
 
-
 You now have a database and pages to display, edit, update and delete data. In the next tutorial, we'll work with the database.
   
 Additional resources
-------------------------
+-----------------------
 
-- Source code for this sample `GitHub <https://github.com/aspnet/Docs/tree/master/mvc/views/tag-helpers/authoring/sample>`__
 - :doc:`/mvc/views/tag-helpers/index` 
 - `Create a secure ASP.NET MVC app and deploy to Azure <https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/>`__
-- `Working with DNX Projects <http://docs.asp.net/en/latest/dnx/projects.html>`__ 
-- `DNX Overview <http://docs.asp.net/en/latest/dnx/overview.html>`__
 - :doc:`/fundamentals/localization`
-
-..  TODO link to globalize

@@ -79,10 +79,9 @@ You'll make them slightly different so you can see which bit of code changes whi
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/HelloWorld/Index2.cshtml
 	:language: HTML
-	:linenos: 
 	:emphasize-lines: 2, 5
 	
-Line number 2 in the code above sets the ``Title`` property of the `ViewDataDictionary <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewFeatures/ViewDataDictionary/index.html>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
+``ViewData["Title"] = "Movie List";`` in the code above sets the ``Title`` property of the `ViewDataDictionary <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewFeatures/ViewDataDictionary/index.html>`__ to "Movie List". The ``Title`` property is used in the ``<title>`` HTML element in the layout page:
 
 .. code-block:: HTML
 
@@ -109,7 +108,7 @@ Return to the *HelloWorldController.cs* file and change the ``Welcome`` method t
 	
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
 	:language: c#
-	:lines: 152-171
+	:lines: 152-172
 
 The ``ViewData`` dictionary object contains data that will be passed to the view. Next, you need a Welcome view template.
 
@@ -124,7 +123,7 @@ The ``ViewData`` dictionary object contains data that will be passed to the view
 You'll create a loop in the *Welcome.cshtml* view template that displays "Hello" ``NumTimes``. Replace the contents of *Views/HelloWorld/Welcome.cshtml* with the following:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/HelloWorld/Welcome.cshtml
-	:language: HTML
+   :language: HTML
 
 Save your changes and browse to the following URL:
 
@@ -137,4 +136,3 @@ Data is taken from the URL and passed to the controller using the `model binder 
 In the sample above, we used the ``ViewData`` dictionary to pass data from the controller to a view. Later in the tutorial, we will use a view model to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the ``ViewData`` dictionary approach. See `Dynamic V Strongly Typed Views <http://blogs.msdn.com/b/rickandy/archive/2011/01/28/dynamic-v-strongly-typed-views.aspx>`__ for more information.
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
-

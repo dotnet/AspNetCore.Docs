@@ -292,19 +292,19 @@ namespace MvcMovie.Controllers
 
         /*  This is a copy because Index gets changed
 
-        public class MoviesController : Controller
-        {
-            private readonly ApplicationDbContext _context;
+public class MoviesController : Controller
+{
+    private readonly ApplicationDbContext _context;
 
-            public MoviesController(ApplicationDbContext context)
-            {
-                _context = context;
-            }
+    public MoviesController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
 
-            public async Task<IActionResult> Index()
-            {
-                return View(await _context.Movie.ToListAsync());
-            }
+    public async Task<IActionResult> Index()
+    {
+        return View(await _context.Movie.ToListAsync());
+    }
 
             */
 
@@ -321,6 +321,44 @@ namespace MvcMovie.Controllers
             return RedirectToAction("Index");
         }
 
+
 #endif
+
+/*
+// POST: Movies/Edit/5
+// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Edit(int id, [Bind("ID,Genre,Price,ReleaseDate,Title")] Movie movie)
+{
+    if (id != movie.ID)
+    {
+        return NotFound();
     }
+
+    if (ModelState.IsValid)
+    {
+        try
+        {
+            _context.Update(movie);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!MovieExists(movie.ID))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+        return RedirectToAction("Index");
+    }
+    return View(movie);
+}
+*/
+}
 }

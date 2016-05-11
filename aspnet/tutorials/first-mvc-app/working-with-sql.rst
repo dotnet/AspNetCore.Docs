@@ -11,12 +11,11 @@ The ``ApplicationDbContext`` class handles the task of connecting to the databas
 	:dedent: 8
 	:emphasize-lines: 5,6
 	
-The ASP.NET 5 `Configuration <https://docs.asp.net/en/latest/fundamentals/configuration.html>`__ system reads the ``Data:DefaultConnection:ConnectionString``. For local development, it gets the connection string from the *appsettings.json* file:
+The ASP.NET 5 `Configuration <https://docs.asp.net/en/latest/fundamentals/configuration.html>`__ system reads the ``ConnectionString``. For local development, it gets the connection string from the *appsettings.json* file:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/appsettings.json
 	:language: javascript
 	:lines: 1-6
-	:dedent: 0
 	:emphasize-lines: 3
 	
 When you deploy the app to a test or production server, you can use an environment variable or another approach to set the connection string to a real SQL Server. See `Configuration <https://docs.asp.net/en/latest/fundamentals/configuration.html>`__ .
@@ -53,12 +52,13 @@ Create a new class named ``SeedData`` in the *Models* folder. Replace the genera
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/SeedData.cs
 	:language: c#
+	:lines: 3-62
 
 The ``GetService`` method comes from DI. Notice if there are any movies in the DB, the seed initializer returns.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/SeedData.cs
 	:language: c#
-	:lines: 18-22
+	:lines: 21-24
 	:dedent: 8
 	:emphasize-lines: 3
 	
@@ -73,7 +73,7 @@ Add the seed initializer to the end of the ``Configure`` method in the *Startup.
 Test the app
 
 - Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
-- Force the app to initialize (call the methods in the ``Startup`` class)so the seed method runs. To force intitialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
+- Force the app to initialize (call the methods in the ``Startup`` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
 .. comment this no longer works   - ^<Shift>F5 (Hold down the control and Shift keys and tap F5)
    - Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop* Site*

@@ -6,7 +6,7 @@ By `Rick Anderson`_
 
 In this section you'll add search capability to the ``Index`` action method that lets you search movies by *genre* or *name*.
 
-Update the ``Index`` action method to enable search. Here's the code:
+Update the ``Index`` action method to enable search:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
@@ -43,7 +43,7 @@ If you change the signature of the ``Index`` method to have a parameter named ``
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
 	:language: c#
 	:lines: 91-96
-	:dedent: 8
+	:dedent: 12
 	:emphasize-lines: 5
 
 You can quickly rename the ``searchString`` parameter to ``id`` with the **rename** command. Right click on ``searchString`` **> Rename**.
@@ -86,14 +86,14 @@ However, you can't expect users to modify the URL every time they want to search
  :emphasize-lines: 1, 6,8
  :dedent: 8
 
-.. Index.cshtml is never referenced in the .rst files and is used only to test the code. Copy the relevant IndexXXX.cshtml file to Index.cshtml and test.
-Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below: 
- 	
+.. Index.cshtml is never referenced in the .rst files and is used only to test the code. 
+  Copy the relevant IndexXXX.cshtml file to Index.cshtml and test. 
+  Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below: 
+
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexForm1.cshtml
 	:language: HTML
 	:lines: 1-21
 	:emphasize-lines: 13-18
-
 
 The HTML ``<form>`` tag uses the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__, so when you submit the form, the filter string is posted to the ``Index`` action of the movies controller. Save your changes and then test the filter.
 
@@ -115,7 +115,7 @@ If you add this method, the action invoker would match the ``[HttpPost] Index`` 
 
 .. image:: search/_static/fo.png
 
-However, even if you add this ``[HttpPost]`` version of the ``Index`` method, there's a limitation in how this has all been implemented. Imagine that you want to bookmark a particular search or you want to send a link to friends that they can click in order to see the same filtered list of movies. Notice that the URL for the HTTP POST request is the same as the URL for the GET request (localhost:xxxxx/Movies/Index) -- there's no search information in the URL. The search string information is sent to the server as a form field value. You can verify that with the `F12 Developer tools <https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/>`__ or the excellent `Fiddler tool <http://www.telerik.com/fiddler>`__. Start the `F12 tool <https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/>`__ :
+However, even if you add this ``[HttpPost]`` version of the ``Index`` method, there's a limitation in how this has all been implemented. Imagine that you want to bookmark a particular search or you want to send a link to friends that they can click in order to see the same filtered list of movies. Notice that the URL for the HTTP POST request is the same as the URL for the GET request (localhost:xxxxx/Movies/Index) -- there's no search information in the URL. The search string information is sent to the server as a `form field value <https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Sending_and_retrieving_form_data>`__. You can verify that with the `F12 Developer tools <https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/>`__ or the excellent `Fiddler tool <http://www.telerik.com/fiddler>`__. Start the `F12 tool <https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/>`__ :
 
 
 Tap the **http://localhost:xxx/Movies	HTTP POST 200** line and then tap **Body  > Request Body**. 
@@ -132,10 +132,8 @@ Because the search parameter is in the request body and not the URL, you can't c
 
 Notice the distinctive font in the ``<form>`` tag. That distinctive font indicates the tag is supported by :doc:`Tag Helpers </mvc/views/tag-helpers/intro>`.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexFormGet.cshtml
-	:language: HTML
-	:lines:  13-18
-	:emphasize-lines: 1
+.. image:: search/_static/th_font.png
+
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the ``HttpGet Index`` action method, even if you have a ``HttpPost Index`` method.
 
@@ -143,7 +141,7 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 
 Adding Search by Genre
---------------------------
+------------------------
 
 Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 
