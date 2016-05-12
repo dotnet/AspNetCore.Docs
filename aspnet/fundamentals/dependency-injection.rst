@@ -192,7 +192,7 @@ The built-in services container is mean to serve the basic needs of the framewor
 
 First, add the appropriate container package(s) to the dependencies property in project.json:
 
-.. code-block:: json
+.. code-block:: javascript
 
   "dependencies" : {
     "Autofac": "4.0.0-rc1",

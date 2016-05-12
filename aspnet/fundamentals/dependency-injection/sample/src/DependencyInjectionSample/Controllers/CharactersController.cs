@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DependencyInjectionSample.Controllers
 {

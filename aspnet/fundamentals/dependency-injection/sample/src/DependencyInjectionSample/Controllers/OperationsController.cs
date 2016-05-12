@@ -1,6 +1,6 @@
 ﻿using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Services;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DependencyInjectionSample.Controllers
 {
