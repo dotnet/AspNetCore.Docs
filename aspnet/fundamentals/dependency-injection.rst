@@ -31,71 +31,67 @@ ASP.NET Core includes a simple built-in container (represented by the ``IService
 Using Framework-Provided Services
 ---------------------------------
 
-The ``ConfigureServices`` method in the ``Startup`` class is responsible for defining the services the application will use, including platform features like Entity Framework and ASP.NET MVC. Initially, the ``IServiceCollection`` provided to ``ConfigureServices`` has just a handful of services defined. The default web template shows an example of how to add additional services to the container using a number of extensions methods like ``AddEntityFramework``, ``AddIdentity``, and ``AddMvc``.
+The ``ConfigureServices`` method in the ``Startup`` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the ``IServiceCollection`` provided to ``ConfigureServices`` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extensions methods like ``AddDbContext``, ``AddIdentity``, and ``AddMvc``.
 
-.. literalinclude:: ../../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :linenos:
   :lines: 39-56
   :dedent: 8
   :emphasize-lines: 4,9,13
 
-The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single ``AddService()`` extension method to register all of the services required by that feature. 
+The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add\ *Service*\  extension method to register all of the services required by that feature. 
 
-.. note:: You can request certain framework-provided services within ``Startup`` methods - see :doc:`startup` for more details.
+.. tip:: You can request certain framework-provided services within ``Startup`` methods through their parameter lists - see :doc:`startup` for more details.
 
 Of course, in addition to configuring the application to take advantage of various framework features, you can also use ``ConfigureServices`` to configure your own application services.
 
 Registering Your Own Services
 -----------------------------
 
-In the default web template example above, two application services are added to the ``IServiceCollection``. 
+You can register your own application services as follows. The first generic type represents the type (typically an interface) that will be requested from the container. The second generic type represents the concrete type that will be instantiated by the container and used to fulfill such requests.
 
-.. literalinclude:: ../../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :linenos:
-  :lines: 53-55
+  :lines: 54-55
   :dedent: 12
-  :emphasize-lines: 2-3
 
-.. note:: Keep in mind, in addition to these two types, everything else in ``ConfigureServices`` is about adding services. For example, ``services.AddMvc()`` adds the services MVC requires.
+.. note:: Each ``services.Add<service>`` calls adds (and potentially configures) services. For example, ``services.AddMvc()`` adds the services MVC requires.
 
 The ``AddTransient`` method is used to map abstract types to concrete services that are instantiated separately for every object that requires it. This is known as the service's *lifetime*, and additional lifetime options are described below. It is important to choose an appropriate lifetime for each of the services you register. Should a new instance of the service be provided to each class that requests it? Should one instance be used throughout a given web request? Or should a single instance be used for the lifetime of the application?
 
-In the sample for this article, there is a simple controller that displays character names, called ``CharacterController``. Its ``Index`` method displays the current list of characters that have been stored in the application, and initializes the collection with a handful of characters if none exist. Note that although this application uses Entity Framework and the ``ApplicationDbContext`` class for its persistence, none of that is apparent in the controller. Instead, the specific data access mechanism has been abstracted behind an interface, ``ICharacterRepository``, which follows the `repository pattern <http://deviq.com/repository-pattern/>`_. An instance of ``ICharacterRepository`` is requested via the constructor and assigned to a private field, which is then used to access characters as necessary.
+In the sample for this article, there is a simple controller that displays character names, called ``CharactersController``. Its ``Index`` method displays the current list of characters that have been stored in the application, and initializes the collection with a handful of characters if none exist. Note that although this application uses Entity Framework Core and the ``ApplicationDbContext`` class for its persistence, none of that is apparent in the controller. Instead, the specific data access mechanism has been abstracted behind an interface, ``ICharacterRepository``, which follows the `repository pattern <http://deviq.com/repository-pattern/>`_. An instance of ``ICharacterRepository`` is requested via the constructor and assigned to a private field, which is then used to access characters as necessary.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Controllers/CharactersController.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Controllers/CharactersController.cs
   :language: c#
-  :linenos:
-  :lines: 1-32
-  :emphasize-lines: 10,12,14,20,23-27
+  :lines: 8-36
+  :dedent: 4
+  :emphasize-lines: 3,5-8,14,21,23-26
 
 The `ICharacterRepository` simply defines the two methods the controller needs to work with `Character` instances.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Interfaces/ICharacterRepository.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Interfaces/ICharacterRepository.cs
   :language: c#
-  :linenos:
+  :emphasize-lines: 8-9
 
 This interface is in turn implemented by a concrete type, ``CharacterRepository``, that is used at runtime.
 
 .. note:: The way DI is used with the ``CharacterRepository`` class is a general model you can follow for all of your application services, not just in "repositories" or data access classes.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Models/CharacterRepository.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Models/CharacterRepository.cs
   :language: c#
-  :linenos:
+  :emphasize-lines: 9,11-14
 
-Note that ``CharacterRepository`` requests an ``ApplicationDbContext`` in its constructor. It is not unusual for dependency injection to be used in a chained fashion like this, with each requested dependency in turn requesting its own dependencies. The container is responsible for resolving all of the dependencies in the tree and returning the fully resolved service.
+Note that ``CharacterRepository`` requests an ``ApplicationDbContext`` in its constructor. It is not unusual for dependency injection to be used in a chained fashion like this, with each requested dependency in turn requesting its own dependencies. The container is responsible for resolving all of the dependencies in the graph and returning the fully resolved service.
 
 .. note:: Creating the requested object, and all of the objects it requires, and all of the objects those require, is sometimes referred to as an `object graph`. Likewise, the collective set of dependencies that must be resolved is typically referred to as a `dependency tree` or `dependency graph`.
 
-In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext`` must be registered with the services container in ``ConfigureServices`` in ``Startup``. ``ApplicationDbContext`` is configured via the call to the extension method ``AddEntityFramework`` which includes an extension for adding a ``DbContext`` (``AddDbContext<T>``). Registration of the repository is done at the bottom end of ``ConfigureServices``:
+In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext`` must be registered with the services container in ``ConfigureServices`` in ``Startup``. ``ApplicationDbContext`` is configured with the call to the extension method ``AddDbContext<T>``. The following code shows the registration of the ``CharacterRepository`` type.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 62-63
-  :linenos:
-  :dedent: 12
-  :emphasize-lines: 4
+  :lines: 17-33
+  :emphasize-lines: 3-5,11
+  :dedent: 8
 
 Entity Framework contexts should be added to the services container using the ``Scoped`` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
@@ -113,41 +109,34 @@ Scoped
   Scoped lifetime services are created once per request.
 
 Singleton
-  Singleton lifetime services are created the first time they are requested, and then every subsequent request will use the same instance. If your application requires singleton behavior, allowing the services container to manage the service's lifetime is recommended instead of implementing the singleton design pattern and managing your object's lifetime in the class yourself.
-
-Instance
-  You can choose to add an instance directly to the services container. If you do so, this instance will be used for all subsequent requests (this technique will create a Singleton-scoped instance). One key difference between ``Instance`` services and ``Singleton`` services is that the ``Instance`` service is created in ``ConfigureServices``, while the ``Singleton`` service is lazy-loaded the first time it is requested.
+  Singleton lifetime services are created the first time they are requested (or when ``ConfigureServices`` is run if you specify an instance there) and then every subsequent request will use the same instance. If your application requires singleton behavior, allowing the services container to manage the service's lifetime is recommended instead of implementing the singleton design pattern and managing your object's lifetime in the class yourself.
 
 Services can be registered with the container in several ways. We have already seen how to register a service implementation with a given type by specifying the concrete type to use. In addition, a factory can be specified, which will then be used to create the instance on demand. The third approach is to directly specify the instance of the type to use, in which case the container will never attempt to create an instance.
 
-To demonstrate the difference between these four lifetime and registration options, consider a simple interface that represents one or more tasks as an *operation* with a unique identifier, ``OperationId``. Depending on how we configure the lifetime for this service, the container will provide either the same or different instances of the service to the requesting class. To make it clear which lifetime is being requested, we will create one type per lifetime option:
+To demonstrate the difference between these lifetime and registration options, consider a simple interface that represents one or more tasks as an *operation* with a unique identifier, ``OperationId``. Depending on how we configure the lifetime for this service, the container will provide either the same or different instances of the service to the requesting class. To make it clear which lifetime is being requested, we will create one type per lifetime option:
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Interfaces/IOperation.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Interfaces/IOperation.cs
   :language: c#
-  :linenos:
-  :emphasize-lines: 7
+  :emphasize-lines: 5,7
 
-We also implement all of these interfaces using a single class, ``Operation``, that simply accepts a ``Guid`` in its constructor, or uses a new ``Guid`` if none is provided.
+We implement these interfaces using a single class, ``Operation``, that accepts a ``Guid`` in its constructor, or uses a new ``Guid`` if none is provided.
 
 Next, in ``ConfigureServices``, each type is added to the container according to its named lifetime:
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 65-69
-  :linenos:
+  :lines: 28-32
   :dedent: 12
 
-Note that the *instance* lifetime type has been added with a known ID of ``Guid.Empty`` so it will be clear when this type is in use. We have also registered an ``OperationService`` that depends on each of the other ``Operation`` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type.
+Note that the ``IOperationSingletonInstance`` service is using a specific instance with a known ID of ``Guid.Empty`` so it will be clear when this type is in use. We have also registered an ``OperationService`` that depends on each of the other ``Operation`` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type. All this service does is expose its dependencies as properties, so they can be displayed in the view.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Services/OperationService.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Services/OperationService.cs
   :language: c#
-  :linenos:
 
 To demonstrate the object lifetimes within and between separate individual requests to the application, the sample includes an ``OperationsController`` that requests each kind of ``IOperation`` type as well as an ``OperationService``. The ``Index`` action then displays all of the controller's and service's ``OperationId`` values.
 
-.. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Controllers/OperationsController.cs
+.. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Controllers/OperationsController.cs
   :language: c#
-  :linenos:
 
 Now two separate requests are made to this controller action:
 
@@ -158,21 +147,20 @@ Observe which of the ``OperationId`` values varies within a request, and between
 
 - *Transient* objects are always different; a new instance is provided to every controller and every service.
 - *Scoped* objects are the same within a request, but different across different requests
-- *Singleton* objects are the same for every object and every request
-- *Instance* objects are the same for every object and every request, and are the exact instance that was specified in ``ConfigureServices``
+- *Singleton* objects are the same for every object and every request (regardless of whether an instance is provided in ``ConfigureServices``)
 
-Request Services and Application Services
------------------------------------------
+Request Services
+----------------
 
-The services available within an ASP.NET request from ``HttpContext`` fall into two collections: *ApplicationServices* and *RequestServices*.
+The services available within an ASP.NET request from ``HttpContext`` are exposed through the ``RequestServices`` collection.
 
-.. image:: dependency-injection/_static/application_request_services.png
+.. image:: dependency-injection/_static/request-services.png
 
-Request Services represent the services you configure and request as part of your application. Application Services are limited to those things that are available on application startup. Anything that is scoped is only available as part of Request Services, not Application Services. When your objects specify dependencies, these are satisfied by the types found in ``RequestServices``, not ``ApplicationServices``.
+Request Services represent the services you configure and request as part of your application. When your objects specify dependencies, these are satisfied by the types found in ``RequestServices``, not ``ApplicationServices``.
 
 Generally, you shouldn't use these properties directly, preferring instead to request the types your classes you require via your class's constructor, and letting the framework inject these dependencies. This yields classes that are easier to test (see :doc:`/testing/index`) and are more loosely coupled.
 
-.. note:: The important things to remember are that your application will almost always use ``RequestServices``, and in any case you shouldn't access these properties directly. Instead, request the services you need via your class's constructor. 
+.. note:: Prefer requesting dependencies as constructor parameters to accessing the ``RequestServices`` collection. 
 
 Designing Your Services For Dependency Injection
 ------------------------------------------------
@@ -192,18 +180,17 @@ The built-in services container is mean to serve the basic needs of the framewor
 
 First, add the appropriate container package(s) to the dependencies property in project.json:
 
-.. code-block:: json
+.. code-block:: javascript
 
   "dependencies" : {
-    "Autofac": "4.0.0-rc1",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1"
+    "Autofac": "4.0.0-rc2-237",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-200"
   },
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:
 
 .. code-block:: c#
   :emphasize-lines: 1,11
-  :linenos:
 
   public IServiceProvider ConfigureServices(IServiceCollection services)
   {
@@ -232,7 +219,7 @@ Finally, configure Autofac as normal in ``DefaultModule``:
     }
   }
 
-Now at runtime, Autofac will be used to resolve types and inject dependencies.
+At runtime, Autofac will be used to resolve types and inject dependencies. `Learn more about using Autofac and ASP.NET Core <http://docs.autofac.org/en/latest/integration/aspnetcore.html>`_
 
 Recommendations
 ---------------
@@ -254,7 +241,7 @@ Additional Resources
 
 - :doc:`startup`
 - :doc:`/testing/index`
-- :ref:`options-config-objects`
+- `Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN) <https://msdn.microsoft.com/en-us/magazine/mt703433.aspx>`_
 - `Container-Managed Application Design, Prelude: Where does the Container Belong? <http://blogs.msdn.com/b/nblumhardt/archive/2008/12/27/container-managed-application-design-prelude-where-does-the-container-belong.aspx>`__
 - `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_
 - `Inversion of Control Containers and the Dependency Injection Pattern <http://www.martinfowler.com/articles/injection.html>`_ (Fowler)
