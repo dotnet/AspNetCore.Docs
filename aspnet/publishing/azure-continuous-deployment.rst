@@ -50,7 +50,6 @@ Running the web app locally
 
 2. After reviewing the running Web app, close the browser and click the "Stop Debugging" icon in the toolbar of Visual Studio to stop the app.
 
-.. note:: To review the ASP.NET Core project, see the "Review the project" section of :doc:`/tutorials/your-first-aspnet-application`.
 
 Create a web app in the Azure Portal
 ------------------------------------
