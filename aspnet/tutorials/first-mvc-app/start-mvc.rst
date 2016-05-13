@@ -1,23 +1,23 @@
 Getting started with ASP.NET MVC Core
-==================================================
+================================================
 
 By `Rick Anderson`_
 
-This tutorial will teach you the basics of building an ASP.NET MVC Core web app using `Visual Studio 2015 <http://go.microsoft.com/fwlink/?LinkId=532606>`__. 
+This tutorial will teach you the basics of building an ASP.NET MVC Core web app using `Visual Studio 2015 <https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx>`__. 
 
-Sections
-^^^^^^^^^^^^^^^^
-	- `Install Visual Studio and ASP.NET`_
-	- `Create a web app`_
 
-Install Visual Studio and ASP.NET
---------------------------------------
+Install Visual Studio and .NET Core
+----------------------------------------
 
-Visual Studio is an IDE (integrated development environment) for building apps. Similar to using Microsoft Word to write documents, you'll use Visual Studio to create web apps. Install :doc:`ASP.NET Core and Visual Studio 2015 </getting-started/installing-on-windows>`
+- Install Visual Studio Community 2015. Select the Community download and the default installation. Skip this step if you have Visual Studio 2015 installed.
+
+  - `Visual Studio 2015 Home page installer  <https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx`__
+
+- Install `.NET Core + Visual Studio tooling <http://go.microsoft.com/fwlink/?LinkID=798306>`__
 
 
 Create a web app
-------------------------------------
+-----------------------------------
 
 From the Visual Studio **Start** page, tap **New Project**.
 
