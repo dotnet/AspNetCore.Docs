@@ -1,7 +1,7 @@
 Publishing to IIS
 =================
 
-By `Rick Anderson`_ and `Luke Latham`_
+By `Luke Latham`_ and `Rick Anderson`_
 
 .. contents:: Sections:
   :local:
@@ -53,17 +53,17 @@ Deploy the Application
 ----------------------
 
 #. On the target IIS server, create a folder to contain the application's assets.
-#. Within the folder you created, create a **logs** folder to hold application logs (if you enable logging). If plan you deploy your application with a **logs** folder in the payload, you may skip this step.
-#. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (e.g., Xcopy, Robocopy, PowerShell). Visual Studio users may use the `default Visual Studio web publish script <https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1>`__. For information on using Web Deploy, see :doc:`iis-with-msdeploy`.
+#. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
+#. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the `default Visual Studio web publish script <https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1>`__. For information on using Web Deploy, see :doc:`iis-with-msdeploy`.
 
 .. warning:: 
-  .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the `web.config` file must be present at the content root path (i.e., the application base path) of the deployed application, which is the website physical path provided to IIS.
+  .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS.
 
-  On the application's physical path, there are sensitive files that one would never want to accidently serve, such as **my_application.runtimeconfig.json**, **my_application.xml** (XML Documentation comments), and **my_application.deps.json**. Without the `web.config` file present to create the reverse proxy to Kestrel, IIS would serve these sensitive files openly on the Internet. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
+  Sensitive files exist on the app's physical path, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
 
-  In order to mitigate the risk of serving sensitive application files if `web.config` were ever accidently renamed or removed, one may add sensitive files to the **Hidden Segments** of **Request Filtering** or add blanket file extension rules to the **File Name Extensions** of **Request Filtering**. See `Hidden Segments \<hidden Segments\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/hiddensegments>`__ and `File Name Extensions \<fileExtensions\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/fileextensions>`__ for more information.
+  In order to mitigate the risk of serving sensitive application files if *web.config* were ever accidently renamed or removed, one may add sensitive files to the **Hidden Segments** of **Request Filtering** or add blanket file extension rules to the **File Name Extensions** of **Request Filtering**. See `Hidden Segments \<hidden Segments\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/hiddensegments>`__ and `File Name Extensions \<fileExtensions\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/fileextensions>`__ for more information.
 
-  Keep in mind that if you use the **File Name Extensions** approach that your application will not receive requests nor be able to serve any file with that extension, even static files in your **webroot** that you wish to serve (e.g., JSON or XML files you have placed in `wwwroot` for legitimate file serving). Therefore, specifically naming sensitive files using the **Hidden Segments** approach might be preferable in most scenarios [i.e., explicitly naming **my_application.runtimeconfig.json**, **my_application.xml** (if any XML Documentation comments files are present), **my_application.deps.json**, and any other files that are not explicitly excluded by IIS for static file serving].
+  Keep in mind that if you use the **File Name Extensions** approach that your application will not receive requests nor be able to serve any file with that extension, even static files in your **webroot** that you wish to serve (for example, JSON or XML files you have placed in `wwwroot` for legitimate file serving). Therefore, specifically naming sensitive files using the **Hidden Segments** approach may be preferable in most scenarios. In **Hidden Segments**, one would list *my_application.runtimeconfig.json*, *my_application.xml* (if this XML Documentation comments file is present), *my_application.deps.json*, and any other files that are not explicitly excluded by IIS for static file serving.
 
 Configure the Website in IIS
 ----------------------------
@@ -71,7 +71,7 @@ Configure the Website in IIS
 #. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's assets folder that you created. Provide the **Binding** configuration and create the website.
 #. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
 
-.. note:: If you change the default identity of the application pool from **ApplicationPoolIdentity** to some other user account, make sure you configure the correct permissions for the user identity to use the application's assets folder.
+.. note:: If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's assets and database.
 
 Open the **Add Website** window.
 
@@ -89,6 +89,10 @@ Set the **.NET CLR version** to **No Managed Code**.
 
 	.. image:: pubIIS/_static/editapppool.png
 
+Browse the website. 
+
+        .. image:: pubIIS/_static/browsewebsite.png
+
 Create a Data Protection Registry Hive
 --------------------------------------
 
@@ -103,11 +107,11 @@ In web farm scenarios, an application can be configured to use a UNC path to sto
 Common Errors
 -------------
 
-The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click `Show comments` to open the DISQUS panel).
+The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click **Show comments** to open the DISQUS panel).
 
-To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and `enable logging <https://docs.asp.net/en/latest/fundamentals/logging.html>`__ in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in `web.config`. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the `web.config` file will default the `stdoutLogEnabled` to `false`, so you must manually provide the file or modify the file in order to enable application logging.
+To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and `enable logging <https://docs.asp.net/en/latest/fundamentals/logging.html>`__ in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable application logging.
 
-A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request (e.g., a stylesheet, script, or image) from the application's static assets (i.e., those in `wwwroot`) using `Static File Middleware <https://docs.asp.net/en/latest/fundamentals/static-files.html>`__. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (e.g., MVC routing, 500 Internal Server Error, etc.). In most cases, enabling application logging will assist in troubleshooting problems within the application.
+A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using `Static File Middleware <https://docs.asp.net/en/latest/fundamentals/static-files.html>`__. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application.
 
 Common errors and general troubleshooting instructions:
 
@@ -115,13 +119,13 @@ Common errors and general troubleshooting instructions:
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.AggregateException: One or more errors occurred. (Error -4092 EACCES permission denied)
 
-	- Make sure you have the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`.
+	- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
 
 - **Browser:** No response
 - **Application Log:** Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll
 - **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'teststandalone.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
 
-	- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of **project.json** that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (i.e., **dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+	- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
 - **Browser:** ERR_CONNECTION_REFUSED
 - **Application Log:** No entry
@@ -146,21 +150,21 @@ Common errors and general troubleshooting instructions:
 
 	- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
 	- Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
-	- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has permissions to read, modify, and execute on the application's folder.
+	- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
 - **ASP.NET Core Module Log:** Log file created but empty
 
-	- Check the `processPath` attribute on the `\<aspNetCore\>` element in `web.config` to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
-	- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
+	- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
+	- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 	- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.FormatException: Unrecognized argument format **--OR --** Expected to load required hostpolicy.dll from [IIS_WEBSITE_PHYSICAL_PATH] - This may be because of an invalid .NET Core FX configuration in the directory.
 
-	- Examine the `arguments` attribute on the `\<aspNetCore\>` element in `web.config` to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (i.e., `arguments=""`), or a list of your application's arguments (i.e., `arguments="arg1, arg2, ..."` for a self-contained application.
+	- Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
 
 - **Browser:** 503 Service Unavailable
 - **Application Log:** No entry
