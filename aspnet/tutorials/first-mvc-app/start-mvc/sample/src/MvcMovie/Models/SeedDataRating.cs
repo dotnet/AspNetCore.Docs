@@ -1,9 +1,8 @@
-﻿//#define Run2Seed
-#if Run2Seed
-
-
+﻿#define SeedRating
+#if SeedRating
 
 using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Data;
 using System;
 using System.Linq;
 
@@ -58,7 +57,7 @@ namespace MvcMovie.Models
                    Title = "Rio Bravo",
                    ReleaseDate = DateTime.Parse("1959-4-15"),
                    Genre = "Western",
-                   Rating = "G",
+                   Rating = "NA",
                    Price = 3.99M
                }
             );

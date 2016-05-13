@@ -1,10 +1,3 @@
-@*This is just used for literalinclude - create.cshtml doesn't need 
-rating so you could remove it.*@
-
-
-
-
-
 @model MvcMovie.Models.Movie
 
 @{
@@ -17,7 +10,7 @@ rating so you could remove it.*@
     <div class="form-horizontal">
         <h4>Movie</h4>
         <hr />
-        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Genre" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -25,7 +18,7 @@ rating so you could remove it.*@
                 <span asp-validation-for="Genre" class="text-danger" />
             </div>
         </div>
-    @*Markup removed for brevity.*@
+        @*Markup removed for brevity.*@
         <div class="form-group">
             <label asp-for="Rating" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -46,7 +39,5 @@ rating so you could remove it.*@
 </div>
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
