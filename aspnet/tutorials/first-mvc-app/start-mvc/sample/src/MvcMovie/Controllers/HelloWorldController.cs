@@ -2,15 +2,15 @@
 
 #if FIRST
 
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.WebEncoders;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
     public class HelloWorldController : Controller
     {
         // 
-        // GET: /HelloWorld/ 
+        // GET: /HelloWorld/
 
         public string Index()
         {
@@ -30,8 +30,8 @@ namespace MvcMovie.Controllers
 #endif
 
 #if Second
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.WebEncoders;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -50,7 +50,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int numTimes = 1)
         {
-            return HtmlEncoder.Default.HtmlEncode(
+            return HtmlEncoder.Default.Encode(
                 "Hello " + name + ", NumTimes is: " + numTimes);
         }
     }
@@ -59,8 +59,8 @@ namespace MvcMovie.Controllers
 #endif
 
 #if Third
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.WebEncoders;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -79,7 +79,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.HtmlEncode(
+            return HtmlEncoder.Default.Encode(
                 "Hello " + name + ", ID: " + ID);
         }
     }
@@ -89,8 +89,8 @@ namespace MvcMovie.Controllers
 
 
 #if View
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.WebEncoders;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -109,7 +109,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.HtmlEncode(
+            return HtmlEncoder.Default.Encode(
                 "Hello " + name + ", ID: " + ID);
         }
     }
@@ -118,8 +118,8 @@ namespace MvcMovie.Controllers
 #endif
 
 #if Index2
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.WebEncoders;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -138,7 +138,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.HtmlEncode(
+            return HtmlEncoder.Default.Encode(
                 "Hello " + name + ", ID: " + ID);
         }
     }
@@ -149,7 +149,8 @@ namespace MvcMovie.Controllers
 #if VD 
 
 
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {

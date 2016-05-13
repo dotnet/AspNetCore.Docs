@@ -1,4 +1,5 @@
-﻿/*
+﻿//#define AddDate
+#if AddDate
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,4 +19,4 @@ namespace MvcMovie.Models
 }
 
 
-*/
+#endif
