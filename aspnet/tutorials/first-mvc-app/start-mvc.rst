@@ -1,16 +1,23 @@
 Getting started with ASP.NET Core MVC
-==================================================
+==============================================
 
 By `Rick Anderson`_
 
-This tutorial will teach you the basics of building an ASP.NET Core MVC app using `Visual Studio`_.
+This tutorial will teach you the basics of building an ASP.NET Core MVC  web app using `Visual Studio 2015 <https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx>`__. 
 
-.. contents:: Sections:
-  :local:
-  :depth: 1
+
+Install Visual Studio and .NET Core
+----------------------------------------
+
+- Install Visual Studio Community 2015. Select the Community download and the default installation. Skip this step if you have Visual Studio 2015 installed.
+
+  - `Visual Studio 2015 Home page installer  <https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx>`__
+
+- Install `.NET Core + Visual Studio tooling <http://go.microsoft.com/fwlink/?LinkID=798306>`__
+
 
 Create a web app
---------------------------------------
+-----------------------------------
 
 From the Visual Studio **Start** page, tap **New Project**.
 
@@ -23,13 +30,15 @@ Alternatively, you can use the menus to create a new project. Tap **File > New >
 Complete the **New Project** dialog:
 
 - In the left pane, tap **Web**
-- In the center pane, tap **ASP.NET Web Application**
+- In the center pane, tap **ASP.NET Core Web Application**
 - Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match. )
 - Tap **OK**
 
 .. image:: start-mvc/_static/new_project2.png
 
-In the **New ASP.NET Project - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
+In the **New ASP.NET Core Web Application - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
+
+.. Warning:: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
 
 .. image:: start-mvc/_static/p3.png
 
@@ -49,7 +58,7 @@ Tap **F5** to run the app in debug mode or **Ctl-F5** in non-debug mode.
 
 .. image:: start-mvc/_static/iis_express.png
 
-Right out of the box the default template gives you Home, Contact, About, Register and Log in pages. The browser image above doesn't show theses links. Depending on the size of your browser, you might need to click the navigation icon to show them.
+The default template gives you working **Home, Contact, About, Register** and **Log in** links. The browser image above doesn't show theses links. Depending on the size of your browser, you might need to click the navigation icon to show them. 
 
 .. image:: start-mvc/_static/2.png
 

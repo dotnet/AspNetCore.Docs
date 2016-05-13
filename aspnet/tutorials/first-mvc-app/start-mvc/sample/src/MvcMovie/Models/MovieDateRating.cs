@@ -1,7 +1,7 @@
-﻿/*
+﻿//#define MovieDateRating
+#if MovieDateRating
 using System;
 using System.ComponentModel.DataAnnotations;
-
 namespace MvcMovie.Models
 {
     public class Movie
@@ -17,10 +17,7 @@ namespace MvcMovie.Models
         public string Rating { get; set; }
     }
 
-
-
-
 }
 
 
-*/
+#endif
