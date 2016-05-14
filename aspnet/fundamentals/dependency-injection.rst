@@ -63,7 +63,6 @@ In the sample for this article, there is a simple controller that displays chara
 
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Controllers/CharactersController.cs
   :language: c#
-  :linenos:
   :lines: 8-36
   :dedent: 4
   :emphasize-lines: 3,5-8,14,21,23-26
@@ -126,7 +125,6 @@ Next, in ``ConfigureServices``, each type is added to the container according to
 .. literalinclude:: dependency-injection/sample/src/DependencyInjectionSample/Startup.cs
   :language: c#
   :lines: 57-62
-  :linenos:
   :dedent: 12
 
 Note that the ``IOperationSingletonInstance`` service is using a specific instance with a known ID of ``Guid.Empty`` so it will be clear when this type is in use. We have also registered an ``OperationService`` that depends on each of the other ``Operation`` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type. All this service does is expose its dependencies as properties, so they can be displayed in the view.
@@ -185,15 +183,14 @@ First, add the appropriate container package(s) to the dependencies property in 
 .. code-block:: javascript
 
   "dependencies" : {
-    "Autofac": "4.0.0-rc1",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc1"
+    "Autofac": "4.0.0-rc2-237",
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-200"
   },
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:
 
 .. code-block:: c#
   :emphasize-lines: 1,11
-  :linenos:
 
   public IServiceProvider ConfigureServices(IServiceCollection services)
   {
@@ -222,7 +219,7 @@ Finally, configure Autofac as normal in ``DefaultModule``:
     }
   }
 
-Now at runtime, Autofac will be used to resolve types and inject dependencies.
+Now at runtime, Autofac will be used to resolve types and inject dependencies. `Learn more about using Autofac and ASP.NET Core <http://docs.autofac.org/en/latest/integration/aspnetcore.html>`_
 
 Recommendations
 ---------------
@@ -244,7 +241,6 @@ Additional Resources
 
 - :doc:`startup`
 - :doc:`/testing/index`
-- :ref:`options-config-objects`
 - `Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN) <https://msdn.microsoft.com/en-us/magazine/mt703433.aspx>`_
 - `Container-Managed Application Design, Prelude: Where does the Container Belong? <http://blogs.msdn.com/b/nblumhardt/archive/2008/12/27/container-managed-application-design-prelude-where-does-the-container-belong.aspx>`__
 - `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_
