@@ -1,7 +1,7 @@
 Building Projects with Yeoman
 =============================
 
-By `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
+By `Steve Smith`_, `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
 
 `Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
 
@@ -10,7 +10,7 @@ By `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
   :depth: 1
 
 Install Node.js, npm, and Yeoman
-------------------------------------
+--------------------------------
 
 - Install `Node.js <https://nodejs.org/en/>`__. The installer includes `Node.js <https://nodejs.org/en/>`__ and `npm <https://www.npmjs.com/>`__.
  
@@ -18,7 +18,7 @@ Install Node.js, npm, and Yeoman
 
   - ``npm install -g yo bower grunt-cli gulp``
     
-.. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.``, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
+.. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` on Mac OS, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
 
 - From the command line, install the ASP.NET generator: 
 
@@ -31,36 +31,47 @@ Install Node.js, npm, and Yeoman
 -  The ``–g`` flag installs the generator globally, so that it can be used from any path.
 
 Create an ASP.NET app
--------------------------
+---------------------
  
-- Create a directory for the project
+Create a directory for your projects
 
 .. code-block:: console
 
-  mkdir C:\MyYo
-  cd C:\MyYo
+  mkdir src
+  cd src
 
-- Run the ASP.NET generator for ``yo``
+Run the ASP.NET generator for ``yo``
 
 .. code-block:: console 
 
   yo aspnet
  
-- The generator displays a menu. Arrow down to the **Web Application** project and tap **Enter**:
+The generator displays a menu. Arrow down to the **Empty Web Application** project and tap **Enter**:
 
 .. image:: yeoman/_static/yeoman-yo-aspnet.png
 
-- Use "MyWebApp" for the app name and then tap **Enter** :
-
-  .. image:: yeoman/_static/yeoman-yo-aspnet-appname.png
+Use "EmptyWeb1" for the app name and then tap **Enter**
 
 Yeoman will scaffold the project and its supporting files. Suggested next steps are also provided in the form of commands. 
 
-  .. image:: yeoman/_static/yeoman-yo-aspnet-created.png
+.. image:: yeoman/_static/yeoman-yo-aspnet-created.png
 
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET Core projects that can be loaded into Visual Studio or run from the command line. 
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET Core projects that can be loaded into Visual Studio Code, Visual Studio, or run from the command line.
 
-If you were redirected to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
+Restore, build and run
+----------------------
+
+Follow the suggested commands by changing directories to the ``EmptyWeb1`` directory. Then run ``dotnet restore``.
+
+.. image:: yeoman/_static/dotnet-restore.png
+
+Build and run the app using ``dotnet build`` and ``dotnet run``:
+
+.. image:: yeoman/_static/dotnet-build-run.png
+
+At this point you can navigate to the URL shown to test the newly created ASP.NET Core app.
+
+.. tip:: If you were directed to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
 
 Setting Grunt as the task runner
 ---------------------------------
@@ -81,7 +92,7 @@ The generator also configures *package.json* to load :doc:`Grunt </client-side/u
 Building and Running from Visual Studio
 ---------------------------------------
 
-You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there.
+You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there. Follow the instructions above to scaffold a new ASP.NET Core app using yeoman. This time, choose **Web Application** from the menu and name the app ``MyWebApp``.
 
 1. Open Visual Studio. From the File menu, select :menuselection:`Open --> Project/Solution`.
 
@@ -106,7 +117,7 @@ You can prepare and host your web application using the `.NET Core`_ command-lin
 
 .. code-block:: console
 
-  cd C:\MyYo\MyWebApp 
+  cd src\MyWebApp 
  
 2. From the command line, restore the project's NuGet package dependencies: 
 
@@ -120,9 +131,7 @@ You can prepare and host your web application using the `.NET Core`_ command-lin
 
   dotnet run
 
-The cross-platform :ref:`Kestrel <kestrel>` web server will begin listening on port 5000:
-
-.. image:: yeoman/_static/yeoman-web-server-started.png
+The cross-platform :ref:`Kestrel <kestrel>` web server will begin listening on port 5000.
 
 4. Open a web browser, and navigate to \http://localhost:5000. 
 
