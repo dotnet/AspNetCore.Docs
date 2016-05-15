@@ -15,7 +15,7 @@ The following operating systems are supported:
 - Windows 7 and newer
 - Windows Server 2008 R2 and newer\*
 
-\*Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to `ASP.NET Core on Nano Server <https://docs.asp.net/en/latest/tutorials/nano-server.html>`__ for specific instructions.
+\*Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to :doc:`ASP.NET Core on Nano Server </tutorials/nano-server>` for specific instructions.
 
 IIS Configuration
 -----------------
@@ -109,9 +109,9 @@ Common Errors
 
 The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click **Show comments** to open the DISQUS panel).
 
-To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and `enable logging <https://docs.asp.net/en/latest/fundamentals/logging.html>`__ in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable application logging.
+To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and :doc:`enable logging </fundamentals/logging>` in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable application logging.
 
-A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using `Static File Middleware <https://docs.asp.net/en/latest/fundamentals/static-files.html>`__. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application.
+A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application.
 
 Common errors and general troubleshooting instructions:
 
@@ -223,4 +223,3 @@ Additional Resources
 - :doc:`/conceptual-overview/understanding-aspnetcore-apps`
 - `The Official Microsoft IIS Site <http://www.iis.net/>`__
 - `Microsoft TechNet Library: Windows Server <https://technet.microsoft.com/en-us/library/bb625087.aspx>`__
-
