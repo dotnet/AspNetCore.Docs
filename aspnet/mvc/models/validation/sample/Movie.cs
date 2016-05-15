@@ -20,9 +20,9 @@ namespace MVCMovie.Models
         [StringLength(1000)]
         public string Description { get; set; }
  
-        [Required()]
+        [Required]
         [Range(0, 999.99)]        
-        public float Price { get; set; }
+        public decimal Price { get; set; }
         
         [Required]
         public Genre Genre { get; set; }
