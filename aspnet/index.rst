@@ -18,7 +18,7 @@ Topics
 .. toctree::
     :titlesonly:
 
-    getting-started/index
+    getting-started
     API <https://docs.asp.net/projects/api>
     tutorials/index
     conceptual-overview/index
