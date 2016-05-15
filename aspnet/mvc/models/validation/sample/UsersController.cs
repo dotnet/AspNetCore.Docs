@@ -16,7 +16,7 @@ namespace MVCMovie.Controllers
         {
             if (!this.userRepo.VerifyEmail())
             {
-                return Json(data: string.Format("Email {0} is already in use.", email));
+                return Json(data: $"Email {email} is already in use.");
             }
 
             return Json(data: true);
