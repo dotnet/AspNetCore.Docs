@@ -46,7 +46,7 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 Install the .NET Core Windows Server Hosting Bundle
 ---------------------------------------------------
 
-#. Install the `.NET Core Windows Server Hosting <https://microsoft.com/net>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
+#. Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 #. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
 
 Deploy the Application
@@ -75,19 +75,19 @@ Configure the Website in IIS
 
 Open the **Add Website** window.
 
-	.. image:: pubIIS/_static/addwebsitecontextmenu.png
-	
+  .. image:: pubIIS/_static/addwebsitecontextmenu.png
+  
 Configure the website.
 
-	.. image:: pubIIS/_static/addwebsite.png
-	
+  .. image:: pubIIS/_static/addwebsite.png
+  
 In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
-	.. image:: pubIIS/_static/basicsettingscontextmenu.png
-	
+  .. image:: pubIIS/_static/basicsettingscontextmenu.png
+  
 Set the **.NET CLR version** to **No Managed Code**.
 
-	.. image:: pubIIS/_static/editapppool.png
+  .. image:: pubIIS/_static/editapppool.png
 
 Browse the website. 
 
@@ -115,68 +115,112 @@ A quick way to determine if the IIS reverse proxy to the Kestrel server is worki
 
 Common errors and general troubleshooting instructions:
 
+Issue #1
+^^^^^^^^
+
 - **Browser:** No response
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.AggregateException: One or more errors occurred. (Error -4092 EACCES permission denied)
 
-	- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+Troubleshooting:
+
+- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+
+Issue #2
+^^^^^^^^
 
 - **Browser:** No response
 - **Application Log:** Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll
 - **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'teststandalone.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
 
-	- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+Troubleshooting:
+
+- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+
+Issue #3
+^^^^^^^^
 
 - **Browser:** ERR_CONNECTION_REFUSED
 - **Application Log:** No entry
 - **ASP.NET Core Module Log:** Log file not created
 
-	- Confirm you are using the correct Uri endpoint for the application. Check your bindings.
-	- Confirm that the IIS website is not in the `Stopped` state.
+Troubleshooting:
+
+- Confirm you are using the correct URI endpoint for the application. Check your bindings.
+- Confirm that the IIS website is not in the `Stopped` state.
+
+Issue #4
+^^^^^^^^
 
 - **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
 
-	- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+Troubleshooting:
+
+- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+
+Issue #5
+^^^^^^^^
 
 - **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
 - **Application Log:** No entry
 - **ASP.NET Core Module Log:** Log file not created
 
-	- Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
+Troubleshooting:
+
+- Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
+
+Issue #6
+^^^^^^^^
 
 - **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
 - **Application Log:** No entry
 - **ASP.NET Core Module Log:** Log file not created
 
-	- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
-	- Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
-	- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+Troubleshooting:
+
+- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+- Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
+- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+
+Issue #7
+^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
 - **ASP.NET Core Module Log:** Log file created but empty
 
-	- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
-	- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
-	- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+Troubleshooting:
+
+- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
+- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
+- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+
+Issue #8
+^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.FormatException: Unrecognized argument format **--OR --** Expected to load required hostpolicy.dll from [IIS_WEBSITE_PHYSICAL_PATH] - This may be because of an invalid .NET Core FX configuration in the directory.
 
-	- Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+Troubleshooting:
+
+- Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+
+Issue #9
+^^^^^^^^
 
 - **Browser:** 503 Service Unavailable
 - **Application Log:** No entry
 - **ASP.NET Core Module Log:** Log file not created
 
-	- Confirm that the Application Pool is not in the `Stopped` state.
+Troubleshooting
+
+- Confirm that the Application Pool is not in the `Stopped` state.
 
 Additional Resources
 --------------------
 
-- `Understanding ASP.NET Core Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnetcore-apps.html>`__
-- `Introducing .NET Core <http://docs.asp.net/en/latest/conceptual-overview/dotnetcore.html>`__
+- :doc:`/conceptual-overview/understanding-aspnetcore-apps`
 - `The Official Microsoft IIS Site <http://www.iis.net/>`__
 - `Microsoft TechNet Library: Windows Server <https://technet.microsoft.com/en-us/library/bb625087.aspx>`__
 
