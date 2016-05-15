@@ -18,7 +18,7 @@ Fortunately, .NET has abstracted validation into validation attributes. These at
 Validation Attributes
 ---------------------
 
-Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
+Validation attributes are a way to configure model validation so it's similar conceptually to validation on fields in database tables. This includes constraints such as assigning data types or required fields. Other types of validation include applying patterns to data to enforce business rules, such as a credit card, phone number, or email address. Validation attributes make enforcing these requirements much simpler and easier to use.
 
 Below is an annotated ``Movie`` model from an app that stores information about movies and TV shows. Most of the properties are required and several string properties have length requirements. Additionally, there is a numeric range restriction in place for the ``Price`` property from 0 to $999.99, along with a custom validation attribute.
 
