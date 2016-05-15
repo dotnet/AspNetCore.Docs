@@ -143,7 +143,7 @@ The tag helpers above render the HTML below. Notice that the ``data-`` attribute
             
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages. 
 
-MVC determines type attribute values based on the .NET datatype of a property, possibly overridden using ``[DataType]`` attributes. The base ``[DataType]`` attribute does no real server-side validation. Browsers choose their own error messages and display those errors however they wish, however the jQuery Validation Unobtrusive package can override the messages and display them consistently with others. This happens most obviously when users apply ``[DataType]`` subclasses such as ``[EmailAddress]``.
+MVC determines type attribute values based on the .NET data type of a property, possibly overridden using ``[DataType]`` attributes. The base ``[DataType]`` attribute does no real server-side validation. Browsers choose their own error messages and display those errors however they wish, however the jQuery Validation Unobtrusive package can override the messages and display them consistently with others. This happens most obviously when users apply ``[DataType]`` subclasses such as ``[EmailAddress]``.
 
 IClientModelValidator
 ---------------------
