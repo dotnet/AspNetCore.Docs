@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using UsingOptions.Models;
 
 namespace UsingOptions
@@ -12,6 +13,7 @@ namespace UsingOptions
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
@@ -37,19 +39,16 @@ namespace UsingOptions
 
             // Add framework services.
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app,
+            ILoggerFactory loggerFactory)
         {
-            app.UseIISPlatformHandler();
-
+            loggerFactory.AddConsole();
+            
+            app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
-
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
