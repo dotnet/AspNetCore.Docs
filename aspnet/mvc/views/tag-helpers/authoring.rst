@@ -361,7 +361,7 @@ The code above checks to see if the content has been modified, and if it has, it
   :emphasize-lines: 5-8
   :dedent: 4
 
-The above code will guarantee that the WWW tag helper runs before the HTTP tag helper. Change ``Order`` to ``MaxValue`` and verify that the markup generated for the  WWW tag is incorrect.
+The above code will guarantee that the HTTP tag helper runs before the WWW tag helper. Change ``Order`` to ``MaxValue`` and verify that the markup generated for the  WWW tag is incorrect.
 
 Inspecting and retrieving child content
 ----------------------------------------
