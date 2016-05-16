@@ -76,18 +76,15 @@ IHostingEnvironment changes
 
 All environment variables are now prefixed with the ``ASPNETCORE_`` prefix.
 
-============================  ================================    
-Old prefix                    New prefix                           
-============================  ================================  
-ASPNET_WEBROOT                ASPNETCORE_WEBROOT
-ASPNET_SERVER                 ASPNETCORE_SERVER
-ASPNET_APP                    ASPNETCORE_APP
-ASPNET_ENVIRONMENT            ASPNETCORE_ENVIRONMENT
-ASPNET_DETAILEDERRORS         ASPNETCORE_DETAILEDERRORS
-ASPNET_CAPTURESTARTUPERRORS   ASPNETCORE_CAPTURESTARTUPERRORS
-ASPNET_SERVERURLS             ASPNETCORE_SERVERURLS
-ASPNET_CONTENTROOT            ASPNETCORE_CONTENTROOT
-============================  ================================  
+======================  ==========================    
+Old prefix              New prefix                           
+======================  ==========================  
+ASPNET_WEBROOT          ASPNETCORE_WEBROOT
+ASPNET_SERVER           ASPNETCORE_SERVER
+ASPNET_APP              ASPNETCORE_APPLICATIONNAME
+ASPNET_ENVIRONMENT      ASPNETCORE_ENVIRONMENT
+ASPNET_DETAILEDERRORS   ASPNETCORE_DETAILEDERRORS
+======================  ==========================   
 
 ASP.NET 5 was renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
 
@@ -320,12 +317,14 @@ Update ``launchSettings.json`` to remove web target and add the following:
 
 .. code-block:: c# 
 
- "web": {
-      "commandName": "web",
-      "environmentVariables": {
-        "Hosting:Environment": "Development"
-      }
-    }
+  "WebApplication1": {
+     "commandName": "Project",
+     "launchBrowser": true,
+     "launchUrl": "http://localhost:5000",
+     "environmentVariables": {
+       "ASPNETCORE_ENVIRONMENT": "Development"
+     }
+  } 
 
 
 Identity API updates
