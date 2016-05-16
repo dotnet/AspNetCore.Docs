@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DependencyInjectionSample.Controllers
 {
@@ -17,17 +17,21 @@ namespace DependencyInjectionSample.Controllers
         // GET: /characters/
         public IActionResult Index()
         {
+            PopulateCharactersIfNoneExist();
             var characters = _characterRepository.ListAll();
-            if (!characters.Any())
+
+            return View(characters);
+        }
+        
+        private void PopulateCharactersIfNoneExist()
+        {
+            if (!_characterRepository.ListAll().Any())
             {
                 _characterRepository.Add(new Character("Darth Maul"));
                 _characterRepository.Add(new Character("Darth Vader"));
                 _characterRepository.Add(new Character("Yoda"));
                 _characterRepository.Add(new Character("Mace Windu"));
-                characters = _characterRepository.ListAll();
             }
-
-            return View(characters);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace DependencyInjectionSample.Models
     public class Operation : IOperationTransient, 
         IOperationScoped, 
         IOperationSingleton, 
-        IOperationInstance
+        IOperationSingletonInstance
     {
         public Operation():this(Guid.NewGuid())
         {

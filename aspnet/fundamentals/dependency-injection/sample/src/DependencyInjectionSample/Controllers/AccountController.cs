@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
 using DependencyInjectionSample.ViewModels.Account;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace DependencyInjectionSample.Controllers
@@ -87,8 +87,9 @@ namespace DependencyInjectionSample.Controllers
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register()
+        public IActionResult Register(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -178,7 +179,7 @@ namespace DependencyInjectionSample.Controllers
                 // If the user does not have an account, then ask the user to create an account.
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
-                var email = info.ExternalPrincipal.FindFirstValue(ClaimTypes.Email);
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
         }
@@ -190,11 +191,6 @@ namespace DependencyInjectionSample.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
-            if (User.IsSignedIn())
-            {
-                return RedirectToAction(nameof(ManageController.Index), "Manage");
-            }
-
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
@@ -444,7 +440,7 @@ namespace DependencyInjectionSample.Controllers
 
         private async Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await _userManager.FindByIdAsync(HttpContext.User.GetUserId());
+            return await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User));
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

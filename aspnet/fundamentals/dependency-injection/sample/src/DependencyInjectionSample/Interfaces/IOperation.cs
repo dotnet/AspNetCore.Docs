@@ -16,7 +16,7 @@ namespace DependencyInjectionSample.Interfaces
     public interface IOperationSingleton : IOperation
     {
     }
-    public interface IOperationInstance : IOperation
+    public interface IOperationSingletonInstance : IOperation
     {
     }
 }
