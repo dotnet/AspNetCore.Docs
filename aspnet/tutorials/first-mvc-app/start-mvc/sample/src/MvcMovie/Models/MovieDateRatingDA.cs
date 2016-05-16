@@ -1,4 +1,5 @@
-﻿/*
+﻿#define MovieDateRatingDA
+#if MovieDateRatingDA
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,9 +29,6 @@ namespace MvcMovie.Models
         [StringLength(5)]
         public string Rating { get; set; }
     }
-
-
-
-
+    
 }
-*/
+#endif

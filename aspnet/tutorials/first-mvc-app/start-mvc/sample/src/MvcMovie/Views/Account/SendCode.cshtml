@@ -5,7 +5,7 @@
 
 <h2>@ViewData["Title"].</h2>
 
-<form asp-controller="Account" asp-action="SendCode" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal" role="form">
+<form asp-controller="Account" asp-action="SendCode" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal">
     <input asp-for="RememberMe" type="hidden" />
     <div class="row">
         <div class="col-md-8">

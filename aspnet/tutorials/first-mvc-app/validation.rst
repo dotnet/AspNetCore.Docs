@@ -1,83 +1,33 @@
-Adding Validation 
+Adding Validation
 ==================================================
 
 By `Rick Anderson`_
 
-In this this section you'll add validation logic to the ``Movie`` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie using the application.
+In this this section you'll add validation logic to the ``Movie`` model, and you'll ensure that the validation rules are enforced any time a user attempts to create or edit a movie.
 
-Keeping Things DRY
+Keeping things DRY
 ---------------------
 
-One of the core design tenets of ASP.NET MVC is `DRY <http://en.wikipedia.org/wiki/Don't_repeat_yourself>`__ ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an application. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
+One of the design tenets of MVC is `DRY <http://en.wikipedia.org/wiki/Don't_repeat_yourself>`__ ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
-The validation support provided by ASP.NET MVC and Entity Framework Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the application.
+The validation support provided by MVC and Entity Framework Core Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-Let's look at how you can take advantage of this validation support in the movie application.
+Let's look at how you can take advantage of this validation support in the movie app.
 
-Adding Validation Rules to the Movie Model
---------------------------------------------------
-  
-You'll begin by adding some validation logic to the ``Movie`` class.
+Adding validation rules to the movie model
+-------------------------------------------------
 
-Open the *Movie.cs* file. Notice the ``System.ComponentModel.DataAnnotations`` namespace does not contain ``Microsoft.AspNet.Mvc``. DataAnnotations provides a built-in set of validation attributes that you can apply declaratively to any class or property. (It also contains formatting attributes like ``DataType`` that help with formatting and don't provide any validation.)
+Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation attributes that you apply declaratively to any class or property. (It also contains formatting attributes like ``DataType`` that help with formatting and don't provide any validation.)
 
-Now update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes. 
+Update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
   :language: c#
-  :lines: 7-30
+  :lines: 8-31
   :dedent: 4
-  :linenos:
-  :emphasize-lines: 5, 12-14,17,18,21,22  
-
-The ``StringLength`` attribute sets the maximum length of the string, and it sets this limitation on the database, therefore the database schema will change.
-
-- From the **View** menu, open **SQL Server Object Explorer** (SSOX). 
-
-  .. image:: working-with-sql/_static/ssox.png
-
-- Right click on the ``Movie`` table **> View Designer**
-
-  .. image:: working-with-sql/_static/design.png
-
-  The following image shows the table design and the ``T-SQL`` that can generate the table.
-
-  .. image:: validation/_static/nvar.png
-
-
-  In the image above, you can see all the string fields are set to `NVARCHAR (MAX) <http://technet.microsoft.com/en-us/library/ms186939.aspx>`__. 
-  
-Build the project, open a command window and enter the following commands:
-
-.. code-block:: PHP
-
-  dnx ef migrations add DataAnnotations
-  dnx ef database update
-
-Examine the Movie schema:
-
-.. image:: validation/_static/newsc.png
-
-The string fields show the new length limits and ``Genre`` is no longer ``nullable``.
+  :emphasize-lines: 5, 12-14, 17-18, 21,22
 
 The validation attributes specify behavior that you want to enforce on the model properties they are applied to. The ``Required`` and ``MinimumLength`` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. The ``RegularExpression`` attribute is used to limit what characters can be input. In the code above, ``Genre`` and ``Rating`` must use only letters (white space, numbers and special characters are not allowed). The ``Range`` attribute constrains a value to within a specified range. The ``StringLength`` attribute lets you set the maximum length of a string property, and optionally its minimum length. Value types (such as ``decimal``, ``int``, ``float``, ``DateTime``) are inherently required and don't need the ``[Required]`` attribute.
-
-Code First ensures that the validation rules you specify on a model class are enforced before the application saves changes in the database. For example, the code below will throw a ``DbUpdateException`` exception when the ``SaveChanges`` method is called, because several required ``Movie`` property values are missing.
-
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 292-295
- :dedent: 8
-
-The code above throws the following exception:
-
-.. code-block:: PHP
-
-  A database operation failed while processing the request.
-  DbUpdateException: An error occurred while updating the entries. 
-  See the inner exception for details. 
-  SqlException: Cannot insert the value NULL into column 'Genre', table 'aspnet5-MvcMovie-.dbo.Movie';    
-  Scolumn does not allow nulls. INSERT fails. 
 
 Having validation rules automatically enforced by ASP.NET helps make your app more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
@@ -103,12 +53,12 @@ How Validation Occurs in the Create View and Create Action Method
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows the two ``Create`` methods.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs 
+.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 41-59
+ :lines: 46-66
  :dedent: 8
 
-The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The HttpPost version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method calling ``ModelState.IsValid`` to check whether the movie has any validation errors.
+The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The HttpPost version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method ``ModelState.IsValid`` detecting any validation errors.
 
 You can set a break point in the ``[HttpPost] Create`` method and verify the method is never called, client side validation will not submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. The following image shows how to disable JavaScript in Internet Explorer.
 
@@ -131,15 +81,14 @@ Below is portion of the *Create.cshtml* view template that you scaffolded earlie
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml
   :language: HTML
-  :emphasize-lines: 9,10,17,18
-  :linenos:
-  :lines: 16-42
+  :emphasize-lines: 9,10,17,18,13
+  :lines: 9-35
 
-The `Input Tag Helper <http://www.davepaquette.com/archive/2015/05/13/mvc6-input-tag-helper-deep-dive.aspx>`__ consumes the `DataAnnotations <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx>`__ attributes and produces HTML attributes needed for jQuery Validation on the client side. The `Validation Tag Helper <http://www.davepaquette.com/archive/2015/05/14/mvc6-validation-tag-helpers-deep-dive.aspx>`__ displays a validation message.
+The :doc:`Input Tag Helper </mvc/views/working-with-forms>` consumes the `DataAnnotations <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx>`__ attributes and produces HTML attributes needed for jQuery Validation on the client side. The :doc:`Validation Tag Helper </mvc/views/working-with-forms>` displays a validation errors. See :doc:`Validation </mvc/models/validation>`.
 
 What's really nice about this approach is that neither the controller nor the ``Create`` view template knows anything about the actual validation rules being enforced or about the specific error messages displayed. The validation rules and the error strings are specified only in the ``Movie`` class. These same validation rules are automatically applied to the ``Edit`` view and any other views templates you might create that edit your model.
 
-If you want to change the validation logic later, you can do so in exactly one place by adding validation attributes to the model (in this example, the ``Movie`` class). You won't have to worry about different parts of the application being inconsistent with how the rules are enforced — all validation logic will be defined in one place and used everywhere. This keeps the code very clean, and makes it easy to maintain and evolve. And it means that that you'll be fully honoring the DRY principle.
+When you need to change validation logic, you can do so in exactly one place by adding validation attributes to the model (in this example, the ``Movie`` class). You won't have to worry about different parts of the application being inconsistent with how the rules are enforced — all validation logic will be defined in one place and used everywhere. This keeps the code very clean, and makes it easy to maintain and evolve. And it means that that you'll be fully honoring the DRY principle.
 
 Using DataType Attributes
 ---------------------------
@@ -148,11 +97,11 @@ Open the *Movie.cs* file and examine the ``Movie`` class. The ``System.Component
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
   :language: c#
-  :lines: 15-17,24,25
+  :lines: 15-17,23-26
   :dedent: 8
-  :linenos:
+  :emphasize-lines: 2,6
 
-The ``DataType`` attributes only provide hints for the view engine to format the data (and supply attributes such as ``<a>`` for URL's and ``<a href="mailto:EmailAddress.com">`` for email. You can use the ``RegularExpression`` attribute to validate the format of the data. The ``DataType`` attribute is used to specify a data type that is more specific than the database intrinsic type, they are not validation attributes. In this case we only want to keep track of the date, not the time. The ``DataType`` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The ``DataType`` attribute can also enable the application to automatically provide type-specific features. For example, a ``mailto:`` link can be created for ``DataType.EmailAddress``, and a date selector can be provided for ``DataType.Date`` in browsers that support HTML5. The ``DataType`` attributes emits HTML 5 data- (pronounced data dash) attributes that HTML 5 browsers can understand. The ``DataType`` attributes do **not** provide any validation. 
+The ``DataType`` attributes only provide hints for the view engine to format the data (and supply attributes such as ``<a>`` for URL's and ``<a href="mailto:EmailAddress.com">`` for email. You can use the ``RegularExpression`` attribute to validate the format of the data. The ``DataType`` attribute is used to specify a data type that is more specific than the database intrinsic type, they are not validation attributes. In this case we only want to keep track of the date, not the time. The ``DataType`` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The ``DataType`` attribute can also enable the application to automatically provide type-specific features. For example, a ``mailto:`` link can be created for ``DataType.EmailAddress``, and a date selector can be provided for ``DataType.Date`` in browsers that support HTML5. The ``DataType`` attributes emits HTML 5 ``data-`` (pronounced data dash) attributes that HTML 5 browsers can understand. The ``DataType`` attributes do **not** provide any validation.
 
 ``DataType.Date`` does not specify the format of the date that is displayed. By default, the data field is displayed according to the default formats based on the server's ``CultureInfo``.
 
@@ -161,11 +110,11 @@ The ``DisplayFormat`` attribute is used to explicitly specify the date format:
 .. code-block:: c#
 
   [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-  public DateTime EnrollmentDate { get; set; }
+  public DateTime ReleaseDate { get; set; }
 
 The ``ApplyFormatInEditMode`` setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you probably do not want the currency symbol in the text box for editing.)
 
-You can use the ``DisplayFormat`` attribute by itself, but it's generally a good idea to use the ``DataType`` attribute alone. The ``DataType`` attribute conveys the semantics of the data as opposed to how to render it on a screen, and provides the following benefits that you don't get with DisplayFormat:
+You can use the ``DisplayFormat`` attribute by itself, but it's generally a good idea to use the ``DataType`` attribute. The ``DataType`` attribute conveys the semantics of the data as opposed to how to render it on a screen, and provides the following benefits that you don't get with DisplayFormat:
 
 - The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
 - By default, the browser will render data using the correct format based on your `locale <http://msdn.microsoft.com/en-us/library/vstudio/wyzd2bce.aspx>`__
@@ -185,15 +134,14 @@ The following code shows combining attributes on one line:
   :language: c#
   :lines: 7-25
   :dedent: 4
-  :linenos:
   :emphasize-lines: 5,8,11,14,17
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated ``Details`` and ``Delete`` methods.
 
 Additional resources
-------------------------
+-----------------------
+
+- :doc:`/mvc/views/working-with-forms`
 - :doc:`/fundamentals/localization`
 - :doc:`/mvc/views/tag-helpers/intro`
 - :doc:`/mvc/views/tag-helpers/authoring`
-
-.. TODO link to globalize

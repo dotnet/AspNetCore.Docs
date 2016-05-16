@@ -1,5 +1,5 @@
-﻿/*
-
+﻿//#define First
+#if First
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +18,4 @@ namespace MvcMovie.Models
     }
 }
 
-
-*/
+#endif
