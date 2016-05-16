@@ -10,7 +10,7 @@ Overview
 
 This migration guide covers migrating an ASP.NET 5 RC1 application to ASP.NET Core.
 
-ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core RC2 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. For information on migrating from DNX to .NET Core CLI see <need link>.
+ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core RC2 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. See `migrating from DNX to .NET Core CLI <http://dotnet.github.io/docs/core-concepts/dnx-migration.html>`_ for more information.
 
 For information regarding a complete list of breaking changes in RC2 for ASP.NET Core, see the `ASP.NET Core Announcements page <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2>`_
 
@@ -28,7 +28,6 @@ Since ASP.NET Core apps are just console apps, you must define an entry point fo
         var host = new WebHostBuilder()
             .UseKestrel()
             .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseDefaultHostingConfiguration(args)
             .UseIISIntegration()
             .UseStartup<Startup>()
             .Build();
@@ -38,7 +37,7 @@ Since ASP.NET Core apps are just console apps, you must define an entry point fo
   }
 
 
-Configure the webroot and port in the ``hosting.json`` file. The web root of your application is now defined when setting up the web host and defaults to ``wwwroot``.
+The web root of your application is no longer specified in your project.json file. It is instead defined when setting up the web host and defaults to wwwroot. Call the UseWebRoot method to specify a web root folder. Alternatively you can enable specifying the web root folder in configuration by calling the UseConfiguration method. Similarly the server URLs that your application listens on can be specified using the UseServerUrls method or through configuration.
 
 Additionally, you must turn on server garbage collection in ``project.json`` or, ``app.config`` when running ASP.NET projects on the full .NET framework.
 
@@ -69,7 +68,7 @@ WebApplicationService          WebHostService
 WebApplicationConfiguration    WebHostConfiguration
 ===========================    =========================
 
-The ``commands`` section of ``project.json`` has been removed completely. Use ``run`` or ``dotnet <dllname>`` instead.  
+The ``commands`` section of ``project.json`` has been removed completely. Use ``dotnet run`` or ``dotnet <dllname>`` instead.
 
 
 IHostingEnvironment changes 
@@ -77,15 +76,18 @@ IHostingEnvironment changes
 
 All environment variables are now prefixed with the ``ASPNETCORE_`` prefix.
 
-======================  =========================    
-Old prefix              New prefix                           
-======================  =========================  
-ASPNET_WEBROOT          ASPNETCORE_WEBROOT
-ASPNET_SERVER           ASPNETCORE_SERVER
-ASPNET_APP              ASPNETCORE_APP
-ASPNET_ENVIRONMENT      ASPNETCORE_ENVIRONMENT
-ASPNET_DETAILEDERRORS   ASPNETCORE_DETAILEDERRORS
-======================  =========================  
+============================  ================================    
+Old prefix                    New prefix                           
+============================  ================================  
+ASPNET_WEBROOT                ASPNETCORE_WEBROOT
+ASPNET_SERVER                 ASPNETCORE_SERVER
+ASPNET_APP                    ASPNETCORE_APP
+ASPNET_ENVIRONMENT            ASPNETCORE_ENVIRONMENT
+ASPNET_DETAILEDERRORS         ASPNETCORE_DETAILEDERRORS
+ASPNET_CAPTURESTARTUPERRORS   ASPNETCORE_CAPTURESTARTUPERRORS
+ASPNET_SERVERURLS             ASPNETCORE_SERVERURLS
+ASPNET_CONTENTROOT            ASPNETCORE_CONTENTROOT
+============================  ================================  
 
 ASP.NET 5 was renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
 
@@ -120,12 +122,13 @@ To:
   }
 
   
-Namespace and package id changes
+Namespace and package ID changes
 ---------------------------------- 
 
 All Microsoft.AspNet.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
 The EntityFramework.\* packages and namespaces are changing to Microsoft.EntityFrameworkCore.\*.
 All ASP.NET Core package versions are now 1.0.0-\*.
+Microsoft.Data.Entity.* is now Microsoft.EntityFrameworkCore.*
 
 Working with IIS
 ----------------
@@ -133,9 +136,11 @@ Working with IIS
 HttpPlatformModule
 ^^^^^^^^^^^^^^^^^^
 
+``Microsoft.AspNetCore.IISPlatformHandler`` is now ``Microsoft.AspNetCore.Server.IISIntegration``.
+
 HttpPlatformModule was replaced by ASP.NET Core Module. The web.config created by the Publish IIS tool now configures IIS to use ASP.NET Core Module instead of HttpPlatformHandler to reverse-proxy requests to Kestrel.
 
-The code snippet below shows how to configure the new Publish IIS tool in ``project.json`` file
+The code snippet below shows how to configure the new Publish IIS tool in ``project.json`` file:
 
 .. code-block:: Json 
 
@@ -173,23 +178,20 @@ The name of the package that contains the Publish IIS tool was changed to ``Micr
 
 You can use the Publish IIS tool to publish your app with the ``web.config`` file that is required for your target environment. More information about Publish IIS changes is at https://github.com/aspnet/Announcements/issues/164.
 
-IIS integration middleware is now setup using ``WebHostBuilder`` in ``Program.Main``, and is no longer called in the ``Configure`` method of the ``Startup`` class.
+IIS integration middleware is now setup using ``WebHostBuilder`` in ``Program.Main``, and is no longer called in the ``Configure`` method of the ``Startup`` class. 
+
+.. code-block:: c#
+
+  public static void Main(string[] args)
+  {
+    var host = new WebHostBuilder().UseIISIntegration();
+  }
+
 
 Json configuration syntax change 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``ConfigurationRoot.ReloadOnChanged`` is no longer available, add is added explicitly via ``ConfigurationBuilder.AddJsonFile``. Update ``launchSettings.json`` to remove web target and add the following:
-
-.. code-block:: Json 
-
-    "WebApplication1": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
+``ConfigurationRoot.ReloadOnChanged`` is no longer available, add is added explicitly via ``ConfigurationBuilder.AddJsonFile``.
 
 
 Changes in MVC
@@ -200,8 +202,7 @@ To compile views, set the ``preserveCompilationContext`` option in ``project.jso
 .. code-block:: c#  
 
   {
-    "userSecretsId": "aspnet-WebApplication11-b15b61be-47f8-499c-ac42-9f74b8cdbebe",
-    "compilationOptions": {
+    "buildOptions": {
       "emitEntryPoint": true,
       "preserveCompilationContext": true
   },
@@ -220,13 +221,13 @@ RC1:
 
 .. code-block:: html 
 
-  <div asp-validation-summary="All" class="text-danger"></div> 
+  <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div> 
 
 RC2:
 
 .. code-block:: html
 
-  <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+  <div asp-validation-summary="All" class="text-danger"></div>
 
 ViewComponents changes
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -269,22 +270,7 @@ We now consider a type to be a controller if all of the following rules apply:
 DNX commands replaced with .NET Core tools
 ------------------------------------------
 
-The following DNX commands have been replaced with the following .NET Core tools:
-
-=================================  =====================  =====================================================================
-DNX command                        CLI command            Description                                                         
-=================================  =====================  =====================================================================
-dnx run                            dotnet run             Run code from source.  
-dnu build                          dotnet build           Build an IL binary of your code.
-dnu pack                           dotnet pack            Package up a NuGet package of your code.
-dnx [command] (e.g. "dnx web")     N/A\\*                 In DNX world, run a command as defined in the project.json.
-dnu install                    	   N/A\\*                 In the DNX world, install a package as a dependency.
-dnu restore                    	   dotnet restore         Restore dependencies specified in your project.json.
-dnu publish                    	   dotnet publish         Publish your application for deployment in one of the three forms 
-                                                          (portable, portable w/ native and standalone).
-dnu wrap                       	   N/A\\*                 In DNX world, wrap a project.json in csproj.
-dnu commands                   	   N/A\\*                 In DNX world, manage the globally installed commands.
-=================================  =====================  =====================================================================
+web, user-secrets, sql-cache, watch.
 
 
 Configuration
@@ -298,7 +284,7 @@ Configuration
 Entity Framework
 ----------------
 
-Link to separate EF Core Migration topic here.
+For information on migrating Entity Framework 7 to Entity Framework Core, see the `EF Migration document <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_
 
 Logging
 -------
@@ -326,6 +312,20 @@ ASP.NET Web Application for version 4.5.2 are still available. The ASP.NET Core 
   - Web API 
   - Web Application 
 - ASP.NET Core Web Application on .NET Framework
+
+Updating Launch Settings in Visual Studio
+-----------------------------------------
+
+Update ``launchSettings.json`` to remove web target and add the following:
+
+.. code-block:: c# 
+
+ "web": {
+      "commandName": "web",
+      "environmentVariables": {
+        "Hosting:Environment": "Development"
+      }
+    }
 
 
 Identity API updates
