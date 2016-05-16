@@ -12,15 +12,17 @@ By `Steve Smith`_, `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
 Install Node.js, npm, and Yeoman
 --------------------------------
 
-- Install `Node.js <https://nodejs.org/en/>`__. The installer includes `Node.js <https://nodejs.org/en/>`__ and `npm <https://www.npmjs.com/>`__.
+To get started with Yeoman install `Node.js <https://nodejs.org/en/>`__. The installer includes `Node.js <https://nodejs.org/en/>`__ and `npm <https://www.npmjs.com/>`__.
  
-- Follow the instructions on http://yeoman.io/learning/ to install `yo <https://github.com/yeoman/yo>`__, bower, grunt, and gulp.
+Follow the instructions on http://yeoman.io/learning/ to install `yo <https://github.com/yeoman/yo>`__, bower, grunt, and gulp.
 
-  - ``npm install -g yo bower grunt-cli gulp``
+.. code-block:: console
+  
+  ``npm install -g yo bower grunt-cli gulp
     
 .. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` on Mac OS, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
 
-- From the command line, install the ASP.NET generator: 
+From the command line, install the ASP.NET generator: 
 
 .. code-block:: console
 
@@ -28,7 +30,7 @@ Install Node.js, npm, and Yeoman
  
 .. note:: If you get a permission error, run the command under ``sudo`` as described above.
 
--  The ``–g`` flag installs the generator globally, so that it can be used from any path.
+The ``–g`` flag installs the generator globally, so that it can be used from any path.
 
 Create an ASP.NET app
 ---------------------
@@ -73,13 +75,8 @@ At this point you can navigate to the URL shown to test the newly created ASP.NE
 
 .. tip:: If you were directed to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
 
-Setting Grunt as the task runner
----------------------------------
-
-:doc:`Grunt </client-side/using-grunt>`
-:doc:`Gulp </client-side/using-gulp>`
-
-The ASP.NET Core Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio. 
+Specifying the client-side task runner
+--------------------------------------
 
 The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` task runner file is added to your project to automate build tasks for Web projects. The default generator creates *gulpfile.js* to run tasks. Running the generator with the ``--grunt`` argument generates *Gruntfile.js*:
 
@@ -94,38 +91,38 @@ Building and Running from Visual Studio
 
 You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there. Follow the instructions above to scaffold a new ASP.NET Core app using yeoman. This time, choose **Web Application** from the menu and name the app ``MyWebApp``.
 
-1. Open Visual Studio. From the File menu, select :menuselection:`Open --> Project/Solution`.
+Open Visual Studio. From the File menu, select :menuselection:`Open --> Project/Solution`.
 
-2. In the Open Project dialog, navigate to the *project.json* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
+In the Open Project dialog, navigate to the *project.json* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
 
-  .. image:: yeoman/_static/yeoman-solution.png
+.. image:: yeoman/_static/yeoman-solution.png
  
-.. note:: Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the **References** node, and client-side dependencies in the **Dependencies** node of Solution Explorer. Dependencies are restored automatically when the project is loaded.
+Yeoman scaffolds a MVC web application, complete with both server- and client-side build support. Server-side dependencies are listed under the **References** node, and client-side dependencies in the **Dependencies** node of Solution Explorer. Dependencies are restored automatically when the project is loaded.
 
-  .. image:: yeoman/_static/yeoman-loading-dependencies.png 
+.. image:: yeoman/_static/yeoman-loading-dependencies.png 
 
-3. When all the dependencies are restored, press **F5** to run the project. The default home page displays in the browser.
+When all the dependencies are restored, press **F5** to run the project. The default home page displays in the browser.
  
-  .. image:: yeoman/_static/yeoman-home-page.png 
+.. image:: yeoman/_static/yeoman-home-page.png 
 
 Restoring, Building, and Hosting from the Command Line
 ------------------------------------------------------
 
 You can prepare and host your web application using the `.NET Core`_ command-line interface. 
 
-1. From the command line, change the current directory to the folder containing the project (that is, the folder containing the `project.json` file):
+From the command line, change the current directory to the folder containing the project (that is, the folder containing the `project.json` file):
 
 .. code-block:: console
 
   cd src\MyWebApp 
  
-2. From the command line, restore the project's NuGet package dependencies: 
+From the command line, restore the project's NuGet package dependencies: 
 
 .. code-block:: console
 
   dotnet restore
 
-3. Run the application:
+Run the application:
 
 .. code-block:: console
 
@@ -133,12 +130,13 @@ You can prepare and host your web application using the `.NET Core`_ command-lin
 
 The cross-platform :ref:`Kestrel <kestrel>` web server will begin listening on port 5000.
 
-4. Open a web browser, and navigate to \http://localhost:5000. 
+Open a web browser, and navigate to \http://localhost:5000. 
 
 .. image:: yeoman/_static/yeoman-home-page_5000.png 
 
 Adding to Your Project with Sub Generators
 ------------------------------------------
+
 You can add new generated files using Yeoman even after the project is created. Use `sub generators <https://www.npmjs.com/package/generator-aspnet#sub-generators>`_ to add any of the file types that make up your project. For example, to add a new class to your project, enter the ``yo aspnet:Class`` command followed by the name of the class. Execute the following command from the directory in which the file should be created: 
 
 .. code-block:: console
