@@ -37,10 +37,10 @@ You can see an example of setting up the request pipeline in the default web sit
 #. MVC
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
-	:language: c#
-	:lines: 59-72,85-101
-	:dedent: 8
-	:emphasize-lines: 8-10,14,17,19,21,25
+  :language: c#
+  :lines: 58-86
+  :dedent: 8
+  :emphasize-lines: 8-10,14,17,19,23
 
 In the code above (in non-development environments), `UseExceptionHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/ExceptionHandlerExtensions/index.html>`__ is the first middleware added to the pipeline, therefore will catch any exceptions that occur in later calls. 
 

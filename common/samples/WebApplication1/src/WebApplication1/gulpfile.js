@@ -7,16 +7,16 @@ var gulp = require("gulp"),
     cssmin = require("gulp-cssmin"),
     uglify = require("gulp-uglify");
 
-var paths = {
-    webroot: "./wwwroot/"
-};
+var webroot = "./wwwroot/";
 
-paths.js = paths.webroot + "js/**/*.js";
-paths.minJs = paths.webroot + "js/**/*.min.js";
-paths.css = paths.webroot + "css/**/*.css";
-paths.minCss = paths.webroot + "css/**/*.min.css";
-paths.concatJsDest = paths.webroot + "js/site.min.js";
-paths.concatCssDest = paths.webroot + "css/site.min.css";
+var paths = {
+    js: webroot + "js/**/*.js",
+    minJs: webroot + "js/**/*.min.js",
+    css: webroot + "css/**/*.css",
+    minCss: webroot + "css/**/*.min.css",
+    concatJsDest: webroot + "js/site.min.js",
+    concatCssDest: webroot + "css/site.min.css"
+};
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);

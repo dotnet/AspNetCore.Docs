@@ -27,8 +27,7 @@ Bundling can be accomplished using the `gulp-concat <https://www.npmjs.com/packa
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
-  :linenos:
-  :emphasize-lines: 6
+  :emphasize-lines: 7
 
 Run ``npm install`` to install the specified packages. Visual Studio will automatically install npm packages whenever *package.json* is modified.
 
@@ -36,7 +35,6 @@ In your *gulpfile.js* import the ``gulp-concat`` module:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
-  :linenos:
   :lines: 4-8
   :emphasize-lines: 3
 
@@ -44,14 +42,12 @@ Use `globbing <http://www.tldp.org/LDP/abs/html/globbingref.html>`__ patterns to
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
-  :linenos:
-  :lines: 14-19
+  :lines: 12-19
 
 You can then define gulp tasks that run ``concat`` on the desired files and output the result to your webroot:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
-  :linenos:
   :lines: 31-43
   :emphasize-lines: 3, 10
 
@@ -97,14 +93,12 @@ To minify your JavaScript files you can use the `gulp-uglify <https://www.npmjs.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
-  :linenos:
-  :emphasize-lines: 7, 8
+  :emphasize-lines: 8-9
 
 Import the ``gulp-uglify`` and ``gulp-cssmin`` modules in your *gulpfile.js* file:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
-  :linenos:
   :lines: 4-8
   :emphasize-lines: 4, 5
 
@@ -112,7 +106,6 @@ Add ``uglify`` to minify your bundled JavaScript files and ``cssmin`` to minify 
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
-  :linenos:
   :lines: 31-43
   :emphasize-lines: 4, 11
 

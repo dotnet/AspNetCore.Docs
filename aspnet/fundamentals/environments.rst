@@ -68,7 +68,7 @@ For example, you can use the following code in you Configure method to setup env
   :language: c#
   :linenos:
   :dedent: 12
-  :lines: 64-72,85
+  :lines: 63-72
 
 If the app is running in a ``Development`` environment, then it enables BrowserLink and development specific error pages (which typically should not be run in production). Otherwise, if the app is not running in a development environment, a standard error handling page is configured to be displayed in response to any unhandled exceptions.
 
@@ -77,7 +77,7 @@ You may need to determine which content to send to the client at runtime, depend
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :lines: 8-17
-  :dedent: 8
+  :dedent: 4
 
 To get started with using tag helpers in your application see :doc:`/mvc/views/tag-helpers/intro`.
 

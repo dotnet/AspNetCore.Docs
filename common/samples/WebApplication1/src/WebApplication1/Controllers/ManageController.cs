@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
+using WebApplication1.Models.ManageViewModels;
 using WebApplication1.Services;
-using WebApplication1.ViewModels.Manage;
 
 namespace WebApplication1.Controllers
 {
@@ -174,8 +173,9 @@ namespace WebApplication1.Controllers
         }
 
         //
-        // GET: /Manage/RemovePhoneNumber
-        [HttpGet]
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePhoneNumber()
         {
             var user = await GetCurrentUserAsync();
@@ -291,8 +291,8 @@ namespace WebApplication1.Controllers
         {
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, User.GetUserId());
-            return new ChallengeResult(provider, properties);
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+            return Challenge(properties, provider);
         }
 
         //
@@ -305,7 +305,7 @@ namespace WebApplication1.Controllers
             {
                 return View("Error");
             }
-            var info = await _signInManager.GetExternalLoginInfoAsync(User.GetUserId());
+            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
             if (info == null)
             {
                 return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
@@ -337,9 +337,9 @@ namespace WebApplication1.Controllers
             Error
         }
 
-        private async Task<ApplicationUser> GetCurrentUserAsync()
+        private Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await _userManager.FindByIdAsync(HttpContext.User.GetUserId());
+            return _userManager.GetUserAsync(HttpContext.User);
         }
 
         #endregion

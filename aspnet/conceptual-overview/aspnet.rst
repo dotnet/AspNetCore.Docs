@@ -99,7 +99,7 @@ ASP.NET Core uses a new configuration model for handling of simple name-value pa
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :lines: 22-33
+  :lines: 22-34
   :dedent: 12
 
 See :doc:`/fundamentals/configuration` for more details on the new configuration system and :doc:`/fundamentals/environments` for details on how to work with environments in ASP.NET Core.

@@ -28,9 +28,9 @@ Your ``Configure`` method must accept an IApplicationBuilder_ parameter. Additio
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 59-72,85-101
+  :lines: 58-86
   :dedent: 8
-  :emphasize-lines: 8-10,14,19,21,25
+  :emphasize-lines: 8-10,14,17,19,23
 
 Each ``Use`` extension method adds :doc:`middleware <middleware>` to the request pipeline. For instance, the ``UseMvc`` extension method adds the :doc:`routing <routing>` middleware to the request pipeline and configures :doc:`MVC </mvc/index>` as the default handler.
 
@@ -46,9 +46,9 @@ Just as with ``Configure``, it is recommended that features that require substan
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
   :linenos:
-  :lines: 39-56
+  :lines: 40-55
   :dedent: 8
-  :emphasize-lines: 4,9,13
+  :emphasize-lines: 4,7,11
 
 Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`. Just as the ``Startup`` class is able to specify dependencies its methods require as parameters, rather than hard-coding to a specific implementation, so too can your middleware, MVC controllers and other classes in your application.
 

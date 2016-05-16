@@ -94,8 +94,8 @@ The following code reads the configuration values stored by the :ref:`Secret Man
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
   :language: c#
-  :lines: 22-33
-  :emphasize-lines: 8
+  :lines: 22-34
+  :emphasize-lines: 9
   :dedent: 12
 
 Enable Facebook middleware

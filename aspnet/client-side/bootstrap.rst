@@ -22,7 +22,6 @@ Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to `
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/bower.json
   :language: json
-  :linenos:
   :emphasize-lines: 5
 
 This is the recommended way to add Bootstrap to an ASP.NET Core project.
@@ -56,8 +55,7 @@ If you're referencing your own local versions of Bootstrap, you'll need to refer
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
-  :linenos:
-  :emphasize-lines: 9,14,51,59
+  :emphasize-lines: 9,13,51,59
 
 .. note:: If you're going to be using any of Bootstrap's jQuery plugins, you will also need to reference jQuery.
 

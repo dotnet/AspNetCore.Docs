@@ -5,5 +5,4 @@ Conceptual Overview
   :titlesonly:
 
   aspnet
-  understanding-aspnetcore-apps
   choosing-the-right-dotnet
