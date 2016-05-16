@@ -5,7 +5,7 @@ By `Mike Wasson`_
 
 Browser security prevents a web page from making AJAX requests to another domain. This restriction is called the *same-origin policy*, and prevents a malicious site from reading sensitive data from another site. However, sometimes you might want to let other sites make cross-origin requests to your web app.
 
-`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET 5 application.
+`Cross Origin Resource Sharing <http://www.w3.org/TR/cors/>`_ (CORS) is a W3C standard that allows a server to relax the same-origin policy. Using CORS, a server can explicitly allow some cross-origin requests while rejecting others. CORS is safer and more flexible than earlier techniques such as `JSONP <http://en.wikipedia.org/wiki/JSONP>`_. This topic shows how to enable CORS in your ASP.NET Core application.
 
 .. contents:: Sections:
   :local:
@@ -18,15 +18,15 @@ Two URLs have the same origin if they have identical schemes, hosts, and ports. 
 
 These two URLs have the same origin:
 
-- http://example.com/foo.html
-- http://example.com/bar.html
+- \http://example.com/foo.html
+- \http://example.com/bar.html
 
 These URLs have different origins than the previous two:
 
-- http://example.net - Different domain
-- http://example.com:9000/foo.html - Different port
-- https://example.com/foo.html - Different scheme
-- http://www.example.com/foo.html - Different subdomain
+- \http://example.net - Different domain
+- \http://example.com:9000/foo.html - Different port
+- \https://example.com/foo.html - Different scheme
+- \http://www.example.com/foo.html - Different subdomain
 
 .. note:: Internet Explorer does not consider the port when comparing origins.
 
@@ -59,7 +59,7 @@ You can specify a cross-origin policy when adding the CORS middleware using the 
   :lines: 15-18, 24
   :dedent: 8
 
-The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "http://example.com" and no other origins.
+The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configuration options later in this topic. In this example, the policy allows cross-origin requests from "\http://example.com" and no other origins.
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
@@ -147,18 +147,18 @@ Set the allowed origins
 To allow one or more specific origins:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN01
-	:end-before: END01
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN01
+  :end-before: END01
+  :dedent: 16
 
 To allow all origins:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN02
-	:end-before: END02
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN02
+  :end-before: END02
+  :dedent: 16
 
 Consider carefully before allowing requests from any origin. It means that literally any website can make AJAX calls to your app.
 
@@ -168,18 +168,18 @@ Set the allowed HTTP methods
 To specify which HTTP methods are allowed to access the resource.
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN03
-	:end-before: END03
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN03
+  :end-before: END03
+  :dedent: 16
 
 To allow all HTTP methods:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN04
-	:end-before: END04
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN04
+  :end-before: END04
+  :dedent: 16
 
 This affects pre-flight requests and Access-Control-Allow-Methods header.
 
@@ -191,18 +191,18 @@ A CORS preflight request might include an Access-Control-Request-Headers header,
 To whitelist specific headers:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN05
-	:end-before: END05
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN05
+  :end-before: END05
+  :dedent: 16
 
 To allow all author request headers:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN06
-	:end-before: END06
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN06
+  :end-before: END06
+  :dedent: 16
 
 Browsers are not entirely consistent in how they set Access-Control-Request-Headers. If you set headers to anything other than "*", you should include at least "accept", "content-type", and "origin", plus any custom headers that you want to support.
 
@@ -221,10 +221,10 @@ By default, the browser does not expose all of the response headers to the appli
 The CORS spec calls these *simple response headers*. To make other headers available to the application:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN07
-	:end-before: END07
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN07
+  :end-before: END07
+  :dedent: 16
 
 Credentials in cross-origin requests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -253,10 +253,10 @@ In jQuery:
 In addition, the server must allow the credentials. To allow cross-origin credentials:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN08
-	:end-before: END08
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN08
+  :end-before: END08
+  :dedent: 16
 
 Now the HTTP response will include an Access-Control-Allow-Credentials header, which tells the browser that the server allows credentials for a cross-origin request.
 
@@ -270,10 +270,10 @@ Set the preflight expiration time
 The Access-Control-Max-Age header specifies how long the response to the preflight request can be cached. To set this header:
 
 .. literalinclude:: cors/sample/src/CorsExample4/Startup.cs
-	:language: csharp
-	:start-after: BEGIN09
-	:end-before: END09
-	:dedent: 16
+  :language: csharp
+  :start-after: BEGIN09
+  :end-before: END09
+  :dedent: 16
 
 .. _cors-how-cors-works:
 
@@ -319,9 +319,9 @@ The browser can skip the preflight request if the following conditions are true:
 - The application does not set any request headers other than Accept, Accept-Language, Content-Language, Content-Type, or Last-Event-ID, and
 - The Content-Type header (if set) is one of the following:
 
-	- application/x-www-form-urlencoded
-	- multipart/form-data
-	- text/plain
+  - application/x-www-form-urlencoded
+  - multipart/form-data
+  - text/plain
 
 The rule about request headers applies to headers that the application sets by calling setRequestHeader on the XMLHttpRequest object. (The CORS specification calls these "author request headers".) The rule does not apply to headers the browser can set, such as User-Agent, Host, or Content-Length.
 

@@ -5,16 +5,16 @@ By `Steve Smith`_
 Routing middleware is used to map requests to route handlers. Routes are configured when the application starts up, and can extract values from the URL that will be passed as arguments to route handlers. Routing functionality is also responsible for generating links that correspond to routes in ASP.NET apps.
 
 .. contents:: Sections
-	:local:
-	:depth: 1
-	
-`View sample files <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/fundamentals/routing/sample>`_
+  :local:
+  :depth: 1
+
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/routing/sample>`__
 
 Routing Middleware
 ------------------
 The routing :doc:`middleware <middleware>` uses *routes* to map requests to an ``IRouter`` instance. The ``IRouter`` instance chooses whether or not to handle the request, and how. The request is considered handled if its ``RouteContext.IsHandled`` property is set to ``true``. If no route handler is found for a request, then the middleware calls *next* (and the next middleware in the request pipeline is invoked).
 
-To use routing, add it to the **dependencies** in ``project.json``:
+To use routing, add it to the **dependencies** in *project.json*:
 
 .. literalinclude:: routing/sample/RoutingSample/project.json
   :dedent: 2
@@ -22,7 +22,7 @@ To use routing, add it to the **dependencies** in ``project.json``:
   :lines: 6-12
   :emphasize-lines: 4
   
-Add routing to ``ConfigureServices`` in ``Startup.cs``:
+Add routing to ``ConfigureServices`` in *Startup.cs*:
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
@@ -74,112 +74,112 @@ Route value parameters may have *default values*, designated by specifying the d
 The following table demonstrates some route template and their expected behavior.
 
 .. list-table:: Route Template Values
-	:header-rows: 1
+  :header-rows: 1
 
-	* - Route Template
-	  - Example Matching URL
-	  - Notes
-	* - hello
-	  - /hello
-	  - Will only match the single path '/hello'
-	* - {Page=Home}
-	  - /
-	  - Will match and set ``Page`` to ``Home``.
-	* - {Page=Home}
-	  - /Contact
-	  - Will match and set ``Page`` to ``Contact``
-	* - {controller}/{action}/{id?}
-	  - /Products/List
-	  - Will map to ``Products`` controller and ``List`` method; Since ``id`` was not supplied in the URL, it's ignored.
-	* - {controller}/{action}/{id?}
-	  - /Products/Details/123
-	  - Will map to ``Products`` controller and ``Details`` method, with ``id`` set to ``123``.
-	* - {controller=Home}/{action=Index}/{id?}
-	  - /
-	  - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
+  * - Route Template
+    - Example Matching URL
+    - Notes
+  * - hello
+    - /hello
+    - Will only match the single path '/hello'
+  * - {Page=Home}
+    - /
+    - Will match and set ``Page`` to ``Home``.
+  * - {Page=Home}
+    - /Contact
+    - Will match and set ``Page`` to ``Contact``
+  * - {controller}/{action}/{id?}
+    - /Products/List
+    - Will map to ``Products`` controller and ``List`` method; Since ``id`` was not supplied in the URL, it's ignored.
+  * - {controller}/{action}/{id?}
+    - /Products/Details/123
+    - Will map to ``Products`` controller and ``Details`` method, with ``id`` set to ``123``.
+  * - {controller=Home}/{action=Index}/{id?}
+    - /
+    - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
 
 .. _route-constraints:
 
 Route Constraints
 ^^^^^^^^^^^^^^^^^
-	  
+
 Adding a colon ``:`` after the name allows additional inline constraints to be set on a route value parameter. Constraints with types always use the invariant culture - they assume the URL is non-localizable. Route constraints limit which URLs will match a route - URLs that do not match the constraint are ignored by the route.
 
 .. list-table:: Inline Route Constraints
-	:header-rows: 1
+  :header-rows: 1
 
-	* - constraint
-	  - Example
-	  - Example Match
-	  - Notes
-	* - ``int``
-	  - {id:int}
-	  - 123
-	  - Matches any integer
-	* - ``bool``
-	  - {active:bool}
-	  - true
-	  - Matches ``true`` or ``false``
-	* - ``datetime``
-	  - {dob:datetime}
-	  - 2016-01-01
-	  - Matches a valid ``DateTime`` value (in the invariant culture - see `options <http://msdn.microsoft.com/en-us/library/aszyst2c(v=vs.110).aspx>`_)
-	* - ``decimal``
-	  - {price:decimal}
-	  - 49.99
-	  - Matches a valid ``decimal`` value
-	* - ``double``
-	  - {price:double}
-	  - 4.234
-	  - Matches a valid ``double`` value
-	* - ``float``
-	  - {price:float}
-	  - 3.14
-	  - Matches a valid ``float`` value
-	* - ``guid``
-	  - {id:guid}
-	  - 7342570B-44E7-471C-A267-947DD2A35BF9
-	  - Matches a valid ``Guid`` value
-	* - ``long``
-	  - {ticks:long}
-	  - 123456789
-	  - Matches a valid ``long`` value
-	* - ``minlength(value)``
-	  - {username:minlength(5)}
-	  - steve
-	  - String must be at least 5 characters long.
-	* - ``maxlength(value)``
-	  - {filename:maxlength(8)}
-	  - somefile
-	  - String must be no more than 8 characters long.
-	* - ``length(min,max)``
-	  - {filename:length(4,16)}
-	  - Somefile.txt
-	  - String must be at least 8 and no more than 16 characters long.
-	* - ``min(value)``
-	  - {age:min(18)}
-	  - 19
-	  - Value must be at least 18.
-	* - ``max(value)``
-	  - {age:max(120)}
-	  - 91
-	  - Value must be no more than 120.
-	* - ``range(min,max)``
-	  - {age:range(18,120)}
-	  - 91
-	  - Value must be at least 18 but no more than 120.
-	* - ``alpha``
-	  - {name:alpha}
-	  - Steve
-	  - String must consist of alphabetical characters.
-	* - ``regex(expression)``
-	  - {ssn:regex(\d{3}-\d{2}-\d{4})}
-	  - 123-45-6789
-	  - String must match the provided regular expression.
-	* - ``required``
-	  - {name:required}
-	  - Steve
-	  - Used to enforce that a non-parameter value is present during during URL generation.
+  * - constraint
+    - Example
+    - Example Match
+    - Notes
+  * - ``int``
+    - {id:int}
+    - 123
+    - Matches any integer
+  * - ``bool``
+    - {active:bool}
+    - true
+    - Matches ``true`` or ``false``
+  * - ``datetime``
+    - {dob:datetime}
+    - 2016-01-01
+    - Matches a valid ``DateTime`` value (in the invariant culture - see `options <http://msdn.microsoft.com/en-us/library/aszyst2c(v=vs.110).aspx>`_)
+  * - ``decimal``
+    - {price:decimal}
+    - 49.99
+    - Matches a valid ``decimal`` value
+  * - ``double``
+    - {price:double}
+    - 4.234
+    - Matches a valid ``double`` value
+  * - ``float``
+    - {price:float}
+    - 3.14
+    - Matches a valid ``float`` value
+  * - ``guid``
+    - {id:guid}
+    - 7342570B-44E7-471C-A267-947DD2A35BF9
+    - Matches a valid ``Guid`` value
+  * - ``long``
+    - {ticks:long}
+    - 123456789
+    - Matches a valid ``long`` value
+  * - ``minlength(value)``
+    - {username:minlength(5)}
+    - steve
+    - String must be at least 5 characters long.
+  * - ``maxlength(value)``
+    - {filename:maxlength(8)}
+    - somefile
+    - String must be no more than 8 characters long.
+  * - ``length(min,max)``
+    - {filename:length(4,16)}
+    - Somefile.txt
+    - String must be at least 8 and no more than 16 characters long.
+  * - ``min(value)``
+    - {age:min(18)}
+    - 19
+    - Value must be at least 18.
+  * - ``max(value)``
+    - {age:max(120)}
+    - 91
+    - Value must be no more than 120.
+  * - ``range(min,max)``
+    - {age:range(18,120)}
+    - 91
+    - Value must be at least 18 but no more than 120.
+  * - ``alpha``
+    - {name:alpha}
+    - Steve
+    - String must consist of alphabetical characters.
+  * - ``regex(expression)``
+    - {ssn:regex(\d{3}-\d{2}-\d{4})}
+    - 123-45-6789
+    - String must match the provided regular expression.
+  * - ``required``
+    - {name:required}
+    - Steve
+    - Used to enforce that a non-parameter value is present during during URL generation.
 
 Inline constraints must match one of the above options, or an exception will be thrown.
 
@@ -247,35 +247,35 @@ Ambient values that don't match a parameter are ignored, and ambient values are 
 Values that are explicitly provided but which don't match anything are added to the query string.
 
 .. list-table:: Generating Links
-	:header-rows: 1
+  :header-rows: 1
 
-	* - Matched Route
-	  - Ambient Values
-	  - Explicit Values
-	  - Result
-	* - ``{controller}/{action}/{id?}``
-	  - controller="Home"
-	  - action="About"
-	  - ``/Home/About``
-	* - ``{controller}/{action}/{id?}``
-	  - controller="Home"
-	  - controller="Order",action="About"
-	  - ``/Order/About``
-	* - ``{controller}/{action}/{id?}``
-	  - controller="Home",color="Red"
-	  - action="About"
-	  - ``/Home/About``
-	* - ``{controller}/{action}/{id?}``
-	  - controller="Home"
-	  - action="About",color="Red"
-	  - ``/Home/About?color=Red``
+  * - Matched Route
+    - Ambient Values
+    - Explicit Values
+    - Result
+  * - ``{controller}/{action}/{id?}``
+    - controller="Home"
+    - action="About"
+    - ``/Home/About``
+  * - ``{controller}/{action}/{id?}``
+    - controller="Home"
+    - controller="Order",action="About"
+    - ``/Order/About``
+  * - ``{controller}/{action}/{id?}``
+    - controller="Home",color="Red"
+    - action="About"
+    - ``/Home/About``
+  * - ``{controller}/{action}/{id?}``
+    - controller="Home"
+    - action="About",color="Red"
+    - ``/Home/About?color=Red``
 
 If a route has a default value that doesn't match a parameter and that value is explicitly provided, it must match the default value. For example:
 
 .. code-block:: c#
-	
-	routes.MapRoute("blog_route", "blog/{*slug}", 
-		defaults: new { controller = "Blog", action = "ReadPost" });
+  
+  routes.MapRoute("blog_route", "blog/{*slug}", 
+    defaults: new { controller = "Blog", action = "ReadPost" });
 
 Link generation would only generate a link for this route when the matching values for controller and action are provided.
 
@@ -284,13 +284,13 @@ Recommendations
 
 Routing is a powerful feature that is built into the default ASP.NET MVC project template such that most apps will be able to leverage it without having to customize its behavior. This is by design; customizing routing behavior is an advanced development approach. Keep in mind the following recommendations with regard to routing: 
 
-	- Most apps shouldn't need custom routes. The default route will work in most cases.
-	- Attribute routes should be used for all APIs.
-	- Attribute routes are recommended for when you need complete control over your app's URLs.
-	- Conventional routing is recommended for when **all** of your controllers/actions fit a uniform URL convention.
-	- Don't use custom routes unless you understand them well and are sure you need them.
-	- Routes can be tricky to test and debug.
-	- Routes should not be used as a means of securing your controllers or their action methods.
-	- Avoid building or changing route collections at runtime.
+  - Most apps shouldn't need custom routes. The default route will work in most cases.
+  - Attribute routes should be used for all APIs.
+  - Attribute routes are recommended for when you need complete control over your app's URLs.
+  - Conventional routing is recommended for when **all** of your controllers/actions fit a uniform URL convention.
+  - Don't use custom routes unless you understand them well and are sure you need them.
+  - Routes can be tricky to test and debug.
+  - Routes should not be used as a means of securing your controllers or their action methods.
+  - Avoid building or changing route collections at runtime.
 
 

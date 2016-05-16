@@ -1,33 +1,22 @@
-Building Your First Web API with MVC 6
-======================================
+Building Your First Web API with ASP.NET Core MVC
+==================================================
 
-By `Mike Wasson`_  and `Rick Anderson`_
+By `Mike Wasson`_ and `Rick Anderson`_
 
 HTTP is not just for serving up web pages. It’s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.
 
 In this tutorial, you’ll build a simple web API for managing a list of "to-do" items. You won’t build any UI in this tutorial. 
 
 
-Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET 5, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
+ASP.NET Core has built-in support for MVC building Web APIs. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline. 
 
-.. note:: If you are porting an existing Web API app to MVC 6, see :doc:`/migration/webapi`
+.. note:: If you are porting an existing Web API app to ASP.NET Core, see :doc:`/migration/webapi`
 
-In this article:
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-    - `Overview`_
-    - `Install Fiddler`_
-    - `Create the project`_
-    - `Add a model class`_
-    - `Add a repository class`_
-    - `Register the repository`_
-    - `Add a controller`_
-    - `Getting to-do items`_
-    - `Use Fiddler to call the API`_
-    - `Implement the other CRUD operations`_
-    - `Next steps`_
-
-You can browse the source code for the sample app on `GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample>`__.
-
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample>`__
 
 Overview
 --------
@@ -50,7 +39,7 @@ The following diagram show the basic design of the app.
 - The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial.  
 - A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
 - A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller. 
-- To keep the tutorial simple and focused on MVC 6, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
+- To keep the tutorial simple the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
 
 Install Fiddler
 ---------------
@@ -62,13 +51,13 @@ Because we're not building a client, we need a way to call the API. In this tuto
 Create the project
 ------------------
 
-Start Visual Studio 2015. From the **File** menu, select **New** > **Project**.
+Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
 Select the **ASP.NET Web Application** project template. Name the project ``TodoApi`` and click **OK**.
 
 .. image:: first-web-api/_static/new-project.png
  
-In the **New Project** dialog, select **Web API** under **ASP.NET 5 Preview Templates**. Click **OK**.
+In the **New Project** dialog, select the ASP.NET Core **Web API** template. Click **OK**.
  
 .. image:: first-web-api/_static/web-api-project.png
 
@@ -116,7 +105,7 @@ Build the app to verify you don't have any errors.
 Register the repository
 -----------------------
 
-By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of newing up a ``TodoRepository`` inside the controller, we will inject an ``ITodoRepository``, using the ASP.NET 5 dependency injection (DI) container.
+By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of instantiating a ``TodoRepository`` inside the controller we will inject an ``ITodoRepository`` the built-in support in ASP.NET Core for :doc:`dependency injection </fundamentals/dependency-injection>`.
 
 This approach makes it easier to unit test your controllers. Unit tests should inject a mock or stub version of ``ITodoRepository``. That way, the test narrowly targets the controller logic and not the data access layer.
 
@@ -124,7 +113,7 @@ In order to inject the repository into the controller, we need to register it wi
 
 .. code-block:: c#
 
-	using TodoApi.Models;
+  using TodoApi.Models;
 
 In the ``ConfigureServices`` method, add the highlighted code:
 
@@ -193,7 +182,7 @@ Open the *src\\TodoApi\\Properties\\launchSettings.json* file and replace the ``
     :language: json
     :emphasize-lines: 6
 
-To learn more about request routing in MVC 6, see :doc:`/mvc/controllers/routing`.
+To learn more about request routing see :doc:`/mvc/controllers/routing`.
 
 Return values
 ^^^^^^^^^^^^^

@@ -4,13 +4,11 @@ Middleware
 ==========
 By `Steve Smith`_ and `Rick Anderson`_
 
-Middleware is defined in the `OWIN specification <http://owin.org/html/spec/owin-1.0.1.html>`__ as pass through components that form a pipeline between a server and application to inspect, route, or modify request and response messages for a specific purpose. Middleware consists of application components are incorporated into the ASP.NET HTTP pipeline. 
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-In this article:
-	- `What is middleware`_
-	- `Creating a middleware pipeline with IApplicationBuilder`_
-	- `Built-in middleware`_
-	- `Writing middleware`_
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/middleware/sample>`__
 
 What is middleware
 ------------------
@@ -35,8 +33,8 @@ You can see an example of setting up the request pipeline in the default web sit
 #. Error handling (for both development and non-development environments)
 #. IIS HttpPlatformHandler reverse proxy module. This module handles forwarded Windows Authentication, request schemes, remote IPs, and so on.
 #. Static file server
-#. ASP.NET Identity authentication
-#. ASP.NET MVC
+#. Authentication
+#. MVC
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
 	:language: c#
@@ -49,7 +47,7 @@ In the code above (in non-development environments), `UseExceptionHandler <https
 The `static file module <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/StaticFileExtensions/index.html>`__ provides no authorization checks. Any files served by it, including those under *wwwroot* are publicly available. If you want to serve files based on authorization:
 
 #. Store them outside of *wwwroot* and any directory accessible to the static file middleware.  
-#. Deliver them through a controller action, returning a `FileResult <https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/FileResult.cs>`__ where authorization is applied.
+#. Deliver them through a controller action, returning a `FileResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/FileResult/index.html>`__ where authorization is applied.
 
 A request that is handled by the static file module will short circuit the pipeline. (see :doc:`static-files`.) If the request is not handled by the static file module, it's passed on to the `Identity module <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/BuilderExtensions/index.html#methods>`__, which performs authentication. If the request is not authenticated, the pipeline is short circuited. If the request does not fail authentication, the last stage of this pipeline is called, which is the MVC framework.
 
@@ -80,7 +78,7 @@ You chain multiple request delegates together; the ``next`` parameter represents
 
 .. warning:: Avoid modifying ``HttpResponse`` after invoking next, one of the next components in the pipeline may have written to the response, causing it to be sent to the client.
 
-.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in ``project.json``. See also :doc:`startup`.
+.. note:: This ``ConfigureLogInline`` method is called when the application is run with an environment set to ``LogInline``. Learn more about :doc:`environments`. We will be using variations of ``Configure[Environment]`` to show different options in the rest of this article. The easiest way to run the samples in Visual Studio is with the ``web`` command, which is configured in *project.json*. See also :doc:`startup`.
 
 In the above example, the call to ``await next.Invoke()`` will call into the next delegate ``await context.Response.WriteAsync("Hello from " + _environment);``. The client will receive the expected response ("Hello from LogInline"), and the server's console output includes both the before and after messages:
 
@@ -91,7 +89,7 @@ In the above example, the call to ``await next.Invoke()`` will call into the nex
 Run, Map, and Use
 ^^^^^^^^^^^^^^^^^
 
-You configure the HTTP pipeline using `Run <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/RunExtensions/index.html>`__, `Map <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/MapExtensions/index.html?highlight=microsoft.aspnet.builder.mapextensions#Microsoft.AspNet.Builder.MapExtensions.Map>`__,  and `Use <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/UseExtensions/index.html?highlight=microsoft.aspnet.builder.useextensions#Microsoft.AspNet.Builder.UseExtensions.Use>`__. The ``Run`` method short circuits the pipeline (that is, it will not call a ``next`` request delegate). Thus, ``Run`` should only be called at the end of your pipeline. ``Run`` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two middleware are equivalent as the ``Use`` version doesn't use the ``next`` parameter:
+You configure the HTTP pipeline using `Run <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/RunExtensions/index.html>`__, `Map <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/MapExtensions/index.html>`__,  and `Use <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/UseExtensions/index.html>`__. The ``Run`` method short circuits the pipeline (that is, it will not call a ``next`` request delegate). Thus, ``Run`` should only be called at the end of your pipeline. ``Run`` is a convention, and some middleware components may expose their own Run[Middleware] methods that should only run at the end of the pipeline. The following two middleware are equivalent as the ``Use`` version doesn't use the ``next`` parameter:
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/Startup.cs
 	:language: c#
@@ -99,7 +97,7 @@ You configure the HTTP pipeline using `Run <https://docs.asp.net/projects/api/en
 	:emphasize-lines: 3,11
 	:dedent: 8
 
-.. note:: The `IApplicationBuilder interface <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta5/src/Microsoft.AspNet.Http.Abstractions/IApplicationBuilder.cs#L17>`_ itself exposes a single ``Use`` method, so technically they're not all *extension* methods.
+.. note:: The `IApplicationBuilder  <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/IApplicationBuilder/index.html>`__ interface exposes a single ``Use`` method, so technically they're not all *extension* methods.
 
 We've already seen several examples of how to build a request pipeline with ``Use``. ``Map*`` extensions are used as a convention for branching the pipeline. The current implementation supports branching based on the request's path, or using a predicate. The ``Map`` extension method is used to match request delegates based on a request's path. ``Map`` simply accepts a path and a function that configures a separate middleware pipeline. In the following example, any request with the base path of ``/maptest`` will be handled by the pipeline configured in the ``HandleMapTest`` method.
 
@@ -143,22 +141,22 @@ ASP.NET ships with the following middleware components:
 
 
 .. list-table:: Middleware
-	:header-rows: 1
+  :header-rows: 1
 
-	*  - Middleware
-	   - Description
-	*  - :ref:`Authentication <security-authentication-social-logins>`
-	   - Provides authentication support.
-	*  - `CORS <https://github.com/aspnet/CORS/tree/1.0.0-beta6>`_
-	   - Configures Cross-Origin Resource Sharing.
-	*  - :doc:`diagnostics`
-	   - Includes support for error pages and runtime information.
-	*  - :doc:`routing`
-	   - Define and constrain request routes.
-	*  - `Session <https://github.com/aspnet/Session>`_
-	   - Provides support for managing user sessions.
-	*  - :doc:`Static Files <static-files>`
-	   - Provides support for serving static files, and directory browsing.
+  *  - Middleware
+     - Description
+  *  - :doc:`Authentication </security/authentication/index>`
+     - Provides authentication support.
+  *  - :doc:`CORS </security/cors>`
+     - Configures Cross-Origin Resource Sharing.
+  *  - :doc:`Diagnostics <diagnostics>`
+     - Includes support for error pages and runtime information.
+  *  - :doc:`Routing <routing>`
+     - Define and constrain request routes.
+  *  - :ref:`Session <session>`
+     - Provides support for managing user sessions.
+  *  - :doc:`Static Files <static-files>`
+     - Provides support for serving static files, and directory browsing.
 
 .. _middleware-writing-middleware:
 
@@ -174,7 +172,7 @@ For more complex request handling functionality, the ASP.NET team recommends imp
 	:caption: RequestLoggerMiddleware.cs
 	:emphasize-lines: 13, 19
 
-The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T> <https://github.com/aspnet/HttpAbstractions/blob/1.0.0-beta6/src/Microsoft.AspNet.Http.Abstractions/Extensions/UseMiddlewareExtensions.cs>`_ extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a ``params`` array of arguments to be used for non-injected parameters.
+The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T>`_ extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a ``params`` array of arguments to be used for non-injected parameters.
 
 .. literalinclude:: middleware/sample/src/MiddlewareSample/RequestLoggerExtensions.cs
 	:language: c#
@@ -197,7 +195,7 @@ Testing the middleware (by setting the ``Hosting:Environment`` environment varia
 
 .. image:: middleware/_static/console-logmiddleware.png
 
-.. note:: The `UseStaticFiles <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileExtensions.cs#L44>`_ extension method (which creates the `StaticFileMiddleware <https://github.com/aspnet/StaticFiles/blob/1.0.0-beta6/src/Microsoft.AspNet.StaticFiles/StaticFileMiddleware.cs#L30>`_) also uses ``UseMiddleware<T>``. In this case, the ``StaticFileOptions`` parameter is passed in, but other constructor parameters are supplied by ``UseMiddleware<T>`` and dependency injection.
+.. note:: The `UseStaticFiles <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/StaticFileExtensions/index.html#meth-Microsoft.AspNet.Builder.StaticFileExtensions.UseStaticFiles>`_ extension method (which creates the `StaticFileMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/StaticFiles/StaticFileMiddleware/index.html>`_) also uses ``UseMiddleware<T>``. In this case, the ``StaticFileOptions`` parameter is passed in, but other constructor parameters are supplied by ``UseMiddleware<T>`` and dependency injection.
 
 Additional Resources
 --------------------
@@ -207,3 +205,5 @@ Additional Resources
 - :doc:`/migration/http-modules`
 - :doc:`startup`
 - :doc:`request-features`
+
+.. _UseMiddleware<T>: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/UseMiddlewareExtensions/index.html#meth-Microsoft.AspNet.Builder.UseMiddlewareExtensions.UseMiddleware<TMiddleware>

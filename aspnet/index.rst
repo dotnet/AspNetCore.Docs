@@ -5,10 +5,10 @@
 
 .. _index:
 
-ASP.NET 5 Documentation
-=======================
+ASP.NET Core Documentation
+==========================
 
-.. attention:: ASP.NET 5 is being renamed to ASP.NET Core 1.0. Read `more <https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/>`_.
+.. attention:: ASP.NET 5 has been renamed to ASP.NET Core 1.0. Read `more <https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/>`_.
 
 .. include:: ../common/stub-overview.txt
 
@@ -18,14 +18,13 @@ Topics
 .. toctree::
     :titlesonly:
 
-    getting-started/index
+    getting-started
     API <https://docs.asp.net/projects/api>
     tutorials/index
     conceptual-overview/index
     fundamentals/index
     mvc/index
     testing/index
-    dnx/index
     data/index
     client-side/index
     mobile/index
@@ -40,8 +39,8 @@ Topics
 Related Resources
 -----------------
 
-* `.NET Core Documentation <https://dotnet.github.io>`__
-* `Entity Framework <http://docs.efproject.net>`_
+* `.NET Core`_
+* `Entity Framework Core`_
 * `WebHooks <http://docs.asp.net/projects/aspnetwebhooks>`_
 
 .. include:: ../common/contribute.txt

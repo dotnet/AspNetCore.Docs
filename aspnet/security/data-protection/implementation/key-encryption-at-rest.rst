@@ -13,6 +13,7 @@ The data protection system ships with three in-box key encryption mechanisms.
 
 Windows DPAPI
 -------------
+
 *This mechanism is available only on Windows.*
 
 When Windows DPAPI is used, key material will be encrypted via `CryptProtectData <https://msdn.microsoft.com/en-us/library/windows/desktop/aa380261(v=vs.85).aspx>`_ before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that will never be read outside of the current machine (though it is possible to back these keys up to Active Directory; see `DPAPI and Roaming Profiles <https://support.microsoft.com/en-us/kb/309408/#6>`_). For example to configure DPAPI key-at-rest encryption.
@@ -37,7 +38,8 @@ If ProtectKeysWithDpapi is called with no parameters, only the current Windows u
 
 X.509 certificate
 -----------------
-*This mechanism is not yet available on Core CLR.*
+
+*This mechanism is not yet available on `.NET Core`_.*
 
 If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.
 
@@ -55,13 +57,14 @@ Because this mechanism uses `X509Certificate2 <https://msdn.microsoft.com/en-us/
 
 Windows DPAPI-NG
 ----------------
+
 *This mechanism is available only on Windows 8 / Windows Server 2012 and later.*
 
 Beginning with Windows 8, the operating system supports DPAPI-NG (also called CNG DPAPI). Microsoft lays out its usage scenario as follows.
 
-	Cloud computing, however, often requires that content encrypted on one computer be decrypted on another. Therefore, beginning with Windows 8, Microsoft extended the idea of using a relatively straightforward API to encompass cloud scenarios. This new API, called DPAPI-NG, enables you to securely share secrets (keys, passwords, key material) and messages by protecting them to a set of principals that can be used to unprotect them on different computers after proper authentication and authorization.
-	
-	From https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794(v=vs.85).aspx 
+  Cloud computing, however, often requires that content encrypted on one computer be decrypted on another. Therefore, beginning with Windows 8, Microsoft extended the idea of using a relatively straightforward API to encompass cloud scenarios. This new API, called DPAPI-NG, enables you to securely share secrets (keys, passwords, key material) and messages by protecting them to a set of principals that can be used to unprotect them on different computers after proper authentication and authorization.
+
+  From https://msdn.microsoft.com/en-us/library/windows/desktop/hh706794(v=vs.85).aspx 
 
 The principal is encoded as a protection descriptor rule. Consider the below example, which encrypts key material such that only the domain-joined user with the specified SID can decrypt the key material.
 
@@ -89,7 +92,7 @@ In this scenario, the AD domain controller is responsible for distributing the e
 Certificate-based encryption with Windows DPAPI-NG
 --------------------------------------------------
 
-If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on Core CLR. To take advantage of this, use the rule descriptor string "CERTIFICATE=HashId:thumbprint", where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.
+If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use Windows DPAPI-NG to perform certificate-based encryption, even if the application is running on `.NET Core`_. To take advantage of this, use the rule descriptor string "CERTIFICATE=HashId:thumbprint", where thumbprint is the hex-encoded SHA1 thumbprint of the certificate to use. See below for an example.
 
 .. code-block:: c#
 

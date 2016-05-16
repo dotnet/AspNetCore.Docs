@@ -15,12 +15,12 @@ Nuget Packages
 Microsoft ASP.NET WebHooks is also available as preview Nuget packages which means that you have to select the Preview 
 flag in Visual Studio in order to see them. 
 
-The `Nuget packages <http://nuget.org/packages/Microsoft.AspNet.WebHooks>`_ are devided into three parts:
+The `Nuget packages <https://nuget.org/packages?q=Microsoft.AspNet.WebHooks>`_ are devided into three parts:
 
 * `Common <https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Common>`_: A common package that is shared between senders and receivers.
 
-* `Sender <https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Custom>`_ A set of packages supporting sending your own WebHooks to others.
+* `Sender <https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Custom>`_: A set of packages supporting sending your own WebHooks to others.
   The functionality for sending WebHooks is described in more detail in :doc:`sending/index`.
 
-* `Receivers <https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Receivers>`_ A set of packages supporting receiving WebHooks from others.
+* `Receivers <https://www.nuget.org/packages?q=Microsoft.AspNet.WebHooks.Receivers>`_: A set of packages supporting receiving WebHooks from others.
   The functionality for receiving WebHooks is described in more detail in :doc:`receiving/index`.

@@ -35,22 +35,22 @@ The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows
 Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor is assumed to wrap one specific key. This means that for any given IAuthenticatedEncryptorDescriptor instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.
 
 .. code-block:: c#
-	
-	// we have an IAuthenticatedEncryptorDescriptor instance
-	IAuthenticatedEncryptorDescriptor descriptor = ...;
-	 
-	// get an encryptor instance and perform an authenticated encryption operation
-	ArraySegment<byte> plaintext = new ArraySegment<byte>(Encoding.UTF8.GetBytes("plaintext"));
-	ArraySegment<byte> aad = new ArraySegment<byte>(Encoding.UTF8.GetBytes("AAD"));
-	var encryptor1 = descriptor.CreateEncryptorInstance();
-	byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
-	 
-	// get another encryptor instance and perform an authenticated decryption operation
-	var encryptor2 = descriptor.CreateEncryptorInstance();
-	byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad);
-	 
 
-	// the 'roundTripped' and 'plaintext' buffers should be equivalent
+  // we have an IAuthenticatedEncryptorDescriptor instance
+  IAuthenticatedEncryptorDescriptor descriptor = ...;
+
+  // get an encryptor instance and perform an authenticated encryption operation
+  ArraySegment<byte> plaintext = new ArraySegment<byte>(Encoding.UTF8.GetBytes("plaintext"));
+  ArraySegment<byte> aad = new ArraySegment<byte>(Encoding.UTF8.GetBytes("AAD"));
+  var encryptor1 = descriptor.CreateEncryptorInstance();
+  byte[] ciphertext = encryptor1.Encrypt(plaintext, aad);
+
+  // get another encryptor instance and perform an authenticated decryption operation
+  var encryptor2 = descriptor.CreateEncryptorInstance();
+  byte[] roundTripped = encryptor2.Decrypt(new ArraySegment<byte>(ciphertext), aad);
+
+
+  // the 'roundTripped' and 'plaintext' buffers should be equivalent
 
 XML Serialization
 -----------------
@@ -61,7 +61,7 @@ The primary difference between IAuthenticatedEncryptor and IAuthenticatedEncrypt
 
 The descriptor can be serialized via its ExportToXml routine. This routine returns an XmlSerializedDescriptorInfo which contains two properties: the XElement representation of the descriptor and the Type which represents an :ref:`IAuthenticatedEncryptorDescriptorDeserializer <data-protection-extensibility-core-crypto-iauthenticatedencryptordescriptordeserializer>` which can be used to resurrect this descriptor given the corresponding XElement.
 
-The serialized descriptor may contain sensitive information such as cryptographic key material. The data protection system has built-in support for encrypting information before it's persisted to storage. To take advantage of this, the descriptor should mark the element which contains sensitive information with the attribute name "requiresEncryption" (xmlns "http://schemas.asp.net/2015/03/dataProtection"), value "true".
+The serialized descriptor may contain sensitive information such as cryptographic key material. The data protection system has built-in support for encrypting information before it's persisted to storage. To take advantage of this, the descriptor should mark the element which contains sensitive information with the attribute name "requiresEncryption" (xmlns "\http://schemas.asp.net/2015/03/dataProtection"), value "true".
 
 .. tip:: 
   There's a helper API for setting this attribute. Call the extension method XElement.MarkAsRequiresEncryption() located in namespace Microsoft.AspNet.DataProtection.AuthenticatedEncryption.ConfigurationModel.

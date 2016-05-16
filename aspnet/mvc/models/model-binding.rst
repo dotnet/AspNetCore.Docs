@@ -1,21 +1,20 @@
 Model Binding
 =============
 
-By `Rachel Appel <http://github.com/rachelappel>`_
+By `Rachel Appel`_
 
-In this article
-
-- `Introduction to model binding`_
-- `How model binding works`_
-- `Customize model binding behavior with attributes`_
-- `Binding formatted data from the request body`_ 
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 Introduction to model binding
 -----------------------------
+
 Model binding in MVC maps data from HTTP requests to action method parameters. The parameters may be simple types such as strings, integers, or floats, or they may be complex types. This is a great feature of MVC because mapping incoming data to a counterpart is an often repeated scenario, regardless of size or complexity of the data. MVC solves this problem by abstracting binding away so developers don't have to keep rewriting a slightly different version of that same code in every app. Writing your own text to type converter code is tedious, and error prone. 
 
 How model binding works
 -----------------------
+
 When MVC receives an HTTP request, it routes it to a specific action method of a controller. It determines which action method to run based on what is in the route data, then it binds values from the HTTP request to that action method's parameters. For example, consider the following URL:
 
 `http://contoso.com/movies/edit/2`
@@ -23,10 +22,9 @@ When MVC receives an HTTP request, it routes it to a specific action method of a
 Since the route template looks like this, ``{controller=Home}/{action=Index}/{id?}``, ``movies/edit/2`` routes to the ``Movies`` controller, and its ``Edit`` action method. It also accepts an optional parameter called ``id``. The code for the action method should look something like this: 
 
 .. code-block:: c#
-   :dedent: 8
-   :linenos:
+  :linenos:
    
-           public IActionResult Edit(int? id)
+  public IActionResult Edit(int? id)
    
 .. note:: The strings in the URL route are not case sensitive.
 
@@ -42,7 +40,7 @@ Since model binding asked for a key named ``id`` and there is nothing named ``id
 
 So far the example uses simple types. In MVC simple types are any .NET primitive type or type with a string type converter. If the action method's parameter were a class such as the ``Movie`` type, which contains both simple and complex types as properties, MVC's model binding will still handle it nicely. It uses reflection and recursion to traverse the properties of complex types looking for matches. Model binding looks for the pattern parameter_name.property_name to bind values to properties. If it doesn't find matching values of this form, it will attempt to bind using just the property name. For those types such as ``Collection`` types, model binding looks for matches to `parameter_name[index]` or just `[index]`. Model binding treats  ``Dictionary`` types similarly, asking for `parameter_name[key]` or just `[key]`, as long as they keys are simple types. Keys that are supported match the field names HTML and tag helpers generated for the same model type. This enables round-tripping values so that the form fields remain filled with the user's input for their convenience, for example, when bound data from a create or edit did not pass validation.
 
-In order for binding to happen, members of classes must be public, writable properties containing a default public constructor. Public fields are not bound. Properties of type ``IEnumerable`` or array must be settable and will be populated with an array. Collection properties of type ``ICollection<T>`` can be read-only. 
+In order for binding to happen the class must have a public default constructor and member to be bound must be public writable properties. When model binding happens the class will only be instantiated using the public default constructor, then the properties can be set.
 
 When a parameter is bound, model binding stops looking for values with that name and it moves on to bind the next parameter. If binding fails, MVC does not throw an error. You can query for model state errors by checking the ``ModelState.IsValid`` property. 
 
@@ -59,12 +57,13 @@ Once model binding is complete, `validation <https://docs.asp.net/projects/mvc/e
 
 Customize model binding behavior with attributes 
 --------------------------------------------------------
+
 MVC contains several attributes that you can use to direct its default model binding behavior to a different source. For example, you can specify whether binding is required for a property, or if it should never happen at all by using the ``[BindRequired]`` or ``[BindNever]`` attributes. Alternatively, you can override the default data source, and specify the model binder's data source. Below is a list of model binding attributes:
 
 - ``[BindRequired]``: This attribute adds a model state error if binding cannot occur.
 - ``[BindNever]``: Tells the model binder to never bind to this parameter.
 - ``[FromHeader]``, ``[FromQuery]``, ``[FromRoute]``, ``[FromForm]``: Use these to specify the exact binding source you want to apply.
-- ``[FromServices]``: This attribute uses `dependency injection <https://docs.asp.net/en/latest/fundamentals/dependency-injection.html>`_ to bind parameters from services.
+- ``[FromServices]``: This attribute uses :doc:`dependency injection </fundamentals/dependency-injection>` to bind parameters from services.
 - ``[FromBody]``: Use the configured formatters to bind data from the request body. The formatter is selected based on content type of the request.
 - ``[ModelBinder]``: Used to override the default model binder, binding source and name.
 
@@ -72,6 +71,7 @@ Attributes are very helpful tools when you need to override the default behavior
 
 Binding formatted data from the request body
 --------------------------------------------
+
 Request data can come in a variety of formats including JSON, XML and many others. When you use the [FromBody] attribute to indicate that you want to bind a parameter to data in the request body, MVC uses a configured set of formatters to handle the request data based on its content type. By default MVC includes a ``JsonInputFormatter`` class for handling JSON data, but you can add additional formatters for handling XML and other custom formats. 
 
 .. Note:: The ``JsonInputFormatter`` is the default formatter and it is based off of `Json.NET <http://www.newtonsoft.com/json>`_.
@@ -79,13 +79,12 @@ Request data can come in a variety of formats including JSON, XML and many other
 ASP.NET selects input formatters based on the `Content-Type <https://www.w3.org/Protocols/rfc1341/4_Content-Type.html>`_ header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the `Startup.cs` file, but you may first have to obtain a reference to ``Microsoft.AspNet.Mvc.Formatters.Xml`` using NuGet. Your startup code should look something like this:
 
 .. code-block:: c#
-   :dedent: 8
-   :linenos:
+  :linenos:
    
-            public void ConfigureServices(IServiceCollection services)
-            {
-              services.AddMvc()
-		       .AddXmlSerializerFormatters();
-            }
+  public void ConfigureServices(IServiceCollection services)
+  {
+      services.AddMvc()
+         .AddXmlSerializerFormatters();
+  }
 
 Code in the `Startup.cs` file contains a ``ConfigureServices`` method with a ``services`` argument you can use to build up services for your ASP.NET app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The ``options`` argument passed into the ``AddMvc`` method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the ``Consumes`` attribute to controller classes or action methods to work with the format you want. 

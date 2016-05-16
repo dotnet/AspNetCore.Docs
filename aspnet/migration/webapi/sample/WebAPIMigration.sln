@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.22728.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsApp", "ProductsApp\ProductsApp.csproj", "{8811BC19-201C-4487-A264-C6704D245010}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProductsDnx", "ProductsDnx\ProductsDnx.xproj", "{F8AFEE29-16B1-4C35-B11C-7B09E3675C73}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ProductsCore", "ProductsDnx\ProductsCore.xproj", "{F8AFEE29-16B1-4C35-B11C-7B09E3675C73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

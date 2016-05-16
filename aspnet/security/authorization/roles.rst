@@ -81,7 +81,7 @@ You can also lock down a controller but allow anonymous, unauthenticated access 
 Policy based role checks
 ------------------------
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally takes part in ``ConfigureServices()`` in your ``startup.cs`` file.
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally takes part in ``ConfigureServices()`` in your *Startup.cs* file.
 
 .. code-block:: c#
 

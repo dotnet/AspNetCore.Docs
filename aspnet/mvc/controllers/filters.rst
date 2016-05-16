@@ -9,7 +9,7 @@ By `Steve Smith`_
     :local:
     :depth: 1
 
-`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/mvc/controllers/filters/sample>`_.
+`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/filters/sample>`_.
 
 How do filters work?
 --------------------

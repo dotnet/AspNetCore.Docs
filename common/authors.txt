@@ -12,3 +12,10 @@
 .. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi
 .. _Sourabh Shirhatti: https://twitter.com/sshirhatti
 .. _Matt Perdeck: http://www.linkedin.com/in/mattperdeck
+.. _Paweł Grudzień: https://github.com/pgrudzien12
+.. _Damien Pontifex: https://github.com/DamienPontifex
+.. _Luke Latham: https://github.com/GuardRex
+.. _Damien Bowden: https://twitter.com/damien_bod
+.. _Bart Calixto: https://twitter.com/bartmax
+.. _Nadeem Afana: https://twitter.com/NadeemAfana
+.. _Rachel Appel: http://github.com/rachelappel

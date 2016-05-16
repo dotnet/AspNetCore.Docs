@@ -1,27 +1,20 @@
 .. _security-authentication-2fa:
 
-
-Two-factor authentication with SMS using ASP.NET Identity
-=========================================================
+Two-factor authentication with SMS
+==================================
 
 By `Rick Anderson`_
 
 This tutorial will show you how to set up two-factor authentication (2FA) using SMS. Twilio is used, but you can use any other SMS provider. We recommend you complete :doc:`accconfirm` before starting this tutorial.
 
-.. Add Set up SMS for ASPSMS just after "Setup for Twilio"
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-In this article:
-	- `Create a new ASP.NET 5 project`_
-	- `Setup up SMS for two-factor authentication with Twilio`_
-	- `Enable two-factor authentication`_
-	- `Log in with two-factor authentication`_
-	- `Account lockout for protecting against brute force attacks`_
-	- `Debugging  Twilio`_
+Create a new ASP.NET Core project
+-----------------------------------
 
-Create a new ASP.NET 5 project
-------------------------------
-
-Create a new ASP.NET 5 web app with individual user accounts.
+Create a new ASP.NET Core web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 
@@ -30,20 +23,21 @@ After you create the project, follow the instructions in :doc:`accconfirm` to se
 Setup up SMS for two-factor authentication with Twilio
 -------------------------------------------------------
 
- - Create a `Twilio <http://www.twilio.com/>`_ account.
- - On the **Dashboard** tab of your Twilio account, note the **Account SID** and **Authentication token**. Note: Tap **Show API Credentials** to see the Authentication token.
- - On the **Numbers** tab, note the Twilio phone number.
- - Install the Twilio NuGet package. From the Package Manager Console (PMC),  enter the following the following command:
+- Create a `Twilio <http://www.twilio.com/>`_ account.
+- On the **Dashboard** tab of your Twilio account, note the **Account SID** and **Authentication token**. Note: Tap **Show API Credentials** to see the Authentication token.
+- On the **Numbers** tab, note the Twilio phone number.
+- Install the Twilio NuGet package. From the Package Manager Console (PMC),  enter the following the following command::
 
- ``Install-Package Twilio``
-  - Add code in the *Services/MessageServices.cs* file to enable SMS.
+    Install-Package Twilio
+
+- Add code in the *Services/MessageServices.cs* file to enable SMS.
 
 .. literalinclude:: 2fa/sample/WebSMS/src/WebSMS/Services/MessageServices.cs
    :language: c#
    :lines: 12-39
    :dedent: 4
 
-.. note:: Twilio cannot target dnxcore50: You will get compilation errors if you build your project when dnxcore50 is included because Twilio does not have a package for dnxcore50. You can remove dnxcore50 from the *project.json* file or you can call the Twilio REST API to send SMS messages.
+.. note:: Twilio does not yet support `.NET Core`_. To use Twilio from your application you need to either target the full .NET Framework or you can call the Twilio REST API to send SMS messages.
 
 .. note:: You can remove ``//`` line comment characters from the ``System.Diagnostics.Debug.WriteLine(message);`` line to test the application when you can't get SMS messages. A better approach to logging is to use the built in :ref:`logging <fundamentals-logging>`.
 
@@ -59,15 +53,12 @@ We'll use the :ref:`Options pattern <options-config-objects>` to access the user
    :lines: 3-8
    :dedent: 4
 
-Set ``SID``, ``AuthToken``, and ``SendNumber`` with the `secret-manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_. For example:
+Set ``SID``, ``AuthToken``, and ``SendNumber`` with the :doc:`secret-manager tool </security/app-secrets>`. For example:
 
 .. code-block:: none
 
-	C:/WebSMS/src/WebApplication1>user-secret set SID abcdefghi
-	info: Successfully saved SID = abcdefghi to the secret store.
-
-.. Setup up SMS for two-factor authentication with ASPSMS
-   	-------------------------------------------------------
+  C:/WebSMS/src/WebApplication1>user-secret set SID abcdefghi
+  info: Successfully saved SID = abcdefghi to the secret store.
 
 Configure startup to use ``AuthMessageSMSSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,11 +77,11 @@ Enable two-factor authentication
 - Open the *Views/Manage/Index.cshtml* Razor view file.
 - Uncomment the phone number markup which starts at
 
-	``@*@(Model.PhoneNumber ?? "None")``
+  ``@*@(Model.PhoneNumber ?? "None")``
 
 - Uncomment the ``Model.TwoFactor`` markup which starts at
 
-	``@*@if (Model.TwoFactor)``
+  ``@*@if (Model.TwoFactor)``
 
 - Comment out or remove the ``<p>There are no two-factor authentication providers configured.`` markup.
 
@@ -164,13 +155,13 @@ If you're able to use the Twilio API, but you don't get an SMS message, try the 
 
 .. code-block:: c#
 
-	static void Main(string[] args)
-	{
-		string AccountSid = "";
-		string AuthToken = "";
-		var twilio = new Twilio.TwilioRestClient(AccountSid, AuthToken);
-		string FromPhone = "";
-		string toPhone = "";
-		var message = twilio.SendMessage(FromPhone, toPhone, "Twilio Test");
-		Console.WriteLine(message.Sid);
-	}
+  static void Main(string[] args)
+  {
+    string AccountSid = "";
+    string AuthToken = "";
+    var twilio = new Twilio.TwilioRestClient(AccountSid, AuthToken);
+    string FromPhone = "";
+    string toPhone = "";
+    var message = twilio.SendMessage(FromPhone, toPhone, "Twilio Test");
+    Console.WriteLine(message.Sid);
+  }

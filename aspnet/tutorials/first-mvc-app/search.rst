@@ -47,7 +47,7 @@ If you change the signature of the ``Index`` method to have a parameter named ``
 
 .. code-block:: c#
 
-	template: "{controller=Home}/{action=Index}/{id?}");
+  template: "{controller=Home}/{action=Index}/{id?}");
 
 You can quickly rename the ``searchString`` parameter to ``id`` with the **rename** command. Right click on ``searchString`` **> Rename**.
 
@@ -92,12 +92,12 @@ However, you can't expect users to modify the URL every time they want to search
  :dedent: 8
 
 Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below: 
- 	
+   
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/Index2.cshtml
-	:language: HTML
-	:lines: 1-21
-	:emphasize-lines: 13-18
-	:linenos:
+  :language: HTML
+  :lines: 1-21
+  :emphasize-lines: 13-18
+  :linenos:
 
 The HTML ``<form>`` tag is super-charged by the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__, so when you submit the form, the filter string is posted to the ``Index`` action of the movies controller. Save your changes and then test the filter.
 
@@ -120,11 +120,11 @@ However, even if you add this ``[HttpPost]`` version of the ``Index`` method, th
 
 .. image:: search/_static/f12.png
 
-Double tap the **http://localhost:1235/Movies	HTTP POST 200** line and then tap **Request body**. 
+Double tap the **http://localhost:1235/Movies  HTTP POST 200** line and then tap **Request body**. 
 
 .. image:: search/_static/f12_rb.png
 
-You can see the search parameter and `XSRF <:doc:../../security/anti-request-forgery>`__ token in the request body. Note, as mentioned in the previous tutorial, the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__ generates an `XSRF <:doc:../../security/anti-request-forgery>`__ anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
+You can see the search parameter and :doc:`XSRF <../../security/anti-request-forgery>` token in the request body. Note, as mentioned in the previous tutorial, the `Form Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx>`__ generates an :doc:`XSRF <../../security/anti-request-forgery>` anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. We'll fix this by specifying the request should be ``HTTP GET``. Notice how intelliSense helps us update the markup.
 
@@ -138,7 +138,7 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 .. image:: search/_static/search_get.png
 
-The `XSRF <:doc:../../security/anti-request-forgery>`__ token and any other posted form elements will also be added to the URL.
+The :doc:`XSRF <../../security/anti-request-forgery>` token and any other posted form elements will also be added to the URL.
 
 Adding Search by Genre
 --------------------------
@@ -176,11 +176,11 @@ Adding search by genre to the Index view
 Add an ``Html.DropDownList`` helper to the *Views/Movies/Index.cshtml* file. The completed markup is shown below:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexGenre.cshtml
-	:language: HTML
-	:lines: 12-21
-	:emphasize-lines: 3
-	:linenos:
-	
+  :language: HTML
+  :lines: 12-21
+  :emphasize-lines: 3
+  :linenos:
+  
 .. note:: The next version of this tutorial will replace the ``Html.DropDownList`` helper with the `Select Tag Helper <http://www.davepaquette.com/archive/2015/05/18/mvc6-select-tag-helper.aspx>`__.
 
 Test the app by searching by genre, by movie title, and by both.

@@ -5,12 +5,12 @@ HTTP Platform Handler
 
 By `Sourabh Shirhatti`_
 
-In ASP.NET 5, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared hosting of ASP.NET 5.
+In ASP.NET Core, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the HTTP Platform Handler module for shared hosting of ASP.NET Core.
 
 Installing the HTTP Platform Handler
 ------------------------------------
 
-To get started with hosting with ASP.NET 5 applications you will need to install the HTTP Platform Handler version 1.2 or higher on an IIS 7.5 or higher server. Download links are below
+To get started with hosting with ASP.NET Core applications you will need to install the HTTP Platform Handler version 1.2 or higher on an IIS 7.5 or higher server. Download links are below
 
 * `64 bit HTTP PlatformHandler (x64) <http://go.microsoft.com/fwlink/?LinkID=690721>`_ 
 * `32 bit HTTP PlatformHandler (x86) <http://go.microsoft.com/fwlink/?LinkId=690722>`_ 
@@ -45,5 +45,3 @@ The HTTP Platform Handler module allows you specify environment variables for th
   :language: xml
   :lines: 12-20
 
-.. note::
-    There is a `known issue <https://github.com/aspnet/dnx/issues/3062>`_ known issue with ``dnu publish`` where it removes all child attributes of the ``httpPlatform`` attribute.

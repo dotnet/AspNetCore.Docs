@@ -1,125 +1,225 @@
 Publishing to IIS
-=============================
+=================
 
-By `Rick Anderson`_ and `Luke Latham <https://github.com/GuardRex>`_
+By `Luke Latham`_ and `Rick Anderson`_
 
-	- `Install the HTTP Platform Handler`_
-	- `Publish from Visual Studio`_
-	- `Deploy to IIS server`_
-	- `IIS server configuration`_
-	- `Supported operating systems`_
-	- `Common errors`_
-	- `Additional Resources`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-Install the HTTP Platform Handler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Supported Operating Systems
+---------------------------
 
-- Install the HTTP Platform Handler version 1.2 or higher:
+The following operating systems are supported:
 
-	- `64 bit HTTP Platform Handler <http://go.microsoft.com/fwlink/?LinkID=690721>`_
-	- `32 bit HTTP Platform Handler <http://go.microsoft.com/fwlink/?LinkId=690722>`_
+- Windows 7 and newer
+- Windows Server 2008 R2 and newer\*
 
-If you need to enable IIS, see `IIS server configuration`_.
+\*Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to :doc:`ASP.NET Core on Nano Server </tutorials/nano-server>` for specific instructions.
 
-Configure Data Protection
-^^^^^^^^^^^^^^^^^^^^^^^^^
+IIS Configuration
+-----------------
 
-To persist Data Protection keys you must create registry hives for each application pool to store the keys. You should use the
-`Provisioning PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`_ for each application pool you will be hosting ASP.NET 5 applications under.
+Enable the **Web Server (IIS)** server role and establish role services.
 
-For web farm scenarios developers can configure their applications to use a UNC path to store the data protection key ring. By default this does not encrypt the key ring. You can deploy an x509 certificate to each machine and use that to encrypt the keyring. See the :ref:`configuration APIs <data-protection-configuring>` for more details.
-
-.. include:: ./dataProtectionWarning.txt
-
-Publish from Visual Studio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. Create an ASP.NET 5 app. In this sample, I'll create an MVC 6 app using the **Web Site** template under **ASP.NET 5 Preview Templates**.
-2. In **Solution Explorer**, right-click the project and select **Publish**.
-
-.. image:: pubIIS/_static/p1.png
-
-3. In the **Publish Web** dialog, on the **Profile** tab, select **File System**.
-
-.. image:: pubIIS/_static/fs.png
-
-4. Enter a profile name. Click **Next**.
-5. On the **Connection** tab, you can change the publishing target path from the default *..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish* folder. Click **Next**.
-6. On the **Settings** tab, you can select the configuration, target DNX version, and publish options. Click **Next**.
-
-The **Preview** tab shows you the publish path (by default, the same directory as the ".sln" solution file).
-
-Deploy to IIS server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#. Navigate to the publish folder (*..\\..\\artifacts\\bin\\WebApp9\\Release\\Publish folder* in this sample).
-#. Copy the **approot** and **wwwroot** directories to the target IIS server. Note: MSDeploy is the recommended mechanism for deployment, but you can use Xcopy, Robocopy or another approach. For information on using `Web Deploy` see :doc:`iis-with-msdeploy`.
-#. In IIS Manager, create a new web site and set the physical path to **wwwroot**. You can click on **Browse *.80(http)** to see your deployed app in the browser. Note: The HTTP Platform Handler currently requires `this work-around <https://github.com/aspnet/Hosting/issues/416>`_ to support apps. If you get an HTTP error, see `IIS server configuration`_.
-
-.. image:: pubIIS/_static/b8.png
-
-IIS server configuration
+Windows Desktop Operating Systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Navigate to **Control Panel > Programs > Programs and Features > Turn Windows features on or off** (left side of the screen). Open the group for **Internet Information Services** and **Web Management Tools**. Check the box for **IIS Management Console**. Check the box for **World Wide Web Services**. Accept the default features for **World Wide Web Services** or customize the IIS features to suit your needs.
 
-1. Enable the **Web Server (IIS)** server role. In client operating systems (Windows 7 through Windows 10) select **Control Panel > Programs > Programs and Features > Turn Windows features on or off**, and then select **Internet Information Services**.
+.. image:: pubIIS/_static/wf.png
+
+Windows Server Operating Systems
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For server operating systems, use the **Add Roles and Features Wizard** via the **Manage** menu or the link in **Server Manager**. On the **Server Roles** step, check the box for **Web Server (IIS)**.
 
 .. image:: pubIIS/_static/rs.png
 
-2. On the **Role Services** step, remove any items you don't need. The defaults are shown below.
+On the **Role services** step, select the IIS role services you desire or accept the default role services provided.
 
 .. image:: pubIIS/_static/role-services.png
 
+Proceed through the **Confirmation** step to enable the web server role and services.
+
 .. _unlock-handlers:
 
-3. Unlock the configuration section.
 
-	- Launch IIS Manager and select the server in the **Connections** pane on the left (see image below).
-	- Double-click **Configuration Editor**.
-	- In the **Section** drop-down, select **system.webServer/handlers**, and then click **Unlock Section**.
+Install the .NET Core Windows Server Hosting Bundle
+---------------------------------------------------
 
-.. image:: pubIIS/_static/config-edit.png
-.. image:: pubIIS/_static/unlock.png
+#. Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
+#. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
 
-- Set the application pool to **No Managed Code**. ASP.NET 5 runs in a separate process and manages the runtime.
+Deploy the Application
+----------------------
 
- .. image:: pubIIS/_static/appPool.PNG
+#. On the target IIS server, create a folder to contain the application's assets.
+#. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
+#. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the `default Visual Studio web publish script <https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1>`__. For information on using Web Deploy, see :doc:`iis-with-msdeploy`.
 
+.. warning:: 
+  .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS.
 
-Supported operating systems
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  Sensitive files exist on the app's physical path, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
 
-The following operations systems are supported:
+  In order to mitigate the risk of serving sensitive application files if *web.config* were ever accidently renamed or removed, one may add sensitive files to the **Hidden Segments** of **Request Filtering** or add blanket file extension rules to the **File Name Extensions** of **Request Filtering**. See `Hidden Segments \<hidden Segments\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/hiddensegments>`__ and `File Name Extensions \<fileExtensions\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/fileextensions>`__ for more information.
 
-- Windows 7 and newer
-- Windows 2008 R2 and newer
+  Keep in mind that if you use the **File Name Extensions** approach that your application will not receive requests nor be able to serve any file with that extension, even static files in your **webroot** that you wish to serve (for example, JSON or XML files you have placed in `wwwroot` for legitimate file serving). Therefore, specifically naming sensitive files using the **Hidden Segments** approach may be preferable in most scenarios. In **Hidden Segments**, one would list *my_application.runtimeconfig.json*, *my_application.xml* (if this XML Documentation comments file is present), *my_application.deps.json*, and any other files that are not explicitly excluded by IIS for static file serving.
 
-Common errors
-^^^^^^^^^^^^^^^^
+Configure the Website in IIS
+----------------------------
 
-The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below along with the reason for the error and how you fixed it.
+#. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's assets folder that you created. Provide the **Binding** configuration and create the website.
+#. Set the application pool to **No Managed Code**. ASP.NET Core runs in a separate process and manages the runtime.
 
-- HTTP 500.19 : ** This configuration section cannot be used at this path.**
+.. note:: If you change the default identity of the application pool from **ApplicationPoolIdentity**, verify the new identity has the required permissions to access the application's assets and database.
 
-	- You haven't enabled the proper roles. See `IIS server configuration`_.
+Open the **Add Website** window.
 
-- HTTP 500.19 : The requested page cannot be accessed because the related configuration data for the page is invalid.
+  .. image:: pubIIS/_static/addwebsitecontextmenu.png
+  
+Configure the website.
 
-	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
-	- The *wwwroot* folder doesn't have the correct permissions. See `IIS server configuration`_.
+  .. image:: pubIIS/_static/addwebsite.png
+  
+In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
-- The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
+  .. image:: pubIIS/_static/basicsettingscontextmenu.png
+  
+Set the **.NET CLR version** to **No Managed Code**.
 
-	- Enable IIS; see `IIS server configuration`_.
+  .. image:: pubIIS/_static/editapppool.png
 
-- HTTP 502.3 Bad Gateway
+Browse the website. 
 
-	- You haven't installed the correct HTTP Platform Handler. See `Install the HTTP Platform Handler`_
+        .. image:: pubIIS/_static/browsewebsite.png
 
-- HTTP 500.21 Internal Server Error.
+Create a Data Protection Registry Hive
+--------------------------------------
 
-	- No module installed. See `IIS server configuration`_.
+Data Protection keys used by ASP.NET applications are stored in registry hives external to the applications. To persist the keys for a given application, you must create a registry hive for the application's application pool.
+
+For standalone IIS installations, you may use the `Data Protection Provision-AutoGenKeys.ps1 PowerShell script <https://github.com/aspnet/DataProtection/blob/dev/Provision-AutoGenKeys.ps1>`__ for each application pool used with an ASP.NET Core application. The keys will be persisted in the registry.
+
+In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See :ref:`Configuring Data Protection <data-protection-configuring>` for details.
+
+.. include:: ./dataProtectionWarning.txt
+
+Common Errors
+-------------
+
+The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click **Show comments** to open the DISQUS panel).
+
+To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and :doc:`enable logging </fundamentals/logging>` in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable application logging.
+
+A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application.
+
+Common errors and general troubleshooting instructions:
+
+Issue #1
+^^^^^^^^
+
+- **Browser:** No response
+- **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
+- **ASP.NET Core Module Log:** Unhandled Exception: System.AggregateException: One or more errors occurred. (Error -4092 EACCES permission denied)
+
+Troubleshooting:
+
+- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+
+Issue #2
+^^^^^^^^
+
+- **Browser:** No response
+- **Application Log:** Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll
+- **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'teststandalone.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
+
+Troubleshooting:
+
+- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+
+Issue #3
+^^^^^^^^
+
+- **Browser:** ERR_CONNECTION_REFUSED
+- **Application Log:** No entry
+- **ASP.NET Core Module Log:** Log file not created
+
+Troubleshooting:
+
+- Confirm you are using the correct URI endpoint for the application. Check your bindings.
+- Confirm that the IIS website is not in the `Stopped` state.
+
+Issue #4
+^^^^^^^^
+
+- **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
+
+Troubleshooting:
+
+- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+
+Issue #5
+^^^^^^^^
+
+- **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
+- **Application Log:** No entry
+- **ASP.NET Core Module Log:** Log file not created
+
+Troubleshooting:
+
+- Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
+
+Issue #6
+^^^^^^^^
+
+- **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
+- **Application Log:** No entry
+- **ASP.NET Core Module Log:** Log file not created
+
+Troubleshooting:
+
+- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+- Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
+- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+
+Issue #7
+^^^^^^^^
+
+- **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
+- **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
+- **ASP.NET Core Module Log:** Log file created but empty
+
+Troubleshooting:
+
+- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
+- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
+- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+
+Issue #8
+^^^^^^^^
+
+- **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
+- **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
+- **ASP.NET Core Module Log:** Unhandled Exception: System.FormatException: Unrecognized argument format **--OR --** Expected to load required hostpolicy.dll from [IIS_WEBSITE_PHYSICAL_PATH] - This may be because of an invalid .NET Core FX configuration in the directory.
+
+Troubleshooting:
+
+- Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+
+Issue #9
+^^^^^^^^
+
+- **Browser:** 503 Service Unavailable
+- **Application Log:** No entry
+- **ASP.NET Core Module Log:** Log file not created
+
+Troubleshooting
+
+- Confirm that the Application Pool is not in the `Stopped` state.
 
 Additional Resources
-^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------
 
-- `Understanding ASP.NET 5 Web Apps <http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html>`_
-- `Introducing .NET Core <http://docs.asp.net/en/latest/conceptual-overview/dotnetcore.html>`_
+- :doc:`/conceptual-overview/understanding-aspnetcore-apps`
+- `The Official Microsoft IIS Site <http://www.iis.net/>`__
+- `Microsoft TechNet Library: Windows Server <https://technet.microsoft.com/en-us/library/bb625087.aspx>`__

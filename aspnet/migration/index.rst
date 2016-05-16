@@ -9,4 +9,5 @@ Migration
    identity
    webapi
    http-modules
+   rc1-to-rc2
 

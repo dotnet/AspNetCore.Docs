@@ -100,6 +100,13 @@ pygments_style = 'sphinx'
 
 rst_epilog = """
 .. include:: /../common/authors.txt
+.. _.NET Core: https://microsoft.com/net/core
+.. _Visual Studio: https://www.visualstudio.com
+.. _Visual Studio Code: https://code.visualstudio.com
+.. _Entity Framework Core: https://docs.efproject.net
+.. _NuGet: https://nuget.org
+.. _xUnit: https://xunit.github.io
+.. _Dependency Injection: :doc:`</fundamentals/dependency-injection>`
 """
 
 # -- Options for HTML output ----------------------------------------------

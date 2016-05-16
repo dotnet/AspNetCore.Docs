@@ -11,42 +11,42 @@ The following sample demonstrates instantiating an EphemeralDataProtectionProvid
 
 .. code-block:: c#
 
-	using System;
-	using Microsoft.AspNet.DataProtection;
-	 
-	public class Program
-	{
-	    public static void Main(string[] args)
-	    {
-	        const string purpose = "Ephemeral.App.v1";
-	 
-	        // create an ephemeral provider and demonstrate that it can round-trip a payload
-	        var provider = new EphemeralDataProtectionProvider();
-	        var protector = provider.CreateProtector(purpose);
-	        Console.Write("Enter input: ");
-	        string input = Console.ReadLine();
-	 
-	        // protect the payload
-	        string protectedPayload = protector.Protect(input);
-	        Console.WriteLine($"Protect returned: {protectedPayload}");
-	 
-	        // unprotect the payload
-	        string unprotectedPayload = protector.Unprotect(protectedPayload);
-	        Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
-	 
-	        // if I create a new ephemeral provider, it won't be able to unprotect existing
-	        // payloads, even if I specify the same purpose
-	        provider = new EphemeralDataProtectionProvider();
-	        protector = provider.CreateProtector(purpose);
-	        unprotectedPayload = protector.Unprotect(protectedPayload); // THROWS
-	    }
-	}
-	 
-	/*
-	 * SAMPLE OUTPUT
-	 *
-	 * Enter input: Hello!
-	 * Protect returned: CfDJ8AAAAAAAAAAAAAAAAAAAAA...uGoxWLjGKtm1SkNACQ
-	 * Unprotect returned: Hello!
-	 * << throws CryptographicException >>
-	 */
+  using System;
+  using Microsoft.AspNet.DataProtection;
+   
+  public class Program
+  {
+      public static void Main(string[] args)
+      {
+          const string purpose = "Ephemeral.App.v1";
+   
+          // create an ephemeral provider and demonstrate that it can round-trip a payload
+          var provider = new EphemeralDataProtectionProvider();
+          var protector = provider.CreateProtector(purpose);
+          Console.Write("Enter input: ");
+          string input = Console.ReadLine();
+   
+          // protect the payload
+          string protectedPayload = protector.Protect(input);
+          Console.WriteLine($"Protect returned: {protectedPayload}");
+   
+          // unprotect the payload
+          string unprotectedPayload = protector.Unprotect(protectedPayload);
+          Console.WriteLine($"Unprotect returned: {unprotectedPayload}");
+   
+          // if I create a new ephemeral provider, it won't be able to unprotect existing
+          // payloads, even if I specify the same purpose
+          provider = new EphemeralDataProtectionProvider();
+          protector = provider.CreateProtector(purpose);
+          unprotectedPayload = protector.Unprotect(protectedPayload); // THROWS
+      }
+  }
+   
+  /*
+   * SAMPLE OUTPUT
+   *
+   * Enter input: Hello!
+   * Protect returned: CfDJ8AAAAAAAAAAAAAAAAAAAAA...uGoxWLjGKtm1SkNACQ
+   * Unprotect returned: Hello!
+   * << throws CryptographicException >>
+   */

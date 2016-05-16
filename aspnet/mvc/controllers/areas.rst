@@ -1,5 +1,6 @@
 Areas
 =====
+
 By `Tom Archer`
 
 Areas provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services.
@@ -67,7 +68,7 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
       }
   }
 
-The final step is to set up a route definition that works with your newly created areas. The :doc:`routing` article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, simply open the ``Startup.cs`` file and modify it by adding the highlighted route definition below.
+The final step is to set up a route definition that works with your newly created areas. The :doc:`routing` article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, simply open the *Startup.cs* file and modify it by adding the highlighted route definition below.
 
 .. code-block:: c#
   :emphasize-lines: 4-6

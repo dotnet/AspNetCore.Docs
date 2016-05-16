@@ -2,22 +2,20 @@
 
 Configuration
 =============
-By `Steve Smith`_ and `Daniel Roth`_
+`Steve Smith`_, `Daniel Roth`_
 
-ASP.NET 5 supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables. You can also write your own :ref:`custom configuration provider <custom-config-providers>`.
+ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables. You can also write your own :ref:`custom configuration provider <custom-config-providers>`.
 
-In this article:
-  - `Getting and setting configuration settings`_
-  - `Using the built-in providers`_
-  - `Using Options and configuration objects`_
-  - `Writing custom providers`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-`Download sample from GitHub <https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample>`_. 
+`View or download sample code <https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample>`__
 
 Getting and setting configuration settings
 ------------------------------------------
 
-ASP.NET 5's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new `configuration model <https://github.com/aspnet/Configuration>`_ provides streamlined access to key/value based settings that can be retrieved from a variety of providers. Applications and frameworks can then access configured settings using the new :ref:`Options pattern <options-config-objects>`
+ASP.NET Core's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new :doc:`configuration model </fundamentals/configuration>` provides streamlined access to key/value based settings that can be retrieved from a variety of providers. Applications and frameworks can then access configured settings using the new :ref:`Options pattern <options-config-objects>`
 
 To work with settings in your ASP.NET application, it is recommended that you only instantiate an instance of ``Configuration`` in your application's ``Startup`` class. Then, use the :ref:`Options pattern <options-config-objects>` to access individual settings.
 
@@ -99,7 +97,7 @@ When run, the program will display the default value unless a command line param
 Using Options and configuration objects
 ---------------------------------------
 
-Using `Options <https://github.com/aspnet/Options>`_ you can easily convert any class (or POCO - Plain Old CLR Object) into a settings class. It's recommended that you create well-factored settings objects that correspond to certain features within your application, thus following the Interface Segregation Principle (ISP) (classes depend only on the configuration settings they use) as well as Separation of Concerns (settings for disparate parts of your app are managed separately, and thus are less likely to negatively impact one another).
+Using the options pattern you can easily convert any class (or POCO - Plain Old CLR Object) into a settings class. It's recommended that you create well-factored settings objects that correspond to certain features within your application, thus following the Interface Segregation Principle (ISP) (classes depend only on the configuration settings they use) as well as Separation of Concerns (settings for disparate parts of your app are managed separately, and thus are less likely to negatively impact one another).
 
 A simple ``MyOptions`` class is shown here:
 
@@ -153,7 +151,7 @@ You can have multiple ``IConfigureOptions<TOption>`` services for the same optio
 Writing custom providers
 ------------------------
 
-In addition to using `the built-in configuration providers <https://github.com/aspnet/Configuration/tree/dev/src>`_, you can also write your own. To do so, you simply inherit from ``ConfigurationProvider``, and populate the ``Data`` property with the settings from your configuration provider.
+In addition to using the built-in configuration providers, you can also write your own. To do so, you simply inherit from ``ConfigurationProvider``, and populate the ``Data`` property with the settings from your configuration provider.
 
 Example: Entity Framework Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -207,4 +205,4 @@ Run the application to see the configured values:
 Summary
 -------
 
-ASP.NET 5 provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility. 
+ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility. 

@@ -1,26 +1,20 @@
 .. _security-authentication-account-confirmation:
 
-Account Confirmation and Password Recovery with ASP.NET Identity
-================================================================
+Account Confirmation and Password Recovery
+==========================================
 
 By `Rick Anderson`_
 
-This tutorial shows you how to build an ASP.NET 5 Web site with email confirmation and password reset using ASP.NET Identity.
+This tutorial shows you how to build an ASP.NET Core app with email confirmation and password reset support.
 
-In this article:
-	- `Create a New ASP.NET 5 Project`_
-	- `Require SSL`_
-	- `Require email confirmation`_
-	- `Configure email provider`_
-	- `Enable account confirmation and password recovery`_
-	- `Register, confirm email, and reset password`_
-	- `Require email confirmation before login`_
-	- `Combine social and local login accounts`_ 
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
-Create a New ASP.NET 5 Project
-------------------------------
+Create a New ASP.NET Core Project
+----------------------------------
 
-Create a new ASP.NET 5 web app with individual user accounts.
+Create a new ASP.NET Core web app with individual user accounts.
 
 .. image:: accconfirm/_static/new-project.png
 
@@ -64,7 +58,7 @@ Add the ``[RequireHttps]`` attribute to each controller. The ``[RequireHttps]`` 
 Require email confirmation
 ----------------------------
 
-It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob@example.com" from registering as "joe@contoso.com". Without email confirmation, "joe@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
+It's a best practice to confirm the email of a new user registration to verify they are not impersonating someone else (that is, they haven't registered with someone else's email). Suppose you had a discussion forum, you would want to prevent "bob\@example.com" from registering as "joe\@contoso.com". Without email confirmation, "joe\@contoso.com" could get unwanted email from your app. Suppose Bob accidentally registered as  "bib\@example.com" and hadn't noticed it, he wouldn't be able to use password recovery because the app doesn't have his correct email. Email confirmation provides only limited protection from bots and doesn't provide protection from determined spammers who have many working email aliases they can use to register.
 
 You generally want to prevent new users from posting any data to your web site before they have been confirmed by email, an SMS text message, or another mechanism. In the sections below, we will enable email confirmation and modify the code to prevent newly registered  users from logging in until their email has been confirmed.
 
@@ -80,12 +74,12 @@ We'll use the :ref:`Options pattern <options-config-objects>` to access the user
    :lines: 3-7
    :dedent: 4
 
-Set the ``SendGridUser`` and ``SendGridKey`` with the `secret-manager tool <http://docs.asp.net/en/latest/security/app-secrets.html>`_. For example:
+Set the ``SendGridUser`` and ``SendGridKey`` with the :doc:`secret-manager tool </security/app-secrets>`. For example:
 
 .. code-block:: none
 
-	C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
-	info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
+  C:\WebApplication1\src\WebApplication1>user-secret set SendGridUser RickAndMSFT
+  info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 
 On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
 
@@ -98,12 +92,12 @@ At this time, the contents of the *project.json* file are not encrypted. The *pr
 
 .. code-block:: json
 
-	{
-	  "SendGridUser": "RickAndMSFT",
-	  "SendGridKey": "",
-	  "Authentication:Facebook:AppId": "",
-	  "Authentication:Facebook:AppSecret": ""
-	}
+  {
+    "SendGridUser": "RickAndMSFT",
+    "SendGridKey": "",
+    "Authentication:Facebook:AppId": "",
+    "Authentication:Facebook:AppSecret": ""
+  }
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,12 +129,12 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
    :lines: 12-51
    :dedent: 4 
 
-.. note:: SendGrid doesn't currently target dnxcore50: If you build your project you will get compilation errors. This is because SendGrid does not have a package for dnxcore50 and some APIs such as System.Mail are not available on .NET Core. You can remove dnxcore50 from *project.json* or call the REST API from SendGrid to send email. The code below shows the updated *project.json* file with ``"dnxcore50": { }`` removed.
+.. note:: SendGrid does not yet support .NET Core. To use SendGrid in your application you need to either target the full .NET Framework (as shown below) or call the REST API from SendGrid to send email. 
 
 .. code-block:: json
 
-	 "frameworks": {
-    "dnx451": { }
+   "frameworks": {
+    "net46": { }
   },
 
 Enable account confirmation and password recovery
@@ -161,7 +155,7 @@ The template already has the code for account confirmation and password recovery
 
 .. code-block:: c#
 
-	//await _signInManager.SignInAsync(user, isPersistent: false);
+  //await _signInManager.SignInAsync(user, isPersistent: false);
 
 - Enable password recovery by uncommenting the code in the ``ForgotPassword`` action in the *Controllers/AccountController.cs* file. 
 
@@ -188,10 +182,10 @@ In this section, run the web app and show the account confirmation and password 
 
 - Check your email for the account confirmation link. If you don't get the email notification:
 
-	* Check the SendGrid web site to verify your sent mail messages. 
-	* Check your spam folder.
-	* Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
-	* In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
+  * Check the SendGrid web site to verify your sent mail messages. 
+  * Check your spam folder.
+  * Try another email alias on a different email provider (Microsoft, Yahoo, Gmail, etc.)
+  * In SSOX, navigate to **dbo.AspNetUsers** and delete the email entry and try again.
 
 - Click the link to confirm your email.
 - Log in with your email and password.
@@ -222,7 +216,7 @@ Combine social and local login accounts
 
 To complete this section, you must first enable an external authentication provider. See :doc:`sociallogins`.
 
-You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
+You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT\@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 
 .. image:: accconfirm/_static/rick.png
 

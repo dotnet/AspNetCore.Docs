@@ -10,7 +10,7 @@ If the developer changes any setting that affects key persistence, those changes
 * :ref:`The default key lifetime <data-protection-implementation-key-management>`
 * :ref:`The key encryption at rest mechanism <data-protection-implementation-key-encryption-at-rest>`
 * :ref:`The algorithmic information contained within the key <data-protection-changing-algorithms>`
-	
+
 If you need these settings to kick in earlier than the next automatic key rolling time, consider making an explicit call to IKeyManager.CreateNewKey to force the creation of a new key. Remember to provide an explicit activation date ({ now + 2 days } is a good rule of thumb to allow time for the change to propagate) and expiration date in the call.
 
 .. TIP::

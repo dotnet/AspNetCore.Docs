@@ -7,28 +7,25 @@ By `Steve Smith`_
 
 Bootstrap is currently the most popular web framework for developing responsive web applications. It offers a number of features and benefits that can improve your users' experience with your web site, whether you're a novice at front-end design and development or an expert. Bootstrap is deployed as a set of CSS and JavaScript files, and is designed to help your website or application scale efficiently from phones to tablets to desktops.
 
-In this article:
-  - `Getting Started`_
-  - `Basic Templates and Features`_
-  - `More Themes`_
-  - `Components`_
-  - `JavaScript Support`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 Getting Started
 ---------------
 
-There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET 5, in which case Bootstrap will come pre-installed:
+There are several ways to get started with Bootstrap. If you're starting a new web application in Visual Studio, you can choose the default starter template for ASP.NET Core, in which case Bootstrap will come pre-installed:
 
 .. image:: bootstrap/_static/bootstrap-in-starter-template.png
  
-Adding Bootstrap to an ASP.NET 5 project is simply a matter of adding it to ``bower.json`` as a dependency:
+Adding Bootstrap to an ASP.NET Core project is simply a matter of adding it to ``bower.json`` as a dependency:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/bower.json
   :language: json
   :linenos:
   :emphasize-lines: 5
 
-This is the recommended way to add Bootstrap to an ASP.NET 5 project.
+This is the recommended way to add Bootstrap to an ASP.NET Core project.
  
 You can also install bootstrap using one of several package managers, such as bower, npm, or NuGet. In each case, the process is essentially the same:
 
@@ -53,7 +50,7 @@ NuGet
 
   Install-Package bootstrap
   
-.. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET 5 is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
+.. note:: The recommended way to install client-side dependencies like Bootstrap in ASP.NET Core is via Bower (using ``bower.json``, as shown above). The use of npm/NuGet are shown to demonstrate how easily Bootstrap can be added to other kinds of web applications, including earlier versions of ASP.NET.
 
 If you're referencing your own local versions of Bootstrap, you'll need to reference them in any pages that will use it. In production you should reference bootstrap using a CDN. In the default ASP.NET site template, the ``_Layout.cshtml`` file does so like this:
 

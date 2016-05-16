@@ -5,9 +5,9 @@ By `Sourabh Shirhatti`_
 
 In this guide, we will cover setting up a production-ready ASP.NET environment on an Ubuntu 14.04 Server.
 
-We will take an existing ASP.NET 5 application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
+We will take an existing ASP.NET Core application and place it behind a reverse-proxy server. We will then setup the reverse-proxy server to forward requests to our Kestrel web server.
 
-Additionally we will ensure our web application runs on startup as a daemon and configure a process management tool to help restart our web application in the event of a crash to guarantee high availibility.
+Additionally we will ensure our web application runs on startup as a daemon and configure a process management tool to help restart our web application in the event of a crash to guarantee high availability.
 
 .. contents:: Sections:
   :local:
@@ -16,22 +16,19 @@ Additionally we will ensure our web application runs on startup as a daemon and 
 Prerequisites
 -------------
 
-1. Acess to an Ubuntu 14.04 Server with a standard user account with
+1. Access to an Ubuntu 14.04 Server with a standard user account with
    sudo privilege.
-2. An exisiting ASP.NET 5 application.
-
-Before getting started you require the CoreCLR dependencies and LibUV. Follow the instructions on the :doc:`/getting-started/installing-on-linux` page.
+2. An existing ASP.NET Core application.
 
 Copy over your app
 ------------------
 
-Run ``dnu publish --runtime dnx-coreclr-linux-x64.1.0.0-rc1-update1`` from your dev environment to package your
+Run ``dotnet publish`` from your dev environment to package your
 application into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET 5 application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to ``http://<serveraddress>:<port>`` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
+Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to ``http://<serveraddress>:<port>`` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
 
-If you do not have an application, I recommend using the `Yeoman generators <https://github.com/omnisharp/generator-aspnet>`_ to quickly scaffold a skeleton app.
-
+.. note:: You can use :doc:`Yeoman </client-side/yeoman>` to create a new ASP.NET Core application for a new project.
 
 Configure a reverse proxy server
 --------------------------------
@@ -87,7 +84,7 @@ We will be modifying the ``/etc/nginx/sites-available/default``, so open it up i
         }
     }
 
-This is one of the simplest configuration files for Nginx that forwards incoming public traffic on your port ``80`` to a unix socket that your web application will listen on. You can specify this Unix socket in your ``project.json`` file.
+This is one of the simplest configuration files for Nginx that forwards incoming public traffic on your port ``80`` to a unix socket that your web application will listen on. You can specify this Unix socket in your *project.json* file.
 
 .. code-block:: json
     :caption: project.json
@@ -96,21 +93,14 @@ This is one of the simplest configuration files for Nginx that forwards incoming
         "web": "Microsoft.AspNet.Server.Kestrel --server.urls http://unix:/var/aspnet/HelloMVC/kestrel.sock",
     },
 
-.. note::
-
-    The ``proxy_set_header Connection keep-alive;`` is **required** as a temporary workaround a `known bug in Kestrel <https://github.com/aspnet/KestrelHttpServer/issues/341>`_.
-
 You might want to look at ``/etc/nginx/nginx.conf`` to configure your nginx environment.
 
 Once you have completed making changes to your nginx configuration you can run ``sudo nginx -t`` to verify the syntax of your configuration files. If the configuration file test is successful you can ask nginx to pick up the changes by running ``sudo nginx -s reload``.
-
-
 
 Monitoring our Web Application
 ------------------------------
 
 Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not mangage your Kestrel process. In this tutorial, we will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure.
-
 
 Installing supervisor
 ~~~~~~~~~~~~~~~~~~~~~
@@ -183,7 +173,4 @@ You can redirect application logs (``STDOUT`` and ``STERR``) in the program sect
 .. code-block:: bash
 
     tail -f /var/log/hellomvc.out.log
-
-
-
 

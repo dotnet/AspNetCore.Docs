@@ -5,20 +5,21 @@ By `Steve Smith`_
 
 Actions and action results are a fundamental part of how developers build apps using ASP.NET MVC.
 
-Sections:
-	- `What is a Controller`_
-	- `Defining Actions`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 What is a Controller
 --------------------
 
 In ASP.NET MVC, a `Controller` is used to define and group a set of actions. An `action` (or `action method`) is a method on a controller that handles incoming requests. Controllers provide a logical means of grouping similar actions together, allowing common sets of rules (e.g. routing, caching, authorization) to be applied collectively. Incoming requests are mapped to actions through :doc:`routing <routing>`.
 
-In ASP.NET 5, a controller can be any instantiable class that ends in "Controller" or inherits from a class that ends with "Controller". Controllers should follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle>`_ and request any dependencies their actions require through their constructor using :doc:`dependency injection <dependency-injection>`.
+In ASP.NET Core MVC, a controller can be any instantiable class that ends in "Controller" or inherits from a class that ends with "Controller". Controllers should follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle>`_ and request any dependencies their actions require through their constructor using :doc:`dependency injection <dependency-injection>`.
 
 By convention, controller classes:
-	* are located in the root-level "Controllers" folder
-	* inhert from Microsoft.AspNet.Mvc.Controller
+
+* Are located in the root-level "Controllers" folder
+* Inherit from Microsoft.AspNet.Mvc.Controller
 
 These two conventions are not required.
 
@@ -46,19 +47,19 @@ Controller Helper Methods
 Although not required, most developers will want to have their controllers inherit from the base ``Controller`` class. Doing so provides controllers with access to many properties and helpful methods, including the following helper methods designed to assist in returning various responses:
 
 :doc:`View </mvc/views/index>`
-	Returns a view that uses a model to render HTML. Example: ``return View(customer);``
+  Returns a view that uses a model to render HTML. Example: ``return View(customer);``
 
 HTTP Status Code
-	Return an HTTP status code. Example: ``return BadRequest();``
+  Return an HTTP status code. Example: ``return BadRequest();``
 
 Formatted Response
-	Return ``Json`` or similar to format an object in a specific manner. Example: ``return Json(customer);``
+  Return ``Json`` or similar to format an object in a specific manner. Example: ``return Json(customer);``
 
 Content negotiated response
-	Instead of returning an object directly, an action can return a content negotiated response (using ``Ok``, ``Created``, ``CreatedAtRoute`` or ``CreatedAtAction``). Examples: ``return Ok();`` or ``return CreatedAtRoute("routename",values,newobject");``
+  Instead of returning an object directly, an action can return a content negotiated response (using ``Ok``, ``Created``, ``CreatedAtRoute`` or ``CreatedAtAction``). Examples: ``return Ok();`` or ``return CreatedAtRoute("routename",values,newobject");``
 
 Redirect
-	Returns a redirect to another action or destination (using ``Redirect``,``LocalRedirect``,``RedirectToAction`` or ``RedirectToRoute``). Example: ``return RedirectToAction("Complete", new {id = 123});``
+  Returns a redirect to another action or destination (using ``Redirect``,``LocalRedirect``,``RedirectToAction`` or ``RedirectToRoute``). Example: ``return RedirectToAction("Complete", new {id = 123});``
 
 In addition to the methods above, an action can also simply return an object. In this case, the object will be formatted based on the client's request. Learn more about :doc:`/mvc/models/formatting`
 
@@ -70,7 +71,7 @@ In most apps, many actions will share parts of their workflow. For instance, mos
 In the case of authorization and authentication, you can apply the ``Authorize`` attribute to any actions that require it. Adding it to a controller will apply it to all actions within that controller. Adding this attribute will ensure the appropriate filter is applied to any request for this action. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior. Learn more: :doc:`filters` and :doc:`/security/authorization/authorization-filters`.
 
 Other examples of cross-cutting concerns in MVC apps may include:
-	* :doc:`error-handling`
-	* :doc:`/performance/caching/response`
+  * :doc:`error-handling`
+  * :doc:`/performance/caching/response`
 
-.. note:: Many cross-cutting concerns can be handled using filters in MVC apps. Another option to keep in mind that is available to any ASP.NET app is `custom middleware <https://docs.asp.net/en/latest/fundamentals/middleware.html>`_.
+.. note:: Many cross-cutting concerns can be handled using filters in MVC apps. Another option to keep in mind that is available to any ASP.NET Core app is custom :doc:`middleware </fundamentals/middleware>`.

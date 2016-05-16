@@ -16,7 +16,7 @@ Let's look at how you can take advantage of this validation support in the movie
 
 Adding Validation Rules to the Movie Model
 --------------------------------------------------
-	
+  
 You'll begin by adding some validation logic to the ``Movie`` class.
 
 Open the *Movie.cs* file. Notice the ``System.ComponentModel.DataAnnotations`` namespace does not contain ``Microsoft.AspNet.Mvc``. DataAnnotations provides a built-in set of validation attributes that you can apply declaratively to any class or property. (It also contains formatting attributes like ``DataType`` that help with formatting and don't provide any validation.)
@@ -24,35 +24,35 @@ Open the *Movie.cs* file. Notice the ``System.ComponentModel.DataAnnotations`` n
 Now update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes. 
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
-	:language: c#
-	:lines: 7-30
-	:dedent: 4
-	:linenos:
-	:emphasize-lines: 5, 12-14,17,18,21,22	
-	
+  :language: c#
+  :lines: 7-30
+  :dedent: 4
+  :linenos:
+  :emphasize-lines: 5, 12-14,17,18,21,22  
+
 The ``StringLength`` attribute sets the maximum length of the string, and it sets this limitation on the database, therefore the database schema will change.
 
 - From the **View** menu, open **SQL Server Object Explorer** (SSOX). 
 
-	.. image:: working-with-sql/_static/ssox.png
+  .. image:: working-with-sql/_static/ssox.png
 
 - Right click on the ``Movie`` table **> View Designer**
 
-	.. image:: working-with-sql/_static/design.png
-	
-	The following image shows the table design and the ``T-SQL`` that can generate the table.
-	
-	.. image:: validation/_static/nvar.png
+  .. image:: working-with-sql/_static/design.png
 
-	
-	In the image above, you can see all the string fields are set to `NVARCHAR (MAX) <http://technet.microsoft.com/en-us/library/ms186939.aspx>`__. 
-	
+  The following image shows the table design and the ``T-SQL`` that can generate the table.
+
+  .. image:: validation/_static/nvar.png
+
+
+  In the image above, you can see all the string fields are set to `NVARCHAR (MAX) <http://technet.microsoft.com/en-us/library/ms186939.aspx>`__. 
+  
 Build the project, open a command window and enter the following commands:
 
 .. code-block:: PHP
 
-	dnx ef migrations add DataAnnotations
-	dnx ef database update
+  dnx ef migrations add DataAnnotations
+  dnx ef database update
 
 Examine the Movie schema:
 
@@ -73,11 +73,11 @@ The code above throws the following exception:
 
 .. code-block:: PHP
 
-	A database operation failed while processing the request.
-	DbUpdateException: An error occurred while updating the entries. 
-	See the inner exception for details. 
-	SqlException: Cannot insert the value NULL into column 'Genre', table 'aspnet5-MvcMovie-.dbo.Movie'; 	 
-	Scolumn does not allow nulls. INSERT fails. 
+  A database operation failed while processing the request.
+  DbUpdateException: An error occurred while updating the entries. 
+  See the inner exception for details. 
+  SqlException: Cannot insert the value NULL into column 'Genre', table 'aspnet5-MvcMovie-.dbo.Movie';    
+  Scolumn does not allow nulls. INSERT fails. 
 
 Having validation rules automatically enforced by ASP.NET helps make your app more robust. It also ensures that you can't forget to validate something and inadvertently let bad data into the database.
 
@@ -130,10 +130,10 @@ After you disable JavaScript, post invalid data and step through the debugger.
 Below is portion of the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml
-	:language: HTML
-	:emphasize-lines: 9,10,17,18
-	:linenos:
-	:lines: 16-42
+  :language: HTML
+  :emphasize-lines: 9,10,17,18
+  :linenos:
+  :lines: 16-42
 
 The `Input Tag Helper <http://www.davepaquette.com/archive/2015/05/13/mvc6-input-tag-helper-deep-dive.aspx>`__ consumes the `DataAnnotations <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx>`__ attributes and produces HTML attributes needed for jQuery Validation on the client side. The `Validation Tag Helper <http://www.davepaquette.com/archive/2015/05/14/mvc6-validation-tag-helpers-deep-dive.aspx>`__ displays a validation message.
 
@@ -147,10 +147,10 @@ Using DataType Attributes
 Open the *Movie.cs* file and examine the ``Movie`` class. The ``System.ComponentModel.DataAnnotations`` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a ``DataType`` enumeration value to the release date and to the price fields. The following code shows the ``ReleaseDate`` and ``Price`` properties with the appropriate ``DataType`` attribute.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
-	:language: c#
-	:lines: 15-17,24,25
-	:dedent: 8
-	:linenos:
+  :language: c#
+  :lines: 15-17,24,25
+  :dedent: 8
+  :linenos:
 
 The ``DataType`` attributes only provide hints for the view engine to format the data (and supply attributes such as ``<a>`` for URL's and ``<a href="mailto:EmailAddress.com">`` for email. You can use the ``RegularExpression`` attribute to validate the format of the data. The ``DataType`` attribute is used to specify a data type that is more specific than the database intrinsic type, they are not validation attributes. In this case we only want to keep track of the date, not the time. The ``DataType`` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The ``DataType`` attribute can also enable the application to automatically provide type-specific features. For example, a ``mailto:`` link can be created for ``DataType.EmailAddress``, and a date selector can be provided for ``DataType.Date`` in browsers that support HTML5. The ``DataType`` attributes emits HTML 5 data- (pronounced data dash) attributes that HTML 5 browsers can understand. The ``DataType`` attributes do **not** provide any validation. 
 
@@ -160,8 +160,8 @@ The ``DisplayFormat`` attribute is used to explicitly specify the date format:
 
 .. code-block:: c#
 
-	[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-	public DateTime EnrollmentDate { get; set; }
+  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+  public DateTime EnrollmentDate { get; set; }
 
 The ``ApplyFormatInEditMode`` setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you probably do not want the currency symbol in the text box for editing.)
 
@@ -175,24 +175,24 @@ You can use the ``DisplayFormat`` attribute by itself, but it's generally a good
 
 .. code-block:: c#
 
-	[Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
+  [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
 
 You will need to disable jQuery date validation to use the ``Range`` attribute with ``DateTime``. It's generally not a good practice to compile hard dates in your models, so using the ``Range`` attribute and ``DateTime`` is discouraged.
 
 The following code shows combining attributes on one line:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDAmult.cs
-	:language: c#
-	:lines: 7-25
-	:dedent: 4
-	:linenos:
-	:emphasize-lines: 5,8,11,14,17
+  :language: c#
+  :lines: 7-25
+  :dedent: 4
+  :linenos:
+  :emphasize-lines: 5,8,11,14,17
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated ``Details`` and ``Delete`` methods.
-	
+
 Additional resources
 ------------------------
-- `Globalization and localization <http://docs.asp.net/en/latest/fundamentals/localization.html>`__ 
+- :doc:`/fundamentals/localization`
 - :doc:`/mvc/views/tag-helpers/intro`
 - :doc:`/mvc/views/tag-helpers/authoring`
 

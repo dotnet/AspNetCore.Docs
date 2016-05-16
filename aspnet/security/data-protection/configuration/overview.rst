@@ -29,15 +29,15 @@ You can configure the system to protect keys at rest by calling any of the Prote
 
 .. code-block:: c#
 
-	public void ConfigureServices(IServiceCollection services)
-  	{
-      	services.AddDataProtection();
-      	services.ConfigureDataProtection(configure =>
-      	{
-          	configure.PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
-          	configure.ProtectKeysWithCertificate("thumbprint");
-      	});
-  	}
+  public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddDataProtection();
+        services.ConfigureDataProtection(configure =>
+        {
+            configure.PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
+            configure.ProtectKeysWithCertificate("thumbprint");
+        });
+    }
 
 See :ref:`key encryption at rest <data-protection-implementation-key-encryption-at-rest>` for more examples and for discussion on the built-in key encryption mechanisms.
 

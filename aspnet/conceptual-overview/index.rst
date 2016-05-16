@@ -2,10 +2,8 @@ Conceptual Overview
 -------------------
 
 .. toctree::
-   :titlesonly:
+  :titlesonly:
 
-   aspnet
-   dotnetcore
-   /dnx/overview
-   nuget
-   understanding-aspnet5-apps
+  aspnet
+  understanding-aspnetcore-apps
+  choosing-the-right-dotnet

@@ -1,5 +1,6 @@
 Building Projects with Yeoman
 =============================
+
 By `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
 
 `Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
@@ -57,7 +58,7 @@ Yeoman will scaffold the project and its supporting files. Suggested next steps 
 
   .. image:: yeoman/_static/yeoman-yo-aspnet-created.png
 
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET 5 DNX projects that can be loaded into Visual Studio 2015 or run from the command line. 
+The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`__ creates ASP.NET Core projects that can be loaded into Visual Studio or run from the command line. 
 
 If you were redirected to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
 
@@ -67,7 +68,7 @@ Setting Grunt as the task runner
 :doc:`Grunt </client-side/using-grunt>`
 :doc:`Gulp </client-side/using-gulp>`
 
-The ASP.NET 5 Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio 2015. 
+The ASP.NET Core Yeoman generator (``generator-aspnet``) uses Gulp out-of-the box. This is consistent with how the default ASP.NET web project template works in Visual Studio. 
 
 The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` task runner file is added to your project to automate build tasks for Web projects. The default generator creates *gulpfile.js* to run tasks. Running the generator with the ``--grunt`` argument generates *Gruntfile.js*:
 
@@ -75,16 +76,16 @@ The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ create
 
   yo aspnet --grunt
  
-The generator also configures *package.json* to load :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` dependencies. It also adds *bower.json* and *.bowerrc* files to restore client-side packages using the `Bower client-side package manager <http://docs.asp.net/en/latest/client-side/bower.html>`_. 
+The generator also configures *package.json* to load :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` dependencies. It also adds *bower.json* and *.bowerrc* files to restore client-side packages using the :doc:`Bower </client-side/bower>` client-side package manager. 
 
 Building and Running from Visual Studio
 ---------------------------------------
 
-You can load your generated ASP.NET 5 web project directly into Visual Studio 2015, then build and run your project from there.
+You can load your generated ASP.NET Core web project directly into Visual Studio, then build and run your project from there.
 
-1. Open Visual Studio 2015. From the File menu, select :menuselection:`Open --> Project/Solution`.
+1. Open Visual Studio. From the File menu, select :menuselection:`Open --> Project/Solution`.
 
-2. In the Open Project dialog, navigate to the ``project.json`` file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
+2. In the Open Project dialog, navigate to the *project.json* file, select it, and click the **Open** button. In the Solution Explorer, the project should look something like the screenshot below.
 
   .. image:: yeoman/_static/yeoman-solution.png
  
@@ -99,9 +100,7 @@ You can load your generated ASP.NET 5 web project directly into Visual Studio 20
 Restoring, Building, and Hosting from the Command Line
 ------------------------------------------------------
 
-You can prepare and host your web application using commands **dnu** (Microsoft .NET Development Utility) and **dnx** (Micorosft .NET Execution Environment). 
-
-.. note:: For more information on DNX, see :doc:`/dnx/overview` 
+You can prepare and host your web application using the `.NET Core`_ command-line interface. 
 
 1. From the command line, change the current directory to the folder containing the project (that is, the folder containing the `project.json` file):
 
@@ -113,38 +112,21 @@ You can prepare and host your web application using commands **dnu** (Microsoft 
 
 .. code-block:: console
 
-  dnu restore
+  dotnet restore
 
-3. Also from the command line, build the project assemblies: 
-
-.. code-block:: console
-
-  dnu build
-
-4. To run the development web server, use this **dnx** command:
+3. Run the application:
 
 .. code-block:: console
 
-  dnx web
+  dotnet run
 
-This will execute the corresponding ``web`` command in the ``commands`` section of the project.json file:
-
-.. code-block:: json
-  :linenos:
-  :emphasize-lines: 2
-
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
-
-The cross-platform `Kestrel <https://docs.asp.net/en/latest/fundamentals/servers.html#kestrel>`__ web server will begin listening on port 5000:
+The cross-platform :ref:`Kestrel <kestrel>` web server will begin listening on port 5000:
 
 .. image:: yeoman/_static/yeoman-web-server-started.png
 
-5. Open a web browser, and navigate to http://localhost:5000. 
+4. Open a web browser, and navigate to \http://localhost:5000. 
 
-  .. image:: yeoman/_static/yeoman-home-page_5000.png 
+.. image:: yeoman/_static/yeoman-home-page_5000.png 
 
 Adding to Your Project with Sub Generators
 ------------------------------------------

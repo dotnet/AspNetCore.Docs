@@ -5,13 +5,11 @@ Safe Storage of Application Secrets
 
 By `Rick Anderson`_, `Daniel Roth`_
 
-This tutorial shows how your application can securely store and access secrets in the local development environment. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the :doc:`configuration </fundamentals/configuration>` system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The :doc:`/fundamentals/configuration` system that is used by default in DNX based apps can read secrets stored with the Secret Manager tool described in this article. 
+This tutorial shows how your application can securely store and access secrets in the local development environment. The most important point is you should never store passwords or other sensitive data in source code, and you shouldn't use production secrets in development and test mode. You can instead use the :doc:`configuration </fundamentals/configuration>` system to read these values from environment variables or from values stored using the Secret Manager tool. The Secret Manager tool helps prevent sensitive data from being checked into source control. The :doc:`configuration </fundamentals/configuration>` system can read secrets stored with the Secret Manager tool described in this article. 
 
-In this article:
-  - `Environment variables`_
-  - `Installing the secret manager tool`_
-  - `How the secret manager tool works`_
-  - `Additional Resources`_
+.. contents:: Sections:
+  :local:
+  :depth: 1
 
 Environment variables
 ^^^^^^^^^^^^^^^^^^^^^
@@ -25,16 +23,14 @@ For example, if you create a new ASP.NET web site app with individual user accou
 Secret Manager
 ^^^^^^^^^^^^^^
 
-The Secret Manager tool provides a more general mechanism to store sensitive data for development work outside of your project tree. The Secret Manager tool is a :doc:`DNX command </dnx/commands>` that can be used to store secrets for DNX based projects during development. With the Secret Manager tool you can associate app secrets with a specific project and share them across multiple projects.
+The Secret Manager tool provides a more general mechanism to store sensitive data for development work outside of your project tree. The Secret Manager tool is a project tool that can be used to store secrets for a `.NET Core`_ project during development. With the Secret Manager tool you can associate app secrets with a specific project and share them across multiple projects.
 
 .. note:: The Secret Manager tool does not encrypt the stored secrets and should not be treated as a trusted store. It is for development purposes only.
 
 Installing the Secret Manager tool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Install the Secret Manager tool using the .NET Development Utility (DNU). The Secret Manager tool is installed as a :doc:`DNX command </dnx/commands>` via the Microsoft.Extensions.SecretManager package::
-
-    dnu commands install Microsoft.Extensions.SecretManager
+- Add ``dotnet-user-secrets`` to the tools section in your *project.json* file and run ``dotnet restore``.
 
 - Test the Secret Manager tool by running the following command::
 
@@ -70,11 +66,9 @@ Accessing user secrets via configuration
 
 You can access user secrets stored using the Secret Manager tool via the configuration system. To do so you first need to add the configuration source for the user secrets.
 
-First install the user secrets configuration source to your project::
+Add the ``Microsoft.Extensions.Configuration.UserSecrets`` as a dependency in your *project.json* file and run ``dotnet restore``.
 
-  dnu install Microsoft.Extensions.Configuration.UserSecrets
-
-Then add the user secrets configuration source:
+Add the user secrets configuration source:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
@@ -106,4 +100,3 @@ Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - :doc:`/fundamentals/configuration`.
-- :doc:`/dnx/overview`.
