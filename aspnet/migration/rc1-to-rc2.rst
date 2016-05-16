@@ -76,15 +76,15 @@ IHostingEnvironment changes
 
 All environment variables are now prefixed with the ``ASPNETCORE_`` prefix.
 
-======================  ==========================    
-Old prefix              New prefix                           
-======================  ==========================  
-ASPNET_WEBROOT          ASPNETCORE_WEBROOT
-ASPNET_SERVER           ASPNETCORE_SERVER
-ASPNET_APP              ASPNETCORE_APPLICATIONNAME
-ASPNET_ENVIRONMENT      ASPNETCORE_ENVIRONMENT
-ASPNET_DETAILEDERRORS   ASPNETCORE_DETAILEDERRORS
-======================  ==========================   
+======================  ===========================
+Old prefix              New prefix
+======================  ===========================
+ASPNET\_WEBROOT         ASPNETCORE\_WEBROOT
+ASPNET\_SERVER          ASPNETCORE\_SERVER
+ASPNET\_APP             ASPNETCORE\_APPLICATIONNAME
+ASPNET\_ENVIRONMENT     ASPNETCORE\_ENVIRONMENT
+ASPNET\_DETAILEDERRORS  ASPNETCORE\_DETAILEDERRORS
+======================  ===========================
 
 ASP.NET 5 was renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
 
