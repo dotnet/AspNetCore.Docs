@@ -1,4 +1,4 @@
-Migrating from ASP.NET 5 R1 to ASP.NET Core
+Migrating from ASP.NET 5 RC1 to ASP.NET Core
 ===========================================
 
 .. contents:: Sections:
