@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 
-namespace SimpleApi.Controllers
+namespace TodoApi.Controllers
 {
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        [FromServices]
+        public TodoController(ITodoRepository todoItems)
+        {
+            TodoItems = todoItems;
+        }
         public ITodoRepository TodoItems { get; set; }
 
         [HttpGet]
@@ -22,7 +25,7 @@ namespace SimpleApi.Controllers
             var item = TodoItems.Find(id);
             if (item == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return new ObjectResult(item);
         }
@@ -32,7 +35,7 @@ namespace SimpleApi.Controllers
         {
             if (item == null)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
             TodoItems.Add(item);
             return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
@@ -43,22 +46,18 @@ namespace SimpleApi.Controllers
         {
             if (item == null || item.Key != id)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
 
             var todo = TodoItems.Find(id);
             if (todo == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             TodoItems.Update(item);
             return new NoContentResult();
         }
-
-
-
-
 
         [HttpDelete("{id}")]
         public void Delete(string id)
