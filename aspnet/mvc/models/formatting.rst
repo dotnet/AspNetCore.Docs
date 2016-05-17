@@ -57,7 +57,13 @@ Note in this case the ``Content-Type`` returned is ``text/plain``. You can also 
 Content Negotiation
 -------------------
 
-Content negotiation (*conneg* for short) occurs when client specifies an Accept header. The default format used by ASP.NET Core MVC is JSON. Negotiation occurs automatically for IActionResult types, including Ok, BadRequest, Created, etc. You can also return a model type and the framework will automatically wrap it in an ObjectResult for you.
+Content negotiation (*conneg* for short) occurs when the client specifies an Accept header. The default format used by ASP.NET Core MVC is JSON. Negotiation occurs automatically for ``IActionResult`` return types, including results returned using the helper methods ``Ok``, ``BadRequest``, ``Created``, etc. You can also return a model type (a class you've defined as your data transfer type) and the framework will automatically wrap it in an ``ObjectResult`` for you.
+
+(show sample code using Ok, BadRequest, etc.)
+
+(show how to use Fiddler to set an Accept header and the resulting behavior)
+
+(show how returning a null POCO object results in a 204 No Content result)
 
 Configuring Formatters
 ----------------------
