@@ -124,6 +124,7 @@ Namespace and package ID changes
 
 All Microsoft.AspNet.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
 The EntityFramework.\* packages and namespaces are changing to Microsoft.EntityFrameworkCore.\*.
+The ASP.NET Identity packages in combination with EntityFramework are changing from Microsoft.AspNet.Identity.EntityFramework.\* to Microsoft.AspNetCore.Identity.EntityFrameworkCore.\*.
 All ASP.NET Core package versions are now 1.0.0-\*.
 Microsoft.Data.Entity.* is now Microsoft.EntityFrameworkCore.*
 
