@@ -124,7 +124,7 @@ Namespace and package ID changes
 
 All Microsoft.AspNet.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
 The EntityFramework.\* packages and namespaces are changing to Microsoft.EntityFrameworkCore.\*.
-The ASP.NET Identity packages in combination with EntityFramework are changing from Microsoft.AspNet.Identity.EntityFramework.\* to Microsoft.AspNetCore.Identity.EntityFrameworkCore.\*.
+The ASP.NET Identity packages for Entity Framework Core are changing from Microsoft.AspNet.Identity.EntityFramework.\* to Microsoft.AspNetCore.Identity.EntityFrameworkCore.\*.
 All ASP.NET Core package versions are now 1.0.0-\*.
 Microsoft.Data.Entity.* is now Microsoft.EntityFrameworkCore.*
 
@@ -279,10 +279,10 @@ Configuration
 ``FileConfigurationProvider`` base class has been introduced as a common root for Json/Xml/Ini providers. This allows the ability to specify an ``IFileProvider`` on the source which will be used to read the file instead of explicitly using ``File.Open``. The side effect of this change is that absolute paths are no longer supported. The file path must be relative to the base path of the ``IConfigurationBuilder``'s basepath or the ``IFileProvider``, if specified.
 
 	   
-Entity Framework
-----------------
+Entity Framework Core
+---------------------
 
-For information on migrating Entity Framework 7 to Entity Framework Core, see the `EF Migration document <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_
+For information on migrating Entity Framework 7 to Entity Framework Core, see the `EF Core Migration document <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_
 
 Logging
 -------
@@ -292,12 +292,12 @@ Logging extensions have been simplified and clarified. ``Verbose`` has been rena
 =============  =============
 Old Levels	   New Levels
 =============  =============
-Critical	   Critical
-Error	       Error
-Warning	       Warning
-Information	   Information
-Verbose	       Debug
-Debug	       Trace
+Critical       Critical
+Error          Error
+Warning        Warning
+Information    Information
+Verbose        Debug
+Debug          Trace
 =============  =============
 
 Visual Studio Templates
