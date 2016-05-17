@@ -18,7 +18,7 @@ Follow the instructions on http://yeoman.io/learning/ to install `yo <https://gi
 
 .. code-block:: console
   
-  ``npm install -g yo bower grunt-cli gulp
+  ``npm install -g yo bower grunt-cli gulp``
     
 .. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` on Mac OS, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
 
