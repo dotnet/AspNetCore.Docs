@@ -9,7 +9,7 @@ namespace AuthoringTagHelpers.TagHelpers3
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";    // Replaces <email> with <a> tag
-            var content = await context.GetChildContentAsync();
+            var content = await output.GetChildContentAsync();
             var target = content.GetContent() + "@" + EmailDomain;
             output.Attributes["href"] = "mailto:" + target;
             output.Content.SetContent(target);
