@@ -24,15 +24,24 @@ At its simplest, the ``Configuration`` class is just a collection of ``Providers
 .. code-block:: c#
   :linenos:
 
-  // assumes using Microsoft.Framework.ConfigurationModel is specified
+  // assumes using Microsoft.Extensions.Configuration and Microsoft.Extensions.Configuration.Memory are specified
+  
+  // Initialize memory configuration
+  var memoryConfig = new MemoryConfigurationSource();
+  memoryConfig.InitialData = new List<KeyValuePair<string, string>>
+  {
+      new KeyValuePair<string, string> ( "Setting1", "Value1" ),
+      new KeyValuePair<string, string> ( "Setting2", "Value2" )
+  };
+
   var builder = new ConfigurationBuilder();
-  builder.Add(new MemoryConfigurationProvider());
+  builder.Add(memoryConfig);
+
   var config = builder.Build();
-  config.Set("somekey", "somevalue");
 
   // do some other work
 
-  string setting2 = config["somekey"]; // also returns "somevalue"
+  string setting2 = config["Setting2"]; // also returns "Value2"
 
 .. note:: You must set at least one configuration provider.
 
