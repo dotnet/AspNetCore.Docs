@@ -47,7 +47,7 @@ Once you have added your Nano Server instance to your ``TrustedHosts``, you can 
   $s = New-PSSession -ComputerName $ip -Credential ~\Administrator
   Enter-PSSession $s
 
-If you have successfully connected then your prompt will look like this ``[10.83.181.14]: PS C:\Users\Administrator\Documents>``
+A successful connection results in a prompt with the following format: ``[10.83.181.14]: PS C:\Users\Administrator\Documents>``
 
 Installing IIS
 --------------
@@ -64,10 +64,14 @@ Add the ``NanoServerPackage`` provider from the PowerShell gallery. Once the pro
 Installing the ASP.NET Core Module
 ----------------------------------
 
-The :ref:`ASP.NET Core Module <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing you will need to copy the following files:
+The :ref:`ASP.NET Core Module <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. Currently, installing ASP.NET Core Module requires manual steps.
 
-* *%windir%\\System32\\inetsrv\\aspnetcore.dll*
-* *%windir%\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml*
+1. Install the target version of .NET Core Windows Server Hosting bundle <http://go.microsoft.com/fwlink/?LinkId=798480>__ on a regular (non-Nano) machine.
+
+2. Copy the following files from the non-Nano machine to the Nano machine:
+
+  * *%windir%\\System32\\inetsrv\\aspnetcore.dll*
+  * *%windir%\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml*
 
 On the Nano machine you’ll need to copy those two files to their respective locations.
 
@@ -79,15 +83,17 @@ On the Nano machine you’ll need to copy those two files to their respective lo
 Enabling the ASP.NET Core Module
 --------------------------------
 
-You can execute the following PowerShell script in a remote PowerShell session to enable the HttpPlatformHandler module on the Nano server.
+Execute the following PowerShell script in a remote PowerShell session to enable the HttpPlatformHandler module on the Nano server.
 
-.. note:: This script runs on a clean system, but is not meant to be idempotent. If you run this multiple times it will add multiple entries. If you end up in a bad state, you can find backups of the *applicationHost.config* file at *%systemdrive%\inetpub\history*.
+.. note:: This script runs on a clean system but is not idempotent. Entries are added each time the script is run. You can restore *applicationHost.config* with backups from *%systemdrive%\inetpub\history*.
 
 .. literalinclude:: nano-server/enable-ancm.ps1
   :language: ps1
 
 Manually Editing *applicationHost.config*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Skip this section if you ran the PowerShell script above. Running the PowerShell script above is the recommended approach to enabling the ASP.NET Core Module; alternatively you can edit
 
 You can skip this section if you already ran the PowerShell script above. Though is not recommended, you can alternatively enable the HttpPlatformHandler by manually editing the *applicationHost.config* file.
 
@@ -128,7 +134,7 @@ Additionally, add ``AspNetCoreModule`` to the ``modules`` section
 Installing .NET Core Framework
 ------------------------------
 
-If you published a portable app, you require .NET Core to be installed on your target machine. You can execute the following Powershell script in a remote Powershell session to install the .NET Framework to your Nano Server.
+If you published a portable app, .NET Core must be installed on the target machine. Execute the following Powershell script in a remote Powershell session to install the .NET Framework on your Nano Server.
 
 .. literalinclude:: nano-server/Download-Dotnet.ps1
   :language: powershell
@@ -136,7 +142,7 @@ If you published a portable app, you require .NET Core to be installed on your t
 Publishing the application
 --------------------------
 
-Copy over the published output of your existing application to the Nano server. You may be required to make changes to your *web.config* to point to where you extracted ``dotnet.exe``. Alternatively, you can add ``dotnet.exe`` to your path.
+Copy over the published output of your existing application to the Nano server. You may need to make changes to your *web.config* to point to where you extracted ``dotnet.exe``. Alternatively, you can add ``dotnet.exe`` to your path.
 
 .. code:: ps1
 
@@ -144,7 +150,7 @@ Copy over the published output of your existing application to the Nano server. 
   $s = New-PSSession -ComputerName $ip -Credential ~\Administrator
   Copy-Item -ToSession $s -Path <path-to-src>\bin\output\ -Destination C:\HelloAspNet5 -Recurse
 
-Use the following PowerShell snippet to create a new site in IIS for our published app. This script uses the ``DefaultAppPool`` for simplicity. For more considerations on running under an application pool, see :ref:`apppool`.
+Use the following PowerShell snippet to create a new site in IIS for the published app. This script uses the ``DefaultAppPool`` for simplicity. For more considerations on running under an application pool, see :ref:`apppool`.
 
 .. code:: powershell
 
@@ -174,7 +180,7 @@ Since we have IIS listening on port **8000** and forwarding request to our appli
 Running the Application
 -----------------------
 
-At this point your published web application, should be accessible in browser by visiting ``http://<ip-address>:8000``.
+The published web app should be accessible in browser at ``http://<ip-address>:8000``.
 If you have set up logging as described in :ref:`log-redirection`, you should be able to view your logs at *C:\\HelloAspNetCore\\logs*.
 
 
