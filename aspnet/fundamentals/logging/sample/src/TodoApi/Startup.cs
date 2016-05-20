@@ -1,11 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TodoApi.Core.Interfaces;
 using TodoApi.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace TodoApi
 {
@@ -23,7 +24,21 @@ namespace TodoApi
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(minLevel:LogLevel.Verbose);
+            loggerFactory
+                .WithFilter(new FilterLoggerSettings
+                {
+                    { "Microsoft", LogLevel.Warning },
+                    { "System", LogLevel.Warning },
+                    { "ToDoApi", LogLevel.Debug }
+                });
+
+            loggerFactory.AddConsole();
+
+            // add Trace Source logging
+            var testSwitch = new SourceSwitch("sourceSwitch", "Logging Sample");
+            testSwitch.Level = SourceLevels.Warning;
+            loggerFactory.AddTraceSource(testSwitch,
+                new TextWriterTraceListener(writer: Console.Out));
 
             app.UseStaticFiles();
 
@@ -32,21 +47,14 @@ namespace TodoApi
             // Create a catch-all response
             app.Run(async (context) =>
             {
+                if (context.Request.Path.Value.Contains("boom"))
+                {
+                    throw new Exception("boom!");
+                }
                 var logger = loggerFactory.CreateLogger("Catchall Endpoint");
                 logger.LogInformation("No endpoint found for request {path}", context.Request.Path);
                 await context.Response.WriteAsync("No endpoint found - try /api/todo.");
             });
-
-            loggerFactory.MinimumLevel = LogLevel.Debug;
-#if DNX451
-            var sourceSwitch = new SourceSwitch("LoggingSample");
-            sourceSwitch.Level = SourceLevels.Critical;
-            loggerFactory.AddTraceSource(sourceSwitch,
-                new ConsoleTraceListener(false));
-            loggerFactory.AddTraceSource(sourceSwitch,
-                new EventLogTraceListener("Application"));
-#endif
-
         }
     }
 }

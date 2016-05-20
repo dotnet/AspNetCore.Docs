@@ -8,22 +8,6 @@
     }
   },
   "profiles": {
-    "web": {
-      "commandName": "web",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/",
-      "environmentVariables": {
-        "Hosting:Environment": "Development"
-      }
-    },
-    "mvcweb": {
-      "commandName": "web",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/todo",
-      "environmentVariables": {
-        "ASPNET_ENV": "Mvc"
-      }
-    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

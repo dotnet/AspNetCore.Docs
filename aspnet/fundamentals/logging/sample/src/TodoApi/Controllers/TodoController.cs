@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TodoApi.Core;
 using TodoApi.Core.Interfaces;
@@ -37,7 +37,7 @@ namespace TodoApi.Controllers
             if (item == null)
             {
                 _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "GetById({0}) NOT FOUND", id);
-                return HttpNotFound();
+                return NotFound();
             }
             return new ObjectResult(item);
         }
@@ -47,7 +47,7 @@ namespace TodoApi.Controllers
         {
             if (item == null)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
             _todoRepository.Add(item);
             _logger.LogInformation(LoggingEvents.INSERT_ITEM, "Item {0} Created", item.Key);
@@ -59,14 +59,14 @@ namespace TodoApi.Controllers
         {
             if (item == null || item.Key != id)
             {
-                return HttpBadRequest();
+                return BadRequest();
             }
 
             var todo = _todoRepository.Find(id);
             if (todo == null)
             {
                 _logger.LogWarning(LoggingEvents.GET_ITEM_NOTFOUND, "Update({0}) NOT FOUND", id);
-                return HttpNotFound();
+                return NotFound();
             }
 
             _todoRepository.Update(item);
