@@ -59,11 +59,8 @@ Deploy the Application
 .. warning:: 
   .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS.
 
-  Sensitive files exist on the app's physical path, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
+  Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
 
-  In order to mitigate the risk of serving sensitive application files if *web.config* were ever accidently renamed or removed, one may add sensitive files to the **Hidden Segments** of **Request Filtering** or add blanket file extension rules to the **File Name Extensions** of **Request Filtering**. See `Hidden Segments \<hidden Segments\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/hiddensegments>`__ and `File Name Extensions \<fileExtensions\> <https://www.iis.net/configreference/system.webserver/security/requestfiltering/fileextensions>`__ for more information.
-
-  Keep in mind that if you use the **File Name Extensions** approach that your application will not receive requests nor be able to serve any file with that extension, even static files in your **webroot** that you wish to serve (for example, JSON or XML files you have placed in `wwwroot` for legitimate file serving). Therefore, specifically naming sensitive files using the **Hidden Segments** approach may be preferable in most scenarios. In **Hidden Segments**, one would list *my_application.runtimeconfig.json*, *my_application.xml* (if this XML Documentation comments file is present), *my_application.deps.json*, and any other files that are not explicitly excluded by IIS for static file serving.
 
 Configure the Website in IIS
 ----------------------------
@@ -118,6 +115,15 @@ Common errors and general troubleshooting instructions:
 Issue #1
 ^^^^^^^^
 
+- Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80070002 - The system cannot find the file specified*.
+
+Troubleshooting:
+
+- If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
+
+Issue #2
+^^^^^^^^
+
 - **Browser:** No response
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.AggregateException: One or more errors occurred. (Error -4092 EACCES permission denied)
@@ -126,7 +132,7 @@ Troubleshooting:
 
 - If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
 
-Issue #2
+Issue #3
 ^^^^^^^^
 
 - **Browser:** No response
@@ -137,7 +143,7 @@ Troubleshooting:
 
 - If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
-Issue #3
+Issue #4
 ^^^^^^^^
 
 - **Browser:** ERR_CONNECTION_REFUSED
@@ -149,7 +155,7 @@ Troubleshooting:
 - Confirm you are using the correct URI endpoint for the application. Check your bindings.
 - Confirm that the IIS website is not in the `Stopped` state.
 
-Issue #4
+Issue #5
 ^^^^^^^^
 
 - **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
@@ -158,7 +164,7 @@ Troubleshooting:
 
 - Confirm that you have enabled the proper server role. See `IIS Configuration`_.
 
-Issue #5
+Issue #6
 ^^^^^^^^
 
 - **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
@@ -169,7 +175,7 @@ Troubleshooting:
 
 - Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
 
-Issue #6
+Issue #7
 ^^^^^^^^
 
 - **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
@@ -182,7 +188,7 @@ Troubleshooting:
 - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
 - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-Issue #7
+Issue #8
 ^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
@@ -195,7 +201,7 @@ Troubleshooting:
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
 
-Issue #8
+Issue #9
 ^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
@@ -206,8 +212,8 @@ Troubleshooting:
 
 - Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
 
-Issue #9
-^^^^^^^^
+Issue #10
+^^^^^^^^^
 
 - **Browser:** 503 Service Unavailable
 - **Application Log:** No entry
