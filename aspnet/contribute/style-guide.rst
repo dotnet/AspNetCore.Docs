@@ -62,7 +62,7 @@ Surround text with:
 - Two asterisks for \**strong emphasis\** (**bold**)
 - Two backticks for \``code samples``\ (an ``<html>`` element)
 
-..note:: Inline markup cannot be nested, nor can surrounded content start or end with whitespace (``* foo*`` is wrong).
+.. note:: Inline markup cannot be nested, nor can surrounded content start or end with whitespace (``* foo*`` is wrong).
 
 Escaping is done using the ``\`` backslash.
 
