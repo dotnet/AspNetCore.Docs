@@ -80,11 +80,11 @@ Right click on the project and select **Publish**
 
 In the **Publish** dialog, tap **Microsoft Azure App Service**
 
-.. image:: your-first-aspnet-application/_static/maas.png
+.. image:: your-first-aspnet-application/_static/maas1.png
 
 Tap **New** to enter a new resource group. Creating a new resource group will make it easy to delete all the Azure resources you create in this tutorial.
 
-.. image:: your-first-aspnet-application/_static/newrg.png
+.. image:: your-first-aspnet-application/_static/newrg1.png
 
 Create a new resource group and app service plan:
 
