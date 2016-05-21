@@ -4,8 +4,8 @@ Tutorials
 .. toctree::
    :titlesonly:
 
+   your-first-aspnet-application
    your-first-mac-aspnet
-   Create an ASP.NET Core web app in Visual Studio Code <https://azure.microsoft.com/documentation/articles/web-sites-create-web-app-using-vscode/>
    first-mvc-app/index
    first-web-api
    /mobile/native-mobile-backend
