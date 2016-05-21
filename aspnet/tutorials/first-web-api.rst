@@ -1,5 +1,5 @@
-Building Your First Web API with ASP.NET Core MVC
-=================================================
+Building Your First Web API with ASP.NET Core MVC and Visual Studio
+====================================================================
 
 By `Mike Wasson`_ and `Rick Anderson`_
 

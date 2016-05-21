@@ -1,5 +1,5 @@
-Getting started with ASP.NET Core MVC
-==============================================
+Getting started with ASP.NET Core MVC and Visual Studio
+=======================================================
 
 By `Rick Anderson`_
 

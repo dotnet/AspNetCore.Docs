@@ -1,5 +1,5 @@
-Building your first ASP.NET Core MVC Application
--------------------------------------------------
+Building your first ASP.NET Core MVC app with Visual Studio
+-----------------------------------------------------------
 
 .. toctree::
    :titlesonly:
