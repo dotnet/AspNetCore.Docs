@@ -45,7 +45,7 @@ Additionally, you must turn on server garbage collection in ``project.json`` or,
 
   {
     "runtimeOptions": {
-      "gcServer": false,
+      "gcServer": true,
       "gcConcurrent": true
     }
   }  
