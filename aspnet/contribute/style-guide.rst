@@ -5,7 +5,7 @@ ASP.NET Docs Style Guide
 
 By `Steve Smith`_
 
-This document provides an overview of how articles published on `docs.asp.net <http://docs.asp.net>`_ should be formatted. You can actually use this file, itself, as a template when contributing articles.
+This document provides an overview of how articles published on `docs.asp.net <https://docs.asp.net>`__ should be formatted. You can actually use this file, itself, as a template when contributing articles.
 
 .. contents:: Sections:
   :local:
@@ -87,9 +87,9 @@ Links should use HTTPS when possible. Inline hyperlinks are formatted like this:
 
 .. code-block:: rst
 
-  Learn more about `ASP.NET <http://www.asp.net>`_.
+  Learn more about `ASP.NET <https://www.asp.net>`_.
 
-Learn more about `ASP.NET <http://www.asp.net>`_.
+Learn more about `ASP.NET <https://www.asp.net>`_.
 
 Surround the link text with backticks. Within the backticks, place the target in angle brackets, and ensure there is a space between the end of the link text and the opening angle bracket. Follow the closing backtick with an underscore.
 
@@ -201,7 +201,7 @@ Here's an example using the above syntax:
 
 .. image:: style-guide/_static/asp-net.png
 
-Images are responsively sized according to the browser viewport when using this directive. Currently the maximum width supported by the http://docs.asp.net theme is 697px.
+Images are responsively sized according to the browser viewport when using this directive. Currently the maximum width supported by the https://docs.asp.net theme is 697px.
 
 Notes
 ^^^^^
@@ -279,6 +279,6 @@ Learn more about Sphinx and ReStructuredText:
 Summary
 -------
 
-This style guide is intended to help contributors quickly create new articles for `docs.asp.net <http://docs.asp.net>`_. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
+This style guide is intended to help contributors quickly create new articles for `docs.asp.net <https://docs.asp.net>`__. It includes the most common RST syntax elements that are used, as well as overall document organization guidance. If you discover mistakes or gaps in this guide, please `submit an issue <https://github.com/aspnet/docs/issues>`_.
 
 
