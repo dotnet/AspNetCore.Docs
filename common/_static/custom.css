@@ -291,7 +291,7 @@ footer p {
 }
 
 /* helpfulness.css - start */
-.helpfulness-container { background: #2b3990; color: ##bdc0d7; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
+.helpfulness-container { background: #2b3990; color: #bdc0d7; padding:15px 0; color:#fff; z-index:201; width:100%; bottom:0; position:relative; }
 .helpfulness-container.fixed { position:fixed; }
 .helpfulness { margin: 0 auto; max-width:1160px; padding:0 35px 0 20px; }
 .helpfulness:after { clear: both;content: '.';display: block;visibility: hidden;height: 0; }
@@ -317,9 +317,7 @@ a.helpfulness-close:hover { text-decoration:none; color:#3BABD0; }
 /* helpfulness.css - end */
 
 /* helpfulness.css overrides - start */
-.helpfulness-container { padding-left:300px; }
-@media screen and (max-width: 768px) { .helpfulness-container { padding-left:0; } }
-
+.helpfulness-container { margin:24px 0; }
 .helpfulness { max-width:none; }
 
 .common-btn, .btn-install {background:#6CB200;color:#fff;border:0;padding:10px 15px;font-size:14px;display:inline-block;text-transform:uppercase;}

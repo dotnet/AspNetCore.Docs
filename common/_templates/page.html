@@ -9,16 +9,15 @@
 
   <!-- Helpfulness -->
   <div id="helpful-position"></div>
-  <div id="helpful" class="helpfulness-container fixed" style="display:none;">
+  <div id="helpful" class="helpfulness-container" style="display:none;">
     <div class="helpfulness">
       <div class="helpfulness-form">
-        <h2>Was this page helpful?</h2>
-        <span>Your feedback about this content is important. Let us know what you think.</span>
+        <h2>Is this page helpful?</h2>
         <a id="helpfulness-btn-yes" href="javascript:;" class="common-btn first">Yes</a>
         <a id="helpfulness-btn-no" href="javascript:;" class="common-btn">No</a>
       </div>
       <div class="helpfulness-form-no" style="display:none;">
-        <h2>Was this page helpful?</h2>
+        <h2>Is this page helpful?</h2>
         Sorry this wasn't helpful.
         <input type="text" id="txt-helpfulness" placeholder="Please let us know why this wasn't helpful">
         <span id="helpfulness-characters-left">characters remaining</span>
@@ -32,7 +31,7 @@
       <div class="messages success" style="display:none;">
         Thank you for your feedback!
       </div>
-      <div class="messages error" style="display:none;">
+      <div class="messages helpfulness-error" style="display:none;">
         Error during submission!
       </div>
     </div>
