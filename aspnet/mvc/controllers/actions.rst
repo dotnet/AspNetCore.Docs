@@ -71,7 +71,7 @@ In most apps, many actions will share parts of their workflow. For instance, mos
 In the case of authorization and authentication, you can apply the ``Authorize`` attribute to any actions that require it. Adding it to a controller will apply it to all actions within that controller. Adding this attribute will ensure the appropriate filter is applied to any request for this action. Some attributes can be applied at both controller and action levels to provide granular control over filter behavior. Learn more: :doc:`filters` and :doc:`/security/authorization/authorization-filters`.
 
 Other examples of cross-cutting concerns in MVC apps may include:
-  * :doc:`error-handling`
+  * :ref:`Error handling <exception-filters>`
   * :doc:`/performance/caching/response`
 
 .. note:: Many cross-cutting concerns can be handled using filters in MVC apps. Another option to keep in mind that is available to any ASP.NET Core app is custom :doc:`middleware </fundamentals/middleware>`.

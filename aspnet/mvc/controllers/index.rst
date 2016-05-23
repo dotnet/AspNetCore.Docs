@@ -6,7 +6,6 @@ Controllers
     
     actions
     routing
-    error-handling
     filters
     dependency-injection
     testing
