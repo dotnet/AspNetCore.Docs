@@ -1,7 +1,7 @@
 .. _security-authentication-social-logins:
 
-Enabling authentication using external providers
-================================================
+Enabling authentication using Facebook, Google and other external providers
+===========================================================================
 
 By `Rick Anderson`_ and `Pranav Rastogi`_ 
 
