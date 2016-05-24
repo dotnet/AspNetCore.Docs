@@ -135,7 +135,9 @@ Upon saving the file, Bower will automatically download the dependencies to the 
 
 .. image:: mvc/_static/search.png
 
-.. Note:: *bower.json* is not visible in **Solution Explorer**.
+.. Note:: *bower.json* is not visible in **Solution Explorer**. You can display the hidden *.json* files by selecting the project in **Solution Explorer** and then tapping the **Show All Files** icon. You won't see **Show All Files** unless the project is selected.
+
+.. image:: mvc/_static/show_all_files.png
 
 See :doc:`/client-side/bower` for more information.
 
@@ -257,6 +259,8 @@ There are many problems that can cause a HTTP 500 error message that contain no 
                template: "{controller=Home}/{action=Index}/{id?}");
        });
    }
+
+See **Using the Developer Exception Page** in :doc:`/fundamentals/error-handling` for more information.
 
 Additional Resources
 --------------------
