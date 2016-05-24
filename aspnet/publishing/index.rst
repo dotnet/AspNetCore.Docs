@@ -14,3 +14,5 @@ Publishing and Deployment
     azure-windows-vm
     Publish to a Docker Image <https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/>
     linuxproduction
+    how-to-customize
+    vsts-continuous-deployment
