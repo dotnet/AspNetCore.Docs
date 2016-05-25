@@ -48,7 +48,7 @@ The test project's *project.json* file should add dependencies on the test frame
 
 .. literalinclude:: unit-testing/sample/test/PrimeWeb.UnitTests/project.json
   :language: json
-  :lines: 20-24
+  :lines: 25-29
   :linenos:
   :dedent: 2
 
@@ -58,7 +58,7 @@ In addition to adding dependencies, we also want to be able to run the tests usi
 
 .. literalinclude:: unit-testing/sample/test/PrimeWeb.UnitTests/project.json
   :language: json
-  :lines: 25-27
+  :lines: 3
   :linenos:
   :dedent: 2
 
