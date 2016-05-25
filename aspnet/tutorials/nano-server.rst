@@ -52,7 +52,8 @@ If you have successfully connected then your prompt will look like this ``[10.83
 Installing the HttpPlatformHandler Module
 -----------------------------------------
 
-The :ref:`HttpPlatformHandler <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the HttpPlatformHandler Module for IIS is manual. You will need to install the latest 64-bit version of the `HttpPlatformHandler <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
+The HttpPlatformHandler is an IIS 7.5+ module which is responsible for process management of HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the HttpPlatformHandler Module for IIS is manual. You will need to install the latest 64-bit version of the `HttpPlatformHandler <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
+
 
 * *%windir%\\System32\\inetsrv\\HttpPlatformHandler.dll*
 * *%windir%\\System32\\inetsrv\\config\\schema\\httpplatform_schema.xml*

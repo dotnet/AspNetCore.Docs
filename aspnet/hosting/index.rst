@@ -8,7 +8,7 @@ The hosting docs provide an overview of how to host ASP.NET Core. ASP.NET hostin
 .. toctree::
    :titlesonly:
    
-   http-platformhandler
+   aspnet-core-module
    directory-structure
    apppool
    servicing
