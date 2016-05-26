@@ -7,17 +7,15 @@ When the data protection system is initialized it applies some :ref:`default set
 
 .. _data-protection-configuration-callback:
 
-There is an extension method ConfigureDataProtection hanging off of IServiceCollection. This method takes a callback, and the parameter passed to the callback object allows configuration of the system. For instance, to store keys at a UNC share instead of %LOCALAPPDATA% (the default), configure the system as follows:
+There is an extension method AddDataProtection which returns an IDataProtectionBuilder which itself exposes extension methods that you can chain together to configure various data protection options. For instance, to store keys at a UNC share instead of %LOCALAPPDATA% (the default), configure the system as follows:
 
 .. code-block:: c#
 
   public void ConfigureServices(IServiceCollection services)
   {
-      services.AddDataProtection();
-      services.ConfigureDataProtection(configure =>
-      {
-          configure.PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
-      });
+      services.AddDataProtection()
+          .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
+      
   }
 
 .. warning:: 
@@ -47,11 +45,8 @@ To configure the system to use a default key lifetime of 14 days instead of 90 d
 
   public void ConfigureServices(IServiceCollection services)
   {
-      services.AddDataProtection();
-      services.ConfigureDataProtection(configure =>
-      {
-          configure.SetDefaultKeyLifetime(TimeSpan.FromDays(14));
-      });
+      services.AddDataProtection()
+          .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
   }
 
 By default the data protection system isolates applications from one another, even if they're sharing the same physical key repository. This prevents the applications from understanding each other's protected payloads. To share protected payloads between two different applications, configure the system passing in the same application name for both applications as in the below example:
@@ -62,11 +57,8 @@ By default the data protection system isolates applications from one another, ev
 
   public void ConfigureServices(IServiceCollection services)
   {
-      services.AddDataProtection();
-      services.ConfigureDataProtection(configure =>
-      {
-          configure.SetApplicationName("my application");
-      });
+      services.AddDataProtection()
+          .SetApplicationName("my application");
   }
 
 .. _data-protection-configuring-disable-automatic-key-generation:
@@ -77,11 +69,8 @@ Finally, you may have a scenario where you do not want an application to automat
 
   public void ConfigureServices(IServiceCollection services)
   {
-    services.AddDataProtection();
-    services.ConfigureDataProtection(configure =>
-    {
-        configure.DisableAutomaticKeyGeneration();
-    });
+    services.AddDataProtection()
+        .DisableAutomaticKeyGeneration();
   }
 
 .. _data-protection-configuration-per-app-isolation:
