@@ -91,7 +91,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 - Install the :doc:`Secret Manager tool </security/app-secrets>`.
 - Set the Facebook AppId::
 
-   dotnet user-secrets set Authentication:Facebook:AppId<app-Id>
+   dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
 - Set the Facebook AppSecret::
 
    dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
