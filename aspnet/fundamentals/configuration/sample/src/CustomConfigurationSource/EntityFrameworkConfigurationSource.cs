@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace CustomConfigurationProvider
+namespace CustomConfigurationSource
 {
     public class EntityFrameworkConfigurationProvider : ConfigurationProvider
     {
@@ -30,7 +29,8 @@ namespace CustomConfigurationProvider
             }
         }
 
-        private IDictionary<string, string> CreateAndSaveDefaultValues(ConfigurationContext dbContext)
+        private static IDictionary<string, string> CreateAndSaveDefaultValues(
+            ConfigurationContext dbContext)
         {
             var configValues = new Dictionary<string, string>
                 {
@@ -38,18 +38,32 @@ namespace CustomConfigurationProvider
                     { "key2", "value_from_ef_2" }
                 };
             dbContext.Values.AddRange(configValues
-                .Select(kvp => new ConfigurationValue() { Id = kvp.Key, Value = kvp.Value })
+                .Select(kvp => new ConfigurationValue { Id = kvp.Key, Value = kvp.Value })
                 .ToArray());
             dbContext.SaveChanges();
             return configValues;
         }
     }
 
+    public class EntityFrameworkConfigurationSource : IConfigurationSource
+    {
+        private readonly Action<DbContextOptionsBuilder> optionsAction;
+
+        public EntityFrameworkConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
+        {
+            this.optionsAction = optionsAction;
+        }
+
+        public IConfigurationProvider Build(IConfigurationBuilder builder)
+            => new EntityFrameworkConfigurationProvider(optionsAction);
+    }
+
     public static class EntityFrameworkExtensions
     {
-        public static IConfigurationBuilder AddEntityFramework(this IConfigurationBuilder builder, Action<DbContextOptionsBuilder> setup)
+        public static IConfigurationBuilder AddEntityFramework(
+            this IConfigurationBuilder builder, Action<DbContextOptionsBuilder> setup)
         {
-            return builder.Add(new EntityFrameworkConfigurationProvider(setup));
+            return builder.Add(new EntityFrameworkConfigurationSource(setup));
         }
     }
 }
