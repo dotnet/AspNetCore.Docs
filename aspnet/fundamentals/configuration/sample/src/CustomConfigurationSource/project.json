@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0-*",
+  "description": "CustomConfigurationSource Console Application",
+  "authors": ["daroth"],
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "copyToOutput": "appsettings.json"
+  },
+
+  "dependencies": {
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-rc2-3002702",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    },
+    "net451": {}
+  },
+
+  "commands": {
+    "CustomConfigurationSource": "CustomConfigurationSource"
+  }
+}
