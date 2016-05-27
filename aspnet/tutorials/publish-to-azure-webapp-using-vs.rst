@@ -28,12 +28,12 @@ From the Visual Studio **Start** page, tap **New Project**.
 
 Alternatively, you can use the menus to create a new project. Tap **File > New > Project**.
 
-.. image:: first-mvc-app/start-mvc/_static/new_project.png
+.. image:: first-mvc-app/start-mvc/_static/alt_new_project.png
 
 Complete the **New Project** dialog:
 
 - In the left pane, tap **Web**
-- In the center pane, tap **ASP.NET Core Web Application**
+- In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
 - Tap **OK**
 
 .. image:: publish-to-azure-webapp-using-vs/_static/new_prj.png
@@ -50,12 +50,12 @@ In the **New ASP.NET Core Web Application (.NET Core)** dialog:
 Test the app locally
 ^^^^^^^^^^^^^^^^^^^^^
 
-- Use **Ctl-F5** to run the app in non-debug mode
-- Tap the **About** and **Contact** links. Depending on the size of your device, , you might need to click the navigation icon to show the links
+- Use **Ctl-F5** to run the app
+- Tap the **About** and **Contact** links. Depending on the size of your device, you might need to click the navigation icon to show the links
 
 .. image:: publish-to-azure-webapp-using-vs/_static/show.png
 
-- Tap **Register** and register. You can use a fictitious email. When you submit, you'll get the following error:
+- Tap **Register** and register a new user. You can use a fictitious email. When you submit, you'll get the following error:
 
 .. image:: publish-to-azure-webapp-using-vs/_static/mig.png
 
@@ -103,7 +103,7 @@ Create a new resource group and app service plan:
 .. image:: publish-to-azure-webapp-using-vs/_static/conf.png
 
 - You can keep the default **Server Name**
-- Enter an administrator user name and password, and then tap **OK**
+- Enter an administrator user name and password, and then tap **OK**. Remember the user name and password.
 
 .. image:: publish-to-azure-webapp-using-vs/_static/dbrick.png
 
