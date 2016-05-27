@@ -9,5 +9,6 @@ Tutorials
    publish-to-azure-webapp-using-vs
    first-mvc-app/index
    nano-server
+   /mobile/native-mobile-backend
    ASP.NET Core and Azure Service Fabric <https://azure.microsoft.com/en-us/documentation/articles/service-fabric-add-a-web-frontend/>
    /mobile/native-mobile-backend
