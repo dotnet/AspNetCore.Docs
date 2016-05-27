@@ -12,7 +12,7 @@ In ASP.NET Core, the application directory comprises of three sub-directories. T
 Folder   Permissions     Description     
 =======  ==============  ===========  
 approot  Read & Execute  Contains the application, app config files, packages and the runtime.
-logs     Read & Write    The default folder for HTTP Platform Handler to redirect logs to.
+logs     Read & Write    The default folder for the ASP.NET Core Module for logging.
 wwwroot  Read & Execute  Contains the static assets
 =======  ==============  ===========
 
