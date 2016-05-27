@@ -57,14 +57,8 @@ As other test frameworks release support for .NET Core, we will link to them her
 In addition to adding dependencies, we also want to be able to run the tests using the ``dotnet test``. To do so, add the following test runner section to *project.json*:
 
 .. literalinclude:: unit-testing/sample/test/PrimeWeb.UnitTests/project.json
-<<<<<<< HEAD
   :language: none
-  :lines: 25-27
-=======
-  :language: json
-  :lines: 3
-  :linenos:
->>>>>>> e398752... Updating UnitTest sample app for .NET Core RC2
+  :lines: 24-28
   :dedent: 2
 
 Running Tests

@@ -83,13 +83,9 @@ When specifying files as configuration sources, you can optionally specify wheth
 One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In the console application below, a default value for the ``username`` setting is specified in a ``MemoryConfigurationSource``, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
 
 .. literalinclude:: configuration/sample/src/ConfigConsole/Program.cs
-<<<<<<< HEAD
-  :language: c#
   :emphasize-lines: 22,25
-=======
   :linenos:
   :language: none
->>>>>>> 73af200... fix lex errors
 
 When run, the program will display the default value unless a command line parameter overrides it.
 
