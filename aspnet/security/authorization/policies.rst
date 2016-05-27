@@ -176,7 +176,7 @@ The Handle method you must implement in a handle has two parameters, an ``Author
 
 For example MVC passes an instance of ``Microsoft.AspNet.Mvc.Filters.AuthorizationContext`` in the resource property which be used to access HttpContext, RouteData and everything else MVC provides.
 
-The use of the ``Resource`` property is framework specific. Using information in the ``Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastExceptions`` when run on other other frameworks;
+The use of the ``Resource`` property is framework specific. Using information in the ``Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastExceptions`` when run on other frameworks;
 
 .. code-block:: c#
  
