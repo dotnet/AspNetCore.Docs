@@ -51,7 +51,7 @@ The ``asp-route`` Tag Helper attribute can also generate markup for the HTML ``a
 
 Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual User Accounts*) contain the `asp-route-returnurl <http://docs.asp.net/en/latest/mvc/views/working-with-forms.html#the-form-tag-helper>`__ attribute: 
 
-.. code-block:: HTML
+.. code-block:: none
   :emphasize-lines: 2
   
   <form asp-controller="Account" asp-action="Login" 
@@ -251,7 +251,7 @@ Sample using ``List<T>``:
 The following Razor shows how to iterate over a collection:
 
 .. literalinclude::   forms/sample/final/Views/Demo/Edit.cshtml 
-  :language: HTML
+  :language: none
 
 The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
 

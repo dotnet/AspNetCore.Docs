@@ -98,7 +98,7 @@ Configuration
 ASP.NET Core uses a new configuration model for handling of simple name-value pairs that is not based on System.Configuration or web.config. This new configuration model pulls from an ordered set of configuration providers. The built-in configuration providers support a variety of file formats (XML, JSON, INI) and also environment variables to enable environment-based configuration. You can also write your own custom configuration providers. Environments, like Development and Production, are a first-class notion in ASP.NET Core and can also be set up using environment variables:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
-  :language: c#
+  :language: none
   :lines: 22-34
   :dedent: 12
 

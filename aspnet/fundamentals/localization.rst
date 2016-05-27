@@ -281,7 +281,7 @@ Setting the culture programmatically
 This sample **Localization.StarterWeb** project on `GitHub <https://github.com/aspnet/entropy>`__ contains UI to set the ``Culture``. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
 .. literalinclude:: localization/sample/Views/Shared/_SelectLanguagePartial.cshtml
-  :language: HTML
+  :language: none
   
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the ``footer`` section of the layout file so it will be available to all views:
 

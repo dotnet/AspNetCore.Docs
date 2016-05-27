@@ -35,7 +35,6 @@ The Test Host
 ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its *project.json* file:
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/project.json
-  :linenos:
   :language: javascript
   :lines: 21-26
   :dedent: 2
@@ -44,7 +43,6 @@ ASP.NET includes a test host that can be added to integration test projects and 
 Once the Microsoft.AspNet.TestHost package is included in the project, you will be able to create and configure a TestServer in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Empty Web template created by Visual Studio.
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebDefaultRequestShould.cs
-  :linenos:
   :language: c#
   :lines: 10-32
   :dedent: 8
@@ -57,7 +55,6 @@ In the Act portion of the test, a request is made to the ``TestServer`` instance
 Now we can add a few additional integration tests to confirm that the prime checking functionality works via the web application:
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebCheckPrimeShould.cs
-  :linenos:
   :language: c#
   :lines: 10-68
   :dedent: 4
@@ -77,7 +74,6 @@ Refactoring to use Middleware
 Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in our web application, we see:
 
 .. code-block:: c#
-  :linenos:
   :emphasize-lines: 13-33
 
     public void Configure(IApplicationBuilder app,
@@ -131,8 +127,7 @@ We want to allow the path the middleware uses to be specified as a parameter, so
 .. note:: Since our middleware depends on the ``PrimeService`` service, we are also requesting an instance of this service via the constructor. The framework will provide this service via :doc:`/fundamentals/dependency-injection`, assuming it has been configured (e.g. in ``ConfigureServices``).
 
 .. literalinclude:: integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs
-  :linenos:
-  :language: c#
+  :language: none
   :emphasize-lines: 39-62
 
 .. note:: Since this middleware acts as an endpoint in the request delegate chain when its path matches, there is no call to ``_next.Invoke`` in the case where this middleware handles the request.
@@ -140,7 +135,6 @@ We want to allow the path the middleware uses to be specified as a parameter, so
 With this middleware in place and some helpful extension methods created to make configuring it easier, the refactored ``Configure`` method looks like this:
 
 .. literalinclude:: integration-testing/sample/src/PrimeWeb/Startup.cs
-  :linenos:
   :language: c#
   :lines: 18-34
   :dedent: 8

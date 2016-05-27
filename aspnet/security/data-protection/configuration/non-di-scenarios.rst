@@ -8,7 +8,7 @@ To support these scenarios the package Microsoft.AspNet.DataProtection.Extension
 For example:
 
 .. literalinclude:: non-di-scenarios/_static/nodisample1.cs
-        :language: c#
+        :language: none
         :linenos:
 
 .. warning::
@@ -19,7 +19,7 @@ For example:
 The application developer can address both of these if desired. The DataProtectionProvider constructor accepts an :ref:`optional configuration callback <data-protection-configuration-callback>` which can be used to tweak the behaviors of the system. The sample below demonstrates restoring isolation via an explicit call to SetApplicationName, and it also demonstrates configuring the system to automatically encrypt persisted keys using Windows DPAPI. If the directory points to a UNC share, you may wish to distribute a shared certificate across all relevant machines and to configure the system to use certificate-based encryption instead via a call to :ref:`ProtectKeysWithCertificate <configuring-x509-certificate>`.
 
 .. literalinclude:: non-di-scenarios/_static/nodisample2.cs
-        :language: c#
+        :language: none
         :linenos:
 
 .. tip::

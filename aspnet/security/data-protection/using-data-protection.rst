@@ -12,7 +12,7 @@ At its simplest protecting data consists of the following steps:
 Most frameworks such as ASP.NET or SignalR already configure the data protection system and add it to a service container you access via dependency injection. The following sample demonstrates configuring a service container for dependency injection and registering the data protection stack, receiving the data protection provider via DI, creating a protector and protecting then unprotecting data
 
 .. literalinclude:: using-data-protection/samples/protectunprotect.cs
-        :language: c#
+        :language: none
         :emphasize-lines: 26,34-40
         :linenos:
 

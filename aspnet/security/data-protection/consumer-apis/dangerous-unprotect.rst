@@ -32,5 +32,5 @@ This API takes the protected payload (as a byte array) and returns the unprotect
 
 
 .. literalinclude:: dangerous-unprotect/samples/dangerous-unprotect.cs
-  :language: c#
+  :language: none
   :linenos:

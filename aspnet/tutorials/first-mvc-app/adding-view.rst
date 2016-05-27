@@ -123,7 +123,7 @@ The ``ViewData`` dictionary object contains data that will be passed to the view
 You'll create a loop in the *Welcome.cshtml* view template that displays "Hello" ``NumTimes``. Replace the contents of *Views/HelloWorld/Welcome.cshtml* with the following:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/HelloWorld/Welcome.cshtml
-  :language: HTML
+  :language: none
 
 Save your changes and browse to the following URL:
 
