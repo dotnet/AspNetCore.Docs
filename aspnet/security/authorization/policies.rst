@@ -134,7 +134,7 @@ Regardless of what you call inside your handler all handlers for a requirement w
 Why would I want multiple handlers for a requirement?
 -----------------------------------------------------
 
-In cases where you want evaluation to be on an OR basis you implement multiple handlers for a single requirement. For example, Microsoft has doors which only open with key cards, or when the reception opens the door for you because you left your key card at home, and she has printed out a single day sticker of forgetful shame you must wear. In this sort of scenario you'd have a single requirement, EnterBuilding, but multiple handlers, each one examining a single requirement. 
+In cases where you want evaluation to be on an OR basis you implement multiple handlers for a single requirement. For example, Microsoft has doors which only open with key cards, or when the reception opens the door for you because you left your key card at home, and they have printed out a single day sticker of forgetful shame you must wear. In this sort of scenario you'd have a single requirement, EnterBuilding, but multiple handlers, each one examining a single requirement. 
 
 .. code-block:: c#
 
