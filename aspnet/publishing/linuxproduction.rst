@@ -86,7 +86,7 @@ We will be modifying the ``/etc/nginx/sites-available/default``, so open it up i
 
 This is one of the simplest configuration files for Nginx that forwards incoming public traffic on your port ``80`` to a unix socket that your web application will listen on. You can specify this Unix socket in your *project.json* file.
 
-.. code-block:: json
+.. code-block:: none
     :caption: project.json
 
     "commands": {

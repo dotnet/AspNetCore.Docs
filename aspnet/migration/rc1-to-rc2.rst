@@ -140,7 +140,7 @@ HttpPlatformModule was replaced by ASP.NET Core Module. The web.config created b
 
 The code snippet below shows how to configure the new Publish IIS tool in ``project.json`` file:
 
-.. code-block:: Json 
+.. code-block:: none 
 
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {

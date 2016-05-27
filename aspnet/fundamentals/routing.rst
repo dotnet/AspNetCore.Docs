@@ -50,7 +50,7 @@ Once you've finished adding routes to the ``RouteBuilder`` instance, call ``UseR
 The route configured above will only match requests of the form "hello/{name}" where `name` is constrained to be alphabetical. Requests that match this will be handled by a custom ``IRouter`` implementation, ``HelloRouter``.
 
 .. literalinclude:: routing/sample/RoutingSample/HelloRouter.cs
-  :language: c#
+  :language: none
   :emphasize-lines: 8,18
 
 ``HelloRouter`` checks to see if ``RouteData`` includes a value for the key ``name``. If not, it immediately returns without handling the request. Otherwise, the request is handled (by writing out "Hi {name}!") and the ``RouteContext`` is updated to note that the request was handled. This prevents additional routes from handling the request. The ``GetVirtualPath`` method is used for :ref:`link generation <link-generation>`.

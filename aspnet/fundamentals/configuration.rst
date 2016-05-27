@@ -70,7 +70,7 @@ It can be useful to have environment-specific configuration files. This can be a
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :dedent: 8
-  :language: c#
+  :language: none
   :lines: 20-35
   :emphasize-lines: 1,6
 
@@ -83,8 +83,13 @@ When specifying files as configuration sources, you can optionally specify wheth
 One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In the console application below, a default value for the ``username`` setting is specified in a ``MemoryConfigurationSource``, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
 
 .. literalinclude:: configuration/sample/src/ConfigConsole/Program.cs
+<<<<<<< HEAD
   :language: c#
   :emphasize-lines: 22,25
+=======
+  :linenos:
+  :language: none
+>>>>>>> 73af200... fix lex errors
 
 When run, the program will display the default value unless a command line parameter overrides it.
 

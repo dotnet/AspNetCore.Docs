@@ -199,7 +199,7 @@ You can implement remote validation in a two step process. First, you must annot
 The second step is putting the validation code in the corresponding action method as defined in the ``[Remote]`` attribute. It returns a ``JsonResult`` that the client side can use to proceed or pause and display an error if needed.
  
 .. literalinclude:: validation/sample/UsersController.cs
- :language: c#
+ :language: none
  :lines: 6-23
  
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.  

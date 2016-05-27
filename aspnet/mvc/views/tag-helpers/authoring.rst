@@ -214,7 +214,7 @@ Web site information Tag Helper
 3. Add the following ``WebsiteInformationTagHelper`` class to the *TagHelpers* folder.
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs
-  :language: c#
+  :language: none
 
 **Notes:** 
 
@@ -234,7 +234,7 @@ The lower kebab case tag ``<website-information />`` would not match. If you wan
 - Elements that are self-closing have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a `section <http://www.w3.org/TR/html5/sections.html#the-section-element>`__ element (which is not self-closing and we are writing content inside the ``section`` element). Therefore, we need to set ``TagMode`` to ``StartTagAndEndTag`` to write output. Alternatively, you can comment out the line setting ``TagMode`` and write markup with a closing tag. (Example markup is provided later in this tutorial.)
 - The ``$`` (dollar sign) in the following line uses an `interpolated string <https://msdn.microsoft.com/en-us/library/Dn961160.aspx>`__:
 
-.. code-block:: c#
+.. code-block:: html
 
   $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
 

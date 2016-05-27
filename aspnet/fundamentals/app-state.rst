@@ -242,7 +242,7 @@ Establishing the session is done in the middleware that handles requests to "/se
 
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
   :linenos:
-  :language: c#
+  :language: none
   :lines: 54-73
   :dedent: 12
   :emphasize-lines: 2,8-14

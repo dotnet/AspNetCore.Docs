@@ -143,10 +143,10 @@ A ``TypeFilter`` will instantiate an instance, using services from DI for its de
 
 Using ``ServiceFilter`` without registering the filter type in ``ConfigureServices``, throws the following exception:
 
-.. code-block:: c#
+.. code-block:: none
 
-	System.InvalidOperationException: No service for type 
-	'FiltersSample.Filters.AddHeaderFilterWithDI' has been registered.
+  System.InvalidOperationException: No service for type 
+  'FiltersSample.Filters.AddHeaderFilterWithDI' has been registered.
 
 To avoid this exception, you must register the ``AddHeaderFilterWithDI`` type in ``ConfigureServices``:
 
@@ -161,7 +161,7 @@ To avoid this exception, you must register the ``AddHeaderFilterWithDI`` type in
 ``TypeFilterAttribute`` is very similar to ``ServiceFilterAttribute`` (and also implements ``IFilterFactory``), but its type is not resolved directly from the DI container. Instead, it instantiates the type using an `ObjectFactory delegate <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/ObjectFactory/index.html>`_. Because of this difference, types that are referenced using the ``TypeFilterAttribute`` do not need to be registered with the container first (but they will still have their dependencies fulfilled by the container). Also, ``TypeFilterAttribute`` can optionally accept constructor arguments for the type in question. The following example demonstrates how to pass arguments to a type using ``TypeFilterAttribute``:
 
 .. literalinclude:: filters/sample/src/FiltersSample/Controllers/HomeController.cs
-  :language: c#
+  :language: none
   :emphasize-lines: 1-2
   :lines: 20-25
   :dedent: 8

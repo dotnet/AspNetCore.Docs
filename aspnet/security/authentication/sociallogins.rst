@@ -99,7 +99,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 The following code reads the configuration values stored by the :ref:`Secret Manager <security-app-secrets>`.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
-  :language: c#
+  :language: none
   :lines: 20-36
   :emphasize-lines: 11
   :dedent: 8
