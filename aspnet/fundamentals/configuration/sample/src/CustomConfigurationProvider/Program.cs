@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
-namespace CustomConfigurationSource
+namespace CustomConfigurationProvider
 {
     public static class Program
     {
@@ -19,7 +19,7 @@ namespace CustomConfigurationSource
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddEntityFrameworkConfigSource(options =>
+                .AddEntityFrameworkConfig(options =>
                     options.UseSqlServer(connectionStringConfig.GetConnectionString("DefaultConnection"))
                 )
                 .Build();

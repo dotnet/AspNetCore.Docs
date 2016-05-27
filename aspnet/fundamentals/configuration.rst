@@ -4,7 +4,7 @@ Configuration
 =============
 `Steve Smith`_, `Daniel Roth`_
 
-ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables, command line arguments or an in-memory collection. You can also write your own :ref:`custom configuration source <custom-config-sources>`.
+ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables, command line arguments or an in-memory collection. You can also write your own :ref:`custom configuration provider <custom-config-providers>`.
 
 .. contents:: Sections:
   :local:
@@ -56,7 +56,7 @@ Adding support for additional configuration sources is accomplished through exte
 
 .. _custom-config:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/Program.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/Program.cs
   :dedent: 12
   :language: c#
   :lines: 12-25
@@ -77,7 +77,7 @@ The ``IHostingEnvironment`` service is used to get the current environment. In t
 
 When specifying files as configuration sources, you can optionally specify whether changes to the file should result in the settings being reloaded. This is configured by passing in a ``true`` value for the ``reloadOnChange`` parameter when calling ``AddJsonFile`` or similar file-based extension methods.
 
-.. warning:: You should never store passwords or other sensitive data in configuration source code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the configuration source repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
+.. warning:: You should never store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the configuration provider repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
 
 One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In the console application below, a default value for the ``username`` setting is specified in an in-memory collection, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
 
@@ -141,28 +141,28 @@ Each call to ``Configure<TOption>`` adds an ``IConfigureOptions<TOption>`` servi
 
 You can have multiple ``IConfigureOptions<TOption>`` services for the same option type and they are all applied in order. In the :ref:`example <options-example>` above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate with the value "value1_from_action".
 
-.. _custom-config-sources:
+.. _custom-config-providers:
 
-Writing custom sources
-----------------------
+Writing custom providers
+------------------------
 
-In addition to using the built-in configuration sources, you can also write your own. To do so, you simply implement the ``IConfigurationSource`` interface, which exposes a ``Build`` method. The build method configures and returns an ``IConfigurationProvider``.
+In addition to using the built-in configuration sources, you can also write your own configuration providers. To do so, you simply implement the ``IConfigurationSource`` interface, which exposes a ``Build`` method. The build method configures and returns an ``IConfigurationProvider``.
 
 Example: Entity Framework Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You may wish to store some of your application's settings in a database, and access them using Entity Framework Core (EF). There are many ways in which you could choose to store such values, ranging from a simple table with a column for the setting name and another column for the setting value, to having separate columns for each setting value. In this example, we're going to create a simple configuration source that reads name-value pairs from a database using EF.
+You may wish to store some of your application's settings in a database, and access them using Entity Framework Core (EF). There are many ways in which you could choose to store such values, ranging from a simple table with a column for the setting name and another column for the setting value, to having separate columns for each setting value. In this example, we're going to create a simple configuration provider that reads name-value pairs from a database using EF.
 
 To start off we'll define a simple ``ConfigurationValue`` entity for storing configuration values in the database:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/ConfigurationValue.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/ConfigurationValue.cs
   :language: c#
   :lines: 3-7
   :dedent: 4
 
 You need a ``ConfigurationContext`` to store and access the configured values using EF:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/ConfigurationContext.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs
   :language: c#
   :lines: 5-12
   :dedent: 4
@@ -170,27 +170,27 @@ You need a ``ConfigurationContext`` to store and access the configured values us
 
 Create an ``EntityFrameworkConfigurationSource`` that inherits from ``IConfigurationSource``:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/EntityFrameworkConfigurationSource.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs
   :language: c#
   :emphasize-lines: 7,16-19
 
 Next, create the custom configuration provider by inheriting from ``ConfigurationProvider``. The configuration data is loaded by overriding the ``Load`` method, which reads in all of the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/EntityFrameworkConfigurationProvider.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs
   :language: c#
   :emphasize-lines: 9,18-30,37-38
 
 Note the values that are being stored in the database ("value_from_ef_1" and "value_from_ef_2"); these are displayed in the sample below to demonstrate the configuration is reading values from the database properly.
 
-By convention you can also add an ``AddEntityFrameworkConfigurationSource`` extension method for adding the configuration provider:
+By convention you can also add an ``AddEntityFrameworkConfiguration`` extension method for adding the configuration provider:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/EntityFrameworkExtensions.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs
   :language: c#
   :emphasize-lines: 9
 
-You can see an example of how to use this custom configuration source in your application in the following example. Create a new ``ConfigurationBuilder`` to set up your configuration sources. To add the ``EntityFrameworkConfigurationSource``, you first need to specify the data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationSource``. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
+You can see an example of how to use this custom configuration provider in your application in the following example. Create a new ``ConfigurationBuilder`` to set up your configuration sources. To add the ``EntityFrameworkConfigurationProvider``, you first need to specify the data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationProvider``. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
 
-.. literalinclude:: configuration/sample/src/CustomConfigurationSource/Program.cs
+.. literalinclude:: configuration/sample/src/CustomConfigurationProvider/Program.cs
   :language: c#
   :emphasize-lines: 21-24
 
@@ -201,4 +201,4 @@ Run the application to see the configured values:
 Summary
 -------
 
-ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration sources as well, which can work with or replace the built-in sources, allowing for extreme flexibility. 
+ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in sources, allowing for extreme flexibility. 
