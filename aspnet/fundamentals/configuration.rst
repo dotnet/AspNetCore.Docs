@@ -4,7 +4,7 @@ Configuration
 =============
 `Steve Smith`_, `Daniel Roth`_
 
-ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables. You can also write your own :ref:`custom configuration source <custom-config-sources>`.
+ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables, command line arguments or an in-memory collection. You can also write your own :ref:`custom configuration source <custom-config-sources>`.
 
 .. contents:: Sections:
   :local:
@@ -24,13 +24,13 @@ At its simplest, ``Configuration`` is just a collection of ``Sources``, which pr
 .. code-block:: c#
 
   var builder = new ConfigurationBuilder();
-  builder.Add(new MemoryConfigurationSource());
+  builder.AddInMemoryCollection();
   var config = builder.Build();
   config["somekey"] = "somevalue";
 
   // do some other work
 
-  string setting2 = config["somekey"]; // also returns "somevalue"
+  var setting = config["somekey"]; // also returns "somevalue"
 
 .. note:: You must set at least one configuration source.
 
@@ -79,7 +79,7 @@ When specifying files as configuration sources, you can optionally specify wheth
 
 .. warning:: You should never store passwords or other sensitive data in configuration source code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the configuration source repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
 
-One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In the console application below, a default value for the ``username`` setting is specified in a ``MemoryConfigurationSource``, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
+One way to leverage the order precedence of ``Configuration`` is to specify default values, which can be overridden. In the console application below, a default value for the ``username`` setting is specified in an in-memory collection, but this is overridden if a command line argument for ``username`` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
 
 .. literalinclude:: configuration/sample/src/ConfigConsole/Program.cs
   :language: c#

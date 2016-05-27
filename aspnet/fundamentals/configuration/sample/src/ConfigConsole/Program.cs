@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Memory;
 
 namespace ConfigConsole
 {
@@ -13,13 +12,11 @@ namespace ConfigConsole
             var builder = new ConfigurationBuilder();
             Console.WriteLine("Initial Config Sources: " + builder.Sources.Count());
 
-            var defaultSettings = new MemoryConfigurationSource();
-            var initialData = new Dictionary<string,string>()
+            builder.AddInMemoryCollection(new Dictionary<string, string>
             {
-                {"username","Guest"}
-            };
-            defaultSettings.InitialData = initialData;
-            builder.Add(defaultSettings);
+                { "username", "Guest" }
+            });
+
             Console.WriteLine("Added Memory Source. Sources: " + builder.Sources.Count());
 
             builder.AddCommandLine(args);
