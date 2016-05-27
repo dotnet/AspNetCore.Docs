@@ -32,7 +32,7 @@ Installing the Secret Manager tool
 
 - Add ``SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``.
 
-.. code-block:: JSON
+.. code-block:: none
   :emphasize-lines: 6-9
 
   "tools": {
@@ -79,7 +79,7 @@ Accessing user secrets via configuration
 
 You access Secret Manager secrets through the configuration system. Add the ``Microsoft.Extensions.Configuration.UserSecrets`` as a dependency in your *project.json* file and run ``dotnet restore``.
 
-.. code-block:: json
+.. code-block:: none
   :emphasize-lines: 2
 
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
@@ -87,7 +87,7 @@ You access Secret Manager secrets through the configuration system. Add the ``Mi
 Add the user secrets configuration source to the ``Startup`` method:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
-  :language: c#
+  :language: none
   :lines: 20-35
   :emphasize-lines: 11
   :dedent: 8

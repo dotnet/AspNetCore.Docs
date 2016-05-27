@@ -131,7 +131,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
 
 .. note:: SendGrid does not yet support .NET Core. To use SendGrid in your application you need to either target the full .NET Framework (as shown below) or call the REST API from SendGrid to send email. 
 
-.. code-block:: json
+.. code-block:: none
 
    "frameworks": {
     "net46": { }

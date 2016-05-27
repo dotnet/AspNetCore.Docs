@@ -74,7 +74,7 @@ It can be useful to have environment-specific configuration files. This can be a
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :linenos:
   :dedent: 8
-  :language: c#
+  :language: none
   :lines: 19-34
   :emphasize-lines: 1,6
 
@@ -86,7 +86,7 @@ One way to leverage the order precedence of ``Configuration`` is to specify defa
 
 .. literalinclude:: configuration/sample/src/ConfigConsole/Program.cs
   :linenos:
-  :language: c#
+  :language: none
 
 When run, the program will display the default value unless a command line parameter overrides it.
 

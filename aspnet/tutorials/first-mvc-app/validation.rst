@@ -22,7 +22,7 @@ Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation 
 Update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
-  :language: c#
+  :language: none
   :lines: 8-31
   :dedent: 4
   :emphasize-lines: 5, 12-14, 17-18, 21,22
@@ -131,7 +131,7 @@ You will need to disable jQuery date validation to use the ``Range`` attribute w
 The following code shows combining attributes on one line:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDAmult.cs
-  :language: c#
+  :language: none
   :lines: 7-25
   :dedent: 4
   :emphasize-lines: 5,8,11,14,17

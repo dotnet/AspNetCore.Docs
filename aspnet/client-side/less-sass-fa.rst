@@ -77,7 +77,7 @@ Now we can add some basic styling to the file, which will be compiled into CSS a
 
 Modify main.less to include the following content, which creates a simple color palette from a single base color.
 
-.. code-block:: css
+.. code-block:: none
 
   @base: #663333;
   @background: spin(@base, 180);
@@ -229,7 +229,7 @@ Ideally all of the related style rules will be placed together within the CSS fi
 
 Defining these same rules using Less looks like this:
 
-.. code-block:: css
+.. code-block:: none
 
   nav {
     height: 40px;
@@ -273,7 +273,7 @@ Media queries, extremely useful in creating responsive designs, can also contrib
 
 This can be better defined in Less as:
 
-.. code-block:: css
+.. code-block:: none
 
   .navigation {
     margin-top: 30%;
@@ -369,7 +369,7 @@ Now you can add the Sass file main2.scss to the Styles folder in the root of the
 
 Open main2.scss and add the following:
 
-.. code-block:: css
+.. code-block:: none
 
   $base: #CC0000;
   body {

@@ -9,7 +9,7 @@ Each instance of EphemeralDataProtectionProvider uses its own unique master key.
 
 The following sample demonstrates instantiating an EphemeralDataProtectionProvider and using it to protect and unprotect data.
 
-.. code-block:: c#
+.. code-block:: none
 
   using System;
   using Microsoft.AspNet.DataProtection;
