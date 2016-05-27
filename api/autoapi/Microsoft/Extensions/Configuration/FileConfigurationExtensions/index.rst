@@ -5,12 +5,17 @@ FileConfigurationExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.FileExtensions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class FileConfigurationExtensions
+    public class FileConfigurationExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.FileExtensions/FileConfigurationExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationExtensions
 
@@ -58,49 +60,77 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.GetBasePath(Microsoft.Extensions.Configuration.IConfigurationBuilder)
+    .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.GetFileProvider(Microsoft.Extensions.Configuration.IConfigurationBuilder)
     
         
     
-        Gets the base path to discover files in for file-based providers.
+        
+        Gets the default :any:`Microsoft.Extensions.FileProviders.IFileProvider` to be used for file-based providers.
     
         
+    
         
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
         
-        :param configurationBuilder: The  to add to.
-        
-        :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        :rtype: System.String
-        :return: The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static string GetBasePath(IConfigurationBuilder configurationBuilder)
+            public static IFileProvider GetFileProvider(IConfigurationBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
     
         
     
-        Sets the base path to discover files in for file-based providers.
+        
+        Sets the FileProvider for file-based providers to a PhysicalFileProvider with the base path.
     
         
+    
         
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
         
-        :param configurationBuilder: The  to add to.
-        
-        :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
         
         :param basePath: The absolute path of file-based providers.
         
         :type basePath: System.String
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        :return: The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IConfigurationBuilder SetBasePath(IConfigurationBuilder configurationBuilder, string basePath)
+            public static IConfigurationBuilder SetBasePath(IConfigurationBuilder builder, string basePath)
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetFileProvider(Microsoft.Extensions.Configuration.IConfigurationBuilder, Microsoft.Extensions.FileProviders.IFileProvider)
+    
+        
+    
+        
+        Sets the default :any:`Microsoft.Extensions.FileProviders.IFileProvider` to be used for file-based providers.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
+        
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
+        
+        :param fileProvider: The default file provider instance.
+        
+        :type fileProvider: Microsoft.Extensions.FileProviders.IFileProvider
+        :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+    
+        
+        .. code-block:: csharp
+    
+            public static IConfigurationBuilder SetFileProvider(IConfigurationBuilder builder, IFileProvider fileProvider)
     
 

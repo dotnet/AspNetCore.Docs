@@ -208,7 +208,7 @@ Add jQuery and Bootstrap components to the page to verify that the web applicati
 
     app.UseStaticFiles();
     
-  .. note:: Be sure to install the ``Microsoft.AspNet.StaticFiles`` NuGet package. Without it, the ``UseStaticFiles`` extension method will not resolve.
+  .. note:: Be sure to install the ``Microsoft.AspNetCore.StaticFiles`` NuGet package. Without it, the ``UseStaticFiles`` extension method will not resolve.
 
 #. With the Index.html file opened, press ``Ctrl+Shift+W`` to view the page in the browser. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state. 
 

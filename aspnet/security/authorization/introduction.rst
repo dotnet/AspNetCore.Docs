@@ -15,4 +15,4 @@ In ASP.NET v5 authorization now provides simple declarative :ref:`role <security
 Namespaces
 ----------
 
-The authorization attribute is part of the MVC namespace, specifically you must add  ``using Microsoft.AspNet.Authorization;``
+The authorization attribute is part of the MVC namespace, specifically you must add  ``using Microsoft.AspNetCore.Authorization;``

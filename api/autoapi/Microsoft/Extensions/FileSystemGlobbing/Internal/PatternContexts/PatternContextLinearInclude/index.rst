@@ -5,12 +5,17 @@ PatternContextLinearInclude Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -35,20 +40,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class PatternContextLinearInclude : PatternContextLinear, IPatternContext
+    public class PatternContextLinearInclude : PatternContextLinear, IPatternContext
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PatternContexts/PatternContextLinearInclude.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearInclude
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearInclude
 
@@ -63,14 +65,14 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearInclude.PatternContextLinearInclude(Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern)
     
         
-        
+    
         
         :type pattern: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
     
         
         .. code-block:: csharp
     
-           public PatternContextLinearInclude(ILinearPattern pattern)
+            public PatternContextLinearInclude(ILinearPattern pattern)
     
 
 Methods
@@ -84,19 +86,19 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearInclude.Declare(System.Action<Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment, System.Boolean>)
     
         
+    
         
-        
-        :type onDeclare: System.Action{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment,System.Boolean}
+        :type onDeclare: System.Action<System.Action`2>{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment<Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment>, System.Boolean<System.Boolean>}
     
         
         .. code-block:: csharp
     
-           public override void Declare(Action<IPathSegment, bool> onDeclare)
+            public override void Declare(Action<IPathSegment, bool> onDeclare)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearInclude.Test(Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase)
     
         
-        
+    
         
         :type directory: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
         :rtype: System.Boolean
@@ -104,6 +106,6 @@ Methods
         
         .. code-block:: csharp
     
-           public override bool Test(DirectoryInfoBase directory)
+            public override bool Test(DirectoryInfoBase directory)
     
 

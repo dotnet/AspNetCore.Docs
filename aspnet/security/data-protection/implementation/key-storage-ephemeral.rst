@@ -3,7 +3,7 @@
 Ephemeral data protection providers
 ===================================
 
-There are scenarios where an application needs a throwaway IDataProtectionProvider. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the package Microsoft.AspNet.DataProtection includes a type EphemeralDataProtectionProvider. This type provides a basic implementation of IDataProtectionProvider whose key repository is held solely in-memory and isn't written out to any backing store.
+There are scenarios where an application needs a throwaway IDataProtectionProvider. For example, the developer might just be experimenting in a one-off console application, or the application itself is transient (it's scripted or a unit test project). To support these scenarios the package Microsoft.AspNetCore.DataProtection includes a type EphemeralDataProtectionProvider. This type provides a basic implementation of IDataProtectionProvider whose key repository is held solely in-memory and isn't written out to any backing store.
 
 Each instance of EphemeralDataProtectionProvider uses its own unique master key. Therefore, if an IDataProtector rooted at an EphemeralDataProtectionProvider generates a protected payload, that payload can only be unprotected by an equivalent IDataProtector (given the same :ref:`purpose <data-protection-consumer-apis-purposes>` chain) rooted at the same EphemeralDataProtectionProvider instance.
 
@@ -12,7 +12,7 @@ The following sample demonstrates instantiating an EphemeralDataProtectionProvid
 .. code-block:: none
 
   using System;
-  using Microsoft.AspNet.DataProtection;
+  using Microsoft.AspNetCore.DataProtection;
    
   public class Program
   {

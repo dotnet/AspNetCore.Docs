@@ -29,7 +29,7 @@ Introduced in ASP.NET Core, `IStringLocalizer <https://docs.asp.net/projects/api
 
 In the code above, the ``IStringLocalizer<T>`` implementation comes from :doc:`/fundamentals/dependency-injection`. I'll show how the ``IStringLocalizer`` service gets added in the **Configuring localization** section. If the localized value of "About Title" is not found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
 
-Use the `IHtmlLocalizer<T> <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/IHtmlLocalizer-TResource/index.html>`__ implementation for resources that contain HTML. ``IHtmlLocalizer`` HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the value of ``name`` parameter is HTML encoded.
+Use the `IHtmlLocalizer<T> <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/IHtmlLocalizer-TResource/index.html>`__ implementation for resources that contain HTML. ``IHtmlLocalizer`` HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the value of ``name`` parameter is HTML encoded.
 
 .. literalinclude:: localization/sample/Controllers/BookController.cs
   :language: c#
@@ -63,12 +63,12 @@ Some developers use the ``Startup`` class to contain global or shared strings.  
 View localization
 --------------------
 
-The `IViewLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/IViewLocalizer/index.html>`__ service provides localized strings for a `view <http://docs.asp.net/projects/mvc/en/latest/views/index.html>`_. The `ViewLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/ViewLocalizer/index.html>`__ class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of ``IViewLocalizer``:
+The `IViewLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/IViewLocalizer/index.html>`__ service provides localized strings for a `view <http://docs.asp.net/projects/mvc/en/latest/views/index.html>`_. The `ViewLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/ViewLocalizer/index.html>`__ class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of ``IViewLocalizer``:
 
 .. literalinclude:: localization/sample/Views/Home/About.cshtml
   :language: HTML
   
-The default implementation of ``IViewLocalizer`` finds the resource file based on the view's file name. There is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using `IHtmlLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/IHtmlLocalizer/index.html>`__, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
+The default implementation of ``IViewLocalizer`` finds the resource file based on the view's file name. There is no option to use a global shared resource file. ``ViewLocalizer`` implements the localizer using `IHtmlLocalizer <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/IHtmlLocalizer/index.html>`__, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and ``IViewLocalizer`` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
 .. code-block:: HTML
 
@@ -86,7 +86,7 @@ The rendered view would contain the HTML markup from the resource file.
 
 :Note: You generally want to only localize text and not HTML.
 
-To use a shared resource file in a view, inject `IHtmlLocalizer<T> <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Localization/IHtmlLocalizer-TResource/index.html>`__:
+To use a shared resource file in a view, inject `IHtmlLocalizer<T> <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/IHtmlLocalizer-TResource/index.html>`__:
 
 .. literalinclude:: localization/sample/Views/Test/About.cshtml
   :language: HTML
@@ -181,11 +181,11 @@ The current culture on a request is set in the localization :doc:`/fundamentals/
   :lines: 107, 136-159
   :dedent: 6
 
-`UseRequestLocalization <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/ApplicationBuilderExtensions/index.html>`__ initializes a `RequestLocalizationMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/RequestLocalizationMiddleware/index.html>`__ object. On every request the list of `RequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/RequestCultureProvider/index.html>`__ in the `RequestLocalizationOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/RequestLocalizationOptions/index.html>`__ is enumerated and the first non-null provider is used. The default providers come from the ``RequestLocalizationOptions`` class:
+`UseRequestLocalization <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/ApplicationBuilderExtensions/index.html>`__ initializes a `RequestLocalizationMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationMiddleware/index.html>`__ object. On every request the list of `RequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestCultureProvider/index.html>`__ in the `RequestLocalizationOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationOptions/index.html>`__ is enumerated and the first non-null provider is used. The default providers come from the ``RequestLocalizationOptions`` class:
 
-#. `QueryStringRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/QueryStringRequestCultureProvider/index.html>`__
-#. `CookieRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/CookieRequestCultureProvider/index.html>`__
-#. `AcceptLanguageHeaderRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Localization/AcceptLanguageHeaderRequestCultureProvider/index.html>`__
+#. `QueryStringRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/QueryStringRequestCultureProvider/index.html>`__
+#. `CookieRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html>`__
+#. `AcceptLanguageHeaderRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/AcceptLanguageHeaderRequestCultureProvider/index.html>`__
 
 The default list goes from most specific to least specific. Later in the article I'll show how you can change the order and even add a custom localization provider. If there are no non-null providers, the ``DefaultRequestCulture`` is used.
     

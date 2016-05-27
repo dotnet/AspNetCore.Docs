@@ -5,12 +5,17 @@ ConsoleLoggerSettings Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Console`
+Assemblies
+    * Microsoft.Extensions.Logging.Console
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,57 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ConsoleLoggerSettings : IConsoleLoggerSettings
+    public class ConsoleLoggerSettings : IConsoleLoggerSettings
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Console/ConsoleLoggerSettings.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.Reload()
-    
-        
-        :rtype: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
-    
-        
-        .. code-block:: csharp
-    
-           public IConsoleLoggerSettings Reload()
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.TryGetSwitch(System.String, out Microsoft.Extensions.Logging.LogLevel)
-    
-        
-        
-        
-        :type name: System.String
-        
-        
-        :type level: Microsoft.Extensions.Logging.LogLevel
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-           public bool TryGetSwitch(string name, out LogLevel level)
-    
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings
 
 Properties
 ----------
@@ -101,7 +68,11 @@ Properties
         
         .. code-block:: csharp
     
-           public IChangeToken ChangeToken { get; set; }
+            public IChangeToken ChangeToken
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.IncludeScopes
     
@@ -111,16 +82,59 @@ Properties
         
         .. code-block:: csharp
     
-           public bool IncludeScopes { get; set; }
+            public bool IncludeScopes
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.Switches
     
         
-        :rtype: System.Collections.Generic.IDictionary{System.String,Microsoft.Extensions.Logging.LogLevel}
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.Extensions.Logging.LogLevel<Microsoft.Extensions.Logging.LogLevel>}
     
         
         .. code-block:: csharp
     
-           public IDictionary<string, LogLevel> Switches { get; set; }
+            public IDictionary<string, LogLevel> Switches
+            {
+                get;
+                set;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.Reload()
+    
+        
+        :rtype: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
+    
+        
+        .. code-block:: csharp
+    
+            public IConsoleLoggerSettings Reload()
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.TryGetSwitch(System.String, out Microsoft.Extensions.Logging.LogLevel)
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type level: Microsoft.Extensions.Logging.LogLevel
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool TryGetSwitch(string name, out LogLevel level)
     
 

@@ -40,7 +40,7 @@ ASP.NET includes a test host that can be added to integration test projects and 
   :dedent: 2
   :emphasize-lines: 5
 
-Once the Microsoft.AspNet.TestHost package is included in the project, you will be able to create and configure a TestServer in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Empty Web template created by Visual Studio.
+Once the Microsoft.AspNetCore.TestHost package is included in the project, you will be able to create and configure a TestServer in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Empty Web template created by Visual Studio.
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebDefaultRequestShould.cs
   :language: c#

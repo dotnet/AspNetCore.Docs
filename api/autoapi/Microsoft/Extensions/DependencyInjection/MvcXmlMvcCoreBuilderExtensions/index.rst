@@ -5,17 +5,21 @@ MvcXmlMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for adding XML formatters to MVC.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.Formatters.Xml
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcXmlMvcCoreBuilderExtensions
+    public class MvcXmlMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Formatters.Xml/DependencyInjection/MvcXmlMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions
 
@@ -67,40 +68,42 @@ Methods
     
         
     
+        
         Adds the XML DataContractSerializer formatters to MVC.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddXmlDataContractSerializerFormatters(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddXmlDataContractSerializerFormatters(IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
     
+        
         Adds the XML Serializer formatters to MVC.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddXmlSerializerFormatters(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddXmlSerializerFormatters(IMvcCoreBuilder builder)
     
 

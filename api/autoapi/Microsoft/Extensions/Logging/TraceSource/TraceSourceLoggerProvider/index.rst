@@ -5,17 +5,21 @@ TraceSourceLoggerProvider Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Provides an ILoggerFactory based on System.Diagnostics.TraceSource.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.TraceSource`
+Assemblies
+    * Microsoft.Extensions.Logging.TraceSource
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class TraceSourceLoggerProvider : ILoggerProvider, IDisposable
+    public class TraceSourceLoggerProvider : ILoggerProvider, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.TraceSource/TraceSourceLoggerProvider.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider
 
@@ -67,20 +68,21 @@ Constructors
     
         
     
+        
         Initializes a new instance of the :any:`Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider` class.
     
         
-        
+    
         
         :type rootSourceSwitch: System.Diagnostics.SourceSwitch
-        
+    
         
         :type rootTraceListener: System.Diagnostics.TraceListener
     
         
         .. code-block:: csharp
     
-           public TraceSourceLoggerProvider(SourceSwitch rootSourceSwitch, TraceListener rootTraceListener)
+            public TraceSourceLoggerProvider(SourceSwitch rootSourceSwitch, TraceListener rootTraceListener)
     
 
 Methods
@@ -95,10 +97,11 @@ Methods
     
         
     
+        
         Creates a new :any:`Microsoft.Extensions.Logging.ILogger`  for the given component name.
     
         
-        
+    
         
         :type name: System.String
         :rtype: Microsoft.Extensions.Logging.ILogger
@@ -106,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-           public ILogger CreateLogger(string name)
+            public ILogger CreateLogger(string name)
     
     .. dn:method:: Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider.Dispose()
     
@@ -115,6 +118,6 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
+            public void Dispose()
     
 

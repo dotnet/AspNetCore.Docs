@@ -5,12 +5,17 @@ Matcher Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class Matcher
+    public class Matcher
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Matcher.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Matcher
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Matcher
 
@@ -65,19 +67,19 @@ Constructors
         
         .. code-block:: csharp
     
-           public Matcher()
+            public Matcher()
     
     .. dn:constructor:: Microsoft.Extensions.FileSystemGlobbing.Matcher.Matcher(System.StringComparison)
     
         
-        
+    
         
         :type comparisonType: System.StringComparison
     
         
         .. code-block:: csharp
     
-           public Matcher(StringComparison comparisonType)
+            public Matcher(StringComparison comparisonType)
     
 
 Methods
@@ -91,7 +93,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Matcher.AddExclude(System.String)
     
         
-        
+    
         
         :type pattern: System.String
         :rtype: Microsoft.Extensions.FileSystemGlobbing.Matcher
@@ -99,12 +101,12 @@ Methods
         
         .. code-block:: csharp
     
-           public virtual Matcher AddExclude(string pattern)
+            public virtual Matcher AddExclude(string pattern)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Matcher.AddInclude(System.String)
     
         
-        
+    
         
         :type pattern: System.String
         :rtype: Microsoft.Extensions.FileSystemGlobbing.Matcher
@@ -112,12 +114,12 @@ Methods
         
         .. code-block:: csharp
     
-           public virtual Matcher AddInclude(string pattern)
+            public virtual Matcher AddInclude(string pattern)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Matcher.Execute(Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase)
     
         
-        
+    
         
         :type directoryInfo: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
         :rtype: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult
@@ -125,6 +127,6 @@ Methods
         
         .. code-block:: csharp
     
-           public virtual PatternMatchingResult Execute(DirectoryInfoBase directoryInfo)
+            public virtual PatternMatchingResult Execute(DirectoryInfoBase directoryInfo)
     
 

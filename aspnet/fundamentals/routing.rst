@@ -33,7 +33,7 @@ Add routing to ``ConfigureServices`` in *Startup.cs*:
 
 Configuring Routing
 -------------------
-Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#routebuilder-class>`_. You can optionally set the `ServiceProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.ServiceProvider>`_ and/or `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ properties, in order to make them available as you build routes.
+Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#routebuilder-class>`_. You can optionally set the `ServiceProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#prop-Microsoft.AspNetCore.Routing.RouteBuilder.ServiceProvider>`_ and/or `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#prop-Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler>`_ properties, in order to make them available as you build routes.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
@@ -65,7 +65,7 @@ The most common way to define routes is using ``TemplateRoute`` and route templa
 
 .. image:: /fundamentals/routing/_static/default-mvc-routetemplate.png
 
-This route template would be handled by the `MvcRouteHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Infrastructure/MvcRouteHandler/index.html>`_ ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
+This route template would be handled by the `MvcRouteHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Infrastructure/MvcRouteHandler/index.html>`_ ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
 
 You can use the ``*`` character as a prefix to a route value name to bind to the rest of the URI. For example, ``blog/{*slug}`` would match any URI that started with ``/blog/`` and had any value following it (which would be assigned to the ``slug`` route value).
 
@@ -197,7 +197,7 @@ Route templates must be unambiguous, or they will be ignored. For example, ``{id
 
 Route Builder Extensions
 ------------------------
-Several `extension methods on RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/RouteBuilderExtensions/index.html>`_ are available for convenience. The most common of these is ``MapRoute``, which allows the specification of a route given a name and template, and optionally default values, constraints, and/or :ref:`data tokens <data-tokens>`. When using these extensions, you must have specified the ``DefaultHandler`` and ``ServiceProvider`` properties of the ``RouteBuilder`` instance to which you're adding the route. These ``MapRoute`` extensions add new ``TemplateRoute`` instances to the ``RouteBuilder`` that each target the ``IRouter`` configured as the ``DefaultHandler``.
+Several `extension methods on RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouteBuilderExtensions/index.html>`_ are available for convenience. The most common of these is ``MapRoute``, which allows the specification of a route given a name and template, and optionally default values, constraints, and/or :ref:`data tokens <data-tokens>`. When using these extensions, you must have specified the ``DefaultHandler`` and ``ServiceProvider`` properties of the ``RouteBuilder`` instance to which you're adding the route. These ``MapRoute`` extensions add new ``TemplateRoute`` instances to the ``RouteBuilder`` that each target the ``IRouter`` configured as the ``DefaultHandler``.
 
 .. note:: ``MapRoute`` doesn't take an ``IRouter`` parameter - it only adds routes that will be handled by the ``DefaultHandler``. Since the default handler is an ``IRouter``, it may decide not to handle the request. For example, MVC is typically configured as a default handler that only handles requests that match an available controller action.
 
@@ -227,7 +227,7 @@ Link Generation
 
 Routing is also used to generate URLs based on route definitions. This is used by helpers to generate links to known actions on MVC :doc:`controllers </mvc/controllers/index>`, but can also be used independent of MVC. Given a set of route values, and optionally a route name, you can produce a ``VirtualPathContext`` object. Using the ``VirtualPathContext`` object along with a ``RouteCollection``, you can generate a ``VirtualPath``. ``IRouter`` implementations participate in link generation through the ``GetVirtualPath`` method.
 
-.. tip:: Learn more about `UrlHelper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Routing/UrlHelper/index.html?highlight=urlhelper>`_ and :doc:`Routing to Controller Actions </mvc/controllers/routing>`.
+.. tip:: Learn more about `UrlHelper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/UrlHelper/index.html?highlight=urlhelper>`_ and :doc:`Routing to Controller Actions </mvc/controllers/routing>`.
 
 The example below shows how to generate a link to a route given a dictionary of route values and a ``RouteCollection``.
 

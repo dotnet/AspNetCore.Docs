@@ -5,12 +5,17 @@ ParentPathSegment Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,44 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ParentPathSegment : IPathSegment
+    public class ParentPathSegment : IPathSegment
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PathSegments/ParentPathSegment.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment.Match(System.String)
-    
-        
-        
-        
-        :type value: System.String
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-           public bool Match(string value)
-    
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment
 
 Properties
 ----------
@@ -88,6 +68,31 @@ Properties
         
         .. code-block:: csharp
     
-           public bool CanProduceStem { get; }
+            public bool CanProduceStem
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment.Match(System.String)
+    
+        
+    
+        
+        :type value: System.String
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Match(string value)
     
 

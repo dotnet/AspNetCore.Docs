@@ -5,17 +5,21 @@ MvcJsonMvcBuilderExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extensions methods for configuring MVC via an :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.Formatters.Json
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcJsonMvcBuilderExtensions
+    public class MvcJsonMvcBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Formatters.Json/DependencyInjection/MvcJsonMvcBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcJsonMvcBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcJsonMvcBuilderExtensions
 
@@ -63,28 +64,29 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcJsonMvcBuilderExtensions.AddJsonOptions(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNet.Mvc.MvcJsonOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcJsonMvcBuilderExtensions.AddJsonOptions(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcJsonOptions>)
     
         
     
-        Adds configuration of :any:`Microsoft.AspNet.Mvc.MvcJsonOptions` for the application.
+        
+        Adds configuration of :any:`Microsoft.AspNetCore.Mvc.MvcJsonOptions` for the application.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
+    
         
+        :param setupAction: The :any:`Microsoft.AspNetCore.Mvc.MvcJsonOptions` which need to be configured.
         
-        :param setupAction: The  which need to be configured.
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.MvcJsonOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.MvcJsonOptions<Microsoft.AspNetCore.Mvc.MvcJsonOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddJsonOptions(IMvcBuilder builder, Action<MvcJsonOptions> setupAction)
+            public static IMvcBuilder AddJsonOptions(IMvcBuilder builder, Action<MvcJsonOptions> setupAction)
     
 

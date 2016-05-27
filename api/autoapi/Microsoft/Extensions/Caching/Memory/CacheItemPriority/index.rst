@@ -5,17 +5,21 @@ CacheItemPriority Enum
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Specifies how items are prioritized for preservation during a memory pressure triggered cleanup.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public enum CacheItemPriority
+    public enum CacheItemPriority
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/CacheItemPriority.cs>`_
 
 
 
-
+.. dn:enumeration:: Microsoft.Extensions.Caching.Memory.CacheItemPriority
+    :hidden:
 
 .. dn:enumeration:: Microsoft.Extensions.Caching.Memory.CacheItemPriority
 
@@ -58,37 +59,41 @@ Fields
     .. dn:field:: Microsoft.Extensions.Caching.Memory.CacheItemPriority.High
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.CacheItemPriority
     
         
         .. code-block:: csharp
     
-           High = 2
+            High = 2
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.CacheItemPriority.Low
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.CacheItemPriority
     
         
         .. code-block:: csharp
     
-           Low = 0
+            Low = 0
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.CacheItemPriority
     
         
         .. code-block:: csharp
     
-           NeverRemove = 3
+            NeverRemove = 3
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.CacheItemPriority.Normal
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.CacheItemPriority
     
         
         .. code-block:: csharp
     
-           Normal = 1
+            Normal = 1
     
 

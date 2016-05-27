@@ -5,12 +5,17 @@ CommandLineConfigurationExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.CommandLine
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class CommandLineConfigurationExtensions
+    public class CommandLineConfigurationExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.CommandLine/CommandLineConfigurationExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions
 
@@ -61,36 +63,36 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String[])
     
         
-        
+    
         
         :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
         
-        
-        :type args: System.String[]
+        :type args: System.String<System.String>[]
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
     
         
         .. code-block:: csharp
     
-           public static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args)
+            public static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args)
     
     .. dn:method:: Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String[], System.Collections.Generic.IDictionary<System.String, System.String>)
     
         
-        
+    
         
         :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
         
+        :type args: System.String<System.String>[]
+    
         
-        :type args: System.String[]
-        
-        
-        :type switchMappings: System.Collections.Generic.IDictionary{System.String,System.String}
+        :type switchMappings: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
     
         
         .. code-block:: csharp
     
-           public static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args, IDictionary<string, string> switchMappings)
+            public static IConfigurationBuilder AddCommandLine(IConfigurationBuilder configurationBuilder, string[] args, IDictionary<string, string> switchMappings)
     
 

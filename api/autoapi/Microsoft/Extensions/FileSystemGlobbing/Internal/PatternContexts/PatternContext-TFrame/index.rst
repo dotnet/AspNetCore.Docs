@@ -5,12 +5,17 @@ PatternContext<TFrame> Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public abstract class PatternContext<TFrame> : IPatternContext
+    public abstract class PatternContext<TFrame> : IPatternContext
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PatternContexts/PatternContext.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext`1
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>
 
@@ -61,14 +63,14 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.Declare(System.Action<Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment, System.Boolean>)
     
         
+    
         
-        
-        :type declare: System.Action{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment,System.Boolean}
+        :type declare: System.Action<System.Action`2>{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment<Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment>, System.Boolean<System.Boolean>}
     
         
         .. code-block:: csharp
     
-           public virtual void Declare(Action<IPathSegment, bool> declare)
+            public virtual void Declare(Action<IPathSegment, bool> declare)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.IsStackEmpty()
     
@@ -78,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-           protected bool IsStackEmpty()
+            protected bool IsStackEmpty()
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.PopDirectory()
     
@@ -87,36 +89,36 @@ Methods
         
         .. code-block:: csharp
     
-           public void PopDirectory()
+            public virtual void PopDirectory()
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.PushDataFrame(TFrame)
     
         
+    
         
-        
-        :type frame: {TFrame}
+        :type frame: TFrame
     
         
         .. code-block:: csharp
     
-           protected void PushDataFrame(TFrame frame)
+            protected void PushDataFrame(TFrame frame)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.PushDirectory(Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase)
     
         
-        
+    
         
         :type directory: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
     
         
         .. code-block:: csharp
     
-           public abstract void PushDirectory(DirectoryInfoBase directory)
+            public abstract void PushDirectory(DirectoryInfoBase directory)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.Test(Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase)
     
         
-        
+    
         
         :type directory: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
         :rtype: System.Boolean
@@ -124,12 +126,12 @@ Methods
         
         .. code-block:: csharp
     
-           public abstract bool Test(DirectoryInfoBase directory)
+            public abstract bool Test(DirectoryInfoBase directory)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.Test(Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase)
     
         
-        
+    
         
         :type file: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase
         :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
@@ -137,7 +139,7 @@ Methods
         
         .. code-block:: csharp
     
-           public abstract PatternTestResult Test(FileInfoBase file)
+            public abstract PatternTestResult Test(FileInfoBase file)
     
 
 Fields
@@ -151,10 +153,11 @@ Fields
     .. dn:field:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContext<TFrame>.Frame
     
         
+        :rtype: TFrame
     
         
         .. code-block:: csharp
     
-           protected TFrame Frame
+            protected TFrame Frame
     
 

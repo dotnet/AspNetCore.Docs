@@ -176,13 +176,13 @@ Accessing Request Context In Handlers
 
 The Handle method you must implement in a handle has two parameters, an ``AuthorizationContext`` and the ``Requirement`` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the ``Resource`` property on the AuthorizationContext to pass through extra information.
 
-For example MVC passes an instance of ``Microsoft.AspNet.Mvc.Filters.AuthorizationContext`` in the resource property which be used to access HttpContext, RouteData and everything else MVC provides.
+For example MVC passes an instance of ``Microsoft.AspNetCore.Mvc.Filters.AuthorizationContext`` in the resource property which be used to access HttpContext, RouteData and everything else MVC provides.
 
 The use of the ``Resource`` property is framework specific. Using information in the ``Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastExceptions`` when run on other frameworks;
 
 .. code-block:: c#
  
- var mvcContext = context.Resource as Microsoft.AspNet.Mvc.Filters.AuthorizationContext;
+ var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationContext;
 
  if (mvcContext != null)
  {

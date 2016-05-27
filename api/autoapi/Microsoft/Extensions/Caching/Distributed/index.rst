@@ -31,12 +31,44 @@ Microsoft.Extensions.Caching.Distributed Namespace
    
    
    
-   /autoapi/Microsoft/Extensions/Caching/Distributed/LocalCache/index
+   /autoapi/Microsoft/Extensions/Caching/Distributed/MemoryDistributedCache/index
    
    
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -51,26 +83,37 @@ Microsoft.Extensions.Caching.Distributed Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryExtensions`
+    class :dn:cls:`DistributedCacheEntryExtensions`
+        .. object: type=class name=Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryExtensions
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions`
+    class :dn:cls:`DistributedCacheEntryOptions`
+        .. object: type=class name=Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Distributed.DistributedCacheExtensions`
+    class :dn:cls:`DistributedCacheExtensions`
+        .. object: type=class name=Microsoft.Extensions.Caching.Distributed.DistributedCacheExtensions
+
+        
         Extension methods for setting data in an :any:`Microsoft.Extensions.Caching.Distributed.IDistributedCache`\.
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Distributed.LocalCache`
+    class :dn:cls:`MemoryDistributedCache`
+        .. object: type=class name=Microsoft.Extensions.Caching.Distributed.MemoryDistributedCache
+
         
 
 
     .. rubric:: Interfaces
 
 
-    interface :dn:iface:`Microsoft.Extensions.Caching.Distributed.IDistributedCache`
+    interface :dn:iface:`IDistributedCache`
+        .. object: type=interface name=Microsoft.Extensions.Caching.Distributed.IDistributedCache
+
         
 
 

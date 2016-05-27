@@ -24,6 +24,18 @@ System.Net.Http Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,10 @@ System.Net.Http Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`System.Net.Http.HttpRequestMessageExtensions`
+    class :dn:cls:`HttpRequestMessageExtensions`
+        .. object: type=class name=System.Net.Http.HttpRequestMessageExtensions
+
+        
         Provides extension methods for the :any:`System.Net.Http.HttpRequestMessage` class.
 
 

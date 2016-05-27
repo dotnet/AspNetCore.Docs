@@ -5,12 +5,21 @@ ElmServiceCollectionExtensions Class
 
 
 
-.. contents:: 
+
+
+
+Extension methods for setting up Elm services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Diagnostics.Elm
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ElmServiceCollectionExtensions
+    public class ElmServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/diagnostics/blob/master/src/Microsoft.AspNet.Diagnostics.Elm/ElmServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.ElmServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.ElmServiceCollectionExtensions
 
@@ -62,40 +68,47 @@ Methods
     
         
     
-        Registers an :any:`Microsoft.AspNet.Diagnostics.Elm.ElmStore` and configures default :any:`Microsoft.AspNet.Diagnostics.Elm.ElmOptions`\.
+        
+        Adds error logging middleware services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
+    
         
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddElm(IServiceCollection services)
+            public static IServiceCollection AddElm(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.ElmServiceCollectionExtensions.ConfigureElm(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.Diagnostics.Elm.ElmOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.ElmServiceCollectionExtensions.AddElm(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions>)
+    
+        
+    
+        
+        Adds error logging middleware services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
     
-        Configures a set of :any:`Microsoft.AspNet.Diagnostics.Elm.ElmOptions` for the application.
-    
         
-        
-        
-        :param services: The services available in the application.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
+        :param setupAction: An :any:`System.Action\`1` to configure the provided :any:`Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions`\.
         
-        :param configureOptions: The  which need to be configured.
-        
-        :type configureOptions: System.Action{Microsoft.AspNet.Diagnostics.Elm.ElmOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions<Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions>}
+        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static void ConfigureElm(IServiceCollection services, Action<ElmOptions> configureOptions)
+            public static IServiceCollection AddElm(IServiceCollection services, Action<ElmOptions> setupAction)
     
 

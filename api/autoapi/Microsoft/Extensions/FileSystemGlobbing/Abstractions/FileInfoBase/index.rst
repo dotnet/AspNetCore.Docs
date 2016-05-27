@@ -5,12 +5,17 @@ FileInfoBase Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Abstractions`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,20 +39,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public abstract class FileInfoBase : FileSystemInfoBase
+    public abstract class FileInfoBase : FileSystemInfoBase
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Abstractions/FileInfoBase.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase
 

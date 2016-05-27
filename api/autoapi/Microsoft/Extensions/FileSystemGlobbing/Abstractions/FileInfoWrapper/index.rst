@@ -5,12 +5,17 @@ FileInfoWrapper Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Abstractions`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -35,43 +40,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class FileInfoWrapper : FileInfoBase
+    public class FileInfoWrapper : FileInfoBase
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Abstractions/FileInfoWrapper.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
-    :noindex:
     :hidden:
 
-    
-    .. dn:constructor:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.FileInfoWrapper(System.IO.FileInfo)
-    
-        
-        
-        
-        :type fileInfo: System.IO.FileInfo
-    
-        
-        .. code-block:: csharp
-    
-           public FileInfoWrapper(FileInfo fileInfo)
-    
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
 
 Properties
 ----------
@@ -89,7 +70,10 @@ Properties
         
         .. code-block:: csharp
     
-           public override string FullName { get; }
+            public override string FullName
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.Name
     
@@ -99,7 +83,10 @@ Properties
         
         .. code-block:: csharp
     
-           public override string Name { get; }
+            public override string Name
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.ParentDirectory
     
@@ -109,6 +96,30 @@ Properties
         
         .. code-block:: csharp
     
-           public override DirectoryInfoBase ParentDirectory { get; }
+            public override DirectoryInfoBase ParentDirectory
+            {
+                get;
+            }
+    
+
+Constructors
+------------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.FileInfoWrapper(System.IO.FileInfo)
+    
+        
+    
+        
+        :type fileInfo: System.IO.FileInfo
+    
+        
+        .. code-block:: csharp
+    
+            public FileInfoWrapper(FileInfo fileInfo)
     
 

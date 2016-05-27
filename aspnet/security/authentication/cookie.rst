@@ -10,7 +10,7 @@ ASP.NET Core provides cookie :ref:`middleware <fundamentals-middleware>` which s
 Adding and configuring
 ----------------------
 
-The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNet.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your *Startup.cs* file;
+The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNetCore.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your *Startup.cs* file;
 
 .. code-block:: c#
 
@@ -133,7 +133,7 @@ The ``CookieAuthenticationOptions`` class comes with various configuration optio
 Persistent cookies and absolute expiry times
 --------------------------------------------
 
-You may want to make the cookie expire be remembered over browser sessions. You may also want an absolute expiry to the identity and the cookie transporting it. You can do these things by using the ``AuthenticationProperties`` parameter on the ``HttpContext.Authentication.SignInAsync`` method called when :ref:`signing in an identity and creating the cookie<security-authentication-cookie-middleware-creating-a-cookie>`. The ``AuthenticationProperties`` class is in the ``Microsoft.AspNet.Http.Authentication`` namespace.
+You may want to make the cookie expire be remembered over browser sessions. You may also want an absolute expiry to the identity and the cookie transporting it. You can do these things by using the ``AuthenticationProperties`` parameter on the ``HttpContext.Authentication.SignInAsync`` method called when :ref:`signing in an identity and creating the cookie<security-authentication-cookie-middleware-creating-a-cookie>`. The ``AuthenticationProperties`` class is in the ``Microsoft.AspNetCore.Http.Authentication`` namespace.
 
 For example;
 
@@ -165,4 +165,4 @@ This code snippet will create an identity and corresponding cookie which will be
 
 The ExpiresUtc and IsPersistent properties are mutually exclusive.
 
-.. _SecurityStampValidator: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Identity/SecurityStampValidator/index.html
+.. _SecurityStampValidator: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Identity/SecurityStampValidator/index.html

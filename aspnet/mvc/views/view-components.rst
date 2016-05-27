@@ -29,7 +29,7 @@ View Components are intended anywhere you have reusable rendering logic that is 
 - Sidebar content on a typical blog 
 - A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A `view component <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__ consists of two parts, the class (typically derived from  ``ViewComponent``) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from ``ViewComponent``.
+A `view component <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html>`__ consists of two parts, the class (typically derived from  ``ViewComponent``) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from ``ViewComponent``.
 
 Creating a view component
 ---------------------------
@@ -55,10 +55,10 @@ A view component class:
 View component methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A view component defines its logic in an ``InvokeAsync`` method that returns an `IViewComponentResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/IViewComponentResult/index.html>`__. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__ method. In summary, view component methods:
+A view component defines its logic in an ``InvokeAsync`` method that returns an `IViewComponentResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IViewComponentResult/index.html>`__. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html>`__ method. In summary, view component methods:
 
 - Define an `InvokeAsync`` method that returns an ``IViewComponentResult``
-- Typically initializes a model and passes it to a view by calling the `ViewComponent <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html>`__  `View <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewResult/index.html>`__ method
+- Typically initializes a model and passes it to a view by calling the `ViewComponent <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html>`__  `View <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewResult/index.html>`__ method
 - Parameters come from the calling method, not HTTP, there is no model binding
 - Are not reachable directly as an HTTP endpoint, they are invoked from your code (usually in a view). A view component never handles a request
 - Are overloaded on the signature rather than any details from the current HTTP request
@@ -87,7 +87,7 @@ To use the view component, call ``@Component.InvokeAsync("Name of view component
 Invoking a view component directly from a controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponentResult/index.html>`__. 
+View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponentResult/index.html>`__. 
 
 In this example, the view component is called directly from the controller:
 
@@ -204,7 +204,7 @@ Examine the view path
        was not found. The following locations were searched: 
        /Views/ToDo/Components/PriorityList/Default.cshtml 
        /Views/Shared/Components/PriorityList/Default.cshtml.
-    Microsoft.AspNet.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful()
+    Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful()
 
 4. Copy  *Views/Shared/Components/PriorityList/Default.cshtml to *Views/Todo/Components/PriorityList/Default.cshtml*.
 #. Add some markup to the *Todo* view component view to indicate the view is from the *Todo* folder.
@@ -235,5 +235,5 @@ Additional Resources
 - :doc:`dependency-injection`
 - ViewComponent_
 
-.. _ViewComponent: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponent/index.html
-.. _ViewComponentAttribute.Name: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ViewComponentAttribute/index.html#prop-Microsoft.AspNet.Mvc.ViewComponentAttribute.Name
+.. _ViewComponent: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html
+.. _ViewComponentAttribute.Name: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponentAttribute/index.html#prop-Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name

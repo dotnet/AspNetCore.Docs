@@ -5,17 +5,21 @@ IResourceNamesCache Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Represents a cache of string names in resources.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization`
+Assemblies
+    * Microsoft.Extensions.Localization
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IResourceNamesCache
+    public interface IResourceNamesCache
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization/IResourceNamesCache.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Localization.IResourceNamesCache
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Localization.IResourceNamesCache
 
@@ -59,25 +60,26 @@ Methods
     
         
     
+        
         Adds a set of resource names to the cache by using the specified function, if the name does not already exist.
     
         
-        
+    
         
         :param name: The resource name to add string names for.
         
         :type name: System.String
-        
+    
         
         :param valueFactory: The function used to generate the string names for the resource.
         
-        :type valueFactory: System.Func{System.String,System.Collections.Generic.IList{System.String}}
-        :rtype: System.Collections.Generic.IList{System.String}
+        :type valueFactory: System.Func<System.Func`2>{System.String<System.String>, System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}}
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
         :return: The string names for the resource.
     
         
         .. code-block:: csharp
     
-           IList<string> GetOrAdd(string name, Func<string, IList<string>> valueFactory)
+            IList<string> GetOrAdd(string name, Func<string, IList<string>> valueFactory)
     
 

@@ -5,17 +5,21 @@ DataProtectionServices Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Provides access to default Data Protection :any:`Microsoft.Extensions.DependencyInjection.ServiceDescriptor` instances.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.DataProtection
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class DataProtectionServices
+    public class DataProtectionServices
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/dataprotection/blob/master/src/Microsoft.AspNet.DataProtection/DataProtectionServices.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.DataProtectionServices
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.DataProtectionServices
 
@@ -67,15 +68,16 @@ Methods
     
         
     
+        
         Returns a collection of default :any:`Microsoft.Extensions.DependencyInjection.ServiceDescriptor` instances that can be
         used to bootstrap the Data Protection system.
     
         
-        :rtype: System.Collections.Generic.IEnumerable{Microsoft.Extensions.DependencyInjection.ServiceDescriptor}
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.DependencyInjection.ServiceDescriptor<Microsoft.Extensions.DependencyInjection.ServiceDescriptor>}
     
         
         .. code-block:: csharp
     
-           public static IEnumerable<ServiceDescriptor> GetDefaultServices()
+            public static IEnumerable<ServiceDescriptor> GetDefaultServices()
     
 

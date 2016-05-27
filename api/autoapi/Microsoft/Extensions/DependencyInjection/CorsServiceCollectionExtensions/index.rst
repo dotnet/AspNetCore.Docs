@@ -5,17 +5,21 @@ CorsServiceCollectionExtensions Class
 
 
 
-.. contents:: 
+
+
+
+Extension methods for setting up cross-origin resource sharing services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Cors
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` extensions for enabling CORS support.
-
-
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class CorsServiceCollectionExtensions
+    public class CorsServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/cors/blob/master/src/Microsoft.AspNet.Cors/CorsServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions
 
@@ -67,45 +68,47 @@ Methods
     
         
     
-        Add services needed to support CORS to the given ``serviceCollection``.
+        
+        Adds cross-origin resource sharing services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
+    
         
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
-        :param serviceCollection: The service collection to which CORS services are added.
-        
-        :type serviceCollection: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The updated <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddCors(IServiceCollection serviceCollection)
+            public static IServiceCollection AddCors(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.Cors.Infrastructure.CorsOptions>)
-    
-        
-    
-        Add services needed to support CORS to the given ``serviceCollection``.
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
         
+    
         
+        Adds cross-origin resource sharing services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+    
         
-        :param serviceCollection: The service collection to which CORS services are added.
+    
         
-        :type serviceCollection: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
+        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
-        :param configure: A delegate which is run to configure the services.
+        :param setupAction: An :any:`System.Action\`1` to configure the provided :any:`Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions`\.
         
-        :type configure: System.Action{Microsoft.AspNet.Cors.Infrastructure.CorsOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The updated <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddCors(IServiceCollection serviceCollection, Action<CorsOptions> configure)
+            public static IServiceCollection AddCors(IServiceCollection services, Action<CorsOptions> setupAction)
     
 

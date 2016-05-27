@@ -18,9 +18,29 @@ Microsoft.Extensions.Configuration.EnvironmentVariables Namespace
    /autoapi/Microsoft/Extensions/Configuration/EnvironmentVariables/EnvironmentVariablesConfigurationProvider/index
    
    
+   
+   /autoapi/Microsoft/Extensions/Configuration/EnvironmentVariables/EnvironmentVariablesConfigurationSource/index
+   
+   
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -35,7 +55,15 @@ Microsoft.Extensions.Configuration.EnvironmentVariables Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider`
+    class :dn:cls:`EnvironmentVariablesConfigurationProvider`
+        .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider
+
+        
+
+
+    class :dn:cls:`EnvironmentVariablesConfigurationSource`
+        .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource
+
         
 
 

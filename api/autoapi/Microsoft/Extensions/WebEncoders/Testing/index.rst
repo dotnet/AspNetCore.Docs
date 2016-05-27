@@ -15,16 +15,40 @@ Microsoft.Extensions.WebEncoders.Testing Namespace
 
    
    
-   /autoapi/Microsoft/Extensions/WebEncoders/Testing/CommonTestEncoder/index
+   /autoapi/Microsoft/Extensions/WebEncoders/Testing/HtmlTestEncoder/index
    
    
    
-   /autoapi/Microsoft/Extensions/WebEncoders/Testing/NullTestEncoder/index
+   /autoapi/Microsoft/Extensions/WebEncoders/Testing/JavaScriptTestEncoder/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/WebEncoders/Testing/UrlTestEncoder/index
    
    
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -39,11 +63,24 @@ Microsoft.Extensions.WebEncoders.Testing Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.WebEncoders.Testing.CommonTestEncoder`
-        Dummy encoder used for unit testing.
+    class :dn:cls:`HtmlTestEncoder`
+        .. object: type=class name=Microsoft.Extensions.WebEncoders.Testing.HtmlTestEncoder
+
+        
+        Encoder used for unit testing.
 
 
-    class :dn:cls:`Microsoft.Extensions.WebEncoders.Testing.NullTestEncoder`
-        Dummy no-op encoder used for unit testing.
+    class :dn:cls:`JavaScriptTestEncoder`
+        .. object: type=class name=Microsoft.Extensions.WebEncoders.Testing.JavaScriptTestEncoder
+
+        
+        Encoder used for unit testing.
+
+
+    class :dn:cls:`UrlTestEncoder`
+        .. object: type=class name=Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder
+
+        
+        Encoder used for unit testing.
 
 

@@ -5,12 +5,17 @@ MvcApiExplorerMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.ApiExplorer
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcApiExplorerMvcCoreBuilderExtensions
+    public class MvcApiExplorerMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.ApiExplorer/DependencyInjection/MvcApiExplorerMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
@@ -69,6 +71,6 @@ Methods
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddApiExplorer(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddApiExplorer(IMvcCoreBuilder builder)
     
 

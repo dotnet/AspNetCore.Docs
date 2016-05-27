@@ -1,6 +1,6 @@
 .. _aspnet-api:
 
-ASP.NET 5 API Reference Documentation
+ASP.NET Core API Reference Documentation
 =====================================
 
 .. toctree::
@@ -8,430 +8,457 @@ ASP.NET 5 API Reference Documentation
    :glob:
    :maxdepth: 1
    
-   /autoapi/Microsoft/AspNet/Antiforgery/index
+   /autoapi/Microsoft/AspNetCore/Antiforgery/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/index
+   /autoapi/Microsoft/AspNetCore/Antiforgery/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/Cookies/index
+   /autoapi/Microsoft/AspNetCore/Authentication/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/Facebook/index
+   /autoapi/Microsoft/AspNetCore/Authentication/Cookies/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/Google/index
+   /autoapi/Microsoft/AspNetCore/Authentication/Facebook/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/JwtBearer/index
+   /autoapi/Microsoft/AspNetCore/Authentication/Google/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/MicrosoftAccount/index
+   /autoapi/Microsoft/AspNetCore/Authentication/JwtBearer/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/OAuth/index
+   /autoapi/Microsoft/AspNetCore/Authentication/MicrosoftAccount/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/OpenIdConnect/index
+   /autoapi/Microsoft/AspNetCore/Authentication/OAuth/index
    
    
-   /autoapi/Microsoft/AspNet/Authentication/Twitter/index
+   /autoapi/Microsoft/AspNetCore/Authentication/OpenIdConnect/index
    
    
-   /autoapi/Microsoft/AspNet/Authorization/index
+   /autoapi/Microsoft/AspNetCore/Authentication/Twitter/index
    
    
-   /autoapi/Microsoft/AspNet/Authorization/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/Authorization/index
    
    
-   /autoapi/Microsoft/AspNet/Builder/index
+   /autoapi/Microsoft/AspNetCore/Authorization/Infrastructure/index
    
    
-   /autoapi/Microsoft/AspNet/Builder/Extensions/index
+   /autoapi/Microsoft/AspNetCore/Builder/index
    
    
-   /autoapi/Microsoft/AspNet/Builder/Internal/index
+   /autoapi/Microsoft/AspNetCore/Builder/Extensions/index
    
    
-   /autoapi/Microsoft/AspNet/CookiePolicy/index
+   /autoapi/Microsoft/AspNetCore/Builder/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Cors/index
+   /autoapi/Microsoft/AspNetCore/CookiePolicy/index
    
    
-   /autoapi/Microsoft/AspNet/Cors/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/Cors/index
    
    
-   /autoapi/Microsoft/AspNet/Cryptography/KeyDerivation/index
+   /autoapi/Microsoft/AspNetCore/Cors/Infrastructure/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/index
+   /autoapi/Microsoft/AspNetCore/Cryptography/KeyDerivation/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/AuthenticatedEncryption/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/AuthenticatedEncryption/ConfigurationModel/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/AuthenticatedEncryption/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/AuthenticatedEncryption/ConfigurationModel/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/KeyManagement/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/Cng/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/Repositories/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/Infrastructure/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/SystemWeb/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/DataProtection/XmlEncryption/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/KeyManagement/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/KeyManagement/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/Elm/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/Repositories/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/Elm/Views/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/SystemWeb/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/Entity/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/XmlEncryption/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/Entity/Views/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/index
    
    
-   /autoapi/Microsoft/AspNet/Diagnostics/Views/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/Elm/index
    
    
-   /autoapi/Microsoft/AspNet/FileProviders/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/Elm/Views/index
    
    
-   /autoapi/Microsoft/AspNet/Hosting/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/EntityFrameworkCore/index
    
    
-   /autoapi/Microsoft/AspNet/Hosting/Builder/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/EntityFrameworkCore/Views/index
    
    
-   /autoapi/Microsoft/AspNet/Hosting/Internal/index
+   /autoapi/Microsoft/AspNetCore/Diagnostics/Views/index
    
    
-   /autoapi/Microsoft/AspNet/Hosting/Server/index
+   /autoapi/Microsoft/AspNetCore/DiagnosticsViewPage/Views/index
    
    
-   /autoapi/Microsoft/AspNet/Hosting/Startup/index
+   /autoapi/Microsoft/AspNetCore/Hosting/index
    
    
-   /autoapi/Microsoft/AspNet/Html/Abstractions/index
+   /autoapi/Microsoft/AspNetCore/Hosting/Builder/index
    
    
-   /autoapi/Microsoft/AspNet/Http/index
+   /autoapi/Microsoft/AspNetCore/Hosting/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Authentication/index
+   /autoapi/Microsoft/AspNetCore/Hosting/Server/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Authentication/Internal/index
+   /autoapi/Microsoft/AspNetCore/Hosting/Server/Features/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Extensions/index
+   /autoapi/Microsoft/AspNetCore/Hosting/Startup/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Features/index
+   /autoapi/Microsoft/AspNetCore/Hosting/WindowsServices/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Features/Authentication/index
+   /autoapi/Microsoft/AspNetCore/Html/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Features/Authentication/Internal/index
+   /autoapi/Microsoft/AspNetCore/Http/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Features/Internal/index
+   /autoapi/Microsoft/AspNetCore/Http/Authentication/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Headers/index
+   /autoapi/Microsoft/AspNetCore/Http/Authentication/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Http/Internal/index
+   /autoapi/Microsoft/AspNetCore/Http/Extensions/index
    
    
-   /autoapi/Microsoft/AspNet/IISPlatformHandler/index
+   /autoapi/Microsoft/AspNetCore/Http/Features/index
    
    
-   /autoapi/Microsoft/AspNet/Identity/index
+   /autoapi/Microsoft/AspNetCore/Http/Features/Authentication/index
    
    
-   /autoapi/Microsoft/AspNet/Identity/EntityFramework/index
+   /autoapi/Microsoft/AspNetCore/Http/Headers/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/index
+   /autoapi/Microsoft/AspNetCore/Http/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/Adapters/index
+   /autoapi/Microsoft/AspNetCore/Identity/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/Converters/index
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/Exceptions/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/Helpers/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/Adapters/index
    
    
-   /autoapi/Microsoft/AspNet/JsonPatch/Operations/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/Converters/index
    
    
-   /autoapi/Microsoft/AspNet/Localization/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/Exceptions/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/Helpers/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Abstractions/index
+   /autoapi/Microsoft/AspNetCore/JsonPatch/Operations/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ActionConstraints/index
+   /autoapi/Microsoft/AspNetCore/Localization/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ApiExplorer/index
+   /autoapi/Microsoft/AspNetCore/MiddlewareAnalysis/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ApplicationModels/index
+   /autoapi/Microsoft/AspNetCore/Mvc/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Controllers/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Abstractions/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Cors/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ActionConstraints/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/DataAnnotations/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ApiExplorer/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Diagnostics/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ApplicationModels/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Filters/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ApplicationParts/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Formatters/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Authorization/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Formatters/Json/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Controllers/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Formatters/Xml/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Cors/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Formatters/Xml/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Cors/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/Mvc/DataAnnotations/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/DataAnnotations/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Internal/DecisionTree/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Filters/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Internal/Routing/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Localization/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Localization/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Json/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Logging/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Xml/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ModelBinding/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Xml/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ModelBinding/Metadata/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Infrastructure/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ModelBinding/Validation/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Localization/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/Compilation/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Localization/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/Directives/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Binders/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/Precompilation/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Razor/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Metadata/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Rendering/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Validation/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/Routing/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/TagHelpers/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Directives/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ViewComponents/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ViewEngines/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ViewFeatures/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Rendering/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ViewFeatures/Internal/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Routing/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/ViewFeatures/Logging/index
+   /autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Mvc/WebApiCompatShim/index
+   /autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/Cache/index
    
    
-   /autoapi/Microsoft/AspNet/Owin/index
+   /autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/PageExecutionInstrumentation/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewComponents/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewEngines/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Chunks/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Chunks/Generators/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/CodeGenerators/index
+   /autoapi/Microsoft/AspNetCore/Mvc/WebApiCompatShim/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/CodeGenerators/Visitors/index
+   /autoapi/Microsoft/AspNetCore/Owin/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Compilation/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Razor/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Editor/index
+   /autoapi/Microsoft/AspNetCore/Razor/Chunks/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Generator/index
+   /autoapi/Microsoft/AspNetCore/Razor/Chunks/Generators/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Parser/index
+   /autoapi/Microsoft/AspNetCore/Razor/CodeGenerators/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Parser/SyntaxTree/index
+   /autoapi/Microsoft/AspNetCore/Razor/CodeGenerators/Visitors/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Parser/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Razor/Compilation/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Parser/TagHelpers/Internal/index
+   /autoapi/Microsoft/AspNetCore/Razor/Editor/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Runtime/Precompilation/index
+   /autoapi/Microsoft/AspNetCore/Razor/Generator/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Runtime/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/TagHelpers/index
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/SyntaxTree/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Text/index
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Tokenizer/index
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/TagHelpers/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Razor/Tokenizer/Symbols/index
+   /autoapi/Microsoft/AspNetCore/Razor/Runtime/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Routing/index
+   /autoapi/Microsoft/AspNetCore/Razor/TagHelpers/index
    
    
-   /autoapi/Microsoft/AspNet/Routing/Constraints/index
+   /autoapi/Microsoft/AspNetCore/Razor/Text/index
    
    
-   /autoapi/Microsoft/AspNet/Routing/Internal/index
+   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/index
    
    
-   /autoapi/Microsoft/AspNet/Routing/Logging/Internal/index
+   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/index
    
    
-   /autoapi/Microsoft/AspNet/Routing/Template/index
+   /autoapi/Microsoft/AspNetCore/Routing/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Features/index
+   /autoapi/Microsoft/AspNetCore/Routing/Constraints/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/index
+   /autoapi/Microsoft/AspNetCore/Routing/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/Filter/index
+   /autoapi/Microsoft/AspNetCore/Routing/Template/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/Http/index
+   /autoapi/Microsoft/AspNetCore/Routing/Tree/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/Https/index
+   /autoapi/Microsoft/AspNetCore/Server/IISIntegration/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/Server/IISIntegration/Tools/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Kestrel/Networking/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/index
    
    
-   /autoapi/Microsoft/AspNet/Server/Testing/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Exceptions/index
    
    
-   /autoapi/Microsoft/AspNet/Server/WebListener/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Filter/index
    
    
-   /autoapi/Microsoft/AspNet/Session/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Http/index
    
    
-   /autoapi/Microsoft/AspNet/StaticFiles/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Https/index
    
    
-   /autoapi/Microsoft/AspNet/StaticFiles/Infrastructure/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Infrastructure/index
    
    
-   /autoapi/Microsoft/AspNet/TestHost/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Internal/index
    
    
-   /autoapi/Microsoft/AspNet/WebUtilities/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Networking/index
    
    
-   /autoapi/Microsoft/Dnx/TestHost/index
+   /autoapi/Microsoft/AspNetCore/Server/Testing/index
    
    
-   /autoapi/Microsoft/Dnx/TestHost/TestAdapter/index
+   /autoapi/Microsoft/AspNetCore/Server/Testing/Common/index
    
    
-   /autoapi/Microsoft/Dnx/Testing/Abstractions/index
+   /autoapi/Microsoft/AspNetCore/Server/WebListener/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Server/WebListener/Internal/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Session/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/StaticFiles/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/StaticFiles/Infrastructure/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/TestHost/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/WebSockets/Client/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/WebSockets/Protocol/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/WebSockets/Server/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/WebUtilities/index
    
    
    /autoapi/Microsoft/Extensions/Caching/Distributed/index
@@ -443,10 +470,16 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Extensions/Caching/Redis/index
    
    
-   /autoapi/Microsoft/Extensions/Caching/SqlConfig/index
+   /autoapi/Microsoft/Extensions/Caching/SqlConfig/Tools/index
    
    
    /autoapi/Microsoft/Extensions/Caching/SqlServer/index
+   
+   
+   /autoapi/Microsoft/Extensions/Cli/Utils/index
+   
+   
+   /autoapi/Microsoft/Extensions/CommandLineUtils/index
    
    
    /autoapi/Microsoft/Extensions/Configuration/index
@@ -476,6 +509,12 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Extensions/DependencyInjection/Extensions/index
    
    
+   /autoapi/Microsoft/Extensions/DependencyInjection/Specification/index
+   
+   
+   /autoapi/Microsoft/Extensions/DependencyInjection/Specification/Fakes/index
+   
+   
    /autoapi/Microsoft/Extensions/DiagnosticAdapter/index
    
    
@@ -483,6 +522,18 @@ ASP.NET 5 API Reference Documentation
    
    
    /autoapi/Microsoft/Extensions/DiagnosticAdapter/Internal/index
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/index
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/Composite/index
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/Embedded/index
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/Physical/index
    
    
    /autoapi/Microsoft/Extensions/FileSystemGlobbing/index
@@ -518,6 +569,9 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Extensions/Logging/index
    
    
+   /autoapi/Microsoft/Extensions/Logging/Abstractions/Internal/index
+   
+   
    /autoapi/Microsoft/Extensions/Logging/Console/index
    
    
@@ -530,10 +584,13 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Extensions/Logging/EventLog/index
    
    
+   /autoapi/Microsoft/Extensions/Logging/EventLog/Internal/index
+   
+   
+   /autoapi/Microsoft/Extensions/Logging/Filter/Internal/index
+   
+   
    /autoapi/Microsoft/Extensions/Logging/Internal/index
-   
-   
-   /autoapi/Microsoft/Extensions/Logging/NLog/index
    
    
    /autoapi/Microsoft/Extensions/Logging/Testing/index
@@ -542,7 +599,19 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Extensions/Logging/TraceSource/index
    
    
-   /autoapi/Microsoft/Extensions/OptionsModel/index
+   /autoapi/Microsoft/Extensions/ObjectPool/index
+   
+   
+   /autoapi/Microsoft/Extensions/Options/index
+   
+   
+   /autoapi/Microsoft/Extensions/PlatformAbstractions/index
+   
+   
+   /autoapi/Microsoft/Extensions/Primitives/index
+   
+   
+   /autoapi/Microsoft/Extensions/Primitives/VSRC1/index
    
    
    /autoapi/Microsoft/Extensions/WebEncoders/index
@@ -560,10 +629,7 @@ ASP.NET 5 API Reference Documentation
    /autoapi/Microsoft/Net/WebSockets/index
    
    
-   /autoapi/Microsoft/Owin/Security/Cookies/Interop/index
-   
-   
-   /autoapi/Owin/index
+   /autoapi/Microsoft/Owin/Security/Interop/index
    
    
    /autoapi/PageGenerator/index
@@ -582,7 +648,4 @@ ASP.NET 5 API Reference Documentation
    
    
    /autoapi/System/Web/Http/index
-   
-   
-   /autoapi/dia2/index
    

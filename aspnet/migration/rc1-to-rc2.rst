@@ -88,7 +88,7 @@ ASPNET\_DETAILEDERRORS  ASPNETCORE\_DETAILEDERRORS
 
 ASP.NET 5 was renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
 
-The hosting configuration keys are now consistent with the command line, environment variables, and ``hosting.json`` values. The ``Microsoft.AspNet.Hosting.json`` configuration file was renamed to ``hosting.json``.
+The hosting configuration keys are now consistent with the command line, environment variables, and ``hosting.json`` values. The ``Microsoft.AspNetCore.Hosting.json`` configuration file was renamed to ``hosting.json``.
 
 ``hosting.json`` is no longer read by default, users need to explicitly add their own configuration sources and pass a configuration to ``WebHostBuilder``. The default server URL and port are ``localhost:5000``.
 
@@ -122,9 +122,9 @@ To:
 Namespace and package ID changes
 ---------------------------------- 
 
-All Microsoft.AspNet.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
+All Microsoft.AspNetCore.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
 The EntityFramework.\* packages and namespaces are changing to Microsoft.EntityFrameworkCore.\*.
-The ASP.NET Identity packages for Entity Framework Core are changing from Microsoft.AspNet.Identity.EntityFramework.\* to Microsoft.AspNetCore.Identity.EntityFrameworkCore.\*.
+The ASP.NET Identity packages for Entity Framework Core are changing from Microsoft.AspNetCore.Identity.EntityFramework.\* to Microsoft.AspNetCore.Identity.EntityFrameworkCore.\*.
 All ASP.NET Core package versions are now 1.0.0-\*.
 Microsoft.Data.Entity.* is now Microsoft.EntityFrameworkCore.*
 
@@ -206,7 +206,7 @@ To compile views, set the ``preserveCompilationContext`` option in ``project.jso
   },
 
 
-You no longer need to reference the Tag Helper package ``Microsoft.AspNet.Mvc.TagHelpers``, which was renamed to ``Microsoft.AspNetCore.Mvc.TagHelpers`` in RC2. The package is now referenced by MVC by default.
+You no longer need to reference the Tag Helper package ``Microsoft.AspNetCore.Mvc.TagHelpers``, which was renamed to ``Microsoft.AspNetCore.Mvc.TagHelpers`` in RC2. The package is now referenced by MVC by default.
 
 Changes in views
 ^^^^^^^^^^^^^^^^

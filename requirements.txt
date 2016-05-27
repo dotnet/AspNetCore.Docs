@@ -1,3 +1,3 @@
 Sphinx==1.3.1
 git+git://github.com/danroth27/yasfb-py3
-sphinxcontrib-dotnetdomain
+git+git://github.com/rtfd/sphinxcontrib-dotnetdomain

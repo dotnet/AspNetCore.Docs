@@ -5,17 +5,21 @@ DataProtectionServiceCollectionExtensions Class
 
 
 
-.. contents:: 
+
+
+
+Extension methods for setting up data protection services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.DataProtection
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-Allows registering and configuring Data Protection in the application.
-
-
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class DataProtectionServiceCollectionExtensions
+    public class DataProtectionServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/dataprotection/blob/master/src/Microsoft.AspNet.DataProtection/DataProtectionServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions
 
@@ -67,46 +68,46 @@ Methods
     
         
     
-        Adds default Data Protection services to an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+        
+        Adds data protection services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
+    
         
-        
-        :param services: The service collection to which to add DataProtection services.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The <paramref name="services" /> instance.
+        :rtype: Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddDataProtection(IServiceCollection services)
+            public static IDataProtectionBuilder AddDataProtection(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.ConfigureDataProtection(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.DataProtection.DataProtectionConfiguration>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.DataProtection.DataProtectionOptions>)
+    
+        
+    
+        
+        Adds data protection services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
     
-        Configures the behavior of the Data Protection system.
-    
         
-        
-        
-        :param services: A service collection to which Data Protection has already been added.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
+        :param setupAction: An :any:`System.Action\`1` to configure the provided :any:`Microsoft.AspNetCore.DataProtection.DataProtectionOptions`\.
         
-        :param configure: A callback which takes a  parameter.
-            This callback will be responsible for configuring the system.
-        
-        :type configure: System.Action{Microsoft.AspNet.DataProtection.DataProtectionConfiguration}
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The <paramref name="services" /> instance.
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.DataProtection.DataProtectionOptions<Microsoft.AspNetCore.DataProtection.DataProtectionOptions>}
+        :rtype: Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder
+        :return: A reference to this instance after the operation has completed.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection ConfigureDataProtection(IServiceCollection services, Action<DataProtectionConfiguration> configure)
+            public static IDataProtectionBuilder AddDataProtection(IServiceCollection services, Action<DataProtectionOptions> setupAction)
     
 

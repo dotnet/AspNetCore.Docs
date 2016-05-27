@@ -5,12 +5,17 @@ AssemblyWrapper Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization.Internal`
+Assemblies
+    * Microsoft.Extensions.Localization
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,65 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class AssemblyWrapper
+    public class AssemblyWrapper
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization/Internal/AssemblyWrapper.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
-    :noindex:
     :hidden:
 
-    
-    .. dn:constructor:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.AssemblyWrapper(System.Reflection.Assembly)
-    
-        
-        
-        
-        :type assembly: System.Reflection.Assembly
-    
-        
-        .. code-block:: csharp
-    
-           public AssemblyWrapper(Assembly assembly)
-    
-
-Methods
--------
-
 .. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.GetManifestResourceStream(System.String)
-    
-        
-        
-        
-        :type name: System.String
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-           public virtual Stream GetManifestResourceStream(string name)
-    
 
 Properties
 ----------
@@ -109,7 +68,10 @@ Properties
         
         .. code-block:: csharp
     
-           public Assembly Assembly { get; }
+            public Assembly Assembly
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.FullName
     
@@ -119,6 +81,52 @@ Properties
         
         .. code-block:: csharp
     
-           public virtual string FullName { get; }
+            public virtual string FullName
+            {
+                get;
+            }
+    
+
+Constructors
+------------
+
+.. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.AssemblyWrapper(System.Reflection.Assembly)
+    
+        
+    
+        
+        :type assembly: System.Reflection.Assembly
+    
+        
+        .. code-block:: csharp
+    
+            public AssemblyWrapper(Assembly assembly)
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.GetManifestResourceStream(System.String)
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            public virtual Stream GetManifestResourceStream(string name)
     
 

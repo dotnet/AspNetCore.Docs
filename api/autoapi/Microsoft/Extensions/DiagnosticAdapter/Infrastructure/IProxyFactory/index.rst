@@ -5,17 +5,21 @@ IProxyFactory Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 A factory for runtime creation of proxy objects.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Infrastructure`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IProxyFactory
+    public interface IProxyFactory
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Infrastructure/IProxyFactory.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxyFactory
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxyFactory
 
@@ -59,20 +60,21 @@ Methods
     
         
     
-        Creates a proxy object that is assignable to type ``TProxy``
+        
+        Creates a proxy object that is assignable to type <em>TProxy</em>
     
         
-        
+    
         
         :param obj: The object to wrap in a proxy.
         
         :type obj: System.Object
-        :rtype: {TProxy}
-        :return: A proxy object, or <paramref name="obj" /> if a proxy is not needed.
+        :rtype: TProxy
+        :return: A proxy object, or <em>obj</em> if a proxy is not needed.
     
         
         .. code-block:: csharp
     
-           TProxy CreateProxy<TProxy>(object obj)
+            TProxy CreateProxy<TProxy>(object obj)
     
 

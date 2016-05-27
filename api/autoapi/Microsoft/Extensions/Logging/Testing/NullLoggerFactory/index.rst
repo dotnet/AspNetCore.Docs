@@ -5,12 +5,17 @@ NullLoggerFactory Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Testing`
+Assemblies
+    * Microsoft.Extensions.Logging.Testing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class NullLoggerFactory : ILoggerFactory, IDisposable
+    public class NullLoggerFactory : ILoggerFactory, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Testing/NullLoggerFactory.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory
 
@@ -61,19 +63,19 @@ Methods
     .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
     
         
-        
+    
         
         :type provider: Microsoft.Extensions.Logging.ILoggerProvider
     
         
         .. code-block:: csharp
     
-           public void AddProvider(ILoggerProvider provider)
+            public void AddProvider(ILoggerProvider provider)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory.CreateLogger(System.String)
     
         
-        
+    
         
         :type name: System.String
         :rtype: Microsoft.Extensions.Logging.ILogger
@@ -81,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-           public ILogger CreateLogger(string name)
+            public ILogger CreateLogger(string name)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory.Dispose()
     
@@ -90,7 +92,7 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
+            public void Dispose()
     
 
 Fields
@@ -104,29 +106,11 @@ Fields
     .. dn:field:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory.Instance
     
         
+        :rtype: Microsoft.Extensions.Logging.Testing.NullLoggerFactory
     
         
         .. code-block:: csharp
     
-           public static readonly NullLoggerFactory Instance
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.NullLoggerFactory.MinimumLevel
-    
-        
-        :rtype: Microsoft.Extensions.Logging.LogLevel
-    
-        
-        .. code-block:: csharp
-    
-           public LogLevel MinimumLevel { get; set; }
+            public static readonly NullLoggerFactory Instance
     
 

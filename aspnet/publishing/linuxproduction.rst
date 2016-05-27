@@ -90,7 +90,7 @@ This is one of the simplest configuration files for Nginx that forwards incoming
     :caption: project.json
 
     "commands": {
-        "web": "Microsoft.AspNet.Server.Kestrel --server.urls http://unix:/var/aspnet/HelloMVC/kestrel.sock",
+        "web": "Microsoft.AspNetCore.Server.Kestrel --server.urls http://unix:/var/aspnet/HelloMVC/kestrel.sock",
     },
 
 You might want to look at ``/etc/nginx/nginx.conf`` to configure your nginx environment.

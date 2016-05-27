@@ -5,12 +5,17 @@ MemoryConfigurationProvider Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration.Memory`
+Assemblies
+    * Microsoft.Extensions.Configuration
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,20 +39,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MemoryConfigurationProvider : ConfigurationProvider, IConfigurationProvider, IEnumerable<KeyValuePair<string, string>>, IEnumerable
+    public class MemoryConfigurationProvider : ConfigurationProvider, IConfigurationProvider, IEnumerable<KeyValuePair<string, string>>, IEnumerable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration/MemoryConfigurationProvider.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider
 
@@ -59,26 +61,17 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.MemoryConfigurationProvider()
+    .. dn:constructor:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.MemoryConfigurationProvider(Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource)
     
         
     
         
-        .. code-block:: csharp
-    
-           public MemoryConfigurationProvider()
-    
-    .. dn:constructor:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.MemoryConfigurationProvider(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, System.String>>)
-    
-        
-        
-        
-        :type initialData: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+        :type source: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource
     
         
         .. code-block:: csharp
     
-           public MemoryConfigurationProvider(IEnumerable<KeyValuePair<string, string>> initialData)
+            public MemoryConfigurationProvider(MemoryConfigurationSource source)
     
 
 Methods
@@ -92,27 +85,27 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.Add(System.String, System.String)
     
         
-        
+    
         
         :type key: System.String
-        
+    
         
         :type value: System.String
     
         
         .. code-block:: csharp
     
-           public void Add(string key, string value)
+            public void Add(string key, string value)
     
     .. dn:method:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.GetEnumerator()
     
         
-        :rtype: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+        :rtype: System.Collections.Generic.IEnumerator<System.Collections.Generic.IEnumerator`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.String<System.String>}}
     
         
         .. code-block:: csharp
     
-           public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+            public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
     
     .. dn:method:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.System.Collections.IEnumerable.GetEnumerator()
     
@@ -122,6 +115,6 @@ Methods
         
         .. code-block:: csharp
     
-           IEnumerator IEnumerable.GetEnumerator()
+            IEnumerator IEnumerable.GetEnumerator()
     
 

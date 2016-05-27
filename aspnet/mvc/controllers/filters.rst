@@ -69,7 +69,7 @@ Global filters are added in the ``ConfigureServices`` method in ``Startup``, whe
 
 Filters can be added by type, or an instance can be added. If you add an instance, that instance will be used for every request. If you add a type, it will be type-activated, meaning an instance will be created for each request and any constructor dependencies will be populated by DI. Adding a filter by type is equivalent to ``filters.Add(new TypeFilterAttribute(typeof(MyFilter)))``.
 
-It's often convenient to implement filter interfaces as *Attributes*. Filter attributes are applied to controllers and action methods. The framework includes built-in attribute-based filters that you can subclass and customize. For example, the following filter inherits from `ResultFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ResultFilterAttribute/index.html>`_, and overrides its ``OnResultExecuting`` method to add a header to the response.
+It's often convenient to implement filter interfaces as *Attributes*. Filter attributes are applied to controllers and action methods. The framework includes built-in attribute-based filters that you can subclass and customize. For example, the following filter inherits from `ResultFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ResultFilterAttribute/index.html>`_, and overrides its ``OnResultExecuting`` method to add a header to the response.
 
 .. _add-header-attribute:
 
@@ -93,10 +93,10 @@ Several of the filter interfaces have corresponding attributes that can be used 
 
 Filter attributes:
 
-- `ActionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ActionFilterAttribute/index.html>`_
-- `AuthorizationFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/AuthorizationFilterAttribute/index.html>`_
-- `ExceptionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ExceptionFilterAttribute/index.html>`_
-- `ResultFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ResultFilterAttribute/index.html>`_
+- `ActionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ActionFilterAttribute/index.html>`_
+- `AuthorizationFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/AuthorizationFilterAttribute/index.html>`_
+- `ExceptionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ExceptionFilterAttribute/index.html>`_
+- `ResultFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ResultFilterAttribute/index.html>`_
 
 Cancellation and Short Circuiting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,9 +129,9 @@ Filters that are implemented as attributes and added directly to controller clas
 
 However, if your filters have dependencies you need to access from DI, there are several supported approaches. You can apply your filter to a class or action method using
 
-- The `ServiceFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ServiceFilterAttribute/index.html>`_ 
-- The `TypeFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TypeFilterAttribute/index.html>`_ attribute
-- `IFilterFactory <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/IFilterFactory/index.html>`__ implemented on your attribute
+- The `ServiceFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ServiceFilterAttribute/index.html>`_ 
+- The `TypeFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TypeFilterAttribute/index.html>`_ attribute
+- `IFilterFactory <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/IFilterFactory/index.html>`__ implemented on your attribute
 
 A ``TypeFilter`` will instantiate an instance, using services from DI for its dependencies. A ``ServiceFilter`` retrieves an instance of the filter from DI. The following example demonstrates using a ``ServiceFilter``:
 
@@ -195,7 +195,7 @@ Ordering
 
 Filters can be applied to action methods or controllers (via attribute) or added to the global filters collection. Scope also generally determines ordering. The filter closest to the action runs first; generally you get overriding behavior without having to explicitly set ordering. This is sometimes referred to as "Russian doll" nesting, as each increase in scope is wrapped around the previous scope, like a `nesting doll <https://en.wikipedia.org/wiki/Matryoshka_doll>`_.
 
-In addition to scope, filters can override their sequence of execution by implementing `IOrderedFilter <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/IOrderedFilter/index.html>`_. This interface simply exposes an ``int`` ``Order`` property, and filters execute in ascending numeric order based on this property. All of the built-in filters, including ``TypeFilterAttribute`` and ``ServiceFilterAttribute``, implement ``IOrderedFilter``, so you can specify the order of filters when you apply the attribute to a class or method. By default, the ``Order`` property is 0 for all of the built-in filters, so scope is used as a tie-breaker and (unless ``Order`` is set to a non-zero value) is the determining factor.
+In addition to scope, filters can override their sequence of execution by implementing `IOrderedFilter <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/IOrderedFilter/index.html>`_. This interface simply exposes an ``int`` ``Order`` property, and filters execute in ascending numeric order based on this property. All of the built-in filters, including ``TypeFilterAttribute`` and ``ServiceFilterAttribute``, implement ``IOrderedFilter``, so you can specify the order of filters when you apply the attribute to a class or method. By default, the ``Order`` property is 0 for all of the built-in filters, so scope is used as a tie-breaker and (unless ``Order`` is set to a non-zero value) is the determining factor.
 
 Every controller that inherits from the ``Controller`` base class includes ``OnActionExecuting`` and ``OnActionExecuted`` methods. These methods wrap the filters that run for a given action, running first and last. The scope-based order, assuming no ``Order`` has been set for any filter, is:
 
@@ -285,7 +285,7 @@ Exception Filters
 
 *Exception Filters* implement either the ``IExceptionFilter`` or ``IAsyncExceptionFilter`` interface.
 
-Exception filters handle unhandled exceptions, including those that occur during controller creation and :doc:`model binding </mvc/models/model-binding>`. They are only called when an exception occurs in the pipeline. They can provide a single location to implement common error handling policies within an app. The framework provides an abstract `ExceptionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ExceptionFilterAttribute/index.html>`_ that you should be able to subclass for your needs. Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen.
+Exception filters handle unhandled exceptions, including those that occur during controller creation and :doc:`model binding </mvc/models/model-binding>`. They are only called when an exception occurs in the pipeline. They can provide a single location to implement common error handling policies within an app. The framework provides an abstract `ExceptionFilterAttribute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ExceptionFilterAttribute/index.html>`_ that you should be able to subclass for your needs. Exception filters are good for trapping exceptions that occur within MVC actions, but they're not as flexible as error handling middleware. Prefer middleware for the general case, and use filters only where you need to do error handling *differently* based on which MVC action was chosen.
 
 .. tip:: One example where you might need a different form of error handling for different actions would be in an app that exposes both API endpoints and actions that return views/HTML. The API endpoints could return error information as JSON, while the view-based actions could return an error page as HTML.
 

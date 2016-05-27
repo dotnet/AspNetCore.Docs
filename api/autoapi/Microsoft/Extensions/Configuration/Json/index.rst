@@ -18,9 +18,33 @@ Microsoft.Extensions.Configuration.Json Namespace
    /autoapi/Microsoft/Extensions/Configuration/Json/JsonConfigurationProvider/index
    
    
+   
+   /autoapi/Microsoft/Extensions/Configuration/Json/JsonConfigurationSource/index
+   
+   
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -35,7 +59,17 @@ Microsoft.Extensions.Configuration.Json Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider`
-        A JSON file based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
+    class :dn:cls:`JsonConfigurationProvider`
+        .. object: type=class name=Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider
+
+        
+        A JSON file based :any:`Microsoft.Extensions.Configuration.FileConfigurationProvider`\.
+
+
+    class :dn:cls:`JsonConfigurationSource`
+        .. object: type=class name=Microsoft.Extensions.Configuration.Json.JsonConfigurationSource
+
+        
+        A JSON file based :any:`Microsoft.Extensions.Configuration.FileConfigurationSource`\.
 
 

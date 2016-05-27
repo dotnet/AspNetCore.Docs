@@ -5,17 +5,21 @@ ObjectFactory Delegate
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 The result of :dn:meth:`Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(System.Type,System.Type[])`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.Extensions.DependencyInjection.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public delegate object ObjectFactory(IServiceProvider serviceProvider, object[] arguments);
+    public delegate object ObjectFactory(IServiceProvider serviceProvider, object[] arguments);
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/dependencyinjection/blob/master/src/Microsoft.Extensions.DependencyInjection.Abstractions/ObjectFactory.cs>`_
 
 
 
-
+.. dn:delegate:: Microsoft.Extensions.DependencyInjection.ObjectFactory
+    :hidden:
 
 .. dn:delegate:: Microsoft.Extensions.DependencyInjection.ObjectFactory
 

@@ -5,12 +5,17 @@ TestLoggerFactory Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Testing`
+Assemblies
+    * Microsoft.Extensions.Logging.Testing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class TestLoggerFactory : ILoggerFactory, IDisposable
+    public class TestLoggerFactory : ILoggerFactory, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Testing/TestLoggerFactory.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory
 
@@ -61,17 +63,17 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory.TestLoggerFactory(Microsoft.Extensions.Logging.Testing.TestSink, System.Boolean)
     
         
-        
+    
         
         :type sink: Microsoft.Extensions.Logging.Testing.TestSink
-        
+    
         
         :type enabled: System.Boolean
     
         
         .. code-block:: csharp
     
-           public TestLoggerFactory(TestSink sink, bool enabled)
+            public TestLoggerFactory(TestSink sink, bool enabled)
     
 
 Methods
@@ -85,19 +87,19 @@ Methods
     .. dn:method:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
     
         
-        
+    
         
         :type provider: Microsoft.Extensions.Logging.ILoggerProvider
     
         
         .. code-block:: csharp
     
-           public void AddProvider(ILoggerProvider provider)
+            public void AddProvider(ILoggerProvider provider)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory.CreateLogger(System.String)
     
         
-        
+    
         
         :type name: System.String
         :rtype: Microsoft.Extensions.Logging.ILogger
@@ -105,7 +107,7 @@ Methods
         
         .. code-block:: csharp
     
-           public ILogger CreateLogger(string name)
+            public ILogger CreateLogger(string name)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory.Dispose()
     
@@ -114,25 +116,6 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestLoggerFactory.MinimumLevel
-    
-        
-        :rtype: Microsoft.Extensions.Logging.LogLevel
-    
-        
-        .. code-block:: csharp
-    
-           public LogLevel MinimumLevel { get; set; }
+            public void Dispose()
     
 

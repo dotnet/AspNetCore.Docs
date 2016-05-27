@@ -5,17 +5,21 @@ ResourceNamesCache Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 An implementation of :any:`Microsoft.Extensions.Localization.IResourceNamesCache` backed by a :any:`System.Collections.Concurrent.ConcurrentDictionary\`2`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization`
+Assemblies
+    * Microsoft.Extensions.Localization
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ResourceNamesCache : IResourceNamesCache
+    public class ResourceNamesCache : IResourceNamesCache
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization/ResourceNamesCache.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Localization.ResourceNamesCache
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.ResourceNamesCache
 
@@ -66,17 +67,17 @@ Methods
     .. dn:method:: Microsoft.Extensions.Localization.ResourceNamesCache.GetOrAdd(System.String, System.Func<System.String, System.Collections.Generic.IList<System.String>>)
     
         
-        
+    
         
         :type name: System.String
+    
         
-        
-        :type valueFactory: System.Func{System.String,System.Collections.Generic.IList{System.String}}
-        :rtype: System.Collections.Generic.IList{System.String}
+        :type valueFactory: System.Func<System.Func`2>{System.String<System.String>, System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}}
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
     
         
         .. code-block:: csharp
     
-           public IList<string> GetOrAdd(string name, Func<string, IList<string>> valueFactory)
+            public IList<string> GetOrAdd(string name, Func<string, IList<string>> valueFactory)
     
 

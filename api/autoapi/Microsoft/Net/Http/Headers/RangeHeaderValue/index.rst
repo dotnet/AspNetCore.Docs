@@ -5,12 +5,17 @@ RangeHeaderValue Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Headers`
+Assemblies
+    * Microsoft.Net.Http.Headers
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,22 +38,55 @@ Syntax
 
 .. code-block:: csharp
 
-   public class RangeHeaderValue
+    public class RangeHeaderValue
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Net.Http.Headers/RangeHeaderValue.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
+    :hidden:
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Ranges
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Net.Http.Headers.RangeItemHeaderValue<Microsoft.Net.Http.Headers.RangeItemHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<RangeItemHeaderValue> Ranges
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Unit
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Unit
+            {
+                get;
+                set;
+            }
+    
 
 Constructors
 ------------
@@ -65,22 +103,22 @@ Constructors
         
         .. code-block:: csharp
     
-           public RangeHeaderValue()
+            public RangeHeaderValue()
     
     .. dn:constructor:: Microsoft.Net.Http.Headers.RangeHeaderValue.RangeHeaderValue(System.Nullable<System.Int64>, System.Nullable<System.Int64>)
     
         
+    
         
+        :type from: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
         
-        :type from: System.Nullable{System.Int64}
-        
-        
-        :type to: System.Nullable{System.Int64}
+        :type to: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
     
         
         .. code-block:: csharp
     
-           public RangeHeaderValue(long ? from, long ? to)
+            public RangeHeaderValue(long ? from, long ? to)
     
 
 Methods
@@ -94,7 +132,7 @@ Methods
     .. dn:method:: Microsoft.Net.Http.Headers.RangeHeaderValue.Equals(System.Object)
     
         
-        
+    
         
         :type obj: System.Object
         :rtype: System.Boolean
@@ -102,7 +140,7 @@ Methods
         
         .. code-block:: csharp
     
-           public override bool Equals(object obj)
+            public override bool Equals(object obj)
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeHeaderValue.GetHashCode()
     
@@ -112,12 +150,12 @@ Methods
         
         .. code-block:: csharp
     
-           public override int GetHashCode()
+            public override int GetHashCode()
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeHeaderValue.Parse(System.String)
     
         
-        
+    
         
         :type input: System.String
         :rtype: Microsoft.Net.Http.Headers.RangeHeaderValue
@@ -125,7 +163,7 @@ Methods
         
         .. code-block:: csharp
     
-           public static RangeHeaderValue Parse(string input)
+            public static RangeHeaderValue Parse(string input)
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeHeaderValue.ToString()
     
@@ -135,15 +173,15 @@ Methods
         
         .. code-block:: csharp
     
-           public override string ToString()
+            public override string ToString()
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeHeaderValue.TryParse(System.String, out Microsoft.Net.Http.Headers.RangeHeaderValue)
     
         
-        
+    
         
         :type input: System.String
-        
+    
         
         :type parsedValue: Microsoft.Net.Http.Headers.RangeHeaderValue
         :rtype: System.Boolean
@@ -151,35 +189,6 @@ Methods
         
         .. code-block:: csharp
     
-           public static bool TryParse(string input, out RangeHeaderValue parsedValue)
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Ranges
-    
-        
-        :rtype: System.Collections.Generic.ICollection{Microsoft.Net.Http.Headers.RangeItemHeaderValue}
-    
-        
-        .. code-block:: csharp
-    
-           public ICollection<RangeItemHeaderValue> Ranges { get; }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Unit
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-           public string Unit { get; set; }
+            public static bool TryParse(string input, out RangeHeaderValue parsedValue)
     
 

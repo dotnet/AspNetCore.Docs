@@ -5,17 +5,21 @@ SystemClock Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Provides access to the normal system clock.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Internal`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class SystemClock : ISystemClock
+    public class SystemClock : ISystemClock
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/Internal/SystemClock.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Internal.SystemClock
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Internal.SystemClock
 
@@ -67,6 +68,7 @@ Properties
     
         
     
+        
         Retrieves the current system time in UTC.
     
         
@@ -75,6 +77,9 @@ Properties
         
         .. code-block:: csharp
     
-           public DateTimeOffset UtcNow { get; }
+            public DateTimeOffset UtcNow
+            {
+                get;
+            }
     
 

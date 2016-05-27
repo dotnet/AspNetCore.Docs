@@ -5,12 +5,17 @@ MvcViewFeaturesMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.ViewFeatures
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcViewFeaturesMvcCoreBuilderExtensions
+    public class MvcViewFeaturesMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.ViewFeatures/DependencyInjection/MvcViewFeaturesMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.AddViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
@@ -69,38 +71,38 @@ Methods
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.AddViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Mvc.MvcViewOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.AddViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcViewOptions>)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.MvcViewOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.MvcViewOptions<Microsoft.AspNetCore.Mvc.MvcViewOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
+            public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.ConfigureViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Mvc.MvcViewOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.ConfigureViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcViewOptions>)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.MvcViewOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.MvcViewOptions<Microsoft.AspNetCore.Mvc.MvcViewOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder ConfigureViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
+            public static IMvcCoreBuilder ConfigureViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
     
 

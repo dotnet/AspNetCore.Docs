@@ -24,6 +24,18 @@ System.Diagnostics Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,9 @@ System.Diagnostics Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`System.Diagnostics.DiagnosticListenerExtensions`
+    class :dn:cls:`DiagnosticListenerExtensions`
+        .. object: type=class name=System.Diagnostics.DiagnosticListenerExtensions
+
         
 
 

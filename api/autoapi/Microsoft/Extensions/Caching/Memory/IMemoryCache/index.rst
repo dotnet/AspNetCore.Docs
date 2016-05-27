@@ -5,12 +5,21 @@ IMemoryCache Interface
 
 
 
-.. contents:: 
+
+
+
+Represents a local in-memory cache whose values are not serialized.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -25,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IMemoryCache : IDisposable
+    public interface IMemoryCache : IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/IMemoryCache.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Caching.Memory.IMemoryCache
 
@@ -50,29 +56,36 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Caching.Memory.IMemoryCache.CreateLinkingScope()
+    .. dn:method:: Microsoft.Extensions.Caching.Memory.IMemoryCache.CreateEntry(System.Object)
     
         
     
-        Creates an entry link scope.
+        
+        Create or overwrite an entry in the cache.
     
         
-        :rtype: Microsoft.Extensions.Caching.Memory.IEntryLink
-        :return: The <see cref="T:Microsoft.Extensions.Caching.Memory.IEntryLink" />.
+    
+        
+        :param key: An object identifying the entry.
+        
+        :type key: System.Object
+        :rtype: Microsoft.Extensions.Caching.Memory.ICacheEntry
+        :return: The newly created :any:`Microsoft.Extensions.Caching.Memory.ICacheEntry` instance.
     
         
         .. code-block:: csharp
     
-           IEntryLink CreateLinkingScope()
+            ICacheEntry CreateEntry(object key)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.IMemoryCache.Remove(System.Object)
     
         
     
+        
         Removes the object associated with the given key.
     
         
-        
+    
         
         :param key: An object identifying the entry.
         
@@ -81,51 +94,22 @@ Methods
         
         .. code-block:: csharp
     
-           void Remove(object key)
-    
-    .. dn:method:: Microsoft.Extensions.Caching.Memory.IMemoryCache.Set(System.Object, System.Object, Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions)
-    
-        
-    
-        Create or overwrite an entry in the cache.
-    
-        
-        
-        
-        :param key: An object identifying the entry.
-        
-        :type key: System.Object
-        
-        
-        :param value: The value to be cached.
-        
-        :type value: System.Object
-        
-        
-        :param options: The .
-        
-        :type options: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions
-        :rtype: System.Object
-        :return: The object that was cached.
-    
-        
-        .. code-block:: csharp
-    
-           object Set(object key, object value, MemoryCacheEntryOptions options)
+            void Remove(object key)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.IMemoryCache.TryGetValue(System.Object, out System.Object)
     
         
     
+        
         Gets the item associated with this key if present.
     
         
-        
+    
         
         :param key: An object identifying the requested entry.
         
         :type key: System.Object
-        
+    
         
         :param value: The located value or null.
         
@@ -136,6 +120,6 @@ Methods
         
         .. code-block:: csharp
     
-           bool TryGetValue(object key, out object value)
+            bool TryGetValue(object key, out object value)
     
 

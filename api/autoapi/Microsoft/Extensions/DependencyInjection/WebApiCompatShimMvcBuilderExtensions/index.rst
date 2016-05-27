@@ -5,12 +5,17 @@ WebApiCompatShimMvcBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.WebApiCompatShim
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class WebApiCompatShimMvcBuilderExtensions
+    public class WebApiCompatShimMvcBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.WebApiCompatShim/WebApiCompatShimMvcBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.WebApiCompatShimMvcBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.WebApiCompatShimMvcBuilderExtensions
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.WebApiCompatShimMvcBuilderExtensions.AddWebApiConventions(Microsoft.Extensions.DependencyInjection.IMvcBuilder)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
@@ -69,6 +71,6 @@ Methods
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddWebApiConventions(IMvcBuilder builder)
+            public static IMvcBuilder AddWebApiConventions(IMvcBuilder builder)
     
 

@@ -5,12 +5,17 @@ ProxyBase<T> Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,22 +39,54 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyBase<T> : ProxyBase, IProxy where T : class
+    public class ProxyBase<T> : ProxyBase, IProxy where T : class
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyBaseOfT.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase`1
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstance
+    
+        
+        :rtype: T
+    
+        
+        .. code-block:: csharp
+    
+            public T UnderlyingInstance
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstanceAsObject
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public override object UnderlyingInstanceAsObject
+            {
+                get;
+            }
+    
 
 Constructors
 ------------
@@ -62,14 +99,14 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.ProxyBase(T)
     
         
+    
         
-        
-        :type instance: {T}
+        :type instance: T
     
         
         .. code-block:: csharp
     
-           public ProxyBase(T instance)
+            public ProxyBase(T instance)
     
 
 Fields
@@ -83,39 +120,11 @@ Fields
     .. dn:field:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.Instance
     
         
+        :rtype: T
     
         
         .. code-block:: csharp
     
-           public readonly T Instance
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstance
-    
-        
-        :rtype: {T}
-    
-        
-        .. code-block:: csharp
-    
-           public T UnderlyingInstance { get; }
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstanceAsObject
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-           public override object UnderlyingInstanceAsObject { get; }
+            public readonly T Instance
     
 

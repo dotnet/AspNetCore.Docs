@@ -14,16 +14,16 @@ In the previous article we :doc:`migrated configuration from an ASP.NET MVC proj
 Configure Identity and Membership
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNet.Identity.EntityFramework`` and ``Microsoft.AspNet.Identity.Cookies`` to the list of dependencies:
+In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Identity.Cookies`` to the list of dependencies:
 
 .. code-block:: none
 
   "dependencies": {
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
-    "Microsoft.AspNet.Mvc": "6.0.0-beta3",
+    "Microsoft.AspNetCore.Server.IIS": "1.0.0-beta3",
+    "Microsoft.AspNetCore.Mvc": "6.0.0-beta3",
     "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta3",
-    "Microsoft.AspNet.Security.Cookies": "1.0.0-beta3"
+    "Microsoft.AspNetCore.Identity.EntityFramework": "3.0.0-beta3",
+    "Microsoft.AspNetCore.Security.Cookies": "1.0.0-beta3"
   },
 
 Now, open Startup.cs and update the ConfigureServices() method to use Entity Framework and Identity services:
@@ -50,7 +50,7 @@ ApplicationUser.cs:
 
 .. code-block:: c#
 
-  using Microsoft.AspNet.Identity;
+  using Microsoft.AspNetCore.Identity;
 
   namespace NewMvc6Project.Models
   {
@@ -63,7 +63,7 @@ ApplicationDbContext.cs:
 
 .. code-block:: c#
 
-  using Microsoft.AspNet.Identity.EntityFramework;
+  using Microsoft.AspNetCore.Identity.EntityFramework;
   using Microsoft.Data.Entity;
 
   namespace NewMvc6Project.Models
@@ -97,9 +97,9 @@ With these files in place, the Startup.cs file can be made to compile by updatin
 .. code-block:: c#
 
   using Microsoft.Framework.ConfigurationModel;
-  using Microsoft.AspNet.Hosting;
+  using Microsoft.AspNetCore.Hosting;
   using NewMvc6Project.Models;
-  using Microsoft.AspNet.Identity;
+  using Microsoft.AspNetCore.Identity;
 
 Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users. 
 

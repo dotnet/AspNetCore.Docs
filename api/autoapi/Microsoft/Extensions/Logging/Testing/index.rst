@@ -31,11 +31,19 @@ Microsoft.Extensions.Logging.Testing Namespace
    
    
    
+   /autoapi/Microsoft/Extensions/Logging/Testing/NullLogger-T/index
+   
+   
+   
    /autoapi/Microsoft/Extensions/Logging/Testing/TestLogger/index
    
    
    
    /autoapi/Microsoft/Extensions/Logging/Testing/TestLoggerFactory/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/Logging/Testing/TestLogger-T/index
    
    
    
@@ -52,6 +60,58 @@ Microsoft.Extensions.Logging.Testing Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -63,35 +123,63 @@ Microsoft.Extensions.Logging.Testing Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.BeginScopeContext`
+    class :dn:cls:`BeginScopeContext`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.BeginScopeContext
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.LogValuesAssert`
+    class :dn:cls:`LogValuesAssert`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.LogValuesAssert
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.NullLogger`
+    class :dn:cls:`NullLogger`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.NullLogger
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.NullLoggerFactory`
+    class :dn:cls:`NullLoggerFactory`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.NullLoggerFactory
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.TestLogger`
+    class :dn:cls:`NullLogger\<T>`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.NullLogger\<T>
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.TestLoggerFactory`
+    class :dn:cls:`TestLogger`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.TestLogger
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.TestSink`
+    class :dn:cls:`TestLoggerFactory`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.TestLoggerFactory
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Testing.WriteContext`
+    class :dn:cls:`TestLogger\<T>`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.TestLogger\<T>
+
+        
+
+
+    class :dn:cls:`TestSink`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.TestSink
+
+        
+
+
+    class :dn:cls:`WriteContext`
+        .. object: type=class name=Microsoft.Extensions.Logging.Testing.WriteContext
+
         
 
 

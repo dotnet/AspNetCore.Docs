@@ -5,17 +5,21 @@ ILoggerProvider Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Represents a type that can create instances of :any:`Microsoft.Extensions.Logging.ILogger`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging`
+Assemblies
+    * Microsoft.Extensions.Logging.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface ILoggerProvider : IDisposable
+    public interface ILoggerProvider : IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/ILoggerProvider.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Logging.ILoggerProvider
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Logging.ILoggerProvider
 
@@ -59,10 +60,11 @@ Methods
     
         
     
+        
         Creates a new :any:`Microsoft.Extensions.Logging.ILogger` instance.
     
         
-        
+    
         
         :param categoryName: The category name for messages produced by the logger.
         
@@ -72,6 +74,6 @@ Methods
         
         .. code-block:: csharp
     
-           ILogger CreateLogger(string categoryName)
+            ILogger CreateLogger(string categoryName)
     
 

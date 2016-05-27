@@ -68,6 +68,66 @@ Microsoft.Extensions.Localization Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -79,59 +139,91 @@ Microsoft.Extensions.Localization Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.LocalizationOptions`
+    class :dn:cls:`LocalizationOptions`
+        .. object: type=class name=Microsoft.Extensions.Localization.LocalizationOptions
+
+        
         Provides programmatic configuration for localization.
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.ResourceManagerStringLocalizer`
-        An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and 
+    class :dn:cls:`LocalizedString`
+        .. object: type=class name=Microsoft.Extensions.Localization.LocalizedString
+
+        
+        A locale specific string.
+
+
+    class :dn:cls:`ResourceManagerStringLocalizer`
+        .. object: type=class name=Microsoft.Extensions.Localization.ResourceManagerStringLocalizer
+
+        
+        An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and
         :any:`System.Resources.ResourceReader` to provide localized strings.
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.ResourceManagerStringLocalizerFactory`
+    class :dn:cls:`ResourceManagerStringLocalizerFactory`
+        .. object: type=class name=Microsoft.Extensions.Localization.ResourceManagerStringLocalizerFactory
+
+        
         An :any:`Microsoft.Extensions.Localization.IStringLocalizerFactory` that creates instances of :any:`Microsoft.Extensions.Localization.ResourceManagerStringLocalizer`\.
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer`
-        An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and 
+    class :dn:cls:`ResourceManagerWithCultureStringLocalizer`
+        .. object: type=class name=Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer
+
+        
+        An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and
         :any:`System.Resources.ResourceReader` to provide localized strings for a specific :any:`System.Globalization.CultureInfo`\.
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.ResourceNamesCache`
+    class :dn:cls:`ResourceNamesCache`
+        .. object: type=class name=Microsoft.Extensions.Localization.ResourceNamesCache
+
+        
         An implementation of :any:`Microsoft.Extensions.Localization.IResourceNamesCache` backed by a :any:`System.Collections.Concurrent.ConcurrentDictionary\`2`\.
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.StringLocalizerExtensions`
+    class :dn:cls:`StringLocalizerExtensions`
+        .. object: type=class name=Microsoft.Extensions.Localization.StringLocalizerExtensions
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.StringLocalizer\<TResourceSource>`
-        Provides strings for TResourceSource\.
+    class :dn:cls:`StringLocalizer\<TResourceSource>`
+        .. object: type=class name=Microsoft.Extensions.Localization.StringLocalizer\<TResourceSource>
 
-
-    .. rubric:: Structures
-
-
-    struct :dn:struct:`Microsoft.Extensions.Localization.LocalizedString`
-        A locale specific string.
+        
+        Provides strings for <em>TResourceSource</em>.
 
 
     .. rubric:: Interfaces
 
 
-    interface :dn:iface:`Microsoft.Extensions.Localization.IResourceNamesCache`
+    interface :dn:iface:`IResourceNamesCache`
+        .. object: type=interface name=Microsoft.Extensions.Localization.IResourceNamesCache
+
+        
         Represents a cache of string names in resources.
 
 
-    interface :dn:iface:`Microsoft.Extensions.Localization.IStringLocalizer`
+    interface :dn:iface:`IStringLocalizer`
+        .. object: type=interface name=Microsoft.Extensions.Localization.IStringLocalizer
+
+        
         Represents a service that provides localized strings.
 
 
-    interface :dn:iface:`Microsoft.Extensions.Localization.IStringLocalizerFactory`
+    interface :dn:iface:`IStringLocalizerFactory`
+        .. object: type=interface name=Microsoft.Extensions.Localization.IStringLocalizerFactory
+
+        
         Represents a factory that creates :any:`Microsoft.Extensions.Localization.IStringLocalizer` instances.
 
 
-    interface :dn:iface:`Microsoft.Extensions.Localization.IStringLocalizer\<T>`
-        Represents an :any:`Microsoft.Extensions.Localization.IStringLocalizer` that provides strings for T\.
+    interface :dn:iface:`IStringLocalizer\<T>`
+        .. object: type=interface name=Microsoft.Extensions.Localization.IStringLocalizer\<T>
+
+        
+        Represents an :any:`Microsoft.Extensions.Localization.IStringLocalizer` that provides strings for <em>T</em>.
 
 

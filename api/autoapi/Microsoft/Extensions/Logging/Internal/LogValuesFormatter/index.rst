@@ -5,17 +5,21 @@ LogValuesFormatter Class
 
 
 
-.. contents:: 
+
+
+
+Formatter to convert the named format items like {NamedformatItem} to :dn:meth:`string.Format` format.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Internal`
+Assemblies
+    * Microsoft.Extensions.Logging.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-Formatter to convert the named format items like {NamedformatItem} to :dn:meth:`System.String.Format(System.String,System.Object)` format.
-
-
 
 
 
@@ -38,78 +42,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class LogValuesFormatter
+    public class LogValuesFormatter
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/Internal/LogValuesFormatter.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
-    :noindex:
     :hidden:
 
-    
-    .. dn:constructor:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.LogValuesFormatter(System.String)
-    
-        
-        
-        
-        :type format: System.String
-    
-        
-        .. code-block:: csharp
-    
-           public LogValuesFormatter(string format)
-    
-
-Methods
--------
-
 .. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.Format(System.Object[])
-    
-        
-        
-        
-        :type values: System.Object[]
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-           public string Format(object[] values)
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.GetValues(System.Object[])
-    
-        
-        
-        
-        :type values: System.Object[]
-        :rtype: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
-    
-        
-        .. code-block:: csharp
-    
-           public IEnumerable<KeyValuePair<string, object>> GetValues(object[] values)
-    
 
 Properties
 ----------
@@ -127,16 +72,94 @@ Properties
         
         .. code-block:: csharp
     
-           public string OriginalFormat { get; }
+            public string OriginalFormat
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.ValueNames
     
         
-        :rtype: System.Collections.Generic.List{System.String}
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
     
         
         .. code-block:: csharp
     
-           public List<string> ValueNames { get; }
+            public List<string> ValueNames
+            {
+                get;
+            }
+    
+
+Constructors
+------------
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.LogValuesFormatter(System.String)
+    
+        
+    
+        
+        :type format: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public LogValuesFormatter(string format)
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.Format(System.Object[])
+    
+        
+    
+        
+        :type values: System.Object<System.Object>[]
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Format(object[] values)
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.GetValue(System.Object[], System.Int32)
+    
+        
+    
+        
+        :type values: System.Object<System.Object>[]
+    
+        
+        :type index: System.Int32
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, object> GetValue(object[] values, int index)
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.GetValues(System.Object[])
+    
+        
+    
+        
+        :type values: System.Object<System.Object>[]
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<KeyValuePair<string, object>> GetValues(object[] values)
     
 

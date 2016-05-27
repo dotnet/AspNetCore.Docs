@@ -153,7 +153,7 @@ Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 The move-genre view model will contain:
 
  - a list of movies
- - a `SelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/SelectList/index.html>`__ containing the list of genres. This will allow the user to select a genre from the list.
+ - a `SelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectList/index.html>`__ containing the list of genres. This will allow the user to select a genre from the list.
  - ``movieGenre``, which contains the selected genre
 
 Replace the ``Index`` method with the following code:

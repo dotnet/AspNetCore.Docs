@@ -165,7 +165,7 @@ HTML Helper alternatives to Input Tag Helper
 Expression names 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``asp-for`` attribute value is a `ModelExpression <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/ModelExpression/index.html>`__ and the right hand side of a lambda expression. Therefore, ``asp-for="Property1"`` becomes ``m => m.Property1`` in the generated code which is why you don't need to prefix with ``Model``. You can use the "@" character to start an inline expression and move before the ``m.``:
+The ``asp-for`` attribute value is a `ModelExpression <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/ModelExpression/index.html>`__ and the right hand side of a lambda expression. Therefore, ``asp-for="Property1"`` becomes ``m => m.Property1`` in the generated code which is why you don't need to prefix with ``Model``. You can use the "@" character to start an inline expression and move before the ``m.``:
 
 .. code-block:: HTML
 
@@ -266,7 +266,7 @@ The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
 The Textarea Tag Helper
 -------------------------
 
-The `Textarea Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/TextAreaTagHelper/index.html>`__ tag helper is  similar to the Input Tag Helper.  
+The `Textarea Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/TextAreaTagHelper/index.html>`__ tag helper is  similar to the Input Tag Helper.  
 
 - Generates the ``id`` and ``name`` attributes, and the data validation attributes from the model for a `<textarea> <http://www.w3.org/wiki/HTML/Elements/textarea>`__ element. 
 - Provides strong typing. 
@@ -304,7 +304,7 @@ The Label Tag Helper
 - Generates the label caption and ``for`` attribute on a `<label> <https://www.w3.org/wiki/HTML/Elements/label>`__ element for an expression name
 - HTML Helper alternative: ``Html.LabelFor``.
 
-The `Label Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/LabelTagHelper/index.html>`__  provides the following benefits over a pure HTML label element:
+The `Label Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/LabelTagHelper/index.html>`__  provides the following benefits over a pure HTML label element:
 
 - You automatically get the descriptive label value from the ``Display`` attribute. The intended display name might change over time, and the combination of ``Display`` attribute and Label Tag Helper will apply the ``Display`` everywhere it's used.
 - Less markup in source code
@@ -330,7 +330,7 @@ The Label Tag Helper generated the ``for`` attribute value of "Email", which is 
 The Validation Tag Helpers
 ---------------------------
 
-There are two Validation Tag Helpers. The `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__ (which displays a validation message for a single property on your model), and the `Validation Summary Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/ValidationSummaryTagHelper/index.html>`__ (which displays a summary of validation errors). The `Input Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/InputTagHelper/index.html>`__ adds HTML5 client side validation attributes to input elements based on data annotation attributes on your model classes. Validation is also performed on the server. The Validation Tag Helper displays these error messages when a validation error occurs. 
+There are two Validation Tag Helpers. The `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__ (which displays a validation message for a single property on your model), and the `Validation Summary Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationSummaryTagHelper/index.html>`__ (which displays a summary of validation errors). The `Input Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/InputTagHelper/index.html>`__ adds HTML5 client side validation attributes to input elements based on data annotation attributes on your model classes. Validation is also performed on the server. The Validation Tag Helper displays these error messages when a validation error occurs. 
 
 The Validation Message Tag Helper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -339,7 +339,7 @@ The Validation Message Tag Helper
 - Validation also takes place on the server. Clients may have JavaScript disabled and some validation can only be done on the server side.
 - HTML Helper alternative: ``Html.ValidationMessageFor``
 
-The `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__  is used with the ``asp-validation-for`` attribute on a HTML `span <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span>`__ element.
+The `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__  is used with the ``asp-validation-for`` attribute on a HTML `span <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span>`__ element.
 
 .. code-block:: HTML
   
@@ -353,7 +353,7 @@ The Validation Message Tag Helper will generate the following HTML:
       data-valmsg-for="Email" 
       data-valmsg-replace="true">
 
-You generally use the `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__  after an ``Input`` Tag Helper for the same property. Doing so displays any validation error messages near the input that caused the error.
+You generally use the `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__  after an ``Input`` Tag Helper for the same property. Doing so displays any validation error messages near the input that caused the error.
 
 :Note: You must have a view with the correct JavaScript and `jQuery <https://jquery.com/>`__ 
  script references in place for client side validation. See :doc:`/mvc/models/validation` for more information.
@@ -373,7 +373,7 @@ The Validation Summary Tag Helper
 - Targets ``<div>`` elements with the ``asp-validation-summary`` attribute 
 - HTML Helper alternative: ``@Html.ValidationSummary``
 
-The `Validation Summary Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/ValidationSummaryTagHelper/index.html>`__  is used to display a summary of validation messages. The ``asp-validation-summary`` attribute value can be any of the following:
+The `Validation Summary Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationSummaryTagHelper/index.html>`__  is used to display a summary of validation messages. The ``asp-validation-summary`` attribute value can be any of the following:
 
 +-------------------------------+--------------------------------+
 |asp-validation-summary         |  Validation messages displayed |  
@@ -426,7 +426,7 @@ The Select Tag Helper
 - Generates `select <https://www.w3.org/wiki/HTML/Elements/select>`__ and associated `option <https://www.w3.org/wiki/HTML/Elements/option>`__ elements for properties of your model. 
 - Has an HTML Helper alternative ``Html.DropDownListFor`` and ``Html.ListBoxFor``
 
-The `Select Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/TagHelpers/SelectTagHelper/index.html>`__ ``asp-for`` specifies the model property  name for the `select <https://www.w3.org/wiki/HTML/Elements/select>`__ element  and ``asp-items`` specifies the `option <https://www.w3.org/wiki/HTML/Elements/option>`__ elements.  For example:
+The `Select Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/SelectTagHelper/index.html>`__ ``asp-for`` specifies the model property  name for the `select <https://www.w3.org/wiki/HTML/Elements/select>`__ element  and ``asp-items`` specifies the `option <https://www.w3.org/wiki/HTML/Elements/option>`__ elements.  For example:
 
 .. literalinclude::   forms/sample/final/Views/Home/Index.cshtml
   :language: HTML
@@ -485,7 +485,7 @@ The ``asp-for`` attribute value is a special case and doesn't require a ``Model`
 Enum binding
 ^^^^^^^^^^^^^^
 
-It's often convenient to use ``<select>`` with an ``enum`` property and generate the `SelectListItem <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/SelectListItem/index.html?highlight=selectlistitem>`__ elements from the ``enum`` values. 
+It's often convenient to use ``<select>`` with an ``enum`` property and generate the `SelectListItem <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectListItem/index.html?highlight=selectlistitem>`__ elements from the ``enum`` values. 
 
 Sample:
 
@@ -498,7 +498,7 @@ Sample:
   :language: c#
   :lines: 1-4,6,8-
 
-The `GetEnumSelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/IHtmlHelper/index.html>`__ method generates a `SelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/SelectList/index.html>`__ object for an enum.
+The `GetEnumSelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/IHtmlHelper/index.html>`__ method generates a `SelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectList/index.html>`__ object for an enum.
 
 .. literalinclude::   forms/sample/final/Views/Home/IndexEnum.cshtml
   :language: HTML
@@ -532,7 +532,7 @@ The following HTML is generated:
 Option Group
 ^^^^^^^^^^^^^^^^^^^^^
 
-The HTML  `<optgroup> <https://www.w3.org/wiki/HTML/Elements/optgroup>`__ element is generated when the view model contains one or more `SelectListGroup  <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Rendering/SelectListGroup/index.html>`__ objects.
+The HTML  `<optgroup> <https://www.w3.org/wiki/HTML/Elements/optgroup>`__ element is generated when the view model contains one or more `SelectListGroup  <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectListGroup/index.html>`__ objects.
 
 The ``CountryViewModelGroup`` groups the ``SelectListItem`` elements into the "North America" and "Europe" groups:
 

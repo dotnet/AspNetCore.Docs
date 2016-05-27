@@ -22,7 +22,7 @@ Once this is added to your application, you can browse to the specified path (``
 
 .. image:: diagnostics/_static/runtimeinfo-page.png
 
-The path for this page can be optionally specified in the call to ``UseRuntimeInfoPage()``. It accepts a `RuntimeInfoPageOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Diagnostics/RuntimeInfoPageOptions/index.html>`_ instance as a parameter, which has a ``Path`` property. For example, to specify a path of ``/info`` you would call ``UseRuntimeInfoPage()`` as shown here:
+The path for this page can be optionally specified in the call to ``UseRuntimeInfoPage()``. It accepts a `RuntimeInfoPageOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Diagnostics/RuntimeInfoPageOptions/index.html>`_ instance as a parameter, which has a ``Path`` property. For example, to specify a path of ``/info`` you would call ``UseRuntimeInfoPage()`` as shown here:
 
 .. code-block:: c#
 

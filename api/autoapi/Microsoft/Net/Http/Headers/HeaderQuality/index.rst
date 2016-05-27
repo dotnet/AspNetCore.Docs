@@ -5,12 +5,17 @@ HeaderQuality Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Headers`
+Assemblies
+    * Microsoft.Net.Http.Headers
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class HeaderQuality
+    public class HeaderQuality
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Net.Http.Headers/HeaderQuality.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Net.Http.Headers.HeaderQuality
+    :hidden:
 
 .. dn:class:: Microsoft.Net.Http.Headers.HeaderQuality
 
@@ -62,26 +64,30 @@ Fields
     
         
     
+        
         Quality factor to indicate a perfect match.
     
         
+        :rtype: System.Double
     
         
         .. code-block:: csharp
     
-           public const double Match
+            public const double Match = 1
     
     .. dn:field:: Microsoft.Net.Http.Headers.HeaderQuality.NoMatch
     
         
     
+        
         Quality factor to indicate no match.
     
         
+        :rtype: System.Double
     
         
         .. code-block:: csharp
     
-           public const double NoMatch
+            public const double NoMatch = 0
     
 

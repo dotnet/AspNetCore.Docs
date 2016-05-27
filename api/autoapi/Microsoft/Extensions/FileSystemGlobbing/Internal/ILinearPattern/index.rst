@@ -5,12 +5,17 @@ ILinearPattern Interface
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -25,20 +30,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface ILinearPattern : IPattern
+    public interface ILinearPattern : IPattern
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/ILinearPattern.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
 
@@ -53,11 +55,14 @@ Properties
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern.Segments
     
         
-        :rtype: System.Collections.Generic.IList{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment}
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment<Microsoft.Extensions.FileSystemGlobbing.Internal.IPathSegment>}
     
         
         .. code-block:: csharp
     
-           IList<IPathSegment> Segments { get; }
+            IList<IPathSegment> Segments
+            {
+                get;
+            }
     
 

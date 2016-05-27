@@ -1,7 +1,7 @@
 Consumer APIs Overview
 ======================
 
-The IDataProtectionProvider and IDataProtector interfaces are the basic interfaces through which consumers use the data protection system. They are located in the Microsoft.AspNet.DataProtection.Interfaces package.
+The IDataProtectionProvider and IDataProtector interfaces are the basic interfaces through which consumers use the data protection system. They are located in the Microsoft.AspNetCore.DataProtection.Interfaces package.
 
 IDataProtectionProvider
 -----------------------
@@ -38,7 +38,7 @@ The following sample demonstrates three concepts:
         :emphasize-lines: 26,34-40
         :linenos:
 
-The package Microsoft.AspNet.DataProtection.Interfaces contains an extension method IServiceProvider.GetDataProtector as a developer convenience. It encapsulates as a single operation both retrieving an IDataProtectionProvider from the service provider and calling IDataProtectionProvider.CreateProtector. The following sample demonstrates its usage.
+The package Microsoft.AspNetCore.DataProtection.Interfaces contains an extension method IServiceProvider.GetDataProtector as a developer convenience. It encapsulates as a single operation both retrieving an IDataProtectionProvider from the service provider and calling IDataProtectionProvider.CreateProtector. The following sample demonstrates its usage.
 
 .. literalinclude:: overview/samples/getdataprotector.cs
         :language: none

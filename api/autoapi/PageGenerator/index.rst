@@ -24,6 +24,18 @@ PageGenerator Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,9 @@ PageGenerator Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`PageGenerator.Program`
+    class :dn:cls:`Program`
+        .. object: type=class name=PageGenerator.Program
+
         
 
 

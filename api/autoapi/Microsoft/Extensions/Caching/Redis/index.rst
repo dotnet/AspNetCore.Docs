@@ -28,6 +28,26 @@ Microsoft.Extensions.Caching.Redis Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -39,11 +59,16 @@ Microsoft.Extensions.Caching.Redis Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Redis.RedisCache`
+    class :dn:cls:`RedisCache`
+        .. object: type=class name=Microsoft.Extensions.Caching.Redis.RedisCache
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.Redis.RedisCacheOptions`
+    class :dn:cls:`RedisCacheOptions`
+        .. object: type=class name=Microsoft.Extensions.Caching.Redis.RedisCacheOptions
+
         
+        Configuration options for :any:`Microsoft.Extensions.Caching.Redis.RedisCache`\.
 
 

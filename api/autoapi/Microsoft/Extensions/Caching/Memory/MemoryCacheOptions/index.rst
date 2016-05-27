@@ -5,12 +5,17 @@ MemoryCacheOptions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Memory
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MemoryCacheOptions : IOptions<MemoryCacheOptions>
+    public class MemoryCacheOptions : IOptions<MemoryCacheOptions>
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Memory/MemoryCacheOptions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions
 
@@ -66,7 +68,11 @@ Properties
         
         .. code-block:: csharp
     
-           public ISystemClock Clock { get; set; }
+            public ISystemClock Clock
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.CompactOnMemoryPressure
     
@@ -76,7 +82,11 @@ Properties
         
         .. code-block:: csharp
     
-           public bool CompactOnMemoryPressure { get; set; }
+            public bool CompactOnMemoryPressure
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.ExpirationScanFrequency
     
@@ -86,9 +96,13 @@ Properties
         
         .. code-block:: csharp
     
-           public TimeSpan ExpirationScanFrequency { get; set; }
+            public TimeSpan ExpirationScanFrequency
+            {
+                get;
+                set;
+            }
     
-    .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.Microsoft.Extensions.OptionsModel.IOptions<Microsoft.Extensions.Caching.Memory.MemoryCacheOptions>.Value
+    .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Caching.Memory.MemoryCacheOptions>.Value
     
         
         :rtype: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions
@@ -96,6 +110,9 @@ Properties
         
         .. code-block:: csharp
     
-           MemoryCacheOptions IOptions<MemoryCacheOptions>.Value { get; }
+            MemoryCacheOptions IOptions<MemoryCacheOptions>.Value
+            {
+                get;
+            }
     
 

@@ -5,17 +5,21 @@ ISystemClock Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Abstracts the system clock to facilitate testing.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Internal`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface ISystemClock
+    public interface ISystemClock
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/Internal/ISystemClock.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Internal.ISystemClock
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Internal.ISystemClock
 
@@ -59,6 +60,7 @@ Properties
     
         
     
+        
         Retrieves the current system time in UTC.
     
         
@@ -67,6 +69,9 @@ Properties
         
         .. code-block:: csharp
     
-           DateTimeOffset UtcNow { get; }
+            DateTimeOffset UtcNow
+            {
+                get;
+            }
     
 

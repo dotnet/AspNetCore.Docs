@@ -5,17 +5,21 @@ LoggerFactory Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Summary description for LoggerFactory
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging`
+Assemblies
+    * Microsoft.Extensions.Logging
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class LoggerFactory : ILoggerFactory, IDisposable
+    public class LoggerFactory : ILoggerFactory, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging/LoggerFactory.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.LoggerFactory
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.LoggerFactory
 
@@ -66,19 +67,19 @@ Methods
     .. dn:method:: Microsoft.Extensions.Logging.LoggerFactory.AddProvider(Microsoft.Extensions.Logging.ILoggerProvider)
     
         
-        
+    
         
         :type provider: Microsoft.Extensions.Logging.ILoggerProvider
     
         
         .. code-block:: csharp
     
-           public void AddProvider(ILoggerProvider provider)
+            public void AddProvider(ILoggerProvider provider)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerFactory.CreateLogger(System.String)
     
         
-        
+    
         
         :type categoryName: System.String
         :rtype: Microsoft.Extensions.Logging.ILogger
@@ -86,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-           public ILogger CreateLogger(string categoryName)
+            public ILogger CreateLogger(string categoryName)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerFactory.Dispose()
     
@@ -95,25 +96,6 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.LoggerFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.LoggerFactory.MinimumLevel
-    
-        
-        :rtype: Microsoft.Extensions.Logging.LogLevel
-    
-        
-        .. code-block:: csharp
-    
-           public LogLevel MinimumLevel { get; set; }
+            public void Dispose()
     
 

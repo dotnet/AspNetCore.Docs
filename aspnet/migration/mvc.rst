@@ -37,15 +37,15 @@ Configure the site to use MVC
 
 Open the *project.json* file.
 
-- Add ``Microsoft.AspNet.Mvc`` and ``Microsoft.AspNet.StaticFiles`` to the ``dependencies`` property:
+- Add ``Microsoft.AspNetCore.Mvc`` and ``Microsoft.AspNetCore.StaticFiles`` to the ``dependencies`` property:
 - Add the "prepublish" line to the "scripts" section:
 
 .. literalinclude:: mvc/samples/WebApp1/src/WebApp1/project.json
   :language: json
   :emphasize-lines: 7-8, 47
 
-- ``Microsoft.AspNet.Mvc`` Installs in the ASP.NET Core MVC framework package
-- ``Microsoft.AspNet.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :doc:`/fundamentals/static-files`).
+- ``Microsoft.AspNetCore.Mvc`` Installs in the ASP.NET Core MVC framework package
+- ``Microsoft.AspNetCore.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :doc:`/fundamentals/static-files`).
 - The "scripts"/"prepublish" line is needed for Gulp, Bower and NPM. We'll talk about that later.
 
 - Open the *Startup.cs* file and change the code to match the following:
@@ -103,7 +103,7 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 Controllers and views
 ---------------------
 
-- Copy each of the methods from the ASP.NET MVC ``HomeController`` to the new ``HomeController``. Note that in ASP.NET MVC, the built-in template's controller action method return type is `ActionResult <https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult(v=vs.118).aspx>`__; in ASP.NET Core MVC the actions return `IActionResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/IActionResult/index.html>`__ instead. ``ActionResult`` implements ``IActionResult``, so there is no need to change the return type of your action methods.
+- Copy each of the methods from the ASP.NET MVC ``HomeController`` to the new ``HomeController``. Note that in ASP.NET MVC, the built-in template's controller action method return type is `ActionResult <https://msdn.microsoft.com/en-us/library/system.web.mvc.actionresult(v=vs.118).aspx>`__; in ASP.NET Core MVC the actions return `IActionResult <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IActionResult/index.html>`__ instead. ``ActionResult`` implements ``IActionResult``, so there is no need to change the return type of your action methods.
 - Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 - Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the ``About`` and ``Contact`` views, so you'll have to invoke them from the browser (replace **2468** with the port number used in your project).
 

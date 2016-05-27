@@ -5,12 +5,17 @@ RecursiveWildcardSegment Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,44 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class RecursiveWildcardSegment : IPathSegment
+    public class RecursiveWildcardSegment : IPathSegment
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PathSegments/RecursiveWildcardSegment.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment.Match(System.String)
-    
-        
-        
-        
-        :type value: System.String
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-           public bool Match(string value)
-    
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment
 
 Properties
 ----------
@@ -88,6 +68,31 @@ Properties
         
         .. code-block:: csharp
     
-           public bool CanProduceStem { get; }
+            public bool CanProduceStem
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment.Match(System.String)
+    
+        
+    
+        
+        :type value: System.String
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Match(string value)
     
 

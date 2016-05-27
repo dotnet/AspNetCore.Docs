@@ -5,12 +5,17 @@ StringLocalizerExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization`
+Assemblies
+    * Microsoft.Extensions.Localization.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class StringLocalizerExtensions
+    public class StringLocalizerExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization.Abstractions/StringLocalizerExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Localization.StringLocalizerExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.StringLocalizerExtensions
 
@@ -62,75 +64,78 @@ Methods
     
         
     
-        Gets all string resources including those for ancestor cultures.
+        
+        Gets all string resources including those for parent cultures.
     
         
+    
         
-        
-        :param stringLocalizer: The .
+        :param stringLocalizer: The :any:`Microsoft.Extensions.Localization.IStringLocalizer`\.
         
         :type stringLocalizer: Microsoft.Extensions.Localization.IStringLocalizer
-        :rtype: System.Collections.Generic.IEnumerable{Microsoft.Extensions.Localization.LocalizedString}
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Localization.LocalizedString<Microsoft.Extensions.Localization.LocalizedString>}
         :return: The string resources.
     
         
         .. code-block:: csharp
     
-           public static IEnumerable<LocalizedString> GetAllStrings(IStringLocalizer stringLocalizer)
+            public static IEnumerable<LocalizedString> GetAllStrings(IStringLocalizer stringLocalizer)
     
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizerExtensions.GetString(Microsoft.Extensions.Localization.IStringLocalizer, System.String)
     
         
     
+        
         Gets the string resource with the given name.
     
         
+    
         
-        
-        :param stringLocalizer: The .
+        :param stringLocalizer: The :any:`Microsoft.Extensions.Localization.IStringLocalizer`\.
         
         :type stringLocalizer: Microsoft.Extensions.Localization.IStringLocalizer
-        
+    
         
         :param name: The name of the string resource.
         
         :type name: System.String
         :rtype: Microsoft.Extensions.Localization.LocalizedString
-        :return: The string resource as a <see cref="T:Microsoft.Extensions.Localization.LocalizedString" />.
+        :return: The string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
     
         
         .. code-block:: csharp
     
-           public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name)
+            public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name)
     
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizerExtensions.GetString(Microsoft.Extensions.Localization.IStringLocalizer, System.String, System.Object[])
     
         
     
+        
         Gets the string resource with the given name and formatted with the supplied arguments.
     
         
+    
         
-        
-        :param stringLocalizer: The .
+        :param stringLocalizer: The :any:`Microsoft.Extensions.Localization.IStringLocalizer`\.
         
         :type stringLocalizer: Microsoft.Extensions.Localization.IStringLocalizer
-        
+    
         
         :param name: The name of the string resource.
         
         :type name: System.String
-        
+    
         
         :param arguments: The values to format the string with.
         
-        :type arguments: System.Object[]
+        :type arguments: System.Object<System.Object>[]
         :rtype: Microsoft.Extensions.Localization.LocalizedString
-        :return: The formatted string resource as a <see cref="T:Microsoft.Extensions.Localization.LocalizedString" />.
+        :return: The formatted string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
     
         
         .. code-block:: csharp
     
-           public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name, params object[] arguments)
+            public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name, params object[] arguments)
     
 

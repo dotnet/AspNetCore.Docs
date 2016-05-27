@@ -5,17 +5,21 @@ DirectoryBrowserServiceExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for adding directory browser services.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.StaticFiles
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class DirectoryBrowserServiceExtensions
+    public class DirectoryBrowserServiceExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/staticfiles/blob/master/src/Microsoft.AspNet.StaticFiles/DirectoryBrowserServiceExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions
 
@@ -67,17 +68,21 @@ Methods
     
         
     
+        
         Adds directory browser middleware services.
     
         
+    
         
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddDirectoryBrowser(IServiceCollection services)
+            public static IServiceCollection AddDirectoryBrowser(IServiceCollection services)
     
 

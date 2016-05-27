@@ -5,12 +5,17 @@ ConsoleLogScope Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Console`
+Assemblies
+    * Microsoft.Extensions.Logging.Console
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,57 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ConsoleLogScope
+    public class ConsoleLogScope
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Console/ConsoleLogScope.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogScope
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogScope
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.Push(System.String, System.Object)
-    
-        
-        
-        
-        :type name: System.String
-        
-        
-        :type state: System.Object
-        :rtype: System.IDisposable
-    
-        
-        .. code-block:: csharp
-    
-           public static IDisposable Push(string name, object state)
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.ToString()
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-           public override string ToString()
-    
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogScope
 
 Properties
 ----------
@@ -101,7 +68,11 @@ Properties
         
         .. code-block:: csharp
     
-           public static ConsoleLogScope Current { get; set; }
+            public static ConsoleLogScope Current
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.Parent
     
@@ -111,6 +82,44 @@ Properties
         
         .. code-block:: csharp
     
-           public ConsoleLogScope Parent { get; }
+            public ConsoleLogScope Parent
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogScope
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.Push(System.String, System.Object)
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type state: System.Object
+        :rtype: System.IDisposable
+    
+        
+        .. code-block:: csharp
+    
+            public static IDisposable Push(string name, object state)
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.ToString()
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string ToString()
     
 

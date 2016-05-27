@@ -5,12 +5,17 @@ EnvironmentVariablesConfigurationProvider Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration.EnvironmentVariables`
+Assemblies
+    * Microsoft.Extensions.Configuration.EnvironmentVariables
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,20 +39,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class EnvironmentVariablesConfigurationProvider : ConfigurationProvider, IConfigurationProvider
+    public class EnvironmentVariablesConfigurationProvider : ConfigurationProvider, IConfigurationProvider
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.EnvironmentVariables/EnvironmentVariablesConfigurationProvider.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider
 
@@ -66,19 +68,19 @@ Constructors
         
         .. code-block:: csharp
     
-           public EnvironmentVariablesConfigurationProvider()
+            public EnvironmentVariablesConfigurationProvider()
     
     .. dn:constructor:: Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider.EnvironmentVariablesConfigurationProvider(System.String)
     
         
-        
+    
         
         :type prefix: System.String
     
         
         .. code-block:: csharp
     
-           public EnvironmentVariablesConfigurationProvider(string prefix)
+            public EnvironmentVariablesConfigurationProvider(string prefix)
     
 
 Methods
@@ -96,6 +98,6 @@ Methods
         
         .. code-block:: csharp
     
-           public override void Load()
+            public override void Load()
     
 

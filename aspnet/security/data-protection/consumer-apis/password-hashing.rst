@@ -1,7 +1,7 @@
 Password Hashing
 ================
 
-The data protection code base includes a package *Microsoft.AspNet.Cryptography.KeyDerivation* which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
+The data protection code base includes a package *Microsoft.AspNetCore.Cryptography.KeyDerivation* which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
 
 The package currently offers a method ``KeyDerivation.Pbkdf2`` which allows hashing a password using the `PBKDF2 algorithm <https://tools.ietf.org/html/rfc2898#section-5.2>`_. This API is very similar to the .NET Framework's existing `Rfc2898DeriveBytes type <https://msdn.microsoft.com/en-us/library/System.Security.Cryptography.Rfc2898DeriveBytes(v=vs.110).aspx>`_, but there are three important distinctions:
 

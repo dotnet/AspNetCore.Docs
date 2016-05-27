@@ -5,17 +5,21 @@ AuthorizationServiceCollectionExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for setting up authorization services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Authorization
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class AuthorizationServiceCollectionExtensions
+    public class AuthorizationServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/security/blob/master/src/Microsoft.AspNet.Authorization/AuthorizationServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions
 
@@ -67,45 +68,47 @@ Methods
     
         
     
-        Adds authorization services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+        
+        Adds authorization services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\. 
     
         
+    
         
-        
-        :param services: The  to add services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: A reference to this instance after the operation has completed.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddAuthorization(IServiceCollection services)
+            public static IServiceCollection AddAuthorization(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.Authorization.AuthorizationOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Authorization.AuthorizationOptions>)
+    
+        
+    
+        
+        Adds authorization services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\. 
     
         
     
-        Adds authorization services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
-    
         
-        
-        
-        :param services: The  to add services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
+        :param configure: An action delegate to configure the provided :any:`Microsoft.AspNetCore.Authorization.AuthorizationOptions`\.
         
-        :param configure: An action delegate to configure the provided .
-        
-        :type configure: System.Action{Microsoft.AspNet.Authorization.AuthorizationOptions}
+        :type configure: System.Action<System.Action`1>{Microsoft.AspNetCore.Authorization.AuthorizationOptions<Microsoft.AspNetCore.Authorization.AuthorizationOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: A reference to this instance after the operation has completed.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddAuthorization(IServiceCollection services, Action<AuthorizationOptions> configure)
+            public static IServiceCollection AddAuthorization(IServiceCollection services, Action<AuthorizationOptions> configure)
     
 

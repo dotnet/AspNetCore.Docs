@@ -5,17 +5,21 @@ StringLocalizer<TResourceSource> Class
 
 
 
-.. contents:: 
+
+
+
+Provides strings for <em>TResourceSource</em>.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization`
+Assemblies
+    * Microsoft.Extensions.Localization.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-Provides strings for TResourceSource\.
-
-
 
 
 
@@ -38,22 +42,63 @@ Syntax
 
 .. code-block:: csharp
 
-   public class StringLocalizer<TResourceSource> : IStringLocalizer<TResourceSource>, IStringLocalizer
+    public class StringLocalizer<TResourceSource> : IStringLocalizer<TResourceSource>, IStringLocalizer
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization.Abstractions/StringLocalizerOfT.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Localization.StringLocalizer`1
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.Item[System.String]
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedString this[string name]
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedString this[string name, params object[] arguments]
+            {
+                get;
+            }
+    
 
 Constructors
 ------------
@@ -67,19 +112,20 @@ Constructors
     
         
     
+        
         Creates a new :any:`Microsoft.Extensions.Localization.StringLocalizer\`1`\.
     
         
+    
         
-        
-        :param factory: The  to use.
+        :param factory: The :any:`Microsoft.Extensions.Localization.IStringLocalizerFactory` to use.
         
         :type factory: Microsoft.Extensions.Localization.IStringLocalizerFactory
     
         
         .. code-block:: csharp
     
-           public StringLocalizer(IStringLocalizerFactory factory)
+            public StringLocalizer(IStringLocalizerFactory factory)
     
 
 Methods
@@ -93,20 +139,20 @@ Methods
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.GetAllStrings(System.Boolean)
     
         
+    
         
-        
-        :type includeAncestorCultures: System.Boolean
-        :rtype: System.Collections.Generic.IEnumerable{Microsoft.Extensions.Localization.LocalizedString}
+        :type includeParentCultures: System.Boolean
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Localization.LocalizedString<Microsoft.Extensions.Localization.LocalizedString>}
     
         
         .. code-block:: csharp
     
-           public IEnumerable<LocalizedString> GetAllStrings(bool includeAncestorCultures)
+            public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
     
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.WithCulture(System.Globalization.CultureInfo)
     
         
-        
+    
         
         :type culture: System.Globalization.CultureInfo
         :rtype: Microsoft.Extensions.Localization.IStringLocalizer
@@ -114,44 +160,6 @@ Methods
         
         .. code-block:: csharp
     
-           public virtual IStringLocalizer WithCulture(CultureInfo culture)
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.Item[System.String]
-    
-        
-        
-        
-        :type name: System.String
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-           public virtual LocalizedString this[string name] { get; }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.StringLocalizer<TResourceSource>.Item[System.String, System.Object[]]
-    
-        
-        
-        
-        :type name: System.String
-        
-        
-        :type arguments: System.Object[]
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-           public virtual LocalizedString this[string name, params object[] arguments] { get; }
+            public virtual IStringLocalizer WithCulture(CultureInfo culture)
     
 

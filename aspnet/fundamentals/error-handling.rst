@@ -14,7 +14,7 @@ When errors occur in your ASP.NET app, you can handle them in a variety of ways,
 Configuring an Exception Handling Page
 --------------------------------------
 
-You configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about :doc:`startup`). You can add a simple exception page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNet.Diagnostics`` to the project and then add one line to ``Configure()`` in ``Startup.cs``:
+You configure the pipeline for each request in the ``Startup`` class's ``Configure()`` method (learn more about :doc:`startup`). You can add a simple exception page, meant only for use during development, very easily. All that's required is to add a dependency on ``Microsoft.AspNetCore.Diagnostics`` to the project and then add one line to ``Configure()`` in ``Startup.cs``:
 
 .. literalinclude:: error-handling/sample/src/ErrorHandlingSample/Startup.cs
 	:language: c#
