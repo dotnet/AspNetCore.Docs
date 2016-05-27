@@ -3,6 +3,8 @@
 Custom Policy-Based Authorization
 =================================
 
+By `Rick Anderson`_
+
 Underneath the covers the :ref:`role authorization <security-authorization-role-based>` and :ref:`claims authorization <security-authorization-claims-based>` make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure. 
 
 An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, which normally takes part in`` ConfigureServices()`` in the *Startup.cs* file.
@@ -95,7 +97,7 @@ Our minimum age handler might look like this:
      }
  }
 
-In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once a claim is successful we call ``context.Succeed()`` passing in the requirement that has been successful as a parameter.
+In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call ``context.Succeed()`` passing in the requirement that has been successful as a parameter.
 
 .. _security-authorization-policies-based-handler-registration:
 
