@@ -1,13 +1,13 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace CustomConfigurationProvider
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             // work with with a builder using multiple calls
             var builder = new ConfigurationBuilder();
@@ -19,7 +19,7 @@ namespace CustomConfigurationProvider
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddEntityFrameworkConfigSource(options =>
+                .AddEntityFrameworkConfig(options =>
                     options.UseSqlServer(connectionStringConfig.GetConnectionString("DefaultConnection"))
                 )
                 .Build();

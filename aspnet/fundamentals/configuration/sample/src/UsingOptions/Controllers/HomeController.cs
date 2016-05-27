@@ -8,17 +8,14 @@ namespace UsingOptions.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IOptions<MyOptions> _optionsAccessor;
+
         public HomeController(IOptions<MyOptions> optionsAccessor)
         {
-            Options = optionsAccessor.Value;
+            _optionsAccessor = optionsAccessor;
         }
-
-        MyOptions Options { get; }
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View(Options);
-        }
+        public IActionResult Index() => View(_optionsAccessor.Value);
     }
 }
