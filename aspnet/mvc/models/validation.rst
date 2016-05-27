@@ -34,7 +34,7 @@ Simply reading through the model reveals the rules about data for this app, maki
 - ``[EmailAddress]``: Validates the property has an email format.
 - ``[Phone]``: Validates the property has a telephone format.
 - ``[Range]``: Validates the property value falls within the given range.
-- ``[RegularExpression]``: Validates that the data matches a regular expression.
+- ``[RegularExpression]``: Validates that the data matches the specified regular expression.
 - ``[Required]``: Makes a property required.
 - ``[StringLength]``: Validates that a string property has at most the given maximum length.
 - ``[Url]``: Validates the property has a URL format.
@@ -81,7 +81,7 @@ In the following sample, a business rule that states that users may not set the 
    
 The ``movie`` variable above represents a ``Movie`` object that contains the data from the form submission to validate. In this case, the validation code checks the date and genre in the ``IsValid`` method of the ``ClassicMovieAttribute`` class as per the rules. Upon successful validation ``IsValid`` returns a ``ValidationResult.Success`` code, and when validation fails, a ``ValidationResult`` with an error message. When a user modifies the ``Genre`` field and submits the form, the ``IsValid`` method of the ``ClassicMovieAttribute`` will verify whether the movie is a classic. Like any built-in attribute, apply the ``ClassicMovieAttribute`` to a property such as ``ReleaseDate`` to ensure validation happens, as shown in the previous code sample. Since the example works only with ``Movie`` types, a better option is to use ``IValidatableObject`` as shown in the following paragraph.
 
-Alternatively, this same code could be placed in the model instead by implementing ``IValidatableObject`` which contains a ``Validate`` method. While custom validation attributes work well for validating individual properties, implementing ``IValidatableObject`` can be used to implement class-level validation as seen here.
+Alternatively, this same code could be placed in the model instead by implementing the ``Validate`` method on the ``IValidatableObject`` interface. While custom validation attributes work well for validating individual properties, implementing ``IValidatableObject`` can be used to implement class-level validation as seen here.
 
  .. literalinclude:: validation/sample/MovieIValidatable.cs
    :language: c#
@@ -152,8 +152,8 @@ You may create client side logic for your custom attribute, and `unobtrusive val
 
 .. literalinclude:: validation/sample/ClassicMovieAttribute.cs
  :language: c#
- :lines: 39-44
- :dedent: 8
+ :lines: 11-41
+ :dedent: 4
  
 Attributes that implement this interface can add HTML attributes to generated fields. Examining the output for the ``ReleaseDate`` element reveals HTML that is similar to the previous example, except now there is a ``data-val-classicmovie`` attribute that was defined in the ``GetClientValidationRules`` method of ``IClientModelValidator``.
 
@@ -200,6 +200,6 @@ The second step is putting the validation code in the corresponding action metho
  
 .. literalinclude:: validation/sample/UsersController.cs
  :language: c#
- :lines: 6-24
+ :lines: 6-23
  
 Now when users enter an email, JavaScript in the view makes a remote call to see if that email has been taken, and if so, then displays the error message. Otherwise, the user can submit the form as usual.  

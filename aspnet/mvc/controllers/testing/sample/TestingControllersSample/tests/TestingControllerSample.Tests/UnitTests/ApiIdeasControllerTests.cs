@@ -34,7 +34,6 @@ namespace TestingControllerSample.Tests.UnitTests
             var result = Assert.IsType<HttpNotFoundObjectResult>(controller.Create(new NewIdeaModel()));
         }
 
-
         [Fact]
         public void CreateReturnsNewlyCreatedIdeaForSession()
         {
