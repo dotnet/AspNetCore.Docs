@@ -1,7 +1,7 @@
 {
   "profiles": {
     "ConfigConsole": {
-      "commandName": "ConfigConsole",
+      "commandName": "Project",
       "commandLineArgs": "--username Steve"
     }
   }

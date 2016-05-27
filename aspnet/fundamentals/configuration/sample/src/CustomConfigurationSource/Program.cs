@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace CustomConfigurationProvider
+namespace CustomConfigurationSource
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             // work with with a builder using multiple calls
             var builder = new ConfigurationBuilder();

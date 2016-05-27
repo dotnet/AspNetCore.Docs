@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CustomConfigurationProvider
+namespace CustomConfigurationSource
 {
     public class ConfigurationContext : DbContext
     {

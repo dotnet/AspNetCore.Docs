@@ -2,7 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace CustomConfigurationProvider
+namespace CustomConfigurationSource
 {
     public class EntityFrameworkConfigurationSource : IConfigurationSource
     {

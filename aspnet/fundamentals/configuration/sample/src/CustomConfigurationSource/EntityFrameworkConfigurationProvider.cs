@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Linq;
 
-namespace CustomConfigurationProvider
+namespace CustomConfigurationSource
 {
     public class EntityFrameworkConfigurationProvider : ConfigurationProvider
     {
@@ -29,7 +29,8 @@ namespace CustomConfigurationProvider
             }
         }
 
-        private IDictionary<string, string> CreateAndSaveDefaultValues(ConfigurationContext dbContext)
+        private static IDictionary<string, string> CreateAndSaveDefaultValues(
+            ConfigurationContext dbContext)
         {
             var configValues = new Dictionary<string, string>
                 {
@@ -37,7 +38,7 @@ namespace CustomConfigurationProvider
                     { "key2", "value_from_ef_2" }
                 };
             dbContext.Values.AddRange(configValues
-                .Select(kvp => new ConfigurationValue() { Id = kvp.Key, Value = kvp.Value })
+                .Select(kvp => new ConfigurationValue { Id = kvp.Key, Value = kvp.Value })
                 .ToArray());
             dbContext.SaveChanges();
             return configValues;

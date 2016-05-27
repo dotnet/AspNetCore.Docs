@@ -1,4 +1,4 @@
-﻿namespace CustomConfigurationProvider
+﻿namespace CustomConfigurationSource
 {
     public class ConfigurationValue
     {

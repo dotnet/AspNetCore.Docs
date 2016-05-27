@@ -16,9 +16,6 @@ namespace UsingOptions.Controllers
         MyOptions Options { get; }
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View(Options);
-        }
+        public IActionResult Index() => View(Options);
     }
 }
