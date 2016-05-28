@@ -37,7 +37,7 @@ Since ASP.NET Core apps are just console apps, you must define an entry point fo
   }
 
 
-The web root of your application is no longer specified in your project.json file. It is instead defined when setting up the web host and defaults to wwwroot. Call the UseWebRoot method to specify a web root folder. Alternatively you can enable specifying the web root folder in configuration by calling the UseConfiguration method. Similarly the server URLs that your application listens on can be specified using the UseServerUrls method or through configuration.
+The web root of your application is no longer specified in your project.json file. It is instead defined when setting up the web host and defaults to wwwroot. Call the ``UseWebRoot`` method to specify a web root folder. Alternatively you can enable specifying the web root folder in configuration by calling the ``UseConfiguration`` method. Similarly the server URLs that your application listens on can be specified using the ``UseUrls`` method or through configuration.
 
 Additionally, you must turn on server garbage collection in ``project.json`` or, ``app.config`` when running ASP.NET projects on the full .NET framework.
 
