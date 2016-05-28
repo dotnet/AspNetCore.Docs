@@ -146,7 +146,7 @@ You can have multiple ``IConfigureOptions<TOption>`` services for the same optio
 Writing custom providers
 ------------------------
 
-In addition to using the built-in configuration sources, you can also write your own configuration providers. To do so, you simply implement the ``IConfigurationSource`` interface, which exposes a ``Build`` method. The build method configures and returns an ``IConfigurationProvider``.
+In addition to using the built-in configuration providers, you can also write your own. To do so, you simply implement the ``IConfigurationSource`` interface, which exposes a ``Build`` method. The build method configures and returns an ``IConfigurationProvider``.
 
 Example: Entity Framework Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -201,4 +201,4 @@ Run the application to see the configured values:
 Summary
 -------
 
-ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in sources, allowing for extreme flexibility. 
+ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility. 
