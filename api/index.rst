@@ -1,7 +1,7 @@
 .. _aspnet-api:
 
 ASP.NET Core API Reference Documentation
-=====================================
+=========================================
 
 .. toctree::
    :includehidden:
