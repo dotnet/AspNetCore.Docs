@@ -49,7 +49,6 @@ The test project's *project.json* file should add dependencies on the test frame
 .. literalinclude:: unit-testing/sample/test/PrimeWeb.UnitTests/project.json
   :language: none
   :lines: 25-29
-  :linenos:
   :dedent: 2
 
 As other test frameworks release support for .NET Core, we will link to them here. We are simply using xUnit as one example of the many different testing frameworks that are available for .NET development.
