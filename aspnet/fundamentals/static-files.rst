@@ -35,6 +35,8 @@ In order for static files to be served, you must configure the :doc:`middleware`
     app.UseStaticFiles();
     ...
 
+Also, if you are starting from scratch, don't forget to add a call to ``.UseContentRoot(Directory.GetCurrentDirectory())`` on the ``WebHostBuilder`` in the main entry method.
+
 Now, let's say that you have a project hierarchy where the static files you wish to serve are outside the webroot. For example,let's take a simple layout like the following:
 
   - wwwroot
