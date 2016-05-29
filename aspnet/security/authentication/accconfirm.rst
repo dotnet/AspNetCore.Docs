@@ -101,6 +101,7 @@ At this time, the contents of the *project.json* file are not encrypted. The *pr
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add the dependecy ``Microsoft.Extensions.Options.ConfigurationExtensions`` in the project.json file.
 
 Add ``AuthMessageSenderOptions`` to the service container at the end of the ``ConfigureServices`` method in the *Startup.cs* file:
 
