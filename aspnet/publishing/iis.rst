@@ -106,17 +106,23 @@ Common Errors
 
 The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click **Show comments** to open the DISQUS panel).
 
-To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and :doc:`enable logging </fundamentals/logging>` in the application. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable application logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable application logging.
+To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and enable module logging. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable module logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable module logging.
 
-A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application.
+A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application. See :doc:`Logging </fundamentals/logging>` for more information.
 
 Common errors and general troubleshooting instructions:
 
-- Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80070002 - The system cannot find the file specified*.
+Installer Unable to Obtain VC++ Redistributable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Installer Exception:** Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80070002 - The system cannot find the file specified*.
 
 Troubleshooting:
 
-  - If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
+- If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
+
+`.UseUrls(...)` Mispositioned
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
@@ -124,7 +130,10 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+
+**platform** Conflicts with RID
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
 - **Application Log:** Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll
@@ -132,7 +141,10 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+- If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+
+URI Endpoint Wrong or Stopped Website
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** ERR_CONNECTION_REFUSED
 - **Application Log:** No entry
@@ -140,14 +152,20 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - Confirm you are using the correct URI endpoint for the application. Check your bindings.
-  - Confirm that the IIS website is not in the `Stopped` state.
+- Confirm you are using the correct URI endpoint for the application. Check your bindings.
+- Confirm that the IIS website is not in the `Stopped` state.
+
+CoreWebEngine or W3SVC Server Features Disabled
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
 
 Troubleshooting:
 
-  - Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+- Confirm that you have enabled the proper server role and features. See `IIS Configuration`_.
+
+Incorrect Website Physical Path or Application Missing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
 - **Application Log:** No entry
@@ -155,7 +173,10 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
+- Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
+
+Incorrect Server Role, Module not Installed, or Incorrect Permissions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
 - **Application Log:** No entry
@@ -163,9 +184,12 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - Confirm that you have enabled the proper server role. See `IIS Configuration`_.
-  - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
-  - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+- Confirm that you have enabled the proper server role. See `IIS Configuration`_.
+- Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
+- Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+
+Incorrect `proecessPath`, Bundle not Installed, or Server not Restarted
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
@@ -173,9 +197,12 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
-  - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
-  - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
+- You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
+- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+
+Incorrect `arguments` of `\<aspNetCore\>` Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
@@ -183,7 +210,10 @@ Troubleshooting:
 
 Troubleshooting:
 
-  - Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+- Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+
+Stopped Application Pool
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 503 Service Unavailable
 - **Application Log:** No entry
@@ -191,7 +221,7 @@ Troubleshooting:
 
 Troubleshooting
 
-  - Confirm that the Application Pool is not in the `Stopped` state.
+- Confirm that the Application Pool is not in the `Stopped` state.
 
 Additional Resources
 --------------------
