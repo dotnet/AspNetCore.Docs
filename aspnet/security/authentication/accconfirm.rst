@@ -110,6 +110,8 @@ Add ``AuthMessageSenderOptions`` to the service container at the end of the ``Co
    :emphasize-lines: 4
    :dedent: 8
 
+.. note:: You may need to add the dependency 'Microsoft.Extensions.Options.ConfigurationExtensions' in the project.json file in order to use the configure extension method.
+
 .. ToDo figure out bolding in next line
 
 Configure the ``AuthMessageSender`` class
