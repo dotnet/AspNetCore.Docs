@@ -13,11 +13,7 @@ Static files, which include HTML files, CSS files, image files, and JavaScript f
 Serving static files
 --------------------
 
-By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``hosting.json`` file where the default is `wwwroot`.
-
-.. code-block:: json 
-
-  "webroot": "wwwroot"
+By default, static files are stored in the `webroot` of your project. The location of `webroot` defaults to ``<content-root>\wwwroot``. Content root defaults to current application base path (the directory from which your application is being executed. For example ``...bin\Debug\netcoreapp1.0\``). During development, it is advisable to change default content root to be the current directory of your application so that your projects `webroot` can be found. To do this, call ``.UseContentRoot(Directory.GetCurrentDirectory())`` on the ``WebHostBuilder``. 
 
 Static files can be stored in any folder under the webroot and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the webroot folder - ``css``, ``images``, and ``js``. In order to directly access an image in the ``images`` subfolder, the URL would look like the following:
 
@@ -34,8 +30,6 @@ In order for static files to be served, you must configure the :doc:`middleware`
     // Add static files to the request pipeline.
     app.UseStaticFiles();
     ...
-
-Also, if you are starting from scratch, don't forget to add a call to ``.UseContentRoot(Directory.GetCurrentDirectory())`` on the ``WebHostBuilder`` in the main entry method.
 
 Now, let's say that you have a project hierarchy where the static files you wish to serve are outside the webroot. For example,let's take a simple layout like the following:
 
