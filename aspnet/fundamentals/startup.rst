@@ -61,11 +61,8 @@ ASP.NET Core provides certain application services and objects during your appli
 IApplicationBuilder
   Used to build the application request pipeline. Available only to the ``Configure`` method in ``Startup``. Learn more about :doc:`request-features`.
 
-IApplicationEnvironment
-  Provides access to the application properties, such as ``ApplicationName``, ``ApplicationVersion``, and ``ApplicationBasePath``. Available to the ``Startup`` constructor and ``Configure`` method.
-
 IHostingEnvironment
-  Provides the current ``EnvironmentName``, ``WebRootPath``, and web root file provider. Available to the ``Startup`` constructor and ``Configure`` method.
+  Provides the current ``EnvironmentName``,``ContentRootPath``, content root file provider, ``WebRootPath``, and web root file provider. Available to the ``Startup`` constructor and ``Configure`` method.
 
 ILoggerFactory
   Provides a mechanism for creating loggers. Available to the ``Startup`` constructor and ``Configure`` method. Learn more about :doc:`logging`.
@@ -76,7 +73,6 @@ IServiceCollection
 Looking at each method in the ``Startup`` class in the order in which they are called, the following services may be requested as parameters:
 
 Startup Constructor
-- ``IApplicationEnvironment``
 - ``IHostingEnvironment``
 - ``ILoggerFactory``
 
@@ -85,7 +81,6 @@ ConfigureServices
 
 Configure
 - ``IApplicationBuilder``
-- ``IApplicationEnvironment``
 - ``IHostingEnvironment``
 - ``ILoggerFactory``
 
