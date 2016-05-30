@@ -90,7 +90,7 @@ The ASP.NET Core hosting model does not directly listen for requests, but instea
 Web root
 --------
 
-The Web root of your application is the root location in your project from which HTTP requests are handled (ex. handling of static file requests). The Web root of an ASP.NET Core application is configured using the "webroot" property in your project.json file.
+The Web root of your application is the root location in your project from which HTTP requests are handled (ex. handling of static file requests).
 
 Configuration
 -------------
