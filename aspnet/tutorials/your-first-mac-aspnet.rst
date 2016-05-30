@@ -80,7 +80,6 @@ The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You
         "version": "1.0.0-rc2-3002702"
       },
       "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
-      "Microsoft.AspNetCore.Server.Kestrel.Https": "1.0.0-rc2-final",
       "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final"
     },
     "frameworks": {
