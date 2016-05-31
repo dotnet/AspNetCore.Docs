@@ -9,11 +9,13 @@ namespace ResponseFormattingSample.Infrastructure
     {
         public List<Author> List()
         {
-            return new List<Author>()
+            return new List<Author>
             {
-                new Author() {Name = "Steve Smith", Twitter = "ardalis"},
-                new Author() {Name="Rick Anderson", Twitter = "RickAndMSFT"}
-            };
+                new Author {Name = "Steve Smith", Twitter = "ardalis"},
+                new Author {Name="Rick Anderson", Twitter = "RickAndMSFT"},
+                new Author {Name="Rachel Appel", Twitter = "rachelappel"},
+                new Author {Name="Daniel Roth", Twitter = "danroth27"}
+            }.OrderBy(a => a.Name).ToList();
         }
 
         public Author GetByAlias(string twitterAlias)

@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using ResponseFormattingSample.Interfaces;
 using ResponseFormattingSample.Model;
+using System.Linq;
 
 namespace ResponseFormattingSample.Controllers.Api
 {
@@ -19,6 +23,19 @@ namespace ResponseFormattingSample.Controllers.Api
         public JsonResult Get()
         {
             return Json(_authorRepository.List());
+        }
+
+        // GET: api/authors/search?namelike=ste
+        [HttpGet("Search")]
+        public IActionResult Search(string namelike)
+        {
+            var result = _authorRepository.List()
+                .Where(a => a.Name.IndexOf(namelike, 0, StringComparison.CurrentCultureIgnoreCase) != -1).ToList();
+            if (!result.Any())
+            {
+                return NotFound(namelike);
+            }
+            return Ok(result);
         }
 
         // GET api/authors/ardalis
