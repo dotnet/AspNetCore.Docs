@@ -37,7 +37,7 @@ Namespace and package ID changes
 
 ASP.NET 5 was renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
 
-All Microsoft.AspNet.\* namespaces are renamed to Microsoft.AspNetCore.\*. 
+All Microsoft.AspNet.\* packages and namespaces are renamed to Microsoft.AspNetCore.\*. 
 The EntityFramework.\* packages and namespaces are changing to Microsoft.EntityFrameworkCore.\*.
 All ASP.NET Core package versions are now 1.0.0-\*.
 Microsoft.Data.Entity.* is now Microsoft.EntityFrameworkCore.*
