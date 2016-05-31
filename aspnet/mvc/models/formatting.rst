@@ -22,7 +22,7 @@ Returning JSON-formatted data:
 
 .. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
   :language: c#
-  :lines: 17-22
+  :lines: 21-26
   :emphasize-lines: 3,5
   :dedent: 8
 
@@ -36,7 +36,7 @@ To return plain text formatted data, use ``ContentResult`` and the ``Content`` h
 
 .. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
   :language: c#
-  :lines: 31-36
+  :lines: 47-52
   :emphasize-lines: 3,5
   :dedent: 8
 
@@ -48,7 +48,7 @@ Note in this case the ``Content-Type`` returned is ``text/plain``. You can also 
 
 .. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
   :language: c#
-  :lines: 38-43
+  :lines: 54-59
   :emphasize-lines: 3,5
   :dedent: 8
 
@@ -59,9 +59,19 @@ Content Negotiation
 
 Content negotiation (*conneg* for short) occurs when the client specifies an Accept header. The default format used by ASP.NET Core MVC is JSON. Negotiation occurs automatically for ``IActionResult`` return types, including results returned using the helper methods ``Ok``, ``BadRequest``, ``Created``, etc. You can also return a model type (a class you've defined as your data transfer type) and the framework will automatically wrap it in an ``ObjectResult`` for you.
 
-(show sample code using Ok, BadRequest, etc.)
+The following action method demonstrates the use of the ``Ok`` and ``NotFound`` helper methods:
 
-(show how to use Fiddler to set an Accept header and the resulting behavior)
+.. literalinclude:: formatting/sample/src/ResponseFormattingSample/Controllers/Api/AuthorsController.cs
+  :language: c#
+  :lines: 28-38
+  :emphasize-lines: 8,10
+  :dedent: 8
+
+Like the previous examples, this one will return JSON-formatted results in response to requests by default. However, you can use a tool like Fiddler to create a request that includes an Accept header, and specify another format. In that case, if the server has a *formatter* that matches the requested format, the results will be returned in that format.
+
+.. image:: formatting/_static/fiddler-composer.png
+
+In the above screenshot, the Fiddler Composer has been used to generate a request, specifying ``Accept: application/xml``. By default, ASP.NET Core MVC only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. You'll see how to add additional formatters in the next section.
 
 (show how returning a null POCO object results in a 204 No Content result)
 

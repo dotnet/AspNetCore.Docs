@@ -7,5 +7,6 @@ namespace ResponseFormattingSample.Interfaces
     {
         List<Author> List();
         Author GetByAlias(string twitterAlias);
+        List<Author> GetByNameSubstring(string nameSubstring);
     }
 }

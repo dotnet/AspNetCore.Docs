@@ -25,12 +25,11 @@ namespace ResponseFormattingSample.Controllers.Api
             return Json(_authorRepository.List());
         }
 
-        // GET: api/authors/search?namelike=ste
+        // GET: api/authors/search?namelike=th
         [HttpGet("Search")]
         public IActionResult Search(string namelike)
         {
-            var result = _authorRepository.List()
-                .Where(a => a.Name.IndexOf(namelike, 0, StringComparison.CurrentCultureIgnoreCase) != -1).ToList();
+            var result = _authorRepository.GetByNameSubstring(namelike);
             if (!result.Any())
             {
                 return NotFound(namelike);

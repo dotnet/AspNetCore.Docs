@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ResponseFormattingSample.Interfaces;
 using ResponseFormattingSample.Model;
@@ -22,6 +23,12 @@ namespace ResponseFormattingSample.Infrastructure
         {
             string loweredAlias = twitterAlias.ToLowerInvariant();
             return List().FirstOrDefault(a => a.Twitter.ToLowerInvariant() == loweredAlias);
+        }
+
+        public List<Author> GetByNameSubstring(string nameSubstring)
+        {
+            return List()
+            .Where(a => a.Name.IndexOf(nameSubstring, 0, StringComparison.CurrentCultureIgnoreCase) != -1).ToList();
         }
     }
 }
