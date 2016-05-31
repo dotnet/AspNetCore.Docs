@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ResponseFormattingSample.Interfaces;
 using ResponseFormattingSample.Model;
 
