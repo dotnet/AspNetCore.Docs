@@ -128,7 +128,7 @@ Replace the generated code with the following:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :lines: 1-13,67-68
+  :lines: 1-14,67-68
 
 This defines an empty controller class. In the next sections, we'll add methods to implement the API.
 
