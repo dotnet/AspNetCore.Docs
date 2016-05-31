@@ -101,6 +101,7 @@ At this time, the contents of the *project.json* file are not encrypted. The *pr
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add the dependecy ``Microsoft.Extensions.Options.ConfigurationExtensions`` in the project.json file.
 
 Add ``AuthMessageSenderOptions`` to the service container at the end of the ``ConfigureServices`` method in the *Startup.cs* file:
 
@@ -109,8 +110,6 @@ Add ``AuthMessageSenderOptions`` to the service container at the end of the ``Co
    :lines: 81-85
    :emphasize-lines: 4
    :dedent: 8
-
-.. note:: You may need to add the dependency 'Microsoft.Extensions.Options.ConfigurationExtensions' in the project.json file in order to use the configure extension method.
 
 .. ToDo figure out bolding in next line
 
