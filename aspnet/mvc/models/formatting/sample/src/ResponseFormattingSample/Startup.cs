@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using ResponseFormattingSample.Infrastructure;
 using ResponseFormattingSample.Interfaces;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
+using Newtonsoft.Json.Serialization;
 
 namespace ResponseFormattingSample
 {
