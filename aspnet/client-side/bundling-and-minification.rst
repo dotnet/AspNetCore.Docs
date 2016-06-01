@@ -143,7 +143,7 @@ The following environment tag will render the unprocessed CSS files when running
   :language: html
   :linenos:
   :lines: 8-11
-  :dedent: 8
+  :dedent: 4
   :emphasize-lines: 3
 
 This environment tag will render the bundled and minified CSS files only when running in ``Production`` or ``Staging``:
@@ -152,7 +152,7 @@ This environment tag will render the bundled and minified CSS files only when ru
   :language: html
   :linenos:
   :lines: 12-17
-  :dedent: 8
+  :dedent: 4
   :emphasize-lines: 5
 
 See Also
