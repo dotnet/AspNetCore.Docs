@@ -16,9 +16,13 @@ In this tutorial, you'll take an existing ASP.NET Core app and deploy it to a Na
 Introduction
 ------------
 
-Windows Server 2016 Technical Preview offers a new installation option: Nano Server. Nano Server is a remotely administered server operating system optimized for private clouds and datacenters. It takes up far less disk space, sets up significantly faster, and requires far fewer updates and restarts than Windows Server. You can learn more about Nano Server from the `official docs <https://msdn.microsoft.com/en-us/library/mt126167.aspx>`_.
+Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official `Nano Server documentation <https://technet.microsoft.com/en-us/library/mt126167.aspx>`__ for more details.  There are 3 ways for you try out Nano Server for yourself:
 
-In this tutorial, we will be using the pre-built `Virtual Hard Disk (VHD) for Nano Server <https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula>`_  from Windows Server Technical Preview 5.
+1.	You can download the Windows Server 2016 Technical Preview 5 ISO file, and build a Nano Server image
+2.	Download the Nano Server developer VHD
+3.	Create a VM in Azure using the Nano Server image in the Azure Gallery. If you don’t have an Azure account, you can get a free 30-day trial
+
+In this tutorial, we will be using the pre-built `Nano Server Developer VHD <https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula>`_  from Windows Server Technical Preview 5.
 
 Before proceeding with this tutorial, you will need the :doc:`published </publishing/index>` output of an existing ASP.NET Core application. Ensure your application is built to run in a **64-bit** process.
 
@@ -66,19 +70,19 @@ Installing the ASP.NET Core Module
 
 The :ref:`ASP.NET Core Module <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. Currently, installing ASP.NET Core Module requires manual steps.
 
-1. Install the target version of .NET Core Windows Server Hosting bundle <http://go.microsoft.com/fwlink/?LinkId=798480>__ on a regular (non-Nano) machine.
+1. Install the target version of .NET Core Windows Server Hosting bundle <http://go.microsoft.com/fwlink/?LinkId=798480>__ on a regular (non-Nano) machine that has IIS enabled.
 
 2. Copy the following files from the non-Nano machine to the Nano machine:
 
-  * *%windir%\\System32\\inetsrv\\aspnetcore.dll*
-  * *%windir%\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml*
+  * *$env:windir\\System32\\inetsrv\\aspnetcore.dll*
+  * *$env:windir\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml*
 
 On the Nano machine you’ll need to copy those two files to their respective locations.
 
 .. code:: ps1
 
-  Copy-Item .\aspnetcore.dll.dll c:\Windows\System32\inetsrv
-  Copy-Item .\aspnetcore_schema.xml c:\Windows\System32\inetsrv\config\schema
+  Copy-Item -ToSession $s -Path .\aspnetcore.dll -Destination C:\Windows\System32\inetsrv
+  Copy-Item -ToSession $s -Path .\aspnetcore_schema.xml -Destination C:\Windows\System32\inetsrv\config\schema
 
 Enabling the ASP.NET Core Module
 --------------------------------
@@ -92,8 +96,6 @@ Execute the following PowerShell script in a remote PowerShell session to enable
 
 Manually Editing *applicationHost.config*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Skip this section if you ran the PowerShell script above. Running the PowerShell script above is the recommended approach to enabling the ASP.NET Core Module; alternatively you can edit
 
 You can skip this section if you already ran the PowerShell script above. Though is not recommended, you can alternatively enable the HttpPlatformHandler by manually editing the *applicationHost.config* file.
 
