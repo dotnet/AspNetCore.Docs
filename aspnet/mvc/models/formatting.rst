@@ -87,10 +87,8 @@ In the sample, a request for a valid author alias will receive a 200 OK response
 
 Content Negotiation Process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you give us a header, we go through list of formatters, find one that can serialize the type to that format.
-If no formatter can support the type being returned, then we will send a 406
-If you ask for XML, but we don't have it, we will return JSON
-If no accept header is given, we will go through the formatters in order and return the first one that can handle the object to be serialized
+
+Content *negotiation* only takes place if an ``Accept`` header appears in the request. If it does, then the framework will enumerate through the list of formatters until it finds one that can serialize the response object into that format. If no formatter is found that can support the type to be returned, then the framework will send a 406 Not Acceptable response code. However, if the request specifies XML, but the XML formatter has not been configured, then the JSON formatter will be used. Likewise, if no header is given, then the first formatter that can handle the object to be returned will be used to serialize the response (in this case, there isn't any negotiation taking place - the server is determining what format it will use).
 
 Browsers and Content Negotiation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -101,14 +99,14 @@ If you would prefer your application honor browser accept headers, you can confi
 
 .. literalinclude:: formatting/sample/src/ResponseFormattingSample/Startup.cs
   :language: c#
-  :lines: 29-33,35,38
+  :lines: 30-34,36,39
   :emphasize-lines: 5
   :dedent: 8
 
 Configuring Formatters
 ----------------------
 
-If your application needs to support additional formats beyond the default of JSON, you can add these as additional dependencies in *project.json* and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by :doc:`model-binding`; output formatters are used to format API responses.
+If your application needs to support additional formats beyond the default of JSON, you can add these as additional dependencies in *project.json* and configure MVC to support them. There are separate formatters for input and output. Input formatters are used by :doc:`model-binding`; output formatters are used to format API responses. You can also configure :doc:`custom-formatters`.
 
 Configuring the JSON Formatter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,7 +137,7 @@ Next, add the ``XmlSerializerOutputFormatter`` to MVC's list of OutputFormatters
 
 .. literalinclude:: formatting/sample/src/ResponseFormattingSample/Startup.cs
   :language: c#
-  :lines: 29-38
+  :lines: 30-39
   :emphasize-lines: 6
   :dedent: 8
 
@@ -155,9 +153,13 @@ Once you've added support for XML formatting, your API methods should return the
 
 .. image:: formatting/_static/xml-response.png
 
+You can see at the top of the image that the GET request was made with an ``Accept: application/xml`` header set. The response at the bottom of the image has a ``Content-Type: application/xml`` header, and you can see at the bottom the ``Author`` object has been serialized to XML.
+
 Making the same request, but with ``application/json`` specified in the ``Accept`` header, results in a JSON formatted response:
 
 .. image:: formatting/_static/json-response-fiddler.png
+
+In this screenshot, you can see the request sets a header of ``Accept: application/json`` and the response specifies the same as its ``Content-Type``. The ``Author`` object is shown in the body of the response, in JSON format.
 
 Forcing a Particular Format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -179,11 +181,37 @@ Some special cases are implemented using built-in formatters, as already describ
 Response Format URL Mappings
 ----------------------------
 
-Clients can request a particular format as part of the URL, such as in the querystring or part of the path, or by using a format-specific file extension (.xml, .json).
+Clients can request a particular format as part of the URL, such as in the querystring or part of the path, or by using a format-specific file extension (.xml, .json). The mapping from request path should be specified in the route the API is using. For example:
 
-You can specify format details within the URL itself, such as via a querystring or part of the path.
+.. code-block:: c#
+
+  [FormatFilter]
+  public class ProductsController
+  {
+  [Route("[controller]/[action]/[id].{format?}")]
+  public Product GetById(int id)
+  
+This route would allow the requested format to be specified as an optional file extension. The ``[FormatFilter]`` attribute checks for the existence of the format value in the ``RouteData`` and will map the output format to the appropriate formatter when the response is created.
+
+.. list-table:: Examples
+  :header-rows: 1
+  
+  * - Route
+    - Behavior
+  * - ``/products/GetById/5`` 
+    - Would use the default output format
+  * - ``/products/GetById/5.json``
+    - Would use the JSON formatter
+  * - ``/products/GetById/5.xml``
+    - Would use the XML formatter (if configured)
 
 Recommendations
 ---------------
 
-Prefer ``IActionResult`` as your return type for data since it allows you to handle error states and different HTTP status codes.
+There are many options when it comes to returning data from API actions. When creating demos or coding something quickly to see if it will work, simple return types may be appropriate. However, for APIs that will be used in production, you should prefer ``IActionResult`` as your return type for data since it allows you to handle error states and different HTTP status codes explicitly.
+
+.. tip:: Prefer ``IActionResult`` as your action return type, since it can effectively handle error states and different HTTP status codes.
+
+Keep your action methods as small and focused as possible. This helps follow the `Don't Repeat Yourself principle <http://deviq.com/don-t-repeat-yourself/>`, and results in code that has fewer bugs and is easier to maintain. Consider :doc:`/mvc/controllers/filters` as an effective means of pulling cross-cutting concerns and policies out of your APIs.
+
+Built properly with :doc:`/fundamentals/dependency-injection`, you should be able to easily unit test your controllers. However, especially if you're relying on filters to apply certain rules, you will also want to add integration tests to your automated test strategy. Learn more about :doc:`/mvc/controllers/testing`.
