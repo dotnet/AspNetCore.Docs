@@ -305,7 +305,6 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'aspnet': ('http://docs.asp.net/en/latest', '../common/aspnet.inv'),
-    'mvc': ('http://docs.asp.net/projects/mvc/en/latest', '../common/mvc.inv'),
+    'aspnet': ('http://docs.asp.net/en/latest', '../common/aspnet.inv')
 }
 
