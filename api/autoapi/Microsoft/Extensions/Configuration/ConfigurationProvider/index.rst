@@ -63,7 +63,7 @@ Properties
     .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationProvider.Data
     
         
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+        :rtype: System.Collections.Generic.IDictionary<System.String, System.String>
     
         
         .. code-block:: csharp
@@ -106,11 +106,11 @@ Methods
         
     
         
-        :type earlierKeys: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+        :type earlierKeys: System.Collections.Generic.IEnumerable<System.String>
     
         
         :type parentPath: System.String
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+        :rtype: System.Collections.Generic.IEnumerable<System.String>
     
         
         .. code-block:: csharp
