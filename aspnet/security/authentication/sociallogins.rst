@@ -138,7 +138,7 @@ You are now logged in using your Facebook credentials.
 Optionally set password
 -----------------------
 
-When you register with an external login providers you do not have a password registered with the app. The aleviates you from creating and remembering a password for the site, but it also makes you dependant on the external loging provider. If the external login provider is unavailable, you won't be able to log into to the web site.
+When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
 
 To create a password and login using your email that you set during the login process with external providers:
 
