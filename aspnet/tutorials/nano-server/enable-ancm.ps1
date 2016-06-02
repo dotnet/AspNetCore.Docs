@@ -11,14 +11,14 @@ $section = $appHostconfig.GetSection("system.webServer/handlers")
 $section.OverrideMode="Allow"
 
 # Add httpPlatform section to system.webServer
-$sectionHttpPlatform = $appHostConfig.RootSectionGroup.SectionGroups["system.webServer"].Sections.Add("httpPlatform")
+$sectionHttpPlatform = $appHostConfig.RootSectionGroup.SectionGroups["system.webServer"].Sections.Add("aspNetCore")
 $sectionHttpPlatform.OverrideModeDefault = "Allow"
 
 # Add to globalModules
 $globalModules = Get-IISConfigSection "system.webServer/globalModules" | Get-IISConfigCollection
-New-IISConfigCollectionElement $globalModules -ConfigAttribute @{"name"="httpPlatformHandler";"image"="%SystemRoot%\system32\inetsrv\httpPlatformHandler.dll"}
+New-IISConfigCollectionElement $globalModules -ConfigAttribute @{"name"="AspNetCoreModule";"image"="%SystemRoot%\system32\inetsrv\aspnetcore.dll"}
 
 # Add to modules
 $modules = Get-IISConfigSection "system.webServer/modules" | Get-IISConfigCollection
-New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="httpPlatformHandler"}
+New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="AspNetCoreModule"}
 $sm.CommitChanges()
