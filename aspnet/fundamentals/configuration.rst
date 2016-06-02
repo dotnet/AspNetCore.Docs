@@ -96,7 +96,9 @@ When run, the program will display the default value unless a command line param
 Using Options and configuration objects
 ---------------------------------------
 
-Using the options pattern you can easily convert any class (or POCO - Plain Old CLR Object) into a settings class. It's recommended that you create well-factored settings objects that correspond to certain features within your application, thus following the `Interface Segregation Principle (ISP) <http://deviq.com/interface-segregation-principle/>`_ (classes depend only on the configuration settings they use) as well as `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ (settings for disparate parts of your app are managed separately, and thus are less likely to negatively impact one another).
+The options pattern enables using custom settings classes to represent a group of related settings. A class needs to have a public read-write property for each setting and a constructor that does not take any parameters (i.e. a default constructor) in order to be used as a settings class.
+
+It's recommended that you create well-factored settings objects that correspond to certain features within your application, thus following the `Interface Segregation Principle (ISP) <http://deviq.com/interface-segregation-principle/>`_ (classes depend only on the configuration settings they use) as well as `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ (settings for disparate parts of your app are managed separately, and thus are less likely to negatively impact one another).
 
 A simple ``MyOptions`` class is shown here:
 
