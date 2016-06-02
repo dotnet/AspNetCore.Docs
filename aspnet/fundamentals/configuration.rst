@@ -15,11 +15,13 @@ ASP.NET Core supports a variety of different configuration options. Application 
 Getting and setting configuration settings
 ------------------------------------------
 
-ASP.NET Core's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new configuration model provides streamlined access to key/value based settings that can be retrieved from a variety of sources. Applications and frameworks can then access configured settings using the new :ref:`Options pattern <options-config-objects>`
+ASP.NET Core's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new configuration model provides streamlined access to key/value based settings that can be retrieved from a variety of sources. Applications and frameworks can then access configured settings in a strongly typed fashion using the new :ref:`Options pattern <options-config-objects>`
 
 To work with settings in your ASP.NET application, it is recommended that you only instantiate a ``Configuration`` in your application's ``Startup`` class. Then, use the :ref:`Options pattern <options-config-objects>` to access individual settings.
 
-At its simplest, ``Configuration`` is just a collection of ``Sources``, which provide the ability to read and write name/value pairs. You must configure at least one source in order for ``Configuration`` to function correctly. The following sample shows how to test working with ``Configuration`` as a key/value store:
+At its simplest, ``Configuration`` is just a collection of sources, which provide the ability to read and write name/value pairs. If a name/value pair is written to ``Configuration``, it is not persisted. This means that the written value will be lost when the sources are read again.
+
+You must configure at least one source in order for ``Configuration`` to function correctly. The following sample shows how to test working with ``Configuration`` as a key/value store:
 
 .. code-block:: c#
 
@@ -182,13 +184,13 @@ Next, create the custom configuration provider by inheriting from ``Configuratio
 
 Note the values that are being stored in the database ("value_from_ef_1" and "value_from_ef_2"); these are displayed in the sample below to demonstrate the configuration is reading values from the database properly.
 
-By convention you can also add an ``AddEntityFrameworkConfiguration`` extension method for adding the configuration provider:
+By convention you can also add an ``AddEntityFrameworkConfiguration`` extension method for adding the configuration source:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs
   :language: c#
   :emphasize-lines: 9
 
-You can see an example of how to use this custom configuration provider in your application in the following example. Create a new ``ConfigurationBuilder`` to set up your configuration sources. To add the ``EntityFrameworkConfigurationProvider``, you first need to specify the data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationProvider``. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
+You can see an example of how to use this custom configuration provider in your application in the following example. Create a new ``ConfigurationBuilder`` to set up your configuration sources. To add the ``EntityFrameworkConfigurationProvider``, you first need to specify the EF data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the ``EntityFrameworkConfigurationProvider``. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationProvider/Program.cs
   :language: c#
