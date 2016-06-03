@@ -89,7 +89,7 @@ Now, when the user browses to *http://<yourApp>/products*, the ``Index`` action 
 Linking between areas
 ---------------------
 
-To link between areas, you simply specify the area in which the controller is defined by using `Tag-Helpers <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ImageTagHelper/index.html>`__.
+To link between areas, you simply specify the area in which the controller is defined by using :doc:`Tag Helpers </mvc/views/tag-helpers/index>`.
 
 The following snippet shows how to link to a controller action that is defined within an area named *Products*.
 
