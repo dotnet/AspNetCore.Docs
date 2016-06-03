@@ -204,6 +204,9 @@ CookieRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Production apps will often provide a mechanism to set the culture with the ``ASPNET_CULTURE`` cookie. The sample app provides code to set the cookie for French and English cultures.
+ASP.NET Core use ``.AspNetCore.Culture`` cookie by default. You have to use format ``c=%LANGCODE%|uic=%LANGCODE%``, where ``c`` is CultureInfo and ``uic`` is CultureUIInfo, for instance:
+c='en-UK'|uic='en-US'
+The ``uic`` keypair is optional.
 
 The Accept-Language HTTP header
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
