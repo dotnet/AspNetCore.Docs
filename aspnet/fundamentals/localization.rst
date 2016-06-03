@@ -206,11 +206,11 @@ CookieRequestCultureProvider
 In old versions of ASP.NET a production apps will often provide a mechanism to set the culture with the ``ASPNET_CULTURE`` cookie.
 The ASP.NET Core use ``.AspNetCore.Culture`` cookie by default. You have to use format ``c=%LANGCODE%|uic=%LANGCODE%``, where ``c`` is CultureInfo and ``uic`` is CultureUIInfo, for instance:
 
-\c='en-UK'|uic='en-US'
+c='en-UK'\|uic='en-US'
 
 You can use only one of keypairs, in this case CultureInfo and CultureUIInfo will be set to same culture, for instance:
 
-\uic='en-UK'
+uic='en-UK'
 
 The sample app provides code to set the cookie for French and English cultures.
 
