@@ -1,28 +1,3 @@
-/* msc-throttle.js - start */
-$.throttle = function (fn, threshhold, scope) {
-	threshhold || (threshhold = 250);
-	var last,
-		deferTimer;
-	return function () {
-		var context = scope || this;
-
-		var now = +new Date,
-			args = arguments;
-		if (last && now < last + threshhold) {
-			// hold on to it
-			clearTimeout(deferTimer);
-			deferTimer = setTimeout(function () {
-				last = now;
-				fn.apply(context, args);
-			}, threshhold);
-		} else {
-			last = now;
-			fn.apply(context, args);
-		}
-	};
-}
-/* msc-throttle.js - end */
-
 /* msc-helpfulness.js - start */
 ;(function ($)
 {
@@ -45,6 +20,11 @@ $.throttle = function (fn, threshhold, scope) {
 
 			init: function ()
 			{
+				if (this.$container == null)
+				{
+					return;
+				}
+				
 				this.initHandlers();
 				this.initLoad();
 			},
@@ -102,13 +82,6 @@ $.throttle = function (fn, threshhold, scope) {
 						$("#helpful").slideUp('fast');
 					}
 				});
-
-				$(window).scroll($.throttle(function ()
-				{
-					_this.updateFixed();
-					_this.show();
-					_this.isDone();
-				}, 50));
 			},
 
 			initLoad: function ()
@@ -116,7 +89,6 @@ $.throttle = function (fn, threshhold, scope) {
 				if (this.getStorage(this.targetKeyId) === null)
 				{
 					this.shouldShow = true;
-					this.updateFixed();
 					this.show();					
 				}
 
@@ -145,48 +117,11 @@ $.throttle = function (fn, threshhold, scope) {
 				});
 			},
 
-			isDone: function ()
-			{
-				if (this.completed && this.$container.is(":visible"))
-				{
-					this.$container.slideUp('fast');
-				}
-			},
-
-			updateFixed: function ()
-			{
-				if (options.alwaysFixed)
-				{
-					return;
-				}
-
-				if (!this.closed && !this.completed)
-				{
-					var updateFixedTop = this.$positionContainer.offset().top;
-
-					if (($(window).scrollTop() + $(window).height() - this.$container.outerHeight(true)) > updateFixedTop)
-					{
-						this.$container.removeClass("fixed");
-					}
-					else
-					{
-						this.$container.addClass("fixed");
-					}
-				}
-			},
-
 			show: function ()
 			{
 				if (!this.closed && !this.completed && this.shouldShow && !this.$container.is(":visible"))
 				{
-					var documentHeight = $(document).height();
-					var windowHeight = $(window).height();
-					var enoughScrollbars = (documentHeight - windowHeight) > 200;
-
-					if ($(window).scrollTop() > 100 || !enoughScrollbars)
-					{
-						this.$container.slideDown('fast');
-					}
+					this.$container.show();
 				}
 			},
 
@@ -219,12 +154,12 @@ $.throttle = function (fn, threshhold, scope) {
 							}
 							else
 							{
-								this.showMessage(".error");
+								this.showMessage(".helpfulness-error");
 							}
 						},
 						error: function ()
 						{
-							this.showMessage(".error");
+							this.showMessage(".helpfulness-error");
 						}
 					});
 				}
@@ -260,12 +195,12 @@ $.throttle = function (fn, threshhold, scope) {
 							}
 							else
 							{
-								this.showMessage(".error");
+								this.showMessage(".helpfulness-error");
 							}
 						},
 						error: function ()
 						{
-							this.showMessage(".error");
+							this.showMessage(".helpfulness-error");
 						}
 					});
 				}
@@ -322,6 +257,6 @@ $(function ()
 /* msc-helpfulness.js overrides - start */
 $(function ()
 {	
-	$("#helpful").appendTo("body");	
+	$("#helpful").insertBefore("footer hr");	
 });
 /* msc-helpfulness.js overrides - end */
