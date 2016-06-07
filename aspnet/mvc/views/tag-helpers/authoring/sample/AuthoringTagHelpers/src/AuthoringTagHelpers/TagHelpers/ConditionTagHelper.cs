@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AuthoringTagHelpers.TagHelpers
 {
-    [TargetElement(Attributes = nameof(Condition))]
+    [HtmlTargetElement(Attributes = nameof(Condition))]
     public class ConditionTagHelper : TagHelper
     {
         public bool Condition { get; set; }
