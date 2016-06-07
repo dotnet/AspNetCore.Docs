@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Routing;
-using Microsoft.AspNet.Routing.Template;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -22,25 +20,16 @@ namespace RoutingSample
         public void Configure(IApplicationBuilder app,
             ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(minLevel: LogLevel.Verbose);
-            app.UseIISPlatformHandler();
+            loggerFactory.AddConsole(minLevel: LogLevel.Trace);
 
-            var routeBuilder = new RouteBuilder();
-            routeBuilder.ServiceProvider = app.ApplicationServices;
+            var defaultHandler = new RouteHandler((c) => 
+                c.Response.WriteAsync($"Hello world! Route values: " +
+                $"{string.Join(", ", c.GetRouteData().Values)}")
+                );
 
-            routeBuilder.Routes.Add(new TemplateRoute(
-                new HelloRouter(),
-                "hello/{name:alpha}",
-                app.ApplicationServices.GetService<IInlineConstraintResolver>()));
+            var routeBuilder = new RouteBuilder(app, defaultHandler);
 
-            var endpoint1 = new DelegateRouter(async (context) =>
-                            await context
-                                .HttpContext
-                                .Response
-                                .WriteAsync("Hello world! Route Values: " +
-                                    string.Join("", context.RouteData.Values)));
-
-            routeBuilder.DefaultHandler = endpoint1;
+            routeBuilder.AddHelloRoute(app);
 
             routeBuilder.MapRoute(
                 "Track Package Route",
@@ -70,8 +59,5 @@ namespace RoutingSample
                     "'>Create Package 123</a><br/>");
             });
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

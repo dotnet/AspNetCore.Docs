@@ -1,21 +1,28 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Routing;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace RoutingSample
 {
     public class HelloRouter : IRouter
     {
-        public async Task RouteAsync(RouteContext context)
+        public Task RouteAsync(RouteContext context)
         {
             var name = context.RouteData.Values["name"] as string;
             if (String.IsNullOrEmpty(name))
             {
-                return;
+                return Task.FromResult(0);
             }
-            await context.HttpContext.Response.WriteAsync($"Hi {name}!");
-            context.IsHandled = true;
+            var requestPath = context.HttpContext.Request.Path;
+            if (requestPath.StartsWithSegments("/hello", StringComparison.OrdinalIgnoreCase))
+            {
+                context.Handler = async c =>
+                {
+                    await c.Response.WriteAsync($"Hi, {name}!");
+                };
+            }
+            return Task.FromResult(0);
         }
 
         public VirtualPathData GetVirtualPath(VirtualPathContext context)
