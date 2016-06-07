@@ -24,12 +24,28 @@ namespace AuthoringTagHelpers.Controllers
      return View();
 }
 
-        public IActionResult Contact()
+        public IActionResult Contact(int id = 0)
         {
             ViewData["Message"] = "Your contact page.";
 
-            //return View("ContactCopy");
-            return View();
+            string view = "Contact";
+
+            switch (id)
+            {
+                case 1:
+                    view = "ContactCopy";
+                    break;
+
+                case 2:
+                    view = "ContactVoid";
+                    break;
+
+                case 0:
+                default:
+                    view = "Contact";
+                    break;
+            }
+            return View(view);
         }
 
         public IActionResult Error()
