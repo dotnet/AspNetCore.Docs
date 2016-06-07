@@ -5,12 +5,17 @@ Response Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Server`
+Assemblies
+    * Microsoft.Net.Http.Server
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,92 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public sealed class Response
+    public sealed class Response
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/RequestProcessing/Response.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Net.Http.Server.Response
-
-Methods
--------
-
-.. dn:class:: Microsoft.Net.Http.Server.Response
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Response.OnCompleted(System.Func<System.Object, System.Threading.Tasks.Task>, System.Object)
-    
-        
-        
-        
-        :type callback: System.Func{System.Object,System.Threading.Tasks.Task}
-        
-        
-        :type state: System.Object
-    
-        
-        .. code-block:: csharp
-    
-           public void OnCompleted(Func<object, Task> callback, object state)
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Response.OnStarting(System.Func<System.Object, System.Threading.Tasks.Task>, System.Object)
-    
-        
-        
-        
-        :type callback: System.Func{System.Object,System.Threading.Tasks.Task}
-        
-        
-        :type state: System.Object
-    
-        
-        .. code-block:: csharp
-    
-           public void OnStarting(Func<object, Task> callback, object state)
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Response.Reset()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-           public void Reset()
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Response.SendFileAsync(System.String, System.Int64, System.Nullable<System.Int64>, System.Threading.CancellationToken)
-    
-        
-        
-        
-        :type path: System.String
-        
-        
-        :type offset: System.Int64
-        
-        
-        :type count: System.Nullable{System.Int64}
-        
-        
-        :type cancel: System.Threading.CancellationToken
-        :rtype: System.Threading.Tasks.Task
-    
-        
-        .. code-block:: csharp
-    
-           public Task SendFileAsync(string path, long offset, long ? count, CancellationToken cancel)
-    
+.. dn:class:: Microsoft.Net.Http.Server.Response
 
 Properties
 ----------
@@ -136,27 +68,38 @@ Properties
         
         .. code-block:: csharp
     
-           public Stream Body { get; }
+            public Stream Body
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.CacheTtl
     
         
-        :rtype: System.Nullable{System.TimeSpan}
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
     
         
         .. code-block:: csharp
     
-           public TimeSpan? CacheTtl { get; set; }
+            public TimeSpan? CacheTtl
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ContentLength
     
         
-        :rtype: System.Nullable{System.Int64}
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
     
         
         .. code-block:: csharp
     
-           public long ? ContentLength { get; set; }
+            public long ? ContentLength
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ContentType
     
@@ -166,7 +109,11 @@ Properties
         
         .. code-block:: csharp
     
-           public string ContentType { get; set; }
+            public string ContentType
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.HasStarted
     
@@ -176,7 +123,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool HasStarted { get; }
+            public bool HasStarted
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.HasStartedSending
     
@@ -186,7 +136,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool HasStartedSending { get; }
+            public bool HasStartedSending
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.Headers
     
@@ -196,7 +149,10 @@ Properties
         
         .. code-block:: csharp
     
-           public HeaderCollection Headers { get; }
+            public HeaderCollection Headers
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ReasonPhrase
     
@@ -206,7 +162,11 @@ Properties
         
         .. code-block:: csharp
     
-           public string ReasonPhrase { get; set; }
+            public string ReasonPhrase
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ShouldBuffer
     
@@ -216,7 +176,11 @@ Properties
         
         .. code-block:: csharp
     
-           public bool ShouldBuffer { get; set; }
+            public bool ShouldBuffer
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.StatusCode
     
@@ -226,6 +190,80 @@ Properties
         
         .. code-block:: csharp
     
-           public int StatusCode { get; set; }
+            public int StatusCode
+            {
+                get;
+                set;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Net.Http.Server.Response
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Response.OnCompleted(System.Func<System.Object, System.Threading.Tasks.Task>, System.Object)
+    
+        
+    
+        
+        :type callback: System.Func<System.Func`2>{System.Object<System.Object>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        :type state: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public void OnCompleted(Func<object, Task> callback, object state)
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Response.OnStarting(System.Func<System.Object, System.Threading.Tasks.Task>, System.Object)
+    
+        
+    
+        
+        :type callback: System.Func<System.Func`2>{System.Object<System.Object>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        :type state: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public void OnStarting(Func<object, Task> callback, object state)
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Response.Reset()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public void Reset()
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Response.SendFileAsync(System.String, System.Int64, System.Nullable<System.Int64>, System.Threading.CancellationToken)
+    
+        
+    
+        
+        :type path: System.String
+    
+        
+        :type offset: System.Int64
+    
+        
+        :type count: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        :type cancel: System.Threading.CancellationToken
+        :rtype: System.Threading.Tasks.Task
+    
+        
+        .. code-block:: csharp
+    
+            public Task SendFileAsync(string path, long offset, long ? count, CancellationToken cancel)
     
 

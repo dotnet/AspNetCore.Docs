@@ -5,12 +5,17 @@ ConfigurationReloadToken Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,56 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ConfigurationReloadToken : IChangeToken
+    public class ConfigurationReloadToken : IChangeToken
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration/ConfigurationReloadToken.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Configuration.ConfigurationReloadToken
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationReloadToken
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationReloadToken.OnReload()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-           public void OnReload()
-    
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationReloadToken.RegisterChangeCallback(System.Action<System.Object>, System.Object)
-    
-        
-        
-        
-        :type callback: System.Action{System.Object}
-        
-        
-        :type state: System.Object
-        :rtype: System.IDisposable
-    
-        
-        .. code-block:: csharp
-    
-           public IDisposable RegisterChangeCallback(Action<object> callback, object state)
-    
+.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationReloadToken
 
 Properties
 ----------
@@ -100,7 +68,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool ActiveChangeCallbacks { get; }
+            public bool ActiveChangeCallbacks
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationReloadToken.HasChanged
     
@@ -110,6 +81,43 @@ Properties
         
         .. code-block:: csharp
     
-           public bool HasChanged { get; }
+            public bool HasChanged
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationReloadToken
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationReloadToken.OnReload()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public void OnReload()
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationReloadToken.RegisterChangeCallback(System.Action<System.Object>, System.Object)
+    
+        
+    
+        
+        :type callback: System.Action<System.Action`1>{System.Object<System.Object>}
+    
+        
+        :type state: System.Object
+        :rtype: System.IDisposable
+    
+        
+        .. code-block:: csharp
+    
+            public IDisposable RegisterChangeCallback(Action<object> callback, object state)
     
 

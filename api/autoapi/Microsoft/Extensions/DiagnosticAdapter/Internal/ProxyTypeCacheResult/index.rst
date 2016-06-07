@@ -5,12 +5,17 @@ ProxyTypeCacheResult Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,66 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyTypeCacheResult
+    public class ProxyTypeCacheResult
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyTypeCacheResult.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.FromError(System.Tuple<System.Type, System.Type>, System.String)
-    
-        
-        
-        
-        :type key: System.Tuple{System.Type,System.Type}
-        
-        
-        :type error: System.String
-        :rtype: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
-    
-        
-        .. code-block:: csharp
-    
-           public static ProxyTypeCacheResult FromError(Tuple<Type, Type> key, string error)
-    
-    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.FromType(System.Tuple<System.Type, System.Type>, System.Type, System.Reflection.ConstructorInfo)
-    
-        
-        
-        
-        :type key: System.Tuple{System.Type,System.Type}
-        
-        
-        :type type: System.Type
-        
-        
-        :type constructor: System.Reflection.ConstructorInfo
-        :rtype: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
-    
-        
-        .. code-block:: csharp
-    
-           public static ProxyTypeCacheResult FromType(Tuple<Type, Type> key, Type type, ConstructorInfo constructor)
-    
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
 
 Properties
 ----------
@@ -110,7 +68,10 @@ Properties
         
         .. code-block:: csharp
     
-           public ConstructorInfo Constructor { get; }
+            public ConstructorInfo Constructor
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Error
     
@@ -120,7 +81,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string Error { get; }
+            public string Error
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.IsError
     
@@ -130,17 +94,23 @@ Properties
         
         .. code-block:: csharp
     
-           public bool IsError { get; }
+            public bool IsError
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Key
     
         
-        :rtype: System.Tuple{System.Type,System.Type}
+        :rtype: System.Tuple<System.Tuple`2>{System.Type<System.Type>, System.Type<System.Type>}
     
         
         .. code-block:: csharp
     
-           public Tuple<Type, Type> Key { get; }
+            public Tuple<Type, Type> Key
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Type
     
@@ -150,6 +120,53 @@ Properties
         
         .. code-block:: csharp
     
-           public Type Type { get; }
+            public Type Type
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.FromError(System.Tuple<System.Type, System.Type>, System.String)
+    
+        
+    
+        
+        :type key: System.Tuple<System.Tuple`2>{System.Type<System.Type>, System.Type<System.Type>}
+    
+        
+        :type error: System.String
+        :rtype: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
+    
+        
+        .. code-block:: csharp
+    
+            public static ProxyTypeCacheResult FromError(Tuple<Type, Type> key, string error)
+    
+    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.FromType(System.Tuple<System.Type, System.Type>, System.Type, System.Reflection.ConstructorInfo)
+    
+        
+    
+        
+        :type key: System.Tuple<System.Tuple`2>{System.Type<System.Type>, System.Type<System.Type>}
+    
+        
+        :type type: System.Type
+    
+        
+        :type constructor: System.Reflection.ConstructorInfo
+        :rtype: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult
+    
+        
+        .. code-block:: csharp
+    
+            public static ProxyTypeCacheResult FromType(Tuple<Type, Type> key, Type type, ConstructorInfo constructor)
     
 

@@ -10,7 +10,7 @@ By `Rachel Appel`_
 Introduction to model binding
 -----------------------------
 
-Model binding in MVC maps data from HTTP requests to action method parameters. The parameters may be simple types such as strings, integers, or floats, or they may be complex types. This is a great feature of MVC because mapping incoming data to a counterpart is an often repeated scenario, regardless of size or complexity of the data. MVC solves this problem by abstracting binding away so developers don't have to keep rewriting a slightly different version of that same code in every app. Writing your own text to type converter code is tedious, and error prone. 
+Model binding in ASP.NET Core MVC maps data from HTTP requests to action method parameters. The parameters may be simple types such as strings, integers, or floats, or they may be complex types. This is a great feature of MVC because mapping incoming data to a counterpart is an often repeated scenario, regardless of size or complexity of the data. MVC solves this problem by abstracting binding away so developers don't have to keep rewriting a slightly different version of that same code in every app. Writing your own text to type converter code is tedious, and error prone. 
 
 How model binding works
 -----------------------
@@ -76,7 +76,7 @@ Request data can come in a variety of formats including JSON, XML and many other
 
 .. Note:: The ``JsonInputFormatter`` is the default formatter and it is based off of `Json.NET <http://www.newtonsoft.com/json>`_.
 
-ASP.NET selects input formatters based on the `Content-Type <https://www.w3.org/Protocols/rfc1341/4_Content-Type.html>`_ header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the `Startup.cs` file, but you may first have to obtain a reference to ``Microsoft.AspNet.Mvc.Formatters.Xml`` using NuGet. Your startup code should look something like this:
+ASP.NET selects input formatters based on the `Content-Type <https://www.w3.org/Protocols/rfc1341/4_Content-Type.html>`_ header and the type of the parameter, unless there is an attribute applied to it specifying otherwise. If you'd like to use XML or another format you must configure it in the `Startup.cs` file, but you may first have to obtain a reference to ``Microsoft.AspNetCore.Mvc.Formatters.Xml`` using NuGet. Your startup code should look something like this:
 
 .. code-block:: c#
   :linenos:

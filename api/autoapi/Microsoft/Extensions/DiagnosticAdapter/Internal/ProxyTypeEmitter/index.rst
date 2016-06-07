@@ -5,12 +5,17 @@ ProxyTypeEmitter Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyTypeEmitter
+    public class ProxyTypeEmitter
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyTypeEmitter.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeEmitter
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeEmitter
 
@@ -61,13 +63,13 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeEmitter.GetProxyType(Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCache, System.Type, System.Type)
     
         
-        
+    
         
         :type cache: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCache
-        
+    
         
         :type targetType: System.Type
-        
+    
         
         :type sourceType: System.Type
         :rtype: System.Type
@@ -75,6 +77,6 @@ Methods
         
         .. code-block:: csharp
     
-           public static Type GetProxyType(ProxyTypeCache cache, Type targetType, Type sourceType)
+            public static Type GetProxyType(ProxyTypeCache cache, Type targetType, Type sourceType)
     
 

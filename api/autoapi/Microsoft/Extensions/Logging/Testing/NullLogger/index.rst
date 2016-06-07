@@ -5,12 +5,17 @@ NullLogger Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Testing`
+Assemblies
+    * Microsoft.Extensions.Logging.Testing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class NullLogger : ILogger
+    public class NullLogger : ILogger
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Testing/NullLogger.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.Testing.NullLogger
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.NullLogger
 
@@ -58,23 +60,23 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLogger.BeginScopeImpl(System.Object)
+    .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLogger.BeginScope<TState>(TState)
     
         
+    
         
-        
-        :type state: System.Object
+        :type state: TState
         :rtype: System.IDisposable
     
         
         .. code-block:: csharp
     
-           public IDisposable BeginScopeImpl(object state)
+            public IDisposable BeginScope<TState>(TState state)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
     
         
-        
+    
         
         :type logLevel: Microsoft.Extensions.Logging.LogLevel
         :rtype: System.Boolean
@@ -82,31 +84,31 @@ Methods
         
         .. code-block:: csharp
     
-           public bool IsEnabled(LogLevel logLevel)
+            public bool IsEnabled(LogLevel logLevel)
     
-    .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLogger.Log(Microsoft.Extensions.Logging.LogLevel, System.Int32, System.Object, System.Exception, System.Func<System.Object, System.Exception, System.String>)
+    .. dn:method:: Microsoft.Extensions.Logging.Testing.NullLogger.Log<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Exception, System.Func<TState, System.Exception, System.String>)
     
         
-        
+    
         
         :type logLevel: Microsoft.Extensions.Logging.LogLevel
+    
         
+        :type eventId: Microsoft.Extensions.Logging.EventId
+    
         
-        :type eventId: System.Int32
-        
-        
-        :type state: System.Object
-        
+        :type state: TState
+    
         
         :type exception: System.Exception
+    
         
-        
-        :type formatter: System.Func{System.Object,System.Exception,System.String}
+        :type formatter: System.Func<System.Func`3>{TState, System.Exception<System.Exception>, System.String<System.String>}
     
         
         .. code-block:: csharp
     
-           public void Log(LogLevel logLevel, int eventId, object state, Exception exception, Func<object, Exception, string> formatter)
+            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
     
 
 Fields
@@ -120,10 +122,11 @@ Fields
     .. dn:field:: Microsoft.Extensions.Logging.Testing.NullLogger.Instance
     
         
+        :rtype: Microsoft.Extensions.Logging.Testing.NullLogger
     
         
         .. code-block:: csharp
     
-           public static readonly NullLogger Instance
+            public static readonly NullLogger Instance
     
 

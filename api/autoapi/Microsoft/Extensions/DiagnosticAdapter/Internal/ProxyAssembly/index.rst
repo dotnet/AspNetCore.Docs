@@ -5,12 +5,17 @@ ProxyAssembly Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyAssembly
+    public class ProxyAssembly
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyAssembly.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyAssembly
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyAssembly
 
@@ -61,23 +63,23 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyAssembly.DefineType(System.String, System.Reflection.TypeAttributes, System.Type, System.Type[])
     
         
-        
+    
         
         :type name: System.String
-        
+    
         
         :type attributes: System.Reflection.TypeAttributes
-        
+    
         
         :type baseType: System.Type
+    
         
-        
-        :type interfaces: System.Type[]
+        :type interfaces: System.Type<System.Type>[]
         :rtype: System.Reflection.Emit.TypeBuilder
     
         
         .. code-block:: csharp
     
-           public static TypeBuilder DefineType(string name, TypeAttributes attributes, Type baseType, Type[] interfaces)
+            public static TypeBuilder DefineType(string name, TypeAttributes attributes, Type baseType, Type[] interfaces)
     
 

@@ -5,12 +5,17 @@ DiagnosticSourceAdapter Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class DiagnosticSourceAdapter : IObserver<KeyValuePair<string, object>>
+    public class DiagnosticSourceAdapter : IObserver<KeyValuePair<string, object>>
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/DiagnosticSourceAdapter.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter
 
@@ -61,47 +63,47 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.DiagnosticSourceAdapter(System.Object)
     
         
-        
+    
         
         :type target: System.Object
     
         
         .. code-block:: csharp
     
-           public DiagnosticSourceAdapter(object target)
+            public DiagnosticSourceAdapter(object target)
     
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.DiagnosticSourceAdapter(System.Object, System.Func<System.String, System.Boolean>)
     
         
-        
+    
         
         :type target: System.Object
+    
         
-        
-        :type isEnabled: System.Func{System.String,System.Boolean}
+        :type isEnabled: System.Func<System.Func`2>{System.String<System.String>, System.Boolean<System.Boolean>}
     
         
         .. code-block:: csharp
     
-           public DiagnosticSourceAdapter(object target, Func<string, bool> isEnabled)
+            public DiagnosticSourceAdapter(object target, Func<string, bool> isEnabled)
     
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.DiagnosticSourceAdapter(System.Object, System.Func<System.String, System.Boolean>, Microsoft.Extensions.DiagnosticAdapter.IDiagnosticSourceMethodAdapter)
     
         
-        
+    
         
         :type target: System.Object
+    
         
-        
-        :type isEnabled: System.Func{System.String,System.Boolean}
-        
+        :type isEnabled: System.Func<System.Func`2>{System.String<System.String>, System.Boolean<System.Boolean>}
+    
         
         :type methodAdapter: Microsoft.Extensions.DiagnosticAdapter.IDiagnosticSourceMethodAdapter
     
         
         .. code-block:: csharp
     
-           public DiagnosticSourceAdapter(object target, Func<string, bool> isEnabled, IDiagnosticSourceMethodAdapter methodAdapter)
+            public DiagnosticSourceAdapter(object target, Func<string, bool> isEnabled, IDiagnosticSourceMethodAdapter methodAdapter)
     
 
 Methods
@@ -115,7 +117,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.IsEnabled(System.String)
     
         
-        
+    
         
         :type diagnosticName: System.String
         :rtype: System.Boolean
@@ -123,7 +125,7 @@ Methods
         
         .. code-block:: csharp
     
-           public bool IsEnabled(string diagnosticName)
+            public bool IsEnabled(string diagnosticName)
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.System.IObserver<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.OnCompleted()
     
@@ -132,45 +134,45 @@ Methods
         
         .. code-block:: csharp
     
-           void IObserver<KeyValuePair<string, object>>.OnCompleted()
+            void IObserver<KeyValuePair<string, object>>.OnCompleted()
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.System.IObserver<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.OnError(System.Exception)
     
         
-        
+    
         
         :type error: System.Exception
     
         
         .. code-block:: csharp
     
-           void IObserver<KeyValuePair<string, object>>.OnError(Exception error)
+            void IObserver<KeyValuePair<string, object>>.OnError(Exception error)
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.System.IObserver<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.OnNext(System.Collections.Generic.KeyValuePair<System.String, System.Object>)
     
         
+    
         
-        
-        :type value: System.Collections.Generic.KeyValuePair{System.String,System.Object}
+        :type value: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
     
         
         .. code-block:: csharp
     
-           void IObserver<KeyValuePair<string, object>>.OnNext(KeyValuePair<string, object> value)
+            void IObserver<KeyValuePair<string, object>>.OnNext(KeyValuePair<string, object> value)
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticSourceAdapter.Write(System.String, System.Object)
     
         
-        
+    
         
         :type diagnosticName: System.String
-        
+    
         
         :type parameters: System.Object
     
         
         .. code-block:: csharp
     
-           public void Write(string diagnosticName, object parameters)
+            public void Write(string diagnosticName, object parameters)
     
 

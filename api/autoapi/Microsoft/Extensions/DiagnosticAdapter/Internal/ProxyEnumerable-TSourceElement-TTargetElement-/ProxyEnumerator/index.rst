@@ -5,12 +5,17 @@ ProxyEnumerator Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable`2`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,22 +38,54 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyEnumerator : IEnumerator<TTargetElement>, IDisposable, IEnumerator
+    public class ProxyEnumerator : IEnumerator<TTargetElement>, IEnumerator, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyEnumerable.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable`2.ProxyEnumerator
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.Current
+    
+        
+        :rtype: TTargetElement
+    
+        
+        .. code-block:: csharp
+    
+            public TTargetElement Current
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current
+            {
+                get;
+            }
+    
 
 Constructors
 ------------
@@ -61,17 +98,17 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.ProxyEnumerator(System.Collections.Generic.IEnumerator<TSourceElement>, System.Type)
     
         
+    
         
-        
-        :type source: System.Collections.Generic.IEnumerator{{TSourceElement}}
-        
+        :type source: System.Collections.Generic.IEnumerator<System.Collections.Generic.IEnumerator`1>{TSourceElement}
+    
         
         :type proxyType: System.Type
     
         
         .. code-block:: csharp
     
-           public ProxyEnumerator(IEnumerator<TSourceElement> source, Type proxyType)
+            public ProxyEnumerator(IEnumerator<TSourceElement> source, Type proxyType)
     
 
 Methods
@@ -89,7 +126,7 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
+            public void Dispose()
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.MoveNext()
     
@@ -99,7 +136,7 @@ Methods
         
         .. code-block:: csharp
     
-           public bool MoveNext()
+            public bool MoveNext()
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.Reset()
     
@@ -108,35 +145,6 @@ Methods
         
         .. code-block:: csharp
     
-           public void Reset()
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.Current
-    
-        
-        :rtype: {TTargetElement}
-    
-        
-        .. code-block:: csharp
-    
-           public TTargetElement Current { get; }
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-           object IEnumerator.Current { get; }
+            public void Reset()
     
 

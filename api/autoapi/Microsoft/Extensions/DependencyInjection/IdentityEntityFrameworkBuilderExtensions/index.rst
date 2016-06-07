@@ -5,12 +5,17 @@ IdentityEntityFrameworkBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class IdentityEntityFrameworkBuilderExtensions
+    public class IdentityEntityFrameworkBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/identity/blob/master/src/Microsoft.AspNet.Identity.EntityFramework/IdentityEntityFrameworkBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions
 
@@ -58,44 +60,46 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores<TContext>(Microsoft.AspNet.Identity.IdentityBuilder)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores<TContext>(Microsoft.AspNetCore.Identity.IdentityBuilder)
     
         
     
+        
         Adds an Entity Framework implementation of identity information stores.
     
         
+    
         
+        :param builder: The :any:`Microsoft.AspNetCore.Identity.IdentityBuilder` instance this method extends.
         
-        :param builder: The  instance this method extends.
-        
-        :type builder: Microsoft.AspNet.Identity.IdentityBuilder
-        :rtype: Microsoft.AspNet.Identity.IdentityBuilder
-        :return: The <see cref="T:Microsoft.AspNet.Identity.IdentityBuilder" /> instance this method extends.
+        :type builder: Microsoft.AspNetCore.Identity.IdentityBuilder
+        :rtype: Microsoft.AspNetCore.Identity.IdentityBuilder
+        :return: The :any:`Microsoft.AspNetCore.Identity.IdentityBuilder` instance this method extends.
     
         
         .. code-block:: csharp
     
-           public static IdentityBuilder AddEntityFrameworkStores<TContext>(IdentityBuilder builder)where TContext : DbContext
+            public static IdentityBuilder AddEntityFrameworkStores<TContext>(IdentityBuilder builder)where TContext : DbContext
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores<TContext, TKey>(Microsoft.AspNet.Identity.IdentityBuilder)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores<TContext, TKey>(Microsoft.AspNetCore.Identity.IdentityBuilder)
     
         
     
+        
         Adds an Entity Framework implementation of identity information stores.
     
         
+    
         
+        :param builder: The :any:`Microsoft.AspNetCore.Identity.IdentityBuilder` instance this method extends.
         
-        :param builder: The  instance this method extends.
-        
-        :type builder: Microsoft.AspNet.Identity.IdentityBuilder
-        :rtype: Microsoft.AspNet.Identity.IdentityBuilder
-        :return: The <see cref="T:Microsoft.AspNet.Identity.IdentityBuilder" /> instance this method extends.
+        :type builder: Microsoft.AspNetCore.Identity.IdentityBuilder
+        :rtype: Microsoft.AspNetCore.Identity.IdentityBuilder
+        :return: The :any:`Microsoft.AspNetCore.Identity.IdentityBuilder` instance this method extends.
     
         
         .. code-block:: csharp
     
-           public static IdentityBuilder AddEntityFrameworkStores<TContext, TKey>(IdentityBuilder builder)where TContext : DbContext where TKey : IEquatable<TKey>
+            public static IdentityBuilder AddEntityFrameworkStores<TContext, TKey>(IdentityBuilder builder)where TContext : DbContext where TKey : IEquatable<TKey>
     
 

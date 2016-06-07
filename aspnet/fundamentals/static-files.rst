@@ -15,7 +15,7 @@ Serving static files
 
 By default, static files are stored in the `webroot` of your project. The location of the webroot is defined in the project's ``hosting.json`` file where the default is `wwwroot`.
 
-.. code-block:: json 
+.. code-block:: none 
 
   "webroot": "wwwroot"
 

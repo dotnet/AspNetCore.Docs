@@ -5,12 +5,17 @@ MvcCorsMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.Cors
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcCorsMvcCoreBuilderExtensions
+    public class MvcCorsMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Cors/DependencyInjection/MvcCorsMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
@@ -69,38 +71,38 @@ Methods
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Cors.Infrastructure.CorsOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Cors.Infrastructure.CorsOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
+            public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.ConfigureCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Cors.Infrastructure.CorsOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.ConfigureCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Cors.Infrastructure.CorsOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder ConfigureCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
+            public static IMvcCoreBuilder ConfigureCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
     
 

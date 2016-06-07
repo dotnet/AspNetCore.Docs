@@ -115,7 +115,7 @@ The last step in the migration process for this simple Web API project is to cop
 
 Fortunately, these are all very easy to correct:
 
-- Change `ApiController` to `Controller` (you may need to add `using Microsoft.AspNet.Mvc`)
+- Change `ApiController` to `Controller` (you may need to add `using Microsoft.AspNetCore.Mvc`)
 - Delete any using statement referring to `System.Web.Http`
 - Change any method returning `IHttpActionResult` to return a `IActionResult`
 - Change `NotFound` to `HttpNotFound`

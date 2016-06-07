@@ -23,20 +23,32 @@ Microsoft.Net.WebSockets Namespace
    
    
    
-   /autoapi/Microsoft/Net/WebSockets/WebSocketError/index
-   
-   
-   
    /autoapi/Microsoft/Net/WebSockets/WebSocketHelpers/index
    
    
-   
-   /autoapi/Microsoft/Net/WebSockets/WebSocketReceiveResultExtensions/index
-   
-   
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -51,26 +63,21 @@ Microsoft.Net.WebSockets Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Net.WebSockets.WebSocketBuffer`
+    class :dn:cls:`WebSocketBuffer`
+        .. object: type=class name=Microsoft.Net.WebSockets.WebSocketBuffer
+
         
 
 
-    class :dn:cls:`Microsoft.Net.WebSockets.WebSocketConstants`
+    class :dn:cls:`WebSocketConstants`
+        .. object: type=class name=Microsoft.Net.WebSockets.WebSocketConstants
+
         
 
 
-    class :dn:cls:`Microsoft.Net.WebSockets.WebSocketHelpers`
-        
+    class :dn:cls:`WebSocketHelpers`
+        .. object: type=class name=Microsoft.Net.WebSockets.WebSocketHelpers
 
-
-    class :dn:cls:`Microsoft.Net.WebSockets.WebSocketReceiveResultExtensions`
-        
-
-
-    .. rubric:: Enumerations
-
-
-    enum :dn:enum:`Microsoft.Net.WebSockets.WebSocketError`
         
 
 

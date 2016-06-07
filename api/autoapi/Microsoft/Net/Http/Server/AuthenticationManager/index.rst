@@ -5,17 +5,21 @@ AuthenticationManager Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Exposes the Http.Sys authentication configurations.
 
 
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Server`
+Assemblies
+    * Microsoft.Net.Http.Server
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public sealed class AuthenticationManager
+    public sealed class AuthenticationManager
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/AuthenticationManager.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Net.Http.Server.AuthenticationManager
+    :hidden:
 
 .. dn:class:: Microsoft.Net.Http.Server.AuthenticationManager
 
@@ -71,6 +72,10 @@ Properties
         
         .. code-block:: csharp
     
-           public AuthenticationSchemes AuthenticationSchemes { get; set; }
+            public AuthenticationSchemes AuthenticationSchemes
+            {
+                get;
+                set;
+            }
     
 

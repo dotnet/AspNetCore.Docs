@@ -24,6 +24,22 @@ Microsoft.Extensions.Localization.Internal Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +51,9 @@ Microsoft.Extensions.Localization.Internal Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Localization.Internal.AssemblyWrapper`
+    class :dn:cls:`AssemblyWrapper`
+        .. object: type=class name=Microsoft.Extensions.Localization.Internal.AssemblyWrapper
+
         
 
 

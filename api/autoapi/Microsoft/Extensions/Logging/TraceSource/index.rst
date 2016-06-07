@@ -15,12 +15,40 @@ Microsoft.Extensions.Logging.TraceSource Namespace
 
    
    
+   /autoapi/Microsoft/Extensions/Logging/TraceSource/TraceSourceLogger/index
+   
+   
+   
    /autoapi/Microsoft/Extensions/Logging/TraceSource/TraceSourceLoggerProvider/index
    
    
+   
+   /autoapi/Microsoft/Extensions/Logging/TraceSource/TraceSourceScope/index
+   
+   
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -35,7 +63,23 @@ Microsoft.Extensions.Logging.TraceSource Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider`
+    class :dn:cls:`TraceSourceLogger`
+        .. object: type=class name=Microsoft.Extensions.Logging.TraceSource.TraceSourceLogger
+
+        
+
+
+    class :dn:cls:`TraceSourceLoggerProvider`
+        .. object: type=class name=Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider
+
+        
         Provides an ILoggerFactory based on System.Diagnostics.TraceSource.
+
+
+    class :dn:cls:`TraceSourceScope`
+        .. object: type=class name=Microsoft.Extensions.Logging.TraceSource.TraceSourceScope
+
+        
+        Provides an IDisposable that represents a logical operation scope based on System.Diagnostics LogicalOperationStack
 
 

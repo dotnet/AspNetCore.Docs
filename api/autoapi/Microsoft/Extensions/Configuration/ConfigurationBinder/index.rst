@@ -5,12 +5,17 @@ ConfigurationBinder Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.Binder
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ConfigurationBinder
+    public class ConfigurationBinder
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.Binder/ConfigurationBinder.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationBinder
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.ConfigurationBinder
 
@@ -61,44 +63,28 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Bind(Microsoft.Extensions.Configuration.IConfiguration, System.Object)
     
         
-        
+    
         
         :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        
+    
         
         :type instance: System.Object
     
         
         .. code-block:: csharp
     
-           public static void Bind(IConfiguration configuration, object instance)
+            public static void Bind(IConfiguration configuration, object instance)
     
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get(Microsoft.Extensions.Configuration.IConfiguration, System.Type)
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue(Microsoft.Extensions.Configuration.IConfiguration, System.Type, System.String)
     
         
-        
+    
         
         :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        
+    
         
         :type type: System.Type
-        :rtype: System.Object
     
-        
-        .. code-block:: csharp
-    
-           public static object Get(IConfiguration configuration, Type type)
-    
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get(Microsoft.Extensions.Configuration.IConfiguration, System.Type, System.String)
-    
-        
-        
-        
-        :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        
-        
-        :type type: System.Type
-        
         
         :type key: System.String
         :rtype: System.Object
@@ -106,70 +92,63 @@ Methods
         
         .. code-block:: csharp
     
-           public static object Get(IConfiguration configuration, Type type, string key)
+            public static object GetValue(IConfiguration configuration, Type type, string key)
     
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get<T>(Microsoft.Extensions.Configuration.IConfiguration)
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue(Microsoft.Extensions.Configuration.IConfiguration, System.Type, System.String, System.Object)
     
         
-        
+    
         
         :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        :rtype: {T}
     
         
-        .. code-block:: csharp
+        :type type: System.Type
     
-           public static T Get<T>(IConfiguration configuration)
-    
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get<T>(Microsoft.Extensions.Configuration.IConfiguration, System.String)
-    
-        
-        
-        
-        :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        
         
         :type key: System.String
-        :rtype: {T}
+    
+        
+        :type defaultValue: System.Object
+        :rtype: System.Object
     
         
         .. code-block:: csharp
     
-           public static T Get<T>(IConfiguration configuration, string key)
+            public static object GetValue(IConfiguration configuration, Type type, string key, object defaultValue)
     
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get<T>(Microsoft.Extensions.Configuration.IConfiguration, System.String, T)
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue<T>(Microsoft.Extensions.Configuration.IConfiguration, System.String)
     
         
-        
+    
         
         :type configuration: Microsoft.Extensions.Configuration.IConfiguration
-        
+    
         
         :type key: System.String
-        
-        
-        :type defaultValue: {T}
-        :rtype: {T}
+        :rtype: T
     
         
         .. code-block:: csharp
     
-           public static T Get<T>(IConfiguration configuration, string key, T defaultValue)
+            public static T GetValue<T>(IConfiguration configuration, string key)
     
-    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.Get<T>(Microsoft.Extensions.Configuration.IConfiguration, T)
+    .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue<T>(Microsoft.Extensions.Configuration.IConfiguration, System.String, T)
     
         
-        
+    
         
         :type configuration: Microsoft.Extensions.Configuration.IConfiguration
+    
         
+        :type key: System.String
+    
         
-        :type defaultValue: {T}
-        :rtype: {T}
+        :type defaultValue: T
+        :rtype: T
     
         
         .. code-block:: csharp
     
-           public static T Get<T>(IConfiguration configuration, T defaultValue)
+            public static T GetValue<T>(IConfiguration configuration, string key, T defaultValue)
     
 

@@ -5,17 +5,21 @@ MvcLocalizationMvcBuilderExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for configuring MVC view localization.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.Localization
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcLocalizationMvcBuilderExtensions
+    public class MvcLocalizationMvcBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Localization/DependencyInjection/MvcLocalizationMvcBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions
 
@@ -67,100 +68,104 @@ Methods
     
         
     
+        
         Adds MVC view localization to the application.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddViewLocalization(IMvcBuilder builder)
+            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNet.Mvc.Razor.LanguageViewLocationExpanderFormat)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat)
+    
+        
+    
+        
+         Adds MVC view localization to the application.
     
         
     
-        Adds MVC view localization to the application.
-    
         
-        
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        
+    
         
         :param format: The view format for localized views.
         
-        :type format: Microsoft.AspNet.Mvc.Razor.LanguageViewLocationExpanderFormat
+        :type format: Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format)
+            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNet.Mvc.Razor.LanguageViewLocationExpanderFormat, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
+    
+        
+    
+        
+         Adds MVC view localization to the application.
     
         
     
-        Adds MVC view localization to the application.
-    
         
-        
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        
+    
         
         :param format: The view format for localized views.
         
-        :type format: Microsoft.AspNet.Mvc.Razor.LanguageViewLocationExpanderFormat
+        :type format: Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat
+    
         
+        :param setupAction: An action to configure the :any:`Microsoft.Extensions.Localization.LocalizationOptions`\.
         
-        :param setupAction: An action to configure the .
-        
-        :type setupAction: System.Action{Microsoft.Extensions.Localization.LocalizationOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.Extensions.Localization.LocalizationOptions<Microsoft.Extensions.Localization.LocalizationOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format, Action<LocalizationOptions> setupAction)
+            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format, Action<LocalizationOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
     
         
     
-        Adds MVC view localization to the application.
+        
+         Adds MVC view localization to the application.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcBuilder
+    
         
+        :param setupAction: An action to configure the :any:`Microsoft.Extensions.Localization.LocalizationOptions`\.
         
-        :param setupAction: An action to configure the .
-        
-        :type setupAction: System.Action{Microsoft.Extensions.Localization.LocalizationOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.Extensions.Localization.LocalizationOptions<Microsoft.Extensions.Localization.LocalizationOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, Action<LocalizationOptions> setupAction)
+            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, Action<LocalizationOptions> setupAction)
     
 

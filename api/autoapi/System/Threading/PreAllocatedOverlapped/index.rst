@@ -5,12 +5,17 @@ PreAllocatedOverlapped Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`System.Threading`
+Assemblies
+    * Microsoft.Net.Http.Server
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public sealed class PreAllocatedOverlapped : IDisposable, IDeferredDisposable
+    public sealed class PreAllocatedOverlapped : IDisposable, IDeferredDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/Overlapped/PreAllocatedOverlapped.cs>`_
 
 
 
-
+.. dn:class:: System.Threading.PreAllocatedOverlapped
+    :hidden:
 
 .. dn:class:: System.Threading.PreAllocatedOverlapped
 
@@ -61,20 +63,20 @@ Constructors
     .. dn:constructor:: System.Threading.PreAllocatedOverlapped.PreAllocatedOverlapped(System.Threading.IOCompletionCallback, System.Object, System.Object)
     
         
-        
+    
         
         :type callback: System.Threading.IOCompletionCallback
-        
+    
         
         :type state: System.Object
-        
+    
         
         :type pinData: System.Object
     
         
         .. code-block:: csharp
     
-           public PreAllocatedOverlapped(IOCompletionCallback callback, object state, object pinData)
+            public PreAllocatedOverlapped(IOCompletionCallback callback, object state, object pinData)
     
 
 Methods
@@ -92,7 +94,7 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
+            public void Dispose()
     
     .. dn:method:: System.Threading.PreAllocatedOverlapped.Finalize()
     
@@ -101,6 +103,6 @@ Methods
         
         .. code-block:: csharp
     
-           protected void Finalize()
+            protected void Finalize()
     
 

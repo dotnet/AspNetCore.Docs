@@ -18,7 +18,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
   .. image:: identity/_static/01-mvc.png
 
-  The created project contains the ``Microsoft.AspNet.Identity.EntityFramework`` package, which will persist the identity data and schema to SQL Server using `Entity Framework Core`_.
+  The created project contains the ``Microsoft.AspNetCore.Identity.EntityFramework`` package, which will persist the identity data and schema to SQL Server using `Entity Framework Core`_.
 
   .. note:: In Visual Studio, you can view NuGet packages details by selecting **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution**. You also see a list of packages in the dependencies section of the *project.json* file within your project.
 
@@ -113,16 +113,16 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 Identity Components
 -------------------
 
-The primary reference assembly for the identity system is ``Microsoft.AspNet.Identity``. This package contains the core set of interfaces for ASP.NET Core Identity.
+The primary reference assembly for the identity system is ``Microsoft.AspNetCore.Identity``. This package contains the core set of interfaces for ASP.NET Core Identity.
 
 .. image:: identity/_static/05-dependencies.png
 
 These dependencies are needed to use the identity system in ASP.NET Core applications:
  
 - ``EntityFramework.SqlServer`` - Entity Framework is Microsoft's recommended data access technology for relational databases.
-- ``Microsoft.AspNet.Authentication.Cookies`` - Middleware that enables an application to use cookie based authentication, similar to ASP.NET's Forms Authentication. 
-- ``Microsoft.AspNet.Cryptography.KeyDerivation`` - Utilities for key derivation.
-- ``Microsoft.AspNet.Hosting.Abstractions`` - Hosting abstractions. 
+- ``Microsoft.AspNetCore.Authentication.Cookies`` - Middleware that enables an application to use cookie based authentication, similar to ASP.NET's Forms Authentication. 
+- ``Microsoft.AspNetCore.Cryptography.KeyDerivation`` - Utilities for key derivation.
+- ``Microsoft.AspNetCore.Hosting.Abstractions`` - Hosting abstractions. 
 
 Migrating to ASP.NET Core Identity
 ----------------------------------

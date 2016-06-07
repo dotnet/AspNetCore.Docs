@@ -106,7 +106,7 @@ ASP.NET Core ships a session package that provides middleware for managing sessi
 
 Once the package is installed, Session must be configured in your application's ``Startup`` class. Session is built on top of ``IDistributedCache``, so you must configure this as well, otherwise you will receive an error.
 
-.. note:: If you do not configure at least one ``IDistributedCache`` implementation, you will get an exception stating "Unable to resolve service for type 'Microsoft.Framework.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNet.Session.DistributedSessionStore'."
+.. note:: If you do not configure at least one ``IDistributedCache`` implementation, you will get an exception stating "Unable to resolve service for type 'Microsoft.Framework.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
 ASP.NET ships with several implementations of ``IDistributedCache``, including an in-memory option (to be used during development and testing only). To configure session using this in-memory option, add the following to ``ConfigureServices``:
 
@@ -150,7 +150,7 @@ The ``IdleTimeout`` is used by the server to determine how long a session can be
 ISession
 ^^^^^^^^
 
-Once session is installed and configured, you refer to it via HttpContext, which exposes a property called ``Session`` of type `ISession <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/ISession/index.html>`__. You can use this interface to get and set values in ``Session``, as ``byte[]``.
+Once session is installed and configured, you refer to it via HttpContext, which exposes a property called ``Session`` of type `ISession <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/ISession/index.html>`__. You can use this interface to get and set values in ``Session``, as ``byte[]``.
 
 .. code-block:: c#
 
@@ -242,7 +242,7 @@ Establishing the session is done in the middleware that handles requests to "/se
 
 .. literalinclude:: app-state/sample/src/AppState/Startup.cs
   :linenos:
-  :language: c#
+  :language: none
   :lines: 54-73
   :dedent: 12
   :emphasize-lines: 2,8-14

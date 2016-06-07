@@ -1,6 +1,7 @@
 {
-  "name": "ASP.NET",
+  "name": "asp.net",
   "version": "0.0.0",
+  "private": true,
   "devDependencies": {
     "gulp": "3.8.11",
     "gulp-concat": "2.5.2",

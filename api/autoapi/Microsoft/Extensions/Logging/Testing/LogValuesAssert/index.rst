@@ -5,12 +5,17 @@ LogValuesAssert Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Testing`
+Assemblies
+    * Microsoft.Extensions.Logging.Testing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class LogValuesAssert
+    public class LogValuesAssert
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Testing/LogValuesAssert.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.Testing.LogValuesAssert
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.LogValuesAssert
 
@@ -62,52 +64,54 @@ Methods
     
         
     
+        
         Asserts that all the expected values are present in the actual values by ignoring
         the order of values.
     
         
-        
+    
         
         :param expectedValues: Expected subset of values
         
-        :type expectedValues: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
-        
+        :type expectedValues: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}}
+    
         
         :param actualValues: Actual set of values
         
-        :type actualValues: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
+        :type actualValues: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}}
     
         
         .. code-block:: csharp
     
-           public static void Contains(IEnumerable<KeyValuePair<string, object>> expectedValues, IEnumerable<KeyValuePair<string, object>> actualValues)
+            public static void Contains(IEnumerable<KeyValuePair<string, object>> expectedValues, IEnumerable<KeyValuePair<string, object>> actualValues)
     
     .. dn:method:: Microsoft.Extensions.Logging.Testing.LogValuesAssert.Contains(System.String, System.Object, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, System.Object>>)
     
         
     
+        
         Asserts that the given key and value are present in the actual values.
     
         
-        
+    
         
         :param key: The key of the item to be found.
         
         :type key: System.String
-        
+    
         
         :param value: The value of the item to be found.
         
         :type value: System.Object
-        
+    
         
         :param actualValues: The actual values.
         
-        :type actualValues: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
+        :type actualValues: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}}
     
         
         .. code-block:: csharp
     
-           public static void Contains(string key, object value, IEnumerable<KeyValuePair<string, object>> actualValues)
+            public static void Contains(string key, object value, IEnumerable<KeyValuePair<string, object>> actualValues)
     
 

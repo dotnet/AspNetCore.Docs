@@ -5,12 +5,17 @@ ProxyMethodEmitter Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyMethodEmitter
+    public class ProxyMethodEmitter
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyMethodEmitter.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyMethodEmitter
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyMethodEmitter
 
@@ -61,17 +63,17 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyMethodEmitter.CreateProxyMethod(System.Reflection.MethodInfo, System.Type)
     
         
-        
+    
         
         :type method: System.Reflection.MethodInfo
-        
+    
         
         :type inputType: System.Type
-        :rtype: System.Func{System.Object,System.Object,Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxyFactory,System.Boolean}
+        :rtype: System.Func<System.Func`4>{System.Object<System.Object>, System.Object<System.Object>, Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxyFactory<Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxyFactory>, System.Boolean<System.Boolean>}
     
         
         .. code-block:: csharp
     
-           public static Func<object, object, IProxyFactory, bool> CreateProxyMethod(MethodInfo method, Type inputType)
+            public static Func<object, object, IProxyFactory, bool> CreateProxyMethod(MethodInfo method, Type inputType)
     
 

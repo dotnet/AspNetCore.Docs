@@ -5,17 +5,21 @@ SessionServiceCollectionExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for adding session services to the DI container.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Session
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class SessionServiceCollectionExtensions
+    public class SessionServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/session/blob/master/src/Microsoft.AspNet.Session/SessionServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions
 
@@ -67,45 +68,47 @@ Methods
     
         
     
+        
         Adds services required for application session state.
     
         
+    
         
-        
-        :param services: The  to add the services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add the services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddSession(IServiceCollection services)
+            public static IServiceCollection AddSession(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.Session.SessionOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Builder.SessionOptions>)
     
         
     
+        
         Adds services required for application session state.
     
         
+    
         
-        
-        :param services: The  to add the services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add the services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        
+    
         
         :param configure: The session options to configure the middleware with.
         
-        :type configure: System.Action{Microsoft.AspNet.Session.SessionOptions}
+        :type configure: System.Action<System.Action`1>{Microsoft.AspNetCore.Builder.SessionOptions<Microsoft.AspNetCore.Builder.SessionOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddSession(IServiceCollection services, Action<SessionOptions> configure)
+            public static IServiceCollection AddSession(IServiceCollection services, Action<SessionOptions> configure)
     
 

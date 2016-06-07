@@ -5,12 +5,17 @@ IConsoleLoggerSettings Interface
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Console`
+Assemblies
+    * Microsoft.Extensions.Logging.Console
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -25,57 +30,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IConsoleLoggerSettings
+    public interface IConsoleLoggerSettings
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Console/IConsoleLoggerSettings.cs>`_
 
 
 
 
 
 .. dn:interface:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
-
-Methods
--------
-
-.. dn:interface:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.Reload()
-    
-        
-        :rtype: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
-    
-        
-        .. code-block:: csharp
-    
-           IConsoleLoggerSettings Reload()
-    
-    .. dn:method:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.TryGetSwitch(System.String, out Microsoft.Extensions.Logging.LogLevel)
-    
-        
-        
-        
-        :type name: System.String
-        
-        
-        :type level: Microsoft.Extensions.Logging.LogLevel
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-           bool TryGetSwitch(string name, out LogLevel level)
-    
+.. dn:interface:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
 
 Properties
 ----------
@@ -93,7 +60,10 @@ Properties
         
         .. code-block:: csharp
     
-           IChangeToken ChangeToken { get; }
+            IChangeToken ChangeToken
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.IncludeScopes
     
@@ -103,6 +73,44 @@ Properties
         
         .. code-block:: csharp
     
-           bool IncludeScopes { get; }
+            bool IncludeScopes
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:interface:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.Reload()
+    
+        
+        :rtype: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
+    
+        
+        .. code-block:: csharp
+    
+            IConsoleLoggerSettings Reload()
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.TryGetSwitch(System.String, out Microsoft.Extensions.Logging.LogLevel)
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type level: Microsoft.Extensions.Logging.LogLevel
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool TryGetSwitch(string name, out LogLevel level)
     
 

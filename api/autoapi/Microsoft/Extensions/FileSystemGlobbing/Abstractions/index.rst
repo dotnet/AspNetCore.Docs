@@ -40,6 +40,38 @@ Microsoft.Extensions.FileSystemGlobbing.Abstractions Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -51,23 +83,33 @@ Microsoft.Extensions.FileSystemGlobbing.Abstractions Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase`
+    class :dn:cls:`DirectoryInfoBase`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper`
+    class :dn:cls:`DirectoryInfoWrapper`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase`
+    class :dn:cls:`FileInfoBase`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper`
+    class :dn:cls:`FileInfoWrapper`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase`
+    class :dn:cls:`FileSystemInfoBase`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase
+
         
 
 

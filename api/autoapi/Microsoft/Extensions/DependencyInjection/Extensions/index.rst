@@ -24,6 +24,18 @@ Microsoft.Extensions.DependencyInjection.Extensions Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,9 @@ Microsoft.Extensions.DependencyInjection.Extensions Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionExtensions`
+    class :dn:cls:`ServiceCollectionExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionExtensions
+
         
 
 

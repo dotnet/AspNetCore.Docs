@@ -5,17 +5,21 @@ MvcServiceCollectionExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for setting up MVC services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcServiceCollectionExtensions
+    public class MvcServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc/MvcServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions
 
@@ -67,45 +68,47 @@ Methods
     
         
     
+        
         Adds MVC services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
+    
         
-        
-        :param services: The  to add services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: A reference to this instance after the operation has completed.
+        :return: An :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder` that can be used to further configure the MVC services.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddMvc(IServiceCollection services)
+            public static IMvcBuilder AddMvc(IServiceCollection services)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNet.Mvc.MvcOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Mvc.MvcOptions>)
     
         
     
+        
         Adds MVC services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
+    
         
-        
-        :param services: The  to add services to.
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
+        :param setupAction: An :any:`System.Action\`1` to configure the provided :any:`Microsoft.AspNetCore.Mvc.MvcOptions`\.
         
-        :param setupAction: An action delegate to configure the provided .
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.MvcOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.MvcOptions<Microsoft.AspNetCore.Mvc.MvcOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
-        :return: A reference to this instance after the operation has completed.
+        :return: An :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder` that can be used to further configure the MVC services.
     
         
         .. code-block:: csharp
     
-           public static IMvcBuilder AddMvc(IServiceCollection services, Action<MvcOptions> setupAction)
+            public static IMvcBuilder AddMvc(IServiceCollection services, Action<MvcOptions> setupAction)
     
 

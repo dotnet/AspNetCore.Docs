@@ -5,17 +5,21 @@ InternalServerErrorResult Class
 
 
 
-.. contents:: 
+
+
+
+An action result that returns an empty :dn:field:`Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError` response.
+
+
+Namespace
+    :dn:ns:`System.Web.Http`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.WebApiCompatShim
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-An action result that returns an empty :dn:field:`Microsoft.AspNet.Http.StatusCodes.Status500InternalServerError` response.
-
-
 
 
 
@@ -24,8 +28,8 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
-* :dn:cls:`Microsoft.AspNet.Mvc.ActionResult`
-* :dn:cls:`Microsoft.AspNet.Mvc.HttpStatusCodeResult`
+* :dn:cls:`Microsoft.AspNetCore.Mvc.ActionResult`
+* :dn:cls:`Microsoft.AspNetCore.Mvc.StatusCodeResult`
 * :dn:cls:`System.Web.Http.InternalServerErrorResult`
 
 
@@ -40,20 +44,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class InternalServerErrorResult : HttpStatusCodeResult, IActionResult
+    public class InternalServerErrorResult : StatusCodeResult, IActionResult
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.WebApiCompatShim/InternalServerErrorResult.cs>`_
 
 
 
-
+.. dn:class:: System.Web.Http.InternalServerErrorResult
+    :hidden:
 
 .. dn:class:: System.Web.Http.InternalServerErrorResult
 
@@ -69,6 +70,7 @@ Constructors
     
         
     
+        
         Initializes a new instance of the :any:`System.Web.Http.InternalServerErrorResult` class.
     
         
@@ -76,6 +78,6 @@ Constructors
         
         .. code-block:: csharp
     
-           public InternalServerErrorResult()
+            public InternalServerErrorResult()
     
 

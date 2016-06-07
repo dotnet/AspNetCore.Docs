@@ -5,12 +5,17 @@ MatcherExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MatcherExtensions
+    public class MatcherExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/MatcherExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions
 
@@ -61,47 +63,47 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions.AddExcludePatterns(Microsoft.Extensions.FileSystemGlobbing.Matcher, System.Collections.Generic.IEnumerable<System.String>[])
     
         
-        
+    
         
         :type matcher: Microsoft.Extensions.FileSystemGlobbing.Matcher
+    
         
-        
-        :type excludePatternsGroups: System.Collections.Generic.IEnumerable{System.String}[]
+        :type excludePatternsGroups: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}[]
     
         
         .. code-block:: csharp
     
-           public static void AddExcludePatterns(Matcher matcher, params IEnumerable<string>[] excludePatternsGroups)
+            public static void AddExcludePatterns(Matcher matcher, params IEnumerable<string>[] excludePatternsGroups)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions.AddIncludePatterns(Microsoft.Extensions.FileSystemGlobbing.Matcher, System.Collections.Generic.IEnumerable<System.String>[])
     
         
-        
+    
         
         :type matcher: Microsoft.Extensions.FileSystemGlobbing.Matcher
+    
         
-        
-        :type includePatternsGroups: System.Collections.Generic.IEnumerable{System.String}[]
+        :type includePatternsGroups: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}[]
     
         
         .. code-block:: csharp
     
-           public static void AddIncludePatterns(Matcher matcher, params IEnumerable<string>[] includePatternsGroups)
+            public static void AddIncludePatterns(Matcher matcher, params IEnumerable<string>[] includePatternsGroups)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions.GetResultsInFullPath(Microsoft.Extensions.FileSystemGlobbing.Matcher, System.String)
     
         
-        
+    
         
         :type matcher: Microsoft.Extensions.FileSystemGlobbing.Matcher
-        
+    
         
         :type directoryPath: System.String
-        :rtype: System.Collections.Generic.IEnumerable{System.String}
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
     
         
         .. code-block:: csharp
     
-           public static IEnumerable<string> GetResultsInFullPath(Matcher matcher, string directoryPath)
+            public static IEnumerable<string> GetResultsInFullPath(Matcher matcher, string directoryPath)
     
 

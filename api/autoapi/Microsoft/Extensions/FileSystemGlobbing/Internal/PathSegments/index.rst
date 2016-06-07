@@ -40,6 +40,38 @@ Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -51,23 +83,33 @@ Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.CurrentPathSegment`
+    class :dn:cls:`CurrentPathSegment`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.CurrentPathSegment
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment`
+    class :dn:cls:`LiteralPathSegment`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment`
+    class :dn:cls:`ParentPathSegment`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.ParentPathSegment
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment`
+    class :dn:cls:`RecursiveWildcardSegment`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.RecursiveWildcardSegment
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment`
+    class :dn:cls:`WildcardPathSegment`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
+
         
 
 

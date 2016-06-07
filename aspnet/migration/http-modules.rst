@@ -328,7 +328,7 @@ You saw earlier that the ``Invoke`` method in your middleware takes a parameter 
 
 ``HttpContext`` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of 
 `System.Web.HttpContext <https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx>`__ to the 
-new `Microsoft.AspNet.Http.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/HttpContext/index.html>`__.
+new `Microsoft.AspNetCore.Http.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/HttpContext/index.html>`__.
 
 
 HttpContext

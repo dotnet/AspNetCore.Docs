@@ -28,6 +28,22 @@ Microsoft.Extensions.Logging.Internal Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -39,12 +55,18 @@ Microsoft.Extensions.Logging.Internal Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Internal.FormattedLogValues`
-        LogValues to enable formatting options supported by :dn:meth:`System.String.Format(System.String,System.Object)`\.
+    class :dn:cls:`FormattedLogValues`
+        .. object: type=class name=Microsoft.Extensions.Logging.Internal.FormattedLogValues
+
+        
+        LogValues to enable formatting options supported by :dn:meth:`string.Format`\. 
         This also enables using {NamedformatItem} in the format string.
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.Internal.LogValuesFormatter`
-        Formatter to convert the named format items like {NamedformatItem} to :dn:meth:`System.String.Format(System.String,System.Object)` format.
+    class :dn:cls:`LogValuesFormatter`
+        .. object: type=class name=Microsoft.Extensions.Logging.Internal.LogValuesFormatter
+
+        
+        Formatter to convert the named format items like {NamedformatItem} to :dn:meth:`string.Format` format.
 
 

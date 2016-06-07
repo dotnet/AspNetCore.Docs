@@ -5,12 +5,17 @@ ProxyEnumerable<TSourceElement, TTargetElement> Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyEnumerable<TSourceElement, TTargetElement> : IEnumerable<TTargetElement>, IEnumerable
+    public class ProxyEnumerable<TSourceElement, TTargetElement> : IEnumerable<TTargetElement>, IEnumerable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyEnumerable.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable`2
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>
 
@@ -61,17 +63,17 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerable(System.Collections.Generic.IEnumerable<TSourceElement>, System.Type)
     
         
+    
         
-        
-        :type source: System.Collections.Generic.IEnumerable{{TSourceElement}}
-        
+        :type source: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{TSourceElement}
+    
         
         :type proxyType: System.Type
     
         
         .. code-block:: csharp
     
-           public ProxyEnumerable(IEnumerable<TSourceElement> source, Type proxyType)
+            public ProxyEnumerable(IEnumerable<TSourceElement> source, Type proxyType)
     
 
 Methods
@@ -85,12 +87,12 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.GetEnumerator()
     
         
-        :rtype: System.Collections.Generic.IEnumerator{{TTargetElement}}
+        :rtype: System.Collections.Generic.IEnumerator<System.Collections.Generic.IEnumerator`1>{TTargetElement}
     
         
         .. code-block:: csharp
     
-           public IEnumerator<TTargetElement> GetEnumerator()
+            public IEnumerator<TTargetElement> GetEnumerator()
     
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.System.Collections.IEnumerable.GetEnumerator()
     
@@ -100,6 +102,6 @@ Methods
         
         .. code-block:: csharp
     
-           IEnumerator IEnumerable.GetEnumerator()
+            IEnumerator IEnumerable.GetEnumerator()
     
 

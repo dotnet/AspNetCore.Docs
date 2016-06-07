@@ -45,7 +45,7 @@ The ``Authorize`` attribute can be applied to an entire controller, in this inst
 .. code-block:: c#
 
   [Authorize(Policy = "EmployeeOnly")]
-  public class VactionController : Controller
+  public class VacationController : Controller
   {  
       public ActionResult VacationBalance()
       {      

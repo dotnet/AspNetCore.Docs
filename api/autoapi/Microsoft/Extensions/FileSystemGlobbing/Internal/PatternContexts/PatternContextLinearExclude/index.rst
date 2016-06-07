@@ -5,12 +5,17 @@ PatternContextLinearExclude Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -35,20 +40,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class PatternContextLinearExclude : PatternContextLinear, IPatternContext
+    public class PatternContextLinearExclude : PatternContextLinear, IPatternContext
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Internal/PatternContexts/PatternContextLinearExclude.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearExclude
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearExclude
 
@@ -63,14 +65,14 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearExclude.PatternContextLinearExclude(Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern)
     
         
-        
+    
         
         :type pattern: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
     
         
         .. code-block:: csharp
     
-           public PatternContextLinearExclude(ILinearPattern pattern)
+            public PatternContextLinearExclude(ILinearPattern pattern)
     
 
 Methods
@@ -84,7 +86,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinearExclude.Test(Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase)
     
         
-        
+    
         
         :type directory: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
         :rtype: System.Boolean
@@ -92,6 +94,6 @@ Methods
         
         .. code-block:: csharp
     
-           public override bool Test(DirectoryInfoBase directory)
+            public override bool Test(DirectoryInfoBase directory)
     
 

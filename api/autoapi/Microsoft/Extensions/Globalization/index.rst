@@ -24,6 +24,18 @@ Microsoft.Extensions.Globalization Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,10 @@ Microsoft.Extensions.Globalization Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Globalization.CultureInfoCache`
+    class :dn:cls:`CultureInfoCache`
+        .. object: type=class name=Microsoft.Extensions.Globalization.CultureInfoCache
+
+        
         Provides read-only cached instances of :any:`System.Globalization.CultureInfo`\.
 
 

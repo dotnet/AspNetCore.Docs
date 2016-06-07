@@ -86,7 +86,7 @@ Don't forget you also need to register your handler in the ``ConfigureServices``
 Operational Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are making decisions based on operations such as read, write, update and delete an already defined ``OperationAuthorizationRequirement`` class exists in the ``Microsoft.AspNet.Authorization.Infrastructure`` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation To use it provide an operation name;
+If you are making decisions based on operations such as read, write, update and delete an already defined ``OperationAuthorizationRequirement`` class exists in the ``Microsoft.AspNetCore.Authorization.Infrastructure`` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation To use it provide an operation name;
 
 .. code-block:: c#
 

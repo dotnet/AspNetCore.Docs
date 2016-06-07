@@ -5,12 +5,17 @@ ProxyDiagnosticSourceMethodAdapter Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyDiagnosticSourceMethodAdapter : IDiagnosticSourceMethodAdapter
+    public class ProxyDiagnosticSourceMethodAdapter : IDiagnosticSourceMethodAdapter
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/ProxyDiagnosticSourceMethodAdapter.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.ProxyDiagnosticSourceMethodAdapter
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.ProxyDiagnosticSourceMethodAdapter
 
@@ -61,17 +63,17 @@ Methods
     .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.ProxyDiagnosticSourceMethodAdapter.Adapt(System.Reflection.MethodInfo, System.Type)
     
         
-        
+    
         
         :type method: System.Reflection.MethodInfo
-        
+    
         
         :type inputType: System.Type
-        :rtype: System.Func{System.Object,System.Object,System.Boolean}
+        :rtype: System.Func<System.Func`3>{System.Object<System.Object>, System.Object<System.Object>, System.Boolean<System.Boolean>}
     
         
         .. code-block:: csharp
     
-           public Func<object, object, bool> Adapt(MethodInfo method, Type inputType)
+            public Func<object, object, bool> Adapt(MethodInfo method, Type inputType)
     
 

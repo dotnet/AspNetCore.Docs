@@ -5,17 +5,21 @@ EventLogLoggerProvider Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 The provider for the :any:`Microsoft.Extensions.Logging.EventLog.EventLogLogger`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.EventLog`
+Assemblies
+    * Microsoft.Extensions.Logging.EventLog
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class EventLogLoggerProvider : ILoggerProvider, IDisposable
+    public class EventLogLoggerProvider : ILoggerProvider, IDisposable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.EventLog/EventLogLoggerProvider.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider
 
@@ -67,6 +68,7 @@ Constructors
     
         
     
+        
         Initializes a new instance of the :any:`Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider` class.
     
         
@@ -74,25 +76,26 @@ Constructors
         
         .. code-block:: csharp
     
-           public EventLogLoggerProvider()
+            public EventLogLoggerProvider()
     
     .. dn:constructor:: Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider.EventLogLoggerProvider(Microsoft.Extensions.Logging.EventLog.EventLogSettings)
     
         
     
+        
         Initializes a new instance of the :any:`Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider` class.
     
         
+    
         
-        
-        :param settings: The .
+        :param settings: The :any:`Microsoft.Extensions.Logging.EventLog.EventLogSettings`\.
         
         :type settings: Microsoft.Extensions.Logging.EventLog.EventLogSettings
     
         
         .. code-block:: csharp
     
-           public EventLogLoggerProvider(EventLogSettings settings)
+            public EventLogLoggerProvider(EventLogSettings settings)
     
 
 Methods
@@ -106,7 +109,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider.CreateLogger(System.String)
     
         
-        
+    
         
         :type name: System.String
         :rtype: Microsoft.Extensions.Logging.ILogger
@@ -114,7 +117,7 @@ Methods
         
         .. code-block:: csharp
     
-           public ILogger CreateLogger(string name)
+            public ILogger CreateLogger(string name)
     
     .. dn:method:: Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider.Dispose()
     
@@ -123,6 +126,6 @@ Methods
         
         .. code-block:: csharp
     
-           public void Dispose()
+            public void Dispose()
     
 

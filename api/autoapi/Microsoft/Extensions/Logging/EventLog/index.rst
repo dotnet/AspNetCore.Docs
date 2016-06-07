@@ -26,9 +26,41 @@ Microsoft.Extensions.Logging.EventLog Namespace
    /autoapi/Microsoft/Extensions/Logging/EventLog/EventLogSettings/index
    
    
+   
+   /autoapi/Microsoft/Extensions/Logging/EventLog/WindowsEventLog/index
+   
+   
 
 
 
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -43,15 +75,30 @@ Microsoft.Extensions.Logging.EventLog Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.EventLog.EventLogLogger`
+    class :dn:cls:`EventLogLogger`
+        .. object: type=class name=Microsoft.Extensions.Logging.EventLog.EventLogLogger
+
+        
         A logger that writes messages to Windows Event Log.
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider`
+    class :dn:cls:`EventLogLoggerProvider`
+        .. object: type=class name=Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider
+
+        
         The provider for the :any:`Microsoft.Extensions.Logging.EventLog.EventLogLogger`\.
 
 
-    class :dn:cls:`Microsoft.Extensions.Logging.EventLog.EventLogSettings`
+    class :dn:cls:`EventLogSettings`
+        .. object: type=class name=Microsoft.Extensions.Logging.EventLog.EventLogSettings
+
+        
         Settings for :any:`Microsoft.Extensions.Logging.EventLog.EventLogLogger`\.
+
+
+    class :dn:cls:`WindowsEventLog`
+        .. object: type=class name=Microsoft.Extensions.Logging.EventLog.WindowsEventLog
+
+        
 
 

@@ -101,6 +101,7 @@ At this time, the contents of the *project.json* file are not encrypted. The *pr
 
 Configure startup to use ``AuthMessageSenderOptions``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add the dependecy ``Microsoft.Extensions.Options.ConfigurationExtensions`` in the project.json file.
 
 Add ``AuthMessageSenderOptions`` to the service container at the end of the ``ConfigureServices`` method in the *Startup.cs* file:
 
@@ -131,7 +132,7 @@ This tutorial shows how to add email notification through `SendGrid <https://sen
 
 .. note:: SendGrid does not yet support .NET Core. To use SendGrid in your application you need to either target the full .NET Framework (as shown below) or call the REST API from SendGrid to send email. 
 
-.. code-block:: json
+.. code-block:: none
 
    "frameworks": {
     "net46": { }

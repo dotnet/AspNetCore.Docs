@@ -5,12 +5,17 @@ Request Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Server`
+Assemblies
+    * Microsoft.Net.Http.Server
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,64 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public sealed class Request
+    public sealed class Request
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/RequestProcessing/Request.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Net.Http.Server.Request
-
-Methods
--------
-
-.. dn:class:: Microsoft.Net.Http.Server.Request
-    :noindex:
     :hidden:
 
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Request.GetClientCertificateAsync(System.Threading.CancellationToken)
-    
-        
-        
-        
-        :type cancellationToken: System.Threading.CancellationToken
-        :rtype: System.Threading.Tasks.Task{System.Security.Cryptography.X509Certificates.X509Certificate2}
-    
-        
-        .. code-block:: csharp
-    
-           public Task<X509Certificate2> GetClientCertificateAsync(CancellationToken cancellationToken = null)
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Request.GetProvidedTokenBindingId()
-    
-        
-        :rtype: System.Byte[]
-    
-        
-        .. code-block:: csharp
-    
-           public byte[] GetProvidedTokenBindingId()
-    
-    .. dn:method:: Microsoft.Net.Http.Server.Request.GetReferredTokenBindingId()
-    
-        
-        :rtype: System.Byte[]
-    
-        
-        .. code-block:: csharp
-    
-           public byte[] GetReferredTokenBindingId()
-    
+.. dn:class:: Microsoft.Net.Http.Server.Request
 
 Properties
 ----------
@@ -108,17 +68,36 @@ Properties
         
         .. code-block:: csharp
     
-           public Stream Body { get; }
+            public Stream Body
+            {
+                get;
+            }
     
-    .. dn:property:: Microsoft.Net.Http.Server.Request.ContentLength
+    .. dn:property:: Microsoft.Net.Http.Server.Request.ConnectionId
     
         
-        :rtype: System.Nullable{System.Int64}
+        :rtype: System.UInt64
     
         
         .. code-block:: csharp
     
-           public long ? ContentLength { get; }
+            public ulong ConnectionId
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.Request.ContentLength
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? ContentLength
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ContentType
     
@@ -128,7 +107,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string ContentType { get; }
+            public string ContentType
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.HasEntityBody
     
@@ -138,7 +120,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool HasEntityBody { get; }
+            public bool HasEntityBody
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Headers
     
@@ -148,7 +133,10 @@ Properties
         
         .. code-block:: csharp
     
-           public HeaderCollection Headers { get; }
+            public HeaderCollection Headers
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.IsHeadMethod
     
@@ -158,17 +146,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool IsHeadMethod { get; }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.Request.IsLocal
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-           public bool IsLocal { get; }
+            public bool IsHeadMethod
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.IsSecureConnection
     
@@ -178,7 +159,10 @@ Properties
         
         .. code-block:: csharp
     
-           public bool IsSecureConnection { get; }
+            public bool IsSecureConnection
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.LocalIpAddress
     
@@ -188,7 +172,10 @@ Properties
         
         .. code-block:: csharp
     
-           public IPAddress LocalIpAddress { get; }
+            public IPAddress LocalIpAddress
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.LocalPort
     
@@ -198,7 +185,10 @@ Properties
         
         .. code-block:: csharp
     
-           public int LocalPort { get; }
+            public int LocalPort
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Method
     
@@ -208,7 +198,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string Method { get; }
+            public string Method
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Path
     
@@ -218,7 +211,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string Path { get; }
+            public string Path
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.PathBase
     
@@ -228,7 +224,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string PathBase { get; }
+            public string PathBase
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ProtocolVersion
     
@@ -238,7 +237,10 @@ Properties
         
         .. code-block:: csharp
     
-           public Version ProtocolVersion { get; }
+            public Version ProtocolVersion
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.QueryString
     
@@ -248,7 +250,11 @@ Properties
         
         .. code-block:: csharp
     
-           public string QueryString { get; set; }
+            public string QueryString
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.RemoteIpAddress
     
@@ -258,7 +264,10 @@ Properties
         
         .. code-block:: csharp
     
-           public IPAddress RemoteIpAddress { get; }
+            public IPAddress RemoteIpAddress
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.RemotePort
     
@@ -268,7 +277,10 @@ Properties
         
         .. code-block:: csharp
     
-           public int RemotePort { get; }
+            public int RemotePort
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Scheme
     
@@ -278,6 +290,51 @@ Properties
         
         .. code-block:: csharp
     
-           public string Scheme { get; }
+            public string Scheme
+            {
+                get;
+            }
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Net.Http.Server.Request
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Request.GetClientCertificateAsync(System.Threading.CancellationToken)
+    
+        
+    
+        
+        :type cancellationToken: System.Threading.CancellationToken
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Security.Cryptography.X509Certificates.X509Certificate2<System.Security.Cryptography.X509Certificates.X509Certificate2>}
+    
+        
+        .. code-block:: csharp
+    
+            public Task<X509Certificate2> GetClientCertificateAsync(CancellationToken cancellationToken = null)
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Request.GetProvidedTokenBindingId()
+    
+        
+        :rtype: System.Byte<System.Byte>[]
+    
+        
+        .. code-block:: csharp
+    
+            public byte[] GetProvidedTokenBindingId()
+    
+    .. dn:method:: Microsoft.Net.Http.Server.Request.GetReferredTokenBindingId()
+    
+        
+        :rtype: System.Byte<System.Byte>[]
+    
+        
+        .. code-block:: csharp
+    
+            public byte[] GetReferredTokenBindingId()
     
 

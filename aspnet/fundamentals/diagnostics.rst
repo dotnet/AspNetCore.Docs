@@ -9,32 +9,6 @@ ASP.NET Core includes a number of new features that can assist with diagnosing p
   :local:
   :depth: 1
 
-You can add a runtime info page by simply calling an extension method in the ``Configure`` method of ``Startup.cs``:
-
-.. code-block:: c#
-
-  if (env.IsDevelopment())
-  {
-      app.UseRuntimeInfoPage(); // default path is /runtimeinfo
-  }
-
-Once this is added to your application, you can browse to the specified path (``/runtimeinfo``) to see information about the runtime that is being used and the packages that are included in the application, as shown below:
-
-.. image:: diagnostics/_static/runtimeinfo-page.png
-
-The path for this page can be optionally specified in the call to ``UseRuntimeInfoPage()``. It accepts a `RuntimeInfoPageOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Diagnostics/RuntimeInfoPageOptions/index.html>`_ instance as a parameter, which has a ``Path`` property. For example, to specify a path of ``/info`` you would call ``UseRuntimeInfoPage()`` as shown here:
-
-.. code-block:: c#
-
-  if (env.IsDevelopment())
-  {
-      app.UseRuntimeInfoPage("/info");
-  }
-
-Diagnostic information should not be exposed in production. The code above prevents diagnostics outside the development environment.
-
-.. note:: Remember that the ``Configure()`` method in ``Startup.cs`` is defining the pipeline that will be used by all requests to your application, which means the order is important. If for example you move the call to ``UseRuntimeInfoPage()`` after the call to ``app.Run()`` in the examples shown here, it will never be called because ``app.Run()`` will handle the request before it reaches the call to ``UseRuntimeInfoPage``.
-
 The developer error page
 ------------------------
 

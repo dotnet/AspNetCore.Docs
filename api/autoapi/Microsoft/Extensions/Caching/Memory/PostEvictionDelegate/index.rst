@@ -5,17 +5,21 @@ PostEvictionDelegate Delegate
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Signature of the callback which gets called when a cache entry expires.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public delegate void PostEvictionDelegate(object key, object value, EvictionReason reason, object state);
+    public delegate void PostEvictionDelegate(object key, object value, EvictionReason reason, object state);
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/PostEvictionDelegate.cs>`_
 
 
 
-
+.. dn:delegate:: Microsoft.Extensions.Caching.Memory.PostEvictionDelegate
+    :hidden:
 
 .. dn:delegate:: Microsoft.Extensions.Caching.Memory.PostEvictionDelegate
 

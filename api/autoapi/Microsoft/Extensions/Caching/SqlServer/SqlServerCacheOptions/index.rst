@@ -5,12 +5,21 @@ SqlServerCacheOptions Class
 
 
 
-.. contents:: 
+
+
+
+Configuration options for :any:`Microsoft.Extensions.Caching.SqlServer.SqlServerCache`\.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.SqlServer`
+Assemblies
+    * Microsoft.Extensions.Caching.SqlServer
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class SqlServerCacheOptions
+    public class SqlServerCacheOptions : IOptions<SqlServerCacheOptions>
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.SqlServer/SqlServerCacheOptions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions
 
@@ -62,6 +68,7 @@ Properties
     
         
     
+        
         The connection string to the database.
     
         
@@ -70,26 +77,49 @@ Properties
         
         .. code-block:: csharp
     
-           public string ConnectionString { get; set; }
+            public string ConnectionString
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ExpiredItemsDeletionInterval
     
         
     
+        
         The periodic interval to scan and delete expired items in the cache. Default is 30 minutes.
     
         
-        :rtype: System.Nullable{System.TimeSpan}
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
     
         
         .. code-block:: csharp
     
-           public TimeSpan? ExpiredItemsDeletionInterval { get; set; }
+            public TimeSpan? ExpiredItemsDeletionInterval
+            {
+                get;
+                set;
+            }
+    
+    .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions>.Value
+    
+        
+        :rtype: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions
+    
+        
+        .. code-block:: csharp
+    
+            SqlServerCacheOptions IOptions<SqlServerCacheOptions>.Value
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName
     
         
     
+        
         The schema name of the table.
     
         
@@ -98,12 +128,17 @@ Properties
         
         .. code-block:: csharp
     
-           public string SchemaName { get; set; }
+            public string SchemaName
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SystemClock
     
         
     
+        
         An abstraction to represent the clock of a machine in order to enable unit testing.
     
         
@@ -112,12 +147,17 @@ Properties
         
         .. code-block:: csharp
     
-           public ISystemClock SystemClock { get; set; }
+            public ISystemClock SystemClock
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName
     
         
     
+        
         Name of the table where the cache items are stored.
     
         
@@ -126,6 +166,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string TableName { get; set; }
+            public string TableName
+            {
+                get;
+                set;
+            }
     
 

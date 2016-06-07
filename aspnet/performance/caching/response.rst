@@ -134,7 +134,7 @@ The resulting header:
 
   Cache-Control: public,max-age=60
 
-.. _ResponseCacheAttribute: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/ResponseCacheAttribute/index.html
-.. _IOrderedFilter: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/IOrderedFilter/index.html
-.. _IFilterFactory: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/IFilterFactory/index.html
-.. _ResponseCacheFilter: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Mvc/Filters/ResponseCacheFilter/index.html
+.. _ResponseCacheAttribute: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ResponseCacheAttribute/index.html
+.. _IOrderedFilter: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/IOrderedFilter/index.html
+.. _IFilterFactory: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/IFilterFactory/index.html
+.. _ResponseCacheFilter: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Filters/ResponseCacheFilter/index.html

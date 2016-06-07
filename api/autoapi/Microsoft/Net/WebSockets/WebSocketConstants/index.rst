@@ -5,12 +5,17 @@ WebSocketConstants Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.WebSockets`
+Assemblies
+    * Microsoft.Net.WebSockets.Server
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class WebSocketConstants
+    public class WebSocketConstants
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.WebSockets/WebSocketConstants.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Net.WebSockets.WebSocketConstants
+    :hidden:
 
 .. dn:class:: Microsoft.Net.WebSockets.WebSocketConstants
 
@@ -61,10 +63,11 @@ Fields
     .. dn:field:: Microsoft.Net.WebSockets.WebSocketConstants.SupportedProtocolVersion
     
         
+        :rtype: System.String
     
         
         .. code-block:: csharp
     
-           public static string SupportedProtocolVersion
+            public static string SupportedProtocolVersion
     
 

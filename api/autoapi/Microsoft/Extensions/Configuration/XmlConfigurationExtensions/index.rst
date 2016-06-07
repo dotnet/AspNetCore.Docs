@@ -5,17 +5,21 @@ XmlConfigurationExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extension methods for adding :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.Xml
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class XmlConfigurationExtensions
+    public class XmlConfigurationExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.Xml/XmlConfigurationExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions
 
@@ -63,61 +64,126 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
+    .. dn:method:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.Action<Microsoft.Extensions.Configuration.Xml.XmlConfigurationSource>)
     
         
     
-        Adds the XML configuration provider at ``path`` to ``configuraton``.
+        
+        Adds a XML configuration source to <em>builder</em>.
     
         
+    
         
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
         
-        :param configurationBuilder: The  to add to.
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
         
-        :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :param configureSource: Configures the :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationSource` to add.
         
-        
-        :param path: Absolute path or path relative to  of
-            .
-        
-        :type path: System.String
+        :type configureSource: System.Action<System.Action`1>{Microsoft.Extensions.Configuration.Xml.XmlConfigurationSource<Microsoft.Extensions.Configuration.Xml.XmlConfigurationSource>}
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        :return: The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder configurationBuilder, string path)
+            public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, Action<XmlConfigurationSource> configureSource)
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
+    
+        
+    
+        
+        Adds the XML configuration provider at <em>path</em> to <em>builder</em>.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
+        
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
+        
+        :param path: Path relative to the base path stored in 
+            :dn:prop:`Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties` of <em>builder</em>.
+        
+        :type path: System.String
+        :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+    
+        
+        .. code-block:: csharp
+    
+            public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path)
     
     .. dn:method:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String, System.Boolean)
     
         
     
-        Adds the XML configuration provider at ``path`` to ``configurationBuilder``.
+        
+        Adds the XML configuration provider at <em>path</em> to <em>builder</em>.
     
         
+    
         
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
         
-        :param configurationBuilder: The  to add to.
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
         
-        :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        
-        
-        :param path: Absolute path or path relative to  of
-            .
+        :param path: Path relative to the base path stored in 
+            :dn:prop:`Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties` of <em>builder</em>.
         
         :type path: System.String
+    
         
-        
-        :param optional: Determines if loading the configuration provider is optional.
+        :param optional: Whether the file is optional.
         
         :type optional: System.Boolean
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        :return: The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder configurationBuilder, string path, bool optional)
+            public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path, bool optional)
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String, System.Boolean, System.Boolean)
+    
+        
+    
+        
+        Adds the XML configuration provider at <em>path</em> to <em>builder</em>.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder` to add to.
+        
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    
+        
+        :param path: Path relative to the base path stored in 
+            :dn:prop:`Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties` of <em>builder</em>.
+        
+        :type path: System.String
+    
+        
+        :param optional: Whether the file is optional.
+        
+        :type optional: System.Boolean
+    
+        
+        :param reloadOnChange: Whether the configuration should be reloaded if the file changes.
+        
+        :type reloadOnChange: System.Boolean
+        :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+    
+        
+        .. code-block:: csharp
+    
+            public static IConfigurationBuilder AddXmlFile(IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
     
 

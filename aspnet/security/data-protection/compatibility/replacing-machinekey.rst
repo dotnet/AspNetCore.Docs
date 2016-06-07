@@ -11,7 +11,7 @@ Package installation
 .. note:: 
   The new data protection system can only be installed into an existing ASP.NET application targeting .NET 4.5.1 or higher. Installation will fail if the application targets .NET 4.5 or lower.
 
-To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNet.DataProtection.SystemWeb. This will instantiate the data protection system using the :ref:`default configuration <data-protection-default-settings>` settings.
+To install the new data protection system into an existing ASP.NET 4.5.1+ project, install the package Microsoft.AspNetCore.DataProtection.SystemWeb. This will instantiate the data protection system using the :ref:`default configuration <data-protection-default-settings>` settings.
 
 When you install the package, it inserts a line into Web.config that tells ASP.NET to use it for `most cryptographic operations <http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx>`_, including forms authentication, view state, and calls to MachineKey.Protect. The line that's inserted reads as follows.
 
@@ -37,7 +37,7 @@ Below is an example of a custom data protection startup type which configured bo
 
   using System;
   using System.IO;
-  using Microsoft.AspNet.DataProtection.SystemWeb;
+  using Microsoft.AspNetCore.DataProtection.SystemWeb;
   using Microsoft.Framework.DependencyInjection;
  
   namespace DataProtectionDemo
@@ -67,7 +67,7 @@ To enable this custom configuration, go back to Web.config and look for the <app
     <!--
     If you want to customize the behavior of the ASP.NET Core Data Protection stack, set the
     "aspnet:dataProtectionStartupType" switch below to be the fully-qualified name of a
-    type which subclasses Microsoft.AspNet.DataProtection.SystemWeb.DataProtectionStartup.
+    type which subclasses Microsoft.AspNetCore.DataProtection.SystemWeb.DataProtectionStartup.
     -->
     <add key="aspnet:dataProtectionStartupType" value="" />
   </appSettings>

@@ -5,12 +5,17 @@ HeaderUtilities Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Headers`
+Assemblies
+    * Microsoft.Net.Http.Headers
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class HeaderUtilities
+    public class HeaderUtilities
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Net.Http.Headers/HeaderUtilities.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Net.Http.Headers.HeaderUtilities
+    :hidden:
 
 .. dn:class:: Microsoft.Net.Http.Headers.HeaderUtilities
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Net.Http.Headers.HeaderUtilities.FormatDate(System.DateTimeOffset)
     
         
-        
+    
         
         :type dateTime: System.DateTimeOffset
         :rtype: System.String
@@ -69,12 +71,12 @@ Methods
         
         .. code-block:: csharp
     
-           public static string FormatDate(DateTimeOffset dateTime)
+            public static string FormatDate(DateTimeOffset dateTime)
     
     .. dn:method:: Microsoft.Net.Http.Headers.HeaderUtilities.FormatInt64(System.Int64)
     
         
-        
+    
         
         :type value: System.Int64
         :rtype: System.String
@@ -82,12 +84,12 @@ Methods
         
         .. code-block:: csharp
     
-           public static string FormatInt64(long value)
+            public static string FormatInt64(long value)
     
     .. dn:method:: Microsoft.Net.Http.Headers.HeaderUtilities.RemoveQuotes(System.String)
     
         
-        
+    
         
         :type input: System.String
         :rtype: System.String
@@ -95,15 +97,15 @@ Methods
         
         .. code-block:: csharp
     
-           public static string RemoveQuotes(string input)
+            public static string RemoveQuotes(string input)
     
     .. dn:method:: Microsoft.Net.Http.Headers.HeaderUtilities.TryParseDate(System.String, out System.DateTimeOffset)
     
         
-        
+    
         
         :type input: System.String
-        
+    
         
         :type result: System.DateTimeOffset
         :rtype: System.Boolean
@@ -111,15 +113,15 @@ Methods
         
         .. code-block:: csharp
     
-           public static bool TryParseDate(string input, out DateTimeOffset result)
+            public static bool TryParseDate(string input, out DateTimeOffset result)
     
     .. dn:method:: Microsoft.Net.Http.Headers.HeaderUtilities.TryParseInt64(System.String, out System.Int64)
     
         
-        
+    
         
         :type value: System.String
-        
+    
         
         :type result: System.Int64
         :rtype: System.Boolean
@@ -127,6 +129,6 @@ Methods
         
         .. code-block:: csharp
     
-           public static bool TryParseInt64(string value, out long result)
+            public static bool TryParseInt64(string value, out long result)
     
 

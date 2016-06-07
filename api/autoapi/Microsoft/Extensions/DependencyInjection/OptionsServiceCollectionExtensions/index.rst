@@ -5,12 +5,17 @@ OptionsServiceCollectionExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.Extensions.Options
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class OptionsServiceCollectionExtensions
+    public class OptionsServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/options/blob/master/src/Microsoft.Extensions.OptionsModel/OptionsServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions
 
@@ -61,7 +63,7 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection)
     
         
-        
+    
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
@@ -69,83 +71,22 @@ Methods
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddOptions(IServiceCollection services)
-    
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Object)
-    
-        
-        
-        
-        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        
-        
-        :type configureInstance: System.Object
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-           public static IServiceCollection ConfigureOptions(IServiceCollection services, object configureInstance)
-    
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Type)
-    
-        
-        
-        
-        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        
-        
-        :type configureType: System.Type
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-           public static IServiceCollection ConfigureOptions(IServiceCollection services, Type configureType)
-    
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureOptions<TSetup>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-    
-        
-        
-        
-        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-           public static IServiceCollection ConfigureOptions<TSetup>(IServiceCollection services)
-    
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure<TOptions>(Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.Configuration.IConfiguration)
-    
-        
-        
-        
-        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        
-        
-        :type config: Microsoft.Extensions.Configuration.IConfiguration
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-           public static IServiceCollection Configure<TOptions>(IServiceCollection services, IConfiguration config)where TOptions : class
+            public static IServiceCollection AddOptions(IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure<TOptions>(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<TOptions>)
     
         
-        
+    
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
         
-        
-        :type setupAction: System.Action{{TOptions}}
+        :type configureOptions: System.Action<System.Action`1>{TOptions}
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection Configure<TOptions>(IServiceCollection services, Action<TOptions> setupAction)where TOptions : class
+            public static IServiceCollection Configure<TOptions>(IServiceCollection services, Action<TOptions> configureOptions)where TOptions : class
     
 

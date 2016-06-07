@@ -24,6 +24,18 @@ System.Security.Claims Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,10 @@ System.Security.Claims Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`System.Security.Claims.PrincipalExtensions`
+    class :dn:cls:`PrincipalExtensions`
+        .. object: type=class name=System.Security.Claims.PrincipalExtensions
+
+        
         Claims related extensions for :any:`System.Security.Claims.ClaimsPrincipal`\.
 
 

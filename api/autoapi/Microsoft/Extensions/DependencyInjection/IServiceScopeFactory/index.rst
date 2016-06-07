@@ -5,12 +5,17 @@ IServiceScopeFactory Interface
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.Extensions.DependencyInjection.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -25,20 +30,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IServiceScopeFactory
+    public interface IServiceScopeFactory
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/dependencyinjection/blob/master/src/Microsoft.Extensions.DependencyInjection.Abstractions/IServiceScopeFactory.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.DependencyInjection.IServiceScopeFactory
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.DependencyInjection.IServiceScopeFactory
 
@@ -54,20 +56,22 @@ Methods
     
         
     
+        
         Create an :any:`Microsoft.Extensions.DependencyInjection.IServiceScope` which
         contains an :any:`System.IServiceProvider` used to resolve dependencies from a
         newly created scope.
     
         
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceScope
-        :return: An <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceScope" /> controlling the
+        :return: 
+            An :any:`Microsoft.Extensions.DependencyInjection.IServiceScope` controlling the
             lifetime of the scope. Once this is disposed, any scoped services that have been resolved
-            from the <see cref="P:Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider" />
+            from the :dn:prop:`Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider`
             will also be disposed.
     
         
         .. code-block:: csharp
     
-           IServiceScope CreateScope()
+            IServiceScope CreateScope()
     
 

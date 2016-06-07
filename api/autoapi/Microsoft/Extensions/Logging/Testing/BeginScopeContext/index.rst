@@ -5,12 +5,17 @@ BeginScopeContext Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Testing`
+Assemblies
+    * Microsoft.Extensions.Logging.Testing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class BeginScopeContext
+    public class BeginScopeContext
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Testing/BeginScopeContext.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Logging.Testing.BeginScopeContext
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.BeginScopeContext
 
@@ -66,7 +68,11 @@ Properties
         
         .. code-block:: csharp
     
-           public string LoggerName { get; set; }
+            public string LoggerName
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.BeginScopeContext.Scope
     
@@ -76,6 +82,10 @@ Properties
         
         .. code-block:: csharp
     
-           public object Scope { get; set; }
+            public object Scope
+            {
+                get;
+                set;
+            }
     
 

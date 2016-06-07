@@ -313,7 +313,7 @@ Templates
 
 Knockout has support for templates, so that you can easily separate your UI from your behavior, or incrementally load UI elements into a large application on demand. We can update our previous example to make each row its own template by simply pulling the HTML out into a template and specifying the template by name in the data-bind call on ``<tbody>``.
 
- .. code-block:: html
+ .. code-block:: none
   :emphasize-lines: 1,3
 
   <tbody data-bind="template: { name: 'rowTemplate', foreach: gameResults }">

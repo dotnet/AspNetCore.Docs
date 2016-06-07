@@ -16,5 +16,5 @@ Client-Side Development
    bundling-and-minification
    cdn
    responsive-design
-   typescript
+   TypeScript <https://www.typescriptlang.org/docs/handbook/asp-net-core.html>
    yeoman

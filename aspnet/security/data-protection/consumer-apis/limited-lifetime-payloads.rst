@@ -3,7 +3,7 @@ Limiting the lifetime of protected payloads
 
 There are scenarios where the application developer wants to create a protected payload that expires after a set period of time. For instance, the protected payload might represent a password reset token that should only be valid for one hour. It is certainly possible for the developer to create his own payload format that contains an embedded expiration date, and advanced developers may wish to do this anyway, but for the majority of developers managing these expirations can grow tedious.
 
-To make this easier for our developer audience, the package Microsoft.AspNet.DataProtection.Extensions contains utility APIs for creating payloads that automatically expire after a set period of time. These APIs hang off of the ITimeLimitedDataProtector type.
+To make this easier for our developer audience, the package Microsoft.AspNetCore.DataProtection.Extensions contains utility APIs for creating payloads that automatically expire after a set period of time. These APIs hang off of the ITimeLimitedDataProtector type.
 
 API usage
 ---------
@@ -34,8 +34,8 @@ The Unprotect methods return the original unprotected data. If the payload hasn'
 .. warning:: 
   It is not advised to use these APIs to protect payloads which require long-term or indefinite persistence. "Can I afford for the protected payloads to be permanently unrecoverable after a month?" can serve as a good rule of thumb; if the answer is no then developers should consider alternative APIs.
 
-The sample below uses the :doc:`non-DI code paths <../configuration/non-di-scenarios>` for instantiating the data protection system. To run this sample, ensure that you have first added a reference to the Microsoft.AspNet.DataProtection.Extensions package.
+The sample below uses the :doc:`non-DI code paths <../configuration/non-di-scenarios>` for instantiating the data protection system. To run this sample, ensure that you have first added a reference to the Microsoft.AspNetCore.DataProtection.Extensions package.
 
 .. literalinclude:: limited-lifetime-payloads/samples/limitedlifetimepayloads.cs
-  :language: c#
+  :language: none
   :linenos:

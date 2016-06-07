@@ -5,12 +5,17 @@ ProxyBase Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,80 +38,19 @@ Syntax
 
 .. code-block:: csharp
 
-   public abstract class ProxyBase : IProxy
+    public abstract class ProxyBase : IProxy
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyBase.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
-    :noindex:
     :hidden:
 
-    
-    .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.ProxyBase(System.Type)
-    
-        
-        
-        
-        :type wrappedType: System.Type
-    
-        
-        .. code-block:: csharp
-    
-           protected ProxyBase(Type wrappedType)
-    
-
-Methods
--------
-
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.Upwrap<T>()
-    
-        
-        :rtype: {T}
-    
-        
-        .. code-block:: csharp
-    
-           public T Upwrap<T>()
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.WrappedType
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-           public readonly Type WrappedType
-    
 
 Properties
 ----------
@@ -124,6 +68,68 @@ Properties
         
         .. code-block:: csharp
     
-           public abstract object UnderlyingInstanceAsObject { get; }
+            public abstract object UnderlyingInstanceAsObject
+            {
+                get;
+            }
+    
+
+Constructors
+------------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.ProxyBase(System.Type)
+    
+        
+    
+        
+        :type wrappedType: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            protected ProxyBase(Type wrappedType)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.WrappedType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public readonly Type WrappedType
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.Upwrap<T>()
+    
+        
+        :rtype: T
+    
+        
+        .. code-block:: csharp
+    
+            public T Upwrap<T>()
     
 

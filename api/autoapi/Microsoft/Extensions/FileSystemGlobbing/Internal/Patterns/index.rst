@@ -24,6 +24,18 @@ Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -35,7 +47,9 @@ Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder`
+    class :dn:cls:`PatternBuilder`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder
+
         
 
 

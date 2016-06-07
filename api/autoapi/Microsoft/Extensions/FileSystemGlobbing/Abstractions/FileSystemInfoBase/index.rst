@@ -5,12 +5,17 @@ FileSystemInfoBase Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Abstractions`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public abstract class FileSystemInfoBase
+    public abstract class FileSystemInfoBase
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Abstractions/FileSystemInfoBase.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase
 
@@ -66,7 +68,10 @@ Properties
         
         .. code-block:: csharp
     
-           public abstract string FullName { get; }
+            public abstract string FullName
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase.Name
     
@@ -76,7 +81,10 @@ Properties
         
         .. code-block:: csharp
     
-           public abstract string Name { get; }
+            public abstract string Name
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase.ParentDirectory
     
@@ -86,6 +94,9 @@ Properties
         
         .. code-block:: csharp
     
-           public abstract DirectoryInfoBase ParentDirectory { get; }
+            public abstract DirectoryInfoBase ParentDirectory
+            {
+                get;
+            }
     
 

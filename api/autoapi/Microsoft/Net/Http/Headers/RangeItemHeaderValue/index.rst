@@ -5,12 +5,17 @@ RangeItemHeaderValue Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Headers`
+Assemblies
+    * Microsoft.Net.Http.Headers
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,22 +38,54 @@ Syntax
 
 .. code-block:: csharp
 
-   public class RangeItemHeaderValue
+    public class RangeItemHeaderValue
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Net.Http.Headers/RangeItemHeaderValue.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
+    :hidden:
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.From
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? From
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.To
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? To
+            {
+                get;
+            }
+    
 
 Constructors
 ------------
@@ -61,17 +98,17 @@ Constructors
     .. dn:constructor:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.RangeItemHeaderValue(System.Nullable<System.Int64>, System.Nullable<System.Int64>)
     
         
+    
         
+        :type from: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
         
-        :type from: System.Nullable{System.Int64}
-        
-        
-        :type to: System.Nullable{System.Int64}
+        :type to: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
     
         
         .. code-block:: csharp
     
-           public RangeItemHeaderValue(long ? from, long ? to)
+            public RangeItemHeaderValue(long ? from, long ? to)
     
 
 Methods
@@ -85,7 +122,7 @@ Methods
     .. dn:method:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.Equals(System.Object)
     
         
-        
+    
         
         :type obj: System.Object
         :rtype: System.Boolean
@@ -93,7 +130,7 @@ Methods
         
         .. code-block:: csharp
     
-           public override bool Equals(object obj)
+            public override bool Equals(object obj)
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.GetHashCode()
     
@@ -103,7 +140,7 @@ Methods
         
         .. code-block:: csharp
     
-           public override int GetHashCode()
+            public override int GetHashCode()
     
     .. dn:method:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.ToString()
     
@@ -113,35 +150,6 @@ Methods
         
         .. code-block:: csharp
     
-           public override string ToString()
-    
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.From
-    
-        
-        :rtype: System.Nullable{System.Int64}
-    
-        
-        .. code-block:: csharp
-    
-           public long ? From { get; }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.To
-    
-        
-        :rtype: System.Nullable{System.Int64}
-    
-        
-        .. code-block:: csharp
-    
-           public long ? To { get; }
+            public override string ToString()
     
 

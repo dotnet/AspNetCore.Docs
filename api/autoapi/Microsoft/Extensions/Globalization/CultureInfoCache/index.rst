@@ -5,17 +5,21 @@ CultureInfoCache Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Provides read-only cached instances of :any:`System.Globalization.CultureInfo`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Globalization`
+Assemblies
+    * Microsoft.Extensions.Globalization.CultureInfoCache
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class CultureInfoCache
+    public class CultureInfoCache
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Globalization.CultureInfoCache/CultureInfoCache.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Globalization.CultureInfoCache
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Globalization.CultureInfoCache
 
@@ -67,27 +68,29 @@ Methods
     
         
     
+        
         Gets a read-only cached :any:`System.Globalization.CultureInfo` for the specified name. Only names that exist in
-        ``supportedCultures`` will be used.
+        <em>supportedCultures</em> will be used.
     
         
-        
+    
         
         :param name: The culture name.
         
         :type name: System.String
-        
+    
         
         :param supportedCultures: The cultures supported by the application.
         
-        :type supportedCultures: System.Collections.Generic.IList{System.Globalization.CultureInfo}
+        :type supportedCultures: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Globalization.CultureInfo<System.Globalization.CultureInfo>}
         :rtype: System.Globalization.CultureInfo
-        :return: A read-only cached <see cref="T:System.Globalization.CultureInfo" /> or <c>null</c> a match wasn't found in
-            <paramref name="supportedCultures" />.
+        :return: 
+            A read-only cached :any:`System.Globalization.CultureInfo` or <code>null</code> a match wasn't found in
+            <em>supportedCultures</em>.
     
         
         .. code-block:: csharp
     
-           public static CultureInfo GetCultureInfo(string name, IList<CultureInfo> supportedCultures)
+            public static CultureInfo GetCultureInfo(string name, IList<CultureInfo> supportedCultures)
     
 

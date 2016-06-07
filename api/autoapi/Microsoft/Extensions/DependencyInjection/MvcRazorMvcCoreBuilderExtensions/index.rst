@@ -5,12 +5,17 @@ MvcRazorMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.Razor
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcRazorMvcCoreBuilderExtensions
+    public class MvcRazorMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.Razor/DependencyInjection/MvcRazorMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions
 
@@ -58,26 +60,10 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.AddPrecompiledRazorViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Reflection.Assembly[])
-    
-        
-        
-        
-        :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        
-        
-        :type assemblies: System.Reflection.Assembly[]
-        :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-    
-        
-        .. code-block:: csharp
-    
-           public static IMvcCoreBuilder AddPrecompiledRazorViews(IMvcCoreBuilder builder, params Assembly[] assemblies)
-    
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.AddRazorViewEngine(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
@@ -85,47 +71,70 @@ Methods
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddRazorViewEngine(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddRazorViewEngine(IMvcCoreBuilder builder)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.AddRazorViewEngine(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Mvc.Razor.RazorViewEngineOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.AddRazorViewEngine(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>)
     
         
-        
+    
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.Razor.RazorViewEngineOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddRazorViewEngine(IMvcCoreBuilder builder, Action<RazorViewEngineOptions> setupAction)
+            public static IMvcCoreBuilder AddRazorViewEngine(IMvcCoreBuilder builder, Action<RazorViewEngineOptions> setupAction)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.InitializeTagHelper<TTagHelper>(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<TTagHelper, Microsoft.AspNet.Mvc.Rendering.ViewContext>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.AddTagHelpersAsServices(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
+    
+        
+    
+        
+        Registers discovered tag helpers as services and changes the existing :any:`Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator`
+        for an :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ServiceBasedTagHelperActivator`\.
     
         
     
-        Adds an initialization callback for a given ``TTagHelper``.
-    
         
-        
-        
-        :param builder: The  instance this method extends.
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder` instance this method extends.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        
-        
-        :param initialize: An action to initialize the .
-        
-        :type initialize: System.Action{{TTagHelper},Microsoft.AspNet.Mvc.Rendering.ViewContext}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder" /> instance this method extends.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder` instance this method extends.
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder InitializeTagHelper<TTagHelper>(IMvcCoreBuilder builder, Action<TTagHelper, ViewContext> initialize)where TTagHelper : ITagHelper
+            public static IMvcCoreBuilder AddTagHelpersAsServices(IMvcCoreBuilder builder)
+    
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcCoreBuilderExtensions.InitializeTagHelper<TTagHelper>(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<TTagHelper, Microsoft.AspNetCore.Mvc.Rendering.ViewContext>)
+    
+        
+    
+        
+        Adds an initialization callback for a given <em>TTagHelper</em>.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder` instance this method extends.
+        
+        :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
+        
+        :param initialize: An action to initialize the <em>TTagHelper</em>.
+        
+        :type initialize: System.Action<System.Action`2>{TTagHelper, Microsoft.AspNetCore.Mvc.Rendering.ViewContext<Microsoft.AspNetCore.Mvc.Rendering.ViewContext>}
+        :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder` instance this method extends.
+    
+        
+        .. code-block:: csharp
+    
+            public static IMvcCoreBuilder InitializeTagHelper<TTagHelper>(IMvcCoreBuilder builder, Action<TTagHelper, ViewContext> initialize)where TTagHelper : ITagHelper
     
 

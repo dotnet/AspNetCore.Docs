@@ -5,12 +5,17 @@ DirectoryInfoBase Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.FileSystemGlobbing.Abstractions`
+Assemblies
+    * Microsoft.Extensions.FileSystemGlobbing
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,20 +39,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public abstract class DirectoryInfoBase : FileSystemInfoBase
+    public abstract class DirectoryInfoBase : FileSystemInfoBase
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/filesystem/blob/master/src/Microsoft.Extensions.FileSystemGlobbing/Abstractions/DirectoryInfoBase.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
 
@@ -62,17 +64,17 @@ Methods
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase.EnumerateFileSystemInfos()
     
         
-        :rtype: System.Collections.Generic.IEnumerable{Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase}
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase<Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase>}
     
         
         .. code-block:: csharp
     
-           public abstract IEnumerable<FileSystemInfoBase> EnumerateFileSystemInfos()
+            public abstract IEnumerable<FileSystemInfoBase> EnumerateFileSystemInfos()
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase.GetDirectory(System.String)
     
         
-        
+    
         
         :type path: System.String
         :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
@@ -80,12 +82,12 @@ Methods
         
         .. code-block:: csharp
     
-           public abstract DirectoryInfoBase GetDirectory(string path)
+            public abstract DirectoryInfoBase GetDirectory(string path)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase.GetFile(System.String)
     
         
-        
+    
         
         :type path: System.String
         :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase
@@ -93,6 +95,6 @@ Methods
         
         .. code-block:: csharp
     
-           public abstract FileInfoBase GetFile(string path)
+            public abstract FileInfoBase GetFile(string path)
     
 

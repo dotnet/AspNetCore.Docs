@@ -5,17 +5,21 @@ IConfigurationRoot Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Represents the root of an :any:`Microsoft.Extensions.Configuration.IConfiguration` hierarchy.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IConfigurationRoot : IConfiguration
+    public interface IConfigurationRoot : IConfiguration
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.Abstractions/IConfigurationRoot.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationRoot
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationRoot
 
@@ -59,6 +60,7 @@ Methods
     
         
     
+        
         Force the configuration values to be reloaded from the underlying :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`\s.
     
         
@@ -66,6 +68,6 @@ Methods
         
         .. code-block:: csharp
     
-           void Reload()
+            void Reload()
     
 

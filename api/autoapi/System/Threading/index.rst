@@ -28,6 +28,26 @@ System.Threading Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -39,11 +59,15 @@ System.Threading Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`System.Threading.PreAllocatedOverlapped`
+    class :dn:cls:`PreAllocatedOverlapped`
+        .. object: type=class name=System.Threading.PreAllocatedOverlapped
+
         
 
 
-    class :dn:cls:`System.Threading.ThreadPoolBoundHandle`
+    class :dn:cls:`ThreadPoolBoundHandle`
+        .. object: type=class name=System.Threading.ThreadPoolBoundHandle
+
         
 
 

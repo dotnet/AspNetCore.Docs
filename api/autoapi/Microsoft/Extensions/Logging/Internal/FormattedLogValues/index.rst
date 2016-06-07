@@ -5,18 +5,22 @@ FormattedLogValues Class
 
 
 
-.. contents:: 
-   :local:
 
 
 
-Summary
--------
-
-LogValues to enable formatting options supported by :dn:meth:`System.String.Format(System.String,System.Object)`\.
+LogValues to enable formatting options supported by :dn:meth:`string.Format`\. 
 This also enables using {NamedformatItem} in the format string.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging.Internal`
+Assemblies
+    * Microsoft.Extensions.Logging.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -39,22 +43,57 @@ Syntax
 
 .. code-block:: csharp
 
-   public class FormattedLogValues : ILogValues
+    public class FormattedLogValues : IReadOnlyList<KeyValuePair<string, object>>, IReadOnlyCollection<KeyValuePair<string, object>>, IEnumerable<KeyValuePair<string, object>>, IEnumerable
 
 
 
-
-
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/Internal/FormattedLogValues.cs>`_
 
 
 
 
 
 .. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
+    :hidden:
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count
+            {
+                get;
+            }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, object> this[int index]
+            {
+                get;
+            }
+    
 
 Constructors
 ------------
@@ -67,17 +106,17 @@ Constructors
     .. dn:constructor:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.FormattedLogValues(System.String, System.Object[])
     
         
-        
+    
         
         :type format: System.String
+    
         
-        
-        :type values: System.Object[]
+        :type values: System.Object<System.Object>[]
     
         
         .. code-block:: csharp
     
-           public FormattedLogValues(string format, params object[] values)
+            public FormattedLogValues(string format, params object[] values)
     
 
 Methods
@@ -88,15 +127,25 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.GetValues()
+    .. dn:method:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.GetEnumerator()
     
         
-        :rtype: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}}
+        :rtype: System.Collections.Generic.IEnumerator<System.Collections.Generic.IEnumerator`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}}
     
         
         .. code-block:: csharp
     
-           public IEnumerable<KeyValuePair<string, object>> GetValues()
+            public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+    
+    .. dn:method:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.System.Collections.IEnumerable.GetEnumerator()
+    
+        
+        :rtype: System.Collections.IEnumerator
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerator IEnumerable.GetEnumerator()
     
     .. dn:method:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.ToString()
     
@@ -106,6 +155,6 @@ Methods
         
         .. code-block:: csharp
     
-           public override string ToString()
+            public override string ToString()
     
 

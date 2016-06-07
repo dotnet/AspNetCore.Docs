@@ -5,17 +5,21 @@ LocalizationOptions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Provides programmatic configuration for localization.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Localization`
+Assemblies
+    * Microsoft.Extensions.Localization
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class LocalizationOptions
+    public class LocalizationOptions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/localization/blob/master/src/Microsoft.Extensions.Localization/LocalizationOptions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Localization.LocalizationOptions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.LocalizationOptions
 
@@ -67,6 +68,7 @@ Properties
     
         
     
+        
         The relative path under application root where resource files are located.
     
         
@@ -75,6 +77,10 @@ Properties
         
         .. code-block:: csharp
     
-           public string ResourcesPath { get; set; }
+            public string ResourcesPath
+            {
+                get;
+                set;
+            }
     
 

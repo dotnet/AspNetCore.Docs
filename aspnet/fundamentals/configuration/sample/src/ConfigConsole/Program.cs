@@ -1,24 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Memory;
 
 namespace ConfigConsole
 {
-    public class Program
+    public static class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             var builder = new ConfigurationBuilder();
-            Console.WriteLine("Initial Config Providers: " + builder.Providers.Count());
+            Console.WriteLine("Initial Config Sources: " + builder.Sources.Count());
 
-            var defaultSettings = new MemoryConfigurationProvider();
-            defaultSettings.Set("username", "Guest");
-            builder.Add(defaultSettings);
-            Console.WriteLine("Added Memory Provider. Providers: " + builder.Providers.Count());
+            builder.AddInMemoryCollection(new Dictionary<string, string>
+            {
+                { "username", "Guest" }
+            });
+
+            Console.WriteLine("Added Memory Source. Sources: " + builder.Sources.Count());
 
             builder.AddCommandLine(args);
-            Console.WriteLine("Added Command Line Provider. Providers: " + builder.Providers.Count());
+            Console.WriteLine("Added Command Line Source. Sources: " + builder.Sources.Count());
 
             var config = builder.Build();
             string username = config["username"];

@@ -12,7 +12,7 @@ Setting default policy
 
 To set default policy, an administrator can set known values in the system registry under the following key.
 
-Reg key: ``HKLM\SOFTWARE\Microsoft\DotNetPackages\Microsoft.AspNet.DataProtection``
+Reg key: ``HKLM\SOFTWARE\Microsoft\DotNetPackages\Microsoft.AspNetCore.DataProtection``
 
 If you're on a 64-bit operating system and want to affect the behavior of 32-bit applications, remember also to configure the Wow6432Node equivalent of the above key.
 

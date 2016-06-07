@@ -5,12 +5,17 @@ EvictionReason Enum
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -25,20 +30,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public enum EvictionReason
+    public enum EvictionReason
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/EvictionReason.cs>`_
 
 
 
-
+.. dn:enumeration:: Microsoft.Extensions.Caching.Memory.EvictionReason
+    :hidden:
 
 .. dn:enumeration:: Microsoft.Extensions.Caching.Memory.EvictionReason
 
@@ -54,74 +56,85 @@ Fields
     
         
     
+        
         GC, overflow
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           Capacity = 5
+            Capacity = 5
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.EvictionReason.Expired
     
         
     
+        
         Timed out
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           Expired = 3
+            Expired = 3
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.EvictionReason.None
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           None = 0
+            None = 0
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.EvictionReason.Removed
     
         
     
+        
         Manually
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           Removed = 1
+            Removed = 1
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.EvictionReason.Replaced
     
         
     
+        
         Overwritten
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           Replaced = 2
+            Replaced = 2
     
     .. dn:field:: Microsoft.Extensions.Caching.Memory.EvictionReason.TokenExpired
     
         
     
+        
         Event
     
         
+        :rtype: Microsoft.Extensions.Caching.Memory.EvictionReason
     
         
         .. code-block:: csharp
     
-           TokenExpired = 4
+            TokenExpired = 4
     
 

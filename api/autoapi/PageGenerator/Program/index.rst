@@ -5,12 +5,17 @@ Program Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`PageGenerator`
+Assemblies
+    * PageGenerator
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class Program
+    public class Program
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/diagnostics/blob/master/src/PageGenerator/Program.cs>`_
 
 
 
-
+.. dn:class:: PageGenerator.Program
+    :hidden:
 
 .. dn:class:: PageGenerator.Program
 
@@ -61,13 +63,13 @@ Methods
     .. dn:method:: PageGenerator.Program.Main(System.String[])
     
         
+    
         
-        
-        :type args: System.String[]
+        :type args: System.String<System.String>[]
     
         
         .. code-block:: csharp
     
-           public void Main(string[] args)
+            public static void Main(string[] args)
     
 

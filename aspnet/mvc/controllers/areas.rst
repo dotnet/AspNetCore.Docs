@@ -89,19 +89,19 @@ Now, when the user browses to *http://<yourApp>/products*, the ``Index`` action 
 Linking between areas
 ---------------------
 
-To link between areas, you simply specify the area in which the controller is defined. If the controller is not a part of an area, use an empty string.
+To link between areas, you simply specify the area in which the controller is defined by using :doc:`Tag Helpers </mvc/views/tag-helpers/index>`.
 
 The following snippet shows how to link to a controller action that is defined within an area named *Products*.
 
 .. code-block:: c#
 
-  @Html.ActionLink("See Products Home Page", "Index", "Home", new { area = "Products" }, null)
+  <a asp-route-area="Products" asp-controller="Home" asp-action="Index">See Products Home Page</a>
 
-To link to a controller action that is not part of an area, simply specify an empty string for the area.
+To link to a controller action that is not part of an area, simply remove ``asp-route-area``
 
 .. code-block:: c#
 
-  @Html.ActionLink("Go to Home Page", "Index", "Home", new { area = "" }, null)
+  <a asp-controller="Home" asp-action="Index">Go to Home Page</a>
 
 Summary
 -------

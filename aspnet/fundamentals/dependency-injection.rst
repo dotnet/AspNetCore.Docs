@@ -37,7 +37,7 @@ The ``ConfigureServices`` method in the ``Startup`` class is responsible for def
   :language: c#
   :lines: 39-56
   :dedent: 8
-  :emphasize-lines: 4,9,13
+  :emphasize-lines: 5,8,12
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add\ *Service*\  extension method to register all of the services required by that feature. 
 

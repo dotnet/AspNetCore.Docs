@@ -5,17 +5,21 @@ WebEncoderOptions Class
 
 
 
-.. contents:: 
+
+
+
+Specifies options common to all three encoders (HtmlEncode, JavaScriptEncode, UrlEncode).
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.WebEncoders`
+Assemblies
+    * Microsoft.Extensions.WebEncoders
+
+----
+
+.. contents::
    :local:
-
-
-
-Summary
--------
-
-Specifies options common to all three encoders (HtmlEncode, JavaScriptStringEncode, UrlEncode).
-
-
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public sealed class WebEncoderOptions
+    public sealed class WebEncoderOptions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/httpabstractions/blob/master/src/Microsoft.Extensions.WebEncoders.Core/WebEncoderOptions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.WebEncoders.WebEncoderOptions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.WebEncoders.WebEncoderOptions
 
@@ -63,18 +64,23 @@ Properties
     :hidden:
 
     
-    .. dn:property:: Microsoft.Extensions.WebEncoders.WebEncoderOptions.CodePointFilter
+    .. dn:property:: Microsoft.Extensions.WebEncoders.WebEncoderOptions.TextEncoderSettings
     
         
     
+        
         Specifies which code points are allowed to be represented unescaped by the encoders.
     
         
-        :rtype: Microsoft.Extensions.WebEncoders.ICodePointFilter
+        :rtype: System.Text.Encodings.Web.TextEncoderSettings
     
         
         .. code-block:: csharp
     
-           public ICodePointFilter CodePointFilter { get; set; }
+            public TextEncoderSettings TextEncoderSettings
+            {
+                get;
+                set;
+            }
     
 

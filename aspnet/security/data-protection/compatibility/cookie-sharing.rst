@@ -10,7 +10,7 @@ Sharing authentication cookies between applications
 
 To share authentication cookies between two different ASP.NET Core applications, configure each application that should share cookies as follows.
 
-1. Install the package `Microsoft.AspNet.Authentication.Cookies.Shareable <https://github.com/GrabYourPitchforks/aspnet5-samples/tree/dev/CookieSharing>`_ into each of your ASP.NET Core applications.
+1. Install the package `Microsoft.AspNetCore.Authentication.Cookies.Shareable <https://github.com/GrabYourPitchforks/aspnet5-samples/tree/dev/CookieSharing>`_ into each of your ASP.NET Core applications.
 2. In Startup.cs, locate the call to UseIdentity, which will generally look like the following.
 
 .. code-block:: c#

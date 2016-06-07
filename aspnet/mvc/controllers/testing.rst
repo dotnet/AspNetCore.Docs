@@ -127,10 +127,10 @@ Accessing Views
 
 Each integration test class configures the ``TestServer`` that will run the ASP.NET Core app. By default, ``TestServer`` hosts the web app in the folder where it's running - in this case, the test project folder. Thus, when you attempt to test controller actions that return ``ViewResult``, you may see this error:
 
-.. code-block:: c#
+.. code-block:: none
 
-	The view 'Index' was not found. The following locations were searched:
-	(list of locations)
+  The view 'Index' was not found. The following locations were searched:
+  (list of locations)
 
 To correct this issue, you need to configure the server to use the ``ApplicationBasePath`` and ``ApplicationName`` of the web project. This is done in the call to ``UseServices`` in the integration test class shown:
 

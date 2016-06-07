@@ -5,17 +5,21 @@ MvcDataAnnotationsMvcCoreBuilderExtensions Class
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Extensions for configuring MVC data annotations using an :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.AspNetCore.Mvc.DataAnnotations
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -38,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class MvcDataAnnotationsMvcCoreBuilderExtensions
+    public class MvcDataAnnotationsMvcCoreBuilderExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/mvc/blob/master/src/Microsoft.AspNet.Mvc.DataAnnotations/DependencyInjection/MvcDataAnnotationsMvcCoreBuilderExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions
 
@@ -67,46 +68,69 @@ Methods
     
         
     
+        
         Registers MVC data annotations.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddDataAnnotations(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddDataAnnotations(IMvcCoreBuilder builder)
     
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNet.Mvc.ModelBinding.Validation.MvcDataAnnotationsLocalizationOptions>)
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
         
     
-        Registers an action to configure :any:`Microsoft.AspNet.Mvc.ModelBinding.Validation.MvcDataAnnotationsLocalizationOptions` for MVC data
+        
+        Adds MVC data annotations localization to the application.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
+        
+        :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+        :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder`\.
+    
+        
+        .. code-block:: csharp
+    
+            public static IMvcCoreBuilder AddDataAnnotationsLocalization(IMvcCoreBuilder builder)
+    
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions>)
+    
+        
+    
+        
+        Registers an action to configure :any:`Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions` for MVC data
         annotations localization.
     
         
+    
         
-        
-        :param builder: The .
+        :param builder: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
         
         :type builder: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+    
         
+        :param setupAction: An :any:`System.Action\`1`\.
         
-        :param setupAction: An .
-        
-        :type setupAction: System.Action{Microsoft.AspNet.Mvc.ModelBinding.Validation.MvcDataAnnotationsLocalizationOptions}
+        :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions<Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-        :return: The <see cref="T:Microsoft.Extensions.DependencyInjection.IMvcBuilder" />.
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IMvcBuilder`\.
     
         
         .. code-block:: csharp
     
-           public static IMvcCoreBuilder AddDataAnnotationsLocalization(IMvcCoreBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
+            public static IMvcCoreBuilder AddDataAnnotationsLocalization(IMvcCoreBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
     
 

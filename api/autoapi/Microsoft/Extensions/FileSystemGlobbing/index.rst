@@ -36,6 +36,34 @@ Microsoft.Extensions.FileSystemGlobbing Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -47,22 +75,30 @@ Microsoft.Extensions.FileSystemGlobbing Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.Matcher`
+    class :dn:cls:`Matcher`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Matcher
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions`
+    class :dn:cls:`MatcherExtensions`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions
+
         
 
 
-    class :dn:cls:`Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult`
+    class :dn:cls:`PatternMatchingResult`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult
+
         
 
 
     .. rubric:: Structures
 
 
-    struct :dn:struct:`Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch`
+    struct :dn:struct:`FilePatternMatch`
+        .. object: type=struct name=Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch
+
         
 
 

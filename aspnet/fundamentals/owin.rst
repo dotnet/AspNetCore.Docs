@@ -14,7 +14,7 @@ ASP.NET Core supports OWIN, the Open Web Interface for .NET, which allows web ap
 Running OWIN middleware in the ASP.NET pipeline
 -----------------------------------------------
 
-ASP.NET Core's OWIN support is deployed as part of the ``Microsoft.AspNet.Owin`` package. You can import OWIN support into your project by adding this package as a dependency in your *project.json* file, as shown here:
+ASP.NET Core's OWIN support is deployed as part of the ``Microsoft.AspNetCore.Owin`` package. You can import OWIN support into your project by adding this package as a dependency in your *project.json* file, as shown here:
 
 .. literalinclude:: owin/sample/src/OwinSample/project.json
   :language: javascript
@@ -308,5 +308,5 @@ Additional Resources
 - :doc:`middleware`
 - :doc:`servers`
 
-.. _IFeatureCollection: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IFeatureCollection/index.html
-.. _IServerFactory: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Hosting/Server/IServerFactory/index.html
+.. _IFeatureCollection: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html
+.. _IServerFactory: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServerFactory/index.html

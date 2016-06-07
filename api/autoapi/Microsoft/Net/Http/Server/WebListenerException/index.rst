@@ -5,12 +5,17 @@ WebListenerException Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Net.Http.Server`
+Assemblies
+    * Microsoft.Net.Http.Server
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -37,20 +42,18 @@ Syntax
 
 .. code-block:: csharp
 
-   public class WebListenerException : Win32Exception, _Exception, ISerializable
+    [SuppressMessage("Microsoft.Usage", "CA2237:MarkISerializableTypesWithSerializable")]
+    public class WebListenerException : Win32Exception, _Exception, ISerializable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/weblistener/blob/master/src/Microsoft.Net.Http.Server/WebListenerException.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Net.Http.Server.WebListenerException
+    :hidden:
 
 .. dn:class:: Microsoft.Net.Http.Server.WebListenerException
 
@@ -70,6 +73,9 @@ Properties
         
         .. code-block:: csharp
     
-           public override int ErrorCode { get; }
+            public override int ErrorCode
+            {
+                get;
+            }
     
 

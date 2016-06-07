@@ -5,12 +5,21 @@ LoggingServiceCollectionExtensions Class
 
 
 
-.. contents:: 
+
+
+
+Extension methods for setting up logging services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DependencyInjection`
+Assemblies
+    * Microsoft.Extensions.Logging
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +42,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class LoggingServiceCollectionExtensions
+    public class LoggingServiceCollectionExtensions
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging/LoggingServiceCollectionExtensions.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions
 
@@ -61,14 +67,22 @@ Methods
     .. dn:method:: Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging(Microsoft.Extensions.DependencyInjection.IServiceCollection)
     
         
+    
         
+        Adds logging services to the specified :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+    
+        
+    
+        
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-           public static IServiceCollection AddLogging(IServiceCollection services)
+            public static IServiceCollection AddLogging(IServiceCollection services)
     
 

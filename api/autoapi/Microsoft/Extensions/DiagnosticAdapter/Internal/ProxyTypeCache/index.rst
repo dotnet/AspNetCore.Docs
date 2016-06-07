@@ -5,12 +5,17 @@ ProxyTypeCache Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Internal`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -34,20 +39,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class ProxyTypeCache : ConcurrentDictionary<Tuple<Type, Type>, ProxyTypeCacheResult>, IDictionary<Tuple<Type, Type>, ProxyTypeCacheResult>, ICollection<KeyValuePair<Tuple<Type, Type>, ProxyTypeCacheResult>>, IEnumerable<KeyValuePair<Tuple<Type, Type>, ProxyTypeCacheResult>>, IDictionary, ICollection, IEnumerable
+    public class ProxyTypeCache : ConcurrentDictionary<Tuple<Type, Type>, ProxyTypeCacheResult>, IDictionary<Tuple<Type, Type>, ProxyTypeCacheResult>, ICollection<KeyValuePair<Tuple<Type, Type>, ProxyTypeCacheResult>>, IEnumerable<KeyValuePair<Tuple<Type, Type>, ProxyTypeCacheResult>>, IDictionary, ICollection, IEnumerable
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Internal/ProxyTypeCache.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCache
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCache
 

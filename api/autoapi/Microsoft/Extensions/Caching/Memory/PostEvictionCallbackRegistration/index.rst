@@ -5,12 +5,17 @@ PostEvictionCallbackRegistration Class
 
 
 
-.. contents:: 
+
+
+Namespace
+    :dn:ns:`Microsoft.Extensions.Caching.Memory`
+Assemblies
+    * Microsoft.Extensions.Caching.Abstractions
+
+----
+
+.. contents::
    :local:
-
-
-
-
 
 
 
@@ -33,20 +38,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public class PostEvictionCallbackRegistration
+    public class PostEvictionCallbackRegistration
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/caching/blob/master/src/Microsoft.Extensions.Caching.Abstractions/PostEvictionCallbackRegistration.cs>`_
 
 
 
-
+.. dn:class:: Microsoft.Extensions.Caching.Memory.PostEvictionCallbackRegistration
+    :hidden:
 
 .. dn:class:: Microsoft.Extensions.Caching.Memory.PostEvictionCallbackRegistration
 
@@ -66,7 +68,11 @@ Properties
         
         .. code-block:: csharp
     
-           public PostEvictionDelegate EvictionCallback { get; set; }
+            public PostEvictionDelegate EvictionCallback
+            {
+                get;
+                set;
+            }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.PostEvictionCallbackRegistration.State
     
@@ -76,6 +82,10 @@ Properties
         
         .. code-block:: csharp
     
-           public object State { get; set; }
+            public object State
+            {
+                get;
+                set;
+            }
     
 

@@ -16,12 +16,12 @@ Servers and commands
 
 ASP.NET Core was designed to decouple web applications from the underlying HTTP server. Traditionally, ASP.NET apps have been windows-only hosted on Internet Information Server (IIS). The recommended way to run ASP.NET Core applications on Windows is using IIS as a reverse-proxy server. The HttpPlatformHandler module in IIS manages and proxies requests to an HTTP server hosted out-of-process. ASP.NET Core ships with two different HTTP servers:
 
-- Microsoft.AspNet.Server.WebListener (AKA WebListener, Windows-only)
-- Microsoft.AspNet.Server.Kestrel (AKA Kestrel, cross-platform)
+- Microsoft.AspNetCore.Server.WebListener (AKA WebListener, Windows-only)
+- Microsoft.AspNetCore.Server.Kestrel (AKA Kestrel, cross-platform)
 
 ASP.NET Core does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :doc:`feature interfaces <request-features>` composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your *project.json* file. You can even specify an application entry point for your application, and run it as an executable (using ``dotnet run``) rather than hosting it in a separate process.
 
-The default web host for ASP.NET apps developed using Visual Studio is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNet.Server.Kestrel" and "Microsoft.AspNet.IISPlatformHandler" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in *project.json*. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
+The default web host for ASP.NET apps developed using Visual Studio is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNetCore.Server.Kestrel" and "Microsoft.AspNetCore.IISPlatformHandler" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in *project.json*. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
 
 .. image:: /fundamentals/servers/_static/serverdemo-properties.png
 
@@ -98,26 +98,26 @@ Configuration options
 
 You can provide configuration options (by command line parameters or a configuration file) that are read on server startup.
 
-The ``Microsoft.AspNet.Hosting`` command supports server parameters (such as ``Kestrel`` or ``WebListener``) and a ``server.urls`` configuration key. The ``server.urls`` configuration key is a semicolon-separated list of URL prefixes that the server should handle.
+The ``Microsoft.AspNetCore.Hosting`` command supports server parameters (such as ``Kestrel`` or ``WebListener``) and a ``server.urls`` configuration key. The ``server.urls`` configuration key is a semicolon-separated list of URL prefixes that the server should handle.
 
 The *project.json* file shown above demonstrates how to pass the ``server.urls`` parameter directly:
 
 .. code-block:: javascript
 
-  "web": "Microsoft.AspNet.Kestrel --server.urls http://localhost:5004"
+  "web": "Microsoft.AspNetCore.Kestrel --server.urls http://localhost:5004"
 
 Alternately, a  JSON configuration file can be used,
 
 .. code-block:: javascript
 
-  "kestrel": "Microsoft.AspNet.Hosting"
+  "kestrel": "Microsoft.AspNetCore.Hosting"
 
 The ``hosting.json`` can include the settings the server will use (including the server parameter, as well):
 
 .. code-block:: json
 
   {
-    "server": "Microsoft.AspNet.Server.Kestrel",
+    "server": "Microsoft.AspNetCore.Server.Kestrel",
     "server.urls": "http://localhost:5004/"
   }
 
@@ -150,18 +150,18 @@ WebListener
 
 WebListener is a Windows-only HTTP server for ASP.NET Core. It runs directly on the `Http.Sys kernel driver <http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture>`_, and has very little overhead.
 
-You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNet.Server.WebListener" dependency in *project.json* and the following command:
+You can add support for WebListener to your ASP.NET application by adding the "Microsoft.AspNetCore.Server.WebListener" dependency in *project.json* and the following command:
 
 .. code-block:: javascript
 
-  "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000"
+  "web": "Microsoft.AspNetCore.Hosting --server Microsoft.AspNetCore.Server.WebListener --server.urls http://localhost:5000"
 
 .. _kestrel:
 
 Kestrel
 -------
 
-Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. You add support for Kestrel by including ``Microsoft.AspNet.Server.Kestrel`` in your project's dependencies listed in *project.json*.
+Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. You add support for Kestrel by including ``Microsoft.AspNetCore.Server.Kestrel`` in your project's dependencies listed in *project.json*.
 
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
@@ -186,7 +186,7 @@ Additional Reading
 
 - :doc:`request-features`
 
-.. _IApplicationBuilder: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Builder/IApplicationBuilder/index.html
-.. _IFeatureCollection: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IFeatureCollection/index.html
-.. _IHttpRequestFeature: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IHttpRequestFeature/index.html
-.. _IHttpResponseFeature: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Http/Features/IHttpResponseFeature/index.html
+.. _IApplicationBuilder: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/IApplicationBuilder/index.html
+.. _IFeatureCollection: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html
+.. _IHttpRequestFeature: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html
+.. _IHttpResponseFeature: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html

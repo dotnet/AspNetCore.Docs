@@ -28,6 +28,26 @@ Microsoft.Extensions.Caching.SqlServer Namespace
 
 
 
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
 
 
 
@@ -39,11 +59,17 @@ Microsoft.Extensions.Caching.SqlServer Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.SqlServer.SqlServerCache`
+    class :dn:cls:`SqlServerCache`
+        .. object: type=class name=Microsoft.Extensions.Caching.SqlServer.SqlServerCache
+
+        
         Distributed cache implementation using Microsoft SQL Server database.
 
 
-    class :dn:cls:`Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions`
+    class :dn:cls:`SqlServerCacheOptions`
+        .. object: type=class name=Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions
+
         
+        Configuration options for :any:`Microsoft.Extensions.Caching.SqlServer.SqlServerCache`\.
 
 

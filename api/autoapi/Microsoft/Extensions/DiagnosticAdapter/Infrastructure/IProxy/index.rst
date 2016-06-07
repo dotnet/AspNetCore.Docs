@@ -5,17 +5,21 @@ IProxy Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 An interface for unwrappable proxy objects.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.DiagnosticAdapter.Infrastructure`
+Assemblies
+    * Microsoft.Extensions.DiagnosticAdapter
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IProxy
+    public interface IProxy
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/eventnotification/blob/master/src/Microsoft.Extensions.DiagnosticAdapter/Infrastructure/IProxy.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxy
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.DiagnosticAdapter.Infrastructure.IProxy
 
@@ -59,15 +60,16 @@ Methods
     
         
     
-        Unwraps the underlying object and performs a cast to ``T``.
+        
+        Unwraps the underlying object and performs a cast to <em>T</em>.
     
         
-        :rtype: {T}
+        :rtype: T
         :return: The underlying object.
     
         
         .. code-block:: csharp
     
-           T Upwrap<T>()
+            T Upwrap<T>()
     
 

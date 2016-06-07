@@ -5,19 +5,23 @@ ILogger<TCategoryName> Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 A generic interface for logging where the category name is derived from the specified
-``TCategoryName`` type name.
+<em>TCategoryName</em> type name.
 Generally used to enable activation of a named :any:`Microsoft.Extensions.Logging.ILogger` from dependency injection.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Logging`
+Assemblies
+    * Microsoft.Extensions.Logging.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -32,20 +36,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface ILogger<out TCategoryName> : ILogger
+    public interface ILogger<out TCategoryName> : ILogger
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/ILoggerOfT.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Logging.ILogger`1
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Logging.ILogger<TCategoryName>
 

@@ -5,17 +5,21 @@ IConfigurationSection Interface
 
 
 
-.. contents:: 
-   :local:
 
 
-
-Summary
--------
 
 Represents a section of application configuration values.
 
 
+Namespace
+    :dn:ns:`Microsoft.Extensions.Configuration`
+Assemblies
+    * Microsoft.Extensions.Configuration.Abstractions
+
+----
+
+.. contents::
+   :local:
 
 
 
@@ -30,20 +34,17 @@ Syntax
 
 .. code-block:: csharp
 
-   public interface IConfigurationSection : IConfiguration
+    public interface IConfigurationSection : IConfiguration
 
 
 
 
 
-GitHub
-------
-
-`View on GitHub <https://github.com/aspnet/configuration/blob/master/src/Microsoft.Extensions.Configuration.Abstractions/IConfigurationSection.cs>`_
 
 
 
-
+.. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationSection
+    :hidden:
 
 .. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationSection
 
@@ -59,6 +60,7 @@ Properties
     
         
     
+        
         Gets the key this section occupies in its parent.
     
         
@@ -67,12 +69,16 @@ Properties
         
         .. code-block:: csharp
     
-           string Key { get; }
+            string Key
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationSection.Path
     
         
     
+        
         Gets the full path to this section within the :any:`Microsoft.Extensions.Configuration.IConfiguration`\.
     
         
@@ -81,12 +87,16 @@ Properties
         
         .. code-block:: csharp
     
-           string Path { get; }
+            string Path
+            {
+                get;
+            }
     
     .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationSection.Value
     
         
     
+        
         Gets or sets the section value.
     
         
@@ -95,6 +105,10 @@ Properties
         
         .. code-block:: csharp
     
-           string Value { get; set; }
+            string Value
+            {
+                get;
+                set;
+            }
     
 

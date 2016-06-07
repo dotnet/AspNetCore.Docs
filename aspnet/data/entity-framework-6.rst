@@ -16,7 +16,7 @@ Before you start, make sure that you compile against full .NET Framework in your
 
 In your project.json file specify a single target for the full .NET Framework:
 
-.. code-block:: json
+.. code-block:: none
     
     "frameworks": {
         "net46": {}
