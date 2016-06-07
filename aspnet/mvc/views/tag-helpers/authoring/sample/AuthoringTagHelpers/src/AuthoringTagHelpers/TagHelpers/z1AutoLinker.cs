@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHelpers2
 {
-    [TargetElement("p")]
+    [HtmlTargetElement("p")]
     public class AutoLinkerHttpTagHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -18,7 +18,7 @@ namespace AuthoringTagHelpers.TagHelpers2
         }
     }
 
-    [TargetElement("p")]
+    [HtmlTargetElement("p")]
     public class AutoLinkerWwwTagHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

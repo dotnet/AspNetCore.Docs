@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHelpers3
@@ -8,11 +8,21 @@ namespace AuthoringTagHelpers.TagHelpers3
         private const string EmailDomain = "contoso.com";
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            output.TagName = "a";    // Replaces <email> with <a> tag
+            output.TagName = "a";                                 // Replaces <email> with <a> tag
             var content = await output.GetChildContentAsync();
             var target = content.GetContent() + "@" + EmailDomain;
-            output.Attributes["href"] = "mailto:" + target;
+            output.Attributes.SetAttribute("href", "mailto:" + target);
             output.Content.SetContent(target);
         }
     }
 }
+
+/* 
+public IActionResult Contact()
+{
+    ViewData["Message"] = "Your contact page.";
+
+
+    return View();
+}
+*/

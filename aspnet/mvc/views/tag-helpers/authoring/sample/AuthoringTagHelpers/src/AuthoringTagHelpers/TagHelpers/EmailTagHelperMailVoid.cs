@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHelpers21
 {
-    [TargetElement("email", TagStructure = TagStructure.WithoutEndTag)] 
+    [HtmlTargetElement("email", TagStructure = TagStructure.WithoutEndTag)] 
     public class EmailVoidTagHelper : TagHelper
     {
         private const string EmailDomain = "contoso.com";
+        // Code removed for brevity
 
         // Can be passed via <email mail-to="..." />. 
         // Pascal case gets translated into lower-kebab-case.
@@ -17,8 +18,18 @@ namespace AuthoringTagHelpers.TagHelpers21
             output.TagName = "a";    // Replaces <email> with <a> tag
 
             var address = MailTo + "@" + EmailDomain;
-            output.Attributes["href"] = "mailto:" + address;
+            output.Attributes.SetAttribute("href", "mailto:" + address);
             output.Content.SetContent(address);
         }
     }
 }
+
+/* Update home controller to test this change
+
+public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View("ContactSelfClose");
+        }
+*/
