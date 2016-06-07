@@ -89,7 +89,7 @@ A working email Tag Helper
 ----------------------------------
 In this section, we'll update the ``EmailTagHelper`` so that it will create a valid anchor tag for email. We'll update it to take information from a Razor view (in the form of a ``mail-to`` attribute) and use that in generating the anchor.
 
-.. Comment: Update home controller contact method to   return View("ContactCopy"); to test
+.. Comment: Pass home/contact/1 which returns View("ContactCopy"); 
 
 Update the ``EmailTagHelper`` class with the following:
 
@@ -179,7 +179,7 @@ The bold Tag Helper
   :lines: 1-9
   :emphasize-lines: 7
 
-3. Run the app. You can use your favorite browser to inspect the source and verify that the markup.
+3. Run the app. You can use your favorite browser to inspect the source and verify the markup.
 
 The ``[HtmlTargetElement]`` attribute above only targets HTML markup that provides an attribute name of "bold". The ``<bold>`` element was not modified by the tag helper.
 
