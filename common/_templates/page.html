@@ -7,6 +7,7 @@
 {%- block body %}
   {{ super() }}
 
+  {% if 'index' not in pagename %}
   <!-- Helpfulness -->
   <div id="helpful-position"></div>
   <div id="helpful" class="helpfulness-container" style="display:none;">
@@ -36,14 +37,15 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
   <!-- wedc -->
   <noscript>
     <img alt="" width="1" height="1" src="https://c.microsoft.com/trans_pixel.aspx"/>
   </noscript>
 
-  <!-- disqus -->
-  {% if 'index' not in pagename %} 
+  {% if 'index' not in pagename %}
+    <!-- disqus -->
     <button id="showComments" type="button" class="btn btn-neutral"><i class="fa fa-comment"></i> Show comments</button>
     <div id="disqus_thread"></div>
     <hr/>

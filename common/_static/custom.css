@@ -70,7 +70,7 @@ b,
 body {
     font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif
     color: #505050;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.4em;
 }
 
@@ -80,7 +80,6 @@ h1, h2, h3, h4, h5, h6, legend {
 }
 
 h2 {
-  font-size: 18px;
   color: #222222;
 }
 
@@ -89,7 +88,6 @@ a {
 }
 
 p {
-  font-size: 13px;
   color: #505050;
 }
 
@@ -188,9 +186,9 @@ a, a:link, a:visited { color: #2b59a9; }
 .rst-content h1,
 .rst-content h1 .headerlink
 {
-    font-size: 28px;
+    font-size: 36px;
     color: #222222;
-    font-weight: 400
+    font-weight: 400;
 }
 
 .rst-content h1 a.headerlink,
@@ -200,7 +198,6 @@ a, a:link, a:visited { color: #2b59a9; }
 }
 
 .rst-content {
-    font-size: 13px;
     font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
@@ -274,7 +271,7 @@ a, a:link, a:visited { color: #2b59a9; }
 footer,
 footer p {
   color: #505050;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .wy-menu-vertical a span.toctree-expand,

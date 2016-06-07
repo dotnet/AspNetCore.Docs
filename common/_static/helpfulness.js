@@ -20,6 +20,11 @@
 
 			init: function ()
 			{
+				if (this.$container == null)
+				{
+					return;
+				}
+				
 				this.initHandlers();
 				this.initLoad();
 			},

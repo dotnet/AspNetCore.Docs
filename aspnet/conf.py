@@ -134,11 +134,11 @@ else:
     feed_author = 'Microsoft'
 
 def setup(app):
-    app.add_stylesheet('custom.css?v=5')
-    app.add_javascript('helpfulness.js?v=5')
-    app.add_javascript('disqus.js?v=5')
+    app.add_stylesheet('custom.css?v=6')
+    app.add_javascript('helpfulness.js?v=6')
+    app.add_javascript('disqus.js?v=6')
     if on_rtd:
-        app.add_javascript('wedc.js?v=5')
+        app.add_javascript('wedc.js?v=6')
 
 #html_theme = 'default'
 
