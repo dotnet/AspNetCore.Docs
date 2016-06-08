@@ -14,8 +14,13 @@ namespace RoutingSample
             {
                 return Task.FromResult(0);
             }
+<<<<<<< HEAD
             var requestPath = context.HttpContext.Request.Path;
             if (requestPath.StartsWithSegments("/hello", StringComparison.OrdinalIgnoreCase))
+=======
+            var requestPath = context.HttpContext.Request.Path.Value ?? string.Empty;
+            if (requestPath.StartsWith("/hello", StringComparison.OrdinalIgnoreCase))
+>>>>>>> 0ef78fd... Update for RC2
             {
                 context.Handler = async c =>
                 {
