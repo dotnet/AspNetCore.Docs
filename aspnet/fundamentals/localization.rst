@@ -203,7 +203,7 @@ If you only pass in one of the two (``culture`` or ``ui-culture``), the query st
 CookieRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the ``MakeCookieValue`` method of the ``CookieRequestCultureProvider`` to create a cookie. If you only pass in one of the two (``culture`` or ``ui-culture``), the ``MakeCookieValue`` method will set both values using the one you passed in.
+Production apps will often provide a mechanism to set the culture with the ``ASPNET_CULTURE`` cookie. The sample app provides code to set the cookie for French and English cultures.
 
 The Accept-Language HTTP header
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
