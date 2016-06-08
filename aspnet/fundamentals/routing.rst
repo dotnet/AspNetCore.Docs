@@ -38,7 +38,6 @@ Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create 
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
-  :language: c#
   :lines: 20-38
   :emphasize-lines: 6-9,11,19
   
@@ -57,7 +56,6 @@ The ``defaultHandler`` route handler is used as the default for the ``RouteBuild
 ``HelloRouter`` is a custom ``IRouter`` implementation. ``AddHelloRoute`` adds an instance of this router to the ``RouteBuilder`` using a template string, "hello/{name:alpha}". This template will only match requests of the form "hello/{name}" where `name` is constrained to be alphabetical. Matching requests will be handled by ``HelloRouter`` (which implements the ``IRouter`` interface), which responds to requests with a simple greeting.
 
 .. literalinclude:: routing/sample/RoutingSample/HelloRouter.cs
-  :language: c#
   :emphasize-lines: 8,20-23
 
 ``HelloRouter`` checks to see if ``RouteData`` includes a value for the key ``name``. If not, it immediately returns without handling the request. Likewise, it checks to see if the request begins with "/hello". Otherwise, the ``Handler`` property is set to a delegate that responds with a greeting. Setting the ``Handler`` property prevents additional routes from handling the request. The ``GetVirtualPath`` method is used for :ref:`link generation <link-generation>`.
