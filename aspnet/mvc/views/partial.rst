@@ -91,7 +91,7 @@ When a partial view is instantiated, it is given its own copy of the parent view
 
   @Html.Partial("PartialName", customViewData)
 
-You can also pass a model into a partial view. This can be the page's view model, or some portion of it, or a custom object. Simply pass in the model as the second parameter when calling ``Partial``/``PartialAsync`` or ``RenderPartial``/``RenderPartialAsync:
+You can also pass a model into a partial view. This can be the page's view model, or some portion of it, or a custom object. Simply pass in the model as the second parameter when calling ``Partial``/``PartialAsync`` or ``RenderPartial``/``RenderPartialAsync``:
 
 .. code-block:: c#
 
