@@ -31,7 +31,7 @@ This view displays a list of ``ToDoItem`` instances, along with a summary showin
   :linenos:
   :lines: 15-22
   :language: c#
-  :emphasize-lines: 5-6
+  :emphasize-lines: 6-7
   :dedent: 8
   
 The ``StatisticsService`` performs some calculations on the set of ``ToDoItem`` instances, which it accesses via a repository:
