@@ -1,5 +1,5 @@
-Hosting
-=======
+Guidance for Hosting Providers
+==============================
 
 By `Sourabh Shirhatti`_
 
