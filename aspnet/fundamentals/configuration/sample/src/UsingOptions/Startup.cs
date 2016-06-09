@@ -35,8 +35,8 @@ namespace UsingOptions
             });
 
             // Configure MyOptions using config by installing Microsoft.Extensions.Options.ConfigurationExtensions
-            services.Configure<MyOptions>(Configuration);
-
+            services.Configure<MyOptions>(options => Configuration.GetSection("MyOptions").Bind(options));
+            
             // Add framework services.
             services.AddMvc();
         }
