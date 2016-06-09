@@ -9,6 +9,13 @@
 @Html.Partial("AuthorPartial")
 @{
     Html.RenderPartial("AuthorPartial");
+}
+
+@* Render a full view *@
+@Html.Partial("Contact")
+
+@* RenderPartialAsync *@
+@{
     await Html.RenderPartialAsync("AuthorPartial");
 }
-@Html.Partial("Contact")
+
