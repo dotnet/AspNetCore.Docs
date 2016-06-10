@@ -49,10 +49,10 @@ Once you have added your Nano Server instance to your ``TrustedHosts``, you can 
 
 If you have successfully connected then your prompt will look like this ``[10.83.181.14]: PS C:\Users\Administrator\Documents>``
 
-Installing the ASP.NET Core Module Module
+Installing the ASP.NET Core Module
 -----------------------------------------
 
-The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module Module for IIS is manual. You will need to install the latest 64-bit version of the `ASP.NET Core Module <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the latest 64-bit version of the `ASP.NET Core Module <http://www.iis.net/downloads/microsoft/HttpPlatformHandler>`_ on a regular (not Nano) machine. After installing you will need to copy the following files:
 
 
 * *%windir%\\System32\\inetsrv\\HttpPlatformHandler.dll*
@@ -68,7 +68,7 @@ On the Nano machine you’ll need to copy those two files to their respective lo
 Enabling the ASP.NET Core Module
 --------------------------------
 
-You can execute the following PowerShell script in a remote PowerShell session to enable the ASP.NET Core Module module on the Nano server.
+You can execute the following PowerShell script in a remote PowerShell session to enable the ASP.NET Core Module on the Nano server.
 
 .. note:: This script runs on a clean system, but is not meant to be idempotent. If you run this multiple times it will add multiple entries. If you end up in a bad state, you can find backups of the *applicationHost.config* file at *%systemdrive%\inetpub\history*.
 
