@@ -45,7 +45,7 @@ The :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.PartialAsync` me
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Home/About.cshtml
   :lines: 8
 
-You can render a partial view with :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.RenderPartial`. This method doesn't return a result, it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a razor code block (you can also call ``RenderPartialAsync`` if necessary):
+You can render a partial view with :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial`. This method doesn't return a result, it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a razor code block (you can also call ``RenderPartialAsync`` if necessary):
 
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Home/About.cshtml
   :lines: 10-12
