@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>e9ec97f5-eb40-4ba6-962f-d319004b67ea</ProjectGuid>
-    <RootNamespace>AuthoringTagHelpers</RootNamespace>
+    <ProjectGuid>bdcbd426-b113-4c5d-bdd2-cca08810cea2</ProjectGuid>
+    <RootNamespace>noAuth</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

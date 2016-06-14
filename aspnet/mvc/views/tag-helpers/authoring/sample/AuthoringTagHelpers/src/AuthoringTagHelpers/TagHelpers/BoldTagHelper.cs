@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AuthoringTagHelpers.TagHelpers
 {
-    [TargetElement(Attributes = "bold")]
+    [HtmlTargetElement(Attributes = "bold")]
     public class BoldTagHelper : TagHelper
     {
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -13,3 +13,12 @@ namespace AuthoringTagHelpers.TagHelpers
         }
     }
 }
+
+/*
+ * public IActionResult About()
+{
+    ViewData["Message"] = "Your application description page.";
+    return View("AboutBoldOnly");
+    // return View();
+}
+*/

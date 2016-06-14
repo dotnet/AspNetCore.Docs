@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//#define FS
+#if FS
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
-namespace AuthoringTagHelpers
+namespace noAuth
 {
     public class Startup
     {
@@ -49,6 +52,14 @@ namespace AuthoringTagHelpers
 
             app.UseStaticFiles();
 
+            app.UseFileServer(new FileServerOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"MyStaticFiles")),
+                RequestPath = new PathString("/StaticFiles"),
+                EnableDirectoryBrowsing = true
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -58,3 +69,5 @@ namespace AuthoringTagHelpers
         }
     }
 }
+
+#endif

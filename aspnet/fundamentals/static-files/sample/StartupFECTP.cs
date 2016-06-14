@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//#define FileExtensionContentTypeProvider
+#if FileExtensionContentTypeProvider
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.StaticFiles;
 
-namespace AuthoringTagHelpers
+namespace noAuth
 {
     public class Startup
     {
@@ -46,8 +50,35 @@ namespace AuthoringTagHelpers
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            // app.UseDefaultFiles();
 
-            app.UseStaticFiles();
+            // Code removed for brevity.
+
+            // Set up custom content types -associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            // Replace an existing mapping
+            provider.Mappings[".rtf"] = "application/x-msdownload";
+            // Remove MP4 videos.
+            provider.Mappings.Remove(".mp4");
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/MyImages"),
+                ContentTypeProvider = provider
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/MyImages")
+            });
 
             app.UseMvc(routes =>
             {
@@ -55,6 +86,9 @@ namespace AuthoringTagHelpers
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
+
+#endif

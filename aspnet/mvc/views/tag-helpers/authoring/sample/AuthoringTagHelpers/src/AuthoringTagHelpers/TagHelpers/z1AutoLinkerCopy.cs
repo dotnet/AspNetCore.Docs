@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHe1pers
 {
-    [TargetElement("p")]
+    [HtmlTargetElement("p")]
     public class AutoLinkerHttpTagHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -20,7 +20,7 @@ namespace AuthoringTagHelpers.TagHe1pers
         }
     }
 
-    [TargetElement("p")]
+    [HtmlTargetElement("p")]
     public class AutoLinkerWwwTagHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -36,3 +36,10 @@ namespace AuthoringTagHelpers.TagHe1pers
         }
     }
 }
+
+/* ViewImports need TagHe1pers
+ * 
+ @addTagHelper "AuthoringTagHelpers.TagHe1pers.AutoLinkerHttpTagHelper, AuthoringTagHelpers"
+@addTagHelper "AuthoringTagHelpers.TagHe1pers.AutoLinkerWwwTagHelper, AuthoringTagHelpers"
+
+    */

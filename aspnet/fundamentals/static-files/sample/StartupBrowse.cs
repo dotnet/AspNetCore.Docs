@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//#define StartupBrowse
+#if StartupBrowse
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
-namespace AuthoringTagHelpers
+namespace noAuth
 {
     public class Startup
     {
@@ -46,8 +49,23 @@ namespace AuthoringTagHelpers
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            // Code removed for brevity.
 
-            app.UseStaticFiles();
+            app.UseStaticFiles();                          // For the wwwroot folder
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/MyImages")
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                RequestPath = new PathString("/MyImages")
+            });
 
             app.UseMvc(routes =>
             {
@@ -58,3 +76,5 @@ namespace AuthoringTagHelpers
         }
     }
 }
+
+#endif

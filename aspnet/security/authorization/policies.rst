@@ -3,7 +3,7 @@
 Custom Policy-Based Authorization
 =================================
 
-By `Rick Anderson`_
+By `Barry Dorrans`_
 
 Underneath the covers the :ref:`role authorization <security-authorization-role-based>` and :ref:`claims authorization <security-authorization-claims-based>` make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure. 
 
