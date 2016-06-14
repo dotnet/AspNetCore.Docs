@@ -31,7 +31,6 @@ Each delegate has the opportunity to perform operations before and after the nex
 You can see an example of setting up the request pipeline in the default web site template that ships with Visual Studio 2015. The ``Configure`` method adds the following middleware components:
 
 #. Error handling (for both development and non-development environments)
-#. IIS HttpPlatformHandler reverse proxy module. This module handles forwarded Windows Authentication, request schemes, remote IPs, and so on.
 #. Static file server
 #. Authentication
 #. MVC
