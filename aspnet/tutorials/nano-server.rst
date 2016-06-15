@@ -65,6 +65,7 @@ Installing the ASP.NET Core Module
 
 The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing you will need to copy the following files:
 
+
 Installing IIS
 --------------
 
@@ -156,21 +157,13 @@ In the ``system.webServer`` section group, update the handlers section to allow 
   :dedent: 8
   :emphasize-lines: 2
 
-Add ``ASP.NET Core Module`` to the ``globalModules`` section
-
-.. literalinclude:: nano-server/applicationHost.config
-  :language: xml
-  :lines: 210,224
-  :dedent: 8
-  :emphasize-lines: 2
-
 Additionally, add ``ASP.NET Core Module`` to the ``modules`` section
 
 .. literalinclude:: nano-server/applicationHost.config
   :language: xml
   :lines: 275,286
   :dedent: 8
-  :emphasize-lines: 2
+  :emphasize-lines: 2  
 
 Installing .NET Core Framework
 ------------------------------
