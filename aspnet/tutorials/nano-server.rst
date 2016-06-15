@@ -63,9 +63,8 @@ A successful connection results in a prompt with the following format: ``[10.83.
 Installing the ASP.NET Core Module
 ----------------------------------
 
-The :ref:`ASP.NET Core Module <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing you will need to copy the following files:
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing you will need to copy the following files:
 
-=======
 Installing IIS
 --------------
 
@@ -81,7 +80,7 @@ Add the ``NanoServerPackage`` provider from the PowerShell gallery. Once the pro
 Installing the ASP.NET Core Module
 ----------------------------------
 
-The :ref:`ASP.NET Core Module <http-platformhandler>` is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. Currently, installing ASP.NET Core Module requires the following script:
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. Currently, installing ASP.NET Core Module requires the following script:
 
 .. code:: ps1
 
