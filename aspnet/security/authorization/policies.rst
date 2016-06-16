@@ -73,12 +73,12 @@ The minimum age handler might look like this:
 
  public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
  {
-     protected override void Handle(AuthorizationContext context, MinimumAgeRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationContext context, MinimumAgeRequirement requirement)
      {
          if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
                                     c.Issuer == "http://contoso.com"))
          {
-             return;
+             return Task.CompletedTask;
          }
 
          var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(
@@ -94,6 +94,8 @@ The minimum age handler might look like this:
          {
              context.Succeed(requirement);
          }
+         
+         return Task.CompletedTask;
      }
  }
 
@@ -123,7 +125,7 @@ Each handler is added to the services collection by using ``services.AddSingleto
 What should a handler return?
 -----------------------------
 
-You can see in our :ref:`handler example <security-authorization-handler-example>` that the ``Handle()`` method has no return value, so how do we indicate success or failure?
+You can see in our :ref:`handler example <security-authorization-handler-example>` that the ``HandleRequirementAsync()`` method has no return value, so how do we indicate success or failure?
 
 * A handler indicates success by calling ``context.Succeed(IAuthorizationRequirement requirement)``, passing the requirement that has been successfully validated.
 * A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.
@@ -146,19 +148,21 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
 
  public class BadgeEntryHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     protected override void Handle(AuthorizationContext context, EnterBuildingRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.BadgeId && 
                                         c.Issuer == "http://microsoftsecurity"))
          {
              context.Succeed(requirement);
          }
+         
+         return Task.CompletedTask;
      }
  }
 
  public class HasTemporaryStickerHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     protected override void Handle(AuthorizationContext context, EnterBuildingRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.TemporaryBadgeId && 
                                         c.Issuer == "http://microsoftsecurity"))
@@ -166,6 +170,8 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
              // We'd also check the expiration date on the sticker.
              context.Succeed(requirement);
          }
+         
+         return Task.CompletedTask;
      }
  }
 
@@ -174,7 +180,7 @@ Now, assuming both handlers are :ref:`registered <security-authorization-policie
 Accessing Request Context In Handlers
 -------------------------------------
 
-The ``Handle`` method you must implement in an authorization handler has two parameters, an ``AuthorizationContext`` and the ``Requirement`` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the ``Resource`` property on the ``AuthorizationContext`` to pass through extra information.
+The ``HandleRequirementAsync`` method you must implement in an authorization handler has two parameters, an ``AuthorizationContext`` and the ``Requirement`` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the ``Resource`` property on the ``AuthorizationContext`` to pass through extra information.
 
 For example MVC passes an instance of ``Microsoft.AspNetCore.Mvc.Filters.AuthorizationContext`` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
 
