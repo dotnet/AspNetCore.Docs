@@ -27,7 +27,7 @@ Introduced in ASP.NET Core, `IStringLocalizer <https://docs.asp.net/projects/api
 .. literalinclude:: localization/sample/Controllers/AboutController.cs
   :language: c#
 
-In the code above, the ``IStringLocalizer<T>`` implementation comes from :doc:`/fundamentals/dependency-injection`. I'll show how the ``IStringLocalizer`` service gets added in the **Configuring localization** section. If the localized value of "About Title" is not found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
+In the code above, the ``IStringLocalizer<T>`` implementation comes from :doc:`/fundamentals/dependency-injection`. If the localized value of "About Title" is not found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
 
 Use the `IHtmlLocalizer<T> <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Localization/IHtmlLocalizer-TResource/index.html>`__ implementation for resources that contain HTML. ``IHtmlLocalizer`` HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the value of ``name`` parameter is HTML encoded.
 
@@ -119,8 +119,6 @@ ASP.NET Core allows you to specify two culture values, ``SupportedCultures`` and
   :local:
   :depth: 1
   
-.. note:: Currently, resource files are not read when the project is run from Visual Studio. See `this issue <https://github.com/aspnet/dnx/issues/3047>`_ for more information. Until the issue with Visual Studio is addressed, you can test the project by running it from the command line.
-
 Working with resource files
 -----------------------------
 
@@ -181,18 +179,18 @@ The current culture on a request is set in the localization :doc:`/fundamentals/
   :lines: 107, 136-159
   :dedent: 6
 
-`UseRequestLocalization <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/ApplicationBuilderExtensions/index.html>`__ initializes a `RequestLocalizationMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationMiddleware/index.html>`__ object. On every request the list of `RequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestCultureProvider/index.html>`__ in the `RequestLocalizationOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationOptions/index.html>`__ is enumerated and the first non-null provider is used. The default providers come from the ``RequestLocalizationOptions`` class:
+`UseRequestLocalization <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/ApplicationBuilderExtensions/index.html>`__ initializes a `RequestLocalizationMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationMiddleware/index.html>`__ object. On every request the list of `RequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestCultureProvider/index.html>`__ in the `RequestLocalizationOptions <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationOptions/index.html>`__ is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the ``RequestLocalizationOptions`` class:
 
 #. `QueryStringRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/QueryStringRequestCultureProvider/index.html>`__
 #. `CookieRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html>`__
 #. `AcceptLanguageHeaderRequestCultureProvider <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/AcceptLanguageHeaderRequestCultureProvider/index.html>`__
 
-The default list goes from most specific to least specific. Later in the article I'll show how you can change the order and even add a custom localization provider. If there are no non-null providers, the ``DefaultRequestCulture`` is used.
+The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the ``DefaultRequestCulture`` is used.
     
 QueryStringRequestCultureProvider
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Some apps will use a query string to set the `culture and UI culture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx#Current>`__. For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. Unless you change the ``RequestCultureProvider`` list, a query string will always win as the localization provider. You pass the query string parameters ``culture`` and ``ui-culture``. The following example sets the specific culture (language and region) to Spanish/Mexico:
+Some apps will use a query string to set the `culture and UI culture <https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.aspx#Current>`__. For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. By default, the ``QueryStringRequestCultureProvider`` is registered as the first localization provider in the ``RequestCultureProvider`` list. You pass the query string parameters ``culture`` and ``ui-culture``. The following example sets the specific culture (language and region) to Spanish/Mexico:
 
   \http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 
@@ -207,7 +205,7 @@ Production apps will often provide a mechanism to set the culture with the ASP.N
 
 The :dn:cls:`~Microsoft.AspNetCore.Localization.CookieRequestCultureProvider` :dn:field:`~Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName`  returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is ".AspNetCore.Culture".
 
-The cookie format is ``c=%LANGCODE%|uic=%LANGCODE%``, where ``c`` is CultureInfo and ``uic`` is CultureUIInfo, for example:
+The cookie format is ``c=%LANGCODE%|uic=%LANGCODE%``, where ``c`` is ``Culture`` and ``uic`` is ``UICulture``, for example:
 
 c='en-UK'\|uic='en-US'
 
