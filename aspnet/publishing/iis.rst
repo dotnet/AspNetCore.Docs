@@ -121,8 +121,8 @@ Troubleshooting:
 
 - If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
 
-`.UseUrls(...)` mispositioned
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UseUrls called before UseIISIntegration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
@@ -130,9 +130,9 @@ Troubleshooting:
 
 Troubleshooting:
 
-- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+- If your application uses the `UseUrls` extension on `WebHostBuilder`, make sure you have positioned the `UseUrls` extension before the `UseIISIntegration` extension on `WebHostBuilder`. `UseIISIntegration` must overwrite any values you provide in `UseUrls` in order for the reverse-proxy to succeed.
 
-**platform** conflicts with RID
+Platform conflicts with RID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
