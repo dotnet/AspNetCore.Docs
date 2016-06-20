@@ -20,7 +20,7 @@ Adding logging to a component in your application is done by requesting either a
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs 
   :language: c#
-  :lines: 54-55
+  :lines: 53-54
   :dedent: 16
 
 When a logger is created, a category name must be provided. The category name specifies the source of the logging events. By convention this string is hierarchical, with categories separated by dot (``.``) characters. Some logging providers have filtering support that leverages this convention, making it easier to locate logging output of interest. In this article's sample application, logging is configured to use the built-in `ConsoleLogger <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/Console/ConsoleLogger/index.html>`_ (see `Configuring Logging in your Application`_ below). To see the console logger in action, run the sample application using the ``dotnet run`` command, and make a request to configured URL (``localhost:5000``). You should see output similar to the following:
@@ -33,7 +33,7 @@ The call to the log method can utilize a format string with named placeholders (
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
-  :lines: 55
+  :lines: 54
   :dedent: 16
 
 In your real world applications, you will want to add logging based on application-level, not framework-level, events. For instance, if you have created a Web API application for managing To-Do Items (see :doc:`/tutorials/first-web-api`), you might add logging around the various operations that can be performed on these items.
@@ -136,11 +136,11 @@ Configuring Logging in your Application
 
 To configure logging in your ASP.NET application, you should resolve ``ILoggerFactory`` in the ``Configure`` method in your ``Startup`` class. ASP.NET will automatically provide an instance of ``ILoggerFactory`` using :doc:`dependency-injection` when you add a parameter of this type to the ``Configure`` method. Once you've added ``ILoggerFactory`` as a parameter, you configure loggers within the ``Configure`` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by simply calling ``loggerFactory.AddConsole``.
 
-A LoggerFactory instance can optionally be configured with custom ``FilterLoggerSettings``. The example below configures custom log levels for different scopes, limiting system and Microsoft built-in logging to warnings while allowing the app to log at debug level by default.
+A LoggerFactory instance can optionally be configured with custom ``FilterLoggerSettings``. The example below configures custom log levels for different scopes, limiting system and Microsoft built-in logging to warnings while allowing the app to log at debug level by default. The ``WithFilter`` method returns a new ``ILoggerFactory`` that will filter the log messages passed to all logger providers registered with it. It does not affect any other ``ILoggerFactory`` instances, including the original ``ILoggerFactory`` instance.
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
-  :lines: 27-33
+  :lines: 27-34
   :dedent: 12
 
 
@@ -165,7 +165,7 @@ The following example demonstrates how to configure a ``TraceSourceLogger`` inst
 
 .. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
-  :lines: 37-41
+  :lines: 36-40
   :dedent: 12
 
 The ``sourceSwitch`` is configured to use ``SourceLevels.Warning``, so only ``Warning`` (or higher) log messages are picked up by the ``TraceListener`` instance.
