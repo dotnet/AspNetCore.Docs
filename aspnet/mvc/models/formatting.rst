@@ -136,7 +136,7 @@ Alternately, you can add just the output formatter:
     options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
   });
   
-These two approaches will serialize results using :dn:class:`~System.XmlSerialization.XmlSerializer`. If you prefer, you can use the :dn:class:`~System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter:
+These two approaches will serialize results using :dn:class:`~System.Xml.Serialization.XmlSerializer`. If you prefer, you can use the :dn:class:`~System.Runtime.Serialization.DataContractSerializer` by adding its associated formatter:
 
 .. code-block:: c#
 
