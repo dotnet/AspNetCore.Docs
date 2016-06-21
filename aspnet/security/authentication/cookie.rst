@@ -14,13 +14,13 @@ The first step is adding the cookie middleware to your application. First use nu
 
 .. code-block:: c#
 
- app.UseCookieAuthentication(options =>
+ app.UseCookieAuthentication(new CookieAuthenticationOptions()
  {
-     options.AuthenticationScheme = "MyCookieMiddlewareInstance";
-     options.LoginPath = new PathString("/Account/Unauthorized/");
-     options.AccessDeniedPath = new PathString("/Account/Forbidden/");
-     options.AutomaticAuthenticate = true;
-     options.AutomaticChallenge = true;
+     AuthenticationScheme = "MyCookieMiddlewareInstance",
+     LoginPath = new PathString("/Account/Unauthorized/"),
+     AccessDeniedPath = new PathString("/Account/Forbidden/"),
+     AutomaticAuthenticate = true,
+     AutomaticChallenge = true
  });
 
 The code snippet above configures a few options;
