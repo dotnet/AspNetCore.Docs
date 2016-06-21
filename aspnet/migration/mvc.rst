@@ -40,9 +40,14 @@ Open the *project.json* file.
 - Add ``Microsoft.AspNetCore.Mvc`` and ``Microsoft.AspNetCore.StaticFiles`` to the ``dependencies`` property:
 - Add the "prepublish" line to the "scripts" section:
 
-.. literalinclude:: mvc/samples/WebApp1/src/WebApp1/project.json
-  :language: json
-  :emphasize-lines: 7-8, 47
+.. code-block:: JavaScript
+  
+  "scripts": {
+     "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
+	 "postpublish": [ "dotnet publish-iis 
+	   --publish-folder %publish:OutputPath% 
+	   --framework %publish:FullTargetFramework%" ]
+  }  
 
 - ``Microsoft.AspNetCore.Mvc`` Installs in the ASP.NET Core MVC framework package
 - ``Microsoft.AspNetCore.StaticFiles`` is the static file handler. The ASP.NET runtime is modular, and you must explicitly opt in to serve static files (see :doc:`/fundamentals/static-files`).
@@ -125,7 +130,7 @@ The old ASP.NET MVC project uses `Bootstrap <http://getbootstrap.com/>`__ for it
 
 In the new project, we'll add support for Bootstrap (and other client-side libraries) using `Bower <http://bower.io/>`__:
 
-- Add a `Bower <http://bower.io/>`__ configuration file named *bower.json* to the project root (Right-click on the project, and then **Add > New Item > Bower Configuration File**). Add `Bootstrap <http://getbootstrap.com/>`__ and `jQuery <https://jquery.com/>`__ to the file (see the highlighted lines below).
+- Add a `Bower <http://bower.io/>`__ configuration file named *bower.json* to the project root (Right-click on the project, and then **Add > New Item > Bower Configuration File**). Add `Bootstrap <http://getbootstrap.com/>`__ and `jQuery <https://jquery.com/>`__ to the file :sup:`[1]`: (see the highlighted lines below).
 
 .. literalinclude:: mvc/samples/WebApp1/src/WebApp1/bower.json
   :language: json
@@ -180,7 +185,7 @@ Right-click the web app project, choose **Add > Existing Item**, and add the *pa
 #. Leave the default name: *package.json*
 #. Tap **Add**
 
-The *package.json* file:
+The *package.json* file :sup:`[1]`:
 
 .. literalinclude:: mvc/samples/WebApp1/src/WebApp1/package.json
   :language: json
@@ -235,6 +240,8 @@ Configure Bundling
 
 The ASP.NET MVC starter web template utilized the ASP.NET Web Optimization for bundling. In ASP.NET Core, this functionality is performed as part of the build process using `Gulp <http://gulpjs.com/>`__. We've previously configured bundling and minification; all that's left is to change the references to Bootstrap, jQuery and other assets to use the bundled and minified versions. You can see how this is done in the layout file (*Views/Shared/_Layout.cshtml*) of the full template project. See :doc:`/client-side/bundling-and-minification` for more information.
 
+.. _Solving-HTTP-500-errors:
+
 Solving HTTP 500 errors
 -------------------------
 
@@ -267,3 +274,5 @@ Additional Resources
 
 - :doc:`/client-side/index`
 - :doc:`Tag Helpers </mvc/views/tag-helpers/index>`
+
+[1] The version numbers in the samples might not be current. You may need to update your projects accordingly.
