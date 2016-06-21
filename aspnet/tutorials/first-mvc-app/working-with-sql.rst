@@ -75,7 +75,6 @@ Test the app
 - Delete all the records in the DB. You can do this with the delete links in the browser or from SSOX.
 - Force the app to initialize (call the methods in the ``Startup`` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
-.. comment this no longer works  - ^<Shift>F5 (Hold down the control and Shift keys and tap F5)
   - Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop* Site*
   - .. image:: working-with-sql/_static/iisExIcon.png
   - .. image:: working-with-sql/_static/stopIIS.png

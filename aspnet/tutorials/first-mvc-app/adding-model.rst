@@ -7,12 +7,49 @@ In this section you'll add some classes for managing movies in a database. These
 
 You’ll use a .NET Framework data-access technology known as the `Entity Framework Core <http://ef.readthedocs.org/>`__ to define and work with these data model classes. Entity Framework Core (often referred to as **EF** Core) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development.
 
+Create a new project with individual user accounts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The current version of the ASP.NET Core MVC tools for Visual Studio, scaffolding a model is only supported when you create a new project with individual user accounts. We hope to have this fixed in the next tooling update. Until that's fixed, you'll need to create a new project with the same name. Because the project has the same name, you'll need to create it in another directory.
+
+From the Visual Studio **Start** page, tap **New Project**.
+
+.. image:: start-mvc/_static/new_project.png
+
+Alternatively, you can use the menus to create a new project. Tap **File > New > Project**.
+
+.. image:: start-mvc/_static/alt_new_project.png
+
+Complete the **New Project** dialog:
+
+- In the left pane, tap **Web**
+- In the center pane, tap **ASP.NET Core Web Application (.NET Core)**
+- Change the location to a different directory from the previous project you created or you'll get an error
+- Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
+- Tap **OK**
+
+.. image:: start-mvc/_static/new_project2.png
+
+In the **New ASP.NET Core Web Application - MvcMovie** dialog:
+
+- tap **Web Application*
+- tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK** 
+
+.. Warning:: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
+
+.. image:: start-mvc/_static/p4.png
+
+.. image:: adding-model/_static/indiv.png
+
+
+Follow the instructions in :ref:`change-title-link-reference-label` so you can tap the **MvcMovie** link to invoke the Movie controller. We'll scaffold that in this tutorial.
+
 Adding data model classes
 --------------------------
 
 In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Name the class **Movie** and add the following properties:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieNoEF.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieNoEF.cs
   :language: c#
   :lines: 4-16
   :dedent: 0
@@ -54,7 +91,7 @@ Run the app and click on the **Mvc Movie** link. You'll get the following error:
 
 That's a great error message, we'll follow those instructions to get the database ready for our Movie app.
 
-Use data migrations to create the database
+Update the database
 --------------------------------------------
 
 - Open a command prompt in the project directory (MvcMovie/src/MvcMovie). Follow these instructions for a quick way to open a folder in the project directory.
@@ -76,6 +113,23 @@ Use data migrations to create the database
 
   dotnet ef migrations add Initial
   dotnet ef database update
+
+.. note:: If you get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* - You will have to stop IIS Express. 
+
+To Stop IIS Express:
+
+- Right click the IIS Express system tray icon in the notification area
+  
+ .. image:: working-with-sql/_static/iisExIcon.png
+ 
+- Tap **Exit** or **Stop* Site*
+
+.. image:: working-with-sql/_static/stopIIS.png
+
+- Alternatively, you can exit and restart Visual Studio
+
+dotnet  ef commands
+^^^^^^^^^^^^^^^^^^^
 
 - ``dotnet`` (.NET Core) is a cross-platform implementation of .NET. You can read about it `here <http://go.microsoft.com/fwlink/?LinkId=798644>`__.
 - ``dotnet ef migrations add Initial`` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/2016<date-time>_Initial.cs* file containing the migration commands to add (or drop) the `Movie` table to the database.
@@ -104,9 +158,11 @@ Examining the Generated Code
 
 Open the *Controllers/MoviesController.cs* file and examine the generated ``Index`` method. A portion of the movie controller with the ``Index`` method is shown below:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 295-307
+ :start-after: // The Movies Controller
+ :end-before: // GET: Movies/Details/5
+ :dedent: 4
 
 The constructor uses :doc:`Dependency Injection  </fundamentals/dependency-injection>` to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
 
@@ -121,9 +177,10 @@ MVC also provides the ability to pass strongly typed objects to a view template.
 
 Examine the generated ``Details`` method in the *Controllers/MoviesController.cs* file:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 29-45
+ :start-after: // GET: Movies/Details/5
+ :end-before: // GET: Movies/Create
  :dedent: 8
 
 The ``id`` parameter is generally passed as route data, for example ``http://localhost:1234/movies/details/1`` sets:
@@ -146,7 +203,7 @@ If a Movie is found, an instance of the ``Movie`` model is passed to the ``Detai
 
 Examine the contents of the *Views/Movies/Details.cshtml* file:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/DetailsOriginal.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/DetailsOriginal.cshtml
  :language: HTML
  :emphasize-lines: 1
 
@@ -160,16 +217,17 @@ This ``@model`` directive allows you to access the movie that the controller pas
 
 Examine the *Index.cshtml* view template and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View method. The code passes this ``Movies`` list from the ``Index`` action method to the view:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 24-27
+ :start-after:  // GET: Movies
+ :end-before: // GET: Movies/Details/5
  :dedent: 8
 
 When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
 
 .. Copy Index.cshtml to IndexOriginal.cshtml
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
  :language: HTML
  :lines: 1
 
@@ -177,7 +235,7 @@ The ``@model`` directive allows you to access the list of movies that the contro
 
 .. Copy Index.cshtml to IndexOriginal.cshtml
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexOriginal.cshtml
   :language: HTML
   :emphasize-lines: 1,31, 34,37,40,43,46-48
 
