@@ -28,9 +28,9 @@ The sample application includes a simple mechanism for creating an exception:
 
 .. literalinclude:: error-handling/sample/src/ErrorHandlingSample/Startup.cs
 	:language: c#
-	:lines: 58-63
-	:dedent: 12
-	:emphasize-lines: 3-6
+	:lines: 58-77
+	:dedent: 8
+	:emphasize-lines: 5-8
 
 If a request includes a non-empty querystring parameter for the variable ``throw`` (e.g. a path of ``/?throw=true``), an exception will be thrown. If the environment is set to ``Development``, the developer exception page is displayed:
 
