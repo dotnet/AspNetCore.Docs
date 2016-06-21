@@ -7,7 +7,7 @@ By `Luke Latham`_ and `Rick Anderson`_
   :local:
   :depth: 1
 
-Supported Operating Systems
+Supported operating systems
 ---------------------------
 
 The following operating systems are supported:
@@ -17,18 +17,18 @@ The following operating systems are supported:
 
 \*Conceptually, the IIS configuration described in this document also applies to hosting ASP.NET Core applications on Nano Server IIS, but refer to :doc:`ASP.NET Core on Nano Server </tutorials/nano-server>` for specific instructions.
 
-IIS Configuration
+IIS configuration
 -----------------
 
 Enable the **Web Server (IIS)** server role and establish role services.
 
-Windows Desktop Operating Systems
+Windows desktop operating systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Navigate to **Control Panel > Programs > Programs and Features > Turn Windows features on or off** (left side of the screen). Open the group for **Internet Information Services** and **Web Management Tools**. Check the box for **IIS Management Console**. Check the box for **World Wide Web Services**. Accept the default features for **World Wide Web Services** or customize the IIS features to suit your needs.
 
 .. image:: pubIIS/_static/wf.png
 
-Windows Server Operating Systems
+Windows Server operating systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For server operating systems, use the **Add Roles and Features Wizard** via the **Manage** menu or the link in **Server Manager**. On the **Server Roles** step, check the box for **Web Server (IIS)**.
 
@@ -43,13 +43,13 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 .. _unlock-handlers:
 
 
-Install the .NET Core Windows Server Hosting Bundle
+Install the .NET Core Windows Server Hosting bundle
 ---------------------------------------------------
 
 #. Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 #. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
 
-Deploy the Application
+Deploy the application
 ----------------------
 
 #. On the target IIS server, create a folder to contain the application's assets.
@@ -62,7 +62,7 @@ Deploy the Application
   Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
 
 
-Configure the Website in IIS
+Configure the website in IIS
 ----------------------------
 
 #. In **IIS Manager**, create a new website. Provide a **Site name** and set the **Physical path** to the application's assets folder that you created. Provide the **Binding** configuration and create the website.
@@ -101,7 +101,7 @@ In web farm scenarios, an application can be configured to use a UNC path to sto
 
 .. include:: ./dataProtectionWarning.txt
 
-Common Errors
+Common errors
 -------------
 
 The following is not a complete list of errors. Should you encounter an error not listed here, please leave a detailed error message in the DISQUS section below (click **Show comments** to open the DISQUS panel).
@@ -112,7 +112,7 @@ A quick way to determine if the IIS reverse proxy to the Kestrel server is worki
 
 Common errors and general troubleshooting instructions:
 
-Installer Unable to Obtain VC++ Redistributable
+Installer unable to obtain VC++ Redistributable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Installer Exception:** Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80070002 - The system cannot find the file specified*.
@@ -121,8 +121,8 @@ Troubleshooting:
 
 - If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
 
-`.UseUrls(...)` Mispositioned
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UseUrls called before UseIISIntegration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
 - **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
@@ -130,9 +130,9 @@ Troubleshooting:
 
 Troubleshooting:
 
-- If your application uses the `.UseUrls(...)` extension on `WebHostBuilder`, make sure you have positioned the `.UseUrls(...)` extension before the `.UseIISIntegration()` extension on `WebHostBuilder`. `.UseIISIntegration()` must overwrite any values you provide in `.UseUrls(...)` in order for the reverse-proxy to succeed.
+- If your application uses the `UseUrls` extension on `WebHostBuilder`, make sure you have positioned the `UseUrls` extension before the `UseIISIntegration` extension on `WebHostBuilder`. `UseIISIntegration` must overwrite any values you provide in `UseUrls` in order for the reverse-proxy to succeed.
 
-**platform** Conflicts with RID
+Platform conflicts with RID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** No response
@@ -143,7 +143,7 @@ Troubleshooting:
 
 - If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
-URI Endpoint Wrong or Stopped Website
+URI endpoint wrong or stopped website
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** ERR_CONNECTION_REFUSED
@@ -155,7 +155,7 @@ Troubleshooting:
 - Confirm you are using the correct URI endpoint for the application. Check your bindings.
 - Confirm that the IIS website is not in the `Stopped` state.
 
-CoreWebEngine or W3SVC Server Features Disabled
+CoreWebEngine or W3SVC server features disabled
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
@@ -164,7 +164,7 @@ Troubleshooting:
 
 - Confirm that you have enabled the proper server role and features. See `IIS Configuration`_.
 
-Incorrect Website Physical Path or Application Missing
+Incorrect website physical path or application missing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
@@ -175,7 +175,7 @@ Troubleshooting:
 
 - Check the IIS website **Basic Settings** and the physical application assets folder. Confirm that the application is in the folder at the IIS website **Physical path**.
 
-Incorrect Server Role, Module not Installed, or Incorrect Permissions
+Incorrect server role, module not installed, or incorrect permissions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
@@ -188,7 +188,7 @@ Troubleshooting:
 - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
 - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-Incorrect `proecessPath`, Bundle not Installed, or Server not Restarted
+Incorrect `proecessPath`, bundle not installed, or server not restarted
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
@@ -201,7 +201,7 @@ Troubleshooting:
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
 
-Incorrect `arguments` of `\<aspNetCore\>` Element
+Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
@@ -223,7 +223,7 @@ Troubleshooting
 
 - Confirm that the Application Pool is not in the `Stopped` state.
 
-Additional Resources
+Additional resources
 --------------------
 
 - :doc:`/conceptual-overview/aspnet`

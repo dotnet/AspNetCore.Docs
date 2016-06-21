@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace TagH1p.TagHelpers
 {
-   [TargetElement(Attributes = nameof(Condition))]
-   //   [TargetElement(Attributes = "condition")]
-   public class ConditionTagHelper : TagHelper
+   [HtmlTargetElement(Attributes = nameof(Condition))]
+    //   [HtmlTargetElement(Attributes = "condition")]
+    public class ConditionTagHelper : TagHelper
    {
       public bool Condition { get; set; }
 

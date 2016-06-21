@@ -238,7 +238,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'aspnet.tex', 'ASP.NET 5 Documentation',
+  ('index', 'aspnet.tex', 'ASP.NET Core 1.0 Documentation',
    'Microsoft', 'manual'),
 ]
 
@@ -268,7 +268,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'aspnet', 'ASP.NET 5 Documentation',
+    ('index', 'aspnet', 'ASP.NET Core 1.0 Documentation',
      ['Microsoft'], 1)
 ]
 
@@ -282,8 +282,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'aspnet', 'ASP.NET 5 Documentation',
-   'Microsoft', 'aspnet', 'ASP.NET 5 Documentation',
+  ('index', 'aspnet', 'ASP.NET Core 1.0 Documentation',
+   'Microsoft', 'aspnet', 'ASP.NET Core 1.0 Documentation',
    '.NET Development'),
 ]
 

@@ -15,7 +15,7 @@ We'll be covering all these concepts in this tutorial series and show you how to
 
 .. image:: adding-controller/_static/mvc1.png
 
-- In **Solution Explorer**, right-click **Controllers > Add > New Item**
+- In **Solution Explorer**, right-click **Controllers > Add > Controller...**
 
 .. image:: adding-controller/_static/add_controller.png
 

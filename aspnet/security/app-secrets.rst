@@ -1,7 +1,7 @@
 .. _security-app-secrets:
 
-Safe storage of app secrets with the Secret Manager tool
-=========================================================
+Safe storage of app secrets during development
+===============================================
 
 By `Rick Anderson`_, `Daniel Roth`_
 

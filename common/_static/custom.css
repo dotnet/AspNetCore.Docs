@@ -53,20 +53,6 @@ b,
     font-family: wf_segoe-ui_bold, wf_segoe-ui_semibold, wf_segoe-ui_normal, Arial, sans-serif
 }*/
 
-.wy-nav-top {
-  background: #2b3990;
-}
-
-.wy-nav-top > a,
-.wy-nav-top > a:link,
-.wy-nav-top > a.visited {
-  color: #ffffff;
-}
-
-.wy-nav-content-wrap, .wy-nav-content {
-    background: #fff;
-}
-
 body {
     font-family: wf_segoe-ui_normal, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif
     color: #505050;
@@ -76,7 +62,8 @@ body {
 
 h1, h2, h3, h4, h5, h6, legend {
     margin-top: 0;
-    font-family: wf_segoe-ui_light, wf_segoe-ui_semilight, wf_segoe-ui_normal, "HelveticaNeue-Thin", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif
+    font-family: wf_segoe-ui_light, wf_segoe-ui_semilight, wf_segoe-ui_normal, "HelveticaNeue-Thin", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif;
+	line-height: 1.4em;
 }
 
 h2 {
@@ -96,6 +83,20 @@ p {
 }
 
 a, a:link, a:visited { color: #2b59a9; }
+
+.wy-nav-top {
+  background: #2b3990;
+}
+
+.wy-nav-top > a,
+.wy-nav-top > a:link,
+.wy-nav-top > a.visited {
+  color: #ffffff;
+}
+
+.wy-nav-content-wrap, .wy-nav-content {
+    background: #fff;
+}
 
 .wy-nav-side {
     background: #2b3990;
@@ -194,7 +195,7 @@ a, a:link, a:visited { color: #2b59a9; }
 .rst-content h1 a.headerlink,
 .rst-content h2 a.headerlink
 {
-    display: inline;
+    display: inline-block;
 }
 
 .rst-content {

@@ -2,11 +2,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TodoApi.Core.Interfaces;
 using TodoApi.Infrastructure;
-using Microsoft.AspNetCore.Http;
 
 namespace TodoApi
 {
@@ -30,9 +30,8 @@ namespace TodoApi
                     { "Microsoft", LogLevel.Warning },
                     { "System", LogLevel.Warning },
                     { "ToDoApi", LogLevel.Debug }
-                });
-
-            loggerFactory.AddConsole();
+                })
+                .AddConsole();
 
             // add Trace Source logging
             var testSwitch = new SourceSwitch("sourceSwitch", "Logging Sample");

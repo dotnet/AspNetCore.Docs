@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Razor.Runtime.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
 namespace AuthoringTagHelpers.TagHelpers2
@@ -16,8 +16,18 @@ namespace AuthoringTagHelpers.TagHelpers2
             output.TagName = "a";    // Replaces <email> with <a> tag
 
             var address = MailTo + "@" + EmailDomain;
-            output.Attributes["href"] = "mailto:" + address;
+            output.Attributes.SetAttribute("href", "mailto:" + address);
             output.Content.SetContent(address);
         }
     }
 }
+
+/* Update home controller to test this change
+
+public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View("ContactCopy");
+        }
+*/

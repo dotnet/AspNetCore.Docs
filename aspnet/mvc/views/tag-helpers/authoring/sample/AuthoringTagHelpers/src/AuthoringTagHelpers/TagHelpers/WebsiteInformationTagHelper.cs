@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using AuthoringTagHelpers.Models;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AuthoringTagHelpers.TagHelpers
 {

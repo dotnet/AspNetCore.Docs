@@ -3,7 +3,7 @@
 Custom Policy-Based Authorization
 =================================
 
-By `Rick Anderson`_
+By `Barry Dorrans`_
 
 Underneath the covers the :ref:`role authorization <security-authorization-role-based>` and :ref:`claims authorization <security-authorization-claims-based>` make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure. 
 
@@ -182,13 +182,13 @@ Accessing Request Context In Handlers
 
 The ``HandleRequirementAsync`` method you must implement in an authorization handler has two parameters, an ``AuthorizationContext`` and the ``Requirement`` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the ``Resource`` property on the ``AuthorizationContext`` to pass through extra information.
 
-For example MVC passes an instance of ``Microsoft.AspNetCore.Mvc.Filters.AuthorizationContext`` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
+For example MVC passes an instance of ``Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext`` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
 
 The use of the ``Resource`` property is framework specific. Using information in the ``Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastExceptions`` when run on other frameworks;
 
 .. code-block:: c#
  
- var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationContext;
+ var mvcContext = context.Resource as Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext;
 
  if (mvcContext != null)
  {
