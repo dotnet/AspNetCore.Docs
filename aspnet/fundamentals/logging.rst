@@ -18,7 +18,7 @@ Implementing Logging in your Application
 
 Adding logging to a component in your application is done by requesting either an ``ILoggerFactory`` or an ``ILogger<T>`` via :doc:`dependency-injection`. If an ``ILoggerFactory`` is requested, a logger must be created using its ``CreateLogger`` method. The following example shows how to do this:
 
-.. literalinclude:: logging/sample/src/TodoApi/Startup.cs 
+.. literalinclude:: logging/sample/src/TodoApi/Startup.cs
   :language: c#
   :lines: 53-54
   :dedent: 16
@@ -111,7 +111,7 @@ In the ``TodoController`` example, event id constants are defined for each event
 
 To see more detailed logging at the framework level, you can adjust the `LogLevel` specified to your logging provider to something more verbose (like `Debug` or `Trace`). For example, if you modify the `AddConsole` call in the `Configure` method to use `LogLevel.Trace` and run the application, the result shows much more framework-level detail about each request:
 
-.. image:: logging/_static/console-logger-trace-output.png 
+.. image:: logging/_static/console-logger-trace-output.png
 
 The console logger prefixes debug output with "dbug: "; there is no trace level debugging enabled by the framework by default. Each log level has a corresponding four character prefix that is used, so that log messages are consistently aligned.
 
@@ -136,7 +136,17 @@ Scopes are not required, and should be used sparingly, if at all. They're best u
 Configuring Logging in your Application
 ----------------------------------------
 
-To configure logging in your ASP.NET application, you should resolve ``ILoggerFactory`` in the ``Configure`` method in your ``Startup`` class. ASP.NET will automatically provide an instance of ``ILoggerFactory`` using :doc:`dependency-injection` when you add a parameter of this type to the ``Configure`` method. Once you've added ``ILoggerFactory`` as a parameter, you configure loggers within the ``Configure`` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by simply calling ``loggerFactory.AddConsole``.
+To configure logging in your ASP.NET Core application, you should resolve ``ILoggerFactory`` in the ``Configure`` method of your ``Startup`` class. ASP.NET Core will automatically provide an instance of ``ILoggerFactory`` using :doc:`dependency-injection` when you add a parameter of this type to the ``Configure`` method.
+
+.. literalinclude:: logging/sample/src/TodoApi/Startup.cs
+  :language: c#
+  :lines: 23-25
+  :dedent: 4
+  :emphasize-lines: 25
+
+Once you've added ``ILoggerFactory`` as a parameter, you configure loggers within the ``Configure`` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by calling ``loggerFactory.AddConsole``.
+
+Each logger provides its own set of extension methods to ``ILoggerFactory``. The console, debug, and event log loggers allow you to specify the minimum logging level at which those loggers should write log messages. The console and debug loggers provide extension methods accepting a function to filter log messages according to their logging level and/or category (for example, ``logLevel => logLevel >= LogLevel.Warning`` or ``(category, loglevel) => category.Contains("MyController") && loglevel >= LogLevel.Trace``). The event log logger provides a similar overload that takes an ``EventLogSettings`` instance as argument, which may contain a filtering function in its ``Filter`` property. The TraceSource logger does not provide any of those overloads, since its logging level and other parameters are based on the  ``SourceSwitch`` and ``TraceListener`` it uses.
 
 A LoggerFactory instance can optionally be configured with custom ``FilterLoggerSettings``. The example below configures custom log levels for different scopes, limiting system and Microsoft built-in logging to warnings while allowing the app to log at debug level by default. The ``WithFilter`` method returns a new ``ILoggerFactory`` that will filter the log messages passed to all logger providers registered with it. It does not affect any other ``ILoggerFactory`` instances, including the original ``ILoggerFactory`` instance.
 
@@ -144,11 +154,6 @@ A LoggerFactory instance can optionally be configured with custom ``FilterLogger
   :language: c#
   :lines: 27-34
   :dedent: 12
-
-
-.. note:: You can specify the minimum logging level each logger provider will use when you configure it. For example, the ``AddConsole`` extension method supports an optional parameter for setting its minimum ``LogLevel``.
-
-In addition to setting the minimum logging level, you can also specify that whether or not to include scope information in the output by setting ``includeScopes`` to ``true``. You can also specify a function to filter the log levels you wish to include (for example ``l => l >= LogLevel.Warning``) or a function to filter based on both log levels and category strings (for example, ``(category,loglevel) => category.Contains("MyController") && loglevel >= LogLevel.Trace``).
 
 Configuring TraceSource Logging
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -191,14 +196,14 @@ Configuring Other Providers
 
 In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your *project.json* file, and then configure it just like any other provider. Typically, these packages should include extension methods on ``ILoggerFactory`` to make it easy to add them.
 
-.. note:: The ASP.NET team is still working with third party logging providers to publish support for this logging model. Once these ship, we will include links to them here.
+.. note:: The ASP.NET Core team is still working with third party logging providers to publish support for this logging model. Once these ship, we will include links to them here.
 
 You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements.
 
 Logging Recommendations
 -----------------------
 
-The following are some recommendations you may find helpful when implementing logging in your ASP.NET applications.
+The following are some recommendations you may find helpful when implementing logging in your ASP.NET Core applications.
 
 1. Log using the correct ``LogLevel``. This will allow you to consume and route logging output appropriately based on the importance of the messages.
 
