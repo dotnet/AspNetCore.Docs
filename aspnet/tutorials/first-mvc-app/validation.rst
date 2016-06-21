@@ -1,5 +1,5 @@
 Adding Validation
-==================================================
+=================================================
 
 By `Rick Anderson`_
 
@@ -21,7 +21,7 @@ Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation 
 
 Update the ``Movie`` class to take advantage of the built-in ``Required``, ``StringLength``, ``RegularExpression``, and ``Range`` validation attributes.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDA.cs
   :language: none
   :lines: 8-31
   :dedent: 4
@@ -53,7 +53,7 @@ How Validation Occurs in the Create View and Create Action Method
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows the two ``Create`` methods.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 46-66
  :dedent: 8
@@ -79,7 +79,7 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 Below is portion of the *Create.cshtml* view template that you scaffolded earlier in the tutorial. It's used by the action methods shown above both to display the initial form and to redisplay it in the event of an error.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/CreateRatingBrevity.cshtml
   :language: HTML
   :emphasize-lines: 9,10,17,18,13
   :lines: 9-35
@@ -95,7 +95,7 @@ Using DataType Attributes
 
 Open the *Movie.cs* file and examine the ``Movie`` class. The ``System.ComponentModel.DataAnnotations`` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a ``DataType`` enumeration value to the release date and to the price fields. The following code shows the ``ReleaseDate`` and ``Price`` properties with the appropriate ``DataType`` attribute.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDA.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDA.cs
   :language: c#
   :lines: 15-17,23-26
   :dedent: 8
@@ -130,7 +130,7 @@ You will need to disable jQuery date validation to use the ``Range`` attribute w
 
 The following code shows combining attributes on one line:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRatingDAmult.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDAmult.cs
   :language: none
   :lines: 7-25
   :dedent: 4

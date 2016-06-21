@@ -1,19 +1,19 @@
 
 Examining the Details and Delete methods
-======================================================
+=====================================================
 
 By `Rick Anderson`_
 
 Open the Movie controller and examine the ``Details`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 29-44
  :dedent: 8
 
 The MVC scaffolding engine that created this action method adds a comment showing a HTTP request that invokes the method. In this case it's a GET request with three URL segments, the ``Movies`` controller, the ``Details`` method and a ``id`` value. Recall these segments are defined in Startup.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :language: c#
   :lines: 80-86
   :dedent: 8
@@ -23,7 +23,7 @@ Code First makes it easy to search for data using the ``SingleOrDefaultAsync`` m
 
 Examine the Delete and DeleteConfirmed methods.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 119-145
  :dedent: 8
@@ -32,7 +32,7 @@ Note that the ``HTTP GET Delete`` method doesn't delete the specified movie, it 
 
 The ``[HttpPost]`` method that deletes the data is named ``DeleteConfirmed`` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 119-120,135-136,139
  :dedent: 8
@@ -43,9 +43,8 @@ There are two approaches to this problem, one is to give the methods different n
 
 Another common work around for methods that have identical names and signatures is to artificially change the signature of the POST method to include an extra (unused) parameter. That's what we did in a previous post when we added the ``notUsed`` parameter. You could do the same thing here for the ``[HttpPost] Delete`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 312-322
  :dedent: 8
 
 .. ToDo - Next steps, but it really needs to start with Tom's EF/MVC Core
