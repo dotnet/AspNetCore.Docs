@@ -37,12 +37,10 @@ Installing the Secret Manager tool
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "1.0.0-preview1-final",
-      "imports": "portable-net45+win8+dnxcore50"
+      "version": "1.0.0-preview1-final"
     },
     "Microsoft.Extensions.SecretManager.Tools": {
-      "version": "1.0.0-preview1-final",
-      "imports": "portable-net45+win8+dnxcore50"
+      "version": "1.0.0-preview1-final"
     }
   },
 
