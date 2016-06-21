@@ -1,65 +1,51 @@
 {
-  "webroot": "wwwroot",
-  "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
   },
   "dependencies": {
-    "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Logging.TraceSource": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Logging.Filter": "1.0.0-rc2-final",
-    "System.Diagnostics.TextWriterTraceListener": "4.0.0-beta-23516"
+    "System.Diagnostics.TextWriterTraceListener": "4.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Microsoft.Extensions.Logging.Filter": "1.0.0",
+    "Microsoft.Extensions.Logging.TraceSource": "1.0.0"
   },
-
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "1.0.0-*",
-      "imports": "portable-net45+wp80+win8+wpa81+dnxcore50"
+      "version": "1.0.0-preview2-final"
     }
   },
   "scripts": {
     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
   },
-
   "runtimeOptions": {
-    "gcServer": false,
-    "gcConcurrent": true
+    "configProperties": {
+      "System.GC.Server": true
+    }
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.0-rc2-3002702",
+          "version": "1.0.0",
           "type": "platform"
         }
       },
       "imports": [
         "dotnet5.6",
-        "dnxcore50",
         "portable-net45+win8"
       ]
     },
     "net461": {
       "dependencies": {
-        "Microsoft.Extensions.Logging.EventLog": "1.0.0-*"
-      },
-      "frameworkAssemblies": {
-        "System.Runtime": { "type": "build" },
-        "System.Threading.Tasks": ""
+        "Microsoft.Extensions.Logging.EventLog": "1.0.0"
       }
     }
   },
-  "runtimes": {
-    "win7-x64": { }
-  },
-
   "publishOptions": {
     "include": [
       "wwwroot",
