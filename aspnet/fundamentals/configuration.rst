@@ -15,7 +15,7 @@ ASP.NET Core supports a variety of different configuration options. Application 
 Getting and setting configuration settings
 ------------------------------------------
 
-ASP.NET Core's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new configuration model provides streamlined access to key/value based settings that can be retrieved from a variety of sources. Applications and frameworks can then access configured settings in a strongly typed fashion using the new :ref:`Options pattern <options-config-objects>`
+ASP.NET Core's configuration system has been re-architected from previous versions of ASP.NET, which relied on ``System.Configuration`` and XML configuration files like ``web.config``. The new configuration model provides streamlined access to key/value based settings that can be retrieved from a variety of sources. Applications and frameworks can then access configured settings in a strongly typed fashion using the new :ref:`Options pattern <options-config-objects>`.
 
 To work with settings in your ASP.NET application, it is recommended that you only instantiate a ``Configuration`` in your application's ``Startup`` class. Then, use the :ref:`Options pattern <options-config-objects>` to access individual settings.
 
