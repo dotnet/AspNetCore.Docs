@@ -36,10 +36,10 @@ Installing the Secret Manager tool
   :emphasize-lines: 6-9
 
   "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": {
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final": {
       "version": "1.0.0-preview1-final"
     },
-    "Microsoft.Extensions.SecretManager.Tools": {
+    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final": {
       "version": "1.0.0-preview1-final"
     }
   },
