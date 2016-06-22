@@ -1,33 +1,29 @@
 Adding Search
-==================================================
+================================================
 
 By `Rick Anderson`_
-
 
 In this section you'll add search capability to the ``Index`` action method that lets you search movies by *genre* or *name*.
 
 Update the ``Index`` action method to enable search:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 154-166
  :dedent: 8
 
 The first line of the ``Index`` action method creates a `LINQ <http://msdn.microsoft.com/en-us/library/bb397926.aspx>`__ query to select the movies:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 156-157
  :dedent: 12
-
 
 The query is *only* defined at this point, it **has not** been run against the database.
 
 If the ``searchString`` parameter contains a string, the movies query is modified to filter on the value of the search string, using the following code:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
   :language: c#
-  :lines: 159-163
   :dedent: 12
   :emphasize-lines: 3
 
@@ -42,7 +38,7 @@ Navigate to ``/Movies/Index``. Append a query string such as ``?searchString=gho
 
 If you change the signature of the ``Index`` method to have a parameter named ``id``, the ``id`` parameter will match the optional ``{id}`` placeholder for the default routes set in *Startup.cs*.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :language: c#
   :lines: 80-86
   :dedent: 12
@@ -62,7 +58,7 @@ Change the parameter to ``id`` and all occurrences of ``searchString`` change to
 
 The previous ``Index`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 154-166
  :emphasize-lines: 1, 6,8
@@ -70,9 +66,8 @@ The previous ``Index`` method:
 
 The updated ``Index`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 173-185
  :emphasize-lines: 1, 6,8
  :dedent: 8
 
@@ -82,7 +77,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the ``Index`` method to test how to pass the route-bound ``ID`` parameter, change it back so that it takes a parameter named ``searchString``:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :lines: 154-166
  :emphasize-lines: 1, 6,8
@@ -92,7 +87,7 @@ However, you can't expect users to modify the URL every time they want to search
   Copy the relevant IndexXXX.cshtml file to Index.cshtml and test.
   Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexForm1.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexForm1.cshtml
   :language: HTML
   :lines: 1-21
   :emphasize-lines: 13-18
@@ -105,9 +100,8 @@ There's no ``[HttpPost]`` overload of the ``Index`` method as you might expect. 
 
 You could add the following ``[HttpPost] Index`` method.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
   :language: c#
-  :lines: 212-218
   :dedent: 8
   :emphasize-lines: 1
 
@@ -147,7 +141,7 @@ Adding Search by Genre
 
 Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieGenreViewModel.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieGenreViewModel.cs
  :language: c#
 
 The move-genre view model will contain:
@@ -158,31 +152,28 @@ The move-genre view model will contain:
 
 Replace the ``Index`` method with the following code:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 223-247
  :dedent: 8
 
 
 The following code is a ``LINQ`` query that retrieves all the genres from the database.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 225-228
  :dedent: 12
 
 The ``SelectList`` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
- :lines: 243
  :dedent: 12
 
 
 Adding search by genre to the Index view
 --------------------------------------------
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml
   :language: HTML
   :lines: 1-64
   :emphasize-lines: 1, 15-17,27,41

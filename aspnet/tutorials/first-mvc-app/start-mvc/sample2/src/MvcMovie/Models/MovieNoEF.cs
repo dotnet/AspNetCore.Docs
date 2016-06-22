@@ -1,4 +1,6 @@
-﻿/*
+﻿//#define MovieNoEF
+#if MovieNoEF
+
 using System;
 
 namespace MvcMovie.Models
@@ -12,4 +14,4 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
     }
 }
-*/
+#endif

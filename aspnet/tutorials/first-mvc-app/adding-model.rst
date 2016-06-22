@@ -10,7 +10,7 @@ You’ll use a .NET Framework data-access technology known as the `Entity Framew
 Create a new project with individual user accounts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The current version of the ASP.NET Core MVC tools for Visual Studio, scaffolding a model is only supported when you create a new project with individual user accounts. We hope to have this fixed in the next tooling update. Until that's fixed, you'll need to create a new project with the same name. Because the project has the same name, you'll need to create it in another directory.
+In the current version of the ASP.NET Core MVC tools for Visual Studio, scaffolding a model is only supported when you create a new project with individual user accounts. We hope to have this fixed in the next tooling update. Until that's fixed, you'll need to create a new project with the same name. Because the project has the same name, you'll need to create it in another directory.
 
 From the Visual Studio **Start** page, tap **New Project**.
 
@@ -30,19 +30,18 @@ Complete the **New Project** dialog:
 
 .. image:: start-mvc/_static/new_project2.png
 
+.. Warning:: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
+
 In the **New ASP.NET Core Web Application - MvcMovie** dialog:
 
-- tap **Web Application*
+- tap **Web Application**
 - tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK** 
-
-.. Warning:: You must have the **Authentication** set to **Individual User Accounts** in this release for the scaffolding engine to work.
 
 .. image:: start-mvc/_static/p4.png
 
 .. image:: adding-model/_static/indiv.png
 
-
-Follow the instructions in :ref:`change-title-link-reference-label` so you can tap the **MvcMovie** link to invoke the Movie controller. We'll scaffold that in this tutorial.
+Follow the instructions in :ref:`change-title-link-reference-label` so you can tap the **MvcMovie** link to invoke the Movie controller. We'll scaffold the movies controller in this tutorial.
 
 Adding data model classes
 --------------------------
@@ -58,7 +57,7 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Nam
 In addition to the properties you'd expect to model a movie, the ``ID`` field is required by the DB for the primary key. Build the project. If you don't build the app, you'll get an error in the next section. We've finally added a **M**\odel to our **M**\VC app.
 
 Scaffolding a controller
--------------------------
+--------------------------
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > Controller**.
 
@@ -85,25 +84,39 @@ The Visual Studio scaffolding engine creates the following:
 
 Visual Studio automatically created the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ (create, read, update, and delete) action methods and views for you (the automatic creation of CRUD action methods and views is known as *scaffolding*). You'll soon have a fully functional web application that lets you create, list, edit, and delete movie entries.
 
-Run the app and click on the **Mvc Movie** link. You'll get the following error:
+If you run the app and click on the **Mvc Movie** link, you'll get the following errors:
+
+.. image:: adding-model/_static/m1.png
 
 .. image:: adding-model/_static/pending.png
 
-That's a great error message, we'll follow those instructions to get the database ready for our Movie app.
+We'll follow those instructions to get the database ready for our Movie app.
 
 Update the database
---------------------------------------------
+-------------------------------------------
+
+.. warning:: You must build the project before you run the ``dotnet ef --no-build`` commands.
+
+.. To-do replace command prompt to PMC. It's the preferred approach, you  don't need to leave VS 
 
 - Open a command prompt in the project directory (MvcMovie/src/MvcMovie). Follow these instructions for a quick way to open a folder in the project directory.
 
   - Open a file in the root of the project (for this example, use *Startup.cs*.)
   - Right click on *Startup.cs*  **> Open Containing Folder**.
 
+|
+
   .. image:: adding-model/_static/quick.png
+  
+|
 
   - Shift + right click a folder > **Open command window here**
+  
+|
 
   .. image:: adding-model/_static/folder.png
+  
+|
 
   - Run ``cd ..`` to move back up to the project directory
 
@@ -111,34 +124,24 @@ Update the database
 
 .. code-block:: console
 
-  dotnet ef migrations add Initial
-  dotnet ef database update
+  dotnet ef --no-build migrations add Initial
+  dotnet ef --no-build  database update 
 
-.. note:: If you get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* - You will have to stop IIS Express. 
-
-To Stop IIS Express:
-
-- Right click the IIS Express system tray icon in the notification area
-  
- .. image:: working-with-sql/_static/iisExIcon.png
- 
-- Tap **Exit** or **Stop* Site*
-
-.. image:: working-with-sql/_static/stopIIS.png
-
-- Alternatively, you can exit and restart Visual Studio
+.. note:: If you don't use the "--no-build" option and IIS-Express is running, you'll get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* - You can stop IIS-Express to avoid this error or use the "--no-build" option.
 
 dotnet  ef commands
 ^^^^^^^^^^^^^^^^^^^
 
-- ``dotnet`` (.NET Core) is a cross-platform implementation of .NET. You can read about it `here <http://go.microsoft.com/fwlink/?LinkId=798644>`__.
-- ``dotnet ef migrations add Initial`` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/2016<date-time>_Initial.cs* file containing the migration commands to add (or drop) the `Movie` table to the database.
-
-- ``dotnet ef database update``  Updates the database with the migration we just created.
+- ``dotnet`` (.NET Core) is a cross-platform implementation of .NET. You can read about it `here <http://go.microsoft.com/fwlink/?LinkId=798644>`__
+- ``dotnet ef --no-build <command>`` Tells EF not to build the project before running the command
+- ``dotnet ef migrations add Initial`` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/2016<date-time>_Initial.cs* file containing the migration commands to add (or drop) the `Movie` table to the database
+- ``dotnet ef database update``  Updates the database with the migration we just created
 
 
 Test the app
 ------------------
+
+.. note:: If your browser is unable to connect to the movie app you might need to wait for IIS Express to load the app. It can sometimes take up to 30 seconds to build the app and have it ready to respond to requests.
 
 - Run the app and tap the **Mvc Movie** link
 - Tap the **Create New** link and create a movie
@@ -171,9 +174,9 @@ A request to the Movies controller returns all the entries in the ``Movies`` tab
 Strongly typed models and the @model keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Earlier in this tutorial, you saw how a controller can pass data or objects to a view template using the ``ViewData`` dictionary. The ``ViewData`` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
+Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the ``ViewData`` dictionary. The ``ViewData`` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed objects to a view template. This strongly typed approach enables better compile-time checking of your code and richer `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ in Visual Studio (VS). The scaffolding mechanism in VS used this approach (that is, passing a strongly typed model) with the ``MoviesController`` class and view templates when it created the methods and views.
+MVC also provides the ability to pass strongly typed objects to a view. This strongly typed approach enables better compile-time checking of your code and richer `IntelliSense <https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx>`__ in Visual Studio (VS). The scaffolding mechanism in VS used this approach (that is, passing a strongly typed model) with the ``MoviesController`` class and views when it created the methods and views.
 
 Examine the generated ``Details`` method in the *Controllers/MoviesController.cs* file:
 
@@ -207,15 +210,15 @@ Examine the contents of the *Views/Movies/Details.cshtml* file:
  :language: HTML
  :emphasize-lines: 1
 
-By including a ``@model`` statement at the top of the view template file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Details.cshtml* file:
+By including a ``@model`` statement at the top of the view file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Details.cshtml* file:
 
 .. code-block:: HTML
 
   @model MvcMovie.Models.Movie
 
-This ``@model`` directive allows you to access the movie that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Details.cshtml* template, the code passes each movie field to the ``DisplayNameFor`` and ``DisplayFor`` HTML Helpers with the strongly typed ``Model`` object. The ``Create`` and ``Edit`` methods and view templates also pass a ``Movie`` model object.
+This ``@model`` directive allows you to access the movie that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the ``DisplayNameFor`` and ``DisplayFor`` HTML Helpers with the strongly typed ``Model`` object. The ``Create`` and ``Edit`` methods and views also pass a ``Movie`` model object.
 
-Examine the *Index.cshtml* view template and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View method. The code passes this ``Movies`` list from the ``Index`` action method to the view:
+Examine the *Index.cshtml* view and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View method. The code passes this ``Movies`` list from the ``Index`` action method to the view:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
@@ -231,7 +234,7 @@ When you created the movies controller, Visual Studio automatically included the
  :language: HTML
  :lines: 1
 
-The ``@model`` directive allows you to access the list of movies that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Index.cshtml* template, the code loops through the movies with a ``foreach`` statement over the strongly typed ``Model`` object:
+The ``@model`` directive allows you to access the list of movies that the controller passed to the view by using a ``Model`` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a ``foreach`` statement over the strongly typed ``Model`` object:
 
 .. Copy Index.cshtml to IndexOriginal.cshtml
 
@@ -249,4 +252,4 @@ Additional resources
 -----------------------
 
 - :doc:`/mvc/views/tag-helpers/index`
-- :doc:`/fundamentals/localization`
+- :doc:`/fundamentals/localization` 
