@@ -78,7 +78,7 @@ Error
 Critical
   A critical log level should be reserved for unrecoverable application or system crashes, or catastrophic failure that requires immediate attention. Examples: data loss scenarios, out of disk space
 
-The ``Logging`` package provides `helper extension methods <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/LoggerExtensions/index.html>`_ for each of these standard ``LogLevel`` values, allowing you to call ``LogInformation`` rather than the more verbose Log(LogLevel.Information, ...) method. Each of the ``LogLevel``-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
+The ``Logging`` package provides `helper extension methods <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/LoggerExtensions/index.html>`_ for each ``LogLevel`` value, allowing you to call, for example, ``LogInformation``, rather than the more verbose ``Log(LogLevel.Information, ...)`` method. Each of the ``LogLevel``-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
 
 string data
   The message to log.
