@@ -6,13 +6,11 @@
   "dependencies": {
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.0-rc2-3002702"
+      "version": "1.0.0"
     },
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final"
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0"
   },
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": "dnxcore50"
-    }
+    "netcoreapp1.0": { }
   }
 }
