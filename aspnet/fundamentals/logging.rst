@@ -83,7 +83,7 @@ The ``Logging`` package provides `helper extension methods <https://docs.asp.net
 string data
   The message to log.
 
-int eventId
+EventId eventId
   A numeric id to associate with the log, which can be used to associate a series of logged events with one another. Event IDs should be static and specific to a particular kind of event that is being logged. For instance, you might associate adding an item to a shopping cart as event id 1000 and completing a purchase as event id 1001. This allows intelligent filtering and processing of log statements.
 
 string format
@@ -94,6 +94,8 @@ object[] args
 
 Exception error
   An exception instance to log.
+
+.. note:: The ``EventId`` type can be implicitly casted to ``int``, so you can just pass an ``int`` to this argument.
 
 .. note:: Some loggers, such as the built-in ``ConsoleLogger`` used in this article, will ignore the ``eventId`` parameter. If you need to display it, you can include it in the message string. This is done in the following sample so you can easily see the eventId associated with each message, but in practice you would not typically include it in the log message.
 
