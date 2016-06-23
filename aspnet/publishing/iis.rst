@@ -78,7 +78,7 @@ The `publish-iis` tool can be added to any .NET Core application and will config
   
 To include the `publish-iis` tool in your application, add entries to the `tools` and `scripts` sections of *project.json*.
   
-.. code-block:: json
+.. code-block:: none
   
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
