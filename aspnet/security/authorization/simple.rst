@@ -3,7 +3,7 @@
 Simple Authorization
 ====================
 
-Authorization in MVC is controlled through the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute and its various parameters. At its simplest applying the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authorized user.
+Authorization in MVC is controlled through the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute and its various parameters. At its simplest applying the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authenticated user.
 
 For example, the following code limits access to the ``AccountController`` to any authenticated user.
 
