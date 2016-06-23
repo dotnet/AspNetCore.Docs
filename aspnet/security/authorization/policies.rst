@@ -187,9 +187,9 @@ Now, assuming both handlers are :ref:`registered <security-authorization-policie
 Accessing Request Context In Handlers
 -------------------------------------
 
-.. replace ``AuthorizationHandlerContext.Resource`` with   :dn:property:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource`
+.. replace ``AuthorizationHandlerContext.Resource`` with   :dn:property:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource` and ``AuthorizationHandler`<TRequirement>`` with :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler`\<TRequirement>.HandleRequirement`
 
-The :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleRequirement` method you must implement in an authorization handler has two parameters, an ``AuthorizationHandlerContext`` and the Requirement you are handling. Frameworks such as MVC are free to add any object to the ``AuthorizationHandlerContext.Resource`` property on the ``AuthorizationHandlerContext`` to pass through extra information.
+The ``AuthorizationHandler`<TRequirement>`` method you must implement in an authorization handler has two parameters, an ``AuthorizationHandlerContext`` and the Requirement you are handling. Frameworks such as MVC are free to add any object to the ``AuthorizationHandlerContext.Resource`` property on the ``AuthorizationHandlerContext`` to pass through extra information.
 
 For example MVC passes an instance of :dn:class:`~Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
 
