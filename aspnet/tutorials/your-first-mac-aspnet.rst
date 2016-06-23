@@ -19,7 +19,7 @@ Scaffolding Applications Using Yeoman
 
 Follow the instruction in :doc:`/client-side/yeoman` to create an ASP.NET Core project.
 
-Developing ASP.NET Applications on a Mac With Visual Studio Code
+Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 ----------------------------------------------------------------
 
 - Start **Visual Studio Code**
@@ -67,20 +67,18 @@ Running Locally Using Kestrel
 The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
 
 .. code-block:: json
-  :emphasize-lines: 11-12
+  :emphasize-lines: 10
  
   {
-    "version": "1.0.0-*",
-    "compilationOptions": {
+    "buildOptions": {
       "emitEntryPoint": true
     },
     "dependencies": {
       "Microsoft.NETCore.App": {
         "type": "platform",
-        "version": "1.0.0-rc2-3002702"
+        "version": "1.0.0"
       },
-      "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
-      "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final"
+      "Microsoft.AspNetCore.Server.Kestrel": "1.0.0"
     },
     "frameworks": {
       "netcoreapp1.0": {}
