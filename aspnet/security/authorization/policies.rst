@@ -64,7 +64,9 @@ A requirement doesn't need to have data or properties.
 Authorization Handlers
 ----------------------
 
-An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have :ref:`multiple handlers <security-authorization-policies-based-multiple-handlers>`. Handlers must implement :dn:class:`~Microsoft.AspNetCore.Authorization.IAuthorizationHandler`. Typically you'll inherit from :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>` where ``TRequirement`` is the requirement it handles. Each requirement must return `.Succeed()` on the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext` for the authorization to succeed.
+.. update ``AuthorizationHandlerContext`` to :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext`
+
+An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided ``AuthorizationHandlerContext`` to decide if authorization is allowed. A requirement can have :ref:`multiple handlers <security-authorization-policies-based-multiple-handlers>`. Handlers must implement :dn:interface:`~Microsoft.AspNetCore.Authorization.IAuthorizationHandler`. Typically you'll inherit from :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>` where ``TRequirement`` is the requirement it handles. Each requirement must return `.Succeed()` on the ``AuthorizationHandlerContext`` for the authorization to succeed.
 
 .. _security-authorization-handler-example:
 
@@ -181,7 +183,7 @@ Now, assuming both handlers are :ref:`registered <security-authorization-policie
 Accessing Request Context In Handlers
 -------------------------------------
 
-The :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleRequirement` method you must implement in an authorization handler has two parameters, an :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext` and the Requirement you are handling. Frameworks such as MVC are free to add any object to the :dn:property:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource` property on the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext` to pass through extra information.
+The :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleRequirement` method you must implement in an authorization handler has two parameters, an ``AuthorizationHandlerContext`` and the Requirement you are handling. Frameworks such as MVC are free to add any object to the :dn:property:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource` property on the ``AuthorizationHandlerContext`` to pass through extra information.
 
 For example MVC passes an instance of :dn:class:`~Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
 
