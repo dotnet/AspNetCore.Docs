@@ -24,7 +24,8 @@ An authorization policy is made up of one or more requirements and registered at
 
 Here you can see an "Over21" policy is created with a single requirement, that of a minimum age, which is passed as a parameter to the requirement.
 
-Policies are applied using the ``Authorize`` attribute simply by specifying the policy name, for example
+Policies are applied using the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute simply by specifying the policy name, for example
+
 
 .. code-block:: c#
 
@@ -42,7 +43,7 @@ Policies are applied using the ``Authorize`` attribute simply by specifying the 
 
 Requirements
 ------------
-An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our Minimum Age policy the requirement we have a single parameter, the minimum age. A requirement must implement ``IAuthorizationRequirement``. This is an empty, marker interface. A parameterized minimum age requirement might be implemented as follows;
+An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our Minimum Age policy the requirement we have a single parameter, the minimum age. A requirement must implement :dn:iface:`~Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`. This is an empty, marker interface. A parameterized minimum age requirement might be implemented as follows;
 
 .. code-block:: c#
 
@@ -63,7 +64,9 @@ A requirement doesn't need to have data or properties.
 Authorization Handlers
 ----------------------
 
-An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided ``AuthorizationContext`` to decide if authorization is allowed. A requirement can have :ref:`multiple handlers <security-authorization-policies-based-multiple-handlers>`. Handlers must inherit ``AuthorizationHandler<T>`` where T is the requirement it handles. 
+.. update ``AuthorizationHandlerContext`` to :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext`
+
+An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided ``AuthorizationHandlerContext`` to decide if authorization is allowed. A requirement can have :ref:`multiple handlers <security-authorization-policies-based-multiple-handlers>`. Handlers must implement :dn:interface:`~Microsoft.AspNetCore.Authorization.IAuthorizationHandler`. Typically you'll inherit from :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>` where ``TRequirement`` is the requirement it handles. Each requirement must return `.Succeed()` on the ``AuthorizationHandlerContext`` for the authorization to succeed.
 
 .. _security-authorization-handler-example:
 
@@ -73,7 +76,7 @@ The minimum age handler might look like this:
 
  public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
  {
-     public override Task HandleRequirementAsync(AuthorizationContext context, MinimumAgeRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
      {
          if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
                                     c.Issuer == "http://contoso.com"))
@@ -99,7 +102,9 @@ The minimum age handler might look like this:
      }
  }
 
-In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call ``context.Succeed()`` passing in the requirement that has been successful as a parameter.
+.. Update AuthorizationHandlerContext with :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Succeed` 
+
+In the code above we first look to see if the current user principal has a date of birth claim which has been issued by an Issuer we know and trust. If the claim is missing we can't authorize so we return. If we have a claim, we figure out how old the user is, and if they meet the minimum age passed in by the requirement then authorization has been successful. Once authorization is successful we call ``AuthorizationHandlerContext.Succeed`` on the provided context, passing in the requirement that has been successful as a parameter.
 
 .. _security-authorization-policies-based-handler-registration:
 
@@ -120,18 +125,20 @@ Handlers must be registered in the services collection during configuration, for
      services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
  }
 
-Each handler is added to the services collection by using ``services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();`` passing in your handler class.
+Each handler is added to the services collection by using ``services.AddSingleton<IAuthorizationHandler, YourHandlerClass>();``, replacing ``YourHandlerClass`` with the name of your authorization handler.
 
 What should a handler return?
 -----------------------------
 
+.. replace ``AuthorizationHandlerContext.Fail`` with :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Fail`
+
 You can see in our :ref:`handler example <security-authorization-handler-example>` that the ``HandleRequirementAsync()`` method has no return value, so how do we indicate success or failure?
 
-* A handler indicates success by calling ``context.Succeed(IAuthorizationRequirement requirement)``, passing the requirement that has been successfully validated.
+* A handler indicates success by calling ``AuthorizationHandlerContext.Succeed`` on the provided context, passing the requirement that has been successfully validated.
 * A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.
-* To guarantee failure even if other handlers for a requirement succeed, call ``context.Fail``. 
+* To guarantee failure even if other handlers for a requirement succeed, call ``AuthorizationHandlerContext.Fail`` on the provided context.
  
-Regardless of what you call inside your handler all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if ``context.Fail()`` has been called in another handler.
+Regardless of what you call inside your handler all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if ``AuthorizationHandlerContext.Fail`` has been called in another handler.
 
 .. _security-authorization-policies-based-multiple-handlers:
 
@@ -148,7 +155,7 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
 
  public class BadgeEntryHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     public override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.BadgeId && 
                                         c.Issuer == "http://microsoftsecurity"))
@@ -162,7 +169,7 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
 
  public class HasTemporaryStickerHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     public override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
+     public override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.TemporaryBadgeId && 
                                         c.Issuer == "http://microsoftsecurity"))
@@ -180,11 +187,13 @@ Now, assuming both handlers are :ref:`registered <security-authorization-policie
 Accessing Request Context In Handlers
 -------------------------------------
 
-The ``HandleRequirementAsync`` method you must implement in an authorization handler has two parameters, an ``AuthorizationContext`` and the ``Requirement`` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the ``Resource`` property on the ``AuthorizationContext`` to pass through extra information.
+.. replace ``AuthorizationHandlerContext.Resource`` with   :dn:property:`~Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.Resource` and ``AuthorizationHandler`<TRequirement>`` with :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler`\<TRequirement>.HandleRequirement`
 
-For example MVC passes an instance of ``Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext`` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
+The ``AuthorizationHandler`<TRequirement>`` method you must implement in an authorization handler has two parameters, an ``AuthorizationHandlerContext`` and the Requirement you are handling. Frameworks such as MVC are free to add any object to the ``AuthorizationHandlerContext.Resource`` property on the ``AuthorizationHandlerContext`` to pass through extra information.
 
-The use of the ``Resource`` property is framework specific. Using information in the ``Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastExceptions`` when run on other frameworks;
+For example MVC passes an instance of :dn:class:`~Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext` in the resource property which is used to access HttpContext, RouteData and everything else MVC provides.
+
+The use of the ``AuthorizationHandlerContext.Resource`` property is framework specific. Using information in the ``AuthorizationHandlerContext.Resource`` property will limit your authorization policies to particular frameworks. You should cast the ``AuthorizationHandlerContext.Resource`` property using the ``as`` keyword, and then check the cast has succeed to ensure your code doesn't crash with ``InvalidCastException`` when run on other frameworks;
 
 .. code-block:: c#
  
