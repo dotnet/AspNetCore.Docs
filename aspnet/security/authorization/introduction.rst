@@ -15,4 +15,4 @@ In ASP.NET Core authorization now provides simple declarative :ref:`role <securi
 Namespaces
 ----------
 
-The authorization attribute is part of the Microsoft.AspNetCore.Authorization namespace, specifically you must add  ``using Microsoft.AspNetCore.Authorization;``
+Authorization components, including the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` and :dn:class:`~Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute` attributes are found in the :dn:namespace:`Microsoft.AspNetCore.Authorization` namespace.
