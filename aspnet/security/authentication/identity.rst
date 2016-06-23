@@ -59,8 +59,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
     :language: c#
-    :lines: 105-132
-    :emphasize-lines: 10
+    :lines: 101-128
+    :emphasize-lines: 9
     :dedent: 8
 
 3. Log in.
@@ -69,8 +69,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
     :language: c#
-    :lines: 105-132
-    :emphasize-lines: 19
+    :lines: 101-128
+    :emphasize-lines: 18
     :dedent: 8
 
   The above ``SignInAsync`` method calls the below ``SignInAsync`` task, which is contained in the ``SignInManager`` class. 
@@ -81,8 +81,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
 
   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
     :language: c#
-    :lines: 57-92
-    :emphasize-lines: 12
+    :lines: 54-89
+    :emphasize-lines: 11
     :dedent: 8
 
 4. Log off.
@@ -91,8 +91,8 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
  
   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
     :language: c#
-    :lines: 138-143
-    :emphasize-lines: 3
+    :lines: 131-138
+    :emphasize-lines: 5
     :dedent: 8 
  
   The code above shows the ``SignInManager.SignOutAsync`` method. The ``SignOutAsync`` method clears the users claims stored in a cookie. 
