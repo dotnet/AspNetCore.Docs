@@ -14,11 +14,11 @@ Authorization is implemented as a service, ``IAuthorizationService``, registered
 
  public class DocumentController : Controller
  {  
-     IAuthorizationService authorizationService;
+     IAuthorizationService _authorizationService;
 
      public DocumentController(IAuthorizationService authorizationService)
      {
-         this.authorizationService = authorizationService;
+         _authorizationService = authorizationService;
      }
  }
 
@@ -82,8 +82,7 @@ Don't forget you also need to register your handler in the ``ConfigureServices``
 
 .. code-block :: c#
 
-    services.AddInstance<IAuthorizationHandler>(
-        new DocumentAuthorizationHandler());
+    services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 Operational Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
