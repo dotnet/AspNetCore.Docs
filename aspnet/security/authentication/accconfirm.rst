@@ -88,7 +88,7 @@ On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file
    :lines: 1-6
    :emphasize-lines: 3
 
-At this time, the contents of the *project.json* file are not encrypted. The *project.json* file is shown below (the sensitive keys have been removed.)
+At this time, the contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the sensitive keys have been removed.)
 
 .. code-block:: json
 
