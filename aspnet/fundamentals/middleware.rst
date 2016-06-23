@@ -36,6 +36,7 @@ You can see an example of setting up the request pipeline in the default web sit
 #. MVC
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :linenos:
   :language: c#
   :lines: 58-86
   :dedent: 8
@@ -148,8 +149,6 @@ ASP.NET ships with the following middleware components:
      - Provides authentication support.
   *  - :doc:`CORS </security/cors>`
      - Configures Cross-Origin Resource Sharing.
-  *  - :doc:`Diagnostics <diagnostics>`
-     - Includes support for error pages and runtime information.
   *  - :doc:`Routing <routing>`
      - Define and constrain request routes.
   *  - :ref:`Session <session>`
