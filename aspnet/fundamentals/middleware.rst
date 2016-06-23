@@ -36,6 +36,7 @@ You can see an example of setting up the request pipeline in the default web sit
 #. MVC
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :linenos:
   :language: c#
   :lines: 58-86
   :dedent: 8

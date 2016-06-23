@@ -33,7 +33,6 @@ When you modify the default settings created with the project, your changes are 
   :language: javascript
   :caption: launchSettings.json
   :emphasize-lines: 18,21
-  :linenos:
 
 .. note:: Changes made to project profiles or to *launchSettings.json* directly may not take effect until the web server used is restarted (in particular, kestrel must be restarted before it will detect changes made to its environment).
 
@@ -66,7 +65,6 @@ For example, you can use the following code in you Configure method to setup env
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :linenos:
   :dedent: 12
   :lines: 63-72
 
@@ -93,7 +91,6 @@ The following ``StartupDevelopment`` file from this article's sample project is 
 .. literalinclude:: environments/sample/src/Environments/StartupDevelopment.cs
   :language: c#
   :caption: StartupDevelopment.cs
-  :linenos:
   :emphasize-lines: 5
 
 Run the application in development, and a welcome screen is displayed. The sample also includes a ``StartupStaging`` class:
@@ -101,7 +98,6 @@ Run the application in development, and a welcome screen is displayed. The sampl
 .. literalinclude:: environments/sample/src/Environments/StartupStaging.cs
   :language: c#
   :caption: StartupStaging.cs
-  :linenos:
   :emphasize-lines: 6
 
 When the application is run with ``ASPNETCORE_ENVIRONMENT`` set to ``Staging``, the ``StartupStaging`` class is used, and the application will simply display a string stating it's running in a staging environment. The application's default ``Startup`` class will only run when the environment is not set to either ``Development`` or ``Staging`` (presumably, this would be when it is set to ``Production``, but you're not limited to only these three options. Also note that if no environment is set, the default ``Startup`` will run).

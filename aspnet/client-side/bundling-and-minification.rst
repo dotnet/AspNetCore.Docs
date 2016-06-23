@@ -25,7 +25,7 @@ Bundling is a feature that makes it easy to combine or bundle multiple files int
 
 Bundling can be accomplished using the `gulp-concat <https://www.npmjs.com/package/gulp-concat>`__ plugin, which is installed with the Node Package Manager (`npm <https://www.npmjs.com/>`__). Add the ``gulp-concat`` package to the ``devDependencies`` section of your *package.json* file. To edit your *package.json* file from Visual Studio right-click on the **npm** node under **Dependencies** in the solution explorer and select **Open package.json**:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
   :emphasize-lines: 7
 
@@ -33,20 +33,20 @@ Run ``npm install`` to install the specified packages. Visual Studio will automa
 
 In your *gulpfile.js* import the ``gulp-concat`` module:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
   :lines: 4-8
   :emphasize-lines: 3
 
 Use `globbing <http://www.tldp.org/LDP/abs/html/globbingref.html>`__ patterns to specify the files that you want to bundle and minify:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
   :lines: 12-19
 
 You can then define gulp tasks that run ``concat`` on the desired files and output the result to your webroot:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
   :lines: 31-43
   :emphasize-lines: 3, 10
@@ -91,20 +91,20 @@ imageElement        r
 
 To minify your JavaScript files you can use the `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`__ plugin. For CSS you can use the `gulp-cssmin <https://www.npmjs.com/package/gulp-cssmin>`__ plugin. Install these packages using npm as before:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/package.json
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/package.json
   :language: json
   :emphasize-lines: 8-9
 
 Import the ``gulp-uglify`` and ``gulp-cssmin`` modules in your *gulpfile.js* file:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
   :lines: 4-8
   :emphasize-lines: 4, 5
 
 Add ``uglify`` to minify your bundled JavaScript files and ``cssmin`` to minify your bundled CSS files.
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/gulpfile.js
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/gulpfile.js
   :language: js
   :lines: 31-43
   :emphasize-lines: 4, 11
@@ -139,7 +139,7 @@ You can specify which scripts and CSS files to include in your pages using the e
 
 The following environment tag will render the unprocessed CSS files when running in the ``Development`` environment:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :linenos:
   :lines: 8-11
@@ -148,7 +148,7 @@ The following environment tag will render the unprocessed CSS files when running
 
 This environment tag will render the bundled and minified CSS files only when running in ``Production`` or ``Staging``:
 
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
+.. literalinclude:: bundling-and-minification/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :linenos:
   :lines: 12-17
