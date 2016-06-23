@@ -19,7 +19,7 @@ In ASP.NET MVC, authentication and identity features are configured using ASP.NE
 .. code-block:: none
 
   "dependencies": {
-    "Microsoft.AspNetCore.Mvc": "6.0.0-beta3",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
     "Microsoft.AspNetCore.Identity.EntityFramework": "1.0.0",
     "Microsoft.AspNetCore.Security.Cookies": "1.0.0"
   },
