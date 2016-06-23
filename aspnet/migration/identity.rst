@@ -5,7 +5,7 @@ Migrating Authentication and Identity
 
 By `Steve Smith`_
 
-In the previous article we :doc:`migrated configuration from an ASP.NET MVC project to ASP.NET Core <configuration>`. In this article, we migrate the registration, login, and user management features.
+In the previous article we :doc:`migrated configuration from an ASP.NET MVC project to ASP.NET Core MVC <configuration>`. In this article, we migrate the registration, login, and user management features.
 
 .. contents:: Sections:
   :local:
@@ -14,16 +14,14 @@ In the previous article we :doc:`migrated configuration from an ASP.NET MVC proj
 Configure Identity and Membership
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Identity.Cookies`` to the list of dependencies:
+In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Identity.Cookies`` to the list of dependencies:
 
 .. code-block:: none
 
   "dependencies": {
-    "Microsoft.AspNetCore.Server.IIS": "1.0.0-beta3",
-    "Microsoft.AspNetCore.Mvc": "6.0.0-beta3",
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
-    "Microsoft.AspNetCore.Identity.EntityFramework": "3.0.0-beta3",
-    "Microsoft.AspNetCore.Security.Cookies": "1.0.0-beta3"
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Identity.EntityFramework": "1.0.0",
+    "Microsoft.AspNetCore.Security.Cookies": "1.0.0"
   },
 
 Now, open Startup.cs and update the ConfigureServices() method to use Entity Framework and Identity services:
@@ -90,7 +88,7 @@ ApplicationDbContext.cs:
     }
   }
 
-The ASP.NET MVC Starter Web project doesn't include much customization of users, or the ApplicationDbContext. When migrating a real application, you will also need to migrate all of the custom properties and methods of your application's user and DbContext classes, as well as any other Model classes your application utilizes (for example, if your DbContext has a DbSet<Album>, you will of course need to migrate the Album class).
+The ASP.NET Core MVC Starter Web project doesn't include much customization of users, or the ApplicationDbContext. When migrating a real application, you will also need to migrate all of the custom properties and methods of your application's user and DbContext classes, as well as any other Model classes your application utilizes (for example, if your DbContext has a DbSet<Album>, you will of course need to migrate the Album class).
 
 With these files in place, the Startup.cs file can be made to compile by updating its using statements:
 
