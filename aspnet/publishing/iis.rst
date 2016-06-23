@@ -233,8 +233,8 @@ Troubleshooting:
 - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
 - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-Incorrect `proecessPath`, bundle not installed, or server not restarted
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Incorrect `proecessPath`, bundle not installed, server not restarted, or missing PATH var
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
@@ -245,6 +245,7 @@ Troubleshooting:
 - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+- *dotnet.exe* might not accessible via the PATH settings. Confirm that `C:\Program Files\dotnet\` exists in the System PATH settings.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
