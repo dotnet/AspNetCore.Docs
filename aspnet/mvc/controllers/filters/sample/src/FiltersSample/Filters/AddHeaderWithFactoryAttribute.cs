@@ -1,5 +1,5 @@
 using System;
-using Microsoft.AspNet.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
@@ -21,6 +21,14 @@ namespace FiltersSample.Filters
 
             public void OnResultExecuted(ResultExecutedContext context)
             {
+            }
+        }
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
             }
         }
     }

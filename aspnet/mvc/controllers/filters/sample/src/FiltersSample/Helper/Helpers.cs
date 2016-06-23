@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Mvc;
-using Microsoft.Net.Http.Headers;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Helper
 {
@@ -18,7 +17,7 @@ namespace FiltersSample.Helper
             return new ContentResult()
             {
                 Content = content,
-                ContentType = new MediaTypeHeaderValue("text/html"),
+                ContentType = "text/html"
             };
         }
     }
