@@ -10,7 +10,7 @@ Adding role checks
 
 Role based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying roles which the current user must be a member of to access the requested resource.
 
-For example the following code would limit access to any actions on the Administration controller to users who are a member of the Administrator group.
+For example the following code would limit access to any actions on the ``AdministrationController`` to users who are a member of the ``Administrator`` group.
 
 .. code-block:: c#
 
@@ -28,9 +28,9 @@ You can specify multiple roles as a comma separated list;
   {  
   }
 
-This controller would be only accessible by users who are members of the HRManager role or the Finance Role.
+This controller would be only accessible by users who are members of the ``HRManager`` role or the ``Finance`` role.
 
-If you apply multiple attributes then an accessing user must be a member of all the roles specified; the following sample requires that a user must be a member of both the PowerUser and ControlPanelUser role.
+If you apply multiple attributes then an accessing user must be a member of all the roles specified; the following sample requires that a user must be a member of both the ``PowerUser`` and ``ControlPanelUser`` role.
 
 .. code-block:: c#
 
@@ -57,7 +57,7 @@ You can further limit access by applying additional role authorization attribute
       }
   }
 
-In the previous code snippet members of the Administrator role or the PowerUser role can access the controller and the SetTime action, but only members of the Administrator role can access the ShutDown action.
+In the previous code snippet members of the ``Administrator`` role or the ``PowerUser`` role can access the controller and the ``SetTime`` action, but only members of the ``Administrator`` role can access the ``ShutDown`` action.
 
 You can also lock down a controller but allow anonymous, unauthenticated access to individual actions.
 
@@ -95,7 +95,7 @@ Role requirements can also be expressed using the new Policy syntax, where a dev
      }
  }
 
-Policies are applied using the ``Policy`` parameter on the ``Authorize`` attribute;
+Policies are applied using the :dn:prop:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy` property on the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute;
 
 .. code-block:: c#
 
@@ -105,12 +105,12 @@ Policies are applied using the ``Policy`` parameter on the ``Authorize`` attribu
      return View();
  }
 
-If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the ``RequireRole`` method;
+If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the :dn:method:`~Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole` method;
 
 .. code-block:: c#
 
   options.AddPolicy("ElevatedRights", policy => 
                     policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 
-This example authorizes users who belong to the Administrator, PowerUser or BackupAdministrator roles.
+This example authorizes users who belong to the ``Administrator``, ``PowerUser`` or ``BackupAdministrator`` roles.
 
