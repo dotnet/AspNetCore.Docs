@@ -6,7 +6,7 @@ namespace TodoApi.Models
 {
     public class TodoRepository : ITodoRepository
     {
-        static ConcurrentDictionary<string, TodoItem> _todos = 
+        private static ConcurrentDictionary<string, TodoItem> _todos = 
               new ConcurrentDictionary<string, TodoItem>();
 
         public TodoRepository()
