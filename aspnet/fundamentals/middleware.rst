@@ -148,8 +148,6 @@ ASP.NET ships with the following middleware components:
      - Provides authentication support.
   *  - :doc:`CORS </security/cors>`
      - Configures Cross-Origin Resource Sharing.
-  *  - :doc:`Diagnostics <diagnostics>`
-     - Includes support for error pages and runtime information.
   *  - :doc:`Routing <routing>`
      - Define and constrain request routes.
   *  - :ref:`Session <session>`
