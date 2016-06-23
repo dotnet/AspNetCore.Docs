@@ -26,7 +26,7 @@ This layout defines a top level template for views in the app. Apps do not requi
 
 An example ``_Layout.cshtml``:
 
-.. literalinclude:: ../../../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/Shared/_Layout.cshtml
   :language: html
   :emphasize-lines: 42,66
 
@@ -35,7 +35,7 @@ Specifying a Layout
 
 Razor views have a ``Layout`` property. Individual views specify a layout by defining this property:
 
-.. literalinclude:: ../../../common/samples/WebApplication1/src/WebApplication1/Views/_ViewStart.cshtml
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/_ViewStart.cshtml
   :language: html
   :emphasize-lines: 2
 
@@ -79,7 +79,7 @@ The file does not support other Razor features, such as functions and section de
 
 A sample ``_ViewImports.cshtml`` file:
 
-.. literalinclude:: ../../../common/samples/WebApplication1/src/WebApplication1/Views/_ViewImports.cshtml
+.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Views/_ViewImports.cshtml
   :language: html
 
 The ``_ViewImports.cshtml`` file for an ASP.NET Core MVC app is typically placed in the ``Views`` folder root. A ``_ViewImports.cshtml`` file can be placed within a controller-associated view folder, in which case it will only be applied to views within that folder. ``_ViewImports`` files are run first at the root level, and then for a ``_ViewImports`` file specified in the controller-associated folder, so settings specified at the root level may be overridden at the folder level.
