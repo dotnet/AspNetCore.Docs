@@ -35,8 +35,8 @@ To use an in memory cache in your ASP.NET application, add the following depende
 
 .. literalinclude:: memory/sample/src/CachingSample/project.json
   :linenos:
-  :lines: 4-11
-  :emphasize-lines: 4-5
+  :lines: 7-13
+  :emphasize-lines: 4
 
 Caching in ASP.NET Core is a *service* that should be referenced from your application by :doc:`/fundamentals/dependency-injection`. To register the caching service and make it available within your app, add the following line to your ``ConfigureServices`` method in ``Startup``:
 
@@ -154,15 +154,15 @@ You can specify that one or more cache entries depend on a ``CancellationTokenSo
 
 Using a ``CancellationTokenSource`` allows multiple cache entries to all be expired without the need to create a dependency between cache entries themselves (in which case, you must ensure that the source cache entry exists before it is used as a dependency for other entries).
 
-Use a cache entry link, ``IEntryLink`` to specify that more than one cache entry is linked to the same cancellation token and/or time-based expiration. This approach ensures that subordinate cache entries expire at the same time as related entries.
+Cache entries will inherit triggers and timeouts from other entries accessed while creating the new entry. This approach ensures that subordinate cache entries expire at the same time as related entries.
 
 .. literalinclude:: memory/sample/test/CachingSample.Tests/MemoryCacheTests.cs
   :linenos:
   :lines: 66-94
   :dedent: 8
-  :emphasize-lines: 5,13,22-23
+  :emphasize-lines: 7,11,13,23-24
 
-.. note:: When one cache entry is linked to another, it copies that entry's expiration token and time-based expiration settings, if any. It is not expired in response to manual removal or updating of the linked entry.
+.. note:: When one cache entry is used to create another, the new one copies the existing entry's expiration tokens and time-based expiration settings, if any. It is not expired in response to manual removal or updating of the existing entry.
 
 Other Resources
 ---------------
