@@ -8,7 +8,6 @@ Fundamentals
     middleware
     static-files
     routing
-    diagnostics
     error-handling
     localization
     configuration
