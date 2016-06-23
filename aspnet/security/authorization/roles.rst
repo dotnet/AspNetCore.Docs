@@ -57,7 +57,7 @@ You can further limit access by applying additional role authorization attribute
       }
   }
 
-In the previous code snippet both members of the Administrator role and the PowerUser role can access the controller and the SetTime action, but only members of the Administrator role can access the ShutDown action.
+In the previous code snippet members of the Administrator role or the PowerUser role can access the controller and the SetTime action, but only members of the Administrator role can access the ShutDown action.
 
 You can also lock down a controller but allow anonymous, unauthenticated access to individual actions.
 
@@ -112,4 +112,4 @@ If you want to specify multiple allowed roles in a requirement then you can spec
   options.AddPolicy("ElevatedRights", policy => 
                     policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 
-This example would authorize any user who has a role of Administrator, PowerUser and/or BackupAdministrator.
+This example would authorize any user who has any of the Administrator, PowerUser or BackupAdministrator roles.
