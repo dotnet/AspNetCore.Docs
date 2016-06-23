@@ -18,7 +18,7 @@ For example, if you wanted to use ASP.NET's logging infrastructure you would to 
          _logger = loggerFactory.CreateLogger(this.GetType().FullName);
      }
 
-     protected override void Handle(AuthorizationContext context, MyRequirement requirement)
+     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MyRequirement requirement)
      {
         _logger.LogInformation("Inside my handler");
         // Check if the requirement is fulfilled.
