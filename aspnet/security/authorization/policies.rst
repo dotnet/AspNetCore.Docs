@@ -22,7 +22,7 @@ An authorization policy is made up of one or more requirements and registered at
 
 Here you can see an "Over21" policy is created with a single requirement, that of a minimum age, which is passed as a parameter to the requirement.
 
-Policies are applied using the ``Authorize`` attribute simply by specifying the policy name, for example
+Policies are applied using the ``Authorize`` attribute by specifying the policy name, for example;
 
 .. code-block:: c#
 
