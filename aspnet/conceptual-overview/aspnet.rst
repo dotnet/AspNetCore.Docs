@@ -91,7 +91,6 @@ ASP.NET Core comes with a rich set of prebuilt middleware:
 
 - :doc:`Static files </fundamentals/static-files>`
 - :doc:`/fundamentals/routing`
-- :doc:`/fundamentals/diagnostics`
 - :doc:`/security/authentication/index`
 
 You can also author your own :doc:`custom middleware </fundamentals/middleware>`.
