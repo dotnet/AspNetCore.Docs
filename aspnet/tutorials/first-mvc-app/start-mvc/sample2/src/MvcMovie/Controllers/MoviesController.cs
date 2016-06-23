@@ -1,4 +1,6 @@
 #define First
+#define Search1
+#define SearchPost
 #if First
 using System;
 using System.Collections.Generic;
@@ -21,13 +23,13 @@ namespace MvcMovie.Controllers
         {
             _context = context;    
         }
-
+/*
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-
+*/
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -191,6 +193,143 @@ namespace MvcMovie.Controllers
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.ID == id);
+        }
+
+#if Search1
+        // First Search
+        public IActionResult Index(string searchString)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(movies);
+        }
+        // End first Search
+#endif
+
+
+#if SearchID
+        // Search ID 
+        public IActionResult Index(string id)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                movies = movies.Where(s => s.Title.Contains(id));
+            }
+
+            return View(movies);
+        }
+        // End search ID
+#endif
+
+#if SearchView
+
+        public IActionResult Index(string searchString)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(movies);
+        }
+#endif
+
+
+#if SearchPost
+        // Search Post
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        // End SP
+#endif
+
+#if SearchGenre
+
+        public IActionResult Index(string movieGenre, string searchString)
+        {
+            var GenreQry = from m in _context.Movie
+                           orderby m.Genre
+                           select m.Genre;
+
+            var GenreList = new List<string>();
+            GenreList.AddRange(GenreQry.Distinct());
+            ViewData["movieGenre"] = new SelectList(GenreList);
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            return View(movies);  
+        }
+
+
+
+#endif
+
+
+#if IndexTest
+
+        // This is never in .rst
+
+        public IActionResult Index(string movieGenre, string searchString)
+        {
+            var GenreQry = from m in _context.Movie
+                           orderby m.Genre
+                           select m.Genre;
+
+            var GenreList = new List<string>();
+            GenreList.AddRange(GenreQry.Distinct());
+            ViewData["movieGenre"] = new SelectList(GenreList);
+
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(movieGenre))
+            {
+                movies = movies.Where(x => x.Genre == movieGenre);
+            }
+
+            return View("IndexGenreRating",movies);
+        }
+
+
+
+#endif
+
+        private void testAdd()
+        {
+            Movie movie = new Movie();
+            movie.Title = "Gone with the Wind";
+            _context.Movie.Add(movie);
+            _context.SaveChanges();        // <= Will throw server side validation exception 
         }
     }
 }
