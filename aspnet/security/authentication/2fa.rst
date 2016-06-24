@@ -59,7 +59,7 @@ Set ``SID``, ``AuthToken``, and ``SendNumber`` with the :doc:`secret-manager too
 
 .. code-block:: none
 
-  C:/WebSMS/src/WebApplication1>user-secret set SID abcdefghi
+  C:/WebSMS/src/WebApplication1>dotnet user-secrets set SID abcdefghi
   info: Successfully saved SID = abcdefghi to the secret store.
 
 Configure startup to use ``AuthMessageSMSSenderOptions``
