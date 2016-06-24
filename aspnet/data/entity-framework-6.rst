@@ -46,7 +46,7 @@ In the ``Startup`` class within ``ConfigureServices`` add factory method of your
     
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddScoped((_) => new ApplicationDbContext(Configuration["Data:DefaultConnection:ConnectionString"]));
+        services.AddScoped(() => new ApplicationDbContext(Configuration["Data:DefaultConnection:ConnectionString"]));
         
         // Configure remaining services
     }
