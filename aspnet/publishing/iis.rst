@@ -49,6 +49,47 @@ Install the .NET Core Windows Server Hosting bundle
 #. Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 #. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
 
+For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see :doc:`ASP.NET Core Module Configuration Reference </hosting/aspnet-core-module>`.
+
+Application configuration
+-------------------------
+
+Setting `IISOptions` for the `IISIntegration` service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To configure `IISIntegration` service options, include a service configuration for `IISOptions` in `ConfigureServices`.
+
+.. code-block:: csharp
+
+  services.Configure<IISOptions>(options => {
+    ...
+  });
+
+| Option | Setting |
+| --- | --- |
+| AutomaticAuthentication | If true, the authentication middleware will alter the request user arriving and respond to generic challenges. If false, the authentication middleware will only provide identity and respond to challenges when explicitly indicated by the AuthenticationScheme. |
+| ForwardClientCertificate | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` will be populated. |
+| ForwardWindowsAuthentication | If true, authentication middleware will attempt to authenticate using platform handler windows authentication. If false, authentication middleware won't be added. |
+
+`publish-iis` tool
+^^^^^^^^^^^^^^^^^^
+
+The `publish-iis` tool can be added to any .NET Core application and will configure the ASP.NET Core Module by creating or modifying the *web.config* file. The tool runs after publishing with the `dotnet publish` command or publishing with Visual Studio and will configure the `processPath` and `arguments` for you. If you're publishing a *web.config* file by including the file in your project and listing the file in the `publishOptions` section of *project.json*, the tool will not modify other IIS settings you have included in the file.
+  
+To include the `publish-iis` tool in your application, add entries to the `tools` and `scripts` sections of *project.json*.
+  
+.. code-block:: none
+  
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "1.0.0-preview1-final",
+      "imports": "portable-net45+wp80+win8+wpa81+dnxcore50"
+    }
+  },
+  "scripts": {
+    "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+  }
+
 Deploy the application
 ----------------------
 
@@ -80,7 +121,7 @@ Configure the website.
   
 In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
-  .. image:: pubIIS/_static/basicsettingscontextmenu.png
+  .. image:: pubIIS/_static/apppoolsbasicsettingscontextmenu.png
   
 Set the **.NET CLR version** to **No Managed Code**.
 
@@ -108,7 +149,11 @@ The following is not a complete list of errors. Should you encounter an error no
 
 To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and enable module logging. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable module logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable module logging.
 
-A quick way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error). In most cases, enabling application logging will assist in troubleshooting problems within the application. See :doc:`Logging </fundamentals/logging>` for more information.
+A quick way to determine if the application is working properly is to run the application directly on Kestrel. If the application was published as a portable app, execute `dotnet <my_app>.dll` in the deployment folder. If the application was published as a self-contained app, run the application's executable directly on the command line, `<my_app>.exe`, in the deployment folder. If Kestrel is listening on default port 5000, you should be able to browse the application at `http://localhost:5000/`. If the application responds normally at the Kestrel endpoint address, the problem is more likely related to the IIS-ASP.NET Core Module-Kestrel configuration and less likely within the application itself.
+
+A way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error).
+
+In most cases, enabling application logging will assist in troubleshooting problems with application or the reverse proxy. See :doc:`Logging </fundamentals/logging>` for more information.
 
 Common errors and general troubleshooting instructions:
 
@@ -188,8 +233,8 @@ Troubleshooting:
 - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
 - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-Incorrect `proecessPath`, bundle not installed, or server not restarted
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Incorrect `proecessPath`, bundle not installed, server not restarted, or missing PATH var
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
@@ -200,6 +245,7 @@ Troubleshooting:
 - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+- *dotnet.exe* might not accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -211,6 +257,17 @@ Incorrect `arguments` of `\<aspNetCore\>` element
 Troubleshooting:
 
 - Examine the `arguments` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is either (a) `.\\my_applciation.dll` for a portable application; or (b) not present, an empty string (`arguments=""`), or a list of your application's arguments (`arguments="arg1, arg2, ..."`) for a self-contained application.
+
+Missing .NET Framework version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
+- **Application Log:** Failed to start process with commandline '[IIS_WEBSITE_PHYSICAL_PATH] ', Error Code = '0x80004005'.
+- **ASP.NET Core Module Log:** Missing method, file, or assembly exception. The method, file, or assembly specified in the exception is a .NET Framework method, file, or assembly.
+
+Troubleshooting:
+
+- Install the .NET Framework version missing from the server.
 
 Stopped Application Pool
 ^^^^^^^^^^^^^^^^^^^^^^^^
