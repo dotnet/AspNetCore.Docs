@@ -12,9 +12,9 @@
     <div>
         <h1>To Do Items</h1>
         <ul>
-            <li>Total Items: @await StatsService.GetCount()</li>
-            <li>Completed: @await StatsService.GetCompletedCount()</li>
-            <li>Avg. Priority: @await StatsService.GetAveragePriority()</li>
+            <li>Total Items: @StatsService.GetCount()</li>
+            <li>Completed: @StatsService.GetCompletedCount()</li>
+            <li>Avg. Priority: @StatsService.GetAveragePriority()</li>
         </ul>
         <table>
             <tr>

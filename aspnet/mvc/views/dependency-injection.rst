@@ -40,7 +40,7 @@ The ``StatisticsService`` performs some calculations on the set of ``ToDoItem`` 
 .. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs
   :linenos:
   :language: c#
-  :emphasize-lines: 16,21,27
+  :emphasize-lines: 15,20,26
 
 The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.
 
