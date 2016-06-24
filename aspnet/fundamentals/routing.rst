@@ -2,7 +2,7 @@ Routing
 =======
 By `Steve Smith`_
 
-Routing middleware is used to map requests to route handlers. Routes are configured when the application starts up, and can extract values from the URL that will be passed as arguments to route handlers. Routing functionality is also responsible for generating links that correspond to routes in ASP.NET apps.
+Routing is used to map requests to route handlers. Routes are configured when the application starts up, and can extract values from the URL that will be used for request processing. Routing functionality is also responsible for generating links using the defined routes in ASP.NET apps.
 
 .. contents:: Sections
   :local:
@@ -10,73 +10,193 @@ Routing middleware is used to map requests to route handlers. Routes are configu
 
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/routing/sample>`__
 
-Routing Middleware
-------------------
-The routing :doc:`middleware <middleware>` uses *routes* to map requests to an ``IRouter`` instance. The ``IRouter`` instance chooses whether or not to handle the request, and how. The request is considered handled if its ``RouteContext.Handler`` property is set to a non-null value. If no route handler is found for a request, then the middleware calls *next* (and the next middleware in the request pipeline is invoked).
+Routing Basics
+----------------
+Routing uses *routes*, implementations of `IRouter <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html#irouter-interface>`_ to map incoming requests to *route handlers* and to generate URLs to include in responses. Usually an application has a single collection of routes, which are processed in order to try and match inbound requests or to generate an outgoing URL. Routing is connected to the :doc:`middleware <middleware>` pipeline by the `RouterMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouterMiddleware/index.html?highlight=routermiddleware#routermiddleware-class>`_.
 
-To use routing, add it to the **dependencies** in *project.json*:
+:doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
+
+URL Matching
+^^^^^^^^^^^^
+URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
+
+Incoming requests enter the ``RouterMiddleware`` which calls the `RouteAsync <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html?highlight=irouter#meth-Microsoft.AspNetCore.Routing.IRouter.RouteAsync>`_ method on each route in sequence. The ``IRouter`` instance chooses whether to *handle* the request by setting the `RouteContext.Handler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.Handler>`_ to a non-null `RequestDelegate <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/RequestDelegate/index.html#requestdelegate-delegate>`_. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all route are executed, and no handler is found for a request, then the middleware calls *next* and the next middleware in the request pipeline is invoked.
+
+The primary input to ``RouteAsync`` is the `RouteContext.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.HttpContext>`_ associated with the current request. The ``RouteContext.Handler`` and `RouteContext.RouteData <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.RouteData>`_ are outputs that will be set after a successful match.
+
+A successful match during ``RouteAsync`` also will set the properties of the ``RouteContext.RouteData`` to appropriate values based on the request processing that was done. The ``RouteContext.RouteData`` contains important state information about the *result* of a route when it successfully matches a request. 
+
+The `RouteData.Values <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.Values>`_ property is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
+
+The `RouteData.DataTokens <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.DataTokens>`_ property is a property bag of additional data related to the route that matched. ``DataTokens`` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do not affect the **behavior** of routing in any way. Additionally values stashed in data tokens can be of any type, in contrast to route values which must be easily convertable to and from strings.
+
+The `RouteData.Routers <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.Routers>`_ property is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the ``Routers`` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in ``Routers`` is the route collection, and should be used for URL generation. The last item in ``Routers`` is route that matched.
+
+URL Generation
+^^^^^^^^^^^^^^
+URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers the URLs that access them. 
+
+URL generation follows a similar iterative process, but starts with user or framework code calling into the `GetVirtualPath <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html?highlight=irouter#meth-Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath>`_ method of the route collection. Each *route* will then have its ``GetVirtualPath`` method called in sequence until until a non-null `VirtualPathData <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html#virtualpathdata-class>`_ is returned.
+
+The primary inputs to ``GetVirtualPath`` are the `VirtualPathContext.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext>`_, `VirtualPathContext.Values <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.Values>`_ and `VirtualPathContext.AmbientValues <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues>`_. Routes primarily use the route values provided via ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
+
+.. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or roue values.
+
+The output of ``GetVirtualPath`` is a ``VirtualPathData``_. The ``VirtualPathData`` is a parallel of ``RouteData`` - it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
+
+The `VirtualPathData.VirtualPath <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath>`_ property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application. 
+
+The `VirtualPathData.Router <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.Router>`_ is a reference to the route that successfully generated the URL.
+
+The `VirtualPathData.DataTokens <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens>`_ properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of ``RouteData.DataTokens``.
+
+Creating Routes
+^^^^^^^^^^^^^^^
+Routing provides the `Route <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/Route/index.html#route-class>`_ class as the standard implemenation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when ``RouteAsync`` is called. ``Route`` will use the same route template to generate a URL when ``GetVirtualPath`` is called.
+
+Most applications will create routes by calling ``MapRoute`` or one of the similar extension methods defined on ``IRouteBuilder``. All of these methods will create an instance of ``Route`` and add it to the route collection.
+
+.. note:: ``MapRoute`` doesn't take a route handler parameter - it only adds routes that will be handled by the ``DefaultHandler``. Since the default handler is an ``IRouter``, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see :doc:`Routing to Controller Actions </mvc/controllers/routing>`.
+
+This is an example of a ``MapRoute`` call used by a typical ASP.NET MVC route definition:
+
+.. code-block:: c#
+
+    routes.MapRoute(
+        name: "default",
+        template: "{controller=Home}/{action=Index}/{id?}");
+
+This template will match a URL path like ``/Products/Details/17`` and extract the route values ``{ controller = Products, action = Details, id = 17 }``. The route values are determined by splitting the URL path into segments, and matching each segment with the *route parameter* name in the route template. Route parameters are named, and defined by enclosing the parameter name in braces ``{ }``.
+
+The template could also match the URL path ``/`` and would produce the values ``{ controller = Home, action = Index }``. This is allowed because the ``controller`` and ``{action}`` route parameters have default values, and the ``id`` route parameter is optional. An equals ``=`` sign followed by a value after the route parameter name defines a default value for the parameter. A question mark ``?`` after the route parameter name defines the parameter as optional. Route parameters with a default value *always* produce a route value when the route matches - optional parameters will not produce a route value if there was no corresponding URL path segment.
+
+See route-template-reference_ for a thorough description of route template features and syntax.
+
+This example includes a route constraint:
+
+.. code-block:: c#
+
+    routes.MapRoute(
+        name: "default",
+        template: "{controller=Home}/{action=Index}/{id:int}");
+
+This template will match a URL path like ``/Products/Details/17``, but not ``/Products/Details/Apples``. The route parameter definition ``{id:int}`` defines *route constraint* for the ``id`` route parameter. Route constraints implement ``IRouteConstraint`` and inspect route values to verify them. In this example the route value ``id`` must be convertable to an integer. See route-constraint-reference_ for a more detailed explaination of route constraints that are provided by the framework.
+
+Additional overloads of ``MapRoute`` accept values for ``constraints``, ``dataTokens``, and ``defaults``. These additional parameters of ``MapRoute`` are defined as type ``object``. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
+
+The following two examples create equivalent routes:
+
+.. code-block:: c#
+
+    routes.MapRoute(
+        name: "default_route",
+        template: "{controller}/{action}/{id?}", 
+        defaults: new { controller = "Home", action = "Index" });
+
+    routes.MapRoute(
+        name: "default_route",
+        template: "{controller=Home}/{action=Index}/{id?}");
+
+.. tip:: The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.
+
+This example demonstrates a few more features:
+
+.. code-block:: c#
+
+    routes.MapRoute(
+        name: "blog",
+        template: "/Blog/{*article}",
+        defaults: new { controller = "Blog", action = "ReadArticle" });
+
+This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string.
+
+This example adds route constraints and data tokens:
+
+.. code-block:: c#
+
+    routes.MapGet(
+        name: "us_english_products",
+        template: "/en-US/Products/{id}",
+        defaults: new { controller = "Products", action = "Details" },
+        constraints: new { id = new IntConstraint() },
+        dataTokens: new { locale = "en-US" });
+
+This template will match a URL path like ``/en-US/Products/{id}`` and will extract the values ``{ controller = Products, action = Details, id = 5 }`` and the data tokens ``{ locale = en-US }``. 
+
+.. _url-generation:
+
+URL Generation
+^^^^^^^^^^^^^^^
+The ``Route`` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path. 
+
+.. tip:: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the ``Route`` class.
+
+This example uses a basic ASP.NET MVC style route:
+
+.. code-block:: c#
+
+    routes.MapRoute(
+        name: "default",
+        template: "{controller=Home}/{action=Index}/{id?}");
+
+With the route values ``{ controller = Products, action = List }``, this route will generate the URL ``/Products/List``. The route values are substituted for the corresponding route parameters to form the URL path. Since ``id`` is an optional route parameter, it's no problem that it doesn't have a value.
+
+With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both would URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
+
+.. tip:: An application using ASP.NET MVC should use the `UrlHelper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/UrlHelper/index.html?highlight=urlhelper>`_ to generate URLs instead of calling into routing directly. 
+
+For more details about the URL generation process, see url-generation-reference_. 
+
+.. _using-routing-middleware:
+
+Using Routing Middleware
+-------------------------
+To use the routing middleware, add it to the **dependencies** in *project.json*:
 
 .. literalinclude:: routing/sample/RoutingSample/project.json
   :dedent: 2
   :language: javascript
   :lines: 11-20
-  :emphasize-lines: 7
+  :emphasize-lines: 17
   
-Add routing to ``ConfigureServices`` in *Startup.cs*:
+Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`` in *Startup.cs*:
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
   :language: c#
-  :lines: 14-17
-  :emphasize-lines: 3
+  :lines: 11-14
+  :emphasize-lines: 13
 
-
-Configuring Routing
--------------------
-
-Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#routebuilder-class>`_, passing a reference to ``IApplicationBuilder``. You can optionally provide a `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ as well. Add additional routes using ``MapRoute`` and when finished call ``app.UseRouter``.
+Routes must configured inside the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#routebuilder-class>`_, passing a reference to ``IApplicationBuilder``. You can optionally provide a `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ as well. Add routes to the ``routeBuilder`` and when finished call ``routeBuilder.Build`` to create the `IRouteCollection <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouteCollection/index.html#iroutecollection-interface>`_.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
   :lines: 20-38
-  :emphasize-lines: 6-9,11,19
+  :emphasize-lines: 26, 38-39
   
 Pass ``UseRouter`` the result of the ``RouteBuilder.Build`` method.
 
 .. tip:: If you are only configuring a single route, you can simply call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
 
-The ``defaultHandler`` route handler is used as the default for the ``RouteBuilder``. Calls to ``MapRoute`` will use this handler by default. A second handler is configured within the ``HelloRouter`` instance added by the ``AddHelloRoute`` extension method. This extension methods adds a new ``Route`` to the ``RouteBuilder``, passing in an instance of ``IRouter``, a template string, and an ``IInlineConstraintResolver`` (which is responsible for enforcing any route constraints specified):
+The framework provides a set of extension methods for creating routes such as ``MapRoute``, ``MapGet``, and ``MapVerb``. Some of these methods such as `MapGet <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RequestDelegateRouteBuilderExtensions/index.html?highlight=routebuilder#meth-Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet>`_ require a ``RequestDelegate`` to be provided. The ``RequestDelegate`` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MapRouteRouteBuilderExtensions/index.html?highlight=maproute#meth-Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute>`_, then it will use the ``DefaultHandler``.
 
-.. literalinclude:: routing/sample/RoutingSample/HelloExtensions.cs
-  :language: c#
-  :lines: 9-17
-  :dedent: 8
-  :emphasize-lines: 5
+.. _route-template-reference:
 
-``HelloRouter`` is a custom ``IRouter`` implementation. ``AddHelloRoute`` adds an instance of this router to the ``RouteBuilder`` using a template string, "hello/{name:alpha}". This template will only match requests of the form "hello/{name}" where `name` is constrained to be alphabetical. Matching requests will be handled by ``HelloRouter`` (which implements the ``IRouter`` interface), which responds to requests with a simple greeting.
+Route Template Reference
+------------------------
+Tokens within curly braces (``{ }``) define *route parameters* which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route parameters must have a name, and may have additional attributes specified.
 
-.. literalinclude:: routing/sample/RoutingSample/HelloRouter.cs
-  :emphasize-lines: 8,20-23
+Literal text other than route parameters ``{id}`` and the path separator ``/`` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter ``{ }``, escape it by doubling it ``{{`` or ``}}``.
 
-``HelloRouter`` checks to see if ``RouteData`` includes a value for the key ``name``. If not, it immediately returns without handling the request. Likewise, it checks to see if the request begins with "/hello". Otherwise, the ``Handler`` property is set to a delegate that responds with a greeting. Setting the ``Handler`` property prevents additional routes from handling the request. The ``GetVirtualPath`` method is used for :ref:`link generation <link-generation>`.
+.. note:: There is a special case route for filenames, such that you can define a route value like ``files/{filename}.{ext?}``. When both ``filename`` and ``ext`` exist, both values will be populated. However, if only ``filename`` exists in the URL, the trailing period ``.`` is also optional. Thus, these would both match: ``/files/foo.txt`` and ``/files/foo``.
 
-.. note:: Remember, it's possible for a particular route **template** to match a given request, but the associated route **handler** can still reject it, allowing a different route to handle the request.)
+You can use the ``*`` character as a prefix to a route parameter to bind to the rest of the URI - this is called a *catch-all* parameter. For example, ``blog/{*slug}`` would match any URI that started with ``/blog`` and had any value following it (which would be assigned to the ``slug`` route value). Catch-all parameters can also match the empty string.
 
-This route was configured to use an :ref:`inline constraint <route-constraints>`, signified by the ``:alpha`` in the name route value. This constraint limits which requests this route will handle, in this case to alphabetical values for ``name``. Thus, a request for "/hello/steve" will be handled, but a request to "/hello/123" will not (instead, in this sample the request will not match any routes and will use the "app.Run" delegate).
+Route parameters may have *default values*, designated by specifying the default after the parameter name, separated by an ``=``. For example, ``{controller=Home}`` would define ``Home`` as the default value for ``controller``. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional (specified by appending a ``?`` to the end of the parameter name, as in ``id?``). The difference between optional and "has default" is that a route parameter with a default value always produces a value; an optional parameter may not.
 
-Template Routes
----------------
-The most common way to define routes is using ``TemplateRoute`` and route template strings. When a ``TemplateRoute`` matches, it calls its target ``IRouter`` handler. In a typical MVC app, you might use a default template route with a string like this one: 
+Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon ``:`` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments those are provided enclosed in parentheses ``( )`` after the constraint name. Multiple inline constraints can be specified by appending another colon ``:`` and constraint name. The constraint name is passed to the `IInlineConstraintResolver <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IInlineConstraintResolver/index.html#iinlineconstraintresolver-interface>`_ service to create an instance of `IRouteConstraint <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IInlineConstraintResolver/index.html#iinlineconstraintresolver-interface>`_ to use in URL processing. For example, the route template ``blog/{article:minlength(10)}`` specifies the ``minlength`` constraint with the argument ``10``. For more description route constraints, and a listing of the constraints provided by the framework, see route-constraint-reference_.
 
-.. image:: /fundamentals/routing/_static/default-mvc-routetemplate.png
-
-This route template would be handled by the `MvcRouteHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Infrastructure/MvcRouteHandler/index.html>`_ ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
-
-You can use the ``*`` character as a prefix to a route value name to bind to the rest of the URI. For example, ``blog/{*slug}`` would match any URI that started with ``/blog/`` and had any value following it (which would be assigned to the ``slug`` route value).
-
-Route value parameters may have *default values*, designated by specifying the default after the parameter name, separated by an ``=``. For example, ``controller=Home`` would define ``Home`` as the default value for ``controller``. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional (specified by appending a ``?`` to the end of the parameter name, as in ``id?``). The difference between optional and "has default" is that a route parameter with a default value always produces a value; an optional parameter may not. Route parameters may also have constraints, which further restrict which routes the template will match.
-
-The following table demonstrates some route template and their expected behavior.
+The following table demonstrates some route templates and their expected behavior.
 
 .. list-table:: Route Template Values
   :header-rows: 1
@@ -103,12 +223,19 @@ The following table demonstrates some route template and their expected behavior
     - /
     - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
 
-.. _route-constraints:
+While using the template is often the simplest way, constraints and defaults can also be specified outside the route template.
 
-Route Constraints
-^^^^^^^^^^^^^^^^^
+.. tip:: Enable :doc:`logging` to see how the built in routing implementations, such as ``Route``, match requests.
 
-Adding a colon ``:`` after the name allows additional inline constraints to be set on a route value parameter. Constraints with types always use the invariant culture - they assume the URL is non-localizable. Route constraints limit which URLs will match a route - URLs that do not match the constraint are ignored by the route.
+.. _route-constraint-reference:
+
+Route Constraint Reference
+--------------------------
+Route constraints execute when a ``Route`` has matched the syntax of the incoming URL and tokenized the URL path into route values. Route constraints generally inspect the route value associated via the route template and make a simple yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the `HttpMethodRouteConstraint <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/Constraints/HttpMethodRouteConstraint/index.html#httpmethodrouteconstraint-class>`_ can accept or reject a request based on its HTTP verb.
+
+.. warning:: Avoid using constraints for **input validation**, because doing so means that invalid input will result in a 404 (Not Found) instead of a 400 with an appropriate error message. Route constraints should be used to **disambiguate** between similar routes, not to validate the inputs for a particular route.
+
+The following table demonstrates some route constraints and their expected behavior.
 
 .. list-table:: Inline Route Constraints
   :header-rows: 1
@@ -186,48 +313,20 @@ Adding a colon ``:`` after the name allows additional inline constraints to be s
     - Steve
     - Used to enforce that a non-parameter value is present during during URL generation.
 
-Inline constraints must match one of the above options, or an exception will be thrown.
+.. warning:: Route constraints that verify the URL can be converted to a CLR type (such as ``int`` or ``DateTime``) always use the invariant culture - they assume the URL is non-localizable.
 
 .. tip:: To constrain a parameter to a known set of possible values, you can use a regex: ``{action:regex(list|get|create)}``. This would only match the ``action`` route value to ``list``, ``get``, or ``create``. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-.. warning:: Avoid using constraints for **validation**, because doing so means that invalid input will result in a 404 (Not Found) instead of a 400 with an appropriate error message. Route constraints should be used to **disambiguate** between routes, not validate the inputs for a particular route.
+.. _url-generation-reference:
 
-Constraints can be *chained*. You can specify that a route value is of a certain type and also must fall within a specified range, for example: ``{age:int:range(1,120)}``.  Numeric constraints like ``min``, ``max``, and ``range`` will automatically convert the value to ``long`` before being applied unless another numeric type is specified.
-
-Route templates must be unambiguous, or they will be ignored. For example, ``{id?}/{foo}`` is ambiguous, because it's not clear which route value would be bound to a request for "/bar". Similarly, ``{*everything}/{plusone}`` would be ambiguous, because the first route parameter would match everything from that part of the request on, so it's not clear what the ``plusone`` parameter would match.
-
-.. note:: There is a special case route for filenames, such that you can define a route value like ``files/{filename}.{ext?}``. When both ``filename`` and ``ext`` exist, both values will be populated. However, if only ``filename`` exists in the URL, the trailing period ``.`` is also optional. Thus, these would both match: ``/files/foo.txt`` and ``/files/foo``.
-
-.. tip:: Enable :doc:`logging` to see how the built in routing implementations, such as ``TemplateRoute``, match requests.
-
-Route Builder Extensions
+URL Generation Reference
 ------------------------
-Several `extension methods on RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouteBuilderExtensions/index.html>`_ are available for convenience. The most common of these is ``MapRoute``, which allows the specification of a route given a name and template, and optionally default values, constraints, and/or :ref:`data tokens <data-tokens>`. When using these extensions, you must have specified the ``DefaultHandler`` and ``ServiceProvider`` properties of the ``RouteBuilder`` instance to which you're adding the route. These ``MapRoute`` extensions add new ``TemplateRoute`` instances to the ``RouteBuilder`` that each target the ``IRouter`` configured as the ``DefaultHandler``.
-
-.. note:: ``MapRoute`` doesn't take an ``IRouter`` parameter - it only adds routes that will be handled by the ``DefaultHandler``. Since the default handler is an ``IRouter``, it may decide not to handle the request. For example, MVC is typically configured as a default handler that only handles requests that match an available controller action.
-
-.. _data-tokens:
-
-Data Tokens
-^^^^^^^^^^^
-Data tokens represent data that is carried along if the route matches. They're implemented as a property bag for developer-specified data. You can use data tokens to store data you want to associate with a route, when you don't want the semantics of defaults. Data tokens have no impact on the **behavior** of the route, while defaults do. Data tokens can also be any arbitrary types, while defaults really need to be things that can be converted to/from strings.
-
-.. _link-generation:
-
-Link Generation
----------------
-
-Routing is also used to generate URLs based on route definitions. This is used by helpers to generate links to known actions on MVC :doc:`controllers </mvc/controllers/index>`, but can also be used independent of MVC. Given a set of route values, and optionally a route name, you can produce a ``VirtualPathContext`` object. Using the ``VirtualPathContext`` object along with a ``RouteCollection``, you can generate a ``VirtualPath``. ``IRouter`` implementations participate in link generation through the ``GetVirtualPath`` method.
-
-.. tip:: Learn more about `UrlHelper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/UrlHelper/index.html?highlight=urlhelper>`_ and :doc:`Routing to Controller Actions </mvc/controllers/routing>`.
-
 The example below shows how to generate a link to a route given a dictionary of route values and a ``RouteCollection``.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
-  :language: c#
-  :lines: 39-59
+  :lines: 44-55
   :dedent: 12
-  :emphasize-lines: 2-3,7,13-14,19-20
+  :emphasize-lines: 50-51
 
 The ``VirtualPath`` generated at the end of the sample above is ``/package/create/123``.
 
@@ -261,7 +360,7 @@ Values that are explicitly provided but which don't match anything are added to 
     - action="About",color="Red"
     - ``/Home/About?color=Red``
 
-If a route has a default value that doesn't match a parameter and that value is explicitly provided, it must match the default value. For example:
+If a route has a default value that doesn't correspond to a parameter and that value is explicitly provided, it must match the default value. For example:
 
 .. code-block:: c#
   
@@ -269,17 +368,3 @@ If a route has a default value that doesn't match a parameter and that value is 
     defaults: new { controller = "Blog", action = "ReadPost" });
 
 Link generation would only generate a link for this route when the matching values for controller and action are provided.
-
-Recommendations
----------------
-
-Routing is a powerful feature that is built into the default ASP.NET MVC project template such that most apps will be able to leverage it without having to customize its behavior. This is by design; customizing routing behavior is an advanced development approach. Keep in mind the following recommendations with regard to routing: 
-
-  - Most apps shouldn't need custom routes. The default route will work in most cases.
-  - Attribute routes should be used for all APIs.
-  - Attribute routes are recommended for when you need complete control over your app's URLs.
-  - Conventional routing is recommended for when **all** of your controllers/actions fit a uniform URL convention.
-  - Don't use custom routes unless you understand them well and are sure you need them.
-  - Routes can be tricky to test and debug.
-  - Routes should not be used as a means of securing your controllers or their action methods.
-  - Avoid building or changing route collections at runtime.
