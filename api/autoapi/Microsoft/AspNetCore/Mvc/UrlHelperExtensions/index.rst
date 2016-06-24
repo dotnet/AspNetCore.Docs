@@ -77,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper)
+            public static string Action(this IUrlHelper helper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String)
     
@@ -103,7 +103,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action)
+            public static string Action(this IUrlHelper helper, string action)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.Object)
     
@@ -135,7 +135,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, object values)
+            public static string Action(this IUrlHelper helper, string action, object values)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.String)
     
@@ -167,7 +167,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, string controller)
+            public static string Action(this IUrlHelper helper, string action, string controller)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.String, System.Object)
     
@@ -204,7 +204,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, string controller, object values)
+            public static string Action(this IUrlHelper helper, string action, string controller, object values)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.String, System.Object, System.String)
     
@@ -246,7 +246,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, string controller, object values, string protocol)
+            public static string Action(this IUrlHelper helper, string action, string controller, object values, string protocol)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.String, System.Object, System.String, System.String)
     
@@ -293,7 +293,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, string controller, object values, string protocol, string host)
+            public static string Action(this IUrlHelper helper, string action, string controller, object values, string protocol, string host)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.String, System.Object, System.String, System.String, System.String)
     
@@ -345,7 +345,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Action(IUrlHelper helper, string action, string controller, object values, string protocol, string host, string fragment)
+            public static string Action(this IUrlHelper helper, string action, string controller, object values, string protocol, string host, string fragment)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.Object)
     
@@ -371,7 +371,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, object values)
+            public static string RouteUrl(this IUrlHelper helper, object values)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String)
     
@@ -397,7 +397,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, string routeName)
+            public static string RouteUrl(this IUrlHelper helper, string routeName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.Object)
     
@@ -429,7 +429,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, string routeName, object values)
+            public static string RouteUrl(this IUrlHelper helper, string routeName, object values)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.Object, System.String)
     
@@ -466,7 +466,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, string routeName, object values, string protocol)
+            public static string RouteUrl(this IUrlHelper helper, string routeName, object values, string protocol)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.Object, System.String, System.String)
     
@@ -508,7 +508,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, string routeName, object values, string protocol, string host)
+            public static string RouteUrl(this IUrlHelper helper, string routeName, object values, string protocol, string host)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.UrlHelperExtensions.RouteUrl(Microsoft.AspNetCore.Mvc.IUrlHelper, System.String, System.Object, System.String, System.String, System.String)
     
@@ -555,6 +555,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string RouteUrl(IUrlHelper helper, string routeName, object values, string protocol, string host, string fragment)
+            public static string RouteUrl(this IUrlHelper helper, string routeName, object values, string protocol, string host, string fragment)
     
 

@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILogger CreateLogger(ILoggerFactory factory, Type type)
+            public static ILogger CreateLogger(this ILoggerFactory factory, Type type)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerFactoryExtensions.CreateLogger<T>(Microsoft.Extensions.Logging.ILoggerFactory)
     
@@ -107,6 +107,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILogger<T> CreateLogger<T>(ILoggerFactory factory)
+            public static ILogger<T> CreateLogger<T>(this ILoggerFactory factory)
     
 

@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            IQueryable<TUser> Users
-            {
-                get;
-            }
+            IQueryable<TUser> Users { get; }
     
 

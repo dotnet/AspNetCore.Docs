@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            ICompilerCache Cache
-            {
-                get;
-            }
+            ICompilerCache Cache { get; }
     
 

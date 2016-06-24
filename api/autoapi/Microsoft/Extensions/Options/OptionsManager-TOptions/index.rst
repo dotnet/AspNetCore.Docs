@@ -7,6 +7,10 @@ OptionsManager<TOptions> Class
 
 
 
+
+Implementation of IOptions.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -52,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Options.OptionsManager<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Options.OptionsManager<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Options.OptionsManager<TOptions>.Value
-    
-        
-        :rtype: TOptions
-    
-        
-        .. code-block:: csharp
-    
-            public virtual TOptions Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -87,11 +69,42 @@ Constructors
         
     
         
+        Initializes a new instance with the specified options configurations.
+    
+        
+    
+        
+        :param setups: The configuration actions to run.
+        
         :type setups: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Options.IConfigureOptions<Microsoft.Extensions.Options.IConfigureOptions`1>{TOptions}}
     
         
         .. code-block:: csharp
     
             public OptionsManager(IEnumerable<IConfigureOptions<TOptions>> setups)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Options.OptionsManager<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Options.OptionsManager<TOptions>.Value
+    
+        
+    
+        
+        The configured options instance.
+    
+        
+        :rtype: TOptions
+    
+        
+        .. code-block:: csharp
+    
+            public virtual TOptions Value { get; }
     
 

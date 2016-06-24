@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool CanProduceStem
-            {
-                get;
-            }
+            bool CanProduceStem { get; }
     
 
 Methods

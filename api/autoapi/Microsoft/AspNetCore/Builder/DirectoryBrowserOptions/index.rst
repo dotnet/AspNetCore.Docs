@@ -57,34 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions.Formatter
-    
-        
-    
-        
-        The component that generates the view.
-    
-        
-        :rtype: Microsoft.AspNetCore.StaticFiles.IDirectoryFormatter
-    
-        
-        .. code-block:: csharp
-    
-            public IDirectoryFormatter Formatter
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -123,5 +95,29 @@ Constructors
         .. code-block:: csharp
     
             public DirectoryBrowserOptions(SharedOptions sharedOptions)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions.Formatter
+    
+        
+    
+        
+        The component that generates the view.
+    
+        
+        :rtype: Microsoft.AspNetCore.StaticFiles.IDirectoryFormatter
+    
+        
+        .. code-block:: csharp
+    
+            public IDirectoryFormatter Formatter { get; set; }
     
 

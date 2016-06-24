@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsSimple
-            {
-                get;
-            }
+            public bool IsSimple { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateSegment.Parts
     
@@ -82,9 +79,6 @@ Properties
         
         .. code-block:: csharp
     
-            public List<TemplatePart> Parts
-            {
-                get;
-            }
+            public List<TemplatePart> Parts { get; }
     
 

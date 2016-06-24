@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddAuthentication(IServiceCollection services)
+            public static IServiceCollection AddAuthentication(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Authentication.SharedAuthenticationOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddAuthentication(IServiceCollection services, Action<SharedAuthenticationOptions> configureOptions)
+            public static IServiceCollection AddAuthentication(this IServiceCollection services, Action<SharedAuthenticationOptions> configureOptions)
     
 

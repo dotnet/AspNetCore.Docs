@@ -58,85 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataGroupField
-    
-        
-    
-        
-        Gets or sets the data group field.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DataGroupField
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataTextField
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DataTextField
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataValueField
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DataValueField
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.Items
-    
-        
-        :rtype: System.Collections.IEnumerable
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable Items
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.SelectedValues
-    
-        
-        :rtype: System.Collections.IEnumerable
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable SelectedValues
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -254,6 +175,70 @@ Constructors
         .. code-block:: csharp
     
             public MultiSelectList(IEnumerable items, string dataValueField, string dataTextField, IEnumerable selectedValues, string dataGroupField)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataGroupField
+    
+        
+    
+        
+        Gets or sets the data group field.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DataGroupField { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataTextField
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DataTextField { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.DataValueField
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DataValueField { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.Items
+    
+        
+        :rtype: System.Collections.IEnumerable
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable Items { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.MultiSelectList.SelectedValues
+    
+        
+        :rtype: System.Collections.IEnumerable
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable SelectedValues { get; }
     
 
 Methods

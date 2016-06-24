@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LogLevel MinLevel
-            {
-                get;
-                set;
-            }
+            public LogLevel MinLevel { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ViewOptions.NamePrefix
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string NamePrefix
-            {
-                get;
-                set;
-            }
+            public string NamePrefix { get; set; }
     
 

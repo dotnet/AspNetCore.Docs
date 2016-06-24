@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint.Max
-    
-        
-    
-        
-        Gets the maximum allowed value of the route parameter.
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Max
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint.Min
-    
-        
-    
-        
-        Gets the minimum allowed value of the route parameter.
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Min
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,5 +121,44 @@ Methods
         .. code-block:: csharp
     
             public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint.Max
+    
+        
+    
+        
+        Gets the maximum allowed value of the route parameter.
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Max { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RangeRouteConstraint.Min
+    
+        
+    
+        
+        Gets the minimum allowed value of the route parameter.
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Min { get; }
     
 

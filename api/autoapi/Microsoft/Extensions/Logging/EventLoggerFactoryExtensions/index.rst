@@ -82,7 +82,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddEventLog(ILoggerFactory factory)
+            public static ILoggerFactory AddEventLog(this ILoggerFactory factory)
     
     .. dn:method:: Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.EventLog.EventLogSettings)
     
@@ -107,7 +107,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddEventLog(ILoggerFactory factory, EventLogSettings settings)
+            public static ILoggerFactory AddEventLog(this ILoggerFactory factory, EventLogSettings settings)
     
     .. dn:method:: Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.LogLevel)
     
@@ -132,6 +132,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddEventLog(ILoggerFactory factory, LogLevel minLevel)
+            public static ILoggerFactory AddEventLog(this ILoggerFactory factory, LogLevel minLevel)
     
 

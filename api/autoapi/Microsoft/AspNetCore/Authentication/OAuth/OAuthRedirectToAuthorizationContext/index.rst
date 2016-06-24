@@ -57,64 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.OAuthOptions
-    
-        
-        .. code-block:: csharp
-    
-            public OAuthOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.Properties
-    
-        
-    
-        
-        Gets the authentication properties of the challenge.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.RedirectUri
-    
-        
-    
-        
-        Gets the URI used for the redirect operation.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RedirectUri
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -156,5 +98,54 @@ Constructors
         .. code-block:: csharp
     
             public OAuthRedirectToAuthorizationContext(HttpContext context, OAuthOptions options, AuthenticationProperties properties, string redirectUri)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.OAuthOptions
+    
+        
+        .. code-block:: csharp
+    
+            public OAuthOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.Properties
+    
+        
+    
+        
+        Gets the authentication properties of the challenge.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext.RedirectUri
+    
+        
+    
+        
+        Gets the URI used for the redirect operation.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RedirectUri { get; }
     
 

@@ -59,6 +59,10 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/IModelExpressionProvider/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ITempDataDictionary/index
    
    
@@ -88,6 +92,14 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ModelExplorerExtensions/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ModelExpression/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ModelExpressionProvider/index
    
    
    
@@ -317,6 +329,18 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -328,11 +352,80 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ViewFeatures
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAntiforgeryPolicy`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+
+        
+        A marker interface for filters which define a policy for antiforgery token validation.
+
+
+    interface :dn:iface:`IHtmlGenerator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+
+        
+        Contract for a service supporting :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` and <code>ITagHelper</code> implementations.
+
+
+    interface :dn:iface:`IKeepTempDataResult`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IKeepTempDataResult
+
+        
+        A marker interface for :any:`Microsoft.AspNetCore.Mvc.IActionResult` types which need to have temp data saved.
+
+
+    interface :dn:iface:`IModelExpressionProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider
+
+        
+        Provides :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression` for a Lambda expression.
+
+
+    interface :dn:iface:`ITempDataDictionary`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+
+        
+        Represents a set of data that persists only from one request to the next.
+
+
+    interface :dn:iface:`ITempDataDictionaryFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionaryFactory
+
+        
+        A factory which provides access to an :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance
+        for a request.
+
+
+    interface :dn:iface:`ITempDataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataProvider
+
+        
+        Defines the contract for temporary-data providers that store data that is viewed on the next request.
+
+
+    interface :dn:iface:`IViewContextAware`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IViewContextAware
+
+        
+        Contract for contextualizing a property activated by a view with the :any:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext`\.
+
+
     .. rubric:: Enumerations
 
 
     enum :dn:enum:`InputType`
         .. object: type=enum name=Microsoft.AspNetCore.Mvc.ViewFeatures.InputType
+
+        
+
+
+    .. rubric:: Delegates
+
+
+    delegate :dn:del:`TryGetValueDelegate`
+        .. object: type=delegate name=Microsoft.AspNetCore.Mvc.ViewFeatures.TryGetValueDelegate
 
         
 
@@ -406,6 +499,20 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
         Extension methods for :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer`\.
 
 
+    class :dn:cls:`ModelExpression`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression
+
+        
+        Describes an :any:`System.Linq.Expressions.Expression` passed to a tag helper.
+
+
+    class :dn:cls:`ModelExpressionProvider`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpressionProvider
+
+        
+        A default implementation of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
+
+
     class :dn:cls:`ModelMetadataProviderExtensions`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.ModelMetadataProviderExtensions
 
@@ -463,7 +570,7 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.ViewContextAttribute
 
         
-        Specifies that a tag helper property should be set with the current
+        Specifies that a tag helper property should be set with the current 
         :any:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext` when creating the tag helper. The property must have a
         public set method.
 
@@ -478,7 +585,7 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionaryAttribute
 
         
-        Specifies that a controller property should be set with the current
+        Specifies that a controller property should be set with the current 
         :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` when creating the controller. The property must have a public
         set method.
 
@@ -522,67 +629,5 @@ Microsoft.AspNetCore.Mvc.ViewFeatures Namespace
 
         
         An enumerator for :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary`\.
-
-
-    .. rubric:: Delegates
-
-
-    delegate :dn:del:`TryGetValueDelegate`
-        .. object: type=delegate name=Microsoft.AspNetCore.Mvc.ViewFeatures.TryGetValueDelegate
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAntiforgeryPolicy`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
-
-        
-        A marker interface for filters which define a policy for antiforgery token validation.
-
-
-    interface :dn:iface:`IHtmlGenerator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-
-        
-        Contract for a service supporting :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` and <code>ITagHelper</code> implementations.
-
-
-    interface :dn:iface:`IKeepTempDataResult`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IKeepTempDataResult
-
-        
-        A marker interface for :any:`Microsoft.AspNetCore.Mvc.IActionResult` types which need to have temp data saved.
-
-
-    interface :dn:iface:`ITempDataDictionary`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-
-        
-        Represents a set of data that persists only from one request to the next.
-
-
-    interface :dn:iface:`ITempDataDictionaryFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionaryFactory
-
-        
-        A factory which provides access to an :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance
-        for a request.
-
-
-    interface :dn:iface:`ITempDataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataProvider
-
-        
-        Defines the contract for temporary-data providers that store data that is viewed on the next request.
-
-
-    interface :dn:iface:`IViewContextAware`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.IViewContextAware
-
-        
-        Contract for contextualizing a property activated by a view with the :any:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext`\.
 
 

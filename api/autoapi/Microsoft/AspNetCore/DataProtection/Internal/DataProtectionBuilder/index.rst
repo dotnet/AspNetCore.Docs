@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder.Services
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceCollection Services
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -102,5 +80,24 @@ Constructors
         .. code-block:: csharp
     
             public DataProtectionBuilder(IServiceCollection services)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder.Services
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceCollection Services { get; }
     
 

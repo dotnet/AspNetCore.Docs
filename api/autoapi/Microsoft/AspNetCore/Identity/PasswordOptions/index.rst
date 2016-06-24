@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireDigit
-            {
-                get;
-                set;
-            }
+            public bool RequireDigit { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.PasswordOptions.RequireLowercase
     
@@ -98,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireLowercase
-            {
-                get;
-                set;
-            }
+            public bool RequireLowercase { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.PasswordOptions.RequireNonAlphanumeric
     
@@ -118,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireNonAlphanumeric
-            {
-                get;
-                set;
-            }
+            public bool RequireNonAlphanumeric { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.PasswordOptions.RequireUppercase
     
@@ -138,11 +126,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireUppercase
-            {
-                get;
-                set;
-            }
+            public bool RequireUppercase { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.PasswordOptions.RequiredLength
     
@@ -157,10 +141,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int RequiredLength
-            {
-                get;
-                set;
-            }
+            public int RequiredLength { get; set; }
     
 

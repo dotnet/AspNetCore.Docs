@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.FactoryService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
-    
-        
-        .. code-block:: csharp
-    
-            public IFactoryService FactoryService
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.MultipleService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeMultipleService MultipleService
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.ScopedService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeScopedService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeScopedService ScopedService
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.Service
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeService Service
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +137,54 @@ Constructors
         .. code-block:: csharp
     
             public TypeWithSupersetConstructors(IFakeService fakeService, IFakeMultipleService multipleService, IFactoryService factoryService)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.FactoryService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
+    
+        
+        .. code-block:: csharp
+    
+            public IFactoryService FactoryService { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.MultipleService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeMultipleService MultipleService { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.ScopedService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeScopedService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeScopedService ScopedService { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors.Service
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeService Service { get; }
     
 

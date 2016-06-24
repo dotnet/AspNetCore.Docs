@@ -87,69 +87,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.HtmlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.HtmlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected HtmlEncoder HtmlEncoder
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.UrlHelperFactory
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory
-    
-        
-        .. code-block:: csharp
-    
-            protected IUrlHelperFactory UrlHelperFactory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -183,6 +120,56 @@ Constructors
             public UrlResolutionTagHelper(IUrlHelperFactory urlHelperFactory, HtmlEncoder htmlEncoder)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.HtmlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected HtmlEncoder HtmlEncoder { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.UrlHelperFactory
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory
+    
+        
+        .. code-block:: csharp
+    
+            protected IUrlHelperFactory UrlHelperFactory { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
+    
+
 Methods
 -------
 
@@ -212,7 +199,7 @@ Methods
     
         
         Resolves and updates URL values starting with '~/' (relative to the application's 'webroot' setting) for
-        <em>output</em>'s :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes` whose
+        <em>output</em>'s :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes` whose 
         :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` is <em>attributeName</em>.
     
         

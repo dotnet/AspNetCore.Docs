@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public WebListener Listener
-            {
-                get;
-                set;
-            }
+            public WebListener Listener { get; set; }
     
 

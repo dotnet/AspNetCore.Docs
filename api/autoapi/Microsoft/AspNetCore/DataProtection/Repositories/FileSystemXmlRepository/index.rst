@@ -56,70 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.DefaultKeyStorageDirectory
-    
-        
-    
-        
-        The default key storage directory, which currently corresponds to
-        "%LOCALAPPDATA%\ASP.NET\DataProtection-Keys".
-    
-        
-        :rtype: System.IO.DirectoryInfo
-    
-        
-        .. code-block:: csharp
-    
-            public static DirectoryInfo DefaultKeyStorageDirectory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.Directory
-    
-        
-    
-        
-        The directory into which key material will be written.
-    
-        
-        :rtype: System.IO.DirectoryInfo
-    
-        
-        .. code-block:: csharp
-    
-            public DirectoryInfo Directory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.Services
-    
-        
-    
-        
-        The :any:`System.IServiceProvider` provided to the constructor.
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            protected IServiceProvider Services
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -170,6 +106,61 @@ Constructors
         .. code-block:: csharp
     
             public FileSystemXmlRepository(DirectoryInfo directory, IServiceProvider services)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.DefaultKeyStorageDirectory
+    
+        
+    
+        
+        The default key storage directory, which currently corresponds to
+        "%LOCALAPPDATA%\ASP.NET\DataProtection-Keys".
+    
+        
+        :rtype: System.IO.DirectoryInfo
+    
+        
+        .. code-block:: csharp
+    
+            public static DirectoryInfo DefaultKeyStorageDirectory { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.Directory
+    
+        
+    
+        
+        The directory into which key material will be written.
+    
+        
+        :rtype: System.IO.DirectoryInfo
+    
+        
+        .. code-block:: csharp
+    
+            public DirectoryInfo Directory { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository.Services
+    
+        
+    
+        
+        The :any:`System.IServiceProvider` provided to the constructor.
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            protected IServiceProvider Services { get; }
     
 
 Methods

@@ -52,99 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.RouteBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.RouteBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.ConstraintResolver
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.IInlineConstraintResolver
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual IInlineConstraintResolver ConstraintResolver
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Constraints
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Routing.IRouteConstraint<Microsoft.AspNetCore.Routing.IRouteConstraint>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IDictionary<string, IRouteConstraint> Constraints
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.DataTokens
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public virtual RouteValueDictionary DataTokens
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Defaults
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public virtual RouteValueDictionary Defaults
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string Name
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.ParsedTemplate
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.Template.RouteTemplate
-    
-        
-        .. code-block:: csharp
-    
-            public virtual RouteTemplate ParsedTemplate
-            {
-                get;
-                protected set;
-            }
-    
-
 Constructors
 ------------
 
@@ -179,6 +86,75 @@ Constructors
         .. code-block:: csharp
     
             public RouteBase(string template, string name, IInlineConstraintResolver constraintResolver, RouteValueDictionary defaults, IDictionary<string, object> constraints, RouteValueDictionary dataTokens)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.RouteBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.ConstraintResolver
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.IInlineConstraintResolver
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual IInlineConstraintResolver ConstraintResolver { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Constraints
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Routing.IRouteConstraint<Microsoft.AspNetCore.Routing.IRouteConstraint>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IDictionary<string, IRouteConstraint> Constraints { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.DataTokens
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public virtual RouteValueDictionary DataTokens { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Defaults
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public virtual RouteValueDictionary Defaults { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string Name { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteBase.ParsedTemplate
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.Template.RouteTemplate
+    
+        
+        .. code-block:: csharp
+    
+            public virtual RouteTemplate ParsedTemplate { get; protected set; }
     
 
 Methods

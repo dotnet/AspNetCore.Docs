@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent.IsEmptyOrWhiteSpace
-    
-        
-    
-        
-        Gets a value indicating whether the content is empty or whitespace.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public abstract bool IsEmptyOrWhiteSpace
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent.IsModified
-    
-        
-    
-        
-        Gets a value indicating whether the content was modified.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public abstract bool IsModified
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -457,5 +412,44 @@ Methods
         .. code-block:: csharp
     
             public abstract void WriteTo(TextWriter writer, HtmlEncoder encoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent.IsEmptyOrWhiteSpace
+    
+        
+    
+        
+        Gets a value indicating whether the content is empty or whitespace.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public abstract bool IsEmptyOrWhiteSpace { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent.IsModified
+    
+        
+    
+        
+        Gets a value indicating whether the content was modified.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public abstract bool IsModified { get; }
     
 

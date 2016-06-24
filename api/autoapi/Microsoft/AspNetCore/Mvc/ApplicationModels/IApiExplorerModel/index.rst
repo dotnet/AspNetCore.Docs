@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            ApiExplorerModel ApiExplorer
-            {
-                get;
-                set;
-            }
+            ApiExplorerModel ApiExplorer { get; set; }
     
 

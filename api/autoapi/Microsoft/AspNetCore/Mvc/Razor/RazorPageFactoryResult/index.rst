@@ -48,70 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.ExpirationTokens
-    
-        
-    
-        
-        One or more :any:`Microsoft.Extensions.Primitives.IChangeToken`\s associated with this instance of
-        :any:`Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult`\.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Extensions.Primitives.IChangeToken<Microsoft.Extensions.Primitives.IChangeToken>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IChangeToken> ExpirationTokens
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.RazorPageFactory
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` factory.
-    
-        
-        :rtype: System.Func<System.Func`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<IRazorPage> RazorPageFactory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.Success
-    
-        
-    
-        
-        Gets a value that determines if the page was successfully located.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Success
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -164,5 +100,60 @@ Constructors
         .. code-block:: csharp
     
             public RazorPageFactoryResult(Func<IRazorPage> razorPageFactory, IList<IChangeToken> expirationTokens)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.ExpirationTokens
+    
+        
+    
+        
+        One or more :any:`Microsoft.Extensions.Primitives.IChangeToken`\s associated with this instance of 
+        :any:`Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult`\.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Extensions.Primitives.IChangeToken<Microsoft.Extensions.Primitives.IChangeToken>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IChangeToken> ExpirationTokens { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.RazorPageFactory
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` factory.
+    
+        
+        :rtype: System.Func<System.Func`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<IRazorPage> RazorPageFactory { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPageFactoryResult.Success
+    
+        
+    
+        
+        Gets a value that determines if the page was successfully located.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Success { get; }
     
 

@@ -75,10 +75,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string SignInScheme
-            {
-                get;
-                set;
-            }
+            public string SignInScheme { get; set; }
     
 

@@ -112,6 +112,16 @@ Microsoft.AspNetCore.Authentication.JwtBearer Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Authentication.JwtBearer
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IJwtBearerEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.JwtBearer.IJwtBearerEvents
+
+        
+        Specifies events which the :any:`Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerMiddleware` invokes to enable developer control over the authentication process.
+
+
     .. rubric:: Classes
 
 
@@ -166,15 +176,5 @@ Microsoft.AspNetCore.Authentication.JwtBearer Namespace
         .. object: type=class name=Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IJwtBearerEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.JwtBearer.IJwtBearerEvents
-
-        
-        Specifies events which the :any:`Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerMiddleware` invokes to enable developer control over the authentication process.
 
 

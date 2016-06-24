@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddDistributedSqlServerCache(IServiceCollection services, Action<SqlServerCacheOptions> setupAction)
+            public static IServiceCollection AddDistributedSqlServerCache(this IServiceCollection services, Action<SqlServerCacheOptions> setupAction)
     
 

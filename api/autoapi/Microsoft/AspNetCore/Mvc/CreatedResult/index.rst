@@ -58,34 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.CreatedResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedResult.Location
-    
-        
-    
-        
-        Gets or sets the location at which the content has been created.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Location
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,6 +115,30 @@ Constructors
         .. code-block:: csharp
     
             public CreatedResult(Uri location, object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedResult.Location
+    
+        
+    
+        
+        Gets or sets the location at which the content has been created.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Location { get; set; }
     
 
 Methods

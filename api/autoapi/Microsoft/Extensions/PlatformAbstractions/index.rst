@@ -19,19 +19,7 @@ Microsoft.Extensions.PlatformAbstractions Namespace
    
    
    
-   /autoapi/Microsoft/Extensions/PlatformAbstractions/Platform/index
-   
-   
-   
    /autoapi/Microsoft/Extensions/PlatformAbstractions/PlatformServices/index
-   
-   
-   
-   /autoapi/Microsoft/Extensions/PlatformAbstractions/RuntimeEnvironment/index
-   
-   
-   
-   /autoapi/Microsoft/Extensions/PlatformAbstractions/RuntimeEnvironmentExtensions/index
    
    
 
@@ -44,18 +32,6 @@ Microsoft.Extensions.PlatformAbstractions Namespace
    :hidden:
    :maxdepth: 2
 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    
    
@@ -91,27 +67,6 @@ Microsoft.Extensions.PlatformAbstractions Namespace
 
     class :dn:cls:`PlatformServices`
         .. object: type=class name=Microsoft.Extensions.PlatformAbstractions.PlatformServices
-
-        
-
-
-    class :dn:cls:`RuntimeEnvironment`
-        .. object: type=class name=Microsoft.Extensions.PlatformAbstractions.RuntimeEnvironment
-
-        
-
-
-    class :dn:cls:`RuntimeEnvironmentExtensions`
-        .. object: type=class name=Microsoft.Extensions.PlatformAbstractions.RuntimeEnvironmentExtensions
-
-        
-
-
-    .. rubric:: Enumerations
-
-
-    enum :dn:enum:`Platform`
-        .. object: type=enum name=Microsoft.Extensions.PlatformAbstractions.Platform
 
         
 

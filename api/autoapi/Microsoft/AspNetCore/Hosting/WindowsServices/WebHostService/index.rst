@@ -8,7 +8,7 @@ WebHostService Class
 
 
 
-    Provides an implementation of a Windows service that hosts ASP.NET.
+    Provides an implementation of a Windows service that hosts ASP.NET Core.
 
 
 Namespace
@@ -112,7 +112,7 @@ Methods
         
     
         
-        Executes after ASP.NET starts.
+        Executes after ASP.NET Core starts.
     
         
     
@@ -126,7 +126,7 @@ Methods
         
     
         
-        Executes before ASP.NET starts.
+        Executes before ASP.NET Core starts.
     
         
     
@@ -154,7 +154,7 @@ Methods
         
     
         
-        Executes after ASP.NET shuts down.
+        Executes after ASP.NET Core shuts down.
     
         
     
@@ -168,7 +168,7 @@ Methods
         
     
         
-        Executes before ASP.NET shuts down.
+        Executes before ASP.NET Core shuts down.
     
         
     

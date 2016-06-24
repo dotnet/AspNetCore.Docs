@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Server.WebListener.MessagePump
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Server.WebListener.MessagePump
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.WebListener.MessagePump.Features
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFeatureCollection Features
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.WebListener.MessagePump.Listener
-    
-        
-        :rtype: Microsoft.Net.Http.Server.WebListener
-    
-        
-        .. code-block:: csharp
-    
-            public WebListener Listener
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -139,5 +104,34 @@ Methods
         .. code-block:: csharp
     
             public void Start<TContext>(IHttpApplication<TContext> application)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Server.WebListener.MessagePump
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.WebListener.MessagePump.Features
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection Features { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.WebListener.MessagePump.Listener
+    
+        
+        :rtype: Microsoft.Net.Http.Server.WebListener
+    
+        
+        .. code-block:: csharp
+    
+            public WebListener Listener { get; }
     
 

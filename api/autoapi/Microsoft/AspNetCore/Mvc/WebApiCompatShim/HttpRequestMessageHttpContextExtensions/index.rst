@@ -71,6 +71,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpRequestMessage GetHttpRequestMessage(HttpContext httpContext)
+            public static HttpRequestMessage GetHttpRequestMessage(this HttpContext httpContext)
     
 

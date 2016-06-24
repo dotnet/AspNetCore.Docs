@@ -56,58 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
-    
-        
-        .. code-block:: csharp
-    
-            public ServiceDescriptor this[int index]
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -237,5 +185,47 @@ Methods
         .. code-block:: csharp
     
             IEnumerator IEnumerable.GetEnumerator()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceCollection.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+    
+        
+        .. code-block:: csharp
+    
+            public ServiceDescriptor this[int index] { get; set; }
     
 

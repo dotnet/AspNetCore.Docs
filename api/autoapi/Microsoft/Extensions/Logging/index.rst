@@ -184,6 +184,47 @@ Microsoft.Extensions.Logging Namespace
 .. dn:namespace:: Microsoft.Extensions.Logging
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IFilterLoggerSettings`
+        .. object: type=interface name=Microsoft.Extensions.Logging.IFilterLoggerSettings
+
+        
+        Filter settings for messages logged by an :any:`Microsoft.Extensions.Logging.ILogger`\.
+
+
+    interface :dn:iface:`ILogger`
+        .. object: type=interface name=Microsoft.Extensions.Logging.ILogger
+
+        
+        Represents a type used to perform logging.
+
+
+    interface :dn:iface:`ILoggerFactory`
+        .. object: type=interface name=Microsoft.Extensions.Logging.ILoggerFactory
+
+        
+        Represents a type used to configure the logging system and create instances of :any:`Microsoft.Extensions.Logging.ILogger` from
+        the registered :any:`Microsoft.Extensions.Logging.ILoggerProvider`\s.
+
+
+    interface :dn:iface:`ILoggerProvider`
+        .. object: type=interface name=Microsoft.Extensions.Logging.ILoggerProvider
+
+        
+        Represents a type that can create instances of :any:`Microsoft.Extensions.Logging.ILogger`\.
+
+
+    interface :dn:iface:`ILogger\<TCategoryName>`
+        .. object: type=interface name=Microsoft.Extensions.Logging.ILogger\<TCategoryName>
+
+        
+        A generic interface for logging where the category name is derived from the specified
+        <em>TCategoryName</em> type name.
+        Generally used to enable activation of a named :any:`Microsoft.Extensions.Logging.ILogger` from dependency injection.
+
+
     .. rubric:: Enumerations
 
 
@@ -281,46 +322,5 @@ Microsoft.Extensions.Logging Namespace
         .. object: type=struct name=Microsoft.Extensions.Logging.EventId
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IFilterLoggerSettings`
-        .. object: type=interface name=Microsoft.Extensions.Logging.IFilterLoggerSettings
-
-        
-        Filter settings for messages logged by an :any:`Microsoft.Extensions.Logging.ILogger`\.
-
-
-    interface :dn:iface:`ILogger`
-        .. object: type=interface name=Microsoft.Extensions.Logging.ILogger
-
-        
-        Represents a type used to perform logging.
-
-
-    interface :dn:iface:`ILoggerFactory`
-        .. object: type=interface name=Microsoft.Extensions.Logging.ILoggerFactory
-
-        
-        Represents a type used to configure the logging system and create instances of :any:`Microsoft.Extensions.Logging.ILogger` from
-        the registered :any:`Microsoft.Extensions.Logging.ILoggerProvider`\s.
-
-
-    interface :dn:iface:`ILoggerProvider`
-        .. object: type=interface name=Microsoft.Extensions.Logging.ILoggerProvider
-
-        
-        Represents a type that can create instances of :any:`Microsoft.Extensions.Logging.ILogger`\.
-
-
-    interface :dn:iface:`ILogger\<TCategoryName>`
-        .. object: type=interface name=Microsoft.Extensions.Logging.ILogger\<TCategoryName>
-
-        
-        A generic interface for logging where the category name is derived from the specified
-        <em>TCategoryName</em> type name.
-        Generally used to enable activation of a named :any:`Microsoft.Extensions.Logging.ILogger` from dependency injection.
 
 

@@ -52,82 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.IsBlock
-    
-        
-    
-        
-        Returns true if this element is a block (to avoid casting)
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public abstract bool IsBlock
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Length
-    
-        
-    
-        
-        The length of all the content contained in this node
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public abstract int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Parent
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block Parent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Start
-    
-        
-    
-        
-        The start point of this node
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public abstract SourceLocation Start
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -183,18 +107,82 @@ Methods
         
     
         
-        Determines a hash code for the :any:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode` using only information relevant in
+        Determines a hash code for the :any:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode` using only information relevant in 
         :dn:meth:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.EquivalentTo(Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode)` comparisons.
     
         
         :rtype: System.Int32
         :return: 
-            A hash code for the :any:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode` using only information relevant in
+            A hash code for the :any:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode` using only information relevant in 
             :dn:meth:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.EquivalentTo(Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode)` comparisons.
     
         
         .. code-block:: csharp
     
             public abstract int GetEquivalenceHash()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.IsBlock
+    
+        
+    
+        
+        Returns true if this element is a block (to avoid casting)
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public abstract bool IsBlock { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Length
+    
+        
+    
+        
+        The length of all the content contained in this node
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public abstract int Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Parent
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block Parent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode.Start
+    
+        
+    
+        
+        The start point of this node
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public abstract SourceLocation Start { get; }
     
 

@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<KeyValuePair<string, string>> GetJQueryNameValuePairs(FormDataCollection formData)
+            public static IEnumerable<KeyValuePair<string, string>> GetJQueryNameValuePairs(this FormDataCollection formData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.FormDataCollectionExtensions.NormalizeJQueryToMvc(System.String)
     

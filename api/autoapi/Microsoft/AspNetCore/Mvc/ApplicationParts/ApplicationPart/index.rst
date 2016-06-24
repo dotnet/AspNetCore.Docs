@@ -77,9 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string Name
-            {
-                get;
-            }
+            public abstract string Name { get; }
     
 

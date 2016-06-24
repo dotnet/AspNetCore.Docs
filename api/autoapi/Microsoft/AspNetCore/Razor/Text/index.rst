@@ -15,10 +15,6 @@ Microsoft.AspNetCore.Razor.Text Namespace
 
    
    
-   /autoapi/Microsoft/AspNetCore/Razor/Text/BufferingTextReader/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Razor/Text/ITextBuffer/index
    
    
@@ -47,19 +43,7 @@ Microsoft.AspNetCore.Razor.Text Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Razor/Text/SourceSpan/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Razor/Text/TextBufferReader/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Razor/Text/TextChange/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Razor/Text/TextChangeType/index
    
    
    
@@ -117,22 +101,6 @@ Microsoft.AspNetCore.Razor.Text Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -144,22 +112,22 @@ Microsoft.AspNetCore.Razor.Text Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Text
 
 
-    .. rubric:: Enumerations
+    .. rubric:: Interfaces
 
 
-    enum :dn:enum:`TextChangeType`
-        .. object: type=enum name=Microsoft.AspNetCore.Razor.Text.TextChangeType
+    interface :dn:iface:`ITextBuffer`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Text.ITextBuffer
+
+        
+
+
+    interface :dn:iface:`ITextDocument`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Text.ITextDocument
 
         
 
 
     .. rubric:: Classes
-
-
-    class :dn:cls:`BufferingTextReader`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Text.BufferingTextReader
-
-        
 
 
     class :dn:cls:`LocationTagged\<TValue>`
@@ -186,18 +154,6 @@ Microsoft.AspNetCore.Razor.Text Namespace
         
 
 
-    class :dn:cls:`SourceSpan`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Text.SourceSpan
-
-        
-
-
-    class :dn:cls:`TextBufferReader`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Text.TextBufferReader
-
-        
-
-
     class :dn:cls:`TextDocumentReader`
         .. object: type=class name=Microsoft.AspNetCore.Razor.Text.TextDocumentReader
 
@@ -215,21 +171,6 @@ Microsoft.AspNetCore.Razor.Text Namespace
 
     struct :dn:struct:`TextChange`
         .. object: type=struct name=Microsoft.AspNetCore.Razor.Text.TextChange
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ITextBuffer`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Text.ITextBuffer
-
-        
-
-
-    interface :dn:iface:`ITextDocument`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Text.ITextDocument
 
         
 

@@ -57,53 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents.OnCreatingTicket
-    
-        
-    
-        
-        Gets or sets the function that is invoked when the Authenticated method is invoked.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext<Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TwitterCreatingTicketContext, Task> OnCreatingTicket
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents.OnRedirectToAuthorizationEndpoint
-    
-        
-    
-        
-        Gets or sets the delegate that is invoked when the ApplyRedirect method is invoked.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext<Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TwitterRedirectToAuthorizationEndpointContext, Task> OnRedirectToAuthorizationEndpoint
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -152,5 +105,44 @@ Methods
         .. code-block:: csharp
     
             public virtual Task RedirectToAuthorizationEndpoint(TwitterRedirectToAuthorizationEndpointContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents.OnCreatingTicket
+    
+        
+    
+        
+        Gets or sets the function that is invoked when the Authenticated method is invoked.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext<Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TwitterCreatingTicketContext, Task> OnCreatingTicket { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterEvents.OnRedirectToAuthorizationEndpoint
+    
+        
+    
+        
+        Gets or sets the delegate that is invoked when the ApplyRedirect method is invoked.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext<Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TwitterRedirectToAuthorizationEndpointContext, Task> OnRedirectToAuthorizationEndpoint { get; set; }
     
 

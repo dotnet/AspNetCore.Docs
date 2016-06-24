@@ -57,44 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public KeyValuePair<string, object> this[int index]
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -117,6 +79,38 @@ Constructors
         .. code-block:: csharp
     
             public FormattedLogValues(string format, params object[] values)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.FormattedLogValues
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.FormattedLogValues.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, object> this[int index] { get; }
     
 
 Methods

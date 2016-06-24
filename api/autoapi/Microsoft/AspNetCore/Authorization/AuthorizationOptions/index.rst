@@ -56,34 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizationOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizationOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy
-    
-        
-    
-        
-        The initial default policy is to require any authenticated user
-    
-        
-        :rtype: Microsoft.AspNetCore.Authorization.AuthorizationPolicy
-    
-        
-        .. code-block:: csharp
-    
-            public AuthorizationPolicy DefaultPolicy
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -160,5 +132,29 @@ Methods
         .. code-block:: csharp
     
             public AuthorizationPolicy GetPolicy(string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizationOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy
+    
+        
+    
+        
+        Gets or sets the default authorization policy.
+    
+        
+        :rtype: Microsoft.AspNetCore.Authorization.AuthorizationPolicy
+    
+        
+        .. code-block:: csharp
+    
+            public AuthorizationPolicy DefaultPolicy { get; set; }
     
 

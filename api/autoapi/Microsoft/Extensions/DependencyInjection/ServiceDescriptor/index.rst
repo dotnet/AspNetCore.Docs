@@ -53,80 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationFactory
-    
-        
-        :rtype: System.Func<System.Func`2>{System.IServiceProvider<System.IServiceProvider>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<IServiceProvider, object> ImplementationFactory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationInstance
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object ImplementationInstance
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ImplementationType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Lifetime
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.ServiceLifetime
-    
-        
-        .. code-block:: csharp
-    
-            public ServiceLifetime Lifetime
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ServiceType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ServiceType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -497,5 +423,64 @@ Methods
         .. code-block:: csharp
     
             public static ServiceDescriptor Transient<TService, TImplementation>(Func<IServiceProvider, TImplementation> implementationFactory)where TService : class where TImplementation : class, TService
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationFactory
+    
+        
+        :rtype: System.Func<System.Func`2>{System.IServiceProvider<System.IServiceProvider>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<IServiceProvider, object> ImplementationFactory { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationInstance
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object ImplementationInstance { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ImplementationType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ImplementationType { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Lifetime
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.ServiceLifetime
+    
+        
+        .. code-block:: csharp
+    
+            public ServiceLifetime Lifetime { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.ServiceDescriptor.ServiceType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ServiceType { get; }
     
 

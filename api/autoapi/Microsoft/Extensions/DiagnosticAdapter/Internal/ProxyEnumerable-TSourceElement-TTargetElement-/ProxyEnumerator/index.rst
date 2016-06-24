@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.Current
-    
-        
-        :rtype: TTargetElement
-    
-        
-        .. code-block:: csharp
-    
-            public TTargetElement Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +74,35 @@ Constructors
         .. code-block:: csharp
     
             public ProxyEnumerator(IEnumerator<TSourceElement> source, Type proxyType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.Current
+    
+        
+        :rtype: TTargetElement
+    
+        
+        .. code-block:: csharp
+    
+            public TTargetElement Current { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyEnumerable<TSourceElement, TTargetElement>.ProxyEnumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

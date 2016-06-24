@@ -52,51 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter.ContractResolver
-    
-        
-    
-        
-        Gets or sets the :any:`Newtonsoft.Json.Serialization.IContractResolver`\.
-    
-        
-        :rtype: Newtonsoft.Json.Serialization.IContractResolver
-    
-        
-        .. code-block:: csharp
-    
-            public IContractResolver ContractResolver
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter.LogErrorAction
-    
-        
-    
-        
-        Action for logging :any:`Microsoft.AspNetCore.JsonPatch.JsonPatchError`\.
-    
-        
-        :rtype: System.Action<System.Action`1>{Microsoft.AspNetCore.JsonPatch.JsonPatchError<Microsoft.AspNetCore.JsonPatch.JsonPatchError>}
-    
-        
-        .. code-block:: csharp
-    
-            public Action<JsonPatchError> LogErrorAction
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -371,5 +326,44 @@ Methods
         .. code-block:: csharp
     
             public void Replace(Operation operation, object objectToApplyTo)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter.ContractResolver
+    
+        
+    
+        
+        Gets or sets the :any:`Newtonsoft.Json.Serialization.IContractResolver`\.
+    
+        
+        :rtype: Newtonsoft.Json.Serialization.IContractResolver
+    
+        
+        .. code-block:: csharp
+    
+            public IContractResolver ContractResolver { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter.LogErrorAction
+    
+        
+    
+        
+        Action for logging :any:`Microsoft.AspNetCore.JsonPatch.JsonPatchError`\.
+    
+        
+        :rtype: System.Action<System.Action`1>{Microsoft.AspNetCore.JsonPatch.JsonPatchError<Microsoft.AspNetCore.JsonPatch.JsonPatchError>}
+    
+        
+        .. code-block:: csharp
+    
+            public Action<JsonPatchError> LogErrorAction { get; }
     
 

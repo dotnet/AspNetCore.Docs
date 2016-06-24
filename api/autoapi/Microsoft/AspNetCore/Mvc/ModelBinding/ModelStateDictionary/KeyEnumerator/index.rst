@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator.Current
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,6 +66,35 @@ Constructors
         .. code-block:: csharp
     
             public KeyEnumerator(ModelStateDictionary dictionary, string prefix)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator.Current
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

@@ -83,6 +83,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddCacheTagHelper(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddCacheTagHelper(this IMvcCoreBuilder builder)
     
 

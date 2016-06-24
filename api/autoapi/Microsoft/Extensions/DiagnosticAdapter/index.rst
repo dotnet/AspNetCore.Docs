@@ -72,6 +72,15 @@ Microsoft.Extensions.DiagnosticAdapter Namespace
 .. dn:namespace:: Microsoft.Extensions.DiagnosticAdapter
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IDiagnosticSourceMethodAdapter`
+        .. object: type=interface name=Microsoft.Extensions.DiagnosticAdapter.IDiagnosticSourceMethodAdapter
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -89,15 +98,6 @@ Microsoft.Extensions.DiagnosticAdapter Namespace
 
     class :dn:cls:`ProxyDiagnosticSourceMethodAdapter`
         .. object: type=class name=Microsoft.Extensions.DiagnosticAdapter.ProxyDiagnosticSourceMethodAdapter
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IDiagnosticSourceMethodAdapter`
-        .. object: type=interface name=Microsoft.Extensions.DiagnosticAdapter.IDiagnosticSourceMethodAdapter
 
         
 

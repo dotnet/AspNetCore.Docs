@@ -96,6 +96,16 @@ Microsoft.AspNetCore.Authentication.OAuth Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Authentication.OAuth
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IOAuthEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.OAuth.IOAuthEvents
+
+        
+        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware\`1` invokes to enable developer control over the authentication process.
+
+
     .. rubric:: Classes
 
 
@@ -137,15 +147,5 @@ Microsoft.AspNetCore.Authentication.OAuth Namespace
         .. object: type=class name=Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IOAuthEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.OAuth.IOAuthEvents
-
-        
-        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware\`1` invokes to enable developer control over the authentication process.
 
 

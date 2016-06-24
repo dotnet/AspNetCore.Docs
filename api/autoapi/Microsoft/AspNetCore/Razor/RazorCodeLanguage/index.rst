@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorCodeLanguage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorCodeLanguage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorCodeLanguage.LanguageName
-    
-        
-    
-        
-        The name of the language (for use in System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage)
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public abstract string LanguageName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorCodeLanguage.Languages
-    
-        
-    
-        
-        Gets the list of registered languages mapped to file extensions (without a ".")
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Razor.RazorCodeLanguage<Microsoft.AspNetCore.Razor.RazorCodeLanguage>}
-    
-        
-        .. code-block:: csharp
-    
-            public static IDictionary<string, RazorCodeLanguage> Languages
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -184,5 +139,44 @@ Methods
         .. code-block:: csharp
     
             public static RazorCodeLanguage GetLanguageByExtension(string fileExtension)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorCodeLanguage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorCodeLanguage.LanguageName
+    
+        
+    
+        
+        The name of the language (for use in System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage)
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public abstract string LanguageName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorCodeLanguage.Languages
+    
+        
+    
+        
+        Gets the list of registered languages mapped to file extensions (without a ".")
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Razor.RazorCodeLanguage<Microsoft.AspNetCore.Razor.RazorCodeLanguage>}
+    
+        
+        .. code-block:: csharp
+    
+            public static IDictionary<string, RazorCodeLanguage> Languages { get; }
     
 

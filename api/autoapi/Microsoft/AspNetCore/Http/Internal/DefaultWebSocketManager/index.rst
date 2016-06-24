@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager.IsWebSocketRequest
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool IsWebSocketRequest
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager.WebSocketRequestedProtocols
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public override IList<string> WebSocketRequestedProtocols
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -150,5 +115,34 @@ Methods
         .. code-block:: csharp
     
             public virtual void Uninitialize()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager.IsWebSocketRequest
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool IsWebSocketRequest { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultWebSocketManager.WebSocketRequestedProtocols
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public override IList<string> WebSocketRequestedProtocols { get; }
     
 

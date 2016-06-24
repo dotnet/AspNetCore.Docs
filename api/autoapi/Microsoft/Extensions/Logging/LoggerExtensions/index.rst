@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDisposable BeginScope(ILogger logger, string messageFormat, params object[] args)
+            public static IDisposable BeginScope(this ILogger logger, string messageFormat, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -132,7 +132,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogCritical(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogCritical(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -166,7 +166,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogCritical(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogCritical(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -195,7 +195,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogCritical(ILogger logger, string message, params object[] args)
+            public static void LogCritical(this ILogger logger, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -234,7 +234,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogDebug(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogDebug(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -268,7 +268,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogDebug(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogDebug(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -297,7 +297,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogDebug(ILogger logger, string message, params object[] args)
+            public static void LogDebug(this ILogger logger, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogError(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -336,7 +336,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogError(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogError(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogError(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -370,7 +370,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogError(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogError(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogError(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -399,7 +399,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogError(ILogger logger, string message, params object[] args)
+            public static void LogError(this ILogger logger, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -438,7 +438,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogInformation(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogInformation(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -472,7 +472,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogInformation(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogInformation(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -501,7 +501,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogInformation(ILogger logger, string message, params object[] args)
+            public static void LogInformation(this ILogger logger, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -540,7 +540,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogTrace(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogTrace(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -574,7 +574,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogTrace(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogTrace(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -603,7 +603,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogTrace(ILogger logger, string message, params object[] args)
+            public static void LogTrace(this ILogger logger, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.Exception, System.String, System.Object[])
     
@@ -642,7 +642,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogWarning(ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
+            public static void LogWarning(this ILogger logger, EventId eventId, Exception exception, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.EventId, System.String, System.Object[])
     
@@ -676,7 +676,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogWarning(ILogger logger, EventId eventId, string message, params object[] args)
+            public static void LogWarning(this ILogger logger, EventId eventId, string message, params object[] args)
     
     .. dn:method:: Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(Microsoft.Extensions.Logging.ILogger, System.String, System.Object[])
     
@@ -705,6 +705,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void LogWarning(ILogger logger, string message, params object[] args)
+            public static void LogWarning(this ILogger logger, string message, params object[] args)
     
 

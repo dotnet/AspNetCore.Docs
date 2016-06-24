@@ -59,126 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.Backchannel
-    
-        
-    
-        
-        The configured communication channel to the identity provider for use when making custom requests to the token endpoint.
-    
-        
-        :rtype: System.Net.Http.HttpClient
-    
-        
-        .. code-block:: csharp
-    
-            public HttpClient Backchannel
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.HandledCodeRedemption
-    
-        
-    
-        
-        Indicates if the developer choose to handle (or skip) the code redemption. If true then the middleware will not attempt
-        to redeem the code. See HandleCodeRedemption and TokenEndpointResponse.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HandledCodeRedemption
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.JwtSecurityToken
-    
-        
-    
-        
-        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.JwtSecurityToken` that was received in the authentication response, if any.
-    
-        
-        :rtype: System.IdentityModel.Tokens.Jwt.JwtSecurityToken
-    
-        
-        .. code-block:: csharp
-    
-            public JwtSecurityToken JwtSecurityToken
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.Properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.TokenEndpointRequest
-    
-        
-    
-        
-        The request that will be sent to the token endpoint and is available for customization.
-    
-        
-        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectMessage TokenEndpointRequest
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.TokenEndpointResponse
-    
-        
-    
-        
-        If the developer chooses to redeem the code themselves then they can provide the resulting tokens here. This is the
-        same as calling HandleCodeRedemption. If set then the middleware will not attempt to redeem the code. An IdToken
-        is required if one had not been previously received in the authorization response. An access token is optional
-        if the middleware is to contact the user-info endpoint.
-    
-        
-        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectMessage TokenEndpointResponse
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -206,6 +86,104 @@ Constructors
         .. code-block:: csharp
     
             public AuthorizationCodeReceivedContext(HttpContext context, OpenIdConnectOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.Backchannel
+    
+        
+    
+        
+        The configured communication channel to the identity provider for use when making custom requests to the token endpoint.
+    
+        
+        :rtype: System.Net.Http.HttpClient
+    
+        
+        .. code-block:: csharp
+    
+            public HttpClient Backchannel { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.HandledCodeRedemption
+    
+        
+    
+        
+        Indicates if the developer choose to handle (or skip) the code redemption. If true then the middleware will not attempt
+        to redeem the code. See HandleCodeRedemption and TokenEndpointResponse.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HandledCodeRedemption { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.JwtSecurityToken
+    
+        
+    
+        
+        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.JwtSecurityToken` that was received in the authentication response, if any.
+    
+        
+        :rtype: System.IdentityModel.Tokens.Jwt.JwtSecurityToken
+    
+        
+        .. code-block:: csharp
+    
+            public JwtSecurityToken JwtSecurityToken { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.Properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.TokenEndpointRequest
+    
+        
+    
+        
+        The request that will be sent to the token endpoint and is available for customization.
+    
+        
+        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectMessage TokenEndpointRequest { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext.TokenEndpointResponse
+    
+        
+    
+        
+        If the developer chooses to redeem the code themselves then they can provide the resulting tokens here. This is the
+        same as calling HandleCodeRedemption. If set then the middleware will not attempt to redeem the code. An IdToken
+        is required if one had not been previously received in the authorization response. An access token is optional
+        if the middleware is to contact the user-info endpoint.
+    
+        
+        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectMessage TokenEndpointResponse { get; set; }
     
 
 Methods

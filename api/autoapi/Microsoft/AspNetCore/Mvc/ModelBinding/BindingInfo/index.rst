@@ -56,91 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BinderModelName
-    
-        
-    
-        
-        Gets or sets the binder model name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BinderModelName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BinderType
-    
-        
-    
-        
-        Gets or sets the :any:`System.Type` of the model binder used to bind the model.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type BinderType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
-    
-        
-        .. code-block:: csharp
-    
-            public BindingSource BindingSource
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.PropertyFilterProvider
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IPropertyFilterProvider PropertyFilterProvider
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -183,6 +98,75 @@ Constructors
             public BindingInfo(BindingInfo other)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BinderModelName
+    
+        
+    
+        
+        Gets or sets the binder model name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BinderModelName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BinderType
+    
+        
+    
+        
+        Gets or sets the :any:`System.Type` of the model binder used to bind the model.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type BinderType { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    
+        
+        .. code-block:: csharp
+    
+            public BindingSource BindingSource { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.PropertyFilterProvider
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IPropertyFilterProvider PropertyFilterProvider { get; set; }
+    
+
 Methods
 -------
 
@@ -202,7 +186,6 @@ Methods
     
         
         :param attributes: A collection of attributes which are used to construct :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo`
-            
         
         :type attributes: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>}
         :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo

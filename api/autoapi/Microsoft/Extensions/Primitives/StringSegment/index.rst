@@ -48,105 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.Primitives.StringSegment
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.Primitives.StringSegment
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Buffer
-    
-        
-    
-        
-        Gets the :any:`System.String` buffer for this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Buffer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.HasValue
-    
-        
-    
-        
-        Gets whether or not this :any:`Microsoft.Extensions.Primitives.StringSegment` contains a valid value.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Length
-    
-        
-    
-        
-        Gets the length of this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Offset
-    
-        
-    
-        
-        Gets the offset within the buffer for this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Offset
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Value
-    
-        
-    
-        
-        Gets the value of this segment as a :any:`System.String`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -203,6 +104,155 @@ Constructors
         .. code-block:: csharp
     
             public StringSegment(string buffer, int offset, int length)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Buffer
+    
+        
+    
+        
+        Gets the :any:`System.String` buffer for this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Buffer { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.HasValue
+    
+        
+    
+        
+        Gets whether or not this :any:`Microsoft.Extensions.Primitives.StringSegment` contains a valid value.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValue { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Length
+    
+        
+    
+        
+        Gets the length of this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Length { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Offset
+    
+        
+    
+        
+        Gets the offset within the buffer for this :any:`Microsoft.Extensions.Primitives.StringSegment`\.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Offset { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringSegment.Value
+    
+        
+    
+        
+        Gets the value of this segment as a :any:`System.String`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringSegment.Equality(Microsoft.Extensions.Primitives.StringSegment, Microsoft.Extensions.Primitives.StringSegment)
+    
+        
+    
+        
+        Checks if two specified :any:`Microsoft.Extensions.Primitives.StringSegment` have the same value.
+    
+        
+    
+        
+        :param left: The first :any:`Microsoft.Extensions.Primitives.StringSegment` to compare, or <pre><code>null</code></pre>.
+        
+        :type left: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        :param right: The second :any:`Microsoft.Extensions.Primitives.StringSegment` to compare, or <pre><code>null</code></pre>.
+        
+        :type right: Microsoft.Extensions.Primitives.StringSegment
+        :rtype: System.Boolean
+        :return: <pre>
+            <code>true</code>
+            </pre> if the value of <em>left</em> is the same as the value of <em>right</em>; otherwise, <pre><code>false</code></pre>.
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(StringSegment left, StringSegment right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringSegment.Inequality(Microsoft.Extensions.Primitives.StringSegment, Microsoft.Extensions.Primitives.StringSegment)
+    
+        
+    
+        
+        Checks if two specified :any:`Microsoft.Extensions.Primitives.StringSegment` have different values.
+    
+        
+    
+        
+        :param left: The first :any:`Microsoft.Extensions.Primitives.StringSegment` to compare, or <pre><code>null</code></pre>.
+        
+        :type left: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        :param right: The second :any:`Microsoft.Extensions.Primitives.StringSegment` to compare, or <pre><code>null</code></pre>.
+        
+        :type right: Microsoft.Extensions.Primitives.StringSegment
+        :rtype: System.Boolean
+        :return: <pre>
+            <code>true</code>
+            </pre> if the value of <em>left</em> is different from the value of <em>right</em>; otherwise, <pre><code>false</code></pre>.
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(StringSegment left, StringSegment right)
     
 
 Methods
@@ -559,5 +609,37 @@ Methods
         .. code-block:: csharp
     
             public StringSegment Trim()
+    
+    .. dn:method:: Microsoft.Extensions.Primitives.StringSegment.TrimEnd()
+    
+        
+    
+        
+        Removes all trailing whitespaces.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+        :return: The trimmed :any:`Microsoft.Extensions.Primitives.StringSegment`\.
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment TrimEnd()
+    
+    .. dn:method:: Microsoft.Extensions.Primitives.StringSegment.TrimStart()
+    
+        
+    
+        
+        Removes all leading whitespaces.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+        :return: The trimmed :any:`Microsoft.Extensions.Primitives.StringSegment`\.
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment TrimStart()
     
 

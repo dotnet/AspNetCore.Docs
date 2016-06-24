@@ -56,90 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ActionContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ActionContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.ActionDescriptor
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` for the selected action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
-    
-        
-        .. code-block:: csharp
-    
-            public ActionDescriptor ActionDescriptor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.HttpContext
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Http.HttpContext` for the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.ModelState
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary ModelState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.RouteData
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Routing.RouteData` for the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteData
-    
-        
-        .. code-block:: csharp
-    
-            public RouteData RouteData
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -243,5 +159,74 @@ Constructors
         .. code-block:: csharp
     
             public ActionContext(ActionContext actionContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ActionContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.ActionDescriptor
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` for the selected action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
+    
+        
+        .. code-block:: csharp
+    
+            public ActionDescriptor ActionDescriptor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.HttpContext
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Http.HttpContext` for the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.ModelState
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary ModelState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionContext.RouteData
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Routing.RouteData` for the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteData
+    
+        
+        .. code-block:: csharp
+    
+            public RouteData RouteData { get; set; }
     
 

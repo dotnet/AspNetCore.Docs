@@ -112,46 +112,6 @@ Microsoft.AspNetCore.Mvc.ActionConstraints Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ActionConstraints
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ActionConstraintContext`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext
-
-        
-        Context for :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` execution.
-
-
-    class :dn:cls:`ActionConstraintItem`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem
-
-        
-        Represents an :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` with or without a corresponding
-        :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint`\.
-
-
-    class :dn:cls:`ActionConstraintProviderContext`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext
-
-        
-        Context for an action constraint provider.
-
-
-    class :dn:cls:`ActionMethodSelectorAttribute`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute
-
-        
-        Base class for attributes which can implement conditional logic to enable or disable an action
-        for a given request. See :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint`\.
-
-
-    class :dn:cls:`ActionSelectorCandidate`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionSelectorCandidate
-
-        
-        A candidate action for action selection.
-
-
     .. rubric:: Interfaces
 
 
@@ -181,5 +141,48 @@ Microsoft.AspNetCore.Mvc.ActionConstraints Namespace
         .. object: type=interface name=Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintProvider
 
         
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ActionConstraintContext`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext
+
+        
+        Context for :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` execution.
+
+
+    class :dn:cls:`ActionConstraintItem`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem
+
+        
+        Represents an :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` with or without a corresponding 
+        :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint`\.
+
+
+    class :dn:cls:`ActionConstraintProviderContext`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext
+
+        
+        Context for an action constraint provider.
+
+
+    class :dn:cls:`ActionMethodSelectorAttribute`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute
+
+        
+        Base class for attributes which can implement conditional logic to enable or disable an action
+        for a given request. See :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint`\.
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`ActionSelectorCandidate`
+        .. object: type=struct name=Microsoft.AspNetCore.Mvc.ActionConstraints.ActionSelectorCandidate
+
+        
+        A candidate action for action selection.
 
 

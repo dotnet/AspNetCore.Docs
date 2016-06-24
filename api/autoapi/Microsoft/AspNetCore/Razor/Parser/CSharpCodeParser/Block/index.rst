@@ -52,43 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Start
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -123,5 +86,34 @@ Constructors
         .. code-block:: csharp
     
             public Block(string name, SourceLocation start)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Block.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Start { get; set; }
     
 

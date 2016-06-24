@@ -71,9 +71,6 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceCollection Services
-            {
-                get;
-            }
+            IServiceCollection Services { get; }
     
 

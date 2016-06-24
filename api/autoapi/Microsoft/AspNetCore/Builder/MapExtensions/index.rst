@@ -94,6 +94,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder Map(IApplicationBuilder app, PathString pathMatch, Action<IApplicationBuilder> configuration)
+            public static IApplicationBuilder Map(this IApplicationBuilder app, PathString pathMatch, Action<IApplicationBuilder> configuration)
     
 

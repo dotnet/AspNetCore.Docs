@@ -91,14 +91,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/ICompositeModelBinder/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/ICompositeValueProviderFactory/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/IEnumerableValueProvider/index
    
    
@@ -171,10 +163,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/ModelBindingHelper/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/ModelBindingResult/index
    
    
@@ -243,10 +231,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/OperationBindingContext/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/QueryStringValueProvider/index
    
    
@@ -260,6 +244,10 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/RouteValueProviderFactory/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/SuppressChildValidationMetadataProvider/index
    
    
    
@@ -561,18 +549,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -582,6 +558,113 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ModelBinding
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IBinderTypeProviderMetadata`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBinderTypeProviderMetadata
+
+        
+        Provides a :any:`System.Type` which implements :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder`\.
+
+
+    interface :dn:iface:`IBindingSourceMetadata`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceMetadata
+
+        
+        Metadata which specificies the data source for model binding.
+
+
+    interface :dn:iface:`IBindingSourceValueProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceValueProvider
+
+        
+        A value provider which can filter its contents based on :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\.
+
+
+    interface :dn:iface:`ICollectionModelBinder`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.ICollectionModelBinder
+
+        
+        Interface for model binding collections.
+
+
+    interface :dn:iface:`IEnumerableValueProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IEnumerableValueProvider
+
+        
+
+
+    interface :dn:iface:`IModelBinder`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder
+
+        
+        Defines an interface for model binders.
+
+
+    interface :dn:iface:`IModelBinderFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory
+
+        
+        A factory abstraction for creating :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances.
+
+
+    interface :dn:iface:`IModelBinderProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider
+
+        
+        Creates :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances. Register :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider`
+        instances in <code>MvcOptions</code>.
+
+
+    interface :dn:iface:`IModelMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+
+        
+
+
+    interface :dn:iface:`IModelNameProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelNameProvider
+
+        
+        Represents an entity which can provide model name as metadata.
+
+
+    interface :dn:iface:`IOptionalBinderMetadata`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IOptionalBinderMetadata
+
+        
+        <p>
+        An type that designates an optional parameter for the purposes
+        of ASP.NET Web API action overloading. Optional parameters do not participate in overloading, and
+        do not have to have a value for the action to be selected.
+        </p>
+        <p>
+        This has no impact when used without ASP.NET Web API action overloading.
+        </p>
+
+
+    interface :dn:iface:`IPropertyFilterProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider
+
+        
+        Provides a predicate which can determines which model properties should be bound by model binding.
+
+
+    interface :dn:iface:`IValueProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider
+
+        
+        Defines the methods that are required for a value provider.
+
+
+    interface :dn:iface:`IValueProviderFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory
+
+        
+        A factory for creating :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances.
 
 
     .. rubric:: Structures
@@ -660,18 +743,25 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute
 
         
+        Indicates that a property should be excluded from model binding. When applied to a property, the model binding
+        system excludes that property. When applied to a type, the model binding system excludes all properties of that
+        type.
 
 
     class :dn:cls:`BindRequiredAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute
 
         
+        Indicates that a property is required for model binding. When applied to a property, the model binding system
+        requires a value for that property. When applied to a type, the model binding system requires values for all
+        properties of that type.
 
 
     class :dn:cls:`BindingBehaviorAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute
 
         
+        Specifies the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior` that should be applied.
 
 
     class :dn:cls:`BindingInfo`
@@ -793,12 +883,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         A context that contains operating information for model binding and validation.
 
 
-    class :dn:cls:`ModelBindingHelper`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingHelper
-
-        
-
-
     class :dn:cls:`ModelError`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.ModelError
 
@@ -860,14 +944,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         An entry in a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
 
 
-    class :dn:cls:`OperationBindingContext`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.OperationBindingContext
-
-        
-        A context that contains information specific to the current request and the action whose parameters
-        are being model bound.
-
-
     class :dn:cls:`QueryStringValueProvider`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider
 
@@ -897,6 +973,14 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory` for creating :any:`Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider` instances.
 
 
+    class :dn:cls:`SuppressChildValidationMetadataProvider`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider` which configures :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ValidateChildren` to
+        <code>false</code> for matching types.
+
+
     class :dn:cls:`TooManyModelErrorsException`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.TooManyModelErrorsException
 
@@ -916,7 +1000,7 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter
 
         
-        A filter that scans for :any:`Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeException` in the
+        A filter that scans for :any:`Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeException` in the 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ActionContext.ModelState` and short-circuits the pipeline
         with an Unsupported Media Type (415) response.
 
@@ -942,129 +1026,12 @@ Microsoft.AspNetCore.Mvc.ModelBinding Namespace
         .. object: type=enum name=Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior
 
         
+        Enumerates behavior options of the model binding system.
 
 
     enum :dn:enum:`ModelValidationState`
         .. object: type=enum name=Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IBinderTypeProviderMetadata`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBinderTypeProviderMetadata
-
-        
-        Provides a :any:`System.Type` which implements :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder`\.
-
-
-    interface :dn:iface:`IBindingSourceMetadata`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceMetadata
-
-        
-        Metadata which specificies the data source for model binding.
-
-
-    interface :dn:iface:`IBindingSourceValueProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IBindingSourceValueProvider
-
-        
-        A value provider which can filter its contents based on :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\.
-
-
-    interface :dn:iface:`ICollectionModelBinder`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.ICollectionModelBinder
-
-        
-        Interface for model binding collections.
-
-
-    interface :dn:iface:`ICompositeModelBinder`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.ICompositeModelBinder
-
-        
-        Represents an aggregate of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` that delegates to one of the instances for model binding.
-
-
-    interface :dn:iface:`ICompositeValueProviderFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.ICompositeValueProviderFactory
-
-        
-        Represents an aggregate of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory`\.
-
-
-    interface :dn:iface:`IEnumerableValueProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IEnumerableValueProvider
-
-        
-
-
-    interface :dn:iface:`IModelBinder`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder
-
-        
-        Defines an interface for model binders.
-
-
-    interface :dn:iface:`IModelBinderFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory
-
-        
-        A factory abstraction for creating :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances.
-
-
-    interface :dn:iface:`IModelBinderProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider
-
-        
-        Creates :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances. Register :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider`
-        instances in <code>MvcOptions</code>.
-
-
-    interface :dn:iface:`IModelMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
-
-        
-
-
-    interface :dn:iface:`IModelNameProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IModelNameProvider
-
-        
-        Represents an entity which can provide model name as metadata.
-
-
-    interface :dn:iface:`IOptionalBinderMetadata`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IOptionalBinderMetadata
-
-        
-        An type that designates an optional parameter for the purposes
-        of WebAPI action overloading. Optional parameters do not participate in overloading, and 
-        do not have to have a value for the action to be selected.
-        
-        This has no impact when used without WebAPI action overloading.
-
-
-    interface :dn:iface:`IPropertyFilterProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IPropertyFilterProvider
-
-        
-        Provides a predicate which can determines which model properties should be bound by model binding.
-
-
-    interface :dn:iface:`IValueProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider
-
-        
-        Defines the methods that are required for a value provider.
-
-
-    interface :dn:iface:`IValueProviderFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory
-
-        
-        A factory for creating :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances.
 
 

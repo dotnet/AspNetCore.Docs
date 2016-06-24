@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterContext.Filters
-    
-        
-    
-        
-        Gets all applicable :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` implementations.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata<Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IList<IFilterMetadata> Filters
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -115,5 +88,29 @@ Constructors
         .. code-block:: csharp
     
             public FilterContext(ActionContext actionContext, IList<IFilterMetadata> filters)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterContext.Filters
+    
+        
+    
+        
+        Gets all applicable :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` implementations.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata<Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IList<IFilterMetadata> Filters { get; }
     
 

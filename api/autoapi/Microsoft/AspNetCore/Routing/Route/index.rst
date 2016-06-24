@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Route
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Route
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Route.RouteTemplate
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RouteTemplate
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -192,5 +170,24 @@ Methods
         .. code-block:: csharp
     
             protected override VirtualPathData OnVirtualPathGenerated(VirtualPathContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Route
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Route.RouteTemplate
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RouteTemplate { get; }
     
 

@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService.InstanceCount
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static int InstanceCount
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService.InstanceId
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int InstanceId
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,6 +71,35 @@ Constructors
         .. code-block:: csharp
     
             public CreationCountFakeService(IFakeService dependency)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService.InstanceCount
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static int InstanceCount { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.CreationCountFakeService.InstanceId
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int InstanceId { get; }
     
 
 Fields

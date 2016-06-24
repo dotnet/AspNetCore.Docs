@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunkVisitor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunkVisitor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunkVisitor.InjectChunks
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Razor.InjectChunk<Microsoft.AspNetCore.Mvc.Razor.InjectChunk>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<InjectChunk> InjectChunks
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -103,6 +81,25 @@ Constructors
         .. code-block:: csharp
     
             public InjectChunkVisitor(CSharpCodeWriter writer, CodeGeneratorContext context, string injectAttributeName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunkVisitor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunkVisitor.InjectChunks
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Razor.InjectChunk<Microsoft.AspNetCore.Mvc.Razor.InjectChunk>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<InjectChunk> InjectChunks { get; }
     
 
 Methods

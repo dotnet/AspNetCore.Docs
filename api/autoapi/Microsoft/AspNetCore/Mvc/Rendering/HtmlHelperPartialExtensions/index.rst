@@ -90,7 +90,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Partial(IHtmlHelper htmlHelper, string partialViewName)
+            public static IHtmlContent Partial(this IHtmlHelper htmlHelper, string partialViewName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary)
     
@@ -123,7 +123,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Partial(IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
+            public static IHtmlContent Partial(this IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -156,7 +156,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Partial(IHtmlHelper htmlHelper, string partialViewName, object model)
+            public static IHtmlContent Partial(this IHtmlHelper htmlHelper, string partialViewName, object model)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary)
     
@@ -194,7 +194,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Partial(IHtmlHelper htmlHelper, string partialViewName, object model, ViewDataDictionary viewData)
+            public static IHtmlContent Partial(this IHtmlHelper htmlHelper, string partialViewName, object model, ViewDataDictionary viewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -223,7 +223,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> PartialAsync(IHtmlHelper htmlHelper, string partialViewName)
+            public static Task<IHtmlContent> PartialAsync(this IHtmlHelper htmlHelper, string partialViewName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary)
     
@@ -257,7 +257,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> PartialAsync(IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
+            public static Task<IHtmlContent> PartialAsync(this IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -291,7 +291,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> PartialAsync(IHtmlHelper htmlHelper, string partialViewName, object model)
+            public static Task<IHtmlContent> PartialAsync(this IHtmlHelper htmlHelper, string partialViewName, object model)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -316,7 +316,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RenderPartial(IHtmlHelper htmlHelper, string partialViewName)
+            public static void RenderPartial(this IHtmlHelper htmlHelper, string partialViewName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary)
     
@@ -346,7 +346,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RenderPartial(IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
+            public static void RenderPartial(this IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -376,7 +376,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RenderPartial(IHtmlHelper htmlHelper, string partialViewName, object model)
+            public static void RenderPartial(this IHtmlHelper htmlHelper, string partialViewName, object model)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -403,7 +403,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task RenderPartialAsync(IHtmlHelper htmlHelper, string partialViewName)
+            public static Task RenderPartialAsync(this IHtmlHelper htmlHelper, string partialViewName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary)
     
@@ -435,7 +435,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task RenderPartialAsync(IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
+            public static Task RenderPartialAsync(this IHtmlHelper htmlHelper, string partialViewName, ViewDataDictionary viewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -467,6 +467,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task RenderPartialAsync(IHtmlHelper htmlHelper, string partialViewName, object model)
+            public static Task RenderPartialAsync(this IHtmlHelper htmlHelper, string partialViewName, object model)
     
 

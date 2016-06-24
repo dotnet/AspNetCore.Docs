@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseRouter(IApplicationBuilder builder, IRouter router)
+            public static IApplicationBuilder UseRouter(this IApplicationBuilder builder, IRouter router)
     
 

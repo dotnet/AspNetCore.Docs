@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ContentViewComponentResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ContentViewComponentResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ContentViewComponentResult.Content
-    
-        
-    
-        
-        Gets the content.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Content
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +82,30 @@ Constructors
         .. code-block:: csharp
     
             public ContentViewComponentResult(string content)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ContentViewComponentResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ContentViewComponentResult.Content
+    
+        
+    
+        
+        Gets the content.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Content { get; }
     
 
 Methods

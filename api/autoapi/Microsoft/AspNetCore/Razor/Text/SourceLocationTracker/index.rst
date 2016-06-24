@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Text.SourceLocationTracker
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Text.SourceLocationTracker
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.SourceLocationTracker.CurrentLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation CurrentLocation
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -156,5 +133,24 @@ Methods
         .. code-block:: csharp
     
             public SourceLocationTracker UpdateLocation(string content)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Text.SourceLocationTracker
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.SourceLocationTracker.CurrentLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation CurrentLocation { get; set; }
     
 

@@ -7,6 +7,11 @@ DenyAnonymousAuthorizationRequirement Class
 
 
 
+
+Implements an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`
+which requires the current user must be authenticated.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure`
 Assemblies
@@ -61,19 +66,29 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext, Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        Makes a decision if authorization is allowed based on a specific requirement.
     
+        
+    
+        
+        :param context: The authorization context.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
+    
+        
+        :param requirement: The requirement to evaluate.
         
         :type requirement: Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override void Handle(AuthorizationContext context, DenyAnonymousAuthorizationRequirement requirement)
+            protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, DenyAnonymousAuthorizationRequirement requirement)
     
 

@@ -57,52 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.DecryptorType
-    
-        
-    
-        
-        The class whose :dn:meth:`Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlDecryptor.Decrypt(System.Xml.Linq.XElement)` method can be used to
-        decrypt the value stored in :dn:prop:`Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.EncryptedElement`\.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type DecryptorType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.EncryptedElement
-    
-        
-    
-        
-        A piece of encrypted XML.
-    
-        
-        :rtype: System.Xml.Linq.XElement
-    
-        
-        .. code-block:: csharp
-    
-            public XElement EncryptedElement
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -135,5 +89,45 @@ Constructors
         .. code-block:: csharp
     
             public EncryptedXmlInfo(XElement encryptedElement, Type decryptorType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.DecryptorType
+    
+        
+    
+        
+        The class whose :dn:meth:`Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlDecryptor.Decrypt(System.Xml.Linq.XElement)` method can be used to
+        decrypt the value stored in :dn:prop:`Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.EncryptedElement`\.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type DecryptorType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.XmlEncryption.EncryptedXmlInfo.EncryptedElement
+    
+        
+    
+        
+        A piece of encrypted XML.
+    
+        
+        :rtype: System.Xml.Linq.XElement
+    
+        
+        .. code-block:: csharp
+    
+            public XElement EncryptedElement { get; }
     
 

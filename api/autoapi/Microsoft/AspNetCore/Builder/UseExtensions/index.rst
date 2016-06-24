@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder Use(IApplicationBuilder app, Func<HttpContext, Func<Task>, Task> middleware)
+            public static IApplicationBuilder Use(this IApplicationBuilder app, Func<HttpContext, Func<Task>, Task> middleware)
     
 

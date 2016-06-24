@@ -8,7 +8,7 @@ DefaultSessionFeature Class
 
 
 
-This type exists only for the purpose of unit testing where the user can directly set the
+This type exists only for the purpose of unit testing where the user can directly set the 
 :dn:prop:`Microsoft.AspNetCore.Http.HttpContext.Session` property without the need for creating a :any:`Microsoft.AspNetCore.Http.Features.ISessionFeature`\.
 
 
@@ -73,10 +73,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ISession Session
-            {
-                get;
-                set;
-            }
+            public ISession Session { get; set; }
     
 

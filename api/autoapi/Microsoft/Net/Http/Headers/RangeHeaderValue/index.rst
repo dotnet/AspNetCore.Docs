@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Ranges
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Net.Http.Headers.RangeItemHeaderValue<Microsoft.Net.Http.Headers.RangeItemHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<RangeItemHeaderValue> Ranges
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Unit
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Unit
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -190,5 +154,34 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParse(string input, out RangeHeaderValue parsedValue)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Ranges
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Net.Http.Headers.RangeItemHeaderValue<Microsoft.Net.Http.Headers.RangeItemHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<RangeItemHeaderValue> Ranges { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeHeaderValue.Unit
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Unit { get; set; }
     
 

@@ -52,6 +52,24 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.ActionDescriptor()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public ActionDescriptor()
+    
+
 Properties
 ----------
 
@@ -73,11 +91,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IActionConstraintMetadata> ActionConstraints
-            {
-                get;
-                set;
-            }
+            public IList<IActionConstraintMetadata> ActionConstraints { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.AttributeRouteInfo
     
@@ -87,11 +101,7 @@ Properties
         
         .. code-block:: csharp
     
-            public AttributeRouteInfo AttributeRouteInfo
-            {
-                get;
-                set;
-            }
+            public AttributeRouteInfo AttributeRouteInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.BoundProperties
     
@@ -106,11 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ParameterDescriptor> BoundProperties
-            {
-                get;
-                set;
-            }
+            public IList<ParameterDescriptor> BoundProperties { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.DisplayName
     
@@ -125,11 +131,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string DisplayName
-            {
-                get;
-                set;
-            }
+            public virtual string DisplayName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.FilterDescriptors
     
@@ -139,11 +141,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<FilterDescriptor> FilterDescriptors
-            {
-                get;
-                set;
-            }
+            public IList<FilterDescriptor> FilterDescriptors { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Id
     
@@ -158,24 +156,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Id
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string Name
-            {
-                get;
-                set;
-            }
+            public string Id { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Parameters
     
@@ -185,11 +166,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ParameterDescriptor> Parameters
-            {
-                get;
-                set;
-            }
+            public IList<ParameterDescriptor> Parameters { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Properties
     
@@ -204,56 +181,22 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<object, object> Properties
-            {
-                get;
-                set;
-            }
+            public IDictionary<object, object> Properties { get; set; }
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.RouteConstraints
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.RouteValues
     
         
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Routing.RouteDataActionConstraint<Microsoft.AspNetCore.Mvc.Routing.RouteDataActionConstraint>}
     
         
-        .. code-block:: csharp
-    
-            public IList<RouteDataActionConstraint> RouteConstraints
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.RouteValueDefaults
+        Gets or sets the collection of route values that must be provided by routing
+        for the action to be selected.
     
         
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
     
         
         .. code-block:: csharp
     
-            public IDictionary<string, object> RouteValueDefaults
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.ActionDescriptor()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public ActionDescriptor()
+            public IDictionary<string, string> RouteValues { get; set; }
     
 

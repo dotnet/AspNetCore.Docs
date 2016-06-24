@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.ResponseMessageResult
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.ResponseMessageResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.ResponseMessageResult.Response
-    
-        
-    
-        
-        Gets the response message.
-    
-        
-        :rtype: System.Net.Http.HttpResponseMessage
-    
-        
-        .. code-block:: csharp
-    
-            public HttpResponseMessage Response
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -111,5 +84,29 @@ Constructors
         .. code-block:: csharp
     
             public ResponseMessageResult(HttpResponseMessage response)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.ResponseMessageResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.ResponseMessageResult.Response
+    
+        
+    
+        
+        Gets the response message.
+    
+        
+        :rtype: System.Net.Http.HttpResponseMessage
+    
+        
+        .. code-block:: csharp
+    
+            public HttpResponseMessage Response { get; }
     
 

@@ -52,71 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.TestSink
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Testing.TestSink
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.BeginEnabled
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.Extensions.Logging.Testing.BeginScopeContext<Microsoft.Extensions.Logging.Testing.BeginScopeContext>, System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<BeginScopeContext, bool> BeginEnabled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.Scopes
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.Logging.Testing.BeginScopeContext<Microsoft.Extensions.Logging.Testing.BeginScopeContext>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<BeginScopeContext> Scopes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.WriteEnabled
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.Extensions.Logging.Testing.WriteContext<Microsoft.Extensions.Logging.Testing.WriteContext>, System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<WriteContext, bool> WriteEnabled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.Writes
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.Logging.Testing.WriteContext<Microsoft.Extensions.Logging.Testing.WriteContext>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<WriteContext> Writes
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +133,54 @@ Methods
         .. code-block:: csharp
     
             public void Write(WriteContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Testing.TestSink
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.BeginEnabled
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.Extensions.Logging.Testing.BeginScopeContext<Microsoft.Extensions.Logging.Testing.BeginScopeContext>, System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<BeginScopeContext, bool> BeginEnabled { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.Scopes
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.Logging.Testing.BeginScopeContext<Microsoft.Extensions.Logging.Testing.BeginScopeContext>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<BeginScopeContext> Scopes { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.WriteEnabled
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.Extensions.Logging.Testing.WriteContext<Microsoft.Extensions.Logging.Testing.WriteContext>, System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<WriteContext, bool> WriteEnabled { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestSink.Writes
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.Logging.Testing.WriteContext<Microsoft.Extensions.Logging.Testing.WriteContext>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<WriteContext> Writes { get; set; }
     
 

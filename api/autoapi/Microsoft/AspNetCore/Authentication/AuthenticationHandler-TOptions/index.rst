@@ -56,188 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.ChallengeCalled
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool ChallengeCalled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.CurrentUri
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected string CurrentUri
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Logger
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            protected ILogger Logger
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Options
-    
-        
-        :rtype: TOptions
-    
-        
-        .. code-block:: csharp
-    
-            protected TOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.OriginalPath
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.PathString
-    
-        
-        .. code-block:: csharp
-    
-            protected PathString OriginalPath
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.OriginalPathBase
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.PathString
-    
-        
-        .. code-block:: csharp
-    
-            protected PathString OriginalPathBase
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.PriorHandler
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
-    
-        
-        .. code-block:: csharp
-    
-            public IAuthenticationHandler PriorHandler
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Request
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpRequest
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpRequest Request
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Response
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpResponse
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpResponse Response
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.SignInAccepted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool SignInAccepted
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.SignOutAccepted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool SignOutAccepted
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.UrlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected UrlEncoder UrlEncoder
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -489,5 +307,144 @@ Methods
         .. code-block:: csharp
     
             public Task SignOutAsync(SignOutContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.ChallengeCalled
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool ChallengeCalled { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.CurrentUri
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected string CurrentUri { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Logger
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            protected ILogger Logger { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Options
+    
+        
+        :rtype: TOptions
+    
+        
+        .. code-block:: csharp
+    
+            protected TOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.OriginalPath
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.PathString
+    
+        
+        .. code-block:: csharp
+    
+            protected PathString OriginalPath { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.OriginalPathBase
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.PathString
+    
+        
+        .. code-block:: csharp
+    
+            protected PathString OriginalPathBase { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.PriorHandler
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
+    
+        
+        .. code-block:: csharp
+    
+            public IAuthenticationHandler PriorHandler { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Request
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpRequest
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpRequest Request { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.Response
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpResponse
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpResponse Response { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.SignInAccepted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool SignInAccepted { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.SignOutAccepted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool SignOutAccepted { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationHandler<TOptions>.UrlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected UrlEncoder UrlEncoder { get; }
     
 

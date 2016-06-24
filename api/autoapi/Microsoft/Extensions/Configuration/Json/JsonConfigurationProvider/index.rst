@@ -71,6 +71,13 @@ Constructors
         
     
         
+        Initializes a new instance with the specified source.
+    
+        
+    
+        
+        :param source: The source settings.
+        
         :type source: Microsoft.Extensions.Configuration.Json.JsonConfigurationSource
     
         
@@ -91,6 +98,13 @@ Methods
     
         
     
+        
+        Loads the JSON data from a stream.
+    
+        
+    
+        
+        :param stream: The stream to read.
         
         :type stream: System.IO.Stream
     

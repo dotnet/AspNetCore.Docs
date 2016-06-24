@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Path
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch.Stem
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Stem
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -146,5 +111,34 @@ Methods
         .. code-block:: csharp
     
             public override int GetHashCode()
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Path { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch.Stem
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Stem { get; }
     
 

@@ -7,6 +7,10 @@ IAuthorizationRequirement Interface
 
 
 
+
+Represents an authorization requirement.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization`
 Assemblies

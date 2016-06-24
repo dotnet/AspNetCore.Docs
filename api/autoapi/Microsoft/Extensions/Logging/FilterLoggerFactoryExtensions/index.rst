@@ -70,8 +70,8 @@ Methods
         
     
         
-        Registers a wrapper logger which provides a common way to filter log messages across all registered
-         :any:`Microsoft.Extensions.Logging.ILoggerProvider`\s.
+        Registers a wrapper logger which provides a common way to filter log messages across all registered 
+        :any:`Microsoft.Extensions.Logging.ILoggerProvider`\s.
     
         
     
@@ -92,6 +92,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory WithFilter(ILoggerFactory loggerFactory, IFilterLoggerSettings settings)
+            public static ILoggerFactory WithFilter(this ILoggerFactory loggerFactory, IFilterLoggerSettings settings)
     
 

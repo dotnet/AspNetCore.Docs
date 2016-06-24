@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            string PolicyName
-            {
-                get;
-                set;
-            }
+            string PolicyName { get; set; }
     
 

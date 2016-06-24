@@ -8,7 +8,7 @@ ViewDataDictionaryAttribute Class
 
 
 
-Specifies that a controller property should be set with the current
+Specifies that a controller property should be set with the current 
 :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` when creating the controller. The property must have a public
 set method.
 

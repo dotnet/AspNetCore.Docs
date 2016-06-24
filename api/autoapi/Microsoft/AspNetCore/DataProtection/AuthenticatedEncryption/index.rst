@@ -96,6 +96,16 @@ Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAuthenticatedEncryptor`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.IAuthenticatedEncryptor
+
+        
+        The basic interface for providing an authenticated encryption and decryption routine.
+
+
     .. rubric:: Classes
 
 
@@ -147,15 +157,5 @@ Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption Namespace
         
         Specifies a message authentication algorithm to use for providing tamper-proofing
         to protected payloads.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAuthenticatedEncryptor`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.IAuthenticatedEncryptor
-
-        
-        The basic interface for providing an authenticated encryption and decryption routine.
 
 

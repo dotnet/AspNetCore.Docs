@@ -56,34 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RoslynCompilationContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RoslynCompilationContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RoslynCompilationContext.Compilation
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.CodeAnalysis.CSharp.CSharpCompilation` used for current source file compilation.
-    
-        
-        :rtype: Microsoft.CodeAnalysis.CSharp.CSharpCompilation
-    
-        
-        .. code-block:: csharp
-    
-            public CSharpCompilation Compilation
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,5 +82,29 @@ Constructors
         .. code-block:: csharp
     
             public RoslynCompilationContext(CSharpCompilation compilation)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RoslynCompilationContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RoslynCompilationContext.Compilation
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.CodeAnalysis.CSharp.CSharpCompilation` used for current source file compilation.
+    
+        
+        :rtype: Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+    
+        
+        .. code-block:: csharp
+    
+            public CSharpCompilation Compilation { get; set; }
     
 

@@ -89,7 +89,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseJwtBearerAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseJwtBearerAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.JwtBearerAppBuilderExtensions.UseJwtBearerAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.JwtBearerOptions)
     
@@ -121,6 +121,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseJwtBearerAuthentication(IApplicationBuilder app, JwtBearerOptions options)
+            public static IApplicationBuilder UseJwtBearerAuthentication(this IApplicationBuilder app, JwtBearerOptions options)
     
 

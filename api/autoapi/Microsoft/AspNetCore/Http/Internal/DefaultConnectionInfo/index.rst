@@ -53,85 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.ClientCertificate
-    
-        
-        :rtype: System.Security.Cryptography.X509Certificates.X509Certificate2
-    
-        
-        .. code-block:: csharp
-    
-            public override X509Certificate2 ClientCertificate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.LocalIpAddress
-    
-        
-        :rtype: System.Net.IPAddress
-    
-        
-        .. code-block:: csharp
-    
-            public override IPAddress LocalIpAddress
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.LocalPort
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int LocalPort
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.RemoteIpAddress
-    
-        
-        :rtype: System.Net.IPAddress
-    
-        
-        .. code-block:: csharp
-    
-            public override IPAddress RemoteIpAddress
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.RemotePort
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int RemotePort
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -151,6 +72,65 @@ Constructors
         .. code-block:: csharp
     
             public DefaultConnectionInfo(IFeatureCollection features)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.ClientCertificate
+    
+        
+        :rtype: System.Security.Cryptography.X509Certificates.X509Certificate2
+    
+        
+        .. code-block:: csharp
+    
+            public override X509Certificate2 ClientCertificate { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.LocalIpAddress
+    
+        
+        :rtype: System.Net.IPAddress
+    
+        
+        .. code-block:: csharp
+    
+            public override IPAddress LocalIpAddress { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.LocalPort
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int LocalPort { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.RemoteIpAddress
+    
+        
+        :rtype: System.Net.IPAddress
+    
+        
+        .. code-block:: csharp
+    
+            public override IPAddress RemoteIpAddress { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.DefaultConnectionInfo.RemotePort
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int RemotePort { get; set; }
     
 
 Methods

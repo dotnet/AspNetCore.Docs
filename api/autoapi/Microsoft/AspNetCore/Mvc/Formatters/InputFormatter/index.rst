@@ -56,34 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.InputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.InputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes
-    
-        
-    
-        
-        Gets the mutable collection of media type elements supported by
-        this :any:`Microsoft.AspNetCore.Mvc.Formatters.InputFormatter`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeCollection SupportedMediaTypes
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -197,5 +169,30 @@ Methods
         .. code-block:: csharp
     
             public abstract Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.InputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes
+    
+        
+    
+        
+        Gets the mutable collection of media type elements supported by
+        this :any:`Microsoft.AspNetCore.Mvc.Formatters.InputFormatter`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeCollection SupportedMediaTypes { get; }
     
 

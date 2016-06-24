@@ -56,34 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.UserValidator<TUser>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.UserValidator<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserValidator<TUser>.Describer
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to provider error messages for the current :any:`Microsoft.AspNetCore.Identity.UserValidator\`1`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.IdentityErrorDescriber
-        :return: Yhe :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to provider error messages for the current :any:`Microsoft.AspNetCore.Identity.UserValidator\`1`\.
-    
-        
-        .. code-block:: csharp
-    
-            public IdentityErrorDescriber Describer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,6 +82,31 @@ Constructors
         .. code-block:: csharp
     
             public UserValidator(IdentityErrorDescriber errors = null)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.UserValidator<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserValidator<TUser>.Describer
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to provider error messages for the current :any:`Microsoft.AspNetCore.Identity.UserValidator\`1`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.IdentityErrorDescriber
+        :return: Yhe :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to provider error messages for the current :any:`Microsoft.AspNetCore.Identity.UserValidator\`1`\.
+    
+        
+        .. code-block:: csharp
+    
+            public IdentityErrorDescriber Describer { get; }
     
 
 Methods

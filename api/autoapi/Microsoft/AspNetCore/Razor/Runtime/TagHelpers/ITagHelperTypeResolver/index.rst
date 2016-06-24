@@ -73,7 +73,6 @@ Methods
         
         :param documentLocation: The :any:`Microsoft.AspNetCore.Razor.SourceLocation` of the associated 
             :any:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode` responsible for the current :dn:meth:`Microsoft.AspNetCore.Razor.Runtime.TagHelpers.ITagHelperTypeResolver.Resolve(System.String,Microsoft.AspNetCore.Razor.SourceLocation,Microsoft.AspNetCore.Razor.ErrorSink)` call.
-            
         
         :type documentLocation: Microsoft.AspNetCore.Razor.SourceLocation
     

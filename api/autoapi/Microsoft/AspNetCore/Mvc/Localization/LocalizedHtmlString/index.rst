@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.IsResourceNotFound
-    
-        
-    
-        
-        Gets a flag that indicates if the resource is not found.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsResourceNotFound
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.Name
-    
-        
-    
-        
-        The name of the string resource.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.Value
-    
-        
-    
-        
-        The string resource.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -213,6 +150,60 @@ Constructors
         .. code-block:: csharp
     
             public LocalizedHtmlString(string name, string value, bool isResourceNotFound, params object[] arguments)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.IsResourceNotFound
+    
+        
+    
+        
+        Gets a flag that indicates if the resource is not found.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsResourceNotFound { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.Name
+    
+        
+    
+        
+        The name of the string resource.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString.Value
+    
+        
+    
+        
+        The string resource.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 
 Methods

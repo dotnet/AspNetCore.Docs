@@ -76,7 +76,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AppendList<T>(IHeaderDictionary Headers, string name, IList<T> values)
+            public static void AppendList<T>(this IHeaderDictionary Headers, string name, IList<T> values)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HeaderDictionaryTypeExtensions.GetTypedHeaders(Microsoft.AspNetCore.Http.HttpRequest)
     
@@ -89,7 +89,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static RequestHeaders GetTypedHeaders(HttpRequest request)
+            public static RequestHeaders GetTypedHeaders(this HttpRequest request)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HeaderDictionaryTypeExtensions.GetTypedHeaders(Microsoft.AspNetCore.Http.HttpResponse)
     
@@ -102,6 +102,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ResponseHeaders GetTypedHeaders(HttpResponse response)
+            public static ResponseHeaders GetTypedHeaders(this HttpResponse response)
     
 

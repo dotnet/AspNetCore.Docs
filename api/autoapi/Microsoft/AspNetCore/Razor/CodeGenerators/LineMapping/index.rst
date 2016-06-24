@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.DocumentLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.MappingLocation
-    
-        
-        .. code-block:: csharp
-    
-            public MappingLocation DocumentLocation
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.GeneratedLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.MappingLocation
-    
-        
-        .. code-block:: csharp
-    
-            public MappingLocation GeneratedLocation
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +74,76 @@ Constructors
         .. code-block:: csharp
     
             public LineMapping(MappingLocation documentLocation, MappingLocation generatedLocation)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.DocumentLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.MappingLocation
+    
+        
+        .. code-block:: csharp
+    
+            public MappingLocation DocumentLocation { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.GeneratedLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.MappingLocation
+    
+        
+        .. code-block:: csharp
+    
+            public MappingLocation GeneratedLocation { get; }
+    
+
+Operators
+---------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.Equality(Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping, Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(LineMapping left, LineMapping right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping.Inequality(Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping, Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(LineMapping left, LineMapping right)
     
 
 Methods

@@ -80,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app)
+            public static IApplicationBuilder UseDirectoryBrowser(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.DirectoryBrowserOptions)
     
@@ -101,7 +101,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app, DirectoryBrowserOptions options)
+            public static IApplicationBuilder UseDirectoryBrowser(this IApplicationBuilder app, DirectoryBrowserOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -124,6 +124,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDirectoryBrowser(IApplicationBuilder app, string requestPath)
+            public static IApplicationBuilder UseDirectoryBrowser(this IApplicationBuilder app, string requestPath)
     
 

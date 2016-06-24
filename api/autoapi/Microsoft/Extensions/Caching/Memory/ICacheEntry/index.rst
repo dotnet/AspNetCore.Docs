@@ -69,11 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            DateTimeOffset? AbsoluteExpiration
-            {
-                get;
-                set;
-            }
+            DateTimeOffset? AbsoluteExpiration { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.AbsoluteExpirationRelativeToNow
     
@@ -88,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            TimeSpan? AbsoluteExpirationRelativeToNow
-            {
-                get;
-                set;
-            }
+            TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.ExpirationTokens
     
@@ -107,10 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IChangeToken> ExpirationTokens
-            {
-                get;
-            }
+            IList<IChangeToken> ExpirationTokens { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.Key
     
@@ -125,10 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            object Key
-            {
-                get;
-            }
+            object Key { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks
     
@@ -143,10 +129,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<PostEvictionCallbackRegistration> PostEvictionCallbacks
-            {
-                get;
-            }
+            IList<PostEvictionCallbackRegistration> PostEvictionCallbacks { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.Priority
     
@@ -162,11 +145,7 @@ Properties
         
         .. code-block:: csharp
     
-            CacheItemPriority Priority
-            {
-                get;
-                set;
-            }
+            CacheItemPriority Priority { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.SlidingExpiration
     
@@ -182,11 +161,7 @@ Properties
         
         .. code-block:: csharp
     
-            TimeSpan? SlidingExpiration
-            {
-                get;
-                set;
-            }
+            TimeSpan? SlidingExpiration { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.ICacheEntry.Value
     
@@ -201,10 +176,6 @@ Properties
         
         .. code-block:: csharp
     
-            object Value
-            {
-                get;
-                set;
-            }
+            object Value { get; set; }
     
 

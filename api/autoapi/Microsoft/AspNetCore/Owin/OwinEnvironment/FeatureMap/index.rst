@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap.CanSet
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool CanSet
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -177,5 +155,24 @@ Constructors
         .. code-block:: csharp
     
             public FeatureMap(Type featureInterface, Func<object, object> getter, Func<object> defaultFactory, Action<object, object> setter, Func<object> featureFactory)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap.CanSet
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool CanSet { get; }
     
 

@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext.ActionContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext.Result
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker
-    
-        
-        .. code-block:: csharp
-    
-            public IActionInvoker Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,5 +71,34 @@ Constructors
         .. code-block:: csharp
     
             public ActionInvokerProviderContext(ActionContext actionContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext.ActionContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ActionInvokerProviderContext.Result
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker
+    
+        
+        .. code-block:: csharp
+    
+            public IActionInvoker Result { get; set; }
     
 

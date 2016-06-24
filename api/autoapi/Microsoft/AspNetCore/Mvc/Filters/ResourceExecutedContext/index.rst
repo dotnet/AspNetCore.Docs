@@ -58,118 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Canceled
-    
-        
-    
-        
-        Gets or sets a value which indicates whether or not execution was canceled by a resource filter.
-        If true, then a resource filter short-circuted execution by setting
-        :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result`\.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool Canceled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception
-    
-        
-    
-        
-        Gets or set the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception`\.
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public virtual Exception Exception
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.ExceptionDispatchInfo
-    
-        
-    
-        
-        Gets or set the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception`\.
-    
-        
-        :rtype: System.Runtime.ExceptionServices.ExceptionDispatchInfo
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ExceptionDispatchInfo ExceptionDispatchInfo
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.ExceptionHandled
-    
-        
-    
-        
-        <p>
-        Gets or sets a value indicating whether or not the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception` has been handled.
-        </p>
-        <p>
-        If <code>false</code> the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception` will be rethrown by the runtime after resource filters
-        have executed.
-        </p>
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool ExceptionHandled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Result
-    
-        
-    
-        
-        Gets or sets the result.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IActionResult Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -201,5 +89,97 @@ Constructors
         .. code-block:: csharp
     
             public ResourceExecutedContext(ActionContext actionContext, IList<IFilterMetadata> filters)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Canceled
+    
+        
+    
+        
+        Gets or sets a value which indicates whether or not execution was canceled by a resource filter.
+        If true, then a resource filter short-circuted execution by setting 
+        :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result`\.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool Canceled { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception
+    
+        
+    
+        
+        Gets or set the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception`\.
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public virtual Exception Exception { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.ExceptionDispatchInfo
+    
+        
+    
+        
+        Gets or set the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception`\.
+    
+        
+        :rtype: System.Runtime.ExceptionServices.ExceptionDispatchInfo
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ExceptionDispatchInfo ExceptionDispatchInfo { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.ExceptionHandled
+    
+        
+    
+        
+        <p>
+        Gets or sets a value indicating whether or not the current :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception` has been handled.
+        </p>
+        <p>
+        If <code>false</code> the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Exception` will be rethrown by the runtime after resource filters
+        have executed.
+        </p>
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool ExceptionHandled { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext.Result
+    
+        
+    
+        
+        Gets or sets the result.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IActionResult Result { get; set; }
     
 

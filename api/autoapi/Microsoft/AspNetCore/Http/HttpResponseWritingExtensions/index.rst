@@ -98,7 +98,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task WriteAsync(HttpResponse response, string text, Encoding encoding, CancellationToken cancellationToken = null)
+            public static Task WriteAsync(this HttpResponse response, string text, Encoding encoding, CancellationToken cancellationToken = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HttpResponseWritingExtensions.WriteAsync(Microsoft.AspNetCore.Http.HttpResponse, System.String, System.Threading.CancellationToken)
     
@@ -129,6 +129,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task WriteAsync(HttpResponse response, string text, CancellationToken cancellationToken = null)
+            public static Task WriteAsync(this HttpResponse response, string text, CancellationToken cancellationToken = null)
     
 

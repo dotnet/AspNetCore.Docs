@@ -52,47 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.RazorParser
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.RazorParser
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RazorParser.DesignTimeMode
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool DesignTimeMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RazorParser.TagHelperDescriptorResolver
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver` used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
-    
-        
-        .. code-block:: csharp
-    
-            protected ITagHelperDescriptorResolver TagHelperDescriptorResolver
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -285,7 +244,6 @@ Methods
         :type errorSink: Microsoft.AspNetCore.Razor.ErrorSink
         :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
         :return: :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s that are applicable to the <em>documentRoot</em>
-            
     
         
         .. code-block:: csharp
@@ -362,5 +320,39 @@ Methods
         .. code-block:: csharp
     
             public virtual void Parse(TextReader input, ParserVisitor visitor)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.RazorParser
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RazorParser.DesignTimeMode
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool DesignTimeMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RazorParser.TagHelperDescriptorResolver
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver` used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
+    
+        
+        .. code-block:: csharp
+    
+            protected ITagHelperDescriptorResolver TagHelperDescriptorResolver { get; }
     
 

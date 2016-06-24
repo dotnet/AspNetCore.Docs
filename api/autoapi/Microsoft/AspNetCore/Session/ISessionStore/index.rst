@@ -44,28 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Session.ISessionStore
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Session.ISessionStore
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Session.ISessionStore.IsAvailable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IsAvailable
-            {
-                get;
-            }
-    
-
 Methods
 -------
 

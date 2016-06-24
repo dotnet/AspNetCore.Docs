@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.Group
-    
-        
-    
-        
-        Gets the Group name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Group
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.Name
-    
-        
-    
-        
-        Gets the name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,5 +79,44 @@ Constructors
         .. code-block:: csharp
     
             public EnumGroupAndName(string group, string name)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.Group
+    
+        
+    
+        
+        Gets the Group name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Group { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.EnumGroupAndName.Name
+    
+        
+    
+        
+        Gets the name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
     
 

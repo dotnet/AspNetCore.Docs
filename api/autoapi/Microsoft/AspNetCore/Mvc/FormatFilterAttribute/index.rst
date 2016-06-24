@@ -8,7 +8,7 @@ FormatFilterAttribute Class
 
 
 
-A filter that will use the format value in the route data or query string to set the content type on an
+A filter that will use the format value in the route data or query string to set the content type on an 
 :any:`Microsoft.AspNetCore.Mvc.ObjectResult` returned from an action.
 
 
@@ -59,28 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.FormatFilterAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.FormatFilterAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.FormatFilterAttribute.IsReusable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -109,5 +87,24 @@ Methods
         .. code-block:: csharp
     
             public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.FormatFilterAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.FormatFilterAttribute.IsReusable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; }
     
 

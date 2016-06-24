@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.StatusCodeResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.StatusCodeResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.StatusCodeResult.StatusCode
-    
-        
-    
-        
-        Gets the HTTP status code.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StatusCode
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +106,29 @@ Methods
         .. code-block:: csharp
     
             public override void ExecuteResult(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.StatusCodeResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.StatusCodeResult.StatusCode
+    
+        
+    
+        
+        Gets the HTTP status code.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StatusCode { get; }
     
 

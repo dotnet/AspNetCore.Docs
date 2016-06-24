@@ -54,42 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.OpenIdConnectOptions
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext.ProtocolMessage
-    
-        
-        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectMessage ProtocolMessage
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -112,5 +76,34 @@ Constructors
         .. code-block:: csharp
     
             public BaseOpenIdConnectContext(HttpContext context, OpenIdConnectOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.OpenIdConnectOptions
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.BaseOpenIdConnectContext.ProtocolMessage
+    
+        
+        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectMessage ProtocolMessage { get; set; }
     
 

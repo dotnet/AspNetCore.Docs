@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationMiddleware
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationMiddleware
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationMiddleware.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.ClaimsTransformationOptions
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsTransformationOptions Options
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -119,5 +96,24 @@ Methods
         .. code-block:: csharp
     
             public Task Invoke(HttpContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationMiddleware
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationMiddleware.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.ClaimsTransformationOptions
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsTransformationOptions Options { get; set; }
     
 

@@ -34,7 +34,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public interface IMvcRazorHost : IDisposable
+    public interface IMvcRazorHost
 
 
 
@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            string DefaultNamespace
-            {
-                get;
-            }
+            string DefaultNamespace { get; }
     
 
 Methods
@@ -104,7 +101,6 @@ Methods
         :type inputStream: System.IO.Stream
         :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults
         :return: A :any:`Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults` instance that represents the results of code generation.
-            
     
         
         .. code-block:: csharp

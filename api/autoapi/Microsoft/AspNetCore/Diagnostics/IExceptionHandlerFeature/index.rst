@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            Exception Error
-            {
-                get;
-            }
+            Exception Error { get; }
     
 

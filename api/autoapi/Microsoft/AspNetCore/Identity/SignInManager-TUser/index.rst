@@ -57,50 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.SignInManager<TUser>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.SignInManager<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.SignInManager<TUser>.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-        :return: 
-            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual ILogger Logger
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.SignInManager<TUser>.UserManager
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.UserManager`1>{TUser}
-    
-        
-        .. code-block:: csharp
-    
-            protected UserManager<TUser> UserManager
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -658,5 +614,41 @@ Methods
         .. code-block:: csharp
     
             public virtual Task<TUser> ValidateSecurityStampAsync(ClaimsPrincipal principal)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.SignInManager<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.SignInManager<TUser>.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+        :return: 
+            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual ILogger Logger { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.SignInManager<TUser>.UserManager
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.UserManager`1>{TUser}
+    
+        
+        .. code-block:: csharp
+    
+            protected UserManager<TUser> UserManager { get; set; }
     
 

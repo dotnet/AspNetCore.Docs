@@ -70,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type ContainerType
-            {
-                get;
-            }
+            public Type ContainerType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity.MetadataKind
     
@@ -88,10 +85,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadataKind MetadataKind
-            {
-                get;
-            }
+            public ModelMetadataKind MetadataKind { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity.ModelType
     
@@ -106,10 +100,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type ModelType
-            {
-                get;
-            }
+            public Type ModelType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity.Name
     
@@ -125,10 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-            }
+            public string Name { get; }
     
 
 Methods

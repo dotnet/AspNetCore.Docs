@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationTicket
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationTicket
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.AuthenticationScheme
-    
-        
-    
-        
-        Gets the authentication type.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.Principal
-    
-        
-    
-        
-        Gets the claims-principal with authenticated user identities.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.Properties
-    
-        
-    
-        
-        Additional state values for the authentication session.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -155,5 +92,59 @@ Constructors
         .. code-block:: csharp
     
             public AuthenticationTicket(ClaimsPrincipal principal, AuthenticationProperties properties, string authenticationScheme)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationTicket
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.AuthenticationScheme
+    
+        
+    
+        
+        Gets the authentication type.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.Principal
+    
+        
+    
+        
+        Gets the claims-principal with authenticated user identities.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationTicket.Properties
+    
+        
+    
+        
+        Additional state values for the authentication session.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
     
 

@@ -64,6 +64,16 @@ Microsoft.Extensions.Internal Namespace
 .. dn:namespace:: Microsoft.Extensions.Internal
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ISystemClock`
+        .. object: type=interface name=Microsoft.Extensions.Internal.ISystemClock
+
+        
+        Abstracts the system clock to facilitate testing.
+
+
     .. rubric:: Classes
 
 
@@ -81,15 +91,5 @@ Microsoft.Extensions.Internal Namespace
 
         
         Provides access to the normal system clock.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ISystemClock`
-        .. object: type=interface name=Microsoft.Extensions.Internal.ISystemClock
-
-        
-        Abstracts the system clock to facilitate testing.
 
 

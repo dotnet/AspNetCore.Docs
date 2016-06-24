@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract Stream Body
-            {
-                get;
-                set;
-            }
+            public abstract Stream Body { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.ContentLength
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract long ? ContentLength
-            {
-                get;
-                set;
-            }
+            public abstract long ? ContentLength { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.ContentType
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string ContentType
-            {
-                get;
-                set;
-            }
+            public abstract string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.Cookies
     
@@ -134,10 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IResponseCookies Cookies
-            {
-                get;
-            }
+            public abstract IResponseCookies Cookies { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.HasStarted
     
@@ -152,10 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract bool HasStarted
-            {
-                get;
-            }
+            public abstract bool HasStarted { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.Headers
     
@@ -170,10 +152,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IHeaderDictionary Headers
-            {
-                get;
-            }
+            public abstract IHeaderDictionary Headers { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.HttpContext
     
@@ -188,10 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract HttpContext HttpContext
-            {
-                get;
-            }
+            public abstract HttpContext HttpContext { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpResponse.StatusCode
     
@@ -206,11 +182,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract int StatusCode
-            {
-                get;
-                set;
-            }
+            public abstract int StatusCode { get; set; }
     
 
 Methods

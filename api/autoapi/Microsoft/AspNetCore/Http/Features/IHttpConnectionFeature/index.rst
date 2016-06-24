@@ -69,11 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ConnectionId
-            {
-                get;
-                set;
-            }
+            string ConnectionId { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalIpAddress
     
@@ -88,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            IPAddress LocalIpAddress
-            {
-                get;
-                set;
-            }
+            IPAddress LocalIpAddress { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalPort
     
@@ -107,11 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            int LocalPort
-            {
-                get;
-                set;
-            }
+            int LocalPort { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemoteIpAddress
     
@@ -126,11 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            IPAddress RemoteIpAddress
-            {
-                get;
-                set;
-            }
+            IPAddress RemoteIpAddress { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemotePort
     
@@ -145,10 +129,6 @@ Properties
         
         .. code-block:: csharp
     
-            int RemotePort
-            {
-                get;
-                set;
-            }
+            int RemotePort { get; set; }
     
 

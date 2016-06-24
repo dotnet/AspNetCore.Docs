@@ -52,57 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string this[string key]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,25 +92,6 @@ Constructors
         .. code-block:: csharp
     
             public RequestCookieCollection(int capacity)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Empty
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly RequestCookieCollection Empty
     
 
 Methods
@@ -261,5 +191,66 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out string value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Empty
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly RequestCookieCollection Empty
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string this[string key] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.RequestCookieCollection.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
     
 

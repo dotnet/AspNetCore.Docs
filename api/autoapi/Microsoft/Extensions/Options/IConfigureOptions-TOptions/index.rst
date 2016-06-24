@@ -7,6 +7,10 @@ IConfigureOptions<TOptions> Interface
 
 
 
+
+Represents something that configures the TOptions type.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -57,6 +61,13 @@ Methods
     
         
     
+        
+        Invoked to configure a TOptions instance.
+    
+        
+    
+        
+        :param options: The options instance to configure.
         
         :type options: TOptions
     

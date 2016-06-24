@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            HttpRequestMessage HttpRequestMessage
-            {
-                get;
-                set;
-            }
+            HttpRequestMessage HttpRequestMessage { get; set; }
     
 

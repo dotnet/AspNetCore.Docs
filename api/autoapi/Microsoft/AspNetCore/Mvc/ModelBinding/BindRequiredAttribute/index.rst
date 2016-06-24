@@ -7,6 +7,12 @@ BindRequiredAttribute Class
 
 
 
+
+Indicates that a property is required for model binding. When applied to a property, the model binding system
+requires a value for that property. When applied to a type, the model binding system requires values for all
+properties of that type.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.ModelBinding`
 Assemblies
@@ -64,6 +70,11 @@ Constructors
 
     
     .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute.BindRequiredAttribute()
+    
+        
+    
+        
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute` instance.
     
         
     

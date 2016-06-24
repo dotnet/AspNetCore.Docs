@@ -73,7 +73,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AddExcludePatterns(Matcher matcher, params IEnumerable<string>[] excludePatternsGroups)
+            public static void AddExcludePatterns(this Matcher matcher, params IEnumerable<string>[] excludePatternsGroups)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions.AddIncludePatterns(Microsoft.Extensions.FileSystemGlobbing.Matcher, System.Collections.Generic.IEnumerable<System.String>[])
     
@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AddIncludePatterns(Matcher matcher, params IEnumerable<string>[] includePatternsGroups)
+            public static void AddIncludePatterns(this Matcher matcher, params IEnumerable<string>[] includePatternsGroups)
     
     .. dn:method:: Microsoft.Extensions.FileSystemGlobbing.MatcherExtensions.GetResultsInFullPath(Microsoft.Extensions.FileSystemGlobbing.Matcher, System.String)
     
@@ -104,6 +104,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<string> GetResultsInFullPath(Matcher matcher, string directoryPath)
+            public static IEnumerable<string> GetResultsInFullPath(this Matcher matcher, string directoryPath)
     
 

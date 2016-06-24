@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ClientValidationEnabled
-            {
-                get;
-                set;
-            }
+            public bool ClientValidationEnabled { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelperOptions.Html5DateRenderingMode
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Html5DateRenderingMode Html5DateRenderingMode
-            {
-                get;
-                set;
-            }
+            public Html5DateRenderingMode Html5DateRenderingMode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelperOptions.IdAttributeDotReplacement
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string IdAttributeDotReplacement
-            {
-                get;
-                set;
-            }
+            public string IdAttributeDotReplacement { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelperOptions.ValidationMessageElement
     
@@ -135,11 +123,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ValidationMessageElement
-            {
-                get;
-                set;
-            }
+            public string ValidationMessageElement { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelperOptions.ValidationSummaryMessageElement
     
@@ -155,10 +139,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string ValidationSummaryMessageElement
-            {
-                get;
-                set;
-            }
+            public string ValidationSummaryMessageElement { get; set; }
     
 

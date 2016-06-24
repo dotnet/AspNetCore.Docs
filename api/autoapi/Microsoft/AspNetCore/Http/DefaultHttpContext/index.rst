@@ -53,177 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.DefaultHttpContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.DefaultHttpContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Authentication
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager
-    
-        
-        .. code-block:: csharp
-    
-            public override AuthenticationManager Authentication
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Connection
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.ConnectionInfo
-    
-        
-        .. code-block:: csharp
-    
-            public override ConnectionInfo Connection
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Features
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public override IFeatureCollection Features
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Items
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public override IDictionary<object, object> Items
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Request
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpRequest
-    
-        
-        .. code-block:: csharp
-    
-            public override HttpRequest Request
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.RequestAborted
-    
-        
-        :rtype: System.Threading.CancellationToken
-    
-        
-        .. code-block:: csharp
-    
-            public override CancellationToken RequestAborted
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.RequestServices
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public override IServiceProvider RequestServices
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Response
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpResponse
-    
-        
-        .. code-block:: csharp
-    
-            public override HttpResponse Response
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Session
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.ISession
-    
-        
-        .. code-block:: csharp
-    
-            public override ISession Session
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.TraceIdentifier
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string TraceIdentifier
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.User
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public override ClaimsPrincipal User
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.WebSockets
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.WebSocketManager
-    
-        
-        .. code-block:: csharp
-    
-            public override WebSocketManager WebSockets
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -401,5 +230,134 @@ Methods
         .. code-block:: csharp
     
             protected virtual void UninitializeWebSocketManager(WebSocketManager instance)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.DefaultHttpContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Authentication
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager
+    
+        
+        .. code-block:: csharp
+    
+            public override AuthenticationManager Authentication { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Connection
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.ConnectionInfo
+    
+        
+        .. code-block:: csharp
+    
+            public override ConnectionInfo Connection { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Features
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public override IFeatureCollection Features { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Items
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public override IDictionary<object, object> Items { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Request
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpRequest
+    
+        
+        .. code-block:: csharp
+    
+            public override HttpRequest Request { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.RequestAborted
+    
+        
+        :rtype: System.Threading.CancellationToken
+    
+        
+        .. code-block:: csharp
+    
+            public override CancellationToken RequestAborted { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.RequestServices
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public override IServiceProvider RequestServices { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Response
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpResponse
+    
+        
+        .. code-block:: csharp
+    
+            public override HttpResponse Response { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.Session
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.ISession
+    
+        
+        .. code-block:: csharp
+    
+            public override ISession Session { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.TraceIdentifier
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string TraceIdentifier { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.User
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public override ClaimsPrincipal User { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.DefaultHttpContext.WebSockets
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.WebSocketManager
+    
+        
+        .. code-block:: csharp
+    
+            public override WebSocketManager WebSockets { get; }
     
 

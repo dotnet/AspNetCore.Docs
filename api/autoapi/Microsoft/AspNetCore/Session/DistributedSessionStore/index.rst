@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Session.DistributedSessionStore
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Session.DistributedSessionStore
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSessionStore.IsAvailable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsAvailable
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 

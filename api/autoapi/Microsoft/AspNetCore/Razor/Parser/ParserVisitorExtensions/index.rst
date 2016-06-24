@@ -73,6 +73,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Visit(ParserVisitor self, ParserResults result)
+            public static void Visit(this ParserVisitor self, ParserResults result)
     
 

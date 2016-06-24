@@ -59,11 +59,13 @@ Microsoft.Extensions.Configuration.CommandLine Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
 
         
+        A command line based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
 
 
     class :dn:cls:`CommandLineConfigurationSource`
         .. object: type=class name=Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationSource
 
         
+        Represents command line arguments as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 

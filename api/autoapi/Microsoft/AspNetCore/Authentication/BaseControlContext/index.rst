@@ -53,74 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.BaseControlContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.BaseControlContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.HandledResponse
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HandledResponse
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.Skipped
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Skipped
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.State
-    
-        
-        :rtype: Microsoft.AspNetCore.Authentication.EventResultState
-    
-        
-        .. code-block:: csharp
-    
-            public EventResultState State
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.Ticket
-    
-        
-    
-        
-        Gets or set the :dn:prop:`Microsoft.AspNetCore.Authentication.BaseControlContext.Ticket` to return if this event signals it handled the event.
-    
-        
-        :rtype: Microsoft.AspNetCore.Authentication.AuthenticationTicket
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationTicket Ticket
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -193,5 +125,59 @@ Methods
         .. code-block:: csharp
     
             public void SkipToNextMiddleware()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.BaseControlContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.HandledResponse
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HandledResponse { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.Skipped
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Skipped { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.State
+    
+        
+        :rtype: Microsoft.AspNetCore.Authentication.EventResultState
+    
+        
+        .. code-block:: csharp
+    
+            public EventResultState State { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseControlContext.Ticket
+    
+        
+    
+        
+        Gets or set the :dn:prop:`Microsoft.AspNetCore.Authentication.BaseControlContext.Ticket` to return if this event signals it handled the event.
+    
+        
+        :rtype: Microsoft.AspNetCore.Authentication.AuthenticationTicket
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationTicket Ticket { get; set; }
     
 

@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            protected ILogger Logger
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.Options
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.MvcJsonOptions`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.MvcJsonOptions
-    
-        
-        .. code-block:: csharp
-    
-            protected MvcJsonOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.WriterFactory
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory
-    
-        
-        .. code-block:: csharp
-    
-            protected IHttpResponseStreamWriterFactory WriterFactory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -195,5 +132,59 @@ Methods
         .. code-block:: csharp
     
             public Task ExecuteAsync(ActionContext context, JsonResult result)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            protected ILogger Logger { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.Options
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.MvcJsonOptions`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.MvcJsonOptions
+    
+        
+        .. code-block:: csharp
+    
+            protected MvcJsonOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.JsonResultExecutor.WriterFactory
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory
+    
+        
+        .. code-block:: csharp
+    
+            protected IHttpResponseStreamWriterFactory WriterFactory { get; }
     
 

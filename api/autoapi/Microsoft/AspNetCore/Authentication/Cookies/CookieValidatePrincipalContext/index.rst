@@ -58,71 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.Principal
-    
-        
-    
-        
-        Contains the claims principal arriving with the request. May be altered to change the 
-        details of the authenticated user.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.Properties
-    
-        
-    
-        
-        Contains the extra meta-data arriving with the request ticket. May be altered.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.ShouldRenew
-    
-        
-    
-        
-        If true, the cookie will be renewed
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ShouldRenew
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -155,6 +90,61 @@ Constructors
         .. code-block:: csharp
     
             public CookieValidatePrincipalContext(HttpContext context, AuthenticationTicket ticket, CookieAuthenticationOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.Principal
+    
+        
+    
+        
+        Contains the claims principal arriving with the request. May be altered to change the 
+        details of the authenticated user.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.Properties
+    
+        
+    
+        
+        Contains the extra meta-data arriving with the request ticket. May be altered.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieValidatePrincipalContext.ShouldRenew
+    
+        
+    
+        
+        If true, the cookie will be renewed
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ShouldRenew { get; set; }
     
 
 Methods

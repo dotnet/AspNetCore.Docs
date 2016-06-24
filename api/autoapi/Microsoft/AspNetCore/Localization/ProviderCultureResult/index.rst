@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.ProviderCultureResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.ProviderCultureResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures
-    
-        
-    
-        
-        Gets the list of cultures to be used for formatting.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> Cultures
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures
-    
-        
-    
-        
-        Gets the list of ui cultures to be used for text, i.e. language;
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> UICultures
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -114,7 +69,7 @@ Constructors
         
     
         
-        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object that has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and
+        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object that has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and 
         :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures` properties set to the same culture value.
     
         
@@ -134,7 +89,7 @@ Constructors
         
     
         
-        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and
+        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and 
         :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures` properties set to the respective culture values provided.
     
         
@@ -159,7 +114,7 @@ Constructors
         
     
         
-        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object that has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and
+        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object that has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and 
         :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures` properties set to the same culture value.
     
         
@@ -179,7 +134,7 @@ Constructors
         
     
         
-        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and
+        Creates a new :any:`Microsoft.AspNetCore.Localization.ProviderCultureResult` object has its :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures` and 
         :dn:prop:`Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures` properties set to the respective culture values provided.
     
         
@@ -190,7 +145,7 @@ Constructors
         :type culture: System.String
     
         
-        :param uiCulture:  The name of the ui culture to be used for text, i.e. language.
+        :param uiCulture: The name of the ui culture to be used for text, i.e. language.
         
         :type uiCulture: System.String
     
@@ -198,5 +153,44 @@ Constructors
         .. code-block:: csharp
     
             public ProviderCultureResult(string culture, string uiCulture)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.ProviderCultureResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.ProviderCultureResult.Cultures
+    
+        
+    
+        
+        Gets the list of cultures to be used for formatting.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> Cultures { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.ProviderCultureResult.UICultures
+    
+        
+    
+        
+        Gets the list of ui cultures to be used for text, i.e. language;
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> UICultures { get; }
     
 

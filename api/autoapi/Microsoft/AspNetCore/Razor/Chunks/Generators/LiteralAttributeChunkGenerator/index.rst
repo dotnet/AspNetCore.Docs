@@ -53,54 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.Prefix
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<string> Prefix
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.Value
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<string> Value
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.ValueGenerator
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator<Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<SpanChunkGenerator> ValueGenerator
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -195,5 +147,44 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.Prefix
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<string> Prefix { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.Value
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<string> Value { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.LiteralAttributeChunkGenerator.ValueGenerator
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator<Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<SpanChunkGenerator> ValueGenerator { get; }
     
 

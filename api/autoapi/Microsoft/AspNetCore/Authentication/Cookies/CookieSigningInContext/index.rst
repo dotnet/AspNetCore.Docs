@@ -58,93 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.AuthenticationScheme
-    
-        
-    
-        
-        The name of the AuthenticationScheme creating a cookie
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.CookieOptions
-    
-        
-    
-        
-        The options for creating the outgoing cookie.
-        May be replace or altered during the SigningIn call.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.CookieOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookieOptions CookieOptions
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.Principal
-    
-        
-    
-        
-        Contains the claims about to be converted into the outgoing cookie.
-        May be replaced or altered during the SigningIn call.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.Properties
-    
-        
-    
-        
-        Contains the extra data about to be contained in the outgoing cookie.
-        May be replaced or altered during the SigningIn call.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -196,5 +109,77 @@ Constructors
         .. code-block:: csharp
     
             public CookieSigningInContext(HttpContext context, CookieAuthenticationOptions options, string authenticationScheme, ClaimsPrincipal principal, AuthenticationProperties properties, CookieOptions cookieOptions)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.AuthenticationScheme
+    
+        
+    
+        
+        The name of the AuthenticationScheme creating a cookie
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.CookieOptions
+    
+        
+    
+        
+        The options for creating the outgoing cookie.
+        May be replace or altered during the SigningIn call.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.CookieOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookieOptions CookieOptions { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.Principal
+    
+        
+    
+        
+        Contains the claims about to be converted into the outgoing cookie.
+        May be replaced or altered during the SigningIn call.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningInContext.Properties
+    
+        
+    
+        
+        Contains the extra data about to be contained in the outgoing cookie.
+        May be replaced or altered during the SigningIn call.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
     
 

@@ -56,53 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ActionContext
-    
-        
-    
-        
-        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ActionContext` associated with this context.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ValueProviders
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances.
-        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory` instances should add the appropriate
-        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances to this list.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IValueProvider> ValueProviders
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -129,5 +82,46 @@ Constructors
         .. code-block:: csharp
     
             public ValueProviderFactoryContext(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ActionContext
+    
+        
+    
+        
+        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ActionContext` associated with this context.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderFactoryContext.ValueProviders
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances. 
+        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory` instances should add the appropriate 
+        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` instances to this list.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IValueProvider> ValueProviders { get; }
     
 

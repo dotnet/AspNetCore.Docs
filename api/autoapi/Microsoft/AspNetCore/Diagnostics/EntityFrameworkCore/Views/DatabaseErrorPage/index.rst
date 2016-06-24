@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPage.Model
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPageModel
-    
-        
-        .. code-block:: csharp
-    
-            public DatabaseErrorPageModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -137,5 +114,24 @@ Methods
         .. code-block:: csharp
     
             public string UrlEncode(string content)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPage.Model
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.Views.DatabaseErrorPageModel
+    
+        
+        .. code-block:: csharp
+    
+            public DatabaseErrorPageModel Model { get; set; }
     
 

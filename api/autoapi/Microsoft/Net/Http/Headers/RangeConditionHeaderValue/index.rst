@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue.EntityTag
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public EntityTagHeaderValue EntityTag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue.LastModified
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? LastModified
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -130,6 +95,35 @@ Constructors
         .. code-block:: csharp
     
             public RangeConditionHeaderValue(string entityTag)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue.EntityTag
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public EntityTagHeaderValue EntityTag { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeConditionHeaderValue.LastModified
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? LastModified { get; }
     
 
 Methods

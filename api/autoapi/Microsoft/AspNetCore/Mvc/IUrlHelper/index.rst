@@ -48,33 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.IUrlHelper
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.IUrlHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.IUrlHelper.ActionContext
-    
-        
-    
-        
-        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.IUrlHelper.ActionContext` for the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            ActionContext ActionContext
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -195,5 +168,29 @@ Methods
         .. code-block:: csharp
     
             string RouteUrl(UrlRouteContext routeContext)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.IUrlHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.IUrlHelper.ActionContext
+    
+        
+    
+        
+        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.IUrlHelper.ActionContext` for the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            ActionContext ActionContext { get; }
     
 

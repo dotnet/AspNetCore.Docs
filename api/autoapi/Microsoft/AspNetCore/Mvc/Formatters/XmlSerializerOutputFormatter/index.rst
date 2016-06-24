@@ -59,52 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter.WrapperProviderFactories
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory` to
-        provide the wrapping type for serialization.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory<Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IWrapperProviderFactory> WrapperProviderFactories
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter.WriterSettings
-    
-        
-    
-        
-        Gets the settings to be used by the XmlWriter.
-    
-        
-        :rtype: System.Xml.XmlWriterSettings
-    
-        
-        .. code-block:: csharp
-    
-            public XmlWriterSettings WriterSettings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -195,7 +149,7 @@ Methods
         
     
         
-        Creates a new instance of :any:`System.Xml.XmlWriter` using the given :any:`System.IO.TextWriter` and
+        Creates a new instance of :any:`System.Xml.XmlWriter` using the given :any:`System.IO.TextWriter` and 
         :any:`System.Xml.XmlWriterSettings`\.
     
         
@@ -274,5 +228,45 @@ Methods
         .. code-block:: csharp
     
             public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter.WrapperProviderFactories
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory` to
+        provide the wrapping type for serialization.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory<Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IWrapperProviderFactory> WrapperProviderFactories { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlSerializerOutputFormatter.WriterSettings
+    
+        
+    
+        
+        Gets the settings to be used by the XmlWriter.
+    
+        
+        :rtype: System.Xml.XmlWriterSettings
+    
+        
+        .. code-block:: csharp
+    
+            public XmlWriterSettings WriterSettings { get; }
     
 

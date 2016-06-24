@@ -52,68 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.FormattedModelValue
-    
-        
-    
-        
-        Gets or sets the formatted model value.
-    
-        
-        :rtype: System.Object
-        :return: The formatted model value.
-    
-        
-        .. code-block:: csharp
-    
-            public object FormattedModelValue
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.HtmlFieldPrefix
-    
-        
-    
-        
-        Gets or sets the HTML field prefix.
-    
-        
-        :rtype: System.String
-        :return: The HTML field prefix.
-    
-        
-        .. code-block:: csharp
-    
-            public string HtmlFieldPrefix
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.TemplateDepth
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int TemplateDepth
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -190,5 +128,56 @@ Methods
         .. code-block:: csharp
     
             public bool Visited(ModelExplorer modelExplorer)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.FormattedModelValue
+    
+        
+    
+        
+        Gets or sets the formatted model value.
+    
+        
+        :rtype: System.Object
+        :return: The formatted model value.
+    
+        
+        .. code-block:: csharp
+    
+            public object FormattedModelValue { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.HtmlFieldPrefix
+    
+        
+    
+        
+        Gets or sets the HTML field prefix.
+    
+        
+        :rtype: System.String
+        :return: The HTML field prefix.
+    
+        
+        .. code-block:: csharp
+    
+            public string HtmlFieldPrefix { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.TemplateDepth
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int TemplateDepth { get; }
     
 

@@ -69,18 +69,14 @@ Properties
         
         .. code-block:: csharp
     
-            Stream Body
-            {
-                get;
-                set;
-            }
+            Stream Body { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.HasStarted
     
         
     
         
-        Indicates if the response has started. If true, the :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode`\,
+        Indicates if the response has started. If true, the :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode`\, 
         :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.ReasonPhrase`\, and :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers` are now immutable, and
         OnStarting should no longer be called.
     
@@ -90,10 +86,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HasStarted
-            {
-                get;
-            }
+            bool HasStarted { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers
     
@@ -108,11 +101,7 @@ Properties
         
         .. code-block:: csharp
     
-            IHeaderDictionary Headers
-            {
-                get;
-                set;
-            }
+            IHeaderDictionary Headers { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.ReasonPhrase
     
@@ -127,11 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ReasonPhrase
-            {
-                get;
-                set;
-            }
+            string ReasonPhrase { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode
     
@@ -146,11 +131,7 @@ Properties
         
         .. code-block:: csharp
     
-            int StatusCode
-            {
-                get;
-                set;
-            }
+            int StatusCode { get; set; }
     
 
 Methods
@@ -192,7 +173,7 @@ Methods
     
         
         Registers a callback to be invoked just before the response starts. This is the
-        last chance to modify the :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers`\, :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode`\, or
+        last chance to modify the :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers`\, :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode`\, or 
         :dn:prop:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.ReasonPhrase`\.
     
         

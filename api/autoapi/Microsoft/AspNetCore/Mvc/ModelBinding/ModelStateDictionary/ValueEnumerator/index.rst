@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator.Current
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateEntry Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,6 +66,35 @@ Constructors
         .. code-block:: csharp
     
             public ValueEnumerator(ModelStateDictionary dictionary, string prefix)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator.Current
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateEntry Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

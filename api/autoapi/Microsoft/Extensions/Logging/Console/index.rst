@@ -88,6 +88,15 @@ Microsoft.Extensions.Logging.Console Namespace
 .. dn:namespace:: Microsoft.Extensions.Logging.Console
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IConsoleLoggerSettings`
+        .. object: type=interface name=Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -117,15 +126,6 @@ Microsoft.Extensions.Logging.Console Namespace
 
     class :dn:cls:`ConsoleLoggerSettings`
         .. object: type=class name=Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IConsoleLoggerSettings`
-        .. object: type=interface name=Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings
 
         
 

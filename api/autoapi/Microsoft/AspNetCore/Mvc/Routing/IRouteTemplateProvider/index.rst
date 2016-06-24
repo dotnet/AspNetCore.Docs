@@ -70,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Name
-            {
-                get;
-            }
+            string Name { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider.Order
     
@@ -91,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            int ? Order
-            {
-                get;
-            }
+            int ? Order { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider.Template
     
@@ -109,9 +103,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Template
-            {
-                get;
-            }
+            string Template { get; }
     
 

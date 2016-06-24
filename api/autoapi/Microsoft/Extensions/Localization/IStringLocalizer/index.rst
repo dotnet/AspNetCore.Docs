@@ -48,68 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.Extensions.Localization.IStringLocalizer
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.Extensions.Localization.IStringLocalizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.IStringLocalizer.Item[System.String]
-    
-        
-    
-        
-        Gets the string resource with the given name.
-    
-        
-    
-        
-        :param name: The name of the string resource.
-        
-        :type name: System.String
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-        :return: The string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
-    
-        
-        .. code-block:: csharp
-    
-            LocalizedString this[string name]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.IStringLocalizer.Item[System.String, System.Object[]]
-    
-        
-    
-        
-        Gets the string resource with the given name and formatted with the supplied arguments.
-    
-        
-    
-        
-        :param name: The name of the string resource.
-        
-        :type name: System.String
-    
-        
-        :param arguments: The values to format the string with.
-        
-        :type arguments: System.Object<System.Object>[]
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-        :return: The formatted string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
-    
-        
-        .. code-block:: csharp
-    
-            LocalizedString this[string name, params object[] arguments]
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -160,5 +98,61 @@ Methods
         .. code-block:: csharp
     
             IStringLocalizer WithCulture(CultureInfo culture)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.Extensions.Localization.IStringLocalizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.IStringLocalizer.Item[System.String]
+    
+        
+    
+        
+        Gets the string resource with the given name.
+    
+        
+    
+        
+        :param name: The name of the string resource.
+        
+        :type name: System.String
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+        :return: The string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
+    
+        
+        .. code-block:: csharp
+    
+            LocalizedString this[string name] { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.IStringLocalizer.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        Gets the string resource with the given name and formatted with the supplied arguments.
+    
+        
+    
+        
+        :param name: The name of the string resource.
+        
+        :type name: System.String
+    
+        
+        :param arguments: The values to format the string with.
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+        :return: The formatted string resource as a :any:`Microsoft.Extensions.Localization.LocalizedString`\.
+    
+        
+        .. code-block:: csharp
+    
+            LocalizedString this[string name, params object[] arguments] { get; }
     
 

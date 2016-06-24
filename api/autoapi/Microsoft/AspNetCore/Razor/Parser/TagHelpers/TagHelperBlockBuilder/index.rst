@@ -57,145 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Attributes
-    
-        
-    
-        
-        The HTML attributes.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>}}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<KeyValuePair<string, SyntaxTreeNode>> Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Descriptors
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s for the HTML element.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<TagHelperDescriptor> Descriptors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.SourceEndTag
-    
-        
-    
-        
-        Gets or sets the unrewritten source end tag.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block SourceEndTag
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.SourceStartTag
-    
-        
-    
-        
-        Gets or sets the unrewritten source start tag.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block SourceStartTag
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Start
-    
-        
-    
-        
-        The starting :any:`Microsoft.AspNetCore.Razor.SourceLocation` of the tag helper.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Start
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagMode
-    
-        
-    
-        
-        Gets the HTML syntax of the element in the Razor source.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
-    
-        
-        .. code-block:: csharp
-    
-            public TagMode TagMode
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagName
-    
-        
-    
-        
-        The HTML tag name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TagName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -224,7 +85,7 @@ Constructors
     
             public TagHelperBlockBuilder(TagHelperBlock original)
     
-    .. dn:constructor:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagHelperBlockBuilder(System.String, Microsoft.AspNetCore.Razor.TagHelpers.TagMode, Microsoft.AspNetCore.Razor.SourceLocation, System.Collections.Generic.IList<System.Collections.Generic.KeyValuePair<System.String, Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>)
+    .. dn:constructor:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagHelperBlockBuilder(System.String, Microsoft.AspNetCore.Razor.TagHelpers.TagMode, Microsoft.AspNetCore.Razor.SourceLocation, System.Collections.Generic.IList<Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>)
     
         
     
@@ -252,7 +113,7 @@ Constructors
         
         :param attributes: Attributes of the :any:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock`\.
         
-        :type attributes: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>}}
+        :type attributes: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode<Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode>}
     
         
         :param descriptors: The :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s associated with the current HTML
@@ -263,7 +124,121 @@ Constructors
         
         .. code-block:: csharp
     
-            public TagHelperBlockBuilder(string tagName, TagMode tagMode, SourceLocation start, IList<KeyValuePair<string, SyntaxTreeNode>> attributes, IEnumerable<TagHelperDescriptor> descriptors)
+            public TagHelperBlockBuilder(string tagName, TagMode tagMode, SourceLocation start, IList<TagHelperAttributeNode> attributes, IEnumerable<TagHelperDescriptor> descriptors)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Attributes
+    
+        
+    
+        
+        The HTML attributes.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode<Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<TagHelperAttributeNode> Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Descriptors
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s for the HTML element.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<TagHelperDescriptor> Descriptors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.SourceEndTag
+    
+        
+    
+        
+        Gets or sets the unrewritten source end tag.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block SourceEndTag { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.SourceStartTag
+    
+        
+    
+        
+        Gets or sets the unrewritten source start tag.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block SourceStartTag { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.Start
+    
+        
+    
+        
+        The starting :any:`Microsoft.AspNetCore.Razor.SourceLocation` of the tag helper.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Start { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagMode
+    
+        
+    
+        
+        Gets the HTML syntax of the element in the Razor source.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
+    
+        
+        .. code-block:: csharp
+    
+            public TagMode TagMode { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlockBuilder.TagName
+    
+        
+    
+        
+        The HTML tag name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TagName { get; set; }
     
 
 Methods

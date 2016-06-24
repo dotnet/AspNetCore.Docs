@@ -56,88 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues
-    
-        
-    
-        
-        Gets the set of route values associated with the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary AmbientValues
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.RouteName
-    
-        
-    
-        
-        Gets the name of the route to use for virtual path generation.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RouteName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.Values
-    
-        
-    
-        
-        Gets or sets the set of new values provided for virtual path generation.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary Values
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -208,5 +126,74 @@ Constructors
         .. code-block:: csharp
     
             public VirtualPathContext(HttpContext httpContext, RouteValueDictionary ambientValues, RouteValueDictionary values, string routeName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues
+    
+        
+    
+        
+        Gets the set of route values associated with the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary AmbientValues { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.RouteName
+    
+        
+    
+        
+        Gets the name of the route to use for virtual path generation.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RouteName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathContext.Values
+    
+        
+    
+        
+        Gets or sets the set of new values provided for virtual path generation.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary Values { get; set; }
     
 

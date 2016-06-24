@@ -54,28 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.BaseJwtBearerContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.BaseJwtBearerContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.BaseJwtBearerContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.JwtBearerOptions
-    
-        
-        .. code-block:: csharp
-    
-            public JwtBearerOptions Options
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,5 +76,24 @@ Constructors
         .. code-block:: csharp
     
             public BaseJwtBearerContext(HttpContext context, JwtBearerOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.BaseJwtBearerContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.BaseJwtBearerContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.JwtBearerOptions
+    
+        
+        .. code-block:: csharp
+    
+            public JwtBearerOptions Options { get; }
     
 

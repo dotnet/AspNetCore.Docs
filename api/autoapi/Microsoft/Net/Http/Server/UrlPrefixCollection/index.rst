@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Server.UrlPrefixCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Server.UrlPrefixCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefixCollection.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefixCollection.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -205,5 +170,34 @@ Methods
         .. code-block:: csharp
     
             IEnumerator IEnumerable.GetEnumerator()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Server.UrlPrefixCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefixCollection.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefixCollection.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
     
 

@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ConstructorInfo Constructor
-            {
-                get;
-            }
+            public ConstructorInfo Constructor { get; }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Error
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Error
-            {
-                get;
-            }
+            public string Error { get; }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.IsError
     
@@ -94,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsError
-            {
-                get;
-            }
+            public bool IsError { get; }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Key
     
@@ -107,10 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Tuple<Type, Type> Key
-            {
-                get;
-            }
+            public Tuple<Type, Type> Key { get; }
     
     .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyTypeCacheResult.Type
     
@@ -120,10 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type Type
-            {
-                get;
-            }
+            public Type Type { get; }
     
 
 Methods

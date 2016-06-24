@@ -57,6 +57,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.JwtBearerOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.JwtBearerOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Builder.JwtBearerOptions.JwtBearerOptions()
+    
+        
+    
+        
+        Creates an instance of bearer authentication options with default values.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public JwtBearerOptions()
+    
+
 Properties
 ----------
 
@@ -80,11 +103,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Audience
-            {
-                get;
-                set;
-            }
+            public string Audience { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority
     
@@ -99,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Authority
-            {
-                get;
-                set;
-            }
+            public string Authority { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.BackchannelHttpHandler
     
@@ -120,11 +135,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpMessageHandler BackchannelHttpHandler
-            {
-                get;
-                set;
-            }
+            public HttpMessageHandler BackchannelHttpHandler { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.BackchannelTimeout
     
@@ -139,11 +150,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan BackchannelTimeout
-            {
-                get;
-                set;
-            }
+            public TimeSpan BackchannelTimeout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.Challenge
     
@@ -158,11 +165,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Challenge
-            {
-                get;
-                set;
-            }
+            public string Challenge { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.Configuration
     
@@ -178,11 +181,7 @@ Properties
         
         .. code-block:: csharp
     
-            public OpenIdConnectConfiguration Configuration
-            {
-                get;
-                set;
-            }
+            public OpenIdConnectConfiguration Configuration { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.ConfigurationManager
     
@@ -198,11 +197,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IConfigurationManager<OpenIdConnectConfiguration> ConfigurationManager
-            {
-                get;
-                set;
-            }
+            public IConfigurationManager<OpenIdConnectConfiguration> ConfigurationManager { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.Events
     
@@ -219,11 +214,24 @@ Properties
         
         .. code-block:: csharp
     
-            public IJwtBearerEvents Events
-            {
-                get;
-                set;
-            }
+            public IJwtBearerEvents Events { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.IncludeErrorDetails
+    
+        
+    
+        
+        Defines whether the token validation errors should be returned to the caller.
+        Enabled by default, this option can be disabled to prevent the JWT middleware
+        from returning an error and an error_description in the WWW-Authenticate header.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IncludeErrorDetails { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.MetadataAddress
     
@@ -238,11 +246,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string MetadataAddress
-            {
-                get;
-                set;
-            }
+            public string MetadataAddress { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.RefreshOnIssuerKeyNotFound
     
@@ -258,11 +262,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RefreshOnIssuerKeyNotFound
-            {
-                get;
-                set;
-            }
+            public bool RefreshOnIssuerKeyNotFound { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.RequireHttpsMetadata
     
@@ -278,18 +278,14 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireHttpsMetadata
-            {
-                get;
-                set;
-            }
+            public bool RequireHttpsMetadata { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.SaveToken
     
         
     
         
-        Defines whether the bearer token should be stored in the
+        Defines whether the bearer token should be stored in the 
         :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` after a successful authorization.
     
         
@@ -298,11 +294,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SaveToken
-            {
-                get;
-                set;
-            }
+            public bool SaveToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.SecurityTokenValidators
     
@@ -317,10 +309,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ISecurityTokenValidator> SecurityTokenValidators
-            {
-                get;
-            }
+            public IList<ISecurityTokenValidator> SecurityTokenValidators { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.SystemClock
     
@@ -336,11 +325,7 @@ Properties
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ISystemClock SystemClock
-            {
-                get;
-                set;
-            }
+            public ISystemClock SystemClock { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.JwtBearerOptions.TokenValidationParameters
     
@@ -355,33 +340,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TokenValidationParameters TokenValidationParameters
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.JwtBearerOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Builder.JwtBearerOptions.JwtBearerOptions()
-    
-        
-    
-        
-        Creates an instance of bearer authentication options with default values.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public JwtBearerOptions()
+            public TokenValidationParameters TokenValidationParameters { get; set; }
     
 

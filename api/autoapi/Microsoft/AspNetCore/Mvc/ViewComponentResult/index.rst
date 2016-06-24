@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object Arguments
-            {
-                get;
-                set;
-            }
+            public object Arguments { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.ContentType
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-                set;
-            }
+            public string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.StatusCode
     
@@ -116,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int ? StatusCode
-            {
-                get;
-                set;
-            }
+            public int ? StatusCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.TempData
     
@@ -135,11 +123,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ITempDataDictionary TempData
-            {
-                get;
-                set;
-            }
+            public ITempDataDictionary TempData { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.ViewComponentName
     
@@ -155,11 +139,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ViewComponentName
-            {
-                get;
-                set;
-            }
+            public string ViewComponentName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.ViewComponentType
     
@@ -174,11 +154,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type ViewComponentType
-            {
-                get;
-                set;
-            }
+            public Type ViewComponentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.ViewData
     
@@ -193,11 +169,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ViewDataDictionary ViewData
-            {
-                get;
-                set;
-            }
+            public ViewDataDictionary ViewData { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponentResult.ViewEngine
     
@@ -212,11 +184,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IViewEngine ViewEngine
-            {
-                get;
-                set;
-            }
+            public IViewEngine ViewEngine { get; set; }
     
 
 Methods

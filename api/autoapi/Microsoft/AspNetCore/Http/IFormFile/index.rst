@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ContentDisposition
-            {
-                get;
-            }
+            string ContentDisposition { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.IFormFile.ContentType
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ContentType
-            {
-                get;
-            }
+            string ContentType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.IFormFile.FileName
     
@@ -105,10 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            string FileName
-            {
-                get;
-            }
+            string FileName { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.IFormFile.Headers
     
@@ -123,10 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            IHeaderDictionary Headers
-            {
-                get;
-            }
+            IHeaderDictionary Headers { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.IFormFile.Length
     
@@ -141,10 +129,7 @@ Properties
         
         .. code-block:: csharp
     
-            long Length
-            {
-                get;
-            }
+            long Length { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.IFormFile.Name
     
@@ -159,10 +144,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Name
-            {
-                get;
-            }
+            string Name { get; }
     
 
 Methods

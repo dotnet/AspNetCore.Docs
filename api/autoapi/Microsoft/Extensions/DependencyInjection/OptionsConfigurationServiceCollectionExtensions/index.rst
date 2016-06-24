@@ -7,6 +7,10 @@ OptionsConfigurationServiceCollectionExtensions Class
 
 
 
+
+Extension methods for adding configuration related options services to the DI container.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.DependencyInjection`
 Assemblies
@@ -65,34 +69,25 @@ Methods
         
     
         
-        :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        :type config: Microsoft.Extensions.Configuration.IConfiguration
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-            public static IServiceCollection Configure<TOptions>(IServiceCollection services, IConfiguration config)where TOptions : class
-    
-    .. dn:method:: Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure<TOptions>(Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.Configuration.IConfiguration, System.Boolean)
+        Registers a configuration instance which TOptions will bind against.
     
         
     
+        
+        :param services: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` to add the services to.
         
         :type services: Microsoft.Extensions.DependencyInjection.IServiceCollection
     
         
-        :type config: Microsoft.Extensions.Configuration.IConfiguration
-    
+        :param config: The configuration being bound.
         
-        :type trackConfigChanges: System.Boolean
+        :type config: Microsoft.Extensions.Configuration.IConfiguration
         :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` so that additional calls can be chained.
     
         
         .. code-block:: csharp
     
-            public static IServiceCollection Configure<TOptions>(IServiceCollection services, IConfiguration config, bool trackConfigChanges)where TOptions : class
+            public static IServiceCollection Configure<TOptions>(this IServiceCollection services, IConfiguration config)where TOptions : class
     
 

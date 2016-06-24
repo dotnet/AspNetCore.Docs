@@ -56,115 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.RoleManager<TRole>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.RoleManager<TRole>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-        :return: 
-            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual ILogger Logger
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Roles
-    
-        
-    
-        
-        Gets an IQueryable collection of Roles if the persistence store is an :any:`Microsoft.AspNetCore.Identity.IQueryableRoleStore\`1`\,
-        otherwise throws a :any:`System.NotSupportedException`\.
-    
-        
-        :rtype: System.Linq.IQueryable<System.Linq.IQueryable`1>{TRole}
-        :return: An IQueryable collection of Roles if the persistence store is an :any:`Microsoft.AspNetCore.Identity.IQueryableRoleStore\`1`\.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IQueryable<TRole> Roles
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Store
-    
-        
-    
-        
-        Gets the persistence store this instance operates over.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.IRoleStore<Microsoft.AspNetCore.Identity.IRoleStore`1>{TRole}
-        :return: The persistence store this instance operates over.
-    
-        
-        .. code-block:: csharp
-    
-            protected IRoleStore<TRole> Store
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.SupportsQueryableRoles
-    
-        
-    
-        
-        Gets a flag indicating whether the underlying persistence store supports returning an :any:`System.Linq.IQueryable` collection of roles.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the underlying persistence store supports returning an :any:`System.Linq.IQueryable` collection of roles, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsQueryableRoles
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.SupportsRoleClaims
-    
-        
-    
-        
-        Gets a flag indicating whether the underlying persistence store supports :any:`System.Security.Claims.Claim`\s for roles.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the underlying persistence store supports :any:`System.Security.Claims.Claim`\s for roles, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsRoleClaims
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -482,7 +373,7 @@ Methods
         :type role: TRole
     
         
-        :param claim: The claim to add.
+        :param claim: The claim to remove.
         
         :type claim: System.Security.Claims.Claim
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Identity.IdentityResult<Microsoft.AspNetCore.Identity.IdentityResult>}
@@ -597,5 +488,98 @@ Methods
         .. code-block:: csharp
     
             public virtual Task UpdateNormalizedRoleNameAsync(TRole role)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.RoleManager<TRole>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+        :return: 
+            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual ILogger Logger { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Roles
+    
+        
+    
+        
+        Gets an IQueryable collection of Roles if the persistence store is an :any:`Microsoft.AspNetCore.Identity.IQueryableRoleStore\`1`\,
+        otherwise throws a :any:`System.NotSupportedException`\.
+    
+        
+        :rtype: System.Linq.IQueryable<System.Linq.IQueryable`1>{TRole}
+        :return: An IQueryable collection of Roles if the persistence store is an :any:`Microsoft.AspNetCore.Identity.IQueryableRoleStore\`1`\.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IQueryable<TRole> Roles { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.Store
+    
+        
+    
+        
+        Gets the persistence store this instance operates over.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.IRoleStore<Microsoft.AspNetCore.Identity.IRoleStore`1>{TRole}
+        :return: The persistence store this instance operates over.
+    
+        
+        .. code-block:: csharp
+    
+            protected IRoleStore<TRole> Store { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.SupportsQueryableRoles
+    
+        
+    
+        
+        Gets a flag indicating whether the underlying persistence store supports returning an :any:`System.Linq.IQueryable` collection of roles.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the underlying persistence store supports returning an :any:`System.Linq.IQueryable` collection of roles, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsQueryableRoles { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.RoleManager<TRole>.SupportsRoleClaims
+    
+        
+    
+        
+        Gets a flag indicating whether the underlying persistence store supports :any:`System.Security.Claims.Claim`\s for roles.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the underlying persistence store supports :any:`System.Security.Claims.Claim`\s for roles, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsRoleClaims { get; }
     
 

@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            SourceLocation Location
-            {
-                get;
-            }
+            SourceLocation Location { get; }
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticNameAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticNameAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticNameAttribute.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -94,5 +72,24 @@ Constructors
         .. code-block:: csharp
     
             public DiagnosticNameAttribute(string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticNameAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.DiagnosticNameAttribute.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
     
 

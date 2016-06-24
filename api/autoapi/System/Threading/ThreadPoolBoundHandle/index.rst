@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: System.Threading.ThreadPoolBoundHandle
 
-Properties
-----------
-
-.. dn:class:: System.Threading.ThreadPoolBoundHandle
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Threading.ThreadPoolBoundHandle.Handle
-    
-        
-        :rtype: System.Runtime.InteropServices.SafeHandle
-    
-        
-        .. code-block:: csharp
-    
-            public SafeHandle Handle
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -160,5 +138,24 @@ Methods
         .. code-block:: csharp
     
             public static object GetNativeOverlappedState(NativeOverlapped*overlapped)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Threading.ThreadPoolBoundHandle
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Threading.ThreadPoolBoundHandle.Handle
+    
+        
+        :rtype: System.Runtime.InteropServices.SafeHandle
+    
+        
+        .. code-block:: csharp
+    
+            public SafeHandle Handle { get; }
     
 

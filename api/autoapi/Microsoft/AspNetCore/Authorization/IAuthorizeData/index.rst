@@ -59,16 +59,17 @@ Properties
     .. dn:property:: Microsoft.AspNetCore.Authorization.IAuthorizeData.ActiveAuthenticationSchemes
     
         
+    
+        
+        Gets or sets a comma delimited list of schemes from which user information is constructed.
+    
+        
         :rtype: System.String
     
         
         .. code-block:: csharp
     
-            string ActiveAuthenticationSchemes
-            {
-                get;
-                set;
-            }
+            string ActiveAuthenticationSchemes { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authorization.IAuthorizeData.Policy
     
@@ -83,18 +84,14 @@ Properties
         
         .. code-block:: csharp
     
-            string Policy
-            {
-                get;
-                set;
-            }
+            string Policy { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authorization.IAuthorizeData.Roles
     
         
     
         
-        Gets or sets a comma-separated list of roles that are allowed to access the resource.
+        Gets or sets a comma delimited list of roles that are allowed to access the resource.
     
         
         :rtype: System.String
@@ -102,10 +99,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Roles
-            {
-                get;
-                set;
-            }
+            string Roles { get; set; }
     
 

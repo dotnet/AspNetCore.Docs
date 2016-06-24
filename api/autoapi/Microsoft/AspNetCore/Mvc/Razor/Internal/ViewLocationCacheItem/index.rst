@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem.Location
-    
-        
-    
-        
-        Gets the application relative path of the :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage`
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Location
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem.PageFactory
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` factory.
-    
-        
-        :rtype: System.Func<System.Func`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<IRazorPage> PageFactory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,5 +79,44 @@ Constructors
         .. code-block:: csharp
     
             public ViewLocationCacheItem(Func<IRazorPage> razorPageFactory, string location)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem.Location
+    
+        
+    
+        
+        Gets the application relative path of the :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage`
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Location { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem.PageFactory
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` factory.
+    
+        
+        :rtype: System.Func<System.Func`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<IRazorPage> PageFactory { get; }
     
 

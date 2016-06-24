@@ -8,7 +8,7 @@ XmlSerializedDescriptorInfo Class
 
 
 
-Wraps an :any:`System.Xml.Linq.XElement` that contains the XML-serialized representation of an
+Wraps an :any:`System.Xml.Linq.XElement` that contains the XML-serialized representation of an 
 :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor` along with the type that can be used
 to deserialize it.
 
@@ -58,52 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.DeserializerType
-    
-        
-    
-        
-        The class whose :dn:meth:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptorDeserializer.ImportFromXml(System.Xml.Linq.XElement)`
-        method can be used to deserialize the value stored in :dn:prop:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.SerializedDescriptorElement`\.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type DeserializerType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.SerializedDescriptorElement
-    
-        
-    
-        
-        An XML-serialized representation of an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor`\.
-    
-        
-        :rtype: System.Xml.Linq.XElement
-    
-        
-        .. code-block:: csharp
-    
-            public XElement SerializedDescriptorElement
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -136,5 +90,45 @@ Constructors
         .. code-block:: csharp
     
             public XmlSerializedDescriptorInfo(XElement serializedDescriptorElement, Type deserializerType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.DeserializerType
+    
+        
+    
+        
+        The class whose :dn:meth:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptorDeserializer.ImportFromXml(System.Xml.Linq.XElement)`
+        method can be used to deserialize the value stored in :dn:prop:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.SerializedDescriptorElement`\.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type DeserializerType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo.SerializedDescriptorElement
+    
+        
+    
+        
+        An XML-serialized representation of an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor`\.
+    
+        
+        :rtype: System.Xml.Linq.XElement
+    
+        
+        .. code-block:: csharp
+    
+            public XElement SerializedDescriptorElement { get; }
     
 

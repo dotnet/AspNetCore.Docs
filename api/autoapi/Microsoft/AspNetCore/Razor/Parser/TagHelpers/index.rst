@@ -15,6 +15,10 @@ Microsoft.AspNetCore.Razor.Parser.TagHelpers Namespace
 
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/TagHelpers/TagHelperAttributeNode/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/Parser/TagHelpers/TagHelperBlock/index
    
    
@@ -53,6 +57,10 @@ Microsoft.AspNetCore.Razor.Parser.TagHelpers Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -65,6 +73,12 @@ Microsoft.AspNetCore.Razor.Parser.TagHelpers Namespace
 
 
     .. rubric:: Classes
+
+
+    class :dn:cls:`TagHelperAttributeNode`
+        .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode
+
+        
 
 
     class :dn:cls:`TagHelperBlock`

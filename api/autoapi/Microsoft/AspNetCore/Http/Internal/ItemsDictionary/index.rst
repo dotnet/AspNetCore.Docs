@@ -52,97 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.Items
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<object, object> Items
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.Object, System.Object>>.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int ICollection<KeyValuePair<object, object>>.Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.Object, System.Object>>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<KeyValuePair<object, object>>.IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Item[System.Object]
-    
-        
-    
-        
-        :type key: System.Object
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IDictionary<object, object>.this[object key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            ICollection<object> IDictionary<object, object>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            ICollection<object> IDictionary<object, object>.Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -171,6 +80,78 @@ Constructors
         .. code-block:: csharp
     
             public ItemsDictionary(IDictionary<object, object> items)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.Items
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<object, object> Items { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.Object, System.Object>>.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int ICollection<KeyValuePair<object, object>>.Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.Object, System.Object>>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<KeyValuePair<object, object>>.IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Item[System.Object]
+    
+        
+    
+        
+        :type key: System.Object
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IDictionary<object, object>.this[object key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            ICollection<object> IDictionary<object, object>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.ItemsDictionary.System.Collections.Generic.IDictionary<System.Object, System.Object>.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            ICollection<object> IDictionary<object, object>.Values { get; }
     
 
 Methods

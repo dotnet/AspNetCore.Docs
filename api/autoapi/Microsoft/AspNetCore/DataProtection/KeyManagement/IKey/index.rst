@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            DateTimeOffset ActivationDate
-            {
-                get;
-            }
+            DateTimeOffset ActivationDate { get; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.IKey.CreationDate
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            DateTimeOffset CreationDate
-            {
-                get;
-            }
+            DateTimeOffset CreationDate { get; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.IKey.ExpirationDate
     
@@ -105,10 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            DateTimeOffset ExpirationDate
-            {
-                get;
-            }
+            DateTimeOffset ExpirationDate { get; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.IKey.IsRevoked
     
@@ -123,10 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool IsRevoked
-            {
-                get;
-            }
+            bool IsRevoked { get; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.IKey.KeyId
     
@@ -141,10 +129,7 @@ Properties
         
         .. code-block:: csharp
     
-            Guid KeyId
-            {
-                get;
-            }
+            Guid KeyId { get; }
     
 
 Methods

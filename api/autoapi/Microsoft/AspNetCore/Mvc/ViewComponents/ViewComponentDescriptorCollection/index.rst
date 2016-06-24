@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection.Items
-    
-        
-    
-        
-        Returns the cached :any:`System.Collections.Generic.IReadOnlyList\`1`\.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor<Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ViewComponentDescriptor> Items
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection.Version
-    
-        
-    
-        
-        Returns the unique version of the currently cached items.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Version
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -132,5 +87,44 @@ Constructors
         .. code-block:: csharp
     
             public ViewComponentDescriptorCollection(IEnumerable<ViewComponentDescriptor> items, int version)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection.Items
+    
+        
+    
+        
+        Returns the cached :any:`System.Collections.Generic.IReadOnlyList\`1`\.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor<Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ViewComponentDescriptor> Items { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection.Version
+    
+        
+    
+        
+        Returns the unique version of the currently cached items.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Version { get; }
     
 

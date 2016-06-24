@@ -79,7 +79,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IdentityBuilder AddEntityFrameworkStores<TContext>(IdentityBuilder builder)where TContext : DbContext
+            public static IdentityBuilder AddEntityFrameworkStores<TContext>(this IdentityBuilder builder)where TContext : DbContext
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores<TContext, TKey>(Microsoft.AspNetCore.Identity.IdentityBuilder)
     
@@ -100,6 +100,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IdentityBuilder AddEntityFrameworkStores<TContext, TKey>(IdentityBuilder builder)where TContext : DbContext where TKey : IEquatable<TKey>
+            public static IdentityBuilder AddEntityFrameworkStores<TContext, TKey>(this IdentityBuilder builder)where TContext : DbContext where TKey : IEquatable<TKey>
     
 

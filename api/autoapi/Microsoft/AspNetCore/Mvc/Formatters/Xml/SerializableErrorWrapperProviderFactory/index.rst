@@ -70,7 +70,7 @@ Methods
     
         
         Creates an instance of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider` if the provided
-        <em>context</em>'s :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType` is
+        <em>context</em>'s :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType` is 
         :any:`Microsoft.AspNetCore.Mvc.SerializableError`\.
     
         
@@ -81,8 +81,8 @@ Methods
         :type context: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext
         :rtype: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
         :return: 
-            An instance of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider` if the provided <em>context</em>'s
-            :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType` is
+            An instance of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider` if the provided <em>context</em>'s 
+            :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType` is 
             :any:`Microsoft.AspNetCore.Mvc.SerializableError`\; otherwise <code>null</code>.
     
         

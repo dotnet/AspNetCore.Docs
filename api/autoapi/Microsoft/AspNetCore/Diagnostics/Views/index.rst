@@ -35,15 +35,11 @@ Microsoft.AspNetCore.Diagnostics.Views Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Diagnostics/Views/RuntimeInfoPage/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Diagnostics/Views/RuntimeInfoPageModel/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Diagnostics/Views/StackFrame/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Diagnostics/Views/StackFrameInfo/index
    
    
    
@@ -60,10 +56,6 @@ Microsoft.AspNetCore.Diagnostics.Views Namespace
    :hidden:
    :maxdepth: 2
 
-   
-   
-   
-   
    
    
    
@@ -148,20 +140,15 @@ Microsoft.AspNetCore.Diagnostics.Views Namespace
         Holds data to be displayed on the error page.
 
 
-    class :dn:cls:`RuntimeInfoPage`
-        .. object: type=class name=Microsoft.AspNetCore.Diagnostics.Views.RuntimeInfoPage
-
-        
-
-
-    class :dn:cls:`RuntimeInfoPageModel`
-        .. object: type=class name=Microsoft.AspNetCore.Diagnostics.Views.RuntimeInfoPageModel
-
-        
-
-
     class :dn:cls:`StackFrame`
         .. object: type=class name=Microsoft.AspNetCore.Diagnostics.Views.StackFrame
+
+        
+        Detailed exception stack information used to generate a view
+
+
+    class :dn:cls:`StackFrameInfo`
+        .. object: type=class name=Microsoft.AspNetCore.Diagnostics.Views.StackFrameInfo
 
         
         Detailed exception stack information used to generate a view

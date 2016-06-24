@@ -77,10 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TextEncoderSettings TextEncoderSettings
-            {
-                get;
-                set;
-            }
+            public TextEncoderSettings TextEncoderSettings { get; set; }
     
 

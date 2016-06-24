@@ -44,33 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature.IsWebSocketRequest
-    
-        
-    
-        
-        Indicates if this is a WebSocket upgrade request.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IsWebSocketRequest
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -97,5 +70,29 @@ Methods
         .. code-block:: csharp
     
             Task<WebSocket> AcceptAsync(WebSocketAcceptContext context)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature.IsWebSocketRequest
+    
+        
+    
+        
+        Indicates if this is a WebSocket upgrade request.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IsWebSocketRequest { get; }
     
 

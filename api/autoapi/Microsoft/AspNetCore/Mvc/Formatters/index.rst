@@ -31,10 +31,6 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/HttpNotAcceptableOutputFormatter/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/Formatters/IInputFormatter/index
    
    
@@ -64,6 +60,10 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/Formatters/JsonPatchInputFormatter/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/JsonSerializerSettingsProvider/index
    
    
    
@@ -248,6 +248,23 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Formatters
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IInputFormatter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter
+
+        
+        Reads an object from the request body.
+
+
+    interface :dn:iface:`IOutputFormatter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter
+
+        
+        Writes an object to the output stream.
+
+
     .. rubric:: Classes
 
 
@@ -255,7 +272,7 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.FormatFilter
 
         
-        A filter that will use the format value in the route data or query string to set the content type on an
+        A filter that will use the format value in the route data or query string to set the content type on an 
         :any:`Microsoft.AspNetCore.Mvc.ObjectResult` returned from an action.
 
 
@@ -278,13 +295,6 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
 
         
         Sets the status code to 204 if the content is null.
-
-
-    class :dn:cls:`HttpNotAcceptableOutputFormatter`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.HttpNotAcceptableOutputFormatter
-
-        
-        A formatter which selects itself when content-negotiation has failed and writes a 406 Not Acceptable response.
 
 
     class :dn:cls:`InputFormatter`
@@ -312,20 +322,28 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter
 
         
-        An :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON content.
+        A :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON content.
 
 
     class :dn:cls:`JsonOutputFormatter`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter
 
         
-        An output formatter that specializes in writing JSON content.
+        A :any:`Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter` for JSON content.
 
 
     class :dn:cls:`JsonPatchInputFormatter`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter
 
         
+        A :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON Patch (application/json-patch+json) content.
+
+
+    class :dn:cls:`JsonSerializerSettingsProvider`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.JsonSerializerSettingsProvider
+
+        
+        Helper class which provides :any:`Newtonsoft.Json.JsonSerializerSettings`\.
 
 
     class :dn:cls:`MediaTypeCollection`
@@ -424,22 +442,5 @@ Microsoft.AspNetCore.Mvc.Formatters Namespace
 
         
         A media type value.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IInputFormatter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter
-
-        
-        Reads an object from the request body.
-
-
-    interface :dn:iface:`IOutputFormatter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter
-
-        
-        Writes an object to the output stream.
 
 

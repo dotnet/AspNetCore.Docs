@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Value(IHtmlHelper htmlHelper, string expression)
+            public static string Value(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValueExtensions.ValueForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string ValueForModel(IHtmlHelper htmlHelper)
+            public static string ValueForModel(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValueExtensions.ValueForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -136,7 +136,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string ValueForModel(IHtmlHelper htmlHelper, string format)
+            public static string ValueForModel(this IHtmlHelper htmlHelper, string format)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValueExtensions.ValueFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -162,6 +162,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string ValueFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static string ValueFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
 

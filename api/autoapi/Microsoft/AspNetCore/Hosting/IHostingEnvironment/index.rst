@@ -70,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ApplicationName
-            {
-                get;
-                set;
-            }
+            string ApplicationName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider
     
@@ -89,11 +85,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFileProvider ContentRootFileProvider
-            {
-                get;
-                set;
-            }
+            IFileProvider ContentRootFileProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath
     
@@ -108,11 +100,7 @@ Properties
         
         .. code-block:: csharp
     
-            string ContentRootPath
-            {
-                get;
-                set;
-            }
+            string ContentRootPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName
     
@@ -128,11 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            string EnvironmentName
-            {
-                get;
-                set;
-            }
+            string EnvironmentName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IHostingEnvironment.WebRootFileProvider
     
@@ -147,11 +131,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFileProvider WebRootFileProvider
-            {
-                get;
-                set;
-            }
+            IFileProvider WebRootFileProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IHostingEnvironment.WebRootPath
     
@@ -166,10 +146,6 @@ Properties
         
         .. code-block:: csharp
     
-            string WebRootPath
-            {
-                get;
-                set;
-            }
+            string WebRootPath { get; set; }
     
 

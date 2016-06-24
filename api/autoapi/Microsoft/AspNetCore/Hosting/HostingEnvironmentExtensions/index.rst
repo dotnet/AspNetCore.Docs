@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool IsDevelopment(IHostingEnvironment hostingEnvironment)
+            public static bool IsDevelopment(this IHostingEnvironment hostingEnvironment)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsEnvironment(Microsoft.AspNetCore.Hosting.IHostingEnvironment, System.String)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool IsEnvironment(IHostingEnvironment hostingEnvironment, string environmentName)
+            public static bool IsEnvironment(this IHostingEnvironment hostingEnvironment, string environmentName)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsProduction(Microsoft.AspNetCore.Hosting.IHostingEnvironment)
     
@@ -130,7 +130,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool IsProduction(IHostingEnvironment hostingEnvironment)
+            public static bool IsProduction(this IHostingEnvironment hostingEnvironment)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsStaging(Microsoft.AspNetCore.Hosting.IHostingEnvironment)
     
@@ -151,6 +151,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool IsStaging(IHostingEnvironment hostingEnvironment)
+            public static bool IsStaging(this IHostingEnvironment hostingEnvironment)
     
 

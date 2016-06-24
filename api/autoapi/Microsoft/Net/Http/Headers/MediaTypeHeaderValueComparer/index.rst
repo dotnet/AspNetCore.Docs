@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer.QualityComparer
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer
-    
-        
-        .. code-block:: csharp
-    
-            public static MediaTypeHeaderValueComparer QualityComparer
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -102,5 +80,24 @@ Methods
         .. code-block:: csharp
     
             public int Compare(MediaTypeHeaderValue mediaType1, MediaTypeHeaderValue mediaType2)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer.QualityComparer
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer
+    
+        
+        .. code-block:: csharp
+    
+            public static MediaTypeHeaderValueComparer QualityComparer { get; }
     
 

@@ -7,6 +7,10 @@ EnvironmentVariablesConfigurationProvider Class
 
 
 
+
+An environment variable based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration.EnvironmentVariables`
 Assemblies
@@ -66,6 +70,11 @@ Constructors
         
     
         
+        Initializes a new instance.
+    
+        
+    
+        
         .. code-block:: csharp
     
             public EnvironmentVariablesConfigurationProvider()
@@ -74,6 +83,13 @@ Constructors
     
         
     
+        
+        Initializes a new instance with the specified prefix.
+    
+        
+    
+        
+        :param prefix: A prefix used to filter the environment variables.
         
         :type prefix: System.String
     
@@ -92,6 +108,11 @@ Methods
 
     
     .. dn:method:: Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider.Load()
+    
+        
+    
+        
+        Loads the environment variables.
     
         
     

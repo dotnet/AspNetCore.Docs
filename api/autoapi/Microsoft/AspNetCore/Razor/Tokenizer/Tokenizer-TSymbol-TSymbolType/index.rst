@@ -53,224 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Buffer
-    
-        
-        :rtype: System.Text.StringBuilder
-    
-        
-        .. code-block:: csharp
-    
-            protected StringBuilder Buffer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentCharacter
-    
-        
-        :rtype: System.Char
-    
-        
-        .. code-block:: csharp
-    
-            protected char CurrentCharacter
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentErrors
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
-    
-        
-        .. code-block:: csharp
-    
-            protected IList<RazorError> CurrentErrors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            protected SourceLocation CurrentLocation
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentStart
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            protected SourceLocation CurrentStart
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentState
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            protected int ? CurrentState
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentSymbol
-    
-        
-        :rtype: TSymbol
-    
-        
-        .. code-block:: csharp
-    
-            protected TSymbol CurrentSymbol
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.DebugDisplay
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DebugDisplay
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.EndOfFile
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool EndOfFile
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.HaveContent
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool HaveContent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentStarType
-    
-        
-        :rtype: TSymbolType
-    
-        
-        .. code-block:: csharp
-    
-            public abstract TSymbolType RazorCommentStarType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentTransitionType
-    
-        
-        :rtype: TSymbolType
-    
-        
-        .. code-block:: csharp
-    
-            public abstract TSymbolType RazorCommentTransitionType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentType
-    
-        
-        :rtype: TSymbolType
-    
-        
-        .. code-block:: csharp
-    
-            public abstract TSymbolType RazorCommentType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Remaining
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Remaining
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Source
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.TextDocumentReader
-    
-        
-        .. code-block:: csharp
-    
-            public TextDocumentReader Source
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StartState
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            protected abstract int StartState
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -491,7 +273,7 @@ Methods
         
     
         
-        Returns a result containing the specified output and indicating that the next call to
+        Returns a result containing the specified output and indicating that the next call to 
         :dn:meth:`Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer\`2.Turn` should re-invoke the current state.
     
         
@@ -610,7 +392,7 @@ Methods
         
     
         
-        Returns a result containing the specified output and indicating that the next call to
+        Returns a result containing the specified output and indicating that the next call to 
         :dn:meth:`Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer\`2.Turn` should invoke the provided state.
     
         
@@ -636,5 +418,174 @@ Methods
         .. code-block:: csharp
     
             protected virtual TSymbol Turn()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Buffer
+    
+        
+        :rtype: System.Text.StringBuilder
+    
+        
+        .. code-block:: csharp
+    
+            protected StringBuilder Buffer { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentCharacter
+    
+        
+        :rtype: System.Char
+    
+        
+        .. code-block:: csharp
+    
+            protected char CurrentCharacter { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentErrors
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
+    
+        
+        .. code-block:: csharp
+    
+            protected IList<RazorError> CurrentErrors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            protected SourceLocation CurrentLocation { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentStart
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            protected SourceLocation CurrentStart { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentState
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            protected int ? CurrentState { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.CurrentSymbol
+    
+        
+        :rtype: TSymbol
+    
+        
+        .. code-block:: csharp
+    
+            protected TSymbol CurrentSymbol { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.DebugDisplay
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DebugDisplay { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.EndOfFile
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool EndOfFile { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.HaveContent
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool HaveContent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentStarType
+    
+        
+        :rtype: TSymbolType
+    
+        
+        .. code-block:: csharp
+    
+            public abstract TSymbolType RazorCommentStarType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentTransitionType
+    
+        
+        :rtype: TSymbolType
+    
+        
+        .. code-block:: csharp
+    
+            public abstract TSymbolType RazorCommentTransitionType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.RazorCommentType
+    
+        
+        :rtype: TSymbolType
+    
+        
+        .. code-block:: csharp
+    
+            public abstract TSymbolType RazorCommentType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Remaining
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Remaining { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.Source
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.TextDocumentReader
+    
+        
+        .. code-block:: csharp
+    
+            public TextDocumentReader Source { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StartState
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            protected abstract int StartState { get; }
     
 

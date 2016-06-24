@@ -8,7 +8,7 @@ FormatFilter Class
 
 
 
-A filter that will use the format value in the route data or query string to set the content type on an
+A filter that will use the format value in the route data or query string to set the content type on an 
 :any:`Microsoft.AspNetCore.Mvc.ObjectResult` returned from an action.
 
 
@@ -104,7 +104,7 @@ Methods
         
         .. code-block:: csharp
     
-            public string GetFormat(ActionContext context)
+            public virtual string GetFormat(ActionContext context)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Formatters.FormatFilter.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)
     

@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.DefaultApiDescriptionProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.DefaultApiDescriptionProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.DefaultApiDescriptionProvider.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -149,5 +127,24 @@ Methods
         .. code-block:: csharp
     
             public void OnProvidersExecuting(ApiDescriptionProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.DefaultApiDescriptionProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.DefaultApiDescriptionProvider.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

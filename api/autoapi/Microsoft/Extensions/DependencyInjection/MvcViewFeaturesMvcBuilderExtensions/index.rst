@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewComponentsAsServices(IMvcBuilder builder)
+            public static IMvcBuilder AddViewComponentsAsServices(this IMvcBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddViewOptions(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcViewOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewOptions(IMvcBuilder builder, Action<MvcViewOptions> setupAction)
+            public static IMvcBuilder AddViewOptions(this IMvcBuilder builder, Action<MvcViewOptions> setupAction)
     
 

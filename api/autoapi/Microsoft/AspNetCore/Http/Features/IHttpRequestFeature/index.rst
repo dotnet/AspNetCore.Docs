@@ -71,11 +71,7 @@ Properties
         
         .. code-block:: csharp
     
-            Stream Body
-            {
-                get;
-                set;
-            }
+            Stream Body { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Headers
     
@@ -94,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            IHeaderDictionary Headers
-            {
-                get;
-                set;
-            }
+            IHeaderDictionary Headers { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Method
     
@@ -113,11 +105,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Method
-            {
-                get;
-                set;
-            }
+            string Method { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Path
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Path
-            {
-                get;
-                set;
-            }
+            string Path { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.PathBase
     
@@ -154,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            string PathBase
-            {
-                get;
-                set;
-            }
+            string PathBase { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Protocol
     
@@ -173,11 +153,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Protocol
-            {
-                get;
-                set;
-            }
+            string Protocol { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.QueryString
     
@@ -194,11 +170,24 @@ Properties
         
         .. code-block:: csharp
     
-            string QueryString
-            {
-                get;
-                set;
-            }
+            string QueryString { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.RawTarget
+    
+        
+    
+        
+        The request target as it was sent in the HTTP request. This property contains the
+        raw path and full query, as well as other request targets such as * for OPTIONS
+        requests (https://tools.ietf.org/html/rfc7230#section-5.3).
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string RawTarget { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Scheme
     
@@ -215,10 +204,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Scheme
-            {
-                get;
-                set;
-            }
+            string Scheme { get; set; }
     
 

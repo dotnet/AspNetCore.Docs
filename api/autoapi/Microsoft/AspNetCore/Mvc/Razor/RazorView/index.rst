@@ -57,64 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorView
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorView
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Path
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.RazorPage
-    
-        
-    
-        
-        Gets :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instance that the views executes on.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Razor.IRazorPage
-    
-        
-        .. code-block:: csharp
-    
-            public IRazorPage RazorPage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.ViewStartPages
-    
-        
-    
-        
-        Gets the sequence of _ViewStart :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instances that are executed by this view.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<IRazorPage> ViewStartPages
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -144,7 +86,6 @@ Constructors
     
         
         :param viewStartPages: The sequence of :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instances executed as _ViewStarts.
-            
         
         :type viewStartPages: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
     
@@ -162,6 +103,55 @@ Constructors
         .. code-block:: csharp
     
             public RazorView(IRazorViewEngine viewEngine, IRazorPageActivator pageActivator, IReadOnlyList<IRazorPage> viewStartPages, IRazorPage razorPage, HtmlEncoder htmlEncoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorView
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Path { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.RazorPage
+    
+        
+    
+        
+        Gets :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instance that the views executes on.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Razor.IRazorPage
+    
+        
+        .. code-block:: csharp
+    
+            public IRazorPage RazorPage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorView.ViewStartPages
+    
+        
+    
+        
+        Gets the sequence of _ViewStart :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instances that are executed by this view.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<IRazorPage> ViewStartPages { get; }
     
 
 Methods

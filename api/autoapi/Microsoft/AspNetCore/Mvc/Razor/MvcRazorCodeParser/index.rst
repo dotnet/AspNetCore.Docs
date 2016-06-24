@@ -25,7 +25,7 @@ Inheritance Hierarchy
 
 * :dn:cls:`System.Object`
 * :dn:cls:`Microsoft.AspNetCore.Razor.Parser.ParserBase`
-* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser{Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
+* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser{Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
 * :dn:cls:`Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser`
 * :dn:cls:`Microsoft.AspNetCore.Mvc.Razor.MvcRazorCodeParser`
 

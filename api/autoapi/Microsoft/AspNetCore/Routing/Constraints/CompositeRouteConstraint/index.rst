@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.CompositeRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.CompositeRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.CompositeRouteConstraint.Constraints
-    
-        
-    
-        
-        Gets the child constraints that must match for this constraint to match.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Routing.IRouteConstraint<Microsoft.AspNetCore.Routing.IRouteConstraint>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<IRouteConstraint> Constraints
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +82,30 @@ Constructors
         .. code-block:: csharp
     
             public CompositeRouteConstraint(IEnumerable<IRouteConstraint> constraints)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.CompositeRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.CompositeRouteConstraint.Constraints
+    
+        
+    
+        
+        Gets the child constraints that must match for this constraint to match.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Routing.IRouteConstraint<Microsoft.AspNetCore.Routing.IRouteConstraint>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<IRouteConstraint> Constraints { get; }
     
 
 Methods

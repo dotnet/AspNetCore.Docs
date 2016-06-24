@@ -54,28 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler<TOptions>.Backchannel
-    
-        
-        :rtype: System.Net.Http.HttpClient
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpClient Backchannel
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -95,6 +73,25 @@ Constructors
         .. code-block:: csharp
     
             public OAuthHandler(HttpClient backchannel)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler<TOptions>.Backchannel
+    
+        
+        :rtype: System.Net.Http.HttpClient
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpClient Backchannel { get; }
     
 
 Methods

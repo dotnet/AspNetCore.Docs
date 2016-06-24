@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.ErrorSink
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.ErrorSink
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ErrorSink.Errors
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.RazorError`\s collected.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<RazorError> Errors
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -104,6 +77,30 @@ Constructors
         .. code-block:: csharp
     
             public ErrorSink()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.ErrorSink
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ErrorSink.Errors
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.RazorError`\s collected.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<RazorError> Errors { get; }
     
 
 Methods

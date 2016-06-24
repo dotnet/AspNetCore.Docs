@@ -7,6 +7,10 @@ CommandLineConfigurationProvider Class
 
 
 
+
+A command line based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration.CommandLine`
 Assemblies
@@ -53,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider.Args
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            protected IEnumerable<string> Args
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -88,8 +70,17 @@ Constructors
         
     
         
+        Initializes a new instance.
+    
+        
+    
+        
+        :param args: The command line args.
+        
         :type args: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
     
+        
+        :param switchMappings: The switch mappings.
         
         :type switchMappings: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
     
@@ -97,6 +88,30 @@ Constructors
         .. code-block:: csharp
     
             public CommandLineConfigurationProvider(IEnumerable<string> args, IDictionary<string, string> switchMappings = null)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider.Args
+    
+        
+    
+        
+        The command line arguments.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            protected IEnumerable<string> Args { get; }
     
 
 Methods
@@ -108,6 +123,11 @@ Methods
 
     
     .. dn:method:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider.Load()
+    
+        
+    
+        
+        Loads the configuration data from the command line args.
     
         
     

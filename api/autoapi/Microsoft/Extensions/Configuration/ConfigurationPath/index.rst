@@ -69,34 +69,58 @@ Methods
         
     
         
-        :type pathSegements: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+        Combines path segments into one path.
+    
+        
+    
+        
+        :param pathSegments: The path segments to combine.
+        
+        :type pathSegments: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
         :rtype: System.String
+        :return: The combined path.
     
         
         .. code-block:: csharp
     
-            public static string Combine(IEnumerable<string> pathSegements)
+            public static string Combine(IEnumerable<string> pathSegments)
     
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationPath.Combine(System.String[])
     
         
     
         
-        :type pathSegements: System.String<System.String>[]
+        Combines path segments into one path.
+    
+        
+    
+        
+        :param pathSegments: The path segments to combine.
+        
+        :type pathSegments: System.String<System.String>[]
         :rtype: System.String
+        :return: The combined path.
     
         
         .. code-block:: csharp
     
-            public static string Combine(params string[] pathSegements)
+            public static string Combine(params string[] pathSegments)
     
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationPath.GetParentPath(System.String)
     
         
     
         
+        Extracts the path corresponding to the parent node for a given path.
+    
+        
+    
+        
+        :param path: The path.
+        
         :type path: System.String
         :rtype: System.String
+        :return: The original path minus the last individual segment found in it. Null if the original path corresponds to a top level node.
     
         
         .. code-block:: csharp
@@ -108,8 +132,16 @@ Methods
         
     
         
+        Extracts the last path segment from the path.
+    
+        
+    
+        
+        :param path: The path.
+        
         :type path: System.String
         :rtype: System.String
+        :return: The last path segment of the path.
     
         
         .. code-block:: csharp
@@ -126,6 +158,11 @@ Fields
 
     
     .. dn:field:: Microsoft.Extensions.Configuration.ConfigurationPath.KeyDelimiter
+    
+        
+    
+        
+        The delimiter ":" used to separate individual keys in a path.
     
         
         :rtype: System.String

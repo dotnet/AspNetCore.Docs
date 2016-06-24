@@ -56,87 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.CookieToken
-    
-        
-    
-        
-        Gets the cookie token.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CookieToken
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.FormFieldName
-    
-        
-    
-        
-        Gets the name of the form field used for the request token.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FormFieldName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.HeaderName
-    
-        
-    
-        
-        Gets the name of the header used for the request token.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string HeaderName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.RequestToken
-    
-        
-    
-        
-        Gets the request token.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RequestToken
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -178,5 +97,74 @@ Constructors
         .. code-block:: csharp
     
             public AntiforgeryTokenSet(string requestToken, string cookieToken, string formFieldName, string headerName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.CookieToken
+    
+        
+    
+        
+        Gets the cookie token.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CookieToken { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.FormFieldName
+    
+        
+    
+        
+        Gets the name of the form field used for the request token.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FormFieldName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.HeaderName
+    
+        
+    
+        
+        Gets the name of the header used for the request token.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string HeaderName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryTokenSet.RequestToken
+    
+        
+    
+        
+        Gets the request token.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RequestToken { get; }
     
 

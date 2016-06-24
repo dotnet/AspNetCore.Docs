@@ -59,7 +59,7 @@ Microsoft.AspNetCore.Hosting.WindowsServices Namespace
         .. object: type=class name=Microsoft.AspNetCore.Hosting.WindowsServices.WebHostService
 
         
-            Provides an implementation of a Windows service that hosts ASP.NET.
+            Provides an implementation of a Windows service that hosts ASP.NET Core.
 
 
     class :dn:cls:`WebHostWindowsServiceExtensions`

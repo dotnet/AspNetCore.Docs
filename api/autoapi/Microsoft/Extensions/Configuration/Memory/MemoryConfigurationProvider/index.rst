@@ -7,6 +7,10 @@ MemoryConfigurationProvider Class
 
 
 
+
+In-memory implementation of :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration.Memory`
 Assemblies
@@ -66,6 +70,13 @@ Constructors
         
     
         
+        Initialize a new instance from the source.
+    
+        
+    
+        
+        :param source: The source settings.
+        
         :type source: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource
     
         
@@ -87,8 +98,17 @@ Methods
         
     
         
+        Add a new key and value pair.
+    
+        
+    
+        
+        :param key: The configuration key.
+        
         :type key: System.String
     
+        
+        :param value: The configuration value.
         
         :type value: System.String
     
@@ -100,7 +120,13 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.GetEnumerator()
     
         
+    
+        
+        Returns an enumerator that iterates through the collection.
+    
+        
         :rtype: System.Collections.Generic.IEnumerator<System.Collections.Generic.IEnumerator`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.String<System.String>}}
+        :return: An enumerator that can be used to iterate through the collection.
     
         
         .. code-block:: csharp
@@ -110,7 +136,13 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider.System.Collections.IEnumerable.GetEnumerator()
     
         
+    
+        
+        Returns an enumerator that iterates through the collection.
+    
+        
         :rtype: System.Collections.IEnumerator
+        :return: An enumerator that can be used to iterate through the collection.
     
         
         .. code-block:: csharp

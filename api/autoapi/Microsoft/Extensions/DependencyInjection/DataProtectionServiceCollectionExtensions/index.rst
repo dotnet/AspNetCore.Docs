@@ -82,7 +82,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddDataProtection(IServiceCollection services)
+            public static IDataProtectionBuilder AddDataProtection(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.DataProtection.DataProtectionOptions>)
     
@@ -108,6 +108,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddDataProtection(IServiceCollection services, Action<DataProtectionOptions> setupAction)
+            public static IDataProtectionBuilder AddDataProtection(this IServiceCollection services, Action<DataProtectionOptions> setupAction)
     
 

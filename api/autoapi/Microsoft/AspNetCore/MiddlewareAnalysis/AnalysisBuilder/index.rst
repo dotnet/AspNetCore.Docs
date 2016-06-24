@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.ApplicationServices
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceProvider ApplicationServices
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, object> Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.ServerFeatures
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFeatureCollection ServerFeatures
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,6 +71,45 @@ Constructors
         .. code-block:: csharp
     
             public AnalysisBuilder(IApplicationBuilder inner)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.ApplicationServices
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceProvider ApplicationServices { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, object> Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.MiddlewareAnalysis.AnalysisBuilder.ServerFeatures
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection ServerFeatures { get; }
     
 
 Methods

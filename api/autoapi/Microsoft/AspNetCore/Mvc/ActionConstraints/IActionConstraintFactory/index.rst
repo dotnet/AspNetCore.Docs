@@ -48,34 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory.IsReusable
-    
-        
-    
-        
-        Gets a value that indicates if the result of :dn:meth:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory.CreateInstance(System.IServiceProvider)`
-        can be reused across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IsReusable
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -104,5 +76,30 @@ Methods
         .. code-block:: csharp
     
             IActionConstraint CreateInstance(IServiceProvider services)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory.IsReusable
+    
+        
+    
+        
+        Gets a value that indicates if the result of :dn:meth:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintFactory.CreateInstance(System.IServiceProvider)`
+        can be reused across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IsReusable { get; }
     
 

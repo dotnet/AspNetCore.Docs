@@ -52,236 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.CacheControlHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.CacheControlHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Extensions
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<NameValueHeaderValue> Extensions
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxAge
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
-    
-        
-        .. code-block:: csharp
-    
-            public TimeSpan? MaxAge
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxStale
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MaxStale
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxStaleLimit
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
-    
-        
-        .. code-block:: csharp
-    
-            public TimeSpan? MaxStaleLimit
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MinFresh
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
-    
-        
-        .. code-block:: csharp
-    
-            public TimeSpan? MinFresh
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MustRevalidate
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MustRevalidate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoCache
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool NoCache
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoCacheHeaders
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> NoCacheHeaders
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoStore
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool NoStore
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoTransform
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool NoTransform
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.OnlyIfCached
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool OnlyIfCached
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Private
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Private
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.PrivateHeaders
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> PrivateHeaders
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.ProxyRevalidate
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ProxyRevalidate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Public
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Public
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.SharedMaxAge
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
-    
-        
-        .. code-block:: csharp
-    
-            public TimeSpan? SharedMaxAge
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -369,5 +139,174 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParse(string input, out CacheControlHeaderValue parsedValue)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.CacheControlHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Extensions
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<NameValueHeaderValue> Extensions { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxAge
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
+    
+        
+        .. code-block:: csharp
+    
+            public TimeSpan? MaxAge { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxStale
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MaxStale { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MaxStaleLimit
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
+    
+        
+        .. code-block:: csharp
+    
+            public TimeSpan? MaxStaleLimit { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MinFresh
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
+    
+        
+        .. code-block:: csharp
+    
+            public TimeSpan? MinFresh { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.MustRevalidate
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MustRevalidate { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoCache
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool NoCache { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoCacheHeaders
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> NoCacheHeaders { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoStore
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool NoStore { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.NoTransform
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool NoTransform { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.OnlyIfCached
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool OnlyIfCached { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Private
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Private { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.PrivateHeaders
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> PrivateHeaders { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.ProxyRevalidate
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ProxyRevalidate { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.Public
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Public { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CacheControlHeaderValue.SharedMaxAge
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
+    
+        
+        .. code-block:: csharp
+    
+            public TimeSpan? SharedMaxAge { get; set; }
     
 

@@ -78,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string AttributeVariableAccessor
-            {
-                get;
-                set;
-            }
+            public string AttributeVariableAccessor { get; set; }
     
 

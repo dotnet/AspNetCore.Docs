@@ -15,6 +15,10 @@ Microsoft.AspNetCore.Razor.Editor Namespace
 
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/Editor/AutoCompleteEditHandler/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/Editor/EditResult/index
    
    
@@ -69,6 +73,10 @@ Microsoft.AspNetCore.Razor.Editor Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -81,6 +89,12 @@ Microsoft.AspNetCore.Razor.Editor Namespace
 
 
     .. rubric:: Classes
+
+
+    class :dn:cls:`AutoCompleteEditHandler`
+        .. object: type=class name=Microsoft.AspNetCore.Razor.Editor.AutoCompleteEditHandler
+
+        
 
 
     class :dn:cls:`EditResult`

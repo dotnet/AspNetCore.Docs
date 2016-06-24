@@ -8,8 +8,8 @@ TypeBasedTagHelperDescriptorComparer Class
 
 
 
-An :any:`System.Collections.Generic.IEqualityComparer\`1` that checks equality between two
-:any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s using only their :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.AssemblyName`\s and
+An :any:`System.Collections.Generic.IEqualityComparer\`1` that checks equality between two 
+:any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s using only their :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.AssemblyName`\s and 
 :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.TypeName`\s.
 
 

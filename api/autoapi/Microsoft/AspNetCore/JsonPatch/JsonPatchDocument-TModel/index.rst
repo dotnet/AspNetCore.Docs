@@ -53,43 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>.ContractResolver
-    
-        
-        :rtype: Newtonsoft.Json.Serialization.IContractResolver
-    
-        
-        .. code-block:: csharp
-    
-            [JsonIgnore]
-            public IContractResolver ContractResolver
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>.Operations
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.JsonPatch.Operations.Operation<Microsoft.AspNetCore.JsonPatch.Operations.Operation`1>{TModel}}
-    
-        
-        .. code-block:: csharp
-    
-            public List<Operation<TModel>> Operations
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -787,5 +750,35 @@ Methods
         .. code-block:: csharp
     
             public JsonPatchDocument<TModel> Replace<TProp>(Expression<Func<TModel, TProp>> path, TProp value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>.ContractResolver
+    
+        
+        :rtype: Newtonsoft.Json.Serialization.IContractResolver
+    
+        
+        .. code-block:: csharp
+    
+            [JsonIgnore]
+            public IContractResolver ContractResolver { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<TModel>.Operations
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.JsonPatch.Operations.Operation<Microsoft.AspNetCore.JsonPatch.Operations.Operation`1>{TModel}}
+    
+        
+        .. code-block:: csharp
+    
+            public List<Operation<TModel>> Operations { get; }
     
 

@@ -54,54 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.FullName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string FullName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.ParentDirectory
-    
-        
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
-    
-        
-        .. code-block:: csharp
-    
-            public override DirectoryInfoBase ParentDirectory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -121,5 +73,44 @@ Constructors
         .. code-block:: csharp
     
             public FileInfoWrapper(FileInfo fileInfo)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.FullName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string FullName { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string Name { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoWrapper.ParentDirectory
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    
+        
+        .. code-block:: csharp
+    
+            public override DirectoryInfoBase ParentDirectory { get; }
     
 

@@ -54,28 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter.Encoding
-    
-        
-        :rtype: System.Text.Encoding
-    
-        
-        .. code-block:: csharp
-    
-            public override Encoding Encoding
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,25 +76,6 @@ Constructors
         .. code-block:: csharp
     
             public PagedBufferedTextWriter(ArrayPool<char> pool, TextWriter inner)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter.PageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public const int PageSize = 1024
     
 
 Methods
@@ -256,5 +215,43 @@ Methods
         .. code-block:: csharp
     
             public override Task WriteAsync(string value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter.PageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public const int PageSize = 1024
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.PagedBufferedTextWriter.Encoding
+    
+        
+        :rtype: System.Text.Encoding
+    
+        
+        .. code-block:: csharp
+    
+            public override Encoding Encoding { get; }
     
 

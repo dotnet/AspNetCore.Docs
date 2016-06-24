@@ -59,28 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.SelectList
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.SelectList
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectList.SelectedValue
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object SelectedValue
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +176,24 @@ Constructors
         .. code-block:: csharp
     
             public SelectList(IEnumerable items, string dataValueField, string dataTextField, object selectedValue, string dataGroupField)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.SelectList
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectList.SelectedValue
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object SelectedValue { get; }
     
 

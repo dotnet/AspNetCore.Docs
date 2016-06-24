@@ -39,10 +39,6 @@ Microsoft.AspNetCore.Authentication.Cookies Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Authentication/Cookies/CookieSecureOption/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Authentication/Cookies/CookieSignedInContext/index
    
    
@@ -137,10 +133,6 @@ Microsoft.AspNetCore.Authentication.Cookies Namespace
    
    
    
-   
-   
-   
-   
 
 
 
@@ -150,6 +142,33 @@ Microsoft.AspNetCore.Authentication.Cookies Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Authentication.Cookies
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICookieAuthenticationEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ICookieAuthenticationEvents
+
+        
+        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware` invokes to enable developer control over the authentication process. />
+
+
+    interface :dn:iface:`ICookieManager`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ICookieManager
+
+        
+        This is used by the CookieAuthenticationMiddleware to process request and response cookies.
+        It is abstracted from the normal cookie APIs to allow for complex operations like chunking.
+
+
+    interface :dn:iface:`ITicketStore`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ITicketStore
+
+        
+        This provides an abstract storage mechanic to preserve identity information on the server
+        while only sending a simple identifier key to the client. This is most commonly used to mitigate
+        issues with serializing large identities into cookies.
 
 
     .. rubric:: Classes
@@ -224,42 +243,5 @@ Microsoft.AspNetCore.Authentication.Cookies Namespace
 
         
         Context object passed to the ICookieAuthenticationProvider method ValidatePrincipal.
-
-
-    .. rubric:: Enumerations
-
-
-    enum :dn:enum:`CookieSecureOption`
-        .. object: type=enum name=Microsoft.AspNetCore.Authentication.Cookies.CookieSecureOption
-
-        
-        Determines how the identity cookie's security property is set.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICookieAuthenticationEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ICookieAuthenticationEvents
-
-        
-        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware` invokes to enable developer control over the authentication process. />
-
-
-    interface :dn:iface:`ICookieManager`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ICookieManager
-
-        
-        This is used by the CookieAuthenticationMiddleware to process request and response cookies.
-        It is abstracted from the normal cookie APIs to allow for complex operations like chunking.
-
-
-    interface :dn:iface:`ITicketStore`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Cookies.ITicketStore
-
-        
-        This provides an abstract storage mechanic to preserve identity information on the server
-        while only sending a simple identifier key to the client. This is most commonly used to mitigate
-        issues with serializing large identities into cookies.
 
 

@@ -58,45 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperAttribute this[int index]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList.System.Collections.Generic.ICollection<Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<TagHelperAttribute>.IsReadOnly
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -284,7 +245,7 @@ Methods
     
         
         Replaces the first :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` matching
-        <em>attribute</em>'s :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` and removes any additional matching
+        <em>attribute</em>'s :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` and removes any additional matching 
         :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute`\s. If a matching :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` is not found, adds the
         specified <em>attribute</em> to the end of the collection.
     
@@ -329,5 +290,37 @@ Methods
         .. code-block:: csharp
     
             public void SetAttribute(string name, object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperAttribute this[int index] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList.System.Collections.Generic.ICollection<Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<TagHelperAttribute>.IsReadOnly { get; }
     
 

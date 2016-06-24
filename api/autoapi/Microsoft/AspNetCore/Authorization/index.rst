@@ -19,7 +19,7 @@ Microsoft.AspNetCore.Authorization Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Authorization/AuthorizationContext/index
+   /autoapi/Microsoft/AspNetCore/Authorization/AuthorizationHandlerContext/index
    
    
    
@@ -176,80 +176,6 @@ Microsoft.AspNetCore.Authorization Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Authorization
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`AllowAnonymousAttribute`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute
-
-        
-        Specifies that the class or method that this attribute is applied to does not require authorization.
-
-
-    class :dn:cls:`AuthorizationContext`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationContext
-
-        
-        Contains authorization information used by :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler`\.
-
-
-    class :dn:cls:`AuthorizationHandler\<TRequirement>`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>
-
-        
-
-
-    class :dn:cls:`AuthorizationHandler\<TRequirement, TResource>`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement, TResource>
-
-        
-
-
-    class :dn:cls:`AuthorizationOptions`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationOptions
-
-        
-        Provides programmatic configuration used by :any:`Microsoft.AspNetCore.Authorization.IAuthorizationService` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider`\.
-
-
-    class :dn:cls:`AuthorizationPolicy`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationPolicy
-
-        
-
-
-    class :dn:cls:`AuthorizationPolicyBuilder`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
-
-        
-
-
-    class :dn:cls:`AuthorizationServiceExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationServiceExtensions
-
-        
-
-
-    class :dn:cls:`AuthorizeAttribute`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizeAttribute
-
-        
-        Specifies that the class or method that this attribute is applied to requires the specified authorization.
-
-
-    class :dn:cls:`DefaultAuthorizationPolicyProvider`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider
-
-        
-        A type which can provide a :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy` for a particular name.
-
-
-    class :dn:cls:`DefaultAuthorizationService`
-        .. object: type=class name=Microsoft.AspNetCore.Authorization.DefaultAuthorizationService
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -257,12 +183,14 @@ Microsoft.AspNetCore.Authorization Namespace
         .. object: type=interface name=Microsoft.AspNetCore.Authorization.IAllowAnonymous
 
         
+        Marker interface to enable the :any:`Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute`\.
 
 
     interface :dn:iface:`IAuthorizationHandler`
         .. object: type=interface name=Microsoft.AspNetCore.Authorization.IAuthorizationHandler
 
         
+        Classes implementing this interface are able to make a decision if authorization is allowed.
 
 
     interface :dn:iface:`IAuthorizationPolicyProvider`
@@ -276,6 +204,7 @@ Microsoft.AspNetCore.Authorization Namespace
         .. object: type=interface name=Microsoft.AspNetCore.Authorization.IAuthorizationRequirement
 
         
+        Represents an authorization requirement.
 
 
     interface :dn:iface:`IAuthorizationService`
@@ -290,5 +219,89 @@ Microsoft.AspNetCore.Authorization Namespace
 
         
         Defines the set of data required to apply authorization rules to a resource.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`AllowAnonymousAttribute`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute
+
+        
+        Specifies that the class or method that this attribute is applied to does not require authorization.
+
+
+    class :dn:cls:`AuthorizationHandlerContext`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
+
+        
+        Contains authorization information used by :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler`\.
+
+
+    class :dn:cls:`AuthorizationHandler\<TRequirement>`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>
+
+        
+        Base class for authorization handlers that need to be called for a specific requirement type.
+
+
+    class :dn:cls:`AuthorizationHandler\<TRequirement, TResource>`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement, TResource>
+
+        
+        Base class for authorization handlers that need to be called for specific requirement and
+        resource types.
+
+
+    class :dn:cls:`AuthorizationOptions`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationOptions
+
+        
+        Provides programmatic configuration used by :any:`Microsoft.AspNetCore.Authorization.IAuthorizationService` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider`\.
+
+
+    class :dn:cls:`AuthorizationPolicy`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationPolicy
+
+        
+        Represents a collection of authorization requirements and the scheme or 
+        schemes they are evaluated against, all of which must succeed
+        for authorization to succeed.
+
+
+    class :dn:cls:`AuthorizationPolicyBuilder`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder
+
+        
+        Used for building policies during application startup.
+
+
+    class :dn:cls:`AuthorizationServiceExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizationServiceExtensions
+
+        
+        Extension methods for :any:`Microsoft.AspNetCore.Authorization.IAuthorizationService`\.
+
+
+    class :dn:cls:`AuthorizeAttribute`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.AuthorizeAttribute
+
+        
+        Specifies that the class or method that this attribute is applied to requires the specified authorization.
+
+
+    class :dn:cls:`DefaultAuthorizationPolicyProvider`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider
+
+        
+        The default implementation of a policy provider,
+        which provides a :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy` for a particular name.
+
+
+    class :dn:cls:`DefaultAuthorizationService`
+        .. object: type=class name=Microsoft.AspNetCore.Authorization.DefaultAuthorizationService
+
+        
+        The default implementation of an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationService`\.
 
 

@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Primitives.CancellationChangeToken
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Primitives.CancellationChangeToken
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.CancellationChangeToken.ActiveChangeCallbacks
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ActiveChangeCallbacks
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.CancellationChangeToken.HasChanged
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasChanged
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -117,6 +82,35 @@ Constructors
         .. code-block:: csharp
     
             public CancellationChangeToken(CancellationToken cancellationToken)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Primitives.CancellationChangeToken
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.CancellationChangeToken.ActiveChangeCallbacks
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ActiveChangeCallbacks { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.CancellationChangeToken.HasChanged
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasChanged { get; }
     
 
 Methods

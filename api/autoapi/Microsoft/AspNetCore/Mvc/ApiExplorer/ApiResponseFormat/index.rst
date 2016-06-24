@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IOutputFormatter Formatter
-            {
-                get;
-                set;
-            }
+            public IOutputFormatter Formatter { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiResponseFormat.MediaType
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string MediaType
-            {
-                get;
-                set;
-            }
+            public string MediaType { get; set; }
     
 

@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<ActivityContext> Activities
-            {
-                get;
-                set;
-            }
+            public IEnumerable<ActivityContext> Activities { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPageModel.Options
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ViewOptions Options
-            {
-                get;
-                set;
-            }
+            public ViewOptions Options { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPageModel.Path
     
@@ -96,10 +88,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString Path
-            {
-                get;
-                set;
-            }
+            public PathString Path { get; set; }
     
 

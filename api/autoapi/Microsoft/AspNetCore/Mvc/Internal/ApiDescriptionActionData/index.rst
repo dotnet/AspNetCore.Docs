@@ -8,7 +8,7 @@ ApiDescriptionActionData Class
 
 
 
-Represents data used to build an <code>ApiDescription</code>, stored as part of the
+Represents data used to build an <code>ApiDescription</code>, stored as part of the 
 :dn:prop:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Properties`\.
 
 
@@ -79,10 +79,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string GroupName
-            {
-                get;
-                set;
-            }
+            public string GroupName { get; set; }
     
 

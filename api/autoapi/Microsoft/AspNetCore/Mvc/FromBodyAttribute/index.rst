@@ -74,9 +74,6 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingSource BindingSource
-            {
-                get;
-            }
+            public BindingSource BindingSource { get; }
     
 

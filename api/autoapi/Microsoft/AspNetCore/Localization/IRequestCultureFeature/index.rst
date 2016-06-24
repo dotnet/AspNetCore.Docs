@@ -62,7 +62,7 @@ Properties
     
         
         The :any:`Microsoft.AspNetCore.Localization.IRequestCultureProvider` that determined the request's culture information.
-        If the value is <code>null</code> then no provider was used and the request's culture was set to the value of
+        If the value is <code>null</code> then no provider was used and the request's culture was set to the value of 
         :dn:prop:`Microsoft.AspNetCore.Builder.RequestLocalizationOptions.DefaultRequestCulture`\.
     
         
@@ -71,10 +71,7 @@ Properties
         
         .. code-block:: csharp
     
-            IRequestCultureProvider Provider
-            {
-                get;
-            }
+            IRequestCultureProvider Provider { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Localization.IRequestCultureFeature.RequestCulture
     
@@ -89,9 +86,6 @@ Properties
         
         .. code-block:: csharp
     
-            RequestCulture RequestCulture
-            {
-                get;
-            }
+            RequestCulture RequestCulture { get; }
     
 

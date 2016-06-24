@@ -80,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EncryptionAlgorithm
-            {
-                get;
-                set;
-            }
+            public string EncryptionAlgorithm { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptionSettings.EncryptionAlgorithmKeySize
     
@@ -100,11 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int EncryptionAlgorithmKeySize
-            {
-                get;
-                set;
-            }
+            public int EncryptionAlgorithmKeySize { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptionSettings.EncryptionAlgorithmProvider
     
@@ -121,11 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EncryptionAlgorithmProvider
-            {
-                get;
-                set;
-            }
+            public string EncryptionAlgorithmProvider { get; set; }
     
 
 Methods

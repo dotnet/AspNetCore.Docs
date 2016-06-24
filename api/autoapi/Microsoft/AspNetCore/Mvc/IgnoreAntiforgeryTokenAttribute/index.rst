@@ -74,10 +74,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int Order
-            {
-                get;
-                set;
-            }
+            public int Order { get; set; }
     
 

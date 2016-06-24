@@ -56,141 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.EndColumn
-    
-        
-    
-        
-        Gets the zero-based column index for the end of the compilation error.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int EndColumn
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.EndLine
-    
-        
-    
-        
-        Gets the one-based line index for the end of the compilation error.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int EndLine
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.FormattedMessage
-    
-        
-    
-        
-        Gets the formatted error message.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FormattedMessage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.Message
-    
-        
-    
-        
-        Gets the error message.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Message
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.SourceFilePath
-    
-        
-    
-        
-        Path of the file that produced the message.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string SourceFilePath
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.StartColumn
-    
-        
-    
-        
-        Gets the zero-based column index for the start of the compilation error.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StartColumn
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.StartLine
-    
-        
-    
-        
-        Gets the one-based line index for the start of the compilation error.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StartLine
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -228,5 +93,119 @@ Constructors
         .. code-block:: csharp
     
             public DiagnosticMessage(string message, string formattedMessage, string filePath, int startLine, int startColumn, int endLine, int endColumn)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.EndColumn
+    
+        
+    
+        
+        Gets the zero-based column index for the end of the compilation error.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int EndColumn { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.EndLine
+    
+        
+    
+        
+        Gets the one-based line index for the end of the compilation error.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int EndLine { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.FormattedMessage
+    
+        
+    
+        
+        Gets the formatted error message.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FormattedMessage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.Message
+    
+        
+    
+        
+        Gets the error message.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Message { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.SourceFilePath
+    
+        
+    
+        
+        Path of the file that produced the message.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string SourceFilePath { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.StartColumn
+    
+        
+    
+        
+        Gets the zero-based column index for the start of the compilation error.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StartColumn { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.DiagnosticMessage.StartLine
+    
+        
+    
+        
+        Gets the one-based line index for the start of the compilation error.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StartLine { get; }
     
 

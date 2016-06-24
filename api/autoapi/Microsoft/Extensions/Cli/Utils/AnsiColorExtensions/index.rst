@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Red(string text)
+            public static string Red(this string text)
     
     .. dn:method:: Microsoft.Extensions.Cli.Utils.AnsiColorExtensions.Yellow(System.String)
     
@@ -84,6 +84,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Yellow(string text)
+            public static string Yellow(this string text)
     
 

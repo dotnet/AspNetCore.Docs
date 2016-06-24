@@ -56,87 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticateResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticateResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Failure
-    
-        
-    
-        
-        Holds failure information from the authentication.
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public Exception Failure
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Skipped
-    
-        
-    
-        
-        Indicates that this stage of authentication was skipped by user intervention.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Skipped
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Succeeded
-    
-        
-    
-        
-        If a ticket was produced, authenticate was successful.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Succeeded
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Ticket
-    
-        
-    
-        
-        The authentication ticket.
-    
-        
-        :rtype: Microsoft.AspNetCore.Authentication.AuthenticationTicket
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationTicket Ticket
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -193,5 +112,74 @@ Methods
         .. code-block:: csharp
     
             public static AuthenticateResult Success(AuthenticationTicket ticket)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticateResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Failure
+    
+        
+    
+        
+        Holds failure information from the authentication.
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public Exception Failure { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Skipped
+    
+        
+    
+        
+        Indicates that this stage of authentication was skipped by user intervention.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Skipped { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Succeeded
+    
+        
+    
+        
+        If a ticket was produced, authenticate was successful.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Succeeded { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticateResult.Ticket
+    
+        
+    
+        
+        The authentication ticket.
+    
+        
+        :rtype: Microsoft.AspNetCore.Authentication.AuthenticationTicket
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationTicket Ticket { get; }
     
 

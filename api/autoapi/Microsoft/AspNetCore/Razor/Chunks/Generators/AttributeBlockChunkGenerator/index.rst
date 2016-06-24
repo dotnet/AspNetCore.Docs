@@ -53,54 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Prefix
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<string> Prefix
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Suffix
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<string> Suffix
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +150,44 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Prefix
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<string> Prefix { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AttributeBlockChunkGenerator.Suffix
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<string> Suffix { get; }
     
 

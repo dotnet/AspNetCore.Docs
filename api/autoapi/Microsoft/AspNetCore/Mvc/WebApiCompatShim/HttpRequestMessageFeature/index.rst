@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpRequestMessageFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpRequestMessageFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpRequestMessageFeature.HttpRequestMessage
-    
-        
-        :rtype: System.Net.Http.HttpRequestMessage
-    
-        
-        .. code-block:: csharp
-    
-            public HttpRequestMessage HttpRequestMessage
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -94,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public HttpRequestMessageFeature(HttpContext httpContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpRequestMessageFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpRequestMessageFeature.HttpRequestMessage
+    
+        
+        :rtype: System.Net.Http.HttpRequestMessage
+    
+        
+        .. code-block:: csharp
+    
+            public HttpRequestMessage HttpRequestMessage { get; set; }
     
 

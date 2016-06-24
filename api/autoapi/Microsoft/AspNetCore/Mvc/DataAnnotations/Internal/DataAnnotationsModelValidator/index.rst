@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsModelValidator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsModelValidator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsModelValidator.Attribute
-    
-        
-    
-        
-        The attribute being validated against.
-    
-        
-        :rtype: System.ComponentModel.DataAnnotations.ValidationAttribute
-    
-        
-        .. code-block:: csharp
-    
-            public ValidationAttribute Attribute
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,6 +93,30 @@ Constructors
         .. code-block:: csharp
     
             public DataAnnotationsModelValidator(IValidationAttributeAdapterProvider validationAttributeAdapterProvider, ValidationAttribute attribute, IStringLocalizer stringLocalizer)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsModelValidator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataAnnotationsModelValidator.Attribute
+    
+        
+    
+        
+        The attribute being validated against.
+    
+        
+        :rtype: System.ComponentModel.DataAnnotations.ValidationAttribute
+    
+        
+        .. code-block:: csharp
+    
+            public ValidationAttribute Attribute { get; }
     
 
 Methods

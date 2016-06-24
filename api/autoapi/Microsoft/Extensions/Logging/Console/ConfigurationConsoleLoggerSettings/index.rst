@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings.ChangeToken
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.IChangeToken
-    
-        
-        .. code-block:: csharp
-    
-            public IChangeToken ChangeToken
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings.IncludeScopes
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IncludeScopes
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,6 +71,35 @@ Constructors
         .. code-block:: csharp
     
             public ConfigurationConsoleLoggerSettings(IConfiguration configuration)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings.ChangeToken
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.IChangeToken
+    
+        
+        .. code-block:: csharp
+    
+            public IChangeToken ChangeToken { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConfigurationConsoleLoggerSettings.IncludeScopes
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IncludeScopes { get; }
     
 
 Methods

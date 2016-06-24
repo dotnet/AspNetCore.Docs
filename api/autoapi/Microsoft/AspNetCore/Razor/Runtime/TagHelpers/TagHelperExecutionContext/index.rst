@@ -56,105 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.ChildContentRetrieved
-    
-        
-    
-        
-        Indicates if :dn:meth:`Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(System.Boolean,System.Text.Encodings.Web.HtmlEncoder)` has been called.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ChildContentRetrieved
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Context
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s context.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Items
-    
-        
-    
-        
-        Gets the collection of items used to communicate with other :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<object, object> Items
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Output
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s output.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperOutput Output
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.TagHelpers
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s that should be run.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper<Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<ITagHelper> TagHelpers
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -200,7 +101,7 @@ Constructors
     
         
         :param startTagHelperWritingScope: 
-            A delegate used to start a writing scope in a Razor page and optionally override the page's
+            A delegate used to start a writing scope in a Razor page and optionally override the page's 
             :any:`System.Text.Encodings.Web.HtmlEncoder` within that scope.
         
         :type startTagHelperWritingScope: System.Action<System.Action`1>{System.Text.Encodings.Web.HtmlEncoder<System.Text.Encodings.Web.HtmlEncoder>}
@@ -262,7 +163,7 @@ Methods
     
             public void AddHtmlAttribute(TagHelperAttribute attribute)
     
-    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddHtmlAttribute(System.String, System.Object)
+    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddHtmlAttribute(System.String, System.Object, Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle)
     
         
     
@@ -282,30 +183,35 @@ Methods
         :type value: System.Object
     
         
-        .. code-block:: csharp
-    
-            public void AddHtmlAttribute(string name, object value)
-    
-    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddMinimizedHtmlAttribute(System.String)
-    
+        :param valueStyle: The value style of the attribute.
         
-    
-        
-        Tracks the minimized HTML attribute.
-    
-        
-    
-        
-        :param name: The minimized HTML attribute name.
-        
-        :type name: System.String
+        :type valueStyle: Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
     
         
         .. code-block:: csharp
     
-            public void AddMinimizedHtmlAttribute(string name)
+            public void AddHtmlAttribute(string name, object value, HtmlAttributeValueStyle valueStyle)
     
-    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddTagHelperAttribute(System.String, System.Object)
+    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddTagHelperAttribute(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute)
+    
+        
+    
+        
+        Tracks the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` bound attribute.
+    
+        
+    
+        
+        :param attribute: The bound attribute.
+        
+        :type attribute: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
+    
+        
+        .. code-block:: csharp
+    
+            public void AddTagHelperAttribute(TagHelperAttribute attribute)
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.AddTagHelperAttribute(System.String, System.Object, Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle)
     
         
     
@@ -325,9 +231,14 @@ Methods
         :type value: System.Object
     
         
+        :param valueStyle: The value style of the attribute.
+        
+        :type valueStyle: Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
+    
+        
         .. code-block:: csharp
     
-            public void AddTagHelperAttribute(string name, object value)
+            public void AddTagHelperAttribute(string name, object value, HtmlAttributeValueStyle valueStyle)
     
     .. dn:method:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Reinitialize(System.String, Microsoft.AspNetCore.Razor.TagHelpers.TagMode, System.Collections.Generic.IDictionary<System.Object, System.Object>, System.String, System.Func<System.Threading.Tasks.Task>)
     
@@ -385,5 +296,89 @@ Methods
         .. code-block:: csharp
     
             public Task SetOutputContentAsync()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.ChildContentRetrieved
+    
+        
+    
+        
+        Indicates if :dn:meth:`Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(System.Boolean,System.Text.Encodings.Web.HtmlEncoder)` has been called.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ChildContentRetrieved { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Context
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s context.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Items
+    
+        
+    
+        
+        Gets the collection of items used to communicate with other :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<object, object> Items { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.Output
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s output.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperOutput Output { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.TagHelpers
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s that should be run.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper<Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<ITagHelper> TagHelpers { get; }
     
 

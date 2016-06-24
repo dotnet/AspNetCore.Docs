@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            IEnumerable<CompilationFailure> CompilationFailures
-            {
-                get;
-            }
+            IEnumerable<CompilationFailure> CompilationFailures { get; }
     
 

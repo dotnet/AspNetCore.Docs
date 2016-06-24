@@ -120,6 +120,15 @@ Microsoft.Extensions.ObjectPool Namespace
 .. dn:namespace:: Microsoft.Extensions.ObjectPool
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IPooledObjectPolicy\<T>`
+        .. object: type=interface name=Microsoft.Extensions.ObjectPool.IPooledObjectPolicy\<T>
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -173,15 +182,6 @@ Microsoft.Extensions.ObjectPool Namespace
 
     class :dn:cls:`StringBuilderPooledObjectPolicy`
         .. object: type=class name=Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IPooledObjectPolicy\<T>`
-        .. object: type=interface name=Microsoft.Extensions.ObjectPool.IPooledObjectPolicy\<T>
 
         
 

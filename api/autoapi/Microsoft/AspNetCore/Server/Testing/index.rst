@@ -51,6 +51,14 @@ Microsoft.AspNetCore.Server.Testing Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Server/Testing/RemoteWindowsDeployer/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Server/Testing/RemoteWindowsDeploymentParameters/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Server/Testing/RetryHelper/index
    
    
@@ -75,7 +83,7 @@ Microsoft.AspNetCore.Server.Testing Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Server/Testing/SkipIfIISVariationsNotEnabledAttribute/index
+   /autoapi/Microsoft/AspNetCore/Server/Testing/SkipIfEnvironmentVariableNotEnabledAttribute/index
    
    
    
@@ -165,6 +173,14 @@ Microsoft.AspNetCore.Server.Testing Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -174,6 +190,16 @@ Microsoft.AspNetCore.Server.Testing Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Server.Testing
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IApplicationDeployer`
+        .. object: type=interface name=Microsoft.AspNetCore.Server.Testing.IApplicationDeployer
+
+        
+        Common operations on an application deployer.
 
 
     .. rubric:: Classes
@@ -228,6 +254,18 @@ Microsoft.AspNetCore.Server.Testing Namespace
         Deployer for Kestrel on Nginx.
 
 
+    class :dn:cls:`RemoteWindowsDeployer`
+        .. object: type=class name=Microsoft.AspNetCore.Server.Testing.RemoteWindowsDeployer
+
+        
+
+
+    class :dn:cls:`RemoteWindowsDeploymentParameters`
+        .. object: type=class name=Microsoft.AspNetCore.Server.Testing.RemoteWindowsDeploymentParameters
+
+        
+
+
     class :dn:cls:`RetryHelper`
         .. object: type=class name=Microsoft.AspNetCore.Server.Testing.RetryHelper
 
@@ -248,12 +286,12 @@ Microsoft.AspNetCore.Server.Testing Namespace
         Skips a test if the runtime used to run the test is CoreClr.
 
 
-    class :dn:cls:`SkipIfIISVariationsNotEnabledAttribute`
-        .. object: type=class name=Microsoft.AspNetCore.Server.Testing.SkipIfIISVariationsNotEnabledAttribute
+    class :dn:cls:`SkipIfEnvironmentVariableNotEnabledAttribute`
+        .. object: type=class name=Microsoft.AspNetCore.Server.Testing.SkipIfEnvironmentVariableNotEnabledAttribute
 
         
-        Skip test if IIS variations are not enabled. To enable set environment variable 
-        IIS_VARIATIONS_ENABLED=true for the test process.
+        Skip test if a given environment variable is not enabled. To enable the test, set environment variable 
+        to "true" for the test process.
 
 
     class :dn:cls:`SkipOn32BitOSAttribute`
@@ -288,15 +326,5 @@ Microsoft.AspNetCore.Server.Testing Namespace
         .. object: type=enum name=Microsoft.AspNetCore.Server.Testing.ServerType
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IApplicationDeployer`
-        .. object: type=interface name=Microsoft.AspNetCore.Server.Testing.IApplicationDeployer
-
-        
-        Common operations on an application deployer.
 
 

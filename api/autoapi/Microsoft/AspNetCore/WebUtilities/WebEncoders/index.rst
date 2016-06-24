@@ -288,7 +288,7 @@ Methods
         
     
         
-        Get the minimum output <code>char[]</code> size required for encoding <em>count</em>
+        Get the minimum output <code>char[]</code> size required for encoding <em>count</em> 
         :any:`System.Byte`\s with the :dn:meth:`Microsoft.AspNetCore.WebUtilities.WebEncoders.Base64UrlEncode(System.Byte[],System.Int32,System.Char[],System.Int32,System.Int32)` method.
     
         

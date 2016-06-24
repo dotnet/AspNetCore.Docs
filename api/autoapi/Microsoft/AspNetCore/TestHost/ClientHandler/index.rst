@@ -8,7 +8,7 @@ ClientHandler Class
 
 
 
-This adapts HttpRequestMessages to ASP.NET requests, dispatches them through the pipeline, and returns the
+This adapts HttpRequestMessages to ASP.NET Core requests, dispatches them through the pipeline, and returns the
 associated HttpResponseMessage.
 
 
@@ -104,7 +104,7 @@ Methods
         
     
         
-        This adapts HttpRequestMessages to ASP.NET requests, dispatches them through the pipeline, and returns the
+        This adapts HttpRequestMessages to ASP.NET Core requests, dispatches them through the pipeline, and returns the
         associated HttpResponseMessage.
     
         

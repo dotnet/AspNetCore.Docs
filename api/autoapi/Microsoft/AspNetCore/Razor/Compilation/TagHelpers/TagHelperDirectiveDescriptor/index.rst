@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string DirectiveText
-            {
-                get;
-                set;
-            }
+            public string DirectiveText { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor.DirectiveType
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TagHelperDirectiveType DirectiveType
-            {
-                get;
-                set;
-            }
+            public TagHelperDirectiveType DirectiveType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor.Location
     
@@ -115,10 +107,6 @@ Properties
         
         .. code-block:: csharp
     
-            public SourceLocation Location
-            {
-                get;
-                set;
-            }
+            public SourceLocation Location { get; set; }
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandParsingException
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandParsingException
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandParsingException.Command
-    
-        
-        :rtype: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
-    
-        
-        .. code-block:: csharp
-    
-            public CommandLineApplication Command
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -97,5 +75,24 @@ Constructors
         .. code-block:: csharp
     
             public CommandParsingException(CommandLineApplication command, string message)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandParsingException
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandParsingException.Command
+    
+        
+        :rtype: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
+    
+        
+        .. code-block:: csharp
+    
+            public CommandLineApplication Command { get; }
     
 

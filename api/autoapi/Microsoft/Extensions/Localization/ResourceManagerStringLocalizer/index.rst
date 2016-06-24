@@ -8,7 +8,7 @@ ResourceManagerStringLocalizer Class
 
 
 
-An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and
+An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and 
 :any:`System.Resources.ResourceReader` to provide localized strings.
 
 
@@ -56,50 +56,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.Item[System.String]
-    
-        
-    
-        
-        :type name: System.String
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-            public virtual LocalizedString this[string name]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.Item[System.String, System.Object[]]
-    
-        
-    
-        
-        :type name: System.String
-    
-        
-        :type arguments: System.Object<System.Object>[]
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-            public virtual LocalizedString this[string name, params object[] arguments]
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -262,5 +218,43 @@ Methods
         .. code-block:: csharp
     
             public IStringLocalizer WithCulture(CultureInfo culture)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.Item[System.String]
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedString this[string name] { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedString this[string name, params object[] arguments] { get; }
     
 

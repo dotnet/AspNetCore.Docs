@@ -328,117 +328,6 @@ Microsoft.AspNetCore.Http.Features Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Http.Features
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`DefaultSessionFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.DefaultSessionFeature
-
-        
-        This type exists only for the purpose of unit testing where the user can directly set the
-        :dn:prop:`Microsoft.AspNetCore.Http.HttpContext.Session` property without the need for creating a :any:`Microsoft.AspNetCore.Http.Features.ISessionFeature`\.
-
-
-    class :dn:cls:`FeatureCollection`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FeatureCollection
-
-        
-
-
-    class :dn:cls:`FormFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FormFeature
-
-        
-
-
-    class :dn:cls:`FormOptions`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FormOptions
-
-        
-
-
-    class :dn:cls:`HttpConnectionFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpConnectionFeature
-
-        
-
-
-    class :dn:cls:`HttpRequestFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestFeature
-
-        
-
-
-    class :dn:cls:`HttpRequestIdentifierFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestIdentifierFeature
-
-        
-
-
-    class :dn:cls:`HttpRequestLifetimeFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature
-
-        
-
-
-    class :dn:cls:`HttpResponseFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpResponseFeature
-
-        
-
-
-    class :dn:cls:`ItemsFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ItemsFeature
-
-        
-
-
-    class :dn:cls:`QueryFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.QueryFeature
-
-        
-
-
-    class :dn:cls:`RequestCookiesFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.RequestCookiesFeature
-
-        
-
-
-    class :dn:cls:`ResponseCookiesFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature
-
-        
-        Default implementation of :any:`Microsoft.AspNetCore.Http.Features.IResponseCookiesFeature`\.
-
-
-    class :dn:cls:`ServiceProvidersFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ServiceProvidersFeature
-
-        
-
-
-    class :dn:cls:`TlsConnectionFeature`
-        .. object: type=class name=Microsoft.AspNetCore.Http.Features.TlsConnectionFeature
-
-        
-
-
-    .. rubric:: Structures
-
-
-    struct :dn:struct:`FeatureReference\<T>`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.Features.FeatureReference\<T>
-
-        
-
-
-    struct :dn:struct:`FeatureReferences\<TCache>`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.Features.FeatureReferences\<TCache>
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -563,5 +452,116 @@ Microsoft.AspNetCore.Http.Features Namespace
 
         
         Provides information regarding TLS token binding parameters.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`DefaultSessionFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.DefaultSessionFeature
+
+        
+        This type exists only for the purpose of unit testing where the user can directly set the 
+        :dn:prop:`Microsoft.AspNetCore.Http.HttpContext.Session` property without the need for creating a :any:`Microsoft.AspNetCore.Http.Features.ISessionFeature`\.
+
+
+    class :dn:cls:`FeatureCollection`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FeatureCollection
+
+        
+
+
+    class :dn:cls:`FormFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FormFeature
+
+        
+
+
+    class :dn:cls:`FormOptions`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.FormOptions
+
+        
+
+
+    class :dn:cls:`HttpConnectionFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpConnectionFeature
+
+        
+
+
+    class :dn:cls:`HttpRequestFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestFeature
+
+        
+
+
+    class :dn:cls:`HttpRequestIdentifierFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestIdentifierFeature
+
+        
+
+
+    class :dn:cls:`HttpRequestLifetimeFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature
+
+        
+
+
+    class :dn:cls:`HttpResponseFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.HttpResponseFeature
+
+        
+
+
+    class :dn:cls:`ItemsFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ItemsFeature
+
+        
+
+
+    class :dn:cls:`QueryFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.QueryFeature
+
+        
+
+
+    class :dn:cls:`RequestCookiesFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.RequestCookiesFeature
+
+        
+
+
+    class :dn:cls:`ResponseCookiesFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature
+
+        
+        Default implementation of :any:`Microsoft.AspNetCore.Http.Features.IResponseCookiesFeature`\.
+
+
+    class :dn:cls:`ServiceProvidersFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.ServiceProvidersFeature
+
+        
+
+
+    class :dn:cls:`TlsConnectionFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Features.TlsConnectionFeature
+
+        
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`FeatureReference\<T>`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.Features.FeatureReference\<T>
+
+        
+
+
+    struct :dn:struct:`FeatureReferences\<TCache>`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.Features.FeatureReferences\<TCache>
+
+        
 
 

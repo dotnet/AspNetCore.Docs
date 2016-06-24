@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RegexRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RegexRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RegexRouteConstraint.Constraint
-    
-        
-        :rtype: System.Text.RegularExpressions.Regex
-    
-        
-        .. code-block:: csharp
-    
-            public Regex Constraint
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -105,6 +83,25 @@ Constructors
         .. code-block:: csharp
     
             public RegexRouteConstraint(Regex regex)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.RegexRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.RegexRouteConstraint.Constraint
+    
+        
+        :rtype: System.Text.RegularExpressions.Regex
+    
+        
+        .. code-block:: csharp
+    
+            public Regex Constraint { get; }
     
 
 Methods

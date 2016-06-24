@@ -59,6 +59,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.HiddenInputAttribute
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.HiddenInputAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.HiddenInputAttribute.HiddenInputAttribute()
+    
+        
+    
+        
+        Instantiates a new instance of the :any:`Microsoft.AspNetCore.Mvc.HiddenInputAttribute` class.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public HiddenInputAttribute()
+    
+
 Properties
 ----------
 
@@ -81,33 +104,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool DisplayValue
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.HiddenInputAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.HiddenInputAttribute.HiddenInputAttribute()
-    
-        
-    
-        
-        Instantiates a new instance of the :any:`Microsoft.AspNetCore.Mvc.HiddenInputAttribute` class.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public HiddenInputAttribute()
+            public bool DisplayValue { get; set; }
     
 

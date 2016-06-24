@@ -56,70 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Filter
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public IFilterMetadata Filter
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Order
-    
-        
-    
-        
-        The filter order.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Scope
-    
-        
-    
-        
-        The filter scope.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Scope
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -151,5 +87,59 @@ Constructors
         .. code-block:: csharp
     
             public FilterDescriptor(IFilterMetadata filter, int filterScope)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Filter
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public IFilterMetadata Filter { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Order
+    
+        
+    
+        
+        The filter order.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor.Scope
+    
+        
+    
+        
+        The filter scope.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Scope { get; }
     
 

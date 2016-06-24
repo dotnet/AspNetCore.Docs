@@ -58,47 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext.Properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext.RedirectUri
-    
-        
-    
-        
-        Gets or Sets the URI used for the redirect operation.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RedirectUri
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -140,5 +99,39 @@ Constructors
         .. code-block:: csharp
     
             public CookieRedirectContext(HttpContext context, CookieAuthenticationOptions options, string redirectUri, AuthenticationProperties properties)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext.Properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieRedirectContext.RedirectUri
+    
+        
+    
+        
+        Gets or Sets the URI used for the redirect operation.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RedirectUri { get; set; }
     
 

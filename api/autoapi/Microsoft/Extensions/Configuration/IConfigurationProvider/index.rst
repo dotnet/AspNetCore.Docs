@@ -61,8 +61,8 @@ Methods
         
     
         
-        Returns the immediate descendant configuration keys for a given parent path based on this
-        :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`\'s data and the set of keys returned by all the preceding
+        Returns the immediate descendant configuration keys for a given parent path based on this 
+        :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`\'s data and the set of keys returned by all the preceding 
         :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`\s.
     
         

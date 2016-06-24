@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RoleClaimType
-            {
-                get;
-                set;
-            }
+            public string RoleClaimType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.SecurityStampClaimType
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string SecurityStampClaimType
-            {
-                get;
-                set;
-            }
+            public string SecurityStampClaimType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.UserIdClaimType
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string UserIdClaimType
-            {
-                get;
-                set;
-            }
+            public string UserIdClaimType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.UserNameClaimType
     
@@ -134,10 +122,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string UserNameClaimType
-            {
-                get;
-                set;
-            }
+            public string UserNameClaimType { get; set; }
     
 

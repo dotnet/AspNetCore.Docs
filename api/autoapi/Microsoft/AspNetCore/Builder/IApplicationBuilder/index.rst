@@ -69,11 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceProvider ApplicationServices
-            {
-                get;
-                set;
-            }
+            IServiceProvider ApplicationServices { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties
     
@@ -88,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            IDictionary<string, object> Properties
-            {
-                get;
-            }
+            IDictionary<string, object> Properties { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IApplicationBuilder.ServerFeatures
     
@@ -106,10 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFeatureCollection ServerFeatures
-            {
-                get;
-            }
+            IFeatureCollection ServerFeatures { get; }
     
 
 Methods
@@ -141,7 +131,7 @@ Methods
         
     
         
-        Creates a new :any:`Microsoft.AspNetCore.Builder.IApplicationBuilder` that shares the :dn:prop:`Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties` of this
+        Creates a new :any:`Microsoft.AspNetCore.Builder.IApplicationBuilder` that shares the :dn:prop:`Microsoft.AspNetCore.Builder.IApplicationBuilder.Properties` of this 
         :any:`Microsoft.AspNetCore.Builder.IApplicationBuilder`\.
     
         

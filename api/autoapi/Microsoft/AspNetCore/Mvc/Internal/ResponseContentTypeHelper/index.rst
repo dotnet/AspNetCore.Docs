@@ -80,7 +80,7 @@ Methods
     
         
         :param httpResponseContentType: :dn:prop:`Microsoft.AspNetCore.Http.HttpResponse.ContentType` property set
-            on :any:`Microsoft.AspNetCore.Http.HttpResponse`
+                on :any:`Microsoft.AspNetCore.Http.HttpResponse`
         
         :type httpResponseContentType: System.String
     

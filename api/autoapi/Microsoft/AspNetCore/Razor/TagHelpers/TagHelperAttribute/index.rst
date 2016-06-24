@@ -42,7 +42,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class TagHelperAttribute
+    public class TagHelperAttribute : IHtmlContentContainer, IHtmlContent
 
 
 
@@ -55,69 +55,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Minimized
-    
-        
-    
-        
-        Gets an indication whether the attribute is minimized or not.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Minimized
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name
-    
-        
-    
-        
-        Gets the name of the attribute.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Value
-    
-        
-    
-        
-        Gets the value of the attribute.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Value
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -132,8 +69,9 @@ Constructors
         
     
         
-        Instantiates a new instance of :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the specified <em>name</em>.
-        :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Minimized` is set to <code>true</code> and :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Value` to <code>null</code>.
+        Instantiates a new instance of :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the specified <em>name</em>. 
+        :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.ValueStyle` is set to :dn:field:`Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized` and :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Value` to
+        <code>null</code>.
     
         
     
@@ -153,7 +91,7 @@ Constructors
     
         
         Instantiates a new instance of :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the specified <em>name</em>
-        and <em>value</em>. :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Minimized` is set to <code>false</code>.
+        and <em>value</em>. :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.ValueStyle` is set to :dn:field:`Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes`\.
     
         
     
@@ -172,13 +110,13 @@ Constructors
     
             public TagHelperAttribute(string name, object value)
     
-    .. dn:constructor:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.TagHelperAttribute(System.String, System.Object, System.Boolean)
+    .. dn:constructor:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.TagHelperAttribute(System.String, System.Object, Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle)
     
         
     
         
         Instantiates a new instance of :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the specified <em>name</em>,
-        <em>value</em> and <em>minimized</em>.
+        <em>value</em> and <em>valueStyle</em>.
     
         
     
@@ -193,14 +131,14 @@ Constructors
         :type value: System.Object
     
         
-        :param minimized: The :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Minimized` value of the new instance.
+        :param valueStyle: The :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.ValueStyle` of the new instance.
         
-        :type minimized: System.Boolean
+        :type valueStyle: Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
     
         
         .. code-block:: csharp
     
-            public TagHelperAttribute(string name, object value, bool minimized)
+            public TagHelperAttribute(string name, object value, HtmlAttributeValueStyle valueStyle)
     
 
 Methods
@@ -210,6 +148,18 @@ Methods
     :noindex:
     :hidden:
 
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.CopyTo(Microsoft.AspNetCore.Html.IHtmlContentBuilder)
+    
+        
+    
+        
+        :type destination: Microsoft.AspNetCore.Html.IHtmlContentBuilder
+    
+        
+        .. code-block:: csharp
+    
+            public void CopyTo(IHtmlContentBuilder destination)
     
     .. dn:method:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Equals(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute)
     
@@ -246,5 +196,86 @@ Methods
         .. code-block:: csharp
     
             public override int GetHashCode()
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.MoveTo(Microsoft.AspNetCore.Html.IHtmlContentBuilder)
+    
+        
+    
+        
+        :type destination: Microsoft.AspNetCore.Html.IHtmlContentBuilder
+    
+        
+        .. code-block:: csharp
+    
+            public void MoveTo(IHtmlContentBuilder destination)
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.WriteTo(System.IO.TextWriter, System.Text.Encodings.Web.HtmlEncoder)
+    
+        
+    
+        
+        :type writer: System.IO.TextWriter
+    
+        
+        :type encoder: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            public void WriteTo(TextWriter writer, HtmlEncoder encoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name
+    
+        
+    
+        
+        Gets the name of the attribute.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Value
+    
+        
+    
+        
+        Gets the value of the attribute.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Value { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.ValueStyle
+    
+        
+    
+        
+        Gets the value style of the attribute.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
+    
+        
+        .. code-block:: csharp
+    
+            public HtmlAttributeValueStyle ValueStyle { get; }
     
 

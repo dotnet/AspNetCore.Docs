@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel.ActionConstraints
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata<Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IActionConstraintMetadata> ActionConstraints
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel.AttributeRouteModel
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
-    
-        
-        .. code-block:: csharp
-    
-            public AttributeRouteModel AttributeRouteModel
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -116,5 +80,34 @@ Constructors
         .. code-block:: csharp
     
             public SelectorModel(SelectorModel other)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel.ActionConstraints
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata<Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IActionConstraintMetadata> ActionConstraints { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel.AttributeRouteModel
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
+    
+        
+        .. code-block:: csharp
+    
+            public AttributeRouteModel AttributeRouteModel { get; set; }
     
 

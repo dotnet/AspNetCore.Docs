@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder.Current
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.ParentChunk
-    
-        
-        .. code-block:: csharp
-    
-            public ParentChunk Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder.Root
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
-    
-        
-        .. code-block:: csharp
-    
-            public ChunkTree Root
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -337,5 +302,34 @@ Methods
         .. code-block:: csharp
     
             public T StartParentChunk<T>(T parentChunk, SyntaxTreeNode association, bool topLevel)where T : ParentChunk
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder.Current
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.ParentChunk
+    
+        
+        .. code-block:: csharp
+    
+            public ParentChunk Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder.Root
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
+    
+        
+        .. code-block:: csharp
+    
+            public ChunkTree Root { get; }
     
 

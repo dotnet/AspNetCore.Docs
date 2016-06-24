@@ -73,11 +73,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset? AbsoluteExpiration
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset? AbsoluteExpiration { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.AbsoluteExpirationRelativeToNow
     
@@ -92,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? AbsoluteExpirationRelativeToNow
-            {
-                get;
-                set;
-            }
+            public TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.ExpirationTokens
     
@@ -111,10 +103,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IChangeToken> ExpirationTokens
-            {
-                get;
-            }
+            public IList<IChangeToken> ExpirationTokens { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.PostEvictionCallbacks
     
@@ -129,10 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<PostEvictionCallbackRegistration> PostEvictionCallbacks
-            {
-                get;
-            }
+            public IList<PostEvictionCallbackRegistration> PostEvictionCallbacks { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.Priority
     
@@ -148,11 +134,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CacheItemPriority Priority
-            {
-                get;
-                set;
-            }
+            public CacheItemPriority Priority { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration
     
@@ -168,10 +150,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? SlidingExpiration
-            {
-                get;
-                set;
-            }
+            public TimeSpan? SlidingExpiration { get; set; }
     
 

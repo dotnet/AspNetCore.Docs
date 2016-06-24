@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Caching.Memory.MemoryCache
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Caching.Memory.MemoryCache
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCache.Count
-    
-        
-    
-        
-        Gets the count of the current entries for diagnostic purposes.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -207,5 +180,29 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(object key, out object result)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Caching.Memory.MemoryCache
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCache.Count
+    
+        
+    
+        
+        Gets the count of the current entries for diagnostic purposes.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
     
 

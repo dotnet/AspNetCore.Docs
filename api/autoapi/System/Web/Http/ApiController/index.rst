@@ -73,10 +73,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ActionContext ActionContext
-            {
-                get;
-            }
+            public ActionContext ActionContext { get; }
     
     .. dn:property:: System.Web.Http.ApiController.Context
     
@@ -91,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpContext Context
-            {
-                get;
-            }
+            public HttpContext Context { get; }
     
     .. dn:property:: System.Web.Http.ApiController.ControllerContext
     
@@ -109,11 +103,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ControllerContext ControllerContext
-            {
-                get;
-                set;
-            }
+            public ControllerContext ControllerContext { get; set; }
     
     .. dn:property:: System.Web.Http.ApiController.MetadataProvider
     
@@ -128,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IModelMetadataProvider MetadataProvider
-            {
-                get;
-                set;
-            }
+            public IModelMetadataProvider MetadataProvider { get; set; }
     
     .. dn:property:: System.Web.Http.ApiController.ModelState
     
@@ -148,10 +134,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelStateDictionary ModelState
-            {
-                get;
-            }
+            public ModelStateDictionary ModelState { get; }
     
     .. dn:property:: System.Web.Http.ApiController.ObjectValidator
     
@@ -166,11 +149,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IObjectModelValidator ObjectValidator
-            {
-                get;
-                set;
-            }
+            public IObjectModelValidator ObjectValidator { get; set; }
     
     .. dn:property:: System.Web.Http.ApiController.Request
     
@@ -185,11 +164,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpRequestMessage Request
-            {
-                get;
-                set;
-            }
+            public HttpRequestMessage Request { get; set; }
     
     .. dn:property:: System.Web.Http.ApiController.Url
     
@@ -204,11 +179,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IUrlHelper Url
-            {
-                get;
-                set;
-            }
+            public IUrlHelper Url { get; set; }
     
     .. dn:property:: System.Web.Http.ApiController.User
     
@@ -223,10 +194,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IPrincipal User
-            {
-                get;
-            }
+            public IPrincipal User { get; }
     
 
 Methods
@@ -446,7 +414,6 @@ Methods
         
     
         Creates an :any:`System.Web.Http.InternalServerErrorResult` (500 Internal Server Error).
-        
     
         
         :rtype: System.Web.Http.InternalServerErrorResult
@@ -755,7 +722,7 @@ Methods
     
         
         :param keyPrefix: 
-            The key prefix under which the model state errors would be added in the
+            The key prefix under which the model state errors would be added in the 
             :dn:prop:`System.Web.Http.ApiController.ModelState`\.
         
         :type keyPrefix: System.String

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddXmlDataContractSerializerFormatters(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddXmlDataContractSerializerFormatters(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
@@ -104,6 +104,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddXmlSerializerFormatters(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddXmlSerializerFormatters(this IMvcCoreBuilder builder)
     
 

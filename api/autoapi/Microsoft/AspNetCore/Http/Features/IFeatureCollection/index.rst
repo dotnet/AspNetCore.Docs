@@ -48,74 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.Features.IFeatureCollection
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.IsReadOnly
-    
-        
-    
-        
-        Indicates if the collection can be modified.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.Item[System.Type]
-    
-        
-    
-        
-        Gets or sets a given feature. Setting a null value removes the feature.
-    
-        
-    
-        
-        :type key: System.Type
-        :rtype: System.Object
-        :return: The requested feature, or null if it is not present.
-    
-        
-        .. code-block:: csharp
-    
-            object this[Type key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.Revision
-    
-        
-    
-        
-        Incremented for each modification and can be used to verify cached results.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Revision
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -158,5 +90,63 @@ Methods
         .. code-block:: csharp
     
             void Set<TFeature>(TFeature instance)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.IsReadOnly
+    
+        
+    
+        
+        Indicates if the collection can be modified.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.Item[System.Type]
+    
+        
+    
+        
+        Gets or sets a given feature. Setting a null value removes the feature.
+    
+        
+    
+        
+        :type key: System.Type
+        :rtype: System.Object
+        :return: The requested feature, or null if it is not present.
+    
+        
+        .. code-block:: csharp
+    
+            object this[Type key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.IFeatureCollection.Revision
+    
+        
+    
+        
+        Incremented for each modification and can be used to verify cached results.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Revision { get; }
     
 

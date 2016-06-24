@@ -74,11 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AllowedForNewUsers
-            {
-                get;
-                set;
-            }
+            public bool AllowedForNewUsers { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.LockoutOptions.DefaultLockoutTimeSpan
     
@@ -94,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan DefaultLockoutTimeSpan
-            {
-                get;
-                set;
-            }
+            public TimeSpan DefaultLockoutTimeSpan { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.LockoutOptions.MaxFailedAccessAttempts
     
@@ -116,10 +108,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int MaxFailedAccessAttempts
-            {
-                get;
-                set;
-            }
+            public int MaxFailedAccessAttempts { get; set; }
     
 

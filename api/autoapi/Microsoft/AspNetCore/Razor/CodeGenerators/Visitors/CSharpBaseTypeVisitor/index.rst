@@ -54,29 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpBaseTypeVisitor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpBaseTypeVisitor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpBaseTypeVisitor.CurrentBaseType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CurrentBaseType
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -99,6 +76,25 @@ Constructors
         .. code-block:: csharp
     
             public CSharpBaseTypeVisitor(CSharpCodeWriter writer, CodeGeneratorContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpBaseTypeVisitor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpBaseTypeVisitor.CurrentBaseType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CurrentBaseType { get; set; }
     
 
 Methods

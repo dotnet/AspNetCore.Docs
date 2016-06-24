@@ -8,7 +8,7 @@ JsonConfigurationSource Class
 
 
 
-A JSON file based :any:`Microsoft.Extensions.Configuration.FileConfigurationSource`\.
+Represents a JSON file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 
 Namespace
@@ -70,8 +70,16 @@ Methods
         
     
         
+        Builds the :any:`Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider` for this source.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+        
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: A :any:`Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider`
     
         
         .. code-block:: csharp

@@ -86,14 +86,14 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddDistributedMemoryCache(IServiceCollection services)
+            public static IServiceCollection AddDistributedMemoryCache(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)
     
         
     
         
-        Adds a non distributed in memory implementation of :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to the
+        Adds a non distributed in memory implementation of :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to the 
         :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
@@ -108,14 +108,14 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddMemoryCache(IServiceCollection services)
+            public static IServiceCollection AddMemoryCache(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.Extensions.Caching.Memory.MemoryCacheOptions>)
     
         
     
         
-        Adds a non distributed in memory implementation of :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to the
+        Adds a non distributed in memory implementation of :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to the 
         :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
     
         
@@ -136,6 +136,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddMemoryCache(IServiceCollection services, Action<MemoryCacheOptions> setupAction)
+            public static IServiceCollection AddMemoryCache(this IServiceCollection services, Action<MemoryCacheOptions> setupAction)
     
 

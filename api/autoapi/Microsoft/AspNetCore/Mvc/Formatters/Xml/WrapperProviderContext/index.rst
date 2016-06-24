@@ -56,53 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType
-    
-        
-    
-        
-        The declared type which could be wrapped/un-wrapped by a different type 
-        during serialization or de-serializatoin.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type DeclaredType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.IsSerialization
-    
-        
-    
-        
-        <xref uid="langword_csharp_true" name="true" href=""></xref> if a wrapper provider is invoked during serialization,
-        <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsSerialization
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -127,7 +80,7 @@ Constructors
     
         
         :param isSerialization: <xref uid="langword_csharp_true" name="true" href=""></xref> if the wrapper provider is invoked during
-            serialization, otherwise <xref uid="langword_csharp_false" name="false" href=""></xref>.
+                serialization, otherwise <xref uid="langword_csharp_false" name="false" href=""></xref>.
         
         :type isSerialization: System.Boolean
     
@@ -135,5 +88,46 @@ Constructors
         .. code-block:: csharp
     
             public WrapperProviderContext(Type declaredType, bool isSerialization)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.DeclaredType
+    
+        
+    
+        
+        The declared type which could be wrapped/un-wrapped by a different type 
+        during serialization or de-serializatoin.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type DeclaredType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext.IsSerialization
+    
+        
+    
+        
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if a wrapper provider is invoked during serialization,
+        <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsSerialization { get; }
     
 

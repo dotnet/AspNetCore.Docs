@@ -10,7 +10,7 @@ FilterItem Class
 
 Used to associate executable filters with :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` instances
 as part of :any:`Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext`\. An :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterProvider` should
-inspect :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` and
+inspect :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` and 
 :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.IsReusable` as appropriate.
 
 
@@ -60,71 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterItem
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterItem
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.Descriptor
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor` containing the filter metadata.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor
-    
-        
-        .. code-block:: csharp
-    
-            public FilterDescriptor Descriptor
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter
-    
-        
-    
-        
-        Gets or sets the executable :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Descriptor`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public IFilterMetadata Filter
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.IsReusable
-    
-        
-    
-        
-        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` can be reused across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -173,5 +108,59 @@ Constructors
         .. code-block:: csharp
     
             public FilterItem(FilterDescriptor descriptor, IFilterMetadata filter)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterItem
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.Descriptor
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor` containing the filter metadata.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor
+    
+        
+        .. code-block:: csharp
+    
+            public FilterDescriptor Descriptor { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter
+    
+        
+    
+        
+        Gets or sets the executable :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Descriptor`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public IFilterMetadata Filter { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterItem.IsReusable
+    
+        
+    
+        
+        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` can be reused across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; set; }
     
 

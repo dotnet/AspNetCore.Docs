@@ -90,7 +90,7 @@ Constructors
     
         
         :param attributeTypeName: 
-            Full name of the property :any:`System.Type` for which this
+            Full name of the property :any:`System.Type` for which this 
             :any:`Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpTagHelperAttributeValueVisitor` is writing the value.
         
         :type attributeTypeName: System.String

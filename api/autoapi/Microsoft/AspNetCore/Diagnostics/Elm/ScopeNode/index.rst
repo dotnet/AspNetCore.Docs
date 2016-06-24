@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public List<ScopeNode> Children
-            {
-                get;
-            }
+            public List<ScopeNode> Children { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.EndTime
     
@@ -81,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset EndTime
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset EndTime { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.Messages
     
@@ -95,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public List<LogInfo> Messages
-            {
-                get;
-            }
+            public List<LogInfo> Messages { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.Name
     
@@ -108,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.Parent
     
@@ -122,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ScopeNode Parent
-            {
-                get;
-                set;
-            }
+            public ScopeNode Parent { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.StartTime
     
@@ -136,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset StartTime
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset StartTime { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode.State
     
@@ -150,10 +128,6 @@ Properties
         
         .. code-block:: csharp
     
-            public object State
-            {
-                get;
-                set;
-            }
+            public object State { get; set; }
     
 

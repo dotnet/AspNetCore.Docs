@@ -7,6 +7,10 @@ ConfigureOptions<TOptions> Class
 
 
 
+
+Implementation of IConfigureOptions.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -52,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>.Action
-    
-        
-        :rtype: System.Action<System.Action`1>{TOptions}
-    
-        
-        .. code-block:: csharp
-    
-            public Action<TOptions> Action
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -87,12 +69,43 @@ Constructors
         
     
         
+        Constructor.
+    
+        
+    
+        
+        :param action: The action to register.
+        
         :type action: System.Action<System.Action`1>{TOptions}
     
         
         .. code-block:: csharp
     
             public ConfigureOptions(Action<TOptions> action)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>.Action
+    
+        
+    
+        
+        The configuration action.
+    
+        
+        :rtype: System.Action<System.Action`1>{TOptions}
+    
+        
+        .. code-block:: csharp
+    
+            public Action<TOptions> Action { get; }
     
 
 Methods
@@ -104,6 +117,11 @@ Methods
 
     
     .. dn:method:: Microsoft.Extensions.Options.ConfigureOptions<TOptions>.Configure(TOptions)
+    
+        
+    
+        
+        Invokes the registered configure Action.
     
         
     

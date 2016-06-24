@@ -58,53 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute.StatusCode
-    
-        
-    
-        
-        Gets or sets the HTTP status code of the response.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StatusCode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute.Type
-    
-        
-    
-        
-        Gets or sets the type of the value returned by an action.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type Type
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -157,5 +110,44 @@ Methods
         .. code-block:: csharp
     
             void IApiResponseMetadataProvider.SetContentTypes(MediaTypeCollection contentTypes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute.StatusCode
+    
+        
+    
+        
+        Gets or sets the HTTP status code of the response.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StatusCode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute.Type
+    
+        
+    
+        
+        Gets or sets the type of the value returned by an action.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type Type { get; set; }
     
 

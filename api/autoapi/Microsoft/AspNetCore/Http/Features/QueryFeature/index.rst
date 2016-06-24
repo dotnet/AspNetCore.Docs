@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.QueryFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.QueryFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.QueryFeature.Query
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IQueryCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IQueryCollection Query
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,5 +83,24 @@ Constructors
         .. code-block:: csharp
     
             public QueryFeature(IQueryCollection query)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.QueryFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.QueryFeature.Query
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IQueryCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IQueryCollection Query { get; set; }
     
 

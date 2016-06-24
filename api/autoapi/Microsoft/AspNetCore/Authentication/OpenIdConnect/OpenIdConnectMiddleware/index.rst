@@ -57,41 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware.Backchannel
-    
-        
-        :rtype: System.Net.Http.HttpClient
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpClient Backchannel
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware.HtmlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.HtmlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected HtmlEncoder HtmlEncoder
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -115,7 +80,7 @@ Constructors
         :type next: Microsoft.AspNetCore.Http.RequestDelegate
     
         
-        :param dataProtectionProvider:  provider for creating a data protector.
+        :param dataProtectionProvider: provider for creating a data protector.
         
         :type dataProtectionProvider: Microsoft.AspNetCore.DataProtection.IDataProtectionProvider
     
@@ -145,6 +110,35 @@ Constructors
         .. code-block:: csharp
     
             public OpenIdConnectMiddleware(RequestDelegate next, IDataProtectionProvider dataProtectionProvider, ILoggerFactory loggerFactory, UrlEncoder encoder, IServiceProvider services, IOptions<SharedAuthenticationOptions> sharedOptions, IOptions<OpenIdConnectOptions> options, HtmlEncoder htmlEncoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware.Backchannel
+    
+        
+        :rtype: System.Net.Http.HttpClient
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpClient Backchannel { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware.HtmlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected HtmlEncoder HtmlEncoder { get; }
     
 
 Methods

@@ -60,11 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpContext HttpContext
-            {
-                get;
-                set;
-            }
+            public HttpContext HttpContext { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingApplication.Context.Scope
     
@@ -74,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDisposable Scope
-            {
-                get;
-                set;
-            }
+            public IDisposable Scope { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingApplication.Context.StartTimestamp
     
@@ -88,10 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public long StartTimestamp
-            {
-                get;
-                set;
-            }
+            public long StartTimestamp { get; set; }
     
 

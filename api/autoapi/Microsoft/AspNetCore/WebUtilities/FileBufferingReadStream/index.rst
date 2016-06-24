@@ -60,107 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanRead
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanRead
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanSeek
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanSeek
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanWrite
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanWrite
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.InMemory
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool InMemory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.Length
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public override long Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.Position
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public override long Position
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.TempFileName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TempFileName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -472,5 +371,84 @@ Methods
         .. code-block:: csharp
     
             public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanRead
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanRead { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanSeek
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanSeek { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.CanWrite
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanWrite { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.InMemory
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool InMemory { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.Length
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public override long Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.Position
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public override long Position { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.TempFileName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TempFileName { get; }
     
 

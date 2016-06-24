@@ -55,10 +55,6 @@ Microsoft.Extensions.Configuration Namespace
    
    
    
-   /autoapi/Microsoft/Extensions/Configuration/DefaultConfigurationBuilderExtensions/index
-   
-   
-   
    /autoapi/Microsoft/Extensions/Configuration/EnvironmentVariablesExtensions/index
    
    
@@ -104,6 +100,10 @@ Microsoft.Extensions.Configuration Namespace
    
    
    /autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/Configuration/MemoryConfigurationBuilderExtensions/index
    
    
    
@@ -232,125 +232,6 @@ Microsoft.Extensions.Configuration Namespace
 .. dn:namespace:: Microsoft.Extensions.Configuration
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`CommandLineConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions
-
-        
-
-
-    class :dn:cls:`ConfigurationBinder`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationBinder
-
-        
-
-
-    class :dn:cls:`ConfigurationBuilder`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationBuilder
-
-        
-        Used to build key/value based configuration settings for use in an application.
-
-
-    class :dn:cls:`ConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationExtensions
-
-        
-        Extension methods for :any:`Microsoft.Extensions.Configuration.IConfiguration`\.
-
-
-    class :dn:cls:`ConfigurationKeyComparer`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationKeyComparer
-
-        
-
-
-    class :dn:cls:`ConfigurationPath`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationPath
-
-        
-        Utility methods and constants for manipulating Configuration paths
-
-
-    class :dn:cls:`ConfigurationProvider`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationProvider
-
-        
-
-
-    class :dn:cls:`ConfigurationReloadToken`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationReloadToken
-
-        
-
-
-    class :dn:cls:`ConfigurationRoot`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationRoot
-
-        
-
-
-    class :dn:cls:`ConfigurationSection`
-        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationSection
-
-        
-
-
-    class :dn:cls:`DefaultConfigurationBuilderExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.DefaultConfigurationBuilderExtensions
-
-        
-
-
-    class :dn:cls:`EnvironmentVariablesExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions
-
-        
-        Extension methods for registering :any:`Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider` with :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
-
-
-    class :dn:cls:`FileConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationExtensions
-
-        
-
-
-    class :dn:cls:`FileConfigurationProvider`
-        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationProvider
-
-        
-        Base class for file based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
-
-
-    class :dn:cls:`FileConfigurationSource`
-        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationSource
-
-        
-        Represents a base class for file based :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
-
-
-    class :dn:cls:`IniConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.IniConfigurationExtensions
-
-        
-
-
-    class :dn:cls:`JsonConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.JsonConfigurationExtensions
-
-        
-        Extension methods for adding :any:`Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider`\.
-
-
-    class :dn:cls:`XmlConfigurationExtensions`
-        .. object: type=class name=Microsoft.Extensions.Configuration.XmlConfigurationExtensions
-
-        
-        Extension methods for adding :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider`\.
-
-
     .. rubric:: Interfaces
 
 
@@ -394,5 +275,134 @@ Microsoft.Extensions.Configuration Namespace
 
         
         Represents a source of configuration key/values for an application.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`CommandLineConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions
+
+        
+        Extension methods for registering :any:`Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider` with :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+
+
+    class :dn:cls:`ConfigurationBinder`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationBinder
+
+        
+        Static helper class that allows binding strongly typed objects to configuration values.
+
+
+    class :dn:cls:`ConfigurationBuilder`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationBuilder
+
+        
+        Used to build key/value based configuration settings for use in an application.
+
+
+    class :dn:cls:`ConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationExtensions
+
+        
+        Extension methods for :any:`Microsoft.Extensions.Configuration.IConfiguration`\.
+
+
+    class :dn:cls:`ConfigurationKeyComparer`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationKeyComparer
+
+        
+        IComparer implementation used to order configuration keys.
+
+
+    class :dn:cls:`ConfigurationPath`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationPath
+
+        
+        Utility methods and constants for manipulating Configuration paths
+
+
+    class :dn:cls:`ConfigurationProvider`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationProvider
+
+        
+        Base helper class for implementing an :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
+
+
+    class :dn:cls:`ConfigurationReloadToken`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationReloadToken
+
+        
+        Implements :any:`Microsoft.Extensions.Primitives.IChangeToken`
+
+
+    class :dn:cls:`ConfigurationRoot`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationRoot
+
+        
+        The root node for a configuration.
+
+
+    class :dn:cls:`ConfigurationSection`
+        .. object: type=class name=Microsoft.Extensions.Configuration.ConfigurationSection
+
+        
+        Represents a section of application configuration values.
+
+
+    class :dn:cls:`EnvironmentVariablesExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions
+
+        
+        Extension methods for registering :any:`Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider` with :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+
+
+    class :dn:cls:`FileConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationExtensions
+
+        
+        Extension methods for :any:`Microsoft.Extensions.Configuration.FileConfigurationProvider`\.
+
+
+    class :dn:cls:`FileConfigurationProvider`
+        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationProvider
+
+        
+        Base class for file based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
+
+
+    class :dn:cls:`FileConfigurationSource`
+        .. object: type=class name=Microsoft.Extensions.Configuration.FileConfigurationSource
+
+        
+        Represents a base class for file based :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
+
+
+    class :dn:cls:`IniConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.IniConfigurationExtensions
+
+        
+        Extension methods for adding :any:`Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider`\.
+
+
+    class :dn:cls:`JsonConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.JsonConfigurationExtensions
+
+        
+        Extension methods for adding :any:`Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider`\.
+
+
+    class :dn:cls:`MemoryConfigurationBuilderExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions
+
+        
+        IConfigurationBuilder extension methods for the MemoryConfigurationProvider.
+
+
+    class :dn:cls:`XmlConfigurationExtensions`
+        .. object: type=class name=Microsoft.Extensions.Configuration.XmlConfigurationExtensions
+
+        
+        Extension methods for adding :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider`\.
 
 

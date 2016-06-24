@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelMetadataTypeAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelMetadataTypeAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelMetadataTypeAttribute.MetadataType
-    
-        
-    
-        
-        Gets the type of metadata class that is associated with a data model class.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type MetadataType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -111,5 +84,29 @@ Constructors
         .. code-block:: csharp
     
             public ModelMetadataTypeAttribute(Type type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelMetadataTypeAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelMetadataTypeAttribute.MetadataType
+    
+        
+    
+        
+        Gets the type of metadata class that is associated with a data model class.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type MetadataType { get; }
     
 

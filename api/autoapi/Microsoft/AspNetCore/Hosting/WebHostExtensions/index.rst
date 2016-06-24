@@ -77,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Run(IWebHost host)
+            public static void Run(this IWebHost host)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostExtensions.Run(Microsoft.AspNetCore.Hosting.IWebHost, System.Threading.CancellationToken)
     
@@ -101,6 +101,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Run(IWebHost host, CancellationToken token)
+            public static void Run(this IWebHost host, CancellationToken token)
     
 

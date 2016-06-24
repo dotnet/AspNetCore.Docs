@@ -52,308 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Headers.RequestHeaders
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Headers.RequestHeaders
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Accept
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.MediaTypeHeaderValue<Microsoft.Net.Http.Headers.MediaTypeHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<MediaTypeHeaderValue> Accept
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptCharset
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<StringWithQualityHeaderValue> AcceptCharset
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptEncoding
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<StringWithQualityHeaderValue> AcceptEncoding
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptLanguage
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<StringWithQualityHeaderValue> AcceptLanguage
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.CacheControl
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.CacheControlHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public CacheControlHeaderValue CacheControl
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentDisposition
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public ContentDispositionHeaderValue ContentDisposition
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentLength
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? ContentLength
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentRange
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public ContentRangeHeaderValue ContentRange
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentType
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeHeaderValue ContentType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Cookie
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.CookieHeaderValue<Microsoft.Net.Http.Headers.CookieHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<CookieHeaderValue> Cookie
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Date
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? Date
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Expires
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? Expires
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Headers
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public IHeaderDictionary Headers
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Host
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HostString
-    
-        
-        .. code-block:: csharp
-    
-            public HostString Host
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfMatch
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.EntityTagHeaderValue<Microsoft.Net.Http.Headers.EntityTagHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<EntityTagHeaderValue> IfMatch
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfModifiedSince
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? IfModifiedSince
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfNoneMatch
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.EntityTagHeaderValue<Microsoft.Net.Http.Headers.EntityTagHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<EntityTagHeaderValue> IfNoneMatch
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfRange
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.RangeConditionHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public RangeConditionHeaderValue IfRange
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfUnmodifiedSince
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? IfUnmodifiedSince
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.LastModified
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? LastModified
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Range
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.RangeHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public RangeHeaderValue Range
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -373,6 +71,225 @@ Constructors
         .. code-block:: csharp
     
             public RequestHeaders(IHeaderDictionary headers)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Headers.RequestHeaders
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Accept
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.MediaTypeHeaderValue<Microsoft.Net.Http.Headers.MediaTypeHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<MediaTypeHeaderValue> Accept { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptCharset
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<StringWithQualityHeaderValue> AcceptCharset { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptEncoding
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<StringWithQualityHeaderValue> AcceptEncoding { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.AcceptLanguage
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.StringWithQualityHeaderValue<Microsoft.Net.Http.Headers.StringWithQualityHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<StringWithQualityHeaderValue> AcceptLanguage { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.CacheControl
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.CacheControlHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public CacheControlHeaderValue CacheControl { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentDisposition
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public ContentDispositionHeaderValue ContentDisposition { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentLength
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? ContentLength { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentRange
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public ContentRangeHeaderValue ContentRange { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.ContentType
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeHeaderValue ContentType { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Cookie
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.CookieHeaderValue<Microsoft.Net.Http.Headers.CookieHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<CookieHeaderValue> Cookie { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Date
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? Date { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Expires
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? Expires { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Headers
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public IHeaderDictionary Headers { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Host
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HostString
+    
+        
+        .. code-block:: csharp
+    
+            public HostString Host { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfMatch
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.EntityTagHeaderValue<Microsoft.Net.Http.Headers.EntityTagHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<EntityTagHeaderValue> IfMatch { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfModifiedSince
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? IfModifiedSince { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfNoneMatch
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.EntityTagHeaderValue<Microsoft.Net.Http.Headers.EntityTagHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<EntityTagHeaderValue> IfNoneMatch { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfRange
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.RangeConditionHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public RangeConditionHeaderValue IfRange { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.IfUnmodifiedSince
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? IfUnmodifiedSince { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.LastModified
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? LastModified { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.RequestHeaders.Range
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.RangeHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public RangeHeaderValue Range { get; set; }
     
 
 Methods

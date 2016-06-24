@@ -56,6 +56,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.GeneratedTagHelperContext()
+    
+        
+    
+        
+        Instantiates a new instance of the :any:`Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext` with default values.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public GeneratedTagHelperContext()
+    
+
 Properties
 ----------
 
@@ -78,11 +101,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AddHtmlAttributeValueMethodName
-            {
-                get;
-                set;
-            }
+            public string AddHtmlAttributeValueMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.BeginAddHtmlAttributeValuesMethodName
     
@@ -98,11 +117,22 @@ Properties
         
         .. code-block:: csharp
     
-            public string BeginAddHtmlAttributeValuesMethodName
-            {
-                get;
-                set;
-            }
+            public string BeginAddHtmlAttributeValuesMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.BeginWriteTagHelperAttributeMethodName
+    
+        
+    
+        
+        The name of the method used to begin an attribute writing scope.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BeginWriteTagHelperAttributeMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.CreateTagHelperMethodName
     
@@ -117,11 +147,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CreateTagHelperMethodName
-            {
-                get;
-                set;
-            }
+            public string CreateTagHelperMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.EncodedHtmlStringTypeName
     
@@ -136,11 +162,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EncodedHtmlStringTypeName
-            {
-                get;
-                set;
-            }
+            public string EncodedHtmlStringTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.EndAddHtmlAttributeValuesMethodName
     
@@ -155,11 +177,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EndAddHtmlAttributeValuesMethodName
-            {
-                get;
-                set;
-            }
+            public string EndAddHtmlAttributeValuesMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.EndTagHelperWritingScopeMethodName
     
@@ -174,11 +192,22 @@ Properties
         
         .. code-block:: csharp
     
-            public string EndTagHelperWritingScopeMethodName
-            {
-                get;
-                set;
-            }
+            public string EndTagHelperWritingScopeMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.EndWriteTagHelperAttributeMethodName
+    
+        
+    
+        
+        The name of the method used to end an attribute writing scope.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string EndWriteTagHelperAttributeMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextAddHtmlAttributeMethodName
     
@@ -193,11 +222,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextAddHtmlAttributeMethodName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextAddHtmlAttributeMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextAddMethodName
     
@@ -212,30 +237,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextAddMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextAddMinimizedHtmlAttributeMethodName
-    
-        
-    
-        
-        The name of the :dn:prop:`Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextTypeName` method used to add minimized HTML attributes.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ExecutionContextAddMinimizedHtmlAttributeMethodName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextAddMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextAddTagHelperAttributeMethodName
     
@@ -250,11 +252,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextAddTagHelperAttributeMethodName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextAddTagHelperAttributeMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextOutputPropertyName
     
@@ -269,11 +267,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextOutputPropertyName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextOutputPropertyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextSetOutputContentAsyncMethodName
     
@@ -289,11 +283,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextSetOutputContentAsyncMethodName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextSetOutputContentAsyncMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ExecutionContextTypeName
     
@@ -308,11 +298,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExecutionContextTypeName
-            {
-                get;
-                set;
-            }
+            public string ExecutionContextTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.FormatInvalidIndexerAssignmentMethodName
     
@@ -328,11 +314,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string FormatInvalidIndexerAssignmentMethodName
-            {
-                get;
-                set;
-            }
+            public string FormatInvalidIndexerAssignmentMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.HtmlEncoderPropertyName
     
@@ -347,11 +329,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string HtmlEncoderPropertyName
-            {
-                get;
-                set;
-            }
+            public string HtmlEncoderPropertyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.MarkAsHtmlEncodedMethodName
     
@@ -366,11 +344,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string MarkAsHtmlEncodedMethodName
-            {
-                get;
-                set;
-            }
+            public string MarkAsHtmlEncodedMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.RunnerRunAsyncMethodName
     
@@ -385,11 +359,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RunnerRunAsyncMethodName
-            {
-                get;
-                set;
-            }
+            public string RunnerRunAsyncMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.RunnerTypeName
     
@@ -404,11 +374,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RunnerTypeName
-            {
-                get;
-                set;
-            }
+            public string RunnerTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ScopeManagerBeginMethodName
     
@@ -423,11 +389,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ScopeManagerBeginMethodName
-            {
-                get;
-                set;
-            }
+            public string ScopeManagerBeginMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ScopeManagerEndMethodName
     
@@ -442,11 +404,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ScopeManagerEndMethodName
-            {
-                get;
-                set;
-            }
+            public string ScopeManagerEndMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.ScopeManagerTypeName
     
@@ -461,11 +419,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ScopeManagerTypeName
-            {
-                get;
-                set;
-            }
+            public string ScopeManagerTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.StartTagHelperWritingScopeMethodName
     
@@ -480,11 +434,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string StartTagHelperWritingScopeMethodName
-            {
-                get;
-                set;
-            }
+            public string StartTagHelperWritingScopeMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperAttributeTypeName
     
@@ -499,11 +449,22 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagHelperAttributeTypeName
-            {
-                get;
-                set;
-            }
+            public string TagHelperAttributeTypeName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperAttributeValuePropertyName
+    
+        
+    
+        
+        The name of the Value property of <code>TagHelperAttribute</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TagHelperAttributeValuePropertyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperContentGetContentMethodName
     
@@ -518,11 +479,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagHelperContentGetContentMethodName
-            {
-                get;
-                set;
-            }
+            public string TagHelperContentGetContentMethodName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperContentTypeName
     
@@ -537,11 +494,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagHelperContentTypeName
-            {
-                get;
-                set;
-            }
+            public string TagHelperContentTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperOutputContentPropertyName
     
@@ -556,11 +509,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagHelperOutputContentPropertyName
-            {
-                get;
-                set;
-            }
+            public string TagHelperOutputContentPropertyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.TagHelperOutputIsContentModifiedPropertyName
     
@@ -575,33 +524,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagHelperOutputIsContentModifiedPropertyName
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext.GeneratedTagHelperContext()
-    
-        
-    
-        
-        Instantiates a new instance of the :any:`Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext` with default values.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public GeneratedTagHelperContext()
+            public string TagHelperOutputIsContentModifiedPropertyName { get; set; }
     
 

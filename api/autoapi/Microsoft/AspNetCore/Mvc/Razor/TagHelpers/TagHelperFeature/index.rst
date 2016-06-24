@@ -80,9 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<TypeInfo> TagHelpers
-            {
-                get;
-            }
+            public IList<TypeInfo> TagHelpers { get; }
     
 

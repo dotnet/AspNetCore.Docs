@@ -62,6 +62,16 @@ Properties
     :hidden:
 
     
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor.ActionName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string ActionName { get; set; }
+    
     .. dn:property:: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor.ControllerName
     
         
@@ -70,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ControllerName
-            {
-                get;
-                set;
-            }
+            public string ControllerName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor.ControllerTypeInfo
     
@@ -84,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TypeInfo ControllerTypeInfo
-            {
-                get;
-                set;
-            }
+            public TypeInfo ControllerTypeInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor.DisplayName
     
@@ -98,11 +100,7 @@ Properties
         
         .. code-block:: csharp
     
-            public override string DisplayName
-            {
-                get;
-                set;
-            }
+            public override string DisplayName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor.MethodInfo
     
@@ -112,10 +110,6 @@ Properties
         
         .. code-block:: csharp
     
-            public MethodInfo MethodInfo
-            {
-                get;
-                set;
-            }
+            public MethodInfo MethodInfo { get; set; }
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseOpenIdConnectAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseOpenIdConnectAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OpenIdConnectAppBuilderExtensions.UseOpenIdConnectAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.OpenIdConnectOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseOpenIdConnectAuthentication(IApplicationBuilder app, OpenIdConnectOptions options)
+            public static IApplicationBuilder UseOpenIdConnectAuthentication(this IApplicationBuilder app, OpenIdConnectOptions options)
     
 

@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Add(IList<IApplicationModelConvention> conventions, IActionModelConvention actionModelConvention)
+            public static void Add(this IList<IApplicationModelConvention> conventions, IActionModelConvention actionModelConvention)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.ApplicationModelConventionExtensions.Add(System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelConvention>, Microsoft.AspNetCore.Mvc.ApplicationModels.IControllerModelConvention)
     
@@ -114,6 +114,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Add(IList<IApplicationModelConvention> conventions, IControllerModelConvention controllerModelConvention)
+            public static void Add(this IList<IApplicationModelConvention> conventions, IControllerModelConvention controllerModelConvention)
     
 

@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookieName
-            {
-                get;
-                set;
-            }
+            public string CookieName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string FormFieldName
-            {
-                get;
-                set;
-            }
+            public string FormFieldName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName
     
@@ -116,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string HeaderName
-            {
-                get;
-                set;
-            }
+            public string HeaderName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.RequireSsl
     
@@ -137,11 +125,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireSsl
-            {
-                get;
-                set;
-            }
+            public bool RequireSsl { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader
     
@@ -159,11 +143,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SuppressXFrameOptionsHeader
-            {
-                get;
-                set;
-            }
+            public bool SuppressXFrameOptionsHeader { get; set; }
     
 
 Fields

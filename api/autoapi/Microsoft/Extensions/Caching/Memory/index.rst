@@ -136,6 +136,33 @@ Microsoft.Extensions.Caching.Memory Namespace
 .. dn:namespace:: Microsoft.Extensions.Caching.Memory
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICacheEntry`
+        .. object: type=interface name=Microsoft.Extensions.Caching.Memory.ICacheEntry
+
+        
+        Represents an entry in the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` implementation.
+
+
+    interface :dn:iface:`IMemoryCache`
+        .. object: type=interface name=Microsoft.Extensions.Caching.Memory.IMemoryCache
+
+        
+        Represents a local in-memory cache whose values are not serialized.
+
+
+    .. rubric:: Delegates
+
+
+    delegate :dn:del:`PostEvictionDelegate`
+        .. object: type=delegate name=Microsoft.Extensions.Caching.Memory.PostEvictionDelegate
+
+        
+        Signature of the callback which gets called when a cache entry expires.
+
+
     .. rubric:: Classes
 
 
@@ -197,32 +224,5 @@ Microsoft.Extensions.Caching.Memory Namespace
         .. object: type=enum name=Microsoft.Extensions.Caching.Memory.EvictionReason
 
         
-
-
-    .. rubric:: Delegates
-
-
-    delegate :dn:del:`PostEvictionDelegate`
-        .. object: type=delegate name=Microsoft.Extensions.Caching.Memory.PostEvictionDelegate
-
-        
-        Signature of the callback which gets called when a cache entry expires.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICacheEntry`
-        .. object: type=interface name=Microsoft.Extensions.Caching.Memory.ICacheEntry
-
-        
-        Represents an entry in the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` implementation.
-
-
-    interface :dn:iface:`IMemoryCache`
-        .. object: type=interface name=Microsoft.Extensions.Caching.Memory.IMemoryCache
-
-        
-        Represents a local in-memory cache whose values are not serialized.
 
 

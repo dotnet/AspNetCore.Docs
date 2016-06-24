@@ -85,7 +85,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, Microsoft.AspNetCore.Mvc.Rendering.FormMethod)
     
@@ -113,7 +113,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, FormMethod method)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, FormMethod method)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, Microsoft.AspNetCore.Mvc.Rendering.FormMethod, System.Nullable<System.Boolean>, System.Object)
     
@@ -146,7 +146,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -158,7 +158,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, FormMethod method, bool ? antiforgery, object htmlAttributes)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, FormMethod method, bool ? antiforgery, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, Microsoft.AspNetCore.Mvc.Rendering.FormMethod, System.Object)
     
@@ -182,7 +182,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -194,7 +194,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, FormMethod method, object htmlAttributes)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, FormMethod method, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Nullable<System.Boolean>)
     
@@ -225,7 +225,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, bool ? antiforgery)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, bool ? antiforgery)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Object)
     
@@ -246,7 +246,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -258,7 +258,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, object routeValues)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -291,7 +291,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, string actionName, string controllerName)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, string actionName, string controllerName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, Microsoft.AspNetCore.Mvc.Rendering.FormMethod)
     
@@ -329,7 +329,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, string actionName, string controllerName, FormMethod method)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, string actionName, string controllerName, FormMethod method)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, Microsoft.AspNetCore.Mvc.Rendering.FormMethod, System.Object)
     
@@ -363,7 +363,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -375,7 +375,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, string actionName, string controllerName, FormMethod method, object htmlAttributes)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, string actionName, string controllerName, FormMethod method, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -406,7 +406,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -418,7 +418,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, string actionName, string controllerName, object routeValues)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, string actionName, string controllerName, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object, Microsoft.AspNetCore.Mvc.Rendering.FormMethod)
     
@@ -449,7 +449,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -466,7 +466,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginForm(IHtmlHelper htmlHelper, string actionName, string controllerName, object routeValues, FormMethod method)
+            public static MvcForm BeginForm(this IHtmlHelper htmlHelper, string actionName, string controllerName, object routeValues, FormMethod method)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Object)
     
@@ -487,7 +487,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -499,7 +499,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, object routeValues)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Object, System.Nullable<System.Boolean>)
     
@@ -520,7 +520,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -540,7 +540,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, object routeValues, bool ? antiforgery)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, object routeValues, bool ? antiforgery)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -568,7 +568,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.Rendering.FormMethod)
     
@@ -601,7 +601,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName, FormMethod method)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName, FormMethod method)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, Microsoft.AspNetCore.Mvc.Rendering.FormMethod, System.Object)
     
@@ -630,7 +630,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -642,7 +642,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName, FormMethod method, object htmlAttributes)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName, FormMethod method, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Nullable<System.Boolean>)
     
@@ -678,7 +678,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName, bool ? antiforgery)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName, bool ? antiforgery)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -704,7 +704,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -716,7 +716,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName, object routeValues)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperFormExtensions.BeginRouteForm(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, Microsoft.AspNetCore.Mvc.Rendering.FormMethod)
     
@@ -742,7 +742,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -759,6 +759,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static MvcForm BeginRouteForm(IHtmlHelper htmlHelper, string routeName, object routeValues, FormMethod method)
+            public static MvcForm BeginRouteForm(this IHtmlHelper htmlHelper, string routeName, object routeValues, FormMethod method)
     
 

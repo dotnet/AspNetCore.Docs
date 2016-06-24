@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            bool Exists
-            {
-                get;
-            }
+            bool Exists { get; }
     
 

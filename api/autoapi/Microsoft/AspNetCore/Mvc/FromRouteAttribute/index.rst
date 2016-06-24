@@ -74,10 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingSource BindingSource
-            {
-                get;
-            }
+            public BindingSource BindingSource { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.FromRouteAttribute.Name
     
@@ -87,10 +84,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
 

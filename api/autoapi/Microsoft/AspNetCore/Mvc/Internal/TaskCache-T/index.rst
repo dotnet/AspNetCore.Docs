@@ -73,9 +73,6 @@ Properties
         
         .. code-block:: csharp
     
-            public static Task<T> DefaultCompletedTask
-            {
-                get;
-            }
+            public static Task<T> DefaultCompletedTask { get; }
     
 

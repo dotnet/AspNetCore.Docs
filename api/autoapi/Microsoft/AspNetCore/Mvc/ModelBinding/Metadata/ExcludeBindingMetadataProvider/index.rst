@@ -76,7 +76,7 @@ Constructors
     
         
         :param type: 
-            The :any:`System.Type`\. All properties of this :any:`System.Type` will have
+            The :any:`System.Type`\. All properties of this :any:`System.Type` will have 
             :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsBindingAllowed` set to <code>false</code>.
         
         :type type: System.Type

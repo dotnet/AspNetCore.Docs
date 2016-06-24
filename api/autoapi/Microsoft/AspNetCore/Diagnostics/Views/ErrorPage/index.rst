@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPage.Model
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel
-    
-        
-        .. code-block:: csharp
-    
-            public ErrorPageModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -123,5 +100,24 @@ Methods
         .. code-block:: csharp
     
             public override Task ExecuteAsync()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPage.Model
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel
+    
+        
+        .. code-block:: csharp
+    
+            public ErrorPageModel Model { get; set; }
     
 

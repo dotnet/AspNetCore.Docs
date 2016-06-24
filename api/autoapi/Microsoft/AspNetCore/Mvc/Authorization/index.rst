@@ -64,6 +64,16 @@ Microsoft.AspNetCore.Mvc.Authorization Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Authorization
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAllowAnonymousFilter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Authorization.IAllowAnonymousFilter
+
+        
+        A filter that allows anonymous requests, disabling some :any:`Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter`\s.
+
+
     .. rubric:: Classes
 
 
@@ -78,18 +88,8 @@ Microsoft.AspNetCore.Mvc.Authorization Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter
 
         
-        An implementation of :any:`Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter` which applies a specific
+        An implementation of :any:`Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter` which applies a specific 
         :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy`\. MVC recognizes the :any:`Microsoft.AspNetCore.Authorization.AuthorizeAttribute` and adds an instance of
         this filter to the associated action or controller.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAllowAnonymousFilter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Authorization.IAllowAnonymousFilter
-
-        
-        A filter that allows anonymous requests, disabling some :any:`Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter`\s.
 
 

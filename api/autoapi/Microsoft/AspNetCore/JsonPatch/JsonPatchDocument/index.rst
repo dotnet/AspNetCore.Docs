@@ -53,43 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ContractResolver
-    
-        
-        :rtype: Newtonsoft.Json.Serialization.IContractResolver
-    
-        
-        .. code-block:: csharp
-    
-            [JsonIgnore]
-            public IContractResolver ContractResolver
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Operations
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.JsonPatch.Operations.Operation<Microsoft.AspNetCore.JsonPatch.Operations.Operation>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<Operation> Operations
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -332,5 +295,35 @@ Methods
         .. code-block:: csharp
     
             public JsonPatchDocument Replace(string path, object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ContractResolver
+    
+        
+        :rtype: Newtonsoft.Json.Serialization.IContractResolver
+    
+        
+        .. code-block:: csharp
+    
+            [JsonIgnore]
+            public IContractResolver ContractResolver { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Operations
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.JsonPatch.Operations.Operation<Microsoft.AspNetCore.JsonPatch.Operations.Operation>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<Operation> Operations { get; }
     
 

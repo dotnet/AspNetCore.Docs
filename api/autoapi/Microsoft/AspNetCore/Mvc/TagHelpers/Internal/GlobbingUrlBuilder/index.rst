@@ -57,69 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.Cache
-    
-        
-    
-        
-        The :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to cache globbing results in.
-    
-        
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            public IMemoryCache Cache
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.FileProvider
-    
-        
-    
-        
-        The :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to watch for changes to file globbing results.
-    
-        
-        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IFileProvider FileProvider
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.RequestPathBase
-    
-        
-    
-        
-        The base path of the current request (i.e. :dn:prop:`Microsoft.AspNetCore.Http.HttpRequest.PathBase`\).
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.PathString
-    
-        
-        .. code-block:: csharp
-    
-            public PathString RequestPathBase
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -196,5 +133,59 @@ Methods
         .. code-block:: csharp
     
             public virtual IReadOnlyList<string> BuildUrlList(string staticUrl, string includePattern, string excludePattern)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.Cache
+    
+        
+    
+        
+        The :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` to cache globbing results in.
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            public IMemoryCache Cache { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.FileProvider
+    
+        
+    
+        
+        The :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to watch for changes to file globbing results.
+    
+        
+        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IFileProvider FileProvider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder.RequestPathBase
+    
+        
+    
+        
+        The base path of the current request (i.e. :dn:prop:`Microsoft.AspNetCore.Http.HttpRequest.PathBase`\).
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.PathString
+    
+        
+        .. code-block:: csharp
+    
+            public PathString RequestPathBase { get; }
     
 

@@ -57,53 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.SignOutResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.SignOutResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.SignOutResult.AuthenticationSchemes
-    
-        
-    
-        
-        Gets or sets the authentication schemes that are challenged.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> AuthenticationSchemes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.SignOutResult.Properties
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the sign-out operation.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -201,6 +154,45 @@ Constructors
         .. code-block:: csharp
     
             public SignOutResult(string authenticationScheme, AuthenticationProperties properties)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.SignOutResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.SignOutResult.AuthenticationSchemes
+    
+        
+    
+        
+        Gets or sets the authentication schemes that are challenged.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> AuthenticationSchemes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.SignOutResult.Properties
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the sign-out operation.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
     
 
 Methods

@@ -59,92 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.MaxDepth
-    
-        
-    
-        
-        Indicates the acceptable input XML depth.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxDepth
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.SerializerSettings
-    
-        
-    
-        
-        Gets or sets the :any:`System.Runtime.Serialization.DataContractSerializerSettings` used to configure the
-        :any:`System.Runtime.Serialization.DataContractSerializer`\.
-    
-        
-        :rtype: System.Runtime.Serialization.DataContractSerializerSettings
-    
-        
-        .. code-block:: csharp
-    
-            public DataContractSerializerSettings SerializerSettings
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.WrapperProviderFactories
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory` to
-        provide the wrapping type for de-serialization.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory<Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IWrapperProviderFactory> WrapperProviderFactories
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.XmlDictionaryReaderQuotas
-    
-        
-    
-        
-        The quotas include - DefaultMaxDepth, DefaultMaxStringContentLength, DefaultMaxArrayLength,
-        DefaultMaxBytesPerRead, DefaultMaxNameTableCharCount
-    
-        
-        :rtype: System.Xml.XmlDictionaryReaderQuotas
-    
-        
-        .. code-block:: csharp
-    
-            public XmlDictionaryReaderQuotas XmlDictionaryReaderQuotas
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -291,5 +205,77 @@ Methods
         .. code-block:: csharp
     
             public override Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context, Encoding encoding)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.MaxDepth
+    
+        
+    
+        
+        Indicates the acceptable input XML depth.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaxDepth { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.SerializerSettings
+    
+        
+    
+        
+        Gets or sets the :any:`System.Runtime.Serialization.DataContractSerializerSettings` used to configure the 
+        :any:`System.Runtime.Serialization.DataContractSerializer`\.
+    
+        
+        :rtype: System.Runtime.Serialization.DataContractSerializerSettings
+    
+        
+        .. code-block:: csharp
+    
+            public DataContractSerializerSettings SerializerSettings { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.WrapperProviderFactories
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory` to
+        provide the wrapping type for de-serialization.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory<Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IWrapperProviderFactory> WrapperProviderFactories { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.XmlDataContractSerializerInputFormatter.XmlDictionaryReaderQuotas
+    
+        
+    
+        
+        The quotas include - DefaultMaxDepth, DefaultMaxStringContentLength, DefaultMaxArrayLength,
+        DefaultMaxBytesPerRead, DefaultMaxNameTableCharCount
+    
+        
+        :rtype: System.Xml.XmlDictionaryReaderQuotas
+    
+        
+        .. code-block:: csharp
+    
+            public XmlDictionaryReaderQuotas XmlDictionaryReaderQuotas { get; }
     
 

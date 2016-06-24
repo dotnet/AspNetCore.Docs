@@ -54,29 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Cors.EnableCorsAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Cors.EnableCorsAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Cors.EnableCorsAttribute.PolicyName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string PolicyName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -103,5 +80,24 @@ Constructors
         .. code-block:: csharp
     
             public EnableCorsAttribute(string policyName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Cors.EnableCorsAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Cors.EnableCorsAttribute.PolicyName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string PolicyName { get; set; }
     
 

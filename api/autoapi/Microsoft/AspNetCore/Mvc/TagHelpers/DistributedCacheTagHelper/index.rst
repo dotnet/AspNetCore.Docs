@@ -59,51 +59,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper
 
-Properties
-----------
+Methods
+-------
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.MemoryCache
+    .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext, Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)
     
         
     
         
-        Gets the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` instance used to cache workers.
+        :type context: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
     
         
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            protected IMemoryCache MemoryCache
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.Name
-    
-        
-    
-        
-        Gets or sets a unique name to discriminate cached entries.
-    
-        
-        :rtype: System.String
+        :type output: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            [HtmlAttributeName("name")]
-            public string Name
-            {
-                get;
-                set;
-            }
+            public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     
 
 Constructors
@@ -139,6 +117,46 @@ Constructors
             public DistributedCacheTagHelper(IDistributedCacheTagHelperService distributedCacheService, HtmlEncoder htmlEncoder)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.MemoryCache
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` instance used to cache workers.
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            protected IMemoryCache MemoryCache { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.Name
+    
+        
+    
+        
+        Gets or sets a unique name to discriminate cached entries.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("name")]
+            public string Name { get; set; }
+    
+
 Fields
 ------
 
@@ -161,30 +179,5 @@ Fields
         .. code-block:: csharp
     
             public static readonly string CacheKeyPrefix
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.DistributedCacheTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext, Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)
-    
-        
-    
-        
-        :type context: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
-    
-        
-        :type output: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
-        :rtype: System.Threading.Tasks.Task
-    
-        
-        .. code-block:: csharp
-    
-            public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     
 

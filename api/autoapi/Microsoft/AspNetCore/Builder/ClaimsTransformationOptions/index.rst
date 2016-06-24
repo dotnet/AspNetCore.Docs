@@ -77,10 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IClaimsTransformer Transformer
-            {
-                get;
-                set;
-            }
+            public IClaimsTransformer Transformer { get; set; }
     
 

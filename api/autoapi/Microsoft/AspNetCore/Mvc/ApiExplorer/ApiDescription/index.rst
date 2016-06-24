@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ActionDescriptor ActionDescriptor
-            {
-                get;
-                set;
-            }
+            public ActionDescriptor ActionDescriptor { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.GroupName
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string GroupName
-            {
-                get;
-                set;
-            }
+            public string GroupName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.HttpMethod
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string HttpMethod
-            {
-                get;
-                set;
-            }
+            public string HttpMethod { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.ParameterDescriptions
     
@@ -134,10 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ApiParameterDescription> ParameterDescriptions
-            {
-                get;
-            }
+            public IList<ApiParameterDescription> ParameterDescriptions { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.Properties
     
@@ -152,10 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<object, object> Properties
-            {
-                get;
-            }
+            public IDictionary<object, object> Properties { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.RelativePath
     
@@ -170,11 +152,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RelativePath
-            {
-                get;
-                set;
-            }
+            public string RelativePath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.SupportedRequestFormats
     
@@ -189,10 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ApiRequestFormat> SupportedRequestFormats
-            {
-                get;
-            }
+            public IList<ApiRequestFormat> SupportedRequestFormats { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription.SupportedResponseTypes
     
@@ -207,9 +182,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ApiResponseType> SupportedResponseTypes
-            {
-                get;
-            }
+            public IList<ApiResponseType> SupportedResponseTypes { get; }
     
 

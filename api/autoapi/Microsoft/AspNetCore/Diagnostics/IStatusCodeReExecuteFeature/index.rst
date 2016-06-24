@@ -60,11 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            string OriginalPath
-            {
-                get;
-                set;
-            }
+            string OriginalPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature.OriginalPathBase
     
@@ -74,10 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            string OriginalPathBase
-            {
-                get;
-                set;
-            }
+            string OriginalPathBase { get; set; }
     
 

@@ -57,6 +57,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieAuthenticationOptions()
+    
+        
+    
+        
+        Create an instance of the options initialized with the default values
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public CookieAuthenticationOptions()
+    
+
 Properties
 ----------
 
@@ -79,11 +102,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString AccessDeniedPath
-            {
-                get;
-                set;
-            }
+            public PathString AccessDeniedPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieDomain
     
@@ -98,11 +117,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookieDomain
-            {
-                get;
-                set;
-            }
+            public string CookieDomain { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieHttpOnly
     
@@ -119,11 +134,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool CookieHttpOnly
-            {
-                get;
-                set;
-            }
+            public bool CookieHttpOnly { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieManager
     
@@ -140,11 +151,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ICookieManager CookieManager
-            {
-                get;
-                set;
-            }
+            public ICookieManager CookieManager { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName
     
@@ -161,18 +168,14 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookieName
-            {
-                get;
-                set;
-            }
+            public string CookieName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookiePath
     
         
     
         
-        Determines the path used to create the cookie. The default value is "/" for highest browser compatability.
+        Determines the path used to create the cookie. The default value is "/" for highest browser compatibility.
     
         
         :rtype: System.String
@@ -180,11 +183,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookiePath
-            {
-                get;
-                set;
-            }
+            public string CookiePath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieSecure
     
@@ -196,16 +195,12 @@ Properties
         and portions of your site are HTTP you may need to change this value.
     
         
-        :rtype: Microsoft.AspNetCore.Authentication.Cookies.CookieSecureOption
+        :rtype: Microsoft.AspNetCore.Http.CookieSecurePolicy
     
         
         .. code-block:: csharp
     
-            public CookieSecureOption CookieSecure
-            {
-                get;
-                set;
-            }
+            public CookieSecurePolicy CookieSecure { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.DataProtectionProvider
     
@@ -220,11 +215,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDataProtectionProvider DataProtectionProvider
-            {
-                get;
-                set;
-            }
+            public IDataProtectionProvider DataProtectionProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.Events
     
@@ -241,11 +232,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ICookieAuthenticationEvents Events
-            {
-                get;
-                set;
-            }
+            public ICookieAuthenticationEvents Events { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ExpireTimeSpan
     
@@ -262,11 +249,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan ExpireTimeSpan
-            {
-                get;
-                set;
-            }
+            public TimeSpan ExpireTimeSpan { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LoginPath
     
@@ -285,11 +268,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString LoginPath
-            {
-                get;
-                set;
-            }
+            public PathString LoginPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.LogoutPath
     
@@ -304,11 +283,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString LogoutPath
-            {
-                get;
-                set;
-            }
+            public PathString LogoutPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.Value
     
@@ -318,10 +293,7 @@ Properties
         
         .. code-block:: csharp
     
-            CookieAuthenticationOptions IOptions<CookieAuthenticationOptions>.Value
-            {
-                get;
-            }
+            CookieAuthenticationOptions IOptions<CookieAuthenticationOptions>.Value { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.ReturnUrlParameter
     
@@ -339,11 +311,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ReturnUrlParameter
-            {
-                get;
-                set;
-            }
+            public string ReturnUrlParameter { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.SessionStore
     
@@ -359,11 +327,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ITicketStore SessionStore
-            {
-                get;
-                set;
-            }
+            public ITicketStore SessionStore { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.SlidingExpiration
     
@@ -379,11 +343,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SlidingExpiration
-            {
-                get;
-                set;
-            }
+            public bool SlidingExpiration { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.SystemClock
     
@@ -399,11 +359,7 @@ Properties
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ISystemClock SystemClock
-            {
-                get;
-                set;
-            }
+            public ISystemClock SystemClock { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.TicketDataFormat
     
@@ -421,33 +377,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ISecureDataFormat<AuthenticationTicket> TicketDataFormat
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieAuthenticationOptions()
-    
-        
-    
-        
-        Create an instance of the options initialized with the default values
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public CookieAuthenticationOptions()
+            public ISecureDataFormat<AuthenticationTicket> TicketDataFormat { get; set; }
     
 

@@ -56,42 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.FilterLoggerSettings
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.FilterLoggerSettings
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.FilterLoggerSettings.Microsoft.Extensions.Logging.IFilterLoggerSettings.ChangeToken
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.IChangeToken
-    
-        
-        .. code-block:: csharp
-    
-            IChangeToken IFilterLoggerSettings.ChangeToken
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.FilterLoggerSettings.Switches
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.Extensions.Logging.LogLevel<Microsoft.Extensions.Logging.LogLevel>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, LogLevel> Switches
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -169,5 +133,34 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetSwitch(string name, out LogLevel level)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.FilterLoggerSettings
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.FilterLoggerSettings.Microsoft.Extensions.Logging.IFilterLoggerSettings.ChangeToken
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.IChangeToken
+    
+        
+        .. code-block:: csharp
+    
+            IChangeToken IFilterLoggerSettings.ChangeToken { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.FilterLoggerSettings.Switches
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.Extensions.Logging.LogLevel<Microsoft.Extensions.Logging.LogLevel>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, LogLevel> Switches { get; set; }
     
 

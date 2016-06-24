@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IEnumerable<string> HttpMethods
-            {
-                get;
-            }
+            IEnumerable<string> HttpMethods { get; }
     
 

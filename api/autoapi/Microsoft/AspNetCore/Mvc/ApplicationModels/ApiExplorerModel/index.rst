@@ -56,55 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.GroupName
-    
-        
-    
-        
-        The value for <code>APIExplorer.ApiDescription.GroupName</code> of
-        <code>APIExplorer.ApiDescription</code> objects created for the associated controller or action.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string GroupName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible
-    
-        
-    
-        
-        If <code>true</code>, <code>APIExplorer.ApiDescription</code> objects will be created for the associated
-        controller or action.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public bool ? IsVisible
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -145,5 +96,46 @@ Constructors
         .. code-block:: csharp
     
             public ApiExplorerModel(ApiExplorerModel other)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.GroupName
+    
+        
+    
+        
+        The value for <code>APIExplorer.ApiDescription.GroupName</code> of
+        <code>APIExplorer.ApiDescription</code> objects created for the associated controller or action.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string GroupName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible
+    
+        
+    
+        
+        If <code>true</code>, <code>APIExplorer.ApiDescription</code> objects will be created for the associated
+        controller or action.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public bool ? IsVisible { get; set; }
     
 

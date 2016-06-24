@@ -65,7 +65,7 @@ Methods
         
     
         
-        Adds an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` to the list of :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager.ApplicationParts` on the
+        Adds an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` to the list of :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager.ApplicationParts` on the 
         :dn:prop:`Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder.PartManager`\.
     
         
@@ -85,7 +85,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddApplicationPart(IMvcCoreBuilder builder, Assembly assembly)
+            public static IMvcCoreBuilder AddApplicationPart(this IMvcCoreBuilder builder, Assembly assembly)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
@@ -98,7 +98,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddAuthorization(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddAuthorization(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Authorization.AuthorizationOptions>)
     
@@ -114,7 +114,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddAuthorization(IMvcCoreBuilder builder, Action<AuthorizationOptions> setupAction)
+            public static IMvcCoreBuilder AddAuthorization(this IMvcCoreBuilder builder, Action<AuthorizationOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddControllersAsServices(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
@@ -135,7 +135,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddControllersAsServices(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddControllersAsServices(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddFormatterMappings(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
@@ -148,7 +148,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddFormatterMappings(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddFormatterMappings(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddFormatterMappings(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.Formatters.FormatterMappings>)
     
@@ -164,7 +164,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddFormatterMappings(IMvcCoreBuilder builder, Action<FormatterMappings> setupAction)
+            public static IMvcCoreBuilder AddFormatterMappings(this IMvcCoreBuilder builder, Action<FormatterMappings> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.AddMvcOptions(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcOptions>)
     
@@ -190,7 +190,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddMvcOptions(IMvcCoreBuilder builder, Action<MvcOptions> setupAction)
+            public static IMvcCoreBuilder AddMvcOptions(this IMvcCoreBuilder builder, Action<MvcOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcCoreBuilderExtensions.ConfigureApplicationPartManager(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager>)
     
@@ -217,6 +217,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder ConfigureApplicationPartManager(IMvcCoreBuilder builder, Action<ApplicationPartManager> setupAction)
+            public static IMvcCoreBuilder ConfigureApplicationPartManager(this IMvcCoreBuilder builder, Action<ApplicationPartManager> setupAction)
     
 

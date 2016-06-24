@@ -91,30 +91,6 @@ Constructors
             public MemoryPoolHttpRequestStreamReaderFactory(ArrayPool<byte> bytePool, ArrayPool<char> charPool)
     
 
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MemoryPoolHttpRequestStreamReaderFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.Internal.MemoryPoolHttpRequestStreamReaderFactory.DefaultBufferSize
-    
-        
-    
-        
-        The default size of created char buffers.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int DefaultBufferSize
-    
-
 Methods
 -------
 
@@ -138,5 +114,29 @@ Methods
         .. code-block:: csharp
     
             public TextReader CreateReader(Stream stream, Encoding encoding)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MemoryPoolHttpRequestStreamReaderFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.Internal.MemoryPoolHttpRequestStreamReaderFactory.DefaultBufferSize
+    
+        
+    
+        
+        The default size of created char buffers.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int DefaultBufferSize
     
 

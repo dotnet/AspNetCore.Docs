@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            IReadOnlyList<IViewEngine> ViewEngines
-            {
-                get;
-            }
+            IReadOnlyList<IViewEngine> ViewEngines { get; }
     
 

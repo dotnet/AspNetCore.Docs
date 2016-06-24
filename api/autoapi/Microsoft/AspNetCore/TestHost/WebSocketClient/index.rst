@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Action<HttpRequest> ConfigureRequest
-            {
-                get;
-                set;
-            }
+            public Action<HttpRequest> ConfigureRequest { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.TestHost.WebSocketClient.SubProtocols
     
@@ -82,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> SubProtocols
-            {
-                get;
-            }
+            public IList<string> SubProtocols { get; }
     
 
 Methods

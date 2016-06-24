@@ -103,19 +103,6 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ActionSelector.Select(Microsoft.AspNetCore.Routing.RouteContext)
-    
-        
-    
-        
-        :type context: Microsoft.AspNetCore.Routing.RouteContext
-        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
-    
-        
-        .. code-block:: csharp
-    
-            public ActionDescriptor Select(RouteContext context)
-    
     .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestActions(System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>)
     
         
@@ -136,5 +123,34 @@ Methods
         .. code-block:: csharp
     
             protected virtual IReadOnlyList<ActionDescriptor> SelectBestActions(IReadOnlyList<ActionDescriptor> actions)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestCandidate(Microsoft.AspNetCore.Routing.RouteContext, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>)
+    
+        
+    
+        
+        :type context: Microsoft.AspNetCore.Routing.RouteContext
+    
+        
+        :type candidates: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
+        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
+    
+        
+        .. code-block:: csharp
+    
+            public ActionDescriptor SelectBestCandidate(RouteContext context, IReadOnlyList<ActionDescriptor> candidates)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectCandidates(Microsoft.AspNetCore.Routing.RouteContext)
+    
+        
+    
+        
+        :type context: Microsoft.AspNetCore.Routing.RouteContext
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ActionDescriptor> SelectCandidates(RouteContext context)
     
 

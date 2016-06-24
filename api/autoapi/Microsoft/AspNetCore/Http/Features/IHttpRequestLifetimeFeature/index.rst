@@ -44,6 +44,30 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature
 
+Methods
+-------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature.Abort()
+    
+        
+    
+        
+        Forcefully aborts the request if it has not already completed. This will result in
+        RequestAborted being triggered.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            void Abort()
+    
+
 Properties
 ----------
 
@@ -67,34 +91,6 @@ Properties
         
         .. code-block:: csharp
     
-            CancellationToken RequestAborted
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature.Abort()
-    
-        
-    
-        
-        Forcefully aborts the request if it has not already completed. This will result in
-        RequestAborted being triggered.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            void Abort()
+            CancellationToken RequestAborted { get; set; }
     
 

@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware<TOptions>.Backchannel
-    
-        
-        :rtype: System.Net.Http.HttpClient
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpClient Backchannel
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -126,6 +104,25 @@ Constructors
         .. code-block:: csharp
     
             public OAuthMiddleware(RequestDelegate next, IDataProtectionProvider dataProtectionProvider, ILoggerFactory loggerFactory, UrlEncoder encoder, IOptions<SharedAuthenticationOptions> sharedOptions, IOptions<TOptions> options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthMiddleware<TOptions>.Backchannel
+    
+        
+        :rtype: System.Net.Http.HttpClient
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpClient Backchannel { get; }
     
 
 Methods

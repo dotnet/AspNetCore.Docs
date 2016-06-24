@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMigrationsEndPoint(IApplicationBuilder app)
+            public static IApplicationBuilder UseMigrationsEndPoint(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.MigrationsEndPointOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMigrationsEndPoint(IApplicationBuilder app, MigrationsEndPointOptions options)
+            public static IApplicationBuilder UseMigrationsEndPoint(this IApplicationBuilder app, MigrationsEndPointOptions options)
     
 

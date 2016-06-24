@@ -60,11 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IAuthenticationHandler Handler
-            {
-                get;
-                set;
-            }
+            IAuthenticationHandler Handler { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature.User
     
@@ -74,10 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            ClaimsPrincipal User
-            {
-                get;
-                set;
-            }
+            ClaimsPrincipal User { get; set; }
     
 

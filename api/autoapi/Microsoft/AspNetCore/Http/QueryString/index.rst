@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Http.QueryString
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.QueryString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.QueryString.HasValue
-    
-        
-    
-        
-        True if the query string is not empty
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.QueryString.Value
-    
-        
-    
-        
-        The escaped query string with the leading '?' character
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,30 +75,6 @@ Constructors
         .. code-block:: csharp
     
             public QueryString(string value)
-    
-
-Fields
-------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.QueryString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Http.QueryString.Empty
-    
-        
-    
-        
-        Represents the empty query string. This field is read-only.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.QueryString
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly QueryString Empty
     
 
 Methods
@@ -361,5 +292,125 @@ Methods
         .. code-block:: csharp
     
             public string ToUriComponent()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.QueryString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.QueryString.Addition(Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.QueryString)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.QueryString
+        :rtype: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        .. code-block:: csharp
+    
+            public static QueryString operator +(QueryString left, QueryString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.QueryString.Equality(Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.QueryString)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.QueryString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(QueryString left, QueryString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.QueryString.Inequality(Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.QueryString)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.QueryString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(QueryString left, QueryString right)
+    
+
+Fields
+------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.QueryString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Http.QueryString.Empty
+    
+        
+    
+        
+        Represents the empty query string. This field is read-only.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly QueryString Empty
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.QueryString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.QueryString.HasValue
+    
+        
+    
+        
+        True if the query string is not empty
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValue { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.QueryString.Value
+    
+        
+    
+        
+        The escaped query string with the leading '?' character
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IChangeToken ChangeToken
-            {
-                get;
-                set;
-            }
+            public IChangeToken ChangeToken { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.IncludeScopes
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IncludeScopes
-            {
-                get;
-                set;
-            }
+            public bool IncludeScopes { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLoggerSettings.Switches
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, LogLevel> Switches
-            {
-                get;
-                set;
-            }
+            public IDictionary<string, LogLevel> Switches { get; set; }
     
 
 Methods

@@ -83,6 +83,10 @@ Microsoft.AspNetCore.Razor.Chunks Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/Chunks/TagHelperAttributeTracker/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/Chunks/TagHelperChunk/index
    
    
@@ -112,6 +116,10 @@ Microsoft.AspNetCore.Razor.Chunks Namespace
    :hidden:
    :maxdepth: 2
 
+   
+   
+   
+   
    
    
    
@@ -353,6 +361,15 @@ Microsoft.AspNetCore.Razor.Chunks Namespace
 
     class :dn:cls:`UsingChunk`
         .. object: type=class name=Microsoft.AspNetCore.Razor.Chunks.UsingChunk
+
+        
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`TagHelperAttributeTracker`
+        .. object: type=struct name=Microsoft.AspNetCore.Razor.Chunks.TagHelperAttributeTracker
 
         
 

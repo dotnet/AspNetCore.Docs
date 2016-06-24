@@ -74,10 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsMet
-            {
-                get;
-            }
+            public bool IsMet { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Testing.SkipIfCurrentRuntimeIsCoreClrAttribute.SkipReason
     
@@ -87,9 +84,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string SkipReason
-            {
-                get;
-            }
+            public string SkipReason { get; }
     
 

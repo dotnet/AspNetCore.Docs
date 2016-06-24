@@ -56,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.StatusCodePagesOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.StatusCodePagesOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.StatusCodePagesOptions.HandleAsync
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Diagnostics.StatusCodeContext<Microsoft.AspNetCore.Diagnostics.StatusCodeContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<StatusCodeContext, Task> HandleAsync
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -95,5 +72,24 @@ Constructors
         .. code-block:: csharp
     
             public StatusCodePagesOptions()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.StatusCodePagesOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.StatusCodePagesOptions.HandleAsync
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Diagnostics.StatusCodeContext<Microsoft.AspNetCore.Diagnostics.StatusCodeContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<StatusCodeContext, Task> HandleAsync { get; set; }
     
 

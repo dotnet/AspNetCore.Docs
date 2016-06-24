@@ -49,33 +49,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferValue
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferValue.Value
-    
-        
-    
-        
-        Gets the value.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -121,5 +94,29 @@ Constructors
         .. code-block:: csharp
     
             public ViewBufferValue(string value)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferValue.Value
+    
+        
+    
+        
+        Gets the value.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Value { get; }
     
 
