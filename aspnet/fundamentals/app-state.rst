@@ -142,9 +142,9 @@ The ``IdleTimeout`` is used by the server to determine how long a session can be
 .. note:: ``Session`` is *non-locking*, so if two requests both attempt to modify the contents of session, the last one will win. Further, ``Session`` is implemented as a *coherent session*, which means that all of the contents are stored together. This means that if two requests are modifying different parts of the session (different keys), they may still impact each other.
 
 ISession
-^^^^^^^^
+^^^^^^^^^
 
-Once session is installed and configured, you refer to it via HttpContext, which exposes a property called ``Session`` of type `ISession <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/ISession/index.html>`__. You can use this interface to get and set values in ``Session``, as ``byte[]``.
+Once session is installed and configured, you refer to it via HttpContext, which exposes a property called ``Session`` of type :dn:iface:`~Microsoft.AspNetCore.Http.ISession`. You can use this interface to get and set values in ``Session``, such as ``byte[]``.
 
 .. code-block:: c#
 
