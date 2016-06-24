@@ -1,7 +1,8 @@
-#define First
-#define Search1
-#define SearchPost
-#if First
+//#define SearchGenre
+//#define Search1
+//#define SearchPost
+#define SearchGenre
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,15 @@ namespace MvcMovie.Controllers
 
         public MoviesController(ApplicationDbContext context)
         {
-            _context = context;    
+            _context = context;
         }
-/*
-        // GET: Movies
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Movie.ToListAsync());
-        }
-*/
+        /*
+                // GET: Movies
+                public async Task<IActionResult> Index()
+                {
+                    return View(await _context.Movie.ToListAsync());
+                }
+        */
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -197,7 +198,7 @@ namespace MvcMovie.Controllers
 
 #if Search1
         // First Search
-        public IActionResult Index(string searchString)
+        public async Task<IActionResult> Index(string searchString)
         {
             var movies = from m in _context.Movie
                          select m;
@@ -207,15 +208,14 @@ namespace MvcMovie.Controllers
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
 
-            return View(movies);
+            return View(await movies.ToListAsync());
         }
         // End first Search
 #endif
 
-
 #if SearchID
         // Search ID 
-        public IActionResult Index(string id)
+        public async Task<IActionResult> Index(string id)
         {
             var movies = from m in _context.Movie
                          select m;
@@ -225,27 +225,10 @@ namespace MvcMovie.Controllers
                 movies = movies.Where(s => s.Title.Contains(id));
             }
 
-            return View(movies);
+            return View(await movies.ToListAsync());
         }
         // End search ID
 #endif
-
-#if SearchView
-
-        public IActionResult Index(string searchString)
-        {
-            var movies = from m in _context.Movie
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.Title.Contains(searchString));
-            }
-
-            return View(movies);
-        }
-#endif
-
 
 #if SearchPost
         // Search Post
@@ -258,16 +241,13 @@ namespace MvcMovie.Controllers
 #endif
 
 #if SearchGenre
-
-        public IActionResult Index(string movieGenre, string searchString)
+        // Search by genre.
+        public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
-            var GenreQry = from m in _context.Movie
-                           orderby m.Genre
-                           select m.Genre;
-
-            var GenreList = new List<string>();
-            GenreList.AddRange(GenreQry.Distinct());
-            ViewData["movieGenre"] = new SelectList(GenreList);
+            // Use LINQ to get list of genre's.
+            IQueryable<string> genreQuery = from m in _context.Movie
+                                            orderby m.Genre
+                                            select m.Genre;
 
             var movies = from m in _context.Movie
                          select m;
@@ -277,16 +257,18 @@ namespace MvcMovie.Controllers
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
 
-            if (!string.IsNullOrEmpty(movieGenre))
+            if (!String.IsNullOrEmpty(movieGenre))
             {
                 movies = movies.Where(x => x.Genre == movieGenre);
             }
 
-            return View(movies);  
+            var movieGenreVM = new MovieGenreViewModel();
+            movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            movieGenreVM.movies = await movies.ToListAsync();
+
+            return View(movieGenreVM);
         }
-
-
-
+        // End of genre search.
 #endif
 
 
@@ -333,5 +315,4 @@ namespace MvcMovie.Controllers
         }
     }
 }
-#endif
-      
+

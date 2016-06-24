@@ -68,7 +68,7 @@ The previous ``Index`` method:
   :start-after: // First Search
   :end-before: // End first Search
   :dedent: 8
-  :emphasize-lines: 1
+  :emphasize-lines: 1,8
 
 The updated ``Index`` method:
 
@@ -77,7 +77,7 @@ The updated ``Index`` method:
   :start-after: // Search ID
   :end-before: // End search ID
   :dedent: 8
-  :emphasize-lines: 1
+  :emphasize-lines: 1,8
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -143,11 +143,15 @@ Notice the distinctive font in the ``<form>`` tag. That distinctive font indicat
 
 .. image:: search/_static/th_font.png
 
-
 Now when you submit a search, the URL contains the search query string. Searching will also go to the ``HttpGet Index`` action method, even if you have a ``HttpPost Index`` method.
 
 .. image:: search/_static/search_get.png
 
+The following markup shows the change to the ``form`` tag:
+
+.. code-block:: html
+
+  <form asp-controller="Movies" asp-action="Index" method="get">
 
 Adding Search by Genre
 ------------------------
@@ -155,7 +159,7 @@ Adding Search by Genre
 Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieGenreViewModel.cs
- :language: c#
+  :language: c#
 
 The move-genre view model will contain:
 
@@ -166,22 +170,24 @@ The move-genre view model will contain:
 Replace the ``Index`` method with the following code:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :dedent: 8
-
+  :language: c#
+  :dedent: 8
+  :start-after: // Search by genre.
+  :end-before:  // End of genre search.
 
 The following code is a ``LINQ`` query that retrieves all the genres from the database.
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :dedent: 12
-
+  :language: c#
+  :dedent: 12
+  :start-after: // Use LINQ to get list of genre's.
+  :end-before: var movies = from m in _context.Movie
+ 
 The ``SelectList`` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :dedent: 12
+.. code-block:: c#
 
+   movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Adding search by genre to the Index view
 --------------------------------------------
