@@ -45,7 +45,7 @@ An ASP.NET Core app is simply a console app that creates a web server in its ``M
 .. literalinclude:: /getting-started/sample/aspnetcoreapp/Program.cs
     :language: c#
 
-``Main`` uses `WebHostBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Hosting/WebHostBuilder/index.html>`__ , which follows the builder pattern, to create a web application host. The builder has methods that define the web server (for example ``UseKestrel``) and the startup class (``UseStartup``). In the example above, the Kestrel web server is used, but other web servers can be specified. We'll show more about ``UseStartup`` in the next section. ``WebHostBuilder`` provides many optional methods including ``UseIISIntegration`` for hosting in IIS and IIS Express and ``UseContentRoot`` for specifying the root content directory. The ``Build`` and ``Run`` methods build the ``IWebHost`` that will host the app and start it listening for incoming HTTP requests.
+``Main`` uses :dn:cls:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which follows the builder pattern, to create a web application host. The builder has methods that define the web server (for example ``UseKestrel``) and the startup class (``UseStartup``). In the example above, the Kestrel web server is used, but other web servers can be specified. We'll show more about ``UseStartup`` in the next section. ``WebHostBuilder`` provides many optional methods including ``UseIISIntegration`` for hosting in IIS and IIS Express and ``UseContentRoot`` for specifying the root content directory. The ``Build`` and ``Run`` methods build the ``IWebHost`` that will host the app and start it listening for incoming HTTP requests.
 
 
 Startup
