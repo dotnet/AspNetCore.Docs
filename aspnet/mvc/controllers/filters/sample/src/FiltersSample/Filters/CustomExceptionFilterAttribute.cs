@@ -30,7 +30,7 @@ namespace FiltersSample.Filters
             result.ViewData = new ViewDataDictionary(_modelMetadataProvider,context.ModelState);
             result.ViewData.Add("Exception", context.Exception);
             // TODO: Pass additional detailed data via ViewData
-            context.Exception = null; // mark exception as handled
+            context.ExceptionHandled = true; // mark exception as handled
             context.Result = result;
         }
     }
