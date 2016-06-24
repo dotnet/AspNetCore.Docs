@@ -34,7 +34,7 @@ Add routing to ``ConfigureServices`` in *Startup.cs*:
 Configuring Routing
 -------------------
 
-Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#routebuilder-class>`_, passing a reference to ``IApplicationBuilder``. You can optionally provide a `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ as well. Add additional routes using ``MapRoute`` and when finished call ``app.UseRouter``.
+Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`, passing a reference to ``IApplicationBuilder``. You can optionally provide a :dn:prop:`~Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler` as well. Add additional routes using ``MapRoute`` and when finished call ``app.UseRouter``.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
