@@ -131,7 +131,7 @@ Save your changes and browse to the following URL:
 
 \http://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4
 
-Data is taken from the URL and passed to the controller using the `model binder </mvc/models>`__. The controller packages the data into a ``ViewData`` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
+Data is taken from the URL and passed to the controller using the :doc:`MVC model binder </mvc/models/model-binding>` . The controller packages the data into a ``ViewData`` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
 .. image:: adding-view/_static/rick.png
 
