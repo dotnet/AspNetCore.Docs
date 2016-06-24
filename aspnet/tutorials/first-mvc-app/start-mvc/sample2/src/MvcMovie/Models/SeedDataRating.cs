@@ -1,4 +1,4 @@
-﻿//#define SeedRating 
+﻿#define SeedRating 
 #if SeedRating
 
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +30,7 @@ namespace MvcMovie.Models
                          Rating = "R",
                          Price = 7.99M
                      },
-
+                     // Add another movie.
                      new Movie
                      {
                          Title = "Ghostbusters ",

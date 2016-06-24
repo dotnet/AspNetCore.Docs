@@ -15,7 +15,7 @@ We'll be covering all these concepts in this tutorial series and show you how to
 
 .. image:: adding-controller/_static/mvc1.png
 
-- In **Solution Explorer**, right-click **Controllers > Add > Controller...**
+- In **Solution Explorer**, right-click **Controllers > Add > New Item...**
 
 .. image:: adding-controller/_static/add_controller.png
 
@@ -35,7 +35,7 @@ Every ``public`` method in a controller is callable as an HTTP endpoint. In the 
   :dedent: 4
   :emphasize-lines: 4,12
 
-The first comment states this is an `HTTP GET <http://www.w3schools.com/tags/ref_httpmethods.asp>`__ method that is invoked by appending "/HelloWorld/" to the URL. The second comment specifies an `HTTP GET <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate ``HTTP POST`` methods.
+The first comment states this is an `HTTP GET <http://www.w3schools.com/tags/ref_httpmethods.asp>`__ method that is invoked by appending "/HelloWorld/" to the base URL. The second comment specifies an `HTTP GET <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate ``HTTP POST`` methods.
 
 Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, http://localhost:1234/HelloWorld is used, but you'll have to replace *1234* with the port number of your app.) The ``Index`` method returns a string. You told the system to return some HTML, and it did!
 
@@ -57,7 +57,7 @@ When you run the app and don't supply any URL segments, it defaults to the "Home
 
 The first URL segment determines the controller class to run. So ``localhost:xxxx/HelloWorld`` maps to the ``HelloWorldController`` class. The second part of the URL segment determines the action method on the class. So ``localhost:xxxx/HelloWorld/Index`` would cause the ``Index`` method of the ``HelloWorldController`` class to run. Notice that we only had to browse to ``localhost:xxxx/HelloWorld`` and the ``Index`` method was called by default. This is because ``Index`` is the default method that will be called on a controller if a method name is not explicitly specified. The third part of the URL segment ( ``id``) is for route data. We'll see route data later on in this tutorial.
 
-Browse to ``http://localhost:xxxx/HelloWorld/Welcome``. The ``Welcome`` method runs and returns the string "This is the Welcome action method...". The default MVC routing is ``/[Controller]/[ActionName]/[Parameters]``. For this URL, the controller is ``HelloWorld`` and ``Welcome`` is the action method. We haven't used the ``[Parameters]`` part of the URL yet.
+Browse to ``http://localhost:xxxx/HelloWorld/Welcome``. The ``Welcome`` method runs and returns the string "This is the Welcome action method...". For this URL, the controller is ``HelloWorld`` and ``Welcome`` is the action method. We haven't used the ``[Parameters]`` part of the URL yet.
 
 .. image:: adding-controller/_static/welcome.png
 
@@ -70,7 +70,7 @@ Let's modify the example slightly so that you can pass some parameter informatio
 
 .. note:: The code above uses ``HtmlEncoder.Default.Encode`` to protect the app from malicious input (namely JavaScript). It also uses `Interpolated Strings <https://msdn.microsoft.com/en-us/library/dn961160.aspx>`__.
 
-.. note:: In Visual Studio 2015, when you are running without debugging (Ctl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
+.. note:: In Visual Studio 2015, when you are running in IIS Express without debugging (Ctl+F5), you don't need to build the app after changing the code. Just save the file, refresh your browser and you can see the changes.
 
 Run your app and browse to:
 
@@ -97,7 +97,8 @@ This time the third URL segment  matched the route parameter ``id``. The ``Welco
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :language: c#
-  :lines: 80-85
+  :start-after: app.UseIdentity();
+  :end-before:  SeedData.Initialize(app.ApplicationServices);
   :dedent: 12
   :emphasize-lines: 5
   

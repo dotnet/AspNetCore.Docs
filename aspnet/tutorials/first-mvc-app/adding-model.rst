@@ -35,7 +35,7 @@ Complete the **New Project** dialog:
 In the **New ASP.NET Core Web Application - MvcMovie** dialog:
 
 - tap **Web Application**
-- tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK** 
+- tap the **Change Authentication** button and change the authentication to **Individual User Accounts** and tap **OK**
 
 .. image:: start-mvc/_static/p4.png
 
@@ -103,18 +103,18 @@ To Stop IIS Express:
 ^^^^^^^^^^^^^^^^^^^^^
 
 - Right click the IIS Express system tray icon in the notification area
-  
+
  .. image:: working-with-sql/_static/iisExIcon.png
   :height: 100px
   :width: 200 px
- 
+
 - Tap **Exit** or **Stop Site**
 
 .. image:: working-with-sql/_static/stopIIS.png
 
 - Alternatively, you can exit and restart Visual Studio
 
-.. To-do replace command prompt to PMC. It's the preferred approach, you  don't need to leave VS 
+.. To-do replace command prompt to PMC. It's the preferred approach, you  don't need to leave VS
 
 - Open a command prompt in the project directory (MvcMovie/src/MvcMovie). Follow these instructions for a quick way to open a folder in the project directory.
 
@@ -124,15 +124,15 @@ To Stop IIS Express:
 |
 
   .. image:: adding-model/_static/quick.png
-  
+
 |
 
   - Shift + right click a folder > **Open command window here**
-  
+
 |
 
   .. image:: adding-model/_static/folder.png
-  
+
 |
 
   - Run ``cd ..`` to move back up to the project directory
@@ -142,7 +142,7 @@ To Stop IIS Express:
 .. code-block:: console
 
   dotnet ef migrations add Initial
-  dotnet ef database update 
+  dotnet ef database update
 
 .. note:: If IIS-Express is running, you'll get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'*
 
@@ -166,6 +166,17 @@ Test the app
 
 .. note:: You may not be able to enter decimal points or commas in the ``Price`` field. To support `jQuery validation <http://jqueryvalidation.org/>`__ for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See `Additional resources`_ for more information. For now, just enter whole numbers like 10.
 
+.. _DisplayFormatDateLocal:
+
+.. note:: In some locals you'll need to specify the date format. See the highlighted code below.
+
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateFormat.cs
+  :language: c#
+  :start-after: // Start
+  :end-before:  */
+  :emphasize-lines: 10,2
+
+
 Tapping **Create** causes the form to be posted to the server, where the movie information is saved in a database. You are then redirected to the `/Movies` URL, where you can see the newly created movie in the listing.
 
 .. image:: adding-model/_static/h.png
@@ -177,7 +188,26 @@ Examining the Generated Code
 
 Open the *Controllers/MoviesController.cs* file and examine the generated ``Index`` method. A portion of the movie controller with the ``Index`` method is shown below:
 
-.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+.. code-block:: c#
+
+    public class MoviesController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public MoviesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Movies
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Movie.ToListAsync());
+        }
+
+
+.. can't use this because we commenent out the initial index method and update it later
+.. comment literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
   :language: c#
   :start-after: // The Movies Controller
   :end-before: // GET: Movies/Details/5
@@ -239,7 +269,7 @@ Examine the *Index.cshtml* view and the ``Index`` method in the Movies controlle
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
  :language: c#
  :start-after:  // GET: Movies
- :end-before: // GET: Movies/Details/5
+ :end-before:  // End of first Index
  :dedent: 8
 
 When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
@@ -268,4 +298,4 @@ Additional resources
 -----------------------
 
 - :doc:`/mvc/views/tag-helpers/index`
-- :doc:`/fundamentals/localization` 
+- :doc:`/fundamentals/localization`
