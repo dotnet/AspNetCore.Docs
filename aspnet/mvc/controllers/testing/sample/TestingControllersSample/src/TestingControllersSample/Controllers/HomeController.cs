@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Microsoft.AspNet.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
 using TestingControllersSample.ViewModels;
@@ -17,16 +18,17 @@ namespace TestingControllersSample.Controllers
             _sessionRepository = sessionRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var model = _sessionRepository.List()
-                .Select(s => new StormSessionViewModel()
-                {
-                    Id = s.Id,
-                    DateCreated = s.DateCreated,
-                    Name = s.Name,
-                    IdeaCount = s.Ideas.Count
-                });
+            var sessionList = await _sessionRepository.ListAsync();
+
+            var model = sessionList.Select(session => new StormSessionViewModel()
+            {
+                Id = session.Id,
+                DateCreated = session.DateCreated,
+                Name = session.Name,
+                IdeaCount = session.Ideas.Count
+            });
 
             return View(model);
         }
@@ -38,18 +40,20 @@ namespace TestingControllersSample.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(NewSessionModel model)
+        public async Task<IActionResult> Index(NewSessionModel model)
         {
             if (!ModelState.IsValid)
             {
-                return Index();
+                return BadRequest(ModelState);
             }
-            _sessionRepository.Add(new BrainstormSession()
+
+            await _sessionRepository.AddAsync(new BrainstormSession()
             {
                 DateCreated = DateTimeOffset.Now,
                 Name = model.SessionName
             });
-            return new RedirectToActionResult("Index", "Home", null);
+
+            return RedirectToAction("Index");
         }
     }
 }

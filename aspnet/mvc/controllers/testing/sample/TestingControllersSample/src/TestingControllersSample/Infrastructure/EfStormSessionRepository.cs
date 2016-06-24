@@ -1,51 +1,46 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
 
 namespace TestingControllersSample.Infrastructure
 {
-    public class EfStormSessionRepository :IBrainstormSessionRepository
+    public class EFStormSessionRepository : IBrainstormSessionRepository
     {
         private readonly AppDbContext _dbContext;
 
-        public EfStormSessionRepository(AppDbContext dbContext)
+        public EFStormSessionRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public BrainstormSession GetById(int id)
+        public Task<BrainstormSession> GetByIdAsync(int id)
         {
             return _dbContext.BrainstormSessions
                 .Include(s => s.Ideas)
-                .FirstOrDefault(s => s.Id == id);
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public List<BrainstormSession> List()
+        public Task<List<BrainstormSession>> ListAsync()
         {
             return _dbContext.BrainstormSessions
-                .Include(s=>s.Ideas)
+                .Include(s => s.Ideas)
                 .OrderByDescending(s => s.DateCreated)
-                .ToList();
+                .ToListAsync();
         }
 
-        public void Add(BrainstormSession session)
+        public Task AddAsync(BrainstormSession session)
         {
-            int maxId = 0;
-            if (_dbContext.BrainstormSessions.Any())
-            {
-                maxId = _dbContext.BrainstormSessions.Max(s => s.Id);
-            }
-            session.Id = maxId + 1;
             _dbContext.BrainstormSessions.Add(session);
-            _dbContext.SaveChanges();
+            return _dbContext.SaveChangesAsync();
         }
 
-        public void Update(BrainstormSession session)
+        public Task UpdateAsync(BrainstormSession session)
         {
             _dbContext.Entry(session).State = EntityState.Modified;
-            _dbContext.SaveChanges();
+            return _dbContext.SaveChangesAsync();
         }
     }
 }
