@@ -25,7 +25,5 @@
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-final"
   },
-  "commands": {
-    "test": "xunit.runner.dnx"
-  }
+  "testRunner": "xunit"
 }
