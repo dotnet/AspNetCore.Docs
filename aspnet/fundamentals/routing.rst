@@ -34,7 +34,7 @@ Add routing to ``ConfigureServices`` in *Startup.cs*:
 Configuring Routing
 -------------------
 
-Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#routebuilder-class>`_, passing a reference to ``IApplicationBuilder``. You can optionally provide a `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ as well. Add additional routes using ``MapRoute`` and when finished call ``app.UseRouter``.
+Routing is enabled in the ``Configure`` method in the ``Startup`` class. Create an instance of :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`, passing a reference to ``IApplicationBuilder``. You can optionally provide a :dn:prop:`~Microsoft.AspNetCore.Routing.RouteBuilder.DefaultHandler` as well. Add additional routes using ``MapRoute`` and when finished call ``app.UseRouter``.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
@@ -70,7 +70,7 @@ The most common way to define routes is using ``TemplateRoute`` and route templa
 
 .. image:: /fundamentals/routing/_static/default-mvc-routetemplate.png
 
-This route template would be handled by the `MvcRouteHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Infrastructure/MvcRouteHandler/index.html>`_ ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
+This route template would be handled by the :dn:cls:`~Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler` ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
 
 You can use the ``*`` character as a prefix to a route value name to bind to the rest of the URI. For example, ``blog/{*slug}`` would match any URI that started with ``/blog/`` and had any value following it (which would be assigned to the ``slug`` route value).
 
@@ -202,7 +202,7 @@ Route templates must be unambiguous, or they will be ignored. For example, ``{id
 
 Route Builder Extensions
 ------------------------
-Several `extension methods on RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouteBuilderExtensions/index.html>`_ are available for convenience. The most common of these is ``MapRoute``, which allows the specification of a route given a name and template, and optionally default values, constraints, and/or :ref:`data tokens <data-tokens>`. When using these extensions, you must have specified the ``DefaultHandler`` and ``ServiceProvider`` properties of the ``RouteBuilder`` instance to which you're adding the route. These ``MapRoute`` extensions add new ``TemplateRoute`` instances to the ``RouteBuilder`` that each target the ``IRouter`` configured as the ``DefaultHandler``.
+Several `extension methods on RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MapRouteRouteBuilderExtensions/index.html>`_ are available for convenience. The most common of these is ``MapRoute``, which allows the specification of a route given a name and template, and optionally default values, constraints, and/or :ref:`data tokens <data-tokens>`. When using these extensions, you must have specified the ``DefaultHandler`` and ``ServiceProvider`` properties of the ``RouteBuilder`` instance to which you're adding the route. These ``MapRoute`` extensions add new ``TemplateRoute`` instances to the ``RouteBuilder`` that each target the ``IRouter`` configured as the ``DefaultHandler``.
 
 .. note:: ``MapRoute`` doesn't take an ``IRouter`` parameter - it only adds routes that will be handled by the ``DefaultHandler``. Since the default handler is an ``IRouter``, it may decide not to handle the request. For example, MVC is typically configured as a default handler that only handles requests that match an available controller action.
 
