@@ -115,7 +115,7 @@ MVC uses validation attributes in addition to type metadata from model propertie
    :language: html
    :lines: 19-25
    :dedent: 8
-   :emphasize-lines: 22-23
+   :emphasize-lines: 4-5
 
 The tag helpers above render the HTML below. Notice that the ``data-`` attributes in the HTML output correspond to the validation attributes for the ``ReleaseDate`` property. The ``data-val-required`` attribute below contains an error message to display if the user doesn't fill in the release date field, and that message displays in the accompanying ``<span>`` element.
 
@@ -188,7 +188,7 @@ You can implement remote validation in a two step process. First, you must annot
 The second step is putting the validation code in the corresponding action method as defined in the ``[Remote]`` attribute. It returns a ``JsonResult`` that the client side can use to proceed or pause and display an error if needed.
 
 .. literalinclude:: validation/sample/UsersController.cs
-   :language: c#
+   :language: none
    :lines: 19-28
    :dedent: 8
 
