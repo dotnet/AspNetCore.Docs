@@ -74,10 +74,12 @@ If your project contains an ``EmailTagHelper`` with the default namespace (``Aut
 
 .. FQN syntax
 
-.. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml
-   :language: html
-   :lines: 1-3
+.. code-block:: html
    :emphasize-lines: 3
+   
+    @using AuthoringTagHelpers
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+    @addTagHelper "AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers"
 
 To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), and then the assembly name (*AuthoringTagHelpers*). Most developers prefer to use the  "\*" wildcard syntax. The wildcard syntax allows you to insert the wildcard character "\*" as the suffix in an FQN. For example, any of the following directives will bring in the ``EmailTagHelper``:
 
