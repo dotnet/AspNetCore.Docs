@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            string GroupName
-            {
-                get;
-            }
+            string GroupName { get; }
     
 

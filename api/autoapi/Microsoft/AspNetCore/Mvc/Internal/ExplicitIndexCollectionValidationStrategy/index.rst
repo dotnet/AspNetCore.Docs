@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ExplicitIndexCollectionValidationStrategy
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ExplicitIndexCollectionValidationStrategy
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ExplicitIndexCollectionValidationStrategy.ElementKeys
-    
-        
-    
-        
-        Gets the keys of collection elements that were used during model binding.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> ElementKeys
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,6 +83,30 @@ Constructors
         .. code-block:: csharp
     
             public ExplicitIndexCollectionValidationStrategy(IEnumerable<string> elementKeys)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ExplicitIndexCollectionValidationStrategy
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ExplicitIndexCollectionValidationStrategy.ElementKeys
+    
+        
+    
+        
+        Gets the keys of collection elements that were used during model binding.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> ElementKeys { get; }
     
 
 Methods

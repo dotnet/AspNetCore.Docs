@@ -53,57 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.RedirectResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.RedirectResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.Permanent
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Permanent
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.Url
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Url
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.UrlHelper
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
-    
-        
-        .. code-block:: csharp
-    
-            public IUrlHelper UrlHelper
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -159,5 +108,44 @@ Methods
         .. code-block:: csharp
     
             public override void ExecuteResult(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.RedirectResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.Permanent
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Permanent { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.Url
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Url { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RedirectResult.UrlHelper
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
+    
+        
+        .. code-block:: csharp
+    
+            public IUrlHelper UrlHelper { get; set; }
     
 

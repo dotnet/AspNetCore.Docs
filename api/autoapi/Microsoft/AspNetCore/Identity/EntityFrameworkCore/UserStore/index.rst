@@ -8,7 +8,7 @@ UserStore Class
 
 
 
-Creates a new instance of a persistence store for users, using the default implementation
+Represents a new instance of a persistence store for users, using the default implementation
 of :any:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser\`1` with a string as a primary key.
 
 
@@ -29,8 +29,8 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
+* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext,System.String,Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext,System.String}`
-* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`
 

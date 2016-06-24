@@ -9,7 +9,7 @@ ControllerAttribute Class
 
 
 Indicates that the type and any derived types that this attribute is applied to
-are considered a controller by the default controller discovery mechanism, unless
+are considered a controller by the default controller discovery mechanism, unless 
 :any:`Microsoft.AspNetCore.Mvc.NonControllerAttribute` is applied to any type in the hierarchy.
 
 

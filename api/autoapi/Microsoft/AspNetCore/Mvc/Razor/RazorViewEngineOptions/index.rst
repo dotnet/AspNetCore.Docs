@@ -64,6 +64,38 @@ Properties
     :hidden:
 
     
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AdditionalCompilationReferences
+    
+        
+    
+        
+        Gets the :any:`Microsoft.CodeAnalysis.MetadataReference` instances that should be included in Razor compilation, along with
+        those discovered by :any:`Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeatureProvider`\s.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.CodeAnalysis.MetadataReference<Microsoft.CodeAnalysis.MetadataReference>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<MetadataReference> AdditionalCompilationReferences { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AreaViewLocationFormats
+    
+        
+    
+        
+        Gets the locations where :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` will search for views within an
+        area.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> AreaViewLocationFormats { get; }
+    
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.CompilationCallback
     
         
@@ -78,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Action<RoslynCompilationContext> CompilationCallback
-            {
-                get;
-                set;
-            }
+            public Action<RoslynCompilationContext> CompilationCallback { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.CompilationOptions
     
@@ -97,11 +125,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CSharpCompilationOptions CompilationOptions
-            {
-                get;
-                set;
-            }
+            public CSharpCompilationOptions CompilationOptions { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.FileProviders
     
@@ -117,10 +141,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IFileProvider> FileProviders
-            {
-                get;
-            }
+            public IList<IFileProvider> FileProviders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ParseOptions
     
@@ -135,18 +156,14 @@ Properties
         
         .. code-block:: csharp
     
-            public CSharpParseOptions ParseOptions
-            {
-                get;
-                set;
-            }
+            public CSharpParseOptions ParseOptions { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationExpanders
     
         
     
         
-        Get a :any:`System.Collections.Generic.IList\`1` used by the :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine`\.
+        Gets a :any:`System.Collections.Generic.IList\`1` used by the :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine`\.
     
         
         :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander<Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander>}
@@ -154,9 +171,21 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IViewLocationExpander> ViewLocationExpanders
-            {
-                get;
-            }
+            public IList<IViewLocationExpander> ViewLocationExpanders { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats
+    
+        
+    
+        
+        Gets the locations where :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` will search for views.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> ViewLocationFormats { get; }
     
 

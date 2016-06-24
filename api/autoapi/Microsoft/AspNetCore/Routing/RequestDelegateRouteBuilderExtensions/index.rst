@@ -90,7 +90,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapDelete(IRouteBuilder builder, string template, RequestDelegate handler)
+            public static IRouteBuilder MapDelete(this IRouteBuilder builder, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapDelete(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -122,7 +122,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapDelete(IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapDelete(this IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, Microsoft.AspNetCore.Http.RequestDelegate)
     
@@ -154,7 +154,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapGet(IRouteBuilder builder, string template, RequestDelegate handler)
+            public static IRouteBuilder MapGet(this IRouteBuilder builder, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -186,7 +186,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapGet(IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapGet(this IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPost(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, Microsoft.AspNetCore.Http.RequestDelegate)
     
@@ -218,7 +218,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapPost(IRouteBuilder builder, string template, RequestDelegate handler)
+            public static IRouteBuilder MapPost(this IRouteBuilder builder, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPost(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -250,7 +250,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapPost(IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapPost(this IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPut(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, Microsoft.AspNetCore.Http.RequestDelegate)
     
@@ -282,7 +282,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapPut(IRouteBuilder builder, string template, RequestDelegate handler)
+            public static IRouteBuilder MapPut(this IRouteBuilder builder, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPut(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -314,7 +314,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapPut(IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapPut(this IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, Microsoft.AspNetCore.Http.RequestDelegate)
     
@@ -346,7 +346,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder builder, string template, RequestDelegate handler)
+            public static IRouteBuilder MapRoute(this IRouteBuilder builder, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -378,7 +378,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapRoute(this IRouteBuilder builder, string template, Action<IApplicationBuilder> action)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, Microsoft.AspNetCore.Http.RequestDelegate)
     
@@ -415,7 +415,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapVerb(IRouteBuilder builder, string verb, string template, RequestDelegate handler)
+            public static IRouteBuilder MapVerb(this IRouteBuilder builder, string verb, string template, RequestDelegate handler)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -452,6 +452,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapVerb(IRouteBuilder builder, string verb, string template, Action<IApplicationBuilder> action)
+            public static IRouteBuilder MapVerb(this IRouteBuilder builder, string verb, string template, Action<IApplicationBuilder> action)
     
 

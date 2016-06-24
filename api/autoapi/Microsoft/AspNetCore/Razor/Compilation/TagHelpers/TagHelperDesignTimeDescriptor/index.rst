@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string OutputElementHint
-            {
-                get;
-                set;
-            }
+            public string OutputElementHint { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDesignTimeDescriptor.Remarks
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Remarks
-            {
-                get;
-                set;
-            }
+            public string Remarks { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDesignTimeDescriptor.Summary
     
@@ -115,10 +107,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Summary
-            {
-                get;
-                set;
-            }
+            public string Summary { get; set; }
     
 

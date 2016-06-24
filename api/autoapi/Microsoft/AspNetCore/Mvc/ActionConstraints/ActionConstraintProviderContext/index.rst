@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.Action
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` for which constraints are being created.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
-    
-        
-        .. code-block:: csharp
-    
-            public ActionDescriptor Action
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.HttpContext
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.Results
-    
-        
-    
-        
-        The list of :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem` objects.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem<Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<ActionConstraintItem> Results
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -155,5 +92,59 @@ Constructors
         .. code-block:: csharp
     
             public ActionConstraintProviderContext(HttpContext context, ActionDescriptor action, IList<ActionConstraintItem> items)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.Action
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` for which constraints are being created.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
+    
+        
+        .. code-block:: csharp
+    
+            public ActionDescriptor Action { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.HttpContext
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintProviderContext.Results
+    
+        
+    
+        
+        The list of :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem` objects.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem<Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<ActionConstraintItem> Results { get; }
     
 

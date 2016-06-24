@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.DefaultHtmlGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.DefaultHtmlGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.DefaultHtmlGenerator.IdAttributeDotReplacement
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string IdAttributeDotReplacement
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -343,7 +321,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -813,5 +791,24 @@ Methods
         .. code-block:: csharp
     
             public virtual ICollection<string> GetCurrentValues(ViewContext viewContext, ModelExplorer modelExplorer, string expression, bool allowMultiple)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.DefaultHtmlGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.DefaultHtmlGenerator.IdAttributeDotReplacement
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string IdAttributeDotReplacement { get; }
     
 

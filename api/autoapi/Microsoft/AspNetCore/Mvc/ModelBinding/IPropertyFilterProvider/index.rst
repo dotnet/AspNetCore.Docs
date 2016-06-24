@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            Func<ModelMetadata, bool> PropertyFilter
-            {
-                get;
-            }
+            Func<ModelMetadata, bool> PropertyFilter { get; }
     
 

@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.LastError
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.DataStoreErrorLog
-    
-        
-        .. code-block:: csharp
-    
-            public virtual DataStoreErrorLogger.DataStoreErrorLog LastError
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -140,5 +118,24 @@ Methods
         .. code-block:: csharp
     
             public virtual void StartLoggingForCurrentCallContext()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.LastError
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.DataStoreErrorLog
+    
+        
+        .. code-block:: csharp
+    
+            public virtual DataStoreErrorLogger.DataStoreErrorLog LastError { get; }
     
 

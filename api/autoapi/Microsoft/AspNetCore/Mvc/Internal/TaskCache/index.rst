@@ -52,19 +52,20 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.TaskCache
 
-Properties
-----------
+Fields
+------
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.TaskCache
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.TaskCache.CompletedTask
+    .. dn:field:: Microsoft.AspNetCore.Mvc.Internal.TaskCache.CompletedTask
     
         
     
-        Gets a task that's already been completed successfully.
+        
+        A :any:`System.Threading.Tasks.Task` that's already completed successfully.
     
         
         :rtype: System.Threading.Tasks.Task
@@ -72,9 +73,6 @@ Properties
         
         .. code-block:: csharp
     
-            public static Task CompletedTask
-            {
-                get;
-            }
+            public static readonly Task CompletedTask
     
 

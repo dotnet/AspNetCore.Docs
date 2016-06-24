@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IReadOnlyList<ActionSelectorCandidate> Candidates
-            {
-                get;
-                set;
-            }
+            public IReadOnlyList<ActionSelectorCandidate> Candidates { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext.CurrentCandidate
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ActionSelectorCandidate CurrentCandidate
-            {
-                get;
-                set;
-            }
+            public ActionSelectorCandidate CurrentCandidate { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintContext.RouteContext
     
@@ -116,10 +108,6 @@ Properties
         
         .. code-block:: csharp
     
-            public RouteContext RouteContext
-            {
-                get;
-                set;
-            }
+            public RouteContext RouteContext { get; set; }
     
 

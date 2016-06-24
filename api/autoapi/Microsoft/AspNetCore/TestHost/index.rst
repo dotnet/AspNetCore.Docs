@@ -79,7 +79,7 @@ Microsoft.AspNetCore.TestHost Namespace
         .. object: type=class name=Microsoft.AspNetCore.TestHost.ClientHandler
 
         
-        This adapts HttpRequestMessages to ASP.NET requests, dispatches them through the pipeline, and returns the
+        This adapts HttpRequestMessages to ASP.NET Core requests, dispatches them through the pipeline, and returns the
         associated HttpResponseMessage.
 
 

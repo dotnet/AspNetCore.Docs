@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TypeName
-            {
-                get;
-                set;
-            }
+            public string TypeName { get; set; }
     
 

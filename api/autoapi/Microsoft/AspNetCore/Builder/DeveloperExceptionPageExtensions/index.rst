@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDeveloperExceptionPage(IApplicationBuilder app)
+            public static IApplicationBuilder UseDeveloperExceptionPage(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDeveloperExceptionPage(IApplicationBuilder app, DeveloperExceptionPageOptions options)
+            public static IApplicationBuilder UseDeveloperExceptionPage(this IApplicationBuilder app, DeveloperExceptionPageOptions options)
     
 

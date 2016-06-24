@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MaxRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MaxRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.MaxRouteConstraint.Max
-    
-        
-    
-        
-        Gets the maximum allowed value of the route parameter.
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Max
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,5 +116,29 @@ Methods
         .. code-block:: csharp
     
             public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MaxRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.MaxRouteConstraint.Max
+    
+        
+    
+        
+        Gets the maximum allowed value of the route parameter.
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Max { get; }
     
 

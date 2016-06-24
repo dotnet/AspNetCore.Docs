@@ -48,123 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.MediaType
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.MediaType
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Charset
-    
-        
-    
-        
-        Gets the charset parameter of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` if it has one.
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment Charset
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Encoding
-    
-        
-    
-        
-        Gets the :any:`System.Text.Encoding` of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` if it has one.
-    
-        
-        :rtype: System.Text.Encoding
-    
-        
-        .. code-block:: csharp
-    
-            public Encoding Encoding
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.MatchesAllSubTypes
-    
-        
-    
-        
-        Gets whether this :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` matches all subtypes.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MatchesAllSubTypes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.MatchesAllTypes
-    
-        
-    
-        
-        Gets whether this :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` matches all types.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MatchesAllTypes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.SubType
-    
-        
-    
-        
-        Gets the subtype of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType`\.
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment SubType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Type
-    
-        
-    
-        
-        Gets the type of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType`\.
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment Type
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -239,6 +122,105 @@ Constructors
         .. code-block:: csharp
     
             public MediaType(string mediaType, int offset, int ? length)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.MediaType
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Charset
+    
+        
+    
+        
+        Gets the charset parameter of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` if it has one.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment Charset { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Encoding
+    
+        
+    
+        
+        Gets the :any:`System.Text.Encoding` of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` if it has one.
+    
+        
+        :rtype: System.Text.Encoding
+    
+        
+        .. code-block:: csharp
+    
+            public Encoding Encoding { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.MatchesAllSubTypes
+    
+        
+    
+        
+        Gets whether this :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` matches all subtypes.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MatchesAllSubTypes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.MatchesAllTypes
+    
+        
+    
+        
+        Gets whether this :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType` matches all types.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MatchesAllTypes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.SubType
+    
+        
+    
+        
+        Gets the subtype of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType`\.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment SubType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.MediaType.Type
+    
+        
+    
+        
+        Gets the type of the :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaType`\.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment Type { get; }
     
 
 Methods

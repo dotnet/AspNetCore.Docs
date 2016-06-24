@@ -7,6 +7,12 @@ BindNeverAttribute Class
 
 
 
+
+Indicates that a property should be excluded from model binding. When applied to a property, the model binding
+system excludes that property. When applied to a type, the model binding system excludes all properties of that
+type.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.ModelBinding`
 Assemblies
@@ -64,6 +70,11 @@ Constructors
 
     
     .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute.BindNeverAttribute()
+    
+        
+    
+        
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute` instance.
     
         
     

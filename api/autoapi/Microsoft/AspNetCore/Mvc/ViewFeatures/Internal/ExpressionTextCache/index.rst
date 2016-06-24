@@ -72,9 +72,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ConcurrentDictionary<LambdaExpression, string> Entries
-            {
-                get;
-            }
+            public ConcurrentDictionary<LambdaExpression, string> Entries { get; }
     
 

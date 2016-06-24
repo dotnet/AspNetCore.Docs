@@ -58,91 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.ActionName
-    
-        
-    
-        
-        Gets or sets the name of the action to use for generating the URL.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ActionName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.ControllerName
-    
-        
-    
-        
-        Gets or sets the name of the controller to use for generating the URL.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ControllerName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.RouteValues
-    
-        
-    
-        
-        Gets or sets the route data to use for generating the URL.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary RouteValues
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.UrlHelper
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` used to generate URLs.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
-    
-        
-        .. code-block:: csharp
-    
-            public IUrlHelper UrlHelper
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -185,6 +100,75 @@ Constructors
         .. code-block:: csharp
     
             public CreatedAtActionResult(string actionName, string controllerName, object routeValues, object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.ActionName
+    
+        
+    
+        
+        Gets or sets the name of the action to use for generating the URL.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ActionName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.ControllerName
+    
+        
+    
+        
+        Gets or sets the name of the controller to use for generating the URL.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ControllerName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.RouteValues
+    
+        
+    
+        
+        Gets or sets the route data to use for generating the URL.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary RouteValues { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtActionResult.UrlHelper
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` used to generate URLs.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
+    
+        
+        .. code-block:: csharp
+    
+            public IUrlHelper UrlHelper { get; set; }
     
 
 Methods

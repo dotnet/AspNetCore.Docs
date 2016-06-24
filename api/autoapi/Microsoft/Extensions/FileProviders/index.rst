@@ -39,6 +39,18 @@ Microsoft.Extensions.FileProviders Namespace
    
    
    
+   /autoapi/Microsoft/Extensions/FileProviders/NotFoundDirectoryContents/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/NotFoundFileInfo/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/FileProviders/NullChangeToken/index
+   
+   
+   
    /autoapi/Microsoft/Extensions/FileProviders/NullFileProvider/index
    
    
@@ -93,6 +105,18 @@ Microsoft.Extensions.FileProviders Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -102,6 +126,30 @@ Microsoft.Extensions.FileProviders Namespace
 
 
 .. dn:namespace:: Microsoft.Extensions.FileProviders
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IDirectoryContents`
+        .. object: type=interface name=Microsoft.Extensions.FileProviders.IDirectoryContents
+
+        
+        Represents a directory's content in the file provider.
+
+
+    interface :dn:iface:`IFileInfo`
+        .. object: type=interface name=Microsoft.Extensions.FileProviders.IFileInfo
+
+        
+        Represents a file in the given file provider.
+
+
+    interface :dn:iface:`IFileProvider`
+        .. object: type=interface name=Microsoft.Extensions.FileProviders.IFileProvider
+
+        
+        A read-only file provider abstraction.
 
 
     .. rubric:: Classes
@@ -128,6 +176,27 @@ Microsoft.Extensions.FileProviders Namespace
         
 
 
+    class :dn:cls:`NotFoundDirectoryContents`
+        .. object: type=class name=Microsoft.Extensions.FileProviders.NotFoundDirectoryContents
+
+        
+        Represents a non-existing directory
+
+
+    class :dn:cls:`NotFoundFileInfo`
+        .. object: type=class name=Microsoft.Extensions.FileProviders.NotFoundFileInfo
+
+        
+        Represents a non-existing file.
+
+
+    class :dn:cls:`NullChangeToken`
+        .. object: type=class name=Microsoft.Extensions.FileProviders.NullChangeToken
+
+        
+        An empty change token that doesn't raise any change callbacks
+
+
     class :dn:cls:`NullFileProvider`
         .. object: type=class name=Microsoft.Extensions.FileProviders.NullFileProvider
 
@@ -140,29 +209,5 @@ Microsoft.Extensions.FileProviders Namespace
 
         
         Looks up files using the on-disk file system
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IDirectoryContents`
-        .. object: type=interface name=Microsoft.Extensions.FileProviders.IDirectoryContents
-
-        
-        Represents a directory's content in the file provider.
-
-
-    interface :dn:iface:`IFileInfo`
-        .. object: type=interface name=Microsoft.Extensions.FileProviders.IFileInfo
-
-        
-        Represents a file in the given file provider.
-
-
-    interface :dn:iface:`IFileProvider`
-        .. object: type=interface name=Microsoft.Extensions.FileProviders.IFileProvider
-
-        
-        A read-only file provider abstraction.
 
 

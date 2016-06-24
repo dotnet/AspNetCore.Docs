@@ -8,7 +8,7 @@ ServiceBasedTagHelperActivator Class
 
 
 
-A :any:`Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator` that retrieves tag helpers as services from the request's
+A :any:`Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator` that retrieves tag helpers as services from the request's 
 :any:`System.IServiceProvider`\.
 
 

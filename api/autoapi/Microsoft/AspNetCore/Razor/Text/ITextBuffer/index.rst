@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            int Length
-            {
-                get;
-            }
+            int Length { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Text.ITextBuffer.Position
     
@@ -73,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            int Position
-            {
-                get;
-                set;
-            }
+            int Position { get; set; }
     
 
 Methods

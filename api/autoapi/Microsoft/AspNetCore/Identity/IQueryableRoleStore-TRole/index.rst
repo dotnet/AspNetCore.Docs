@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            IQueryable<TRole> Roles
-            {
-                get;
-            }
+            IQueryable<TRole> Roles { get; }
     
 

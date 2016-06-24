@@ -69,8 +69,8 @@ Methods
         
     
         
-        Copies a user-provided attribute from <em>context</em>'s
-        :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.AllAttributes` to <em>tagHelperOutput</em>'s
+        Copies a user-provided attribute from <em>context</em>'s 
+        :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.AllAttributes` to <em>tagHelperOutput</em>'s 
         :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes`\.
     
         
@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void CopyHtmlAttribute(TagHelperOutput tagHelperOutput, string attributeName, TagHelperContext context)
+            public static void CopyHtmlAttribute(this TagHelperOutput tagHelperOutput, string attributeName, TagHelperContext context)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.TagHelperOutputExtensions.MergeAttributes(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput, Microsoft.AspNetCore.Mvc.Rendering.TagBuilder)
     
@@ -118,14 +118,14 @@ Methods
         
         .. code-block:: csharp
     
-            public static void MergeAttributes(TagHelperOutput tagHelperOutput, TagBuilder tagBuilder)
+            public static void MergeAttributes(this TagHelperOutput tagHelperOutput, TagBuilder tagBuilder)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.TagHelperOutputExtensions.RemoveRange(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute>)
     
         
     
         
-        Removes the given <em>attributes</em> from <em>tagHelperOutput</em>'s
+        Removes the given <em>attributes</em> from <em>tagHelperOutput</em>'s 
         :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes`\.
     
         
@@ -143,6 +143,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RemoveRange(TagHelperOutput tagHelperOutput, IEnumerable<TagHelperAttribute> attributes)
+            public static void RemoveRange(this TagHelperOutput tagHelperOutput, IEnumerable<TagHelperAttribute> attributes)
     
 

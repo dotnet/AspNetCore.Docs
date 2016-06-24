@@ -57,51 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo.FileInfo
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.FileProviders.IFileInfo` associated with this instance of :any:`Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo`\.
-    
-        
-        :rtype: Microsoft.Extensions.FileProviders.IFileInfo
-    
-        
-        .. code-block:: csharp
-    
-            public IFileInfo FileInfo
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo.RelativePath
-    
-        
-    
-        
-        Gets the path of the file relative to the application base.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RelativePath
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +88,44 @@ Constructors
         .. code-block:: csharp
     
             public RelativeFileInfo(IFileInfo fileInfo, string relativePath)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo.FileInfo
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.FileProviders.IFileInfo` associated with this instance of :any:`Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo`\.
+    
+        
+        :rtype: Microsoft.Extensions.FileProviders.IFileInfo
+    
+        
+        .. code-block:: csharp
+    
+            public IFileInfo FileInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo.RelativePath
+    
+        
+    
+        
+        Gets the path of the file relative to the application base.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RelativePath { get; }
     
 

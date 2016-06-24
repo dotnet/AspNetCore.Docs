@@ -10,7 +10,7 @@ ClientValidatorItem Class
 
 Used to associate validators with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.ValidatorMetadata` instances
 as part of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext`\. An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator` should
-inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` and
+inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` and 
 :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.IsReusable` as appropriate.
 
 
@@ -59,71 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.IsReusable
-    
-        
-    
-        
-        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` can be reused across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator
-    
-        
-        .. code-block:: csharp
-    
-            public IClientModelValidator Validator
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.ValidatorMetadata
-    
-        
-    
-        
-        Gets the metadata associated with the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator`\.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object ValidatorMetadata
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -164,5 +99,59 @@ Constructors
         .. code-block:: csharp
     
             public ClientValidatorItem(object validatorMetadata)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.IsReusable
+    
+        
+    
+        
+        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` can be reused across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator
+    
+        
+        .. code-block:: csharp
+    
+            public IClientModelValidator Validator { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.ValidatorMetadata
+    
+        
+    
+        
+        Gets the metadata associated with the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator`\.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object ValidatorMetadata { get; }
     
 

@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IFilterMetadata> Filters
-            {
-                get;
-            }
+            IList<IFilterMetadata> Filters { get; }
     
 

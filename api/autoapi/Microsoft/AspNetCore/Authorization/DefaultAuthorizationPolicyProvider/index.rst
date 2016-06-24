@@ -8,7 +8,8 @@ DefaultAuthorizationPolicyProvider Class
 
 
 
-A type which can provide a :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy` for a particular name.
+The default implementation of a policy provider,
+which provides a :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy` for a particular name.
 
 
 Namespace
@@ -69,6 +70,13 @@ Constructors
         
     
         
+        Creates a new instance of :any:`Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider`\.
+    
+        
+    
+        
+        :param options: The options used to configure this instance.
+        
         :type options: Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Options.IOptions`1>{Microsoft.AspNetCore.Authorization.AuthorizationOptions<Microsoft.AspNetCore.Authorization.AuthorizationOptions>}
     
         
@@ -85,6 +93,22 @@ Methods
     :hidden:
 
     
+    .. dn:method:: Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider.GetDefaultPolicyAsync()
+    
+        
+    
+        
+        Gets the default authorization policy.
+    
+        
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Authorization.AuthorizationPolicy<Microsoft.AspNetCore.Authorization.AuthorizationPolicy>}
+        :return: The default authorization policy.
+    
+        
+        .. code-block:: csharp
+    
+            public Task<AuthorizationPolicy> GetDefaultPolicyAsync()
+    
     .. dn:method:: Microsoft.AspNetCore.Authorization.DefaultAuthorizationPolicyProvider.GetPolicyAsync(System.String)
     
         
@@ -95,8 +119,11 @@ Methods
         
     
         
+        :param policyName: The policy name to retrieve.
+        
         :type policyName: System.String
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Authorization.AuthorizationPolicy<Microsoft.AspNetCore.Authorization.AuthorizationPolicy>}
+        :return: The named :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy`\.
     
         
         .. code-block:: csharp

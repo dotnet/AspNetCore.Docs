@@ -8,7 +8,7 @@ ActionConstraintItem Class
 
 
 
-Represents an :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` with or without a corresponding
+Represents an :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` with or without a corresponding 
 :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint`\.
 
 
@@ -57,71 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Constraint
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Metadata`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint
-    
-        
-        .. code-block:: csharp
-    
-            public IActionConstraint Constraint
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.IsReusable
-    
-        
-    
-        
-        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Constraint` can be reused across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Metadata
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public IActionConstraintMetadata Metadata
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -148,5 +83,59 @@ Constructors
         .. code-block:: csharp
     
             public ActionConstraintItem(IActionConstraintMetadata metadata)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Constraint
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Metadata`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint
+    
+        
+        .. code-block:: csharp
+    
+            public IActionConstraint Constraint { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.IsReusable
+    
+        
+    
+        
+        Gets or sets a value indicating whether or not :dn:prop:`Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Constraint` can be reused across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionConstraintItem.Metadata
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata` instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraintMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public IActionConstraintMetadata Metadata { get; }
     
 

@@ -80,21 +80,6 @@ Microsoft.AspNetCore.Mvc.ViewEngines Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ViewEngines
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`CompositeViewEngine`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine
-
-        
-
-
-    class :dn:cls:`ViewEngineResult`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -117,5 +102,20 @@ Microsoft.AspNetCore.Mvc.ViewEngines Namespace
 
         
         Defines the contract for a view engine.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`CompositeViewEngine`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine
+
+        
+
+
+    class :dn:cls:`ViewEngineResult`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult
+
+        
 
 

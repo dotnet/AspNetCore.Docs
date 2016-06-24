@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IChangeToken ChangeToken
-            {
-                get;
-            }
+            IChangeToken ChangeToken { get; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings.IncludeScopes
     
@@ -73,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool IncludeScopes
-            {
-                get;
-            }
+            bool IncludeScopes { get; }
     
 
 Methods

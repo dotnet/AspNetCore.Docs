@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<LocalizedString> GetAllStrings(IHtmlLocalizer htmlLocalizer)
+            public static IEnumerable<LocalizedString> GetAllStrings(this IHtmlLocalizer htmlLocalizer)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizerExtensions.GetHtml(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer, System.String)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static LocalizedHtmlString GetHtml(IHtmlLocalizer htmlLocalizer, string name)
+            public static LocalizedHtmlString GetHtml(this IHtmlLocalizer htmlLocalizer, string name)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizerExtensions.GetHtml(Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer, System.String, System.Object[])
     
@@ -140,6 +140,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static LocalizedHtmlString GetHtml(IHtmlLocalizer htmlLocalizer, string name, params object[] arguments)
+            public static LocalizedHtmlString GetHtml(this IHtmlLocalizer htmlLocalizer, string name, params object[] arguments)
     
 

@@ -336,6 +336,73 @@ Microsoft.AspNetCore.Mvc.Razor Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Razor
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IMvcRazorHost`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IMvcRazorHost
+
+        
+        Specifies the contracts for a Razor host that parses Razor files and generates C# code.
+
+
+    interface :dn:iface:`IRazorPage`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPage
+
+        
+        Represents properties and methods that are used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorView` for execution.
+
+
+    interface :dn:iface:`IRazorPageActivator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPageActivator
+
+        
+        Provides methods to activate properties on a :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instance.
+
+
+    interface :dn:iface:`IRazorPageFactoryProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPageFactoryProvider
+
+        
+        Defines methods that are used for creating :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instances at a given path.
+
+
+    interface :dn:iface:`IRazorViewEngine`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine` used to render pages that use the Razor syntax.
+
+
+    interface :dn:iface:`ITagHelperActivator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator
+
+        
+        Provides methods to create a tag helper.
+
+
+    interface :dn:iface:`ITagHelperFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperFactory
+
+        
+        Provides methods to create and initialize tag helpers.
+
+
+    interface :dn:iface:`ITagHelperInitializer\<TTagHelper>`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer\<TTagHelper>
+
+        
+        Initializes an :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` before it's executed.
+
+
+    interface :dn:iface:`IViewLocationExpander`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander
+
+        
+        Specifies the contracts for a view location expander that is used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` instances to
+        determine search paths for a view.
+
+
     .. rubric:: Structures
 
 
@@ -351,6 +418,15 @@ Microsoft.AspNetCore.Mvc.Razor Namespace
 
         
         Result of locating a :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage`\.
+
+
+    .. rubric:: Delegates
+
+
+    delegate :dn:del:`RenderAsyncDelegate`
+        .. object: type=delegate name=Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate
+
+        
 
 
     .. rubric:: Classes
@@ -524,81 +600,5 @@ Microsoft.AspNetCore.Mvc.Razor Namespace
 
         
         Specifies the localized view format for :any:`Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpander`\.
-
-
-    .. rubric:: Delegates
-
-
-    delegate :dn:del:`RenderAsyncDelegate`
-        .. object: type=delegate name=Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IMvcRazorHost`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IMvcRazorHost
-
-        
-        Specifies the contracts for a Razor host that parses Razor files and generates C# code.
-
-
-    interface :dn:iface:`IRazorPage`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPage
-
-        
-        Represents properties and methods that are used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorView` for execution.
-
-
-    interface :dn:iface:`IRazorPageActivator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPageActivator
-
-        
-        Provides methods to activate properties on a :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instance.
-
-
-    interface :dn:iface:`IRazorPageFactoryProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorPageFactoryProvider
-
-        
-        Defines methods that are used for creating :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage` instances at a given path.
-
-
-    interface :dn:iface:`IRazorViewEngine`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine` used to render pages that use the Razor syntax.
-
-
-    interface :dn:iface:`ITagHelperActivator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator
-
-        
-        Provides methods to create a tag helper.
-
-
-    interface :dn:iface:`ITagHelperFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperFactory
-
-        
-        Provides methods to create and initialize tag helpers.
-
-
-    interface :dn:iface:`ITagHelperInitializer\<TTagHelper>`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer\<TTagHelper>
-
-        
-        Initializes an :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` before it's executed.
-
-
-    interface :dn:iface:`IViewLocationExpander`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander
-
-        
-        Specifies the contracts for a view location expander that is used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` instances to
-        determine search paths for a view.
 
 

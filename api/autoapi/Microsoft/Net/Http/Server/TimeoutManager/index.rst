@@ -85,11 +85,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan DrainEntityBody
-            {
-                get;
-                set;
-            }
+            public TimeSpan DrainEntityBody { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.TimeoutManager.EntityBody
     
@@ -110,11 +106,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan EntityBody
-            {
-                get;
-                set;
-            }
+            public TimeSpan EntityBody { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.TimeoutManager.HeaderWait
     
@@ -123,7 +115,7 @@ Properties
         
         The time, in seconds, allowed for the HTTP Server API to parse the request header.  The default timer is 
         2 minutes.
-         
+        
         This timeout is only enforced after the first request on the connection is routed to the application.
         
         Use TimeSpan.Zero to indicate that system defaults should be used.
@@ -134,11 +126,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan HeaderWait
-            {
-                get;
-                set;
-            }
+            public TimeSpan HeaderWait { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.TimeoutManager.IdleConnection
     
@@ -157,11 +145,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan IdleConnection
-            {
-                get;
-                set;
-            }
+            public TimeSpan IdleConnection { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.TimeoutManager.MinSendBytesPerSecond
     
@@ -179,11 +163,7 @@ Properties
         
         .. code-block:: csharp
     
-            public long MinSendBytesPerSecond
-            {
-                get;
-                set;
-            }
+            public long MinSendBytesPerSecond { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.TimeoutManager.RequestQueue
     
@@ -201,10 +181,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan RequestQueue
-            {
-                get;
-                set;
-            }
+            public TimeSpan RequestQueue { get; set; }
     
 

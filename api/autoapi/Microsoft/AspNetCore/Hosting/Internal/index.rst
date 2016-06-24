@@ -23,6 +23,14 @@ Microsoft.AspNetCore.Hosting.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Hosting/Internal/ConfigureBuilder/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/Internal/ConfigureServicesBuilder/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Hosting/Internal/HostingApplication/index
    
    
@@ -47,6 +55,14 @@ Microsoft.AspNetCore.Hosting.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Hosting/Internal/StartupLoader/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/Internal/StartupMethods/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Hosting/Internal/WebHost/index
    
    
@@ -64,6 +80,22 @@ Microsoft.AspNetCore.Hosting.Internal Namespace
    :hidden:
    :maxdepth: 2
 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    
@@ -136,6 +168,18 @@ Microsoft.AspNetCore.Hosting.Internal Namespace
         
 
 
+    class :dn:cls:`ConfigureBuilder`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.ConfigureBuilder
+
+        
+
+
+    class :dn:cls:`ConfigureServicesBuilder`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.ConfigureServicesBuilder
+
+        
+
+
     class :dn:cls:`HostingApplication`
         .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.HostingApplication
 
@@ -162,6 +206,18 @@ Microsoft.AspNetCore.Hosting.Internal Namespace
 
     class :dn:cls:`RequestServicesFeature`
         .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature
+
+        
+
+
+    class :dn:cls:`StartupLoader`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.StartupLoader
+
+        
+
+
+    class :dn:cls:`StartupMethods`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.Internal.StartupMethods
 
         
 

@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult.Files
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch<Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<FilePatternMatch> Files
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -94,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public PatternMatchingResult(IEnumerable<FilePatternMatch> files)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult.Files
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch<Microsoft.Extensions.FileSystemGlobbing.FilePatternMatch>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<FilePatternMatch> Files { get; set; }
     
 

@@ -78,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string Prefix
-            {
-                get;
-            }
+            public virtual string Prefix { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.DefaultPropertyFilterProvider<TModel>.PropertyFilter
     
@@ -91,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual Func<ModelMetadata, bool> PropertyFilter
-            {
-                get;
-            }
+            public virtual Func<ModelMetadata, bool> PropertyFilter { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.DefaultPropertyFilterProvider<TModel>.PropertyIncludeExpressions
     
@@ -110,9 +104,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual IEnumerable<Expression<Func<TModel, object>>> PropertyIncludeExpressions
-            {
-                get;
-            }
+            public virtual IEnumerable<Expression<Func<TModel, object>>> PropertyIncludeExpressions { get; }
     
 

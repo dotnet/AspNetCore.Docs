@@ -52,97 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMaps
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap<Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, OwinEnvironment.FeatureMap> FeatureMaps
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int ICollection<KeyValuePair<string, object>>.Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<KeyValuePair<string, object>>.IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IDictionary<string, object>.this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            ICollection<string> IDictionary<string, object>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            ICollection<object> IDictionary<string, object>.Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -162,6 +71,78 @@ Constructors
         .. code-block:: csharp
     
             public OwinEnvironment(HttpContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Owin.OwinEnvironment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMaps
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap<Microsoft.AspNetCore.Owin.OwinEnvironment.FeatureMap>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, OwinEnvironment.FeatureMap> FeatureMaps { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int ICollection<KeyValuePair<string, object>>.Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<KeyValuePair<string, object>>.IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IDictionary<string, object>.this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            ICollection<string> IDictionary<string, object>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinEnvironment.System.Collections.Generic.IDictionary<System.String, System.Object>.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            ICollection<object> IDictionary<string, object>.Values { get; }
     
 
 Methods

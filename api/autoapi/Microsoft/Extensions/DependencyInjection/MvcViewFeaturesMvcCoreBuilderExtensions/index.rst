@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddViews(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.AddViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcViewOptions>)
     
@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
+            public static IMvcCoreBuilder AddViews(this IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcCoreBuilderExtensions.ConfigureViews(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcViewOptions>)
     
@@ -103,6 +103,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder ConfigureViews(IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
+            public static IMvcCoreBuilder ConfigureViews(this IMvcCoreBuilder builder, Action<MvcViewOptions> setupAction)
     
 

@@ -86,6 +86,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent GetHtml(IAntiforgery antiforgery, HttpContext httpContext)
+            public static IHtmlContent GetHtml(this IAntiforgery antiforgery, HttpContext httpContext)
     
 

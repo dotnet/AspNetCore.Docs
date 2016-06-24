@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Path
-            {
-                get;
-            }
+            string Path { get; }
     
 
 Methods

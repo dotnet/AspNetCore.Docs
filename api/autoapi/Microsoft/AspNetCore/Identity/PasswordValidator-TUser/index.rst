@@ -56,34 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.PasswordValidator<TUser>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.PasswordValidator<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.PasswordValidator<TUser>.Describer
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to supply error text.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.IdentityErrorDescriber
-        :return: The :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to supply error text.
-    
-        
-        .. code-block:: csharp
-    
-            public IdentityErrorDescriber Describer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,6 +82,31 @@ Constructors
         .. code-block:: csharp
     
             public PasswordValidator(IdentityErrorDescriber errors = null)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.PasswordValidator<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.PasswordValidator<TUser>.Describer
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to supply error text.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.IdentityErrorDescriber
+        :return: The :any:`Microsoft.AspNetCore.Identity.IdentityErrorDescriber` used to supply error text.
+    
+        
+        .. code-block:: csharp
+    
+            public IdentityErrorDescriber Describer { get; }
     
 
 Methods

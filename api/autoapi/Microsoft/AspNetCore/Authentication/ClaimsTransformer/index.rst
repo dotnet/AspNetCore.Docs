@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<ClaimsTransformationContext, Task<ClaimsPrincipal>> OnTransform
-            {
-                get;
-                set;
-            }
+            public Func<ClaimsTransformationContext, Task<ClaimsPrincipal>> OnTransform { get; set; }
     
 
 Methods

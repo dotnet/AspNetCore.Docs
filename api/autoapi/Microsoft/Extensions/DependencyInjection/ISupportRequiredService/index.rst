@@ -8,7 +8,7 @@ ISupportRequiredService Interface
 
 
 
-Optional contract used by :dn:meth:`Microsoft.Extensions.DependencyInjection.ServiceProviderExtensions.GetRequiredService\`\`1(System.IServiceProvider)`
+Optional contract used by :dn:meth:`Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService\`\`1(System.IServiceProvider)`
 to resolve services if supported by :any:`System.IServiceProvider`\.
 
 

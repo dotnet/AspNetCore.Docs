@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-                set;
-            }
+            public string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.Model
     
@@ -97,10 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object Model
-            {
-                get;
-            }
+            public object Model { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.StatusCode
     
@@ -115,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int ? StatusCode
-            {
-                get;
-                set;
-            }
+            public int ? StatusCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.TempData
     
@@ -134,11 +123,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ITempDataDictionary TempData
-            {
-                get;
-                set;
-            }
+            public ITempDataDictionary TempData { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.ViewData
     
@@ -153,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ViewDataDictionary ViewData
-            {
-                get;
-                set;
-            }
+            public ViewDataDictionary ViewData { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.ViewEngine
     
@@ -172,11 +153,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IViewEngine ViewEngine
-            {
-                get;
-                set;
-            }
+            public IViewEngine ViewEngine { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewResult.ViewName
     
@@ -191,11 +168,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ViewName
-            {
-                get;
-                set;
-            }
+            public string ViewName { get; set; }
     
 
 Methods

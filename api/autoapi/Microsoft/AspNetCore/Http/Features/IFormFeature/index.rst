@@ -65,11 +65,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFormCollection Form
-            {
-                get;
-                set;
-            }
+            IFormCollection Form { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Features.IFormFeature.HasFormContentType
     
@@ -84,10 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HasFormContentType
-            {
-                get;
-            }
+            bool HasFormContentType { get; }
     
 
 Methods

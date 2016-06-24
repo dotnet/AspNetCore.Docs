@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.ActionLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -123,7 +123,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -134,7 +134,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName, object routeValues)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.ActionLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object, System.Object)
     
@@ -164,7 +164,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -172,7 +172,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -183,7 +183,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName, object routeValues, object htmlAttributes)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName, object routeValues, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.ActionLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.String)
     
@@ -219,7 +219,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName, string controllerName)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName, string controllerName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.ActionLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.String, System.Object)
     
@@ -254,7 +254,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -265,7 +265,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName, string controllerName, object routeValues)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName, string controllerName, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.ActionLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.String, System.Object, System.Object)
     
@@ -300,7 +300,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -308,7 +308,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -319,7 +319,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ActionLink(IHtmlHelper helper, string linkText, string actionName, string controllerName, object routeValues, object htmlAttributes)
+            public static IHtmlContent ActionLink(this IHtmlHelper helper, string linkText, string actionName, string controllerName, object routeValues, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.RouteLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -344,7 +344,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -355,7 +355,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RouteLink(IHtmlHelper htmlHelper, string linkText, object routeValues)
+            public static IHtmlContent RouteLink(this IHtmlHelper htmlHelper, string linkText, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.RouteLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.Object)
     
@@ -380,7 +380,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -388,7 +388,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -399,7 +399,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RouteLink(IHtmlHelper htmlHelper, string linkText, object routeValues, object htmlAttributes)
+            public static IHtmlContent RouteLink(this IHtmlHelper htmlHelper, string linkText, object routeValues, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.RouteLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -430,7 +430,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RouteLink(IHtmlHelper htmlHelper, string linkText, string routeName)
+            public static IHtmlContent RouteLink(this IHtmlHelper htmlHelper, string linkText, string routeName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.RouteLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -460,7 +460,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -471,7 +471,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RouteLink(IHtmlHelper htmlHelper, string linkText, string routeName, object routeValues)
+            public static IHtmlContent RouteLink(this IHtmlHelper htmlHelper, string linkText, string routeName, object routeValues)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLinkExtensions.RouteLink(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object, System.Object)
     
@@ -501,7 +501,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route
             parameters.
         
@@ -509,7 +509,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -520,6 +520,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RouteLink(IHtmlHelper htmlHelper, string linkText, string routeName, object routeValues, object htmlAttributes)
+            public static IHtmlContent RouteLink(this IHtmlHelper htmlHelper, string linkText, string routeName, object routeValues, object htmlAttributes)
     
 

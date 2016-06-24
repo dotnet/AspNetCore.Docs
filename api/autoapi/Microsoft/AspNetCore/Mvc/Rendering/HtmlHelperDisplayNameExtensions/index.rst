@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string DisplayNameForModel(IHtmlHelper htmlHelper)
+            public static string DisplayNameForModel(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayNameExtensions.DisplayNameFor<TModelItem, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<System.Collections.Generic.IEnumerable<TModelItem>>, System.Linq.Expressions.Expression<System.Func<TModelItem, TResult>>)
     
@@ -111,6 +111,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string DisplayNameFor<TModelItem, TResult>(IHtmlHelper<IEnumerable<TModelItem>> htmlHelper, Expression<Func<TModelItem, TResult>> expression)
+            public static string DisplayNameFor<TModelItem, TResult>(this IHtmlHelper<IEnumerable<TModelItem>> htmlHelper, Expression<Func<TModelItem, TResult>> expression)
     
 

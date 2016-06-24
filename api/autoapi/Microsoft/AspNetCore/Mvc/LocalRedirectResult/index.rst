@@ -57,72 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.LocalRedirectResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.LocalRedirectResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.Permanent
-    
-        
-    
-        
-        Gets or sets the value that specifies that the redirect should be permanent if true or temporary if false.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Permanent
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.Url
-    
-        
-    
-        
-        Gets or sets the local URL to redirect to.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Url
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.UrlHelper
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` for this result.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
-    
-        
-        .. code-block:: csharp
-    
-            public IUrlHelper UrlHelper
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -196,5 +130,59 @@ Methods
         .. code-block:: csharp
     
             public override void ExecuteResult(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.LocalRedirectResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.Permanent
+    
+        
+    
+        
+        Gets or sets the value that specifies that the redirect should be permanent if true or temporary if false.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Permanent { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.Url
+    
+        
+    
+        
+        Gets or sets the local URL to redirect to.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Url { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.LocalRedirectResult.UrlHelper
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` for this result.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
+    
+        
+        .. code-block:: csharp
+    
+            public IUrlHelper UrlHelper { get; set; }
     
 

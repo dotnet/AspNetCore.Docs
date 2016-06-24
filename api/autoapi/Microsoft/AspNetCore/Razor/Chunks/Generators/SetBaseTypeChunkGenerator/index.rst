@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.SetBaseTypeChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.SetBaseTypeChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.SetBaseTypeChunkGenerator.BaseType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BaseType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -94,6 +72,25 @@ Constructors
         .. code-block:: csharp
     
             public SetBaseTypeChunkGenerator(string baseType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.SetBaseTypeChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.SetBaseTypeChunkGenerator.BaseType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BaseType { get; }
     
 
 Methods

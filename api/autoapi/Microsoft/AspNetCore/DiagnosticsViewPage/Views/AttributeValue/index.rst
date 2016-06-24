@@ -10,7 +10,7 @@ AttributeValue Class
 Namespace
     :dn:ns:`Microsoft.AspNetCore.DiagnosticsViewPage.Views`
 Assemblies
-    * Microsoft.AspNetCore.Diagnostics
+    * Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 ----
 
@@ -51,54 +51,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Literal
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Literal
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Prefix
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Prefix
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Value
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Value
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -160,5 +112,66 @@ Methods
         .. code-block:: csharp
     
             public static AttributeValue FromTuple(Tuple<string, string, bool> value)
+    
+
+Operators
+---------
+
+.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Implicit(System.Tuple<System.String, System.Object, System.Boolean> to Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue)
+    
+        
+    
+        
+        :type value: System.Tuple<System.Tuple`3>{System.String<System.String>, System.Object<System.Object>, System.Boolean<System.Boolean>}
+        :rtype: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator AttributeValue(Tuple<string, object, bool> value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Literal
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Literal { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Prefix
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Prefix { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.AttributeValue.Value
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Value { get; }
     
 

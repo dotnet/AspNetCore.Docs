@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ApplicationEnvironment Application
-            {
-                get;
-            }
+            public ApplicationEnvironment Application { get; }
     
     .. dn:property:: Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default
     
@@ -81,22 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public static PlatformServices Default
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.PlatformAbstractions.PlatformServices.Runtime
-    
-        
-        :rtype: Microsoft.Extensions.PlatformAbstractions.RuntimeEnvironment
-    
-        
-        .. code-block:: csharp
-    
-            public RuntimeEnvironment Runtime
-            {
-                get;
-            }
+            public static PlatformServices Default { get; }
     
 

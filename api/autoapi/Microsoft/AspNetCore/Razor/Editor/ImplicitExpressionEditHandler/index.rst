@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler.AcceptTrailingDot
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool AcceptTrailingDot
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler.Keywords
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.IReadOnlyCollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyCollection<string> Keywords
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -113,6 +78,35 @@ Constructors
         .. code-block:: csharp
     
             public ImplicitExpressionEditHandler(Func<string, IEnumerable<ISymbol>> tokenizer, ISet<string> keywords, bool acceptTrailingDot)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler.AcceptTrailingDot
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool AcceptTrailingDot { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.ImplicitExpressionEditHandler.Keywords
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.IReadOnlyCollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyCollection<string> Keywords { get; }
     
 
 Methods

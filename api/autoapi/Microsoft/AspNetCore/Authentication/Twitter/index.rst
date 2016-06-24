@@ -120,6 +120,16 @@ Microsoft.AspNetCore.Authentication.Twitter Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Authentication.Twitter
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ITwitterEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Twitter.ITwitterEvents
+
+        
+        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.Twitter.TwitterMiddleware` invokes to enable developer control over the authentication process. />
+
+
     .. rubric:: Classes
 
 
@@ -183,15 +193,5 @@ Microsoft.AspNetCore.Authentication.Twitter Namespace
 
         
         The Context passed when a Challenge causes a redirect to authorize endpoint in the Twitter middleware.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ITwitterEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.Twitter.ITwitterEvents
-
-        
-        Specifies callback methods which the :any:`Microsoft.AspNetCore.Authentication.Twitter.TwitterMiddleware` invokes to enable developer control over the authentication process. />
 
 

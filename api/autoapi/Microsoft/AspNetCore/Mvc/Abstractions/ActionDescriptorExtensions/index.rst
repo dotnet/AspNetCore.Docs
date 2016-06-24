@@ -84,7 +84,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static T GetProperty<T>(ActionDescriptor actionDescriptor)
+            public static T GetProperty<T>(this ActionDescriptor actionDescriptor)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptorExtensions.SetProperty<T>(Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor, T)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void SetProperty<T>(ActionDescriptor actionDescriptor, T value)
+            public static void SetProperty<T>(this ActionDescriptor actionDescriptor, T value)
     
 

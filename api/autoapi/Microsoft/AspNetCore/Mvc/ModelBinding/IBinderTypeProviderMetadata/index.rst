@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            Type BinderType
-            {
-                get;
-            }
+            Type BinderType { get; }
     
 

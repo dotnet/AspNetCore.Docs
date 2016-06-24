@@ -80,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpMessageHandler BackchannelHttpHandler
-            {
-                get;
-                set;
-            }
+            public HttpMessageHandler BackchannelHttpHandler { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.BackchannelTimeout
     
@@ -101,11 +97,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan BackchannelTimeout
-            {
-                get;
-                set;
-            }
+            public TimeSpan BackchannelTimeout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.CallbackPath
     
@@ -121,11 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString CallbackPath
-            {
-                get;
-                set;
-            }
+            public PathString CallbackPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.DisplayName
     
@@ -140,11 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string DisplayName
-            {
-                get;
-                set;
-            }
+            public string DisplayName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.RemoteAuthenticationTimeout
     
@@ -159,18 +143,14 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan RemoteAuthenticationTimeout
-            {
-                get;
-                set;
-            }
+            public TimeSpan RemoteAuthenticationTimeout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SaveTokens
     
         
     
         
-        Defines whether access and refresh tokens should be stored in the
+        Defines whether access and refresh tokens should be stored in the 
         :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` after a successful authorization.
         This property is set to <code>false</code> by default to reduce
         the size of the final authentication cookie.
@@ -181,11 +161,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SaveTokens
-            {
-                get;
-                set;
-            }
+            public bool SaveTokens { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme
     
@@ -203,11 +179,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string SignInScheme
-            {
-                get;
-                set;
-            }
+            public string SignInScheme { get; set; }
     
 
 Fields

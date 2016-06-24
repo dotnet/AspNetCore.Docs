@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingInfo BindingInfo
-            {
-                get;
-                set;
-            }
+            public BindingInfo BindingInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ParameterDescriptor.Name
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.ParameterDescriptor.ParameterType
     
@@ -96,10 +88,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Type ParameterType
-            {
-                get;
-                set;
-            }
+            public Type ParameterType { get; set; }
     
 

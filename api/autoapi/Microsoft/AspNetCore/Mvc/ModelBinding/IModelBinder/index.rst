@@ -72,15 +72,15 @@ Methods
         :rtype: System.Threading.Tasks.Task
         :return: 
             <p>
-            A :any:`System.Threading.Tasks.Task` which on completion returns a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` which
-            represents the result of the model binding process.
+            A :any:`System.Threading.Tasks.Task` which will complete when the model binding process completes.
             </p>
             <p>
-            If model binding was successful, the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` should be a value created
-            with :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.String,System.Object)`\. If model binding failed, the
-            :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` should be a value created with :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Failed(System.String)`\.
-            If there was no data, or this model binder cannot handle the operation, the
-            :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result` should be null.
+            If model binding was successful, the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result` should have 
+            :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.IsModelSet` set to <code>true</code>.
+            </p>
+            <p>
+            A model binder that completes successfully should set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result` to
+            a value returned from :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.Object)`\. 
             </p>
     
         

@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorViewEngineFileProviderAccessor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorViewEngineFileProviderAccessor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorViewEngineFileProviderAccessor.FileProvider
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to look up Razor files.
-    
-        
-        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IFileProvider FileProvider
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,5 +82,29 @@ Constructors
         .. code-block:: csharp
     
             public DefaultRazorViewEngineFileProviderAccessor(IOptions<RazorViewEngineOptions> optionsAccessor)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorViewEngineFileProviderAccessor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorViewEngineFileProviderAccessor.FileProvider
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to look up Razor files.
+    
+        
+        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IFileProvider FileProvider { get; }
     
 

@@ -128,6 +128,15 @@ Microsoft.AspNetCore.Owin Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Owin
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IOwinEnvironmentFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Owin.IOwinEnvironmentFeature
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -191,15 +200,6 @@ Microsoft.AspNetCore.Owin Namespace
 
     class :dn:cls:`WebSocketAdapter`
         .. object: type=class name=Microsoft.AspNetCore.Owin.WebSocketAdapter
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IOwinEnvironmentFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Owin.IOwinEnvironmentFeature
 
         
 

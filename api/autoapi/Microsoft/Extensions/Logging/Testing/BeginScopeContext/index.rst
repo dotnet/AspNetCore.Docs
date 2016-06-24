@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string LoggerName
-            {
-                get;
-                set;
-            }
+            public string LoggerName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.BeginScopeContext.Scope
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public object Scope
-            {
-                get;
-                set;
-            }
+            public object Scope { get; set; }
     
 

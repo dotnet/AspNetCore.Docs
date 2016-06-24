@@ -80,9 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<TypeInfo> ViewComponents
-            {
-                get;
-            }
+            public IList<TypeInfo> ViewComponents { get; }
     
 

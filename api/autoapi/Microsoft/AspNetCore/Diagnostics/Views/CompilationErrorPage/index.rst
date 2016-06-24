@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPage.Model
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPageModel
-    
-        
-        .. code-block:: csharp
-    
-            public CompilationErrorPageModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -111,5 +88,24 @@ Methods
         .. code-block:: csharp
     
             public override Task ExecuteAsync()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPage.Model
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPageModel
+    
+        
+        .. code-block:: csharp
+    
+            public CompilationErrorPageModel Model { get; set; }
     
 

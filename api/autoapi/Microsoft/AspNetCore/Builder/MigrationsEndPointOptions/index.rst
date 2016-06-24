@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual PathString Path
-            {
-                get;
-                set;
-            }
+            public virtual PathString Path { get; set; }
     
 
 Fields

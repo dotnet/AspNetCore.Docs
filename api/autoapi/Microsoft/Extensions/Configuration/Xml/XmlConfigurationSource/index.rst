@@ -70,8 +70,16 @@ Methods
         
     
         
+        Builds the :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider` for this source.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+        
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: A :any:`Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider`
     
         
         .. code-block:: csharp

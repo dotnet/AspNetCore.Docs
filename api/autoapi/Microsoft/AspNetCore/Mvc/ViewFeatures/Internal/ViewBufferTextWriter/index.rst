@@ -65,59 +65,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.Buffer
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
-    
-        
-        .. code-block:: csharp
-    
-            public ViewBuffer Buffer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.Encoding
-    
-        
-        :rtype: System.Text.Encoding
-    
-        
-        .. code-block:: csharp
-    
-            public override Encoding Encoding
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.IsBuffering
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsBuffering
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -184,6 +131,50 @@ Constructors
         .. code-block:: csharp
     
             public ViewBufferTextWriter(ViewBuffer buffer, Encoding encoding, HtmlEncoder htmlEncoder, TextWriter inner)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.Buffer
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
+    
+        
+        .. code-block:: csharp
+    
+            public ViewBuffer Buffer { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.Encoding
+    
+        
+        :rtype: System.Text.Encoding
+    
+        
+        .. code-block:: csharp
+    
+            public override Encoding Encoding { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferTextWriter.IsBuffering
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsBuffering { get; }
     
 
 Methods

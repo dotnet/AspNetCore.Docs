@@ -58,72 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.RouteName
-    
-        
-    
-        
-        Gets or sets the name of the route to use for generating the URL.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RouteName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.RouteValues
-    
-        
-    
-        
-        Gets or sets the route data to use for generating the URL.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary RouteValues
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.UrlHelper
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` used to generate URLs.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
-    
-        
-        .. code-block:: csharp
-    
-            public IUrlHelper UrlHelper
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -207,5 +141,59 @@ Methods
         .. code-block:: csharp
     
             public override void OnFormatting(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.RouteName
+    
+        
+    
+        
+        Gets or sets the name of the route to use for generating the URL.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RouteName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.RouteValues
+    
+        
+    
+        
+        Gets or sets the route data to use for generating the URL.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary RouteValues { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.CreatedAtRouteResult.UrlHelper
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` used to generate URLs.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
+    
+        
+        .. code-block:: csharp
+    
+            public IUrlHelper UrlHelper { get; set; }
     
 

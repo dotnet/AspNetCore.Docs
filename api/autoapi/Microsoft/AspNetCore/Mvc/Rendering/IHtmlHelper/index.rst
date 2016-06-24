@@ -48,162 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.Html5DateRenderingMode
-    
-        
-    
-        
-        Set this property to :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode.Rfc3339` to have templated helpers such as
-        :dn:meth:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.Editor(System.String,System.String,System.String,System.Object)` and :dn:meth:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper\`1.EditorFor\`\`1(System.Linq.Expressions.Expression{System.Func{\`0,\`\`0}},System.String,System.String,System.Object)` render date and time values as RFC
-        3339 compliant strings. By default these helpers render dates and times using the current culture.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode
-    
-        
-        .. code-block:: csharp
-    
-            Html5DateRenderingMode Html5DateRenderingMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.IdAttributeDotReplacement
-    
-        
-    
-        
-        Gets the :any:`System.String` that replaces periods in the ID attribute of an element.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IdAttributeDotReplacement
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.MetadataProvider
-    
-        
-    
-        
-        Gets the metadata provider. Intended for use in :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` extension methods.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
-    
-        
-        .. code-block:: csharp
-    
-            IModelMetadataProvider MetadataProvider
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.TempData
-    
-        
-    
-        
-        Gets the current :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            ITempDataDictionary TempData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.UrlEncoder
-    
-        
-    
-        
-        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.UrlEncoder` to be used for encoding a URL.
-    
-        
-        :rtype: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            UrlEncoder UrlEncoder
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewBag
-    
-        
-    
-        
-        Gets the view bag.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            dynamic ViewBag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewContext
-    
-        
-    
-        
-        Gets the context information about the view.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            ViewContext ViewContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewData
-    
-        
-    
-        
-        Gets the current view data.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            ViewDataDictionary ViewData
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -255,14 +99,14 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -315,7 +159,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -336,7 +180,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -368,7 +212,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -389,7 +233,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -424,7 +268,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -449,7 +293,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to display.
         
         :type expression: System.String
@@ -555,7 +399,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -580,7 +424,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -779,7 +623,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -833,7 +677,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -869,7 +713,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -957,7 +801,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1001,7 +845,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1018,8 +862,8 @@ Methods
         
     
         
-        Wraps HTML markup from the string representation of an :any:`System.Object` in an
-        :any:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString`\, without HTML-encoding the string representation.
+        Wraps HTML markup from the string representation of an :any:`System.Object` in an 
+        :any:`Microsoft.AspNetCore.Html.HtmlString`\, without HTML-encoding the string representation.
     
         
     
@@ -1040,7 +884,7 @@ Methods
         
     
         
-        Wraps HTML markup in an :any:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString`\, without HTML-encoding the specified
+        Wraps HTML markup in an :any:`Microsoft.AspNetCore.Html.HtmlString`\, without HTML-encoding the specified
         <em>value</em>.
     
         
@@ -1127,14 +971,14 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1177,7 +1021,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1216,7 +1060,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1245,7 +1089,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side validation may
             update the associated CSS class.
         
@@ -1260,7 +1104,7 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\.
         
         :type tag: System.String
@@ -1279,7 +1123,7 @@ Methods
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -1304,14 +1148,14 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement`\.
         
         :type tag: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
             New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <em>tag</em> element
-            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side
+            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side
             validation is disabled).
     
         
@@ -1345,5 +1189,136 @@ Methods
         .. code-block:: csharp
     
             string Value(string expression, string format)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.Html5DateRenderingMode
+    
+        
+    
+        
+        Set this property to :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode.Rfc3339` to have templated helpers such as 
+        :dn:meth:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.Editor(System.String,System.String,System.String,System.Object)` and :dn:meth:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper\`1.EditorFor\`\`1(System.Linq.Expressions.Expression{System.Func{\`0,\`\`0}},System.String,System.String,System.Object)` render date and time values as RFC
+        3339 compliant strings. By default these helpers render dates and times using the current culture.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode
+    
+        
+        .. code-block:: csharp
+    
+            Html5DateRenderingMode Html5DateRenderingMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.IdAttributeDotReplacement
+    
+        
+    
+        
+        Gets the :any:`System.String` that replaces periods in the ID attribute of an element.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IdAttributeDotReplacement { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.MetadataProvider
+    
+        
+    
+        
+        Gets the metadata provider. Intended for use in :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` extension methods.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+    
+        
+        .. code-block:: csharp
+    
+            IModelMetadataProvider MetadataProvider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.TempData
+    
+        
+    
+        
+        Gets the current :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            ITempDataDictionary TempData { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.UrlEncoder
+    
+        
+    
+        
+        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.UrlEncoder` to be used for encoding a URL.
+    
+        
+        :rtype: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            UrlEncoder UrlEncoder { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewBag
+    
+        
+    
+        
+        Gets the view bag.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            dynamic ViewBag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewContext
+    
+        
+    
+        
+        Gets the context information about the view.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            ViewContext ViewContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ViewData
+    
+        
+    
+        
+        Gets the current view data.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            ViewDataDictionary ViewData { get; }
     
 

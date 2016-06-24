@@ -76,6 +76,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void MarkAsRequiresEncryption(XElement element)
+            public static void MarkAsRequiresEncryption(this XElement element)
     
 

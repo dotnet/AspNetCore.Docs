@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IdentityBuilder AddIdentity<TUser, TRole>(IServiceCollection services)where TUser : class where TRole : class
+            public static IdentityBuilder AddIdentity<TUser, TRole>(this IServiceCollection services)where TUser : class where TRole : class
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity<TUser, TRole>(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Builder.IdentityOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IdentityBuilder AddIdentity<TUser, TRole>(IServiceCollection services, Action<IdentityOptions> setupAction)where TUser : class where TRole : class
+            public static IdentityBuilder AddIdentity<TUser, TRole>(this IServiceCollection services, Action<IdentityOptions> setupAction)where TUser : class where TRole : class
     
 

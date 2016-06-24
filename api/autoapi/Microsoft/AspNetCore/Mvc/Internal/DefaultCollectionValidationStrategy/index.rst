@@ -97,7 +97,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerator GetEnumeratorForElementType(ModelMetadata metadata, object model)
+            public IEnumerator GetEnumeratorForElementType(ModelMetadata metadata, object model)
     
 
 Fields
@@ -116,11 +116,11 @@ Fields
         Gets an instance of :any:`Microsoft.AspNetCore.Mvc.Internal.DefaultCollectionValidationStrategy`\.
     
         
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IValidationStrategy
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.DefaultCollectionValidationStrategy
     
         
         .. code-block:: csharp
     
-            public static readonly IValidationStrategy Instance
+            public static readonly DefaultCollectionValidationStrategy Instance
     
 

@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static bool AreWebSocketsSupported
-            {
-                get;
-            }
+            public static bool AreWebSocketsSupported { get; }
     
     .. dn:property:: Microsoft.Net.WebSockets.WebSocketHelpers.DefaultKeepAliveInterval
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static TimeSpan DefaultKeepAliveInterval
-            {
-                get;
-            }
+            public static TimeSpan DefaultKeepAliveInterval { get; }
     
 
 Methods

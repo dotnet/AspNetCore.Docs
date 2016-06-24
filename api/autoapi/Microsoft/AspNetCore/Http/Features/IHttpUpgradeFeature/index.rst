@@ -65,10 +65,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool IsUpgradableRequest
-            {
-                get;
-            }
+            bool IsUpgradableRequest { get; }
     
 
 Methods

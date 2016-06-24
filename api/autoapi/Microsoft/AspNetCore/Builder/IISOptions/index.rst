@@ -73,10 +73,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<AuthenticationDescription> AuthenticationDescriptions
-            {
-                get;
-            }
+            public IList<AuthenticationDescription> AuthenticationDescriptions { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IISOptions.AutomaticAuthentication
     
@@ -93,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AutomaticAuthentication
-            {
-                get;
-                set;
-            }
+            public bool AutomaticAuthentication { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IISOptions.ForwardClientCertificate
     
@@ -112,11 +105,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ForwardClientCertificate
-            {
-                get;
-                set;
-            }
+            public bool ForwardClientCertificate { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IISOptions.ForwardWindowsAuthentication
     
@@ -132,10 +121,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ForwardWindowsAuthentication
-            {
-                get;
-                set;
-            }
+            public bool ForwardWindowsAuthentication { get; set; }
     
 

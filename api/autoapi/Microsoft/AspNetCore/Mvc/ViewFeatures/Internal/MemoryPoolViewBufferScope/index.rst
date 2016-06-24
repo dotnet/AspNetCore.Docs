@@ -91,25 +91,6 @@ Constructors
             public MemoryPoolViewBufferScope(ArrayPool<ViewBufferValue> viewBufferPool, ArrayPool<char> charPool)
     
 
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.MemoryPoolViewBufferScope
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.MemoryPoolViewBufferScope.MinimumSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int MinimumSize
-    
-
 Methods
 -------
 
@@ -164,5 +145,24 @@ Methods
         .. code-block:: csharp
     
             public void ReturnSegment(ViewBufferValue[] segment)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.MemoryPoolViewBufferScope
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.MemoryPoolViewBufferScope.MinimumSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int MinimumSize
     
 

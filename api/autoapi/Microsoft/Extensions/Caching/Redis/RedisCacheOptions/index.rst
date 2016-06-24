@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Configuration
-            {
-                get;
-                set;
-            }
+            public string Configuration { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Redis.RedisCacheOptions.InstanceName
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string InstanceName
-            {
-                get;
-                set;
-            }
+            public string InstanceName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Redis.RedisCacheOptions.Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Caching.Redis.RedisCacheOptions>.Value
     
@@ -110,9 +102,6 @@ Properties
         
         .. code-block:: csharp
     
-            RedisCacheOptions IOptions<RedisCacheOptions>.Value
-            {
-                get;
-            }
+            RedisCacheOptions IOptions<RedisCacheOptions>.Value { get; }
     
 

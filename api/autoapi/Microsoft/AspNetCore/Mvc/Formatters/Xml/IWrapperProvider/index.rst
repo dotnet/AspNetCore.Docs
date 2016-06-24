@@ -48,33 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider.WrappingType
-    
-        
-    
-        
-        Gets the wrapping type.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            Type WrappingType
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -103,5 +76,29 @@ Methods
         .. code-block:: csharp
     
             object Wrap(object original)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider.WrappingType
+    
+        
+    
+        
+        Gets the wrapping type.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            Type WrappingType { get; }
     
 

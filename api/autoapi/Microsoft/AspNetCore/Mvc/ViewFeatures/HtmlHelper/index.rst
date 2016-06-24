@@ -56,120 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Html5DateRenderingMode
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode
-    
-        
-        .. code-block:: csharp
-    
-            public Html5DateRenderingMode Html5DateRenderingMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.IdAttributeDotReplacement
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string IdAttributeDotReplacement
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.MetadataProvider
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IModelMetadataProvider MetadataProvider
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.TempData
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ITempDataDictionary TempData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.UrlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            public UrlEncoder UrlEncoder
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewBag
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public dynamic ViewBag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            public ViewContext ViewContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewData
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ViewDataDictionary ViewData
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -209,75 +95,6 @@ Constructors
         .. code-block:: csharp
     
             public HtmlHelper(IHtmlGenerator htmlGenerator, ICompositeViewEngine viewEngine, IModelMetadataProvider metadataProvider, IViewBufferScope bufferScope, HtmlEncoder htmlEncoder, UrlEncoder urlEncoder)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationInputCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationInputCssClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationInputValidCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationInputValidCssClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationMessageCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationMessageCssClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationMessageValidCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationMessageValidCssClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationSummaryCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationSummaryCssClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationSummaryValidCssClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ValidationSummaryValidCssClassName
     
 
 Methods
@@ -450,7 +267,7 @@ Methods
         
     
         
-        Override this method to return an :any:`Microsoft.AspNetCore.Mvc.Rendering.MvcForm` subclass. That subclass may change
+        Override this method to return an :any:`Microsoft.AspNetCore.Mvc.Rendering.MvcForm` subclass. That subclass may change 
         :dn:meth:`Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.EndForm` behavior.
     
         
@@ -749,7 +566,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -770,7 +587,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -957,7 +774,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -978,7 +795,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -1554,5 +1371,163 @@ Methods
         .. code-block:: csharp
     
             public string Value(string expression, string format)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationInputCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationInputCssClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationInputValidCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationInputValidCssClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationMessageCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationMessageCssClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationMessageValidCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationMessageValidCssClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationSummaryCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationSummaryCssClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ValidationSummaryValidCssClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ValidationSummaryValidCssClassName
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Html5DateRenderingMode
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.Html5DateRenderingMode
+    
+        
+        .. code-block:: csharp
+    
+            public Html5DateRenderingMode Html5DateRenderingMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.IdAttributeDotReplacement
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string IdAttributeDotReplacement { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.MetadataProvider
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IModelMetadataProvider MetadataProvider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.TempData
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ITempDataDictionary TempData { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.UrlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            public UrlEncoder UrlEncoder { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewBag
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public dynamic ViewBag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            public ViewContext ViewContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.ViewData
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ViewDataDictionary ViewData { get; }
     
 

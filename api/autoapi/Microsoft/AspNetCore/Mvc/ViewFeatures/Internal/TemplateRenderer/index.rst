@@ -88,25 +88,6 @@ Constructors
             public TemplateRenderer(IViewEngine viewEngine, IViewBufferScope bufferScope, ViewContext viewContext, ViewDataDictionary viewData, string templateName, bool readOnly)
     
 
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.TemplateRenderer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.TemplateRenderer.IEnumerableOfIFormFileName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public const string IEnumerableOfIFormFileName = "IEnumerable`IFormFile"
-    
-
 Methods
 -------
 
@@ -140,5 +121,24 @@ Methods
         .. code-block:: csharp
     
             public IHtmlContent Render()
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.TemplateRenderer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.TemplateRenderer.IEnumerableOfIFormFileName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public const string IEnumerableOfIFormFileName = "IEnumerable`IFormFile"
     
 

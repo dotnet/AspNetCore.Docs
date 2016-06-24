@@ -49,51 +49,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider.StatusCode
-    
-        
-    
-        
-        Gets the HTTP status code of the response.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int StatusCode
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider.Type
-    
-        
-    
-        
-        Gets the optimistic return type of the action.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            Type Type
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -118,5 +73,44 @@ Methods
         .. code-block:: csharp
     
             void SetContentTypes(MediaTypeCollection contentTypes)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider.StatusCode
+    
+        
+    
+        
+        Gets the HTTP status code of the response.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int StatusCode { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider.Type
+    
+        
+    
+        
+        Gets the optimistic return type of the action.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            Type Type { get; }
     
 

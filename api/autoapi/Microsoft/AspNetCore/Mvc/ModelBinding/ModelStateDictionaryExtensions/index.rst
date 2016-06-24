@@ -97,7 +97,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AddModelError<TModel>(ModelStateDictionary modelState, Expression<Func<TModel, object>> expression, Exception exception, ModelMetadata metadata)
+            public static void AddModelError<TModel>(this ModelStateDictionary modelState, Expression<Func<TModel, object>> expression, Exception exception, ModelMetadata metadata)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionaryExtensions.AddModelError<TModel>(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary, System.Linq.Expressions.Expression<System.Func<TModel, System.Object>>, System.String)
     
@@ -127,14 +127,14 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AddModelError<TModel>(ModelStateDictionary modelState, Expression<Func<TModel, object>> expression, string errorMessage)
+            public static void AddModelError<TModel>(this ModelStateDictionary modelState, Expression<Func<TModel, object>> expression, string errorMessage)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionaryExtensions.RemoveAll<TModel>(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary, System.Linq.Expressions.Expression<System.Func<TModel, System.Object>>)
     
         
     
         
-        Removes all the entries for the specified <em>expression</em> from the
+        Removes all the entries for the specified <em>expression</em> from the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
     
         
@@ -152,7 +152,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RemoveAll<TModel>(ModelStateDictionary modelState, Expression<Func<TModel, object>> expression)
+            public static void RemoveAll<TModel>(this ModelStateDictionary modelState, Expression<Func<TModel, object>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionaryExtensions.Remove<TModel>(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary, System.Linq.Expressions.Expression<System.Func<TModel, System.Object>>)
     
@@ -180,6 +180,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool Remove<TModel>(ModelStateDictionary modelState, Expression<Func<TModel, object>> expression)
+            public static bool Remove<TModel>(this ModelStateDictionary modelState, Expression<Func<TModel, object>> expression)
     
 

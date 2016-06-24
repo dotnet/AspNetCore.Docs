@@ -7,6 +7,10 @@ IniConfigurationExtensions Class
 
 
 
+
+Extension methods for adding :any:`Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider`\.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration`
 Assemblies
@@ -60,7 +64,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.Action<Microsoft.Extensions.Configuration.Ini.IniConfigurationSource>)
+    .. dn:method:: Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, Microsoft.Extensions.FileProviders.IFileProvider, System.String, System.Boolean, System.Boolean)
     
         
     
@@ -75,16 +79,32 @@ Methods
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
     
         
-        :param configureSource: Configures the :any:`Microsoft.Extensions.Configuration.Ini.IniConfigurationSource` to add.
+        :param provider: The :any:`Microsoft.Extensions.FileProviders.IFileProvider` to use to access the file.
         
-        :type configureSource: System.Action<System.Action`1>{Microsoft.Extensions.Configuration.Ini.IniConfigurationSource<Microsoft.Extensions.Configuration.Ini.IniConfigurationSource>}
+        :type provider: Microsoft.Extensions.FileProviders.IFileProvider
+    
+        
+        :param path: Path relative to the base path stored in 
+            :dn:prop:`Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties` of <em>builder</em>.
+        
+        :type path: System.String
+    
+        
+        :param optional: Whether the file is optional.
+        
+        :type optional: System.Boolean
+    
+        
+        :param reloadOnChange: Whether the configuration should be reloaded if the file changes.
+        
+        :type reloadOnChange: System.Boolean
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
     
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, Action<IniConfigurationSource> configureSource)
+            public static IConfigurationBuilder AddIniFile(this IConfigurationBuilder builder, IFileProvider provider, string path, bool optional, bool reloadOnChange)
     
     .. dn:method:: Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
     
@@ -111,7 +131,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path)
+            public static IConfigurationBuilder AddIniFile(this IConfigurationBuilder builder, string path)
     
     .. dn:method:: Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String, System.Boolean)
     
@@ -143,7 +163,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path, bool optional)
+            public static IConfigurationBuilder AddIniFile(this IConfigurationBuilder builder, string path, bool optional)
     
     .. dn:method:: Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String, System.Boolean, System.Boolean)
     
@@ -180,6 +200,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddIniFile(IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
+            public static IConfigurationBuilder AddIniFile(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
     
 

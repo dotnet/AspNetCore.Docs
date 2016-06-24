@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.ActionContext
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ActionContext`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.MetadataProvider
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IModelMetadataProvider MetadataProvider
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.ModelMetadata
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadata ModelMetadata
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -155,5 +92,59 @@ Constructors
         .. code-block:: csharp
     
             public ModelValidationContextBase(ActionContext actionContext, ModelMetadata modelMetadata, IModelMetadataProvider metadataProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.ActionContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ActionContext`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.MetadataProvider
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IModelMetadataProvider MetadataProvider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContextBase.ModelMetadata
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadata ModelMetadata { get; }
     
 

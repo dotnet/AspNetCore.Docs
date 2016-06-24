@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public RequestDelegate ExceptionHandler
-            {
-                get;
-                set;
-            }
+            public RequestDelegate ExceptionHandler { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.ExceptionHandlingPath
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString ExceptionHandlingPath
-            {
-                get;
-                set;
-            }
+            public PathString ExceptionHandlingPath { get; set; }
     
 

@@ -76,7 +76,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Configuration.IConfiguration)
     
@@ -92,7 +92,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, IConfiguration configuration)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, IConfiguration configuration)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.Console.IConsoleLoggerSettings)
     
@@ -108,7 +108,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, IConsoleLoggerSettings settings)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, IConsoleLoggerSettings settings)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.LogLevel)
     
@@ -133,7 +133,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, LogLevel minLevel)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, LogLevel minLevel)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.LogLevel, System.Boolean)
     
@@ -162,7 +162,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, LogLevel minLevel, bool includeScopes)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, LogLevel minLevel, bool includeScopes)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, System.Boolean)
     
@@ -186,7 +186,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, bool includeScopes)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, bool includeScopes)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, System.Func<System.String, Microsoft.Extensions.Logging.LogLevel, System.Boolean>)
     
@@ -207,7 +207,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, Func<string, LogLevel, bool> filter)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, Func<string, LogLevel, bool> filter)
     
     .. dn:method:: Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggerFactory, System.Func<System.String, Microsoft.Extensions.Logging.LogLevel, System.Boolean>, System.Boolean)
     
@@ -234,6 +234,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddConsole(ILoggerFactory factory, Func<string, LogLevel, bool> filter, bool includeScopes)
+            public static ILoggerFactory AddConsole(this ILoggerFactory factory, Func<string, LogLevel, bool> filter, bool includeScopes)
     
 

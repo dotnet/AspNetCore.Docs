@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            int MaxMessageSize
-            {
-                get;
-            }
+            int MaxMessageSize { get; }
     
 
 Methods

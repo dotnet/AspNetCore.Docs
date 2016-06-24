@@ -54,29 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpUsingVisitor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpUsingVisitor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpUsingVisitor.ImportedUsings
-    
-        
-        :rtype: System.Collections.Generic.HashSet<System.Collections.Generic.HashSet`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public HashSet<string> ImportedUsings
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -132,5 +109,24 @@ Methods
         .. code-block:: csharp
     
             protected override void Visit(UsingChunk chunk)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpUsingVisitor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpUsingVisitor.ImportedUsings
+    
+        
+        :rtype: System.Collections.Generic.HashSet<System.Collections.Generic.HashSet`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public HashSet<string> ImportedUsings { get; set; }
     
 

@@ -58,95 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Attributes
-    
-        
-    
-        
-        A comma-separated :any:`System.String` of attribute selectors the HTML element must match for the
-        :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` to run. <code>*</code> at the end of an attribute name acts as a prefix match. A value
-        surrounded by square brackets is handled as a CSS attribute value selector. Operators <code>^=</code>, <code>$=</code> and
-        <code>=</code> are supported e.g. <code>"name"</code>, <code>"[name]"</code>, <code>"[name=value]"</code>, <code>"[ name ^= 'value' ]"</code>.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Attributes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.ParentTag
-    
-        
-    
-        
-        The required HTML element name of the direct parent. A <code>null</code> value indicates any HTML element name is
-        allowed.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ParentTag
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Tag
-    
-        
-    
-        
-        The HTML tag the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` targets. A <code>*</code> value indicates this :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`
-        targets all HTML elements with the required :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Attributes`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Tag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.TagStructure
-    
-        
-    
-        
-        The expected tag structure. Defaults to :dn:field:`Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.Unspecified`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagStructure
-    
-        
-        .. code-block:: csharp
-    
-            public TagStructure TagStructure
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -190,6 +101,80 @@ Constructors
         .. code-block:: csharp
     
             public HtmlTargetElementAttribute(string tag)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Attributes
+    
+        
+    
+        
+        A comma-separated :any:`System.String` of attribute selectors the HTML element must match for the 
+        :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` to run. <code>*</code> at the end of an attribute name acts as a prefix match. A value
+        surrounded by square brackets is handled as a CSS attribute value selector. Operators <code>^=</code>, <code>$=</code> and
+        <code>=</code> are supported e.g. <code>"name"</code>, <code>"[name]"</code>, <code>"[name=value]"</code>, <code>"[ name ^= 'value' ]"</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Attributes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.ParentTag
+    
+        
+    
+        
+        The required HTML element name of the direct parent. A <code>null</code> value indicates any HTML element name is
+        allowed.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ParentTag { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Tag
+    
+        
+    
+        
+        The HTML tag the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` targets. A <code>*</code> value indicates this :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`
+        targets all HTML elements with the required :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.Attributes`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Tag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute.TagStructure
+    
+        
+    
+        
+        The expected tag structure. Defaults to :dn:field:`Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.Unspecified`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagStructure
+    
+        
+        .. code-block:: csharp
+    
+            public TagStructure TagStructure { get; set; }
     
 
 Fields

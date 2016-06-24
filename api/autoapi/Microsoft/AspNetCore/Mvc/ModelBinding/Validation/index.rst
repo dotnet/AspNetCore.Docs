@@ -79,10 +79,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Validation/ValidationExcludeFilter/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Validation/ValidationStateDictionary/index
    
    
@@ -193,10 +189,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
    
    
    
-   
-   
-   
-   
 
 
 
@@ -206,6 +198,50 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IClientModelValidator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator
+
+        
+
+
+    interface :dn:iface:`IClientModelValidatorProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider
+
+        
+        Provides a collection of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator`\s.
+
+
+    interface :dn:iface:`IModelValidator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator
+
+        
+        Validates a model value.
+
+
+    interface :dn:iface:`IModelValidatorProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider
+
+        
+        Provides validators for a model value.
+
+
+    interface :dn:iface:`IObjectModelValidator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator
+
+        
+        Provides methods to validate an object graph.
+
+
+    interface :dn:iface:`IValidationStrategy`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IValidationStrategy
+
+        
+        Defines a strategy for enumerating the child entries of a model object which should be validated.
 
 
     .. rubric:: Classes
@@ -224,7 +260,7 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
         
         Used to associate validators with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.ValidatorMetadata` instances
         as part of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext`\. An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator` should
-        inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` and
+        inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` and 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.IsReusable` as appropriate.
 
 
@@ -276,14 +312,6 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
         A context for :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider`\.
 
 
-    class :dn:cls:`ValidationExcludeFilter`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationExcludeFilter
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider` which configures :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ValidateChildren` to
-        <code>false</code> for matching types.
-
-
     class :dn:cls:`ValidationStateDictionary`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary
 
@@ -313,7 +341,7 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
         
         Used to associate validators with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidatorItem.ValidatorMetadata` instances
         as part of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidatorProviderContext`\. An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator` should
-        inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidatorItem.Validator` and
+        inspect :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidatorProviderContext.Results` and set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidatorItem.Validator` and 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidatorItem.IsReusable` as appropriate.
 
 
@@ -325,49 +353,5 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Validation Namespace
 
         
         Contains data needed for validating a child entry of a model object. See :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IValidationStrategy`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IClientModelValidator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator
-
-        
-
-
-    interface :dn:iface:`IClientModelValidatorProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider
-
-        
-        Provides a collection of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator`\s.
-
-
-    interface :dn:iface:`IModelValidator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator
-
-        
-        Validates a model value.
-
-
-    interface :dn:iface:`IModelValidatorProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider
-
-        
-        Provides validators for a model value.
-
-
-    interface :dn:iface:`IObjectModelValidator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator
-
-        
-        Provides methods to validate an object graph.
-
-
-    interface :dn:iface:`IValidationStrategy`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IValidationStrategy
-
-        
-        Defines a strategy for enumerating the child entries of a model object which should be validated.
 
 

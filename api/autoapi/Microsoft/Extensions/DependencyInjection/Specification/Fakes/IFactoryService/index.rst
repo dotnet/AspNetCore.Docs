@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFakeService FakeService
-            {
-                get;
-            }
+            IFakeService FakeService { get; }
     
     .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService.Value
     
@@ -73,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            int Value
-            {
-                get;
-            }
+            int Value { get; }
     
 

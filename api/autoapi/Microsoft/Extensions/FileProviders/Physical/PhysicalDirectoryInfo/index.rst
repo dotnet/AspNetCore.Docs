@@ -52,93 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Exists
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Exists
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.IsDirectory
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsDirectory
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.LastModified
-    
-        
-        :rtype: System.DateTimeOffset
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset LastModified
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Length
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.PhysicalPath
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string PhysicalPath
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -177,5 +90,74 @@ Methods
         .. code-block:: csharp
     
             public Stream CreateReadStream()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Exists
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Exists { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.IsDirectory
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsDirectory { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.LastModified
+    
+        
+        :rtype: System.DateTimeOffset
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset LastModified { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Length
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Length { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PhysicalDirectoryInfo.PhysicalPath
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string PhysicalPath { get; }
     
 

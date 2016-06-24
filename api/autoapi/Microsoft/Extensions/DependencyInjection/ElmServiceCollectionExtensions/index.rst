@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddElm(IServiceCollection services)
+            public static IServiceCollection AddElm(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.ElmServiceCollectionExtensions.AddElm(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddElm(IServiceCollection services, Action<ElmOptions> setupAction)
+            public static IServiceCollection AddElm(this IServiceCollection services, Action<ElmOptions> setupAction)
     
 

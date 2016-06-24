@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieRedirectContext, Task> OnRedirectToAccessDenied
-            {
-                get;
-                set;
-            }
+            public Func<CookieRedirectContext, Task> OnRedirectToAccessDenied { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogin
     
@@ -98,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieRedirectContext, Task> OnRedirectToLogin
-            {
-                get;
-                set;
-            }
+            public Func<CookieRedirectContext, Task> OnRedirectToLogin { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToLogout
     
@@ -117,11 +109,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieRedirectContext, Task> OnRedirectToLogout
-            {
-                get;
-                set;
-            }
+            public Func<CookieRedirectContext, Task> OnRedirectToLogout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnRedirectToReturnUrl
     
@@ -136,11 +124,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieRedirectContext, Task> OnRedirectToReturnUrl
-            {
-                get;
-                set;
-            }
+            public Func<CookieRedirectContext, Task> OnRedirectToReturnUrl { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSignedIn
     
@@ -155,11 +139,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieSignedInContext, Task> OnSignedIn
-            {
-                get;
-                set;
-            }
+            public Func<CookieSignedInContext, Task> OnSignedIn { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSigningIn
     
@@ -174,11 +154,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieSigningInContext, Task> OnSigningIn
-            {
-                get;
-                set;
-            }
+            public Func<CookieSigningInContext, Task> OnSigningIn { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnSigningOut
     
@@ -193,11 +169,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieSigningOutContext, Task> OnSigningOut
-            {
-                get;
-                set;
-            }
+            public Func<CookieSigningOutContext, Task> OnSigningOut { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal
     
@@ -212,11 +184,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<CookieValidatePrincipalContext, Task> OnValidatePrincipal
-            {
-                get;
-                set;
-            }
+            public Func<CookieValidatePrincipalContext, Task> OnValidatePrincipal { get; set; }
     
 
 Methods

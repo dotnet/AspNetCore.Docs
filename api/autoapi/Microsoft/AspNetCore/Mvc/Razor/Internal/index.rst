@@ -91,6 +91,10 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Internal/SymbolsUtility/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Razor/Internal/TagHelpersAsServices/index
    
    
@@ -213,6 +217,10 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -222,6 +230,30 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Razor.Internal
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICompilerCache`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache
+
+        
+        Caches the result of runtime compilation of Razor files for the duration of the app lifetime.
+
+
+    interface :dn:iface:`ICompilerCacheProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCacheProvider
+
+        
+        Provides access to a cached :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache` instance.
+
+
+    interface :dn:iface:`IRazorViewEngineFileProviderAccessor`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.IRazorViewEngineFileProviderAccessor
+
+        
+        Accessor to the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine`\.
 
 
     .. rubric:: Classes
@@ -281,7 +313,7 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Razor.Internal.DependencyContextRazorViewEngineOptionsSetup
 
         
-        Sets up compilation and parse option default options for :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions` using
+        Sets up compilation and parse option default options for :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions` using 
         :any:`Microsoft.Extensions.DependencyModel.DependencyContext`
 
 
@@ -328,8 +360,15 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Razor.Internal.ServiceBasedTagHelperActivator
 
         
-        A :any:`Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator` that retrieves tag helpers as services from the request's
+        A :any:`Microsoft.AspNetCore.Mvc.Razor.ITagHelperActivator` that retrieves tag helpers as services from the request's 
         :any:`System.IServiceProvider`\.
+
+
+    class :dn:cls:`SymbolsUtility`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Razor.Internal.SymbolsUtility
+
+        
+        Utility type for determining if a platform supports full pdb file generation.
 
 
     class :dn:cls:`TagHelpersAsServices`
@@ -367,29 +406,5 @@ Microsoft.AspNetCore.Mvc.Razor.Internal Namespace
 
         
         Key for entries in :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewLookupCache`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICompilerCache`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache
-
-        
-        Caches the result of runtime compilation of Razor files for the duration of the app lifetime.
-
-
-    interface :dn:iface:`ICompilerCacheProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCacheProvider
-
-        
-        Provides access to a cached :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache` instance.
-
-
-    interface :dn:iface:`IRazorViewEngineFileProviderAccessor`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Internal.IRazorViewEngineFileProviderAccessor
-
-        
-        Accessor to the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used by :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine`\.
 
 

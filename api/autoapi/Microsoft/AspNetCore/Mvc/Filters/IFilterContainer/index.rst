@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            IFilterMetadata FilterDefinition
-            {
-                get;
-                set;
-            }
+            IFilterMetadata FilterDefinition { get; set; }
     
 

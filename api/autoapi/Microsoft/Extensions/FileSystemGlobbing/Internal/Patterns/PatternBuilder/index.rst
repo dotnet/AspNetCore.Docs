@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder.ComparisonType
-    
-        
-        :rtype: System.StringComparison
-    
-        
-        .. code-block:: csharp
-    
-            public StringComparison ComparisonType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,5 +102,24 @@ Methods
         .. code-block:: csharp
     
             public IPattern Build(string pattern)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns.PatternBuilder.ComparisonType
+    
+        
+        :rtype: System.StringComparison
+    
+        
+        .. code-block:: csharp
+    
+            public StringComparison ComparisonType { get; }
     
 

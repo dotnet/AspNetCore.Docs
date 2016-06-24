@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddJsonFormatters(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddJsonFormatters(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcJsonMvcCoreBuilderExtensions.AddJsonFormatters(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Newtonsoft.Json.JsonSerializerSettings>)
     
@@ -87,6 +87,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddJsonFormatters(IMvcCoreBuilder builder, Action<JsonSerializerSettings> setupAction)
+            public static IMvcCoreBuilder AddJsonFormatters(this IMvcCoreBuilder builder, Action<JsonSerializerSettings> setupAction)
     
 

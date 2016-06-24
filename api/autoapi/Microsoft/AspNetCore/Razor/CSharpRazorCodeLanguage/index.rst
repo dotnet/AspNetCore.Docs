@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CSharpRazorCodeLanguage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CSharpRazorCodeLanguage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CSharpRazorCodeLanguage.LanguageName
-    
-        
-    
-        
-        Returns the name of the language: "csharp"
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string LanguageName
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -146,5 +119,29 @@ Methods
         .. code-block:: csharp
     
             public override ParserBase CreateCodeParser()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CSharpRazorCodeLanguage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CSharpRazorCodeLanguage.LanguageName
+    
+        
+    
+        
+        Returns the name of the language: "csharp"
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string LanguageName { get; }
     
 

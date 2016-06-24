@@ -77,10 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString Path
-            {
-                get;
-                set;
-            }
+            public PathString Path { get; set; }
     
 

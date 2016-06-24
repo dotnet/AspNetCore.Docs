@@ -7,6 +7,11 @@ OperationAuthorizationRequirement Class
 
 
 
+
+A helper class to provide a useful :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement` which
+contains a name.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure`
 Assemblies
@@ -63,15 +68,16 @@ Properties
     .. dn:property:: Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement.Name
     
         
+    
+        
+        The name of this instance of :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`\.
+    
+        
         :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
 

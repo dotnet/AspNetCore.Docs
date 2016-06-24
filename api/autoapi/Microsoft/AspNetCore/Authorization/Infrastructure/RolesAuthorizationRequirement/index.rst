@@ -7,6 +7,11 @@ RolesAuthorizationRequirement Class
 
 
 
+
+Implements an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`
+which requires at least one role claim whose value must be any of the allowed roles.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure`
 Assemblies
@@ -53,28 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement.AllowedRoles
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> AllowedRoles
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -88,12 +71,43 @@ Constructors
         
     
         
+        Creates a new instance of :any:`Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement`\.
+    
+        
+    
+        
+        :param allowedRoles: A collection of allowed roles.
+        
         :type allowedRoles: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
     
         
         .. code-block:: csharp
     
             public RolesAuthorizationRequirement(IEnumerable<string> allowedRoles)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement.AllowedRoles
+    
+        
+    
+        
+        Gets the collection of allowed roles.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> AllowedRoles { get; }
     
 
 Methods
@@ -104,19 +118,29 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement.Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext, Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        Makes a decision if authorization is allowed based on a specific requirement.
     
+        
+    
+        
+        :param context: The authorization context.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
+    
+        
+        :param requirement: The requirement to evaluate.
         
         :type requirement: Microsoft.AspNetCore.Authorization.Infrastructure.RolesAuthorizationRequirement
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override void Handle(AuthorizationContext context, RolesAuthorizationRequirement requirement)
+            protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RolesAuthorizationRequirement requirement)
     
 

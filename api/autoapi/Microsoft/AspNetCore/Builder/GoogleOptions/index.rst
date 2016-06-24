@@ -59,34 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.GoogleOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.GoogleOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.GoogleOptions.AccessType
-    
-        
-    
-        
-        access_type. Set to 'offline' to request a refresh token.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AccessType
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -108,5 +80,29 @@ Constructors
         .. code-block:: csharp
     
             public GoogleOptions()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.GoogleOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.GoogleOptions.AccessType
+    
+        
+    
+        
+        access_type. Set to 'offline' to request a refresh token.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AccessType { get; set; }
     
 

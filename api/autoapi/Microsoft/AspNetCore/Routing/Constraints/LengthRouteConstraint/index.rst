@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint.MaxLength
-    
-        
-    
-        
-        Gets the maximum length allowed for the route parameter.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxLength
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint.MinLength
-    
-        
-    
-        
-        Gets the minimum length allowed for the route parameter.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MinLength
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -187,5 +142,44 @@ Methods
         .. code-block:: csharp
     
             public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint.MaxLength
+    
+        
+    
+        
+        Gets the maximum length allowed for the route parameter.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaxLength { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.LengthRouteConstraint.MinLength
+    
+        
+    
+        
+        Gets the minimum length allowed for the route parameter.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MinLength { get; }
     
 

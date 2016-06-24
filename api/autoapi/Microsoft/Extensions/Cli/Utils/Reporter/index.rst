@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static Reporter Error
-            {
-                get;
-            }
+            public static Reporter Error { get; }
     
     .. dn:property:: Microsoft.Extensions.Cli.Utils.Reporter.Output
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static Reporter Output
-            {
-                get;
-            }
+            public static Reporter Output { get; }
     
 
 Methods

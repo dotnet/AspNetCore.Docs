@@ -57,34 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.DefaultFilesOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.DefaultFilesOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.DefaultFilesOptions.DefaultFileNames
-    
-        
-    
-        
-        An ordered list of file names to select by default. List length and ordering may affect performance.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> DefaultFileNames
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -123,5 +95,29 @@ Constructors
         .. code-block:: csharp
     
             public DefaultFilesOptions(SharedOptions sharedOptions)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.DefaultFilesOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.DefaultFilesOptions.DefaultFileNames
+    
+        
+    
+        
+        An ordered list of file names to select by default. List length and ordering may affect performance.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> DefaultFileNames { get; set; }
     
 

@@ -15,10 +15,6 @@ Microsoft.Extensions.Options Namespace
 
    
    
-   /autoapi/Microsoft/Extensions/Options/ConfigurationChangeTokenSource-TOptions/index
-   
-   
-   
    /autoapi/Microsoft/Extensions/Options/ConfigureFromConfigurationOptions-TOptions/index
    
    
@@ -28,10 +24,6 @@ Microsoft.Extensions.Options Namespace
    
    
    /autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index
-   
-   
-   
-   /autoapi/Microsoft/Extensions/Options/IOptionsChangeTokenSource-TOptions/index
    
    
    
@@ -48,10 +40,6 @@ Microsoft.Extensions.Options Namespace
    
    
    /autoapi/Microsoft/Extensions/Options/OptionsManager-TOptions/index
-   
-   
-   
-   /autoapi/Microsoft/Extensions/Options/OptionsMonitor-TOptions/index
    
    
    
@@ -105,18 +93,6 @@ Microsoft.Extensions.Options Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -128,51 +104,6 @@ Microsoft.Extensions.Options Namespace
 .. dn:namespace:: Microsoft.Extensions.Options
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ConfigurationChangeTokenSource\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.ConfigurationChangeTokenSource\<TOptions>
-
-        
-
-
-    class :dn:cls:`ConfigureFromConfigurationOptions\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.ConfigureFromConfigurationOptions\<TOptions>
-
-        
-
-
-    class :dn:cls:`ConfigureOptions\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.ConfigureOptions\<TOptions>
-
-        
-
-
-    class :dn:cls:`Options`
-        .. object: type=class name=Microsoft.Extensions.Options.Options
-
-        
-
-
-    class :dn:cls:`OptionsManager\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.OptionsManager\<TOptions>
-
-        
-
-
-    class :dn:cls:`OptionsMonitor\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.OptionsMonitor\<TOptions>
-
-        
-
-
-    class :dn:cls:`OptionsWrapper\<TOptions>`
-        .. object: type=class name=Microsoft.Extensions.Options.OptionsWrapper\<TOptions>
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -180,23 +111,58 @@ Microsoft.Extensions.Options Namespace
         .. object: type=interface name=Microsoft.Extensions.Options.IConfigureOptions\<TOptions>
 
         
-
-
-    interface :dn:iface:`IOptionsChangeTokenSource\<TOptions>`
-        .. object: type=interface name=Microsoft.Extensions.Options.IOptionsChangeTokenSource\<TOptions>
-
-        
+        Represents something that configures the TOptions type.
 
 
     interface :dn:iface:`IOptionsMonitor\<TOptions>`
         .. object: type=interface name=Microsoft.Extensions.Options.IOptionsMonitor\<TOptions>
 
         
+        Used for notifications when TOptions instances change.
 
 
     interface :dn:iface:`IOptions\<TOptions>`
         .. object: type=interface name=Microsoft.Extensions.Options.IOptions\<TOptions>
 
         
+        Used to retreive configured TOptions instances.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ConfigureFromConfigurationOptions\<TOptions>`
+        .. object: type=class name=Microsoft.Extensions.Options.ConfigureFromConfigurationOptions\<TOptions>
+
+        
+        Configures an option instance by using ConfigurationBinder.Bind against an IConfiguration.
+
+
+    class :dn:cls:`ConfigureOptions\<TOptions>`
+        .. object: type=class name=Microsoft.Extensions.Options.ConfigureOptions\<TOptions>
+
+        
+        Implementation of IConfigureOptions.
+
+
+    class :dn:cls:`Options`
+        .. object: type=class name=Microsoft.Extensions.Options.Options
+
+        
+        Helper class.
+
+
+    class :dn:cls:`OptionsManager\<TOptions>`
+        .. object: type=class name=Microsoft.Extensions.Options.OptionsManager\<TOptions>
+
+        
+        Implementation of IOptions.
+
+
+    class :dn:cls:`OptionsWrapper\<TOptions>`
+        .. object: type=class name=Microsoft.Extensions.Options.OptionsWrapper\<TOptions>
+
+        
+        IOptions wrapper that returns the options instance.
 
 

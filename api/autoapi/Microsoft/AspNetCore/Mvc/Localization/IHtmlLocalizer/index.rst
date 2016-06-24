@@ -49,69 +49,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer.Item[System.String]
-    
-        
-    
-        
-        Gets the string resource with the given name.
-    
-        
-    
-        
-        :param name: The name of the string resource.
-        
-        :type name: System.String
-        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
-        :return: The string resource as a :any:`Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString`\.
-    
-        
-        .. code-block:: csharp
-    
-            LocalizedHtmlString this[string name]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer.Item[System.String, System.Object[]]
-    
-        
-    
-        
-        Gets the string resource with the given name and formatted with the supplied arguments. The arguments will
-        be HTML encoded.
-    
-        
-    
-        
-        :param name: The name of the string resource.
-        
-        :type name: System.String
-    
-        
-        :param arguments: The values to format the string with.
-        
-        :type arguments: System.Object<System.Object>[]
-        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
-        :return: The formatted string resource as a :any:`Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString`\.
-    
-        
-        .. code-block:: csharp
-    
-            LocalizedHtmlString this[string name, params object[] arguments]
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -209,5 +146,62 @@ Methods
         .. code-block:: csharp
     
             IHtmlLocalizer WithCulture(CultureInfo culture)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer.Item[System.String]
+    
+        
+    
+        
+        Gets the string resource with the given name.
+    
+        
+    
+        
+        :param name: The name of the string resource.
+        
+        :type name: System.String
+        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
+        :return: The string resource as a :any:`Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString`\.
+    
+        
+        .. code-block:: csharp
+    
+            LocalizedHtmlString this[string name] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        Gets the string resource with the given name and formatted with the supplied arguments. The arguments will
+        be HTML encoded.
+    
+        
+    
+        
+        :param name: The name of the string resource.
+        
+        :type name: System.String
+    
+        
+        :param arguments: The values to format the string with.
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
+        :return: The formatted string resource as a :any:`Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString`\.
+    
+        
+        .. code-block:: csharp
+    
+            LocalizedHtmlString this[string name, params object[] arguments] { get; }
     
 

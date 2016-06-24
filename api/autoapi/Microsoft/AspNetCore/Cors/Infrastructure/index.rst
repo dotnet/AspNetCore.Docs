@@ -136,6 +136,37 @@ Microsoft.AspNetCore.Cors.Infrastructure Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Cors.Infrastructure
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICorsPolicyProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.ICorsPolicyProvider
+
+        
+        A type which can provide a :any:`Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy` for a particular :any:`Microsoft.AspNetCore.Http.HttpContext`\.
+
+
+    interface :dn:iface:`ICorsService`
+        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.ICorsService
+
+        
+        A type which can evaluate a policy for a particular :any:`Microsoft.AspNetCore.Http.HttpContext`\.
+
+
+    interface :dn:iface:`IDisableCorsAttribute`
+        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute
+
+        
+        An interface which can be used to identify a type which provides metdata to disable cors for a resource.
+
+
+    interface :dn:iface:`IEnableCorsAttribute`
+        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute
+
+        
+        An interface which can be used to identify a type which provides metadata needed for enabling CORS support.
+
+
     .. rubric:: Classes
 
 
@@ -192,36 +223,5 @@ Microsoft.AspNetCore.Cors.Infrastructure Namespace
         .. object: type=class name=Microsoft.AspNetCore.Cors.Infrastructure.DefaultCorsPolicyProvider
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICorsPolicyProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.ICorsPolicyProvider
-
-        
-        A type which can provide a :any:`Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy` for a particular :any:`Microsoft.AspNetCore.Http.HttpContext`\.
-
-
-    interface :dn:iface:`ICorsService`
-        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.ICorsService
-
-        
-        A type which can evaluate a policy for a particular :any:`Microsoft.AspNetCore.Http.HttpContext`\.
-
-
-    interface :dn:iface:`IDisableCorsAttribute`
-        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute
-
-        
-        An interface which can be used to identify a type which provides metdata to disable cors for a resource.
-
-
-    interface :dn:iface:`IEnableCorsAttribute`
-        .. object: type=interface name=Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute
-
-        
-        An interface which can be used to identify a type which provides metadata needed for enabling CORS support.
 
 

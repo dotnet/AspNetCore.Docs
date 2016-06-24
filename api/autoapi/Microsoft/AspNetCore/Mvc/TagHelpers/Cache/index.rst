@@ -104,6 +104,34 @@ Microsoft.AspNetCore.Mvc.TagHelpers.Cache Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.TagHelpers.Cache
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IDistributedCacheTagHelperFormatter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperFormatter
+
+        
+        An implementation of this interface provides a service to
+        serialize html fragments for being store by :any:`Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage`
+
+
+    interface :dn:iface:`IDistributedCacheTagHelperService`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperService
+
+        
+        An implementation of this interface provides a service to process
+        the content or fetches it from cache for distributed cache tag helpers.
+
+
+    interface :dn:iface:`IDistributedCacheTagHelperStorage`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage
+
+        
+        An implementation of this interface provides a service to 
+        cache distributed html fragments from the <distributed-cache>
+        tag helper.
+
+
     .. rubric:: Classes
 
 
@@ -146,33 +174,5 @@ Microsoft.AspNetCore.Mvc.TagHelpers.Cache Namespace
         
         Implements :any:`Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage` by storing the content
         in using :any:`Microsoft.Extensions.Caching.Distributed.IDistributedCache` as the store.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IDistributedCacheTagHelperFormatter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperFormatter
-
-        
-        An implementation of this interface provides a service to 
-        serialize html fragments for being store by :any:`Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage`
-
-
-    interface :dn:iface:`IDistributedCacheTagHelperService`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperService
-
-        
-        An implementation of this interface provides a service to process
-        the content or fetches it from cache for distributed cache tag helpers.
-
-
-    interface :dn:iface:`IDistributedCacheTagHelperStorage`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage
-
-        
-        An implementation of this interface provides a service to 
-        cache distributed html fragments from the <distributed-cache>
-        tag helper.
 
 

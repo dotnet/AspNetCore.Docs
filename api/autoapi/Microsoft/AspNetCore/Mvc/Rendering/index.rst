@@ -71,10 +71,6 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Rendering/HtmlString/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/Rendering/IHtmlHelper/index
    
    
@@ -84,10 +80,6 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/Rendering/IJsonHelper/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Rendering/ModelExpression/index
    
    
    
@@ -253,14 +245,6 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -270,6 +254,30 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Rendering
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IHtmlHelper`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
+
+        
+        Base HTML helpers.
+
+
+    interface :dn:iface:`IHtmlHelper\<TModel>`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper\<TModel>
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` for Linq expressions.
+
+
+    interface :dn:iface:`IJsonHelper`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper
+
+        
+        Base JSON helpers.
 
 
     .. rubric:: Classes
@@ -357,19 +365,6 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
 
         
         Value-related extensions for :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` and :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper\`1`\.
-
-
-    class :dn:cls:`HtmlString`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Rendering.HtmlString
-
-        
-
-
-    class :dn:cls:`ModelExpression`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Rendering.ModelExpression
-
-        
-        Describes an :any:`System.Linq.Expressions.Expression` passed to a tag helper.
 
 
     class :dn:cls:`MultiSelectList`
@@ -465,29 +460,5 @@ Microsoft.AspNetCore.Mvc.Rendering Namespace
 
         
         Acceptable validation summary rendering modes.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IHtmlHelper`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
-
-        
-        Base HTML helpers.
-
-
-    interface :dn:iface:`IHtmlHelper\<TModel>`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper\<TModel>
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` for Linq expressions.
-
-
-    interface :dn:iface:`IJsonHelper`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper
-
-        
-        Base JSON helpers.
 
 

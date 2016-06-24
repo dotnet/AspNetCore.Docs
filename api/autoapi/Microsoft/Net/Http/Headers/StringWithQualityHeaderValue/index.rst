@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue.Quality
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Double<System.Double>}
-    
-        
-        .. code-block:: csharp
-    
-            public double ? Quality
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -250,5 +215,34 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParseStrictList(IList<string> input, out IList<StringWithQualityHeaderValue> parsedValues)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue.Quality
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Double<System.Double>}
+    
+        
+        .. code-block:: csharp
+    
+            public double ? Quality { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValue.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

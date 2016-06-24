@@ -70,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            IApplicationBuilder ApplicationBuilder
-            {
-                get;
-            }
+            IApplicationBuilder ApplicationBuilder { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler
     
@@ -89,11 +86,7 @@ Properties
         
         .. code-block:: csharp
     
-            IRouter DefaultHandler
-            {
-                get;
-                set;
-            }
+            IRouter DefaultHandler { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.IRouteBuilder.Routes
     
@@ -108,10 +101,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IRouter> Routes
-            {
-                get;
-            }
+            IList<IRouter> Routes { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.IRouteBuilder.ServiceProvider
     
@@ -126,10 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceProvider ServiceProvider
-            {
-                get;
-            }
+            IServiceProvider ServiceProvider { get; }
     
 
 Methods

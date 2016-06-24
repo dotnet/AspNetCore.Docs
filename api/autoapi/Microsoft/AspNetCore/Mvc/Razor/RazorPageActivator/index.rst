@@ -60,7 +60,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.RazorPageActivator(Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.RazorPageActivator.RazorPageActivator(Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider, Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory, Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper, System.Diagnostics.DiagnosticSource, System.Text.Encodings.Web.HtmlEncoder, Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider)
     
         
     
@@ -73,9 +73,24 @@ Constructors
         :type metadataProvider: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
     
         
+        :type urlHelperFactory: Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory
+    
+        
+        :type jsonHelper: Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper
+    
+        
+        :type diagnosticSource: System.Diagnostics.DiagnosticSource
+    
+        
+        :type htmlEncoder: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        :type modelExpressionProvider: Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider
+    
+        
         .. code-block:: csharp
     
-            public RazorPageActivator(IModelMetadataProvider metadataProvider)
+            public RazorPageActivator(IModelMetadataProvider metadataProvider, IUrlHelperFactory urlHelperFactory, IJsonHelper jsonHelper, DiagnosticSource diagnosticSource, HtmlEncoder htmlEncoder, IModelExpressionProvider modelExpressionProvider)
     
 
 Methods

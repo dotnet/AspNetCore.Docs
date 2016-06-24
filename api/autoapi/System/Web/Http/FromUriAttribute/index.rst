@@ -74,10 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingSource BindingSource
-            {
-                get;
-            }
+            public BindingSource BindingSource { get; }
     
     .. dn:property:: System.Web.Http.FromUriAttribute.IsOptional
     
@@ -87,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsOptional
-            {
-                get;
-                set;
-            }
+            public bool IsOptional { get; set; }
     
     .. dn:property:: System.Web.Http.FromUriAttribute.Name
     
@@ -101,10 +94,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
 

@@ -8,7 +8,7 @@ ResultExecutingContext Class
 
 
 
-A context for result filters, specifically :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)` and
+A context for result filters, specifically :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)` and 
 :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)` calls.
 
 
@@ -59,72 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel
-    
-        
-    
-        
-        Gets or sets an indication the result filter pipeline should be short-circuited.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool Cancel
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Controller
-    
-        
-    
-        
-        Gets the controller instance containing the action.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public virtual object Controller
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Result
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult` to execute. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Result` to a non-<code>null</code>
-        value inside a result filter will short-circuit the result and any remaining result filters.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IActionResult Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,5 +100,60 @@ Constructors
         .. code-block:: csharp
     
             public ResultExecutingContext(ActionContext actionContext, IList<IFilterMetadata> filters, IActionResult result, object controller)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel
+    
+        
+    
+        
+        Gets or sets an indication the result filter pipeline should be short-circuited.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool Cancel { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Controller
+    
+        
+    
+        
+        Gets the controller instance containing the action.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public virtual object Controller { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Result
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult` to execute. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Result` to a non-<code>null</code>
+        value inside a result filter will short-circuit the result and any remaining result filters.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IActionResult Result { get; set; }
     
 

@@ -88,6 +88,15 @@ Microsoft.AspNetCore.Session Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Session
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ISessionStore`
+        .. object: type=interface name=Microsoft.AspNetCore.Session.ISessionStore
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -121,14 +130,5 @@ Microsoft.AspNetCore.Session Namespace
 
         
         Enables the session state for the application.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ISessionStore`
-        .. object: type=interface name=Microsoft.AspNetCore.Session.ISessionStore
-
-        
 
 

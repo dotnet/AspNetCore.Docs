@@ -98,7 +98,7 @@ Methods
         
     
         
-        Pops a state off the LogicalOperationStack by calling
+        Pops a state off the LogicalOperationStack by calling 
         :dn:meth:`System.Diagnostics.CorrelationManager.StopLogicalOperation`
     
         

@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEventLog EventLog
-            {
-                get;
-                set;
-            }
+            public IEventLog EventLog { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogSettings.Filter
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<string, LogLevel, bool> Filter
-            {
-                get;
-                set;
-            }
+            public Func<string, LogLevel, bool> Filter { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogSettings.LogName
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string LogName
-            {
-                get;
-                set;
-            }
+            public string LogName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogSettings.MachineName
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string MachineName
-            {
-                get;
-                set;
-            }
+            public string MachineName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogSettings.SourceName
     
@@ -153,10 +137,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string SourceName
-            {
-                get;
-                set;
-            }
+            public string SourceName { get; set; }
     
 

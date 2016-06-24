@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool CanRenderAtEndOfForm
-            {
-                get;
-                set;
-            }
+            public bool CanRenderAtEndOfForm { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.FormContext.EndOfFormContent
     
@@ -82,17 +78,14 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IHtmlContent> EndOfFormContent
-            {
-                get;
-            }
+            public IList<IHtmlContent> EndOfFormContent { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.FormContext.FormData
     
         
     
         
-        Property bag for any information you wish to associate with a <form/> in an
+        Property bag for any information you wish to associate with a <form/> in an 
         :any:`Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper` implementation or extension method.
     
         
@@ -101,10 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, object> FormData
-            {
-                get;
-            }
+            public IDictionary<string, object> FormData { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.FormContext.HasAntiforgeryToken
     
@@ -114,11 +104,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasAntiforgeryToken
-            {
-                get;
-                set;
-            }
+            public bool HasAntiforgeryToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.FormContext.HasEndOfFormContent
     
@@ -128,10 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasEndOfFormContent
-            {
-                get;
-            }
+            public bool HasEndOfFormContent { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.FormContext.HasFormData
     
@@ -141,10 +124,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasFormData
-            {
-                get;
-            }
+            public bool HasFormData { get; }
     
 
 Methods

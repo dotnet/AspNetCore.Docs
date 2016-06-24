@@ -75,11 +75,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ChangeEmailTokenProvider
-            {
-                get;
-                set;
-            }
+            public string ChangeEmailTokenProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.TokenOptions.EmailConfirmationTokenProvider
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EmailConfirmationTokenProvider
-            {
-                get;
-                set;
-            }
+            public string EmailConfirmationTokenProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.TokenOptions.PasswordResetTokenProvider
     
@@ -117,11 +109,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string PasswordResetTokenProvider
-            {
-                get;
-                set;
-            }
+            public string PasswordResetTokenProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.TokenOptions.ProviderMap
     
@@ -136,11 +124,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Dictionary<string, TokenProviderDescriptor> ProviderMap
-            {
-                get;
-                set;
-            }
+            public Dictionary<string, TokenProviderDescriptor> ProviderMap { get; set; }
     
 
 Fields

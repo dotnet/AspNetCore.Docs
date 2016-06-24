@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.RequestCookiesFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.RequestCookiesFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.RequestCookiesFeature.Cookies
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IRequestCookieCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IRequestCookieCollection Cookies
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,5 +83,24 @@ Constructors
         .. code-block:: csharp
     
             public RequestCookiesFeature(IRequestCookieCollection cookies)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.RequestCookiesFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.RequestCookiesFeature.Cookies
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IRequestCookieCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IRequestCookieCollection Cookies { get; set; }
     
 

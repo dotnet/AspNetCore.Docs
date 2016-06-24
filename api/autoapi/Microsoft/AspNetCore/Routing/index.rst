@@ -272,6 +272,64 @@ Microsoft.AspNetCore.Routing Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Routing
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IInlineConstraintResolver`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IInlineConstraintResolver
+
+        
+        Defines an abstraction for resolving inline constraints as instances of :any:`Microsoft.AspNetCore.Routing.IRouteConstraint`\.
+
+
+    interface :dn:iface:`INamedRouter`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.INamedRouter
+
+        
+
+
+    interface :dn:iface:`IRouteBuilder`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteBuilder
+
+        
+        Defines a contract for a route builder in an application. A route builder specifies the routes for
+        an application.
+
+
+    interface :dn:iface:`IRouteCollection`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteCollection
+
+        
+
+
+    interface :dn:iface:`IRouteConstraint`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteConstraint
+
+        
+        Defines the contract that a class must implement in order to check whether a URL parameter
+        value is valid for a constraint.
+
+
+    interface :dn:iface:`IRouteHandler`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteHandler
+
+        
+        Defines a contract for a handler of a route. 
+
+
+    interface :dn:iface:`IRouter`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouter
+
+        
+
+
+    interface :dn:iface:`IRoutingFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRoutingFeature
+
+        
+        A feature interface for routing functionality.
+
+
     .. rubric:: Enumerations
 
 
@@ -420,63 +478,5 @@ Microsoft.AspNetCore.Routing Namespace
         .. object: type=struct name=Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IInlineConstraintResolver`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IInlineConstraintResolver
-
-        
-        Defines an abstraction for resolving inline constraints as instances of :any:`Microsoft.AspNetCore.Routing.IRouteConstraint`\.
-
-
-    interface :dn:iface:`INamedRouter`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.INamedRouter
-
-        
-
-
-    interface :dn:iface:`IRouteBuilder`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteBuilder
-
-        
-        Defines a contract for a route builder in an application. A route builder specifies the routes for
-        an application.
-
-
-    interface :dn:iface:`IRouteCollection`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteCollection
-
-        
-
-
-    interface :dn:iface:`IRouteConstraint`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteConstraint
-
-        
-        Defines the contract that a class must implement in order to check whether a URL parameter
-        value is valid for a constraint.
-
-
-    interface :dn:iface:`IRouteHandler`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouteHandler
-
-        
-        Defines a contract for a handler of a route. 
-
-
-    interface :dn:iface:`IRouter`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRouter
-
-        
-
-
-    interface :dn:iface:`IRoutingFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Routing.IRoutingFeature
-
-        
-        A feature interface for routing functionality.
 
 

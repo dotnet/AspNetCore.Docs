@@ -54,83 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.TagHelperRenderer
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer
-    
-        
-        .. code-block:: csharp
-    
-            public CSharpTagHelperCodeRenderer TagHelperRenderer
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteAttributeValueMethodName
-    
-        
-    
-        
-        Gets the method name used to generate <code>WriteAttribute</code> invocations in the rendered page.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual string WriteAttributeValueMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteMethodName
-    
-        
-    
-        
-        Method used to write an :any:`System.Object` to the current output.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual string WriteMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteToMethodName
-    
-        
-    
-        
-        Method used to write an :any:`System.Object` to a specified :any:`System.IO.TextWriter`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual string WriteToMethodName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -393,5 +316,69 @@ Methods
         .. code-block:: csharp
     
             protected override void Visit(TemplateChunk chunk)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.TagHelperRenderer
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer
+    
+        
+        .. code-block:: csharp
+    
+            public CSharpTagHelperCodeRenderer TagHelperRenderer { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteAttributeValueMethodName
+    
+        
+    
+        
+        Gets the method name used to generate <code>WriteAttribute</code> invocations in the rendered page.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual string WriteAttributeValueMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteMethodName
+    
+        
+    
+        
+        Method used to write an :any:`System.Object` to the current output.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual string WriteMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor.WriteToMethodName
+    
+        
+    
+        
+        Method used to write an :any:`System.Object` to a specified :any:`System.IO.TextWriter`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual string WriteToMethodName { get; }
     
 

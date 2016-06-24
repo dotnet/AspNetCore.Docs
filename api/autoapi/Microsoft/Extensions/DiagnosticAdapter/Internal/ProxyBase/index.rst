@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.UnderlyingInstanceAsObject
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public abstract object UnderlyingInstanceAsObject
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -95,23 +73,23 @@ Constructors
             protected ProxyBase(Type wrappedType)
     
 
-Fields
-------
+Properties
+----------
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
     :noindex:
     :hidden:
 
     
-    .. dn:field:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.WrappedType
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.UnderlyingInstanceAsObject
     
         
-        :rtype: System.Type
+        :rtype: System.Object
     
         
         .. code-block:: csharp
     
-            public readonly Type WrappedType
+            public abstract object UnderlyingInstanceAsObject { get; }
     
 
 Methods
@@ -131,5 +109,24 @@ Methods
         .. code-block:: csharp
     
             public T Upwrap<T>()
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase.WrappedType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public readonly Type WrappedType
     
 

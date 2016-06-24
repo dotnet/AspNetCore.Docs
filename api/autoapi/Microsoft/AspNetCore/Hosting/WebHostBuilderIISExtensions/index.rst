@@ -77,6 +77,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWebHostBuilder UseIISIntegration(IWebHostBuilder app)
+            public static IWebHostBuilder UseIISIntegration(this IWebHostBuilder app)
     
 

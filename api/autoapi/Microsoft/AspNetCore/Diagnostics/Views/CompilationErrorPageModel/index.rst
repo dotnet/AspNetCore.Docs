@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ErrorDetails> ErrorDetails
-            {
-                get;
-            }
+            public IList<ErrorDetails> ErrorDetails { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.CompilationErrorPageModel.Options
     
@@ -95,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public DeveloperExceptionPageOptions Options
-            {
-                get;
-                set;
-            }
+            public DeveloperExceptionPageOptions Options { get; set; }
     
 

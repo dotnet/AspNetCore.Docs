@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<IRouteConstraint> Constraints
-            {
-                get;
-                set;
-            }
+            public IEnumerable<IRouteConstraint> Constraints { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterRouteInfo.DefaultValue
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object DefaultValue
-            {
-                get;
-                set;
-            }
+            public object DefaultValue { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterRouteInfo.IsOptional
     
@@ -115,10 +107,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsOptional
-            {
-                get;
-                set;
-            }
+            public bool IsOptional { get; set; }
     
 

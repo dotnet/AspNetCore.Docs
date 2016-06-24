@@ -60,92 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.RemoteAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.RemoteAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields
-    
-        
-    
-        
-        Gets or sets the comma-separated names of fields the client should include in a validation request.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AdditionalFields
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.HttpMethod
-    
-        
-    
-        
-        Gets or sets the HTTP method (<code>"Get"</code> or <code>"Post"</code>) client should use when sending a validation
-        request.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string HttpMethod
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.RouteData
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` used when generating the URL where client should send a
-        validation request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            protected RouteValueDictionary RouteData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.RouteName
-    
-        
-    
-        
-        Gets or sets the route name used when generating the URL where client should send a validation request.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected string RouteName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -244,6 +158,77 @@ Constructors
         .. code-block:: csharp
     
             public RemoteAttribute(string action, string controller, string areaName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.RemoteAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields
+    
+        
+    
+        
+        Gets or sets the comma-separated names of fields the client should include in a validation request.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AdditionalFields { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.HttpMethod
+    
+        
+    
+        
+        Gets or sets the HTTP method (<code>"Get"</code> or <code>"Post"</code>) client should use when sending a validation
+        request.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string HttpMethod { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.RouteData
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` used when generating the URL where client should send a
+        validation request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            protected RouteValueDictionary RouteData { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RemoteAttribute.RouteName
+    
+        
+    
+        
+        Gets or sets the route name used when generating the URL where client should send a validation request.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected string RouteName { get; set; }
     
 
 Methods

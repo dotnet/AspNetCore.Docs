@@ -104,6 +104,16 @@ Microsoft.Extensions.Primitives Namespace
 .. dn:namespace:: Microsoft.Extensions.Primitives
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IChangeToken`
+        .. object: type=interface name=Microsoft.Extensions.Primitives.IChangeToken
+
+        
+        Propagates notifications that a change has occured.
+
+
     .. rubric:: Classes
 
 
@@ -155,15 +165,5 @@ Microsoft.Extensions.Primitives Namespace
         .. object: type=struct name=Microsoft.Extensions.Primitives.StringValues.Enumerator
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IChangeToken`
-        .. object: type=interface name=Microsoft.Extensions.Primitives.IChangeToken
-
-        
-        Propagates notifications that a change has occured.
 
 

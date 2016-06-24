@@ -48,41 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator.Current
-    
-        
-        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public KeyValuePair<string, string> Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +74,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(AttributeDictionary attributes)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator.Current
+    
+        
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, string> Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

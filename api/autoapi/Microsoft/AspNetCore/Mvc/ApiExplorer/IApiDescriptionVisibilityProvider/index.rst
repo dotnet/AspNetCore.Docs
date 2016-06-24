@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            bool IgnoreApi
-            {
-                get;
-            }
+            bool IgnoreApi { get; }
     
 

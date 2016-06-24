@@ -51,10 +51,6 @@ Microsoft.AspNetCore.Diagnostics Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Diagnostics/RuntimeInfoMiddleware/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Diagnostics/StatusCodeContext/index
    
    
@@ -145,10 +141,6 @@ Microsoft.AspNetCore.Diagnostics Namespace
    
    
    
-   
-   
-   
-   
 
 
 
@@ -158,6 +150,35 @@ Microsoft.AspNetCore.Diagnostics Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Diagnostics
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICompilationException`
+        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.ICompilationException
+
+        
+        Specifies the contract for an exception representing compilation failure.
+
+
+    interface :dn:iface:`IExceptionHandlerFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature
+
+        
+
+
+    interface :dn:iface:`IStatusCodePagesFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature
+
+        
+        Represents the Status code pages feature.
+
+
+    interface :dn:iface:`IStatusCodeReExecuteFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature
+
+        
 
 
     .. rubric:: Classes
@@ -196,13 +217,6 @@ Microsoft.AspNetCore.Diagnostics Namespace
         
 
 
-    class :dn:cls:`RuntimeInfoMiddleware`
-        .. object: type=class name=Microsoft.AspNetCore.Diagnostics.RuntimeInfoMiddleware
-
-        
-        Displays information about the packages used by the application at runtime
-
-
     class :dn:cls:`StatusCodeContext`
         .. object: type=class name=Microsoft.AspNetCore.Diagnostics.StatusCodeContext
 
@@ -233,34 +247,5 @@ Microsoft.AspNetCore.Diagnostics Namespace
 
         
         This middleware provides a default web page for new applications.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICompilationException`
-        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.ICompilationException
-
-        
-        Specifies the contract for an exception representing compilation failure.
-
-
-    interface :dn:iface:`IExceptionHandlerFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature
-
-        
-
-
-    interface :dn:iface:`IStatusCodePagesFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature
-
-        
-        Represents the Status code pages feature.
-
-
-    interface :dn:iface:`IStatusCodeReExecuteFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Diagnostics.IStatusCodeReExecuteFeature
-
-        
 
 

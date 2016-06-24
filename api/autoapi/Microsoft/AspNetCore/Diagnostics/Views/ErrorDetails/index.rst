@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Exception Error
-            {
-                get;
-                set;
-            }
+            public Exception Error { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorDetails.StackFrames
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<StackFrame> StackFrames
-            {
-                get;
-                set;
-            }
+            public IEnumerable<StackFrame> StackFrames { get; set; }
     
 

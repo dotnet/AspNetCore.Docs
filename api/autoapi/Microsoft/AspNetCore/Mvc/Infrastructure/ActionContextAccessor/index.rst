@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ActionContext ActionContext
-            {
-                get;
-                set;
-            }
+            public ActionContext ActionContext { get; set; }
     
 

@@ -38,7 +38,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class FakeService : IFakeEveryService, IFakeMultipleService, IFakeScopedService, IFakeServiceInstance, IFakeSingletonService, IFakeService, IFakeOpenGenericService<AnotherClass>, IDisposable
+    public class FakeService : IFakeEveryService, IFakeMultipleService, IFakeScopedService, IFakeServiceInstance, IFakeSingletonService, IFakeService, IFakeOpenGenericService<PocoClass>, IDisposable
 
 
 
@@ -51,42 +51,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService.Disposed
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Disposed
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService.Value
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass
-    
-        
-        .. code-block:: csharp
-    
-            public AnotherClass Value
-            {
-                get;
-                set;
-            }
-    
 
 Methods
 -------
@@ -104,5 +68,34 @@ Methods
         .. code-block:: csharp
     
             public void Dispose()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService.Disposed
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Disposed { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeService.Value
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.PocoClass
+    
+        
+        .. code-block:: csharp
+    
+            public PocoClass Value { get; set; }
     
 

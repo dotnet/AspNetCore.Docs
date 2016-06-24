@@ -78,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static SignInResult Failed
-            {
-                get;
-            }
+            public static SignInResult Failed { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.IsLockedOut
     
@@ -97,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsLockedOut
-            {
-                get;
-                protected set;
-            }
+            public bool IsLockedOut { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.IsNotAllowed
     
@@ -117,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsNotAllowed
-            {
-                get;
-                protected set;
-            }
+            public bool IsNotAllowed { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.LockedOut
     
@@ -139,10 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static SignInResult LockedOut
-            {
-                get;
-            }
+            public static SignInResult LockedOut { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.NotAllowed
     
@@ -160,10 +146,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static SignInResult NotAllowed
-            {
-                get;
-            }
+            public static SignInResult NotAllowed { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.RequiresTwoFactor
     
@@ -179,11 +162,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequiresTwoFactor
-            {
-                get;
-                protected set;
-            }
+            public bool RequiresTwoFactor { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.Succeeded
     
@@ -199,11 +178,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Succeeded
-            {
-                get;
-                protected set;
-            }
+            public bool Succeeded { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.Success
     
@@ -219,10 +194,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static SignInResult Success
-            {
-                get;
-            }
+            public static SignInResult Success { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInResult.TwoFactorRequired
     
@@ -240,10 +212,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static SignInResult TwoFactorRequired
-            {
-                get;
-            }
+            public static SignInResult TwoFactorRequired { get; }
     
 
 Methods

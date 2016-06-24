@@ -121,6 +121,30 @@ Methods
     
             public virtual bool ContainsPrefix(string prefix)
     
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider.CreateAsync(Microsoft.AspNetCore.Mvc.ControllerContext)
+    
+        
+    
+        
+        Asynchronously creates a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider` using the provided
+        <em>controllerContext</em>.
+    
+        
+    
+        
+        :param controllerContext: The :any:`Microsoft.AspNetCore.Mvc.ControllerContext` associated with the current request.
+        
+        :type controllerContext: Microsoft.AspNetCore.Mvc.ControllerContext
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider<Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider>}
+        :return: 
+            A :any:`System.Threading.Tasks.Task\`1` which, when completed, asynchronously returns a 
+            :any:`Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider`\.
+    
+        
+        .. code-block:: csharp
+    
+            public static Task<CompositeValueProvider> CreateAsync(ControllerContext controllerContext)
+    
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.CompositeValueProvider.Filter(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
     
         

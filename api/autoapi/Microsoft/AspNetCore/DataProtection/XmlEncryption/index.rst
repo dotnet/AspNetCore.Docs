@@ -152,6 +152,30 @@ Microsoft.AspNetCore.DataProtection.XmlEncryption Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.XmlEncryption
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICertificateResolver`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.ICertificateResolver
+
+        
+        Provides services for locating :any:`System.Security.Cryptography.X509Certificates.X509Certificate2` instances.
+
+
+    interface :dn:iface:`IXmlDecryptor`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlDecryptor
+
+        
+        The basic interface for decrypting an XML element.
+
+
+    interface :dn:iface:`IXmlEncryptor`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor
+
+        
+        The basic interface for encrypting XML elements.
+
+
     .. rubric:: Classes
 
 
@@ -235,29 +259,5 @@ Microsoft.AspNetCore.DataProtection.XmlEncryption Namespace
 
         
         Flags used to control the creation of protection descriptors.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICertificateResolver`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.ICertificateResolver
-
-        
-        Provides services for locating :any:`System.Security.Cryptography.X509Certificates.X509Certificate2` instances.
-
-
-    interface :dn:iface:`IXmlDecryptor`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlDecryptor
-
-        
-        The basic interface for decrypting an XML element.
-
-
-    interface :dn:iface:`IXmlEncryptor`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.XmlEncryption.IXmlEncryptor
-
-        
-        The basic interface for encrypting XML elements.
 
 

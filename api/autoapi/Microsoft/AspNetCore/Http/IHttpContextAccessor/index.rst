@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            HttpContext HttpContext
-            {
-                get;
-                set;
-            }
+            HttpContext HttpContext { get; set; }
     
 

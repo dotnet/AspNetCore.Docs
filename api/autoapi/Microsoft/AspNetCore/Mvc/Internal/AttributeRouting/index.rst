@@ -60,7 +60,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouting.CreateAttributeMegaRoute(Microsoft.AspNetCore.Routing.IRouter, System.IServiceProvider)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouting.CreateAttributeMegaRoute(System.IServiceProvider)
     
         
     
@@ -68,11 +68,6 @@ Methods
         Creates an attribute route using the provided services and provided target router.
     
         
-    
-        
-        :param target: The router to invoke when a route entry matches.
-        
-        :type target: Microsoft.AspNetCore.Routing.IRouter
     
         
         :param services: The application services.
@@ -84,6 +79,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouter CreateAttributeMegaRoute(IRouter target, IServiceProvider services)
+            public static IRouter CreateAttributeMegaRoute(IServiceProvider services)
     
 

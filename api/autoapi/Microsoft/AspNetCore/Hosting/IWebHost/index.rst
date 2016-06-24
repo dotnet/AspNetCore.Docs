@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFeatureCollection ServerFeatures
-            {
-                get;
-            }
+            IFeatureCollection ServerFeatures { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.IWebHost.Services
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceProvider Services
-            {
-                get;
-            }
+            IServiceProvider Services { get; }
     
 
 Methods

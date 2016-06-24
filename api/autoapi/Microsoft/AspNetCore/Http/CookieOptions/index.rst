@@ -56,6 +56,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.CookieOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Http.CookieOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Http.CookieOptions.CookieOptions()
+    
+        
+    
+        
+        Creates a default cookie with a path of '/'.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public CookieOptions()
+    
+
 Properties
 ----------
 
@@ -78,11 +101,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Domain
-            {
-                get;
-                set;
-            }
+            public string Domain { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.CookieOptions.Expires
     
@@ -98,11 +117,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset? Expires
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset? Expires { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.CookieOptions.HttpOnly
     
@@ -118,11 +133,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HttpOnly
-            {
-                get;
-                set;
-            }
+            public bool HttpOnly { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.CookieOptions.Path
     
@@ -138,11 +149,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Path
-            {
-                get;
-                set;
-            }
+            public string Path { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.CookieOptions.Secure
     
@@ -158,33 +165,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Secure
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Http.CookieOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Http.CookieOptions.CookieOptions()
-    
-        
-    
-        
-        Creates a default cookie with a path of '/'.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public CookieOptions()
+            public bool Secure { get; set; }
     
 

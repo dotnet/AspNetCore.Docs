@@ -64,16 +64,6 @@ Microsoft.AspNetCore.Mvc.DataAnnotations Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.DataAnnotations
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`MvcDataAnnotationsLocalizationOptions`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions
-
-        
-        Provides programmatic configuration for DataAnnotations localization in the MVC framework.
-
-
     .. rubric:: Interfaces
 
 
@@ -89,5 +79,15 @@ Microsoft.AspNetCore.Mvc.DataAnnotations Namespace
 
         
         Provider for supplying :any:`Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter`\'s.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`MvcDataAnnotationsLocalizationOptions`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions
+
+        
+        Provides programmatic configuration for DataAnnotations localization in the MVC framework.
 
 

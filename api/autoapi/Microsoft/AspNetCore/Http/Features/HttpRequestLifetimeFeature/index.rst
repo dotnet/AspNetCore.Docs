@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature.RequestAborted
-    
-        
-        :rtype: System.Threading.CancellationToken
-    
-        
-        .. code-block:: csharp
-    
-            public CancellationToken RequestAborted
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -91,5 +68,24 @@ Methods
         .. code-block:: csharp
     
             public void Abort()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpRequestLifetimeFeature.RequestAborted
+    
+        
+        :rtype: System.Threading.CancellationToken
+    
+        
+        .. code-block:: csharp
+    
+            public CancellationToken RequestAborted { get; set; }
     
 

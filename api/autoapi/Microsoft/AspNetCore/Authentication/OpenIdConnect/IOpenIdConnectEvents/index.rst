@@ -146,6 +146,24 @@ Methods
     
             Task RedirectToIdentityProviderForSignOut(RedirectContext context)
     
+    .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.IOpenIdConnectEvents.RemoteSignOut(Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext)
+    
+        
+    
+        
+        Invoked when a request is received on the RemoteSignOutPath.
+    
+        
+    
+        
+        :type context: Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext
+        :rtype: System.Threading.Tasks.Task
+    
+        
+        .. code-block:: csharp
+    
+            Task RemoteSignOut(RemoteSignOutContext context)
+    
     .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.IOpenIdConnectEvents.TokenResponseReceived(Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext)
     
         

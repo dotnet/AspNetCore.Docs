@@ -53,54 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.BufferState
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.Internal.SegmentState
-    
-        
-        .. code-block:: csharp
-    
-            public SegmentState BufferState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.UriState
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.Internal.SegmentState
-    
-        
-        .. code-block:: csharp
-    
-            public SegmentState UriState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.Writer
-    
-        
-        :rtype: System.IO.TextWriter
-    
-        
-        .. code-block:: csharp
-    
-            public TextWriter Writer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -195,5 +147,44 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.BufferState
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.Internal.SegmentState
+    
+        
+        .. code-block:: csharp
+    
+            public SegmentState BufferState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.UriState
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.Internal.SegmentState
+    
+        
+        .. code-block:: csharp
+    
+            public SegmentState UriState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.UriBuildingContext.Writer
+    
+        
+        :rtype: System.IO.TextWriter
+    
+        
+        .. code-block:: csharp
+    
+            public TextWriter Writer { get; }
     
 

@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Key
-            {
-                get;
-            }
+            string Key { get; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationSection.Path
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Path
-            {
-                get;
-            }
+            string Path { get; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationSection.Value
     
@@ -105,10 +99,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Value
-            {
-                get;
-                set;
-            }
+            string Value { get; set; }
     
 

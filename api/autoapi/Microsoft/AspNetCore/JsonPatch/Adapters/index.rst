@@ -56,15 +56,6 @@ Microsoft.AspNetCore.JsonPatch.Adapters Namespace
 .. dn:namespace:: Microsoft.AspNetCore.JsonPatch.Adapters
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ObjectAdapter`
-        .. object: type=class name=Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -73,5 +64,14 @@ Microsoft.AspNetCore.JsonPatch.Adapters Namespace
 
         
         Defines the operations that can be performed on a JSON patch document.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ObjectAdapter`
+        .. object: type=class name=Microsoft.AspNetCore.JsonPatch.Adapters.ObjectAdapter
+
+        
 
 

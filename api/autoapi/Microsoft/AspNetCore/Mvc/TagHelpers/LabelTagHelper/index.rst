@@ -58,76 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.For
-    
-        
-    
-        
-        An expression to be evaluated against the current model.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ModelExpression
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-for")]
-            public ModelExpression For
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.Generator
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-    
-        
-        .. code-block:: csharp
-    
-            protected IHtmlGenerator Generator
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -154,6 +84,62 @@ Constructors
         .. code-block:: csharp
     
             public LabelTagHelper(IHtmlGenerator generator)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.For
+    
+        
+    
+        
+        An expression to be evaluated against the current model.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-for")]
+            public ModelExpression For { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.Generator
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+    
+        
+        .. code-block:: csharp
+    
+            protected IHtmlGenerator Generator { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
     
 
 Methods

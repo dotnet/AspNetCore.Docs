@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.SearchedLocations
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> SearchedLocations
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.Success
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Success
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.View
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewEngines.IView
-    
-        
-        .. code-block:: csharp
-    
-            public IView View
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.ViewName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ViewName
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -175,5 +114,54 @@ Methods
         .. code-block:: csharp
     
             public static ViewEngineResult NotFound(string viewName, IEnumerable<string> searchedLocations)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.SearchedLocations
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> SearchedLocations { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.Success
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Success { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.View
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewEngines.IView
+    
+        
+        .. code-block:: csharp
+    
+            public IView View { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.ViewName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ViewName { get; }
     
 

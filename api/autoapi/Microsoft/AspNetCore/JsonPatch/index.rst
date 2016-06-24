@@ -80,6 +80,15 @@ Microsoft.AspNetCore.JsonPatch Namespace
 .. dn:namespace:: Microsoft.AspNetCore.JsonPatch
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IJsonPatchDocument`
+        .. object: type=interface name=Microsoft.AspNetCore.JsonPatch.IJsonPatchDocument
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -107,14 +116,5 @@ Microsoft.AspNetCore.JsonPatch Namespace
 
         
         Metadata for JsonProperty.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IJsonPatchDocument`
-        .. object: type=interface name=Microsoft.AspNetCore.JsonPatch.IJsonPatchDocument
-
-        
 
 

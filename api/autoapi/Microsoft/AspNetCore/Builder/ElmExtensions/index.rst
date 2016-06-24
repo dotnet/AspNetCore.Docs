@@ -76,7 +76,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseElmCapture(IApplicationBuilder app)
+            public static IApplicationBuilder UseElmCapture(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ElmExtensions.UseElmPage(Microsoft.AspNetCore.Builder.IApplicationBuilder)
     
@@ -94,6 +94,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseElmPage(IApplicationBuilder app)
+            public static IApplicationBuilder UseElmPage(this IApplicationBuilder app)
     
 

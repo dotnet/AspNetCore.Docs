@@ -8,7 +8,7 @@ ViewContextAttribute Class
 
 
 
-Specifies that a tag helper property should be set with the current
+Specifies that a tag helper property should be set with the current 
 :any:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext` when creating the tag helper. The property must have a
 public set method.
 

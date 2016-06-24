@@ -52,84 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.ChunkGenerator
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
-    
-        
-        .. code-block:: csharp
-    
-            public ISpanChunkGenerator ChunkGenerator
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.EditHandler
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
-    
-        
-        .. code-block:: csharp
-    
-            public SpanEditHandler EditHandler
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Kind
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanKind
-    
-        
-        .. code-block:: csharp
-    
-            public SpanKind Kind
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Start
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Symbols
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ISymbol> Symbols
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -207,5 +129,64 @@ Methods
         .. code-block:: csharp
     
             public void Reset()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.ChunkGenerator
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
+    
+        
+        .. code-block:: csharp
+    
+            public ISpanChunkGenerator ChunkGenerator { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.EditHandler
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
+    
+        
+        .. code-block:: csharp
+    
+            public SpanEditHandler EditHandler { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Kind
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanKind
+    
+        
+        .. code-block:: csharp
+    
+            public SpanKind Kind { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Start { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder.Symbols
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ISymbol> Symbols { get; }
     
 

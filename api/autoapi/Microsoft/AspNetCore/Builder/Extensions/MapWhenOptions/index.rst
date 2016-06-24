@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public RequestDelegate Branch
-            {
-                get;
-                set;
-            }
+            public RequestDelegate Branch { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.Extensions.MapWhenOptions.Predicate
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<HttpContext, bool> Predicate
-            {
-                get;
-                set;
-            }
+            public Func<HttpContext, bool> Predicate { get; set; }
     
 

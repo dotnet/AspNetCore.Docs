@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.DescribeSchemesContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.DescribeSchemesContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.DescribeSchemesContext.Results
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<IDictionary<string, object>> Results
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -111,5 +89,24 @@ Methods
         .. code-block:: csharp
     
             public void Accept(IDictionary<string, object> description)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.DescribeSchemesContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.DescribeSchemesContext.Results
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<IDictionary<string, object>> Results { get; }
     
 

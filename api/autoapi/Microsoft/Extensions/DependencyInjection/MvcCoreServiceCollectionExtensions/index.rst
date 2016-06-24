@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddMvcCore(IServiceCollection services)
+            public static IMvcCoreBuilder AddMvcCore(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Mvc.MvcOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddMvcCore(IServiceCollection services, Action<MvcOptions> setupAction)
+            public static IMvcCoreBuilder AddMvcCore(this IServiceCollection services, Action<MvcOptions> setupAction)
     
 

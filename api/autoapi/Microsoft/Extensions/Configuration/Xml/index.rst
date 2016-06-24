@@ -71,7 +71,7 @@ Microsoft.Extensions.Configuration.Xml Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider
 
         
-        An XML file based :any:`Microsoft.Extensions.Configuration.FileConfigurationProvider`\.
+        Represents an XML file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 
     class :dn:cls:`XmlConfigurationSource`
@@ -85,5 +85,6 @@ Microsoft.Extensions.Configuration.Xml Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor
 
         
+        Class responsible for encrypting and decrypting XML.
 
 

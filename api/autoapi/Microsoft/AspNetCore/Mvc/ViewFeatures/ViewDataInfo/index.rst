@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.Container
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Container
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.PropertyInfo
-    
-        
-        :rtype: System.Reflection.PropertyInfo
-    
-        
-        .. code-block:: csharp
-    
-            public PropertyInfo PropertyInfo
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.Value
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -114,7 +65,7 @@ Constructors
         
     
         
-        Initializes a new instance of the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` class with info about a
+        Initializes a new instance of the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` class with info about a 
         :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` lookup which has already been evaluated.
     
         
@@ -135,7 +86,7 @@ Constructors
         
     
         
-        Initializes a new instance of the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` class with info about a
+        Initializes a new instance of the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` class with info about a 
         :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` lookup which is evaluated when :dn:prop:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.Value` is read.
     
         
@@ -153,5 +104,44 @@ Constructors
         .. code-block:: csharp
     
             public ViewDataInfo(object container, PropertyInfo propertyInfo, Func<object> valueAccessor)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.Container
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Container { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.PropertyInfo
+    
+        
+        :rtype: System.Reflection.PropertyInfo
+    
+        
+        .. code-block:: csharp
+    
+            public PropertyInfo PropertyInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo.Value
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Value { get; set; }
     
 

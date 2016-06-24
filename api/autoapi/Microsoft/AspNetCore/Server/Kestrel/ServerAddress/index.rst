@@ -52,93 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Host
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.IsUnixPipe
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsUnixPipe
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.PathBase
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string PathBase
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Port
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Port
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Scheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Scheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.UnixPipePath
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string UnixPipePath
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -192,5 +105,74 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Host
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Host { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.IsUnixPipe
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsUnixPipe { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.PathBase
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string PathBase { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Port
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Port { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.Scheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Scheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.ServerAddress.UnixPipePath
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string UnixPipePath { get; }
     
 

@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCors(IApplicationBuilder app, Action<CorsPolicyBuilder> configurePolicy)
+            public static IApplicationBuilder UseCors(this IApplicationBuilder app, Action<CorsPolicyBuilder> configurePolicy)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -114,6 +114,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCors(IApplicationBuilder app, string policyName)
+            public static IApplicationBuilder UseCors(this IApplicationBuilder app, string policyName)
     
 

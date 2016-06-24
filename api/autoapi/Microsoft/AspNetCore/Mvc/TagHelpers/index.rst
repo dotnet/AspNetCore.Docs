@@ -71,10 +71,6 @@ Microsoft.AspNetCore.Mvc.TagHelpers Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/TagHelperContentExtensions/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/TagHelperOutputExtensions/index
    
    
@@ -100,10 +96,6 @@ Microsoft.AspNetCore.Mvc.TagHelpers Namespace
    :hidden:
    :maxdepth: 2
 
-   
-   
-   
-   
    
    
    
@@ -294,13 +286,6 @@ Microsoft.AspNetCore.Mvc.TagHelpers Namespace
         
         :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` implementation targeting <select> elements with <code>asp-for</code> and/or
         <code>asp-items</code> attribute(s).
-
-
-    class :dn:cls:`TagHelperContentExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.TagHelpers.TagHelperContentExtensions
-
-        
-        Extension methods for :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent`\.
 
 
     class :dn:cls:`TagHelperOutputExtensions`

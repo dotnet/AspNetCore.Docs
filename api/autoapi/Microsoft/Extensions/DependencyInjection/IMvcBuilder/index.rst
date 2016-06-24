@@ -70,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            ApplicationPartManager PartManager
-            {
-                get;
-            }
+            ApplicationPartManager PartManager { get; }
     
     .. dn:property:: Microsoft.Extensions.DependencyInjection.IMvcBuilder.Services
     
@@ -88,9 +85,6 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceCollection Services
-            {
-                get;
-            }
+            IServiceCollection Services { get; }
     
 

@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext.Actions
-    
-        
-    
-        
-        The list of actions.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ActionDescriptor> Actions
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext.Results
-    
-        
-    
-        
-        The list of resulting :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription`\.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription<Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<ApiDescription> Results
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -127,5 +82,44 @@ Constructors
         .. code-block:: csharp
     
             public ApiDescriptionProviderContext(IReadOnlyList<ActionDescriptor> actions)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext.Actions
+    
+        
+    
+        
+        The list of actions.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ActionDescriptor> Actions { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionProviderContext.Results
+    
+        
+    
+        
+        The list of resulting :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription`\.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription<Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<ApiDescription> Results { get; }
     
 

@@ -7,6 +7,10 @@ KestrelServerOptions Class
 
 
 
+
+Provides programmatic configuration of Kestrel-specific features.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Server.Kestrel`
 Assemblies
@@ -60,81 +64,12 @@ Properties
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ApplicationServices
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceProvider ApplicationServices
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ConnectionFilter
-    
-        
-        :rtype: Microsoft.AspNetCore.Server.Kestrel.Filter.IConnectionFilter
-    
-        
-        .. code-block:: csharp
-    
-            public IConnectionFilter ConnectionFilter
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.MaxPooledHeaders
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.AddServerHeader
     
         
     
         
-        Gets or sets value that instructs :any:`Microsoft.AspNetCore.Server.Kestrel.KestrelServer` whether it is safe to 
-        pool the Request and Response headers
-        for another request after the Response's OnCompleted callback has fired. 
-        When this values is greater than zero, it is not safe to retain references to feature components after this event has fired.
-        Value is zero by default.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxPooledHeaders
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.MaxPooledStreams
-    
-        
-    
-        
-        Gets or sets value that instructs :any:`Microsoft.AspNetCore.Server.Kestrel.KestrelServer` whether it is safe to 
-        pool the Request and Response :any:`System.IO.Stream` objects
-        for another request after the Response's OnCompleted callback has fired. 
-        When this values is greater than zero, it is not safe to retain references to feature components after this event has fired.
-        Value is zero by default.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxPooledStreams
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.NoDelay
+        Gets or sets whether the <code>Server</code> header should be included in each response.
     
         
         :rtype: System.Boolean
@@ -142,11 +77,72 @@ Properties
         
         .. code-block:: csharp
     
-            public bool NoDelay
-            {
-                get;
-                set;
-            }
+            public bool AddServerHeader { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ApplicationServices
+    
+        
+    
+        
+        Enables the UseKestrel options callback to resolve and use services registered by the application during startup.
+        Typically initialized by :dn:meth:`Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.Action{Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions})`\.
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceProvider ApplicationServices { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ConnectionFilter
+    
+        
+    
+        
+        Gets or sets an :any:`Microsoft.AspNetCore.Server.Kestrel.Filter.IConnectionFilter` that allows each connection :any:`System.IO.Stream`
+        to be intercepted and transformed.
+        Configured by the <code>UseHttps()</code> and :dn:meth:`Microsoft.AspNetCore.Hosting.KestrelServerOptionsConnectionLoggingExtensions.UseConnectionLogging(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)`
+        extension methods.
+    
+        
+        :rtype: Microsoft.AspNetCore.Server.Kestrel.Filter.IConnectionFilter
+    
+        
+        .. code-block:: csharp
+    
+            public IConnectionFilter ConnectionFilter { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.MaxRequestBufferSize
+    
+        
+    
+        
+        Maximum size of the request buffer.
+        If value is null, the size of the request buffer is unlimited.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? MaxRequestBufferSize { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.NoDelay
+    
+        
+    
+        
+        Set to false to enable Nagle's algorithm for all connections.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool NoDelay { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ShutdownTimeout
     
@@ -154,8 +150,8 @@ Properties
     
         
         The amount of time after the server begins shutting down before connections will be forcefully closed.
-        By default, Kestrel will wait 5 seconds for any ongoing requests to complete before terminating
-        the connection.
+        Kestrel will wait for the duration of the timeout for any ongoing request processing to complete before
+        terminating the connection. No new connections or requests will be accepted during this time.
     
         
         :rtype: System.TimeSpan
@@ -163,13 +159,14 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan ShutdownTimeout
-            {
-                get;
-                set;
-            }
+            public TimeSpan ShutdownTimeout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ThreadCount
+    
+        
+    
+        
+        The number of libuv I/O threads used to process requests.
     
         
         :rtype: System.Int32
@@ -177,10 +174,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int ThreadCount
-            {
-                get;
-                set;
-            }
+            public int ThreadCount { get; set; }
     
 

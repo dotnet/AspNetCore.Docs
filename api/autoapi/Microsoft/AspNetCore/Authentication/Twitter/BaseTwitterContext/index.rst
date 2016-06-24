@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.BaseTwitterContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.BaseTwitterContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.BaseTwitterContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.TwitterOptions
-    
-        
-        .. code-block:: csharp
-    
-            public TwitterOptions Options
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,5 +88,24 @@ Constructors
         .. code-block:: csharp
     
             public BaseTwitterContext(HttpContext context, TwitterOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.BaseTwitterContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.BaseTwitterContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.TwitterOptions
+    
+        
+        .. code-block:: csharp
+    
+            public TwitterOptions Options { get; }
     
 

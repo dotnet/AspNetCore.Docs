@@ -79,7 +79,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static DistributedCacheEntryOptions SetAbsoluteExpiration(DistributedCacheEntryOptions options, DateTimeOffset absolute)
+            public static DistributedCacheEntryOptions SetAbsoluteExpiration(this DistributedCacheEntryOptions options, DateTimeOffset absolute)
     
     .. dn:method:: Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryExtensions.SetAbsoluteExpiration(Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions, System.TimeSpan)
     
@@ -100,7 +100,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static DistributedCacheEntryOptions SetAbsoluteExpiration(DistributedCacheEntryOptions options, TimeSpan relative)
+            public static DistributedCacheEntryOptions SetAbsoluteExpiration(this DistributedCacheEntryOptions options, TimeSpan relative)
     
     .. dn:method:: Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryExtensions.SetSlidingExpiration(Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions, System.TimeSpan)
     
@@ -122,6 +122,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static DistributedCacheEntryOptions SetSlidingExpiration(DistributedCacheEntryOptions options, TimeSpan offset)
+            public static DistributedCacheEntryOptions SetSlidingExpiration(this DistributedCacheEntryOptions options, TimeSpan offset)
     
 

@@ -83,6 +83,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddMiddlewareAnalysis(IServiceCollection services)
+            public static IServiceCollection AddMiddlewareAnalysis(this IServiceCollection services)
     
 

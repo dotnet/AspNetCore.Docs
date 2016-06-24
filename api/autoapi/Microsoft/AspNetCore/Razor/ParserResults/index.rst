@@ -56,124 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.ParserResults
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.ParserResults
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Document
-    
-        
-    
-        
-        The root node in the document's syntax tree.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block Document
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.ErrorSink
-    
-        
-    
-        
-        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
-    
-        
-        .. code-block:: csharp
-    
-            public ErrorSink ErrorSink
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.ParserErrors
-    
-        
-    
-        
-        The list of errors which occurred during parsing.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<RazorError> ParserErrors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Prefix
-    
-        
-    
-        
-        Text used as a required prefix when matching HTML.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Prefix
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Success
-    
-        
-    
-        
-        Indicates if parsing was successful (no errors).
-    
-        
-        :rtype: System.Boolean
-        :return: <code>true</code> if parsing was successful, <code>false</code> otherwise.
-    
-        
-        .. code-block:: csharp
-    
-            public bool Success
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.TagHelperDescriptors
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s found for the current Razor document.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<TagHelperDescriptor> TagHelperDescriptors
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -250,5 +132,105 @@ Constructors
         .. code-block:: csharp
     
             protected ParserResults(bool success, Block document, IEnumerable<TagHelperDescriptor> tagHelperDescriptors, ErrorSink errorSink)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.ParserResults
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Document
+    
+        
+    
+        
+        The root node in the document's syntax tree.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block Document { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.ErrorSink
+    
+        
+    
+        
+        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
+    
+        
+        .. code-block:: csharp
+    
+            public ErrorSink ErrorSink { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.ParserErrors
+    
+        
+    
+        
+        The list of errors which occurred during parsing.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<RazorError> ParserErrors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Prefix
+    
+        
+    
+        
+        Text used as a required prefix when matching HTML.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Prefix { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.Success
+    
+        
+    
+        
+        Indicates if parsing was successful (no errors).
+    
+        
+        :rtype: System.Boolean
+        :return: <code>true</code> if parsing was successful, <code>false</code> otherwise.
+    
+        
+        .. code-block:: csharp
+    
+            public bool Success { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.ParserResults.TagHelperDescriptors
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s found for the current Razor document.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<TagHelperDescriptor> TagHelperDescriptors { get; }
     
 

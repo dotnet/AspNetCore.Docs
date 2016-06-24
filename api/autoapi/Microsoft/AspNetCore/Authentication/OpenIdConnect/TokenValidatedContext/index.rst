@@ -55,71 +55,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.Nonce
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Nonce
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.Properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.SecurityToken
-    
-        
-        :rtype: System.IdentityModel.Tokens.Jwt.JwtSecurityToken
-    
-        
-        .. code-block:: csharp
-    
-            public JwtSecurityToken SecurityToken
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.TokenEndpointResponse
-    
-        
-        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectMessage TokenEndpointResponse
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -147,5 +82,54 @@ Constructors
         .. code-block:: csharp
     
             public TokenValidatedContext(HttpContext context, OpenIdConnectOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.Nonce
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Nonce { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.Properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.SecurityToken
+    
+        
+        :rtype: System.IdentityModel.Tokens.Jwt.JwtSecurityToken
+    
+        
+        .. code-block:: csharp
+    
+            public JwtSecurityToken SecurityToken { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext.TokenEndpointResponse
+    
+        
+        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectMessage TokenEndpointResponse { get; set; }
     
 

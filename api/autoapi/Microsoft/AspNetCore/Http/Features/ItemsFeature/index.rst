@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.ItemsFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.ItemsFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.ItemsFeature.Items
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<object, object> Items
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -91,5 +68,24 @@ Constructors
         .. code-block:: csharp
     
             public ItemsFeature()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.ItemsFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.ItemsFeature.Items
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<object, object> Items { get; set; }
     
 

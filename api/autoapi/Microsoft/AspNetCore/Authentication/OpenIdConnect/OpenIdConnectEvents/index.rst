@@ -57,167 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnAuthenticationFailed
-    
-        
-    
-        
-        Invoked if exceptions are thrown during request processing. The exceptions will be re-thrown after this event unless suppressed.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<AuthenticationFailedContext, Task> OnAuthenticationFailed
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnAuthorizationCodeReceived
-    
-        
-    
-        
-        Invoked after security token validation if an authorization code is present in the protocol message.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<AuthorizationCodeReceivedContext, Task> OnAuthorizationCodeReceived
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnMessageReceived
-    
-        
-    
-        
-        Invoked when a protocol message is first received.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.MessageReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.MessageReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<MessageReceivedContext, Task> OnMessageReceived
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProvider
-    
-        
-    
-        
-        Invoked before redirecting to the identity provider to authenticate.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<RedirectContext, Task> OnRedirectToIdentityProvider
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProviderForSignOut
-    
-        
-    
-        
-        Invoked before redirecting to the identity provider to sign out.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<RedirectContext, Task> OnRedirectToIdentityProviderForSignOut
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived
-    
-        
-    
-        
-        Invoked after "authorization code" is redeemed for tokens at the token endpoint.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TokenResponseReceivedContext, Task> OnTokenResponseReceived
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenValidated
-    
-        
-    
-        
-        Invoked when an IdToken has been validated and produced an AuthenticationTicket.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TokenValidatedContext, Task> OnTokenValidated
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnUserInformationReceived
-    
-        
-    
-        
-        Invoked when user information is retrieved from the UserInfoEndpoint.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<UserInformationReceivedContext, Task> OnUserInformationReceived
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -291,6 +130,19 @@ Methods
     
             public virtual Task RedirectToIdentityProviderForSignOut(RedirectContext context)
     
+    .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.RemoteSignOut(Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext)
+    
+        
+    
+        
+        :type context: Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext
+        :rtype: System.Threading.Tasks.Task
+    
+        
+        .. code-block:: csharp
+    
+            public virtual Task RemoteSignOut(RemoteSignOutContext context)
+    
     .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.TokenResponseReceived(Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext)
     
         
@@ -329,5 +181,149 @@ Methods
         .. code-block:: csharp
     
             public virtual Task UserInformationReceived(UserInformationReceivedContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnAuthenticationFailed
+    
+        
+    
+        
+        Invoked if exceptions are thrown during request processing. The exceptions will be re-thrown after this event unless suppressed.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<AuthenticationFailedContext, Task> OnAuthenticationFailed { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnAuthorizationCodeReceived
+    
+        
+    
+        
+        Invoked after security token validation if an authorization code is present in the protocol message.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthorizationCodeReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<AuthorizationCodeReceivedContext, Task> OnAuthorizationCodeReceived { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnMessageReceived
+    
+        
+    
+        
+        Invoked when a protocol message is first received.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.MessageReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.MessageReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<MessageReceivedContext, Task> OnMessageReceived { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProvider
+    
+        
+    
+        
+        Invoked before redirecting to the identity provider to authenticate.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<RedirectContext, Task> OnRedirectToIdentityProvider { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProviderForSignOut
+    
+        
+    
+        
+        Invoked before redirecting to the identity provider to sign out.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<RedirectContext, Task> OnRedirectToIdentityProviderForSignOut { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRemoteSignOut
+    
+        
+    
+        
+        Invoked when a request is received on the RemoteSignOutPath.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<RemoteSignOutContext, Task> OnRemoteSignOut { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenResponseReceived
+    
+        
+    
+        
+        Invoked after "authorization code" is redeemed for tokens at the token endpoint.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TokenResponseReceivedContext, Task> OnTokenResponseReceived { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnTokenValidated
+    
+        
+    
+        
+        Invoked when an IdToken has been validated and produced an AuthenticationTicket.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenValidatedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TokenValidatedContext, Task> OnTokenValidated { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnUserInformationReceived
+    
+        
+    
+        
+        Invoked when user information is retrieved from the UserInfoEndpoint.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext<Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<UserInformationReceivedContext, Task> OnUserInformationReceived { get; set; }
     
 

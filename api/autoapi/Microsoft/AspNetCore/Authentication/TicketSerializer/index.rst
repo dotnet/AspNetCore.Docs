@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static TicketSerializer Default
-            {
-                get;
-            }
+            public static TicketSerializer Default { get; }
     
 
 Methods

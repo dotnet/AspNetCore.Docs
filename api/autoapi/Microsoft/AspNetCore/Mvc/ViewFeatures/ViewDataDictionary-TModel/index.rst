@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<TModel>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<TModel>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<TModel>.Model
-    
-        
-        :rtype: TModel
-    
-        
-        .. code-block:: csharp
-    
-            public TModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -128,7 +105,7 @@ Constructors
     
         
         Initializes a new instance of the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` class based in part on an
-        existing :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` instance. This constructor is careful to avoid exceptions
+        existing :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` instance. This constructor is careful to avoid exceptions 
         :dn:meth:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.SetModel(System.Object)` may throw when <em>model</em> is <code>null</code>.
     
         
@@ -143,5 +120,24 @@ Constructors
         .. code-block:: csharp
     
             public ViewDataDictionary(ViewDataDictionary source, object model)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<TModel>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<TModel>.Model
+    
+        
+        :rtype: TModel
+    
+        
+        .. code-block:: csharp
+    
+            public TModel Model { get; set; }
     
 

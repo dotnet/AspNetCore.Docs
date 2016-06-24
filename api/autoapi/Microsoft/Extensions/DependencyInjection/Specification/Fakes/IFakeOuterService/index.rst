@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IEnumerable<IFakeMultipleService> MultipleServices
-            {
-                get;
-            }
+            IEnumerable<IFakeMultipleService> MultipleServices { get; }
     
     .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeOuterService.SingleService
     
@@ -73,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            IFakeService SingleService
-            {
-                get;
-            }
+            IFakeService SingleService { get; }
     
 

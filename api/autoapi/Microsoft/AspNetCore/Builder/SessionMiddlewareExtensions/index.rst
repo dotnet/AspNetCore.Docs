@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseSession(IApplicationBuilder app)
+            public static IApplicationBuilder UseSession(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.SessionOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseSession(IApplicationBuilder app, SessionOptions options)
+            public static IApplicationBuilder UseSession(this IApplicationBuilder app, SessionOptions options)
     
 

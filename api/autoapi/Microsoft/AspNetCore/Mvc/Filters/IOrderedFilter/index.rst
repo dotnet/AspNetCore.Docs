@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            int Order
-            {
-                get;
-            }
+            int Order { get; }
     
 

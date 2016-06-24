@@ -59,53 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.VirtualFileResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.VirtualFileResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.VirtualFileResult.FileName
-    
-        
-    
-        
-        Gets or sets the path to the file that will be sent back as the response.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.VirtualFileResult.FileProvider
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to resolve paths.
-    
-        
-        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IFileProvider FileProvider
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -174,38 +127,56 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.VirtualFileResult.GetFileStream(Microsoft.Extensions.FileProviders.IFileInfo)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.VirtualFileResult.ExecuteResultAsync(Microsoft.AspNetCore.Mvc.ActionContext)
     
         
     
         
-        Returns :any:`System.IO.Stream` for the specified <em>fileInfo</em>.
-    
-        
-    
-        
-        :param fileInfo: The :any:`Microsoft.Extensions.FileProviders.IFileInfo` for which the stream is needed.
-        
-        :type fileInfo: Microsoft.Extensions.FileProviders.IFileInfo
-        :rtype: System.IO.Stream
-        :return: :any:`System.IO.Stream` for the specified <em>fileInfo</em>.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual Stream GetFileStream(IFileInfo fileInfo)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.VirtualFileResult.WriteFileAsync(Microsoft.AspNetCore.Http.HttpResponse)
-    
-        
-    
-        
-        :type response: Microsoft.AspNetCore.Http.HttpResponse
+        :type context: Microsoft.AspNetCore.Mvc.ActionContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override Task WriteFileAsync(HttpResponse response)
+            public override Task ExecuteResultAsync(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.VirtualFileResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.VirtualFileResult.FileName
+    
+        
+    
+        
+        Gets or sets the path to the file that will be sent back as the response.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.VirtualFileResult.FileProvider
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.Extensions.FileProviders.IFileProvider` used to resolve paths.
+    
+        
+        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IFileProvider FileProvider { get; set; }
     
 

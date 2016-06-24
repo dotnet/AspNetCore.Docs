@@ -7,6 +7,10 @@ ConfigurationRoot Class
 
 
 
+
+The root node for a configuration.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration`
 Assemblies
@@ -52,32 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Configuration.ConfigurationRoot
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationRoot
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationRoot.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string this[string key]
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -90,6 +68,13 @@ Constructors
     
         
     
+        
+        Initializes a Configuration root with a list of providers.
+    
+        
+    
+        
+        :param providers: The :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`\s for this configuration.
         
         :type providers: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Extensions.Configuration.IConfigurationProvider<Microsoft.Extensions.Configuration.IConfigurationProvider>}
     
@@ -110,6 +95,11 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationRoot.GetChildren()
     
         
+    
+        
+        Gets the immediate children sub-sections.
+    
+        
         :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Configuration.IConfigurationSection<Microsoft.Extensions.Configuration.IConfigurationSection>}
     
         
@@ -118,6 +108,11 @@ Methods
             public IEnumerable<IConfigurationSection> GetChildren()
     
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationRoot.GetReloadToken()
+    
+        
+    
+        
+        Returns a :any:`Microsoft.Extensions.Primitives.IChangeToken` that can be used to observe when this configuration is reloaded.
     
         
         :rtype: Microsoft.Extensions.Primitives.IChangeToken
@@ -132,8 +127,16 @@ Methods
         
     
         
+        Gets a configuration sub-section with the specified key.
+    
+        
+    
+        
+        :param key: The key of the configuration section.
+        
         :type key: System.String
         :rtype: Microsoft.Extensions.Configuration.IConfigurationSection
+        :return: The :any:`Microsoft.Extensions.Configuration.IConfigurationSection`\.
     
         
         .. code-block:: csharp
@@ -145,8 +148,43 @@ Methods
         
     
         
+        Force the configuration values to be reloaded from the underlying sources.
+    
+        
+    
+        
         .. code-block:: csharp
     
             public void Reload()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationRoot
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationRoot.Item[System.String]
+    
+        
+    
+        
+        Gets or sets the value corresponding to a configuration key.
+    
+        
+    
+        
+        :param key: The configuration key.
+        
+        :type key: System.String
+        :rtype: System.String
+        :return: The configuration value.
+    
+        
+        .. code-block:: csharp
+    
+            public string this[string key] { get; set; }
     
 

@@ -74,7 +74,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDisposable SubscribeWithAdapter(DiagnosticListener diagnostic, object target)
+            public static IDisposable SubscribeWithAdapter(this DiagnosticListener diagnostic, object target)
     
     .. dn:method:: System.Diagnostics.DiagnosticListenerExtensions.SubscribeWithAdapter(System.Diagnostics.DiagnosticListener, System.Object, System.Func<System.String, System.Boolean>)
     
@@ -93,6 +93,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDisposable SubscribeWithAdapter(DiagnosticListener diagnostic, object target, Func<string, bool> isEnabled)
+            public static IDisposable SubscribeWithAdapter(this DiagnosticListener diagnostic, object target, Func<string, bool> isEnabled)
     
 

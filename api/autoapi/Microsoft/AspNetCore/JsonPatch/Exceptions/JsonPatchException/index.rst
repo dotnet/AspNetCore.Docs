@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException.AffectedObject
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object AffectedObject
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException.FailedOperation
-    
-        
-        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.Operation
-    
-        
-        .. code-block:: csharp
-    
-            public Operation FailedOperation
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -146,5 +111,34 @@ Constructors
         .. code-block:: csharp
     
             public JsonPatchException(string message, Exception innerException)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException.AffectedObject
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object AffectedObject { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Exceptions.JsonPatchException.FailedOperation
+    
+        
+        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.Operation
+    
+        
+        .. code-block:: csharp
+    
+            public Operation FailedOperation { get; }
     
 

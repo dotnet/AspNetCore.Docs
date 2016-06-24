@@ -78,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CancellationToken ApplicationStarted
-            {
-                get;
-            }
+            public CancellationToken ApplicationStarted { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.ApplicationLifetime.ApplicationStopped
     
@@ -98,10 +95,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CancellationToken ApplicationStopped
-            {
-                get;
-            }
+            public CancellationToken ApplicationStopped { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.ApplicationLifetime.ApplicationStopping
     
@@ -117,10 +111,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CancellationToken ApplicationStopping
-            {
-                get;
-            }
+            public CancellationToken ApplicationStopping { get; }
     
 
 Methods

@@ -72,6 +72,16 @@ Microsoft.AspNetCore.Mvc.Cors.Internal Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Cors.Internal
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICorsAuthorizationFilter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Cors.Internal.ICorsAuthorizationFilter
+
+        
+        A filter that can be used to enable/disable CORS support for a resource.
+
+
     .. rubric:: Classes
 
 
@@ -93,15 +103,5 @@ Microsoft.AspNetCore.Mvc.Cors.Internal Namespace
 
         
         An :any:`Microsoft.AspNetCore.Mvc.Cors.Internal.ICorsAuthorizationFilter` which ensures that an action does not run for a pre-flight request.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICorsAuthorizationFilter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Cors.Internal.ICorsAuthorizationFilter
-
-        
-        A filter that can be used to enable/disable CORS support for a resource.
 
 

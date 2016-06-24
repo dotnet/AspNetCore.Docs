@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingInfo BindingInfo
-            {
-                get;
-                set;
-            }
+            public BindingInfo BindingInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactoryContext.CacheToken
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object CacheToken
-            {
-                get;
-                set;
-            }
+            public object CacheToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactoryContext.Metadata
     
@@ -116,10 +108,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata Metadata
-            {
-                get;
-                set;
-            }
+            public ModelMetadata Metadata { get; set; }
     
 

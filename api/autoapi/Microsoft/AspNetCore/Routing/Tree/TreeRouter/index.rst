@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Tree.TreeRouter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Tree.TreeRouter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.Version
-    
-        
-    
-        
-        Gets the version of this route.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Version
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -91,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.TreeRouter(Microsoft.AspNetCore.Routing.IRouter, Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree[], System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry>, Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.ILogger, System.Int32)
+    .. dn:constructor:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.TreeRouter(Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree[], System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry>, System.Text.Encodings.Web.UrlEncoder, Microsoft.Extensions.ObjectPool.ObjectPool<Microsoft.AspNetCore.Routing.Internal.UriBuildingContext>, Microsoft.Extensions.Logging.ILogger, Microsoft.Extensions.Logging.ILogger, System.Int32)
     
         
     
@@ -101,19 +74,24 @@ Constructors
         
     
         
-        :param next: The next router. Invoked when a route entry matches.
-        
-        :type next: Microsoft.AspNetCore.Routing.IRouter
-    
-        
         :param trees: The list of :any:`Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree` that contains the route entries.
         
         :type trees: Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree<Microsoft.AspNetCore.Routing.Tree.UrlMatchingTree>[]
     
         
-        :param linkGenerationEntries: The set of :any:`Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry`\.
+        :param linkGenerationEntries: The set of :any:`Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry`\.
         
-        :type linkGenerationEntries: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry<Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry>}
+        :type linkGenerationEntries: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry<Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry>}
+    
+        
+        :param urlEncoder: The :any:`System.Text.Encodings.Web.UrlEncoder`\.
+        
+        :type urlEncoder: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        :param objectPool: The :any:`Microsoft.Extensions.ObjectPool.ObjectPool\`1`\.
+        
+        :type objectPool: Microsoft.Extensions.ObjectPool.ObjectPool<Microsoft.Extensions.ObjectPool.ObjectPool`1>{Microsoft.AspNetCore.Routing.Internal.UriBuildingContext<Microsoft.AspNetCore.Routing.Internal.UriBuildingContext>}
     
         
         :param routeLogger: The :any:`Microsoft.Extensions.Logging.ILogger` instance.
@@ -134,26 +112,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public TreeRouter(IRouter next, UrlMatchingTree[] trees, IEnumerable<TreeRouteLinkGenerationEntry> linkGenerationEntries, ILogger routeLogger, ILogger constraintLogger, int version)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Tree.TreeRouter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.RouteGroupKey
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string RouteGroupKey
+            public TreeRouter(UrlMatchingTree[] trees, IEnumerable<OutboundRouteEntry> linkGenerationEntries, UrlEncoder urlEncoder, ObjectPool<UriBuildingContext> objectPool, ILogger routeLogger, ILogger constraintLogger, int version)
     
 
 Methods
@@ -189,5 +148,48 @@ Methods
         .. code-block:: csharp
     
             public Task RouteAsync(RouteContext context)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Tree.TreeRouter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.RouteGroupKey
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string RouteGroupKey
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Tree.TreeRouter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Tree.TreeRouter.Version
+    
+        
+    
+        
+        Gets the version of this route.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Version { get; }
     
 

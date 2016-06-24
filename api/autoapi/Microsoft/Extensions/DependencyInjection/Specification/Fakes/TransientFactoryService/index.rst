@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IFakeService FakeService
-            {
-                get;
-                set;
-            }
+            public IFakeService FakeService { get; set; }
     
     .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.TransientFactoryService.Value
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int Value
-            {
-                get;
-                set;
-            }
+            public int Value { get; set; }
     
 

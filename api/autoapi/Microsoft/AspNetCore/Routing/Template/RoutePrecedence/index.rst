@@ -8,7 +8,7 @@ RoutePrecedence Class
 
 
 
-Computes precedence for an attribute route template.
+Computes precedence for a route template.
 
 
 Namespace
@@ -64,7 +64,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Routing.Template.RoutePrecedence.ComputeGenerated(Microsoft.AspNetCore.Routing.Template.RouteTemplate)
+    .. dn:method:: Microsoft.AspNetCore.Routing.Template.RoutePrecedence.ComputeInbound(Microsoft.AspNetCore.Routing.Template.RouteTemplate)
     
         
     
@@ -75,9 +75,9 @@ Methods
         
         .. code-block:: csharp
     
-            public static decimal ComputeGenerated(RouteTemplate template)
+            public static decimal ComputeInbound(RouteTemplate template)
     
-    .. dn:method:: Microsoft.AspNetCore.Routing.Template.RoutePrecedence.ComputeMatched(Microsoft.AspNetCore.Routing.Template.RouteTemplate)
+    .. dn:method:: Microsoft.AspNetCore.Routing.Template.RoutePrecedence.ComputeOutbound(Microsoft.AspNetCore.Routing.Template.RouteTemplate)
     
         
     
@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static decimal ComputeMatched(RouteTemplate template)
+            public static decimal ComputeOutbound(RouteTemplate template)
     
 

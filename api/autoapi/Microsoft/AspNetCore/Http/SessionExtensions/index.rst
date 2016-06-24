@@ -74,7 +74,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static byte[] Get(ISession session, string key)
+            public static byte[] Get(this ISession session, string key)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SessionExtensions.GetInt32(Microsoft.AspNetCore.Http.ISession, System.String)
     
@@ -90,7 +90,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static int ? GetInt32(ISession session, string key)
+            public static int ? GetInt32(this ISession session, string key)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SessionExtensions.GetString(Microsoft.AspNetCore.Http.ISession, System.String)
     
@@ -106,7 +106,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string GetString(ISession session, string key)
+            public static string GetString(this ISession session, string key)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SessionExtensions.SetInt32(Microsoft.AspNetCore.Http.ISession, System.String, System.Int32)
     
@@ -124,7 +124,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void SetInt32(ISession session, string key, int value)
+            public static void SetInt32(this ISession session, string key, int value)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SessionExtensions.SetString(Microsoft.AspNetCore.Http.ISession, System.String, System.String)
     
@@ -142,6 +142,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void SetString(ISession session, string key, string value)
+            public static void SetString(this ISession session, string key, string value)
     
 

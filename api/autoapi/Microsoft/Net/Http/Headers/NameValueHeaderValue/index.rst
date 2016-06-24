@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.NameValueHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.NameValueHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -306,5 +257,44 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParseStrictList(IList<string> input, out IList<NameValueHeaderValue> parsedValues)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.NameValueHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.NameValueHeaderValue.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; set; }
     
 

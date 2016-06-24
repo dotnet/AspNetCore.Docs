@@ -8,7 +8,7 @@ EnumerableWrapperProvider Class
 
 
 
-Provides a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` for interface types which implement
+Provides a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` for interface types which implement 
 :any:`System.Collections.Generic.IEnumerable\`1`\.
 
 
@@ -56,28 +56,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider.WrappingType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type WrappingType
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -134,5 +112,24 @@ Methods
         .. code-block:: csharp
     
             public object Wrap(object original)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider.WrappingType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type WrappingType { get; }
     
 

@@ -80,7 +80,6 @@ Methods
         :type chunkTree: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
         :rtype: Microsoft.AspNetCore.Mvc.Razor.ModelChunk
         :return: The last :any:`Microsoft.AspNetCore.Mvc.Razor.ModelChunk` in the :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` if found, <code>null</code> otherwise.
-            
     
         
         .. code-block:: csharp

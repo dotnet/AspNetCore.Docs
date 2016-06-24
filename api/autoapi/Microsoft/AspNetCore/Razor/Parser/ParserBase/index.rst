@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.ParserBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.ParserBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserContext
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ParserContext Context
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.IsMarkupParser
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool IsMarkupParser
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.OtherParser
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserBase
-    
-        
-        .. code-block:: csharp
-    
-            protected abstract ParserBase OtherParser
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -159,5 +110,44 @@ Methods
         .. code-block:: csharp
     
             public virtual void ParseSection(Tuple<string, string> nestingSequences, bool caseSensitive)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.ParserBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserContext
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ParserContext Context { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.IsMarkupParser
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool IsMarkupParser { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.ParserBase.OtherParser
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserBase
+    
+        
+        .. code-block:: csharp
+    
+            protected abstract ParserBase OtherParser { get; }
     
 

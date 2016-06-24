@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookieDomain
-            {
-                get;
-                set;
-            }
+            public string CookieDomain { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.SessionOptions.CookieHttpOnly
     
@@ -98,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool CookieHttpOnly
-            {
-                get;
-                set;
-            }
+            public bool CookieHttpOnly { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.SessionOptions.CookieName
     
@@ -118,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookieName
-            {
-                get;
-                set;
-            }
+            public string CookieName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.SessionOptions.CookiePath
     
@@ -138,11 +126,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CookiePath
-            {
-                get;
-                set;
-            }
+            public string CookiePath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout
     
@@ -158,10 +142,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan IdleTimeout
-            {
-                get;
-                set;
-            }
+            public TimeSpan IdleTimeout { get; set; }
     
 

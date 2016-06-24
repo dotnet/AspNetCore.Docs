@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Localization.LocalizedString
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Localization.LocalizedString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.Name
-    
-        
-    
-        
-        The name of the string in the resource it was loaded from.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.ResourceNotFound
-    
-        
-    
-        
-        Whether the string was found in a resource. If <code>false</code>, an alternate string value was used.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ResourceNotFound
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.Value
-    
-        
-    
-        
-        The actual string.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -179,6 +116,82 @@ Constructors
         .. code-block:: csharp
     
             public LocalizedString(string name, string value, bool resourceNotFound)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Localization.LocalizedString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.Name
+    
+        
+    
+        
+        The name of the string in the resource it was loaded from.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.ResourceNotFound
+    
+        
+    
+        
+        Whether the string was found in a resource. If <code>false</code>, an alternate string value was used.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ResourceNotFound { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.LocalizedString.Value
+    
+        
+    
+        
+        The actual string.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
+    
+
+Operators
+---------
+
+.. dn:class:: Microsoft.Extensions.Localization.LocalizedString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.Extensions.Localization.LocalizedString.Implicit(Microsoft.Extensions.Localization.LocalizedString to System.String)
+    
+        
+    
+        
+        :type localizedString: Microsoft.Extensions.Localization.LocalizedString
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator string (LocalizedString localizedString)
     
 
 Methods

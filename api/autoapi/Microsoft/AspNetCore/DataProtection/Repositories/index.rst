@@ -64,6 +64,16 @@ Microsoft.AspNetCore.DataProtection.Repositories Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.Repositories
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IXmlRepository`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.Repositories.IXmlRepository
+
+        
+        The basic interface for storing and retrieving XML elements.
+
+
     .. rubric:: Classes
 
 
@@ -79,15 +89,5 @@ Microsoft.AspNetCore.DataProtection.Repositories Namespace
 
         
         An XML repository backed by the Windows registry.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IXmlRepository`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.Repositories.IXmlRepository
-
-        
-        The basic interface for storing and retrieving XML elements.
 
 

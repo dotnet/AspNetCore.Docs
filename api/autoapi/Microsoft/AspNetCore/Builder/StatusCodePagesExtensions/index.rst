@@ -77,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app)
+            public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.StatusCodePagesOptions)
     
@@ -99,7 +99,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, StatusCodePagesOptions options)
+            public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app, StatusCodePagesOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -121,7 +121,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, Action<IApplicationBuilder> configuration)
+            public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app, Action<IApplicationBuilder> configuration)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Func<Microsoft.AspNetCore.Diagnostics.StatusCodeContext, System.Threading.Tasks.Task>)
     
@@ -143,7 +143,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, Func<StatusCodeContext, Task> handler)
+            public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app, Func<StatusCodeContext, Task> handler)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String, System.String)
     
@@ -168,9 +168,9 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePages(IApplicationBuilder app, string contentType, string bodyFormat)
+            public static IApplicationBuilder UseStatusCodePages(this IApplicationBuilder app, string contentType, string bodyFormat)
     
-    .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
+    .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String, System.String)
     
         
     
@@ -185,12 +185,15 @@ Methods
     
         
         :type pathFormat: System.String
+    
+        
+        :type queryFormat: System.String
         :rtype: Microsoft.AspNetCore.Builder.IApplicationBuilder
     
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePagesWithReExecute(IApplicationBuilder app, string pathFormat)
+            public static IApplicationBuilder UseStatusCodePagesWithReExecute(this IApplicationBuilder app, string pathFormat, string queryFormat = null)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -213,6 +216,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStatusCodePagesWithRedirects(IApplicationBuilder app, string locationFormat)
+            public static IApplicationBuilder UseStatusCodePagesWithRedirects(this IApplicationBuilder app, string locationFormat)
     
 

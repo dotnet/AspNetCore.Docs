@@ -27,11 +27,11 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Routing/IRouteConstraintProvider/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/Routing/IRouteTemplateProvider/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Routing/IRouteValueProvider/index
    
    
    
@@ -43,15 +43,7 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Routing/RouteConstraintAttribute/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Routing/RouteDataActionConstraint/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Routing/RouteKeyHandling/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Routing/RouteValueAttribute/index
    
    
    
@@ -133,14 +125,6 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -150,6 +134,45 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Routing
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IActionHttpMethodProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IActionHttpMethodProvider
+
+        
+
+
+    interface :dn:iface:`IRouteTemplateProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider
+
+        
+        Interface for attributes which can supply a route template for attribute routing.
+
+
+    interface :dn:iface:`IRouteValueProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IRouteValueProvider
+
+        
+        <p>
+        A metadata interface which specifies a route value which is required for the action selector to
+        choose an action. When applied to an action using attribute routing, the route value will be added
+        to the :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values` when the action is selected.
+        </p>
+        <p>
+        When an :any:`Microsoft.AspNetCore.Mvc.Routing.IRouteValueProvider` is used to provide a new route value to an action, all
+        actions in the application must also have a value associated with that key, or have an implicit value
+        of <code>null</code>. See remarks for more details.
+        </p>
+
+
+    interface :dn:iface:`IUrlHelperFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory
+
+        
+        A factory for creating :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` instances.
 
 
     .. rubric:: Classes
@@ -175,25 +198,22 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
         
 
 
-    class :dn:cls:`RouteConstraintAttribute`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Routing.RouteConstraintAttribute
+    class :dn:cls:`RouteValueAttribute`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Routing.RouteValueAttribute
 
         
+        <p>
         An attribute which specifies a required route value for an action or controller.
-        
+        </p>
+        <p>
         When placed on an action, the route data of a request must match the expectations of the route
-        constraint in order for the action to be selected. See :dn:prop:`Microsoft.AspNetCore.Mvc.Routing.RouteConstraintAttribute.RouteKeyHandling` for
+        constraint in order for the action to be selected. See :any:`Microsoft.AspNetCore.Mvc.Routing.IRouteValueProvider` for
         the expectations that must be satisfied by the route data.
-        
+        </p>
+        <p>
         When placed on a controller, unless overridden by the action, the constraint applies to all
         actions defined by the controller.
-
-
-    class :dn:cls:`RouteDataActionConstraint`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Routing.RouteDataActionConstraint
-
-        
-        Constraints an action to a route key and value.
+        </p>
 
 
     class :dn:cls:`UrlActionContext`
@@ -223,45 +243,5 @@ Microsoft.AspNetCore.Mvc.Routing Namespace
 
         
         Context object to be used for the URLs that :dn:meth:`Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl(Microsoft.AspNetCore.Mvc.Routing.UrlRouteContext)` generates.
-
-
-    .. rubric:: Enumerations
-
-
-    enum :dn:enum:`RouteKeyHandling`
-        .. object: type=enum name=Microsoft.AspNetCore.Mvc.Routing.RouteKeyHandling
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IActionHttpMethodProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IActionHttpMethodProvider
-
-        
-
-
-    interface :dn:iface:`IRouteConstraintProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IRouteConstraintProvider
-
-        
-        An interface for metadata which provides :any:`Microsoft.AspNetCore.Mvc.Routing.RouteDataActionConstraint` values
-        for a controller or action.
-
-
-    interface :dn:iface:`IRouteTemplateProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider
-
-        
-        Interface for attributes which can supply a route template for attribute routing.
-
-
-    interface :dn:iface:`IUrlHelperFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory
-
-        
-        A factory for creating :any:`Microsoft.AspNetCore.Mvc.IUrlHelper` instances.
 
 

@@ -77,31 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual StringSegment ContentType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.FailedContentNegotiation
-    
-        
-    
-        
-        Gets or sets a value indicating that content-negotiation could not find a formatter based on the 
-        information on the :any:`Microsoft.AspNetCore.Http.HttpRequest`\.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool ? FailedContentNegotiation
-            {
-                get;
-                set;
-            }
+            public virtual StringSegment ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.Object
     
@@ -116,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual object Object
-            {
-                get;
-                protected set;
-            }
+            public virtual object Object { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.ObjectType
     
@@ -135,10 +107,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual Type ObjectType
-            {
-                get;
-                protected set;
-            }
+            public virtual Type ObjectType { get; protected set; }
     
 

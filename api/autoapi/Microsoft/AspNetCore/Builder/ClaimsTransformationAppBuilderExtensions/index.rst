@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseClaimsTransformation(IApplicationBuilder app)
+            public static IApplicationBuilder UseClaimsTransformation(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ClaimsTransformationAppBuilderExtensions.UseClaimsTransformation(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.ClaimsTransformationOptions)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseClaimsTransformation(IApplicationBuilder app, ClaimsTransformationOptions options)
+            public static IApplicationBuilder UseClaimsTransformation(this IApplicationBuilder app, ClaimsTransformationOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ClaimsTransformationAppBuilderExtensions.UseClaimsTransformation(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Func<Microsoft.AspNetCore.Authentication.ClaimsTransformationContext, System.Threading.Tasks.Task<System.Security.Claims.ClaimsPrincipal>>)
     
@@ -135,6 +135,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseClaimsTransformation(IApplicationBuilder app, Func<ClaimsTransformationContext, Task<ClaimsPrincipal>> transform)
+            public static IApplicationBuilder UseClaimsTransformation(this IApplicationBuilder app, Func<ClaimsTransformationContext, Task<ClaimsPrincipal>> transform)
     
 

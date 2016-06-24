@@ -44,270 +44,36 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
 
-Properties
-----------
+Methods
+-------
 
 .. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.AllowSections
+    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.Equals(System.Object)
     
         
+    
+        
+        :type obj: System.Object
         :rtype: System.Boolean
     
         
         .. code-block:: csharp
     
-            public bool AllowSections
-            {
-                get;
-            }
+            public override bool Equals(object obj)
     
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.AllowTemplates
+    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.GetHashCode()
     
         
-        :rtype: System.Boolean
+        :rtype: System.Int32
     
         
         .. code-block:: csharp
     
-            public bool AllowTemplates
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginContextMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BeginContextMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginWriteAttributeMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BeginWriteAttributeMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginWriteAttributeToMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BeginWriteAttributeToMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.DefineSectionMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DefineSectionMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndContextMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string EndContextMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndWriteAttributeMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string EndWriteAttributeMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndWriteAttributeToMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string EndWriteAttributeToMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.ExecuteMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ExecuteMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.GeneratedTagHelperContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext
-    
-        
-        .. code-block:: csharp
-    
-            public GeneratedTagHelperContext GeneratedTagHelperContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.SupportsInstrumentation
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool SupportsInstrumentation
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.TemplateTypeName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TemplateTypeName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteAttributeValueMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteAttributeValueMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteAttributeValueToMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteAttributeValueToMethodName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteLiteralMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteLiteralMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteLiteralToMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteLiteralToMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteMethodName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteToMethodName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WriteToMethodName
-            {
-                get;
-            }
+            public override int GetHashCode()
     
 
 Constructors
@@ -442,6 +208,246 @@ Constructors
             public GeneratedClassContext(string executeMethodName, string writeMethodName, string writeLiteralMethodName, string writeToMethodName, string writeLiteralToMethodName, string templateTypeName, string defineSectionMethodName, string beginContextMethodName, string endContextMethodName, GeneratedTagHelperContext generatedTagHelperContext)
     
 
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.AllowSections
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool AllowSections { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.AllowTemplates
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool AllowTemplates { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginContextMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BeginContextMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginWriteAttributeMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BeginWriteAttributeMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.BeginWriteAttributeToMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string BeginWriteAttributeToMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.DefineSectionMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DefineSectionMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndContextMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string EndContextMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndWriteAttributeMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string EndWriteAttributeMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.EndWriteAttributeToMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string EndWriteAttributeToMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.ExecuteMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ExecuteMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.GeneratedTagHelperContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedTagHelperContext
+    
+        
+        .. code-block:: csharp
+    
+            public GeneratedTagHelperContext GeneratedTagHelperContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.SupportsInstrumentation
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool SupportsInstrumentation { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.TemplateTypeName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TemplateTypeName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteAttributeValueMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteAttributeValueMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteAttributeValueToMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteAttributeValueToMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteLiteralMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteLiteralMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteLiteralToMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteLiteralToMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteMethodName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.WriteToMethodName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WriteToMethodName { get; }
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.Equality(Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext, Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(GeneratedClassContext left, GeneratedClassContext right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.Inequality(Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext, Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(GeneratedClassContext left, GeneratedClassContext right)
+    
+
 Fields
 ------
 
@@ -549,37 +555,5 @@ Fields
         .. code-block:: csharp
     
             public static readonly string DefaultWriteMethodName
-    
-
-Methods
--------
-
-.. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.Equals(System.Object)
-    
-        
-    
-        
-        :type obj: System.Object
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool Equals(object obj)
-    
-    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext.GetHashCode()
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int GetHashCode()
     
 

@@ -79,10 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<IdentityError> Errors
-            {
-                get;
-            }
+            public IEnumerable<IdentityError> Errors { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.IdentityResult.Succeeded
     
@@ -98,11 +95,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Succeeded
-            {
-                get;
-                protected set;
-            }
+            public bool Succeeded { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.IdentityResult.Success
     
@@ -118,10 +111,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static IdentityResult Success
-            {
-                get;
-            }
+            public static IdentityResult Success { get; }
     
 
 Methods

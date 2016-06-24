@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentDescriptorCollectionProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentDescriptorCollectionProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentDescriptorCollectionProvider.ViewComponents
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection
-    
-        
-        .. code-block:: csharp
-    
-            public ViewComponentDescriptorCollection ViewComponents
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -104,5 +82,24 @@ Constructors
         .. code-block:: csharp
     
             public DefaultViewComponentDescriptorCollectionProvider(IViewComponentDescriptorProvider descriptorProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentDescriptorCollectionProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentDescriptorCollectionProvider.ViewComponents
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptorCollection
+    
+        
+        .. code-block:: csharp
+    
+            public ViewComponentDescriptorCollection ViewComponents { get; }
     
 

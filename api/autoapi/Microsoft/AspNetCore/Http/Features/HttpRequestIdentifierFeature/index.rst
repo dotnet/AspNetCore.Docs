@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TraceIdentifier
-            {
-                get;
-                set;
-            }
+            public string TraceIdentifier { get; set; }
     
 

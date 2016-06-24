@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.FileConfigurationProvider.Source
-    
-        
-        :rtype: Microsoft.Extensions.Configuration.FileConfigurationSource
-    
-        
-        .. code-block:: csharp
-    
-            public FileConfigurationSource Source
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -91,6 +69,13 @@ Constructors
     
         
     
+        
+        Initializes a new instance with the specified source.
+    
+        
+    
+        
+        :param source: The source settings.
         
         :type source: Microsoft.Extensions.Configuration.FileConfigurationSource
     
@@ -127,11 +112,42 @@ Methods
         
     
         
+        Loads this provider's data from a stream.
+    
+        
+    
+        
+        :param stream: The stream to read.
+        
         :type stream: System.IO.Stream
     
         
         .. code-block:: csharp
     
             public abstract void Load(Stream stream)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.FileConfigurationProvider.Source
+    
+        
+    
+        
+        The source settings for this provider.
+    
+        
+        :rtype: Microsoft.Extensions.Configuration.FileConfigurationSource
+    
+        
+        .. code-block:: csharp
+    
+            public FileConfigurationSource Source { get; }
     
 

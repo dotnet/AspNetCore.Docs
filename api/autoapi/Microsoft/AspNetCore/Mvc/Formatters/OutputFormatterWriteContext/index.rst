@@ -57,53 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext
-    
-        
-    
-        
-        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext` context associated with the current operation.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public virtual HttpContext HttpContext
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.WriterFactory
-    
-        
-    
-        
-        Gets or sets a delegate used to create a :any:`System.IO.TextWriter` for writing the response.
-    
-        
-        :rtype: System.Func<System.Func`3>{System.IO.Stream<System.IO.Stream>, System.Text.Encoding<System.Text.Encoding>, System.IO.TextWriter<System.IO.TextWriter>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual Func<Stream, Encoding, TextWriter> WriterFactory
-            {
-                get;
-                protected set;
-            }
-    
-
 Constructors
 ------------
 
@@ -145,5 +98,44 @@ Constructors
         .. code-block:: csharp
     
             public OutputFormatterWriteContext(HttpContext httpContext, Func<Stream, Encoding, TextWriter> writerFactory, Type objectType, object object)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext
+    
+        
+    
+        
+        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.HttpContext` context associated with the current operation.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public virtual HttpContext HttpContext { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext.WriterFactory
+    
+        
+    
+        
+        Gets or sets a delegate used to create a :any:`System.IO.TextWriter` for writing the response.
+    
+        
+        :rtype: System.Func<System.Func`3>{System.IO.Stream<System.IO.Stream>, System.Text.Encoding<System.Text.Encoding>, System.IO.TextWriter<System.IO.TextWriter>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual Func<Stream, Encoding, TextWriter> WriterFactory { get; protected set; }
     
 

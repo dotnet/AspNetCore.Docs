@@ -56,6 +56,36 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider.BindingSourceValueProvider(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    
+        
+    
+        
+        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider`\.
+    
+        
+    
+        
+        :param bindingSource: 
+            The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\. Must be a single-source (non-composite) with 
+            :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsGreedy` equal to <code>false</code>.
+        
+        :type bindingSource: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    
+        
+        .. code-block:: csharp
+    
+            public BindingSourceValueProvider(BindingSource bindingSource)
+    
+
 Properties
 ----------
 
@@ -77,40 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            protected BindingSource BindingSource
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider.BindingSourceValueProvider(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
-    
-        
-    
-        
-        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSourceValueProvider`\.
-    
-        
-    
-        
-        :param bindingSource: 
-            The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource`\. Must be a single-source (non-composite) with
-            :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsGreedy` equal to <code>false</code>.
-        
-        :type bindingSource: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
-    
-        
-        .. code-block:: csharp
-    
-            public BindingSourceValueProvider(BindingSource bindingSource)
+            protected BindingSource BindingSource { get; }
     
 
 Methods

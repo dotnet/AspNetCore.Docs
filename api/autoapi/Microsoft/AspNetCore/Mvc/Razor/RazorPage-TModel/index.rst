@@ -78,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TModel Model
-            {
-                get;
-            }
+            public TModel Model { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>.ViewData
     
@@ -96,41 +93,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ViewDataDictionary<TModel> ViewData
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage<TModel>.CreateModelExpression<TValue>(System.Linq.Expressions.Expression<System.Func<TModel, TValue>>)
-    
-        
-    
-        
-        Returns a :any:`Microsoft.AspNetCore.Mvc.Rendering.ModelExpression` instance describing the given <em>expression</em>.
-    
-        
-    
-        
-        :param expression: An expression to be evaluated against the current model.
-        
-        :type expression: System.Linq.Expressions.Expression<System.Linq.Expressions.Expression`1>{System.Func<System.Func`2>{TModel, TValue}}
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ModelExpression
-        :return: A new :any:`Microsoft.AspNetCore.Mvc.Rendering.ModelExpression` instance describing the given <em>expression</em>.
-            
-    
-        
-        .. code-block:: csharp
-    
-            public ModelExpression CreateModelExpression<TValue>(Expression<Func<TModel, TValue>> expression)
+            public ViewDataDictionary<TModel> ViewData { get; set; }
     
 

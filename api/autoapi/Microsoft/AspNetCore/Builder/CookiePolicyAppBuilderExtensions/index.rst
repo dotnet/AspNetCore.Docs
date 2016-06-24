@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCookiePolicy(IApplicationBuilder app)
+            public static IApplicationBuilder UseCookiePolicy(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.CookiePolicyOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCookiePolicy(IApplicationBuilder app, CookiePolicyOptions options)
+            public static IApplicationBuilder UseCookiePolicy(this IApplicationBuilder app, CookiePolicyOptions options)
     
 

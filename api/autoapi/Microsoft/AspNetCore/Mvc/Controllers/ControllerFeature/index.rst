@@ -80,9 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<TypeInfo> Controllers
-            {
-                get;
-            }
+            public IList<TypeInfo> Controllers { get; }
     
 

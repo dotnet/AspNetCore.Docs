@@ -7,6 +7,10 @@ OptionsWrapper<TOptions> Class
 
 
 
+
+IOptions wrapper that returns the options instance.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -52,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Options.OptionsWrapper<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Options.OptionsWrapper<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Options.OptionsWrapper<TOptions>.Value
-    
-        
-        :rtype: TOptions
-    
-        
-        .. code-block:: csharp
-    
-            public TOptions Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -87,11 +69,42 @@ Constructors
         
     
         
+        Intializes the wrapper with the options instance to return.
+    
+        
+    
+        
+        :param options: The options instance to return.
+        
         :type options: TOptions
     
         
         .. code-block:: csharp
     
             public OptionsWrapper(TOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Options.OptionsWrapper<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Options.OptionsWrapper<TOptions>.Value
+    
+        
+    
+        
+        The options instance.
+    
+        
+        :rtype: TOptions
+    
+        
+        .. code-block:: csharp
+    
+            public TOptions Value { get; }
     
 

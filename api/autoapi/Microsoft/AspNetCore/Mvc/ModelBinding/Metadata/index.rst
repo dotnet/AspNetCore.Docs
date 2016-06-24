@@ -200,6 +200,53 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Metadata Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IBindingMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IBindingMetadataProvider
+
+        
+        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
+
+
+    interface :dn:iface:`ICompositeMetadataDetailsProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider
+
+        
+        A composite :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider`\.
+
+
+    interface :dn:iface:`IDisplayMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider
+
+        
+        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
+
+
+    interface :dn:iface:`IMetadataDetailsProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider
+
+        
+        Marker interface for a provider of metadata details about model objects. Implementations should
+        implement one or more of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IBindingMetadataProvider`\, :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider`\, 
+        and :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider`\.
+
+
+    interface :dn:iface:`IModelBindingMessageProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider
+
+        
+        Provider for error messages the model binding system detects.
+
+
+    interface :dn:iface:`IValidationMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider
+
+        
+        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
+
+
     .. rubric:: Enumerations
 
 
@@ -306,52 +353,5 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Metadata Namespace
 
         
         A key type which identifies a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IBindingMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IBindingMetadataProvider
-
-        
-        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
-
-
-    interface :dn:iface:`ICompositeMetadataDetailsProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider
-
-        
-        A composite :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider`\.
-
-
-    interface :dn:iface:`IDisplayMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider
-
-        
-        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
-
-
-    interface :dn:iface:`IMetadataDetailsProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider
-
-        
-        Marker interface for a provider of metadata details about model objects. Implementations should
-        implement one or more of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IBindingMetadataProvider`\, :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider`\, 
-        and :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider`\.
-
-
-    interface :dn:iface:`IModelBindingMessageProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider
-
-        
-        Provider for error messages the model binding system detects.
-
-
-    interface :dn:iface:`IValidationMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IValidationMetadataProvider
-
-        
-        Provides :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata` for a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata`\.
 
 

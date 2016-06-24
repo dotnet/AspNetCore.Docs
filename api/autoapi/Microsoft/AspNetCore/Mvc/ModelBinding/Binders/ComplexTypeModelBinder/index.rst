@@ -177,7 +177,7 @@ Methods
     
             protected virtual object CreateModel(ModelBindingContext bindingContext)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinder.SetProperty(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext, Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinder.SetProperty(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult)
     
         
     
@@ -192,6 +192,11 @@ Methods
         :type bindingContext: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext
     
         
+        :param modelName: The model name.
+        
+        :type modelName: System.String
+    
+        
         :param propertyMetadata: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` for the property to set.
         
         :type propertyMetadata: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
@@ -204,6 +209,6 @@ Methods
         
         .. code-block:: csharp
     
-            protected virtual void SetProperty(ModelBindingContext bindingContext, ModelMetadata propertyMetadata, ModelBindingResult result)
+            protected virtual void SetProperty(ModelBindingContext bindingContext, string modelName, ModelMetadata propertyMetadata, ModelBindingResult result)
     
 

@@ -44,52 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.ISession
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.ISession
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.ISession.Id
-    
-        
-    
-        
-        A unique identifier for the current session. This is not the same as the session cookie
-        since the cookie lifetime may not be the same as the session entry lifetime in the data store.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string Id
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.ISession.Keys
-    
-        
-    
-        
-        Enumerates all the keys, if any.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<string> Keys
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -201,5 +155,60 @@ Methods
         .. code-block:: csharp
     
             bool TryGetValue(string key, out byte[] value)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.ISession
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.ISession.Id
+    
+        
+    
+        
+        A unique identifier for the current session. This is not the same as the session cookie
+        since the cookie lifetime may not be the same as the session entry lifetime in the data store.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string Id { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.ISession.IsAvailable
+    
+        
+    
+        
+        Indicate whether the current session has loaded.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IsAvailable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.ISession.Keys
+    
+        
+    
+        
+        Enumerates all the keys, if any.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<string> Keys { get; }
     
 

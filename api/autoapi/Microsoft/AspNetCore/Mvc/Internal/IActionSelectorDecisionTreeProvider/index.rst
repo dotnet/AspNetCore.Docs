@@ -8,7 +8,7 @@ IActionSelectorDecisionTreeProvider Interface
 
 
 
-Stores an :any:`Microsoft.AspNetCore.Mvc.Internal.ActionSelectionDecisionTree` for the current value of
+Stores an :any:`Microsoft.AspNetCore.Mvc.Internal.ActionSelectionDecisionTree` for the current value of 
 :dn:prop:`Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider.ActionDescriptors`\.
 
 
@@ -70,9 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            IActionSelectionDecisionTree DecisionTree
-            {
-                get;
-            }
+            IActionSelectionDecisionTree DecisionTree { get; }
     
 

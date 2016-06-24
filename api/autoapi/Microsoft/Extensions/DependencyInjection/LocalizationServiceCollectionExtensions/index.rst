@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddLocalization(IServiceCollection services)
+            public static IServiceCollection AddLocalization(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
     
@@ -110,6 +110,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddLocalization(IServiceCollection services, Action<LocalizationOptions> setupAction)
+            public static IServiceCollection AddLocalization(this IServiceCollection services, Action<LocalizationOptions> setupAction)
     
 

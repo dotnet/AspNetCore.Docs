@@ -57,71 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Controller
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Controller
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.TempData
-    
-        
-    
-        
-        Gets or sets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` used by :any:`Microsoft.AspNetCore.Mvc.ViewResult`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ITempDataDictionary TempData
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.ViewBag
-    
-        
-    
-        
-        Gets the dynamic view bag.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public dynamic ViewBag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.ViewData
-    
-        
-    
-        
-        Gets or sets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` used by :any:`Microsoft.AspNetCore.Mvc.ViewResult` and :dn:prop:`Microsoft.AspNetCore.Mvc.Controller.ViewBag`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ViewDataDictionary ViewData
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -150,7 +85,7 @@ Methods
     
         
         :param disposing: <code>true</code> if this method is being invoked by the :dn:meth:`Microsoft.AspNetCore.Mvc.Controller.Dispose` method,
-            otherwise <code>false</code>.
+                otherwise <code>false</code>.
         
         :type disposing: System.Boolean
     
@@ -459,8 +394,8 @@ Methods
     
         
         :param componentName: 
-            The view component name. Can be a view component
-            :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.ShortName` or
+            The view component name. Can be a view component 
+            :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.ShortName` or 
             :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.FullName`\.
         
         :type componentName: System.String
@@ -483,8 +418,8 @@ Methods
     
         
         :param componentName: 
-            The view component name. Can be a view component
-            :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.ShortName` or
+            The view component name. Can be a view component 
+            :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.ShortName` or 
             :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor.FullName`\.
         
         :type componentName: System.String
@@ -555,5 +490,59 @@ Methods
         .. code-block:: csharp
     
             public virtual ViewComponentResult ViewComponent(Type componentType, object arguments)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Controller
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.TempData
+    
+        
+    
+        
+        Gets or sets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` used by :any:`Microsoft.AspNetCore.Mvc.ViewResult`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ITempDataDictionary TempData { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.ViewBag
+    
+        
+    
+        
+        Gets the dynamic view bag.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public dynamic ViewBag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Controller.ViewData
+    
+        
+    
+        
+        Gets or sets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary` used by :any:`Microsoft.AspNetCore.Mvc.ViewResult` and :dn:prop:`Microsoft.AspNetCore.Mvc.Controller.ViewBag`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ViewDataDictionary ViewData { get; set; }
     
 

@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PasswordHasherCompatibilityMode CompatibilityMode
-            {
-                get;
-                set;
-            }
+            public PasswordHasherCompatibilityMode CompatibilityMode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount
     
@@ -100,10 +96,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int IterationCount
-            {
-                get;
-                set;
-            }
+            public int IterationCount { get; set; }
     
 

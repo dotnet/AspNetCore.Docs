@@ -56,6 +56,24 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.KeyManagementOptions()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public KeyManagementOptions()
+    
+
 Properties
 ----------
 
@@ -77,11 +95,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AutoGenerateKeys
-            {
-                get;
-                set;
-            }
+            public bool AutoGenerateKeys { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.NewKeyLifetime
     
@@ -97,28 +111,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan NewKeyLifetime
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions.KeyManagementOptions()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public KeyManagementOptions()
+            public TimeSpan NewKeyLifetime { get; set; }
     
 

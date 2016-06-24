@@ -71,9 +71,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Discriminator
-            {
-                get;
-            }
+            string Discriminator { get; }
     
 

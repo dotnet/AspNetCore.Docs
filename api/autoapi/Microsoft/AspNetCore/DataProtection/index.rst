@@ -15,11 +15,15 @@ Microsoft.AspNetCore.DataProtection Namespace
 
    
    
+   /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionAdvancedExtensions/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionBuilderExtensions/index
    
    
    
-   /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionExtensions/index
+   /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionCommonExtensions/index
    
    
    
@@ -28,6 +32,10 @@ Microsoft.AspNetCore.DataProtection Namespace
    
    
    /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionProvider/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/DataProtection/DataProtectionUtilityExtensions/index
    
    
    
@@ -125,6 +133,14 @@ Microsoft.AspNetCore.DataProtection Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -134,52 +150,6 @@ Microsoft.AspNetCore.DataProtection Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection
-
-
-    .. rubric:: Classes
-
-
-    class :dn:cls:`DataProtectionBuilderExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions
-
-        
-        Extensions for configuring data protection using an :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder`\.
-
-
-    class :dn:cls:`DataProtectionExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionExtensions
-
-        
-        Helpful extension methods for data protection APIs.
-
-
-    class :dn:cls:`DataProtectionOptions`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionOptions
-
-        
-        Provides global options for the Data Protection system.
-
-
-    class :dn:cls:`DataProtectionProvider`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionProvider
-
-        
-        Contains factory methods for creating an :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionProvider` where keys are stored
-        at a particular location on the file system.
-
-
-    class :dn:cls:`EphemeralDataProtectionProvider`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.EphemeralDataProtectionProvider
-
-        
-        An :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionProvider` that is transient.
-
-
-    class :dn:cls:`Secret`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.Secret
-
-        
-        Represents a secret value stored in memory.
 
 
     .. rubric:: Interfaces
@@ -229,5 +199,63 @@ Microsoft.AspNetCore.DataProtection Namespace
         
         An interface that can provide data protection services where payloads have
         a finite lifetime.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`DataProtectionAdvancedExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionAdvancedExtensions
+
+        
+
+
+    class :dn:cls:`DataProtectionBuilderExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions
+
+        
+        Extensions for configuring data protection using an :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder`\.
+
+
+    class :dn:cls:`DataProtectionCommonExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionCommonExtensions
+
+        
+        Helpful extension methods for data protection APIs.
+
+
+    class :dn:cls:`DataProtectionOptions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionOptions
+
+        
+        Provides global options for the Data Protection system.
+
+
+    class :dn:cls:`DataProtectionProvider`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionProvider
+
+        
+        Contains factory methods for creating an :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionProvider` where keys are stored
+        at a particular location on the file system.
+
+
+    class :dn:cls:`DataProtectionUtilityExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.DataProtectionUtilityExtensions
+
+        
+
+
+    class :dn:cls:`EphemeralDataProtectionProvider`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.EphemeralDataProtectionProvider
+
+        
+        An :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionProvider` that is transient.
+
+
+    class :dn:cls:`Secret`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.Secret
+
+        
+        Represents a secret value stored in memory.
 
 

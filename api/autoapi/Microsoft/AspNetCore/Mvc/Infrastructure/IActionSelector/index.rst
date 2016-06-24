@@ -56,25 +56,53 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector.Select(Microsoft.AspNetCore.Routing.RouteContext)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector.SelectBestCandidate(Microsoft.AspNetCore.Routing.RouteContext, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>)
     
         
     
         
-        Selects an :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` for the request associated with <em>context</em>.
+        Selects the best :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` candidate from <em>candidates</em> for the 
+        current request associated with <em>context</em>.
     
         
     
         
-        :param context: The :any:`Microsoft.AspNetCore.Routing.RouteContext` for the current request.
+        :param context: The :any:`Microsoft.AspNetCore.Routing.RouteContext` associated with the current request.
         
         :type context: Microsoft.AspNetCore.Routing.RouteContext
+    
+        
+        :param candidates: The set of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` candidates.
+        
+        :type candidates: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
         :rtype: Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor
-        :return: An :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` or <code>null</code> if no action can be selected.
+        :return: The best :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` candidate for the current request or <code>null</code>.
     
         
         .. code-block:: csharp
     
-            ActionDescriptor Select(RouteContext context)
+            ActionDescriptor SelectBestCandidate(RouteContext context, IReadOnlyList<ActionDescriptor> candidates)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector.SelectCandidates(Microsoft.AspNetCore.Routing.RouteContext)
+    
+        
+    
+        
+        Selects a set of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` candidates for the current request associated with
+        <em>context</em>.
+    
+        
+    
+        
+        :param context: The :any:`Microsoft.AspNetCore.Routing.RouteContext` associated with the current request.
+        
+        :type context: Microsoft.AspNetCore.Routing.RouteContext
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>}
+        :return: A set of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` candidates or <code>null</code>.
+    
+        
+        .. code-block:: csharp
+    
+            IReadOnlyList<ActionDescriptor> SelectCandidates(RouteContext context)
     
 

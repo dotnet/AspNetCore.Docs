@@ -57,91 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.JsonResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.JsonResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.ContentType
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.Net.Http.Headers.MediaTypeHeaderValue` representing the Content-Type header of the response.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ContentType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings
-    
-        
-    
-        
-        Gets or sets the :any:`Newtonsoft.Json.JsonSerializerSettings`\.
-    
-        
-        :rtype: Newtonsoft.Json.JsonSerializerSettings
-    
-        
-        .. code-block:: csharp
-    
-            public JsonSerializerSettings SerializerSettings
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.StatusCode
-    
-        
-    
-        
-        Gets or sets the HTTP status code.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            public int ? StatusCode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.Value
-    
-        
-    
-        
-        Gets or sets the value to be formatted.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -193,6 +108,75 @@ Constructors
         .. code-block:: csharp
     
             public JsonResult(object value, JsonSerializerSettings serializerSettings)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.JsonResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.ContentType
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.Net.Http.Headers.MediaTypeHeaderValue` representing the Content-Type header of the response.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ContentType { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings
+    
+        
+    
+        
+        Gets or sets the :any:`Newtonsoft.Json.JsonSerializerSettings`\.
+    
+        
+        :rtype: Newtonsoft.Json.JsonSerializerSettings
+    
+        
+        .. code-block:: csharp
+    
+            public JsonSerializerSettings SerializerSettings { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.StatusCode
+    
+        
+    
+        
+        Gets or sets the HTTP status code.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            public int ? StatusCode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.JsonResult.Value
+    
+        
+    
+        
+        Gets or sets the value to be formatted.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Value { get; set; }
     
 
 Methods

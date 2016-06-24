@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.NegotiatedContentResult<T>
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.NegotiatedContentResult<T>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.NegotiatedContentResult<T>.Content
-    
-        
-    
-        
-        Gets the content value to negotiate and format in the entity body.
-    
-        
-        :rtype: T
-    
-        
-        .. code-block:: csharp
-    
-            public T Content
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -116,6 +89,30 @@ Constructors
         .. code-block:: csharp
     
             public NegotiatedContentResult(HttpStatusCode statusCode, T content)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.NegotiatedContentResult<T>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.NegotiatedContentResult<T>.Content
+    
+        
+    
+        
+        Gets the content value to negotiate and format in the entity body.
+    
+        
+        :rtype: T
+    
+        
+        .. code-block:: csharp
+    
+            public T Content { get; }
     
 
 Methods

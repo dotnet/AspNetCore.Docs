@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string IdForModel(IHtmlHelper htmlHelper)
+            public static string IdForModel(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperNameExtensions.NameForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper)
     
@@ -104,6 +104,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string NameForModel(IHtmlHelper htmlHelper)
+            public static string NameForModel(this IHtmlHelper htmlHelper)
     
 

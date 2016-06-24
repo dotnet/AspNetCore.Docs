@@ -64,34 +64,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.Encode(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.FragmentString)
-    
-        
-    
-        
-        Combines the given URI components into a string that is properly encoded for use in HTTP headers.
-    
-        
-    
-        
-        :type pathBase: Microsoft.AspNetCore.Http.PathString
-    
-        
-        :type path: Microsoft.AspNetCore.Http.PathString
-    
-        
-        :type query: Microsoft.AspNetCore.Http.QueryString
-    
-        
-        :type fragment: Microsoft.AspNetCore.Http.FragmentString
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static string Encode(PathString pathBase = null, PathString path = null, QueryString query = null, FragmentString fragment = null)
-    
-    .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.Encode(System.String, Microsoft.AspNetCore.Http.HostString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.FragmentString)
+    .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.BuildAbsolute(System.String, Microsoft.AspNetCore.Http.HostString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.FragmentString)
     
         
     
@@ -102,20 +75,32 @@ Methods
         
     
         
+        :param scheme: http, https, etc.
+        
         :type scheme: System.String
     
+        
+        :param host: The host portion of the uri normally included in the Host header. This may include the port.
         
         :type host: Microsoft.AspNetCore.Http.HostString
     
         
+        :param pathBase: The first portion of the request path associated with application root.
+        
         :type pathBase: Microsoft.AspNetCore.Http.PathString
     
+        
+        :param path: The portion of the request path that identifies the requested resource.
         
         :type path: Microsoft.AspNetCore.Http.PathString
     
         
+        :param query: The query, if any.
+        
         :type query: Microsoft.AspNetCore.Http.QueryString
     
+        
+        :param fragment: The fragment, if any.
         
         :type fragment: Microsoft.AspNetCore.Http.FragmentString
         :rtype: System.String
@@ -123,7 +108,42 @@ Methods
         
         .. code-block:: csharp
     
-            public static string Encode(string scheme, HostString host, PathString pathBase = null, PathString path = null, QueryString query = null, FragmentString fragment = null)
+            public static string BuildAbsolute(string scheme, HostString host, PathString pathBase = null, PathString path = null, QueryString query = null, FragmentString fragment = null)
+    
+    .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.BuildRelative(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.QueryString, Microsoft.AspNetCore.Http.FragmentString)
+    
+        
+    
+        
+        Combines the given URI components into a string that is properly encoded for use in HTTP headers.
+    
+        
+    
+        
+        :param pathBase: The first portion of the request path associated with application root.
+        
+        :type pathBase: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param path: The portion of the request path that identifies the requested resource.
+        
+        :type path: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param query: The query, if any.
+        
+        :type query: Microsoft.AspNetCore.Http.QueryString
+    
+        
+        :param fragment: The fragment, if any.
+        
+        :type fragment: Microsoft.AspNetCore.Http.FragmentString
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static string BuildRelative(PathString pathBase = null, PathString path = null, QueryString query = null, FragmentString fragment = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.Encode(System.Uri)
     
@@ -135,6 +155,8 @@ Methods
     
         
     
+        
+        :param uri: The Uri to encode.
         
         :type uri: System.Uri
         :rtype: System.String
@@ -155,13 +177,15 @@ Methods
         
     
         
+        :param request: The request to assemble the uri pieces from.
+        
         :type request: Microsoft.AspNetCore.Http.HttpRequest
         :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public static string GetDisplayUrl(HttpRequest request)
+            public static string GetDisplayUrl(this HttpRequest request)
     
     .. dn:method:: Microsoft.AspNetCore.Http.Extensions.UriHelper.GetEncodedUrl(Microsoft.AspNetCore.Http.HttpRequest)
     
@@ -174,12 +198,14 @@ Methods
         
     
         
+        :param request: The request to assemble the uri pieces from.
+        
         :type request: Microsoft.AspNetCore.Http.HttpRequest
         :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public static string GetEncodedUrl(HttpRequest request)
+            public static string GetEncodedUrl(this HttpRequest request)
     
 

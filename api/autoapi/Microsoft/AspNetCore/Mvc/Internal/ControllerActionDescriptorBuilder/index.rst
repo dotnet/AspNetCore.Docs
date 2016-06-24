@@ -64,12 +64,12 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.AddRouteConstraints(System.Collections.Generic.ISet<System.String>, Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor, Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel, Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.AddRouteValues(System.Collections.Generic.ISet<System.String>, Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor, Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel, Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel)
     
         
     
         
-        :type removalConstraints: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
+        :type keys: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
     
         
         :type actionDescriptor: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor
@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AddRouteConstraints(ISet<string> removalConstraints, ControllerActionDescriptor actionDescriptor, ControllerModel controller, ActionModel action)
+            public static void AddRouteValues(ISet<string> keys, ControllerActionDescriptor actionDescriptor, ControllerModel controller, ActionModel action)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.Build(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)
     

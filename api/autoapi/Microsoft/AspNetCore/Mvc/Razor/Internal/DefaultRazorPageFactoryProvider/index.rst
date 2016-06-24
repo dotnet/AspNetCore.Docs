@@ -111,31 +111,4 @@ Methods
     
             public RazorPageFactoryResult CreateFactory(string relativePath)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.GetPageFactory(System.Type, System.String)
-    
-        
-    
-        
-        Creates a factory for :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage`\.
-    
-        
-    
-        
-        :param compiledType: The :any:`System.Type` to produce an instance of :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorPage`
-            from.
-        
-        :type compiledType: System.Type
-    
-        
-        :param relativePath: The application relative path of the page.
-        
-        :type relativePath: System.String
-        :rtype: System.Func<System.Func`1>{Microsoft.AspNetCore.Mvc.Razor.IRazorPage<Microsoft.AspNetCore.Mvc.Razor.IRazorPage>}
-        :return: A factory for <em>compiledType</em>.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual Func<IRazorPage> GetPageFactory(Type compiledType, string relativePath)
-    
 

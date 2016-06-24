@@ -52,126 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.FormFile
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.FormFile
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.ContentDisposition
-    
-        
-    
-        
-        Gets the raw Content-Disposition header of the uploaded file.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ContentDisposition
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.ContentType
-    
-        
-    
-        
-        Gets the raw Content-Type header of the uploaded file.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ContentType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.FileName
-    
-        
-    
-        
-        Gets the file name from the Content-Disposition header.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Headers
-    
-        
-    
-        
-        Gets the header dictionary of the uploaded file.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public IHeaderDictionary Headers
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Length
-    
-        
-    
-        
-        Gets the file length in bytes.
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Name
-    
-        
-    
-        
-        Gets the name from the Content-Disposition header.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -203,6 +83,105 @@ Constructors
         .. code-block:: csharp
     
             public FormFile(Stream baseStream, long baseStreamOffset, long length, string name, string fileName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.FormFile
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.ContentDisposition
+    
+        
+    
+        
+        Gets the raw Content-Disposition header of the uploaded file.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ContentDisposition { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.ContentType
+    
+        
+    
+        
+        Gets the raw Content-Type header of the uploaded file.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ContentType { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.FileName
+    
+        
+    
+        
+        Gets the file name from the Content-Disposition header.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Headers
+    
+        
+    
+        
+        Gets the header dictionary of the uploaded file.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public IHeaderDictionary Headers { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Length
+    
+        
+    
+        
+        Gets the file length in bytes.
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.FormFile.Name
+    
+        
+    
+        
+        Gets the name from the Content-Disposition header.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
     
 
 Methods

@@ -80,30 +80,6 @@ Constructors
             protected TagHelperRequiredAttributeDescriptorComparer()
     
 
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer.Default
-    
-        
-    
-        
-        A default instance of the :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly TagHelperRequiredAttributeDescriptorComparer Default
-    
-
 Methods
 -------
 
@@ -140,5 +116,29 @@ Methods
         .. code-block:: csharp
     
             public virtual int GetHashCode(TagHelperRequiredAttributeDescriptor descriptor)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer.Default
+    
+        
+    
+        
+        A default instance of the :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptorComparer
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly TagHelperRequiredAttributeDescriptorComparer Default
     
 

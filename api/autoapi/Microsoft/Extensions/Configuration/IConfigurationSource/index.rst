@@ -70,6 +70,7 @@ Methods
         
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: An :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
     
         
         .. code-block:: csharp

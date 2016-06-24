@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AuthenticationScheme
-            {
-                get;
-                set;
-            }
+            public string AuthenticationScheme { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.AuthenticationOptions.AutomaticAuthenticate
     
@@ -98,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AutomaticAuthenticate
-            {
-                get;
-                set;
-            }
+            public bool AutomaticAuthenticate { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.AuthenticationOptions.AutomaticChallenge
     
@@ -118,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AutomaticChallenge
-            {
-                get;
-                set;
-            }
+            public bool AutomaticChallenge { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.AuthenticationOptions.ClaimsIssuer
     
@@ -137,11 +125,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ClaimsIssuer
-            {
-                get;
-                set;
-            }
+            public string ClaimsIssuer { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.AuthenticationOptions.Description
     
@@ -156,10 +140,6 @@ Properties
         
         .. code-block:: csharp
     
-            public AuthenticationDescription Description
-            {
-                get;
-                set;
-            }
+            public AuthenticationDescription Description { get; set; }
     
 

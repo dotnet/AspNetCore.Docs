@@ -59,11 +59,13 @@ Microsoft.Extensions.Configuration.EnvironmentVariables Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider
 
         
+        An environment variable based :any:`Microsoft.Extensions.Configuration.ConfigurationProvider`\.
 
 
     class :dn:cls:`EnvironmentVariablesConfigurationSource`
         .. object: type=class name=Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationSource
 
         
+        Represents environment variables as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 

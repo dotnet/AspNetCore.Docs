@@ -102,27 +102,6 @@ Methods
     
             public IWebHost Build()
     
-    .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostBuilder.Configure(System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
-    
-        
-    
-        
-        Specify the startup method to be used to configure the web application.
-    
-        
-    
-        
-        :param configureApp: The delegate that configures the :any:`Microsoft.AspNetCore.Builder.IApplicationBuilder`\.
-        
-        :type configureApp: System.Action<System.Action`1>{Microsoft.AspNetCore.Builder.IApplicationBuilder<Microsoft.AspNetCore.Builder.IApplicationBuilder>}
-        :rtype: Microsoft.AspNetCore.Hosting.IWebHostBuilder
-        :return: The :any:`Microsoft.AspNetCore.Hosting.IWebHostBuilder`\.
-    
-        
-        .. code-block:: csharp
-    
-            public IWebHostBuilder Configure(Action<IApplicationBuilder> configureApp)
-    
     .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging(System.Action<Microsoft.Extensions.Logging.ILoggerFactory>)
     
         
@@ -233,26 +212,5 @@ Methods
         .. code-block:: csharp
     
             public IWebHostBuilder UseSetting(string key, string value)
-    
-    .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostBuilder.UseStartup(System.Type)
-    
-        
-    
-        
-        Specify the startup type to be used by the web host.
-    
-        
-    
-        
-        :param startupType: The :any:`System.Type` to be used.
-        
-        :type startupType: System.Type
-        :rtype: Microsoft.AspNetCore.Hosting.IWebHostBuilder
-        :return: The :any:`Microsoft.AspNetCore.Hosting.IWebHostBuilder`\.
-    
-        
-        .. code-block:: csharp
-    
-            public IWebHostBuilder UseStartup(Type startupType)
     
 

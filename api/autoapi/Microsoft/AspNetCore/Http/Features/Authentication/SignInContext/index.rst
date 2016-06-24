@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Accepted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Accepted
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.AuthenticationScheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Principal
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -156,5 +95,54 @@ Methods
         .. code-block:: csharp
     
             public void Accept()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Accepted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Accepted { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.AuthenticationScheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Principal
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignInContext.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Properties { get; }
     
 

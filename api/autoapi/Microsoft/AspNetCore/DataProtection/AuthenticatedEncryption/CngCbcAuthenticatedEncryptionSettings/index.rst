@@ -80,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EncryptionAlgorithm
-            {
-                get;
-                set;
-            }
+            public string EncryptionAlgorithm { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptionSettings.EncryptionAlgorithmKeySize
     
@@ -100,11 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int EncryptionAlgorithmKeySize
-            {
-                get;
-                set;
-            }
+            public int EncryptionAlgorithmKeySize { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptionSettings.EncryptionAlgorithmProvider
     
@@ -121,11 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EncryptionAlgorithmProvider
-            {
-                get;
-                set;
-            }
+            public string EncryptionAlgorithmProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptionSettings.HashAlgorithm
     
@@ -142,11 +130,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string HashAlgorithm
-            {
-                get;
-                set;
-            }
+            public string HashAlgorithm { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptionSettings.HashAlgorithmProvider
     
@@ -163,11 +147,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string HashAlgorithmProvider
-            {
-                get;
-                set;
-            }
+            public string HashAlgorithmProvider { get; set; }
     
 
 Methods

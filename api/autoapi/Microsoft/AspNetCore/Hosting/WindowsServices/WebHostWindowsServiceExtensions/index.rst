@@ -81,6 +81,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void RunAsService(IWebHost host)
+            public static void RunAsService(this IWebHost host)
     
 

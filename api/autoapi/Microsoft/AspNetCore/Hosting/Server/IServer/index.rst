@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            IFeatureCollection Features
-            {
-                get;
-            }
+            IFeatureCollection Features { get; }
     
 
 Methods

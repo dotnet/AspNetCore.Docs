@@ -60,80 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.Arguments
-    
-        
-    
-        
-        Gets or sets the non-service arguments to pass to the :dn:prop:`Microsoft.AspNetCore.Mvc.TypeFilterAttribute.ImplementationType` constructor.
-    
-        
-        :rtype: System.Object<System.Object>[]
-    
-        
-        .. code-block:: csharp
-    
-            public object[] Arguments
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.ImplementationType
-    
-        
-    
-        
-        Gets the :any:`System.Type` of filter to create.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ImplementationType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.IsReusable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -160,6 +86,65 @@ Constructors
         .. code-block:: csharp
     
             public TypeFilterAttribute(Type type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.Arguments
+    
+        
+    
+        
+        Gets or sets the non-service arguments to pass to the :dn:prop:`Microsoft.AspNetCore.Mvc.TypeFilterAttribute.ImplementationType` constructor.
+    
+        
+        :rtype: System.Object<System.Object>[]
+    
+        
+        .. code-block:: csharp
+    
+            public object[] Arguments { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.ImplementationType
+    
+        
+    
+        
+        Gets the :any:`System.Type` of filter to create.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ImplementationType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.IsReusable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TypeFilterAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 
 Methods

@@ -7,6 +7,10 @@ FileConfigurationExtensions Class
 
 
 
+
+Extension methods for :any:`Microsoft.Extensions.Configuration.FileConfigurationProvider`\.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration`
 Assemblies
@@ -79,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IFileProvider GetFileProvider(IConfigurationBuilder builder)
+            public static IFileProvider GetFileProvider(this IConfigurationBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
     
@@ -105,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder SetBasePath(IConfigurationBuilder builder, string basePath)
+            public static IConfigurationBuilder SetBasePath(this IConfigurationBuilder builder, string basePath)
     
     .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetFileProvider(Microsoft.Extensions.Configuration.IConfigurationBuilder, Microsoft.Extensions.FileProviders.IFileProvider)
     
@@ -131,6 +135,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder SetFileProvider(IConfigurationBuilder builder, IFileProvider fileProvider)
+            public static IConfigurationBuilder SetFileProvider(this IConfigurationBuilder builder, IFileProvider fileProvider)
     
 

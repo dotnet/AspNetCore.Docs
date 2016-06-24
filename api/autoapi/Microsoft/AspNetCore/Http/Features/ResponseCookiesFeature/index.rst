@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature.Cookies
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IResponseCookies
-    
-        
-        .. code-block:: csharp
-    
-            public IResponseCookies Cookies
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -97,7 +75,7 @@ Constructors
     
         
         :param features: 
-            :any:`Microsoft.AspNetCore.Http.Features.IFeatureCollection` containing all defined features, including this
+            :any:`Microsoft.AspNetCore.Http.Features.IFeatureCollection` containing all defined features, including this 
             :any:`Microsoft.AspNetCore.Http.Features.IResponseCookiesFeature` and the :any:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature`\.
         
         :type features: Microsoft.AspNetCore.Http.Features.IFeatureCollection
@@ -118,7 +96,7 @@ Constructors
     
         
         :param features: 
-            :any:`Microsoft.AspNetCore.Http.Features.IFeatureCollection` containing all defined features, including this
+            :any:`Microsoft.AspNetCore.Http.Features.IFeatureCollection` containing all defined features, including this 
             :any:`Microsoft.AspNetCore.Http.Features.IResponseCookiesFeature` and the :any:`Microsoft.AspNetCore.Http.Features.IHttpResponseFeature`\.
         
         :type features: Microsoft.AspNetCore.Http.Features.IFeatureCollection
@@ -132,5 +110,24 @@ Constructors
         .. code-block:: csharp
     
             public ResponseCookiesFeature(IFeatureCollection features, ObjectPool<StringBuilder> builderPool)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.ResponseCookiesFeature.Cookies
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IResponseCookies
+    
+        
+        .. code-block:: csharp
+    
+            public IResponseCookies Cookies { get; }
     
 

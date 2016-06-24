@@ -52,84 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.Body
-    
-        
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-            public Stream Body
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.HasStarted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool HasStarted
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.Headers
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public IHeaderDictionary Headers
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.ReasonPhrase
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ReasonPhrase
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.StatusCode
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StatusCode
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -146,6 +68,65 @@ Constructors
         .. code-block:: csharp
     
             public HttpResponseFeature()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.Body
+    
+        
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            public Stream Body { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.HasStarted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool HasStarted { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.Headers
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public IHeaderDictionary Headers { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.ReasonPhrase
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ReasonPhrase { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.HttpResponseFeature.StatusCode
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StatusCode { get; set; }
     
 
 Methods

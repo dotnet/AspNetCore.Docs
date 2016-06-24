@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Namespace
-            {
-                get;
-                set;
-            }
+            public string Namespace { get; set; }
     
 

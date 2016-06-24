@@ -56,128 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.RouteValueDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Comparer
-    
-        
-    
-        
-        Gets the comparer for this dictionary.
-    
-        
-        :rtype: System.Collections.Generic.IEqualityComparer<System.Collections.Generic.IEqualityComparer`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEqualityComparer<string> Comparer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<KeyValuePair<string, object>>.IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>.Keys
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<string> IReadOnlyDictionary<string, object>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>.Values
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<object> IReadOnlyDictionary<string, object>.Values
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<object> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -213,7 +91,6 @@ Constructors
         :param values: An object to initialize the dictionary. The value can be of type 
             :any:`System.Collections.Generic.IDictionary\`2` or :any:`System.Collections.Generic.IReadOnlyDictionary\`2`
             or an object with public properties as key-value pairs.
-            
         
         :type values: System.Object
     
@@ -379,5 +256,102 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Comparer
+    
+        
+    
+        
+        Gets the comparer for this dictionary.
+    
+        
+        :rtype: System.Collections.Generic.IEqualityComparer<System.Collections.Generic.IEqualityComparer`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEqualityComparer<string> Comparer { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<KeyValuePair<string, object>>.IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>.Keys
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<string> IReadOnlyDictionary<string, object>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.Object>.Values
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<object> IReadOnlyDictionary<string, object>.Values { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<object> Values { get; }
     
 

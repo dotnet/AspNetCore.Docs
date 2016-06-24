@@ -8,11 +8,14 @@ IOptionalBinderMetadata Interface
 
 
 
+<p>
 An type that designates an optional parameter for the purposes
-of WebAPI action overloading. Optional parameters do not participate in overloading, and 
+of ASP.NET Web API action overloading. Optional parameters do not participate in overloading, and
 do not have to have a value for the action to be selected.
-
-This has no impact when used without WebAPI action overloading.
+</p>
+<p>
+This has no impact when used without ASP.NET Web API action overloading.
+</p>
 
 
 Namespace
@@ -63,14 +66,17 @@ Properties
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.IOptionalBinderMetadata.IsOptional
     
         
+    
+        
+        Gets a value indicating whether the parameter participates in ASP.NET Web API action overloading. If
+        <code>true</code>, the parameter does not participate in overloading. Otherwise, it does.
+    
+        
         :rtype: System.Boolean
     
         
         .. code-block:: csharp
     
-            bool IsOptional
-            {
-                get;
-            }
+            bool IsOptional { get; }
     
 

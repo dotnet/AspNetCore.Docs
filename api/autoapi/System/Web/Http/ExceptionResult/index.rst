@@ -59,51 +59,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.ExceptionResult
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.ExceptionResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.ExceptionResult.Exception
-    
-        
-    
-        
-        Gets the exception to include in the error.
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public Exception Exception
-            {
-                get;
-            }
-    
-    .. dn:property:: System.Web.Http.ExceptionResult.IncludeErrorDetail
-    
-        
-    
-        
-        Gets a value indicating whether the error should include exception messages.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IncludeErrorDetail
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -135,6 +90,45 @@ Constructors
         .. code-block:: csharp
     
             public ExceptionResult(Exception exception, bool includeErrorDetail)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.ExceptionResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.ExceptionResult.Exception
+    
+        
+    
+        
+        Gets the exception to include in the error.
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public Exception Exception { get; }
+    
+    .. dn:property:: System.Web.Http.ExceptionResult.IncludeErrorDetail
+    
+        
+    
+        
+        Gets a value indicating whether the error should include exception messages.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IncludeErrorDetail { get; }
     
 
 Methods

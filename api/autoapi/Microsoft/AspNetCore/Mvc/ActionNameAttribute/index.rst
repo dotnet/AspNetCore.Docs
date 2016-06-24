@@ -7,6 +7,10 @@ ActionNameAttribute Class
 
 
 
+
+Specifies the name of an action.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc`
 Assemblies
@@ -54,28 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ActionNameAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ActionNameAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionNameAttribute.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -89,11 +71,42 @@ Constructors
         
     
         
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.ActionNameAttribute` instance.
+    
+        
+    
+        
+        :param name: The name of the action.
+        
         :type name: System.String
     
         
         .. code-block:: csharp
     
             public ActionNameAttribute(string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ActionNameAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionNameAttribute.Name
+    
+        
+    
+        
+        Gets the name of the action.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
     
 

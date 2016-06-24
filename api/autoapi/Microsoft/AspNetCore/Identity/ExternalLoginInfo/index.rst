@@ -57,49 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.ExternalLoginInfo
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.ExternalLoginInfo
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Authentication.AuthenticationToken<Microsoft.AspNetCore.Authentication.AuthenticationToken>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<AuthenticationToken> AuthenticationTokens
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal
-    
-        
-    
-        
-        Gets or sets the :any:`System.Security.Claims.ClaimsPrincipal` associated with this login.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-        :return: The :any:`System.Security.Claims.ClaimsPrincipal` associated with this login.
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -141,5 +98,40 @@ Constructors
         .. code-block:: csharp
     
             public ExternalLoginInfo(ClaimsPrincipal principal, string loginProvider, string providerKey, string displayName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.ExternalLoginInfo
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Authentication.AuthenticationToken<Microsoft.AspNetCore.Authentication.AuthenticationToken>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<AuthenticationToken> AuthenticationTokens { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal
+    
+        
+    
+        
+        Gets or sets the :any:`System.Security.Claims.ClaimsPrincipal` associated with this login.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+        :return: The :any:`System.Security.Claims.ClaimsPrincipal` associated with this login.
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; set; }
     
 

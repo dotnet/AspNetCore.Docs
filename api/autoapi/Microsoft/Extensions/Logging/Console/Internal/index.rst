@@ -72,6 +72,21 @@ Microsoft.Extensions.Logging.Console.Internal Namespace
 .. dn:namespace:: Microsoft.Extensions.Logging.Console.Internal
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAnsiSystemConsole`
+        .. object: type=interface name=Microsoft.Extensions.Logging.Console.Internal.IAnsiSystemConsole
+
+        
+
+
+    interface :dn:iface:`IConsole`
+        .. object: type=interface name=Microsoft.Extensions.Logging.Console.Internal.IConsole
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -84,21 +99,6 @@ Microsoft.Extensions.Logging.Console.Internal Namespace
 
     class :dn:cls:`WindowsLogConsole`
         .. object: type=class name=Microsoft.Extensions.Logging.Console.Internal.WindowsLogConsole
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAnsiSystemConsole`
-        .. object: type=interface name=Microsoft.Extensions.Logging.Console.Internal.IAnsiSystemConsole
-
-        
-
-
-    interface :dn:iface:`IConsole`
-        .. object: type=interface name=Microsoft.Extensions.Logging.Console.Internal.IConsole
 
         
 

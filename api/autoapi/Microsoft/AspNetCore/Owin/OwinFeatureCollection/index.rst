@@ -52,426 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Owin.OwinFeatureCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Owin.OwinFeatureCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Environment
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, object> Environment
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Item[System.Type]
-    
-        
-    
-        
-        :type key: System.Type
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object this[Type key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature.Handler
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
-    
-        
-        .. code-block:: csharp
-    
-            IAuthenticationHandler IHttpAuthenticationFeature.Handler
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature.User
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            ClaimsPrincipal IHttpAuthenticationFeature.User
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.ConnectionId
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpConnectionFeature.ConnectionId
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalIpAddress
-    
-        
-        :rtype: System.Net.IPAddress
-    
-        
-        .. code-block:: csharp
-    
-            IPAddress IHttpConnectionFeature.LocalIpAddress
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalPort
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int IHttpConnectionFeature.LocalPort
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemoteIpAddress
-    
-        
-        :rtype: System.Net.IPAddress
-    
-        
-        .. code-block:: csharp
-    
-            IPAddress IHttpConnectionFeature.RemoteIpAddress
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemotePort
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int IHttpConnectionFeature.RemotePort
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Body
-    
-        
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-            Stream IHttpRequestFeature.Body
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Headers
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            IHeaderDictionary IHttpRequestFeature.Headers
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Method
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.Method
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.Path
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.PathBase
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.PathBase
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Protocol
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.Protocol
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.QueryString
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.QueryString
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Scheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestFeature.Scheme
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestIdentifierFeature.TraceIdentifier
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpRequestIdentifierFeature.TraceIdentifier
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature.RequestAborted
-    
-        
-        :rtype: System.Threading.CancellationToken
-    
-        
-        .. code-block:: csharp
-    
-            CancellationToken IHttpRequestLifetimeFeature.RequestAborted
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Body
-    
-        
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-            Stream IHttpResponseFeature.Body
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.HasStarted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IHttpResponseFeature.HasStarted
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            IHeaderDictionary IHttpResponseFeature.Headers
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.ReasonPhrase
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IHttpResponseFeature.ReasonPhrase
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int IHttpResponseFeature.StatusCode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature.IsWebSocketRequest
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IHttpWebSocketFeature.IsWebSocketRequest
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature.ClientCertificate
-    
-        
-        :rtype: System.Security.Cryptography.X509Certificates.X509Certificate2
-    
-        
-        .. code-block:: csharp
-    
-            X509Certificate2 ITlsConnectionFeature.ClientCertificate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Revision
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Revision
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.SupportsWebSockets
-    
-        
-    
-        
-        Gets or sets if the underlying server supports WebSockets. This is enabled by default.
-        The value should be consistent across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool SupportsWebSockets
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -666,5 +246,323 @@ Methods
         .. code-block:: csharp
     
             IEnumerator IEnumerable.GetEnumerator()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Owin.OwinFeatureCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Environment
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, object> Environment { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Item[System.Type]
+    
+        
+    
+        
+        :type key: System.Type
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object this[Type key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature.Handler
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
+    
+        
+        .. code-block:: csharp
+    
+            IAuthenticationHandler IHttpAuthenticationFeature.Handler { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature.User
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            ClaimsPrincipal IHttpAuthenticationFeature.User { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.ConnectionId
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpConnectionFeature.ConnectionId { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalIpAddress
+    
+        
+        :rtype: System.Net.IPAddress
+    
+        
+        .. code-block:: csharp
+    
+            IPAddress IHttpConnectionFeature.LocalIpAddress { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.LocalPort
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int IHttpConnectionFeature.LocalPort { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemoteIpAddress
+    
+        
+        :rtype: System.Net.IPAddress
+    
+        
+        .. code-block:: csharp
+    
+            IPAddress IHttpConnectionFeature.RemoteIpAddress { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature.RemotePort
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int IHttpConnectionFeature.RemotePort { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Body
+    
+        
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            Stream IHttpRequestFeature.Body { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Headers
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            IHeaderDictionary IHttpRequestFeature.Headers { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Method
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.Method { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.Path { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.PathBase
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.PathBase { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Protocol
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.Protocol { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.QueryString
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.QueryString { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.RawTarget
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.RawTarget { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.Scheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestFeature.Scheme { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestIdentifierFeature.TraceIdentifier
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpRequestIdentifierFeature.TraceIdentifier { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature.RequestAborted
+    
+        
+        :rtype: System.Threading.CancellationToken
+    
+        
+        .. code-block:: csharp
+    
+            CancellationToken IHttpRequestLifetimeFeature.RequestAborted { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Body
+    
+        
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            Stream IHttpResponseFeature.Body { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.HasStarted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IHttpResponseFeature.HasStarted { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.Headers
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            IHeaderDictionary IHttpResponseFeature.Headers { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.ReasonPhrase
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IHttpResponseFeature.ReasonPhrase { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.StatusCode
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int IHttpResponseFeature.StatusCode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature.IsWebSocketRequest
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IHttpWebSocketFeature.IsWebSocketRequest { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature.ClientCertificate
+    
+        
+        :rtype: System.Security.Cryptography.X509Certificates.X509Certificate2
+    
+        
+        .. code-block:: csharp
+    
+            X509Certificate2 ITlsConnectionFeature.ClientCertificate { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.Revision
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Revision { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinFeatureCollection.SupportsWebSockets
+    
+        
+    
+        
+        Gets or sets if the underlying server supports WebSockets. This is enabled by default.
+        The value should be consistent across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool SupportsWebSockets { get; set; }
     
 

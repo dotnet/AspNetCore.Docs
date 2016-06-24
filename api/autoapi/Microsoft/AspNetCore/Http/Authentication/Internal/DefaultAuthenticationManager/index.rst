@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager.HttpContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public override HttpContext HttpContext
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -135,6 +113,19 @@ Methods
         .. code-block:: csharp
     
             public override Task ChallengeAsync(string authenticationScheme, AuthenticationProperties properties, ChallengeBehavior behavior)
+    
+    .. dn:method:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager.GetAuthenticateInfoAsync(System.String)
+    
+        
+    
+        
+        :type authenticationScheme: System.String
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Http.Authentication.AuthenticateInfo<Microsoft.AspNetCore.Http.Authentication.AuthenticateInfo>}
+    
+        
+        .. code-block:: csharp
+    
+            public override Task<AuthenticateInfo> GetAuthenticateInfoAsync(string authenticationScheme)
     
     .. dn:method:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager.GetAuthenticationSchemes()
     
@@ -201,5 +192,24 @@ Methods
         .. code-block:: csharp
     
             public virtual void Uninitialize()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.Internal.DefaultAuthenticationManager.HttpContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public override HttpContext HttpContext { get; }
     
 

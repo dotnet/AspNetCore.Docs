@@ -57,69 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.ChunkTree
-    
-        
-    
-        
-        A :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` for the document.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
-    
-        
-        .. code-block:: csharp
-    
-            public ChunkTree ChunkTree
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.DesignTimeLineMappings
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping`\s used to project code from a file during design time.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<LineMapping> DesignTimeLineMappings
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.GeneratedCode
-    
-        
-    
-        
-        The generated code for the document.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string GeneratedCode
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +135,59 @@ Constructors
         .. code-block:: csharp
     
             public GeneratorResults(ParserResults parserResults, CodeGeneratorResult codeGeneratorResult, ChunkTree chunkTree)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.ChunkTree
+    
+        
+    
+        
+        A :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` for the document.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
+    
+        
+        .. code-block:: csharp
+    
+            public ChunkTree ChunkTree { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.DesignTimeLineMappings
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping`\s used to project code from a file during design time.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<LineMapping> DesignTimeLineMappings { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratorResults.GeneratedCode
+    
+        
+    
+        
+        The generated code for the document.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string GeneratedCode { get; }
     
 

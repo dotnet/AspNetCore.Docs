@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionSelectorDecisionTreeProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionSelectorDecisionTreeProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ActionSelectorDecisionTreeProvider.DecisionTree
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
-    
-        
-        .. code-block:: csharp
-    
-            public IActionSelectionDecisionTree DecisionTree
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,5 +79,24 @@ Constructors
         .. code-block:: csharp
     
             public ActionSelectorDecisionTreeProvider(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionSelectorDecisionTreeProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ActionSelectorDecisionTreeProvider.DecisionTree
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
+    
+        
+        .. code-block:: csharp
+    
+            public IActionSelectionDecisionTree DecisionTree { get; }
     
 

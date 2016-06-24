@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeGenerator.Host
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
-    
-        
-        .. code-block:: csharp
-    
-            public RazorEngineHost Host
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -189,5 +167,24 @@ Methods
         .. code-block:: csharp
     
             public override CodeGeneratorResult Generate()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeGenerator.Host
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
+    
+        
+        .. code-block:: csharp
+    
+            public RazorEngineHost Host { get; }
     
 

@@ -53,93 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Children
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<SyntaxTreeNode> Children
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.ChunkGenerator
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.IParentChunkGenerator
-    
-        
-        .. code-block:: csharp
-    
-            public IParentChunkGenerator ChunkGenerator
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.IsBlock
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool IsBlock
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Length
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public override SourceLocation Start
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Type
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.BlockType
-    
-        
-        .. code-block:: csharp
-    
-            public BlockType Type
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -297,5 +210,74 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Children
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<SyntaxTreeNode> Children { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.ChunkGenerator
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.IParentChunkGenerator
+    
+        
+        .. code-block:: csharp
+    
+            public IParentChunkGenerator ChunkGenerator { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.IsBlock
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool IsBlock { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Length
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public override SourceLocation Start { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Type
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.BlockType
+    
+        
+        .. code-block:: csharp
+    
+            public BlockType Type { get; }
     
 

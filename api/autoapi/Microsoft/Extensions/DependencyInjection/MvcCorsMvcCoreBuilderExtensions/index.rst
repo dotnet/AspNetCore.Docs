@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddCors(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
+            public static IMvcCoreBuilder AddCors(this IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.ConfigureCors(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
@@ -103,6 +103,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder ConfigureCors(IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
+            public static IMvcCoreBuilder ConfigureCors(this IMvcCoreBuilder builder, Action<CorsOptions> setupAction)
     
 

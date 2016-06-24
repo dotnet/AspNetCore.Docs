@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.WebSockets.WebSocketBuffer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.WebSockets.WebSocketBuffer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.WebSockets.WebSocketBuffer.ReceiveBufferSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int ReceiveBufferSize
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.WebSockets.WebSocketBuffer.SendBufferSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int SendBufferSize
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -174,5 +139,34 @@ Fields
         .. code-block:: csharp
     
             public const int MinSendBufferSize = 16
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.WebSockets.WebSocketBuffer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.WebSockets.WebSocketBuffer.ReceiveBufferSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int ReceiveBufferSize { get; }
+    
+    .. dn:property:: Microsoft.Net.WebSockets.WebSocketBuffer.SendBufferSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int SendBufferSize { get; }
     
 

@@ -80,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int ? Duration
-            {
-                get;
-                set;
-            }
+            public int ? Duration { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.CacheProfile.Location
     
@@ -101,11 +97,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ResponseCacheLocation? Location
-            {
-                get;
-                set;
-            }
+            public ResponseCacheLocation? Location { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.CacheProfile.NoStore
     
@@ -113,7 +105,7 @@ Properties
     
         
         Gets or sets the value which determines whether the data should be stored or not.
-        When set to <xref uid="langword_csharp_true" name="true" href=""></xref>, it sets "Cache-control" header in
+        When set to <xref uid="langword_csharp_true" name="true" href=""></xref>, it sets "Cache-control" header in 
         :dn:prop:`Microsoft.AspNetCore.Http.HttpContext.Response` to "no-store".
         Ignores the "Location" parameter for values other than "None".
         Ignores the "Duration" parameter.
@@ -124,11 +116,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ? NoStore
-            {
-                get;
-                set;
-            }
+            public bool ? NoStore { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.CacheProfile.VaryByHeader
     
@@ -143,10 +131,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string VaryByHeader
-            {
-                get;
-                set;
-            }
+            public string VaryByHeader { get; set; }
     
 

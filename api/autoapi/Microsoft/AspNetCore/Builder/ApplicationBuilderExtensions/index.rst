@@ -84,7 +84,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app)
+            public static IApplicationBuilder UseRequestLocalization(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.RequestLocalizationOptions)
     
@@ -111,6 +111,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseRequestLocalization(IApplicationBuilder app, RequestLocalizationOptions options)
+            public static IApplicationBuilder UseRequestLocalization(this IApplicationBuilder app, RequestLocalizationOptions options)
     
 

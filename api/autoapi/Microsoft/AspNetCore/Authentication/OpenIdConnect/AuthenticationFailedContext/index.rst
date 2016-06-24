@@ -55,29 +55,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext.Exception
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public Exception Exception
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -100,5 +77,24 @@ Constructors
         .. code-block:: csharp
     
             public AuthenticationFailedContext(HttpContext context, OpenIdConnectOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.AuthenticationFailedContext.Exception
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public Exception Exception { get; set; }
     
 

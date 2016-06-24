@@ -59,28 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataTypeAttributeAdapter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataTypeAttributeAdapter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataTypeAttributeAdapter.RuleName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RuleName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -140,5 +118,24 @@ Methods
         .. code-block:: csharp
     
             public override string GetErrorMessage(ModelValidationContextBase validationContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataTypeAttributeAdapter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.DataTypeAttributeAdapter.RuleName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RuleName { get; }
     
 

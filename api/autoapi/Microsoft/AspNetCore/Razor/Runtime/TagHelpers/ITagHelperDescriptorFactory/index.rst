@@ -72,7 +72,6 @@ Methods
     
         
         :param type: The :any:`System.Type` to create a :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor` from.
-            
         
         :type type: System.Type
     

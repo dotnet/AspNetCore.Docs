@@ -74,11 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Content
-            {
-                get;
-                set;
-            }
+            public string Content { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ContentResult.ContentType
     
@@ -93,11 +89,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-                set;
-            }
+            public string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ContentResult.StatusCode
     
@@ -112,11 +104,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int ? StatusCode
-            {
-                get;
-                set;
-            }
+            public int ? StatusCode { get; set; }
     
 
 Methods

@@ -58,6 +58,24 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.OAuthOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.OAuthOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Builder.OAuthOptions.OAuthOptions()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public OAuthOptions()
+    
+
 Properties
 ----------
 
@@ -79,11 +97,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AuthorizationEndpoint
-            {
-                get;
-                set;
-            }
+            public string AuthorizationEndpoint { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.ClientId
     
@@ -98,11 +112,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ClientId
-            {
-                get;
-                set;
-            }
+            public string ClientId { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.ClientSecret
     
@@ -117,11 +127,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ClientSecret
-            {
-                get;
-                set;
-            }
+            public string ClientSecret { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.Events
     
@@ -136,11 +142,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IOAuthEvents Events
-            {
-                get;
-                set;
-            }
+            public IOAuthEvents Events { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.Scope
     
@@ -155,10 +157,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ICollection<string> Scope
-            {
-                get;
-            }
+            public ICollection<string> Scope { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.StateDataFormat
     
@@ -173,11 +172,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ISecureDataFormat<AuthenticationProperties> StateDataFormat
-            {
-                get;
-                set;
-            }
+            public ISecureDataFormat<AuthenticationProperties> StateDataFormat { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.SystemClock
     
@@ -193,11 +188,7 @@ Properties
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ISystemClock SystemClock
-            {
-                get;
-                set;
-            }
+            public ISystemClock SystemClock { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.TokenEndpoint
     
@@ -212,11 +203,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TokenEndpoint
-            {
-                get;
-                set;
-            }
+            public string TokenEndpoint { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.OAuthOptions.UserInformationEndpoint
     
@@ -233,28 +220,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string UserInformationEndpoint
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.OAuthOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Builder.OAuthOptions.OAuthOptions()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public OAuthOptions()
+            public string UserInformationEndpoint { get; set; }
     
 

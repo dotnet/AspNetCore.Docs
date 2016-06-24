@@ -53,151 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.ChunkGenerator
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
-    
-        
-        .. code-block:: csharp
-    
-            public ISpanChunkGenerator ChunkGenerator
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Content
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Content
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.EditHandler
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
-    
-        
-        .. code-block:: csharp
-    
-            public SpanEditHandler EditHandler
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.IsBlock
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool IsBlock
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Kind
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanKind
-    
-        
-        .. code-block:: csharp
-    
-            public SpanKind Kind
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Length
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Next
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
-    
-        
-        .. code-block:: csharp
-    
-            public Span Next
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Previous
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
-    
-        
-        .. code-block:: csharp
-    
-            public Span Previous
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public override SourceLocation Start
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Symbols
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ISymbol> Symbols
-            {
-                get;
-                protected set;
-            }
-    
-
 Constructors
 ------------
 
@@ -340,5 +195,114 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.ChunkGenerator
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
+    
+        
+        .. code-block:: csharp
+    
+            public ISpanChunkGenerator ChunkGenerator { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Content
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Content { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.EditHandler
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
+    
+        
+        .. code-block:: csharp
+    
+            public SpanEditHandler EditHandler { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.IsBlock
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool IsBlock { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Kind
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanKind
+    
+        
+        .. code-block:: csharp
+    
+            public SpanKind Kind { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Length
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Next
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
+    
+        
+        .. code-block:: csharp
+    
+            public Span Next { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Previous
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span
+    
+        
+        .. code-block:: csharp
+    
+            public Span Previous { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public override SourceLocation Start { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span.Symbols
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ISymbol> Symbols { get; protected set; }
     
 

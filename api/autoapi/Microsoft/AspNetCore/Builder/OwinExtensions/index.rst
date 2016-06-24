@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseBuilder(Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app)
+            public static IApplicationBuilder UseBuilder(this Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OwinExtensions.UseBuilder(System.Action<System.Func<System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>>>, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseBuilder(Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, Action<IApplicationBuilder> pipeline)
+            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseBuilder(this Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, Action<IApplicationBuilder> pipeline)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OwinExtensions.UseBuilder(System.Action<System.Func<System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>>>, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>, System.IServiceProvider)
     
@@ -106,7 +106,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseBuilder(Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, Action<IApplicationBuilder> pipeline, IServiceProvider serviceProvider)
+            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseBuilder(this Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, Action<IApplicationBuilder> pipeline, IServiceProvider serviceProvider)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OwinExtensions.UseBuilder(System.Action<System.Func<System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>>>, System.IServiceProvider)
     
@@ -122,7 +122,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseBuilder(Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, IServiceProvider serviceProvider)
+            public static IApplicationBuilder UseBuilder(this Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> app, IServiceProvider serviceProvider)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OwinExtensions.UseOwin(Microsoft.AspNetCore.Builder.IApplicationBuilder)
     
@@ -135,7 +135,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseOwin(IApplicationBuilder builder)
+            public static Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>> UseOwin(this IApplicationBuilder builder)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OwinExtensions.UseOwin(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<System.Action<System.Func<System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>, System.Func<System.Collections.Generic.IDictionary<System.String, System.Object>, System.Threading.Tasks.Task>>>>)
     
@@ -151,6 +151,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseOwin(IApplicationBuilder builder, Action<Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>>> pipeline)
+            public static IApplicationBuilder UseOwin(this IApplicationBuilder builder, Action<Action<Func<Func<IDictionary<string, object>, Task>, Func<IDictionary<string, object>, Task>>>> pipeline)
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWriter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWriter.LineMappingManager
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager
-    
-        
-        .. code-block:: csharp
-    
-            public LineMappingManager LineMappingManager
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -860,5 +838,24 @@ Methods
         .. code-block:: csharp
     
             public CSharpCodeWriter WriteVariableDeclaration(string type, string name, string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWriter.LineMappingManager
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager
+    
+        
+        .. code-block:: csharp
+    
+            public LineMappingManager LineMappingManager { get; }
     
 

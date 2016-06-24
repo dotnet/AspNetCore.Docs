@@ -56,105 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.Attributes
-    
-        
-    
-        
-        Gets the attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.BindingMetadata
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public BindingMetadata BindingMetadata
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.Key
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadataIdentity Key
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.PropertyAttributes
-    
-        
-    
-        
-        Gets the property attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> PropertyAttributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.TypeAttributes
-    
-        
-    
-        
-        Gets the type attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> TypeAttributes
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -186,5 +87,89 @@ Constructors
         .. code-block:: csharp
     
             public BindingMetadataProviderContext(ModelMetadataIdentity key, ModelAttributes attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.Attributes
+    
+        
+    
+        
+        Gets the attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.BindingMetadata
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public BindingMetadata BindingMetadata { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.Key
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadataIdentity Key { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.PropertyAttributes
+    
+        
+    
+        
+        Gets the property attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> PropertyAttributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadataProviderContext.TypeAttributes
+    
+        
+    
+        
+        Gets the type attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> TypeAttributes { get; }
     
 

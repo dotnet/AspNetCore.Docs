@@ -57,35 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.CookieRequestCultureProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.CookieRequestCultureProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.CookieName
-    
-        
-    
-        
-        The name of the cookie that contains the user's preferred culture information.
-        Defaults to :dn:field:`Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CookieName
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -149,6 +120,31 @@ Methods
         .. code-block:: csharp
     
             public static ProviderCultureResult ParseCookieValue(string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.CookieRequestCultureProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.CookieName
+    
+        
+    
+        
+        The name of the cookie that contains the user's preferred culture information.
+        Defaults to :dn:field:`Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CookieName { get; set; }
     
 
 Fields

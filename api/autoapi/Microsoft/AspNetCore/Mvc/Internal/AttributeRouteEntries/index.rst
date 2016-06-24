@@ -60,30 +60,24 @@ Properties
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouteEntries.LinkGenerationEntries
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouteEntries.InboundEntries
     
         
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry<Microsoft.AspNetCore.Routing.Tree.TreeRouteLinkGenerationEntry>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<TreeRouteLinkGenerationEntry> LinkGenerationEntries
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouteEntries.MatchingEntries
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Routing.Tree.TreeRouteMatchingEntry<Microsoft.AspNetCore.Routing.Tree.TreeRouteMatchingEntry>}
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Routing.Tree.InboundRouteEntry<Microsoft.AspNetCore.Routing.Tree.InboundRouteEntry>}
     
         
         .. code-block:: csharp
     
-            public List<TreeRouteMatchingEntry> MatchingEntries
-            {
-                get;
-            }
+            public List<InboundRouteEntry> InboundEntries { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AttributeRouteEntries.OutboundEntries
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry<Microsoft.AspNetCore.Routing.Tree.OutboundRouteEntry>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<OutboundRouteEntry> OutboundEntries { get; }
     
 

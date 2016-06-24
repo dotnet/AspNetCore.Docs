@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<string> ContextCode
-            {
-                get;
-                set;
-            }
+            public IEnumerable<string> ContextCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.ErrorDetails
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ErrorDetails
-            {
-                get;
-                set;
-            }
+            public string ErrorDetails { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.File
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string File
-            {
-                get;
-                set;
-            }
+            public string File { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.Function
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Function
-            {
-                get;
-                set;
-            }
+            public string Function { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.Line
     
@@ -153,11 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int Line
-            {
-                get;
-                set;
-            }
+            public int Line { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.PostContextCode
     
@@ -172,11 +152,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<string> PostContextCode
-            {
-                get;
-                set;
-            }
+            public IEnumerable<string> PostContextCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.PreContextCode
     
@@ -191,11 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<string> PreContextCode
-            {
-                get;
-                set;
-            }
+            public IEnumerable<string> PreContextCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.StackFrame.PreContextLine
     
@@ -210,10 +182,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int PreContextLine
-            {
-                get;
-                set;
-            }
+            public int PreContextLine { get; set; }
     
 

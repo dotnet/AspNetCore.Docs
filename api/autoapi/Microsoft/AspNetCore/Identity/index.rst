@@ -504,6 +504,173 @@ Microsoft.AspNetCore.Identity Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Identity
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ILookupNormalizer`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.ILookupNormalizer
+
+        
+        Provides an abstraction for normalizing keys for lookup purposes.
+
+
+    interface :dn:iface:`IPasswordHasher\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IPasswordHasher\<TUser>
+
+        
+        Provides an abstraction for hashing passwords.
+
+
+    interface :dn:iface:`IPasswordValidator\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IPasswordValidator\<TUser>
+
+        
+        Provides an abstraction for validating passwords.
+
+
+    interface :dn:iface:`IQueryableRoleStore\<TRole>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IQueryableRoleStore\<TRole>
+
+        
+        Provides an abstraction for querying roles in a Role store.
+
+
+    interface :dn:iface:`IQueryableUserStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IQueryableUserStore\<TUser>
+
+        
+        Provides an abstraction for querying roles in a User store.
+
+
+    interface :dn:iface:`IRoleClaimStore\<TRole>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleClaimStore\<TRole>
+
+        
+        Provides an abstraction for a store of role specific claims.
+
+
+    interface :dn:iface:`IRoleStore\<TRole>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleStore\<TRole>
+
+        
+        Provides an abstraction for a storage and management of roles.
+
+
+    interface :dn:iface:`IRoleValidator\<TRole>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleValidator\<TRole>
+
+        
+        Provides an abstraction for a validating a role.
+
+
+    interface :dn:iface:`ISecurityStampValidator`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.ISecurityStampValidator
+
+        
+        Provides an abstraction for a validating a security stamp of an incoming identity, and regenerating or rejecting the 
+        identity based on the validation result.
+
+
+    interface :dn:iface:`IUserAuthenticationTokenStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserAuthenticationTokenStore\<TUser>
+
+        
+        Provides an abstraction to store a user's authentication tokens.
+
+
+    interface :dn:iface:`IUserClaimStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserClaimStore\<TUser>
+
+        
+        Provides an abstraction for a store of claims for a user.
+
+
+    interface :dn:iface:`IUserClaimsPrincipalFactory\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory\<TUser>
+
+        
+        Provides an abstraction for a factory to create a :any:`System.Security.Claims.ClaimsPrincipal` from a user.
+
+
+    interface :dn:iface:`IUserEmailStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserEmailStore\<TUser>
+
+        
+        Provides an abstraction for the storage and management of user email addresses.
+
+
+    interface :dn:iface:`IUserLockoutStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserLockoutStore\<TUser>
+
+        
+        Provides an abstraction for a storing information which can be used to implement account lockout, 
+        including access failures and lockout status
+
+
+    interface :dn:iface:`IUserLoginStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserLoginStore\<TUser>
+
+        
+        Provides an abstraction for storing information that maps external login information provided
+        by Microsoft Account, Facebook etc. to a user account.
+
+
+    interface :dn:iface:`IUserPasswordStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserPasswordStore\<TUser>
+
+        
+        Provides an abstraction for a store containing users' password hashes..
+
+
+    interface :dn:iface:`IUserPhoneNumberStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserPhoneNumberStore\<TUser>
+
+        
+        Provides an abstraction for a store containing users' telephone numbers.
+
+
+    interface :dn:iface:`IUserRoleStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserRoleStore\<TUser>
+
+        
+        Provides an abstraction for a store which maps users to roles.
+
+
+    interface :dn:iface:`IUserSecurityStampStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserSecurityStampStore\<TUser>
+
+        
+        Provides an abstraction for a store which stores a user's security stamp.
+
+
+    interface :dn:iface:`IUserStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserStore\<TUser>
+
+        
+        Provides an abstraction for a store which manages user accounts.
+
+
+    interface :dn:iface:`IUserTwoFactorStore\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserTwoFactorStore\<TUser>
+
+        
+        Provides an abstraction to store a flag indicating whether a user has two factor authentication enabled.
+
+
+    interface :dn:iface:`IUserTwoFactorTokenProvider\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserTwoFactorTokenProvider\<TUser>
+
+        
+        Provides an abstraction for two factor token generators.
+
+
+    interface :dn:iface:`IUserValidator\<TUser>`
+        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserValidator\<TUser>
+
+        
+        Provides an abstraction for user validation.
+
+
     .. rubric:: Classes
 
 
@@ -753,172 +920,5 @@ Microsoft.AspNetCore.Identity Namespace
 
         
         Specifies the results for password verification.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ILookupNormalizer`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.ILookupNormalizer
-
-        
-        Provides an abstraction for normalizing keys for lookup purposes.
-
-
-    interface :dn:iface:`IPasswordHasher\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IPasswordHasher\<TUser>
-
-        
-        Provides an abstraction for hashing passwords.
-
-
-    interface :dn:iface:`IPasswordValidator\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IPasswordValidator\<TUser>
-
-        
-        Provides an abstraction for validating passwords.
-
-
-    interface :dn:iface:`IQueryableRoleStore\<TRole>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IQueryableRoleStore\<TRole>
-
-        
-        Provides an abstraction for querying roles in a Role store.
-
-
-    interface :dn:iface:`IQueryableUserStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IQueryableUserStore\<TUser>
-
-        
-        Provides an abstraction for querying roles in a User store.
-
-
-    interface :dn:iface:`IRoleClaimStore\<TRole>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleClaimStore\<TRole>
-
-        
-        Provides an abstraction for a store of role specific claims.
-
-
-    interface :dn:iface:`IRoleStore\<TRole>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleStore\<TRole>
-
-        
-        Provides an abstraction for a storage and management of roles.
-
-
-    interface :dn:iface:`IRoleValidator\<TRole>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IRoleValidator\<TRole>
-
-        
-        Provides an abstraction for a validating a role.
-
-
-    interface :dn:iface:`ISecurityStampValidator`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.ISecurityStampValidator
-
-        
-        Provides an abstraction for a validating a security stamp of an incoming identity, and regenerating or rejecting the 
-        identity based on the validation result.
-
-
-    interface :dn:iface:`IUserAuthenticationTokenStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserAuthenticationTokenStore\<TUser>
-
-        
-        Provides an abstraction to store a user's authentication tokens.
-
-
-    interface :dn:iface:`IUserClaimStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserClaimStore\<TUser>
-
-        
-        Provides an abstraction for a store of claims for a user.
-
-
-    interface :dn:iface:`IUserClaimsPrincipalFactory\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory\<TUser>
-
-        
-        Provides an abstraction for a factory to create a :any:`System.Security.Claims.ClaimsPrincipal` from a user.
-
-
-    interface :dn:iface:`IUserEmailStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserEmailStore\<TUser>
-
-        
-        Provides an abstraction for the storage and management of user email addresses.
-
-
-    interface :dn:iface:`IUserLockoutStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserLockoutStore\<TUser>
-
-        
-        Provides an abstraction for a storing information which can be used to implement account lockout, 
-        including access failures and lockout status
-
-
-    interface :dn:iface:`IUserLoginStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserLoginStore\<TUser>
-
-        
-        Provides an abstraction for storing information that maps external login information provided
-        by Microsoft Account, Facebook etc. to a user account.
-
-
-    interface :dn:iface:`IUserPasswordStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserPasswordStore\<TUser>
-
-        
-        Provides an abstraction for a store containing users' password hashes..
-
-
-    interface :dn:iface:`IUserPhoneNumberStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserPhoneNumberStore\<TUser>
-
-        
-        Provides an abstraction for a store containing users' telephone numbers.
-
-
-    interface :dn:iface:`IUserRoleStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserRoleStore\<TUser>
-
-        
-        Provides an abstraction for a store which maps users to roles.
-
-
-    interface :dn:iface:`IUserSecurityStampStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserSecurityStampStore\<TUser>
-
-        
-        Provides an abstraction for a store which stores a user's security stamp.
-
-
-    interface :dn:iface:`IUserStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserStore\<TUser>
-
-        
-        Provides an abstraction for a store which manages user accounts.
-
-
-    interface :dn:iface:`IUserTwoFactorStore\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserTwoFactorStore\<TUser>
-
-        
-        Provides an abstraction to store a flag indicating whether a user has two factor authentication enabled.
-
-
-    interface :dn:iface:`IUserTwoFactorTokenProvider\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserTwoFactorTokenProvider\<TUser>
-
-        
-        Provides an abstraction for two factor token generators.
-
-
-    interface :dn:iface:`IUserValidator\<TUser>`
-        .. object: type=interface name=Microsoft.AspNetCore.Identity.IUserValidator\<TUser>
-
-        
-        Provides an abstraction for user validation.
 
 

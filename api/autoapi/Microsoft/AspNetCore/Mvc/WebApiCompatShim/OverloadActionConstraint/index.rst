@@ -7,6 +7,11 @@ OverloadActionConstraint Class
 
 
 
+
+An :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` limiting candidate actions to those for which the request satisfies all
+non-optional parameters.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.WebApiCompatShim`
 Assemblies
@@ -52,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -94,5 +77,24 @@ Methods
         .. code-block:: csharp
     
             public bool Accept(ActionConstraintContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

@@ -9,7 +9,7 @@ IServiceScope Interface
 
 
 The :dn:meth:`System.IDisposable.Dispose` method ends the scope lifetime. Once Dispose
-is called, any scoped services that have been resolved from
+is called, any scoped services that have been resolved from 
 :dn:prop:`Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider` will be
 disposed.
 
@@ -72,9 +72,6 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceProvider ServiceProvider
-            {
-                get;
-            }
+            IServiceProvider ServiceProvider { get; }
     
 

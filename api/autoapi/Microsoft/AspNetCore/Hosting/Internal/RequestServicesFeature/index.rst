@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature.RequestServices
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceProvider RequestServices
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -112,5 +89,24 @@ Methods
         .. code-block:: csharp
     
             public void Dispose()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.RequestServicesFeature.RequestServices
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceProvider RequestServices { get; set; }
     
 

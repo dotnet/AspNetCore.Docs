@@ -78,7 +78,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseConnectionLogging(KestrelServerOptions options)
+            public static KestrelServerOptions UseConnectionLogging(this KestrelServerOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.KestrelServerOptionsConnectionLoggingExtensions.UseConnectionLogging(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions, System.String)
     
@@ -101,6 +101,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseConnectionLogging(KestrelServerOptions options, string loggerName)
+            public static KestrelServerOptions UseConnectionLogging(this KestrelServerOptions options, string loggerName)
     
 

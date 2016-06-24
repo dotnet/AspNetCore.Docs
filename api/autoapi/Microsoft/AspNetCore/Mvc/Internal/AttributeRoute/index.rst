@@ -60,32 +60,23 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AttributeRoute(Microsoft.AspNetCore.Routing.IRouter, Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider, Microsoft.AspNetCore.Routing.IInlineConstraintResolver, Microsoft.Extensions.ObjectPool.ObjectPool<Microsoft.AspNetCore.Routing.Internal.UriBuildingContext>, System.Text.Encodings.Web.UrlEncoder, Microsoft.Extensions.Logging.ILoggerFactory)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AttributeRoute(Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider, System.IServiceProvider, System.Func<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor[], Microsoft.AspNetCore.Routing.IRouter>)
     
         
-    
-        
-        :type target: Microsoft.AspNetCore.Routing.IRouter
     
         
         :type actionDescriptorCollectionProvider: Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider
     
         
-        :type constraintResolver: Microsoft.AspNetCore.Routing.IInlineConstraintResolver
+        :type services: System.IServiceProvider
     
         
-        :type contextPool: Microsoft.Extensions.ObjectPool.ObjectPool<Microsoft.Extensions.ObjectPool.ObjectPool`1>{Microsoft.AspNetCore.Routing.Internal.UriBuildingContext<Microsoft.AspNetCore.Routing.Internal.UriBuildingContext>}
-    
-        
-        :type urlEncoder: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        :type loggerFactory: Microsoft.Extensions.Logging.ILoggerFactory
+        :type handlerFactory: System.Func<System.Func`2>{Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor<Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor>[], Microsoft.AspNetCore.Routing.IRouter<Microsoft.AspNetCore.Routing.IRouter>}
     
         
         .. code-block:: csharp
     
-            public AttributeRoute(IRouter target, IActionDescriptorCollectionProvider actionDescriptorCollectionProvider, IInlineConstraintResolver constraintResolver, ObjectPool<UriBuildingContext> contextPool, UrlEncoder urlEncoder, ILoggerFactory loggerFactory)
+            public AttributeRoute(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider, IServiceProvider services, Func<ActionDescriptor[], IRouter> handlerFactory)
     
 
 Methods

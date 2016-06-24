@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken.ActiveChangeCallbacks
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool ActiveChangeCallbacks
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken.HasChanged
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasChanged
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,6 +71,35 @@ Constructors
         .. code-block:: csharp
     
             public PollingFileChangeToken(FileInfo fileInfo)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken.ActiveChangeCallbacks
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ActiveChangeCallbacks { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Physical.PollingFileChangeToken.HasChanged
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasChanged { get; }
     
 
 Methods

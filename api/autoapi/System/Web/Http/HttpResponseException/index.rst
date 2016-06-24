@@ -53,33 +53,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.HttpResponseException
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.HttpResponseException
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.HttpResponseException.Response
-    
-        
-    
-        
-        Gets the :any:`System.Net.Http.HttpResponseMessage` to return to the client.
-    
-        
-        :rtype: System.Net.Http.HttpResponseMessage
-    
-        
-        .. code-block:: csharp
-    
-            public HttpResponseMessage Response
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -125,5 +98,29 @@ Constructors
         .. code-block:: csharp
     
             public HttpResponseException(HttpStatusCode statusCode)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.HttpResponseException
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.HttpResponseException.Response
+    
+        
+    
+        
+        Gets the :any:`System.Net.Http.HttpResponseMessage` to return to the client.
+    
+        
+        :rtype: System.Net.Http.HttpResponseMessage
+    
+        
+        .. code-block:: csharp
+    
+            public HttpResponseMessage Response { get; }
     
 

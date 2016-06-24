@@ -87,6 +87,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddJsonOptions(IMvcBuilder builder, Action<MvcJsonOptions> setupAction)
+            public static IMvcBuilder AddJsonOptions(this IMvcBuilder builder, Action<MvcJsonOptions> setupAction)
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddSession(IServiceCollection services)
+            public static IServiceCollection AddSession(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Builder.SessionOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddSession(IServiceCollection services, Action<SessionOptions> configure)
+            public static IServiceCollection AddSession(this IServiceCollection services, Action<SessionOptions> configure)
     
 

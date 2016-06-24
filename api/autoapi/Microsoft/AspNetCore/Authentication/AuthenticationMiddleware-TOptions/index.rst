@@ -53,71 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.AuthenticationScheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.Logger
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            public ILogger Logger
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.Options
-    
-        
-        :rtype: TOptions
-    
-        
-        .. code-block:: csharp
-    
-            public TOptions Options
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.UrlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            public UrlEncoder UrlEncoder
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -146,6 +81,55 @@ Constructors
         .. code-block:: csharp
     
             protected AuthenticationMiddleware(RequestDelegate next, IOptions<TOptions> options, ILoggerFactory loggerFactory, UrlEncoder encoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.AuthenticationScheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.Logger
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            public ILogger Logger { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.Options
+    
+        
+        :rtype: TOptions
+    
+        
+        .. code-block:: csharp
+    
+            public TOptions Options { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationMiddleware<TOptions>.UrlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            public UrlEncoder UrlEncoder { get; set; }
     
 
 Methods

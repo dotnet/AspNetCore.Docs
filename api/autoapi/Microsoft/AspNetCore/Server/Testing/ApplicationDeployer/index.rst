@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DeploymentParameters
-    
-        
-        :rtype: Microsoft.AspNetCore.Server.Testing.DeploymentParameters
-    
-        
-        .. code-block:: csharp
-    
-            protected DeploymentParameters DeploymentParameters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.Logger
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            protected ILogger Logger
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -113,35 +78,6 @@ Constructors
         .. code-block:: csharp
     
             public ApplicationDeployer(DeploymentParameters deploymentParameters, ILogger logger)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DotnetArgumentSeparator
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string DotnetArgumentSeparator
-    
-    .. dn:field:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DotnetCommandName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string DotnetCommandName
     
 
 Methods
@@ -282,5 +218,63 @@ Methods
         .. code-block:: csharp
     
             protected void TriggerHostShutdown(CancellationTokenSource hostShutdownSource)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DotnetArgumentSeparator
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string DotnetArgumentSeparator
+    
+    .. dn:field:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DotnetCommandName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string DotnetCommandName
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.DeploymentParameters
+    
+        
+        :rtype: Microsoft.AspNetCore.Server.Testing.DeploymentParameters
+    
+        
+        .. code-block:: csharp
+    
+            protected DeploymentParameters DeploymentParameters { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Testing.ApplicationDeployer.Logger
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            protected ILogger Logger { get; }
     
 

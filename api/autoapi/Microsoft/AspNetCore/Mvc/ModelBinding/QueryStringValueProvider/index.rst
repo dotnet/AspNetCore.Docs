@@ -57,41 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider.Culture
-    
-        
-        :rtype: System.Globalization.CultureInfo
-    
-        
-        .. code-block:: csharp
-    
-            public CultureInfo Culture
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider.PrefixContainer
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.PrefixContainer
-    
-        
-        .. code-block:: csharp
-    
-            protected PrefixContainer PrefixContainer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -176,5 +141,34 @@ Methods
         .. code-block:: csharp
     
             public override ValueProviderResult GetValue(string key)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider.Culture
+    
+        
+        :rtype: System.Globalization.CultureInfo
+    
+        
+        .. code-block:: csharp
+    
+            public CultureInfo Culture { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.QueryStringValueProvider.PrefixContainer
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.PrefixContainer
+    
+        
+        .. code-block:: csharp
+    
+            protected PrefixContainer PrefixContainer { get; }
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddDataAnnotationsLocalization(IMvcBuilder builder)
+            public static IMvcBuilder AddDataAnnotationsLocalization(this IMvcBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions>)
     
@@ -101,7 +101,6 @@ Methods
     
         
         :param setupAction: The action to configure :any:`Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions`\.
-            
         
         :type setupAction: System.Action<System.Action`1>{Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions<Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions>}
         :rtype: Microsoft.Extensions.DependencyInjection.IMvcBuilder
@@ -110,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddDataAnnotationsLocalization(IMvcBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
+            public static IMvcBuilder AddDataAnnotationsLocalization(this IMvcBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
     
 

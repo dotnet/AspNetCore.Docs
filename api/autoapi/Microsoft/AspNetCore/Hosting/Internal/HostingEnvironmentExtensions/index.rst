@@ -79,6 +79,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Initialize(IHostingEnvironment hostingEnvironment, string applicationName, string contentRootPath, WebHostOptions options)
+            public static void Initialize(this IHostingEnvironment hostingEnvironment, string applicationName, string contentRootPath, WebHostOptions options)
     
 

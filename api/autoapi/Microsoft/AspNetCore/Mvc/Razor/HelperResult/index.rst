@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.HelperResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.HelperResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.HelperResult.WriteAction
-    
-        
-    
-        
-        Gets the asynchronous delegate to invoke when :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.HelperResult.WriteTo(System.IO.TextWriter,System.Text.Encodings.Web.HtmlEncoder)` is called.
-    
-        
-        :rtype: System.Func<System.Func`2>{System.IO.TextWriter<System.IO.TextWriter>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TextWriter, Task> WriteAction
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,6 +83,30 @@ Constructors
         .. code-block:: csharp
     
             public HelperResult(Func<TextWriter, Task> asyncAction)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.HelperResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.HelperResult.WriteAction
+    
+        
+    
+        
+        Gets the asynchronous delegate to invoke when :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.HelperResult.WriteTo(System.IO.TextWriter,System.Text.Encodings.Web.HtmlEncoder)` is called.
+    
+        
+        :rtype: System.Func<System.Func`2>{System.IO.TextWriter<System.IO.TextWriter>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TextWriter, Task> WriteAction { get; }
     
 
 Methods

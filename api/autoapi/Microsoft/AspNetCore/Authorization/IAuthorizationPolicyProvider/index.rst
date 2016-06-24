@@ -56,6 +56,22 @@ Methods
     :hidden:
 
     
+    .. dn:method:: Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetDefaultPolicyAsync()
+    
+        
+    
+        
+        Gets the default authorization policy.
+    
+        
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Authorization.AuthorizationPolicy<Microsoft.AspNetCore.Authorization.AuthorizationPolicy>}
+        :return: The default authorization policy.
+    
+        
+        .. code-block:: csharp
+    
+            Task<AuthorizationPolicy> GetDefaultPolicyAsync()
+    
     .. dn:method:: Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetPolicyAsync(System.String)
     
         
@@ -66,8 +82,11 @@ Methods
         
     
         
+        :param policyName: The policy name to retrieve.
+        
         :type policyName: System.String
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Authorization.AuthorizationPolicy<Microsoft.AspNetCore.Authorization.AuthorizationPolicy>}
+        :return: The named :any:`Microsoft.AspNetCore.Authorization.AuthorizationPolicy`\.
     
         
         .. code-block:: csharp

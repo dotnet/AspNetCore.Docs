@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<string> AllowedChildren
-            {
-                get;
-                set;
-            }
+            public IEnumerable<string> AllowedChildren { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.AssemblyName
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AssemblyName
-            {
-                get;
-                set;
-            }
+            public string AssemblyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.Attributes
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<TagHelperAttributeDescriptor> Attributes
-            {
-                get;
-                set;
-            }
+            public IEnumerable<TagHelperAttributeDescriptor> Attributes { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.DesignTimeDescriptor
     
@@ -135,11 +123,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TagHelperDesignTimeDescriptor DesignTimeDescriptor
-            {
-                get;
-                set;
-            }
+            public TagHelperDesignTimeDescriptor DesignTimeDescriptor { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.FullTagName
     
@@ -154,10 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string FullTagName
-            {
-                get;
-            }
+            public string FullTagName { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.Prefix
     
@@ -173,11 +154,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Prefix
-            {
-                get;
-                set;
-            }
+            public string Prefix { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.RequiredAttributes
     
@@ -192,11 +169,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<TagHelperRequiredAttributeDescriptor> RequiredAttributes
-            {
-                get;
-                set;
-            }
+            public IEnumerable<TagHelperRequiredAttributeDescriptor> RequiredAttributes { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.RequiredParent
     
@@ -211,11 +184,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RequiredParent
-            {
-                get;
-                set;
-            }
+            public string RequiredParent { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.TagName
     
@@ -230,11 +199,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TagName
-            {
-                get;
-                set;
-            }
+            public string TagName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.TagStructure
     
@@ -249,11 +214,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TagStructure TagStructure
-            {
-                get;
-                set;
-            }
+            public TagStructure TagStructure { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.TypeName
     
@@ -268,10 +229,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TypeName
-            {
-                get;
-                set;
-            }
+            public string TypeName { get; set; }
     
 

@@ -103,10 +103,6 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Internal/ControllerArgumentBinder/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/ControllerResultFilter/index
    
    
@@ -143,6 +139,10 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/DefaultControllerArgumentBinder/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/DefaultControllerPropertyActivator/index
    
    
@@ -171,7 +171,15 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Internal/FilterActionInvoker/index
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/FileContentResultExecutor/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/FileResultExecutorBase/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/FileStreamResultExecutor/index
    
    
    
@@ -199,6 +207,14 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/IControllerArgumentBinder/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/IControllerPropertyActivator/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/IHttpRequestStreamReaderFactory/index
    
    
@@ -215,11 +231,19 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/LocalRedirectResultExecutor/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/MemoryPoolHttpRequestStreamReaderFactory/index
    
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/MemoryPoolHttpResponseStreamWriterFactory/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/MvcAttributeRouteHandler/index
    
    
    
@@ -267,7 +291,27 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/PhysicalFileResultExecutor/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/PlaceholderBinder/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/PrefixContainer/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/RedirectResultExecutor/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/RedirectToActionResultExecutor/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/RedirectToRouteResultExecutor/index
    
    
    
@@ -296,6 +340,10 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/Internal/ValidatorCache/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Internal/VirtualFileResultExecutor/index
    
    
 
@@ -597,6 +645,54 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -606,6 +702,81 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Internal
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IActionInvokerFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory
+
+        
+
+
+    interface :dn:iface:`IActionSelectionDecisionTree`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
+
+        
+        A data structure that retrieves a list of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` matches based on the values
+        supplied for the current request by :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values`\.
+
+
+    interface :dn:iface:`IActionSelectorDecisionTreeProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionSelectorDecisionTreeProvider
+
+        
+        Stores an :any:`Microsoft.AspNetCore.Mvc.Internal.ActionSelectionDecisionTree` for the current value of 
+        :dn:prop:`Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider.ActionDescriptors`\.
+
+
+    interface :dn:iface:`IConsumesActionConstraint`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IConsumesActionConstraint
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` constraint that identifies a type which can be used to select an action
+        based on incoming request.
+
+
+    interface :dn:iface:`IControllerArgumentBinder`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder
+
+        
+        Provides a dictionary of action arguments.
+
+
+    interface :dn:iface:`IControllerPropertyActivator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IControllerPropertyActivator
+
+        
+
+
+    interface :dn:iface:`IHttpRequestStreamReaderFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory
+
+        
+        Creates :any:`System.IO.TextReader` instances for reading from :dn:prop:`Microsoft.AspNetCore.Http.HttpRequest.Body`\.
+
+
+    interface :dn:iface:`IHttpResponseStreamWriterFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory
+
+        
+        Creates :any:`System.IO.TextWriter` instances for writing to :dn:prop:`Microsoft.AspNetCore.Http.HttpResponse.Body`\.
+
+
+    interface :dn:iface:`IResponseCacheFilter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IResponseCacheFilter
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.Filters.IActionFilter` which sets the appropriate headers related to Response caching.
+
+
+    interface :dn:iface:`ITypeActivatorCache`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.ITypeActivatorCache
+
+        
+        Caches :any:`Microsoft.Extensions.DependencyInjection.ObjectFactory` instances produced by 
+        :dn:meth:`Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(System.Type,System.Type[])`\.
 
 
     .. rubric:: Classes
@@ -661,7 +832,7 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.ApiDescriptionActionData
 
         
-        Represents data used to build an <code>ApiDescription</code>, stored as part of the
+        Represents data used to build an <code>ApiDescription</code>, stored as part of the 
         :dn:prop:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor.Properties`\.
 
 
@@ -746,14 +917,6 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         
 
 
-    class :dn:cls:`ControllerArgumentBinder`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.ControllerArgumentBinder
-
-        
-        Provides a default implementation of :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder`\.
-        Uses ModelBinding to populate action parameters.
-
-
     class :dn:cls:`ControllerResultFilter`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter
 
@@ -814,6 +977,14 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         A default implementation of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider`\.
 
 
+    class :dn:cls:`DefaultControllerArgumentBinder`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.DefaultControllerArgumentBinder
+
+        
+        Provides a default implementation of :any:`Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder`\.
+        Uses ModelBinding to populate action parameters.
+
+
     class :dn:cls:`DefaultControllerPropertyActivator`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.DefaultControllerPropertyActivator
 
@@ -861,8 +1032,20 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         style keys.
 
 
-    class :dn:cls:`FilterActionInvoker`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.FilterActionInvoker
+    class :dn:cls:`FileContentResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.FileContentResultExecutor
+
+        
+
+
+    class :dn:cls:`FileResultExecutorBase`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.FileResultExecutorBase
+
+        
+
+
+    class :dn:cls:`FileStreamResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.FileStreamResultExecutor
 
         
 
@@ -879,6 +1062,12 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         
 
 
+    class :dn:cls:`LocalRedirectResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.LocalRedirectResultExecutor
+
+        
+
+
     class :dn:cls:`MemoryPoolHttpRequestStreamReaderFactory`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.MemoryPoolHttpRequestStreamReaderFactory
 
@@ -891,6 +1080,12 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
 
         
         An :any:`Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory` that uses pooled buffers.
+
+
+    class :dn:cls:`MvcAttributeRouteHandler`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.MvcAttributeRouteHandler
+
+        
 
 
     class :dn:cls:`MvcBuilder`
@@ -969,6 +1164,18 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         Executes an :any:`Microsoft.AspNetCore.Mvc.ObjectResult` to write to the response.
 
 
+    class :dn:cls:`PhysicalFileResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.PhysicalFileResultExecutor
+
+        
+
+
+    class :dn:cls:`PlaceholderBinder`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.PlaceholderBinder
+
+        
+
+
     class :dn:cls:`PrefixContainer`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.PrefixContainer
 
@@ -976,6 +1183,24 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         This is a container for prefix values. It normalizes all the values into dotted-form and then stores
         them in a sorted array. All queries for prefixes are also normalized to dotted-form, and searches
         for ContainsPrefix are done with a binary search.
+
+
+    class :dn:cls:`RedirectResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.RedirectResultExecutor
+
+        
+
+
+    class :dn:cls:`RedirectToActionResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.RedirectToActionResultExecutor
+
+        
+
+
+    class :dn:cls:`RedirectToRouteResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.RedirectToRouteResultExecutor
+
+        
 
 
     class :dn:cls:`ResponseCacheFilter`
@@ -1024,6 +1249,12 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         
 
 
+    class :dn:cls:`VirtualFileResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Internal.VirtualFileResultExecutor
+
+        
+
+
     .. rubric:: Structures
 
 
@@ -1031,67 +1262,5 @@ Microsoft.AspNetCore.Mvc.Internal Namespace
         .. object: type=struct name=Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IActionInvokerFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory
-
-        
-
-
-    interface :dn:iface:`IActionSelectionDecisionTree`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
-
-        
-        A data structure that retrieves a list of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor` matches based on the values
-        supplied for the current request by :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values`\.
-
-
-    interface :dn:iface:`IActionSelectorDecisionTreeProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IActionSelectorDecisionTreeProvider
-
-        
-        Stores an :any:`Microsoft.AspNetCore.Mvc.Internal.ActionSelectionDecisionTree` for the current value of
-        :dn:prop:`Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider.ActionDescriptors`\.
-
-
-    interface :dn:iface:`IConsumesActionConstraint`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IConsumesActionConstraint
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` constraint that identifies a type which can be used to select an action
-        based on incoming request.
-
-
-    interface :dn:iface:`IHttpRequestStreamReaderFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory
-
-        
-        Creates :any:`System.IO.TextReader` instances for reading from :dn:prop:`Microsoft.AspNetCore.Http.HttpRequest.Body`\.
-
-
-    interface :dn:iface:`IHttpResponseStreamWriterFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory
-
-        
-        Creates :any:`System.IO.TextWriter` instances for writing to :dn:prop:`Microsoft.AspNetCore.Http.HttpResponse.Body`\.
-
-
-    interface :dn:iface:`IResponseCacheFilter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.IResponseCacheFilter
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.Filters.IActionFilter` which sets the appropriate headers related to Response caching.
-
-
-    interface :dn:iface:`ITypeActivatorCache`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Internal.ITypeActivatorCache
-
-        
-        Caches :any:`Microsoft.Extensions.DependencyInjection.ObjectFactory` instances produced by 
-        :dn:meth:`Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(System.Type,System.Type[])`\.
 
 

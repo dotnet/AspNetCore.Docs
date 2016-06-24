@@ -23,11 +23,11 @@ Microsoft.AspNetCore.Html Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Html/HtmlEncodedString/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Html/HtmlFormattableString/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Html/HtmlString/index
    
    
    
@@ -96,39 +96,6 @@ Microsoft.AspNetCore.Html Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Html
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`HtmlContentBuilder`
-        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlContentBuilder
-
-        
-        An :any:`Microsoft.AspNetCore.Html.IHtmlContentBuilder` implementation using an in memory list.
-
-
-    class :dn:cls:`HtmlContentBuilderExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions
-
-        
-        Extension methods for :any:`Microsoft.AspNetCore.Html.IHtmlContentBuilder`\.
-
-
-    class :dn:cls:`HtmlEncodedString`
-        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlEncodedString
-
-        
-        An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation that wraps an HTML encoded :any:`System.String`\.
-
-
-    class :dn:cls:`HtmlFormattableString`
-        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlFormattableString
-
-        
-        An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation of composite string formatting 
-        (see https://msdn.microsoft.com/en-us/library/txafckwd(v=vs.110).aspx) which HTML encodes
-        formatted arguments.
-
-
     .. rubric:: Interfaces
 
 
@@ -152,5 +119,38 @@ Microsoft.AspNetCore.Html Namespace
         
         Defines a contract for :any:`Microsoft.AspNetCore.Html.IHtmlContent` instances made up of several components which
         can be copied into an :any:`Microsoft.AspNetCore.Html.IHtmlContentBuilder`\.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`HtmlContentBuilder`
+        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlContentBuilder
+
+        
+        An :any:`Microsoft.AspNetCore.Html.IHtmlContentBuilder` implementation using an in memory list.
+
+
+    class :dn:cls:`HtmlContentBuilderExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions
+
+        
+        Extension methods for :any:`Microsoft.AspNetCore.Html.IHtmlContentBuilder`\.
+
+
+    class :dn:cls:`HtmlFormattableString`
+        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlFormattableString
+
+        
+        An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation of composite string formatting
+        (see https://msdn.microsoft.com/en-us/library/txafckwd(v=vs.110).aspx) which HTML encodes
+        formatted arguments.
+
+
+    class :dn:cls:`HtmlString`
+        .. object: type=class name=Microsoft.AspNetCore.Html.HtmlString
+
+        
+        An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation that wraps an HTML encoded :any:`System.String`\.
 
 

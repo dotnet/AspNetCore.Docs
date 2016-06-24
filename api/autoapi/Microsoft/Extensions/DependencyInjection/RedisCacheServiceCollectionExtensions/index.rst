@@ -89,6 +89,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddDistributedRedisCache(IServiceCollection services, Action<RedisCacheOptions> setupAction)
+            public static IServiceCollection AddDistributedRedisCache(this IServiceCollection services, Action<RedisCacheOptions> setupAction)
     
 

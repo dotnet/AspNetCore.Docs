@@ -58,57 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.ActiveAuthenticationSchemes
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ActiveAuthenticationSchemes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Policy
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Roles
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -149,5 +98,44 @@ Constructors
         .. code-block:: csharp
     
             public AuthorizeAttribute(string policy)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.ActiveAuthenticationSchemes
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ActiveAuthenticationSchemes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Policy { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Roles { get; set; }
     
 

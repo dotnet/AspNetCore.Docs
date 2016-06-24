@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireConfirmedEmail
-            {
-                get;
-                set;
-            }
+            public bool RequireConfirmedEmail { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedPhoneNumber
     
@@ -98,10 +94,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireConfirmedPhoneNumber
-            {
-                get;
-                set;
-            }
+            public bool RequireConfirmedPhoneNumber { get; set; }
     
 

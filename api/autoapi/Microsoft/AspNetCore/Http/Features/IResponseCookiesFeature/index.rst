@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            IResponseCookies Cookies
-            {
-                get;
-            }
+            IResponseCookies Cookies { get; }
     
 

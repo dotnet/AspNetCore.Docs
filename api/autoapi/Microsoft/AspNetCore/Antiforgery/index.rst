@@ -80,6 +80,26 @@ Microsoft.AspNetCore.Antiforgery Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Antiforgery
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAntiforgery`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.IAntiforgery
+
+        
+        Provides access to the antiforgery system, which provides protection against
+        Cross-site Request Forgery (XSRF, also called CSRF) attacks.
+
+
+    interface :dn:iface:`IAntiforgeryAdditionalDataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider
+
+        
+        Allows providing or validating additional custom data for antiforgery tokens.
+        For example, the developer could use this to supply a nonce when the token is
+        generated, then he could validate the nonce when the token is validated.
+
+
     .. rubric:: Classes
 
 
@@ -102,25 +122,5 @@ Microsoft.AspNetCore.Antiforgery Namespace
 
         
         The :any:`System.Exception` that is thrown when the antiforgery token validation fails.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAntiforgery`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.IAntiforgery
-
-        
-        Provides access to the antiforgery system, which provides protection against
-        Cross-site Request Forgery (XSRF, also called CSRF) attacks.
-
-
-    interface :dn:iface:`IAntiforgeryAdditionalDataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider
-
-        
-        Allows providing or validating additional custom data for antiforgery tokens.
-        For example, the developer could use this to supply a nonce when the token is
-        generated, then he could validate the nonce when the token is validated.
 
 

@@ -58,130 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled
-    
-        
-    
-        
-        Gets or sets an indication that an action filter short-circuited the action and the action filter pipeline.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool Canceled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Controller
-    
-        
-    
-        
-        Gets the controller instance containing the action.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public virtual object Controller
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception
-    
-        
-    
-        
-        Gets or sets the :any:`System.Exception` caught while executing the action or action filters, if
-        any.
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public virtual Exception Exception
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.ExceptionDispatchInfo
-    
-        
-    
-        
-        Gets or sets the :any:`System.Runtime.ExceptionServices.ExceptionDispatchInfo` for the
-        :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception`\, if an :any:`System.Exception` was caught and this information captured.
-    
-        
-        :rtype: System.Runtime.ExceptionServices.ExceptionDispatchInfo
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ExceptionDispatchInfo ExceptionDispatchInfo
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.ExceptionHandled
-    
-        
-    
-        
-        Gets or sets an indication that the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception` has been handled.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool ExceptionHandled
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IActionResult Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -218,5 +94,106 @@ Constructors
         .. code-block:: csharp
     
             public ActionExecutedContext(ActionContext actionContext, IList<IFilterMetadata> filters, object controller)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled
+    
+        
+    
+        
+        Gets or sets an indication that an action filter short-circuited the action and the action filter pipeline.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool Canceled { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Controller
+    
+        
+    
+        
+        Gets the controller instance containing the action.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public virtual object Controller { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception
+    
+        
+    
+        
+        Gets or sets the :any:`System.Exception` caught while executing the action or action filters, if
+        any.
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public virtual Exception Exception { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.ExceptionDispatchInfo
+    
+        
+    
+        
+        Gets or sets the :any:`System.Runtime.ExceptionServices.ExceptionDispatchInfo` for the 
+        :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception`\, if an :any:`System.Exception` was caught and this information captured.
+    
+        
+        :rtype: System.Runtime.ExceptionServices.ExceptionDispatchInfo
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ExceptionDispatchInfo ExceptionDispatchInfo { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.ExceptionHandled
+    
+        
+    
+        
+        Gets or sets an indication that the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception` has been handled.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool ExceptionHandled { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IActionResult Result { get; set; }
     
 

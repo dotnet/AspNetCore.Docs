@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public CancellationToken? CancelToken
-            {
-                get;
-                set;
-            }
+            public CancellationToken? CancelToken { get; set; }
     
 
 Methods

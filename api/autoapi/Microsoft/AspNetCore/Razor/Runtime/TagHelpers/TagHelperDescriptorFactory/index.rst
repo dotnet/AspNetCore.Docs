@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDescriptorFactory
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDescriptorFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDescriptorFactory.InvalidNonWhitespaceNameCharacters
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Char<System.Char>}
-    
-        
-        .. code-block:: csharp
-    
-            public static ICollection<char> InvalidNonWhitespaceNameCharacters
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +111,24 @@ Methods
         .. code-block:: csharp
     
             public virtual IEnumerable<TagHelperDescriptor> CreateDescriptors(string assemblyName, Type type, ErrorSink errorSink)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDescriptorFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDescriptorFactory.InvalidNonWhitespaceNameCharacters
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Char<System.Char>}
+    
+        
+        .. code-block:: csharp
+    
+            public static ICollection<char> InvalidNonWhitespaceNameCharacters { get; }
     
 

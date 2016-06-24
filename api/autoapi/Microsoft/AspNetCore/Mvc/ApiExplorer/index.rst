@@ -200,6 +200,65 @@ Microsoft.AspNetCore.Mvc.ApiExplorer Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ApiExplorer
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IApiDescriptionGroupCollectionProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider
+
+        
+        Provides access to a collection of :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup`\.
+
+
+    interface :dn:iface:`IApiDescriptionGroupNameProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupNameProvider
+
+        
+        Represents group name metadata for an <code>ApiDescription</code>.
+
+
+    interface :dn:iface:`IApiDescriptionProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider
+
+        
+
+
+    interface :dn:iface:`IApiDescriptionVisibilityProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionVisibilityProvider
+
+        
+        Represents visibility metadata for an <code>ApiDescription</code>.
+
+
+    interface :dn:iface:`IApiRequestFormatMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiRequestFormatMetadataProvider
+
+        
+        Provides metadata information about the request format to an <code>IApiDescriptionProvider</code>.
+
+
+    interface :dn:iface:`IApiRequestMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiRequestMetadataProvider
+
+        
+        Provides a a set of possible content types than can be consumed by the action.
+
+
+    interface :dn:iface:`IApiResponseMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider
+
+        
+        Provides a return type, status code and a set of possible content types returned by a
+        successful execution of the action.
+
+
+    interface :dn:iface:`IApiResponseTypeMetadataProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseTypeMetadataProvider
+
+        
+        Provides metadata information about the response format to an <code>IApiDescriptionProvider</code>.
+
+
     .. rubric:: Classes
 
 
@@ -285,64 +344,5 @@ Microsoft.AspNetCore.Mvc.ApiExplorer Namespace
         
         Implements a provider of :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription` for actions represented
         by :any:`Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IApiDescriptionGroupCollectionProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider
-
-        
-        Provides access to a collection of :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup`\.
-
-
-    interface :dn:iface:`IApiDescriptionGroupNameProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupNameProvider
-
-        
-        Represents group name metadata for an <code>ApiDescription</code>.
-
-
-    interface :dn:iface:`IApiDescriptionProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider
-
-        
-
-
-    interface :dn:iface:`IApiDescriptionVisibilityProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionVisibilityProvider
-
-        
-        Represents visibility metadata for an <code>ApiDescription</code>.
-
-
-    interface :dn:iface:`IApiRequestFormatMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiRequestFormatMetadataProvider
-
-        
-        Provides metadata information about the request format to an <code>IApiDescriptionProvider</code>.
-
-
-    interface :dn:iface:`IApiRequestMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiRequestMetadataProvider
-
-        
-        Provides a a set of possible content types than can be consumed by the action.
-
-
-    interface :dn:iface:`IApiResponseMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseMetadataProvider
-
-        
-        Provides a return type, status code and a set of possible content types returned by a
-        successful execution of the action.
-
-
-    interface :dn:iface:`IApiResponseTypeMetadataProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApiExplorer.IApiResponseTypeMetadataProvider
-
-        
-        Provides metadata information about the response format to an <code>IApiDescriptionProvider</code>.
 
 

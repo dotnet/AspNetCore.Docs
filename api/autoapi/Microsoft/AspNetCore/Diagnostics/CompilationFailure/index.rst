@@ -56,87 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.CompilationFailure
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.CompilationFailure
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.CompiledContent
-    
-        
-    
-        
-        Contents being compiled.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CompiledContent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.Messages
-    
-        
-    
-        
-        Gets a sequence of :any:`Microsoft.AspNetCore.Diagnostics.DiagnosticMessage` produced as a result of compilation.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.DiagnosticMessage<Microsoft.AspNetCore.Diagnostics.DiagnosticMessage>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<DiagnosticMessage> Messages
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.SourceFileContent
-    
-        
-    
-        
-        Contents of the file.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string SourceFileContent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.SourceFilePath
-    
-        
-    
-        
-        Path of the file that produced the compilation failure.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string SourceFilePath
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -165,5 +84,74 @@ Constructors
         .. code-block:: csharp
     
             public CompilationFailure(string sourceFilePath, string sourceFileContent, string compiledContent, IEnumerable<DiagnosticMessage> messages)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.CompilationFailure
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.CompiledContent
+    
+        
+    
+        
+        Contents being compiled.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CompiledContent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.Messages
+    
+        
+    
+        
+        Gets a sequence of :any:`Microsoft.AspNetCore.Diagnostics.DiagnosticMessage` produced as a result of compilation.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.DiagnosticMessage<Microsoft.AspNetCore.Diagnostics.DiagnosticMessage>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<DiagnosticMessage> Messages { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.SourceFileContent
+    
+        
+    
+        
+        Contents of the file.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string SourceFileContent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.CompilationFailure.SourceFilePath
+    
+        
+    
+        
+        Path of the file that produced the compilation failure.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string SourceFilePath { get; }
     
 

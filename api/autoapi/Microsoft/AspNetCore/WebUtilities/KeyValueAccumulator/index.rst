@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator.HasValues
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValues
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -111,5 +76,44 @@ Methods
         .. code-block:: csharp
     
             public Dictionary<string, StringValues> GetResults()
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator.HasValues
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValues { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator.KeyCount
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int KeyCount { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.KeyValueAccumulator.ValueCount
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int ValueCount { get; }
     
 

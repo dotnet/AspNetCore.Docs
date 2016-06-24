@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.OutputElementHintAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.OutputElementHintAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.OutputElementHintAttribute.OutputElement
-    
-        
-    
-        
-        The HTML element the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` may output.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string OutputElement
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -112,5 +85,29 @@ Constructors
         .. code-block:: csharp
     
             public OutputElementHintAttribute(string outputElement)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.OutputElementHintAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.OutputElementHintAttribute.OutputElement
+    
+        
+    
+        
+        The HTML element the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` may output.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string OutputElement { get; }
     
 

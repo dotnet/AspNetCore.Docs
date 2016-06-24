@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddEnvironmentVariables(IConfigurationBuilder configurationBuilder)
+            public static IConfigurationBuilder AddEnvironmentVariables(this IConfigurationBuilder configurationBuilder)
     
     .. dn:method:: Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables(Microsoft.Extensions.Configuration.IConfigurationBuilder, System.String)
     
@@ -110,6 +110,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IConfigurationBuilder AddEnvironmentVariables(IConfigurationBuilder configurationBuilder, string prefix)
+            public static IConfigurationBuilder AddEnvironmentVariables(this IConfigurationBuilder configurationBuilder, string prefix)
     
 

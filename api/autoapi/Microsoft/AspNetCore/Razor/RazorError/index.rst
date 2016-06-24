@@ -52,72 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorError
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorError
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Length
-    
-        
-    
-        
-        Gets or sets the length of the erroneous text.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Length
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Location
-    
-        
-    
-        
-        Gets (or sets) the start position of the erroneous text.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Location
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Message
-    
-        
-    
-        
-        Gets (or sets) the message describing the error.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Message
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -236,5 +170,59 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorError
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Length
+    
+        
+    
+        
+        Gets or sets the length of the erroneous text.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Length { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Location
+    
+        
+    
+        
+        Gets (or sets) the start position of the erroneous text.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Location { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorError.Message
+    
+        
+    
+        
+        Gets (or sets) the message describing the error.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Message { get; set; }
     
 

@@ -73,11 +73,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset? AbsoluteExpiration
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset? AbsoluteExpiration { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.AbsoluteExpirationRelativeToNow
     
@@ -92,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? AbsoluteExpirationRelativeToNow
-            {
-                get;
-                set;
-            }
+            public TimeSpan? AbsoluteExpirationRelativeToNow { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions.SlidingExpiration
     
@@ -112,10 +104,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? SlidingExpiration
-            {
-                get;
-                set;
-            }
+            public TimeSpan? SlidingExpiration { get; set; }
     
 

@@ -53,67 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Current
-    
-        
-        :rtype: TSymbol
-    
-        
-        .. code-block:: csharp
-    
-            public TSymbol Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.EndOfFile
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool EndOfFile
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Source
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.ITextDocument
-    
-        
-        .. code-block:: csharp
-    
-            public ITextDocument Source
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Tokenizer
-    
-        
-        :rtype: TTokenizer
-    
-        
-        .. code-block:: csharp
-    
-            public TTokenizer Tokenizer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,6 +72,55 @@ Constructors
         .. code-block:: csharp
     
             public TokenizerView(TTokenizer tokenizer)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Current
+    
+        
+        :rtype: TSymbol
+    
+        
+        .. code-block:: csharp
+    
+            public TSymbol Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.EndOfFile
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool EndOfFile { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Source
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.ITextDocument
+    
+        
+        .. code-block:: csharp
+    
+            public ITextDocument Source { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<TTokenizer, TSymbol, TSymbolType>.Tokenizer
+    
+        
+        :rtype: TTokenizer
+    
+        
+        .. code-block:: csharp
+    
+            public TTokenizer Tokenizer { get; }
     
 
 Methods

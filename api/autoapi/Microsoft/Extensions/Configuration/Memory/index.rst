@@ -63,11 +63,13 @@ Microsoft.Extensions.Configuration.Memory Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider
 
         
+        In-memory implementation of :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
 
 
     class :dn:cls:`MemoryConfigurationSource`
         .. object: type=class name=Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource
 
         
+        Represents in-memory data as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 

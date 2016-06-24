@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileProviders.PhysicalFileProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileProviders.PhysicalFileProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.PhysicalFileProvider.Root
-    
-        
-    
-        
-        The root directory for this instance.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Root
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -182,5 +155,29 @@ Methods
         .. code-block:: csharp
     
             public IChangeToken Watch(string filter)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileProviders.PhysicalFileProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.PhysicalFileProvider.Root
+    
+        
+    
+        
+        The root directory for this instance.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Root { get; }
     
 

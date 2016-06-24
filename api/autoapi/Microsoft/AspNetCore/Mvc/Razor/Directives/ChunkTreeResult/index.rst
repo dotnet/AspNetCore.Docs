@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.ChunkTree
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` generated from the file at :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.FilePath`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
-    
-        
-        .. code-block:: csharp
-    
-            public ChunkTree ChunkTree
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.FilePath
-    
-        
-    
-        
-        The path to the file that generated the :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.ChunkTree`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FilePath
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +88,44 @@ Constructors
         .. code-block:: csharp
     
             public ChunkTreeResult(ChunkTree chunkTree, string filePath)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.ChunkTree
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` generated from the file at :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.FilePath`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTree
+    
+        
+        .. code-block:: csharp
+    
+            public ChunkTree ChunkTree { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.FilePath
+    
+        
+    
+        
+        The path to the file that generated the :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.ChunkTree`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FilePath { get; }
     
 
