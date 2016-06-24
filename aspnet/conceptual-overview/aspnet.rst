@@ -110,7 +110,7 @@ The content root is the base path to any content used by the app, such as its vi
 Web root
 --------
 
-The web root of your app is the directory in your project for public static resources like css, js, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to `<content root>/wwwroot`, but you can specify a different location using the `WebHostBuilder`.
+The web root of your app is the directory in your project for public, static resources like css, js, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to `<content root>/wwwroot`, but you can specify a different location using the `WebHostBuilder`.
 
 Configuration
 -------------
