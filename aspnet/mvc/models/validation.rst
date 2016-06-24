@@ -41,7 +41,7 @@ Simply reading through the model reveals the rules about data for this app, maki
 
 MVC supports any attribute that derives from ``ValidationAttribute`` for validation purposes. Many useful validation attributes can be found in the `System.ComponentModel.DataAnnotations <https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations(v=vs.110).aspx>`_ namespace.
 
-There may be instances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from ``ValidationAttribute`` or changing your model to subclass ``IValidatableObject``.
+There may be instances where you need more features than built-in attributes provide. For those times, you can create custom validation attributes by deriving from ``ValidationAttribute`` or changing your model to implement ``IValidatableObject``.
 
 Model State
 -----------
@@ -106,7 +106,7 @@ You must have a view with the proper JavaScript script references in place for c
    :language: html
    :lines: 37
    :dedent: 4
-.. literalinclude:: validation/sample/views/Shared/_ValidationScriptsPartial.cshtml
+.. literalinclude:: validation/sample/Views/Shared/_ValidationScriptsPartial.cshtml
    :language: html
 
 MVC uses validation attributes in addition to type metadata from model properties to validate data and display any error messages using JavaScript. When you use MVC to render form elements from a model using `Tag Helpers <https://docs.asp.net/en/latest/mvc/views/tag-helpers/index.html>`_ or `HTML helpers <https://docs.asp.net/en/latest/mvc/views/html-helpers.html>`_ it will add HTML 5 `data- attributes <http://w3c.github.io/html/dom.html#embedding-custom-non-visible-data-with-the-data-attributes>`_ in the form elements that need validation, as shown below. MVC generates the ``data-`` attributes for both built-in and custom attributes. You can display validation errors on the client using the relevant tag helpers as shown here:
