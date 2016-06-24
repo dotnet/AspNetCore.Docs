@@ -1,10 +1,11 @@
-﻿//#define MovieDateRatingDA
+﻿#define MovieDateRatingDA
 #if MovieDateRatingDA
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcMovie.Models
 {
+    // Movie with Validation attributes.
     public class Movie
     {
         public int ID { get; set; }
@@ -29,6 +30,6 @@ namespace MvcMovie.Models
         [StringLength(5)]
         public string Rating { get; set; }
     }
-    
+    // End of Movie
 }
 #endif

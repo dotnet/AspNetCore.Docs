@@ -23,7 +23,8 @@ Update the ``Movie`` class to take advantage of the built-in ``Required``, ``Str
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateRatingDA.cs
   :language: none
-  :lines: 8-31
+  :start-after: // Movie with Validation attributes.
+  :end-before: // End of Movie
   :dedent: 4
   :emphasize-lines: 5, 12-14, 17-18, 21,22
 
@@ -54,11 +55,12 @@ How Validation Occurs in the Create View and Create Action Method
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The next listing shows the two ``Create`` methods.
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 46-66
- :dedent: 8
+  :language: c#
+  :start-after: // GET: Movies/Create
+  :end-before: // GET: Movies/Edit/5
+  :dedent: 8
 
-The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The HttpPost version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method ``ModelState.IsValid`` detecting any validation errors.
+The first (HTTP GET) ``Create`` action method displays the initial Create form. The second (``[HttpPost]``) version handles the form post. The second ``Create`` method (The ``[HttpPost]`` version) calls ``ModelState.IsValid`` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the ``Create`` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form is not posted to the server when there are validation errors detected on the client side; the second ``Create`` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST ``Create`` method ``ModelState.IsValid`` detecting any validation errors.
 
 You can set a break point in the ``[HttpPost] Create`` method and verify the method is never called, client side validation will not submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. The following image shows how to disable JavaScript in Internet Explorer.
 
@@ -84,7 +86,7 @@ Below is portion of the *Create.cshtml* view template that you scaffolded earlie
   :emphasize-lines: 9,10,17,18,13
   :lines: 9-35
 
-The :doc:`Input Tag Helper </mvc/views/working-with-forms>` consumes the `DataAnnotations <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx>`__ attributes and produces HTML attributes needed for jQuery Validation on the client side. The :doc:`Validation Tag Helper </mvc/views/working-with-forms>` displays a validation errors. See :doc:`Validation </mvc/models/validation>`.
+The :doc:`Input Tag Helper </mvc/views/working-with-forms>` consumes the `DataAnnotations <http://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx>`__ attributes and produces HTML attributes needed for jQuery Validation on the client side. The :doc:`Validation Tag Helper </mvc/views/working-with-forms>` displays a validation errors. See :doc:`Validation </mvc/models/validation>` for more information.
 
 What's really nice about this approach is that neither the controller nor the ``Create`` view template knows anything about the actual validation rules being enforced or about the specific error messages displayed. The validation rules and the error strings are specified only in the ``Movie`` class. These same validation rules are automatically applied to the ``Edit`` view and any other views templates you might create that edit your model.
 
@@ -118,7 +120,7 @@ You can use the ``DisplayFormat`` attribute by itself, but it's generally a good
 
 - The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
 - By default, the browser will render data using the correct format based on your `locale <http://msdn.microsoft.com/en-us/library/vstudio/wyzd2bce.aspx>`__
-- The ``DataType`` attribute can enable MVC to choose the right field template to render the data (the ``DisplayFormat`` if used by itself uses the string template). For more information, see Brad Wilson's `ASP.NET MVC 2 Templates <http://bradwilson.typepad.com/blog/2009/10/aspnet-mvc-2-templates-part-1-introduction.html>`_. (Though written for MVC 2, this article still applies to the current version of ASP.NET MVC.)
+- The ``DataType`` attribute can enable MVC to choose the right field template to render the data (the ``DisplayFormat`` if used by itself uses the string template).
 
 .. note:: jQuery validation does not work with the ``Range`` attribute and ``DateTime``. For example, the following code will always display a client side validation error, even when the date is in the specified range:
 

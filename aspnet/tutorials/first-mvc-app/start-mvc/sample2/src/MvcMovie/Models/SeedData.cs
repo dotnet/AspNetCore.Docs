@@ -1,4 +1,4 @@
-﻿#define First
+﻿//#define First
 #if First
 // Seed without Rating
 using Microsoft.EntityFrameworkCore;

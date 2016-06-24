@@ -59,9 +59,12 @@ Update the ``SeedData`` class so that it provides a value for the new column. A 
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/SeedDataRating.cs
   :language: c#
-  :lines: 25-32
+  :start-after: context.Movie.AddRange(
+  :end-before: // Add another movie.
   :dedent: 16
   :emphasize-lines: 6
+
+.. warning:: You must stop IIS Express before you run the ``dotnet ef`` commands.   See :ref:`stop-IIS-Express-reference-label`
 
 Build the solution then open a command prompt. Enter the following commands:
 

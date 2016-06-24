@@ -77,8 +77,19 @@ Test the app
 - Force the app to initialize (call the methods in the ``Startup`` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
   - Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
-  - .. image:: working-with-sql/_static/iisExIcon.png
-  - .. image:: working-with-sql/_static/stopIIS.png
+
+|
+
+.. image:: working-with-sql/_static/iisExIcon.png
+  :height: 100px
+  :width: 200 px
+
+|
+
+.. image:: working-with-sql/_static/stopIIS.png
+
+|
+
   - If you were running VS in non-debug mode, press F5 to run in debug mode
   - If you were running VS in debug mode, stop the debugger and press ^F5
 
