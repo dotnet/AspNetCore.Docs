@@ -56,6 +56,8 @@ When an action returns a view, a process called *view discovery* takes place. Th
 
 .. note:: You can customize the default convention regarding where views are located within the app by using a custom :dn:iface:`~Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander`.
 
+.. note:: View names may be case sensitive depending on the underlying file system. Case insensitive file systems can specify "about" or "About" or "about.cshtml" or "About.cshtml" to refer to the file *About.cshtml*. However, case-sensitive systems must use case-sensitive mathcing files/folders corresponding to view, action, and controller names.
+
 Passing Data to Views
 ^^^^^^^^^^^^^^^^^^^^^
 
