@@ -70,7 +70,7 @@ The most common way to define routes is using ``TemplateRoute`` and route templa
 
 .. image:: /fundamentals/routing/_static/default-mvc-routetemplate.png
 
-This route template would be handled by the :dn:cls:`~Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler>` ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
+This route template would be handled by the :dn:cls:`~Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler` ``IRouter`` instance. Tokens within curly braces (``{ }``) define `route value` parameters which will be bound if the route is matched. You can define more than one route value parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route value parameters must have a name, and may have additional attributes specified.
 
 You can use the ``*`` character as a prefix to a route value name to bind to the rest of the URI. For example, ``blog/{*slug}`` would match any URI that started with ``/blog/`` and had any value following it (which would be assigned to the ``slug`` route value).
 
