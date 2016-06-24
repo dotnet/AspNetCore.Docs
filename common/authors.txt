@@ -1,4 +1,4 @@
-﻿.. _Daniel Roth: https://github.com/danroth27
+.. _Daniel Roth: https://github.com/danroth27
 .. _Rick Anderson: https://twitter.com/RickAndMSFT
 .. _Steve Smith: http://ardalis.com
 .. _Noel Rice: http://blog.falafel.com/author/noel-rice/
@@ -21,3 +21,4 @@
 .. _Rachel Appel: http://github.com/rachelappel
 .. _Barry Dorrans: https://twitter.com/blowdart
 .. _Cesar Blum Silveira: https://github.com/cesarbs
+.. _Victor Hurdugaci: https://twitter.com/victorhurdugaci
