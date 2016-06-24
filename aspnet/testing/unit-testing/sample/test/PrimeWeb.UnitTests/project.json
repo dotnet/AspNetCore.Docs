@@ -16,10 +16,16 @@
       ],
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.0-rc2-3002702",
+          "version": "1.0.0",
           "type": "platform"
         }
       }
+    }
+  },
+  "tools": {
+    "Microsoft.DotNet.Watcher.Tools": {
+      "version": "1.0.0-preview2-final",
+      "imports":"portable-net451+win8"
     }
   },
   "dependencies": {
