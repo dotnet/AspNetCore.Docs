@@ -54,7 +54,7 @@ When an action returns a view, a process called *view discovery* takes place. Th
 
 .. note:: :doc:`Partial views <partial>` and :doc:`view components <view-components>` use similar (but not identical) discovery mechanisms.
 
-.. note:: You can customize the default convention regarding where views are located within the app by using a custom :dn:cls:`~Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpander`.
+.. note:: You can customize the default convention regarding where views are located within the app by using a custom :dn:iface:`~Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander`.
 
 Passing Data to Views
 ^^^^^^^^^^^^^^^^^^^^^
