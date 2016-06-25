@@ -83,16 +83,16 @@ Microsoft.AspNet.Tooling.Razor                Microsoft.AspNetCore.Razor.Tools
 Commands and tools
 ------------------
 
-The ``commands`` section of ``project.json`` is no longer supported. Use ``dotnet run`` or ``dotnet <DLL name>`` instead.
+The ``commands`` section of  the *project.json* file is no longer supported. Use ``dotnet run`` or ``dotnet <DLL name>`` instead.
 
-.NET Core CLI has introduced the concept of tools. ``project.json`` now supports a ``tools`` section where packages containing tools can be specified. Some important functionality for ASP.NET Core 1.0 applications has been moved to tools.
+.NET Core CLI has introduced the concept of tools. *project.json* now supports a ``tools`` section where packages containing tools can be specified. Some important functionality for ASP.NET Core 1.0 applications has been moved to tools.
 
 See `.NET Core CLI extensibility model <https://dotnet.github.io/docs/core-concepts/core-sdk/cli/extensibility.html>`_ for more information on .NET Core CLI tools.
 
 Publishing to IIS
 ^^^^^^^^^^^^^^^^^
 
-IIS publishing is now provided via the ``publish-iis`` tool in the ``Microsoft.AspNetCore.Server.IISIntegration.Tools`` package. If you intend to run your app behind IIS, add the ``publish-iis`` tool to your ``project.json`` like this:
+IIS publishing is now provided by the ``publish-iis`` tool in the ``Microsoft.AspNetCore.Server.IISIntegration.Tools`` package. If you intend to run your app behind IIS, add the ``publish-iis`` tool to your *project.json*:
 
 .. code-block:: json
 
@@ -102,7 +102,7 @@ IIS publishing is now provided via the ``publish-iis`` tool in the ``Microsoft.A
     }
   }
 
-The ``publish-iis`` tool is commonly used in the ``postpublish`` script also defined in ``project.json``:
+The ``publish-iis`` tool is commonly used in the ``postpublish`` script in *project.json*:
 
 .. code-block:: json
 
@@ -123,7 +123,7 @@ The ``ef`` tool is now provided in the ``Microsoft.EntityFrameworkCore.Tools`` p
     }
   }
 
-For more information, see `this document <https://docs.efproject.net/en/latest/cli/dotnet.html>`_.
+For more information, see `.NET Core CLI <https://docs.efproject.net/en/latest/cli/dotnet.html>`_.
 
 Razor tools
 ^^^^^^^^^^^
@@ -185,7 +185,7 @@ Hosting
 Creating the web application host
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since ASP.NET Core 1.0 apps are just console apps, you must define an entry point for your application that sets up a web host and runs it. Below is an example from the startup code for one of the Web Application templates in Visual Studio:
+ASP.NET Core 1.0 apps are console apps; you must define an entry point for your app that sets up a web host and runs it. Below is an example from the startup code for one of the Web Application templates in Visual Studio:
 
 .. code-block:: c#
 
@@ -204,7 +204,7 @@ Since ASP.NET Core 1.0 apps are just console apps, you must define an entry poin
       }
   }
 
-Because ASP.NET Core 1.0 apps are now console apps, you must add the ``emitEntryPoint`` to the ``buildOptions`` section of your application's ``project.json``:
+You must add the ``emitEntryPoint`` to the ``buildOptions`` section of your application's *project.json*:
 
 .. code-block:: json
 
@@ -232,33 +232,31 @@ WebApplicationService          WebHostService
 WebApplicationConfiguration    WebHostConfiguration
 ===========================    =========================
 
-Content root
-^^^^^^^^^^^^
+Content root and web root
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The application base path is now called the content root.
 
-The web root of your application is no longer specified in your ``project.json`` file. It is instead defined when setting up the web host and defaults to ``wwwroot``. Call the :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot` extension method to specify a different web root folder. Alternatively, you can specify the web root folder in configuration and call the :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration` extension method.
+The web root of your application is no longer specified in your *project.json* file. It is defined when setting up the web host and defaults to ``wwwroot``. Call the :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot` extension method to specify a different web root folder. Alternatively, you can specify the web root folder in configuration and call the :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration` extension method.
 
 Server address binding
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The server addresses that your application listens on can be specified using the :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls` extension method or through configuration.
 
-Specifying only a port number as a binding address is no longer supported.
-
-.. note:: The default binding address is ``http://localhost:5000``.
+Specifying only a port number as a binding address is no longer supported. The default binding address is \http://localhost:5000
 
 Hosting configuration
 ^^^^^^^^^^^^^^^^^^^^^
 
-The ``UseDefaultHostingConfiguration`` method is no longer available. The only configuration values read by default by :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder` are those specified in environment variables prefixed with ``ASPNETCORE_*``. All other configuration sources must now be added explicitly to an :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationBuilder` instance. See :doc:`/fundamentals/configuration` for more information on configuration sources.
+The ``UseDefaultHostingConfiguration`` method is no longer available. The only configuration values read by default by :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder` are those specified in environment variables prefixed with ``ASPNETCORE_*``. All other configuration sources must now be added explicitly to an :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationBuilder` instance. See :doc:`/fundamentals/configuration` for more information.
 
-The environment key is set via the ``ASPNETCORE_ENVIRONMENT`` environment variable. ``ASPNET_ENV`` and ``Hosting:Environment`` are still supported, but you will see a message indicating those values are deprecated.
+The environment key is set with the ``ASPNETCORE_ENVIRONMENT`` environment variable. ``ASPNET_ENV`` and ``Hosting:Environment`` are still supported, but generate a deprecated message warning.
 
 Hosting service changes
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-You must modify code that uses dependency injection to obtain an ``IApplicationEnvironment`` instance to use :dn:iface:`Microsoft.AspNetCore.Hosting.IHostingEnvironment` instead. For example, in your ``Startup`` class, change:
+Dependency injection code that uses ``IApplicationEnvironment`` must now use :dn:iface:`~Microsoft.AspNetCore.Hosting.IHostingEnvironment`. For example, in your ``Startup`` class, change:
 
 .. code-block:: c#
 
@@ -273,20 +271,7 @@ To:
 Kestrel
 -------
 
-The way Kestrel is configured has been redesigned. `This GitHub announcement <https://github.com/aspnet/Announcements/issues/168>`_ outlines the changes you must make to configure Kestrel if you are not using its default settings.
-
-MVC
----
-
-To compile views, set the ``preserveCompilationContext`` option in ``project.json`` to preserve the compilation context, as shown here:
-
-.. code-block:: json
-
-  {
-    "buildOptions": {
-      "preserveCompilationContext": true
-    }
-  }
+Kestrel configuration has changed. `This GitHub announcement <https://github.com/aspnet/Announcements/issues/168>`_ outlines the changes you must make to configure Kestrel if you are not using default settings.
 
 Controller and action results renamed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -314,12 +299,25 @@ Microsoft.AspNet.Mvc.HttpStatusCodeResult      Microsoft.AspNetCore.Mvc.StatusCo
 Microsoft.AspNet.Mvc.HttpUnauthorizedResult    Microsoft.AspNetCore.Mvc.UnauthorizedResult
 =============================================  =============================================
 
+ASP.NET 5 MVC compile views
+---------------------------
+
+To compile views, set the ``preserveCompilationContext`` option in *project.json* to preserve the compilation context, as shown here:
+
+.. code-block:: json
+
+  {
+    "buildOptions": {
+      "preserveCompilationContext": true
+    }
+  }
+
 Changes in views
 ^^^^^^^^^^^^^^^^
 
 Views now support relative paths.
 
-The Validation Summary Tag Helper has changed. Change:
+The Validation Summary Tag Helper ``asp-validation-summary`` attribute value has changed. Change:
 
 .. code-block:: html
 
@@ -334,12 +332,11 @@ To:
 Changes in ViewComponents
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The sync APIs have been removed.
-
-To reduce ambiguity in ViewComponent method selection, we've modified the selection to only allow exactly one ``Invoke()`` or ``InvokeAsync()`` per ViewComponent.
-``Component.Render()``, ``Component.RenderAsync()``, and ``Component.Invoke()`` have been removed.
-
-``InvokeAsync()`` now takes an anonynmous object instead of separate parameters. To use the view component, call ``@Component.InvokeAsync("Name of view component", <parameters>)`` from a view. The parameters will be passed to the ``InvokeAsync()`` method. The following example demonstrates the ``InvokeAsync()`` method call with two parameters:
+- The sync APIs have been removed
+- ``Component.Render()``, ``Component.RenderAsync()``, and ``Component.Invoke()`` have been removed
+- To reduce ambiguity in View Component method selection, we've modified the selection to only allow exactly one ``Invoke()`` or ``InvokeAsync()`` per View Component
+- ``InvokeAsync()`` now takes an anonynmous object instead of separate parameters
+- To use a view component, call ``@Component.InvokeAsync("Name of view component", <parameters>)`` from a view. The parameters will be passed to the ``InvokeAsync()`` method. The following example demonstrates the ``InvokeAsync()`` method call with two parameters:
 
 ASP.NET 5 RC1:
 
@@ -352,7 +349,8 @@ ASP.NET Core 1.0:
 .. code-block:: c#
 
   @Component.InvokeAsync("Test", new { name = "MyName", age = 15 })
-  @Component.InvokeAsync("Test", new Dictionary<string, object> { ["name"] = "MyName", ["age"] = 15 })
+  @Component.InvokeAsync("Test", new Dictionary<string, object> { 
+                         ["name"] = "MyName", ["age"] = 15 })
   @Component.InvokeAsync<TestViewComponent>(new { name = "MyName", age = 15})
 
 Updated controller discovery rules
@@ -360,12 +358,12 @@ Updated controller discovery rules
 
 There are changes that simplify controller discovery:
 
-The new :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute` be used to mark a class and their subclasses as controllers. A classe whose name doesn't end in ``Controller`` and derives from a base class that ends in ``Controller`` is no longer considered a controller. In this scenario, :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute` must be applied to the derived class itself or to the base class.
+The new :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute` can be used to mark a class (and it's subclasses) as a controller. A class whose name doesn't end in ``Controller`` and derives from a base class that ends in ``Controller`` is no longer considered a controller. In this scenario, :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute` must be applied to the derived class itself or to the base class.
 
-A type is not considered a controller if all the following conditions apply:
+A type is considered a controller if **all** the following conditions are met:
 
-- The type is a public, concrete, non-open generic class.
-- :dn:class:`~Microsoft.AspNetCore.Mvc.NonControllerAttribute` is not applied to any type in its hierarchy.
+- The type is a public, concrete, non-open generic class
+- :dn:class:`~Microsoft.AspNetCore.Mvc.NonControllerAttribute` is **not** applied to any type in its hierarchy
 - The type name ends with ``Controller``, or :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute` is applied to the type or one of its ancestors.
 
 .. note:: If :dn:class:`~Microsoft.AspNetCore.Mvc.NonControllerAttribute` is applied anywhere in the type hierarchy, the discovery conventions will never consider that type or its descendants to be a controller. In other words, :dn:class:`~Microsoft.AspNetCore.Mvc.NonControllerAttribute` takes precedence over :dn:class:`~Microsoft.AspNetCore.Mvc.ControllerAttribute`.
@@ -378,6 +376,7 @@ The :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationSource` interfa
 File-based configuration providers support both relative and absolute paths to configuration files. If you want to specify file paths relative to your application's content root, you must call the :dn:method:`~Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath` extension method on :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationBuilder`:
 
 .. code-block:: c#
+  :emphasize-lines: 4
 
   public Startup(IHostingEnvironment env)
   {
@@ -412,7 +411,7 @@ UserManager.FindByIdAsync(HttpContext.User.GetUserId())          UserManager.Get
 User.GetUserId()                                                 UserManager.GetUserId(User)
 ===============================================================  ===========================================
 
-To use the Identity API in a view, add the following directives to it:
+To use Identity in a view, add the following:
 
 .. code-block:: c#
 
@@ -423,6 +422,7 @@ To use the Identity API in a view, add the following directives to it:
 Working with IIS
 ----------------
 
+.. to-do start here
 The package ``Microsoft.AspNetCore.IISPlatformHandler`` has been replaced by ``Microsoft.AspNetCore.Server.IISIntegration``.
 
 HttpPlatformHandler has been replaced by ASP.NET Core Module. The ``web.config`` file created by the Publish to IIS tool now configures IIS to use ASP.NET Core Module instead of HttpPlatformHandler to reverse-proxy requests.
@@ -484,7 +484,7 @@ Update ``launchSettings.json`` to remove the web target and add the following:
 Server garbage collection
 -------------------------
 
-You must turn on server garbage collection in ``project.json`` or ``app.config`` when running ASP.NET projects on the full .NET Framework:
+You must turn on server garbage collection in *project.json* or ``app.config`` when running ASP.NET projects on the full .NET Framework:
 
 .. code-block:: json
 
