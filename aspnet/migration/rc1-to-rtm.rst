@@ -84,9 +84,7 @@ IIS publishing is now provided via the ``publish-iis`` tool in the ``Microsoft.A
 
   {
     "tools": {
-      "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
     }
   }
 
@@ -107,9 +105,7 @@ The ``ef`` tool is now provided in the ``Microsoft.EntityFrameworkCore.Tools`` p
 
   {
     "tools": {
-      "Microsoft.EntityFrameworkCore.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final"
     }
   }
 
@@ -124,9 +120,7 @@ Razor tooling is now provided in the ``Microsoft.AspNetCore.Razor.Tools`` packag
 
   {
     "tools": {
-      "Microsoft.AspNetCore.Razor.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
     }
   }
 
@@ -139,9 +133,7 @@ The ``sqlservercache`` command, formerly provided by the ``Microsoft.Extensions.
 
   {
     "tools": {
-      "Microsoft.Extensions.Caching.SqlConfig.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.Extensions.Caching.SqlConfig.Tools": "1.0.0-preview2-final"
     }
   }
 
@@ -154,9 +146,7 @@ The ``user-secret`` command, formerly provided by the ``Microsoft.Extensions.Sec
 
   {
     "tools": {
-      "Microsoft.Extensions.SecretManager.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final"
     }
   }
 
@@ -169,9 +159,7 @@ The ``watch`` command, formerly provided by the ``Microsoft.Dnx.Watcher`` packag
 
   {
     "tools": {
-      "Microsoft.DotNet.Watcher.Tools": {
-        "version": "1.0.0-preview2-final"
-      }
+      "Microsoft.DotNet.Watcher.Tools": "1.0.0-preview2-final"
     }
   }
 

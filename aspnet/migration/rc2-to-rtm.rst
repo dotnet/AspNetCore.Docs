@@ -14,6 +14,32 @@ This migration guide covers migrating an ASP.NET Core RC2 application to ASP.NET
 
 There weren't many significant changes to ASP.NET Core between the RC2 and 1.0 releases. For a complete list of changes, see the `ASP.NET Core 1.0 announcements <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0>`_.
 
+Tools
+-----
+
+You no longer need to use ``imports`` for tools in ``project.json``. You can change, for example, the following entry:
+
+.. code-block:: json
+
+  {
+    "tools": {
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+        "version": "1.0.0-preview1-final",
+        "imports": "portable-net45+win8+dnxcore50"
+      }
+    }
+  }
+
+To:
+
+.. code-block:: json
+
+  {
+    "tools": {
+      "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+    }
+  }
+
 Hosting
 -------
 
