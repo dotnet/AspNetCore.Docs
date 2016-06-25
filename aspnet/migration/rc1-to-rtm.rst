@@ -1,7 +1,7 @@
 Migrating from ASP.NET 5 RC1 to ASP.NET Core 1.0
 ================================================
 
-By `Cesar Blum Silveira`_, `Rachel Appel`_
+By `Cesar Blum Silveira`_, `Rachel Appel`_, `Rick Anderson`_ 
 
 .. contents:: Sections:
   :local:
@@ -163,7 +163,7 @@ The ``watch`` command, formerly provided by the ``Microsoft.Dnx.Watcher`` packag
     }
   }
 
-For more information on the file watcher, read :doc:`/tutorials/dotnet-watch`.
+For more information on the file watcher, see **Dotnet watch** in  :doc:`/tutorials/index`.
 
 Hosting
 -------
