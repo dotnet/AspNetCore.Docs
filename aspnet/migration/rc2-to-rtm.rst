@@ -53,4 +53,4 @@ The :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` class has been removed fro
 Security
 --------
 
-The :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler` class now only offers an asynchronous interface. You must now use the ``Async`` versions of its methods.
+The :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>` class now only offers an asynchronous interface. You must now use the ``Async`` versions of its methods.
