@@ -81,9 +81,9 @@ We'll use the :ref:`Options pattern <options-config-objects>` to access the user
 
  - Create a class to fetch the secure email key. For this sample, the ``AuthMessageSenderOptions`` class is created in the *Services/AuthMessageSenderOptions.cs* file.
 
-  .. literalinclude:: accconfirm/sample/WebApplication1/src/WebApplication1/Services/AuthMessageSenderOptions.cs
+  .. literalinclude:: accconfirm/sample/WebApplication3/src/WebApplication3/Services/AuthMessageSenderOptions.cs
    :language: c#
-   :lines: 3-7
+   :lines: 8-12
    :dedent: 4
 
 Set the ``SendGridUser`` and ``SendGridKey`` with the :doc:`secret-manager tool </security/app-secrets>`. For example:
