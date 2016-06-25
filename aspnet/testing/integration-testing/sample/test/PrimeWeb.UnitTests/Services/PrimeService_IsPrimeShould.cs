@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PrimeWeb.Services;
 using Xunit;
-using PrimeWeb.Services;
 
 namespace PrimeWeb.UnitTests.Services
 {
@@ -23,7 +19,7 @@ namespace PrimeWeb.UnitTests.Services
         {
             var result = _primeService.IsPrime(value);
 
-            Assert.False(result, String.Format("{0} should not be prime", value));
+            Assert.False(result, string.Format("{0} should not be prime", value));
         }
 
         [Theory]
@@ -35,7 +31,7 @@ namespace PrimeWeb.UnitTests.Services
         {
             var result = _primeService.IsPrime(value);
 
-            Assert.True(result, String.Format("{0} should be prime", value));
+            Assert.True(result, string.Format("{0} should be prime", value));
         }
 
         [Theory]
@@ -47,7 +43,7 @@ namespace PrimeWeb.UnitTests.Services
         {
             var result = _primeService.IsPrime(value);
 
-            Assert.False(result, String.Format("{0} should not be prime", value));
+            Assert.False(result, string.Format("{0} should not be prime", value));
         }
 
     }

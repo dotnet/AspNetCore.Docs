@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using PrimeWeb.Middleware;
 using PrimeWeb.Services;
@@ -18,8 +19,6 @@ namespace PrimeWeb
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env)
         {
-            // Add the platform handler to the request pipeline.
-            app.UseIISPlatformHandler();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -31,6 +30,18 @@ namespace PrimeWeb
             {
                 await context.Response.WriteAsync("Hello World!");
             });
+        }
+
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
         }
     }
 }
