@@ -65,25 +65,34 @@ To configure `IISIntegration` service options, include a service configuration f
     ...
   });
 
-+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Option                       | Setting                                                                                                                                                                                                                                                            |
-+==============================+====================================================================================================================================================================================================================================================================+
-| AutomaticAuthentication      | If true, the authentication middleware will alter the request user arriving and respond to generic challenges. If false, the authentication middleware will only provide identity and respond to challenges when explicitly indicated by the AuthenticationScheme. |
-+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ForwardClientCertificate     | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` will be populated.                                                                                                                                               |
-+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ForwardWindowsAuthentication | If true, authentication middleware will attempt to authenticate using platform handler windows authentication. If false, authentication middleware won't be added.                                                                                                 |
-+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
++-------------------------------+------------------------------------------------------------------+
+| Option                        |     Setting                                                      |
++===============================+==================================================================+
+| AutomaticAuthentication       | | If true, the authentication middleware will alter the request  |
+|                               | | user arriving and respond to generic challenges. If false,     |
+|                               | | the authentication middleware will only provide identity and   |
+|                               | | respond to challenges when explicitly indicated by the         |
+|                               | | AuthenticationScheme.                                          |
++-------------------------------+------------------------------------------------------------------+
+| ForwardClientCertificate      | | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is   |
+|                               | | present, the `ITLSConnectionFeature` will be populated.        |
++-------------------------------+------------------------------------------------------------------+
+| ForwardWindowsAuthentication  | | If true, authentication middleware will attempt to authenticate|
+|                               | | using platform handler windows authentication. If false,       |
+|                               | | authentication middleware won't be added.                      |
++-------------------------------+------------------------------------------------------------------+
+
 
 `publish-iis` tool
 ^^^^^^^^^^^^^^^^^^
 
 The `publish-iis` tool can be added to any .NET Core application and will configure the ASP.NET Core Module by creating or modifying the *web.config* file. The tool runs after publishing with the `dotnet publish` command or publishing with Visual Studio and will configure the `processPath` and `arguments` for you. If you're publishing a *web.config* file by including the file in your project and listing the file in the `publishOptions` section of *project.json*, the tool will not modify other IIS settings you have included in the file.
-  
+
 To include the `publish-iis` tool in your application, add entries to the `tools` and `scripts` sections of *project.json*.
-  
+
 .. code-block:: none
-  
+
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "1.0.0-preview1-final",
@@ -101,7 +110,7 @@ Deploy the application
 #. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
 #. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the `default Visual Studio web publish script <https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1>`__. For information on using Web Deploy, see :doc:`iis-with-msdeploy`.
 
-.. warning:: 
+.. warning::
   .NET Core applications are hosted via a reverse-proxy between IIS and the Kestrel server. In order to create the reverse-proxy, the *web.config* file must be present at the content root path (typically the app base path) of the deployed application, which is the website physical path provided to IIS.
 
   Sensitive files exist on the app's physical path, including subfolders, such as *my_application.runtimeconfig.json*, *my_application.xml* (XML Documentation comments), and *my_application.deps.json*. The *web.config* file is required to create the reverse proxy to Kestrel, which prevents IIS from serving these and other sensitive files. **Therefore, it is important that the web.config file is never accidently renamed or removed from the deployment.**
@@ -118,20 +127,20 @@ Configure the website in IIS
 Open the **Add Website** window.
 
   .. image:: pubIIS/_static/addwebsitecontextmenu.png
-  
+
 Configure the website.
 
   .. image:: pubIIS/_static/addwebsite.png
-  
+
 In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
   .. image:: pubIIS/_static/apppoolsbasicsettingscontextmenu.png
-  
+
 Set the **.NET CLR version** to **No Managed Code**.
 
   .. image:: pubIIS/_static/editapppool.png
 
-Browse the website. 
+Browse the website.
 
         .. image:: pubIIS/_static/browsewebsite.png
 
