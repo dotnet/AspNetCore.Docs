@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 
 namespace StaticFiles
 {
-    public class StartupBrowse
+    public class StartupFileExtensionContentTypeProvider
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // >Services
@@ -20,15 +21,25 @@ namespace StaticFiles
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // >Configure
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles(); // For the wwwroot folder
+            // Set up custom content types -associating file extension to MIME type
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            // Replace an existing mapping
+            provider.Mappings[".rtf"] = "application/x-msdownload";
+            // Remove MP4 videos.
+            provider.Mappings.Remove(".mp4");
 
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
-                RequestPath = new PathString("/MyImages")
+                RequestPath = new PathString("/MyImages"),
+                ContentTypeProvider = provider
             });
 
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()

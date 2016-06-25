@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace StaticFiles
 {
-    public class StartupBrowse
+    public class StartupUseFileServer
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // >Services
@@ -22,20 +22,14 @@ namespace StaticFiles
         // >Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseStaticFiles(); // For the wwwroot folder
+            app.UseStaticFiles();
 
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseFileServer(new FileServerOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
-                RequestPath = new PathString("/MyImages")
-            });
-
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
-                RequestPath = new PathString("/MyImages")
+                    Path.Combine(Directory.GetCurrentDirectory(), @"MyStaticFiles")),
+                RequestPath = new PathString("/StaticFiles"),
+                EnableDirectoryBrowsing = true
             });
         }
         // <Configure
