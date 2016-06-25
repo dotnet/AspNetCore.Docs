@@ -17,11 +17,9 @@ We anticipate that the majority of applications will use a file system-based key
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // persist keys to a specific directory
-      configure.PersistKeysToFileSystem(new DirectoryInfo(@"c:\temp-keys\"));
-  });
+      .PersistKeysToFileSystem(new DirectoryInfo(@"c:\temp-keys\"));
 
 The DirectoryInfo can point to a directory on the local machine, or it can point to a folder on a network share. If pointing to a directory on the local machine (and the scenario is that only applications on the local machine will need to use this repository), consider using :ref:`Windows DPAPI <data-protection-implementation-key-encryption-at-rest>` to encrypt the keys at rest. Otherwise consider using an :ref:`X.509 certificate <data-protection-implementation-key-encryption-at-rest>` to encrypt keys at rest.
 
@@ -32,11 +30,9 @@ Sometimes the application might not have write access to the file system. Consid
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // persist keys to a specific location in the system registry
-      configure.PersistKeysToRegistry(Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Sample\keys"));
-  });
+      .PersistKeysToRegistry(Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Sample\keys"));
 
 If you use the system registry as a persistence mechanism, consider using :ref:`Windows DPAPI <data-protection-implementation-key-encryption-at-rest>` to encrypt the keys at rest.
 

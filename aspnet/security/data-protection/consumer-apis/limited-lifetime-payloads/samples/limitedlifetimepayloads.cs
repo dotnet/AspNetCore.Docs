@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
-using Microsoft.AspNet.DataProtection;
+using Microsoft.AspNetCore.DataProtection;
  
 public class Program
 {
@@ -9,7 +9,7 @@ public class Program
     {
         // create a protector for my application
  
-        var provider = new DataProtectionProvider(new DirectoryInfo(@"c:\myapp-keys\"));
+        var provider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\myapp-keys\"));
         var baseProtector = provider.CreateProtector("Contoso.TimeLimitedSample");
  
         // convert the normal protector into a time-limited protector

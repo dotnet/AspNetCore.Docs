@@ -4,7 +4,7 @@ Key Storage Format
 ==================
 
 
-Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\\ASP.NET\DataProtection-Keys\\.
+Objects are stored at rest in XML representation. The default directory for key storage is %LOCALAPPDATA%\\ASP.NET\\DataProtection-Keys\\.
 
 The <key> element
 -----------------

@@ -14,4 +14,4 @@ If the developer changes any setting that affects key persistence, those changes
 If you need these settings to kick in earlier than the next automatic key rolling time, consider making an explicit call to IKeyManager.CreateNewKey to force the creation of a new key. Remember to provide an explicit activation date ({ now + 2 days } is a good rule of thumb to allow time for the change to propagate) and expiration date in the call.
 
 .. TIP::
-  All applications touching the repository should specify the same settings in the call to ConfigureDataProtection, otherwise the properties of the persisted key will be dependent on the particular application that invoked the key generation routines.
+  All applications touching the repository should specify the same settings with the IDataProtectionBuilder extension methods, otherwise the properties of the persisted key will be dependent on the particular application that invoked the key generation routines.
