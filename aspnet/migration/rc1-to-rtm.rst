@@ -422,7 +422,8 @@ To use Identity in a view, add the following:
 Working with IIS
 ----------------
 
-.. to-do start here
+.. to-do start here 
+
 The package ``Microsoft.AspNetCore.IISPlatformHandler`` has been replaced by ``Microsoft.AspNetCore.Server.IISIntegration``.
 
 HttpPlatformHandler has been replaced by ASP.NET Core Module. The ``web.config`` file created by the Publish to IIS tool now configures IIS to use ASP.NET Core Module instead of HttpPlatformHandler to reverse-proxy requests.
