@@ -168,7 +168,7 @@ For more complex request handling functionality, the ASP.NET team recommends imp
 .. literalinclude:: middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs
 	:language: c#
 	:caption: RequestLoggerMiddleware.cs
-	:emphasize-lines: 13, 19
+	:emphasize-lines: 12, 18
 
 The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T>`_ extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a ``params`` array of arguments to be used for non-injected parameters.
 
