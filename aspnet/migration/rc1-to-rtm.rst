@@ -18,6 +18,8 @@ For a complete list of breaking changes in the ASP.NET Core RC2 and ASP.NET Core
 
 For information on migrating Entity Framework 7 code to Entity Framework Core, see the `EF Migration document <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_.
 
+.. note:: See :doc:`/migration/rc2-to-rtm` for additional information that might be relevant when migrating your application to ASP.NET Core 1.0.
+
 Update Target Framework Monikers (TFMs)
 ---------------------------------------
 
@@ -173,7 +175,7 @@ The ``watch`` command, formerly provided by the ``Microsoft.Dnx.Watcher`` packag
     }
   }
 
-For more information on the file watcher, read :doc:`the dotnet watch tutorial </tutorials/dotnet-watch>`.
+For more information on the file watcher, read :doc:`/tutorials/dotnet-watch`.
 
 Hosting
 -------
@@ -247,7 +249,7 @@ Specifying only a port number as a binding address is no longer supported.
 Hosting configuration
 ^^^^^^^^^^^^^^^^^^^^^
 
-The ``UseDefaultHostingConfiguration`` method is no longer available. The only configuration values read by default by :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder` are those specified in environment variables prefixed with ``ASPNETCORE_*``. All other configuration sources must now be added explicitly to an :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationBuilder` instance. See :doc:`Configuration </fundamentals/configuration>` for more information on configuration sources.
+The ``UseDefaultHostingConfiguration`` method is no longer available. The only configuration values read by default by :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder` are those specified in environment variables prefixed with ``ASPNETCORE_*``. All other configuration sources must now be added explicitly to an :dn:iface:`~Microsoft.Extensions.Configuration.IConfigurationBuilder` instance. See :doc:`/fundamentals/configuration` for more information on configuration sources.
 
 The environment key is set via the ``ASPNETCORE_ENVIRONMENT`` environment variable. ``ASPNET_ENV`` and ``Hosting:Environment`` are still supported, but you will see a message indicating those values are deprecated.
 
@@ -269,7 +271,7 @@ To:
 Kestrel
 -------
 
-The way Kestrel is configured has been redesigned. This `GitHub announcement <https://github.com/aspnet/Announcements/issues/168>`_ outlines the changes you must make to configure Kestrel if you are not using its default settings.
+The way Kestrel is configured has been redesigned. `This GitHub announcement <https://github.com/aspnet/Announcements/issues/168>`_ outlines the changes you must make to configure Kestrel if you are not using its default settings.
 
 MVC
 ---
@@ -283,10 +285,6 @@ To compile views, set the ``preserveCompilationContext`` option in ``project.jso
       "preserveCompilationContext": true
     }
   }
-
-You no longer need to reference the ``Microsoft.AspNet.Mvc.TagHelpers`` package, which has been renamed to ``Microsoft.AspNetCore.Mvc.TagHelpers``. The package is now referenced by MVC by default.
-
-The :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` class has been moved from MVC to the ``Microsoft.AspNetCore.Html.Abstractions`` package. If you were using :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` directly in your Razor views, you must add a using statement for :dn:namespace:`Microsoft.AspNetCore.Html`.
 
 Controller and action results renamed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -420,21 +418,6 @@ To use the Identity API in a view, add the following directives to it:
   @inject SignInManager<TUser> SignInManager
   @inject UserManager<TUser> UserManager
 
-Server garbage collection
--------------------------
-
-You must turn on server garbage collection in ``project.json`` or ``app.config`` when running ASP.NET projects on the full .NET Framework:
-
-.. code-block:: json
-
-  {
-    "runtimeOptions": {
-      "configProperties": {
-        "System.GC.Server": true
-      }
-    }
-  }
-
 Working with IIS
 ----------------
 
@@ -492,6 +475,21 @@ Update ``launchSettings.json`` to remove the web target and add the following:
       "launchUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+
+Server garbage collection
+-------------------------
+
+You must turn on server garbage collection in ``project.json`` or ``app.config`` when running ASP.NET projects on the full .NET Framework:
+
+.. code-block:: json
+
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.GC.Server": true
       }
     }
   }
