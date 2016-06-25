@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using WebApplication3.Data;
 using WebApplication3.Models;
 using WebApplication3.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication3
 {
@@ -58,6 +59,11 @@ namespace WebApplication3
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +92,17 @@ namespace WebApplication3
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
+
+            //app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
+            //{
+            //    ClientId = Configuration["Authentication:Microsoft:ClientId"],
+            //    ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"],
+            //});
 
             app.UseMvc(routes =>
             {
