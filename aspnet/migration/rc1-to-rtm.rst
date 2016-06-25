@@ -7,27 +7,32 @@ By `Cesar Blum Silveira`_, `Rachel Appel`_, `Rick Anderson`_
   :local:
   :depth: 1
 
-Overview
---------
-
-This migration guide covers migrating an ASP.NET 5 RC1 application to ASP.NET Core 1.0.
 
 ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core 1.0 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. See `migrating from DNX to .NET Core CLI <http://dotnet.github.io/docs/core-concepts/dnx-migration.html>`_ for more information.
 
-For a complete list of breaking changes in the ASP.NET Core RC2 and ASP.NET Core 1.0, see the `ASP.NET Core RC2 announcements <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2>`_ and the `ASP.NET Core 1.0 announcements <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0>`_.
+See the following resources for breaking changes, announcements and migrations information:
 
-For information on migrating Entity Framework 7 code to Entity Framework Core, see the `EF Migration document <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_.
-
-.. note:: See :doc:`/migration/rc2-to-rtm` for additional information that might be relevant when migrating your application to ASP.NET Core 1.0.
+- `ASP.NET Core RC2 breaking changes <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2>`_ 
+- `ASP.NET Core 1.0 breaking changes <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0>`_
+- `Upgrading from Entity Framework RC1 to RC2 <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_.
+- :doc:`/migration/rc2-to-rtm`
 
 Update Target Framework Monikers (TFMs)
 ---------------------------------------
 
-If your app targeted ``dnx451`` in the ``frameworks`` section of ``project.json``, you must change that to ``net451``.
+If your app targeted ``dnx451`` or  ``net451`` in the ``frameworks`` section of *project.json*, you must make the following changes:
 
-Likewise, apps targeting ``dnxcore50`` must now target ``netcoreapp1.0``. In addition, .NET Core apps must add a dependency to the ``Microsoft.NETCore.App`` package:
+==================================== ====================================
+DNX                                  .NET Core
+==================================== ====================================
+``dnx451``                           ``net451``
+``dnxcore50``                        ``netcoreapp1.0``
+==================================== ====================================
+
+.NET Core apps must add a dependency to the ``Microsoft.NETCore.App`` package:
 
 .. code-block:: json
+  :emphasize-lines: 4-8
 
   {
     "frameworks": {
@@ -45,15 +50,26 @@ Likewise, apps targeting ``dnxcore50`` must now target ``netcoreapp1.0``. In add
 Namespace and package ID changes
 --------------------------------
 
-ASP.NET 5 has been renamed to ASP.NET Core 1.0. Also, MVC and Identity are now part of ASP.NET Core. ASP.NET MVC 6 is now ASP.NET Core MVC. ASP.NET Identity 3 is now ASP.NET Core Identity.
+- ASP.NET 5 has been renamed to ASP.NET Core 1.0
+- ASP.NET MVC and Identity are now part of ASP.NET Core
+- ASP.NET MVC 6 is now ASP.NET Core MVC
+- ASP.NET Identity 3 is now ASP.NET Core Identity
+- ASP.NET Core 1.0 package versions are ``1.0.0``
+- ASP.NET Core 1.0 tool package versions are ``1.0.0-preview2-final``
 
-All ``Microsoft.AspNet.*`` packages and namespaces have been renamed to ``Microsoft.AspNetCore.*``.
+Namespace and package name changes:
 
-All ``EntityFramework.*`` packages and namespaces have been renamed to ``Microsoft.EntityFrameworkCore.*``. ``Microsoft.Data.Entity.*`` is now ``Microsoft.EntityFrameworkCore.*``.
+==========================================    ===================================================
+ASP.NET 5 RC1                                 ASP.NET Core 1.0
+==========================================    ===================================================
+``Microsoft.AspNet.*``                        ``Microsoft.AspNetCore.*``
+``EntityFramework.*``                         ``Microsoft.EntityFrameworkCore.*``
+``Microsoft.Data.Entity.*``                   ``Microsoft.EntityFrameworkCore.*``
+==========================================    ===================================================
 
 The ``EntityFramework.Commands`` package is no longer available. The ``ef`` command is now available as a tool in the ``Microsoft.EntityFrameworkCore.Tools`` package.
 
-In addition, the following packages have been renamed:
+The following packages have been renamed:
 
 ==========================================    ===================================================
 ASP.NET 5 RC1                                 ASP.NET Core 1.0
@@ -63,8 +79,6 @@ Microsoft.AspNet.Diagnostics.Entity           Microsoft.AspNetCore.Dianostics.En
 Microsoft.AspNet.Identity.EntityFramework     Microsoft.AspNetCore.Identity.EntityFrameworkCore
 Microsoft.AspNet.Tooling.Razor                Microsoft.AspNetCore.Razor.Tools
 ==========================================    ===================================================
-
-All ASP.NET Core package versions are now ``1.0.0``. Tool packages used in ASP.NET Core 1.0 applications should use version ``1.0.0-preview2-final``.
 
 Commands and tools
 ------------------
