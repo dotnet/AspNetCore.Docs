@@ -1,3 +1,5 @@
+:version: 1.0.0-beta7
+
 .. _security-authentication-account-confirmation:
 
 Account Confirmation and Password Recovery
