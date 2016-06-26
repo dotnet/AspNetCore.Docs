@@ -8,10 +8,10 @@ This allows you to put metadata at the top of your document::
 
 This version should be the version of the project that this page or API targets.
 
-If you configure ``versionwarning-node`` to True (default),
+If you configure ``versionwarning_node`` to True (default),
 then it will generate an in-page warning for out of date versions.
 
-If you configure ``versionwarning-console`` to True (default),
+If you configure ``versionwarning_console`` to True (default),
 then it will output a warning on the console.
 """
 
@@ -39,20 +39,20 @@ def process_meta(app, doctree, fromdocname):
                 # Alert on outdated version
                 current_version = env.config['version']
                 if version != current_version:
-                    text = 'This page documents version {old}. The latest version is {new}'.format(
+                    text = 'This page documents version {old} and has not yet been updated for version {new}'.format(
                         old=version,
                         new=current_version,
                     )
 
-                    if app.config['versionwarning-node']:
+                    if app.config['versionwarning_node']:
                         prose = nodes.paragraph(text, text)
                         warning = nodes.warning(prose, prose)
                         doctree.insert(0, warning)
-                    if app.config['versionwarning-console']:
+                    if app.config['versionwarning_console']:
                         app.warn(bold('[Version Warning: %s] ' % pagename) + red(text))
 
 
 def setup(app):
     app.connect('doctree-resolved', process_meta)
-    app.add_config_value('versionwarning-node', True, 'html')
-    app.add_config_value('versionwarning-console', True, 'html')
+    app.add_config_value('versionwarning_node', True, 'html')
+    app.add_config_value('versionwarning_console', True, 'html')
