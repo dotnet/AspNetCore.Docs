@@ -17,7 +17,7 @@ There weren't many significant changes to ASP.NET Core between the RC2 and 1.0 r
 Tools
 -----
 
-You no longer need to use ``imports`` for tools in ``project.json``. You can change, for example, the following entry:
+For the tools we ship, you no longer need to use ``imports`` in *project.json*. For example:
 
 .. code-block:: json
 
@@ -30,7 +30,7 @@ You no longer need to use ``imports`` for tools in ``project.json``. You can cha
     }
   }
 
-To:
+Becomes:
 
 .. code-block:: json
 
@@ -43,14 +43,14 @@ To:
 Hosting
 -------
 
-The ``UseServer`` is not longer available for :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHostBuilder`. You must now use :dn:method:`~Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel` or :dn:method:`~Microsoft.AspNetCore.Hosting.WebHostBuilderWebListenerExtensions.UseWebListener`.
+The ``UseServer`` is no longer available for :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHostBuilder`. You must now use :dn:method:`~Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel` or :dn:method:`~Microsoft.AspNetCore.Hosting.WebHostBuilderWebListenerExtensions.UseWebListener`.
 
-MVC
----
+ASP.NET MVC Core
+----------------
 
-The :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` class has been removed from MVC. You should now use the :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` class provided in the ``Microsoft.AspNetCore.Html.Abstractions`` package, which was formerly named ``HtmlEncodedString``. If you were using :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` directly in your Razor views, you must add a ``@using`` statement for :dn:namespace:`Microsoft.AspNetCore.Html`.
+The ``HtmlEncodedString`` class has been replaced by :dn:class:`~Microsoft.AspNetCore.Html.HtmlString` (contained in the  ``Microsoft.AspNetCore.Html.Abstractions`` package).
 
 Security
 --------
 
-The :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>` class now only offers an asynchronous interface. You must now use the ``Async`` versions of its methods.
+The :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizationHandler\<TRequirement>` class now only contains an asynchronous interface.
