@@ -30,9 +30,12 @@ import datetime
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+sys.path.append(os.path.abspath('ext'))
+
 extensions = [
     'sphinx.ext.intersphinx',
-    'sphinxcontrib.dotnetdomain']
+    'sphinxcontrib.dotnetdomain',
+    'versionwarning']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates', '../common/_templates']
@@ -56,7 +59,7 @@ author = 'Microsoft'
 # built documents.
 #
 # The short X.Y version.
-# version = '0.0.1'
+version = '1.0.0'
 # The full version, including alpha/beta/rc tags.
 # release = '0.0.1'
 
@@ -374,3 +377,4 @@ intersphinx_mapping = {
     'api': ('http://docs.asp.net/projects/api/en/latest', '../common/api.inv')
 }
 
+versionwarning_console = False

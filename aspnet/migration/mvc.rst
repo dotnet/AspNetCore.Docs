@@ -1,3 +1,5 @@
+:version: 1.0.0-rc2
+
 Migrating From ASP.NET MVC to ASP.NET Core MVC
 ================================================
 

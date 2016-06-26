@@ -1,3 +1,5 @@
+:version: 1.0.0-beta8
+
 .. _security-authentication-2fa:
 
 Two-factor authentication with SMS

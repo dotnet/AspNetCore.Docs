@@ -13,7 +13,7 @@
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
     "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
     "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
-    "Microsoft.AspNetCore.Http": "1.0.0-rc2-16272",
+    "Microsoft.AspNet.Http": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
