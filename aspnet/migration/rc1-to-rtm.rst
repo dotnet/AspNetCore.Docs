@@ -14,7 +14,7 @@ See the following resources for a list of some of the most significant changes, 
 
 - `ASP.NET Core RC2 significant changes <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0-rc2>`_ 
 - `ASP.NET Core 1.0 significant changes <https://github.com/aspnet/announcements/issues?q=is%3Aopen+is%3Aissue+milestone%3A1.0.0>`_
-- `Upgrading from Entity Framework RC1 to RC2 <https://docs.efproject.net/en/latest/miscellaneous/rc1-rc2-upgrade.html>`_
+- `Upgrading from Entity Framework RC1 to RTM <https://docs.efproject.net/en/latest/miscellaneous/rc2-rtm-upgrade.html>`_
 - :doc:`/migration/rc2-to-rtm`
 
 Update Target Framework Monikers (TFMs)
@@ -31,21 +31,24 @@ DNX                                  .NET Core
 
 .NET Core apps must add a dependency to the ``Microsoft.NETCore.App`` package:
 
-.. code-block:: json
-  :emphasize-lines: 4-8
+.. original -
+  {  
+     "frameworks": {  
+       "netcoreapp1.0": {  
+         "dependencies": {  
+           "Microsoft.NETCore.App": {  
+             "version": "1.0.0",  
+             "type": "platform"  
+           }  
+         }  
 
-  {
-    "frameworks": {
-      "netcoreapp1.0": {
-        "dependencies": {
-          "Microsoft.NETCore.App": {
-            "version": "1.0.0",
-            "type": "platform"
-          }
-        }
-      }
-    }
-  }
+.. code-block:: json
+  
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
 
 Namespace and package ID changes
 --------------------------------
