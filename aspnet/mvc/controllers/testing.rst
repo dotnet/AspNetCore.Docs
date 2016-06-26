@@ -1,3 +1,5 @@
+:version: 1.0.0-rc1
+
 Testing Controller Logic
 ========================
 By `Steve Smith`_
