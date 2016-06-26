@@ -31,7 +31,7 @@ DNX                                  .NET Core
 
 .NET Core apps must add a dependency to the ``Microsoft.NETCore.App`` package:
 
-.. original -
+.. original - 
   {  
      "frameworks": {  
        "netcoreapp1.0": {  
@@ -42,7 +42,7 @@ DNX                                  .NET Core
            }  
          }  
 
-.. code-block:: json
+.. code-block:: none
   
   "dependencies": {
     "Microsoft.NETCore.App": {
