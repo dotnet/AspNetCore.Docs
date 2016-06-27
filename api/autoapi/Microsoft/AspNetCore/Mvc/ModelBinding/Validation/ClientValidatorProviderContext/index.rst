@@ -56,6 +56,39 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.ClientValidatorProviderContext(Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem>)
+    
+        
+    
+        
+        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext`\.
+    
+        
+    
+        
+        :param modelMetadata: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` for the model being validated.
+        
+        :type modelMetadata: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
+    
+        
+        :param items: The list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem`\s.
+        
+        :type items: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem>}
+    
+        
+        .. code-block:: csharp
+    
+            public ClientValidatorProviderContext(ModelMetadata modelMetadata, IList<ClientValidatorItem> items)
+    
+
 Properties
 ----------
 
@@ -77,10 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata ModelMetadata
-            {
-                get;
-            }
+            public ModelMetadata ModelMetadata { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.Results
     
@@ -88,7 +118,7 @@ Properties
     
         
         Gets the list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem` instances. :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider`
-        instances should add the appropriate :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` properties when
+        instances should add the appropriate :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem.Validator` properties when 
         :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider.CreateValidators(Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext)`
         is called.
     
@@ -98,10 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ClientValidatorItem> Results
-            {
-                get;
-            }
+            public IList<ClientValidatorItem> Results { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.ValidatorMetadata
     
@@ -116,43 +143,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IReadOnlyList<object> ValidatorMetadata
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext.ClientValidatorProviderContext(Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem>)
-    
-        
-    
-        
-        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorProviderContext`\.
-    
-        
-    
-        
-        :param modelMetadata: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` for the model being validated.
-            
-        
-        :type modelMetadata: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
-    
-        
-        :param items: The list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem`\s.
-        
-        :type items: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientValidatorItem>}
-    
-        
-        .. code-block:: csharp
-    
-            public ClientValidatorProviderContext(ModelMetadata modelMetadata, IList<ClientValidatorItem> items)
+            public IReadOnlyList<object> ValidatorMetadata { get; }
     
 

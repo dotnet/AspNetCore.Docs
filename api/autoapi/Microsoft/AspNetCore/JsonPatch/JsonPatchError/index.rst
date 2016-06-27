@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchError
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchError
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.AffectedObject
-    
-        
-    
-        
-        Gets the object that is affected by the error.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object AffectedObject
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.ErrorMessage
-    
-        
-    
-        
-        Gets the error message.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ErrorMessage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.Operation
-    
-        
-    
-        
-        Gets the :dn:prop:`Microsoft.AspNetCore.JsonPatch.JsonPatchError.Operation` that caused the error.
-    
-        
-        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.Operation
-    
-        
-        .. code-block:: csharp
-    
-            public Operation Operation
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -155,5 +92,59 @@ Constructors
         .. code-block:: csharp
     
             public JsonPatchError(object affectedObject, Operation operation, string errorMessage)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchError
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.AffectedObject
+    
+        
+    
+        
+        Gets the object that is affected by the error.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object AffectedObject { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.ErrorMessage
+    
+        
+    
+        
+        Gets the error message.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ErrorMessage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchError.Operation
+    
+        
+    
+        
+        Gets the :dn:prop:`Microsoft.AspNetCore.JsonPatch.JsonPatchError.Operation` that caused the error.
+    
+        
+        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.Operation
+    
+        
+        .. code-block:: csharp
+    
+            public Operation Operation { get; }
     
 

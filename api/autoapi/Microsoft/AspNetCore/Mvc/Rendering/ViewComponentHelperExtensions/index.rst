@@ -84,12 +84,11 @@ Methods
         :type name: System.String
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> InvokeAsync(IViewComponentHelper helper, string name)
+            public static Task<IHtmlContent> InvokeAsync(this IViewComponentHelper helper, string name)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.ViewComponentHelperExtensions.InvokeAsync(Microsoft.AspNetCore.Mvc.IViewComponentHelper, System.Type)
     
@@ -111,12 +110,11 @@ Methods
         :type componentType: System.Type
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> InvokeAsync(IViewComponentHelper helper, Type componentType)
+            public static Task<IHtmlContent> InvokeAsync(this IViewComponentHelper helper, Type componentType)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.ViewComponentHelperExtensions.InvokeAsync<TComponent>(Microsoft.AspNetCore.Mvc.IViewComponentHelper)
     
@@ -133,12 +131,11 @@ Methods
         :type helper: Microsoft.AspNetCore.Mvc.IViewComponentHelper
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> InvokeAsync<TComponent>(IViewComponentHelper helper)
+            public static Task<IHtmlContent> InvokeAsync<TComponent>(this IViewComponentHelper helper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.ViewComponentHelperExtensions.InvokeAsync<TComponent>(Microsoft.AspNetCore.Mvc.IViewComponentHelper, System.Object)
     
@@ -160,11 +157,10 @@ Methods
         :type arguments: System.Object
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp
     
-            public static Task<IHtmlContent> InvokeAsync<TComponent>(IViewComponentHelper helper, object arguments)
+            public static Task<IHtmlContent> InvokeAsync<TComponent>(this IViewComponentHelper helper, object arguments)
     
 

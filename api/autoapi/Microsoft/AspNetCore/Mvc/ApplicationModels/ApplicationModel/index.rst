@@ -53,6 +53,24 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel.ApplicationModel()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public ApplicationModel()
+    
+
 Properties
 ----------
 
@@ -74,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ApiExplorerModel ApiExplorer
-            {
-                get;
-                set;
-            }
+            public ApiExplorerModel ApiExplorer { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel.Controllers
     
@@ -88,10 +102,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ControllerModel> Controllers
-            {
-                get;
-            }
+            public IList<ControllerModel> Controllers { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel.Filters
     
@@ -101,10 +112,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IFilterMetadata> Filters
-            {
-                get;
-            }
+            public IList<IFilterMetadata> Filters { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel.Properties
     
@@ -120,27 +128,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<object, object> Properties
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel.ApplicationModel()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public ApplicationModel()
+            public IDictionary<object, object> Properties { get; }
     
 

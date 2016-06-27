@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMvc(IApplicationBuilder app)
+            public static IApplicationBuilder UseMvc(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<Microsoft.AspNetCore.Routing.IRouteBuilder>)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMvc(IApplicationBuilder app, Action<IRouteBuilder> configureRoutes)
+            public static IApplicationBuilder UseMvc(this IApplicationBuilder app, Action<IRouteBuilder> configureRoutes)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute(Microsoft.AspNetCore.Builder.IApplicationBuilder)
     
@@ -132,6 +132,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMvcWithDefaultRoute(IApplicationBuilder app)
+            public static IApplicationBuilder UseMvcWithDefaultRoute(this IApplicationBuilder app)
     
 

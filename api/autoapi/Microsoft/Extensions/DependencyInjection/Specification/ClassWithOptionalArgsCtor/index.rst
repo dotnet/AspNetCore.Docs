@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.ClassWithOptionalArgsCtor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.ClassWithOptionalArgsCtor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.ClassWithOptionalArgsCtor.Whatever
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Whatever
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -94,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public ClassWithOptionalArgsCtor(string whatever = "BLARGH")
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.ClassWithOptionalArgsCtor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.ClassWithOptionalArgsCtor.Whatever
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Whatever { get; set; }
     
 

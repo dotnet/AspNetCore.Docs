@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string CacheProfileName
-            {
-                get;
-                set;
-            }
+            public string CacheProfileName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.Duration
     
@@ -99,11 +95,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int Duration
-            {
-                get;
-                set;
-            }
+            public int Duration { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.IsReusable
     
@@ -113,10 +105,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsReusable
-            {
-                get;
-            }
+            public bool IsReusable { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.Location
     
@@ -131,11 +120,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ResponseCacheLocation Location
-            {
-                get;
-                set;
-            }
+            public ResponseCacheLocation Location { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.NoStore
     
@@ -153,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool NoStore
-            {
-                get;
-                set;
-            }
+            public bool NoStore { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.Order
     
@@ -167,11 +148,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int Order
-            {
-                get;
-                set;
-            }
+            public int Order { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.VaryByHeader
     
@@ -186,11 +163,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string VaryByHeader
-            {
-                get;
-                set;
-            }
+            public string VaryByHeader { get; set; }
     
 
 Methods

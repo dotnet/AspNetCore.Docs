@@ -58,60 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.HostingEnvironment
-    
-        
-        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
-    
-        
-        .. code-block:: csharp
-    
-            protected IHostingEnvironment HostingEnvironment
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.Names
-    
-        
-    
-        
-        A comma separated list of environment names in which the content should be rendered.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Names
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -138,6 +84,50 @@ Constructors
         .. code-block:: csharp
     
             public EnvironmentTagHelper(IHostingEnvironment hostingEnvironment)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.HostingEnvironment
+    
+        
+        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
+    
+        
+        .. code-block:: csharp
+    
+            protected IHostingEnvironment HostingEnvironment { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.Names
+    
+        
+    
+        
+        A comma separated list of environment names in which the content should be rendered.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Names { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.EnvironmentTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
     
 
 Methods

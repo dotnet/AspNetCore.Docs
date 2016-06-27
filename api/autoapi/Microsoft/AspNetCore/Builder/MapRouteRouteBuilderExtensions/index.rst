@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template)
+            public static IRouteBuilder MapRoute(this IRouteBuilder routeBuilder, string name, string template)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object)
     
@@ -131,7 +131,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults)
+            public static IRouteBuilder MapRoute(this IRouteBuilder routeBuilder, string name, string template, object defaults)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object, System.Object)
     
@@ -177,7 +177,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints)
+            public static IRouteBuilder MapRoute(this IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object, System.Object, System.Object)
     
@@ -230,6 +230,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapRoute(IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints, object dataTokens)
+            public static IRouteBuilder MapRoute(this IRouteBuilder routeBuilder, string name, string template, object defaults, object constraints, object dataTokens)
     
 

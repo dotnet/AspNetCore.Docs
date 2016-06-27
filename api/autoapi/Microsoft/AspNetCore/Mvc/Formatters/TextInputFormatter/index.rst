@@ -57,35 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter.SupportedEncodings
-    
-        
-    
-        
-        Gets the mutable collection of character encodings supported by
-        this :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter`\. The encodings are
-        used when reading the data.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Text.Encoding<System.Text.Encoding>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<Encoding> SupportedEncodings
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -195,5 +166,31 @@ Fields
         .. code-block:: csharp
     
             protected static readonly Encoding UTF8EncodingWithoutBOM
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter.SupportedEncodings
+    
+        
+    
+        
+        Gets the mutable collection of character encodings supported by
+        this :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter`\. The encodings are
+        used when reading the data.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Text.Encoding<System.Text.Encoding>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<Encoding> SupportedEncodings { get; }
     
 

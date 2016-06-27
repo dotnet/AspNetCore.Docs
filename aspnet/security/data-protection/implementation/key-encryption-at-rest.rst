@@ -20,36 +20,30 @@ When Windows DPAPI is used, key material will be encrypted via `CryptProtectData
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // only the local user account can decrypt the keys
-      configure.ProtectKeysWithDpapi();
-  });
+      .ProtectKeysWithDpapi();
 
 If ProtectKeysWithDpapi is called with no parameters, only the current Windows user account can decipher the persisted key material. You can optionally specify that any user account on the machine (not just the current user account) should be able to decipher the key material, as shown in the below example.
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // all user accounts on the machine can decrypt the keys
-      configure.ProtectKeysWithDpapi(protectToLocalMachine: true);
-  });
+      .ProtectKeysWithDpapi(protectToLocalMachine: true);
 
 X.509 certificate
 -----------------
 
-*This mechanism is not yet available on `.NET Core`_.*
+*This mechanism is not yet available on `.NET Core`.*
 
 If your application is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate across the machines and to configure applications to use this certificate for encryption of keys at rest. See below for an example.
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // searches the cert store for the cert with this thumbprint
-      configure.ProtectKeysWithCertificate("3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0");
-  });
+      .ProtectKeysWithCertificate("3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0");
 
 Because this mechanism uses `X509Certificate2 <https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2(v=vs.110).aspx>`_ and `EncryptedXml <https://msdn.microsoft.com/en-us/library/system.security.cryptography.xml.encryptedxml(v=vs.110).aspx>`_ under the covers, this feature is currently only available on Desktop CLR. Additionally, due to .NET Framework limitations only certificates with CAPI private keys are supported. See :ref:`Certificate-based encryption with Windows DPAPI-NG <data-protection-implementation-key-encryption-at-rest-dpapi-ng>` below for possible workarounds to these limitations.
 
@@ -70,22 +64,18 @@ The principal is encoded as a protection descriptor rule. Consider the below exa
 
 .. code-block:: c#
 
-   sc.ConfigureDataProtection(configure =>
-   {
+   sc.AddDataProtection()
      // uses the descriptor rule "SID=S-1-5-21-..."
-     configure.ProtectKeysWithDpapiNG("SID=S-1-5-21-...",
+     .ProtectKeysWithDpapiNG("SID=S-1-5-21-...",
        flags: DpapiNGProtectionDescriptorFlags.None);
-   });
 
 There is also a parameterless overload of ProtectKeysWithDpapiNG. This is a convenience method for specifying the rule "SID=mine", where mine is the SID of the current Windows user account.
 
 .. code-block:: c#
 
-   sc.ConfigureDataProtection(configure =>
-   {
+   sc.AddDataProtection()
      // uses the descriptor rule "SID={current account SID}"
-     configure.ProtectKeysWithDpapiNG();
-   });
+     .ProtectKeysWithDpapiNG();
 
 In this scenario, the AD domain controller is responsible for distributing the encryption keys used by the DPAPI-NG operations. The target user will be able to decipher the encrypted payload from any domain-joined machine (provided that the process is running under their identity).
 
@@ -96,12 +86,10 @@ If you're running on Windows 8.1 / Windows Server 2012 R2 or later, you can use 
 
 .. code-block:: c#
 
-  sc.ConfigureDataProtection(configure =>
-  {
+  sc.AddDataProtection()
       // searches the cert store for the cert with this thumbprint
-      configure.ProtectKeysWithDpapiNG("CERTIFICATE=HashId:3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0",
+      .ProtectKeysWithDpapiNG("CERTIFICATE=HashId:3BCE558E2AD3E0E34A7743EAB5AEA2A9BD2575A0",
           flags: DpapiNGProtectionDescriptorFlags.None);
-  });
 
 Any application which is pointed at this repository must be running on Windows 8.1 / Windows Server 2012 R2 or later to be able to decipher this key.
 

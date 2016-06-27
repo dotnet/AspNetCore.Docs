@@ -56,125 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ActionContext
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ActionContext` for the current executing action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.AreaName
-    
-        
-    
-        
-        Gets the area name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AreaName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ControllerName
-    
-        
-    
-        
-        Gets the controller name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ControllerName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.IsMainPage
-    
-        
-    
-        
-        Determines if the page being found is the main page for an action.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsMainPage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.Values
-    
-        
-    
-        
-        Gets or sets the :any:`System.Collections.Generic.IDictionary\`2` that is populated with values as part of
-        :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander.PopulateValues(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext)`\.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Values
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ViewName
-    
-        
-    
-        
-        Gets the view name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ViewName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -221,5 +102,105 @@ Constructors
         .. code-block:: csharp
     
             public ViewLocationExpanderContext(ActionContext actionContext, string viewName, string controllerName, string areaName, bool isMainPage)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ActionContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ActionContext` for the current executing action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.AreaName
+    
+        
+    
+        
+        Gets the area name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AreaName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ControllerName
+    
+        
+    
+        
+        Gets the controller name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ControllerName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.IsMainPage
+    
+        
+    
+        
+        Determines if the page being found is the main page for an action.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsMainPage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.Values
+    
+        
+    
+        
+        Gets or sets the :any:`System.Collections.Generic.IDictionary\`2` that is populated with values as part of 
+        :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander.PopulateValues(Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext)`\.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Values { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ViewLocationExpanderContext.ViewName
+    
+        
+    
+        
+        Gets the view name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ViewName { get; }
     
 

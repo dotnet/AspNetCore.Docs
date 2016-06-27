@@ -56,6 +56,42 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.DefaultControllerFactory(Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Internal.IControllerPropertyActivator>)
+    
+        
+    
+        
+        Initializes a new instance of :any:`Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory`\.
+    
+        
+    
+        
+        :param controllerActivator: 
+            :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` used to create controller instances.
+        
+        :type controllerActivator: Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator
+    
+        
+        :param propertyActivators: 
+            A set of :any:`Microsoft.AspNetCore.Mvc.Internal.IControllerPropertyActivator` instances used to initialize controller
+            properties.
+        
+        :type propertyActivators: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.Internal.IControllerPropertyActivator<Microsoft.AspNetCore.Mvc.Internal.IControllerPropertyActivator>}
+    
+        
+        .. code-block:: csharp
+    
+            public DefaultControllerFactory(IControllerActivator controllerActivator, IEnumerable<IControllerPropertyActivator> propertyActivators)
+    
+
 Properties
 ----------
 
@@ -77,46 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            protected IControllerActivator ControllerActivator
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.DefaultControllerFactory(Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Controllers.IControllerPropertyActivator>)
-    
-        
-    
-        
-        Initializes a new instance of :any:`Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory`\.
-    
-        
-    
-        
-        :param controllerActivator: 
-            :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` used to create controller instances.
-        
-        :type controllerActivator: Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator
-    
-        
-        :param propertyActivators: 
-            A set of :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerPropertyActivator` instances used to initialize controller
-            properties.
-        
-        :type propertyActivators: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.Controllers.IControllerPropertyActivator<Microsoft.AspNetCore.Mvc.Controllers.IControllerPropertyActivator>}
-    
-        
-        .. code-block:: csharp
-    
-            public DefaultControllerFactory(IControllerActivator controllerActivator, IEnumerable<IControllerPropertyActivator> propertyActivators)
+            protected IControllerActivator ControllerActivator { get; }
     
 
 Methods

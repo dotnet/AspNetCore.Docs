@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager.HttpContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public abstract HttpContext HttpContext
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -245,6 +223,19 @@ Methods
     
             public virtual Task ForbidAsync(string authenticationScheme, AuthenticationProperties properties)
     
+    .. dn:method:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager.GetAuthenticateInfoAsync(System.String)
+    
+        
+    
+        
+        :type authenticationScheme: System.String
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Http.Authentication.AuthenticateInfo<Microsoft.AspNetCore.Http.Authentication.AuthenticateInfo>}
+    
+        
+        .. code-block:: csharp
+    
+            public abstract Task<AuthenticateInfo> GetAuthenticateInfoAsync(string authenticationScheme)
+    
     .. dn:method:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager.GetAuthenticationSchemes()
     
         
@@ -342,5 +333,24 @@ Fields
         .. code-block:: csharp
     
             public const string AutomaticScheme = "Automatic"
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationManager.HttpContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public abstract HttpContext HttpContext { get; }
     
 

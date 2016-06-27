@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddRouting(IServiceCollection services)
+            public static IServiceCollection AddRouting(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Routing.RouteOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddRouting(IServiceCollection services, Action<RouteOptions> configureOptions)
+            public static IServiceCollection AddRouting(this IServiceCollection services, Action<RouteOptions> configureOptions)
     
 

@@ -8,7 +8,7 @@ ActionExecutingContext Class
 
 
 
-A context for action filters, specifically :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)` and
+A context for action filters, specifically :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)` and 
 :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)` calls.
 
 
@@ -59,71 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments
-    
-        
-    
-        
-        Gets the arguments to pass when invoking the action. Keys are parameter names.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IDictionary<string, object> ActionArguments
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Controller
-    
-        
-    
-        
-        Gets the controller instance containing the action.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public virtual object Controller
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult` to execute. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result` to a non-<code>null</code>
-        value inside an action filter will short-circuit the action and any remaining action filters.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IActionResult Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,5 +101,60 @@ Constructors
         .. code-block:: csharp
     
             public ActionExecutingContext(ActionContext actionContext, IList<IFilterMetadata> filters, IDictionary<string, object> actionArguments, object controller)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.ActionArguments
+    
+        
+    
+        
+        Gets the arguments to pass when invoking the action. Keys are parameter names.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IDictionary<string, object> ActionArguments { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Controller
+    
+        
+    
+        
+        Gets the controller instance containing the action.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public virtual object Controller { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IActionResult` to execute. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result` to a non-<code>null</code>
+        value inside an action filter will short-circuit the action and any remaining action filters.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IActionResult Result { get; set; }
     
 

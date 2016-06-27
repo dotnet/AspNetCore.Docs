@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientModelValidationContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientModelValidationContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientModelValidationContext.Attributes
-    
-        
-    
-        
-        Gets the attributes dictionary for the HTML tag being rendered.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Attributes
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -125,5 +98,29 @@ Constructors
         .. code-block:: csharp
     
             public ClientModelValidationContext(ActionContext actionContext, ModelMetadata metadata, IModelMetadataProvider metadataProvider, IDictionary<string, string> attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientModelValidationContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ClientModelValidationContext.Attributes
+    
+        
+    
+        
+        Gets the attributes dictionary for the HTML tag being rendered.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Attributes { get; }
     
 

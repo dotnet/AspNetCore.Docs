@@ -14,7 +14,7 @@ Represents a deferred write operation in a :any:`Microsoft.AspNetCore.Diagnostic
 Namespace
     :dn:ns:`Microsoft.AspNetCore.DiagnosticsViewPage.Views`
 Assemblies
-    * Microsoft.AspNetCore.Diagnostics
+    * Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 ----
 
@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.HelperResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.HelperResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.HelperResult.WriteAction
-    
-        
-        :rtype: System.Action<System.Action`1>{System.IO.TextWriter<System.IO.TextWriter>}
-    
-        
-        .. code-block:: csharp
-    
-            public Action<TextWriter> WriteAction
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -104,6 +82,25 @@ Constructors
         .. code-block:: csharp
     
             public HelperResult(Action<TextWriter> action)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.HelperResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.HelperResult.WriteAction
+    
+        
+        :rtype: System.Action<System.Action`1>{System.IO.TextWriter<System.IO.TextWriter>}
+    
+        
+        .. code-block:: csharp
+    
+            public Action<TextWriter> WriteAction { get; }
     
 
 Methods

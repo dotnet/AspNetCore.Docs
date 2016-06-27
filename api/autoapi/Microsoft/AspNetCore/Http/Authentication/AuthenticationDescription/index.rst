@@ -56,71 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.AuthenticationScheme
-    
-        
-    
-        
-        Gets or sets the name used to reference the authentication middleware instance.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.DisplayName
-    
-        
-    
-        
-        Gets or sets the display name for the authentication provider.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DisplayName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.Items
-    
-        
-    
-        
-        Contains metadata about the authentication provider.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, object> Items
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -159,5 +94,59 @@ Constructors
         .. code-block:: csharp
     
             public AuthenticationDescription(IDictionary<string, object> items)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.AuthenticationScheme
+    
+        
+    
+        
+        Gets or sets the name used to reference the authentication middleware instance.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.DisplayName
+    
+        
+    
+        
+        Gets or sets the display name for the authentication provider.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DisplayName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Authentication.AuthenticationDescription.Items
+    
+        
+    
+        
+        Contains metadata about the authentication provider.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, object> Items { get; }
     
 

@@ -53,122 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Action
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel
-    
-        
-        .. code-block:: csharp
-    
-            public ActionModel Action
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Attributes
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.BindingInfo
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
-    
-        
-        .. code-block:: csharp
-    
-            public BindingInfo BindingInfo
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.MemberInfo
-    
-        
-        :rtype: System.Reflection.MemberInfo
-    
-        
-        .. code-block:: csharp
-    
-            MemberInfo ICommonModel.MemberInfo
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string ICommonModel.Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.ParameterInfo
-    
-        
-        :rtype: System.Reflection.ParameterInfo
-    
-        
-        .. code-block:: csharp
-    
-            public ParameterInfo ParameterInfo
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.ParameterName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ParameterName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<object, object> Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -203,5 +87,94 @@ Constructors
         .. code-block:: csharp
     
             public ParameterModel(ParameterInfo parameterInfo, IReadOnlyList<object> attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Action
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel
+    
+        
+        .. code-block:: csharp
+    
+            public ActionModel Action { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Attributes
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.BindingInfo
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
+    
+        
+        .. code-block:: csharp
+    
+            public BindingInfo BindingInfo { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.MemberInfo
+    
+        
+        :rtype: System.Reflection.MemberInfo
+    
+        
+        .. code-block:: csharp
+    
+            MemberInfo ICommonModel.MemberInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string ICommonModel.Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.ParameterInfo
+    
+        
+        :rtype: System.Reflection.ParameterInfo
+    
+        
+        .. code-block:: csharp
+    
+            public ParameterInfo ParameterInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.ParameterName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ParameterName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<object, object> Properties { get; }
     
 

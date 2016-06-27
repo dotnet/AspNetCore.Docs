@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider.WrappingType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type WrappingType
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -98,5 +76,24 @@ Methods
         .. code-block:: csharp
     
             public object Wrap(object original)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapperProvider.WrappingType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type WrappingType { get; }
     
 

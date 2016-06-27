@@ -48,31 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.IFormFileCollection
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.IFormFileCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.IFormFileCollection.Item[System.String]
-    
-        
-    
-        
-        :type name: System.String
-        :rtype: Microsoft.AspNetCore.Http.IFormFile
-    
-        
-        .. code-block:: csharp
-    
-            IFormFile this[string name]
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -106,5 +81,27 @@ Methods
         .. code-block:: csharp
     
             IReadOnlyList<IFormFile> GetFiles(string name)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.IFormFileCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.IFormFileCollection.Item[System.String]
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: Microsoft.AspNetCore.Http.IFormFile
+    
+        
+        .. code-block:: csharp
+    
+            IFormFile this[string name] { get; }
     
 

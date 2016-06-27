@@ -160,6 +160,16 @@ Microsoft.AspNetCore.Razor.Compilation.TagHelpers Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ITagHelperDescriptorResolver`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
+
+        
+        Contract used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
+
+
     .. rubric:: Classes
 
 
@@ -239,8 +249,8 @@ Microsoft.AspNetCore.Razor.Compilation.TagHelpers Namespace
         .. object: type=class name=Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TypeBasedTagHelperDescriptorComparer
 
         
-        An :any:`System.Collections.Generic.IEqualityComparer\`1` that checks equality between two
-        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s using only their :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.AssemblyName`\s and
+        An :any:`System.Collections.Generic.IEqualityComparer\`1` that checks equality between two 
+        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s using only their :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.AssemblyName`\s and 
         :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor.TypeName`\s.
 
 
@@ -266,15 +276,5 @@ Microsoft.AspNetCore.Razor.Compilation.TagHelpers Namespace
 
         
         Acceptable :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Value` comparison modes.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ITagHelperDescriptorResolver`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
-
-        
-        Contract used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
 
 

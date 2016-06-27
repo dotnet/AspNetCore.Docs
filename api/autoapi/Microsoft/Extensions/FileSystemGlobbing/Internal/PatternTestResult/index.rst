@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult.IsSuccessful
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsSuccessful
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult.Stem
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Stem
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -99,6 +64,35 @@ Methods
         .. code-block:: csharp
     
             public static PatternTestResult Success(string stem)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult.IsSuccessful
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsSuccessful { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult.Stem
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Stem { get; }
     
 
 Fields

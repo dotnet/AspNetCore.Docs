@@ -79,10 +79,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Prefix
-            {
-                get;
-                set;
-            }
+            public string Prefix { get; set; }
     
 

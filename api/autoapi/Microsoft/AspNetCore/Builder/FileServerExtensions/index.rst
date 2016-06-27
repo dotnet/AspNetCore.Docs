@@ -81,7 +81,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseFileServer(IApplicationBuilder app)
+            public static IApplicationBuilder UseFileServer(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.FileServerOptions)
     
@@ -102,7 +102,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseFileServer(IApplicationBuilder app, FileServerOptions options)
+            public static IApplicationBuilder UseFileServer(this IApplicationBuilder app, FileServerOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Boolean)
     
@@ -125,7 +125,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseFileServer(IApplicationBuilder app, bool enableDirectoryBrowsing)
+            public static IApplicationBuilder UseFileServer(this IApplicationBuilder app, bool enableDirectoryBrowsing)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -148,6 +148,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseFileServer(IApplicationBuilder app, string requestPath)
+            public static IApplicationBuilder UseFileServer(this IApplicationBuilder app, string requestPath)
     
 

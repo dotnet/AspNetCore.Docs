@@ -69,11 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            IHtmlContent BodyContent
-            {
-                get;
-                set;
-            }
+            IHtmlContent BodyContent { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.IsLayoutBeingRendered
     
@@ -88,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool IsLayoutBeingRendered
-            {
-                get;
-                set;
-            }
+            bool IsLayoutBeingRendered { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.Layout
     
@@ -107,11 +99,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Layout
-            {
-                get;
-                set;
-            }
+            string Layout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.Path
     
@@ -126,11 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            string Path
-            {
-                get;
-                set;
-            }
+            string Path { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.PreviousSectionWriters
     
@@ -145,11 +129,7 @@ Properties
         
         .. code-block:: csharp
     
-            IDictionary<string, RenderAsyncDelegate> PreviousSectionWriters
-            {
-                get;
-                set;
-            }
+            IDictionary<string, RenderAsyncDelegate> PreviousSectionWriters { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.SectionWriters
     
@@ -164,10 +144,7 @@ Properties
         
         .. code-block:: csharp
     
-            IDictionary<string, RenderAsyncDelegate> SectionWriters
-            {
-                get;
-            }
+            IDictionary<string, RenderAsyncDelegate> SectionWriters { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.IRazorPage.ViewContext
     
@@ -182,11 +159,7 @@ Properties
         
         .. code-block:: csharp
     
-            ViewContext ViewContext
-            {
-                get;
-                set;
-            }
+            ViewContext ViewContext { get; set; }
     
 
 Methods

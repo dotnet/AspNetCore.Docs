@@ -52,182 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.CacheControl
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.CacheControlHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public CacheControlHeaderValue CacheControl
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentDisposition
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public ContentDispositionHeaderValue ContentDisposition
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentLength
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? ContentLength
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentRange
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public ContentRangeHeaderValue ContentRange
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentType
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeHeaderValue ContentType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Date
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? Date
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ETag
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public EntityTagHeaderValue ETag
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Expires
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? Expires
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Headers
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public IHeaderDictionary Headers
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.LastModified
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? LastModified
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Location
-    
-        
-        :rtype: System.Uri
-    
-        
-        .. code-block:: csharp
-    
-            public Uri Location
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.SetCookie
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.SetCookieHeaderValue<Microsoft.Net.Http.Headers.SetCookieHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<SetCookieHeaderValue> SetCookie
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -342,5 +166,134 @@ Methods
         .. code-block:: csharp
     
             public void SetList<T>(string name, IList<T> values)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.CacheControl
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.CacheControlHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public CacheControlHeaderValue CacheControl { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentDisposition
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public ContentDispositionHeaderValue ContentDisposition { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentLength
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? ContentLength { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentRange
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public ContentRangeHeaderValue ContentRange { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ContentType
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeHeaderValue ContentType { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Date
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? Date { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.ETag
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public EntityTagHeaderValue ETag { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Expires
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? Expires { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Headers
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IHeaderDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public IHeaderDictionary Headers { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.LastModified
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? LastModified { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.Location
+    
+        
+        :rtype: System.Uri
+    
+        
+        .. code-block:: csharp
+    
+            public Uri Location { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Headers.ResponseHeaders.SetCookie
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.SetCookieHeaderValue<Microsoft.Net.Http.Headers.SetCookieHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<SetCookieHeaderValue> SetCookie { get; set; }
     
 

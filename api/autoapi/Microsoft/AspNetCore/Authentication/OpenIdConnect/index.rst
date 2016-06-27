@@ -59,6 +59,10 @@ Microsoft.AspNetCore.Authentication.OpenIdConnect Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Authentication/OpenIdConnect/RemoteSignOutContext/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Authentication/OpenIdConnect/TokenResponseReceivedContext/index
    
    
@@ -141,6 +145,10 @@ Microsoft.AspNetCore.Authentication.OpenIdConnect Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -150,6 +158,16 @@ Microsoft.AspNetCore.Authentication.OpenIdConnect Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Authentication.OpenIdConnect
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IOpenIdConnectEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.OpenIdConnect.IOpenIdConnectEvents
+
+        
+        Specifies events which the :any:`Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware`\invokes to enable developer control over the authentication process.
 
 
     .. rubric:: Classes
@@ -216,6 +234,12 @@ Microsoft.AspNetCore.Authentication.OpenIdConnect Namespace
         an instance of :any:`Microsoft.AspNetCore.Authentication.OpenIdConnect.RedirectContext` is passed to the 'RedirectToAuthenticationEndpoint' or 'RedirectToEndSessionEndpoint' events.
 
 
+    class :dn:cls:`RemoteSignOutContext`
+        .. object: type=class name=Microsoft.AspNetCore.Authentication.OpenIdConnect.RemoteSignOutContext
+
+        
+
+
     class :dn:cls:`TokenResponseReceivedContext`
         .. object: type=class name=Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext
 
@@ -244,15 +268,5 @@ Microsoft.AspNetCore.Authentication.OpenIdConnect Namespace
         
         Lists the different authentication methods used to
         redirect the user agent to the identity provider.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IOpenIdConnectEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.OpenIdConnect.IOpenIdConnectEvents
-
-        
-        Specifies events which the :any:`Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectMiddleware`\invokes to enable developer control over the authentication process.
 
 

@@ -60,45 +60,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionExecutor.ExecuteAsync(Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor, System.Object, System.Collections.Generic.IDictionary<System.String, System.Object>)
-    
-        
-    
-        
-        :type actionMethodExecutor: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor
-    
-        
-        :type instance: System.Object
-    
-        
-        :type actionArguments: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public static Task<object> ExecuteAsync(ObjectMethodExecutor actionMethodExecutor, object instance, IDictionary<string, object> actionArguments)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionExecutor.ExecuteAsync(Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor, System.Object, System.Object[])
-    
-        
-    
-        
-        :type actionMethodExecutor: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor
-    
-        
-        :type instance: System.Object
-    
-        
-        :type orderedActionArguments: System.Object<System.Object>[]
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public static Task<object> ExecuteAsync(ObjectMethodExecutor actionMethodExecutor, object instance, object[] orderedActionArguments)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionExecutor.PrepareArguments(System.Collections.Generic.IDictionary<System.String, System.Object>, System.Reflection.ParameterInfo[])
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionExecutor.PrepareArguments(System.Collections.Generic.IDictionary<System.String, System.Object>, Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor)
     
         
     
@@ -106,12 +68,12 @@ Methods
         :type actionParameters: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
     
         
-        :type declaredParameterInfos: System.Reflection.ParameterInfo<System.Reflection.ParameterInfo>[]
+        :type actionMethodExecutor: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor
         :rtype: System.Object<System.Object>[]
     
         
         .. code-block:: csharp
     
-            public static object[] PrepareArguments(IDictionary<string, object> actionParameters, ParameterInfo[] declaredParameterInfos)
+            public static object[] PrepareArguments(IDictionary<string, object> actionParameters, ObjectMethodExecutor actionMethodExecutor)
     
 

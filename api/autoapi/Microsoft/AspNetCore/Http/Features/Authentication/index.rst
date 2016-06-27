@@ -112,6 +112,21 @@ Microsoft.AspNetCore.Http.Features.Authentication Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Http.Features.Authentication
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAuthenticationHandler`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
+
+        
+
+
+    interface :dn:iface:`IHttpAuthenticationFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -156,21 +171,6 @@ Microsoft.AspNetCore.Http.Features.Authentication Namespace
 
     enum :dn:enum:`ChallengeBehavior`
         .. object: type=enum name=Microsoft.AspNetCore.Http.Features.Authentication.ChallengeBehavior
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAuthenticationHandler`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
-
-        
-
-
-    interface :dn:iface:`IHttpAuthenticationFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.Features.Authentication.IHttpAuthenticationFeature
 
         
 

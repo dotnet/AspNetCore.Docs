@@ -8,21 +8,21 @@ Often authorization depends upon the resource being accessed. For example a docu
 Authorizing within your code
 ----------------------------
 
-Authorization is implemented as a service, ``IAuthorizationService``, registered in the service collection and available for DI into Controllers.
+Authorization is implemented as a service, :dn:iface:`~Microsoft.AspNetCore.Authorization.IAuthorizationService`, registered in the service collection and available via :ref:`dependency injection <fundamentals-dependency-injection>` for Controllers to access.
 
 .. code-block:: c#
 
  public class DocumentController : Controller
  {  
-     IAuthorizationService authorizationService;
+     IAuthorizationService _authorizationService;
 
      public DocumentController(IAuthorizationService authorizationService)
      {
-         this.authorizationService = authorizationService;
+         _authorizationService = authorizationService;
      }
  }
 
-``IAuthorizationService`` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
+:dn:iface:`~Microsoft.AspNetCore.Authorization.IAuthorizationService` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
 
 .. code-block:: c#
 
@@ -36,7 +36,7 @@ Authorization is implemented as a service, ``IAuthorizationService``, registered
 
 .. _security-authorization-resource-based-imperative:
 
-To call the service load your resource within your action then call the ``AuthorizeAsync`` method you require. For example
+To call the service load your resource within your action then call the :dn:method:`~Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync` overload you require. For example
 
 .. code-block:: c#
 
@@ -68,11 +68,13 @@ Writing a handler for resource based authorization is not that much different to
 
   public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, Document>
   {
-      protected override void Handle(AuthorizationContext context, 
-                                     OperationAuthorizationRequirement requirement, 
-                                     Document resource)
+      public override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+                                                  OperationAuthorizationRequirement requirement, 
+                                                  Document resource)
       {
           // Validate the requirement against the resource and identity.
+          
+          return Task.CompletedTask;
       }
   }
 
@@ -80,13 +82,12 @@ Don't forget you also need to register your handler in the ``ConfigureServices``
 
 .. code-block :: c#
 
-    services.AddInstance<IAuthorizationHandler>(
-        new DocumentAuthorizationHandler());
+    services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 Operational Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are making decisions based on operations such as read, write, update and delete an already defined ``OperationAuthorizationRequirement`` class exists in the ``Microsoft.AspNetCore.Authorization.Infrastructure`` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation To use it provide an operation name;
+If you are making decisions based on operations such as read, write, update and delete, you can use the :dn:class:`~Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement` class in the :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation. To use it provide some operation names:
 
 .. code-block:: c#
 
@@ -102,25 +103,27 @@ If you are making decisions based on operations such as read, write, update and 
          new OperationAuthorizationRequirement { Name = "Delete" };
  }
 
-Your handler could then be implemented as follows, using a hypothetical Document class as the resource;
+Your handler could then be implemented as follows, using a hypothetical ``Document`` class as the resource;
 
 .. code-block:: c#
 
   public class DocumentAuthorizationHandler : 
       AuthorizationHandler<OperationAuthorizationRequirement, Document>
   {
-      protected override void Handle(AuthorizationContext context, 
-                                     OperationAuthorizationRequirement requirement, 
-                                     Document resource)
+      public override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+                                                  OperationAuthorizationRequirement requirement, 
+                                                  Document resource)
       {
           // Validate the operation using the resource, the identity and
           // the Name property value from the requirement.
+          
+          return Task.CompletedTask;
       }
   }
 
-You can see the handler works on ``OperationAuthorizationRequirement``. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
+You can see the handler works on :dn:class:`~Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement`. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
 
-To call an operational resource handler you need to specify the operation when calling ``AuthorizeAsync()`` in your action. For example
+To call an operational resource handler you need to specify the operation when calling :dn:method:`~Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync` in your action. For example
 
 .. code-block:: c#
 
@@ -133,4 +136,4 @@ To call an operational resource handler you need to specify the operation when c
      return new ChallengeResult();
  }
 
-This example checks if the ``User`` is able to perform the Read operation for the current ``document`` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning ChallengeResult() will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
+This example checks if the User is able to perform the Read operation for the current ``document`` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning :dn:class:`~Microsoft.AspNetCore.Mvc.ChallengeResult` will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.

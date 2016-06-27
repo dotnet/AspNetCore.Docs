@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Key
-            {
-                get;
-                set;
-            }
+            public string Key { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry.Metadata
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata Metadata
-            {
-                get;
-                set;
-            }
+            public ModelMetadata Metadata { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry.Strategy
     
@@ -117,11 +109,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IValidationStrategy Strategy
-            {
-                get;
-                set;
-            }
+            public IValidationStrategy Strategy { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry.SuppressValidation
     
@@ -136,10 +124,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SuppressValidation
-            {
-                get;
-                set;
-            }
+            public bool SuppressValidation { get; set; }
     
 

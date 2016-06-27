@@ -9,7 +9,7 @@ ResultFilterAttribute Class
 
 
 An abstract filter that asynchronously surrounds execution of the action result. Subclasses
-must override :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)`\, :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)` or
+must override :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)`\, :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)` or 
 :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)` but not :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)` and either of the other two.
 
 
@@ -60,29 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -130,5 +107,24 @@ Methods
         .. code-block:: csharp
     
             public virtual Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 

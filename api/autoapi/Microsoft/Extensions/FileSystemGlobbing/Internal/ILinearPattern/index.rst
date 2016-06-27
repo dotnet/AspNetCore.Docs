@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IPathSegment> Segments
-            {
-                get;
-            }
+            IList<IPathSegment> Segments { get; }
     
 

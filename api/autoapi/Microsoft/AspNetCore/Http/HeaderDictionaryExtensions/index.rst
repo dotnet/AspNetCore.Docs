@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Append(IHeaderDictionary headers, string key, StringValues value)
+            public static void Append(this IHeaderDictionary headers, string key, StringValues value)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HeaderDictionaryExtensions.AppendCommaSeparatedValues(Microsoft.AspNetCore.Http.IHeaderDictionary, System.String, System.String[])
     
@@ -116,7 +116,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void AppendCommaSeparatedValues(IHeaderDictionary headers, string key, params string[] values)
+            public static void AppendCommaSeparatedValues(this IHeaderDictionary headers, string key, params string[] values)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HeaderDictionaryExtensions.GetCommaSeparatedValues(Microsoft.AspNetCore.Http.IHeaderDictionary, System.String)
     
@@ -143,7 +143,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string[] GetCommaSeparatedValues(IHeaderDictionary headers, string key)
+            public static string[] GetCommaSeparatedValues(this IHeaderDictionary headers, string key)
     
     .. dn:method:: Microsoft.AspNetCore.Http.HeaderDictionaryExtensions.SetCommaSeparatedValues(Microsoft.AspNetCore.Http.IHeaderDictionary, System.String, System.String[])
     
@@ -172,6 +172,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void SetCommaSeparatedValues(IHeaderDictionary headers, string key, params string[] values)
+            public static void SetCommaSeparatedValues(this IHeaderDictionary headers, string key, params string[] values)
     
 

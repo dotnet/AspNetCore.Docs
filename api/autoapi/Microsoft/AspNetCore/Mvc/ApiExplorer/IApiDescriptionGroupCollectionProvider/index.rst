@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            ApiDescriptionGroupCollection ApiDescriptionGroups
-            {
-                get;
-            }
+            ApiDescriptionGroupCollection ApiDescriptionGroups { get; }
     
 

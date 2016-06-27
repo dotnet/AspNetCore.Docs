@@ -89,7 +89,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static object ConvertTo(ValueProviderResult result, Type type)
+            public static object ConvertTo(this ValueProviderResult result, Type type)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderResultExtensions.ConvertTo<T>(Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderResult)
     
@@ -111,6 +111,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static T ConvertTo<T>(ValueProviderResult result)
+            public static T ConvertTo<T>(this ValueProviderResult result)
     
 

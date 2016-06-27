@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Http.PathString
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.PathString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.PathString.HasValue
-    
-        
-    
-        
-        True if the path is not empty
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.PathString.Value
-    
-        
-    
-        
-        The unescaped path value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,30 +75,6 @@ Constructors
         .. code-block:: csharp
     
             public PathString(string value)
-    
-
-Fields
-------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.PathString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Http.PathString.Empty
-    
-        
-    
-        
-        Represents the empty path. This field is read-only.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.PathString
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly PathString Empty
     
 
 Methods
@@ -457,5 +388,267 @@ Methods
         .. code-block:: csharp
     
             public string ToUriComponent()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.PathString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Addition(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString)
+    
+        
+    
+        
+        Operator call through to Add
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param right: The right parameter
+        
+        :type right: Microsoft.AspNetCore.Http.PathString
+        :rtype: Microsoft.AspNetCore.Http.PathString
+        :return: The PathString combination of both values
+    
+        
+        .. code-block:: csharp
+    
+            public static PathString operator +(PathString left, PathString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Addition(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.QueryString)
+    
+        
+    
+        
+        Operator call through to Add
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param right: The right parameter
+        
+        :type right: Microsoft.AspNetCore.Http.QueryString
+        :rtype: System.String
+        :return: The PathString combination of both values
+    
+        
+        .. code-block:: csharp
+    
+            public static string operator +(PathString left, QueryString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Addition(Microsoft.AspNetCore.Http.PathString, System.String)
+    
+        
+    
+        
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param right: The right parameter
+        
+        :type right: System.String
+        :rtype: System.String
+        :return: The ToString combination of both values
+    
+        
+        .. code-block:: csharp
+    
+            public static string operator +(PathString left, string right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Addition(System.String, Microsoft.AspNetCore.Http.PathString)
+    
+        
+    
+        
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: System.String
+    
+        
+        :param right: The right parameter
+        
+        :type right: Microsoft.AspNetCore.Http.PathString
+        :rtype: System.String
+        :return: The ToString combination of both values
+    
+        
+        .. code-block:: csharp
+    
+            public static string operator +(string left, PathString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Equality(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString)
+    
+        
+    
+        
+        Operator call through to Equals
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param right: The right parameter
+        
+        :type right: Microsoft.AspNetCore.Http.PathString
+        :rtype: System.Boolean
+        :return: True if both PathString values are equal
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(PathString left, PathString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Implicit(Microsoft.AspNetCore.Http.PathString to System.String)
+    
+        
+    
+        
+        Implicitly calls ToString().
+    
+        
+    
+        
+        :type path: Microsoft.AspNetCore.Http.PathString
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator string (PathString path)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Implicit(System.String to Microsoft.AspNetCore.Http.PathString)
+    
+        
+    
+        
+        Implicitly creates a new PathString from the given string.
+    
+        
+    
+        
+        :type s: System.String
+        :rtype: Microsoft.AspNetCore.Http.PathString
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator PathString(string s)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.PathString.Inequality(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Http.PathString)
+    
+        
+    
+        
+        Operator call through to Equals
+    
+        
+    
+        
+        :param left: The left parameter
+        
+        :type left: Microsoft.AspNetCore.Http.PathString
+    
+        
+        :param right: The right parameter
+        
+        :type right: Microsoft.AspNetCore.Http.PathString
+        :rtype: System.Boolean
+        :return: True if both PathString values are not equal
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(PathString left, PathString right)
+    
+
+Fields
+------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.PathString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Http.PathString.Empty
+    
+        
+    
+        
+        Represents the empty path. This field is read-only.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.PathString
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly PathString Empty
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.PathString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.PathString.HasValue
+    
+        
+    
+        
+        True if the path is not empty
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValue { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.PathString.Value
+    
+        
+    
+        
+        The unescaped path value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

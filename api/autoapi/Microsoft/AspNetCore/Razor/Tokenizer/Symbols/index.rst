@@ -27,14 +27,6 @@ Microsoft.AspNetCore.Razor.Tokenizer.Symbols Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/HtmlSymbol/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/HtmlSymbolType/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/ISymbol/index
    
    
@@ -93,14 +85,6 @@ Microsoft.AspNetCore.Razor.Tokenizer.Symbols Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -112,17 +96,20 @@ Microsoft.AspNetCore.Razor.Tokenizer.Symbols Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ISymbol`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol
+
+        
+
+
     .. rubric:: Classes
 
 
     class :dn:cls:`CSharpSymbol`
         .. object: type=class name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol
-
-        
-
-
-    class :dn:cls:`HtmlSymbol`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.HtmlSymbol
 
         
 
@@ -154,23 +141,8 @@ Microsoft.AspNetCore.Razor.Tokenizer.Symbols Namespace
         
 
 
-    enum :dn:enum:`HtmlSymbolType`
-        .. object: type=enum name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.HtmlSymbolType
-
-        
-
-
     enum :dn:enum:`KnownSymbolType`
         .. object: type=enum name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.KnownSymbolType
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ISymbol`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol
 
         
 

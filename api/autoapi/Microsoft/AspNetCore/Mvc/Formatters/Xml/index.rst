@@ -136,6 +136,30 @@ Microsoft.AspNetCore.Mvc.Formatters.Xml Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Formatters.Xml
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IUnwrappable`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IUnwrappable
+
+        
+        Defines an interface for objects to be un-wrappable after deserialization.
+
+
+    interface :dn:iface:`IWrapperProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
+
+        
+        Defines an interface for wrapping objects for serialization or deserialization into xml.
+
+
+    interface :dn:iface:`IWrapperProviderFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory
+
+        
+        Create a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` given a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext`\.
+
+
     .. rubric:: Classes
 
 
@@ -158,7 +182,7 @@ Microsoft.AspNetCore.Mvc.Formatters.Xml Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider
 
         
-        Provides a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` for interface types which implement
+        Provides a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` for interface types which implement 
         :any:`System.Collections.Generic.IEnumerable\`1`\.
 
 
@@ -166,7 +190,7 @@ Microsoft.AspNetCore.Mvc.Formatters.Xml Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProviderFactory
 
         
-        Creates an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider` for interface types implementing the
+        Creates an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider` for interface types implementing the 
         :any:`System.Collections.Generic.IEnumerable\`1` type.
 
 
@@ -203,29 +227,5 @@ Microsoft.AspNetCore.Mvc.Formatters.Xml Namespace
 
         
         Extension methods for :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IUnwrappable`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IUnwrappable
-
-        
-        Defines an interface for objects to be un-wrappable after deserialization.
-
-
-    interface :dn:iface:`IWrapperProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider
-
-        
-        Defines an interface for wrapping objects for serialization or deserialization into xml.
-
-
-    interface :dn:iface:`IWrapperProviderFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory
-
-        
-        Create a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider` given a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.WrapperProviderContext`\.
 
 

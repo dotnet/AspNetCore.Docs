@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -82,7 +60,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider.ControllerActionInvokerProvider(Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory, Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache, Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.MvcOptions>, Microsoft.Extensions.Logging.ILoggerFactory, System.Diagnostics.DiagnosticSource)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider.ControllerActionInvokerProvider(Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory, Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache, Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.MvcOptions>, Microsoft.Extensions.Logging.ILoggerFactory, System.Diagnostics.DiagnosticSource)
     
         
     
@@ -93,7 +71,7 @@ Constructors
         :type controllerActionInvokerCache: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache
     
         
-        :type argumentBinder: Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder
+        :type argumentBinder: Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder
     
         
         :type optionsAccessor: Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Options.IOptions`1>{Microsoft.AspNetCore.Mvc.MvcOptions<Microsoft.AspNetCore.Mvc.MvcOptions>}
@@ -107,7 +85,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public ControllerActionInvokerProvider(IControllerFactory controllerFactory, ControllerActionInvokerCache controllerActionInvokerCache, IControllerActionArgumentBinder argumentBinder, IOptions<MvcOptions> optionsAccessor, ILoggerFactory loggerFactory, DiagnosticSource diagnosticSource)
+            public ControllerActionInvokerProvider(IControllerFactory controllerFactory, ControllerActionInvokerCache controllerActionInvokerCache, IControllerArgumentBinder argumentBinder, IOptions<MvcOptions> optionsAccessor, ILoggerFactory loggerFactory, DiagnosticSource diagnosticSource)
     
 
 Methods
@@ -141,5 +119,24 @@ Methods
         .. code-block:: csharp
     
             public void OnProvidersExecuting(ActionInvokerProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.FormFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.FormFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FormFeature.Form
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.IFormCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFormCollection Form
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FormFeature.HasFormContentType
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasFormContentType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -134,6 +98,35 @@ Constructors
         .. code-block:: csharp
     
             public FormFeature(IFormCollection form)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.FormFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FormFeature.Form
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.IFormCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFormCollection Form { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FormFeature.HasFormContentType
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasFormContentType { get; }
     
 
 Methods

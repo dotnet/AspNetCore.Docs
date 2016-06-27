@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup.GroupName
-    
-        
-    
-        
-        The group name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string GroupName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup.Items
-    
-        
-    
-        
-        A collection of :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription` items for this group.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription<Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ApiDescription> Items
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -132,5 +87,44 @@ Constructors
         .. code-block:: csharp
     
             public ApiDescriptionGroup(string groupName, IReadOnlyList<ApiDescription> items)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup.GroupName
+    
+        
+    
+        
+        The group name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string GroupName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroup.Items
+    
+        
+    
+        
+        A collection of :any:`Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription` items for this group.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription<Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ApiDescription> Items { get; }
     
 

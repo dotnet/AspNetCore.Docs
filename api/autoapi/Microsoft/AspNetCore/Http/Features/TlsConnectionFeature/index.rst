@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public X509Certificate2 ClientCertificate
-            {
-                get;
-                set;
-            }
+            public X509Certificate2 ClientCertificate { get; set; }
     
 
 Methods

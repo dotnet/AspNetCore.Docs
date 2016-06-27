@@ -74,11 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public long ? BaseStreamOffset
-            {
-                get;
-                set;
-            }
+            public long ? BaseStreamOffset { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartSection.Body
     
@@ -88,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Stream Body
-            {
-                get;
-                set;
-            }
+            public Stream Body { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartSection.ContentDisposition
     
@@ -102,10 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentDisposition
-            {
-                get;
-            }
+            public string ContentDisposition { get; }
     
     .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartSection.ContentType
     
@@ -115,10 +104,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-            }
+            public string ContentType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartSection.Headers
     
@@ -128,10 +114,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Dictionary<string, StringValues> Headers
-            {
-                get;
-                set;
-            }
+            public Dictionary<string, StringValues> Headers { get; set; }
     
 

@@ -75,11 +75,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string GroupName
-            {
-                get;
-                set;
-            }
+            public string GroupName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi
     
@@ -89,10 +85,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IgnoreApi
-            {
-                get;
-                set;
-            }
+            public bool IgnoreApi { get; set; }
     
 

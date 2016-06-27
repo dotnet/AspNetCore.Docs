@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ObjectPool<StringBuilder> CreateStringBuilderPool(ObjectPoolProvider provider)
+            public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider)
     
     .. dn:method:: Microsoft.Extensions.ObjectPool.ObjectPoolProviderExtensions.CreateStringBuilderPool(Microsoft.Extensions.ObjectPool.ObjectPoolProvider, System.Int32, System.Int32)
     
@@ -90,6 +90,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ObjectPool<StringBuilder> CreateStringBuilderPool(ObjectPoolProvider provider, int initialCapacity, int maximumRetainedCapacity)
+            public static ObjectPool<StringBuilder> CreateStringBuilderPool(this ObjectPoolProvider provider, int initialCapacity, int maximumRetainedCapacity)
     
 

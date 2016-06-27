@@ -57,34 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapper.SerializableError
-    
-        
-    
-        
-        Gets the wrapped object which is serialized/deserialized into XML
-        representation.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.SerializableError
-    
-        
-        .. code-block:: csharp
-    
-            public SerializableError SerializableError
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -190,5 +162,30 @@ Methods
         .. code-block:: csharp
     
             public void WriteXml(XmlWriter writer)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.SerializableErrorWrapper.SerializableError
+    
+        
+    
+        
+        Gets the wrapped object which is serialized/deserialized into XML
+        representation.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.SerializableError
+    
+        
+        .. code-block:: csharp
+    
+            public SerializableError SerializableError { get; }
     
 

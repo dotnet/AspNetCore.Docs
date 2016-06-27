@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, object> Environment
-            {
-                get;
-                set;
-            }
+            public IDictionary<string, object> Environment { get; set; }
     
 

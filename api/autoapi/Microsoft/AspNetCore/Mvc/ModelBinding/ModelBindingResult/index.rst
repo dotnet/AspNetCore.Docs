@@ -48,78 +48,65 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
 
-Properties
-----------
+Operators
+---------
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.IsModelSet
+    .. dn:operator:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Equality(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult, Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult)
     
         
     
         
-        <p>
-        Gets a value indicating whether or not the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Model` value has been set.
-        </p>
-        <p>
-        This property can be used to distinguish between a model binder which does not find a value and
-        the case where a model binder sets the <code>null</code> value.
-        </p>
+        Compares :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` objects for equality.
     
         
+    
+        
+        :param x: A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult`\.
+        
+        :type x: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
+    
+        
+        :param y: A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult`\.
+        
+        :type y: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
         :rtype: System.Boolean
+        :return: <code>true</code> if the objects are equal, otherwise <code>false</code>.
     
         
         .. code-block:: csharp
     
-            public bool IsModelSet
-            {
-                get;
-            }
+            public static bool operator ==(ModelBindingResult x, ModelBindingResult y)
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Key
+    .. dn:operator:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Inequality(Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult, Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult)
     
         
     
         
-        <p>
-        Gets the model name which was used to bind the model.
-        </p>
-        <p>
-        This property can be used during validation to add model state for a bound model.
-        </p>
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Key
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Model
+        Compares :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` objects for inequality.
     
         
     
         
-        Gets the model associated with this context.
+        :param x: A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult`\.
+        
+        :type x: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
     
         
-        :rtype: System.Object
+        :param y: A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult`\.
+        
+        :type y: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
+        :rtype: System.Boolean
+        :return: <code>true</code> if the objects are not equal, otherwise <code>false</code>.
     
         
         .. code-block:: csharp
     
-            public object Model
-            {
-                get;
-            }
+            public static bool operator !=(ModelBindingResult x, ModelBindingResult y)
     
 
 Methods
@@ -156,7 +143,7 @@ Methods
     
             public override bool Equals(object obj)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Failed(System.String)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Failed()
     
         
     
@@ -164,18 +151,13 @@ Methods
         Creates a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` representing a failed model binding operation.
     
         
-    
-        
-        :param key: The key of the current model binding operation.
-        
-        :type key: System.String
         :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
         :return: A :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` representing a failed model binding operation.
     
         
         .. code-block:: csharp
     
-            public static ModelBindingResult Failed(string key)
+            public static ModelBindingResult Failed()
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.GetHashCode()
     
@@ -187,7 +169,7 @@ Methods
     
             public override int GetHashCode()
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.String, System.Object)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.Object)
     
         
     
@@ -195,11 +177,6 @@ Methods
         Creates a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` representing a successful model binding operation.
     
         
-    
-        
-        :param key: The key of the current model binding operation.
-        
-        :type key: System.String
     
         
         :param model: The model value. May be <code>null.</code>
@@ -211,7 +188,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ModelBindingResult Success(string key, object model)
+            public static ModelBindingResult Success(object model)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.ToString()
     
@@ -222,5 +199,50 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.IsModelSet
+    
+        
+    
+        
+        <p>
+        Gets a value indicating whether or not the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Model` value has been set.
+        </p>
+        <p>
+        This property can be used to distinguish between a model binder which does not find a value and
+        the case where a model binder sets the <code>null</code> value.
+        </p>
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsModelSet { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Model
+    
+        
+    
+        
+        Gets the model associated with this context.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Model { get; }
     
 

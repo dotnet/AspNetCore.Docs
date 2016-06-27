@@ -83,6 +83,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseIdentity(IApplicationBuilder app)
+            public static IApplicationBuilder UseIdentity(this IApplicationBuilder app)
     
 

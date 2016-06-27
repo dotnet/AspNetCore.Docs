@@ -7,6 +7,10 @@ CommandLineConfigurationSource Class
 
 
 
+
+Represents command line arguments as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration.CommandLine`
 Assemblies
@@ -63,18 +67,24 @@ Properties
     .. dn:property:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationSource.Args
     
         
+    
+        
+        Gets or sets the command line args.
+    
+        
         :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
     
         
         .. code-block:: csharp
     
-            public IEnumerable<string> Args
-            {
-                get;
-                set;
-            }
+            public IEnumerable<string> Args { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationSource.SwitchMappings
+    
+        
+    
+        
+        Gets or sets the switch mappings.
     
         
         :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
@@ -82,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, string> SwitchMappings
-            {
-                get;
-                set;
-            }
+            public IDictionary<string, string> SwitchMappings { get; set; }
     
 
 Methods
@@ -102,8 +108,16 @@ Methods
         
     
         
+        Builds the :any:`Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider` for this source.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+        
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: A :any:`Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider`
     
         
         .. code-block:: csharp

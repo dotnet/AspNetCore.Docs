@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents.Exists
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Exists
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -92,7 +70,7 @@ Constructors
         
     
         
-        Creates a new instance of :any:`Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents` to represents the result of a call composition of
+        Creates a new instance of :any:`Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents` to represents the result of a call composition of 
         :dn:meth:`Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents(System.String)`\.
     
         
@@ -111,6 +89,25 @@ Constructors
         .. code-block:: csharp
     
             public CompositeDirectoryContents(IList<IFileProvider> fileProviders, string subpath)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.Composite.CompositeDirectoryContents.Exists
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Exists { get; }
     
 
 Methods

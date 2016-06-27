@@ -57,91 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.Checksum
-    
-        
-    
-        
-        Gets or sets the <code>SHA1</code> based checksum for the file whose location is defined by
-        :dn:prop:`Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.SourceFile`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Checksum
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.ErrorSink
-    
-        
-    
-        
-        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
-    
-        
-        .. code-block:: csharp
-    
-            public ErrorSink ErrorSink
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.ExpressionRenderingMode
-    
-        
-    
-        
-        The current C# rendering mode.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.ExpressionRenderingMode
-    
-        
-        .. code-block:: csharp
-    
-            public ExpressionRenderingMode ExpressionRenderingMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.TargetWriterName
-    
-        
-    
-        
-        The C# writer to write :any:`Microsoft.AspNetCore.Razor.Chunks.Chunk` information to.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TargetWriterName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -175,5 +90,75 @@ Constructors
         .. code-block:: csharp
     
             public CodeGeneratorContext(ChunkGeneratorContext generatorContext, ErrorSink errorSink)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.Checksum
+    
+        
+    
+        
+        Gets or sets the <code>SHA1</code> based checksum for the file whose location is defined by 
+        :dn:prop:`Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.SourceFile`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Checksum { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.ErrorSink
+    
+        
+    
+        
+        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
+    
+        
+        .. code-block:: csharp
+    
+            public ErrorSink ErrorSink { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.ExpressionRenderingMode
+    
+        
+    
+        
+        The current C# rendering mode.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.ExpressionRenderingMode
+    
+        
+        .. code-block:: csharp
+    
+            public ExpressionRenderingMode ExpressionRenderingMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext.TargetWriterName
+    
+        
+    
+        
+        The C# writer to write :any:`Microsoft.AspNetCore.Razor.Chunks.Chunk` information to.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TargetWriterName { get; set; }
     
 

@@ -60,11 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IContractResolver ContractResolver
-            {
-                get;
-                set;
-            }
+            IContractResolver ContractResolver { get; set; }
     
 
 Methods

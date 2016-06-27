@@ -84,6 +84,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string GetSimpleDisplayText(ModelExplorer modelExplorer)
+            public static string GetSimpleDisplayText(this ModelExplorer modelExplorer)
     
 

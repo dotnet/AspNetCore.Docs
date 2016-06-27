@@ -110,16 +110,6 @@ Fields
     
             public static readonly string EnvironmentKey
     
-    .. dn:field:: Microsoft.AspNetCore.Hosting.WebHostDefaults.ServerKey
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string ServerKey
-    
     .. dn:field:: Microsoft.AspNetCore.Hosting.WebHostDefaults.ServerUrlsKey
     
         
@@ -129,6 +119,16 @@ Fields
         .. code-block:: csharp
     
             public static readonly string ServerUrlsKey
+    
+    .. dn:field:: Microsoft.AspNetCore.Hosting.WebHostDefaults.StartupAssemblyKey
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string StartupAssemblyKey
     
     .. dn:field:: Microsoft.AspNetCore.Hosting.WebHostDefaults.WebRootKey
     

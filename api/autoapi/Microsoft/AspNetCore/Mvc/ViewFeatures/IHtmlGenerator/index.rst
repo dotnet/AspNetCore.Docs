@@ -48,28 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator.IdAttributeDotReplacement
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IdAttributeDotReplacement
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -168,14 +146,14 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -242,7 +220,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -284,7 +262,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -296,7 +274,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -494,7 +472,7 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
@@ -506,7 +484,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -562,14 +540,14 @@ Methods
         :param routeValues: 
             An :any:`System.Object` that contains the parameters for a route. The parameters are retrieved through
             reflection by examining the properties of the :any:`System.Object`\. This :any:`System.Object` is typically
-            created using :any:`System.Object` initializer syntax. Alternatively, an
+            created using :any:`System.Object` initializer syntax. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the route parameters.
         
         :type routeValues: System.Object
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -630,7 +608,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -698,7 +676,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -771,7 +749,7 @@ Methods
         
     
         
-        Generate a <em>tag</em> element if the <em>viewContext</em>'s
+        Generate a <em>tag</em> element if the <em>viewContext</em>'s 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ActionContext.ModelState` contains an error for the <em>expression</em>.
     
         
@@ -793,7 +771,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -801,14 +779,14 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\.
         
         :type tag: System.String
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -884,17 +862,17 @@ Methods
         :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
         :return: 
             <p>
-            <code>null</code> if no <em>expression</em> result is found. Otherwise a
+            <code>null</code> if no <em>expression</em> result is found. Otherwise a 
             :any:`System.Collections.Generic.ICollection\`1` containing current values for the given
             <em>expression</em>.
             </p>
             <p>
-            Converts the <em>expression</em> result to a :any:`System.String`\. If that result is an
+            Converts the <em>expression</em> result to a :any:`System.String`\. If that result is an 
             :any:`System.Collections.IEnumerable` type, instead converts each item in the collection and returns
             them separately.
             </p>
             <p>
-            If the <em>expression</em> result or the element type is an :any:`System.Enum`\, returns a
+            If the <em>expression</em> result or the element type is an :any:`System.Enum`\, returns a 
             :any:`System.String` containing the integer representation of the :any:`System.Enum` value as well
             as all :any:`System.Enum` names for that value. Otherwise returns the default :any:`System.String`
             conversion of the value.
@@ -904,5 +882,24 @@ Methods
         .. code-block:: csharp
     
             ICollection<string> GetCurrentValues(ViewContext viewContext, ModelExplorer modelExplorer, string expression, bool allowMultiple)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator.IdAttributeDotReplacement
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IdAttributeDotReplacement { get; }
     
 

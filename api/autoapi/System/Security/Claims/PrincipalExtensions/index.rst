@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string FindFirstValue(ClaimsPrincipal principal, string claimType)
+            public static string FindFirstValue(this ClaimsPrincipal principal, string claimType)
     
 

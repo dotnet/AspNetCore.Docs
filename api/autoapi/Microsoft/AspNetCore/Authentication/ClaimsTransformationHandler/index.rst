@@ -56,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationHandler
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationHandler
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationHandler.PriorHandler
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
-    
-        
-        .. code-block:: csharp
-    
-            public IAuthenticationHandler PriorHandler
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +175,24 @@ Methods
         .. code-block:: csharp
     
             public void UnregisterAuthenticationHandler(IHttpAuthenticationFeature auth)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationHandler
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationHandler.PriorHandler
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.IAuthenticationHandler
+    
+        
+        .. code-block:: csharp
+    
+            public IAuthenticationHandler PriorHandler { get; set; }
     
 

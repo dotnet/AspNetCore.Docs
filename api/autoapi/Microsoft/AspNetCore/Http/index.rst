@@ -23,6 +23,10 @@ Microsoft.AspNetCore.Http Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Http/CookieSecurePolicy/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Http/DefaultHttpContext/index
    
    
@@ -325,6 +329,10 @@ Microsoft.AspNetCore.Http Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -334,6 +342,130 @@ Microsoft.AspNetCore.Http Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Http
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IFormCollection`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormCollection
+
+        
+        Represents the parsed form values sent with the HttpRequest.
+
+
+    interface :dn:iface:`IFormFile`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormFile
+
+        
+        Represents a file sent with the HttpRequest.
+
+
+    interface :dn:iface:`IFormFileCollection`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormFileCollection
+
+        
+        Represents the collection of files sent with the HttpRequest.
+
+
+    interface :dn:iface:`IHeaderDictionary`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IHeaderDictionary
+
+        
+        Represents HttpRequest and HttpResponse headers
+
+
+    interface :dn:iface:`IHttpContextAccessor`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IHttpContextAccessor
+
+        
+
+
+    interface :dn:iface:`IHttpContextFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IHttpContextFactory
+
+        
+
+
+    interface :dn:iface:`IQueryCollection`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IQueryCollection
+
+        
+            Represents the HttpRequest query string collection
+
+
+    interface :dn:iface:`IRequestCookieCollection`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IRequestCookieCollection
+
+        
+        Represents the HttpRequest cookie collection
+
+
+    interface :dn:iface:`IResponseCookies`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.IResponseCookies
+
+        
+        A wrapper for the response Set-Cookie header.
+
+
+    interface :dn:iface:`ISession`
+        .. object: type=interface name=Microsoft.AspNetCore.Http.ISession
+
+        
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`Enumerator`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.FormCollection.Enumerator
+
+        
+
+
+    struct :dn:struct:`FragmentString`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.FragmentString
+
+        
+        Provides correct handling for FragmentString value when needed to generate a URI string
+
+
+    struct :dn:struct:`Enumerator`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.HeaderDictionary.Enumerator
+
+        
+
+
+    struct :dn:struct:`HostString`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.HostString
+
+        
+        Represents the host portion of a URI can be used to construct URI's properly formatted and encoded for use in
+        HTTP headers.
+
+
+    struct :dn:struct:`PathString`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.PathString
+
+        
+        Provides correct escaping for Path and PathBase values when needed to reconstruct a request or redirect URI string
+
+
+    struct :dn:struct:`QueryString`
+        .. object: type=struct name=Microsoft.AspNetCore.Http.QueryString
+
+        
+        Provides correct handling for QueryString value when needed to reconstruct a request or redirect URI string
+
+
+    .. rubric:: Delegates
+
+
+    delegate :dn:del:`RequestDelegate`
+        .. object: type=delegate name=Microsoft.AspNetCore.Http.RequestDelegate
+
+        
+        A function that can process an HTTP request.
 
 
     .. rubric:: Classes
@@ -468,127 +600,13 @@ Microsoft.AspNetCore.Http Namespace
         Manages the establishment of WebSocket connections for a specific HTTP request. 
 
 
-    .. rubric:: Structures
+    .. rubric:: Enumerations
 
 
-    struct :dn:struct:`Enumerator`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.FormCollection.Enumerator
-
-        
-
-
-    struct :dn:struct:`FragmentString`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.FragmentString
+    enum :dn:enum:`CookieSecurePolicy`
+        .. object: type=enum name=Microsoft.AspNetCore.Http.CookieSecurePolicy
 
         
-        Provides correct handling for FragmentString value when needed to generate a URI string
-
-
-    struct :dn:struct:`Enumerator`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.HeaderDictionary.Enumerator
-
-        
-
-
-    struct :dn:struct:`HostString`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.HostString
-
-        
-        Represents the host portion of a URI can be used to construct URI's properly formatted and encoded for use in
-        HTTP headers.
-
-
-    struct :dn:struct:`PathString`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.PathString
-
-        
-        Provides correct escaping for Path and PathBase values when needed to reconstruct a request or redirect URI string
-
-
-    struct :dn:struct:`QueryString`
-        .. object: type=struct name=Microsoft.AspNetCore.Http.QueryString
-
-        
-        Provides correct handling for QueryString value when needed to reconstruct a request or redirect URI string
-
-
-    .. rubric:: Delegates
-
-
-    delegate :dn:del:`RequestDelegate`
-        .. object: type=delegate name=Microsoft.AspNetCore.Http.RequestDelegate
-
-        
-        A function that can process an HTTP request.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IFormCollection`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormCollection
-
-        
-        Represents the parsed form values sent with the HttpRequest.
-
-
-    interface :dn:iface:`IFormFile`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormFile
-
-        
-        Represents a file sent with the HttpRequest.
-
-
-    interface :dn:iface:`IFormFileCollection`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IFormFileCollection
-
-        
-        Represents the collection of files sent with the HttpRequest.
-
-
-    interface :dn:iface:`IHeaderDictionary`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IHeaderDictionary
-
-        
-        Represents HttpRequest and HttpResponse headers
-
-
-    interface :dn:iface:`IHttpContextAccessor`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IHttpContextAccessor
-
-        
-
-
-    interface :dn:iface:`IHttpContextFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IHttpContextFactory
-
-        
-
-
-    interface :dn:iface:`IQueryCollection`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IQueryCollection
-
-        
-            Represents the HttpRequest query string collection
-
-
-    interface :dn:iface:`IRequestCookieCollection`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IRequestCookieCollection
-
-        
-        Represents the HttpRequest cookie collection
-
-
-    interface :dn:iface:`IResponseCookies`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.IResponseCookies
-
-        
-        A wrapper for the response Set-Cookie header.
-
-
-    interface :dn:iface:`ISession`
-        .. object: type=interface name=Microsoft.AspNetCore.Http.ISession
-
-        
+        Determines how cookie security properties are set.
 
 

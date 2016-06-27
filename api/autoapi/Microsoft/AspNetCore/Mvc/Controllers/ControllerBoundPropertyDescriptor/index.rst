@@ -78,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PropertyInfo PropertyInfo
-            {
-                get;
-                set;
-            }
+            public PropertyInfo PropertyInfo { get; set; }
     
 

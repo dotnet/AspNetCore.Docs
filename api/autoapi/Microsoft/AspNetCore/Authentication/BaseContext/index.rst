@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.BaseContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.BaseContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.HttpContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.Request
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpRequest
-    
-        
-        .. code-block:: csharp
-    
-            public HttpRequest Request
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.Response
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpResponse
-    
-        
-        .. code-block:: csharp
-    
-            public HttpResponse Response
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -119,5 +71,44 @@ Constructors
         .. code-block:: csharp
     
             protected BaseContext(HttpContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.BaseContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.HttpContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.Request
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpRequest
+    
+        
+        .. code-block:: csharp
+    
+            public HttpRequest Request { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.BaseContext.Response
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpResponse
+    
+        
+        .. code-block:: csharp
+    
+            public HttpResponse Response { get; }
     
 

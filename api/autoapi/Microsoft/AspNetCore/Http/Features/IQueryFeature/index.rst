@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IQueryCollection Query
-            {
-                get;
-                set;
-            }
+            IQueryCollection Query { get; set; }
     
 

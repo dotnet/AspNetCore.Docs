@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            IAuthenticatedEncryptor DefaultAuthenticatedEncryptor
-            {
-                get;
-            }
+            IAuthenticatedEncryptor DefaultAuthenticatedEncryptor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IKeyRing.DefaultKeyId
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            Guid DefaultKeyId
-            {
-                get;
-            }
+            Guid DefaultKeyId { get; }
     
 
 Methods

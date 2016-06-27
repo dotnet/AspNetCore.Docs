@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ApplicationPart> ApplicationParts
-            {
-                get;
-            }
+            public IList<ApplicationPart> ApplicationParts { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager.FeatureProviders
     
@@ -95,10 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IApplicationFeatureProvider> FeatureProviders
-            {
-                get;
-            }
+            public IList<IApplicationFeatureProvider> FeatureProviders { get; }
     
 
 Methods
@@ -114,8 +108,8 @@ Methods
         
     
         
-        Populates the given <em>feature</em> using the list of
-        :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider\`1`\s configured on the
+        Populates the given <em>feature</em> using the list of 
+        :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider\`1`\s configured on the 
         :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager`\.
     
         

@@ -57,75 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Generator
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-    
-        
-        .. code-block:: csharp
-    
-            protected IHtmlGenerator Generator
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Value
-    
-        
-    
-        
-        Specifies a value for the <option> element.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -152,6 +83,61 @@ Constructors
         .. code-block:: csharp
     
             public OptionTagHelper(IHtmlGenerator generator)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Generator
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+    
+        
+        .. code-block:: csharp
+    
+            protected IHtmlGenerator Generator { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.Value
+    
+        
+    
+        
+        Specifies a value for the <option> element.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
     
 
 Methods

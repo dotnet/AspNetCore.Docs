@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpOnlyPolicy HttpOnly
-            {
-                get;
-                set;
-            }
+            public HttpOnlyPolicy HttpOnly { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookiePolicyOptions.OnAppendCookie
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Action<AppendCookieContext> OnAppendCookie
-            {
-                get;
-                set;
-            }
+            public Action<AppendCookieContext> OnAppendCookie { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookiePolicyOptions.OnDeleteCookie
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Action<DeleteCookieContext> OnDeleteCookie
-            {
-                get;
-                set;
-            }
+            public Action<DeleteCookieContext> OnDeleteCookie { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.CookiePolicyOptions.Secure
     
@@ -129,15 +117,11 @@ Properties
         Affects whether cookies must be Secure.
     
         
-        :rtype: Microsoft.AspNetCore.CookiePolicy.SecurePolicy
+        :rtype: Microsoft.AspNetCore.Http.CookieSecurePolicy
     
         
         .. code-block:: csharp
     
-            public SecurePolicy Secure
-            {
-                get;
-                set;
-            }
+            public CookieSecurePolicy Secure { get; set; }
     
 

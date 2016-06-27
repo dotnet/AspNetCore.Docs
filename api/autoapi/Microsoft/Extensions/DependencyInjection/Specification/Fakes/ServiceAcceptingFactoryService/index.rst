@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService.ScopedService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ScopedFactoryService
-    
-        
-        .. code-block:: csharp
-    
-            public ScopedFactoryService ScopedService
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService.TransientService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
-    
-        
-        .. code-block:: csharp
-    
-            public IFactoryService TransientService
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,5 +74,34 @@ Constructors
         .. code-block:: csharp
     
             public ServiceAcceptingFactoryService(ScopedFactoryService scopedService, IFactoryService transientService)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService.ScopedService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ScopedFactoryService
+    
+        
+        .. code-block:: csharp
+    
+            public ScopedFactoryService ScopedService { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ServiceAcceptingFactoryService.TransientService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
+    
+        
+        .. code-block:: csharp
+    
+            public IFactoryService TransientService { get; }
     
 

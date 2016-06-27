@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ViewInjectSample.Model;
 
 namespace ViewInjectSample.Controllers

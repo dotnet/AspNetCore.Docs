@@ -56,72 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.RouteContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.RouteContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.Handler
-    
-        
-    
-        
-        Gets or sets the handler for the request. An :any:`Microsoft.AspNetCore.Routing.IRouter` should set :dn:prop:`Microsoft.AspNetCore.Routing.RouteContext.Handler`
-        when it matches.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.RequestDelegate
-    
-        
-        .. code-block:: csharp
-    
-            public RequestDelegate Handler
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.HttpContext
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the current request.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.RouteData
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Routing.RouteData` associated with the current context.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteData
-    
-        
-        .. code-block:: csharp
-    
-            public RouteData RouteData
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -148,5 +82,60 @@ Constructors
         .. code-block:: csharp
     
             public RouteContext(HttpContext httpContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.RouteContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.Handler
+    
+        
+    
+        
+        Gets or sets the handler for the request. An :any:`Microsoft.AspNetCore.Routing.IRouter` should set :dn:prop:`Microsoft.AspNetCore.Routing.RouteContext.Handler`
+        when it matches.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.RequestDelegate
+    
+        
+        .. code-block:: csharp
+    
+            public RequestDelegate Handler { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.HttpContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` associated with the current request.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteContext.RouteData
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Routing.RouteData` associated with the current context.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteData
+    
+        
+        .. code-block:: csharp
+    
+            public RouteData RouteData { get; set; }
     
 

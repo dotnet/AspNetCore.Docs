@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.FakeService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeService FakeService
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.One
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string One
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.Two
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Two
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -125,5 +77,44 @@ Constructors
         .. code-block:: csharp
     
             public AnotherClassAcceptingData(IFakeService fakeService, string one, string two)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.FakeService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeService FakeService { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.One
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string One { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClassAcceptingData.Two
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Two { get; }
     
 

@@ -27,7 +27,7 @@ The supported values are:
 Encryption types
 ----------------
 
-If EncryptionType is "CNG-CBC", the system will be configured to use a CBC-mode symmetric block cipher for confidentiality and HMAC for authenticity with services provided by Windows CNG (see :ref:`Specifying custom Windows CNG algorithms <data-protection-changing-algorithms-cng>` for more details). The following additional values are supported, each of which corresponds to a property on the CngCbcAuthenticatedEncryptionOptions type:
+If EncryptionType is "CNG-CBC", the system will be configured to use a CBC-mode symmetric block cipher for confidentiality and HMAC for authenticity with services provided by Windows CNG (see :ref:`Specifying custom Windows CNG algorithms <data-protection-changing-algorithms-cng>` for more details). The following additional values are supported, each of which corresponds to a property on the CngCbcAuthenticatedEncryptionSettings type:
 
 * EncryptionAlgorithm [string] - the name of a symmetric block cipher algorithm understood by CNG. This algorithm will be opened in CBC mode.
 * EncryptionAlgorithmProvider [string] - the name of the CNG provider implementation which can produce the algorithm EncryptionAlgorithm.
@@ -35,13 +35,13 @@ If EncryptionType is "CNG-CBC", the system will be configured to use a CBC-mode 
 * HashAlgorithm [string] - the name of a hash algorithm understood by CNG. This algorithm will be opened in HMAC mode.
 * HashAlgorithmProvider [string] - the name of the CNG provider implementation which can produce the algorithm HashAlgorithm.
 
-If EncryptionType is "CNG-GCM", the system will be configured to use a Galois/Counter Mode symmetric block cipher for confidentiality and authenticity with services provided by Windows CNG (see :ref:`Specifying custom Windows CNG algorithms <data-protection-changing-algorithms-cng>` for more details). The following additional values are supported, each of which corresponds to a property on the CngGcmAuthenticatedEncryptionOptions type:
+If EncryptionType is "CNG-GCM", the system will be configured to use a Galois/Counter Mode symmetric block cipher for confidentiality and authenticity with services provided by Windows CNG (see :ref:`Specifying custom Windows CNG algorithms <data-protection-changing-algorithms-cng>` for more details). The following additional values are supported, each of which corresponds to a property on the CngGcmAuthenticatedEncryptionSettings type:
 
 * EncryptionAlgorithm [string] - the name of a symmetric block cipher algorithm understood by CNG. This algorithm will be opened in Galois/Counter Mode.
 * EncryptionAlgorithmProvider [string] - the name of the CNG provider implementation which can produce the algorithm EncryptionAlgorithm.
 * EncryptionAlgorithmKeySize [DWORD] - the length (in bits) of the key to derive for the symmetric block cipher algorithm.
 
-If EncryptionType is "Managed", the system will be configured to use a managed SymmetricAlgorithm for confidentiality and KeyedHashAlgorithm for authenticity (see :ref:`Specifying custom managed algorithms <data-protection-changing-algorithms-custom-managed>` for more details). The following additional values are supported, each of which corresponds to a property on the ManagedAuthenticatedEncryptionOptions type:
+If EncryptionType is "Managed", the system will be configured to use a managed SymmetricAlgorithm for confidentiality and KeyedHashAlgorithm for authenticity (see :ref:`Specifying custom managed algorithms <data-protection-changing-algorithms-custom-managed>` for more details). The following additional values are supported, each of which corresponds to a property on the ManagedAuthenticatedEncryptionSettings type:
 
 * EncryptionAlgorithmType [string] - the assembly-qualified name of a type which implements SymmetricAlgorithm.
 * EncryptionAlgorithmKeySize [DWORD] - the length (in bits) of the key to derive for the symmetric encryption algorithm.

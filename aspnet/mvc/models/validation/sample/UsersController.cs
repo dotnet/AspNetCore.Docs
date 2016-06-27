@@ -1,20 +1,25 @@
-using Microsoft.AspNet.Mvc;
-using MVCMovie.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVCMovie.Controllers
 {
     public class UsersController : Controller
     {
-        private IUserRepository userRepo;
-        public UsersController()
+        private readonly IUserRepository _userRepository;
+
+        public UsersController(IUserRepository userRepository)
         {
-            this.userRepo = new UserRepository();
+            _userRepository = userRepository;
+        }
+
+        public IActionResult CheckEmail()
+        {
+            return View();
         }
 
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyEmail(string email)
         {
-            if (!this.userRepo.VerifyEmail())
+            if (!_userRepository.VerifyEmail(email))
             {
                 return Json(data: $"Email {email} is already in use.");
             }

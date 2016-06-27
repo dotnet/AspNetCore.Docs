@@ -56,53 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty.Parent
-    
-        
-    
-        
-        Gets or sets Parent.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Parent
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty.Property
-    
-        
-    
-        
-        Gets or sets JsonProperty.
-    
-        
-        :rtype: Newtonsoft.Json.Serialization.JsonProperty
-    
-        
-        .. code-block:: csharp
-    
-            public JsonProperty Property
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -130,5 +83,44 @@ Constructors
         .. code-block:: csharp
     
             public JsonPatchProperty(JsonProperty property, object parent)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty.Parent
+    
+        
+    
+        
+        Gets or sets Parent.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Parent { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.JsonPatchProperty.Property
+    
+        
+    
+        
+        Gets or sets JsonProperty.
+    
+        
+        :rtype: Newtonsoft.Json.Serialization.JsonProperty
+    
+        
+        .. code-block:: csharp
+    
+            public JsonProperty Property { get; set; }
     
 

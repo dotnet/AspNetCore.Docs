@@ -126,7 +126,7 @@ Microsoft.AspNetCore.Routing.Template Namespace
         .. object: type=class name=Microsoft.AspNetCore.Routing.Template.RoutePrecedence
 
         
-        Computes precedence for an attribute route template.
+        Computes precedence for a route template.
 
 
     class :dn:cls:`RouteTemplate`

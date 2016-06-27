@@ -58,41 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.Backchannel
-    
-        
-        :rtype: System.Net.Http.HttpClient
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpClient Backchannel
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HtmlEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.HtmlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected HtmlEncoder HtmlEncoder
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -115,6 +80,35 @@ Constructors
         .. code-block:: csharp
     
             public OpenIdConnectHandler(HttpClient backchannel, HtmlEncoder htmlEncoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.Backchannel
+    
+        
+        :rtype: System.Net.Http.HttpClient
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpClient Backchannel { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HtmlEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected HtmlEncoder HtmlEncoder { get; }
     
 
 Methods
@@ -171,6 +165,26 @@ Methods
         .. code-block:: csharp
     
             protected override Task<AuthenticateResult> HandleRemoteAuthenticateAsync()
+    
+    .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleRemoteSignOutAsync()
+    
+        
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual Task<bool> HandleRemoteSignOutAsync()
+    
+    .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleRequestAsync()
+    
+        
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public override Task<bool> HandleRequestAsync()
     
     .. dn:method:: Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectHandler.HandleSignOutAsync(Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext)
     

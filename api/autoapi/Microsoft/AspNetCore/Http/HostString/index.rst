@@ -49,83 +49,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Http.HostString
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.HostString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HostString.HasValue
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Host
-    
-        
-    
-        
-        Returns the value of the host part of the value. The port is removed if it was present.
-        IPv6 addresses will have brackets added if they are missing.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Port
-    
-        
-    
-        
-        Returns the value of the port part of the host, or <returns>null</returns> if none is found.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            public int ? Port
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Value
-    
-        
-    
-        
-        Returns the original value from the constructor.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -304,5 +227,121 @@ Methods
         .. code-block:: csharp
     
             public string ToUriComponent()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.HostString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.HostString.Equality(Microsoft.AspNetCore.Http.HostString, Microsoft.AspNetCore.Http.HostString)
+    
+        
+    
+        
+        Compares the two instances for equality.
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.HostString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.HostString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(HostString left, HostString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.HostString.Inequality(Microsoft.AspNetCore.Http.HostString, Microsoft.AspNetCore.Http.HostString)
+    
+        
+    
+        
+        Compares the two instances for inequality.
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.HostString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.HostString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(HostString left, HostString right)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.HostString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HostString.HasValue
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValue { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Host
+    
+        
+    
+        
+        Returns the value of the host part of the value. The port is removed if it was present.
+        IPv6 addresses will have brackets added if they are missing.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Host { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Port
+    
+        
+    
+        
+        Returns the value of the port part of the host, or <returns>null</returns> if none is found.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            public int ? Port { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HostString.Value
+    
+        
+    
+        
+        Returns the original value from the constructor.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

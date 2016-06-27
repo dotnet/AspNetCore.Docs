@@ -30,7 +30,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public interface IFakeEveryService : IFakeMultipleService, IFakeScopedService, IFakeServiceInstance, IFakeSingletonService, IFakeService, IFakeOpenGenericService<AnotherClass>
+    public interface IFakeEveryService : IFakeMultipleService, IFakeScopedService, IFakeServiceInstance, IFakeSingletonService, IFakeService, IFakeOpenGenericService<PocoClass>
 
 
 

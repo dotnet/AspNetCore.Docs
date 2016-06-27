@@ -77,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapWebApiRoute(IRouteBuilder routeCollectionBuilder, string name, string template)
+            public static IRouteBuilder MapWebApiRoute(this IRouteBuilder routeCollectionBuilder, string name, string template)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WebApiCompatShimRouteBuilderExtensions.MapWebApiRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object)
     
@@ -99,7 +99,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapWebApiRoute(IRouteBuilder routeCollectionBuilder, string name, string template, object defaults)
+            public static IRouteBuilder MapWebApiRoute(this IRouteBuilder routeCollectionBuilder, string name, string template, object defaults)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WebApiCompatShimRouteBuilderExtensions.MapWebApiRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object, System.Object)
     
@@ -124,7 +124,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapWebApiRoute(IRouteBuilder routeCollectionBuilder, string name, string template, object defaults, object constraints)
+            public static IRouteBuilder MapWebApiRoute(this IRouteBuilder routeCollectionBuilder, string name, string template, object defaults, object constraints)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WebApiCompatShimRouteBuilderExtensions.MapWebApiRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.Object, System.Object, System.Object)
     
@@ -152,6 +152,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapWebApiRoute(IRouteBuilder routeCollectionBuilder, string name, string template, object defaults, object constraints, object dataTokens)
+            public static IRouteBuilder MapWebApiRoute(this IRouteBuilder routeCollectionBuilder, string name, string template, object defaults, object constraints, object dataTokens)
     
 

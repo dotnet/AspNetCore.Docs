@@ -28,6 +28,7 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
+* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole{System.String,Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole{System.String}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole`
 

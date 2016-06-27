@@ -48,34 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterFactory
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.IsReusable
-    
-        
-    
-        
-        Gets a value that indicates if the result of :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance(System.IServiceProvider)`
-        can be reused across requests.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool IsReusable
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -104,5 +76,30 @@ Methods
         .. code-block:: csharp
     
             IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.IsReusable
+    
+        
+    
+        
+        Gets a value that indicates if the result of :dn:meth:`Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance(System.IServiceProvider)`
+        can be reused across requests.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool IsReusable { get; }
     
 

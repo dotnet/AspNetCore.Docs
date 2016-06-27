@@ -84,25 +84,6 @@ Constructors
             public TagHelperDescriptorProvider(IEnumerable<TagHelperDescriptor> descriptors)
     
 
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorProvider.ElementCatchAllTarget
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public const string ElementCatchAllTarget = "*"
-    
-
 Methods
 -------
 
@@ -137,12 +118,31 @@ Methods
         :type parentTagName: System.String
         :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
         :return: :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s that apply to the given <em>tagName</em>.
-            Will return an empty :any:`System.Linq.Enumerable` if no :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s are
-            found.
+                Will return an empty :any:`System.Linq.Enumerable` if no :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s are
+                found.
     
         
         .. code-block:: csharp
     
             public IEnumerable<TagHelperDescriptor> GetDescriptors(string tagName, IEnumerable<KeyValuePair<string, string>> attributes, string parentTagName)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorProvider.ElementCatchAllTarget
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public const string ElementCatchAllTarget = "*"
     
 

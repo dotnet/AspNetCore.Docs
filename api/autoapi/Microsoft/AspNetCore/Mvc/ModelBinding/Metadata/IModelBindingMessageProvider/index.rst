@@ -61,7 +61,7 @@ Properties
         
     
         
-        Error message the model binding system adds when :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception` is of type
+        Error message the model binding system adds when :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception` is of type 
         :any:`System.FormatException` or :any:`System.OverflowException` and value is known.
     
         
@@ -71,10 +71,7 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string, string> AttemptedValueIsInvalidAccessor
-            {
-                get;
-            }
+            Func<string, string, string> AttemptedValueIsInvalidAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.MissingBindRequiredValueAccessor
     
@@ -91,17 +88,14 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string> MissingBindRequiredValueAccessor
-            {
-                get;
-            }
+            Func<string, string> MissingBindRequiredValueAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.MissingKeyOrValueAccessor
     
         
     
         
-        Error message the model binding system adds when either the key or the value of a
+        Error message the model binding system adds when either the key or the value of a 
         :any:`System.Collections.Generic.KeyValuePair\`2` is bound but not both.
     
         
@@ -111,17 +105,14 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string> MissingKeyOrValueAccessor
-            {
-                get;
-            }
+            Func<string> MissingKeyOrValueAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.UnknownValueIsInvalidAccessor
     
         
     
         
-        Error message the model binding system adds when :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception` is of type
+        Error message the model binding system adds when :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception` is of type 
         :any:`System.FormatException` or :any:`System.OverflowException` and value is unknown.
     
         
@@ -131,17 +122,14 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string> UnknownValueIsInvalidAccessor
-            {
-                get;
-            }
+            Func<string, string> UnknownValueIsInvalidAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.ValueIsInvalidAccessor
     
         
     
         
-        Fallback error message HTML and tag helpers display when a property is invalid but the
+        Fallback error message HTML and tag helpers display when a property is invalid but the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError`\s have <code>null</code> :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.ErrorMessage`\s.
     
         
@@ -151,10 +139,7 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string> ValueIsInvalidAccessor
-            {
-                get;
-            }
+            Func<string, string> ValueIsInvalidAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.ValueMustBeANumberAccessor
     
@@ -171,10 +156,7 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string> ValueMustBeANumberAccessor
-            {
-                get;
-            }
+            Func<string, string> ValueMustBeANumberAccessor { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider.ValueMustNotBeNullAccessor
     
@@ -191,9 +173,6 @@ Properties
         
         .. code-block:: csharp
     
-            Func<string, string> ValueMustNotBeNullAccessor
-            {
-                get;
-            }
+            Func<string, string> ValueMustNotBeNullAccessor { get; }
     
 

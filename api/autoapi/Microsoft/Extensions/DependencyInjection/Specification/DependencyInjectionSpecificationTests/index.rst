@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.CreateInstanceFuncs
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>[]}
-    
-        
-        .. code-block:: csharp
-    
-            public static IEnumerable<object[]> CreateInstanceFuncs
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.ServiceContainerPicksConstructorWithLongestMatchesData
-    
-        
-        :rtype: Xunit.TheoryData
-    
-        
-        .. code-block:: csharp
-    
-            public static TheoryData ServiceContainerPicksConstructorWithLongestMatchesData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.TypesWithNonPublicConstructorData
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>[]}
-    
-        
-        .. code-block:: csharp
-    
-            public static IEnumerable<object[]> TypesWithNonPublicConstructorData
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -271,6 +223,16 @@ Methods
             [Fact]
             public void OuterServiceCanHaveOtherServicesInjected()
     
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.RegistrationOrderIsPreservedWhenServicesAreIEnumerableResolved()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            [Fact]
+            public void RegistrationOrderIsPreservedWhenServicesAreIEnumerableResolved()
+    
     .. dn:method:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.SafelyDisposeNestedProviderReferences()
     
         
@@ -290,6 +252,16 @@ Methods
     
             [Fact]
             public void ScopedServiceCanBeResolved()
+    
+    .. dn:method:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.ScopedServices_FromCachedScopeFactory_CanBeResolvedAndDisposed()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            [Fact]
+            public void ScopedServices_FromCachedScopeFactory_CanBeResolvedAndDisposed()
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.SelfResolveThenDispose()
     
@@ -561,5 +533,44 @@ Methods
             [Theory]
             [MemberData("CreateInstanceFuncs", new object[]{})]
             public void UnRegisteredServiceAsConstructorParameterThrowsException(DependencyInjectionSpecificationTests.CreateInstanceFunc createFunc)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.CreateInstanceFuncs
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>[]}
+    
+        
+        .. code-block:: csharp
+    
+            public static IEnumerable<object[]> CreateInstanceFuncs { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.ServiceContainerPicksConstructorWithLongestMatchesData
+    
+        
+        :rtype: Xunit.TheoryData
+    
+        
+        .. code-block:: csharp
+    
+            public static TheoryData ServiceContainerPicksConstructorWithLongestMatchesData { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.DependencyInjectionSpecificationTests.TypesWithNonPublicConstructorData
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>[]}
+    
+        
+        .. code-block:: csharp
+    
+            public static IEnumerable<object[]> TypesWithNonPublicConstructorData { get; }
     
 

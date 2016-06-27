@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            public KeyValuePair<string, StringValues> Current
-            {
-                get;
-            }
+            public KeyValuePair<string, StringValues> Current { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Enumerator.System.Collections.IEnumerator.Current
     
@@ -73,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            object IEnumerator.Current
-            {
-                get;
-            }
+            object IEnumerator.Current { get; }
     
 
 Methods

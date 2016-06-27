@@ -56,75 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.Options
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Builder.IdentityOptions` for this factory.
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.IdentityOptions
-        :return: 
-            The current :any:`Microsoft.AspNetCore.Builder.IdentityOptions` for this factory instance.
-    
-        
-        .. code-block:: csharp
-    
-            public IdentityOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.RoleManager
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Identity.RoleManager\`1` for this factory.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.RoleManager`1>{TRole}
-        :return: 
-            The current :any:`Microsoft.AspNetCore.Identity.RoleManager\`1` for this factory instance.
-    
-        
-        .. code-block:: csharp
-    
-            public RoleManager<TRole> RoleManager
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.UserManager
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Identity.UserManager\`1` for this factory.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.UserManager`1>{TUser}
-        :return: 
-            The current :any:`Microsoft.AspNetCore.Identity.UserManager\`1` for this factory instance.
-    
-        
-        .. code-block:: csharp
-    
-            public UserManager<TUser> UserManager
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -191,5 +122,65 @@ Methods
         .. code-block:: csharp
     
             public virtual Task<ClaimsPrincipal> CreateAsync(TUser user)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.Options
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Builder.IdentityOptions` for this factory.
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.IdentityOptions
+        :return: 
+            The current :any:`Microsoft.AspNetCore.Builder.IdentityOptions` for this factory instance.
+    
+        
+        .. code-block:: csharp
+    
+            public IdentityOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.RoleManager
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Identity.RoleManager\`1` for this factory.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.RoleManager<Microsoft.AspNetCore.Identity.RoleManager`1>{TRole}
+        :return: 
+            The current :any:`Microsoft.AspNetCore.Identity.RoleManager\`1` for this factory instance.
+    
+        
+        .. code-block:: csharp
+    
+            public RoleManager<TRole> RoleManager { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserClaimsPrincipalFactory<TUser, TRole>.UserManager
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Identity.UserManager\`1` for this factory.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.UserManager`1>{TUser}
+        :return: 
+            The current :any:`Microsoft.AspNetCore.Identity.UserManager\`1` for this factory instance.
+    
+        
+        .. code-block:: csharp
+    
+            public UserManager<TUser> UserManager { get; }
     
 

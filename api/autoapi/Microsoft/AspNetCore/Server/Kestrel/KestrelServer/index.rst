@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer.Features
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFeatureCollection Features
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions
-    
-        
-        .. code-block:: csharp
-    
-            public KestrelServerOptions Options
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -142,5 +107,34 @@ Methods
         .. code-block:: csharp
     
             public void Start<TContext>(IHttpApplication<TContext> application)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer.Features
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection Features { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.KestrelServer.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions
+    
+        
+        .. code-block:: csharp
+    
+            public KestrelServerOptions Options { get; }
     
 

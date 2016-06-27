@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<FailureContext, Task> OnRemoteFailure
-            {
-                get;
-                set;
-            }
+            public Func<FailureContext, Task> OnRemoteFailure { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.RemoteAuthenticationEvents.OnTicketReceived
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<TicketReceivedContext, Task> OnTicketReceived
-            {
-                get;
-                set;
-            }
+            public Func<TicketReceivedContext, Task> OnTicketReceived { get; set; }
     
 
 Methods

@@ -96,24 +96,6 @@ Microsoft.Extensions.FileSystemGlobbing.Internal Namespace
 .. dn:namespace:: Microsoft.Extensions.FileSystemGlobbing.Internal
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`MatcherContext`
-        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.MatcherContext
-
-        
-
-
-    .. rubric:: Structures
-
-
-    struct :dn:struct:`PatternTestResult`
-        .. object: type=struct name=Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -143,6 +125,24 @@ Microsoft.Extensions.FileSystemGlobbing.Internal Namespace
 
     interface :dn:iface:`IRaggedPattern`
         .. object: type=interface name=Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern
+
+        
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`MatcherContext`
+        .. object: type=class name=Microsoft.Extensions.FileSystemGlobbing.Internal.MatcherContext
+
+        
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`PatternTestResult`
+        .. object: type=struct name=Microsoft.Extensions.FileSystemGlobbing.Internal.PatternTestResult
 
         
 

@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileProviders.CompositeFileProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileProviders.CompositeFileProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileProviders.CompositeFileProvider.FileProviders
-    
-        
-    
-        
-        Gets the list of configured :any:`Microsoft.Extensions.FileProviders.IFileProvider` instances.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.FileProviders.IFileProvider<Microsoft.Extensions.FileProviders.IFileProvider>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<IFileProvider> FileProviders
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,6 +97,30 @@ Constructors
         .. code-block:: csharp
     
             public CompositeFileProvider(IEnumerable<IFileProvider> fileProviders)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileProviders.CompositeFileProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileProviders.CompositeFileProvider.FileProviders
+    
+        
+    
+        
+        Gets the list of configured :any:`Microsoft.Extensions.FileProviders.IFileProvider` instances.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.FileProviders.IFileProvider<Microsoft.Extensions.FileProviders.IFileProvider>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<IFileProvider> FileProviders { get; }
     
 
 Methods
@@ -188,7 +185,7 @@ Methods
         
     
         
-        :param pattern: Filter string used to determine what files or folders to monitor. Example: ``**/*.cs``, ``*.*``, ``subFolder/**/*.cshtml``.
+        :param pattern: Filter string used to determine what files or folders to monitor. Example: **/*.cs, *.*, subFolder/**/*.cshtml.
         
         :type pattern: System.String
         :rtype: Microsoft.Extensions.Primitives.IChangeToken

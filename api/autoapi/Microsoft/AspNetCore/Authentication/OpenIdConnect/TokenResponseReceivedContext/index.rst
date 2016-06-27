@@ -59,47 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext.Properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext.TokenEndpointResponse
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage` that contains the tokens received after redeeming the code at the token endpoint.
-    
-        
-        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
-    
-        
-        .. code-block:: csharp
-    
-            public OpenIdConnectMessage TokenEndpointResponse
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -130,5 +89,39 @@ Constructors
         .. code-block:: csharp
     
             public TokenResponseReceivedContext(HttpContext context, OpenIdConnectOptions options, AuthenticationProperties properties)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext.Properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.TokenResponseReceivedContext.TokenEndpointResponse
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage` that contains the tokens received after redeeming the code at the token endpoint.
+    
+        
+        :rtype: Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage
+    
+        
+        .. code-block:: csharp
+    
+            public OpenIdConnectMessage TokenEndpointResponse { get; set; }
     
 

@@ -57,213 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ErrorCount
-    
-        
-    
-        
-        Gets the number of errors added to this instance of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` via
-        :dn:meth:`AddModelError` or :dn:meth:`TryAddModelError`\.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int ErrorCount
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.HasReachedMaxErrors
-    
-        
-    
-        
-        Gets a value indicating whether or not the maximum number of errors have been
-        recorded.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasReachedMaxErrors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid
-    
-        
-    
-        
-        Gets a value that indicates whether any model state values in this model state dictionary is invalid or not validated.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsValid
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateEntry this[string key]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Keys
-    
-        
-    
-        
-        Gets the key sequence.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerable
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary.KeyEnumerable Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.MaxAllowedErrors
-    
-        
-    
-        
-        Gets or sets the maximum allowed model state errors in this instance of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
-        Defaults to <code>200</code>.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxAllowedErrors
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Root
-    
-        
-    
-        
-        Root entry for the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateEntry Root
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>.Keys
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<string> IReadOnlyDictionary<string, ModelStateEntry>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>.Values
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<ModelStateEntry> IReadOnlyDictionary<string, ModelStateEntry>.Values
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValidationState
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState
-    
-        
-        .. code-block:: csharp
-    
-            public ModelValidationState ValidationState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Values
-    
-        
-    
-        
-        Gets the value sequence.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerable
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary.ValueEnumerable Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -322,30 +115,6 @@ Constructors
         .. code-block:: csharp
     
             public ModelStateDictionary(int maxAllowedErrors)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.DefaultMaxAllowedErrors
-    
-        
-    
-        
-        The default value for :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.MaxAllowedErrors` of <code>200</code>.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int DefaultMaxAllowedErrors
     
 
 Methods
@@ -608,7 +377,7 @@ Methods
         :type key: System.String
         :rtype: System.Boolean
         :return: <code>true</code> if the element is successfully removed; otherwise <code>false</code>. This method also
-            returns <code>false</code> if key was not found.
+                returns <code>false</code> if key was not found.
     
         
         .. code-block:: csharp
@@ -787,5 +556,199 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out ModelStateEntry value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.DefaultMaxAllowedErrors
+    
+        
+    
+        
+        The default value for :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.MaxAllowedErrors` of <code>200</code>.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int DefaultMaxAllowedErrors
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ErrorCount
+    
+        
+    
+        
+        Gets the number of errors added to this instance of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` via 
+        :dn:meth:`AddModelError` or :dn:meth:`TryAddModelError`\.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int ErrorCount { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.HasReachedMaxErrors
+    
+        
+    
+        
+        Gets a value indicating whether or not the maximum number of errors have been
+        recorded.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasReachedMaxErrors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid
+    
+        
+    
+        
+        Gets a value that indicates whether any model state values in this model state dictionary is invalid or not validated.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsValid { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateEntry this[string key] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Keys
+    
+        
+    
+        
+        Gets the key sequence.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.KeyEnumerable
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary.KeyEnumerable Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.MaxAllowedErrors
+    
+        
+    
+        
+        Gets or sets the maximum allowed model state errors in this instance of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
+        Defaults to <code>200</code>.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaxAllowedErrors { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Root
+    
+        
+    
+        
+        Root entry for the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateEntry Root { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>.Keys
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<string> IReadOnlyDictionary<string, ModelStateEntry>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>.Values
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<ModelStateEntry> IReadOnlyDictionary<string, ModelStateEntry>.Values { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValidationState
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState
+    
+        
+        .. code-block:: csharp
+    
+            public ModelValidationState ValidationState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Values
+    
+        
+    
+        
+        Gets the value sequence.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ValueEnumerable
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary.ValueEnumerable Values { get; }
     
 

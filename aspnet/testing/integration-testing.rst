@@ -1,3 +1,5 @@
+:version: 1.0.0-rc1
+
 Integration Testing
 ===================
 
@@ -20,35 +22,35 @@ Integration tests, because they exercise larger segments of code and because the
 
 .. tip:: If some behavior can be tested using either a unit test or an integration test, prefer the unit test, since it will be almost always be faster. You might have dozens or hundreds of unit tests with many different inputs, but just a handful of integration tests covering the most important scenarios.
 
-Testing the logic within your own methods is usually the domain of unit tests. Testing how your application works within its framework (e.g. ASP.NET) or with a database is where integration tests come into play. It doesn't take too many integration tests to confirm that you're able to write a row to and then read a row from the database. You don't need to test every possible permutation of your data access code - you only need to test enough to give you confidence that your application is working properly.
+Testing the logic within your own methods is usually the domain of unit tests. Testing how your application works within its framework (e.g. ASP.NET Core) or with a database is where integration tests come into play. It doesn't take too many integration tests to confirm that you're able to write a row to and then read a row from the database. You don't need to test every possible permutation of your data access code - you only need to test enough to give you confidence that your application is working properly.
 
-Integration Testing ASP.NET
----------------------------
+Integration Testing ASP.NET Core
+--------------------------------
 
-To get set up to run integration tests, you'll need to create a test project, refer to your ASP.NET web project, and install a test runner. This process is described in the :doc:`unit-testing` documentation, along with more detailed instructions on running tests and recommendations for naming your tests and test classes.
+To get set up to run integration tests, you'll need to create a test project, refer to your ASP.NET Core web project, and install a test runner. This process is described in the :doc:`unit-testing` documentation, along with more detailed instructions on running tests and recommendations for naming your tests and test classes.
 
 .. tip:: Separate your unit tests and your integration tests using different projects. This helps ensure you don't accidentally introduce infrastructure concerns into your unit tests, and lets you easily choose to run all tests, or just one set or the other.
 
 The Test Host
 ^^^^^^^^^^^^^
 
-ASP.NET includes a test host that can be added to integration test projects and used to host ASP.NET applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its *project.json* file:
+ASP.NET Core includes a test host that can be added to integration test projects and used to host ASP.NET Core applications, serving test requests without the need for a real web host. The provided sample includes an integration test project which has been configured to use `xUnit`_ and the Test Host, as you can see from this excerpt from its *project.json* file:
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/project.json
   :language: javascript
-  :lines: 21-26
+  :lines: 9-14
   :dedent: 2
   :emphasize-lines: 5
 
-Once the Microsoft.AspNetCore.TestHost package is included in the project, you will be able to create and configure a TestServer in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Empty Web template created by Visual Studio.
+Once the Microsoft.AspNetCore.TestHost package is included in the project, you will be able to create and configure a TestServer in your tests. The following test shows how to verify that a request made to the root of a site returns "Hello World!" and should run successfully against the default ASP.NET Core Empty Web template created by Visual Studio.
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebDefaultRequestShould.cs
   :language: c#
-  :lines: 10-32
+  :lines: 11-33
   :dedent: 8
   :emphasize-lines: 6-7
 
-These tests are using the Arrange-Act-Assert pattern, but in this case all of the Arrange step is done in the constructor, which creates an instance of ``TestServer``. There are several different ways to configure a ``TestServer`` when you create it; in this example we are passing in the ``Configure`` method from our system under test (SUT)'s ``Startup`` class. This method will be used to configure the request pipeline of the ``TestServer`` identically to how the SUT server would be configured.
+These tests are using the Arrange-Act-Assert pattern, but in this case all of the Arrange step is done in the constructor, which creates an instance of ``TestServer``. A configured ``WebHostBuilder`` will be used to create a ``TestHost``; in this example we are passing in the ``Configure`` method from our system under test (SUT)'s ``Startup`` class. This method will be used to configure the request pipeline of the ``TestServer`` identically to how the SUT server would be configured.
 
 In the Act portion of the test, a request is made to the ``TestServer`` instance for the "/" path, and the response is read back into a string. This string is then compared with the expected string of "Hello World!". If they match, the test passes, otherwise it fails.
 
@@ -56,7 +58,7 @@ Now we can add a few additional integration tests to confirm that the prime chec
 
 .. literalinclude:: integration-testing/sample/test/PrimeWeb.IntegrationTests/PrimeWebCheckPrimeShould.cs
   :language: c#
-  :lines: 10-68
+  :lines: 9-66
   :dedent: 4
   :emphasize-lines: 8-9
 
@@ -74,13 +76,11 @@ Refactoring to use Middleware
 Refactoring is the process of changing an application's code to improve its design without changing its behavior. It should ideally be done when there is a suite of passing tests, since these help ensure the system's behavior remains the same before and after the changes. Looking at the way in which the prime checking logic is implemented in our web application, we see:
 
 .. code-block:: c#
-  :emphasize-lines: 13-33
+  :emphasize-lines: 11-31
 
     public void Configure(IApplicationBuilder app,
         IHostingEnvironment env)
     {
-        // Add the platform handler to the request pipeline.
-        app.UseIISPlatformHandler();
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -116,7 +116,7 @@ Refactoring is the process of changing an application's code to improve its desi
         });
     }
 
-This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET application, even as simple a one as this is. Imagine what the ``Configure`` method would look like if we needed to add this much code to it every time we added another URL endpoint! 
+This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET Core application, even as simple a one as this is. Imagine what the ``Configure`` method would look like if we needed to add this much code to it every time we added another URL endpoint! 
 
 One option we can consider is adding :doc:`MVC </mvc/index>` to the application, and creating a controller to handle the prime checking. However, assuming we don't currently need any other MVC functionality, that's a bit overkill. 
 
@@ -128,7 +128,7 @@ We want to allow the path the middleware uses to be specified as a parameter, so
 
 .. literalinclude:: integration-testing/sample/src/PrimeWeb/Middleware/PrimeCheckerMiddleware.cs
   :language: none
-  :emphasize-lines: 39-62
+  :emphasize-lines: 39-63
 
 .. note:: Since this middleware acts as an endpoint in the request delegate chain when its path matches, there is no call to ``_next.Invoke`` in the case where this middleware handles the request.
 
@@ -136,9 +136,9 @@ With this middleware in place and some helpful extension methods created to make
 
 .. literalinclude:: integration-testing/sample/src/PrimeWeb/Startup.cs
   :language: c#
-  :lines: 18-34
+  :lines: 19-33
   :dedent: 8
-  :emphasize-lines: 11
+  :emphasize-lines: 9
 
 Following this refactoring, we are confident that the web application still works as before, since our integration tests are all passing.
 

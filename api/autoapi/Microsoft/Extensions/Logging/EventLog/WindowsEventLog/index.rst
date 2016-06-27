@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog.DiagnosticsEventLog
-    
-        
-        :rtype: System.Diagnostics.EventLog
-    
-        
-        .. code-block:: csharp
-    
-            public EventLog DiagnosticsEventLog
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog.MaxMessageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaxMessageSize
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -112,6 +77,35 @@ Constructors
         .. code-block:: csharp
     
             public WindowsEventLog(string logName, string machineName, string sourceName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog.DiagnosticsEventLog
+    
+        
+        :rtype: System.Diagnostics.EventLog
+    
+        
+        .. code-block:: csharp
+    
+            public EventLog DiagnosticsEventLog { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.EventLog.WindowsEventLog.MaxMessageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaxMessageSize { get; }
     
 
 Methods

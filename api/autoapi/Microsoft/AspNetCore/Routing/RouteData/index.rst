@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.RouteData
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.RouteData
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.DataTokens
-    
-        
-    
-        
-        Gets the data tokens produced by routes on the current routing path.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary DataTokens
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.Routers
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Routing.IRouter` instances on the current routing path.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.IRouter<Microsoft.AspNetCore.Routing.IRouter>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IRouter> Routers
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.Values
-    
-        
-    
-        
-        Gets the set of values produced by routes on the current routing path.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -161,6 +98,60 @@ Constructors
             public RouteData(RouteData other)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.RouteData
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.DataTokens
+    
+        
+    
+        
+        Gets the data tokens produced by routes on the current routing path.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary DataTokens { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.Routers
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Routing.IRouter` instances on the current routing path.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.IRouter<Microsoft.AspNetCore.Routing.IRouter>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IRouter> Routers { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteData.Values
+    
+        
+    
+        
+        Gets the set of values produced by routes on the current routing path.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary Values { get; }
+    
+
 Methods
 -------
 
@@ -176,12 +167,12 @@ Methods
         
         <p>
         Creates a snapshot of the current state of the :any:`Microsoft.AspNetCore.Routing.RouteData` before appending
-        <em>router</em> to :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Routers`\, merging <em>values</em> into
+        <em>router</em> to :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Routers`\, merging <em>values</em> into 
         :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values`\, and merging <em>dataTokens</em> into :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.DataTokens`\.
         </p>
         <p>
         Call :dn:meth:`Microsoft.AspNetCore.Routing.RouteData.RouteDataSnapshot.Restore` to restore the state of this :any:`Microsoft.AspNetCore.Routing.RouteData`
-        to the state at the time of calling
+        to the state at the time of calling 
         :dn:meth:`Microsoft.AspNetCore.Routing.RouteData.PushState(Microsoft.AspNetCore.Routing.IRouter,Microsoft.AspNetCore.Routing.RouteValueDictionary,Microsoft.AspNetCore.Routing.RouteValueDictionary)`\.
         </p>
     
@@ -196,14 +187,14 @@ Methods
     
         
         :param values: 
-            A :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` to merge into :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values`\. If <code>null</code>, then
+            A :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` to merge into :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values`\. If <code>null</code>, then 
             :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.Values` will not be changed.
         
         :type values: Microsoft.AspNetCore.Routing.RouteValueDictionary
     
         
         :param dataTokens: 
-            A :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` to merge into :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.DataTokens`\. If <code>null</code>, then
+            A :any:`Microsoft.AspNetCore.Routing.RouteValueDictionary` to merge into :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.DataTokens`\. If <code>null</code>, then 
             :dn:prop:`Microsoft.AspNetCore.Routing.RouteData.DataTokens` will not be changed.
         
         :type dataTokens: Microsoft.AspNetCore.Routing.RouteValueDictionary

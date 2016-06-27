@@ -55,34 +55,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext.Token
-    
-        
-    
-        
-        Bearer Token. This will give application an opportunity to retrieve token from an alternation location.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Token
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -105,5 +77,29 @@ Constructors
         .. code-block:: csharp
     
             public MessageReceivedContext(HttpContext context, JwtBearerOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext.Token
+    
+        
+    
+        
+        Bearer Token. This will give application an opportunity to retrieve token from an alternation location.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Token { get; set; }
     
 

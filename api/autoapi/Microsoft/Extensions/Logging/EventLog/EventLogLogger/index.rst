@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.EventLog.EventLogLogger
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.EventLog.EventLogLogger
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogLogger.EventLog
-    
-        
-        :rtype: Microsoft.Extensions.Logging.EventLog.Internal.IEventLog
-    
-        
-        .. code-block:: csharp
-    
-            public IEventLog EventLog
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -187,5 +165,24 @@ Methods
         .. code-block:: csharp
     
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.EventLog.EventLogLogger
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.EventLog.EventLogLogger.EventLog
+    
+        
+        :rtype: Microsoft.Extensions.Logging.EventLog.Internal.IEventLog
+    
+        
+        .. code-block:: csharp
+    
+            public IEventLog EventLog { get; }
     
 

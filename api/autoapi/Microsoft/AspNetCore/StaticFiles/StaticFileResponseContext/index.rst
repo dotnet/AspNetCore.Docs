@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpContext Context
-            {
-                get;
-            }
+            public HttpContext Context { get; }
     
     .. dn:property:: Microsoft.AspNetCore.StaticFiles.StaticFileResponseContext.File
     
@@ -95,9 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IFileInfo File
-            {
-                get;
-            }
+            public IFileInfo File { get; }
     
 

@@ -44,34 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider.Order
-    
-        
-    
-        
-        Gets the order value for determining the order of execution of providers. Providers execute in
-        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider.Order` property.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -103,5 +75,30 @@ Methods
         .. code-block:: csharp
     
             void OnProvidersExecuting(ActionDescriptorProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider.Order
+    
+        
+    
+        
+        Gets the order value for determining the order of execution of providers. Providers execute in
+        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider.Order` property.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Order { get; }
     
 

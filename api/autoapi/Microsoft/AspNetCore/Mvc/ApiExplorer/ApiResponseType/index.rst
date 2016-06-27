@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ApiResponseFormat> ApiResponseFormats
-            {
-                get;
-                set;
-            }
+            public IList<ApiResponseFormat> ApiResponseFormats { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiResponseType.ModelMetadata
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata ModelMetadata
-            {
-                get;
-                set;
-            }
+            public ModelMetadata ModelMetadata { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiResponseType.StatusCode
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int StatusCode
-            {
-                get;
-                set;
-            }
+            public int StatusCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiResponseType.Type
     
@@ -134,10 +122,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Type Type
-            {
-                get;
-                set;
-            }
+            public Type Type { get; set; }
     
 

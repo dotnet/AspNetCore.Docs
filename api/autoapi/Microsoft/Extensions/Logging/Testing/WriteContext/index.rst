@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public EventId EventId
-            {
-                get;
-                set;
-            }
+            public EventId EventId { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.Exception
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Exception Exception
-            {
-                get;
-                set;
-            }
+            public Exception Exception { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.Formatter
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<object, Exception, string> Formatter
-            {
-                get;
-                set;
-            }
+            public Func<object, Exception, string> Formatter { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.LogLevel
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LogLevel LogLevel
-            {
-                get;
-                set;
-            }
+            public LogLevel LogLevel { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.LoggerName
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string LoggerName
-            {
-                get;
-                set;
-            }
+            public string LoggerName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.Scope
     
@@ -138,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object Scope
-            {
-                get;
-                set;
-            }
+            public object Scope { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Testing.WriteContext.State
     
@@ -152,10 +128,6 @@ Properties
         
         .. code-block:: csharp
     
-            public object State
-            {
-                get;
-                set;
-            }
+            public object State { get; set; }
     
 

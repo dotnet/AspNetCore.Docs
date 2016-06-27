@@ -48,33 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>.ViewData
-    
-        
-    
-        
-        Gets the current view data.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`1>{TModel}
-    
-        
-        .. code-block:: csharp
-    
-            ViewDataDictionary<TModel> ViewData
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -100,7 +73,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -214,7 +187,7 @@ Methods
         :rtype: System.String
         :return: 
             A :any:`System.String` containing the simple display text.
-            If the <em>expression</em> result is <code>null</code>, returns
+            If the <em>expression</em> result is <code>null</code>, returns 
             :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.NullDisplayText`\.
     
         
@@ -252,7 +225,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -349,7 +322,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -403,7 +376,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -439,7 +412,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -488,7 +461,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -521,7 +494,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -585,7 +558,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -619,7 +592,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -648,7 +621,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -663,7 +636,7 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\.
         
         :type tag: System.String
@@ -703,5 +676,29 @@ Methods
         .. code-block:: csharp
     
             string ValueFor<TResult>(Expression<Func<TModel, TResult>> expression, string format)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>.ViewData
+    
+        
+    
+        
+        Gets the current view data.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`1>{TModel}
+    
+        
+        .. code-block:: csharp
+    
+            ViewDataDictionary<TModel> ViewData { get; }
     
 

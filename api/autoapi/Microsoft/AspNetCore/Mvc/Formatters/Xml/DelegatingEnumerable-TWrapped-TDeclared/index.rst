@@ -83,8 +83,8 @@ Constructors
         
     
         
-        Initializes a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerable\`2` with the original
-         :any:`System.Collections.Generic.IEnumerable\`1` and the wrapper provider for wrapping individual elements.
+        Initializes a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerable\`2` with the original 
+        :any:`System.Collections.Generic.IEnumerable\`1` and the wrapper provider for wrapping individual elements.
     
         
     

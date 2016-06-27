@@ -104,25 +104,6 @@ Microsoft.AspNetCore.DataProtection.KeyManagement.Internal Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.KeyManagement.Internal
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`CacheableKeyRing`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.CacheableKeyRing
-
-        
-        Wraps both a keyring and its expiration policy.
-
-
-    .. rubric:: Structures
-
-
-    struct :dn:struct:`DefaultKeyResolution`
-        .. object: type=struct name=Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.DefaultKeyResolution
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -161,6 +142,25 @@ Microsoft.AspNetCore.DataProtection.KeyManagement.Internal Namespace
 
     interface :dn:iface:`IKeyRingProvider`
         .. object: type=interface name=Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IKeyRingProvider
+
+        
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`CacheableKeyRing`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.CacheableKeyRing
+
+        
+        Wraps both a keyring and its expiration policy.
+
+
+    .. rubric:: Structures
+
+
+    struct :dn:struct:`DefaultKeyResolution`
+        .. object: type=struct name=Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.DefaultKeyResolution
 
         
 

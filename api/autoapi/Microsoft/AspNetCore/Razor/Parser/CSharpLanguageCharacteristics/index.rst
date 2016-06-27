@@ -24,7 +24,7 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
-* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics{Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
+* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics{Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
 * :dn:cls:`Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics`
 
 
@@ -52,28 +52,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics.Instance
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
-    
-        
-        .. code-block:: csharp
-    
-            public static CSharpLanguageCharacteristics Instance
-            {
-                get;
-            }
-    
 
 Methods
 -------
@@ -124,7 +102,7 @@ Methods
     
         
         :type source: Microsoft.AspNetCore.Razor.Text.ITextDocument
-        :rtype: Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer
+        :rtype: Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer
     
         
         .. code-block:: csharp
@@ -195,5 +173,24 @@ Methods
         .. code-block:: csharp
     
             public static string GetSymbolSample(CSharpSymbolType type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics.Instance
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
+    
+        
+        .. code-block:: csharp
+    
+            public static CSharpLanguageCharacteristics Instance { get; }
     
 

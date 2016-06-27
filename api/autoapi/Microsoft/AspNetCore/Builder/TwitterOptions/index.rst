@@ -58,6 +58,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.TwitterOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.TwitterOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Builder.TwitterOptions.TwitterOptions()
+    
+        
+    
+        
+        Initializes a new instance of the :any:`Microsoft.AspNetCore.Builder.TwitterOptions` class.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public TwitterOptions()
+    
+
 Properties
 ----------
 
@@ -80,11 +103,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ConsumerKey
-            {
-                get;
-                set;
-            }
+            public string ConsumerKey { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.TwitterOptions.ConsumerSecret
     
@@ -100,11 +119,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ConsumerSecret
-            {
-                get;
-                set;
-            }
+            public string ConsumerSecret { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.TwitterOptions.Events
     
@@ -119,11 +134,25 @@ Properties
         
         .. code-block:: csharp
     
-            public ITwitterEvents Events
-            {
-                get;
-                set;
-            }
+            public ITwitterEvents Events { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.TwitterOptions.RetrieveUserDetails
+    
+        
+    
+        
+        Enables the retrieval user details during the authentication process, including
+        e-mail addresses. Retrieving e-mail addresses requires special permissions
+        from Twitter Support on a per application basis. The default is false.
+        See https://dev.twitter.com/rest/reference/get/account/verify_credentials
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool RetrieveUserDetails { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.TwitterOptions.StateDataFormat
     
@@ -138,11 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ISecureDataFormat<RequestToken> StateDataFormat
-            {
-                get;
-                set;
-            }
+            public ISecureDataFormat<RequestToken> StateDataFormat { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.TwitterOptions.SystemClock
     
@@ -158,33 +183,6 @@ Properties
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ISystemClock SystemClock
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.TwitterOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Builder.TwitterOptions.TwitterOptions()
-    
-        
-    
-        
-        Initializes a new instance of the :any:`Microsoft.AspNetCore.Builder.TwitterOptions` class.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public TwitterOptions()
+            public ISystemClock SystemClock { get; set; }
     
 

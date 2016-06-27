@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.ValidationAttributeAdapter<TAttribute>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.ValidationAttributeAdapter<TAttribute>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.ValidationAttributeAdapter<TAttribute>.Attribute
-    
-        
-    
-        
-        Gets the <em>TAttribute</em> instance.
-    
-        
-        :rtype: TAttribute
-    
-        
-        .. code-block:: csharp
-    
-            public TAttribute Attribute
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -195,5 +168,29 @@ Methods
         .. code-block:: csharp
     
             protected static bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.ValidationAttributeAdapter<TAttribute>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.DataAnnotations.Internal.ValidationAttributeAdapter<TAttribute>.Attribute
+    
+        
+    
+        
+        Gets the <em>TAttribute</em> instance.
+    
+        
+        :rtype: TAttribute
+    
+        
+        .. code-block:: csharp
+    
+            public TAttribute Attribute { get; }
     
 

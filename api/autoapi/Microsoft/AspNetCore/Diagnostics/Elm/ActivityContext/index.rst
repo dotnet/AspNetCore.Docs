@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HttpInfo HttpInfo
-            {
-                get;
-                set;
-            }
+            public HttpInfo HttpInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext.Id
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Guid Id
-            {
-                get;
-                set;
-            }
+            public Guid Id { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext.IsCollapsed
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsCollapsed
-            {
-                get;
-                set;
-            }
+            public bool IsCollapsed { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext.RepresentsScope
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RepresentsScope
-            {
-                get;
-                set;
-            }
+            public bool RepresentsScope { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext.Root
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ScopeNode Root
-            {
-                get;
-                set;
-            }
+            public ScopeNode Root { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext.Time
     
@@ -138,10 +118,6 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset Time
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset Time { get; set; }
     
 

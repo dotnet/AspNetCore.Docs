@@ -8,7 +8,7 @@ IDistributedCacheTagHelperFormatter Interface
 
 
 
-An implementation of this interface provides a service to 
+An implementation of this interface provides a service to
 serialize html fragments for being store by :any:`Microsoft.AspNetCore.Mvc.TagHelpers.Cache.IDistributedCacheTagHelperStorage`
 
 
@@ -70,7 +70,7 @@ Methods
         :param value: The value to deserialize.
         
         :type value: System.Byte<System.Byte>[]
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.Rendering.HtmlString<Microsoft.AspNetCore.Mvc.Rendering.HtmlString>}
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.HtmlString<Microsoft.AspNetCore.Html.HtmlString>}
         :return: The deserialized content, <returns>null</returns> otherwise.
     
         

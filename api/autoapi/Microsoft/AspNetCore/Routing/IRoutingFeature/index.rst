@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            RouteData RouteData
-            {
-                get;
-                set;
-            }
+            RouteData RouteData { get; set; }
     
 

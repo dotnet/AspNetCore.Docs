@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-                set;
-            }
+            public string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Cookies
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IRequestCookieCollection Cookies
-            {
-                get;
-                set;
-            }
+            public IRequestCookieCollection Cookies { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Headers
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IHeaderDictionary Headers
-            {
-                get;
-                set;
-            }
+            public IHeaderDictionary Headers { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Host
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HostString Host
-            {
-                get;
-                set;
-            }
+            public HostString Host { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Method
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Method
-            {
-                get;
-                set;
-            }
+            public string Method { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Path
     
@@ -138,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString Path
-            {
-                get;
-                set;
-            }
+            public PathString Path { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Protocol
     
@@ -152,11 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Protocol
-            {
-                get;
-                set;
-            }
+            public string Protocol { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Query
     
@@ -166,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public QueryString Query
-            {
-                get;
-                set;
-            }
+            public QueryString Query { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.RequestID
     
@@ -180,11 +148,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RequestID
-            {
-                get;
-                set;
-            }
+            public string RequestID { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.Scheme
     
@@ -194,11 +158,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Scheme
-            {
-                get;
-                set;
-            }
+            public string Scheme { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.StatusCode
     
@@ -208,11 +168,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int StatusCode
-            {
-                get;
-                set;
-            }
+            public int StatusCode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.HttpInfo.User
     
@@ -222,10 +178,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ClaimsPrincipal User
-            {
-                get;
-                set;
-            }
+            public ClaimsPrincipal User { get; set; }
     
 

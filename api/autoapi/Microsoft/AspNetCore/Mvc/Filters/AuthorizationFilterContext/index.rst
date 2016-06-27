@@ -8,7 +8,7 @@ AuthorizationFilterContext Class
 
 
 
-A context for authorization filters i.e. :any:`Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter` and
+A context for authorization filters i.e. :any:`Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter` and 
 :any:`Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter` implementations.
 
 
@@ -59,35 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result
-    
-        
-    
-        
-        Gets or sets the result of the request. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result` to a non-<code>null</code> value inside
-        an authorization filter will short-circuit the remainder of the filter pipeline.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IActionResult Result
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -119,5 +90,30 @@ Constructors
         .. code-block:: csharp
     
             public AuthorizationFilterContext(ActionContext actionContext, IList<IFilterMetadata> filters)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result
+    
+        
+    
+        
+        Gets or sets the result of the request. Setting :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result` to a non-<code>null</code> value inside
+        an authorization filter will short-circuit the remainder of the filter pipeline.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IActionResult
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IActionResult Result { get; set; }
     
 

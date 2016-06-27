@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptionsSetup
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptionsSetup
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptionsSetup.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -125,5 +102,24 @@ Fields
         .. code-block:: csharp
     
             public static readonly string DefaultAreaName
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptionsSetup
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptionsSetup.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.BaseCookieContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.BaseCookieContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.BaseCookieContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookieAuthenticationOptions Options
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -97,5 +75,24 @@ Constructors
         .. code-block:: csharp
     
             public BaseCookieContext(HttpContext context, CookieAuthenticationOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.BaseCookieContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.BaseCookieContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.CookieAuthenticationOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookieAuthenticationOptions Options { get; }
     
 

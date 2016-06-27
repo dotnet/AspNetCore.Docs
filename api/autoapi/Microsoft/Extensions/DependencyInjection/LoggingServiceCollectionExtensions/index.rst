@@ -83,6 +83,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddLogging(IServiceCollection services)
+            public static IServiceCollection AddLogging(this IServiceCollection services)
     
 

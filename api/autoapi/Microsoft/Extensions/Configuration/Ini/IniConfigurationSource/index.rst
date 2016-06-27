@@ -8,7 +8,7 @@ IniConfigurationSource Class
 
 
 
-An INI file based :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
+Represents an INI file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 Files are simple line structures (<a href="http://en.wikipedia.org/wiki/INI_file">INI Files on Wikipedia</a>)
 
 
@@ -71,8 +71,16 @@ Methods
         
     
         
+        Builds the :any:`Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider` for this source.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+        
         :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
         :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: An :any:`Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider`
     
         
         .. code-block:: csharp

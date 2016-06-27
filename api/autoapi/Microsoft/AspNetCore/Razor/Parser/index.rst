@@ -31,18 +31,6 @@ Microsoft.AspNetCore.Razor.Parser Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Razor/Parser/CallbackVisitor/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Razor/Parser/HtmlLanguageCharacteristics/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Razor/Parser/HtmlMarkupParser/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Razor/Parser/ISyntaxTreeRewriter/index
    
    
@@ -169,18 +157,6 @@ Microsoft.AspNetCore.Razor.Parser Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -190,6 +166,16 @@ Microsoft.AspNetCore.Razor.Parser Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Parser
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ISyntaxTreeRewriter`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Parser.ISyntaxTreeRewriter
+
+        
+        Contract for rewriting a syntax tree.
 
 
     .. rubric:: Classes
@@ -209,24 +195,6 @@ Microsoft.AspNetCore.Razor.Parser Namespace
 
     class :dn:cls:`CSharpLanguageCharacteristics`
         .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.CSharpLanguageCharacteristics
-
-        
-
-
-    class :dn:cls:`CallbackVisitor`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.CallbackVisitor
-
-        
-
-
-    class :dn:cls:`HtmlLanguageCharacteristics`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.HtmlLanguageCharacteristics
-
-        
-
-
-    class :dn:cls:`HtmlMarkupParser`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.HtmlMarkupParser
 
         
 
@@ -305,15 +273,5 @@ Microsoft.AspNetCore.Razor.Parser Namespace
         .. object: type=enum name=Microsoft.AspNetCore.Razor.Parser.BalancingModes
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ISyntaxTreeRewriter`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Parser.ISyntaxTreeRewriter
-
-        
-        Contract for rewriting a syntax tree.
 
 

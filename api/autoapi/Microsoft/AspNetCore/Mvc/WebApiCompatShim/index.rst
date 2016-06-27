@@ -224,6 +224,45 @@ Microsoft.AspNetCore.Mvc.WebApiCompatShim Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.WebApiCompatShim
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IHttpRequestMessageFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IHttpRequestMessageFeature
+
+        
+
+
+    interface :dn:iface:`IUseWebApiActionConventions`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiActionConventions
+
+        
+        Indicates actions without attribute routes in a controller use ASP.NET Web API routing conventions.
+
+
+    interface :dn:iface:`IUseWebApiOverloading`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiOverloading
+
+        
+        Indicates actions in a controller should be selected only if all non-optional parameters are satisfied. Applies
+        the :any:`Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint` to all actions in the controller.
+
+
+    interface :dn:iface:`IUseWebApiParameterConventions`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiParameterConventions
+
+        
+        Indicates the model binding system should use ASP.NET Web API conventions for parameters of a controller's
+        actions. For example, bind simple types from the URI.
+
+
+    interface :dn:iface:`IUseWebApiRoutes`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiRoutes
+
+        
+        Indicates the controller is in the "api" area.
+
+
     .. rubric:: Classes
 
 
@@ -278,30 +317,38 @@ Microsoft.AspNetCore.Mvc.WebApiCompatShim Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint
 
         
+        An :any:`Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` limiting candidate actions to those for which the request satisfies all
+        non-optional parameters.
 
 
     class :dn:cls:`UseWebApiActionConventionsAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiActionConventionsAttribute
 
         
+        Indicates actions without attribute routes in a controller use ASP.NET Web API routing conventions.
 
 
     class :dn:cls:`UseWebApiOverloadingAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiOverloadingAttribute
 
         
+        Indicates actions in a controller should be selected only if all non-optional parameters are satisfied. Applies
+        the :any:`Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint` to all actions in the controller.
 
 
     class :dn:cls:`UseWebApiParameterConventionsAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiParameterConventionsAttribute
 
         
+        Indicates the model binding system should use ASP.NET Web API conventions for parameters of a controller's
+        actions. For example, bind simple types from the URI.
 
 
     class :dn:cls:`UseWebApiRoutesAttribute`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute
 
         
+        Indicates the controller is in the "api" area.
 
 
     class :dn:cls:`WebApiActionConventionsApplicationModelConvention`
@@ -336,39 +383,6 @@ Microsoft.AspNetCore.Mvc.WebApiCompatShim Namespace
 
     class :dn:cls:`WebApiRoutesApplicationModelConvention`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiRoutesApplicationModelConvention
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IHttpRequestMessageFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IHttpRequestMessageFeature
-
-        
-
-
-    interface :dn:iface:`IUseWebApiActionConventions`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiActionConventions
-
-        
-
-
-    interface :dn:iface:`IUseWebApiOverloading`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiOverloading
-
-        
-
-
-    interface :dn:iface:`IUseWebApiParameterConventions`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiParameterConventions
-
-        
-
-
-    interface :dn:iface:`IUseWebApiRoutes`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.WebApiCompatShim.IUseWebApiRoutes
 
         
 

@@ -52,16 +52,6 @@ Microsoft.AspNetCore.DataProtection.Internal Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.Internal
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`DataProtectionBuilder`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder
-
-        
-        Default implementation of :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder`\.
-
-
     .. rubric:: Interfaces
 
 
@@ -71,5 +61,15 @@ Microsoft.AspNetCore.DataProtection.Internal Namespace
         
         An interface into :dn:meth:`System.Activator.CreateInstance\`\`1` that also supports
         limited dependency injection (of :any:`System.IServiceProvider`\).
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`DataProtectionBuilder`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.Internal.DataProtectionBuilder
+
+        
+        Default implementation of :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder`\.
 
 

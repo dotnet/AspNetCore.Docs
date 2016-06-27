@@ -54,28 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Text.LookaheadTextReader
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Text.LookaheadTextReader
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.LookaheadTextReader.CurrentLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public abstract SourceLocation CurrentLocation
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -102,5 +80,24 @@ Methods
         .. code-block:: csharp
     
             public abstract void CancelBacktrack()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Text.LookaheadTextReader
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.LookaheadTextReader.CurrentLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public abstract SourceLocation CurrentLocation { get; }
     
 

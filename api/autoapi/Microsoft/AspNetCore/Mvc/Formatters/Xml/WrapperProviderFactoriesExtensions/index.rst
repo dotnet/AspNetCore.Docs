@@ -90,6 +90,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWrapperProvider GetWrapperProvider(IEnumerable<IWrapperProviderFactory> wrapperProviderFactories, WrapperProviderContext wrapperProviderContext)
+            public static IWrapperProvider GetWrapperProvider(this IEnumerable<IWrapperProviderFactory> wrapperProviderFactories, WrapperProviderContext wrapperProviderContext)
     
 

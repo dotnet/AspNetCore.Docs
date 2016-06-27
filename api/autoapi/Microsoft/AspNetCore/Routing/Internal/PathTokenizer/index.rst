@@ -44,44 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment this[int index]
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,6 +63,38 @@ Constructors
         .. code-block:: csharp
     
             public PathTokenizer(PathString path)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment this[int index] { get; }
     
 
 Methods

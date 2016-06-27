@@ -91,7 +91,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static void ApplyTo<T>(JsonPatchDocument<T> patchDoc, T objectToApplyTo, ModelStateDictionary modelState)where T : class
+            public static void ApplyTo<T>(this JsonPatchDocument<T> patchDoc, T objectToApplyTo, ModelStateDictionary modelState)where T : class
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.JsonPatchExtensions.ApplyTo<T>(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument<T>, T, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary, System.String)
     
@@ -125,6 +125,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void ApplyTo<T>(JsonPatchDocument<T> patchDoc, T objectToApplyTo, ModelStateDictionary modelState, string prefix)where T : class
+            public static void ApplyTo<T>(this JsonPatchDocument<T> patchDoc, T objectToApplyTo, ModelStateDictionary modelState, string prefix)where T : class
     
 

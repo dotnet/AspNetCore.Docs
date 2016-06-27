@@ -144,7 +144,7 @@ Methods
     
         
         :param options: 
-            :any:`Microsoft.AspNetCore.Http.CookieOptions` used to discriminate the particular cookie to expire. The
+            :any:`Microsoft.AspNetCore.Http.CookieOptions` used to discriminate the particular cookie to expire. The 
             :dn:prop:`Microsoft.AspNetCore.Http.CookieOptions.Domain` and :dn:prop:`Microsoft.AspNetCore.Http.CookieOptions.Path` values are especially important.
         
         :type options: Microsoft.AspNetCore.Http.CookieOptions

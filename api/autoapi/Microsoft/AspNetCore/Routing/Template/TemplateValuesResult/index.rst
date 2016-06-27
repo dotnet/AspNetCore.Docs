@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public RouteValueDictionary AcceptedValues
-            {
-                get;
-                set;
-            }
+            public RouteValueDictionary AcceptedValues { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateValuesResult.CombinedValues
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public RouteValueDictionary CombinedValues
-            {
-                get;
-                set;
-            }
+            public RouteValueDictionary CombinedValues { get; set; }
     
 

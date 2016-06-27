@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService.MultipleServices
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService<Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<IFakeMultipleService> MultipleServices
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService.SingleService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeService SingleService
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,5 +74,34 @@ Constructors
         .. code-block:: csharp
     
             public FakeOuterService(IFakeService singleService, IEnumerable<IFakeMultipleService> multipleServices)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService.MultipleServices
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService<Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<IFakeMultipleService> MultipleServices { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOuterService.SingleService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeService SingleService { get; }
     
 

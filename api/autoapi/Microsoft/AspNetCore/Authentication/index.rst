@@ -280,6 +280,41 @@ Microsoft.AspNetCore.Authentication Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Authentication
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IClaimsTransformer`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IClaimsTransformer
+
+        
+        Used for claims transformation.
+
+
+    interface :dn:iface:`IDataSerializer\<TModel>`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IDataSerializer\<TModel>
+
+        
+
+
+    interface :dn:iface:`IRemoteAuthenticationEvents`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IRemoteAuthenticationEvents
+
+        
+
+
+    interface :dn:iface:`ISecureDataFormat\<TData>`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.ISecureDataFormat\<TData>
+
+        
+
+
+    interface :dn:iface:`ISystemClock`
+        .. object: type=interface name=Microsoft.AspNetCore.Authentication.ISystemClock
+
+        
+        Abstracts the system clock to facilitate testing.
+
+
     .. rubric:: Classes
 
 
@@ -441,40 +476,5 @@ Microsoft.AspNetCore.Authentication Namespace
         .. object: type=enum name=Microsoft.AspNetCore.Authentication.EventResultState
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IClaimsTransformer`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IClaimsTransformer
-
-        
-        Used for claims transformation.
-
-
-    interface :dn:iface:`IDataSerializer\<TModel>`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IDataSerializer\<TModel>
-
-        
-
-
-    interface :dn:iface:`IRemoteAuthenticationEvents`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.IRemoteAuthenticationEvents
-
-        
-
-
-    interface :dn:iface:`ISecureDataFormat\<TData>`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.ISecureDataFormat\<TData>
-
-        
-
-
-    interface :dn:iface:`ISystemClock`
-        .. object: type=interface name=Microsoft.AspNetCore.Authentication.ISystemClock
-
-        
-        Abstracts the system clock to facilitate testing.
 
 

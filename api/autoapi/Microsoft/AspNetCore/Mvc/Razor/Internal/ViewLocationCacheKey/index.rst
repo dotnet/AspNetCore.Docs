@@ -48,105 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.AreaName
-    
-        
-    
-        
-        Gets the area name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AreaName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ControllerName
-    
-        
-    
-        
-        Gets the controller name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ControllerName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.IsMainPage
-    
-        
-    
-        
-        Determines if the page being found is the main page for an action.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsMainPage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ViewLocationExpanderValues
-    
-        
-    
-        
-        Gets the values populated by :any:`Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander` instances.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyDictionary<System.Collections.Generic.IReadOnlyDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyDictionary<string, string> ViewLocationExpanderValues
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ViewName
-    
-        
-    
-        
-        Gets the view name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ViewName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -217,6 +118,90 @@ Constructors
         .. code-block:: csharp
     
             public ViewLocationCacheKey(string viewName, string controllerName, string areaName, bool isMainPage, IReadOnlyDictionary<string, string> values)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.AreaName
+    
+        
+    
+        
+        Gets the area name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AreaName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ControllerName
+    
+        
+    
+        
+        Gets the controller name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ControllerName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.IsMainPage
+    
+        
+    
+        
+        Determines if the page being found is the main page for an action.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsMainPage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ViewLocationExpanderValues
+    
+        
+    
+        
+        Gets the values populated by :any:`Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander` instances.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyDictionary<System.Collections.Generic.IReadOnlyDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyDictionary<string, string> ViewLocationExpanderValues { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheKey.ViewName
+    
+        
+    
+        
+        Gets the view name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ViewName { get; }
     
 
 Methods

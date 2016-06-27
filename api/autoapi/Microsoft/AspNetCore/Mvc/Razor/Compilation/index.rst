@@ -31,6 +31,14 @@ Microsoft.AspNetCore.Mvc.Razor.Compilation Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/MetadataReferenceFeature/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/MetadataReferenceFeatureProvider/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/RelativeFileInfo/index
    
    
@@ -77,6 +85,14 @@ Microsoft.AspNetCore.Mvc.Razor.Compilation Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -88,6 +104,23 @@ Microsoft.AspNetCore.Mvc.Razor.Compilation Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Razor.Compilation
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ICompilationService`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Compilation.ICompilationService
+
+        
+        Provides methods for compilation of a Razor page.
+
+
+    interface :dn:iface:`IRazorCompilationService`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Compilation.IRazorCompilationService
+
+        
+        Specifies the contracts for a service that compiles Razor files.
+
+
     .. rubric:: Classes
 
 
@@ -96,6 +129,22 @@ Microsoft.AspNetCore.Mvc.Razor.Compilation Namespace
 
         
         An :any:`System.Exception` thrown when accessing the result of a failed compilation.
+
+
+    class :dn:cls:`MetadataReferenceFeature`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeature
+
+        
+        Specifies the list of :any:`Microsoft.CodeAnalysis.MetadataReference` used in Razor compilation.
+
+
+    class :dn:cls:`MetadataReferenceFeatureProvider`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeatureProvider
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider\`1` for :any:`Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeature` that 
+        uses :any:`Microsoft.Extensions.DependencyModel.DependencyContext` for registered :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart` instances to create 
+        :any:`Microsoft.CodeAnalysis.MetadataReference`\.
 
 
     class :dn:cls:`RelativeFileInfo`
@@ -121,22 +170,5 @@ Microsoft.AspNetCore.Mvc.Razor.Compilation Namespace
 
         
         Represents the result of compilation.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ICompilationService`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Compilation.ICompilationService
-
-        
-        Provides methods for compilation of a Razor page.
-
-
-    interface :dn:iface:`IRazorCompilationService`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Compilation.IRazorCompilationService
-
-        
-        Specifies the contracts for a service that compiles Razor files.
 
 

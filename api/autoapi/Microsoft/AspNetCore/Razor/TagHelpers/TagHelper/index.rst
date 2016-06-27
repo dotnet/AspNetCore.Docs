@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public virtual int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -149,5 +127,24 @@ Methods
         .. code-block:: csharp
     
             public virtual Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public virtual int Order { get; }
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddImportChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddImportChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddImportChunkGenerator.Namespace
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Namespace
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -151,5 +129,24 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddImportChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddImportChunkGenerator.Namespace
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Namespace { get; }
     
 

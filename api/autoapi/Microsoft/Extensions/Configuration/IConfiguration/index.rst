@@ -48,40 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.Extensions.Configuration.IConfiguration
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.Extensions.Configuration.IConfiguration
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.IConfiguration.Item[System.String]
-    
-        
-    
-        
-        Gets or sets a configuration value.
-    
-        
-    
-        
-        :param key: The configuration key.
-        
-        :type key: System.String
-        :rtype: System.String
-        :return: The configuration value.
-    
-        
-        .. code-block:: csharp
-    
-            string this[string key]
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -109,7 +75,13 @@ Methods
     .. dn:method:: Microsoft.Extensions.Configuration.IConfiguration.GetReloadToken()
     
         
+    
+        
+        Returns a :any:`Microsoft.Extensions.Primitives.IChangeToken` that can be used to observe when this configuration is reloaded.
+    
+        
         :rtype: Microsoft.Extensions.Primitives.IChangeToken
+        :return: A :any:`Microsoft.Extensions.Primitives.IChangeToken`\.
     
         
         .. code-block:: csharp
@@ -136,5 +108,35 @@ Methods
         .. code-block:: csharp
     
             IConfigurationSection GetSection(string key)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.Extensions.Configuration.IConfiguration
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.IConfiguration.Item[System.String]
+    
+        
+    
+        
+        Gets or sets a configuration value.
+    
+        
+    
+        
+        :param key: The configuration key.
+        
+        :type key: System.String
+        :rtype: System.String
+        :return: The configuration value.
+    
+        
+        .. code-block:: csharp
+    
+            string this[string key] { get; set; }
     
 

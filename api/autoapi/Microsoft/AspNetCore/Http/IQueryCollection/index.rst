@@ -48,83 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Http.IQueryCollection
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Http.IQueryCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Count
-    
-        
-    
-        
-            Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
-    
-        
-        :rtype: System.Int32
-        :return: 
-                The number of elements contained in the :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
-    
-        
-        .. code-block:: csharp
-    
-            int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Item[System.String]
-    
-        
-    
-        
-            Gets the value with the specified key.
-    
-        
-    
-        
-        :param key: 
-                The key of the value to get.
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-        :return: 
-                The element with the specified key, or <code>StringValues.Empty</code> if the key is not present.
-    
-        
-        .. code-block:: csharp
-    
-            StringValues this[string key]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Keys
-    
-        
-    
-        
-            Gets an :any:`System.Collections.Generic.ICollection\`1` containing the keys of the
-            :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-        :return: 
-                An :any:`System.Collections.Generic.ICollection\`1` containing the keys of the object
-                that implements :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
-    
-        
-        .. code-block:: csharp
-    
-            ICollection<string> Keys
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -190,5 +113,73 @@ Methods
         .. code-block:: csharp
     
             bool TryGetValue(string key, out StringValues value)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Http.IQueryCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Count
+    
+        
+    
+        
+            Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
+    
+        
+        :rtype: System.Int32
+        :return: 
+                The number of elements contained in the :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
+    
+        
+        .. code-block:: csharp
+    
+            int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Item[System.String]
+    
+        
+    
+        
+            Gets the value with the specified key.
+    
+        
+    
+        
+        :param key: 
+                The key of the value to get.
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+        :return: 
+                The element with the specified key, or <code>StringValues.Empty</code> if the key is not present.
+    
+        
+        .. code-block:: csharp
+    
+            StringValues this[string key] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.IQueryCollection.Keys
+    
+        
+    
+        
+            Gets an :any:`System.Collections.Generic.ICollection\`1` containing the keys of the 
+            :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+        :return: 
+                An :any:`System.Collections.Generic.ICollection\`1` containing the keys of the object
+                that implements :any:`Microsoft.AspNetCore.Http.IQueryCollection`\.
+    
+        
+        .. code-block:: csharp
+    
+            ICollection<string> Keys { get; }
     
 

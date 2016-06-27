@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Content
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Content
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Errors
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<RazorError> Errors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Start
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Type
-    
-        
-        :rtype: TType
-    
-        
-        .. code-block:: csharp
-    
-            public TType Type
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -207,5 +146,54 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Content
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Content { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Errors
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.RazorError<Microsoft.AspNetCore.Razor.RazorError>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<RazorError> Errors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Start { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.SymbolBase<TType>.Type
+    
+        
+        :rtype: TType
+    
+        
+        .. code-block:: csharp
+    
+            public TType Type { get; }
     
 

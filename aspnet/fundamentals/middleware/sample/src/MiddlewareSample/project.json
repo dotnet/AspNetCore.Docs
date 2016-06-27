@@ -1,34 +1,22 @@
 ﻿{
-  "webroot": "wwwroot",
   "version": "1.0.0-*",
-
   "dependencies": {
-    "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
-    "Microsoft.Framework.DependencyInjection": "1.0.0-beta6",
-    "Microsoft.Framework.Logging": "1.0.0-beta6",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta6"
-  },
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
 
-  "commands": {
-    "web": "Microsoft.AspNet.Hosting --config hosting.ini"
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "netcoreapp1.0": {}
   },
-
-  "publishExclude": [
-    "node_modules",
-    "bower_components",
-    "**.xproj",
-    "**.user",
-    "**.vspscc"
-  ],
-  "exclude": [
-    "wwwroot",
-    "node_modules",
-    "bower_components"
-  ]
+  "buildOptions": {
+    "emitEntryPoint": true
+  }
 }

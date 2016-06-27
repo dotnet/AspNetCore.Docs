@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint.AllowedMethods
-    
-        
-    
-        
-        Gets the HTTP methods allowed by the constraint.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> AllowedMethods
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,6 +83,30 @@ Constructors
         .. code-block:: csharp
     
             public HttpMethodRouteConstraint(params string[] allowedMethods)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint.AllowedMethods
+    
+        
+    
+        
+        Gets the HTTP methods allowed by the constraint.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> AllowedMethods { get; }
     
 
 Methods

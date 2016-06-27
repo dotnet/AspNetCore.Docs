@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPage.Model
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPageModel
-    
-        
-        .. code-block:: csharp
-    
-            public LogPageModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -158,5 +135,24 @@ Methods
         .. code-block:: csharp
     
             public HelperResult Traverse(ScopeNode node, int level, Dictionary<string, int> counts)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPage.Model
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.Views.LogPageModel
+    
+        
+        .. code-block:: csharp
+    
+            public LogPageModel Model { get; set; }
     
 

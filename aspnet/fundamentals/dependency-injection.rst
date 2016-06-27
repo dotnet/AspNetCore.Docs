@@ -1,3 +1,5 @@
+:version: 1.0.0-rc2
+
 .. _fundamentals-dependency-injection:
 
 Dependency Injection
@@ -52,7 +54,7 @@ You can register your own application services as follows. The first generic typ
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
-  :lines: 54-55
+  :lines: 53-54
   :dedent: 12
 
 .. note:: Each ``services.Add<service>`` calls adds (and potentially configures) services. For example, ``services.AddMvc()`` adds the services MVC requires.

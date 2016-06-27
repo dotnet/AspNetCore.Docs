@@ -56,6 +56,27 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder.SimpleTypeModelBinder(System.Type)
+    
+        
+    
+        
+        :type type: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public SimpleTypeModelBinder(Type type)
+    
+
 Methods
 -------
 

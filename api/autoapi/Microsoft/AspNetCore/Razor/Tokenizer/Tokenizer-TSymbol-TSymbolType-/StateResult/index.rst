@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult.Result
-    
-        
-        :rtype: TSymbol
-    
-        
-        .. code-block:: csharp
-    
-            public TSymbol Result
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult.State
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            public int ? State
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,5 +66,34 @@ Constructors
         .. code-block:: csharp
     
             public StateResult(int ? state, TSymbol result)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult.Result
+    
+        
+        :rtype: TSymbol
+    
+        
+        .. code-block:: csharp
+    
+            public TSymbol Result { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Tokenizer<TSymbol, TSymbolType>.StateResult.State
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            public int ? State { get; }
     
 

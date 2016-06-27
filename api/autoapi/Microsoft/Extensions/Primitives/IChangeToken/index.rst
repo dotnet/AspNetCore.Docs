@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool ActiveChangeCallbacks
-            {
-                get;
-            }
+            bool ActiveChangeCallbacks { get; }
     
     .. dn:property:: Microsoft.Extensions.Primitives.IChangeToken.HasChanged
     
@@ -87,10 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HasChanged
-            {
-                get;
-            }
+            bool HasChanged { get; }
     
 
 Methods
@@ -106,7 +100,7 @@ Methods
         
     
         
-        Registers for a callback that will be invoked when the entry has changed.
+        Registers for a callback that will be invoked when the entry has changed. 
         :dn:prop:`Microsoft.Extensions.Primitives.IChangeToken.HasChanged` MUST be set before the callback is invoked.
     
         

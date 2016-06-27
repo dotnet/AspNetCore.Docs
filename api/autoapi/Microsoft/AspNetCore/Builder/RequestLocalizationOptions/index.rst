@@ -56,6 +56,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestLocalizationOptions()
+    
+        
+    
+        
+        Creates a new :any:`Microsoft.AspNetCore.Builder.RequestLocalizationOptions` with default values.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public RequestLocalizationOptions()
+    
+
 Properties
 ----------
 
@@ -79,11 +102,7 @@ Properties
         
         .. code-block:: csharp
     
-            public RequestCulture DefaultRequestCulture
-            {
-                get;
-                set;
-            }
+            public RequestCulture DefaultRequestCulture { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.FallBackToParentCultures
     
@@ -91,7 +110,7 @@ Properties
     
         
         Gets or sets a value indicating whether to set a request culture to an parent culture in the case the
-        culture determined by the configured :any:`Microsoft.AspNetCore.Localization.IRequestCultureProvider`\s is not in the
+        culture determined by the configured :any:`Microsoft.AspNetCore.Localization.IRequestCultureProvider`\s is not in the 
         :dn:prop:`Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedCultures` list but a parent culture is.
         Defaults to <code>true</code>;
     
@@ -101,11 +120,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool FallBackToParentCultures
-            {
-                get;
-                set;
-            }
+            public bool FallBackToParentCultures { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.FallBackToParentUICultures
     
@@ -113,7 +128,7 @@ Properties
     
         
         Gets or sets a value indicating whether to set a request UI culture to a parent culture in the case the
-        UI culture determined by the configured :any:`Microsoft.AspNetCore.Localization.IRequestCultureProvider`\s is not in the
+        UI culture determined by the configured :any:`Microsoft.AspNetCore.Localization.IRequestCultureProvider`\s is not in the 
         :dn:prop:`Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedUICultures` list but a parent culture is.
         Defaults to <code>true</code>;
     
@@ -123,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool FallBackToParentUICultures
-            {
-                get;
-                set;
-            }
+            public bool FallBackToParentUICultures { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders
     
@@ -145,11 +156,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IRequestCultureProvider> RequestCultureProviders
-            {
-                get;
-                set;
-            }
+            public IList<IRequestCultureProvider> RequestCultureProviders { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedCultures
     
@@ -166,11 +173,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<CultureInfo> SupportedCultures
-            {
-                get;
-                set;
-            }
+            public IList<CultureInfo> SupportedCultures { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedUICultures
     
@@ -187,33 +190,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<CultureInfo> SupportedUICultures
-            {
-                get;
-                set;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestLocalizationOptions()
-    
-        
-    
-        
-        Creates a new :any:`Microsoft.AspNetCore.Builder.RequestLocalizationOptions` with default values.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public RequestLocalizationOptions()
+            public IList<CultureInfo> SupportedUICultures { get; set; }
     
 

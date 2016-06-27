@@ -71,7 +71,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<WebSocket> AcceptWebSocketAsync(RequestContext context)
+            public static Task<WebSocket> AcceptWebSocketAsync(this RequestContext context)
     
     .. dn:method:: Microsoft.Net.Http.Server.WebSocketExtensions.AcceptWebSocketAsync(Microsoft.Net.Http.Server.RequestContext, System.String)
     
@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<WebSocket> AcceptWebSocketAsync(RequestContext context, string subProtocol)
+            public static Task<WebSocket> AcceptWebSocketAsync(this RequestContext context, string subProtocol)
     
     .. dn:method:: Microsoft.Net.Http.Server.WebSocketExtensions.AcceptWebSocketAsync(Microsoft.Net.Http.Server.RequestContext, System.String, System.Int32, System.TimeSpan)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<WebSocket> AcceptWebSocketAsync(RequestContext context, string subProtocol, int receiveBufferSize, TimeSpan keepAliveInterval)
+            public static Task<WebSocket> AcceptWebSocketAsync(this RequestContext context, string subProtocol, int receiveBufferSize, TimeSpan keepAliveInterval)
     
     .. dn:method:: Microsoft.Net.Http.Server.WebSocketExtensions.AcceptWebSocketAsync(Microsoft.Net.Http.Server.RequestContext, System.String, System.Int32, System.TimeSpan, System.ArraySegment<System.Byte>)
     
@@ -134,7 +134,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<WebSocket> AcceptWebSocketAsync(RequestContext context, string subProtocol, int receiveBufferSize, TimeSpan keepAliveInterval, ArraySegment<byte> internalBuffer)
+            public static Task<WebSocket> AcceptWebSocketAsync(this RequestContext context, string subProtocol, int receiveBufferSize, TimeSpan keepAliveInterval, ArraySegment<byte> internalBuffer)
     
     .. dn:method:: Microsoft.Net.Http.Server.WebSocketExtensions.AcceptWebSocketAsync(Microsoft.Net.Http.Server.RequestContext, System.String, System.TimeSpan)
     
@@ -153,7 +153,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<WebSocket> AcceptWebSocketAsync(RequestContext context, string subProtocol, TimeSpan keepAliveInterval)
+            public static Task<WebSocket> AcceptWebSocketAsync(this RequestContext context, string subProtocol, TimeSpan keepAliveInterval)
     
     .. dn:method:: Microsoft.Net.Http.Server.WebSocketExtensions.IsWebSocketRequest(Microsoft.Net.Http.Server.RequestContext)
     
@@ -166,6 +166,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static bool IsWebSocketRequest(RequestContext context)
+            public static bool IsWebSocketRequest(this RequestContext context)
     
 

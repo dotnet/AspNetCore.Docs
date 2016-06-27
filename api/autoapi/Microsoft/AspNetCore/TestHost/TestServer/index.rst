@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.TestHost.TestServer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.TestHost.TestServer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.BaseAddress
-    
-        
-        :rtype: System.Uri
-    
-        
-        .. code-block:: csharp
-    
-            public Uri BaseAddress
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.Host
-    
-        
-        :rtype: Microsoft.AspNetCore.Hosting.IWebHost
-    
-        
-        .. code-block:: csharp
-    
-            public IWebHost Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.Microsoft.AspNetCore.Hosting.Server.IServer.Features
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            IFeatureCollection IServer.Features
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,6 +71,45 @@ Constructors
         .. code-block:: csharp
     
             public TestServer(IWebHostBuilder builder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.TestHost.TestServer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.BaseAddress
+    
+        
+        :rtype: System.Uri
+    
+        
+        .. code-block:: csharp
+    
+            public Uri BaseAddress { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.Host
+    
+        
+        :rtype: Microsoft.AspNetCore.Hosting.IWebHost
+    
+        
+        .. code-block:: csharp
+    
+            public IWebHost Host { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.TestHost.TestServer.Microsoft.AspNetCore.Hosting.Server.IServer.Features
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            IFeatureCollection IServer.Features { get; }
     
 
 Methods

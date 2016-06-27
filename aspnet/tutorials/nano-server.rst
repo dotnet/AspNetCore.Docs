@@ -40,134 +40,75 @@ Open an elevated PowerShell window to add your remote Nano Server instance to yo
 
 .. code:: ps1
 
-  $ip = "10.83.181.14" # replace with the correct IP address
-  Set-Item WSMan:\localhost\Client\TrustedHosts "$ip" -Concatenate -Force
+  $nanoServerIpAddress = "10.83.181.14"
+  Set-Item WSMan:\localhost\Client\TrustedHosts "$nanoServerIpAddress" -Concatenate -Force
+
+``NOTE:`` Replace the variable ``$nanoServerIpAddress`` with the correct IP address.
 
 Once you have added your Nano Server instance to your ``TrustedHosts``, you can connect to it using PowerShell remoting
 
 .. code:: ps1
 
-  $ip = "10.83.181.14" # replace with the correct IP address
-  $s = New-PSSession -ComputerName $ip -Credential ~\Administrator
-  Enter-PSSession $s
+  $nanoServerSession = New-PSSession -ComputerName $nanoServerIpAddress -Credential ~\Administrator
+  Enter-PSSession $nanoServerSession
 
-A successful connection results in a prompt with the following format: ``[10.83.181.14]: PS C:\Users\Administrator\Documents>``
+A successful connection results in a prompt with a format looking like: ``[10.83.181.14]: PS C:\Users\Administrator\Documents>``
+
+
+Creating a file share
+---------------------
+Create a file share on the Nano server so that the published application can be copied to it. Run the following commands in the remote session:
 
 .. code:: ps1
 
-  Install-PackageProvider NanoServerPackage
-  Import-PackageProvider NanoServerPackage
-  Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
+  mkdir C:\PublishedApps\AspNetCoreSampleForNano
+  netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=yes
+  net share AspNetCoreSampleForNano=c:\PublishedApps\AspNetCoreSampleForNano /GRANT:EVERYONE`,FULL
 
+After running the above commands you should be able to access this share by visiting ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano`` in the host machine's Windows Explorer.
 
-Installing the ASP.NET Core Module
-----------------------------------
+Open port in the Firewall
+--------------------------
+Run the following commands in the remote session to open up a port in the firewall to listen for TCP traffic.
 
-The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing you will need to copy the following files:
+.. code:: ps1
 
+  New-NetFirewallRule -Name "AspNet5 IIS" -DisplayName "Allow HTTP on TCP/8000" -Protocol TCP -LocalPort 8000 -Action Allow -Enabled True
 
 Installing IIS
 --------------
 
 Add the ``NanoServerPackage`` provider from the PowerShell gallery. Once the provider is installed and imported, you can install Windows packages.
 
+Run the following commands in the PowerShell session that was created earlier:
+
 .. code:: ps1
 
   Install-PackageProvider NanoServerPackage
   Import-PackageProvider NanoServerPackage
   Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
 
+To quickly verify if IIS is setup correctly, you can visit the url ``http://<nanoserver-ip-address>/`` and should see a welcome page. When IIS is installed, by default a web site called ``Default Web Site`` listening on port 80 is created.
 
-Installing the ASP.NET Core Module
-----------------------------------
+Installing the ASP.NET Core Module (ANCM)
+-----------------------------------------
 
-The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. Currently, installing ASP.NET Core Module requires the following script:
+The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
 
 .. code:: ps1
 
-  copy <update-this>\aspnetcore_schema.xml C:\windows\system32\inetsrv\config\schema
-  copy <update-this>\aspnetcore.dll C:\windows\system32\inetsrv
+  copy C:\windows\system32\inetsrv\aspnetcore.dll ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
+  copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
 
-  # Backup existing applicationHost.config
-  copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingANCM.config
 
-  Import-Module IISAdministration
-
-  # Initialize variables
-  $aspNetCoreHandlerFilePath="C:\windows\system32\inetsrv\aspnetcore.dll"
-  Reset-IISServerManager -confirm:$false
-  $sm = Get-IISServerManager
-
-  # Add AppSettings section 
-  $sm.GetApplicationHostConfiguration().RootSectionGroup.Sections.Add("appSettings")
-
-  # Set Allow for handlers section
-  $appHostconfig = $sm.GetApplicationHostConfiguration()
-  $section = $appHostconfig.GetSection("system.webServer/handlers")
-  $section.OverrideMode="Allow"
-
-  # Add aspNetCore section to system.webServer
-  $sectionaspNetCore = $appHostConfig.RootSectionGroup.SectionGroups["system.webServer"].Sections.Add("aspNetCore")
-  $sectionaspNetCore.OverrideModeDefault = "Allow"
-  $sm.CommitChanges()
-
-  # Configure globalModule
-  Reset-IISServerManager -confirm:$false
-  $globalModules = Get-IISConfigSection "system.webServer/globalModules" | Get-IISConfigCollection
-  New-IISConfigCollectionElement $globalModules -ConfigAttribute @{"name"="AspNetCoreModule";"image"=$aspNetCoreHandlerFilePath}
-
-  # Configure module
-  $modules = Get-IISConfigSection "system.webServer/modules" | Get-IISConfigCollection
-  New-IISConfigCollectionElement $modules -ConfigAttribute @{"name"="AspNetCoreModule"}
-
-  # Backup existing applicationHost.config
-  copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_AfterInstallingANCM.config  
-  
-
-Enabling the ASP.NET Core Module
---------------------------------
-
-Execute the following PowerShell script in a remote PowerShell session to enable the HttpPlatformHandler module on the Nano server.
-
-.. note:: This script runs on a clean system but is not idempotent. Entries are added each time the script is run. You can restore *applicationHost.config* with backups from *%systemdrive%\inetpub\history*.
+Run the following script in the remote session:
 
 .. literalinclude:: nano-server/enable-ancm.ps1
-  :language: ps1
 
-Manually Editing *applicationHost.config*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Skip this section if you ran the PowerShell script above. Running the PowerShell script above is the recommended approach to enabling the ASP.NET Core Module; alternatively you can edit the *applicationHost.config* file.
-
-Open up *C:\\Windows\\System32\\inetsrv\\config\\applicationHost.config*
-
-Under ``<configSections>`` add
-
-.. literalinclude:: nano-server/applicationHost.config
-  :language: xml
-  :lines: 42-43
-  :dedent: 4
-  :emphasize-lines: 2
-
-In the ``system.webServer`` section group, update the handlers section to allow the configured handlers to be overridden.
-
-.. literalinclude:: nano-server/applicationHost.config
-  :language: xml
-  :lines: 55,63
-  :dedent: 8
-  :emphasize-lines: 2
-
-Additionally, add ``ASP.NET Core Module`` to the ``modules`` section
-
-.. literalinclude:: nano-server/applicationHost.config
-  :language: xml
-  :lines: 275,286
-  :dedent: 8
-  :emphasize-lines: 2  
+``NOTE:`` Delete the files ``aspnetcore.dll`` and ``aspnetcore_schema.xml`` from the share after the above step.
 
 Installing .NET Core Framework
 ------------------------------
-
 If you published a portable app, .NET Core must be installed on the target machine. Execute the following Powershell script in a remote Powershell session to install the .NET Framework on your Nano Server.
 
 .. literalinclude:: nano-server/Download-Dotnet.ps1
@@ -175,53 +116,35 @@ If you published a portable app, .NET Core must be installed on the target machi
 
 Publishing the application
 --------------------------
+Copy over the published output of your existing application to the file share. 
 
-Copy over the published output of your existing application to the Nano server. You may need to make changes to your *web.config* to point to where you extracted ``dotnet.exe``. Alternatively, you can add ``dotnet.exe`` to your path.
+You may need to make changes to your *web.config* to point to where you extracted ``dotnet.exe``. Alternatively, you can add ``dotnet.exe`` to your path.
 
-.. code:: ps1
+Example of how a web.config might look like if ``dotnet.exe`` was **not** on the path:
 
-  $ip = "10.83.181.14" # replace with the correct IP address
-  $s = New-PSSession -ComputerName $ip -Credential ~\Administrator
-  Copy-Item -ToSession $s -Path <path-to-src>\bin\output\ -Destination C:\HelloAspNetCore -Recurse
-  
-You may also need to make the following OS changes:
+.. code:: xml
 
-.. code:: ps1
+  <?xml version="1.0" encoding="utf-8"?>
+  <configuration>
+    <system.webServer>
+      <handlers>
+        <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
+      </handlers>
+      <aspNetCore processPath="C:\dotnet\dotnet.exe" arguments=".\AspNetCoreSampleForNano.dll" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout" forwardWindowsAuthToken="true" />
+    </system.webServer>
+  </configuration>
 
-  netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=yes
-  net share musicstore=c:\deployed\musicstore /GRANT:EVERYONE`,FULL
-
-Use the following PowerShell snippet to create a new site in IIS for the published app. This script uses the ``DefaultAppPool`` for simplicity. For more considerations on running under an application pool, see :ref:`apppool`.
+Run the following commands in the remote session to create a new site in IIS for the published app. This script uses the ``DefaultAppPool`` for simplicity. For more considerations on running under an application pool, see :ref:`apppool`.
 
 .. code:: powershell
 
   Import-module IISAdministration
-  New-IISSite -Name "AspNetCore" -PhysicalPath c:\HelloAspNetCore\ -BindingInformation "*:8000:"
-
-Manually Editing *applicationHost.config*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can also create the site by manually editing the *applicationHost.config* file.
-
-.. literalinclude:: nano-server/applicationHost.config
-  :language: xml
-  :lines: 152,161-168,175
-  :dedent: 8
-  :emphasize-lines: 2-9
-
-Open a Port in the Firewall
----------------------------
-
-Since we have IIS listening on port **8000** and forwarding request to our application, we will need open up the port to TCP traffic.
-
-.. code:: ps1
-
-  New-NetFirewallRule -Name "AspNet5" -DisplayName "HTTP on TCP/8000" -Protocol TCP -LocalPort 8000 -Action Allow -Enabled True
+  New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:8000:"
 
 Running the Application
 -----------------------
 
-The published web app should be accessible in browser at ``http://<ip-address>:8000``.
-If you have set up logging as described in :ref:`log-redirection`, you should be able to view your logs at *C:\\HelloAspNetCore\\logs*.
+The published web app should be accessible in browser at ``http://<nanoserver-ip-address>:8000``.
+If you have set up logging as described in :ref:`log-redirection`, you should be able to view your logs at *C:\\PublishedApps\\AspNetCoreSampleForNano\\logs*.
 
 

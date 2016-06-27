@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ISystemClock Clock
-            {
-                get;
-                set;
-            }
+            public ISystemClock Clock { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.CompactOnMemoryPressure
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool CompactOnMemoryPressure
-            {
-                get;
-                set;
-            }
+            public bool CompactOnMemoryPressure { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.ExpirationScanFrequency
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan ExpirationScanFrequency
-            {
-                get;
-                set;
-            }
+            public TimeSpan ExpirationScanFrequency { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Caching.Memory.MemoryCacheOptions>.Value
     
@@ -110,9 +98,6 @@ Properties
         
         .. code-block:: csharp
     
-            MemoryCacheOptions IOptions<MemoryCacheOptions>.Value
-            {
-                get;
-            }
+            MemoryCacheOptions IOptions<MemoryCacheOptions>.Value { get; }
     
 

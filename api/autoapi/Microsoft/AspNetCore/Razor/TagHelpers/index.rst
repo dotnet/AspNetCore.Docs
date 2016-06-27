@@ -27,6 +27,10 @@ Microsoft.AspNetCore.Razor.TagHelpers Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/TagHelpers/HtmlAttributeValueStyle/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/TagHelpers/HtmlTargetElementAttribute/index
    
    
@@ -165,6 +169,10 @@ Microsoft.AspNetCore.Razor.TagHelpers Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -174,6 +182,16 @@ Microsoft.AspNetCore.Razor.TagHelpers Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Razor.TagHelpers
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ITagHelper`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper
+
+        
+        Contract used to filter matching HTML elements.
 
 
     .. rubric:: Classes
@@ -281,6 +299,12 @@ Microsoft.AspNetCore.Razor.TagHelpers Namespace
     .. rubric:: Enumerations
 
 
+    enum :dn:enum:`HtmlAttributeValueStyle`
+        .. object: type=enum name=Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
+
+        
+
+
     enum :dn:enum:`TagMode`
         .. object: type=enum name=Microsoft.AspNetCore.Razor.TagHelpers.TagMode
 
@@ -293,15 +317,5 @@ Microsoft.AspNetCore.Razor.TagHelpers Namespace
 
         
         The structure the element should be written in.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ITagHelper`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper
-
-        
-        Contract used to filter matching HTML elements.
 
 

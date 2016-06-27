@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.Pages
-    
-        
-    
-        
-        Gets the backing buffer.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferPage<Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferPage>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<ViewBufferPage> Pages
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,55 +93,6 @@ Constructors
         .. code-block:: csharp
     
             public ViewBuffer(IViewBufferScope bufferScope, string name, int pageSize)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.PartialViewPageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int PartialViewPageSize
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.TagHelperPageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int TagHelperPageSize
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.ViewComponentPageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int ViewComponentPageSize
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.ViewPageSize
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int ViewPageSize
     
 
 Methods
@@ -292,5 +216,78 @@ Methods
         .. code-block:: csharp
     
             public Task WriteToAsync(TextWriter writer, HtmlEncoder encoder)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.PartialViewPageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int PartialViewPageSize
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.TagHelperPageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int TagHelperPageSize
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.ViewComponentPageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int ViewComponentPageSize
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.ViewPageSize
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int ViewPageSize
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBuffer.Pages
+    
+        
+    
+        
+        Gets the backing buffer.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferPage<Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewBufferPage>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<ViewBufferPage> Pages { get; }
     
 

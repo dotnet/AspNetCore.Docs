@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator.PropertyName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string PropertyName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator.TypeName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TypeName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -167,5 +132,34 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator.PropertyName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string PropertyName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectParameterGenerator.TypeName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TypeName { get; }
     
 

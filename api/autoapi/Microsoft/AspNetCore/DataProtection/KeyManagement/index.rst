@@ -80,23 +80,6 @@ Microsoft.AspNetCore.DataProtection.KeyManagement Namespace
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.KeyManagement
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`KeyManagementOptions`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions
-
-        
-        Options that control how an :any:`Microsoft.AspNetCore.DataProtection.KeyManagement.IKeyManager` should behave.
-
-
-    class :dn:cls:`XmlKeyManager`
-        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
-
-        
-        A key manager backed by an :any:`Microsoft.AspNetCore.DataProtection.Repositories.IXmlRepository`\.
-
-
     .. rubric:: Interfaces
 
 
@@ -119,5 +102,22 @@ Microsoft.AspNetCore.DataProtection.KeyManagement Namespace
 
         
         The basic interface for performing key management operations.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`KeyManagementOptions`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions
+
+        
+        Options that control how an :any:`Microsoft.AspNetCore.DataProtection.KeyManagement.IKeyManager` should behave.
+
+
+    class :dn:cls:`XmlKeyManager`
+        .. object: type=class name=Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager
+
+        
+        A key manager backed by an :any:`Microsoft.AspNetCore.DataProtection.Repositories.IXmlRepository`\.
 
 

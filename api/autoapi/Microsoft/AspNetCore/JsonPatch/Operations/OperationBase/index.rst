@@ -52,74 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.OperationType
-    
-        
-        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.OperationType
-    
-        
-        .. code-block:: csharp
-    
-            [JsonIgnore]
-            public OperationType OperationType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.from
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [JsonProperty("from")]
-            public string from
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.op
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [JsonProperty("op")]
-            public string op
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [JsonProperty("path")]
-            public string path
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -154,6 +86,59 @@ Constructors
         .. code-block:: csharp
     
             public OperationBase(string op, string path, string from)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.OperationType
+    
+        
+        :rtype: Microsoft.AspNetCore.JsonPatch.Operations.OperationType
+    
+        
+        .. code-block:: csharp
+    
+            [JsonIgnore]
+            public OperationType OperationType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.from
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [JsonProperty("from")]
+            public string from { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.op
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [JsonProperty("op")]
+            public string op { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.OperationBase.path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [JsonProperty("path")]
+            public string path { get; set; }
     
 
 Methods

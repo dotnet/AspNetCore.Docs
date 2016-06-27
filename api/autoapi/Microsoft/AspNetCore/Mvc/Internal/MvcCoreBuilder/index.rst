@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder.PartManager
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager
-    
-        
-        .. code-block:: csharp
-    
-            public ApplicationPartManager PartManager
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder.Services
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceCollection Services
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -122,5 +87,34 @@ Constructors
         .. code-block:: csharp
     
             public MvcCoreBuilder(IServiceCollection services, ApplicationPartManager manager)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder.PartManager
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager
+    
+        
+        .. code-block:: csharp
+    
+            public ApplicationPartManager PartManager { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.MvcCoreBuilder.Services
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceCollection Services { get; }
     
 

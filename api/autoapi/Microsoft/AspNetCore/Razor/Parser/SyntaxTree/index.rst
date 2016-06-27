@@ -19,10 +19,6 @@ Microsoft.AspNetCore.Razor.Parser.SyntaxTree Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Razor/Parser/SyntaxTree/AutoCompleteEditHandler/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Razor/Parser/SyntaxTree/Block/index
    
    
@@ -97,10 +93,6 @@ Microsoft.AspNetCore.Razor.Parser.SyntaxTree Namespace
    
    
    
-   
-   
-   
-   
 
 
 
@@ -113,12 +105,6 @@ Microsoft.AspNetCore.Razor.Parser.SyntaxTree Namespace
 
 
     .. rubric:: Classes
-
-
-    class :dn:cls:`AutoCompleteEditHandler`
-        .. object: type=class name=Microsoft.AspNetCore.Razor.Parser.SyntaxTree.AutoCompleteEditHandler
-
-        
 
 
     class :dn:cls:`Block`

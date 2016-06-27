@@ -115,6 +115,10 @@ Microsoft.Extensions.DependencyInjection.Specification.Fakes Namespace
    
    
    
+   /autoapi/Microsoft/Extensions/DependencyInjection/Specification/Fakes/PocoClass/index
+   
+   
+   
    /autoapi/Microsoft/Extensions/DependencyInjection/Specification/Fakes/ScopedFactoryService/index
    
    
@@ -261,6 +265,10 @@ Microsoft.Extensions.DependencyInjection.Specification.Fakes Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -270,6 +278,69 @@ Microsoft.Extensions.DependencyInjection.Specification.Fakes Namespace
 
 
 .. dn:namespace:: Microsoft.Extensions.DependencyInjection.Specification.Fakes
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IFactoryService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
+
+        
+
+
+    interface :dn:iface:`IFakeEveryService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeEveryService
+
+        
+
+
+    interface :dn:iface:`IFakeMultipleService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService
+
+        
+
+
+    interface :dn:iface:`IFakeOpenGenericService\<TValue>`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeOpenGenericService\<TValue>
+
+        
+
+
+    interface :dn:iface:`IFakeOuterService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeOuterService
+
+        
+
+
+    interface :dn:iface:`IFakeScopedService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeScopedService
+
+        
+
+
+    interface :dn:iface:`IFakeService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+
+        
+
+
+    interface :dn:iface:`IFakeServiceInstance`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeServiceInstance
+
+        
+
+
+    interface :dn:iface:`IFakeSingletonService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeSingletonService
+
+        
+
+
+    interface :dn:iface:`INonexistentService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.INonexistentService
+
+        
 
 
     .. rubric:: Classes
@@ -365,6 +436,12 @@ Microsoft.Extensions.DependencyInjection.Specification.Fakes Namespace
         
 
 
+    class :dn:cls:`PocoClass`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.PocoClass
+
+        
+
+
     class :dn:cls:`ScopedFactoryService`
         .. object: type=class name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.ScopedFactoryService
 
@@ -385,69 +462,6 @@ Microsoft.Extensions.DependencyInjection.Specification.Fakes Namespace
 
     class :dn:cls:`TypeWithSupersetConstructors`
         .. object: type=class name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.TypeWithSupersetConstructors
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IFactoryService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFactoryService
-
-        
-
-
-    interface :dn:iface:`IFakeEveryService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeEveryService
-
-        
-
-
-    interface :dn:iface:`IFakeMultipleService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeMultipleService
-
-        
-
-
-    interface :dn:iface:`IFakeOpenGenericService\<TValue>`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeOpenGenericService\<TValue>
-
-        
-
-
-    interface :dn:iface:`IFakeOuterService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeOuterService
-
-        
-
-
-    interface :dn:iface:`IFakeScopedService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeScopedService
-
-        
-
-
-    interface :dn:iface:`IFakeService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-
-        
-
-
-    interface :dn:iface:`IFakeServiceInstance`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeServiceInstance
-
-        
-
-
-    interface :dn:iface:`IFakeSingletonService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeSingletonService
-
-        
-
-
-    interface :dn:iface:`INonexistentService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.Specification.Fakes.INonexistentService
 
         
 

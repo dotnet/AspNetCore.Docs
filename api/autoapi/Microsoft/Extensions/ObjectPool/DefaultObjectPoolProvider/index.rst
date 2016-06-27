@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider.MaximumRetained
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaximumRetained
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -96,5 +73,24 @@ Methods
         .. code-block:: csharp
     
             public override ObjectPool<T> Create<T>(IPooledObjectPolicy<T> policy)where T : class
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider.MaximumRetained
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaximumRetained { get; set; }
     
 

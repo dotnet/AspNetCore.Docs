@@ -71,6 +71,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddWebApiConventions(IMvcBuilder builder)
+            public static IMvcBuilder AddWebApiConventions(this IMvcBuilder builder)
     
 

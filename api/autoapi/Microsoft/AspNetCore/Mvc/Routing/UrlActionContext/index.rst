@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Action
-            {
-                get;
-                set;
-            }
+            public string Action { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Controller
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Controller
-            {
-                get;
-                set;
-            }
+            public string Controller { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Fragment
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Fragment
-            {
-                get;
-                set;
-            }
+            public string Fragment { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Host
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Host
-            {
-                get;
-                set;
-            }
+            public string Host { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Protocol
     
@@ -154,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Protocol
-            {
-                get;
-                set;
-            }
+            public string Protocol { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlActionContext.Values
     
@@ -174,10 +154,6 @@ Properties
         
         .. code-block:: csharp
     
-            public object Values
-            {
-                get;
-                set;
-            }
+            public object Values { get; set; }
     
 

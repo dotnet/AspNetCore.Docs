@@ -78,11 +78,22 @@ Properties
         
         .. code-block:: csharp
     
-            public string CreateModelExpressionMethodName
-            {
-                get;
-                set;
-            }
+            public string CreateModelExpressionMethodName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.GeneratedTagHelperAttributeContext.ModelExpressionProviderPropertyName
+    
+        
+    
+        
+        Gets or sets the name of the <code>IModelExpressionProvider</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ModelExpressionProviderPropertyName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.GeneratedTagHelperAttributeContext.ModelExpressionTypeName
     
@@ -97,10 +108,21 @@ Properties
         
         .. code-block:: csharp
     
-            public string ModelExpressionTypeName
-            {
-                get;
-                set;
-            }
+            public string ModelExpressionTypeName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.GeneratedTagHelperAttributeContext.ViewDataPropertyName
+    
+        
+    
+        
+        Gets or sets the property name of the <code>ViewDataDictionary</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ViewDataPropertyName { get; set; }
     
 

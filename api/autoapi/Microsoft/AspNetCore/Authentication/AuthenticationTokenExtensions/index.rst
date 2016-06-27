@@ -74,7 +74,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<string> GetTokenAsync(AuthenticationManager manager, string tokenName)
+            public static Task<string> GetTokenAsync(this AuthenticationManager manager, string tokenName)
     
     .. dn:method:: Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenAsync(Microsoft.AspNetCore.Http.Authentication.AuthenticationManager, System.String, System.String)
     
@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<string> GetTokenAsync(AuthenticationManager manager, string signInScheme, string tokenName)
+            public static Task<string> GetTokenAsync(this AuthenticationManager manager, string signInScheme, string tokenName)
     
     .. dn:method:: Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue(Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties, System.String)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static string GetTokenValue(AuthenticationProperties properties, string tokenName)
+            public static string GetTokenValue(this AuthenticationProperties properties, string tokenName)
     
     .. dn:method:: Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokens(Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties)
     
@@ -122,7 +122,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<AuthenticationToken> GetTokens(AuthenticationProperties properties)
+            public static IEnumerable<AuthenticationToken> GetTokens(this AuthenticationProperties properties)
     
     .. dn:method:: Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.StoreTokens(Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Authentication.AuthenticationToken>)
     
@@ -137,6 +137,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void StoreTokens(AuthenticationProperties properties, IEnumerable<AuthenticationToken> tokens)
+            public static void StoreTokens(this AuthenticationProperties properties, IEnumerable<AuthenticationToken> tokens)
     
 

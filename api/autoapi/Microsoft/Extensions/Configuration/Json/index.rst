@@ -70,6 +70,6 @@ Microsoft.Extensions.Configuration.Json Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.Json.JsonConfigurationSource
 
         
-        A JSON file based :any:`Microsoft.Extensions.Configuration.FileConfigurationSource`\.
+        Represents a JSON file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 

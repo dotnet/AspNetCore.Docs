@@ -57,88 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.DisplayName
-    
-        
-    
-        
-        Gets the display name for the source.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DisplayName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Id
-    
-        
-    
-        
-        Gets the unique identifier for the source. Sources are compared based on their Id.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Id
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsFromRequest
-    
-        
-    
-        
-        Gets a value indicating whether or not the binding source uses input from the current HTTP request.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsFromRequest
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsGreedy
-    
-        
-    
-        
-        Gets a value indicating whether or not a source is greedy. A greedy source will bind a model in
-        a single operation, and will not decompose the model into sub-properties.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsGreedy
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -181,6 +99,114 @@ Constructors
         .. code-block:: csharp
     
             public BindingSource(string id, string displayName, bool isGreedy, bool isFromRequest)
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.CanAcceptDataFrom(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    
+        
+    
+        
+        Gets a value indicating whether or not the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` can accept
+        data from <em>bindingSource</em>.
+    
+        
+    
+        
+        :param bindingSource: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` to consider as input.
+        
+        :type bindingSource: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+        :rtype: System.Boolean
+        :return: <code>True</code> if the source is compatible, otherwise <code>false</code>.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool CanAcceptDataFrom(BindingSource bindingSource)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Equals(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    
+        
+    
+        
+        :type other: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Equals(BindingSource other)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Equals(System.Object)
+    
+        
+    
+        
+        :type obj: System.Object
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool Equals(object obj)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.GetHashCode()
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int GetHashCode()
+    
+
+Operators
+---------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Equality(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource, Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    
+        
+    
+        
+        :type s1: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    
+        
+        :type s2: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(BindingSource s1, BindingSource s2)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Inequality(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource, Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    
+        
+    
+        
+        :type s1: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+    
+        
+        :type s2: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(BindingSource s1, BindingSource s2)
     
 
 Fields
@@ -313,70 +339,73 @@ Fields
             public static readonly BindingSource Services
     
 
-Methods
--------
+Properties
+----------
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
     :noindex:
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.CanAcceptDataFrom(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.DisplayName
     
         
     
         
-        Gets a value indicating whether or not the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` can accept
-        data from <em>bindingSource</em>.
+        Gets the display name for the source.
     
         
-    
-        
-        :param bindingSource: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` to consider as input.
-        
-        :type bindingSource: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
-        :rtype: System.Boolean
-        :return: <code>True</code> if the source is compatible, otherwise <code>false</code>.
+        :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public virtual bool CanAcceptDataFrom(BindingSource bindingSource)
+            public string DisplayName { get; }
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Equals(Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource)
-    
-        
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Id
     
         
-        :type other: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource
-        :rtype: System.Boolean
+    
+        
+        Gets the unique identifier for the source. Sources are compared based on their Id.
+    
+        
+        :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public bool Equals(BindingSource other)
+            public string Id { get; }
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Equals(System.Object)
-    
-        
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsFromRequest
     
         
-        :type obj: System.Object
+    
+        
+        Gets a value indicating whether or not the binding source uses input from the current HTTP request.
+    
+        
         :rtype: System.Boolean
     
         
         .. code-block:: csharp
     
-            public override bool Equals(object obj)
+            public bool IsFromRequest { get; }
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.GetHashCode()
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.IsGreedy
     
         
-        :rtype: System.Int32
+    
+        
+        Gets a value indicating whether or not a source is greedy. A greedy source will bind a model in
+        a single operation, and will not decompose the model into sub-properties.
+    
+        
+        :rtype: System.Boolean
     
         
         .. code-block:: csharp
     
-            public override int GetHashCode()
+            public bool IsGreedy { get; }
     
 

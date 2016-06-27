@@ -8,7 +8,7 @@ HtmlFormattableString Class
 
 
 
-An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation of composite string formatting 
+An :any:`Microsoft.AspNetCore.Html.IHtmlContent` implementation of composite string formatting
 (see https://msdn.microsoft.com/en-us/library/txafckwd(v=vs.110).aspx) which HTML encodes
 formatted arguments.
 

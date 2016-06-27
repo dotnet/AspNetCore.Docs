@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider.PrefixContainer
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.PrefixContainer
-    
-        
-        .. code-block:: csharp
-    
-            protected PrefixContainer PrefixContainer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -145,5 +123,24 @@ Methods
         .. code-block:: csharp
     
             public override ValueProviderResult GetValue(string key)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.RouteValueProvider.PrefixContainer
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.PrefixContainer
+    
+        
+        .. code-block:: csharp
+    
+            protected PrefixContainer PrefixContainer { get; }
     
 

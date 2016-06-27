@@ -1,5 +1,5 @@
 ﻿using FiltersSample.Filters;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers
 {

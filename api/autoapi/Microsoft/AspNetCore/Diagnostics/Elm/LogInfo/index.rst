@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ActivityContext ActivityContext
-            {
-                get;
-                set;
-            }
+            public ActivityContext ActivityContext { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.EventID
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int EventID
-            {
-                get;
-                set;
-            }
+            public int EventID { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.Exception
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Exception Exception
-            {
-                get;
-                set;
-            }
+            public Exception Exception { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.Message
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Message
-            {
-                get;
-                set;
-            }
+            public string Message { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.Name
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.Severity
     
@@ -138,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LogLevel Severity
-            {
-                get;
-                set;
-            }
+            public LogLevel Severity { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.State
     
@@ -152,11 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object State
-            {
-                get;
-                set;
-            }
+            public object State { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.LogInfo.Time
     
@@ -166,10 +138,6 @@ Properties
         
         .. code-block:: csharp
     
-            public DateTimeOffset Time
-            {
-                get;
-                set;
-            }
+            public DateTimeOffset Time { get; set; }
     
 

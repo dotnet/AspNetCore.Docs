@@ -99,7 +99,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template)
+            public static IRouteBuilder MapAreaRoute(this IRouteBuilder routeBuilder, string name, string areaName, string template)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.String, System.Object)
     
@@ -144,7 +144,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults)
+            public static IRouteBuilder MapAreaRoute(this IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.String, System.Object, System.Object)
     
@@ -196,7 +196,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints)
+            public static IRouteBuilder MapAreaRoute(this IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute(Microsoft.AspNetCore.Routing.IRouteBuilder, System.String, System.String, System.String, System.Object, System.Object, System.Object)
     
@@ -255,6 +255,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IRouteBuilder MapAreaRoute(IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints, object dataTokens)
+            public static IRouteBuilder MapAreaRoute(this IRouteBuilder routeBuilder, string name, string areaName, string template, object defaults, object constraints, object dataTokens)
     
 

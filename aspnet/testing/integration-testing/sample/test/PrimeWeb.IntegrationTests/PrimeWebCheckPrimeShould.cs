@@ -1,10 +1,8 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNet.TestHost;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using Xunit;
-using PrimeWeb.Services;
 
 namespace PrimeWeb.IntegrationTests
 {
@@ -15,7 +13,7 @@ namespace PrimeWeb.IntegrationTests
         public PrimeWebCheckPrimeShould()
         {
             // Arrange
-            _server = new TestServer(TestServer.CreateBuilder()
+            _server = new TestServer(new WebHostBuilder()
                 .UseStartup<Startup>());
             _client = _server.CreateClient();
         }
@@ -23,8 +21,8 @@ namespace PrimeWeb.IntegrationTests
         private async Task<string> GetCheckPrimeResponseString(
             string querystring = "")
         {
-            string request = "/checkprime";
-            if(!String.IsNullOrEmpty(querystring))
+            var request = "/checkprime";
+            if(!string.IsNullOrEmpty(querystring))
             {
                 request += "?" + querystring;
             }

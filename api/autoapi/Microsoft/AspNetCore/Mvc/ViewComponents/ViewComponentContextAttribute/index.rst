@@ -8,7 +8,7 @@ ViewComponentContextAttribute Class
 
 
 
-Specifies that a controller property should be set with the current
+Specifies that a controller property should be set with the current 
 :any:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext` when creating the view component. The property must have a public
 set method.
 

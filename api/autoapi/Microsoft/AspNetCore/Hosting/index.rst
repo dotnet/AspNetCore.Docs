@@ -15,7 +15,19 @@ Microsoft.AspNetCore.Hosting Namespace
 
    
    
+   /autoapi/Microsoft/AspNetCore/Hosting/ConventionBasedStartup/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/DelegateStartup/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Hosting/EnvironmentName/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/HostingAbstractionsWebHostBuilderExtensions/index
    
    
    
@@ -28,6 +40,10 @@ Microsoft.AspNetCore.Hosting Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/IStartup/index
    
    
    
@@ -48,6 +64,10 @@ Microsoft.AspNetCore.Hosting Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Hosting/KestrelServerOptionsHttpsExtensions/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Hosting/StartupBase/index
    
    
    
@@ -157,6 +177,26 @@ Microsoft.AspNetCore.Hosting Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -168,7 +208,62 @@ Microsoft.AspNetCore.Hosting Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Hosting
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IApplicationLifetime`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IApplicationLifetime
+
+        
+        Allows consumers to perform cleanup during a graceful shutdown.
+
+
+    interface :dn:iface:`IHostingEnvironment`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IHostingEnvironment
+
+        
+        Provides information about the web hosting environment an application is running in.
+
+
+    interface :dn:iface:`IStartup`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IStartup
+
+        
+
+
+    interface :dn:iface:`IStartupFilter`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IStartupFilter
+
+        
+
+
+    interface :dn:iface:`IWebHost`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IWebHost
+
+        
+        Represents a configured web host.
+
+
+    interface :dn:iface:`IWebHostBuilder`
+        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IWebHostBuilder
+
+        
+        A builder for :any:`Microsoft.AspNetCore.Hosting.IWebHost`\.
+
+
     .. rubric:: Classes
+
+
+    class :dn:cls:`ConventionBasedStartup`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.ConventionBasedStartup
+
+        
+
+
+    class :dn:cls:`DelegateStartup`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.DelegateStartup
+
+        
 
 
     class :dn:cls:`EnvironmentName`
@@ -176,6 +271,12 @@ Microsoft.AspNetCore.Hosting Namespace
 
         
         Commonly used environment names.
+
+
+    class :dn:cls:`HostingAbstractionsWebHostBuilderExtensions`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions
+
+        
 
 
     class :dn:cls:`HostingEnvironmentExtensions`
@@ -193,6 +294,12 @@ Microsoft.AspNetCore.Hosting Namespace
 
     class :dn:cls:`KestrelServerOptionsHttpsExtensions`
         .. object: type=class name=Microsoft.AspNetCore.Hosting.KestrelServerOptionsHttpsExtensions
+
+        
+
+
+    class :dn:cls:`StartupBase`
+        .. object: type=class name=Microsoft.AspNetCore.Hosting.StartupBase
 
         
 
@@ -238,42 +345,5 @@ Microsoft.AspNetCore.Hosting Namespace
         .. object: type=class name=Microsoft.AspNetCore.Hosting.WebHostExtensions
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IApplicationLifetime`
-        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IApplicationLifetime
-
-        
-        Allows consumers to perform cleanup during a graceful shutdown.
-
-
-    interface :dn:iface:`IHostingEnvironment`
-        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IHostingEnvironment
-
-        
-        Provides information about the web hosting environment an application is running in.
-
-
-    interface :dn:iface:`IStartupFilter`
-        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IStartupFilter
-
-        
-
-
-    interface :dn:iface:`IWebHost`
-        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IWebHost
-
-        
-        Represents a configured web host.
-
-
-    interface :dn:iface:`IWebHostBuilder`
-        .. object: type=interface name=Microsoft.AspNetCore.Hosting.IWebHostBuilder
-
-        
-        A builder for :any:`Microsoft.AspNetCore.Hosting.IWebHost`\.
 
 

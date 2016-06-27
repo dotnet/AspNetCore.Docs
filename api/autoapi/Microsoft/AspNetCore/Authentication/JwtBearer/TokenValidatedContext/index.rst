@@ -55,29 +55,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext.SecurityToken
-    
-        
-        :rtype: Microsoft.IdentityModel.Tokens.SecurityToken
-    
-        
-        .. code-block:: csharp
-    
-            public SecurityToken SecurityToken
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -100,5 +77,24 @@ Constructors
         .. code-block:: csharp
     
             public TokenValidatedContext(HttpContext context, JwtBearerOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext.SecurityToken
+    
+        
+        :rtype: Microsoft.IdentityModel.Tokens.SecurityToken
+    
+        
+        .. code-block:: csharp
+    
+            public SecurityToken SecurityToken { get; set; }
     
 

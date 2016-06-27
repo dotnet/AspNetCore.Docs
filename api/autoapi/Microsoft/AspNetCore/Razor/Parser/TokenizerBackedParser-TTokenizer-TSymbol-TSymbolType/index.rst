@@ -53,121 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.CurrentLocation
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            protected SourceLocation CurrentLocation
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.CurrentSymbol
-    
-        
-        :rtype: TSymbol
-    
-        
-        .. code-block:: csharp
-    
-            protected TSymbol CurrentSymbol
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.EndOfFile
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool EndOfFile
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Language
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics<Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics`3>{TTokenizer, TSymbol, TSymbolType}
-    
-        
-        .. code-block:: csharp
-    
-            protected abstract LanguageCharacteristics<TTokenizer, TSymbol, TSymbolType> Language
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.PreviousSymbol
-    
-        
-        :rtype: TSymbol
-    
-        
-        .. code-block:: csharp
-    
-            protected TSymbol PreviousSymbol
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Span
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder
-    
-        
-        .. code-block:: csharp
-    
-            protected SpanBuilder Span
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.SpanConfig
-    
-        
-        :rtype: System.Action<System.Action`1>{Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder>}
-    
-        
-        .. code-block:: csharp
-    
-            protected Action<SpanBuilder> SpanConfig
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Tokenizer
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView`3>{TTokenizer, TSymbol, TSymbolType}
-    
-        
-        .. code-block:: csharp
-    
-            protected TokenizerView<TTokenizer, TSymbol, TSymbolType> Tokenizer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -862,5 +747,94 @@ Methods
         .. code-block:: csharp
     
             protected bool Was(TSymbolType type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.CurrentLocation
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            protected SourceLocation CurrentLocation { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.CurrentSymbol
+    
+        
+        :rtype: TSymbol
+    
+        
+        .. code-block:: csharp
+    
+            protected TSymbol CurrentSymbol { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.EndOfFile
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool EndOfFile { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Language
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics<Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics`3>{TTokenizer, TSymbol, TSymbolType}
+    
+        
+        .. code-block:: csharp
+    
+            protected abstract LanguageCharacteristics<TTokenizer, TSymbol, TSymbolType> Language { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.PreviousSymbol
+    
+        
+        :rtype: TSymbol
+    
+        
+        .. code-block:: csharp
+    
+            protected TSymbol PreviousSymbol { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Span
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder
+    
+        
+        .. code-block:: csharp
+    
+            protected SpanBuilder Span { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.SpanConfig
+    
+        
+        :rtype: System.Action<System.Action`1>{Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SpanBuilder>}
+    
+        
+        .. code-block:: csharp
+    
+            protected Action<SpanBuilder> SpanConfig { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser<TTokenizer, TSymbol, TSymbolType>.Tokenizer
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView<Microsoft.AspNetCore.Razor.Tokenizer.TokenizerView`3>{TTokenizer, TSymbol, TSymbolType}
+    
+        
+        .. code-block:: csharp
+    
+            protected TokenizerView<TTokenizer, TSymbol, TSymbolType> Tokenizer { get; }
     
 

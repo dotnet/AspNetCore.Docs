@@ -80,6 +80,16 @@ Microsoft.AspNetCore.Mvc.Formatters.Internal Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Formatters.Internal
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IFormatFilter`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Internal.IFormatFilter
+
+        
+        A filter that produces the desired content type for the request.
+
+
     .. rubric:: Structures
 
 
@@ -112,15 +122,5 @@ Microsoft.AspNetCore.Mvc.Formatters.Internal Namespace
         .. object: type=enum name=Microsoft.AspNetCore.Mvc.Formatters.Internal.HttpParseResult
 
         
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IFormatFilter`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Formatters.Internal.IFormatFilter
-
-        
-        A filter that produces the desired content type for the request.
 
 

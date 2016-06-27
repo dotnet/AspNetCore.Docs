@@ -57,6 +57,28 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider
 
+Methods
+-------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
+    
+        
+    
+        
+        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
+    
+        
+        .. code-block:: csharp
+    
+            public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+    
+
 Properties
 ----------
 
@@ -80,32 +102,6 @@ Properties
         
         .. code-block:: csharp
     
-            public int MaximumAcceptLanguageHeaderValuesToTry
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
-    
-        
-    
-        
-        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
-    
-        
-        .. code-block:: csharp
-    
-            public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+            public int MaximumAcceptLanguageHeaderValuesToTry { get; set; }
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddDataAnnotations(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddDataAnnotations(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder)
     
@@ -104,7 +104,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddDataAnnotationsLocalization(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddDataAnnotationsLocalization(this IMvcCoreBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcCoreBuilderExtensions.AddDataAnnotationsLocalization(Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder, System.Action<Microsoft.AspNetCore.Mvc.DataAnnotations.MvcDataAnnotationsLocalizationOptions>)
     
@@ -131,6 +131,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddDataAnnotationsLocalization(IMvcCoreBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
+            public static IMvcCoreBuilder AddDataAnnotationsLocalization(this IMvcCoreBuilder builder, Action<MvcDataAnnotationsLocalizationOptions> setupAction)
     
 

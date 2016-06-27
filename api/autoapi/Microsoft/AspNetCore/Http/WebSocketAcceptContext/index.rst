@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string SubProtocol
-            {
-                get;
-                set;
-            }
+            public virtual string SubProtocol { get; set; }
     
 

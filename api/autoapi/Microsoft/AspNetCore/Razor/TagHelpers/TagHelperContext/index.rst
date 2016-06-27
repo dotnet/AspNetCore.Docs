@@ -56,69 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.AllAttributes
-    
-        
-    
-        
-        Every attribute associated with the current HTML element.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList
-    
-        
-        .. code-block:: csharp
-    
-            public ReadOnlyTagHelperAttributeList AllAttributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.Items
-    
-        
-    
-        
-        Gets the collection of items used to communicate with other :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<object, object> Items
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.UniqueId
-    
-        
-    
-        
-        An identifier unique to the HTML element this context is for.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string UniqueId
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -156,6 +93,60 @@ Constructors
         .. code-block:: csharp
     
             public TagHelperContext(TagHelperAttributeList allAttributes, IDictionary<object, object> items, string uniqueId)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.AllAttributes
+    
+        
+    
+        
+        Every attribute associated with the current HTML element.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList
+    
+        
+        .. code-block:: csharp
+    
+            public ReadOnlyTagHelperAttributeList AllAttributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.Items
+    
+        
+    
+        
+        Gets the collection of items used to communicate with other :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.Object<System.Object>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<object, object> Items { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.UniqueId
+    
+        
+    
+        
+        An identifier unique to the HTML element this context is for.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string UniqueId { get; }
     
 
 Methods

@@ -73,9 +73,6 @@ Properties
         
         .. code-block:: csharp
     
-            public override int ErrorCode
-            {
-                get;
-            }
+            public override int ErrorCode { get; }
     
 

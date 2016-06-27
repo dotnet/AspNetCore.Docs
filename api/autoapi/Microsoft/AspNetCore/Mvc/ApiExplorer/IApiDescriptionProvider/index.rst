@@ -44,34 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order
-    
-        
-    
-        
-        Gets the order value for determining the order of execution of providers. Providers execute in
-        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order` property.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -103,5 +75,30 @@ Methods
         .. code-block:: csharp
     
             void OnProvidersExecuting(ApiDescriptionProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order
+    
+        
+    
+        
+        Gets the order value for determining the order of execution of providers. Providers execute in
+        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider.Order` property.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Order { get; }
     
 

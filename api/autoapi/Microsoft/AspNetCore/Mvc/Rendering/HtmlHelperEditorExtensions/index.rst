@@ -81,7 +81,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -91,7 +91,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Editor(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent Editor(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.Editor(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -99,7 +99,7 @@ Methods
     
         
         Returns HTML markup for the <em>expression</em>, using an editor template and specified
-        additional view data. The template is found using the <em>expression</em>'s
+        additional view data. The template is found using the <em>expression</em>'s 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -111,7 +111,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -119,7 +119,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -129,7 +129,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Editor(IHtmlHelper htmlHelper, string expression, object additionalViewData)
+            public static IHtmlContent Editor(this IHtmlHelper htmlHelper, string expression, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.Editor(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -137,7 +137,7 @@ Methods
     
         
         Returns HTML markup for the <em>expression</em>, using an editor template. The template is found
-        using the <em>templateName</em> or the <em>expression</em>'s
+        using the <em>templateName</em> or the <em>expression</em>'s 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -149,7 +149,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -164,7 +164,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Editor(IHtmlHelper htmlHelper, string expression, string templateName)
+            public static IHtmlContent Editor(this IHtmlHelper htmlHelper, string expression, string templateName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.Editor(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -184,7 +184,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -197,7 +197,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -207,7 +207,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Editor(IHtmlHelper htmlHelper, string expression, string templateName, object additionalViewData)
+            public static IHtmlContent Editor(this IHtmlHelper htmlHelper, string expression, string templateName, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.Editor(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.String)
     
@@ -227,7 +227,7 @@ Methods
     
         
         :param expression: 
-            Expression name, relative to the current model. May identify a single property or an
+            Expression name, relative to the current model. May identify a single property or an 
             :any:`System.Object` that contains the properties to edit.
         
         :type expression: System.String
@@ -249,7 +249,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Editor(IHtmlHelper htmlHelper, string expression, string templateName, string htmlFieldName)
+            public static IHtmlContent Editor(this IHtmlHelper htmlHelper, string expression, string templateName, string htmlFieldName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper)
     
@@ -271,7 +271,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Object)
     
@@ -291,7 +291,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -301,7 +301,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper, object additionalViewData)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -328,7 +328,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper, string templateName)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper, string templateName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -336,7 +336,7 @@ Methods
     
         
         Returns HTML markup for the current model, using an editor template and specified additional view data. The
-        template is found using the <em>templateName</em> or the model's
+        template is found using the <em>templateName</em> or the model's 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -354,7 +354,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -364,7 +364,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper, string templateName, object additionalViewData)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper, string templateName, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -372,7 +372,7 @@ Methods
     
         
         Returns HTML markup for the current model, using an editor template and specified HTML field name. The
-        template is found using the <em>templateName</em> or the model's
+        template is found using the <em>templateName</em> or the model's 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -399,7 +399,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper, string templateName, string htmlFieldName)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper, string templateName, string htmlFieldName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -407,7 +407,7 @@ Methods
     
         
         Returns HTML markup for the current model, using an editor template, specified HTML field name, and
-        additional view data. The template is found using the <em>templateName</em> or the model's
+        additional view data. The template is found using the <em>templateName</em> or the model's 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -432,7 +432,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -442,7 +442,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorForModel(IHtmlHelper htmlHelper, string templateName, string htmlFieldName, object additionalViewData)
+            public static IHtmlContent EditorForModel(this IHtmlHelper htmlHelper, string templateName, string htmlFieldName, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -469,7 +469,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent EditorFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Object)
     
@@ -477,7 +477,7 @@ Methods
     
         
         Returns HTML markup for the <em>expression</em>, using an editor template and specified
-        additional view data. The template is found using the <em>expression</em>'s
+        additional view data. The template is found using the <em>expression</em>'s 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -495,7 +495,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -505,7 +505,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object additionalViewData)
+            public static IHtmlContent EditorFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String)
     
@@ -513,7 +513,7 @@ Methods
     
         
         Returns HTML markup for the <em>expression</em>, using an editor template. The template is found
-        using the <em>templateName</em> or the <em>expression</em>'s
+        using the <em>templateName</em> or the <em>expression</em>'s 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
     
         
@@ -538,7 +538,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName)
+            public static IHtmlContent EditorFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String, System.Object)
     
@@ -569,7 +569,7 @@ Methods
         
         :param additionalViewData: 
             An anonymous :any:`System.Object` or :any:`System.Collections.Generic.IDictionary\`2`
-            that can contain additional view data that will be merged into the
+            that can contain additional view data that will be merged into the 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\`1` instance created for the template.
         
         :type additionalViewData: System.Object
@@ -579,7 +579,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName, object additionalViewData)
+            public static IHtmlContent EditorFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName, object additionalViewData)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String, System.String)
     
@@ -619,6 +619,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent EditorFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName, string htmlFieldName)
+            public static IHtmlContent EditorFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string templateName, string htmlFieldName)
     
 

@@ -170,16 +170,6 @@ The `[HttpGet] <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/As
 
 For the ``GetById`` method,  "{id}" is a placeholder variable. In the actual HTTP request, the client will use the ID of the ``todo`` item. At runtime, when MVC invokes ``GetById``, it assigns the value of "{id}" in the URL the method's ``id`` parameter.
 
-Change the launch URL to "api/todo"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 
-- Right click on the project **> Properties**
-- Select the **Debug** tab and change the **Launch URL** to "api/todo"
-
-.. image:: first-web-api/_static/launch.png
-
-To learn more about request routing see :doc:`/mvc/controllers/routing`.
-
 Return values
 ^^^^^^^^^^^^^
 

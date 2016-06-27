@@ -56,6 +56,24 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.MvcOptions
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.MvcOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.MvcOptions.MvcOptions()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public MvcOptions()
+    
+
 Properties
 ----------
 
@@ -78,10 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, CacheProfile> CacheProfiles
-            {
-                get;
-            }
+            public IDictionary<string, CacheProfile> CacheProfiles { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.Conventions
     
@@ -97,10 +112,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IApplicationModelConvention> Conventions
-            {
-                get;
-            }
+            public IList<IApplicationModelConvention> Conventions { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.Filters
     
@@ -116,10 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public FilterCollection Filters
-            {
-                get;
-            }
+            public FilterCollection Filters { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.FormatterMappings
     
@@ -134,10 +143,7 @@ Properties
         
         .. code-block:: csharp
     
-            public FormatterMappings FormatterMappings
-            {
-                get;
-            }
+            public FormatterMappings FormatterMappings { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters
     
@@ -152,10 +158,7 @@ Properties
         
         .. code-block:: csharp
     
-            public FormatterCollection<IInputFormatter> InputFormatters
-            {
-                get;
-            }
+            public FormatterCollection<IInputFormatter> InputFormatters { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelValidationErrors
     
@@ -171,11 +174,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int MaxModelValidationErrors
-            {
-                get;
-                set;
-            }
+            public int MaxModelValidationErrors { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ModelBinderProviders
     
@@ -190,17 +189,14 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IModelBinderProvider> ModelBinderProviders
-            {
-                get;
-            }
+            public IList<IModelBinderProvider> ModelBinderProviders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ModelBindingMessageProvider
     
         
     
         
-        Gets the default :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider`\. Changes here are copied to the
+        Gets the default :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IModelBindingMessageProvider`\. Changes here are copied to the 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ModelBindingMessageProvider` property of all :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`
         instances unless overridden in a custom :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IBindingMetadataProvider`\.
     
@@ -210,10 +206,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelBindingMessageProvider ModelBindingMessageProvider
-            {
-                get;
-            }
+            public ModelBindingMessageProvider ModelBindingMessageProvider { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders
     
@@ -229,10 +222,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IMetadataDetailsProvider> ModelMetadataDetailsProviders
-            {
-                get;
-            }
+            public IList<IMetadataDetailsProvider> ModelMetadataDetailsProviders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ModelValidatorProviders
     
@@ -247,10 +237,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IModelValidatorProvider> ModelValidatorProviders
-            {
-                get;
-            }
+            public IList<IModelValidatorProvider> ModelValidatorProviders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters
     
@@ -265,10 +252,7 @@ Properties
         
         .. code-block:: csharp
     
-            public FormatterCollection<IOutputFormatter> OutputFormatters
-            {
-                get;
-            }
+            public FormatterCollection<IOutputFormatter> OutputFormatters { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader
     
@@ -284,11 +268,24 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RespectBrowserAcceptHeader
-            {
-                get;
-                set;
-            }
+            public bool RespectBrowserAcceptHeader { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable
+    
+        
+    
+        
+        Gets or sets the flag which decides whether an HTTP 406 Not Acceptable response
+        will be returned if no formatter has been selected to format the response.
+        <xref uid="langword_csharp_false" name="false" href=""></xref> by default.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool ReturnHttpNotAcceptable { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.SslPort
     
@@ -304,11 +301,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int ? SslPort
-            {
-                get;
-                set;
-            }
+            public int ? SslPort { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcOptions.ValueProviderFactories
     
@@ -323,27 +316,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IValueProviderFactory> ValueProviderFactories
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.MvcOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.MvcOptions.MvcOptions()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public MvcOptions()
+            public IList<IValueProviderFactory> ValueProviderFactories { get; }
     
 

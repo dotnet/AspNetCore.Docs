@@ -32,17 +32,18 @@ Static files can be stored in any folder under the ``web root`` and accessed wit
 
 In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the :dn:method:`~Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles` extension method from ``Startup.Configure``:
 
-.. literalinclude:: static-files/sample/Startup.cs
+.. literalinclude:: static-files/sample/StartupStaticFiles.cs
   :language: c#
-  :lines: 38-39,53-55
-  :emphasize-lines: 5
+  :start-after: >Configure
+  :end-before: <Configure
+  :emphasize-lines: 3
   :dedent: 8
 
 ``app.UseStaticFiles();`` makes the files in ``web root`` (*wwwroot* by default) servable. Later I'll show how to make other directory contents servable with ``UseStaticFiles``.
 
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
-.. note:: ``web root`` defaults to the *wwwroot* directory, but you can set the ``web root`` directory with :dn:method:`~Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseWebRoot`. See :doc:`/conceptual-overview/aspnet` for more information.
+.. note:: ``web root`` defaults to the *wwwroot* directory, but you can set the ``web root`` directory with :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot`. See :doc:`/conceptual-overview/aspnet` for more information.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the ``web root``. For example:
 
@@ -58,10 +59,11 @@ Suppose you have a project hierarchy where the static files you wish to serve ar
 
 For a request to access *test.png*, configure the static files middleware as follows:
 
-.. literalinclude:: static-files/sample/Startup.cs
+.. literalinclude:: static-files/sample/StartupTwoStaticFiles.cs
   :language: c#
-  :lines: 38-39,53-62
-  :emphasize-lines: 7-12
+  :start-after: >Configure
+  :end-before: <Configure
+  :emphasize-lines: 5-10
   :dedent: 8
 
 A request to ``http://<app>/StaticFiles/test.png`` will serve the *test.png* file.
@@ -81,8 +83,18 @@ Directory browsing allows the user of your web app to see a list of directories 
 
 .. literalinclude:: static-files/sample/StartupBrowse.cs
   :language: c#
-  :lines: 38-39,52-68
+  :start-after: >Configure
+  :end-before: <Configure
   :dedent: 8
+
+And add required services by calling :dn:method:`~Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser` extension method from  ``Startup.ConfigureServices``:
+
+.. literalinclude:: static-files/sample/StartupBrowse.cs
+  :language: c#
+  :start-after: >Services
+  :end-before: <Services
+  :dedent: 8
+
 
 The code above allows directory browsing of the *wwwroot/images* folder using the URL \http://<app>/MyImages, with links to each file and folder:
 
@@ -95,9 +107,10 @@ Note the two ``app.UseStaticFiles`` calls. The first one is required to serve th
 
 .. literalinclude:: static-files/sample/StartupBrowse.cs
   :language: c#
-  :lines: 38-39,52-68
+  :start-after: >Configure
+  :end-before: <Configure
   :dedent: 8
-  :emphasize-lines: 5,7
+  :emphasize-lines: 3,5
 
 Serving a default document
 --------------------------
@@ -106,7 +119,8 @@ Setting a default home page gives site visitors a place to start when visiting y
 
 .. literalinclude:: static-files/sample/StartupEmpty.cs
   :language: c#
-  :lines: 14-18
+  :start-after: >Configure
+  :end-before: <Configure
   :emphasize-lines: 3
   :dedent: 8
 
@@ -125,7 +139,8 @@ The following code shows how to change the default file name to *mydefault.html*
 
 .. literalinclude:: static-files/sample/StartupDefault.cs
   :language: c#
-  :lines: 14-22
+  :start-after: >Configure
+  :end-before: <Configure
   :dedent: 8
 
 UseFileServer
@@ -160,10 +175,22 @@ See Considerations_ on the security risks when enabling browsing. As with ``UseS
 
 Using the hierarchy example above, you might want to enable static files, default files, and browsing for the ``MyStaticFiles`` directory. In the following code snippet, that is accomplished with a single call to :dn:class:`~Microsoft.AspNetCore.Builder.FileServerOptions`.
 
-.. literalinclude:: static-files/sample/StartupUseFS.cs
+.. literalinclude:: static-files/sample/StartupUseFileServer.cs
   :language: c#
-  :lines: 55-61
-  :dedent: 12
+  :start-after: >Configure
+  :end-before: <Configure
+  :dedent: 8
+  :emphasize-lines: 5-11
+
+
+If ``enableDirectoryBrowsing`` is set to ``true`` you are required to call :dn:method:`~Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser` extension method from  ``Startup.ConfigureServices``:
+
+.. literalinclude:: static-files/sample/StartupUseFileServer.cs
+  :language: c#
+  :start-after: >Services
+  :end-before: <Services
+  :dedent: 8
+
 
 Using the file hierarchy and code above:
 
@@ -176,7 +203,7 @@ URI                                         Response
 
 If no default named files are in the *MyStaticFiles* directory, \http://<app>/StaticFiles returns the directory listing with clickable links:
 
-.. image:: static-files/_static/db2.PNG 
+.. image:: static-files/_static/db2.PNG
 
 .. note:: ``UseDefaultFiles`` and ``UseDirectoryBrowser`` will take the url \http://<app>/StaticFiles without the trailing slash and cause a client side redirect to \http://<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
 
@@ -185,10 +212,12 @@ FileExtensionContentTypeProvider
 
 The :dn:class:`~Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider` class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
 
-.. literalinclude:: static-files/sample/StartupFECTP.cs
+.. literalinclude:: static-files/sample/StartupFileExtensionContentTypeProvider.cs
   :language: c#
-  :lines: 57-81
-  :dedent: 12
+  :start-after: >Configure
+  :end-before: <Configure
+  :dedent: 8
+  :emphasize-lines: 3-12,19
 
 See   `MIME content types <http://www.iana.org/assignments/media-types/media-types.xhtml>`__.
 
@@ -199,10 +228,11 @@ The ASP.NET static file middleware understands almost 400 known file content typ
 
 The following code enables serving unknown types and will render the unknown file as an image.
 
-.. literalinclude:: static-files/sample/StartupUnKnown.cs
+.. literalinclude:: static-files/sample/StartupServeUnknownFileTypes.cs
   :language: c#
-  :lines: 55-59
-  :dedent: 12
+  :start-after: >Configure
+  :end-before: <Configure
+  :dedent: 8
 
 With the code above, a request for a file with an unknown content type will be returned as an image.
 

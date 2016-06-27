@@ -80,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task DrainAsync(Stream stream, ArrayPool<byte> bytePool, long ? limit, CancellationToken cancellationToken)
+            public static Task DrainAsync(this Stream stream, ArrayPool<byte> bytePool, long ? limit, CancellationToken cancellationToken)
     
     .. dn:method:: Microsoft.AspNetCore.WebUtilities.StreamHelperExtensions.DrainAsync(System.IO.Stream, System.Nullable<System.Int64>, System.Threading.CancellationToken)
     
@@ -99,7 +99,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task DrainAsync(Stream stream, long ? limit, CancellationToken cancellationToken)
+            public static Task DrainAsync(this Stream stream, long ? limit, CancellationToken cancellationToken)
     
     .. dn:method:: Microsoft.AspNetCore.WebUtilities.StreamHelperExtensions.DrainAsync(System.IO.Stream, System.Threading.CancellationToken)
     
@@ -115,6 +115,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task DrainAsync(Stream stream, CancellationToken cancellationToken)
+            public static Task DrainAsync(this Stream stream, CancellationToken cancellationToken)
     
 

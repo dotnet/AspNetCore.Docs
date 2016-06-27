@@ -52,44 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.RouteCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.RouteCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteCollection.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteCollection.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: Microsoft.AspNetCore.Routing.IRouter
-    
-        
-        .. code-block:: csharp
-    
-            public IRouter this[int index]
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -135,5 +97,37 @@ Methods
         .. code-block:: csharp
     
             public virtual Task RouteAsync(RouteContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.RouteCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteCollection.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteCollection.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: Microsoft.AspNetCore.Routing.IRouter
+    
+        
+        .. code-block:: csharp
+    
+            public IRouter this[int index] { get; }
     
 

@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper<TModel>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper<TModel>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper<TModel>.ViewData
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`1>{TModel}
-    
-        
-        .. code-block:: csharp
-    
-            public ViewDataDictionary<TModel> ViewData
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -479,5 +457,24 @@ Methods
         .. code-block:: csharp
     
             public string ValueFor<TResult>(Expression<Func<TModel, TResult>> expression, string format)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper<TModel>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper<TModel>.ViewData
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`1>{TModel}
+    
+        
+        .. code-block:: csharp
+    
+            public ViewDataDictionary<TModel> ViewData { get; }
     
 

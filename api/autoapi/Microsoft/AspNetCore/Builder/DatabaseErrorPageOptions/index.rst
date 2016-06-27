@@ -78,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual PathString MigrationsEndPointPath
-            {
-                get;
-                set;
-            }
+            public virtual PathString MigrationsEndPointPath { get; set; }
     
 

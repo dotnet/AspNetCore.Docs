@@ -1,5 +1,5 @@
 Adding a New Field
-================================================
+===============================================
 
 By `Rick Anderson`_
 
@@ -12,7 +12,7 @@ Adding a Rating Property to the Movie Model
 
 Open the *Models/Movie.cs* file and add a ``Rating`` property:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieDateRating.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateRating.cs
   :language: c#
   :lines: 7-18
   :dedent: 4
@@ -30,7 +30,7 @@ You also need to update the view templates in order to display, create and edit 
 
 Edit the */Views/Movies/Index.cshtml* file and add a ``Rating`` field:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexGenreRating.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexGenreRating.cshtml
   :language: HTML
   :emphasize-lines: 16,37
   :lines: 24-61
@@ -57,11 +57,14 @@ For this tutorial, we'll use Code First Migrations.
 
 Update the ``SeedData`` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each ``new Movie``.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/SeedDataRating.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/SeedDataRating.cs
   :language: c#
-  :lines: 25-32
+  :start-after: context.Movie.AddRange(
+  :end-before: // Add another movie.
   :dedent: 16
   :emphasize-lines: 6
+
+.. warning:: You must stop IIS Express before you run the ``dotnet ef`` commands.   See :ref:`stop-IIS-Express-reference-label`
 
 Build the solution then open a command prompt. Enter the following commands:
 

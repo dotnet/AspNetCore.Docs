@@ -52,70 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogger
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogger
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Console
-    
-        
-        :rtype: Microsoft.Extensions.Logging.Console.Internal.IConsole
-    
-        
-        .. code-block:: csharp
-    
-            public IConsole Console
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Filter
-    
-        
-        :rtype: System.Func<System.Func`3>{System.String<System.String>, Microsoft.Extensions.Logging.LogLevel<Microsoft.Extensions.Logging.LogLevel>, System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, LogLevel, bool> Filter
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.IncludeScopes
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IncludeScopes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -201,7 +137,7 @@ Methods
     
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
     
-    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogger.WriteMessage(Microsoft.Extensions.Logging.LogLevel, System.String, System.Int32, System.String)
+    .. dn:method:: Microsoft.Extensions.Logging.Console.ConsoleLogger.WriteMessage(Microsoft.Extensions.Logging.LogLevel, System.String, System.Int32, System.String, System.Exception)
     
         
     
@@ -218,8 +154,60 @@ Methods
         :type message: System.String
     
         
+        :type exception: System.Exception
+    
+        
         .. code-block:: csharp
     
-            public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string message)
+            public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception exception)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Console.ConsoleLogger
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Console
+    
+        
+        :rtype: Microsoft.Extensions.Logging.Console.Internal.IConsole
+    
+        
+        .. code-block:: csharp
+    
+            public IConsole Console { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Filter
+    
+        
+        :rtype: System.Func<System.Func`3>{System.String<System.String>, Microsoft.Extensions.Logging.LogLevel<Microsoft.Extensions.Logging.LogLevel>, System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, LogLevel, bool> Filter { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.IncludeScopes
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IncludeScopes { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogger.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
     
 

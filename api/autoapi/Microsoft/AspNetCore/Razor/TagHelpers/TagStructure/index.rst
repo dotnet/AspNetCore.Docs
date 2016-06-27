@@ -76,7 +76,7 @@ Fields
         
     
         
-        If no other tag helper applies to the same element and specifies a :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagStructure`\,
+        If no other tag helper applies to the same element and specifies a :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagStructure`\, 
         :dn:field:`Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing` will be used.
     
         

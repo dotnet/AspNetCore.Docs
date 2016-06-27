@@ -58,69 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.AuthenticationScheme
-    
-        
-    
-        
-        The name of the AuthenticationScheme creating a cookie
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.Principal
-    
-        
-    
-        
-        Contains the claims that were converted into the outgoing cookie.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.Properties
-    
-        
-    
-        
-        Contains the extra data that was contained in the outgoing cookie.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -167,5 +104,59 @@ Constructors
         .. code-block:: csharp
     
             public CookieSignedInContext(HttpContext context, CookieAuthenticationOptions options, string authenticationScheme, ClaimsPrincipal principal, AuthenticationProperties properties)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.AuthenticationScheme
+    
+        
+    
+        
+        The name of the AuthenticationScheme creating a cookie
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.Principal
+    
+        
+    
+        
+        Contains the claims that were converted into the outgoing cookie.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSignedInContext.Properties
+    
+        
+    
+        
+        Contains the extra data that was contained in the outgoing cookie.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
     
 

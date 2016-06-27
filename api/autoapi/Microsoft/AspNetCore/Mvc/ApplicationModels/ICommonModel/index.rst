@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IReadOnlyList<object> Attributes
-            {
-                get;
-            }
+            IReadOnlyList<object> Attributes { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.MemberInfo
     
@@ -73,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            MemberInfo MemberInfo
-            {
-                get;
-            }
+            MemberInfo MemberInfo { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ICommonModel.Name
     
@@ -86,9 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Name
-            {
-                get;
-            }
+            string Name { get; }
     
 

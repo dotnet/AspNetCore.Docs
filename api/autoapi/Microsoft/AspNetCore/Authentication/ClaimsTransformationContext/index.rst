@@ -52,42 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext.Principal
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,5 +71,34 @@ Constructors
         .. code-block:: csharp
     
             public ClaimsTransformationContext(HttpContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.ClaimsTransformationContext.Principal
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; set; }
     
 

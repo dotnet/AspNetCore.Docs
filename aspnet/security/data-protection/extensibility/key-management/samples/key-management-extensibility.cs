@@ -1,25 +1,22 @@
 using System;
 using System.IO;
 using System.Xml.Linq;
-using Microsoft.AspNet.DataProtection.KeyManagement;
-using Microsoft.AspNet.DataProtection.XmlEncryption;
-using Microsoft.Framework.DependencyInjection;
- 
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.DataProtection.XmlEncryption;
+using Microsoft.Extensions.DependencyInjection;
+
 public class Program
 {
     public static void Main(string[] args)
     {
         var serviceCollection = new ServiceCollection();
-        serviceCollection.AddDataProtection();
-        serviceCollection.ConfigureDataProtection(configure =>
-        {
-            // point at a specific folder and use DPAPI to encrypt keys
-            configure.PersistKeysToFileSystem(new DirectoryInfo(@"c:\temp-keys"));
-            configure.ProtectKeysWithDpapi();
-            configure.AddKeyEscrowSink(sp => new MyKeyEscrowSink(sp));
-        });
+        serviceCollection.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo(@"c:\temp-keys"))
+            .ProtectKeysWithDpapi()
+            .AddKeyEscrowSink(sp => new MyKeyEscrowSink(sp));
         var services = serviceCollection.BuildServiceProvider();
- 
+
         // get a reference to the key manager and force a new key to be generated
         Console.WriteLine("Generating new key...");
         var keyManager = services.GetService<IKeyManager>();
@@ -27,13 +24,13 @@ public class Program
             activationDate: DateTimeOffset.Now,
             expirationDate: DateTimeOffset.Now.AddDays(7));
     }
- 
+
     // A key escrow sink where keys are escrowed such that they
     // can be read by members of the CONTOSO\Domain Admins group.
     private class MyKeyEscrowSink : IKeyEscrowSink
     {
         private readonly IXmlEncryptor _escrowEncryptor;
- 
+
         public MyKeyEscrowSink(IServiceProvider services)
         {
             // Assuming I'm on a machine that's a member of the CONTOSO
@@ -45,25 +42,25 @@ public class Program
                 DpapiNGProtectionDescriptorFlags.None,
                 services);
         }
- 
+
         public void Store(Guid keyId, XElement element)
         {
             // Encrypt the key element to the escrow encryptor.
             var encryptedXmlInfo = _escrowEncryptor.Encrypt(element);
- 
+
             // A real implementation would save the escrowed key to a
             // write-only file share or some other stable storage, but
             // in this sample we'll just write it out to the console.
             Console.WriteLine($"Escrowing key {keyId}");
             Console.WriteLine(encryptedXmlInfo.EncryptedElement);
- 
+
             // Note: We cannot read the escrowed key material ourselves.
             // We need to get a member of CONTOSO\Domain Admins to read
             // it for us in the event we need to recover it.
         }
     }
 }
- 
+
 /*
  * SAMPLE OUTPUT
  *

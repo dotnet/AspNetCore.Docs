@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public SyntaxTreeNode Association
-            {
-                get;
-                set;
-            }
+            public SyntaxTreeNode Association { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Chunk.Start
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public SourceLocation Start
-            {
-                get;
-                set;
-            }
+            public SourceLocation Start { get; set; }
     
 

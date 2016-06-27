@@ -45,7 +45,7 @@ An ASP.NET Core app is simply a console app that creates a web server in its ``M
 .. literalinclude:: /getting-started/sample/aspnetcoreapp/Program.cs
     :language: c#
 
-``Main`` uses `WebHostBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNet/Hosting/WebHostBuilder/index.html>`__ , which follows the builder pattern, to create a web application host. The builder has methods that define the web server (for example ``UseKestrel``) and the startup class (``UseStartup``). In the example above, the Kestrel web server is used, but other web servers can be specified. We'll show more about ``UseStartup`` in the next section. ``WebHostBuilder`` provides many optional methods including ``UseIISIntegration`` for hosting in IIS and IIS Express and ``UseContentRoot`` for specifying the root content directory. The ``Build`` and ``Run`` methods build the ``IWebHost`` that will host the app and start it listening for incoming HTTP requests.
+``Main`` uses :dn:cls:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which follows the builder pattern, to create a web application host. The builder has methods that define the web server (for example ``UseKestrel``) and the startup class (``UseStartup``). In the example above, the Kestrel web server is used, but other web servers can be specified. We'll show more about ``UseStartup`` in the next section. ``WebHostBuilder`` provides many optional methods including ``UseIISIntegration`` for hosting in IIS and IIS Express and ``UseContentRoot`` for specifying the root content directory. The ``Build`` and ``Run`` methods build the ``IWebHost`` that will host the app and start it listening for incoming HTTP requests.
 
 
 Startup
@@ -91,27 +91,30 @@ ASP.NET Core comes with a rich set of prebuilt middleware:
 
 - :doc:`Static files </fundamentals/static-files>`
 - :doc:`/fundamentals/routing`
-- :doc:`/fundamentals/diagnostics`
 - :doc:`/security/authentication/index`
 
 You can also author your own :doc:`custom middleware </fundamentals/middleware>`.
 
-You can use any `OWIN <http://owin.org>`_-based middleware with ASP.NET Core. See :doc:`/fundamentals/owin` for details.
+You can use any `OWIN <http://owin.org>`_-based middleware with ASP.NET Core. See :doc:`/fundamentals/owin` for details. 
 
 Servers
 -------
 
 The ASP.NET Core hosting model does not directly listen for requests; rather it relies on an HTTP :doc:`server </fundamentals/servers>` implementation to forward the request to the application. The forwarded request is wrapped as a set of feature interfaces that the application then composes into an ``HttpContext``.  ASP.NET Core includes a managed cross-platform web server, called :ref:`Kestrel <kestrel>`, that you would typically run behind a production web server like `IIS <https://iis.net>`__ or `nginx <http://nginx.org>`__.
 
+.. _content-root-lbl:
+
 Content root
 ------------
 
 The content root is the base path to any content used by the app, such as its views and web content. By default the content root is the same as application base path for the executable hosting the app; an alternative location can be specified with `WebHostBuilder`.
 
+.. _web-root-lbl:
+
 Web root
 --------
 
-The web root of your app is the root location in your project from which HTTP requests are handled (for example handling of static file requests). When using the static files middleware only files from the web root folder are accessible; the other files in the content root **cannot** be accessed remotely. The default web root path is `<content root>/wwwroot`, but you can specify a different location using the `WebHostBuilder`.
+The web root of your app is the directory in your project for public, static resources like css, js, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to `<content root>/wwwroot`, but you can specify a different location using the `WebHostBuilder`.
 
 Configuration
 -------------

@@ -7,6 +7,10 @@ IUseWebApiRoutes Interface
 
 
 
+
+Indicates the controller is in the "api" area.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.WebApiCompatShim`
 Assemblies

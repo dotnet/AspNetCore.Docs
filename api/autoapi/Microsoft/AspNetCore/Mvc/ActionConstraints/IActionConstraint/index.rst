@@ -49,33 +49,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint.Order
-    
-        
-    
-        
-        The constraint order.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -104,5 +77,29 @@ Methods
         .. code-block:: csharp
     
             bool Accept(ActionConstraintContext context)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint.Order
+    
+        
+    
+        
+        The constraint order.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Order { get; }
     
 

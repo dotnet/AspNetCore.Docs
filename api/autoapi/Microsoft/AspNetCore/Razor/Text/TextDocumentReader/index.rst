@@ -54,55 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Length
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Location
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation Location
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Position
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Position
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -122,6 +73,45 @@ Constructors
         .. code-block:: csharp
     
             public TextDocumentReader(ITextDocument source)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Length
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Location
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation Location { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextDocumentReader.Position
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Position { get; set; }
     
 
 Methods

@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer.Comparer
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer
-    
-        
-        .. code-block:: csharp
-    
-            public static FilterDescriptorOrderComparer Comparer
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -97,5 +75,24 @@ Methods
         .. code-block:: csharp
     
             public int Compare(FilterDescriptor x, FilterDescriptor y)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer.Comparer
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.FilterDescriptorOrderComparer
+    
+        
+        .. code-block:: csharp
+    
+            public static FilterDescriptorOrderComparer Comparer { get; }
     
 

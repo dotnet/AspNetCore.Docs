@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseTwitterAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseTwitterAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.TwitterAppBuilderExtensions.UseTwitterAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.TwitterOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseTwitterAuthentication(IApplicationBuilder app, TwitterOptions options)
+            public static IApplicationBuilder UseTwitterAuthentication(this IApplicationBuilder app, TwitterOptions options)
     
 

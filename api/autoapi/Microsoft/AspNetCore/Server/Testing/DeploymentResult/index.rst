@@ -77,11 +77,23 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationBaseUri
-            {
-                get;
-                set;
-            }
+            public string ApplicationBaseUri { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Server.Testing.DeploymentResult.ContentRoot
+    
+        
+    
+        
+        The folder where the application is hosted. This path can be different from the 
+        original application source location if published before deployment.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ContentRoot { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Testing.DeploymentResult.DeploymentParameters
     
@@ -96,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DeploymentParameters DeploymentParameters
-            {
-                get;
-                set;
-            }
+            public DeploymentParameters DeploymentParameters { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Testing.DeploymentResult.HostShutdownToken
     
@@ -115,30 +123,6 @@ Properties
         
         .. code-block:: csharp
     
-            public CancellationToken HostShutdownToken
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Server.Testing.DeploymentResult.WebRootLocation
-    
-        
-    
-        
-        The web root folder where the application is hosted. This path can be different from the 
-        original application source location if published before deployment.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WebRootLocation
-            {
-                get;
-                set;
-            }
+            public CancellationToken HostShutdownToken { get; set; }
     
 

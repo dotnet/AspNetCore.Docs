@@ -79,7 +79,6 @@ Methods
         :type arguments: System.Object
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp
@@ -109,7 +108,6 @@ Methods
         :type arguments: System.Object
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.IHtmlContent<Microsoft.AspNetCore.Html.IHtmlContent>}
         :return: A :any:`System.Threading.Tasks.Task` that on completion returns the rendered :any:`Microsoft.AspNetCore.Html.IHtmlContent`\.
-            
     
         
         .. code-block:: csharp

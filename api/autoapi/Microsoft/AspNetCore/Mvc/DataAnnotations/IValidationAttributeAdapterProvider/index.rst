@@ -73,7 +73,6 @@ Methods
     
         
         :param stringLocalizer: The :any:`Microsoft.Extensions.Localization.IStringLocalizer` which will be used to create messages.
-            
         
         :type stringLocalizer: Microsoft.Extensions.Localization.IStringLocalizer
         :rtype: Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter

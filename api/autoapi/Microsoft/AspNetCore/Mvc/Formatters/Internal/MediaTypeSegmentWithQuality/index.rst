@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality.MediaType
-    
-        
-    
-        
-        Gets the media type of this :any:`Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality`\.
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment MediaType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality.Quality
-    
-        
-    
-        
-        Gets the quality of this :any:`Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality`\.
-    
-        
-        :rtype: System.Double
-    
-        
-        .. code-block:: csharp
-    
-            public double Quality
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,6 +79,45 @@ Constructors
         .. code-block:: csharp
     
             public MediaTypeSegmentWithQuality(StringSegment mediaType, double quality)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality.MediaType
+    
+        
+    
+        
+        Gets the media type of this :any:`Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality`\.
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment MediaType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality.Quality
+    
+        
+    
+        
+        Gets the quality of this :any:`Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality`\.
+    
+        
+        :rtype: System.Double
+    
+        
+        .. code-block:: csharp
+    
+            public double Quality { get; }
     
 
 Methods

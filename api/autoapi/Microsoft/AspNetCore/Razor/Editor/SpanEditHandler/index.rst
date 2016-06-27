@@ -52,62 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.AcceptedCharacters
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.AcceptedCharacters
-    
-        
-        .. code-block:: csharp
-    
-            public AcceptedCharacters AcceptedCharacters
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.EditorHints
-    
-        
-    
-        
-        Provides a set of hints to editors which may be manipulating the document in which this span is located.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Editor.EditorHints
-    
-        
-        .. code-block:: csharp
-    
-            public EditorHints EditorHints
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.Tokenizer
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, IEnumerable<ISymbol>> Tokenizer
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -142,6 +86,50 @@ Constructors
         .. code-block:: csharp
     
             public SpanEditHandler(Func<string, IEnumerable<ISymbol>> tokenizer, AcceptedCharacters accepted)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.AcceptedCharacters
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.AcceptedCharacters
+    
+        
+        .. code-block:: csharp
+    
+            public AcceptedCharacters AcceptedCharacters { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.EditorHints
+    
+        
+    
+        
+        Provides a set of hints to editors which may be manipulating the document in which this span is located.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Editor.EditorHints
+    
+        
+        .. code-block:: csharp
+    
+            public EditorHints EditorHints { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Editor.SpanEditHandler.Tokenizer
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol>}}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, IEnumerable<ISymbol>> Tokenizer { get; set; }
     
 
 Methods

@@ -219,14 +219,6 @@ Microsoft.AspNetCore.Builder Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Builder/RuntimeInfoExtensions/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Builder/RuntimeInfoPageOptions/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Builder/SessionMiddlewareExtensions/index
    
    
@@ -268,14 +260,6 @@ Microsoft.AspNetCore.Builder Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Builder/WebApiCompatShimRouteBuilderExtensions/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Builder/WebSocketMiddlewareExtensions/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Builder/WebSocketOptions/index
    
    
    
@@ -557,22 +541,6 @@ Microsoft.AspNetCore.Builder Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -582,6 +550,16 @@ Microsoft.AspNetCore.Builder Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Builder
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IApplicationBuilder`
+        .. object: type=interface name=Microsoft.AspNetCore.Builder.IApplicationBuilder
+
+        
+        Defines a class that provides the mechanisms to configure an application's request pipeline.
 
 
     .. rubric:: Classes
@@ -932,19 +910,6 @@ Microsoft.AspNetCore.Builder Namespace
         Extension methods for adding terminal middleware.
 
 
-    class :dn:cls:`RuntimeInfoExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.Builder.RuntimeInfoExtensions
-
-        
-
-
-    class :dn:cls:`RuntimeInfoPageOptions`
-        .. object: type=class name=Microsoft.AspNetCore.Builder.RuntimeInfoPageOptions
-
-        
-        Options for the RuntimeInfoPage
-
-
     class :dn:cls:`SessionMiddlewareExtensions`
         .. object: type=class name=Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions
 
@@ -1020,19 +985,6 @@ Microsoft.AspNetCore.Builder Namespace
         
 
 
-    class :dn:cls:`WebSocketMiddlewareExtensions`
-        .. object: type=class name=Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions
-
-        
-
-
-    class :dn:cls:`WebSocketOptions`
-        .. object: type=class name=Microsoft.AspNetCore.Builder.WebSocketOptions
-
-        
-        Configuration options for the WebSocketMiddleware
-
-
     class :dn:cls:`WelcomePageExtensions`
         .. object: type=class name=Microsoft.AspNetCore.Builder.WelcomePageExtensions
 
@@ -1045,15 +997,5 @@ Microsoft.AspNetCore.Builder Namespace
 
         
         Options for the WelcomePageMiddleware.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IApplicationBuilder`
-        .. object: type=interface name=Microsoft.AspNetCore.Builder.IApplicationBuilder
-
-        
-        Defines a class that provides the mechanisms to configure an application's request pipeline.
 
 

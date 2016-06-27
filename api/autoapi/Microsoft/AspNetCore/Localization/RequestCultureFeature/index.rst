@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureFeature
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureFeature
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCultureFeature.Provider
-    
-        
-        :rtype: Microsoft.AspNetCore.Localization.IRequestCultureProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IRequestCultureProvider Provider
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCultureFeature.RequestCulture
-    
-        
-        :rtype: Microsoft.AspNetCore.Localization.RequestCulture
-    
-        
-        .. code-block:: csharp
-    
-            public RequestCulture RequestCulture
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -122,5 +87,34 @@ Constructors
         .. code-block:: csharp
     
             public RequestCultureFeature(RequestCulture requestCulture, IRequestCultureProvider provider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureFeature
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCultureFeature.Provider
+    
+        
+        :rtype: Microsoft.AspNetCore.Localization.IRequestCultureProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IRequestCultureProvider Provider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCultureFeature.RequestCulture
+    
+        
+        :rtype: Microsoft.AspNetCore.Localization.RequestCulture
+    
+        
+        .. code-block:: csharp
+    
+            public RequestCulture RequestCulture { get; }
     
 

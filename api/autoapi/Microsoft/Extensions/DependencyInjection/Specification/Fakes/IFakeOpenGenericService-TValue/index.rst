@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            TValue Value
-            {
-                get;
-            }
+            TValue Value { get; }
     
 

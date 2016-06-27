@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.ErrorMessage
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ErrorMessage
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public Exception Exception
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +98,34 @@ Constructors
         .. code-block:: csharp
     
             public ModelError(string errorMessage)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.ErrorMessage
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ErrorMessage { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelError.Exception
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public Exception Exception { get; }
     
 

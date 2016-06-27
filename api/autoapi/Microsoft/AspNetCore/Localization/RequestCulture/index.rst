@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.RequestCulture
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.RequestCulture
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCulture.Culture
-    
-        
-    
-        
-        Gets the :any:`System.Globalization.CultureInfo` for the request to be used for formatting.
-    
-        
-        :rtype: System.Globalization.CultureInfo
-    
-        
-        .. code-block:: csharp
-    
-            public CultureInfo Culture
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCulture.UICulture
-    
-        
-    
-        
-        Gets the :any:`System.Globalization.CultureInfo` for the request to be used for text, i.e. language;
-    
-        
-        :rtype: System.Globalization.CultureInfo
-    
-        
-        .. code-block:: csharp
-    
-            public CultureInfo UICulture
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -198,5 +153,44 @@ Constructors
         .. code-block:: csharp
     
             public RequestCulture(string culture, string uiCulture)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.RequestCulture
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCulture.Culture
+    
+        
+    
+        
+        Gets the :any:`System.Globalization.CultureInfo` for the request to be used for formatting.
+    
+        
+        :rtype: System.Globalization.CultureInfo
+    
+        
+        .. code-block:: csharp
+    
+            public CultureInfo Culture { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Localization.RequestCulture.UICulture
+    
+        
+    
+        
+        Gets the :any:`System.Globalization.CultureInfo` for the request to be used for text, i.e. language;
+    
+        
+        :rtype: System.Globalization.CultureInfo
+    
+        
+        .. code-block:: csharp
+    
+            public CultureInfo UICulture { get; }
     
 

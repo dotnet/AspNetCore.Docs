@@ -57,6 +57,34 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection.ModelPropertyCollection(System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata>)
+    
+        
+    
+        
+        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection`\.
+    
+        
+    
+        
+        :param properties: The properties.
+        
+        :type properties: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata<Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata>}
+    
+        
+        .. code-block:: csharp
+    
+            public ModelPropertyCollection(IEnumerable<ModelMetadata> properties)
+    
+
 Properties
 ----------
 
@@ -87,37 +115,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata this[string propertyName]
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection.ModelPropertyCollection(System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata>)
-    
-        
-    
-        
-        Creates a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelPropertyCollection`\.
-    
-        
-    
-        
-        :param properties: The properties.
-        
-        :type properties: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata<Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata>}
-    
-        
-        .. code-block:: csharp
-    
-            public ModelPropertyCollection(IEnumerable<ModelMetadata> properties)
+            public ModelMetadata this[string propertyName] { get; }
     
 

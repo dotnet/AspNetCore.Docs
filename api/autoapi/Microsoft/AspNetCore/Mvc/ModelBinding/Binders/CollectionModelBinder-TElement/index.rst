@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinder<TElement>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinder<TElement>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinder<TElement>.ElementBinder
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances for binding collection elements.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder
-    
-        
-        .. code-block:: csharp
-    
-            protected IModelBinder ElementBinder
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -240,5 +213,29 @@ Methods
         .. code-block:: csharp
     
             protected object CreateInstance(Type targetType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinder<TElement>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinder<TElement>.ElementBinder
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` instances for binding collection elements.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder
+    
+        
+        .. code-block:: csharp
+    
+            protected IModelBinder ElementBinder { get; }
     
 

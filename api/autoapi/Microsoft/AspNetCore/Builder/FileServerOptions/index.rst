@@ -57,107 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.FileServerOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.FileServerOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.DefaultFilesOptions
-    
-        
-    
-        
-        Options for configuring the DefaultFilesMiddleware.
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.DefaultFilesOptions
-    
-        
-        .. code-block:: csharp
-    
-            public DefaultFilesOptions DefaultFilesOptions
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.DirectoryBrowserOptions
-    
-        
-    
-        
-        Options for configuring the DirectoryBrowserMiddleware.
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions
-    
-        
-        .. code-block:: csharp
-    
-            public DirectoryBrowserOptions DirectoryBrowserOptions
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.EnableDefaultFiles
-    
-        
-    
-        
-        Default files are enabled by default.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool EnableDefaultFiles
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.EnableDirectoryBrowsing
-    
-        
-    
-        
-        Directory browsing is disabled by default.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool EnableDirectoryBrowsing
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.StaticFileOptions
-    
-        
-    
-        
-        Options for configuring the StaticFileMiddleware.
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.StaticFileOptions
-    
-        
-        .. code-block:: csharp
-    
-            public StaticFileOptions StaticFileOptions
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -179,5 +78,89 @@ Constructors
         .. code-block:: csharp
     
             public FileServerOptions()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.FileServerOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.DefaultFilesOptions
+    
+        
+    
+        
+        Options for configuring the DefaultFilesMiddleware.
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.DefaultFilesOptions
+    
+        
+        .. code-block:: csharp
+    
+            public DefaultFilesOptions DefaultFilesOptions { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.DirectoryBrowserOptions
+    
+        
+    
+        
+        Options for configuring the DirectoryBrowserMiddleware.
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.DirectoryBrowserOptions
+    
+        
+        .. code-block:: csharp
+    
+            public DirectoryBrowserOptions DirectoryBrowserOptions { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.EnableDefaultFiles
+    
+        
+    
+        
+        Default files are enabled by default.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool EnableDefaultFiles { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.EnableDirectoryBrowsing
+    
+        
+    
+        
+        Directory browsing is disabled by default.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool EnableDirectoryBrowsing { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.FileServerOptions.StaticFileOptions
+    
+        
+    
+        
+        Options for configuring the StaticFileMiddleware.
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.StaticFileOptions
+    
+        
+        .. code-block:: csharp
+    
+            public StaticFileOptions StaticFileOptions { get; }
     
 

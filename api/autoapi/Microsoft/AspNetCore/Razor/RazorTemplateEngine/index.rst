@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorTemplateEngine
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorTemplateEngine
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.Host
-    
-        
-    
-        
-        The RazorEngineHost which defines the environment in which the generated template code will live
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
-    
-        
-        .. code-block:: csharp
-    
-            public RazorEngineHost Host
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,35 +83,6 @@ Constructors
         .. code-block:: csharp
     
             public RazorTemplateEngine(RazorEngineHost host)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorTemplateEngine
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.DefaultClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string DefaultClassName
-    
-    .. dn:field:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.DefaultNamespace
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly string DefaultNamespace
     
 
 Methods
@@ -270,7 +214,6 @@ Methods
         :param rootNamespace: The namespace in which the generated class will reside, overriding whatever is
             specified in the Host.  The default value (defined in the Host) can be used by providing null for this
             argument.
-            
         
         :type rootNamespace: System.String
     
@@ -525,5 +468,58 @@ Methods
         .. code-block:: csharp
     
             protected virtual ParserResults ParseTemplateCore(ITextDocument input, string sourceFileName, CancellationToken? cancelToken)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorTemplateEngine
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.DefaultClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string DefaultClassName
+    
+    .. dn:field:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.DefaultNamespace
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string DefaultNamespace
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorTemplateEngine
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorTemplateEngine.Host
+    
+        
+    
+        
+        The RazorEngineHost which defines the environment in which the generated template code will live
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
+    
+        
+        .. code-block:: csharp
+    
+            public RazorEngineHost Host { get; }
     
 

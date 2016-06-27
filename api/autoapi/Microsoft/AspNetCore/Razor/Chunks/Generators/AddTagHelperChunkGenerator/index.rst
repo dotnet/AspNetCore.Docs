@@ -94,6 +94,19 @@ Methods
     :hidden:
 
     
+    .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddTagHelperChunkGenerator.Equals(System.Object)
+    
+        
+    
+        
+        :type obj: System.Object
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool Equals(object obj)
+    
     .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddTagHelperChunkGenerator.GenerateChunk(Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span, Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext)
     
         
@@ -119,5 +132,39 @@ Methods
         .. code-block:: csharp
     
             public override void GenerateChunk(Span target, ChunkGeneratorContext context)
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddTagHelperChunkGenerator.GetHashCode()
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int GetHashCode()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddTagHelperChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.AddTagHelperChunkGenerator.LookupText
+    
+        
+    
+        
+        Gets the text used to look up :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s that should be added.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string LookupText { get; }
     
 

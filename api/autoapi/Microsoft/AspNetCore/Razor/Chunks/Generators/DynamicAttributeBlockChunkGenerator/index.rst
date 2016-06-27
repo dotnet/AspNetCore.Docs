@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator.Prefix
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public LocationTagged<string> Prefix
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator.ValueStart
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public SourceLocation ValueStart
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -203,5 +168,34 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator.Prefix
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.LocationTagged<Microsoft.AspNetCore.Razor.Text.LocationTagged`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public LocationTagged<string> Prefix { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.DynamicAttributeBlockChunkGenerator.ValueStart
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public SourceLocation ValueStart { get; }
     
 

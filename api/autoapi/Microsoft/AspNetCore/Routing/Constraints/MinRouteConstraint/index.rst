@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MinRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MinRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.MinRouteConstraint.Min
-    
-        
-    
-        
-        Gets the minimum allowed value of the route parameter.
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public long Min
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,5 +116,29 @@ Methods
         .. code-block:: csharp
     
             public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.MinRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.MinRouteConstraint.Min
+    
+        
+    
+        
+        Gets the minimum allowed value of the route parameter.
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public long Min { get; }
     
 

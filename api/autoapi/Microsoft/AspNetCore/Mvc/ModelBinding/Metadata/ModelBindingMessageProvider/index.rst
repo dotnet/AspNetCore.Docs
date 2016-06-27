@@ -56,113 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.AttemptedValueIsInvalidAccessor
-    
-        
-        :rtype: System.Func<System.Func`3>{System.String<System.String>, System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string, string> AttemptedValueIsInvalidAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.MissingBindRequiredValueAccessor
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string> MissingBindRequiredValueAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.MissingKeyOrValueAccessor
-    
-        
-        :rtype: System.Func<System.Func`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string> MissingKeyOrValueAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.UnknownValueIsInvalidAccessor
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string> UnknownValueIsInvalidAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueIsInvalidAccessor
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string> ValueIsInvalidAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueMustBeANumberAccessor
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string> ValueMustBeANumberAccessor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueMustNotBeNullAccessor
-    
-        
-        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string, string> ValueMustNotBeNullAccessor
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -204,5 +97,84 @@ Constructors
         .. code-block:: csharp
     
             public ModelBindingMessageProvider(ModelBindingMessageProvider originalProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.AttemptedValueIsInvalidAccessor
+    
+        
+        :rtype: System.Func<System.Func`3>{System.String<System.String>, System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string, string> AttemptedValueIsInvalidAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.MissingBindRequiredValueAccessor
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string> MissingBindRequiredValueAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.MissingKeyOrValueAccessor
+    
+        
+        :rtype: System.Func<System.Func`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string> MissingKeyOrValueAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.UnknownValueIsInvalidAccessor
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string> UnknownValueIsInvalidAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueIsInvalidAccessor
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string> ValueIsInvalidAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueMustBeANumberAccessor
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string> ValueMustBeANumberAccessor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider.ValueMustNotBeNullAccessor
+    
+        
+        :rtype: System.Func<System.Func`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string, string> ValueMustNotBeNullAccessor { get; set; }
     
 

@@ -8,7 +8,7 @@ DependencyContextRazorViewEngineOptionsSetup Class
 
 
 
-Sets up compilation and parse option default options for :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions` using
+Sets up compilation and parse option default options for :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions` using 
 :any:`Microsoft.Extensions.DependencyModel.DependencyContext`
 
 

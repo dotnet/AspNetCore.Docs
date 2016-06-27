@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IServiceProvider RequestServices
-            {
-                get;
-                set;
-            }
+            IServiceProvider RequestServices { get; set; }
     
 

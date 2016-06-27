@@ -54,54 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.FullName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string FullName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.ParentDirectory
-    
-        
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
-    
-        
-        .. code-block:: csharp
-    
-            public override DirectoryInfoBase ParentDirectory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,5 +76,44 @@ Constructors
         .. code-block:: csharp
     
             public FileProviderGlobbingFile(IFileInfo fileInfo, DirectoryInfoBase parent)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.FullName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string FullName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.FileProviderGlobbingFile.ParentDirectory
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    
+        
+        .. code-block:: csharp
+    
+            public override DirectoryInfoBase ParentDirectory { get; }
     
 

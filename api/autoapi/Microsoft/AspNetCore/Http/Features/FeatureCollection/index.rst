@@ -52,58 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.FeatureCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.FeatureCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.Item[System.Type]
-    
-        
-    
-        
-        :type key: System.Type
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object this[Type key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.Revision
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public virtual int Revision
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -183,5 +131,47 @@ Methods
         .. code-block:: csharp
     
             IEnumerator IEnumerable.GetEnumerator()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.FeatureCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.Item[System.Type]
+    
+        
+    
+        
+        :type key: System.Type
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object this[Type key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureCollection.Revision
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public virtual int Revision { get; }
     
 

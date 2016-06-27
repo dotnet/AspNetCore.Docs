@@ -88,6 +88,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task<IFormCollection> ReadFormAsync(HttpRequest request, FormOptions options, CancellationToken cancellationToken = null)
+            public static Task<IFormCollection> ReadFormAsync(this HttpRequest request, FormOptions options, CancellationToken cancellationToken = null)
     
 

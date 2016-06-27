@@ -56,6 +56,36 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationSource
 
+Methods
+-------
+
+.. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationSource
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)
+    
+        
+    
+        
+        Builds the :any:`Microsoft.Extensions.Configuration.IConfigurationProvider` for this source.
+    
+        
+    
+        
+        :param builder: The :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`\.
+        
+        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
+        :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
+        :return: A :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
+    
+        
+        .. code-block:: csharp
+    
+            public abstract IConfigurationProvider Build(IConfigurationBuilder builder)
+    
+
 Properties
 ----------
 
@@ -77,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IFileProvider FileProvider
-            {
-                get;
-                set;
-            }
+            public IFileProvider FileProvider { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.FileConfigurationSource.Optional
     
@@ -96,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Optional
-            {
-                get;
-                set;
-            }
+            public bool Optional { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.FileConfigurationSource.Path
     
@@ -115,11 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Path
-            {
-                get;
-                set;
-            }
+            public string Path { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Configuration.FileConfigurationSource.ReloadOnChange
     
@@ -134,32 +152,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ReloadOnChange
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.Extensions.Configuration.FileConfigurationSource
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.Extensions.Configuration.FileConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)
-    
-        
-    
-        
-        :type builder: Microsoft.Extensions.Configuration.IConfigurationBuilder
-        :rtype: Microsoft.Extensions.Configuration.IConfigurationProvider
-    
-        
-        .. code-block:: csharp
-    
-            public abstract IConfigurationProvider Build(IConfigurationBuilder builder)
+            public bool ReloadOnChange { get; set; }
     
 

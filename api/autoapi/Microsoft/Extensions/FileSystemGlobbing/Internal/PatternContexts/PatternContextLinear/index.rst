@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinear
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinear
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinear.Pattern
-    
-        
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
-    
-        
-        .. code-block:: csharp
-    
-            protected ILinearPattern Pattern
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -164,5 +142,24 @@ Methods
         .. code-block:: csharp
     
             protected bool TestMatchingSegment(string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinear
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextLinear.Pattern
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.ILinearPattern
+    
+        
+        .. code-block:: csharp
+    
+            protected ILinearPattern Pattern { get; }
     
 

@@ -1,6 +1,6 @@
 using System;
 using System.Security.Cryptography;
-using Microsoft.AspNet.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
  
 public class Program
 {

@@ -59,51 +59,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.InvalidModelStateResult
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.InvalidModelStateResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.InvalidModelStateResult.IncludeErrorDetail
-    
-        
-    
-        
-        Gets a value indicating whether the error should include exception messages.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IncludeErrorDetail
-            {
-                get;
-            }
-    
-    .. dn:property:: System.Web.Http.InvalidModelStateResult.ModelState
-    
-        
-    
-        
-        Gets the model state to include in the error.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary ModelState
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -157,5 +112,44 @@ Methods
         .. code-block:: csharp
     
             public override Task ExecuteResultAsync(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.InvalidModelStateResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.InvalidModelStateResult.IncludeErrorDetail
+    
+        
+    
+        
+        Gets a value indicating whether the error should include exception messages.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IncludeErrorDetail { get; }
+    
+    .. dn:property:: System.Web.Http.InvalidModelStateResult.ModelState
+    
+        
+    
+        
+        Gets the model state to include in the error.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary ModelState { get; }
     
 

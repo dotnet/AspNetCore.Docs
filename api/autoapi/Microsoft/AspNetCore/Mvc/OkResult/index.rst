@@ -8,7 +8,7 @@ OkResult Class
 
 
 
-An :any:`Microsoft.AspNetCore.Mvc.StatusCodeResult` that when executed will produce an empty
+An :any:`Microsoft.AspNetCore.Mvc.StatusCodeResult` that when executed will produce an empty 
 :dn:field:`Microsoft.AspNetCore.Http.StatusCodes.Status200OK` response.
 
 

@@ -58,34 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.FailureContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.FailureContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.FailureContext.Failure
-    
-        
-    
-        
-        User friendly error message for the error.
-    
-        
-        :rtype: System.Exception
-    
-        
-        .. code-block:: csharp
-    
-            public Exception Failure
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -108,5 +80,29 @@ Constructors
         .. code-block:: csharp
     
             public FailureContext(HttpContext context, Exception failure)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.FailureContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.FailureContext.Failure
+    
+        
+    
+        
+        User friendly error message for the error.
+    
+        
+        :rtype: System.Exception
+    
+        
+        .. code-block:: csharp
+    
+            public Exception Failure { get; set; }
     
 

@@ -9,7 +9,7 @@ ManagedAuthenticatedEncryptorConfiguration Class
 
 
 Represents a configured authenticated encryption mechanism which uses
-managed :any:`System.Security.Cryptography.SymmetricAlgorithm` and
+managed :any:`System.Security.Cryptography.SymmetricAlgorithm` and 
 :any:`System.Security.Cryptography.KeyedHashAlgorithm` types.
 
 
@@ -57,28 +57,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration.Settings
-    
-        
-        :rtype: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptionSettings
-    
-        
-        .. code-block:: csharp
-    
-            public ManagedAuthenticatedEncryptionSettings Settings
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -133,5 +111,24 @@ Methods
         .. code-block:: csharp
     
             public IAuthenticatedEncryptorDescriptor CreateNewDescriptor()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration.Settings
+    
+        
+        :rtype: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptionSettings
+    
+        
+        .. code-block:: csharp
+    
+            public ManagedAuthenticatedEncryptionSettings Settings { get; }
     
 

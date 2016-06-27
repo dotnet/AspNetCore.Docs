@@ -56,128 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.HeaderDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.HeaderDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Count
-    
-        
-    
-        
-        Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\;.
-    
-        
-        :rtype: System.Int32
-        :return: The number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\.
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.IsReadOnly
-    
-        
-    
-        
-        Gets a value that indicates whether the :any:`Microsoft.AspNetCore.Http.HeaderDictionary` is in read-only mode.
-    
-        
-        :rtype: System.Boolean
-        :return: true if the :any:`Microsoft.AspNetCore.Http.HeaderDictionary` is in read-only mode; otherwise, false.
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Item[System.String]
-    
-        
-    
-        
-        Get or sets the associated value from the collection as a single string.
-    
-        
-    
-        
-        :param key: The header name.
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-        :return: the associated value from the collection as a StringValues or StringValues.Empty if the key is not present.
-    
-        
-        .. code-block:: csharp
-    
-            public StringValues this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.System.Collections.Generic.IDictionary<System.String, Microsoft.Extensions.Primitives.StringValues>.Item[System.String]
-    
-        
-    
-        
-        Throws KeyNotFoundException if the key is not present.
-    
-        
-    
-        
-        :param key: The header name.
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-    
-        
-        .. code-block:: csharp
-    
-            StringValues IDictionary<string, StringValues>.this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Extensions.Primitives.StringValues<Microsoft.Extensions.Primitives.StringValues>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<StringValues> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -466,5 +344,107 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out StringValues value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.HeaderDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Count
+    
+        
+    
+        
+        Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\;.
+    
+        
+        :rtype: System.Int32
+        :return: The number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\.
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.IsReadOnly
+    
+        
+    
+        
+        Gets a value that indicates whether the :any:`Microsoft.AspNetCore.Http.HeaderDictionary` is in read-only mode.
+    
+        
+        :rtype: System.Boolean
+        :return: true if the :any:`Microsoft.AspNetCore.Http.HeaderDictionary` is in read-only mode; otherwise, false.
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Item[System.String]
+    
+        
+    
+        
+        Get or sets the associated value from the collection as a single string.
+    
+        
+    
+        
+        :param key: The header name.
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+        :return: the associated value from the collection as a StringValues or StringValues.Empty if the key is not present.
+    
+        
+        .. code-block:: csharp
+    
+            public StringValues this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.System.Collections.Generic.IDictionary<System.String, Microsoft.Extensions.Primitives.StringValues>.Item[System.String]
+    
+        
+    
+        
+        Throws KeyNotFoundException if the key is not present.
+    
+        
+    
+        
+        :param key: The header name.
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            StringValues IDictionary<string, StringValues>.this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.HeaderDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Extensions.Primitives.StringValues<Microsoft.Extensions.Primitives.StringValues>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<StringValues> Values { get; }
     
 

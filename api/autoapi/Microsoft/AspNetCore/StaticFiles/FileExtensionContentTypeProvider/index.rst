@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings
-    
-        
-    
-        
-        The cross reference table of file extensions and content-types.
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Mappings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -122,6 +95,30 @@ Constructors
         .. code-block:: csharp
     
             public FileExtensionContentTypeProvider(IDictionary<string, string> mapping)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider.Mappings
+    
+        
+    
+        
+        The cross reference table of file extensions and content-types.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Mappings { get; }
     
 
 Methods

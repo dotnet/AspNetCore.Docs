@@ -56,55 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions.FileProvider
-    
-        
-    
-        
-        Provides files containing source code used to display contextual information of an exception.
-    
-        
-        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IFileProvider FileProvider
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions.SourceCodeLineCount
-    
-        
-    
-        
-        Determines how many lines of code to include before and after the line of code
-        present in an exception's stack frame. Only applies when symbols are available and
-        source code referenced by the exception stack trace is present on the server.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int SourceCodeLineCount
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -126,5 +77,46 @@ Constructors
         .. code-block:: csharp
     
             public DeveloperExceptionPageOptions()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions.FileProvider
+    
+        
+    
+        
+        Provides files containing source code used to display contextual information of an exception.
+    
+        
+        :rtype: Microsoft.Extensions.FileProviders.IFileProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IFileProvider FileProvider { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.DeveloperExceptionPageOptions.SourceCodeLineCount
+    
+        
+    
+        
+        Determines how many lines of code to include before and after the line of code
+        present in an exception's stack frame. Only applies when symbols are available and
+        source code referenced by the exception stack trace is present on the server.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int SourceCodeLineCount { get; set; }
     
 

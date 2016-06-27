@@ -60,7 +60,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Server.IISIntegration.Tools.PublishIISCommand.PublishIISCommand(System.String, System.String, System.String)
+    .. dn:constructor:: Microsoft.AspNetCore.Server.IISIntegration.Tools.PublishIISCommand.PublishIISCommand(System.String, System.String, System.String, System.String)
     
         
     
@@ -71,12 +71,15 @@ Constructors
         :type framework: System.String
     
         
+        :type configuration: System.String
+    
+        
         :type projectPath: System.String
     
         
         .. code-block:: csharp
     
-            public PublishIISCommand(string publishFolder, string framework, string projectPath)
+            public PublishIISCommand(string publishFolder, string framework, string configuration, string projectPath)
     
 
 Methods

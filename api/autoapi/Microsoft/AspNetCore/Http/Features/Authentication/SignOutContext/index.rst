@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.Accepted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Accepted
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.AuthenticationScheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -140,5 +92,44 @@ Methods
         .. code-block:: csharp
     
             public void Accept()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.Accepted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Accepted { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.AuthenticationScheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.SignOutContext.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Properties { get; }
     
 

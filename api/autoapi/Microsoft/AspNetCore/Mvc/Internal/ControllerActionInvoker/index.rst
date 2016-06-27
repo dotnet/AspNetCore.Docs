@@ -24,7 +24,6 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
-* :dn:cls:`Microsoft.AspNetCore.Mvc.Internal.FilterActionInvoker`
 * :dn:cls:`Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker`
 
 
@@ -39,7 +38,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class ControllerActionInvoker : FilterActionInvoker, IActionInvoker
+    public class ControllerActionInvoker : IActionInvoker
 
 
 
@@ -61,33 +60,18 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.ControllerActionInvoker(Microsoft.AspNetCore.Mvc.ActionContext, Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache, Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory, Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter>, Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>, Microsoft.Extensions.Logging.ILogger, System.Diagnostics.DiagnosticSource, System.Int32)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.ControllerActionInvoker(Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache, Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory, Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder, Microsoft.Extensions.Logging.ILogger, System.Diagnostics.DiagnosticSource, Microsoft.AspNetCore.Mvc.ActionContext, System.Collections.Generic.IReadOnlyList<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>, System.Int32)
     
         
     
         
-        :type actionContext: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        :type controllerActionInvokerCache: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache
+        :type cache: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache
     
         
         :type controllerFactory: Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory
     
         
-        :type descriptor: Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor
-    
-        
-        :type inputFormatters: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter<Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter>}
-    
-        
-        :type argumentBinder: Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder
-    
-        
-        :type modelValidatorProviders: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>}
-    
-        
-        :type valueProviderFactories: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>}
+        :type controllerArgumentBinder: Microsoft.AspNetCore.Mvc.Internal.IControllerArgumentBinder
     
         
         :type logger: Microsoft.Extensions.Logging.ILogger
@@ -96,12 +80,18 @@ Constructors
         :type diagnosticSource: System.Diagnostics.DiagnosticSource
     
         
+        :type actionContext: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        :type valueProviderFactories: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory<Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>}
+    
+        
         :type maxModelValidationErrors: System.Int32
     
         
         .. code-block:: csharp
     
-            public ControllerActionInvoker(ActionContext actionContext, ControllerActionInvokerCache controllerActionInvokerCache, IControllerFactory controllerFactory, ControllerActionDescriptor descriptor, IReadOnlyList<IInputFormatter> inputFormatters, IControllerActionArgumentBinder argumentBinder, IReadOnlyList<IModelValidatorProvider> modelValidatorProviders, IReadOnlyList<IValueProviderFactory> valueProviderFactories, ILogger logger, DiagnosticSource diagnosticSource, int maxModelValidationErrors)
+            public ControllerActionInvoker(ControllerActionInvokerCache cache, IControllerFactory controllerFactory, IControllerArgumentBinder controllerArgumentBinder, ILogger logger, DiagnosticSource diagnosticSource, ActionContext actionContext, IReadOnlyList<IValueProviderFactory> valueProviderFactories, int maxModelValidationErrors)
     
 
 Methods
@@ -112,49 +102,14 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.BindActionArgumentsAsync()
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeAsync()
     
         
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}}
-    
-        
-        .. code-block:: csharp
-    
-            protected override Task<IDictionary<string, object>> BindActionArgumentsAsync()
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.CreateInstance()
-    
-        
-        :rtype: System.Object
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override object CreateInstance()
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)
-    
-        
-    
-        
-        :type actionExecutingContext: Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.IActionResult<Microsoft.AspNetCore.Mvc.IActionResult>}
-    
-        
-        .. code-block:: csharp
-    
-            protected override Task<IActionResult> InvokeActionAsync(ActionExecutingContext actionExecutingContext)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.ReleaseInstance(System.Object)
-    
-        
-    
-        
-        :type instance: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            protected override void ReleaseInstance(object instance)
+            public virtual Task InvokeAsync()
     
 

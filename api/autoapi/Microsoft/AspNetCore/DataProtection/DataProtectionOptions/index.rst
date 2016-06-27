@@ -80,10 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationDiscriminator
-            {
-                get;
-                set;
-            }
+            public string ApplicationDiscriminator { get; set; }
     
 

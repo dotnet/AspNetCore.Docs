@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual Type ContextType
-            {
-                get;
-            }
+            public virtual Type ContextType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.DataStoreErrorLog.Exception
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual Exception Exception
-            {
-                get;
-            }
+            public virtual Exception Exception { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger.DataStoreErrorLog.IsErrorLogged
     
@@ -94,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual bool IsErrorLogged
-            {
-                get;
-            }
+            public virtual bool IsErrorLogged { get; }
     
 
 Methods

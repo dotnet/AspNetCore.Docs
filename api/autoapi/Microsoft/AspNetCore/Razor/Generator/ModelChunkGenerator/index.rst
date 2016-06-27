@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Generator.ModelChunkGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Generator.ModelChunkGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Generator.ModelChunkGenerator.ModelType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ModelType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -151,5 +129,24 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Generator.ModelChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Generator.ModelChunkGenerator.ModelType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ModelType { get; }
     
 

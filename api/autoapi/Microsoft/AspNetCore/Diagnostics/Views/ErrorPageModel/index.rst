@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IRequestCookieCollection Cookies
-            {
-                get;
-                set;
-            }
+            public IRequestCookieCollection Cookies { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel.ErrorDetails
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<ErrorDetails> ErrorDetails
-            {
-                get;
-                set;
-            }
+            public IEnumerable<ErrorDetails> ErrorDetails { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel.Headers
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, StringValues> Headers
-            {
-                get;
-                set;
-            }
+            public IDictionary<string, StringValues> Headers { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel.Options
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public DeveloperExceptionPageOptions Options
-            {
-                get;
-                set;
-            }
+            public DeveloperExceptionPageOptions Options { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Views.ErrorPageModel.Query
     
@@ -153,10 +137,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IQueryCollection Query
-            {
-                get;
-                set;
-            }
+            public IQueryCollection Query { get; set; }
     
 

@@ -71,7 +71,7 @@ Methods
     
         
         :type value: System.Byte<System.Byte>[]
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.Rendering.HtmlString<Microsoft.AspNetCore.Mvc.Rendering.HtmlString>}
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.HtmlString<Microsoft.AspNetCore.Html.HtmlString>}
     
         
         .. code-block:: csharp

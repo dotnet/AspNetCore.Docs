@@ -67,7 +67,6 @@ Methods
     
         
         :param fileInfo: A :any:`Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo` instance that represents the file to compile.
-            
         
         :type fileInfo: Microsoft.AspNetCore.Mvc.Razor.Compilation.RelativeFileInfo
         :rtype: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult

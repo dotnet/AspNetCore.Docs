@@ -28,8 +28,8 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
+* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{{TUser},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext,System.String,Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{{TUser},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext,System.String}`
-* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{{TUser},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,Microsoft.EntityFrameworkCore.DbContext}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore\<TUser>`
 
 
@@ -44,7 +44,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class UserStore<TUser> : UserStore<TUser, IdentityRole, DbContext>, IUserLoginStore<TUser>, IUserRoleStore<TUser>, IUserClaimStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser>, IUserEmailStore<TUser>, IUserLockoutStore<TUser>, IUserPhoneNumberStore<TUser>, IQueryableUserStore<TUser>, IUserTwoFactorStore<TUser>, IUserAuthenticationTokenStore<TUser>, IUserStore<TUser>, IDisposable where TUser : IdentityUser<string>, new ()
+    public class UserStore<TUser> : UserStore<TUser, IdentityRole, DbContext, string>, IUserLoginStore<TUser>, IUserRoleStore<TUser>, IUserClaimStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser>, IUserEmailStore<TUser>, IUserLockoutStore<TUser>, IUserPhoneNumberStore<TUser>, IQueryableUserStore<TUser>, IUserTwoFactorStore<TUser>, IUserAuthenticationTokenStore<TUser>, IUserStore<TUser>, IDisposable where TUser : IdentityUser<string>, new ()
 
 
 

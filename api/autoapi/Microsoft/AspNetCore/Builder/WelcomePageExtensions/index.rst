@@ -80,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseWelcomePage(IApplicationBuilder app)
+            public static IApplicationBuilder UseWelcomePage(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WelcomePageExtensions.UseWelcomePage(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.WelcomePageOptions)
     
@@ -101,7 +101,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, WelcomePageOptions options)
+            public static IApplicationBuilder UseWelcomePage(this IApplicationBuilder app, WelcomePageOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WelcomePageExtensions.UseWelcomePage(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Http.PathString)
     
@@ -122,7 +122,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, PathString path)
+            public static IApplicationBuilder UseWelcomePage(this IApplicationBuilder app, PathString path)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.WelcomePageExtensions.UseWelcomePage(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -143,6 +143,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseWelcomePage(IApplicationBuilder app, string path)
+            public static IApplicationBuilder UseWelcomePage(this IApplicationBuilder app, string path)
     
 

@@ -58,29 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpResponseExceptionActionFilter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpResponseExceptionActionFilter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpResponseExceptionActionFilter.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -112,5 +89,24 @@ Methods
         .. code-block:: csharp
     
             public void OnActionExecuting(ActionExecutingContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpResponseExceptionActionFilter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.HttpResponseExceptionActionFilter.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 

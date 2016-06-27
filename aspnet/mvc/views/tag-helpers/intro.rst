@@ -74,10 +74,12 @@ If your project contains an ``EmailTagHelper`` with the default namespace (``Aut
 
 .. FQN syntax
 
-.. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml
-   :language: html
-   :lines: 1-3
+.. code-block:: html
    :emphasize-lines: 3
+   
+    @using AuthoringTagHelpers
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+    @addTagHelper "AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers"
 
 To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), and then the assembly name (*AuthoringTagHelpers*). Most developers prefer to use the  "\*" wildcard syntax. The wildcard syntax allows you to insert the wildcard character "\*" as the suffix in an FQN. For example, any of the following directives will bring in the ``EmailTagHelper``:
 
@@ -126,7 +128,7 @@ The same hierarchy rules that apply to ``@addTagHelper`` also apply to ``@tagHel
 IntelliSense support for Tag Helpers
 ----------------------------------------
 
-When you create a new ASP.NET web app in Visual Studio, it adds "Microsoft.AspNetCore.Tooling.Razor" to the *project.json* file. This is the package that adds Tag Helper tooling. 
+When you create a new ASP.NET web app in Visual Studio, it adds "Microsoft.AspNetCore.Razor.Tools" to the *project.json* file. This is the package that adds Tag Helper tooling. 
 
 Consider writing an HTML ``<label>`` element. As soon as you enter ``<l`` in the Visual Studio editor, IntelliSense displays matching elements:
 

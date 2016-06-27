@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass.FakeService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeService FakeService
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -93,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public AnotherClass(IFakeService fakeService)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.AnotherClass.FakeService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeService FakeService { get; }
     
 

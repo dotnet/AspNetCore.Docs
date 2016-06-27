@@ -75,7 +75,7 @@ Constructors
     
         
         :param startTagHelperWritingScope: 
-            A delegate used to start a writing scope in a Razor page and optionally override the page's
+            A delegate used to start a writing scope in a Razor page and optionally override the page's 
             :any:`System.Text.Encodings.Web.HtmlEncoder` within that scope.
         
         :type startTagHelperWritingScope: System.Action<System.Action`1>{System.Text.Encodings.Web.HtmlEncoder<System.Text.Encodings.Web.HtmlEncoder>}

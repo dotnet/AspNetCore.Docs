@@ -58,28 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder.MaxOutputCharactersPerInputCharacter
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int MaxOutputCharactersPerInputCharacter
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -193,5 +171,24 @@ Methods
         .. code-block:: csharp
     
             public override bool WillEncode(int unicodeScalar)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.WebEncoders.Testing.UrlTestEncoder.MaxOutputCharactersPerInputCharacter
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int MaxOutputCharactersPerInputCharacter { get; }
     
 

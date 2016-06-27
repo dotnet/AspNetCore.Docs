@@ -60,42 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute.IsReusable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -116,5 +80,34 @@ Methods
         .. code-block:: csharp
     
             public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute.IsReusable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 

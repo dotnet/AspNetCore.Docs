@@ -57,53 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ForbidResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ForbidResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ForbidResult.AuthenticationSchemes
-    
-        
-    
-        
-        Gets or sets the authentication schemes that are challenged.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<string> AuthenticationSchemes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ForbidResult.Properties
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication challenge.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -138,7 +91,7 @@ Constructors
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
     
@@ -184,7 +137,7 @@ Constructors
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
     
@@ -230,7 +183,7 @@ Constructors
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
     
@@ -238,6 +191,45 @@ Constructors
         .. code-block:: csharp
     
             public ForbidResult(string authenticationScheme, AuthenticationProperties properties)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ForbidResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ForbidResult.AuthenticationSchemes
+    
+        
+    
+        
+        Gets or sets the authentication schemes that are challenged.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<string> AuthenticationSchemes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ForbidResult.Properties
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication challenge.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
     
 
 Methods

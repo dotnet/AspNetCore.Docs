@@ -216,6 +216,21 @@ Microsoft.AspNetCore.Razor.Chunks.Generators Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Chunks.Generators
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IParentChunkGenerator`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Chunks.Generators.IParentChunkGenerator
+
+        
+
+
+    interface :dn:iface:`ISpanChunkGenerator`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -328,7 +343,7 @@ Microsoft.AspNetCore.Razor.Chunks.Generators Namespace
         .. object: type=class name=Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator
 
         
-        A :any:`Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator` responsible for generating
+        A :any:`Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator` responsible for generating 
         :any:`Microsoft.AspNetCore.Razor.Chunks.TagHelperPrefixDirectiveChunk`\s.
 
 
@@ -340,21 +355,6 @@ Microsoft.AspNetCore.Razor.Chunks.Generators Namespace
 
     class :dn:cls:`TypeMemberChunkGenerator`
         .. object: type=class name=Microsoft.AspNetCore.Razor.Chunks.Generators.TypeMemberChunkGenerator
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IParentChunkGenerator`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Chunks.Generators.IParentChunkGenerator
-
-        
-
-
-    interface :dn:iface:`ISpanChunkGenerator`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Chunks.Generators.ISpanChunkGenerator
 
         
 

@@ -37,21 +37,20 @@ Below is an example of a custom data protection startup type which configured bo
 
   using System;
   using System.IO;
+  using Microsoft.AspNetCore.DataProtection;
   using Microsoft.AspNetCore.DataProtection.SystemWeb;
-  using Microsoft.Framework.DependencyInjection;
- 
+  using Microsoft.Extensions.DependencyInjection;
+
   namespace DataProtectionDemo
   {
       public class MyDataProtectionStartup : DataProtectionStartup
       {
           public override void ConfigureServices(IServiceCollection services)
           {
-              services.ConfigureDataProtection(configure =>
-              {
-                  configure.SetApplicationName("my-app");
-                  configure.PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\myapp-keys\"));
-                  configure.ProtectKeysWithCertificate("thumbprint");
-              });
+              services.AddDataProtection()
+                  .SetApplicationName("my-app")
+                  .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\myapp-keys\"))
+                  .ProtectKeysWithCertificate("thumbprint");
           }
       }
   }

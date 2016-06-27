@@ -57,67 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.ActionContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.AmbientValues
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            protected RouteValueDictionary AmbientValues
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.HttpContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Router
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.IRouter
-    
-        
-        .. code-block:: csharp
-    
-            protected IRouter Router
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -228,7 +167,6 @@ Methods
     
         
         :param routeName: The name of the route that is used to generate the :any:`Microsoft.AspNetCore.Routing.VirtualPathData`\.
-            
         
         :type routeName: System.String
     
@@ -285,5 +223,54 @@ Methods
         .. code-block:: csharp
     
             public virtual string RouteUrl(UrlRouteContext routeContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.ActionContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.AmbientValues
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            protected RouteValueDictionary AmbientValues { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.HttpContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Router
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.IRouter
+    
+        
+        .. code-block:: csharp
+    
+            protected IRouter Router { get; }
     
 

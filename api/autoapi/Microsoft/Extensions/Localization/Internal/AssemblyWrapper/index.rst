@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.Assembly
-    
-        
-        :rtype: System.Reflection.Assembly
-    
-        
-        .. code-block:: csharp
-    
-            public Assembly Assembly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.FullName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string FullName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,6 +71,35 @@ Constructors
         .. code-block:: csharp
     
             public AssemblyWrapper(Assembly assembly)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.Assembly
+    
+        
+        :rtype: System.Reflection.Assembly
+    
+        
+        .. code-block:: csharp
+    
+            public Assembly Assembly { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.Internal.AssemblyWrapper.FullName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string FullName { get; }
     
 
 Methods

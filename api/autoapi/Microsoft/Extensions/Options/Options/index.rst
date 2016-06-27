@@ -7,6 +7,10 @@ Options Class
 
 
 
+
+Helper class.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -61,6 +65,11 @@ Methods
 
     
     .. dn:method:: Microsoft.Extensions.Options.Options.Create<TOptions>(TOptions)
+    
+        
+    
+        
+        Creates a wrapper around an instance of TOptions to return itself as an IOptions.
     
         
     

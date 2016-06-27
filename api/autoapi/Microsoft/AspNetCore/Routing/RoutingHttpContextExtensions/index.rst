@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static RouteData GetRouteData(HttpContext httpContext)
+            public static RouteData GetRouteData(this HttpContext httpContext)
     
     .. dn:method:: Microsoft.AspNetCore.Routing.RoutingHttpContextExtensions.GetRouteValue(Microsoft.AspNetCore.Http.HttpContext, System.String)
     
@@ -110,6 +110,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static object GetRouteValue(HttpContext httpContext, string key)
+            public static object GetRouteValue(this HttpContext httpContext, string key)
     
 

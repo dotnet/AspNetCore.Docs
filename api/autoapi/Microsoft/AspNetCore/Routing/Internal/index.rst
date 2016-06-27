@@ -23,7 +23,7 @@ Microsoft.AspNetCore.Routing.Internal Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Routing/Internal/LinkGenerationMatch/index
+   /autoapi/Microsoft/AspNetCore/Routing/Internal/OutboundMatchResult/index
    
    
    
@@ -173,8 +173,8 @@ Microsoft.AspNetCore.Routing.Internal Namespace
         
 
 
-    struct :dn:struct:`LinkGenerationMatch`
-        .. object: type=struct name=Microsoft.AspNetCore.Routing.Internal.LinkGenerationMatch
+    struct :dn:struct:`OutboundMatchResult`
+        .. object: type=struct name=Microsoft.AspNetCore.Routing.Internal.OutboundMatchResult
 
         
 

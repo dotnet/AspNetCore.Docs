@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPage.Model
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPageModel
-    
-        
-        .. code-block:: csharp
-    
-            public DetailsPageModel Model
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -149,5 +126,24 @@ Methods
         .. code-block:: csharp
     
             public HelperResult Traverse(ScopeNode node)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPage.Model
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPageModel
+    
+        
+        .. code-block:: csharp
+    
+            public DetailsPageModel Model { get; set; }
     
 

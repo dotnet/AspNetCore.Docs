@@ -56,87 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            protected ILogger Logger
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.OptionsFormatters
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter` instances from :any:`Microsoft.AspNetCore.Mvc.MvcOptions`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Formatters.FormatterCollection<Microsoft.AspNetCore.Mvc.Formatters.FormatterCollection`1>{Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>}
-    
-        
-        .. code-block:: csharp
-    
-            protected FormatterCollection<IOutputFormatter> OptionsFormatters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.RespectBrowserAcceptHeader
-    
-        
-    
-        
-        Gets the value of :dn:prop:`Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader`\.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected bool RespectBrowserAcceptHeader
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.WriterFactory
-    
-        
-    
-        
-        Gets the writer factory delegate.
-    
-        
-        :rtype: System.Func<System.Func`3>{System.IO.Stream<System.IO.Stream>, System.Text.Encoding<System.Text.Encoding>, System.IO.TextWriter<System.IO.TextWriter>}
-    
-        
-        .. code-block:: csharp
-    
-            protected Func<Stream, Encoding, TextWriter> WriterFactory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -244,7 +163,7 @@ Methods
     
             protected virtual IOutputFormatter SelectFormatter(OutputFormatterWriteContext formatterContext, MediaTypeCollection contentTypes, IList<IOutputFormatter> formatters)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.SelectFormatterNotUsingAcceptHeaders(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.SelectFormatterNotUsingContentType(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>)
     
         
     
@@ -271,7 +190,7 @@ Methods
         
         .. code-block:: csharp
     
-            protected virtual IOutputFormatter SelectFormatterNotUsingAcceptHeaders(OutputFormatterWriteContext formatterContext, IList<IOutputFormatter> formatters)
+            protected virtual IOutputFormatter SelectFormatterNotUsingContentType(OutputFormatterWriteContext formatterContext, IList<IOutputFormatter> formatters)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.SelectFormatterUsingAnyAcceptableContentType(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>, Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection)
     
@@ -342,5 +261,130 @@ Methods
         .. code-block:: csharp
     
             protected virtual IOutputFormatter SelectFormatterUsingSortedAcceptHeaders(OutputFormatterWriteContext formatterContext, IList<IOutputFormatter> formatters, IList<MediaTypeSegmentWithQuality> sortedAcceptHeaders)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.SelectFormatterUsingSortedAcceptHeadersAndContentTypes(Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality>, Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection)
+    
+        
+    
+        
+        Selects the :any:`Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter` to write the response based on the content type values
+        present in <em>sortedAcceptableContentTypes</em> and <em>possibleOutputContentTypes</em>.
+    
+        
+    
+        
+        :param formatterContext: The :any:`Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext`\.
+        
+        :type formatterContext: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext
+    
+        
+        :param formatters: 
+            The list of :any:`Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter` instances to consider.
+        
+        :type formatters: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>}
+    
+        
+        :param sortedAcceptableContentTypes: 
+            The ordered content types from the <code>Accept</code> header, sorted by descending q-value.
+        
+        :type sortedAcceptableContentTypes: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality<Microsoft.AspNetCore.Mvc.Formatters.Internal.MediaTypeSegmentWithQuality>}
+    
+        
+        :param possibleOutputContentTypes: 
+            The ordered content types from :dn:prop:`Microsoft.AspNetCore.Mvc.ObjectResult.ContentTypes` in descending priority order.
+        
+        :type possibleOutputContentTypes: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
+        :rtype: Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter
+        :return: 
+            The selected :any:`Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter` or <code>null</code> if no formatter can write the response.
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual IOutputFormatter SelectFormatterUsingSortedAcceptHeadersAndContentTypes(OutputFormatterWriteContext formatterContext, IList<IOutputFormatter> formatters, IList<MediaTypeSegmentWithQuality> sortedAcceptableContentTypes, MediaTypeCollection possibleOutputContentTypes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            protected ILogger Logger { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.OptionsFormatters
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter` instances from :any:`Microsoft.AspNetCore.Mvc.MvcOptions`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Formatters.FormatterCollection<Microsoft.AspNetCore.Mvc.Formatters.FormatterCollection`1>{Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter<Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter>}
+    
+        
+        .. code-block:: csharp
+    
+            protected FormatterCollection<IOutputFormatter> OptionsFormatters { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.RespectBrowserAcceptHeader
+    
+        
+    
+        
+        Gets the value of :dn:prop:`Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader`\.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool RespectBrowserAcceptHeader { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.ReturnHttpNotAcceptable
+    
+        
+    
+        
+        Gets the value of :dn:prop:`Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable`\.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected bool ReturnHttpNotAcceptable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectResultExecutor.WriterFactory
+    
+        
+    
+        
+        Gets the writer factory delegate.
+    
+        
+        :rtype: System.Func<System.Func`3>{System.IO.Stream<System.IO.Stream>, System.Text.Encoding<System.Text.Encoding>, System.IO.TextWriter<System.IO.TextWriter>}
+    
+        
+        .. code-block:: csharp
+    
+            protected Func<Stream, Encoding, TextWriter> WriterFactory { get; }
     
 

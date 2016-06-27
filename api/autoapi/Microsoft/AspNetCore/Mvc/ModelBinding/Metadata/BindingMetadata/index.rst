@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string BinderModelName
-            {
-                get;
-                set;
-            }
+            public string BinderModelName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.BinderType
     
@@ -98,11 +94,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type BinderType
-            {
-                get;
-                set;
-            }
+            public Type BinderType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.BindingSource
     
@@ -118,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingSource BindingSource
-            {
-                get;
-                set;
-            }
+            public BindingSource BindingSource { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.IsBindingAllowed
     
@@ -139,11 +127,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsBindingAllowed
-            {
-                get;
-                set;
-            }
+            public bool IsBindingAllowed { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.IsBindingRequired
     
@@ -160,11 +144,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsBindingRequired
-            {
-                get;
-                set;
-            }
+            public bool IsBindingRequired { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.IsReadOnly
     
@@ -172,7 +152,7 @@ Properties
     
         
         Gets or sets a value indicating whether or not the model is read-only. Will be ignored
-        if the model metadata being created is not a property. If <code>null</code> then
+        if the model metadata being created is not a property. If <code>null</code> then 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsReadOnly` will be  computed based on the accessibility
         of the property accessor and model :any:`System.Type`\. See :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsReadOnly`\.
     
@@ -182,18 +162,14 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ? IsReadOnly
-            {
-                get;
-                set;
-            }
+            public bool ? IsReadOnly { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.ModelBindingMessageProvider
     
         
     
         
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider` instance. See
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelBindingMessageProvider` instance. See 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.ModelBindingMessageProvider`\.
     
         
@@ -202,11 +178,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelBindingMessageProvider ModelBindingMessageProvider
-            {
-                get;
-                set;
-            }
+            public ModelBindingMessageProvider ModelBindingMessageProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.BindingMetadata.PropertyFilterProvider
     
@@ -222,10 +194,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IPropertyFilterProvider PropertyFilterProvider
-            {
-                get;
-                set;
-            }
+            public IPropertyFilterProvider PropertyFilterProvider { get; set; }
     
 

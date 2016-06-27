@@ -784,6 +784,37 @@ Microsoft.AspNetCore.Mvc Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IActionResult`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IActionResult
+
+        
+        Defines a contract that represents the result of an action method.
+
+
+    interface :dn:iface:`IUrlHelper`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IUrlHelper
+
+        
+        Defines the contract for the helper to build URLs for ASP.NET MVC within an application.
+
+
+    interface :dn:iface:`IViewComponentHelper`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IViewComponentHelper
+
+        
+        Supports the rendering of view components in a view.
+
+
+    interface :dn:iface:`IViewComponentResult`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IViewComponentResult
+
+        
+        Result type of a :any:`Microsoft.AspNetCore.Mvc.ViewComponent`\.
+
+
     .. rubric:: Classes
 
 
@@ -805,7 +836,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionContextAttribute
 
         
-        Specifies that a controller property should be set with the current
+        Specifies that a controller property should be set with the current 
         :any:`Microsoft.AspNetCore.Mvc.ActionContext` when creating the controller. The property must have a public
         set method.
 
@@ -814,6 +845,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ActionNameAttribute
 
         
+        Specifies the name of an action.
 
 
     class :dn:cls:`ActionResult`
@@ -835,6 +867,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.AreaAttribute
 
         
+        Specifies the area containing a controller or action.
 
 
     class :dn:cls:`AutoValidateAntiforgeryTokenAttribute`
@@ -907,7 +940,7 @@ Microsoft.AspNetCore.Mvc Namespace
 
         
         Indicates that the type and any derived types that this attribute is applied to
-        are considered a controller by the default controller discovery mechanism, unless
+        are considered a controller by the default controller discovery mechanism, unless 
         :any:`Microsoft.AspNetCore.Mvc.NonControllerAttribute` is applied to any type in the hierarchy.
 
 
@@ -929,7 +962,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ControllerContextAttribute
 
         
-        Specifies that a controller property should be set with the current
+        Specifies that a controller property should be set with the current 
         :any:`Microsoft.AspNetCore.Mvc.ControllerContext` when creating the controller. The property must have a public
         set method.
 
@@ -998,7 +1031,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.FormatFilterAttribute
 
         
-        A filter that will use the format value in the route data or query string to set the content type on an
+        A filter that will use the format value in the route data or query string to set the content type on an 
         :any:`Microsoft.AspNetCore.Mvc.ObjectResult` returned from an action.
 
 
@@ -1174,6 +1207,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.NonActionAttribute
 
         
+        Indicates that a controller method is not an action method.
 
 
     class :dn:cls:`NonControllerAttribute`
@@ -1217,7 +1251,7 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.OkResult
 
         
-        An :any:`Microsoft.AspNetCore.Mvc.StatusCodeResult` that when executed will produce an empty
+        An :any:`Microsoft.AspNetCore.Mvc.StatusCodeResult` that when executed will produce an empty 
         :dn:field:`Microsoft.AspNetCore.Http.StatusCodes.Status200OK` response.
 
 
@@ -1241,7 +1275,7 @@ Microsoft.AspNetCore.Mvc Namespace
 
         
         A filter that specifies the expected :any:`System.Type` the action will return and the supported
-        response content types. The :dn:prop:`Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes` value is used to set
+        response content types. The :dn:prop:`Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes` value is used to set 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ObjectResult.ContentTypes`\.
 
 
@@ -1400,6 +1434,8 @@ Microsoft.AspNetCore.Mvc Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewComponentAttribute
 
         
+        Indicates the class and all subclasses are view components. Optionally specifies a view component's name. If
+        defining a base class for multiple view components, associate this attribute with that base.
 
 
     class :dn:cls:`ViewComponentResult`
@@ -1432,36 +1468,5 @@ Microsoft.AspNetCore.Mvc Namespace
 
         
         Determines the value for the "Cache-control" header in the response.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IActionResult`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IActionResult
-
-        
-        Defines a contract that represents the result of an action method.
-
-
-    interface :dn:iface:`IUrlHelper`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IUrlHelper
-
-        
-        Defines the contract for the helper to build URLs for ASP.NET MVC within an application.
-
-
-    interface :dn:iface:`IViewComponentHelper`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IViewComponentHelper
-
-        
-        Supports the rendering of view components in a view.
-
-
-    interface :dn:iface:`IViewComponentResult`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.IViewComponentResult
-
-        
-        Result type of a :any:`Microsoft.AspNetCore.Mvc.ViewComponent`\.
 
 

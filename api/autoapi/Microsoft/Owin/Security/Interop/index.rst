@@ -23,6 +23,10 @@ Microsoft.Owin.Security.Interop Namespace
    
    
    
+   /autoapi/Microsoft/Owin/Security/Interop/ChunkingCookieManager/index
+   
+   
+   
    /autoapi/Microsoft/Owin/Security/Interop/DataProtectorShim/index
    
    
@@ -36,6 +40,10 @@ Microsoft.Owin.Security.Interop Namespace
    :hidden:
    :maxdepth: 2
 
+   
+   
+   
+   
    
    
    
@@ -79,11 +87,19 @@ Microsoft.Owin.Security.Interop Namespace
         
 
 
+    class :dn:cls:`ChunkingCookieManager`
+        .. object: type=class name=Microsoft.Owin.Security.Interop.ChunkingCookieManager
+
+        
+        This handles cookies that are limited by per cookie length. It breaks down long cookies for responses, and reassembles them
+        from requests.
+
+
     class :dn:cls:`DataProtectorShim`
         .. object: type=class name=Microsoft.Owin.Security.Interop.DataProtectorShim
 
         
-        Converts an :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` to an
+        Converts an :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` to an 
         :any:`Microsoft.Owin.Security.DataProtection.IDataProtector`\.
 
 

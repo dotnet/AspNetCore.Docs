@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGenerator
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGenerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGenerator.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
-    
-        
-        .. code-block:: csharp
-    
-            protected CodeGeneratorContext Context
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -93,6 +71,25 @@ Constructors
         .. code-block:: csharp
     
             public CodeGenerator(CodeGeneratorContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGenerator.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
+    
+        
+        .. code-block:: csharp
+    
+            protected CodeGeneratorContext Context { get; }
     
 
 Methods

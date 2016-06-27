@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddKeyEscrowSink(IDataProtectionBuilder builder, IKeyEscrowSink sink)
+            public static IDataProtectionBuilder AddKeyEscrowSink(this IDataProtectionBuilder builder, IKeyEscrowSink sink)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.AddKeyEscrowSink(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.Func<System.IServiceProvider, Microsoft.AspNetCore.DataProtection.KeyManagement.IKeyEscrowSink>)
     
@@ -114,7 +114,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddKeyEscrowSink(IDataProtectionBuilder builder, Func<IServiceProvider, IKeyEscrowSink> factory)
+            public static IDataProtectionBuilder AddKeyEscrowSink(this IDataProtectionBuilder builder, Func<IServiceProvider, IKeyEscrowSink> factory)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.AddKeyEscrowSink<TImplementation>(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder)
     
@@ -135,7 +135,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddKeyEscrowSink<TImplementation>(IDataProtectionBuilder builder)where TImplementation : class, IKeyEscrowSink
+            public static IDataProtectionBuilder AddKeyEscrowSink<TImplementation>(this IDataProtectionBuilder builder)where TImplementation : class, IKeyEscrowSink
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.AddKeyManagementOptions(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.Action<Microsoft.AspNetCore.DataProtection.KeyManagement.KeyManagementOptions>)
     
@@ -161,7 +161,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder AddKeyManagementOptions(IDataProtectionBuilder builder, Action<KeyManagementOptions> setupAction)
+            public static IDataProtectionBuilder AddKeyManagementOptions(this IDataProtectionBuilder builder, Action<KeyManagementOptions> setupAction)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder)
     
@@ -182,7 +182,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder DisableAutomaticKeyGeneration(IDataProtectionBuilder builder)
+            public static IDataProtectionBuilder DisableAutomaticKeyGeneration(this IDataProtectionBuilder builder)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.IO.DirectoryInfo)
     
@@ -209,7 +209,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder PersistKeysToFileSystem(IDataProtectionBuilder builder, DirectoryInfo directory)
+            public static IDataProtectionBuilder PersistKeysToFileSystem(this IDataProtectionBuilder builder, DirectoryInfo directory)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToRegistry(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, Microsoft.Win32.RegistryKey)
     
@@ -235,7 +235,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder PersistKeysToRegistry(IDataProtectionBuilder builder, RegistryKey registryKey)
+            public static IDataProtectionBuilder PersistKeysToRegistry(this IDataProtectionBuilder builder, RegistryKey registryKey)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.Security.Cryptography.X509Certificates.X509Certificate2)
     
@@ -261,7 +261,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithCertificate(IDataProtectionBuilder builder, X509Certificate2 certificate)
+            public static IDataProtectionBuilder ProtectKeysWithCertificate(this IDataProtectionBuilder builder, X509Certificate2 certificate)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.String)
     
@@ -287,7 +287,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithCertificate(IDataProtectionBuilder builder, string thumbprint)
+            public static IDataProtectionBuilder ProtectKeysWithCertificate(this IDataProtectionBuilder builder, string thumbprint)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder)
     
@@ -309,7 +309,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithDpapi(IDataProtectionBuilder builder)
+            public static IDataProtectionBuilder ProtectKeysWithDpapi(this IDataProtectionBuilder builder)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.Boolean)
     
@@ -338,7 +338,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithDpapi(IDataProtectionBuilder builder, bool protectToLocalMachine)
+            public static IDataProtectionBuilder ProtectKeysWithDpapi(this IDataProtectionBuilder builder, bool protectToLocalMachine)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder)
     
@@ -360,7 +360,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithDpapiNG(IDataProtectionBuilder builder)
+            public static IDataProtectionBuilder ProtectKeysWithDpapiNG(this IDataProtectionBuilder builder)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.String, Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiNGProtectionDescriptorFlags)
     
@@ -392,7 +392,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder ProtectKeysWithDpapiNG(IDataProtectionBuilder builder, string protectionDescriptorRule, DpapiNGProtectionDescriptorFlags flags)
+            public static IDataProtectionBuilder ProtectKeysWithDpapiNG(this IDataProtectionBuilder builder, string protectionDescriptorRule, DpapiNGProtectionDescriptorFlags flags)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.String)
     
@@ -418,7 +418,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder SetApplicationName(IDataProtectionBuilder builder, string applicationName)
+            public static IDataProtectionBuilder SetApplicationName(this IDataProtectionBuilder builder, string applicationName)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, System.TimeSpan)
     
@@ -446,7 +446,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder SetDefaultKeyLifetime(IDataProtectionBuilder builder, TimeSpan lifetime)
+            public static IDataProtectionBuilder SetDefaultKeyLifetime(this IDataProtectionBuilder builder, TimeSpan lifetime)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCryptographicAlgorithms(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.AuthenticatedEncryptionSettings)
     
@@ -473,7 +473,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder UseCryptographicAlgorithms(IDataProtectionBuilder builder, AuthenticatedEncryptionSettings settings)
+            public static IDataProtectionBuilder UseCryptographicAlgorithms(this IDataProtectionBuilder builder, AuthenticatedEncryptionSettings settings)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCustomCryptographicAlgorithms(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptionSettings)
     
@@ -482,7 +482,7 @@ Methods
         
         Configures the data protection system to use custom Windows CNG algorithms.
         This API is intended for advanced scenarios where the developer cannot use the
-        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and
+        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and 
         :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ValidationAlgorithm` enumerations.
     
         
@@ -503,7 +503,7 @@ Methods
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Advanced)]
-            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(IDataProtectionBuilder builder, CngCbcAuthenticatedEncryptionSettings settings)
+            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(this IDataProtectionBuilder builder, CngCbcAuthenticatedEncryptionSettings settings)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCustomCryptographicAlgorithms(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptionSettings)
     
@@ -512,7 +512,7 @@ Methods
         
         Configures the data protection system to use custom Windows CNG algorithms.
         This API is intended for advanced scenarios where the developer cannot use the
-        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and
+        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and 
         :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ValidationAlgorithm` enumerations.
     
         
@@ -533,7 +533,7 @@ Methods
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Advanced)]
-            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(IDataProtectionBuilder builder, CngGcmAuthenticatedEncryptionSettings settings)
+            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(this IDataProtectionBuilder builder, CngGcmAuthenticatedEncryptionSettings settings)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCustomCryptographicAlgorithms(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder, Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptionSettings)
     
@@ -542,7 +542,7 @@ Methods
         
         Configures the data protection system to use custom algorithms.
         This API is intended for advanced scenarios where the developer cannot use the
-        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and
+        algorithms specified in the :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.EncryptionAlgorithm` and 
         :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ValidationAlgorithm` enumerations.
     
         
@@ -563,7 +563,7 @@ Methods
         .. code-block:: csharp
     
             [EditorBrowsable(EditorBrowsableState.Advanced)]
-            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(IDataProtectionBuilder builder, ManagedAuthenticatedEncryptionSettings settings)
+            public static IDataProtectionBuilder UseCustomCryptographicAlgorithms(this IDataProtectionBuilder builder, ManagedAuthenticatedEncryptionSettings settings)
     
     .. dn:method:: Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseEphemeralDataProtectionProvider(Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder)
     
@@ -585,6 +585,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IDataProtectionBuilder UseEphemeralDataProtectionProvider(IDataProtectionBuilder builder)
+            public static IDataProtectionBuilder UseEphemeralDataProtectionProvider(this IDataProtectionBuilder builder)
     
 

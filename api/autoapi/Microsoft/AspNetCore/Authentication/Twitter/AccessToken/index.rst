@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ScreenName
-            {
-                get;
-                set;
-            }
+            public string ScreenName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.AccessToken.UserId
     
@@ -97,10 +93,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string UserId
-            {
-                get;
-                set;
-            }
+            public string UserId { get; set; }
     
 

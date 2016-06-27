@@ -70,10 +70,6 @@ Properties
         
         .. code-block:: csharp
     
-            public LocationTagged<string> Prefix
-            {
-                get;
-                set;
-            }
+            public LocationTagged<string> Prefix { get; set; }
     
 

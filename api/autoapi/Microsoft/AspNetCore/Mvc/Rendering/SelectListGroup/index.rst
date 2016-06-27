@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Disabled
-            {
-                get;
-                set;
-            }
+            public bool Disabled { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectListGroup.Name
     
@@ -98,10 +94,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
 

@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Session.DistributedSession
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Session.DistributedSession
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSession.Id
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Id
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSession.Keys
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> Keys
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -202,5 +167,44 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out byte[] value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Session.DistributedSession
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSession.Id
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Id { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSession.IsAvailable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsAvailable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Session.DistributedSession.Keys
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> Keys { get; }
     
 

@@ -56,7 +56,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator.Validate(Microsoft.AspNetCore.Mvc.ActionContext, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary, System.String, System.Object)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator.Validate(Microsoft.AspNetCore.Mvc.ActionContext, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary, System.String, System.Object)
     
         
     
@@ -69,11 +69,6 @@ Methods
         :param actionContext: The :any:`Microsoft.AspNetCore.Mvc.ActionContext` associated with the current request.
         
         :type actionContext: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        :param validatorProvider: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider`\.
-        
-        :type validatorProvider: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider
     
         
         :param validationState: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary`\. May be null.
@@ -94,6 +89,6 @@ Methods
         
         .. code-block:: csharp
     
-            void Validate(ActionContext actionContext, IModelValidatorProvider validatorProvider, ValidationStateDictionary validationState, string prefix, object model)
+            void Validate(ActionContext actionContext, ValidationStateDictionary validationState, string prefix, object model)
     
 

@@ -89,7 +89,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent CheckBox(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent CheckBox(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.CheckBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Boolean)
     
@@ -121,7 +121,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent CheckBox(IHtmlHelper htmlHelper, string expression, bool isChecked)
+            public static IHtmlContent CheckBox(this IHtmlHelper htmlHelper, string expression, bool isChecked)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.CheckBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -145,7 +145,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the checkbox element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -156,7 +156,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent CheckBox(IHtmlHelper htmlHelper, string expression, object htmlAttributes)
+            public static IHtmlContent CheckBox(this IHtmlHelper htmlHelper, string expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.CheckBoxFor<TModel>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, System.Boolean>>)
     
@@ -183,7 +183,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent CheckBoxFor<TModel>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, bool>> expression)
+            public static IHtmlContent CheckBoxFor<TModel>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, bool>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.Hidden(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -209,7 +209,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Hidden(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent Hidden(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.Hidden(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -240,7 +240,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Hidden(IHtmlHelper htmlHelper, string expression, object value)
+            public static IHtmlContent Hidden(this IHtmlHelper htmlHelper, string expression, object value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.HiddenFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -266,7 +266,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent HiddenFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent HiddenFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.Password(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -292,7 +292,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Password(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent Password(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.Password(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -323,7 +323,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Password(IHtmlHelper htmlHelper, string expression, object value)
+            public static IHtmlContent Password(this IHtmlHelper htmlHelper, string expression, object value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.PasswordFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -349,7 +349,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent PasswordFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent PasswordFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.RadioButton(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -380,7 +380,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RadioButton(IHtmlHelper htmlHelper, string expression, object value)
+            public static IHtmlContent RadioButton(this IHtmlHelper htmlHelper, string expression, object value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.RadioButton(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.Boolean)
     
@@ -420,7 +420,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RadioButton(IHtmlHelper htmlHelper, string expression, object value, bool isChecked)
+            public static IHtmlContent RadioButton(this IHtmlHelper htmlHelper, string expression, object value, bool isChecked)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.RadioButton(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.Object)
     
@@ -450,7 +450,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -461,7 +461,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RadioButton(IHtmlHelper htmlHelper, string expression, object value, object htmlAttributes)
+            public static IHtmlContent RadioButton(this IHtmlHelper htmlHelper, string expression, object value, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.RadioButtonFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Object)
     
@@ -492,7 +492,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent RadioButtonFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object value)
+            public static IHtmlContent RadioButtonFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextArea(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -518,7 +518,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextArea(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent TextArea(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextArea(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -541,7 +541,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -552,7 +552,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextArea(IHtmlHelper htmlHelper, string expression, object htmlAttributes)
+            public static IHtmlContent TextArea(this IHtmlHelper htmlHelper, string expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextArea(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -583,7 +583,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextArea(IHtmlHelper htmlHelper, string expression, string value)
+            public static IHtmlContent TextArea(this IHtmlHelper htmlHelper, string expression, string value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextArea(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -611,7 +611,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -622,7 +622,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextArea(IHtmlHelper htmlHelper, string expression, string value, object htmlAttributes)
+            public static IHtmlContent TextArea(this IHtmlHelper htmlHelper, string expression, string value, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextAreaFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -648,7 +648,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextAreaFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent TextAreaFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextAreaFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Object)
     
@@ -671,7 +671,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -682,7 +682,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextAreaFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
+            public static IHtmlContent TextAreaFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -708,7 +708,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBox(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent TextBox(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -739,7 +739,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBox(IHtmlHelper htmlHelper, string expression, object value)
+            public static IHtmlContent TextBox(this IHtmlHelper htmlHelper, string expression, object value)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.Object)
     
@@ -767,7 +767,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -778,7 +778,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBox(IHtmlHelper htmlHelper, string expression, object value, object htmlAttributes)
+            public static IHtmlContent TextBox(this IHtmlHelper htmlHelper, string expression, object value, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.String)
     
@@ -815,7 +815,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBox(IHtmlHelper htmlHelper, string expression, object value, string format)
+            public static IHtmlContent TextBox(this IHtmlHelper htmlHelper, string expression, object value, string format)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBoxFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -841,7 +841,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBoxFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent TextBoxFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBoxFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Object)
     
@@ -864,7 +864,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -875,7 +875,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBoxFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
+            public static IHtmlContent TextBoxFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperInputExtensions.TextBoxFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String)
     
@@ -907,6 +907,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent TextBoxFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string format)
+            public static IHtmlContent TextBoxFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string format)
     
 

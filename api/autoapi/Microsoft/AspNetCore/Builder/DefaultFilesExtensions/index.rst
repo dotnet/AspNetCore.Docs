@@ -80,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app)
+            public static IApplicationBuilder UseDefaultFiles(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.DefaultFilesOptions)
     
@@ -101,7 +101,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app, DefaultFilesOptions options)
+            public static IApplicationBuilder UseDefaultFiles(this IApplicationBuilder app, DefaultFilesOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -124,6 +124,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDefaultFiles(IApplicationBuilder app, string requestPath)
+            public static IApplicationBuilder UseDefaultFiles(this IApplicationBuilder app, string requestPath)
     
 

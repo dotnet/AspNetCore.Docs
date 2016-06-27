@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Culture
-    
-        
-        :rtype: System.Globalization.CultureInfo
-    
-        
-        .. code-block:: csharp
-    
-            public CultureInfo Culture
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Key
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Key
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -160,5 +112,44 @@ Methods
         .. code-block:: csharp
     
             public ValueProviderResult GetValue(string key)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Culture
+    
+        
+        :rtype: System.Globalization.CultureInfo
+    
+        
+        .. code-block:: csharp
+    
+            public CultureInfo Culture { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Key
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Key { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ElementalValueProvider.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int EncryptionAlgorithmKeySize
-            {
-                get;
-                set;
-            }
+            public int EncryptionAlgorithmKeySize { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptionSettings.EncryptionAlgorithmType
     
@@ -100,11 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type EncryptionAlgorithmType
-            {
-                get;
-                set;
-            }
+            public Type EncryptionAlgorithmType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ManagedAuthenticatedEncryptionSettings.ValidationAlgorithmType
     
@@ -121,11 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type ValidationAlgorithmType
-            {
-                get;
-                set;
-            }
+            public Type ValidationAlgorithmType { get; set; }
     
 
 Methods

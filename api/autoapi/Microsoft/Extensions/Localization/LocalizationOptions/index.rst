@@ -77,10 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string ResourcesPath
-            {
-                get;
-                set;
-            }
+            public string ResourcesPath { get; set; }
     
 

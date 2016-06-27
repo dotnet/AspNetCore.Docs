@@ -15,7 +15,7 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Internal Namespace
 
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Internal/PlaceholderBinder/index
+   /autoapi/Microsoft/AspNetCore/Mvc/ModelBinding/Internal/ModelBindingHelper/index
    
    
 
@@ -47,8 +47,8 @@ Microsoft.AspNetCore.Mvc.ModelBinding.Internal Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`PlaceholderBinder`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.Internal.PlaceholderBinder
+    class :dn:cls:`ModelBindingHelper`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ModelBinding.Internal.ModelBindingHelper
 
         
 

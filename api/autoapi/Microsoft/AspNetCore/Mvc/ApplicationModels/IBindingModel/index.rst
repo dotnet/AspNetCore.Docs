@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            BindingInfo BindingInfo
-            {
-                get;
-                set;
-            }
+            BindingInfo BindingInfo { get; set; }
     
 

@@ -60,28 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector.PrependHashedPurposeToPlaintext
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            protected override bool PrependHashedPurposeToPlaintext
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -181,5 +159,24 @@ Methods
         .. code-block:: csharp
     
             public static byte[] RunWithSuppressedPrimaryPurpose(Func<object, byte[], byte[]> callback, object state, byte[] input)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.SystemWeb.CompatibilityDataProtector.PrependHashedPurposeToPlaintext
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            protected override bool PrependHashedPurposeToPlaintext { get; }
     
 

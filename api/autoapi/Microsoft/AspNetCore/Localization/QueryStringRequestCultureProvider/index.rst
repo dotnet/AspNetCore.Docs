@@ -57,6 +57,28 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider
 
+Methods
+-------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
+    
+        
+    
+        
+        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
+    
+        
+        .. code-block:: csharp
+    
+            public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+    
+
 Properties
 ----------
 
@@ -79,18 +101,14 @@ Properties
         
         .. code-block:: csharp
     
-            public string QueryStringKey
-            {
-                get;
-                set;
-            }
+            public string QueryStringKey { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider.UIQueryStringKey
     
         
     
         
-        The key that contains the UI culture name. If not specified or no value is found,
+        The key that contains the UI culture name. If not specified or no value is found, 
         :dn:prop:`Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider.QueryStringKey` will be used.
         Defaults to "ui-culture".
     
@@ -100,32 +118,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string UIQueryStringKey
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
-    
-        
-    
-        
-        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
-    
-        
-        .. code-block:: csharp
-    
-            public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+            public string UIQueryStringKey { get; set; }
     
 

@@ -7,6 +7,11 @@ AssertionRequirement Class
 
 
 
+
+Implements an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`
+that takes a user specified assertion.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure`
 Assemblies
@@ -52,6 +57,82 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.AssertionRequirement(System.Func<Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, System.Boolean>)
+    
+        
+    
+        
+        Creates a new instance of :any:`Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement`\.
+    
+        
+    
+        
+        :param handler: Function that is called to handle this requirement.
+        
+        :type handler: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext<Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext>, System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public AssertionRequirement(Func<AuthorizationHandlerContext, bool> handler)
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.AssertionRequirement(System.Func<Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, System.Threading.Tasks.Task<System.Boolean>>)
+    
+        
+    
+        
+        Creates a new instance of :any:`Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement`\.
+    
+        
+    
+        
+        :param handler: Function that is called to handle this requirement.
+        
+        :type handler: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext<Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}}
+    
+        
+        .. code-block:: csharp
+    
+            public AssertionRequirement(Func<AuthorizationHandlerContext, Task<bool>> handler)
+    
+
+Methods
+-------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)
+    
+        
+    
+        
+        Calls :dn:prop:`Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.Handler` to see if authorization is allowed.
+    
+        
+    
+        
+        :param context: The authorization information.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
+        :rtype: System.Threading.Tasks.Task
+    
+        
+        .. code-block:: csharp
+    
+            public Task HandleAsync(AuthorizationHandlerContext context)
+    
+
 Properties
 ----------
 
@@ -65,72 +146,14 @@ Properties
         
     
         
-        Function that is called to handle this requirement
+        Function that is called to handle this requirement.
     
         
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationContext<Microsoft.AspNetCore.Authorization.AuthorizationContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<AuthorizationContext, Task<bool>> Handler
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.AssertionRequirement(System.Func<Microsoft.AspNetCore.Authorization.AuthorizationContext, System.Boolean>)
-    
-        
-    
-        
-        :type assert: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationContext<Microsoft.AspNetCore.Authorization.AuthorizationContext>, System.Boolean<System.Boolean>}
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext<Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}}
     
         
         .. code-block:: csharp
     
-            public AssertionRequirement(Func<AuthorizationContext, bool> assert)
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.AssertionRequirement(System.Func<Microsoft.AspNetCore.Authorization.AuthorizationContext, System.Threading.Tasks.Task<System.Boolean>>)
-    
-        
-    
-        
-        :type assert: System.Func<System.Func`2>{Microsoft.AspNetCore.Authorization.AuthorizationContext<Microsoft.AspNetCore.Authorization.AuthorizationContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}}
-    
-        
-        .. code-block:: csharp
-    
-            public AssertionRequirement(Func<AuthorizationContext, Task<bool>> assert)
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.AssertionRequirement.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationContext)
-    
-        
-    
-        
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
-        :rtype: System.Threading.Tasks.Task
-    
-        
-        .. code-block:: csharp
-    
-            public Task HandleAsync(AuthorizationContext context)
+            public Func<AuthorizationHandlerContext, Task<bool>> Handler { get; }
     
 

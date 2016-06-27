@@ -8,7 +8,7 @@ EnumerableWrapperProviderFactory Class
 
 
 
-Creates an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider` for interface types implementing the
+Creates an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProvider` for interface types implementing the 
 :any:`System.Collections.Generic.IEnumerable\`1` type.
 
 
@@ -70,7 +70,7 @@ Constructors
         
     
         
-        Initializes an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProviderFactory` with a list
+        Initializes an :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.EnumerableWrapperProviderFactory` with a list 
         :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProviderFactory`\.
     
         

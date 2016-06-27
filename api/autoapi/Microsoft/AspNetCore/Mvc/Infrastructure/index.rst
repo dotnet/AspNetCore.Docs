@@ -80,22 +80,6 @@ Microsoft.AspNetCore.Mvc.Infrastructure Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Infrastructure
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ActionContextAccessor`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Infrastructure.ActionContextAccessor
-
-        
-
-
-    class :dn:cls:`ActionDescriptorCollection`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection
-
-        
-        A cached collection of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor`\.
-
-
     .. rubric:: Interfaces
 
 
@@ -117,5 +101,21 @@ Microsoft.AspNetCore.Mvc.Infrastructure Namespace
 
         
         Defines an interface for selecting an MVC action to invoke for the current request.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ActionContextAccessor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Infrastructure.ActionContextAccessor
+
+        
+
+
+    class :dn:cls:`ActionDescriptorCollection`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection
+
+        
+        A cached collection of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor`\.
 
 

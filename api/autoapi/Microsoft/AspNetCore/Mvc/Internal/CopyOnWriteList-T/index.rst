@@ -52,84 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: T
-    
-        
-        .. code-block:: csharp
-    
-            public T this[int index]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Readable
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{T}
-    
-        
-        .. code-block:: csharp
-    
-            protected IReadOnlyList<T> Readable
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Writable
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{T}
-    
-        
-        .. code-block:: csharp
-    
-            protected List<T> Writable
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -280,5 +202,67 @@ Methods
         .. code-block:: csharp
     
             IEnumerator IEnumerable.GetEnumerator()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: T
+    
+        
+        .. code-block:: csharp
+    
+            public T this[int index] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Readable
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{T}
+    
+        
+        .. code-block:: csharp
+    
+            protected IReadOnlyList<T> Readable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.CopyOnWriteList<T>.Writable
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{T}
+    
+        
+        .. code-block:: csharp
+    
+            protected List<T> Writable { get; }
     
 

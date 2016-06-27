@@ -10,7 +10,7 @@ StringWithQualityHeaderValueComparer Class
 
 Implementation of :any:`System.Collections.Generic.IComparer\`1` that can compare content negotiation header fields
 based on their quality values (a.k.a q-values). This applies to values used in accept-charset,
-accept-encoding, accept-language and related header fields with similar syntax rules. See
+accept-encoding, accept-language and related header fields with similar syntax rules. See 
 :any:`Microsoft.Net.Http.Headers.MediaTypeHeaderValueComparer` for a comparer for media type
 q-values.
 
@@ -60,28 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer.QualityComparer
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer
-    
-        
-        .. code-block:: csharp
-    
-            public static StringWithQualityHeaderValueComparer QualityComparer
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -120,5 +98,24 @@ Methods
         .. code-block:: csharp
     
             public int Compare(StringWithQualityHeaderValue stringWithQuality1, StringWithQualityHeaderValue stringWithQuality2)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer.QualityComparer
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.StringWithQualityHeaderValueComparer
+    
+        
+        .. code-block:: csharp
+    
+            public static StringWithQualityHeaderValueComparer QualityComparer { get; }
     
 

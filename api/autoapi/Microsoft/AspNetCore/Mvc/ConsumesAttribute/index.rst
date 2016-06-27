@@ -59,48 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ConsumesAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ConsumesAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.ContentTypes
-    
-        
-    
-        
-        Gets or sets the supported request content types. Used to select an action when there would otherwise be
-        multiple matches.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeCollection ContentTypes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int IActionConstraint.Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -128,25 +86,6 @@ Constructors
         .. code-block:: csharp
     
             public ConsumesAttribute(string contentType, params string[] otherContentTypes)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ConsumesAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.ConsumesActionConstraintOrder
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly int ConsumesActionConstraintOrder
     
 
 Methods
@@ -205,5 +144,59 @@ Methods
         .. code-block:: csharp
     
             public void SetContentTypes(MediaTypeCollection contentTypes)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ConsumesAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.ConsumesActionConstraintOrder
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly int ConsumesActionConstraintOrder
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ConsumesAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.ContentTypes
+    
+        
+    
+        
+        Gets or sets the supported request content types. Used to select an action when there would otherwise be
+        multiple matches.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeCollection ContentTypes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ConsumesAttribute.Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int IActionConstraint.Order { get; }
     
 

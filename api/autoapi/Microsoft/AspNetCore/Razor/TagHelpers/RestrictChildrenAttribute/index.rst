@@ -58,33 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.RestrictChildrenAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.RestrictChildrenAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.RestrictChildrenAttribute.ChildTags
-    
-        
-    
-        
-        Get the names of elements allowed as children.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> ChildTags
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -118,5 +91,29 @@ Constructors
         .. code-block:: csharp
     
             public RestrictChildrenAttribute(string childTag, params string[] childTags)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.RestrictChildrenAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.RestrictChildrenAttribute.ChildTags
+    
+        
+    
+        
+        Get the names of elements allowed as children.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> ChildTags { get; }
     
 

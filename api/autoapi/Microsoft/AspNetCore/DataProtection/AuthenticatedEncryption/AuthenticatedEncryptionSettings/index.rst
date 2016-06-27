@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public EncryptionAlgorithm EncryptionAlgorithm
-            {
-                get;
-                set;
-            }
+            public EncryptionAlgorithm EncryptionAlgorithm { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.AuthenticatedEncryptionSettings.ValidationAlgorithm
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ValidationAlgorithm ValidationAlgorithm
-            {
-                get;
-                set;
-            }
+            public ValidationAlgorithm ValidationAlgorithm { get; set; }
     
 
 Methods

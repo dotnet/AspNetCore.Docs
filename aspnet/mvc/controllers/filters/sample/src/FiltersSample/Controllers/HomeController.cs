@@ -1,5 +1,5 @@
 ﻿using FiltersSample.Filters;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers
 {
@@ -11,14 +11,14 @@ namespace FiltersSample.Controllers
             return View();
         }
 
-        [AddHeader("Author","Steve Smith @ardalis")]
+        [AddHeader("Author", "Steve Smith @ardalis")]
         public IActionResult Hello(string name)
         {
             return Content($"Hello {name}");
         }
 
-        [TypeFilter(typeof(AddHeaderAttribute), 
-            Arguments =new object[] { "Author", "Steve Smith (@ardalis)"})]
+        [TypeFilter(typeof(AddHeaderAttribute),
+            Arguments = new object[] { "Author", "Steve Smith (@ardalis)" })]
         public IActionResult Hi(string name)
         {
             return Content($"Hi {name}");

@@ -30,10 +30,6 @@ Microsoft.AspNetCore.Mvc.Formatters.Json.Internal Namespace
    /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Json/Internal/MvcJsonMvcOptionsSetup/index
    
    
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Formatters/Json/Internal/SerializerSettingsProvider/index
-   
-   
 
 
 
@@ -44,10 +40,6 @@ Microsoft.AspNetCore.Mvc.Formatters.Json.Internal Namespace
    :hidden:
    :maxdepth: 2
 
-   
-   
-   
-   
    
    
    
@@ -104,12 +96,5 @@ Microsoft.AspNetCore.Mvc.Formatters.Json.Internal Namespace
 
         
         Sets up JSON formatter options for :any:`Microsoft.AspNetCore.Mvc.MvcOptions`\.
-
-
-    class :dn:cls:`SerializerSettingsProvider`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.Formatters.Json.Internal.SerializerSettingsProvider
-
-        
-        Helper class which provides :any:`Newtonsoft.Json.JsonSerializerSettings`\.
 
 

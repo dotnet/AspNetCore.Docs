@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddAuthorization(IServiceCollection services)
+            public static IServiceCollection AddAuthorization(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Authorization.AuthorizationOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddAuthorization(IServiceCollection services, Action<AuthorizationOptions> configure)
+            public static IServiceCollection AddAuthorization(this IServiceCollection services, Action<AuthorizationOptions> configure)
     
 

@@ -60,6 +60,36 @@ Properties
     :hidden:
 
     
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.ActionParameters
+    
+        
+        :rtype: System.Reflection.ParameterInfo<System.Reflection.ParameterInfo>[]
+    
+        
+        .. code-block:: csharp
+    
+            public ParameterInfo[] ActionParameters { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.IsMethodAsync
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsMethodAsync { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.IsTypeAssignableFromIActionResult
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsTypeAssignableFromIActionResult { get; }
+    
     .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.MethodInfo
     
         
@@ -68,10 +98,37 @@ Properties
         
         .. code-block:: csharp
     
-            public MethodInfo MethodInfo
-            {
-                get;
-            }
+            public MethodInfo MethodInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.MethodReturnType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type MethodReturnType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.TargetTypeInfo
+    
+        
+        :rtype: System.Reflection.TypeInfo
+    
+        
+        .. code-block:: csharp
+    
+            public TypeInfo TargetTypeInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.TaskGenericType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type TaskGenericType { get; }
     
 
 Methods
@@ -129,5 +186,18 @@ Methods
         .. code-block:: csharp
     
             public Task<object> ExecuteAsync(object target, object[] parameters)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor.GetDefaultValueForParameter(System.Int32)
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object GetDefaultValueForParameter(int index)
     
 

@@ -58,41 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent.IsEmptyOrWhiteSpace
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool IsEmptyOrWhiteSpace
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent.IsModified
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool IsModified
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -220,5 +185,34 @@ Methods
         .. code-block:: csharp
     
             public override void WriteTo(TextWriter writer, HtmlEncoder encoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent.IsEmptyOrWhiteSpace
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool IsEmptyOrWhiteSpace { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.DefaultTagHelperContent.IsModified
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool IsModified { get; }
     
 

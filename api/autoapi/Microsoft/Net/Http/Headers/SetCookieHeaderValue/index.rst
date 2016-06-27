@@ -52,127 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.SetCookieHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.SetCookieHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Domain
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Domain
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Expires
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? Expires
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.HttpOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HttpOnly
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.MaxAge
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
-    
-        
-        .. code-block:: csharp
-    
-            public TimeSpan? MaxAge
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Path
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Secure
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Secure
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -229,7 +108,7 @@ Methods
     
         
         :param builder: 
-            The :any:`System.Text.StringBuilder` to receive the string representation of this
+            The :any:`System.Text.StringBuilder` to receive the string representation of this 
             :any:`Microsoft.Net.Http.Headers.SetCookieHeaderValue`\.
         
         :type builder: System.Text.StringBuilder
@@ -358,5 +237,94 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParseStrictList(IList<string> inputs, out IList<SetCookieHeaderValue> parsedValues)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.SetCookieHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Domain
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Domain { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Expires
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? Expires { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.HttpOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HttpOnly { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.MaxAge
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.TimeSpan<System.TimeSpan>}
+    
+        
+        .. code-block:: csharp
+    
+            public TimeSpan? MaxAge { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Path { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Secure
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Secure { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.SetCookieHeaderValue.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; set; }
     
 

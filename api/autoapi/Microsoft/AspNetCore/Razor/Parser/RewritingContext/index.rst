@@ -56,47 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.RewritingContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.RewritingContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RewritingContext.ErrorSink
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
-    
-        
-        .. code-block:: csharp
-    
-            public ErrorSink ErrorSink
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RewritingContext.SyntaxTree
-    
-        
-    
-        
-        The documents syntax tree.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block SyntaxTree
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,5 +83,39 @@ Constructors
         .. code-block:: csharp
     
             public RewritingContext(Block syntaxTree, ErrorSink errorSink)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.RewritingContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RewritingContext.ErrorSink
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
+    
+        
+        .. code-block:: csharp
+    
+            public ErrorSink ErrorSink { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.RewritingContext.SyntaxTree
+    
+        
+    
+        
+        The documents syntax tree.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block SyntaxTree { get; set; }
     
 

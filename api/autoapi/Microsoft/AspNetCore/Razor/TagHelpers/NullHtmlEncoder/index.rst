@@ -59,6 +59,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.NullHtmlEncoder()
+    
+        
+    
+        
+        Initializes a :any:`Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder` instance.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            protected NullHtmlEncoder()
+    
+
 Properties
 ----------
 
@@ -81,10 +104,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static NullHtmlEncoder Default
-            {
-                get;
-            }
+            public static NullHtmlEncoder Default { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.MaxOutputCharactersPerInputCharacter
     
@@ -94,33 +114,7 @@ Properties
         
         .. code-block:: csharp
     
-            public override int MaxOutputCharactersPerInputCharacter
-            {
-                get;
-            }
-    
-
-Constructors
-------------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.NullHtmlEncoder()
-    
-        
-    
-        
-        Initializes a :any:`Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder` instance.
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            protected NullHtmlEncoder()
+            public override int MaxOutputCharactersPerInputCharacter { get; }
     
 
 Methods

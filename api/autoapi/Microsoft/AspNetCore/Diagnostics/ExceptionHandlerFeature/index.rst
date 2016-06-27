@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Exception Error
-            {
-                get;
-                set;
-            }
+            public Exception Error { get; set; }
     
 

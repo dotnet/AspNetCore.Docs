@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultCompilerCacheProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultCompilerCacheProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultCompilerCacheProvider.Cache
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache
-    
-        
-        .. code-block:: csharp
-    
-            public ICompilerCache Cache
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -104,5 +82,24 @@ Constructors
         .. code-block:: csharp
     
             public DefaultCompilerCacheProvider(IRazorViewEngineFileProviderAccessor fileProviderAccessor)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultCompilerCacheProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultCompilerCacheProvider.Cache
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Razor.Internal.ICompilerCache
+    
+        
+        .. code-block:: csharp
+    
+            public ICompilerCache Cache { get; }
     
 

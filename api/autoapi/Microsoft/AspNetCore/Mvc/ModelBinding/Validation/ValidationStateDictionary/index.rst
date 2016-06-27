@@ -56,110 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Item[System.Object]
-    
-        
-    
-        
-        :type key: System.Object
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry
-    
-        
-        .. code-block:: csharp
-    
-            public ValidationStateEntry this[object key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<object> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.Object, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>.Keys
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<object> IReadOnlyDictionary<object, ValidationStateEntry>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.Object, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>.Values
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<ValidationStateEntry> IReadOnlyDictionary<object, ValidationStateEntry>.Values
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<ValidationStateEntry> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -329,5 +225,87 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(object key, out ValidationStateEntry value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Item[System.Object]
+    
+        
+    
+        
+        :type key: System.Object
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry
+    
+        
+        .. code-block:: csharp
+    
+            public ValidationStateEntry this[object key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<object> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.Object, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>.Keys
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<object> IReadOnlyDictionary<object, ValidationStateEntry>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.System.Collections.Generic.IReadOnlyDictionary<System.Object, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>.Values
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<ValidationStateEntry> IReadOnlyDictionary<object, ValidationStateEntry>.Values { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateEntry>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<ValidationStateEntry> Values { get; }
     
 

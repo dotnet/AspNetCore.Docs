@@ -1,4 +1,6 @@
-﻿Enabling Cross-Origin Requests (CORS)
+﻿:version: 1.0.0-rc1
+
+Enabling Cross-Origin Requests (CORS)
 =====================================
 
 By `Mike Wasson`_

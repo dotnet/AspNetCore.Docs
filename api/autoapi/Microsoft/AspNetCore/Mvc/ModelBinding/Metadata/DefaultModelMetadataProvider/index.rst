@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadataProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadataProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadataProvider.DetailsProvider
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider
-    
-        
-        .. code-block:: csharp
-    
-            protected ICompositeMetadataDetailsProvider DetailsProvider
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -145,7 +118,7 @@ Methods
         
     
         
-        Creates the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultMetadataDetails` entries for the properties of a model
+        Creates the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultMetadataDetails` entries for the properties of a model 
         :any:`System.Type`\.
     
         
@@ -210,5 +183,29 @@ Methods
         .. code-block:: csharp
     
             public virtual ModelMetadata GetMetadataForType(Type modelType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadataProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadataProvider.DetailsProvider
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ICompositeMetadataDetailsProvider
+    
+        
+        .. code-block:: csharp
+    
+            protected ICompositeMetadataDetailsProvider DetailsProvider { get; }
     
 

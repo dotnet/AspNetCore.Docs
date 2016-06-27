@@ -52,6 +52,60 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler
 
+Constructors
+------------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler
+    :noindex:
+    :hidden:
+
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler.MvcRouteHandler(Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory, Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector, System.Diagnostics.DiagnosticSource, Microsoft.Extensions.Logging.ILoggerFactory)
+    
+        
+    
+        
+        :type actionInvokerFactory: Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory
+    
+        
+        :type actionSelector: Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector
+    
+        
+        :type diagnosticSource: System.Diagnostics.DiagnosticSource
+    
+        
+        :type loggerFactory: Microsoft.Extensions.Logging.ILoggerFactory
+    
+        
+        .. code-block:: csharp
+    
+            public MvcRouteHandler(IActionInvokerFactory actionInvokerFactory, IActionSelector actionSelector, DiagnosticSource diagnosticSource, ILoggerFactory loggerFactory)
+    
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler.MvcRouteHandler(Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory, Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector, System.Diagnostics.DiagnosticSource, Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.AspNetCore.Mvc.Infrastructure.IActionContextAccessor)
+    
+        
+    
+        
+        :type actionInvokerFactory: Microsoft.AspNetCore.Mvc.Internal.IActionInvokerFactory
+    
+        
+        :type actionSelector: Microsoft.AspNetCore.Mvc.Infrastructure.IActionSelector
+    
+        
+        :type diagnosticSource: System.Diagnostics.DiagnosticSource
+    
+        
+        :type loggerFactory: Microsoft.Extensions.Logging.ILoggerFactory
+    
+        
+        :type actionContextAccessor: Microsoft.AspNetCore.Mvc.Infrastructure.IActionContextAccessor
+    
+        
+        .. code-block:: csharp
+    
+            public MvcRouteHandler(IActionInvokerFactory actionInvokerFactory, IActionSelector actionSelector, DiagnosticSource diagnosticSource, ILoggerFactory loggerFactory, IActionContextAccessor actionContextAccessor)
+    
+
 Methods
 -------
 

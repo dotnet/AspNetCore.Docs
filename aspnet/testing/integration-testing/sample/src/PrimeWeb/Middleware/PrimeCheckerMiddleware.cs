@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using PrimeWeb.Services;
 using System;
 using System.Threading.Tasks;
@@ -36,7 +36,7 @@ namespace PrimeWeb.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            HttpRequest request = context.Request;
+            var request = context.Request;
             if (!request.Path.HasValue ||
                 request.Path != _options.Path)
             {

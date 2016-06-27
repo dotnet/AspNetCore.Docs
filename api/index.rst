@@ -8,6 +8,9 @@ ASP.NET Core API Reference Documentation
    :glob:
    :maxdepth: 1
    
+   /autoapi/Microsoft/AspNet/Identity/CoreCompat/index
+   
+   
    /autoapi/Microsoft/AspNetCore/Antiforgery/index
    
    
@@ -135,9 +138,6 @@ ASP.NET Core API Reference Documentation
    
    
    /autoapi/Microsoft/AspNetCore/Hosting/Server/Features/index
-   
-   
-   /autoapi/Microsoft/AspNetCore/Hosting/Startup/index
    
    
    /autoapi/Microsoft/AspNetCore/Hosting/WindowsServices/index
@@ -353,7 +353,13 @@ ASP.NET Core API Reference Documentation
    /autoapi/Microsoft/AspNetCore/Razor/Generator/index
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/Internal/index
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/Parser/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Razor/Parser/Internal/index
    
    
    /autoapi/Microsoft/AspNetCore/Razor/Parser/SyntaxTree/index
@@ -377,7 +383,13 @@ ASP.NET Core API Reference Documentation
    /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/index
    
    
+   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Internal/index
+   
+   
    /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Razor/Tokenizer/Symbols/Internal/index
    
    
    /autoapi/Microsoft/AspNetCore/Routing/index
@@ -404,25 +416,25 @@ ASP.NET Core API Reference Documentation
    /autoapi/Microsoft/AspNetCore/Server/Kestrel/index
    
    
-   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Exceptions/index
-   
-   
    /autoapi/Microsoft/AspNetCore/Server/Kestrel/Filter/index
    
    
-   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Http/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Filter/Internal/index
    
    
    /autoapi/Microsoft/AspNetCore/Server/Kestrel/Https/index
    
    
-   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Infrastructure/index
-   
-   
    /autoapi/Microsoft/AspNetCore/Server/Kestrel/Internal/index
    
    
-   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Networking/index
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Internal/Http/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Internal/Infrastructure/index
+   
+   
+   /autoapi/Microsoft/AspNetCore/Server/Kestrel/Internal/Networking/index
    
    
    /autoapi/Microsoft/AspNetCore/Server/Testing/index
@@ -447,15 +459,6 @@ ASP.NET Core API Reference Documentation
    
    
    /autoapi/Microsoft/AspNetCore/TestHost/index
-   
-   
-   /autoapi/Microsoft/AspNetCore/WebSockets/Client/index
-   
-   
-   /autoapi/Microsoft/AspNetCore/WebSockets/Protocol/index
-   
-   
-   /autoapi/Microsoft/AspNetCore/WebSockets/Server/index
    
    
    /autoapi/Microsoft/AspNetCore/WebUtilities/index
@@ -611,9 +614,6 @@ ASP.NET Core API Reference Documentation
    /autoapi/Microsoft/Extensions/Primitives/index
    
    
-   /autoapi/Microsoft/Extensions/Primitives/VSRC1/index
-   
-   
    /autoapi/Microsoft/Extensions/WebEncoders/index
    
    
@@ -630,6 +630,9 @@ ASP.NET Core API Reference Documentation
    
    
    /autoapi/Microsoft/Owin/Security/Interop/index
+   
+   
+   /autoapi/Owin/index
    
    
    /autoapi/PageGenerator/index

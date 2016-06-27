@@ -7,6 +7,10 @@ AreaAttribute Class
 
 
 
+
+Specifies the area containing a controller or action.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc`
 Assemblies
@@ -25,7 +29,7 @@ Inheritance Hierarchy
 
 * :dn:cls:`System.Object`
 * :dn:cls:`System.Attribute`
-* :dn:cls:`Microsoft.AspNetCore.Mvc.Routing.RouteConstraintAttribute`
+* :dn:cls:`Microsoft.AspNetCore.Mvc.Routing.RouteValueAttribute`
 * :dn:cls:`Microsoft.AspNetCore.Mvc.AreaAttribute`
 
 
@@ -41,7 +45,7 @@ Syntax
 .. code-block:: csharp
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class AreaAttribute : RouteConstraintAttribute, _Attribute, IRouteConstraintProvider
+    public class AreaAttribute : RouteValueAttribute, _Attribute, IRouteValueProvider
 
 
 
@@ -67,6 +71,13 @@ Constructors
     
         
     
+        
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.AreaAttribute` instance.
+    
+        
+    
+        
+        :param areaName: The area containing the controller or action.
         
         :type areaName: System.String
     

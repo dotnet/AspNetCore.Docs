@@ -53,43 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol.EscapedIdentifier
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            public bool ? EscapedIdentifier
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol.Keyword
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpKeyword<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpKeyword>}
-    
-        
-        .. code-block:: csharp
-    
-            public CSharpKeyword? Keyword
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -219,5 +182,34 @@ Methods
         .. code-block:: csharp
     
             public override int GetHashCode()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol.EscapedIdentifier
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            public bool ? EscapedIdentifier { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol.Keyword
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpKeyword<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpKeyword>}
+    
+        
+        .. code-block:: csharp
+    
+            public CSharpKeyword? Keyword { get; set; }
     
 

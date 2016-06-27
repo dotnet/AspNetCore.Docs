@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ClaimsIdentityOptions ClaimsIdentity
-            {
-                get;
-                set;
-            }
+            public ClaimsIdentityOptions ClaimsIdentity { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.Cookies
     
@@ -100,11 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IdentityCookieOptions Cookies
-            {
-                get;
-                set;
-            }
+            public IdentityCookieOptions Cookies { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.Lockout
     
@@ -121,11 +113,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LockoutOptions Lockout
-            {
-                get;
-                set;
-            }
+            public LockoutOptions Lockout { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.Password
     
@@ -142,11 +130,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PasswordOptions Password
-            {
-                get;
-                set;
-            }
+            public PasswordOptions Password { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.SecurityStampValidationInterval
     
@@ -163,11 +147,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan SecurityStampValidationInterval
-            {
-                get;
-                set;
-            }
+            public TimeSpan SecurityStampValidationInterval { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.SignIn
     
@@ -184,11 +164,7 @@ Properties
         
         .. code-block:: csharp
     
-            public SignInOptions SignIn
-            {
-                get;
-                set;
-            }
+            public SignInOptions SignIn { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.Tokens
     
@@ -205,11 +181,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TokenOptions Tokens
-            {
-                get;
-                set;
-            }
+            public TokenOptions Tokens { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.IdentityOptions.User
     
@@ -226,10 +198,6 @@ Properties
         
         .. code-block:: csharp
     
-            public UserOptions User
-            {
-                get;
-                set;
-            }
+            public UserOptions User { get; set; }
     
 

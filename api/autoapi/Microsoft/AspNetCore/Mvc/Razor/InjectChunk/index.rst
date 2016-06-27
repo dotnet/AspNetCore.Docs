@@ -53,53 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk.MemberName
-    
-        
-    
-        
-        Gets or sets the name of the property to be injected.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string MemberName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk.TypeName
-    
-        
-    
-        
-        Gets or sets the type name of the property to be injected.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TypeName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -131,5 +84,44 @@ Constructors
         .. code-block:: csharp
     
             public InjectChunk(string typeName, string propertyName)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk.MemberName
+    
+        
+    
+        
+        Gets or sets the name of the property to be injected.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string MemberName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.InjectChunk.TypeName
+    
+        
+    
+        
+        Gets or sets the type name of the property to be injected.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TypeName { get; set; }
     
 

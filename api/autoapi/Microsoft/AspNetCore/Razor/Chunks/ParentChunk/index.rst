@@ -53,29 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ParentChunk
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ParentChunk
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ParentChunk.Children
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Chunks.Chunk<Microsoft.AspNetCore.Razor.Chunks.Chunk>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<Chunk> Children
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -92,5 +69,24 @@ Constructors
         .. code-block:: csharp
     
             public ParentChunk()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.ParentChunk
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.ParentChunk.Children
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Chunks.Chunk<Microsoft.AspNetCore.Razor.Chunks.Chunk>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<Chunk> Children { get; set; }
     
 

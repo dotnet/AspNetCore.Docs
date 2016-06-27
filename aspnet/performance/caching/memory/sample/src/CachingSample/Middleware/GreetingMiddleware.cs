@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using System;
+using System.Threading.Tasks;
+using CachingSample.Abstractions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using CachingSample.Abstractions;
-using System;
 
 namespace CachingSample
 {
-    // You may need to install the Microsoft.AspNet.Http.Abstractions package into your project
+    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class GreetingMiddleware
     {
         private readonly IGreetingService _greetingService;

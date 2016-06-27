@@ -56,105 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.Attributes
-    
-        
-    
-        
-        Gets the attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.Key
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadataIdentity Key
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.PropertyAttributes
-    
-        
-    
-        
-        Gets the property attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> PropertyAttributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.TypeAttributes
-    
-        
-    
-        
-        Gets the type attributes.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<object> TypeAttributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.ValidationMetadata
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public ValidationMetadata ValidationMetadata
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -186,5 +87,89 @@ Constructors
         .. code-block:: csharp
     
             public ValidationMetadataProviderContext(ModelMetadataIdentity key, ModelAttributes attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.Attributes
+    
+        
+    
+        
+        Gets the attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.Key
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ModelMetadataIdentity
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadataIdentity Key { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.PropertyAttributes
+    
+        
+    
+        
+        Gets the property attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> PropertyAttributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.TypeAttributes
+    
+        
+    
+        
+        Gets the type attributes.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<object> TypeAttributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadataProviderContext.ValidationMetadata
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public ValidationMetadata ValidationMetadata { get; }
     
 

@@ -60,149 +60,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.HttpError
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.HttpError
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.HttpError.ExceptionMessage
-    
-        
-    
-        
-        The message of the :any:`System.Exception` if available.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ExceptionMessage
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.ExceptionType
-    
-        
-    
-        
-        The type of the :any:`System.Exception` if available.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ExceptionType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.InnerException
-    
-        
-    
-        
-        The inner :any:`System.Exception` associated with this instance if available.
-    
-        
-        :rtype: System.Web.Http.HttpError
-    
-        
-        .. code-block:: csharp
-    
-            public HttpError InnerException
-            {
-                get;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.Message
-    
-        
-    
-        
-        The high-level, user-visible message explaining the cause of the error. Information carried in this field
-        should be considered public in that it will go over the wire regardless of the value of error detail
-        policy. As a result care should be taken not to disclose sensitive information about the server or the
-        application.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Message
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.MessageDetail
-    
-        
-    
-        
-        A detailed description of the error intended for the developer to understand exactly what failed.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string MessageDetail
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.ModelState
-    
-        
-    
-        
-        The :dn:prop:`System.Web.Http.HttpError.ModelState` containing information about the errors that occurred during model binding.
-    
-        
-        :rtype: System.Web.Http.HttpError
-    
-        
-        .. code-block:: csharp
-    
-            public HttpError ModelState
-            {
-                get;
-            }
-    
-    .. dn:property:: System.Web.Http.HttpError.StackTrace
-    
-        
-    
-        
-        The stack trace information associated with this instance if available.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string StackTrace
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -294,6 +151,123 @@ Constructors
         .. code-block:: csharp
     
             public HttpError(string message)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.HttpError
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.HttpError.ExceptionMessage
+    
+        
+    
+        
+        The message of the :any:`System.Exception` if available.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ExceptionMessage { get; set; }
+    
+    .. dn:property:: System.Web.Http.HttpError.ExceptionType
+    
+        
+    
+        
+        The type of the :any:`System.Exception` if available.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ExceptionType { get; set; }
+    
+    .. dn:property:: System.Web.Http.HttpError.InnerException
+    
+        
+    
+        
+        The inner :any:`System.Exception` associated with this instance if available.
+    
+        
+        :rtype: System.Web.Http.HttpError
+    
+        
+        .. code-block:: csharp
+    
+            public HttpError InnerException { get; }
+    
+    .. dn:property:: System.Web.Http.HttpError.Message
+    
+        
+    
+        
+        The high-level, user-visible message explaining the cause of the error. Information carried in this field
+        should be considered public in that it will go over the wire regardless of the value of error detail
+        policy. As a result care should be taken not to disclose sensitive information about the server or the
+        application.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Message { get; set; }
+    
+    .. dn:property:: System.Web.Http.HttpError.MessageDetail
+    
+        
+    
+        
+        A detailed description of the error intended for the developer to understand exactly what failed.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string MessageDetail { get; set; }
+    
+    .. dn:property:: System.Web.Http.HttpError.ModelState
+    
+        
+    
+        
+        The :dn:prop:`System.Web.Http.HttpError.ModelState` containing information about the errors that occurred during model binding.
+    
+        
+        :rtype: System.Web.Http.HttpError
+    
+        
+        .. code-block:: csharp
+    
+            public HttpError ModelState { get; }
+    
+    .. dn:property:: System.Web.Http.HttpError.StackTrace
+    
+        
+    
+        
+        The stack trace information associated with this instance if available.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string StackTrace { get; set; }
     
 
 Methods

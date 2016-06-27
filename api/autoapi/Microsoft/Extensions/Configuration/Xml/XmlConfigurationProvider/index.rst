@@ -8,7 +8,7 @@ XmlConfigurationProvider Class
 
 
 
-An XML file based :any:`Microsoft.Extensions.Configuration.FileConfigurationProvider`\.
+Represents an XML file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
 
 
 Namespace
@@ -71,6 +71,13 @@ Constructors
         
     
         
+        Initializes a new instance with the specified source.
+    
+        
+    
+        
+        :param source: The source settings.
+        
         :type source: Microsoft.Extensions.Configuration.Xml.XmlConfigurationSource
     
         
@@ -91,6 +98,13 @@ Methods
     
         
     
+        
+        Loads the XML data from a stream.
+    
+        
+    
+        
+        :param stream: The stream to read.
         
         :type stream: System.IO.Stream
     
