@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace AppState.Model
+﻿namespace AppState.Model
 {
-    
     public class RequestEntry
     {
         public string Path { get; set; }
