@@ -6,26 +6,28 @@
   "projectUrl": "",
   "licenseUrl": "",
 
-  "frameworks": {
-    "dnx451": { },
-    "dnxcore50": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23409",
-        "System.Collections": "4.0.11-beta-23409",
-        "System.Linq": "4.0.1-beta-23409",
-        "System.Runtime": "4.0.21-beta-23409",
-        "System.Threading": "4.0.11-beta-23409"
-      }
-    }
-  },
   "dependencies": {
     "PrimeWeb": "1.0.0",
     "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204",
-    "Microsoft.AspNet.TestHost": "1.0.0-rc1-final"
+    "dotnet-test-xunit": "1.0.0-rc2-build10025",
+    "Microsoft.AspNetCore.TestHost": "1.0.0"
   },
-  "commands": {
-    "test": "xunit.runner.dnx"
-  }
 
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "portable-net451+win8"
+      ]
+    },
+    "net451": {}
+  },
+
+  "testRunner": "xunit"
 }
