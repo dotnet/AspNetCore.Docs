@@ -20,3 +20,4 @@
 .. _Nadeem Afana: https://twitter.com/NadeemAfana
 .. _Rachel Appel: http://github.com/rachelappel
 .. _Barry Dorrans: https://twitter.com/blowdart
+.. _Cesar Blum Silveira: https://github.com/cesarbs
