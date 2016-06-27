@@ -18,7 +18,7 @@ Topics
 .. toctree::
     :titlesonly:
 
-    intro
+    Introduction <intro> 
     getting-started     
     tutorials/index
     fundamentals/index
