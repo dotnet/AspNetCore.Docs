@@ -1,4 +1,10 @@
 sudo: false
+branches:
+  only:
+    - master
+    - release
+    - dev
+    - /^(.*\/)?ci-.*$/
 language: python
 python:
   - "3.4"
