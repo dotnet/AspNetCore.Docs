@@ -1,11 +1,10 @@
-Fundamentals z
-===============
+Fundamentals
+============
 
 .. toctree::
     :titlesonly:
 
     startup
-    choosing-the-right-dotnet
     middleware
     static-files
     routing
@@ -20,4 +19,5 @@ Fundamentals z
     servers
     request-features
     owin
+    choosing-the-right-dotnet
 
