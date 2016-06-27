@@ -309,7 +309,7 @@ In this section, we will write a pair of auto-linking tag helpers. The first wil
 
 Because these two helpers are closely related and we may refactor them in the future, we'll keep them in the same file.
 
-#. Add the following ``AutoLinker`` class to the *TagHelpers* folder.
+#. Add the following ``AutoLinkerHttpTagHelper`` class to the *TagHelpers* folder.
 
 .. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1AutoLinker.cs
   :language: c#
