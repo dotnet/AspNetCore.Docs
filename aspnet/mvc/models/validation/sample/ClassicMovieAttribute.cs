@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNet.Mvc.ModelBinding.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Globalization;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace MVCMovie.Models
 {
     public class ClassicMovieAttribute : ValidationAttribute, IClientModelValidator
     {
         private int _year;
+
         public ClassicMovieAttribute(int Year)
         {
             _year = Year;
@@ -20,23 +19,42 @@ namespace MVCMovie.Models
         {
             Movie movie = (Movie)validationContext.ObjectInstance;
 
-            if (movie.Genre == Genre.Classic)
+            if (movie.Genre == Genre.Classic && movie.ReleaseDate.Year > _year)
             {
-                if (movie.ReleaseDate.Year < _year)
-                {
-                    return new ValidationResult(
-                        "Classic movies must have a release year earlier than " + this._year);
-
-                }
+                return new ValidationResult(GetErrorMessage());
             }
+
             return ValidationResult.Success;
         }
 
-        public IEnumerable<ModelClientValidationRule>
-        GetClientValidationRules(ClientModelValidationContext context)
+        public void AddValidation(ClientModelValidationContext context)
         {
-            yield return new ModelClientValidationRule("classicmovie", 
-                "Classic movies must have a release year earlier than " + this._year);
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-classicmovie", GetErrorMessage());
+
+            var year = _year.ToString(CultureInfo.InvariantCulture);
+            MergeAttribute(context.Attributes, "data-val-classicmovie-year", year);
+        }
+
+        private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+        {
+            if (attributes.ContainsKey(key))
+            {
+                return false;
+            }
+
+            attributes.Add(key, value);
+            return true;
+        }
+
+        private string GetErrorMessage()
+        {
+            return "Classic movies must have a release year earlier than " + _year;
         }
     }
 }
