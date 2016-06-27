@@ -94,9 +94,7 @@ To include the `publish-iis` tool in your application, add entries to the `tools
 .. code-block:: none
 
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "1.0.0-preview1-final",
-      "imports": "portable-net45+wp80+win8+wpa81+dnxcore50"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
     }
   },
   "scripts": {
