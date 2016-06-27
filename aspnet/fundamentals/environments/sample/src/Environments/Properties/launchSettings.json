@@ -12,13 +12,14 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNET_ENV": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "web": {
-      "commandName": "web",
+    "IIS Express (Staging)": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
       "environmentVariables": {
-        "Hosting:Environment": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     }
   }
