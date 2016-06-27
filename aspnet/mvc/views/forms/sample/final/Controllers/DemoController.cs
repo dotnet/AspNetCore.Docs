@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using FormsTagHelper.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FormsTagHelper.Controllers
 {
@@ -6,7 +7,6 @@ namespace FormsTagHelper.Controllers
 
     public class DemoController : Controller
     {       
-        
         public IActionResult Index(string id)
         {
             ViewData["Message"] = id;

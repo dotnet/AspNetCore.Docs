@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNet.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
-public class CountryViewModel
+namespace FormsTagHelper.ViewModels
 {
-    public string Country { get; set; }
-
-    public List<SelectListItem> Countries { get; } = new List<SelectListItem>
+    public class CountryViewModel
     {
-        new SelectListItem { Value = "MX", Text = "Mexico" },
-        new SelectListItem { Value = "CA", Text = "Canada" },
-        new SelectListItem { Value = "US", Text = "USA"  },
-    };
+        public string Country { get; set; }
+
+        public List<SelectListItem> Countries { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "MX", Text = "Mexico" },
+            new SelectListItem { Value = "CA", Text = "Canada" },
+            new SelectListItem { Value = "US", Text = "USA"  },
+        };
+    }
 }

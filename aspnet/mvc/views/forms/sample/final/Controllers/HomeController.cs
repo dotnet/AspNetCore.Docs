@@ -1,5 +1,5 @@
 ﻿using FormsTagHelper.ViewModels;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FormsTagHelper.Controllers
 {
