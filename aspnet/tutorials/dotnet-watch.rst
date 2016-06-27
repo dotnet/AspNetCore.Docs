@@ -1,7 +1,7 @@
 .. _dotnet-watch:
 
 Developing ASP.NET Core applications using dotnet watch
-======================================================
+=======================================================
 
 By `Victor Hurdugaci`_
 
