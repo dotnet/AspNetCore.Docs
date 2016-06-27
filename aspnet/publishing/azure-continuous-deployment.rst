@@ -94,7 +94,7 @@ Git is a distributed version control system that you can use to deploy your Azur
 
 5. If the **Settings** blade is not shown, select **Settings** in the **Web App** blade. 
 
-6. In the **Settings** blade, select **Continuous deployment** > **Choose Source** > **Local Git Repository**. 
+6. In the **Settings** blade, select **Deployment source** > **Choose Source** > **Local Git Repository**. 
 
   .. image:: azure-continuous-deployment/_static/08-azure-localrepository.png
 
