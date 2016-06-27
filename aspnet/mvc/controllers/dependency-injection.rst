@@ -65,7 +65,7 @@ Once the service has been configured, running the application and navigating to 
 
 .. image:: dependency-injection/_static/server-greeting.png
 
-.. tip:: See `Unit Testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_ to learn how to explicitly request dependencies <http://deviq.com/explicit-dependencies-principle>`_ in controllers makes code easier to test.
+.. tip:: See :doc:`https://docs.asp.net/en/latest/mvc/controllers/testing.html` to learn how to explicitly request dependencies <http://deviq.com/explicit-dependencies-principle>`_ in controllers makes code easier to test.
 
 ASP.NET Core's built-in dependency injection supports having only a single constructor for classes requesting services. If you have more than one constructor, you may get an exception stating::
 
