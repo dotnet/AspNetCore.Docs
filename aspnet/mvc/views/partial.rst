@@ -23,7 +23,7 @@ A partial view is a view that is rendered within another view. The HTML output g
 When Should I Use Partial Views?
 --------------------------------
 
-Partial views are an effective way of breaking up large views into smaller components. They can reduce duplication of view content and allow view elements to be reused. Common layout elements should be specified in :doc:`layout.cshtml <layout>`. Non-layout reusable content can be encapsulated into partial views.
+Partial views are an effective way of breaking up large views into smaller components. They can reduce duplication of view content and allow view elements to be reused. Common layout elements should be specified in :doc:`_Layout.cshtml <layout>`. Non-layout reusable content can be encapsulated into partial views.
 
 If you have a complex page made up of several logical pieces, it can be helpful to work with each piece as its own partial view. Each piece of the page can be viewed in isolation from the rest of the page, and the view for the page itself becomes much simpler since it only contains the overall page structure and calls to render the partial views.
 
@@ -32,7 +32,7 @@ If you have a complex page made up of several logical pieces, it can be helpful 
 Declaring Partial Views
 -----------------------
 
-Partial views are created like any other view: you create a *.cshtml* file within the *Views* folder. There is no semantic difference between a partial view and a regular view - they are just rendered differently. You can have a view that is returned directly from a controller's :dn:class:`~Microsoft.AspNetCore.Mvc.ViewResult`, and the  same view can be used as a partial view. The main difference between how a view and a partial view are rendered is that partial views do not run *_ViewStart* (while views do - learn more about *_ViewStart* in :doc:`layout`).
+Partial views are created like any other view: you create a *.cshtml* file within the *Views* folder. There is no semantic difference between a partial view and a regular view - they are just rendered differently. You can have a view that is returned directly from a controller's :dn:class:`~Microsoft.AspNetCore.Mvc.ViewResult`, and the same view can be used as a partial view. The main difference between how a view and a partial view are rendered is that partial views do not run *_ViewStart.cshtml* (while views do - learn more about *_ViewStart.cshtml* in :doc:`layout`).
 
 Referencing a Partial View
 --------------------------
@@ -47,12 +47,12 @@ The :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.PartialAsync` me
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Home/About.cshtml
   :lines: 8
 
-You can render a partial view with :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial`. This method doesn't return a result, it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a razor code block (you can also call ``RenderPartialAsync`` if necessary):
+You can render a partial view with :dn:method:`~Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial`. This method doesn't return a result; it streams the rendered output directly to the response. Because it doesn't return a result, it must be called within a Razor code block (you can also call ``RenderPartialAsync`` if necessary):
 
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Home/About.cshtml
   :lines: 10-12
 
-Because it streams the result directly, ``RenderPartial``/``RenderPartialAsync`` may perform better in some scenarios. However, in most cases it's recommended you use ``Render`` (or ``RenderAsync``).
+Because it streams the result directly, ``RenderPartial`` and ``RenderPartialAsync`` may perform better in some scenarios. However, in most cases it's recommended you use ``Render`` and ``RenderAsync``.
 
 .. note:: If your views need to execute code, the recommended pattern is to use a :doc:`view component <view-components>` instead of a partial view.
 
@@ -71,7 +71,7 @@ When referencing a partial view, you can refer to its location in several ways:
   @Html.Partial("ViewName.cshtml")
   
   // Locate the view based on the application root
-  // Paths that start with "/" or "~/" refer to same location
+  // Paths that start with "/" or "~/" refer to the application root
   @Html.Partial("~/Views/Folder/ViewName.cshtml")
   @Html.Partial("/Views/Folder/ViewName.cshtml")
   
@@ -82,12 +82,12 @@ If desired, you can have different partial views with the same name in different
 
 Partial views can be *chained*. That is, a partial view can call another partial view (as long as you don't create a loop). Within each view or partial view, relative paths are always relative to that view, not the root or parent view.
 
-.. note:: If you declare a :doc:`razor <razor>` ``section`` in a partial view, it will not be visible to its parent(s); it will be limited to the partial view.
+.. note:: If you declare a :doc:`Razor <razor>` ``section`` in a partial view, it will not be visible to its parent(s); it will be limited to the partial view.
 
 Accessing Data From Partial Views
 ---------------------------------
 
-When a partial view is instantiated, it gets a copy of the parent view's ``ViewData`` collection. Updates made to the data within the partial view are not persisted to the parent view. ``ViewData`` changed in a partial view is lost when the partial view returns.
+When a partial view is instantiated, it gets a copy of the parent view's ``ViewData`` dictionary. Updates made to the data within the partial view are not persisted to the parent view. ``ViewData`` changed in a partial view is lost when the partial view returns.
 
 You can pass an instance of ``ViewDataDictionary`` to the partial view:
 
@@ -110,7 +110,7 @@ You can pass an instance of ``ViewDataDictionary`` and a view model to a partial
 An Example
 ^^^^^^^^^^
 
-The following view specifies a view model of type ``Article``. ``Article`` has an ``AuthorName`` property that is passed to an *AuthorPartial*, and a property of type ``List<ArticleSection>``, which is passed (in a loop) to a partial devoted to rendering that type:
+The following view specifies a view model of type ``Article``. ``Article`` has an ``AuthorName`` property that is passed to a partial view named *AuthorPartial*, and a property of type ``List<ArticleSection>``, which is passed (in a loop) to a partial devoted to rendering that type:
 
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Articles/Read.cshtml
   :emphasize-lines: 2, 5, 10
@@ -128,5 +128,3 @@ The *ArticleSection* partial:
 At runtime, the partials are rendered into the parent view, which itself is rendered within the shared *_Layout.cshtml*, resulting in output like this:
 
 .. image:: partial/_static/output.png
-
-
