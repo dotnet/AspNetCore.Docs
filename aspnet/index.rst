@@ -19,8 +19,7 @@ Topics
     :titlesonly:
 
     intro
-    getting-started    
-    API <https://docs.asp.net/projects/api>
+    getting-started     
     tutorials/index
     fundamentals/index
     mvc/index
@@ -33,6 +32,7 @@ Topics
     security/index
     performance/index
     migration/index
+    API <https://docs.asp.net/projects/api>
     contribute/index
     
 
