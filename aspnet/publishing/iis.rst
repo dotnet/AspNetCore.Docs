@@ -46,7 +46,7 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 Install the .NET Core Windows Server Hosting bundle
 ---------------------------------------------------
 
-#. Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
+#. Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=817246>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 #. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
 
 For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see :doc:`ASP.NET Core Module Configuration Reference </hosting/aspnet-core-module>`.
@@ -94,10 +94,7 @@ To include the `publish-iis` tool in your application, add entries to the `tools
 .. code-block:: none
 
   "tools": {
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "1.0.0-preview1-final",
-      "imports": "portable-net45+wp80+win8+wpa81+dnxcore50"
-    }
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
   },
   "scripts": {
     "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
