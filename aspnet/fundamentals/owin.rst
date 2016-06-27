@@ -67,11 +67,11 @@ OWIN-based servers can host ASP.NET applications, since ASP.NET conforms to the 
   :linenos:
   :language: c#
 
-IServerFactory_ is an interface that requires an Initialize and a Start method. Initialize must return an instance of IFeatureCollection_, which we populate with a ``INowinServerInformation`` that includes the server's name (the specific implementation may provide additional functionality). In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
+``IServerFactory`` is an interface that requires an ``Initialize`` and a ``Start`` method. Initialize must return an instance of :dn:iface:`~Microsoft.AspNetCore.Http.Features.IFeatureCollection`, which we populate with a ``INowinServerInformation`` that includes the server's name (the specific implementation may provide additional functionality). In this example, the ``NowinServerInformation`` class is defined as a private class within the factory, and is returned by ``Initialize`` as required.
 
 ``Initialize`` is responsible for configuring the server, which in this case is done through a series of fluent API calls that hard code the server to listen for requests (to any IP address) on port 5000. Note that the final line of the fluent configuration of the ``builder`` variable specifies that requests will be handled by the private method ``HandleRequest``.
 
-``Start`` is called after ``Initialize`` and accepts the the IFeatureCollection_ created by ``Initialize``, and a callback of type ``Func<IFeatureCollection, Task>``. This callback is assigned to a local field and is ultimately called on each request from within the private ``HandleRequest`` method (which was wired up in ``Initialize``).
+``Start`` is called after ``Initialize`` and accepts the the ``IFeatureCollection`` created by ``Initialize``, and a callback of type ``Func<IFeatureCollection, Task>``. This callback is assigned to a local field and is ultimately called on each request from within the private ``HandleRequest`` method (which was wired up in ``Initialize``).
 
 With this in place, all that's required to run an ASP.NET application using this custom server is the following command in *project.json*:
 
@@ -309,6 +309,3 @@ Additional Resources
 
 - :doc:`middleware`
 - :doc:`servers`
-
-.. _IFeatureCollection: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html
-.. _IServerFactory: https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServerFactory/index.html
