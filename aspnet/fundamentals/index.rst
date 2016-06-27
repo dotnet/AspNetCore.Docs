@@ -1,10 +1,11 @@
-Fundamentals
-============
+Fundamentals z
+===============
 
 .. toctree::
     :titlesonly:
 
     startup
+    choosing-the-right-dotnet
     middleware
     static-files
     routing

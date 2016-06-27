@@ -18,10 +18,10 @@ Topics
 .. toctree::
     :titlesonly:
 
-    getting-started
+    intro
+    getting-started    
     API <https://docs.asp.net/projects/api>
     tutorials/index
-    conceptual-overview/index
     fundamentals/index
     mvc/index
     testing/index

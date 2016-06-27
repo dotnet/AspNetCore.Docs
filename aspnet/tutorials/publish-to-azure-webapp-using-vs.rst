@@ -177,5 +177,5 @@ Next steps
 -----------
 
 - :doc:`/tutorials/first-mvc-app/start-mvc`
-- :doc:`/conceptual-overview/aspnet`
+- :doc:`/intro`
 - :doc:`/fundamentals/index`

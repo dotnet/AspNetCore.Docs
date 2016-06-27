@@ -296,6 +296,6 @@ Troubleshooting
 Additional resources
 --------------------
 
-- :doc:`/conceptual-overview/aspnet`
+- :doc:`/intro`
 - `The Official Microsoft IIS Site <http://www.iis.net/>`__
 - `Microsoft TechNet Library: Windows Server <https://technet.microsoft.com/en-us/library/bb625087.aspx>`__
