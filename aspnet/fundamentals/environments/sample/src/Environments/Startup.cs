@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Environments
@@ -11,9 +12,24 @@ namespace Environments
         {
         }
 
-        public void Configure(IApplicationBuilder app)
+        // When editing this document, do not modify the STARTSNIP/ENDSNIP comments.
+        // They are used to locate where in this document a specific code snippet is located
+        // If you are using the sample in your own application, feel free to remove the comments.
+        // STARTSNIP:error-handling
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+            // ...
+            // ENDSNIP:error-handling
 
             app.Run(async (context) =>
             {
