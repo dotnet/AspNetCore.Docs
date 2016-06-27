@@ -71,7 +71,7 @@ When referencing a partial view, you can refer to its location in several ways:
   @Html.Partial("ViewName.cshtml")
   
   // Locate the view based on the application root
-  // Paths that start with "/" or "~/" both refer to the application root
+  // Paths that start with "/" or "~/" refer to the application root
   @Html.Partial("~/Views/Folder/ViewName.cshtml")
   @Html.Partial("/Views/Folder/ViewName.cshtml")
   
