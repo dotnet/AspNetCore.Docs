@@ -31,7 +31,7 @@ Typical controller responsibilities:
 Unit Testing
 ------------
 
-`Unit testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_ involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action is tested, not the behavior of its dependencies or of the framework itself. As you unit test your controller actions, make sure you focus only on its behavior. A controller unit test avoids things like :doc:`filters <filters>`, :doc:`routing </fundamentals/routing>`, or :doc:`model binding </mvc/models/model-binding>`. By focusing on testing just one thing, unit tests are generally simple to write and quick to run. A well-written set of unit tests can be run frequently without much overhead. However, unit tests do not detect issues in the interaction between components, which is the purpose of :ref:`integration testing <integration-testing>`.
+`Unit testing`_ involves testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action is tested, not the behavior of its dependencies or of the framework itself. As you unit test your controller actions, make sure you focus only on its behavior. A controller unit test avoids things like :doc:`filters <filters>`, :doc:`routing </fundamentals/routing>`, or :doc:`model binding </mvc/models/model-binding>`. By focusing on testing just one thing, unit tests are generally simple to write and quick to run. A well-written set of unit tests can be run frequently without much overhead. However, unit tests do not detect issues in the interaction between components, which is the purpose of :ref:`integration testing <integration-testing>`.
 
 If you've writing custom filters, routes, etc, you should unit test them, but not as part of your tests on a particular controller action. They should be tested in isolation.
 
@@ -156,3 +156,5 @@ The following set of tests target the ``Create`` method in the :ref:`IdeasContro
 Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a ``BrainstormSession`` instance, and confirms that the idea was correctly added to its collection of ideas.
 
 You'll find additional examples of integration tests in this article's `sample project <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/mvc/controllers/testing/sample>`_.
+
+_Unit testing: .. https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test
