@@ -69,7 +69,7 @@ Writing a handler for resource based authorization is not that much different to
   public class DocumentAuthorizationHandler : AuthorizationHandler<MyRequirement, Document>
   {
       public override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-                                                  OperationAuthorizationRequirement requirement, 
+                                                  MyRequirement requirement, 
                                                   Document resource)
       {
           // Validate the requirement against the resource and identity.
