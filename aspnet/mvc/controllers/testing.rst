@@ -41,20 +41,20 @@ To demonstrate unit testing, review the following controller. It displays a list
 
 .. literalinclude:: testing/sample/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs
   :language: c#
-  :emphasize-lines: 11,15,20,40-41
+  :emphasize-lines: 12,16,21,42-43
 
 The controller is following the `explicit dependencies principle <http://deviq.com/explicit-dependencies-principle/>`_, expecting dependency injection to provide it with an instance of ``IBrainstormSessionRepository``. This makes it fairly easy to test using a mock object framework, like `Moq <https://www.nuget.org/packages/Moq/>`_. The ``HTTP GET Index`` method has no looping or branching and only calls one method. To test this ``Index`` method, we need to verify that a ``ViewResult`` is returned, with a ``ViewModel`` from the repository's ``List`` method.
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
-  :emphasize-lines: 16-17,23-26
+  :emphasize-lines: 17-18
 
 The ``HTTP POST Index`` method (shown below) should verify:
 
 - The action method returns a ``ViewResult`` with the appropriate data when ``ModelState.IsValid`` is ``false``
 - The ``Add`` method on the repository is called and a ``RedirectToActionResult`` is returned with the correct arguments when ``ModelState.IsValid`` is true.
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/HomeControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
   :lines: 29-57
   :dedent: 4
@@ -74,7 +74,7 @@ Another controller in the app displays information related to a particular brain
 
 The controller action has three cases to test, one for each ``return`` statement:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/SessionControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/SessionControllerTests.cs
   :language: c#
   :emphasize-lines: 16,26,39
 
@@ -90,7 +90,7 @@ The ``ForSession`` method returns a list of ``IdeaDTO`` types, with property nam
 
 The unit tests for the ``Create`` and ``ForSession`` API methods:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/UnitTests/ApiIdeasControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs
   :language: c#
   :emphasize-lines: 16-17,26-27,37-38,65-66,76-77
 
@@ -136,7 +136,7 @@ Each integration test class configures the ``TestServer`` that will run the ASP.
 
 To correct this issue, you need to configure the server to use the ``ApplicationBasePath`` and ``ApplicationName`` of the web project. This is done in the call to ``UseServices`` in the integration test class shown:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/HomeControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/HomeControllerTests.cs
   :language: c#
   :emphasize-lines: 20,22-32,36-37,42
 
@@ -149,11 +149,9 @@ If your app exposes web APIs, it's a good idea to have automated tests confirm t
 
 The following set of tests target the ``Create`` method in the :ref:`IdeasController <ideas-controller>` class shown above:
 
-.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllerSample.Tests/IntegrationTests/ApiIdeasControllerTests.cs
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/ApiIdeasControllerTests.cs
   :language: c#
-  :lines: 48-101
-  :dedent: 8
-  :emphasize-lines: 1-2,9-10,17-18,25-26,33-34,42-43,51
+  :lines: 37-142
 
 Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a ``BrainstormSession`` instance, and confirms that the idea was correctly added to its collection of ideas.
 

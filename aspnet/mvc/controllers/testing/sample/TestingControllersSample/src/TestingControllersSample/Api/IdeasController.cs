@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.AspNet.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using TestingControllersSample.ClientModels;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
@@ -19,36 +20,40 @@ namespace TestingControllersSample.Api
 
         [Route("forsession/{sessionId}")]
         [HttpGet]
-        public IActionResult ForSession(int sessionId)
+        public async Task<IActionResult> ForSession(int sessionId)
         {
-            var session = _sessionRepository.GetById(sessionId);
+            var session = await _sessionRepository.GetByIdAsync(sessionId);
             if (session == null)
             {
-                return HttpNotFound(sessionId);
+                return NotFound(sessionId);
             }
-            var result = session.Ideas.Select(i => new IdeaDTO()
+
+            var result = session.Ideas.Select(idea => new IdeaDTO()
             {
-                id = i.Id,
-                name = i.Name,
-                description = i.Description,
-                dateCreated = i.DateCreated
+                Id = idea.Id,
+                Name = idea.Name,
+                Description = idea.Description,
+                DateCreated = idea.DateCreated
             }).ToList();
+
             return Ok(result);
         }
 
         [Route("create")]
         [HttpPost]
-        public IActionResult Create([FromBody]NewIdeaModel model)
+        public async Task<IActionResult> Create([FromBody]NewIdeaModel model)
         {
             if (!ModelState.IsValid)
             {
-                return HttpBadRequest(ModelState);
+                return BadRequest(ModelState);
             }
-            var session = _sessionRepository.GetById(model.SessionId);
+
+            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
             if (session == null)
             {
-                return HttpNotFound(model.SessionId);
+                return NotFound(model.SessionId);
             }
+
             var idea = new Idea()
             {
                 DateCreated = DateTimeOffset.Now,
@@ -56,7 +61,9 @@ namespace TestingControllersSample.Api
                 Name = model.Name
             };
             session.AddIdea(idea);
-            _sessionRepository.Update(session);
+
+            await _sessionRepository.UpdateAsync(session);
+
             return Ok(session);
         }
     }
