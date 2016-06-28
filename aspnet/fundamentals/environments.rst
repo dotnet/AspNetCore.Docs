@@ -18,8 +18,6 @@ Development, Staging, Production
 
 ASP.NET Core references a particular `environment variable <https://github.com/aspnet/Home/wiki/Environment-Variables>`_, ``ASPNETCORE_ENVIRONMENT`` to describe the environment the application is currently running in. This variable can be set to any value you like, but three values are used by convention: ``Development``, ``Staging``, and ``Production``. You will find these values used in the samples and templates provided with ASP.NET Core.
 
-.. note:: Preview versions of ASP.NET Core used other names for this environment variables so you may encounter those names in documentation. ``ASPNETCORE_ENVIRONMENT`` is the name used in the final release. Older names include ``Hosting:Environment`` and ``ASPNET_ENV``. If you are still using those names, please transition to the final name.
-
 The current environment setting can be detected programmatically from within your application. In addition, you can use the Environment :doc:`tag helper </mvc/views/tag-helpers/index>` to include certain sections in your :doc:`view </mvc/views/index>` based on the current application environment.
 
 .. note:: The specified environment name is case insensitive. Whether you set the variable to ``Development`` or ``development`` or ``DEVELOPMENT`` the results will be the same.
