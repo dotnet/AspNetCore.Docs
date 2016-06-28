@@ -38,7 +38,7 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
             TodoItems.Add(item);
-            return CreatedAtRoute("GetTodo", new { controller = "Todo", id = item.Key }, item);
+            return CreatedAtAction("GetTodo", new { id = item.Key }, item);
         }
 
         [HttpPut("{id}")]
