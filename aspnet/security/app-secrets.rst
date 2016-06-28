@@ -48,6 +48,8 @@ Installing the Secret Manager tool
 
     dotnet user-secrets -h
 
+.. note:: When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
+
 The Secret Manager tool will display usage, options and command help.
 
 The Secret Manager tool operates on project specific configuration settings that are stored in your user profile. To use user secrets the project must specify a ``userSecretsId`` value in its *project.json* file. The value of ``userSecretsId`` is arbitrary, but is generally unique to the project.
