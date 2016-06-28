@@ -15,7 +15,7 @@ In this tutorial we'll use an existing WebApi application that calculates the su
 Getting started
 ---------------
 
-Start by downloading `the sample application <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/dotnet-watch/sample>`__. It contains two projects, ``WebApp`` (a web application) and ``WebAppTests`` (unit tests for the web application)
+Start by downloading `the sample application <https://github.com/aspnet/Docs/tree/dev/aspnet/tutorials/dotnet-watch/sample>`__. It contains two projects, ``WebApp`` (a web application) and ``WebAppTests`` (unit tests for the web application)
 
 In a console, open the folder where you downloaded the sample application and run:
 
