@@ -159,6 +159,11 @@ Test the app
 
 .. note:: If your browser is unable to connect to the movie app you might need to wait for IIS Express to load the app. It can sometimes take up to 30 seconds to build the app and have it ready to respond to requests.
 
+.. note:: You will also need to add this snippet of code within **_Layout.cshtml**, just beneath the **@RenderBody()** function:
+        @RenderSection("scripts", required: false)
+        otherwise you'll receive an internal server error about a non-rendered section when trying to create a new movie.
+
+
 - Run the app and tap the **Mvc Movie** link
 - Tap the **Create New** link and create a movie
 
