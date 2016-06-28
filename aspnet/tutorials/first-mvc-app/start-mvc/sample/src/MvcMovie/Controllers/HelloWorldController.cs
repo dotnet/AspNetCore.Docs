@@ -79,7 +79,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, id: {numTimes}");
+            return HtmlEncoder.Default.Encode($"Hello {name}, id: {ID}");
         }
     }
 }
