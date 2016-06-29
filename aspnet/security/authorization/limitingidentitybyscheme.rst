@@ -32,6 +32,7 @@ Selecting the scheme with the Authorize attribute
 -------------------------------------------------
 
 As no authentication middleware is configured to automatically run and create an identity you must, at the point of authorization choose which middleware will be used. The simplest way to select the middleware you wish to authorize wish is to use the :dn:prop:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute.ActiveAuthenticationSchemes` property. This property accepts a comma delimited list of Authentication Schemes to use. For example;
+
 .. code-block:: c#
 
  [Authorize(ActiveAuthenticationSchemes = "Cookie,Bearer")]
