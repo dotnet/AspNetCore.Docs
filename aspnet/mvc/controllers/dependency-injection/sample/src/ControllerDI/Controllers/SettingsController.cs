@@ -1,6 +1,6 @@
 ﻿using ControllerDI.Model;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace ControllerDI.Controllers
 {
@@ -8,7 +8,7 @@ namespace ControllerDI.Controllers
     {
         private readonly SampleWebSettings _settings;
 
-        public SettingsController(IOptions<SampleWebSettings> settingsOptions )
+        public SettingsController(IOptions<SampleWebSettings> settingsOptions)
         {
             _settings = settingsOptions.Value;
         }

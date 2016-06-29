@@ -23,22 +23,19 @@ Dependency injection is a technique that follows the `Dependency Inversion Princ
 Constructor Injection
 ---------------------
 
-ASP.NET Core's built-in support for constructor-based dependency injection extends to MVC controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
+ASP.NET Core's built-in support for constructor-based dependency injection extends to MVC controllers. By simply adding a service type to your controller as a constructor parameter, ASP.NET Core will attempt to resolve that type using its built in service container. Services are typically, but not always, defined using interfaces. For example, if your application has business logic that depends on the current time, you can inject a service that retrieves the time (rather than hard-coding it), which would allow your tests to pass in implementations that use a set time.
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Interfaces/IDateTime.cs
-  :linenos:
   :language: c#
 
 Implementing an interface like this one so that it uses the system clock at runtime is trivial:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Services/SystemDateTime.cs
-  :linenos:
   :language: c#
 
 With this in place, we can use the service in our controller. In this case, we have added some logic to the ``HomeController`` ``Index`` method to display a greeting to the user based on the time of day.
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Controllers/HomeController.cs
-  :linenos:
   :language: c#
   :emphasize-lines: 8,10,12,17-30
   :lines: 1-31,51-52
@@ -53,10 +50,9 @@ If we run the application now, we will most likely encounter an error::
 This error occurs when we have not configured a service in the ``ConfigureServices`` method in our ``Startup`` class. To specify that requests for ``IDateTime`` should be resolved using an instance of ``SystemDateTime``, add the highlighted line in the listing below to your ``ConfigureServices`` method:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Startup.cs
-  :linenos:
   :language: c#
-  :emphasize-lines: 6
-  :lines: 29-30,43-47
+  :emphasize-lines: 4
+  :lines: 26-27,42-44
   :dedent: 8
   
 .. note:: This particular service could be implemented using any of several different lifetime options (``Transient``, ``Scoped``, or ``Singleton``). See :doc:`/fundamentals/dependency-injection` to understand how each of these scope options will affect the behavior of your service.
@@ -82,7 +78,6 @@ Action Injection with FromServices
 Sometimes you don't need a service for more than one action within your controller. In this case, it may make sense to inject the service as a parameter to the action method. This is done by marking the parameter with the attribute ``[FromServices]`` as shown here:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Controllers/HomeController.cs
-  :linenos:
   :language: c#
   :emphasize-lines: 1
   :lines: 33-38
@@ -96,16 +91,14 @@ Accessing application or configuration settings from within a controller is a co
 To work with the options pattern, you need to create a class that represents the options, such as this one:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Model/SampleWebSettings.cs
-  :linenos:
   :language: c#
 
 Then you need to configure the application to use the options model and add your configuration class to the services collection in ``ConfigureServices``:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Startup.cs
-  :linenos:
   :language: c#
-  :emphasize-lines: 3-5,8,15,18
-  :lines: 18-47
+  :emphasize-lines: 3-6,9,16,19
+  :lines: 14-44
   :dedent: 8
   
 .. note:: In the above listing, we are configuring the application to read the settings from a JSON-formatted file. You can also configure the settings entirely in code, as is shown in the commented code above. See :doc:`/fundamentals/configuration` for further configuration options.
@@ -113,7 +106,6 @@ Then you need to configure the application to use the options model and add your
 Once you've specified a strongly-typed configuration object (in this case, ``SampleWebSettings``) and added it to the services collection, you can request it from any Controller or Action method by requesting an instance of ``IOptions<T>`` (in this case, ``IOptions<SampleWebSettings>``). The following code shows how one would request the settings from a controller:
 
 .. literalinclude:: dependency-injection/sample/src/ControllerDI/Controllers/SettingsController.cs
-  :linenos:
   :language: c#
   :emphasize-lines: 3,5,7
   :lines: 7-22

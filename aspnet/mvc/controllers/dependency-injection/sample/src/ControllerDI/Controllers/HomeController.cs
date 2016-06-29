@@ -1,5 +1,5 @@
 ﻿using ControllerDI.Interfaces;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ControllerDI.Controllers
 {
