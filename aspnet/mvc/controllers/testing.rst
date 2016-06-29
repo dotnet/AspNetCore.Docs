@@ -157,4 +157,4 @@ Unlike integration tests of actions that returns HTML views, web API methods tha
 
 You'll find additional examples of integration tests in this article's `sample project <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/mvc/controllers/testing/sample>`_.
 
-_Unit testing: .. https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test
+.. _Unit testing: https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test
