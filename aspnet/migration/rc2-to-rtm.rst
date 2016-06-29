@@ -40,6 +40,31 @@ Becomes:
     }
   }
 
+SDK Version for Visual Studio Projects
+--------------------------------------
+
+Solutions in Visual Studio using the ``global.json`` configuration file must update to the latest SDK tools preview version. For example:
+
+.. code-block:: json
+
+  {
+    "projects": [ "src" ],
+    "sdk": {
+      "version": "1.0.0-preview1-002702"
+    }
+  }
+
+Becomes:
+
+.. code-block:: json
+
+  {
+    "projects": [ "src" ],
+    "sdk": {
+      "version": "1.0.0-preview2-003121"
+    }
+  }
+  
 Hosting
 -------
 
