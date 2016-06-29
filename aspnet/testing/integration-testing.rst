@@ -16,7 +16,7 @@ Integration testing ensures that an application's components function correctly 
 Introduction to Integration Testing
 -----------------------------------
 
-Integration tests verify that different parts of an application work correctly together. Unlike `Unit testing`_, integration tests frequently involve application infrastructure concerns, such as a database, file system, network resources, or web requests and responses. Unit tests use fakes or mock objects in place of these concerns, but the purpose of integration tests is to confirm that the system works as expected with these systems.
+Integration tests verify that different parts of an application work correctly together. Unlike `Unit testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_, integration tests frequently involve application infrastructure concerns, such as a database, file system, network resources, or web requests and responses. Unit tests use fakes or mock objects in place of these concerns, but the purpose of integration tests is to confirm that the system works as expected with these systems.
 
 Integration tests, because they exercise larger segments of code and because they rely on infrastructure elements, tend to be orders of magnitude slower than unit tests. Thus, it's a good idea to limit how many integration tests you write, especially if you can test the same behavior with a unit test.
 
@@ -27,7 +27,7 @@ Testing the logic within your own methods is usually the domain of unit tests. T
 Integration Testing ASP.NET Core
 --------------------------------
 
-To get set up to run integration tests, you'll need to create a test project, refer to your ASP.NET Core web project, and install a test runner. This process is described in the `Unit testing`_ documentation, along with more detailed instructions on running tests and recommendations for naming your tests and test classes.
+To get set up to run integration tests, you'll need to create a test project, refer to your ASP.NET Core web project, and install a test runner. This process is described in the `Unit testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_ documentation, along with more detailed instructions on running tests and recommendations for naming your tests and test classes.
 
 .. tip:: Separate your unit tests and your integration tests using different projects. This helps ensure you don't accidentally introduce infrastructure concerns into your unit tests, and lets you easily choose to run all tests, or just one set or the other.
 
@@ -66,7 +66,7 @@ Note that we're not really trying to test the correctness of our prime number ch
 
 .. image:: integration-testing/_static/test-explorer.png
 
-.. note:: You can learn more about the unit tests in the `Unit testing`_ article.
+.. note:: You can learn more about the unit tests in the `Unit testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_ article.
 
 Now that we have a set of passing tests, it's a good time to think about whether we're happy with the current way in which we've designed our application. If we see any `code smells <http://deviq.com/code-smells/>`_, now may be a good time to refactor the application to improve its design.
 
@@ -152,7 +152,5 @@ Integration testing provides a higher level of verification than unit testing. I
 Additional Resources
 --------------------
 
-- `Unit testing`_
+- `Unit testing <https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test>`_
 - :doc:`/fundamentals/middleware`
-
-.. _Unit testing: .. https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test
