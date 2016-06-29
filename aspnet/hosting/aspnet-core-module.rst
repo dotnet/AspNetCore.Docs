@@ -62,14 +62,6 @@ Configuration Attributes
 |                           | |                                                  |
 |                           | | The default value is 10.                         |
 +---------------------------+----------------------------------------------------+
-| startupRetryCount         | | Optional integer attribute.                      |
-|                           | |                                                  |
-|                           | | The number of times the handler will try to      |
-|                           | | launch the process specified in **processPath**. |
-|                           | | See **startupTimeLimit** for details.            |
-|                           | |                                                  |
-|                           | | The default value is 10.                         |
-+---------------------------+----------------------------------------------------+
 | rapidFailsPerMinute       | | Optional integer attribute.                      |
 |                           | |                                                  |
 |                           | | Specifies the number of times the process        |
@@ -120,6 +112,17 @@ Configuration Attributes
 |                           | |                                                  |
 |                           | | The default value is false.                      |
 +---------------------------+----------------------------------------------------+
+| disableStartUpErrorPage   | | True or False.                                   |
+|                           | |                                                  |
+|                           | | If true, the **502.5 - Process Failure** page    |
+|                           | | will be supressed and the 502 status code page   |
+|                           | | configured in your *web.config* will take        |
+|                           | | precedence.                                      |
+|                           | |                                                  |
+|                           | | The default value is false.                      |
++---------------------------+----------------------------------------------------+
+
+
 
 Child Elements
 ^^^^^^^^^^^^^^^
@@ -142,6 +145,12 @@ If you place a file with the name *app_offline.htm* at the root of a web applica
 
 While the *app_offline..htm* file is present, the ASP.NET Core Module will repond to all requests by sending back the contents of the *app_offline.htm* file. Once the *app_offline.htm* file is removed, the next request loads the application, which then responds to requests.
 
+ASP.NET Core Module Start Up Error Page
+---------------------------------------
+
+.. image:: aspnet-core-module/ANCM-502_5.png
+
+If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, you will see an HTTP 502.5 status code page. To supress this page and revert to the default IIS 502 status code page, use the ``disableStartUpErrorPage`` attribute. Look at the `HTTP Errors attribute <https://www.iis.net/configreference/system.webserver/httperrors>`__ to override this page with a custom error page.
 
 ASP.NET Core Module configuration examples
 -------------------------------------------
