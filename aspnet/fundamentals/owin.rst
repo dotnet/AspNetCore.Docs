@@ -102,7 +102,7 @@ This `sample  <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/ow
 OWIN keys
 ---------
 
-OWIN depends on an ``IDictionary<string,object>`` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements all of the keys outlined in the OWIN specification, and some ASP.NET Core OWIN keys. Any keys not required in the OWIN specification are optional and may only be used in some scenarios. See `OWIN Key Guidelines and Common Keys <http://owin.org/spec/spec/CommonKeys.html>`_
+OWIN depends on an ``IDictionary<string,object>`` object to communicate information throughout an HTTP Request/Response exchange. ASP.NET Core implements the keys listed below. See the `primary specification, extensions <http://owin.org/#spec>`_, and `OWIN Key Guidelines and Common Keys <http://owin.org/spec/spec/CommonKeys.html>`_.
 
 Request Data (OWIN v1.0.0)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
