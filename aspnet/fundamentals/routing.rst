@@ -1,8 +1,10 @@
 Routing
 =======
-By `Steve Smith`_
+By `Ryan Nowak <https://github.com/rynowak>`__, `Steve Smith`_, and `Rick Anderson`_
 
 Routing is used to map requests to route handlers. Routes are configured when the application starts up, and can extract values from the URL that will be used for request processing. Routing functionality is also responsible for generating links using the defined routes in ASP.NET apps.
+
+This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC routing, see :doc:`/mvc/controllers/routing`
 
 .. contents:: Sections
   :local:
@@ -10,35 +12,70 @@ Routing is used to map requests to route handlers. Routes are configured when th
 
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/routing/sample>`__
 
-Routing Basics
+Routing basics
 ----------------
-Routing uses *routes*, implementations of `IRouter <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html#irouter-interface>`_ to map incoming requests to *route handlers* and to generate URLs to include in responses. Usually an application has a single collection of routes, which are processed in order to try and match inbound requests or to generate an outgoing URL. Routing is connected to the :doc:`middleware <middleware>` pipeline by the `RouterMiddleware <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouterMiddleware/index.html?highlight=routermiddleware#routermiddleware-class>`_.
 
-:doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
+Routing uses *routes* (implementations of :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`) to:
 
-URL Matching
+- map incoming requests to *route handlers*
+- generate URLs used in responses
+
+Generally an app has a single collection of routes. The route collection is processed in order:
+
+- requests look for a match in the route collection by :ref:`URL-Matching-ref`
+- responses use routing to genenerate URLs
+
+Routing is connected to the :doc:`middleware <middleware>` pipeline by the :dn:class:`~Microsoft.AspNetCore.Builder.RouterMiddleware` class. :doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
+
+.. _URL-Matching-ref:
+
+URL matching
 ^^^^^^^^^^^^
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
 
-Incoming requests enter the ``RouterMiddleware`` which calls the `RouteAsync <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html?highlight=irouter#meth-Microsoft.AspNetCore.Routing.IRouter.RouteAsync>`_ method on each route in sequence. The ``IRouter`` instance chooses whether to *handle* the request by setting the `RouteContext.Handler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.Handler>`_ to a non-null `RequestDelegate <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/RequestDelegate/index.html#requestdelegate-delegate>`_. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all route are executed, and no handler is found for a request, then the middleware calls *next* and the next middleware in the request pipeline is invoked.
+- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler`
+- :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`
+- :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddleware`
+- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler`
+- :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.HttpContext`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.RouteData`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.DataTokens`
 
-The primary input to ``RouteAsync`` is the `RouteContext.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.HttpContext>`_ associated with the current request. The ``RouteContext.Handler`` and `RouteContext.RouteData <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteContext/index.html?highlight=routecontext#prop-Microsoft.AspNetCore.Routing.RouteContext.RouteData>`_ are outputs that will be set after a successful match.
+Incoming requests enter the :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddleware` which calls the :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` method on each route in sequence. The :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter` instance chooses whether to *handle* the request by setting the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler` to a non-null :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all route are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
+
+The primary input to ``RouteAsync`` is the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.HttpContext` associated with the current request. The ``RouteContext.Handler`` and :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.RouteData` are outputs that will be set after a successful match.
 
 A successful match during ``RouteAsync`` also will set the properties of the ``RouteContext.RouteData`` to appropriate values based on the request processing that was done. The ``RouteContext.RouteData`` contains important state information about the *result* of a route when it successfully matches a request. 
 
-The `RouteData.Values <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.Values>`_ property is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
+The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values` property is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
 
-The `RouteData.DataTokens <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.DataTokens>`_ property is a property bag of additional data related to the route that matched. ``DataTokens`` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do not affect the **behavior** of routing in any way. Additionally values stashed in data tokens can be of any type, in contrast to route values which must be easily convertable to and from strings.
+The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.DataTokens` property is a property bag of additional data related to the route that matched. ``DataTokens`` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do not affect the **behavior** of routing in any way. Additionally values stashed in data tokens can be of any type, in contrast to route values which must be easily convertable to and from strings.
 
-The `RouteData.Routers <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteData/index.html#prop-Microsoft.AspNetCore.Routing.RouteData.Routers>`_ property is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the ``Routers`` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in ``Routers`` is the route collection, and should be used for URL generation. The last item in ``Routers`` is route that matched.
+The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Routers` property is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the ``Routers`` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in ``Routers`` is the route collection, and should be used for URL generation. The last item in ``Routers`` is the route that matched.
 
-URL Generation
+URL generation
 ^^^^^^^^^^^^^^
-URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers the URLs that access them. 
+URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers and the URLs that access them. 
 
-URL generation follows a similar iterative process, but starts with user or framework code calling into the `GetVirtualPath <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouter/index.html?highlight=irouter#meth-Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath>`_ method of the route collection. Each *route* will then have its ``GetVirtualPath`` method called in sequence until until a non-null `VirtualPathData <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html#virtualpathdata-class>`_ is returned.
+- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
+- :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`
 
-The primary inputs to ``GetVirtualPath`` are the `VirtualPathContext.HttpContext <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext>`_, `VirtualPathContext.Values <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.Values>`_ and `VirtualPathContext.AmbientValues <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathContext/index.html?highlight=virtualpathcontext#prop-Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues>`_. Routes primarily use the route values provided via ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
+URL generation follows a similar iterative process, but starts with user or framework code calling into the :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath` method of the route collection. Each *route* will then have its ``GetVirtualPath`` method called in sequence until until a non-null :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` is returned.
+
+The primary inputs to ``GetVirtualPath`` are:
+
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` - :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.Values`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues` 
+
+Routes primarily use the route values provided by the ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
 
 .. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or roue values.
 
@@ -50,7 +87,7 @@ The `VirtualPathData.Router <https://docs.asp.net/projects/api/en/latest/autoapi
 
 The `VirtualPathData.DataTokens <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens>`_ properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of ``RouteData.DataTokens``.
 
-Creating Routes
+Creating routes
 ^^^^^^^^^^^^^^^
 Routing provides the `Route <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/Route/index.html#route-class>`_ class as the standard implemenation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when ``RouteAsync`` is called. ``Route`` will use the same route template to generate a URL when ``GetVirtualPath`` is called.
 
@@ -125,7 +162,7 @@ This template will match a URL path like ``/en-US/Products/{id}`` and will extra
 
 .. _url-generation:
 
-URL Generation
+URL generation
 ^^^^^^^^^^^^^^^
 The ``Route`` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path. 
 
