@@ -54,7 +54,7 @@ Views are typically returned from actions as a :dn:cls:`~Microsoft.AspNetCore.Mv
   :emphasize-lines: 5
   :dedent: 4
   
-The ``View`` helper method has several overloads to make returning views easier for app developers. You can optionally specify a specific view to return, as well as a model to pass to the view.
+The ``View`` helper method has several overloads to make returning views easier for app developers. You can optionally specify a view to return, as well as a model object to pass to the view.
 
 When this action returns, the *About.cshtml* view shown above is rendered:
 
