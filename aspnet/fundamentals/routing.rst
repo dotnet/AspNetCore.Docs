@@ -51,7 +51,7 @@ Incoming requests enter the :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddlew
 
 The primary input to ``RouteAsync`` is the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.HttpContext` associated with the current request. The ``RouteContext.Handler`` and :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.RouteData` are outputs that will be set after a successful match.
 
-A successful match during ``RouteAsync`` also will set the properties of the ``RouteContext.RouteData`` to appropriate values based on the request processing that was done. The ``RouteContext.RouteData`` contains important state information about the *result* of a route when it successfully matches a request. 
+A successful match during ``RouteAsync`` also will set the properties of the ``RouteContext.RouteData`` to appropriate values based on the request processing that was done. The ``RouteContext.RouteData`` contains important state information about the *result* of a route when it successfully matches a request.
 
 The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values` property is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
 
@@ -61,7 +61,7 @@ The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNe
 
 URL generation
 ^^^^^^^^^^^^^^
-URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers and the URLs that access them. 
+URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers and the URLs that access them.
 
 - :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
 - :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath`
@@ -73,7 +73,7 @@ The primary inputs to ``GetVirtualPath`` are:
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` - :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext`
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.Values`
-- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues` 
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues`
 
 Routes primarily use the route values provided by the ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
 
@@ -82,7 +82,7 @@ Routes primarily use the route values provided by the ``Values`` and ``AmbientVa
 The output of ``GetVirtualPath`` is a :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`. The ``VirtualPathData`` is a parallel of ``RouteData`` - it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
 
 The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath`
-property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application. 
+property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`
 - :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.Router`
@@ -131,7 +131,7 @@ The following two examples create equivalent routes:
 
     routes.MapRoute(
         name: "default_route",
-        template: "{controller}/{action}/{id?}", 
+        template: "{controller}/{action}/{id?}",
         defaults: new { controller = "Home", action = "Index" });
 
     routes.MapRoute(
@@ -162,13 +162,13 @@ This example adds route constraints and data tokens:
         constraints: new { id = new IntConstraint() },
         dataTokens: new { locale = "en-US" });
 
-This template will match a URL path like ``/en-US/Products/{id}`` and will extract the values ``{ controller = Products, action = Details, id = 5 }`` and the data tokens ``{ locale = en-US }``. 
+This template will match a URL path like ``/en-US/Products/{id}`` and will extract the values ``{ controller = Products, action = Details, id = 5 }`` and the data tokens ``{ locale = en-US }``.
 
 .. _url-generation:
 
 URL generation
 ^^^^^^^^^^^^^^^
-The ``Route`` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path. 
+The ``Route`` class can also perform URL generation by combining a set of route values with its route template. This is logically the reverse process of matching the URL path.
 
 .. tip:: To better understand URL generation, imagine what URL you want to generate and then think about how a route template would match that URL. What values would be produced? This is the rough equivalent of how URL generation works in the ``Route`` class.
 
@@ -183,10 +183,10 @@ This example uses a basic ASP.NET MVC style route:
 With the route values ``{ controller = Products, action = List }``, this route will generate the URL ``/Products/List``. The route values are substituted for the corresponding route parameters to form the URL path. Since ``id`` is an optional route parameter, it's no problem that it doesn't have a value.
 
 With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both would URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
- 
-.. tip:: An application using ASP.NET MVC should use the :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly. 
 
-For more details about the URL generation process, see url-generation-reference_. 
+.. tip:: An application using ASP.NET MVC should use the :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly.
+
+For more details about the URL generation process, see url-generation-reference_.
 
 .. _using-routing-middleware:
 
@@ -199,7 +199,7 @@ To use the routing middleware, add it to the **dependencies** in *project.json*:
   :language: javascript
   :lines: 11-20
   :emphasize-lines: 7
-  
+
 Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`` in *Startup.cs*:
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
@@ -211,7 +211,7 @@ Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
 - :dn:iface:`~Microsoft.AspNetCore.Builder.IApplicationBuilder`
-  
+
 Routes must configured inside the ``Configure`` method in the ``Startup`` class. The sample below uses these APIs:
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
@@ -223,7 +223,7 @@ Routes must configured inside the ``Configure`` method in the ``Startup`` class.
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
   :lines: 16-39
-  
+
 .. tip:: If you are only configuring a single route, you can call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
 
 The framework provides a set of extension methods for creating routes such as:
@@ -243,44 +243,42 @@ Route Template Reference
 ------------------------
 Tokens within curly braces (``{ }``) define *route parameters* which will be bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example ``{controller=Home}{action=Index}`` would not be a valid route, since there is no literal value between ``{controller}`` and ``{action}``. These route parameters must have a name, and may have additional attributes specified.
 
-Literal text other than route parameters ``{id}`` and the path separator ``/`` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter ``{ }``, escape it by doubling it ``{{`` or ``}}``.
+Literal text other than route parameters (for example, ``{id}``) and the path separator ``/`` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter ``{`` or  ``}``, escape it by repeating the character (``{{`` or ``}}``).
 
-.. note:: There is a special case route for filenames, such that you can define a route value like ``files/{filename}.{ext?}``. When both ``filename`` and ``ext`` exist, both values will be populated. However, if only ``filename`` exists in the URL, the trailing period ``.`` is also optional. Thus, these would both match: ``/files/foo.txt`` and ``/files/foo``.
+The filename route is a special case. Consider the template ``files/{filename}.{ext?}`` -  When both ``filename`` and ``ext`` exist, both values will be populated. If only ``filename`` exists in the URL, the route matches because the trailing period ``.`` is  optional. The following URLs would match this route:
+
+- ``/files/myFile.txt``
+- ``/files/myFile``
 
 You can use the ``*`` character as a prefix to a route parameter to bind to the rest of the URI - this is called a *catch-all* parameter. For example, ``blog/{*slug}`` would match any URI that started with ``/blog`` and had any value following it (which would be assigned to the ``slug`` route value). Catch-all parameters can also match the empty string.
 
-Route parameters may have *default values*, designated by specifying the default after the parameter name, separated by an ``=``. For example, ``{controller=Home}`` would define ``Home`` as the default value for ``controller``. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional (specified by appending a ``?`` to the end of the parameter name, as in ``id?``). The difference between optional and "has default" is that a route parameter with a default value always produces a value; an optional parameter may not.
+Route parameters may have *default values*, designated by specifying the default after the parameter name, separated by an ``=``. For example, ``{controller=Home}`` would define ``Home`` as the default value for ``controller``. The default value is used if no value is present in the URL for the parameter. In addition to default values, route parameters may be optional (specified by appending a ``?`` to the end of the parameter name, as in ``id?``). The difference between optional and "has default" is that a route parameter with a default value always produces a value; an optional parameter has a vaule only when one is provided.
 
-Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon ``:`` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments those are provided enclosed in parentheses ``( )`` after the constraint name. Multiple inline constraints can be specified by appending another colon ``:`` and constraint name. The constraint name is passed to the `IInlineConstraintResolver <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IInlineConstraintResolver/index.html#iinlineconstraintresolver-interface>`_ service to create an instance of `IRouteConstraint <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IInlineConstraintResolver/index.html#iinlineconstraintresolver-interface>`_ to use in URL processing. For example, the route template ``blog/{article:minlength(10)}`` specifies the ``minlength`` constraint with the argument ``10``. For more description route constraints, and a listing of the constraints provided by the framework, see route-constraint-reference_.
+Route parameters may also have constraints, which must match the route value bound from the URL. Adding a colon ``:`` and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments those are provided enclosed in parentheses ``( )`` after the constraint name. Multiple inline constraints can be specified by appending another colon ``:`` and constraint name. The constraint name is passed to the :dn:iface:`~Microsoft.AspNetCore.Routing.IInlineConstraintResolver` service to create an instance of :dn:iface:`~Microsoft.AspNetCore.Routing.IRouteConstraint` to use in URL processing. For example, the route template ``blog/{article:minlength(10)}`` specifies the ``minlength`` constraint with the argument ``10``. For more description route constraints, and a listing of the constraints provided by the framework, see route-constraint-reference_.
 
-The following table demonstrates some route templates and their expected behavior.
+The following table demonstrates some route templates and their behavior.
 
-.. list-table:: Route Template Values
-  :header-rows: 1
 
-  * - Route Template
-    - Example Matching URL
-    - Notes
-  * - hello
-    - /hello
-    - Will only match the single path '/hello'
-  * - {Page=Home}
-    - /
-    - Will match and set ``Page`` to ``Home``.
-  * - {Page=Home}
-    - /Contact
-    - Will match and set ``Page`` to ``Contact``
-  * - {controller}/{action}/{id?}
-    - /Products/List
-    - Will map to ``Products`` controller and ``List`` method; Since ``id`` was not supplied in the URL, it's ignored.
-  * - {controller}/{action}/{id?}
-    - /Products/Details/123
-    - Will map to ``Products`` controller and ``Details`` method, with ``id`` set to ``123``.
-  * - {controller=Home}/{action=Index}/{id?}
-    - /
-    - Will map to ``Home`` controller and ``Index`` method; ``id`` is ignored.
++-----------------------------------+--------------------------------+------------------------------------------------+
+| Route Template                    | Example Matching URL           | Notes                                          |
++===================================+================================+================================================+
+| hello                             | | /hello                       | | Only matches the single path ‘/hello’        +
++-----------------------------------+--------------------------------+------------------------------------------------+
+|{Page=Home}                        | | /                            | | Matches and sets ``Page`` to ``Home``        |
++-----------------------------------+--------------------------------+------------------------------------------------+
+|{Page=Home}                        | | /Contact                     | | Matches and sets ``Page`` to ``Contact``     |
++-----------------------------------+--------------------------------+------------------------------------------------+
+| {controller}/{action}/{id?}       | | /Products/List               | | Maps to ``Products`` controller and ``List`` |
+|                                   | |                              | | action                                       |
++-----------------------------------+--------------------------------+------------------------------------------------+
+| {controller}/{action}/{id?}       | | /Products/Details/123        | | Maps to ``Products`` controller and          |
+|                                   | |                              | | ``Details`` action.  ``id`` set to           |
++-----------------------------------+--------------------------------+------------------------------------------------+
+| {controller=Home}/                | |   /                          | | Maps to ``Home`` controller and ``Index``    |
+|            {action=Index}/{id?}   | |                              | | method; ``id`` is ignored.                   |
++-----------------------------------+--------------------------------+------------------------------------------------+
 
-While using the template is often the simplest way, constraints and defaults can also be specified outside the route template.
+Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
 .. tip:: Enable :doc:`logging` to see how the built in routing implementations, such as ``Route``, match requests.
 
@@ -293,6 +291,7 @@ Route constraints execute when a ``Route`` has matched the syntax of the incomin
 .. warning:: Avoid using constraints for **input validation**, because doing so means that invalid input will result in a 404 (Not Found) instead of a 400 with an appropriate error message. Route constraints should be used to **disambiguate** between similar routes, not to validate the inputs for a particular route.
 
 The following table demonstrates some route constraints and their expected behavior.
+.. TODO to-do when we migrate to MD, make sure this table doesn't require a scroll bar
 
 .. list-table:: Inline Route Constraints
   :header-rows: 1
@@ -327,7 +326,7 @@ The following table demonstrates some route constraints and their expected behav
     - Matches a valid ``float`` value
   * - ``guid``
     - {id:guid}
-    - 7342570B-44E7-471C-A267-947DD2A35BF9
+    - 7342570B-<snip>
     - Matches a valid ``Guid`` value
   * - ``long``
     - {ticks:long}
@@ -387,41 +386,39 @@ The example below shows how to generate a link to a route given a dictionary of 
 
 The ``VirtualPath`` generated at the end of the sample above is ``/package/create/123``.
 
-The second parameter to the ``VirtualPathContext`` constructor is a collection of `ambient values`. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an MVC application if you are in the About action of the HomeController, you don't need to specify the controller route value to link to the Index action (the ambient value of Home will be used). 
+The second parameter to the :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` constructor is a collection of `ambient values`. Ambient values provide convenience by limiting the number of values a developer must specify within a certain request context. The current route values of the current request are considered ambient values for link generation. For example, in an ASP.NET MVC app if you are in the ``About`` action of the ``HomeController``, you don't need to specify the controller route value to link to the ``Index`` action (the ambient value of ``Home`` will be used).
 
 Ambient values that don't match a parameter are ignored, and ambient values are also ignored when an explicitly-provided value overrides it, going from left to right in the URL.
 
-Values that are explicitly provided but which don't match anything are added to the query string.
+Values that are explicitly provided but which don't match anything are added to the query string. The following table shows the result when using the route template ``{controller}/{action}/{id?}``.
 
-.. list-table:: Generating Links
+.. list-table:: Generating links with ``{controller}/{action}/{id?}`` template
   :header-rows: 1
 
-  * - Matched Route
-    - Ambient Values
+
+  * - Ambient Values
     - Explicit Values
     - Result
-  * - ``{controller}/{action}/{id?}``
-    - controller="Home"
+
+  * - controller="Home"
     - action="About"
     - ``/Home/About``
-  * - ``{controller}/{action}/{id?}``
-    - controller="Home"
+  * - controller="Home"
     - controller="Order",action="About"
     - ``/Order/About``
-  * - ``{controller}/{action}/{id?}``
-    - controller="Home",color="Red"
+  * - controller="Home",color="Red"
     - action="About"
     - ``/Home/About``
-  * - ``{controller}/{action}/{id?}``
-    - controller="Home"
+  * - controller="Home"
     - action="About",color="Red"
     - ``/Home/About?color=Red``
+
 
 If a route has a default value that doesn't correspond to a parameter and that value is explicitly provided, it must match the default value. For example:
 
 .. code-block:: c#
-  
-  routes.MapRoute("blog_route", "blog/{*slug}", 
+
+  routes.MapRoute("blog_route", "blog/{*slug}",
     defaults: new { controller = "Blog", action = "ReadPost" });
 
 Link generation would only generate a link for this route when the matching values for controller and action are provided.
