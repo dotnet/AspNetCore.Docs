@@ -4,6 +4,7 @@ Views
 .. toctree::
     :titlesonly:
     
+    overview
     razor
     layout
     dynamic-vs-static
