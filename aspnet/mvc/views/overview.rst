@@ -143,7 +143,7 @@ In addition to strongly typed views, all views have access to a loosely typed co
 
 ``ViewData`` is a dictionary object accessed through ``string`` keys. You can store and retrieve objects in it, and you'll need to cast them to a specific type when you extract them. You can use ``ViewData`` to pass data from a controller to views, as well as within views (and partial views and layouts). String data can be stored and used directly, without the need for a cast.
 
-.. code-block:: c#
+.. code-block:: html
     :emphasize-lines: 13,16
    
     @{
@@ -171,7 +171,7 @@ In addition to strongly typed views, all views have access to a loosely typed co
 
 The ``ViewBag`` objects provides dynamic access to the objects stored in ``ViewData``. This can be more convenient to work with, since it doesn't require casting. The same example as above, using ``ViewBag`` instead of a strongly typed ``address`` instance:
 
-.. code-block:: c#
+.. code-block:: html
     :emphasize-lines: 13,16-18
 
     @{
@@ -201,7 +201,7 @@ Dynamic Views
 
 Views that do not declare a model type but have a model instance passed to them can reference this instance dynamically. For example, if an instance of ``Address`` is passed to a view that doesn't declare an ``@model``, the view would still be able to refer to the instance's properties dynamically as shown:
 
-.. code-block:: c#
+.. code-block:: html
     :emphasize-lines: 13,16-18
     
     <address>
