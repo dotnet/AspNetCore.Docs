@@ -143,12 +143,14 @@ In addition to strongly typed views, all views have access to a loosely typed co
 
 ``ViewData`` is a dictionary object accessed through ``string`` keys. You can store and retrieve objects in it, and you'll need to cast them to a specific type when you extract them. You can use ``ViewData`` to pass data from a controller to views, as well as within views (and partial views and layouts). String data can be stored and used directly, without the need for a cast.
 
-.. code-block:: html
-    :emphasize-lines: 13,16
-   
-    @{
-        ViewData["greeting"] = "Hello";
-        ViewData["address"]  = new Address()
+Set some values for ``ViewData`` in an action:
+
+.. code-block:: c#
+
+    public IActionResult SomeAction()
+    {
+        ViewData["Greeting"] = "Hello";
+        ViewData["Address"]  = new Address()
         {
             Name = "Steve",
             Street = "123 Main St",
@@ -156,12 +158,21 @@ In addition to strongly typed views, all views have access to a loosely typed co
             State = "OH",
             PostalCode = "44236"
         };
-
-        // Requires cast
-        var address = ViewData["address"] as Address;
+        
+        return View();
     }
 
-    @ViewData["greeting"] World!
+Work with the data in a view:
+
+.. code-block:: html
+    :emphasize-lines: 3,6
+   
+    @{
+        // Requires cast
+        var address = ViewData["Address"] as Address;
+    }
+
+    @ViewData["Greeting"] World!
 
     <address>
         @address.Name<br />
@@ -169,22 +180,10 @@ In addition to strongly typed views, all views have access to a loosely typed co
         @address.City, @address.State @address.PostalCode
     </address>
 
-The ``ViewBag`` objects provides dynamic access to the objects stored in ``ViewData``. This can be more convenient to work with, since it doesn't require casting. The same example as above, using ``ViewBag`` instead of a strongly typed ``address`` instance:
+The ``ViewBag`` objects provides dynamic access to the objects stored in ``ViewData``. This can be more convenient to work with, since it doesn't require casting. The same example as above, using ``ViewBag`` instead of a strongly typed ``address`` instance in the view:
 
 .. code-block:: html
-    :emphasize-lines: 13,16-18
-
-    @{
-        ViewData["Greeting"] = "Hello";
-        ViewData["Address"] = new Address()
-        {
-            Name = "Steve",
-            Street = "123 Main St",
-            City = "Hudson",
-            State = "OH",
-            PostalCode = "44236"
-        };
-    }
+    :emphasize-lines: 1,4-6
 
     @ViewBag.Greeting World!
 
