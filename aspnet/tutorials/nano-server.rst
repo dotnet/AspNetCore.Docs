@@ -95,11 +95,20 @@ Installing the ASP.NET Core Module (ANCM)
 
 The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the `.NET Core Windows Server Hosting bundle <https://dot.net/>`__ on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
 
+On a regular (not Nano) machine run the following copy commands:
+
 .. code:: ps1
 
   copy C:\windows\system32\inetsrv\aspnetcore.dll ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
   copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
 
+On a Nano machine, you will need to copy the following files from the file share that we created earlier to the valid locations.
+So, run the following copy commands:
+
+.. code:: ps1
+
+  copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore.dll C:\windows\system32\inetsrv\
+  copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore_schema.xml C:\windows\system32\inetsrv\config\schema\
 
 Run the following script in the remote session:
 
