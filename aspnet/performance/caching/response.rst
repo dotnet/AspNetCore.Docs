@@ -13,7 +13,7 @@ Response Caching
 
 What is Response Caching
 ------------------------
-*Response caching* refers to specifying cache-related headers on HTTP responses made by ASP.NET MVC actions. These headers specify how you want client and intermediate (proxy) machines to cache responses to certain requests (if at all). This can reduce the number of requests a client or proxy makes to the web server, since future requests for the same action may be served from the client or proxy's cache. In this case, the request is never made to the web server.
+*Response caching* refers to specifying cache-related headers on HTTP responses made by ASP.NET Core MVC actions. These headers specify how you want client and intermediate (proxy) machines to cache responses to certain requests (if at all). This can reduce the number of requests a client or proxy makes to the web server, since future requests for the same action may be served from the client or proxy's cache. In this case, the request is never made to the web server.
 
 .. image:: response-caching/_static/proxy-and-cache.png
 
@@ -37,7 +37,7 @@ ResponseCache Attribute
 The ResponseCacheAttribute_ is used to specify how a controller action's headers should be set to control its cache behavior. The attribute has the following properties, all of which are optional unless otherwise noted.
 
 Duration ``int``
-  The maximum duration (in seconds) the response should be cached. **Required** unless NoStore is ``true``.
+  The maximum duration (in seconds) the response should be cached. **Required** unless ``NoStore`` is ``true``.
 
 Location ``ResponseCacheLocation``
   The location where the response may be cached. May be ``Any``, ``None``, or ``Client``. Default is ``Any``.
@@ -62,17 +62,15 @@ This header is only written when the ``VaryByHeader`` propery is set, in which c
 
 ``NoStore`` and ``Location.None``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-``NoStore`` is a special property that overrides most of the other properties. When this property is true, the ``Cache-Control`` header will be set to "no-store". Additionally, if ``Location`` is set to ``None``, then ``Cache-Control`` will be set to "no-store, no-cache" and ``Pragma`` is likewise set to ``no-cache``. (If ``NoStore`` is false and ``Location`` is ``None``, then both ``Cache-Control`` and ``Pragma`` will be set to ``no-cache``).
+``NoStore`` is a special property that overrides most of the other properties. When this property is set to ``true``, the ``Cache-Control`` header will be set to "no-store". Additionally, if ``Location`` is set to ``None``, then ``Cache-Control`` will be set to "no-store, no-cache" and ``Pragma`` is likewise set to ``no-cache``. (If ``NoStore`` is ``false`` and ``Location`` is ``None``, then both ``Cache-Control`` and ``Pragma`` will be set to ``no-cache``).
 
-A good scenario in which to set ``NoStore`` to true is error pages. It's unlikely you would want to respond to a user's request with the error response a different user previously generated, and such responses may include stack traces and other sensitive information that shouldn't be stored on intermdiate servers. For example:
+A good scenario in which to set ``NoStore`` to ``true`` is error pages. It's unlikely you would want to respond to a user's request with the error response a different user previously generated, and such responses may include stack traces and other sensitive information that shouldn't be stored on intermdiate servers. For example:
 
-.. code-block:: c#
-
-  [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-  public IActionResult Error()
-  {
-    return View();
-  }
+.. literalinclude:: response-caching/sample/src/ResponseCacheSample/Controllers/HomeController.cs
+  :lines: 30-34
+  :emphasize-lines: 1
+  :dedent: 8
+  :language: c#
 
 This will result in the following headers:
 
@@ -89,9 +87,11 @@ To enable caching, ``Duration`` must be set to a positive value and ``Location``
 
 Below is an example showing the headers produced by setting ``Duration`` and leaving the default ``Location`` value.
 
-.. code-block:: c#
-
-  [ResponseCache(Duration=60)]
+.. literalinclude:: response-caching/sample/src/ResponseCacheSample/Controllers/HomeController.cs
+  :lines: 22-28
+  :emphasize-lines: 1
+  :dedent: 8
+  :language: c#
 
 Produces the following headers:
 
@@ -106,29 +106,22 @@ Instead of duplicating ``ResponseCache`` settings on many controller action attr
 Setting up a cache profile:
 
 .. literalinclude:: response-caching/sample/src/ResponseCacheSample/Startup.cs
-  :linenos:
-  :lines: 29-45
+  :lines: 12-28
   :emphasize-lines: 5-15
   :dedent: 8
   :language: c#
 
 Referencing a cache profile:
 
-.. code-block:: c#
-
-  [ResponseCache(CacheProfileName="Default")]
-
-.. tip:: The ``ResponseCache`` attribute can be applied both to actions (methods) as well as controllers (classes). Method-level attributes will override the settings specified in class-level attributes.
-
-In the following example, a class-level attribute specifies a duration of 30 while a method-level attributes references a cache profile with a duration set to 60.
-
-
 .. literalinclude:: response-caching/sample/src/ResponseCacheSample/Controllers/HomeController.cs
-  :linenos:
-  :lines: 7-14
+  :lines: 5-12,35
   :emphasize-lines: 1,4
   :dedent: 4
   :language: c#
+
+.. tip:: The ``ResponseCache`` attribute can be applied both to actions (methods) as well as controllers (classes). Method-level attributes will override the settings specified in class-level attributes.
+
+In the above example, a class-level attribute specifies a duration of 30 seconds while a method-level attributes references a cache profile with a duration set to 60 seconds.
 
 The resulting header:
 
