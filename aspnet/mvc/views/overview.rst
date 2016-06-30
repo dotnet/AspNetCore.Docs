@@ -54,7 +54,7 @@ Views are typically returned from actions as a :dn:cls:`~Microsoft.AspNetCore.Mv
   :emphasize-lines: 5
   :dedent: 4
   
-The ``View`` helper method has several overloads to make returning views easier for app developers. You can optionally specify a specific view to return, as well as a model to pass to the view. With no parameters, the default convention of using a view name that corresponds to the action name is used.
+The ``View`` helper method has several overloads to make returning views easier for app developers. You can optionally specify a specific view to return, as well as a model to pass to the view.
 
 When this action returns, the *About.cshtml* view shown above is rendered:
 
@@ -63,16 +63,16 @@ When this action returns, the *About.cshtml* view shown above is rendered:
 View Discovery
 ^^^^^^^^^^^^^^
 
-When an action returns a view, a process called *view discovery* takes place. This process determines which view file will be used. There are several scenarios, based on how the view was specified from the action method.
+When an action returns a view, a process called *view discovery* takes place. This process determines which view file will be used. Unless a specific view file is specified, the runtime looks for a controller-specific view first, then looks for matching view name in the *Shared* folder.
 
-``return View();``
-    The most common approach. In this case the framework will use a view with the same name as the action (with a *.cshtml* extension) located in a folder named the same as the controller. Otherwise, it will look in the *Shared* folder for a view with a name corresponding to the action name.
+When an action returns the ``View`` method, like so ``return View();``, the action name is used as the view name. For example, if this were called from an action method named "Index", it would be equivalent to passing in a view name of "Index". A view name can be explicitly passed to the method (``return View("SomeView");``). In both of these cases, view discovery searches for a matching view file in:
 
-``return View("List");``
-    Using this syntax, a view with the provided name (and a *.cshtml* extension) is used instead of the current action name. Otherwise, the behavior is as above.
+  1. Views/<ControllerName>/<ViewName>.cshtml
+  2. Views/Shared/<ViewName>.cshtml
+  
+.. tip:: We recommend following the convention of simply returning ``View()`` from actions when possible, as it results in more flexible, easier to refactor code.
 
-``return View("Views/Home/About.cshtml");``
-    Specify the path from the application root to the view. Using this syntax, the *.cshtml* extension must be specified. The path can optionally start with "/" or "~/".
+A view file path can be provided, instead of a view name. In this case, the *.cshtml* extension must be specified as part of the file path. The path should be relative to the application root (and can optionally start with "/" or "~/"). For example: ``return View("Views/Home/About.cshtml");``
 
 .. note:: :doc:`Partial views <partial>` and :doc:`view components <view-components>` use similar (but not identical) discovery mechanisms.
 
