@@ -81,12 +81,121 @@ A view file path can be provided, instead of a view name. In this case, the *.cs
 .. tip:: View names may be case sensitive depending on the underlying file system. For compatibility across operating systems, always match case between controller and action names and associated view folders and filenames.
 
 Passing Data to Views
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
-You can pass data to views using several mechanisms. The most robust approach is to specify a *model* type in the view, and then pass an instance of this type to the view from the action. We recommend you use a model or view model to pass data to a view. This allows the view to take advantage of strong type checking.
+You can pass data to views using several mechanisms. The most robust approach is to specify a *model* type in the view (commonly referred to as a *viewmodel*, to distinguish it from business domain model types), and then pass an instance of this type to the view from the action. We recommend you use a model or view model to pass data to a view. This allows the view to take advantage of strong type checking. You can specify a model for a view using the ``@model`` directive:
 
-Data can be passed to a view with ``ViewData``, a dictionary collection that both views and controllers can access and modify. The *About.cshtml* view shown above demonstrates how both the action and the view can access ``ViewData``. The ``ViewBag`` type provides a dynamic view over the ``ViewData``. Learn more about :doc:`dynamic and strongly typed views <dynamic-vs-static>`.
-  
+.. code-block:: html
+    :emphasize-lines: 1
+
+    @model WebApplication1.ViewModels.Address
+    <h2>Contact</h2>
+    <address>
+        @Model.Street<br />
+        @Model.City, @Model.State @Model.PostalCode<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+
+Once a model has been specified for a view, the instance sent to the view can be accessed in a strongly-typed manner using ``@Model`` as shown above. To provide an instance of the model type to the view, the controller passes it as a parameter:
+
+.. code-block:: c#
+    :emphasize-lines: 13
+   
+    public IActionResult Contact()
+    {
+        ViewData["Message"] = "Your contact page.";
+
+        var viewModel = new Address()
+        {
+            Name = "Microsoft",
+            Street = "One Microsoft Way",
+            City = "Redmond",
+            State = "WA",
+            PostalCode = "98052-6399"
+        };
+        return View(viewModel);
+    }
+
+There are no restrictions on the types that can be provided to a view as a model. We recommend passing Plain Old CLR Object (POCO) view models with little or no behavior, so that business logic can be encapsulated elsewhere in the app. An example of this approach is the *Address* viewmodel used in the example above:
+
+.. code-block:: c#
+    :emphasize-lines: 13
+   
+    namespace WebApplication1.ViewModels
+    {
+        public class Address
+        {
+            public string Name { get; set; }
+            public string Street { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string PostalCode { get; set; }
+        }
+    }
+
+.. note:: Nothing prevents you from using the same classes as your business model types and your display model types. However, keeping them separate allows your views to vary independently from your domain or persistence model, and can offer some security benefits as well (for models that users will send to the app using :doc:`model binding </mvc/models/model-binding>`).
+
+Loosely Typed Data
+^^^^^^^^^^^^^^^^^^
+
+In addition to strongly typed views, all views have access to a loosely typed collection of data. This same collection can be referenced through either the ``ViewData`` or ``ViewBag`` properties on controllers and views. The ``ViewBag`` property is a wrapper around ``ViewData`` that provides a dynamic view over that collection. It is not a separate collection.
+
+``ViewData`` is a dictionary object accessed through ``string`` keys. You can store and retrieve objects in it, and you'll need to cast them to a specific type when you extract them. You can use ``ViewData`` to pass data from a controller to views, as well as within views (and partial views and layouts). String data can be stored and used directly, without the need for a cast.
+
+.. code-block:: c#
+    :emphasize-lines: 13,16
+   
+    @{
+        ViewData["greeting"] = "Hello";
+        ViewData["address"]  = new Address()
+        {
+            Name = "Steve",
+            Street = "123 Main St",
+            City = "Hudson",
+            State = "OH",
+            PostalCode = "44236"
+        };
+
+        // Requires cast
+        var address = ViewData["address"] as Address;
+    }
+
+    @ViewData["greeting"] World!
+
+    <address>
+        @address.Name<br />
+        @address.Street<br />
+        @address.City, @address.State @address.PostalCode
+    </address>
+
+The ``ViewBag`` objects provides dynamic access to the objects stored in ``ViewData``. This can be more convenient to work with, since it doesn't require casting. The same example as above, using ``ViewBag`` instead of a strongly typed ``address`` instance:
+
+.. code-block:: c#
+    :emphasize-lines: 13,16-18
+
+    @{
+        ViewData["Greeting"] = "Hello";
+        ViewData["Address"] = new Address()
+        {
+            Name = "Steve",
+            Street = "123 Main St",
+            City = "Hudson",
+            State = "OH",
+            PostalCode = "44236"
+        };
+    }
+
+    @ViewBag.Greeting World!
+
+    <address>
+        @ViewBag.Address.Name<br />
+        @ViewBag.Address.Street<br />
+        @ViewBag.Address.City, @ViewBag.Address.State @ViewBag.Address.PostalCode
+    </address>
+
+.. note:: Since both refer to the same underlying ``ViewData`` collection, you can mix and match between ``ViewData`` and ``ViewBag`` when reading and writing values, if convenient.
+
 More View Features
 ------------------
 
