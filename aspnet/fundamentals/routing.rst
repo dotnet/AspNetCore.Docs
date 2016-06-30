@@ -77,23 +77,27 @@ The primary inputs to ``GetVirtualPath`` are:
 
 Routes primarily use the route values provided by the ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
 
-.. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or roue values.
+.. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
-The output of ``GetVirtualPath`` is a ``VirtualPathData``_. The ``VirtualPathData`` is a parallel of ``RouteData`` - it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
+The output of ``GetVirtualPath`` is a :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`. The ``VirtualPathData`` is a parallel of ``RouteData`` - it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
 
-The `VirtualPathData.VirtualPath <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath>`_ property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application. 
+The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath`
+property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application. 
 
-The `VirtualPathData.Router <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.Router>`_ is a reference to the route that successfully generated the URL.
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.Router`
 
-The `VirtualPathData.DataTokens <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/VirtualPathData/index.html?highlight=virtualpathda#prop-Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens>`_ properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of ``RouteData.DataTokens``.
+The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.Router` is a reference to the route that successfully generated the URL.
+
+The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens` properties is a dictionary of additional data related to the route that generated the URL. This is the parallel of ``RouteData.DataTokens``.
 
 Creating routes
 ^^^^^^^^^^^^^^^
-Routing provides the `Route <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/Route/index.html#route-class>`_ class as the standard implemenation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when ``RouteAsync`` is called. ``Route`` will use the same route template to generate a URL when ``GetVirtualPath`` is called.
+Routing provides the :dn:cls:`~Microsoft.AspNetCore.Routing.Route` class as the standard implemenation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` is called. ``Route`` will use the same route template to generate a URL when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath` is called.
 
-Most applications will create routes by calling ``MapRoute`` or one of the similar extension methods defined on ``IRouteBuilder``. All of these methods will create an instance of ``Route`` and add it to the route collection.
+Most applications will create routes by calling ``MapRoute`` or one of the similar extension methods defined on :dn:iface:`~Microsoft.AspNetCore.Routing.IRouteBuilder`. All of these methods will create an instance of ``Route`` and add it to the route collection.
 
-.. note:: ``MapRoute`` doesn't take a route handler parameter - it only adds routes that will be handled by the ``DefaultHandler``. Since the default handler is an ``IRouter``, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see :doc:`Routing to Controller Actions </mvc/controllers/routing>`.
+.. note:: :dn:method:`~Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`. Since the default handler is an :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see :doc:`/mvc/controllers/routing`.
 
 This is an example of a ``MapRoute`` call used by a typical ASP.NET MVC route definition:
 
@@ -179,8 +183,8 @@ This example uses a basic ASP.NET MVC style route:
 With the route values ``{ controller = Products, action = List }``, this route will generate the URL ``/Products/List``. The route values are substituted for the corresponding route parameters to form the URL path. Since ``id`` is an optional route parameter, it's no problem that it doesn't have a value.
 
 With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both would URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
-
-.. tip:: An application using ASP.NET MVC should use the `UrlHelper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/UrlHelper/index.html?highlight=urlhelper>`_ to generate URLs instead of calling into routing directly. 
+ 
+.. tip:: An application using ASP.NET MVC should use the :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly. 
 
 For more details about the URL generation process, see url-generation-reference_. 
 
@@ -194,7 +198,7 @@ To use the routing middleware, add it to the **dependencies** in *project.json*:
   :dedent: 2
   :language: javascript
   :lines: 11-20
-  :emphasize-lines: 17
+  :emphasize-lines: 7
   
 Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`` in *Startup.cs*:
 
@@ -202,20 +206,36 @@ Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`
   :dedent: 8
   :language: c#
   :lines: 11-14
-  :emphasize-lines: 13
+  :emphasize-lines: 3
 
-Routes must configured inside the ``Configure`` method in the ``Startup`` class. Create an instance of `RouteBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#routebuilder-class>`_, passing a reference to ``IApplicationBuilder``. You can optionally provide a `DefaultHandler <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RouteBuilder/index.html#prop-Microsoft.AspNet.Routing.RouteBuilder.DefaultHandler>`_ as well. Add routes to the ``routeBuilder`` and when finished call ``routeBuilder.Build`` to create the `IRouteCollection <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/IRouteCollection/index.html#iroutecollection-interface>`_.
+- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
+- :dn:iface:`~Microsoft.AspNetCore.Builder.IApplicationBuilder`
+  
+Routes must configured inside the ``Configure`` method in the ``Startup`` class. The sample below uses these APIs:
+
+- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
+- :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
+- :dn:method:`~Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter`
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
-  :lines: 20-38
-  :emphasize-lines: 26, 38-39
+  :lines: 16-39
   
-Pass ``UseRouter`` the result of the ``RouteBuilder.Build`` method.
+.. tip:: If you are only configuring a single route, you can call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
 
-.. tip:: If you are only configuring a single route, you can simply call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
+The framework provides a set of extension methods for creating routes such as:
 
-The framework provides a set of extension methods for creating routes such as ``MapRoute``, ``MapGet``, and ``MapVerb``. Some of these methods such as `MapGet <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Routing/RequestDelegateRouteBuilderExtensions/index.html?highlight=routebuilder#meth-Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet>`_ require a ``RequestDelegate`` to be provided. The ``RequestDelegate`` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MapRouteRouteBuilderExtensions/index.html?highlight=maproute#meth-Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute>`_, then it will use the ``DefaultHandler``.
+- :dn:method:`~Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPost`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPut`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb`
+
+Some of these methods such as ``MapGet`` require a :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate` to be provided. The ``RequestDelegate`` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as ``MapRoute``, then it will use the :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`.
 
 .. _route-template-reference:
 
