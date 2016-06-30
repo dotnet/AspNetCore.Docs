@@ -6,7 +6,7 @@ By `Rick Anderson`_
 
 Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.NET Core app can serve directly to clients.
 
-`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/static-files/sample>`__
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/static-files/sample>`_s_
 
 .. contents:: Sections
   :local:
@@ -133,7 +133,7 @@ With :dn:method:`~Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefault
   - index.htm
   - index.html
 
-The first file found from the list will be severed as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).
+The first file found from the list will be served as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).
 
 The following code shows how to change the default file name to *mydefault.html*.
 
