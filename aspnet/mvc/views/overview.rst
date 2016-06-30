@@ -196,6 +196,23 @@ The ``ViewBag`` objects provides dynamic access to the objects stored in ``ViewD
 
 .. note:: Since both refer to the same underlying ``ViewData`` collection, you can mix and match between ``ViewData`` and ``ViewBag`` when reading and writing values, if convenient.
 
+Dynamic Views
+^^^^^^^^^^^^^
+
+Views that do not declare a model type but have a model instance passed to them can reference this instance dynamically. For example, if an instance of ``Address`` is passed to a view that doesn't declare an ``@model``, the view would still be able to refer to the instance's properties dynamically as shown:
+
+.. code-block:: c#
+    :emphasize-lines: 13,16-18
+    
+    <address>
+        @Model.Street<br />
+        @Model.City, @Model.State @Model.PostalCode<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+
+This feature can offer some flexibility, but does not offer any compilation protection or intellisense. If the property doesn't exist, the page will fail at run time.
+
 More View Features
 ------------------
 
