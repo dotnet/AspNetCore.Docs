@@ -141,6 +141,14 @@ Run the following commands in the remote session to create a new site in IIS for
   Import-module IISAdministration
   New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:8000:"
 
+Known issue running .NET Core CLI on Nano Server and Workaround
+---------------------------------------------------------------
+If you’re using Nano Server Technical Preview 5 with .NET Core CLI, you will need to copy all DLL files from ``c:\windows\system32\forwarders`` to ``c:\windows\system32``, due to a bug that has since been fixed in later releases.
+
+If you use ``dotnet publish``, make sure to copy all DLL files from ``c:\windows\system32\forwarders`` to your publish directory as well.
+
+If your Nano Server Technical Preview 5 build is updated or serviced, please make sure to repeat this process, in case any of the DLLs have been updated as well.
+
 Running the Application
 -----------------------
 
