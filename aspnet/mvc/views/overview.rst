@@ -210,7 +210,7 @@ Views that do not declare a model type but have a model instance passed to them 
         425.555.0100
     </address>
 
-This feature can offer some flexibility, but does not offer any compilation protection or intellisense. If the property doesn't exist, the page will fail at run time.
+This feature can offer some flexibility, but does not offer any compilation protection or IntelliSense. If the property doesn't exist, the page will fail at runtime.
 
 More View Features
 ------------------
