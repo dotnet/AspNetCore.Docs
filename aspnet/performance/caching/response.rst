@@ -9,13 +9,13 @@ Response Caching
   :local:
   :depth: 1
 
-`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/performance/caching/response-caching/sample>`_
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/performance/caching/response/sample>`_
 
 What is Response Caching
 ------------------------
 *Response caching* refers to specifying cache-related headers on HTTP responses made by ASP.NET MVC actions. These headers specify how you want client and intermediate (proxy) machines to cache responses to certain requests (if at all). This can reduce the number of requests a client or proxy makes to the web server, since future requests for the same action may be served from the client or proxy's cache. In this case, the request is never made to the web server.
 
-.. image:: response-caching/_static/proxy-and-cache.png
+.. image:: response/_static/proxy-and-cache.png
 
 The primary HTTP header used for caching is ``Cache-Control``. The `HTTP 1.1 specification <https://tools.ietf.org/html/rfc7234#section-5.2>`_ details many options for this directive. Three common directives are:
 
@@ -105,7 +105,7 @@ Instead of duplicating ``ResponseCache`` settings on many controller action attr
 
 Setting up a cache profile:
 
-.. literalinclude:: response-caching/sample/src/ResponseCacheSample/Startup.cs
+.. literalinclude:: response/sample/src/ResponseCacheSample/Startup.cs
   :linenos:
   :lines: 29-45
   :emphasize-lines: 5-15
@@ -123,7 +123,7 @@ Referencing a cache profile:
 In the following example, a class-level attribute specifies a duration of 30 while a method-level attributes references a cache profile with a duration set to 60.
 
 
-.. literalinclude:: response-caching/sample/src/ResponseCacheSample/Controllers/HomeController.cs
+.. literalinclude:: response/sample/src/ResponseCacheSample/Controllers/HomeController.cs
   :linenos:
   :lines: 7-14
   :emphasize-lines: 1,4
