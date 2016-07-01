@@ -117,6 +117,7 @@ The following two examples create equivalent routes:
 .. tip:: The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.
 
 .. review-required: changed template and add MVC controller sample
+
 This example demonstrates a few more features:
 
 .. code-block:: c#
@@ -141,6 +142,7 @@ This template will match a URL path like ``/Blog/All-About-Routing/Introduction`
   }
 
 .. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet. If you want to user MapGet in lieu of MapRoute we need to say why. ``MapGet`` only matches routes for GET requests.
+
 This example adds route constraints and data tokens:
 
 .. code-block:: c#
