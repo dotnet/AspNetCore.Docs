@@ -3,9 +3,11 @@ Areas
 
 By `Tom Archer`
 
-Areas provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services.
+Areas provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. 
 
 Instead of having all of the controllers located under the Controllers parent directory, and all the views located under the Views parent directory, you could use Areas to group your views and controllers according to the area (or logical grouping) with which they're associated.
+
+Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
 - Project name
 
@@ -17,9 +19,15 @@ Instead of having all of the controllers located under the Controllers parent di
 
         - HomeController.cs
 
+        - ManageController.cs
+
       - Views
 
         - Home
+
+          - Index.cshtml
+
+        - Manage
 
           - Index.cshtml
 
@@ -35,19 +43,63 @@ Instead of having all of the controllers located under the Controllers parent di
 
           - Index.cshtml
 
-Looking at the preceding directory hierarchy example, there are a few guidelines to keep in mind when defining areas:
+When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
 
-- A directory called *Areas* must exist as a child directory of the project.
-- The *Areas* directory contains a subdirectory for each of your project's areas (*Products* and *Services*, in this example).
-- Your controllers should be located as follows:
-  ``/Areas/[area]/Controllers/[controller].cs``
-- Your views should be located as follows:
-  ``/Areas/[area]/Views/[controller]/[action].cshtml``
+.. code-block:: txt
 
-Note that if you have a view that is shared across controllers, it can be located in either of the following locations:
+  /Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
+  /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
+  /Views/Shared/<Action-Name>.cshtml
 
-- ``/Areas/[area]/Views/Shared/[action].cshtml``
-- ``/Views/Shared/[action].cshtml``
+These are the default locations which can be changed via the ``AreaViewLocationFormats`` on the ``Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions``.
+
+For example, in the below code instead of having the folder name as 'Areas', it has been changed to 'Categories'.
+
+.. code-block:: c#
+
+  services.Configure<RazorViewEngineOptions>(options =>
+  {
+      options.AreaViewLocationFormats.Clear();
+      options.AreaViewLocationFormats.Add("/Categories/{2}/Views/{1}/{0}.cshtml");
+      options.AreaViewLocationFormats.Add("/Categories/{2}/Views/Shared/{0}.cshtml");
+      options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+  });
+
+One thing to note is that the structure of the ``Views`` folder is the only one which is considered important here and the content of the rest of the folders like 'Controllers' and 'Models' does **not** matter. So for example, we could change the above folder structure to be like the following and the application would still work as before.
+
+- Project name
+
+  - Areas
+
+    - Products
+
+      - HomeController.cs
+
+      - ManageController.cs
+
+      - Views
+
+        - Home
+
+          - Index.cshtml
+
+        - Manage
+
+          - Index.cshtml
+
+    - Services
+
+      - HomeController.cs
+
+      - Views
+
+        - Home
+
+          - Index.cshtml
+
+This works because the content of 'Controllers' and 'Models' is just code which gets compiled into a .dll where as the content of the 'Views' is not until a request to that view has been made.  
+
+Even though the above folder structure works, this is not typical and you would want to structure your code as shown in the beginning of this article.
 
 Once you've defined the folder hierarchy, you need to tell MVC that each controller is associated with an area. You do that by decorating the controller name with the ``[Area]`` attribute.
 
@@ -60,8 +112,14 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
       [Area("Products")]
       public class HomeController : Controller
       {
-          // GET: /<controller>/
+          // GET: /Products/Home/Index
           public IActionResult Index()
+          {
+              return View();
+          }
+
+          // GET: /Products/Home/Create
+          public IActionResult Create()
           {
               return View();
           }
@@ -86,22 +144,53 @@ The final step is to set up a route definition that works with your newly create
 
 Now, when the user browses to *http://<yourApp>/products*, the ``Index`` action method of the ``HomeController`` in the ``Products`` area will be invoked.
 
-Linking between areas
----------------------
+Link Generation
+---------------
+- Generating links from an action within an area based controller to another action within the same controller.
 
-To link between areas, you simply specify the area in which the controller is defined by using :doc:`Tag Helpers </mvc/views/tag-helpers/index>`.
+  Let's say the current request's path is like ``/Products/Home/Create``
 
-The following snippet shows how to link to a controller action that is defined within an area named *Products*.
+  HtmlHelper syntax:
+  ``@Html.ActionLink("Go to Product's Home Page", "Index")``
 
-.. code-block:: c#
+  TagHelper syntax:
+  ``<a asp-action="Index">Go to Product's Home Page</a>``
 
-  <a asp-area="Products" asp-controller="Home" asp-action="Index">See Products Home Page</a>
+  Note that we need not supply the 'area' and 'controller' values here as they are already available in the context of the current request. These kind of values are called ``ambient`` values.
 
-To link to a controller action that is not part of an area, supply an empty value to the ``asp-area`` attribute. 
+- Generating links from an action within an area based controller to another action on a different controller
 
-.. code-block:: c#
+  Let's say the current request's path is like ``/Products/Home/Create``
 
-  <a asp-area="" asp-controller="Home" asp-action="Index">Go to Home Page</a>
+  HtmlHelper syntax:
+  ``@Html.ActionLink("Go to Manage Products's Home Page", "Index", "Manage")``
+
+  TagHelper syntax:
+  ``<a asp-controller="Manage" asp-action="Index">Go to Manage Products's Home Page</a>``
+
+  Note that here the ambient value of an 'area' is used but the 'controller' value is specified explicitly above.
+
+- Generating links from an action within an area based controller to another action on a different controller and a different area.
+
+  Let's say the current request's path is like ``/Products/Home/Create``
+
+  HtmlHelper syntax:
+  ``@Html.ActionLink("Go to Services's Home Page", "Index", "Home", new { area = "Services" })``
+
+  TagHelper syntax:
+  ``<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services's Home Page</a>``
+
+  Note that here no ambient values are used.
+
+- Generating links from an action within an area based controller to another action on a different controller and **not** in an area.
+
+  HtmlHelper syntax:
+  ``@Html.ActionLink("Go to Manage Products's Home Page", "Index", "Home", new { area = "" })``
+
+  TagHelper syntax:
+  ``<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products's Home Page</a>``
+
+  Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 
 Summary
 -------
