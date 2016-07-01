@@ -140,7 +140,7 @@ This template will match a URL path like ``/Blog/All-About-Routing/Introduction`
       }
   }
 
-.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet
+.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet. If you want to user MapGet in lieu of MapRoute we need to say why. ``MapGet`` only matches routes for GET requests.
 This example adds route constraints and data tokens:
 
 .. code-block:: c#
@@ -206,6 +206,7 @@ Routes must configured inside the ``Configure`` method in the ``Startup`` class.
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
 - :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`
 - :dn:method:`~Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter`
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
