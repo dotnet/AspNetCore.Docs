@@ -65,41 +65,7 @@ For example, in the below code instead of having the folder name as 'Areas', it 
       options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
   });
 
-One thing to note is that the structure of the ``Views`` folder is the only one which is considered important here and the content of the rest of the folders like 'Controllers' and 'Models' does **not** matter. So for example, we could change the above folder structure to be like the following and the application would still work as before.
-
-- Project name
-
-  - Areas
-
-    - Products
-
-      - HomeController.cs
-
-      - ManageController.cs
-
-      - Views
-
-        - Home
-
-          - Index.cshtml
-
-        - Manage
-
-          - Index.cshtml
-
-    - Services
-
-      - HomeController.cs
-
-      - Views
-
-        - Home
-
-          - Index.cshtml
-
-This works because the content of 'Controllers' and 'Models' is just code which gets compiled into a .dll where as the content of the 'Views' is not until a request to that view has been made.  
-
-Even though the above folder structure works, this is not typical and you would want to structure your code as shown in the beginning of this article.
+One thing to note is that the structure of the ``Views`` folder is the only one which is considered important here and the content of the rest of the folders like 'Controllers' and 'Models' does **not** matter. So for example, you need not have a 'Controllers' and 'Models' folder at all. This works because the content of 'Controllers' and 'Models' is just code which gets compiled into a .dll where as the content of the 'Views' is not until a request to that view has been made.
 
 Once you've defined the folder hierarchy, you need to tell MVC that each controller is associated with an area. You do that by decorating the controller name with the ``[Area]`` attribute.
 
