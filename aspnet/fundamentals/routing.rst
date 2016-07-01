@@ -20,10 +20,7 @@ Routing uses *routes* (implementations of :dn:iface:`~Microsoft.AspNetCore.Routi
 - map incoming requests to *route handlers*
 - generate URLs used in responses
 
-Generally an app has a single collection of routes. The route collection is processed in order:
-
-- requests look for a match in the route collection by :ref:`URL-Matching-ref`
-- responses use routing to genenerate URLs
+Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by :ref:`URL-Matching-ref`. Responses use routing to genenerate URLs.
 
 Routing is connected to the :doc:`middleware <middleware>` pipeline by the :dn:class:`~Microsoft.AspNetCore.Builder.RouterMiddleware` class. :doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
 
@@ -33,45 +30,27 @@ URL matching
 ^^^^^^^^^^^^
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
 
-- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler`
-- :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`
-- :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddleware`
-- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler`
-- :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`
-- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.HttpContext`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.RouteData`
-- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.DataTokens`
-
-Incoming requests enter the :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddleware` which calls the :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` method on each route in sequence. The :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter` instance chooses whether to *handle* the request by setting the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler` to a non-null :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all route are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
+Incoming requests enter the :dn:cls:`~Microsoft.AspNetCore.Builder.RouterMiddleware` which calls the :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` method on each route in sequence. The :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter` instance chooses whether to *handle* the request by setting the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.Handler` to a non-null :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all routes are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
 
 The primary input to ``RouteAsync`` is the :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.HttpContext` associated with the current request. The ``RouteContext.Handler`` and :dn:cls:`~Microsoft.AspNetCore.Routing.RouteContext` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteContext.RouteData` are outputs that will be set after a successful match.
 
 A successful match during ``RouteAsync`` also will set the properties of the ``RouteContext.RouteData`` to appropriate values based on the request processing that was done. The ``RouteContext.RouteData`` contains important state information about the *result* of a route when it successfully matches a request.
 
-The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values` property is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
+:dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Values` is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
 
-The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.DataTokens` property is a property bag of additional data related to the route that matched. ``DataTokens`` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do not affect the **behavior** of routing in any way. Additionally values stashed in data tokens can be of any type, in contrast to route values which must be easily convertable to and from strings.
+:dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.DataTokens`  is a property bag of additional data related to the matched route. ``DataTokens`` are provided to support associating state data with each route so the application can make decisions later based on which route matched. These values are developer-defined and do **not** affect the behavior of routing in any way. Additionally, values stashed in data tokens can be of any type, in contrast to route values which must be easily convertable to and from strings.
 
-The :dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Routers` property is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the ``Routers`` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in ``Routers`` is the route collection, and should be used for URL generation. The last item in ``Routers`` is the route that matched.
+:dn:cls:`~Microsoft.AspNetCore.Routing.RouteData` :dn:prop:`~Microsoft.AspNetCore.Routing.RouteData.Routers` is a list of the routes that took part in successfully matching the request. Routes can be nested inside one another, and the ``Routers`` property reflects the path through the logical tree of routes that resulted in a match. Generally the first item in ``Routers`` is the route collection, and should be used for URL generation. The last item in ``Routers`` is the route that matched.
 
 URL generation
 ^^^^^^^^^^^^^^
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your handlers and the URLs that access them.
 
-- :dn:iface:`~Microsoft.AspNetCore.Routing.IRouter`
-- :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath`
-- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`
-
 URL generation follows a similar iterative process, but starts with user or framework code calling into the :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath` method of the route collection. Each *route* will then have its ``GetVirtualPath`` method called in sequence until until a non-null :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` is returned.
 
 The primary inputs to ``GetVirtualPath`` are:
 
-- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` - :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext`
+- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.HttpContext`
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.Values`
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues`
 
@@ -79,13 +58,10 @@ Routes primarily use the route values provided by the ``Values`` and ``AmbientVa
 
 .. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
-The output of ``GetVirtualPath`` is a :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`. The ``VirtualPathData`` is a parallel of ``RouteData`` - it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
+The output of ``GetVirtualPath`` is a :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`. ``VirtualPathData`` is a parallel of ``RouteData``; it contains the ``VirtualPath`` for the output URL as well as the some additional properties that should be set by the route.
 
 The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath`
 property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
-
-- :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.Router`
 
 The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathData.Router` is a reference to the route that successfully generated the URL.
 
@@ -107,13 +83,13 @@ This is an example of a ``MapRoute`` call used by a typical ASP.NET MVC route de
         name: "default",
         template: "{controller=Home}/{action=Index}/{id?}");
 
-This template will match a URL path like ``/Products/Details/17`` and extract the route values ``{ controller = Products, action = Details, id = 17 }``. The route values are determined by splitting the URL path into segments, and matching each segment with the *route parameter* name in the route template. Route parameters are named, and defined by enclosing the parameter name in braces ``{ }``.
+This template will match a URL path like ``/Products/Details/17`` and extract the route values ``{ controller = Products, action = Details, id = 17 }``. The route values are determined by splitting the URL path into segments, and matching each segment with the *route parameter* name in the route template. Route parameters are named. They are defined by enclosing the parameter name in braces ``{ }``.
 
-The template could also match the URL path ``/`` and would produce the values ``{ controller = Home, action = Index }``. This is allowed because the ``controller`` and ``{action}`` route parameters have default values, and the ``id`` route parameter is optional. An equals ``=`` sign followed by a value after the route parameter name defines a default value for the parameter. A question mark ``?`` after the route parameter name defines the parameter as optional. Route parameters with a default value *always* produce a route value when the route matches - optional parameters will not produce a route value if there was no corresponding URL path segment.
+The template above could also match the URL path ``/`` and would produce the values ``{ controller = Home, action = Index }``. This happens because the ``{controller}`` and ``{action}`` route parameters have default values, and the ``id`` route parameter is optional. An equals ``=`` sign followed by a value after the route parameter name defines a default value for the parameter. A question mark ``?`` after the route parameter name defines the parameter as optional. Route parameters with a default value *always* produce a route value when the route matches - optional parameters will not produce a route value if there was no corresponding URL path segment.
 
 See route-template-reference_ for a thorough description of route template features and syntax.
 
-This example includes a route constraint:
+This example includes a *route constraint*:
 
 .. code-block:: c#
 
@@ -121,7 +97,7 @@ This example includes a route constraint:
         name: "default",
         template: "{controller=Home}/{action=Index}/{id:int}");
 
-This template will match a URL path like ``/Products/Details/17``, but not ``/Products/Details/Apples``. The route parameter definition ``{id:int}`` defines *route constraint* for the ``id`` route parameter. Route constraints implement ``IRouteConstraint`` and inspect route values to verify them. In this example the route value ``id`` must be convertable to an integer. See route-constraint-reference_ for a more detailed explaination of route constraints that are provided by the framework.
+This template will match a URL path like ``/Products/Details/17``, but not ``/Products/Details/Apples``. The route parameter definition ``{id:int}`` defines a *route constraint* for the ``id`` route parameter. Route constraints implement ``IRouteConstraint`` and inspect route values to verify them. In this example the route value ``id`` must be convertable to an integer. See route-constraint-reference_ for a more detailed explaination of route constraints that are provided by the framework.
 
 Additional overloads of ``MapRoute`` accept values for ``constraints``, ``dataTokens``, and ``defaults``. These additional parameters of ``MapRoute`` are defined as type ``object``. The typical usage of these parameters is to pass an anonymously typed object, where the property names of the anonymous type match route parameter names.
 
@@ -140,29 +116,46 @@ The following two examples create equivalent routes:
 
 .. tip:: The inline syntax for defining constraints and defaults can be more convenient for simple routes. However, there are features such as data tokens which are not supported by inline syntax.
 
+.. review-required: changed template and add MVC controller sample
 This example demonstrates a few more features:
 
 .. code-block:: c#
 
-    routes.MapRoute(
-        name: "blog",
-        template: "/Blog/{*article}",
-        defaults: new { controller = "Blog", action = "ReadArticle" });
+  routes.MapRoute(
+    name: "blog",
+    template: "Blog/{*article}",
+    defaults: new { controller = "Blog", action = "ReadArticle" });
 
-This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string.
+This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. The following code will display "All-About-Routing/Introduction":
 
+.. code-block:: c#
+
+  using Microsoft.AspNetCore.Mvc;
+  
+  public class BlogController : Controller
+  {
+      public string ReadArticle(string article)
+      {
+          return article;
+      }
+  }
+
+.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet
 This example adds route constraints and data tokens:
 
 .. code-block:: c#
 
-    routes.MapGet(
-        name: "us_english_products",
-        template: "/en-US/Products/{id}",
-        defaults: new { controller = "Products", action = "Details" },
-        constraints: new { id = new IntConstraint() },
-        dataTokens: new { locale = "en-US" });
+  routes.MapRoute(
+      name: "us_english_products",
+      template: "en-US/Products/{id}",
+      defaults: new { controller = "Products", action = "Details" },
+      constraints: new { id = new IntRouteConstraint() },
+      dataTokens: new { locale = "en-US" });
 
-This template will match a URL path like ``/en-US/Products/{id}`` and will extract the values ``{ controller = Products, action = Details, id = 5 }`` and the data tokens ``{ locale = en-US }``.
+This template will match a URL path like ``/en-US/Products/5`` and will extract the values ``{ controller = Products, action = Details, id = 5 }`` and the data tokens ``{ locale = en-US }``.
+
+
+.. image:: routing/_static/tokens.png
 
 .. _url-generation:
 
@@ -184,7 +177,7 @@ With the route values ``{ controller = Products, action = List }``, this route w
 
 With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both would URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
 
-.. tip:: An application using ASP.NET MVC should use the :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly.
+.. tip:: An app using ASP.NET MVC should use :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly.
 
 For more details about the URL generation process, see url-generation-reference_.
 
@@ -208,21 +201,16 @@ Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`
   :lines: 11-14
   :emphasize-lines: 3
 
-- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
-- :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
-- :dn:iface:`~Microsoft.AspNetCore.Builder.IApplicationBuilder`
-
 Routes must configured inside the ``Configure`` method in the ``Startup`` class. The sample below uses these APIs:
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
 - :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`
-- :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
 - :dn:method:`~Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter`
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
-  :lines: 16-39
+  :lines: 16-40
 
 .. tip:: If you are only configuring a single route, you can call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
 

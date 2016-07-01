@@ -20,7 +20,8 @@ namespace RoutingSample
             var defaultHandler = new RouteHandler((c) =>
             {
                 var routeValues = c.GetRouteData().Values;
-                return c.Response.WriteAsync($"Hello world! Route values: {string.Join(", ", routeValues)}");
+                return c.Response.WriteAsync(
+                    $"Hello world! Route values: {string.Join(", ", routeValues)}");
             });
 
             var routeBuilder = new RouteBuilder(app, defaultHandler);
