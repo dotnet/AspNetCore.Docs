@@ -14,7 +14,7 @@ Currently the ``Index`` method returns a string with a message that is hard-code
   :lines: 102-105
   :dedent: 8
 
-The ``Index`` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods, such as the ``Index`` method above, generally return an ``IActionResult`` (or a class derived from ``ActionResult``), not primitive types like string.
+The ``Index`` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the ``Index`` method above, generally return an ``IActionResult`` (or a class derived from ``ActionResult``), not primitive types like string.
 
 - Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 - Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
