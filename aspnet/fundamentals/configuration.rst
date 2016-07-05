@@ -131,13 +131,13 @@ You configure options using the :dn:method:`~Microsoft.Extensions.DependencyInje
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup.cs
   :language: c#
-  :lines: 26-42
+  :lines: 26-45
   :dedent: 8
-  :emphasize-lines: 7,10-13
+  :emphasize-lines: 7-10,13,16
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form ``property:subproperty:...``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in *appsettings.json*. Note that configuration keys are case insensitive.
 
-Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container that is used by the :dn:iface:`~Microsoft.Extensions.Options.IOptions\<TOptions>` service to provide the configured options to the application or framework. If you want to configure your options some other way (for example, reading settings from a database) you can use the ``AddSingleton<TOptions>`` extension method to you specify a custom :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service directly. 
+Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container that is used by the :dn:iface:`~Microsoft.Extensions.Options.IOptions\<TOptions>` service to provide the configured options to the application or framework. If you want to configure your options some other way (for example, reading settings from a database) you can use the ``AddSingleton<TOptions>`` extension method to you specify a custom :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service directly.
 
 You can have multiple :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` services for the same option type and they are all applied in order. In the :ref:`example <options-example>` above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate with the value "value1_from_action".
 
@@ -201,4 +201,4 @@ Run the application to see the configured values:
 Summary
 -------
 
-ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility. 
+ASP.NET Core provides a very flexible configuration model that supports a number of different file-based options, as well as command-line, in-memory, and environment variables. It works seamlessly with the options model so that you can inject strongly typed settings into your application or framework. You can create your own custom configuration providers as well, which can work with or replace the built-in providers, allowing for extreme flexibility.
