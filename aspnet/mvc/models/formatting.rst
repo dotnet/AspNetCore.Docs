@@ -196,7 +196,7 @@ Clients can request a particular format as part of the URL, such as in the query
   [FormatFilter]
   public class ProductsController
   {
-    [Route("[controller]/[action]/[id].{format?}")]
+    [Route("[controller]/[action]/{id}.{format?}")]
     public Product GetById(int id)
   
 This route would allow the requested format to be specified as an optional file extension. The ``[FormatFilter]`` attribute checks for the existence of the format value in the ``RouteData`` and will map the response format to the appropriate formatter when the response is created.
