@@ -10,7 +10,7 @@ ASP.NET Core provides cookie :ref:`middleware <fundamentals-middleware>` which s
 Adding and configuring
 ----------------------
 
-The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNetCore.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your *Startup.cs* file;
+The first step is adding the cookie middleware to your application. First use nuget to add the ``Microsoft.AspNetCore.Authentication.Cookies`` package. Then add the following lines to the ``Configure`` method in your *Startup.cs* file before the ``app.UseMvc()`` statement;
 
 .. code-block:: c#
 
