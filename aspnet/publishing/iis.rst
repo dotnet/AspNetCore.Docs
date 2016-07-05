@@ -54,6 +54,27 @@ For more information on the ASP.NET Core Module, including configuration of the 
 Application configuration
 -------------------------
 
+Enabling the `IISIntegration` service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ensure that the `UseIISIntegration()` is injected:
+
+.. code-block:: csharp
+
+  var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseIISIntegration()
+    .UseStartup<Startup>()
+    .Build();
+
+
+This also requires that the following is added to the list of dependecies within `project.json`:
+
+.. code-block::
+
+  "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0"
+  
+
 Setting `IISOptions` for the `IISIntegration` service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -290,6 +311,17 @@ Stopped Application Pool
 Troubleshooting
 
 - Confirm that the Application Pool is not in the `Stopped` state.
+
+IISIntegration module was not injected
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** 502.5 Process Failure
+- **Application Log:** Process was created with commandline '"dotnet" ...' but either crashed or did not reponse within given time or did not listen on the given port '2140', ErrorCode = '0x800705b4'
+- **ASP.NET Core Module Log:** Log file created and shows normal operation.
+
+Troubleshooting
+
+- Confirm that you have correctly referenced the IISIntegration module by calling the UseIISIntegration() method of the application's WebHostBuilder().
 
 Additional resources
 --------------------
