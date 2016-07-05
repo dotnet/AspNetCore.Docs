@@ -9,14 +9,14 @@ Authentication schemes are named when authentication middleware is configured du
 
 .. code-block:: c#
 
- app.UseCookieAuthentication(options =>
+ app.UseCookieAuthentication(new CookieAuthenticationOptions()
  {
-     options.AuthenticationScheme = "Cookie";
-     options.LoginPath = new PathString("/Account/Unauthorized/");
-     options.AccessDeniedPath = new PathString("/Account/Forbidden/");
-     options.AutomaticAuthenticate = false;
+     AuthenticationScheme = "Cookie",
+     LoginPath = new PathString("/Account/Unauthorized/"),
+     AccessDeniedPath = new PathString("/Account/Forbidden/"),
+     AutomaticAuthenticate = false
  });
-
+ 
  app.UseBearerAuthentication(options =>
  {
      options.AuthenticationScheme = "Bearer";
