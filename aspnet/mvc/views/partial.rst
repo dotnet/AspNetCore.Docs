@@ -52,7 +52,7 @@ You can render a partial view with :dn:method:`~Microsoft.AspNetCore.Mvc.Renderi
 .. literalinclude:: partial/sample/src/PartialViewsSample/Views/Home/About.cshtml
   :lines: 10-12
 
-Because it streams the result directly, ``RenderPartial`` and ``RenderPartialAsync`` may perform better in some scenarios. However, in most cases it's recommended you use ``Render`` and ``RenderAsync``.
+Because it streams the result directly, ``RenderPartial`` and ``RenderPartialAsync`` may perform better in some scenarios. However, in most cases it's recommended you use ``Partial`` and ``PartialAsync``.
 
 .. note:: If your views need to execute code, the recommended pattern is to use a :doc:`view component <view-components>` instead of a partial view.
 
