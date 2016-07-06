@@ -57,7 +57,7 @@ Application configuration
 Enabling the `IISIntegration` components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Include a dependency on the `Microsoft.AspNetCore.Server.IISIntegration` package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the `.UseIISIntegration()` extension method to WebHostBuilder().
+Include a dependency on the `Microsoft.AspNetCore.Server.IISIntegration` package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the `.UseIISIntegration()` extension method to `WebHostBuilder()`.
 
 .. code-block:: csharp
 
