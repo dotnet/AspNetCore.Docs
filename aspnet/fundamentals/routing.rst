@@ -69,7 +69,7 @@ The :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathData` :dn:prop:`~Microsoft
 
 Creating routes
 ^^^^^^^^^^^^^^^
-Routing provides the :dn:cls:`~Microsoft.AspNetCore.Routing.Route` class as the standard implemenation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` is called. ``Route`` will use the same route template to generate a URL when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath` is called.
+Routing provides the :dn:cls:`~Microsoft.AspNetCore.Routing.Route` class as the standard implementation of ``IRouter``. ``Route`` uses the *route template* syntax to define patterns that will match against the URL path when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.RouteAsync` is called. ``Route`` will use the same route template to generate a URL when :dn:method:`~Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath` is called.
 
 Most applications will create routes by calling ``MapRoute`` or one of the similar extension methods defined on :dn:iface:`~Microsoft.AspNetCore.Routing.IRouteBuilder`. All of these methods will create an instance of ``Route`` and add it to the route collection.
 
@@ -127,21 +127,7 @@ This example demonstrates a few more features:
     template: "Blog/{*article}",
     defaults: new { controller = "Blog", action = "ReadArticle" });
 
-This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. Using the route above and a request to ``/Blog/All-About-Routing/Introduction``, the following code will display "All-About-Routing/Introduction":
-
-.. code-block:: c#
-
-  using Microsoft.AspNetCore.Mvc;
-  
-  public class BlogController : Controller
-  {
-      public string ReadArticle(string article)
-      {
-          return article;
-      }
-  }
-
-.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet. If you want to use MapGet in lieu of MapRoute we need to say why. ``MapGet`` only matches routes for GET requests.
+This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. 
 
 This example adds route constraints and data tokens:
 
@@ -238,6 +224,8 @@ The framework provides a set of extension methods for creating routes such as:
 
 Some of these methods such as ``MapGet`` require a :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate` to be provided. The ``RequestDelegate`` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as ``MapRoute``, then it will use the :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`.
 
+The ``Map[Verb]`` methods use constraints to limit the route to the HTTP Verb in the method name. For example, see `MapGet <https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L85-L88>`__ and `MapVerb <https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L156-L180>`__.
+
 .. _route-template-reference:
 
 Route Template Reference
@@ -246,7 +234,8 @@ Tokens within curly braces (``{ }``) define *route parameters* which will be bou
 
 Literal text other than route parameters (for example, ``{id}``) and the path separator ``/`` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match the literal route parameter delimiter ``{`` or  ``}``, escape it by repeating the character (``{{`` or ``}}``).
 
-The filename route is a special case. Consider the template ``files/{filename}.{ext?}`` -  When both ``filename`` and ``ext`` exist, both values will be populated. If only ``filename`` exists in the URL, the route matches because the trailing period ``.`` is  optional. The following URLs would match this route:
+URL patterns that attempt to capture a filename with an optional file extension have additional considerations. For example, using the template ``files/{filename}.{ext}`` -
+When both ``filename`` and ``ext`` exist, both values will be populated. If only ``filename`` exists in the URL, the route matches because the trailing period ``.`` is  optional. The following URLs would match this route:
 
 - ``/files/myFile.txt``
 - ``/files/myFile``
@@ -292,6 +281,7 @@ Route constraints execute when a ``Route`` has matched the syntax of the incomin
 .. warning:: Avoid using constraints for **input validation**, because doing so means that invalid input will result in a 404 (Not Found) instead of a 400 with an appropriate error message. Route constraints should be used to **disambiguate** between similar routes, not to validate the inputs for a particular route.
 
 The following table demonstrates some route constraints and their expected behavior.
+
 .. TODO to-do when we migrate to MD, make sure this table doesn't require a scroll bar
 
 .. list-table:: Inline Route Constraints
