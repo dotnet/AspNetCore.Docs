@@ -52,7 +52,7 @@ Just as with ``Configure``, it is recommended that features that require substan
 
 Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`. Just as the ``Startup`` class is able to specify dependencies its methods require as parameters, rather than hard-coding to a specific implementation, so too can your middleware, MVC controllers and other classes in your application.
 
-The ``ConfigureServices`` method is also where you should add configuration option classes, like ``AppSettings`` in the example above, that you would like to have available in your application. See the :doc:`configuration` topic to learn more about configuring options.
+The ``ConfigureServices`` method is also where you should add configuration option classes that you would like to have available in your application. See the :doc:`configuration` topic to learn more about configuring options.
 
 Services Available in Startup
 -----------------------------
