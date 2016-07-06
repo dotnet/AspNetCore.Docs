@@ -96,9 +96,9 @@ Filter attributes:
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute` 
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ExceptionFilterAttribute` 
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute` 
-- :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.FormatFilterAttribute` 
-- :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ServiceFilterAttribute` 
-- :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.TypeFilterAttribute`
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.FormatFilterAttribute` 
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.ServiceFilterAttribute` 
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.TypeFilterAttribute`
 
 Cancellation and Short Circuiting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
