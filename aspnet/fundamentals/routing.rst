@@ -127,7 +127,7 @@ This example demonstrates a few more features:
     template: "Blog/{*article}",
     defaults: new { controller = "Blog", action = "ReadArticle" });
 
-This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. 
+This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string.
 
 This example adds route constraints and data tokens:
 
@@ -189,14 +189,14 @@ Routes must configured in the ``Configure`` method in the ``Startup`` class. The
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
-- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`  Matches only HTTP GET requests 
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`  Matches only HTTP GET requests
 - :dn:method:`~Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter`
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
   :start-after: // Routes must configured in Configure
   :end-before: // Show link generation when no routes match.
-  
+
 The table below shows the resposes with the given URIs.
 
 ===================== ====================================================
@@ -308,11 +308,11 @@ The following table demonstrates some route constraints and their expected behav
     - 49.99
     - Matches a valid ``decimal`` value
   * - ``double``
-    - {price:double}
+    - {weight:double}
     - 4.234
     - Matches a valid ``double`` value
   * - ``float``
-    - {price:float}
+    - {weight:float}
     - 3.14
     - Matches a valid ``float`` value
   * - ``guid``
@@ -360,7 +360,7 @@ The following table demonstrates some route constraints and their expected behav
     - Steve
     - Used to enforce that a non-parameter value is present during during URL generation.
 
-.. warning:: Route constraints that verify the URL can be converted to a CLR type (such as ``int`` or ``DateTime``) always use the invariant culture - they assume the URL is non-localizable.
+.. warning:: Route constraints that verify the URL can be converted to a CLR type (such as ``int`` or ``DateTime``) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the `Float route constraint <https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60>`__ will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
 .. tip:: To constrain a parameter to a known set of possible values, you can use a regular expression ( for example ``{action:regex(list|get|create)}``. This would only match the ``action`` route value to ``list``, ``get``, or ``create``. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
