@@ -28,14 +28,14 @@ namespace UsingOptions
             // Setup options with DI
             services.AddOptions();
 
+            // Configure MyOptions using config by installing Microsoft.Extensions.Options.ConfigurationExtensions
+            services.Configure<MyOptions>(Configuration);
+
             // Configure MyOptions using code
             services.Configure<MyOptions>(myOptions =>
             {
                 myOptions.Option1 = "value1_from_action";
             });
-
-            // Configure MyOptions using config by installing Microsoft.Extensions.Options.ConfigurationExtensions
-            services.Configure<MyOptions>(Configuration);
 
             // Add framework services.
             services.AddMvc();
