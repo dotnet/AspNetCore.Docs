@@ -37,6 +37,9 @@ namespace UsingOptions
             // Configure MyOptions using config by installing Microsoft.Extensions.Options.ConfigurationExtensions
             services.Configure<MyOptions>(Configuration);
 
+            // Configure MySubOptions using a sub-section of the appsettings.json file
+            services.Configure<MySubOptions>(Configuration.GetSection("subsection"));
+
             // Add framework services.
             services.AddMvc();
         }
@@ -46,7 +49,7 @@ namespace UsingOptions
             ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
-            
+
             app.UseDeveloperExceptionPage();
             app.UseMvcWithDefaultRoute();
         }
