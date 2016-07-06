@@ -54,26 +54,21 @@ For more information on the ASP.NET Core Module, including configuration of the 
 Application configuration
 -------------------------
 
-Enabling the `IISIntegration` service
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Enabling the `IISIntegration` components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ensure that the `UseIISIntegration()` is injected:
+Include a dependency on the `Microsoft.AspNetCore.Server.IISIntegration` package in the application dependencies. Incorporate IIS Integration middleware into the application by adding the `.UseIISIntegration()` extension method to WebHostBuilder().
 
 .. code-block:: csharp
 
   var host = new WebHostBuilder()
     .UseKestrel()
+    .UseContentRoot(Directory.GetCurrentDirectory())
     .UseIISIntegration()
     .UseStartup<Startup>()
     .Build();
 
-
-This also requires that the following is added to the list of dependecies within `project.json`:
-
-.. code-block::
-
-  "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0"
-  
+Note that code calling `.UseIISIntegration()` does not affect code portability.
 
 Setting `IISOptions` for the `IISIntegration` service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -312,16 +307,17 @@ Troubleshooting
 
 - Confirm that the Application Pool is not in the `Stopped` state.
 
-IISIntegration module was not injected
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IISIntegration middleware not implemented
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **Browser:** 502.5 Process Failure
-- **Application Log:** Process was created with commandline '"dotnet" ...' but either crashed or did not reponse within given time or did not listen on the given port '2140', ErrorCode = '0x800705b4'
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log (Portable app):** Process was created with commandline '"dotnet" ...' but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
+- **Application Log (Self-contained app)**: Process was created with commandline '"PATH\my_application.exe" ' but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
 - **ASP.NET Core Module Log:** Log file created and shows normal operation.
 
 Troubleshooting
 
-- Confirm that you have correctly referenced the IISIntegration module by calling the UseIISIntegration() method of the application's WebHostBuilder().
+- Confirm that you have correctly referenced the IIS Integration middleware by calling the `.UseIISIntegration()` method of the application's `WebHostBuilder()`.
 
 Additional resources
 --------------------
