@@ -80,12 +80,12 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 Invoking a view component
 -------------------------
 
-To use the view component, call ``@Component.InvokeAsync("Name of view component", <parameters>)`` from a view. The parameters will be passed to the ``InvokeAsync`` method.  The ``PriorityList`` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the ``InvokeAsync`` method is called with two parameters:
+To use the view component, call ``@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)`` from a view. The parameters will be passed to the ``InvokeAsync`` method.  The ``PriorityList`` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the ``InvokeAsync`` method is called with two parameters:
 
 .. code-block:: HTML
 
-   @await Component.InvokeAsync("PriorityList", 2, false)
-   
+   @await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false }) 
+
 Invoking a view component directly from a controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -22,7 +22,7 @@ namespace ViewComponentSample.Controllers
 
         public IActionResult IndexVC()
         {
-            return ViewComponent("PriorityList", 3, false);
+            return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });
         }
 
         public async Task<IActionResult> IndexFinal()

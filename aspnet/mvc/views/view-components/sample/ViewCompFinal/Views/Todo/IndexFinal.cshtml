@@ -32,5 +32,5 @@
 </table>
 
 <div>
-    @await Component.InvokeAsync("PriorityList", 4, true)
+    @await Component.InvokeAsync("PriorityList", new { maxPriority = 4, isDone = true })
 </div>

@@ -26,17 +26,17 @@ Windows desktop operating systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Navigate to **Control Panel > Programs > Programs and Features > Turn Windows features on or off** (left side of the screen). Open the group for **Internet Information Services** and **Web Management Tools**. Check the box for **IIS Management Console**. Check the box for **World Wide Web Services**. Accept the default features for **World Wide Web Services** or customize the IIS features to suit your needs.
 
-.. image:: pubIIS/_static/wf.png
+.. image:: iis/_static/wf.png
 
 Windows Server operating systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For server operating systems, use the **Add Roles and Features Wizard** via the **Manage** menu or the link in **Server Manager**. On the **Server Roles** step, check the box for **Web Server (IIS)**.
 
-.. image:: pubIIS/_static/rs.png
+.. image:: iis/_static/rs.png
 
 On the **Role services** step, select the IIS role services you desire or accept the default role services provided.
 
-.. image:: pubIIS/_static/role-services.png
+.. image:: iis/_static/role-services.png
 
 Proceed through the **Confirmation** step to enable the web server role and services.
 
@@ -124,23 +124,23 @@ Configure the website in IIS
 
 Open the **Add Website** window.
 
-  .. image:: pubIIS/_static/addwebsitecontextmenu.png
+  .. image:: iis/_static/addwebsitecontextmenu.png
 
 Configure the website.
 
-  .. image:: pubIIS/_static/addwebsite.png
+  .. image:: iis/_static/addwebsite.png
 
 In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
-  .. image:: pubIIS/_static/apppoolsbasicsettingscontextmenu.png
+  .. image:: iis/_static/apppoolsbasicsettingscontextmenu.png
 
 Set the **.NET CLR version** to **No Managed Code**.
 
-  .. image:: pubIIS/_static/editapppool.png
+  .. image:: iis/_static/editapppool.png
 
 Browse the website.
 
-        .. image:: pubIIS/_static/browsewebsite.png
+        .. image:: iis/_static/browsewebsite.png
 
 Create a Data Protection Registry Hive
 --------------------------------------

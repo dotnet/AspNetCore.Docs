@@ -148,7 +148,7 @@ While the *app_offline..htm* file is present, the ASP.NET Core Module will repon
 ASP.NET Core Module Start Up Error Page
 ---------------------------------------
 
-.. image:: aspnet-core-module/ANCM-502_5.png
+.. image:: aspnet-core-module/_static/ANCM-502_5.png
 
 If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, you will see an HTTP 502.5 status code page. To supress this page and revert to the default IIS 502 status code page, use the ``disableStartUpErrorPage`` attribute. Look at the `HTTP Errors attribute <https://www.iis.net/configreference/system.webserver/httperrors>`__ to override this page with a custom error page.
 

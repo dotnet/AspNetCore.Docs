@@ -58,7 +58,7 @@ The ``UseStartup`` method on ``WebHostBuilder`` specifies the ``Startup`` class 
     :dedent: 4
     :emphasize-lines: 7
 
-The ``Startup`` class is where the you define the request handling pipeline and where any services needed by the app are configured. The ``Startup`` class must be public and contain the following methods:
+The ``Startup`` class is where you define the request handling pipeline and where any services needed by the app are configured. The ``Startup`` class must be public and contain the following methods:
 
 .. code-block:: c#
 
