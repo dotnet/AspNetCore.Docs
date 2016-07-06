@@ -54,7 +54,7 @@ The primary inputs to ``GetVirtualPath`` are:
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.Values`
 - :dn:cls:`~Microsoft.AspNetCore.Routing.VirtualPathContext` :dn:prop:`~Microsoft.AspNetCore.Routing.VirtualPathContext.AmbientValues`
 
-Routes primarily use the route values provided by the ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
+Routes primarily use the route values provided by the ``Values`` and ``AmbientValues`` to decide where it is possible to generate a URL and what values to include. The ``AmbientValues`` are the set of route values that were produced from matching the current request with the routing system. In contrast, ``Values`` are the route values that specify how to generate the desired URL for the current operation. The ``HttpContext`` is provided in case a route needs to get services or additional data associated with the current context.
 
 .. tip:: Think of ``Values`` as being a set of overrides for the ``AmbientValues``. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
@@ -127,7 +127,7 @@ This example demonstrates a few more features:
     template: "Blog/{*article}",
     defaults: new { controller = "Blog", action = "ReadArticle" });
 
-This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. The following code will display "All-About-Routing/Introduction":
+This template will match a URL path like ``/Blog/All-About-Routing/Introduction`` and will extract the values ``{ controller = Blog, action = ReadArticle, article = All-About-Routing/Introduction }``. The default route values for ``controller`` and ``action`` are produced by the route even though there are no corresponding route parameters in the template. Default values can be specified in the route template. The ``article`` route parameter is defined as a *catch-all* by the appearance of an asterix ``*`` before the route parameter name. Catch-all route parameters capture the remainder of the URL path, and can also match the empty string. Using the route above and a request to ``/Blog/All-About-Routing/Introduction``, the following code will display "All-About-Routing/Introduction":
 
 .. code-block:: c#
 
@@ -141,7 +141,7 @@ This template will match a URL path like ``/Blog/All-About-Routing/Introduction`
       }
   }
 
-.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet. If you want to user MapGet in lieu of MapRoute we need to say why. ``MapGet`` only matches routes for GET requests.
+.. review-required: removed leading / from template, changed to use IntRouteConstraint, MapRoute, not MapGet. If you want to use MapGet in lieu of MapRoute we need to say why. ``MapGet`` only matches routes for GET requests.
 
 This example adds route constraints and data tokens:
 
@@ -177,7 +177,7 @@ This example uses a basic ASP.NET MVC style route:
 
 With the route values ``{ controller = Products, action = List }``, this route will generate the URL ``/Products/List``. The route values are substituted for the corresponding route parameters to form the URL path. Since ``id`` is an optional route parameter, it's no problem that it doesn't have a value.
 
-With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both would URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
+With the route values ``{ controller = Home, action = Index }``, this route will generate the URL ``/``. The route values that were provided match the default values so the segments corresponding to those values can be safely omitted. Note that both URLs generated would round-trip with this route definition and produce the same route values that were used to generate the URL.
 
 .. tip:: An app using ASP.NET MVC should use :dn:cls:`~Microsoft.AspNetCore.Mvc.Routing.UrlHelper` to generate URLs instead of calling into routing directly.
 
@@ -187,15 +187,11 @@ For more details about the URL generation process, see url-generation-reference_
 
 Using Routing Middleware
 -------------------------
-To use the routing middleware, add it to the **dependencies** in *project.json*:
+To use routing middleware, add it to the **dependencies** in *project.json*:
 
-.. literalinclude:: routing/sample/RoutingSample/project.json
-  :dedent: 2
-  :language: javascript
-  :lines: 11-20
-  :emphasize-lines: 7
+``"Microsoft.AspNetCore.Routing": <current version>``
 
-Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`` in *Startup.cs*:
+Add routing to the service container in *Startup.cs*:
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
@@ -203,19 +199,33 @@ Add the routing services to the ``ServiceContainer`` inside ``ConfigureServices`
   :lines: 11-14
   :emphasize-lines: 3
 
-Routes must configured inside the ``Configure`` method in the ``Startup`` class. The sample below uses these APIs:
+Routes must configured in the ``Configure`` method in the ``Startup`` class. The sample below uses these APIs:
 
 - :dn:cls:`~Microsoft.AspNetCore.Routing.RouteBuilder`
-- :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RouteBuilder.Build`
-- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`  Matches only HTTP GET requests 
 - :dn:method:`~Microsoft.AspNetCore.Builder.RoutingBuilderExtensions.UseRouter`
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
   :dedent: 8
-  :lines: 16-40
+  :start-after: // Routes must configured in Configure
+  :end-before: // Show link generation when no routes match.
+  
+The table below shows the resposes with the given URIs.
 
-.. tip:: If you are only configuring a single route, you can call ``app.UseRouter`` and pass in the ``IRouter`` instance you wish to use, bypassing the need to use a ``RouteBuilder``.
+===================== ====================================================
+URI                    Response
+===================== ====================================================
+/package/create/3     Hello! Route values: [operation, create], [id, 3]
+/package/track/-3     Hello! Route values: [operation, track], [id, -3]
+/package/track/-3/    Hello! Route values: [operation, track], [id, -3]
+/package/track/       <Fall through, no match>
+GET /hello/Joe        Hi, Joe!
+POST /hello/Joe       <Fall through, matches HTTP GET only>
+GET /hello/Joe/Smith  <Fall through, no match>
+===================== ====================================================
+
+If you are configuring a single route, call ``app.UseRouter`` passing in an ``IRouter`` instance. You won't need to call ``RouteBuilder``.
 
 The framework provides a set of extension methods for creating routes such as:
 
@@ -263,7 +273,7 @@ The following table demonstrates some route templates and their behavior.
 |                                   | |                              | | action                                       |
 +-----------------------------------+--------------------------------+------------------------------------------------+
 | {controller}/{action}/{id?}       | | /Products/Details/123        | | Maps to ``Products`` controller and          |
-|                                   | |                              | | ``Details`` action.  ``id`` set to           |
+|                                   | |                              | | ``Details`` action.  ``id`` set to 123       |
 +-----------------------------------+--------------------------------+------------------------------------------------+
 | {controller=Home}/                | |   /                          | | Maps to ``Home`` controller and ``Index``    |
 |            {action=Index}/{id?}   | |                              | | method; ``id`` is ignored.                   |
@@ -362,7 +372,7 @@ The following table demonstrates some route constraints and their expected behav
 
 .. warning:: Route constraints that verify the URL can be converted to a CLR type (such as ``int`` or ``DateTime``) always use the invariant culture - they assume the URL is non-localizable.
 
-.. tip:: To constrain a parameter to a known set of possible values, you can use a regex: ``{action:regex(list|get|create)}``. This would only match the ``action`` route value to ``list``, ``get``, or ``create``. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+.. tip:: To constrain a parameter to a known set of possible values, you can use a regular expression ( for example ``{action:regex(list|get|create)}``. This would only match the ``action`` route value to ``list``, ``get``, or ``create``. If passed into the constraints dictionary, the string "list|get|create" would be equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
 .. _url-generation-reference:
 
@@ -371,9 +381,9 @@ URL Generation Reference
 The example below shows how to generate a link to a route given a dictionary of route values and a ``RouteCollection``.
 
 .. literalinclude:: routing/sample/RoutingSample/Startup.cs
-  :lines: 44-55
+  :start-after: // Show link generation when no routes match.
+  :end-before: // End of app.Run
   :dedent: 12
-  :emphasize-lines: 50-51
 
 The ``VirtualPath`` generated at the end of the sample above is ``/package/create/123``.
 
