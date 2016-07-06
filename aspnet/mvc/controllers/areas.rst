@@ -158,6 +158,19 @@ Link Generation
 
   Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 
+Publishing Areas
+----------------
+To publish all views of the areas folder, in the ``project.json`` file include an entry in the ``publishOptions``'s ``include`` node like below:
+
+.. code-block:: txt
+
+  "publishOptions": {
+    "include": [
+      "Areas/**/*.cshtml",
+      ....
+      ....
+    ] 
+
 Summary
 -------
 Areas are a very useful tool for grouping semantically-related controllers and actions under a common parent folder. In this article, you learned how to set up your folder hierarchy to support ``Areas``, how to specify the ``[Area]`` attribute to denote a controller as belonging to a specified area, and how to define your routes with areas.
