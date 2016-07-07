@@ -168,7 +168,7 @@ Test the app
 
 .. _DisplayFormatDateLocal:
 
-.. note:: In some locals you'll need to specify the date format. See the highlighted code below.
+.. note:: In some locales you'll need to specify the date format. See the highlighted code below.
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateFormat.cs
   :language: c#
