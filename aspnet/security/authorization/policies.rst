@@ -76,7 +76,7 @@ The minimum age handler might look like this:
          if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
                                     c.Issuer == "http://contoso.com"))
          {
-             return;
+             return Task.FromResult(0);
          }
 
          var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(
