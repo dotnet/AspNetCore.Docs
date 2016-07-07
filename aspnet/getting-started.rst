@@ -15,7 +15,7 @@ Getting Started
 
   .. literalinclude:: getting-started/sample/aspnetcoreapp/project.json
     :language: c#
-    :emphasize-lines: 11
+    :emphasize-lines: 15
 
 4. Restore the packages:
 
