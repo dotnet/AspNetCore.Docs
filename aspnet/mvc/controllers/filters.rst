@@ -94,9 +94,11 @@ Several of the filter interfaces have corresponding attributes that can be used 
 Filter attributes:
 
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute` 
-- AuthorizationFilterAttribute
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ExceptionFilterAttribute` 
 - :dn:cls:`~Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute` 
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.FormatFilterAttribute` 
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.ServiceFilterAttribute` 
+- :dn:cls:`~Microsoft.AspNetCore.Mvc.TypeFilterAttribute`
 
 Cancellation and Short Circuiting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
