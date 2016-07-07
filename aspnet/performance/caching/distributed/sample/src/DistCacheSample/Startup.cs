@@ -31,10 +31,10 @@ namespace DistCacheSample
         public void ConfigureStagingServices(IServiceCollection services)
         {
 
-            services.AddDistributedRedisCache(opt =>
+            services.AddDistributedRedisCache(options =>
             {
-                opt.Configuration = "localhost";
-                opt.InstanceName = "SampleInstance";
+                options.Configuration = "localhost";
+                options.InstanceName = "SampleInstance";
             });
         }
 
@@ -45,11 +45,11 @@ namespace DistCacheSample
         public void ConfigureProductionServices(IServiceCollection services)
         {
           
-            services.AddDistributedSqlServerCache(conf =>
+            services.AddDistributedSqlServerCache(options =>
             {
-                conf.ConnectionString = @"Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;";
-                    conf.SchemaName = "dbo";
-                    conf.TableName = "TestCache";
+                options.ConnectionString = @"Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;";
+                options.SchemaName = "dbo";
+                options.TableName = "TestCache";
             });
             
         }
