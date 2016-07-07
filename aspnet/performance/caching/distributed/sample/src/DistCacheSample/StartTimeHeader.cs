@@ -1,19 +1,21 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DistCacheSample
 {
-    // You may need to install the Microsoft.AspNet.Http.Abstractions package into your project
     public class StartTimeHeader
     {
         private readonly RequestDelegate _next;
         private readonly IDistributedCache _cache;
 
         public StartTimeHeader(RequestDelegate next,
-            IDistributedCache cache)
+           IDistributedCache cache)
         {
             _next = next;
             _cache = cache;
@@ -33,6 +35,7 @@ namespace DistCacheSample
             await _next.Invoke(httpContext);
         }
     }
+
 
     // Extension method used to add the middleware to the HTTP request pipeline.
     public static class StartTimeHeaderExtensions

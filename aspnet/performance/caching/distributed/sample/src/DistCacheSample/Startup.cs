@@ -1,27 +1,27 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Caching.Redis;
-using Microsoft.Extensions.Caching.SqlServer;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.SqlServer;
+using Microsoft.Extensions.Options;
 using System;
 using System.Text;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace DistCacheSample
 {
     public class Startup
     {
+       
         /// <summary>
         /// Use LocalCache (Memory) in Development
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            services.AddSingleton<IMemoryCache>(serviceProvider =>  new MemoryCache(new MemoryCacheOptions()));
-            services.AddSingleton<IDistributedCache, LocalCache>();
+            services.AddDistributedMemoryCache();
         }
 
         /// <summary>
@@ -30,13 +30,12 @@ namespace DistCacheSample
         /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
         {
-            // use Redis
-            services.AddSingleton<IDistributedCache>(serviceProvider => 
-                new RedisCache(new RedisCacheOptions
-                {
-                    Configuration = "localhost",
-                    InstanceName = "SampleInstance"
-                }));
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "localhost";
+                options.InstanceName = "SampleInstance";
+            });
         }
 
         /// <summary>
@@ -45,54 +44,32 @@ namespace DistCacheSample
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            // Use SQL Server
-            services.AddSingleton<IDistributedCache>(serviceProvider =>
-            new SqlServerCache(new CacheOptions(new SqlServerCacheOptions()
+          
+            services.AddDistributedSqlServerCache(options =>
             {
-                ConnectionString = @"Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;",
-                SchemaName = "dbo",
-                TableName = "TestCache"
-            })));
+                options.ConnectionString = @"Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;";
+                options.SchemaName = "dbo";
+                options.TableName = "TestCache";
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
             IDistributedCache cache)
         {
-            app.UseIISPlatformHandler();
-
             var serverStartTimeString = DateTime.Now.ToString();
             byte[] val = Encoding.UTF8.GetBytes(serverStartTimeString);
             cache.Set("lastServerStartTime", val);
-
+            
             app.UseStartTimeHeader();
 
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/html";
-                await context.Response.WriteAsync("Hello World! The current time is " + DateTime.Now.ToString());
+                await context.Response.WriteAsync("Hello World!");
             });
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
-
-    public  class CacheOptions : IOptions<SqlServerCacheOptions>
-    {
-        private readonly SqlServerCacheOptions _innerOptions;
-
-        public CacheOptions(SqlServerCacheOptions innerOptions)
-        {
-            _innerOptions = innerOptions;
-        }
-
-        public SqlServerCacheOptions Value
-        {
-            get
-            {
-                return _innerOptions;
-            }
-        }
-    }
+ 
 }

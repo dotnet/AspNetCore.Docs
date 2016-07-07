@@ -1,4 +1,4 @@
-:version: 1.0.0-rc1
+:version: 1.0.0
 
 Working with a Distributed Cache
 ================================
@@ -58,7 +58,7 @@ The following example shows how to use an instance of IDistributedCache_ in a si
 .. literalinclude:: distributed/sample/src/DistCacheSample/StartTimeHeader.cs
   :language: c#
   :linenos:
-  :emphasize-lines: 13,16,19,25-29
+  :emphasize-lines: 15,18,21,27-31
 
 In the code above, the cached value is read, but never written. In this sample, the value is only set when a server starts up, and doesn't change. In a multi-server scenario, the most recent server to start will overwrite any previous values that were set by other servers. The ``Get`` and ``Set`` methods use the ``byte[]`` type. Therefore, the string value must be converted using ``Encoding.UTF8.GetString`` (for ``Get``) and ``Encoding.UTF8.GetBytes`` (for ``Set``).
 
@@ -67,8 +67,8 @@ The following code from *Startup.cs* shows the value being set:
 .. literalinclude:: distributed/sample/src/DistCacheSample/Startup.cs
   :language: c#
   :linenos:
-  :lines: 59-68
-  :emphasize-lines: 2,6-8
+  :lines: 58-66
+  :emphasize-lines: 2,4-6
 
 .. note:: Since IDistributedCache_ is configured in the ``ConfigureServices`` method, it is available to the ``Configure`` method as a parameter. Adding it as a parameter will allow the configured instance to be provided through DI.
 
@@ -92,7 +92,31 @@ In the sample code, a ``RedisCache`` implementation is used when the server is c
 Using a SQL Server Distributed Cache
 ------------------------------------
 
-The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. The installation script installs a table with the name you specify. The table will have the following schema:
+The SqlServerCache implementation allows the distributed cache to use a SQL Server database as its backing store. To create SQL Server table you can use sql-cache tool, the tool creates a table with the name and schema you specify. 
+
+To use sql-cache tool add SqlConfig.Tools to the tools section of the project.json file and run dotnet restore.
+
+.. literalinclude:: distributed/sample/src/DistCacheSample/project.json
+  :language: c#
+  :linenos:
+  :lines: 14-20
+  :emphasize-lines: 6
+
+Test SqlConfig.Tools by running the following command
+
+.. code-block:: none
+
+   C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create --help
+
+sql-cache tool  will display usage, options and command help, now you can create tables into sql server, running "sql-cache create" command :
+
+.. code-block:: none
+
+  C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create "Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;" dbo TestCache
+  info: Microsoft.Extensions.Caching.SqlConfig.Tools.Program[0]
+      Table and index were created successfully.
+
+The created table have the following schema:
 
 .. image:: distributed/_static/SqlServerCacheTable.png
 
@@ -102,7 +126,7 @@ Like all cache implementations, your app should get and set cache values using a
   :language: c#
   :linenos:
   :lines: 42-56
-  :emphasize-lines: 9-14
+  :emphasize-lines: 7-12
 
 .. note:: The ``ConnectionString`` (and optionally, ``SchemaName`` and ``TableName``) should typically be stored outside of source control (such as UserSecrets), as they may contain credentials.
 
