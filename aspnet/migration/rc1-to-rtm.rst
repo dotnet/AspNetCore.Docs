@@ -7,7 +7,6 @@ By `Cesar Blum Silveira`_, `Rachel Appel`_, `Rick Anderson`_
   :local:
   :depth: 1
 
-
 ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core 1.0 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. See `migrating from DNX to .NET Core CLI <https://docs.microsoft.com/en-us/dotnet/articles/core/migrating-from-dnx>`__ for more information.
 
 See the following resources for a list of some of the most significant changes, announcements and migrations information:

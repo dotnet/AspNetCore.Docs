@@ -1,11 +1,24 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FormsTH
+namespace FormsTagHelper
 {
     public class Startup
     {
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -17,10 +30,8 @@ namespace FormsTH
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseIISPlatformHandler();
+
             app.UseMvcWithDefaultRoute();
         }
-
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

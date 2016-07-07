@@ -15,7 +15,7 @@ In this tutorial we'll use an existing WebApi application that calculates the su
 Getting started
 ---------------
 
-Start by downloading `the sample application <https://github.com/aspnet/Docs/tree/dev/aspnet/tutorials/dotnet-watch/sample>`__. It contains two projects, ``WebApp`` (a web application) and ``WebAppTests`` (unit tests for the web application)
+Start by downloading `the sample application <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/dotnet-watch/sample>`__. It contains two projects, ``WebApp`` (a web application) and ``WebAppTests`` (unit tests for the web application)
 
 In a console, open the folder where you downloaded the sample application and run:
 
@@ -199,4 +199,5 @@ Once all the tests run, the watcher will indicate that it's waiting for a file t
      WebAppTests  Total: 2, Errors: 0, Failed: 0, Skipped: 0, Time: 0.260s
   SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
   [DotNetWatcher] info: dotnet exit code: 0
+
   [DotNetWatcher] info: Waiting for a file to change before restarting dotnet...

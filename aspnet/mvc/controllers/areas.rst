@@ -97,11 +97,11 @@ The following snippet shows how to link to a controller action that is defined w
 
   <a asp-area="Products" asp-controller="Home" asp-action="Index">See Products Home Page</a>
 
-To link to a controller action that is not part of an area, simply remove ``asp-route-area``
+To link to a controller action that is not part of an area, supply an empty value to the ``asp-area`` attribute. 
 
 .. code-block:: c#
 
-  <a asp-controller="Home" asp-action="Index">Go to Home Page</a>
+  <a asp-area="" asp-controller="Home" asp-action="Index">Go to Home Page</a>
 
 Summary
 -------
