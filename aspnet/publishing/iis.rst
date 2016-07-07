@@ -176,6 +176,8 @@ The following is not a complete list of errors. Should you encounter an error no
 
 To diagnose problems with IIS deployments, study browser output, examine the server's **Application** log through **Event Viewer**, and enable module logging. The **ASP.NET Core Module** log will be found on the path provided in the `stdoutLogFile` attribute of the `\<aspNetCore\>` element in *web.config*. Any folders on the path provided in the attribute value must exist in the deployment. You must also set `stdoutLogEnabled="true"` to enable module logging. Applications that use the `publish-iis` tooling to create the *web.config* file will default the `stdoutLogEnabled` setting to `false`, so you must manually provide the file or modify the file in order to enable module logging.
 
+Several of the common errors do not appear in the browser, Application Log, and ASP.NET Core Module Log until the module `startupTimeLimit` (default: 120 seconds) and `startupRetryCount` (default: 2) have passed. Therefore, wait a full six minutes before deducing that the module has failed to start a process for the application.
+
 A quick way to determine if the application is working properly is to run the application directly on Kestrel. If the application was published as a portable app, execute `dotnet <my_app>.dll` in the deployment folder. If the application was published as a self-contained app, run the application's executable directly on the command line, `<my_app>.exe`, in the deployment folder. If Kestrel is listening on default port 5000, you should be able to browse the application at `http://localhost:5000/`. If the application responds normally at the Kestrel endpoint address, the problem is more likely related to the IIS-ASP.NET Core Module-Kestrel configuration and less likely within the application itself.
 
 A way to determine if the IIS reverse proxy to the Kestrel server is working properly is to perform a simple static file request for a stylesheet, script, or image from the application's static assets in *wwwroot* using :doc:`Static File middleware </fundamentals/static-files>`. If the application can serve static files but MVC Views and other endpoints are failing, the problem is less likely related to the IIS-ASP.NET Core Module-Kestrel configuration and more likely within the application itself (for example, MVC routing or 500 Internal Server Error).
@@ -193,22 +195,13 @@ Troubleshooting:
 
 - If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
 
-UseUrls called before UseIISIntegration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Browser:** No response
-- **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
-- **ASP.NET Core Module Log:** Unhandled Exception: System.AggregateException: One or more errors occurred. (Error -4092 EACCES permission denied)
-
-Troubleshooting:
-
-- If your application uses the `UseUrls` extension on `WebHostBuilder`, make sure you have positioned the `UseUrls` extension before the `UseIISIntegration` extension on `WebHostBuilder`. `UseIISIntegration` must overwrite any values you provide in `UseUrls` in order for the reverse-proxy to succeed.
-
 Platform conflicts with RID
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **Browser:** No response
-- **Application Log:** Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log:**
+  - Application Error: Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\\WINDOWS\\system32\\KERNELBASE.dll
+  - IIS AspNetCore Module: Failed to start process with commandline '"dotnet" .\\my_application.dll' (portable app) or '"PATH\\my_application.exe"' (self-contained app), ErrorCode = '0x80004005'.
 - **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'teststandalone.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
 
 Troubleshooting:
@@ -260,8 +253,8 @@ Troubleshooting:
 - Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See `IIS Configuration`_.
 - Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-Incorrect `proecessPath`, bundle not installed, server not restarted, or missing PATH var
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Hosting bundle not installed or server not restarted
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 - **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
@@ -269,17 +262,28 @@ Incorrect `proecessPath`, bundle not installed, server not restarted, or missing
 
 Troubleshooting:
 
-- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
-- *dotnet.exe* might not accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
+
+Incorrect `proecessPath`, missing PATH variable, or *dotnet.exe* access violation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log:** Failed to start process with commandline '"dotnet" .\\my_application.dll' (portable app) or '".\\my_application_Foo.exe"' (self-contained app), ErrorCode = '0x80070002'.
+- **ASP.NET Core Module Log:** Log file created but empty
+
+Troubleshooting:
+
+- Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
+- For a portable application, *dotnet.exe* might not be accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
+- For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the `C:\\Program Files\\dotnet` directory.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
-- **Application Log:** Process 'PROC_ID' failed to start. Port = PORT, Error Code = '-2147023829'.
-- **ASP.NET Core Module Log:** Unhandled Exception: System.FormatException: Unrecognized argument format **--OR --** Expected to load required hostpolicy.dll from [IIS_WEBSITE_PHYSICAL_PATH] - This may be because of an invalid .NET Core FX configuration in the directory.
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log:** Failed to start process with commandline '"dotnet" .\\my_application_Foo.dll', ErrorCode = '0x80004005'.
+- **ASP.NET Core Module Log:** The application to execute does not exist: 'PATH\\my_application_Foo.dll'
 
 Troubleshooting:
 
