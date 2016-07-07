@@ -180,7 +180,7 @@ Troubleshooting:
 - If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
 
 Platform conflicts with RID
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** HTTP Error 502.5 - Process Failure
 - **Application Log:**
@@ -249,17 +249,18 @@ Troubleshooting:
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
 
-Incorrect `proecessPath` or missing PATH variable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Incorrect `proecessPath`, missing PATH variable, or *dotnet.exe* access violation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** HTTP Error 502.5 - Process Failure
-- **Application Log:** Failed to start process with commandline '"dotnet_Foo" .\\my_application.dll' (portable app) or '".\\my_application_Foo.exe"' (self-contained app), ErrorCode = '0x80070002'.
+- **Application Log:** Failed to start process with commandline '"dotnet" .\\my_application.dll' (portable app) or '".\\my_application_Foo.exe"' (self-contained app), ErrorCode = '0x80070002'.
 - **ASP.NET Core Module Log:** Log file created but empty
 
 Troubleshooting:
 
 - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
-- *dotnet.exe* might not be accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
+- For a portable application, *dotnet.exe* might not be accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
+- For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the `C:\\Program Files\\dotnet` directory.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
