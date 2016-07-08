@@ -133,7 +133,7 @@ You configure options using the :dn:method:`~Microsoft.Extensions.DependencyInje
   :language: c#
   :lines: 26-45
   :dedent: 8
-  :emphasize-lines: 7-10,13,16
+  :emphasize-lines: 7,10-13,16
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form ``property:subproperty:...``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in *appsettings.json*. Note that configuration keys are case insensitive.
 

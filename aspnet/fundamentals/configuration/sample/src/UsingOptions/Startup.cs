@@ -37,15 +37,9 @@ namespace UsingOptions
                 myOptions.Option1 = "value1_from_action";
             });
 
-<<<<<<< HEAD
-=======
-            // Configure MyOptions using config by installing Microsoft.Extensions.Options.ConfigurationExtensions
-            services.Configure<MyOptions>(Configuration);
-
             // Configure MySubOptions using a sub-section of the appsettings.json file
             services.Configure<MySubOptions>(Configuration.GetSection("subsection"));
 
->>>>>>> b1faeda... Show how to bind options to a specific config section
             // Add framework services.
             services.AddMvc();
         }
