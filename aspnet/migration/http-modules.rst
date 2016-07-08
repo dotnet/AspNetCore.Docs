@@ -116,7 +116,7 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
   :language: xml
   :linenos:
   :emphasize-lines: 6
-  :lines: 1-3, 29-30, 33, 40, 48, 105
+  :lines: 1-3, 32-33, 36, 43, 50, 101
 
 Convert this by `adding your new middleware <../fundamentals/middleware.html#creating-a-middleware-pipeline-with-iapplicationbuilder>`_
 to the request pipeline in your ``Startup`` class:
@@ -162,10 +162,10 @@ Configuring an HTTP handler is done in *Web.config* and looks something like thi
 .. literalinclude:: http-modules/sample/Asp.Net4/Asp.Net4/Web.config
   :language: xml
   :linenos:
-  :emphasize-lines: 7,8
-  :lines: 1-3, 29, 42-46, 48, 105
+  :emphasize-lines: 6
+  :lines: 1-3, 32, 46-48, 50, 101
 
-You could convert this by adding your new handler middleware to the request pipeline in your ``Startup`` class, similar to middleware converted from modules. The problem with that approach; it would send all requests to your new handler middleware. However, you only want requests with a given extension to reach your middleware. That would give you the same functionality you had with your HTTP handler.
+You could convert this by adding your new handler middleware to the request pipeline in your ``Startup`` class, similar to middleware converted from modules. The problem with that approach is that it would send all requests to your new handler middleware. However, you only want requests with a given extension to reach your middleware. That would give you the same functionality you had with your HTTP handler.
 
 One solution is to branch the pipeline for requests with a given extension, using the ``MapWhen`` extension method.
 You do this in the same ``Configure`` method where you add the other middleware:
