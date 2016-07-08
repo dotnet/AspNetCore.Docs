@@ -35,7 +35,11 @@ Complete the **New Project** dialog:
 
 .. image:: start-mvc/_static/new_project2.png
 
-In the **New ASP.NET Core Web Application - MvcMovie** dialog, tap **Web Application**, and then tap **OK**.
+Complete the **New ASP.NET Core Web Application - MvcMovie** dialog:
+
+- Tap **Web Application**
+- Clear **Host in the cloud**
+- Tap **OK**.
 
 .. image:: start-mvc/_static/p3.png
 
