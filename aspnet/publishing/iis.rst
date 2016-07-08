@@ -311,17 +311,17 @@ Troubleshooting
 
 - Confirm that the Application Pool is not in the `Stopped` state.
 
-IISIntegration middleware not implemented
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IIS Integration middleware not implemented or `.UseUrls()` after `.UseIISIntegration()`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** HTTP Error 502.5 - Process Failure
-- **Application Log (Portable app):** Process was created with commandline '"dotnet" ...' but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
-- **Application Log (Self-contained app)**: Process was created with commandline '"PATH\my_application.exe" ' but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
+- **Application Log:** Process was created with commandline '"dotnet" .\\my_application.dll' (portable app) or '".\\my_application.exe"' (self-contained app) but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
 - **ASP.NET Core Module Log:** Log file created and shows normal operation.
 
 Troubleshooting
 
 - Confirm that you have correctly referenced the IIS Integration middleware by calling the `.UseIISIntegration()` method of the application's `WebHostBuilder()`.
+- If you are using the `.UseUrls()` extension method when self-hosting with Kestrel, confirm that it is positioned before the `.UseIISIntegration()` extension method on `WebHostBuilder()`. `.UseIISIntegration()` must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by `.UseUrls()`.
 
 Additional resources
 --------------------
