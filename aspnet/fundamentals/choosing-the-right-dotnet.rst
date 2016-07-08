@@ -28,6 +28,8 @@ Mono
 
 `Mono <http://mono-project.com>`_ is a port of the .NET Framework built primarily for non-Windows platforms. Mono is open source and cross-platform. It also shares a similar API factoring to the .NET Framework, so many existing managed libraries work on Mono today. Mono is a good proving ground for cross-platform development while cross-platform support in .NET Core matures.
 
+.. note:: Mono is not officially supported and (there is a reported issue <https://github.com/aspnet/KestrelHttpServer/issues/942>_) which has a workaround.
+
 Summary
 -------
 
