@@ -197,7 +197,7 @@ Using the file hierarchy and code above:
 ==========================================  ===================================
 URI                                         Response
 ==========================================  ===================================
-\http://<app>/StaticFiles/test.png          StaticFiles/test.png
+\http://<app>/StaticFiles/test.png          MyStaticFiles/test.png
 \http://<app>/StaticFiles                   MyStaticFiles/default.html
 ==========================================  ===================================
 
