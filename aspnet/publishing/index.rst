@@ -5,7 +5,7 @@ Publishing and Deployment
 
 .. toctree::
     :titlesonly:
-    
+
     iis
     iis-with-msdeploy
     web-publishing-vs
@@ -14,4 +14,3 @@ Publishing and Deployment
     azure-windows-vm
     Publish to a Docker Image <https://azure.microsoft.com/documentation/articles/vs-azure-tools-docker-hosting-web-apps-in-docker/>
     linuxproduction
-    how-to-customize
