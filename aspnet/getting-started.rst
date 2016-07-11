@@ -32,7 +32,7 @@ Getting Started
 
   .. literalinclude:: getting-started/sample/aspnetcoreapp/Program.cs
     :language: c#
-    :emphasize-lines: 2,10-15
+    :emphasize-lines: 2,4,10-15
 
 7. Run the app  (the ``dotnet run`` command will build the app when it's out of date):
 
