@@ -1,7 +1,7 @@
 Migrating Configuration
-=======================
+======================
 
-By `Steve Smith`_ and `Scott Addie`_
+By `Steve Smit`_ and `Scott Addie`_
 
 In the previous article, we began :doc:`migrating an ASP.NET MVC project to ASP.NET Core MVC <mvc>`. In this article, we migrate configuration.
 
@@ -12,7 +12,7 @@ In the previous article, we began :doc:`migrating an ASP.NET MVC project to ASP.
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/migration/configuration/samples>`__
 
 Setup Configuration
--------------------
+------------------
 
 ASP.NET Core no longer uses the *Global.asax* and *web.config* files that previous versions of ASP.NET utilized. In earlier versions of ASP.NET, application startup logic was placed in an ``Application_StartUp`` method within *Global.asax*. Later, in ASP.NET MVC, a *Startup.cs* file was included in the root of the project; and, it was called when the application started. ASP.NET Core has adopted this approach completely placing all startup logic in the *Startup.cs* file.
 
