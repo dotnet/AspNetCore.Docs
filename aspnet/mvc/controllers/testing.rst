@@ -120,7 +120,7 @@ The ``Startup`` class:
 
 .. literalinclude:: testing/sample/TestingControllersSample/src/TestingControllersSample/Startup.cs
   :language: c#
-  :emphasize-lines: 18-21,40-41,49,57
+  :emphasize-lines: 19-20,38-39,47,56
 
 You'll see the ``GetTestSession`` method used frequently in the integration tests below.
 
