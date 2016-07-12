@@ -23,10 +23,11 @@ Prerequisites
 Copy over your app
 ------------------
 
-Run ``dotnet publish`` from your dev environment to package your
+Before we proceed, copy your ASP.NET Core application source code to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Run ``dotnet run`` (you might need to run a ``dotnet restore`` first in order to download all the dependencies)  from your dev environment to package your
 application into a self-contained directory that can run on your server.
 
-Before we proceed, copy your ASP.NET Core application to your server using whatever tool (SCP, FTP, etc) integrates into your workflow. Try and run the app and navigate to ``http://<serveraddress>:<port>`` in your browser to see if the application runs fine on Linux. I recommend you have a working app before proceeding.
+Try and run the app and navigate to ``http://<serveraddress>:<port>`` (default is http://localhost:5000) in your browser to see if the application runs fine on Linux.
+
 
 .. note:: You can use :doc:`Yeoman </client-side/yeoman>` to create a new ASP.NET Core application for a new project.
 
