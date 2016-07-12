@@ -48,7 +48,7 @@ ApplicationUser.cs:
 
 .. code-block:: c#
 
-  using Microsoft.AspNetCore.Identity;
+  using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
   namespace NewMvc6Project.Models
   {
