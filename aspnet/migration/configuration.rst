@@ -1,5 +1,5 @@
 Migrating Configuration
-=======================
+======================
 
 By `Steve Smit`_ and `Scott Addie`_
 
