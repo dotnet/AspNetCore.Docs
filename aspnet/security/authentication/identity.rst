@@ -53,7 +53,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Controllers/AccountController.cs
     :language: c#
     :lines: 19-43
-    :emphasize-lines: 3,4,12,13,19,20
+    :emphasize-lines: 3,4,11,12,17,18
 
   Then, the **Register** action creates the user by calling ``CreateAsync`` function of the ``UserManager`` object, as shown below:
 

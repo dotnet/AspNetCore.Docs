@@ -90,7 +90,7 @@ As you can see, the default fields include ``Html``, ``Component``, and ``Url`` 
 .. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Helper/Index.cshtml
   :linenos:
   :language: html
-  :emphasize-lines: 5,13
+  :emphasize-lines: 3,11
 
 If you want to extend existing services, you can simply use this technique while inheriting from or wrapping the existing implementation with your own.
 
