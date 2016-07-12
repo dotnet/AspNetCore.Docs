@@ -61,7 +61,7 @@ ApplicationDbContext.cs:
 
 .. code-block:: c#
 
-  using Microsoft.AspNetCore.Identity.EntityFramework;
+  using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
   using Microsoft.Data.Entity;
 
   namespace NewMvc6Project.Models
