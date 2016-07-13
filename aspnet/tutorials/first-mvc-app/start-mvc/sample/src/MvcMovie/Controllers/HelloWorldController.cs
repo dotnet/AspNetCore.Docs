@@ -50,7 +50,7 @@ namespace MvcMovie.Controllers
 
         public string Welcome(string name, int numTimes = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, id: {numTimes}");
+            return HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}");
         }
     }
 }
