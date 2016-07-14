@@ -42,6 +42,10 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 
 .. _unlock-handlers:
 
+Install the .NET Core SDK for Windows
+---------------------------------------------------
+
+#. Install the `.NET Core SDK for Windows <https://go.microsoft.com/fwlink/?LinkID=809122>`__ on the server. Without this the *dotnet* command will be unavailable, causing the installer to fail.
 
 Install the .NET Core Windows Server Hosting bundle
 ---------------------------------------------------
@@ -184,6 +188,15 @@ A way to determine if the IIS reverse proxy to the Kestrel server is working pro
 In most cases, enabling application logging will assist in troubleshooting problems with application or the reverse proxy. See :doc:`Logging </fundamentals/logging>` for more information.
 
 Common errors and general troubleshooting instructions:
+
+.NET Core SDK for Windows is not installed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Installer Exception:** Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80072efd - Unspecified Error*.
+
+Troubleshooting:
+
+- Verify that the .NET Core SDK for Windows is installed and that the **dotnet** command is available from the system PATH.
 
 Installer unable to obtain VC++ Redistributable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
