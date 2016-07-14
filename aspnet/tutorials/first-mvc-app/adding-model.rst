@@ -217,6 +217,8 @@ The constructor uses :doc:`Dependency Injection  </fundamentals/dependency-injec
 
 A request to the Movies controller returns all the entries in the ``Movies`` table and then passes the data to the ``Index`` view.
 
+.. _Strongly-typed-models-keyword-label:
+
 Strongly typed models and the @model keyword
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
