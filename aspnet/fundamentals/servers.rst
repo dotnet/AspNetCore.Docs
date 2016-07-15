@@ -18,16 +18,14 @@ Servers and commands
 
 ASP.NET Core was designed to decouple web applications from the underlying HTTP server. Traditionally, ASP.NET apps have been windows-only hosted on Internet Information Server (IIS). The recommended way to run ASP.NET Core applications on Windows is using IIS as a reverse-proxy server. The HttpPlatformHandler module in IIS manages and proxies requests to an HTTP server hosted out-of-process. ASP.NET Core ships with two different HTTP servers:
 
-- Microsoft.AspNetCore.Server.WebListener (AKA WebListener, Windows-only)
 - Microsoft.AspNetCore.Server.Kestrel (AKA Kestrel, cross-platform)
+- Microsoft.AspNetCore.Server.WebListener (AKA WebListener, Windows-only, preview)
 
 ASP.NET Core does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of :doc:`feature interfaces <request-features>` composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any or all of these servers by specifying commands in your *project.json* file. You can even specify an application entry point for your application, and run it as an executable (using ``dotnet run``) rather than hosting it in a separate process.
 
-The default web host for ASP.NET apps developed using Visual Studio is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNetCore.Server.Kestrel" and "Microsoft.AspNetCore.IISPlatformHandler" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express and any other ``commands`` defined in *project.json*. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
+The default web host for ASP.NET apps developed using Visual Studio is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNetCore.Server.Kestrel" and "Microsoft.AspNetCore.Server.IISIntegration" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles, associated with IIS Express. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
 
 .. image:: /fundamentals/servers/_static/serverdemo-properties.png
-
-.. note:: IIS doesn't support commands. Visual Studio launches IIS Express and loads the application with the selected profile.
 
 The sample project for this article is configured to support each server option in the *project.json* file:
 
@@ -35,7 +33,7 @@ The sample project for this article is configured to support each server option 
   :lines: 1-17
   :emphasize-lines: 12-13
   :linenos:
-  :language: javascript
+  :language: json
   :caption: project.json (truncated)
 
 The ``run`` command will launch the application from the ``void main`` method. The ``run`` command configures and starts an instance of ``Kestrel``.
@@ -141,9 +139,9 @@ IIS and IIS Express
 
 IIS is the most feature rich server, and includes IIS management functionality and access to other IIS modules. Hosting ASP.NET Core no longer uses the ``System.Web`` infrastructure used by prior versions of ASP.NET.
 
-HTTPPlatformHandler
+ASP.NET Core Module
 ^^^^^^^^^^^^^^^^^^^
-In ASP.NET Core on Windows, the web application is hosted by an external process outside of IIS. The HTTP Platform Handler is an IIS 7.5+ module which is responsible for process management of HTTP listeners and used to proxy requests to the processes that it manages.
+In ASP.NET Core on Windows, the web application is hosted by an external process outside of IIS. The ASP.NET Core Module is a native IIS  module that is used to proxy requests to external processes that it manages. See :doc:`/hosting/aspnet-core-module` for more details.
 
 .. _weblistener:
 
@@ -158,7 +156,7 @@ You can add support for WebListener to your ASP.NET application by adding the "M
 
   "web": "Microsoft.AspNetCore.Hosting --server Microsoft.AspNetCore.Server.WebListener --server.urls http://localhost:5000"
 
-.. note:: WebListener is currently still in preview
+.. note:: WebListener is currently still in preview.
 
 .. _kestrel:
 
@@ -167,9 +165,9 @@ Kestrel
 
 Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. You add support for Kestrel by including ``Microsoft.AspNetCore.Server.Kestrel`` in your project's dependencies listed in *project.json*.
 
-.. note:: Kestrel is not hardened for internet facing traffic and should always be used behind a secure proxy server (ex. IIS, Nginx).
-
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
+
+.. note:: Kestrel is not hardened for internet facing traffic and should always be used behind a secure proxy server (ex. IIS, Nginx).
 
 Choosing a server
 -----------------
