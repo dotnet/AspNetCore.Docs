@@ -115,7 +115,8 @@ To have supervisor monitor our application, we will add a file to the ``/etc/sup
     :caption: /etc/supervisor/conf.d/hellomvc.conf
 
     [program:hellomvc]
-    command=bash /usr/bin/dotnet /var/aspnetcore/HelloMVC/HelloMVC.dll
+    command=/usr/bin/dotnet /var/aspnetcore/HelloMVC/HelloMVC.dll
+    directory=/var/aspnetcore/HelloMVC/
     autostart=true
     autorestart=true
     stderr_logfile=/var/log/hellomvc.err.log
