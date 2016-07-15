@@ -167,7 +167,7 @@ Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv
 
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
-.. note:: Kestrel is not hardened for internet facing traffic and should always be used behind a secure proxy server (ex. IIS, Nginx).
+.. note:: Kestrel is designed to be run behind a proxy (for example IIS or Nginx) and should not be deployed directly facing the Internet.
 
 Choosing a server
 -----------------
