@@ -158,6 +158,8 @@ You can add support for WebListener to your ASP.NET application by adding the "M
 
   "web": "Microsoft.AspNetCore.Hosting --server Microsoft.AspNetCore.Server.WebListener --server.urls http://localhost:5000"
 
+.. note:: WebListener is currently still in preview
+
 .. _kestrel:
 
 Kestrel
@@ -165,14 +167,14 @@ Kestrel
 
 Kestrel is a cross-platform web server based on `libuv <https://github.com/libuv/libuv>`_, a cross-platform asynchronous I/O library. You add support for Kestrel by including ``Microsoft.AspNetCore.Server.Kestrel`` in your project's dependencies listed in *project.json*.
 
+.. note:: Kestrel is not hardened for internet facing traffic and should always be used behind a secure proxy server (ex. IIS, Nginx).
+
 Learn more about working with Kestrel to create :doc:`/tutorials/your-first-mac-aspnet`.
 
 Choosing a server
 -----------------
 
-If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel.
-
-For self-hosting scenarios, such as running in `Service Fabric <https://azure.microsoft.com/en-us/services/service-fabric/>`_, we recommend using Kestrel without IIS. However, if you require Windows Authentication in a self-hosting scenario, you should choose WebListener.
+If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel (see :doc:`/publishing/linuxproduction`).
 
 Custom Servers
 --------------
