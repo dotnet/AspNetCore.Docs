@@ -52,6 +52,8 @@ Managing Tag Helper scope
 
 Tag Helpers scope is controlled by a combination of ``@addTagHelper``, ``@removeTagHelper``, and the "!" opt-out character.
 
+.. _addTagHelper-Razor-Directives-label:
+
 ``@addTagHelper`` makes Tag Helpers available
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -90,6 +92,8 @@ To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTa
 
 As mentioned previously, adding the ``@addTagHelper`` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the ``@addTagHelper`` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
 
+.. _removeTagHelper-Razor-Directives-label:
+
 ``@removeTagHelper`` removes Tag Helpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -110,6 +114,8 @@ You can disable a Tag Helper at the element level with the Tag Helper opt-out ch
     <!span asp-validation-for="Email" class="text-danger"></!span>
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
+
+.. _tagHelperPrefix-Razor-Directives-label:
 
 Using ``@tagHelperPrefix`` to make Tag Helper usage explicit
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
