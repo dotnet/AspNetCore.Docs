@@ -1,11 +1,20 @@
 Areas
 ======
 
-By `Rick Anderson`_
+By `Dhananjay Kumar <https://twitter.com/debug_mode>`__  and `Rick Anderson`_
 
-Areas provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. 
+Areas allow you to physically partition web project in separate units. In an ASP.NET MVC project, logical components like Model, Controller, and View are kept in different folders, and ASP.NET Core MVC uses naming conventions to create the relationship between these components. Problems start when you have a relatively big application to implement. For instance, if you are implementing an E-Commerce application with multiple business units, such as Checkout, Billing, and Search etc. Each of these units have their own logical components views, controllers, and models. In this scenario, you can use ASP.NET Core MVC Areas to physically partition the business components in the same project.
 
-Instead of having all of the controllers located under the Controllers parent directory, and all the views located under the Views parent directory, you could use Areas to group your views and controllers according to the area (or logical grouping) with which they're associated.
+In short, an area can be defined as: Smaller functional units in an ASP.NET Core MVC project with its own set of controllers, views, and models.
+
+Areas features
+
+- An ASP.NET Core MVC app can have any number of Areas
+- Each area has its own controllers, models, and views
+- Multiple developers can work on the same web app and minimize merge conflicts
+- Physically, areas are put under separate folders
+- A web app can use areas from different projects
+
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
