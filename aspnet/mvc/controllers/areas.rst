@@ -9,12 +9,11 @@ In short, an area can be defined as: Smaller functional units in an ASP.NET Core
 
 Areas features
 
-- An ASP.NET Core MVC app can have any number of Areas
+- An ASP.NET Core MVC app can have any number of areas
 - Each area has its own controllers, models, and views
-- Multiple developers can work on the same web app and minimize merge conflicts
+- Multiple developers can work on the same web app simultaneously an minimize merge conflicts
 - Physically, areas are put under separate folders
 - A web app can use areas from different projects
-
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
@@ -138,10 +137,10 @@ Link Generation
   Let's say the current request's path is like ``/Products/Home/Create``
 
   HtmlHelper syntax:
-  ``@Html.ActionLink("Go to Manage Products's Home Page", "Index", "Manage")``
+  ``@Html.ActionLink("Go to Manage Products’  Home Page", "Index", "Manage")``
 
   TagHelper syntax:
-  ``<a asp-controller="Manage" asp-action="Index">Go to Manage Products's Home Page</a>``
+  ``<a asp-controller="Manage" asp-action="Index">Go to Manage Products’  Home Page</a>``
 
   Note that here the ambient value of an 'area' is used but the 'controller' value is specified explicitly above.
 
@@ -150,20 +149,20 @@ Link Generation
   Let's say the current request's path is like ``/Products/Home/Create``
 
   HtmlHelper syntax:
-  ``@Html.ActionLink("Go to Services's Home Page", "Index", "Home", new { area = "Services" })``
+  ``@Html.ActionLink("Go to Services’ Home Page", "Index", "Home", new { area = "Services" })``
 
   TagHelper syntax:
-  ``<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services's Home Page</a>``
+  ``<a asp-area="Services" asp-controller="Home" asp-action="Index">Go to Services’ Home Page</a>``
 
   Note that here no ambient values are used.
 
 - Generating links from an action within an area based controller to another action on a different controller and **not** in an area.
 
   HtmlHelper syntax:
-  ``@Html.ActionLink("Go to Manage Products's Home Page", "Index", "Home", new { area = "" })``
+  ``@Html.ActionLink("Go to Manage Products’  Home Page", "Index", "Home", new { area = "" })``
 
   TagHelper syntax:
-  ``<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products's Home Page</a>``
+  ``<a asp-area="" asp-controller="Manage" asp-action="Index">Go to Manage Products’  Home Page</a>``
 
   Since we want to generate links to a non-area based controller action, we empty the ambient value for 'area' here.
 
