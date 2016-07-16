@@ -1,7 +1,7 @@
 Areas
-=====
+======
 
-By `Tom Archer`
+By `Rick Anderson`_
 
 Areas provide a way to separate a large MVC application into semantically-related groups of models, views, and controllers. 
 
@@ -45,7 +45,7 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
 
 When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
 
-.. code-block:: txt
+.. code-block:: text
 
   /Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
   /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
@@ -162,7 +162,7 @@ Publishing Areas
 ----------------
 To publish all views of the areas folder, in the ``project.json`` file include an entry in the ``publishOptions``'s ``include`` node like below:
 
-.. code-block:: txt
+.. code-block:: text
 
   "publishOptions": {
     "include": [
