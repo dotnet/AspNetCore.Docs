@@ -345,7 +345,7 @@ The `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/
 
 .. code-block:: HTML
   
-  <span asp-validation-for="Email">
+  <span asp-validation-for="Email"></span>
   
 The Validation Message Tag Helper will generate the following HTML:
 
@@ -353,7 +353,7 @@ The Validation Message Tag Helper will generate the following HTML:
 
     <span class="field-validation-valid" 
       data-valmsg-for="Email" 
-      data-valmsg-replace="true">
+      data-valmsg-replace="true"></span>
 
 You generally use the `Validation Message Tag Helper <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/TagHelpers/ValidationMessageTagHelper/index.html>`__  after an ``Input`` Tag Helper for the same property. Doing so displays any validation error messages near the input that caused the error.
 
