@@ -285,6 +285,13 @@ Below is a snippet of code that registers a new component. The ``personApp`` var
   :linenos:
   :emphasize-lines: 2,5,13
 
+The view where we are displaying the custom HTML element.
+
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Component.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 8
+  
 The associated template used by component: 
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/PersonComponent.cshtml
