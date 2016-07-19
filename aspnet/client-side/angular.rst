@@ -283,14 +283,14 @@ Below is a snippet of code that registers a new component. The ``personApp`` var
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/components.js
   :language: javascript
   :linenos:
-  :emphasize-lines: 2,5
+  :emphasize-lines: 2,5,13
 
-The view using the ``ng-controller`` directive assigns the controller name: 
+The associated template used by component: 
 
 .. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/PersonComponent.cshtml
   :language: html
   :linenos:
-  :emphasize-lines: 8,14
+  :emphasize-lines: 2,3
 
 The page shows "Aftab" and "Ansari" that correspond to the ``firstName`` and ``lastName`` properties attached to the ``vm`` object:
 
