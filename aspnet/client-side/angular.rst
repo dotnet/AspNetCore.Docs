@@ -294,7 +294,7 @@ The view where we are displaying the custom HTML element.
   
 The associated template used by component: 
 
-.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/PersonComponent.cshtml
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/partials/personcomponent.html
   :language: html
   :linenos:
   :emphasize-lines: 2,3
