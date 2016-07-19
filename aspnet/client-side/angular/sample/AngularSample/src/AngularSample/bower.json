@@ -6,7 +6,7 @@
     "jquery": "2.1.4",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.4",
-    "angular": "1.4.8",
-    "angular-route": "1.4.8"
+    "angular": "1.5.7",
+    "angular-route": "1.5.7"
   }
 }
