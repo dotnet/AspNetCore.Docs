@@ -16,28 +16,73 @@ To run an ASP.NET Core app, you need to configure and launch a host using ``WebH
 What is a Host?
 ---------------
 
-Describe what a host is.
+ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which in builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.WebHost` instance. The ``WebHost`` has a private ``Server`` property that is used once the application is up and running to handle requests. Learn more about :doc:`servers <servers>`.
 
+What is the difference between a host and a server?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The host is responsible for ensuring the application's services and the server are available and properly configured. You can think of the host as being a wrapper around the server. The host is configured to use a particular server; the server is unaware of its host.
 
 Setting up a Host
 -----------------
+
+You create a host using an instance of ``WebHostBuilder``. This is typically done in your app's entry point, which by default will be located in a *Program.cs* file. An example *Program.cs*, shown below, demonstrates how to use a ``WebHostBuilder`` to build a host. 
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Program.cs
   :emphasize-lines: 14-21
   :language: c#
   :caption: Program.cs
 
-Show the Program.cs, Main method, and the basic code used in the standard templates.
+The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` supports many optional extensions, but the specification of an ``IServer`` is required. The built-in server is Kestrel. Use ``UseKestrel`` (with options, if desired) to set it up as your app's server.
 
-An IWebHostBuilder is responsible for bootstrapping a web application.
+The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder the application is run from, which for Kestrel is likely to be a something like ``bin\Debug\netcoreapp1.0``. To specify an alternate content root path, use ``UseContentRoot``. Specifying ``Directory.GetCurrentDirectory`` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling ``dotnet run`` from the web project folder).
 
-You must specify an IServer. The build-in server is Kestrel. Use ``UseKestrel`` (with options, if desired) to set it up.
+.. note:: An ASP.NET Core app's content root determines where ASP.NET Core will begin searching for content files, such as MVC Views.
 
-Refer to Servers article for more info on Kestrel and other servers.
+If the app should work with IIS, the ``UseIISIntegration`` method should be called as part of building the host. Note that this does not configure a *server*, like ``UseKestrel`` does. To use IIS with ASP.NET Core, you must specify both ``UseKestrel`` and ``UseIISIntegration``.
 
-UseUrls is how you specify what the host should listen on. This can also come from environment or command line.
+A ``Startup`` class, which must define methods for ``Configure`` and ``ConfigureServices``, can be specified by calling ``UseStartup``. Alternately, call ``Configure`` and ``ConfigureServices`` directly on a ``WebHostBuilder`` instance to create a host without a ``Startup`` class definition.
 
-  
+The host will listen on certain configured URLs/ports. Specify the URLs as part of building the host by calling ``UseUrls`` and passing one or more strings. These settings can also be specified in the environment or from the command line.
+
+.. code-block:: c#
+
+    .UseUrls("http://localhost:5000")
+
+The environment of the host can be specified by calling ``UseEnvironment``:
+
+.. code-block:: c#
+
+    .UseEnvironment("Development")
+
+By default, the environment is read from the ``ASPNETCORE_ENVIRONMENT`` environment variable. When using Visual Studio, the environment will be based on settings in the *launchSettings.json* file. :doc:`Learn more about environments <environments>`.
+
+A host can have a default configuration defined, which may be subsequently overridden (for example, in ``Startup`` methods). This is specified using the ``UseConfiguration`` method.
+
+.. code-block:: c#
+  :emphasize-lines: 6
+
+  var config = new ConfigurationBuilder()
+      .AddJsonFile("hosting.json", optional: true)
+      .Build();
+        
+  var host = new WebHostBuilder()    
+      .UseConfiguration(config)
+      .Build();
+
+A host's web root can be specified by calling ``UseWebRoot``.
+
+.. code-block:: c#
+
+    .UseWebRoot("siteroot")
+    
+Once a host is built using ``WebHostBuilder``, it is started by calling its ``Run`` method.
+
+.. code-block:: c#
+
+    host.Run();
+
+
 Configuring a Host
 ------------------
 
