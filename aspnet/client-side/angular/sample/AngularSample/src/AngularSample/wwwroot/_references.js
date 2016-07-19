@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
+/// <reference path="app/components.js" />
 /// <reference path="app/controllers.js" />
 /// <reference path="app/eventHandlerController.js" />
 /// <reference path="app/personApp.js" />

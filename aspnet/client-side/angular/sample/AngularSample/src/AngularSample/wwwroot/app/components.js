@@ -11,7 +11,7 @@ var PersonController = function(){
 
 // component
 personApp.component('personComponent', {
-    templateUrl:'/Home/PersonComponent',
+    templateUrl:'/app/partials/personcomponent.html',
 	controller:PersonController,
 	controllerAs:'vm'
 	
