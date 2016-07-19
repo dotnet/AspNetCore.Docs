@@ -273,6 +273,29 @@ The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``last
 
 .. image:: angular/_static/controllers.png
 
+Components
+^^^^^^^^^^
+`Components <https://docs.angularjs.org/guide/component>`_ in AngularJS developers have been using controllers and directives to build out the features for many years. Angular team introduced new component programming model in Angular 1.5.Components are the best way to program with Angular. A Component allow us to create custom HTML elements just like a directive. you can use components instead of directive.
+Components offer the best of both the world when it comes to the feature of controller and directive. And writing components will make easier to migrate your application to Angular 2.
+The ``<module name>.component()`` function call is used to create and register components in AngularJS.
+
+Below is a snippet of code that registers a new component. The ``personApp`` variable in the snippet references an Angular module, which is defined on line 2.
+
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/wwwroot/app/components.js
+  :language: javascript
+  :linenos:
+  :emphasize-lines: 2,5
+
+The view using the ``ng-controller`` directive assigns the controller name: 
+
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/PersonComponent.cshtml
+  :language: html
+  :linenos:
+  :emphasize-lines: 8,14
+
+The page shows "Aftab" and "Ansari" that correspond to the ``firstName`` and ``lastName`` properties attached to the ``vm`` object:
+
+.. image:: angular/_static/components.png  
 
 Services
 ^^^^^^^^
