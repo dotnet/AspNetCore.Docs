@@ -111,11 +111,11 @@ Environment ``string``
 .. note:: By default, the environment is read from the ``ASPNETCORE_ENVIRONMENT`` environment variable. When using Visual Studio, the environment will be based on settings in the *launchSettings.json* file.
 
 Server URLs ``string``
-    Key: ``urls``. Set to a semicolon (;) separated list of URL prefixes to which the server should response. For example, "http://localhost:123". The domain/host name can be replaced with "*" to indicate the server listen to any request coming to any IP address or host on the specified port (for example, "http://*:5000").
+    Key: ``urls``. Set to a semicolon (;) separated list of URL prefixes to which the server should response. For example, "http://localhost:123". The domain/host name can be replaced with "*" to indicate the server listen to any request coming to any IP address or host on the specified port (for example, "http://*:5000"). The protocol ("http://" or "https://") must be included with each URL.
 
 .. code-block:: c#
 
-    .UseUrls("http://*:5000;http://localhost:5001;http://hostname:5002")
+    .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 
 Startup Assembly ``string``
     Key: ``startupAssembly``. Determines the assembly to search for the ``Startup`` class (unless specified using ``WebHostBuilder.UseStartup<StartupType>``, which overrides this setting). Set using non-generic ``UseStartup`` method.
@@ -166,7 +166,7 @@ Once a host is built using ``WebHostBuilder``, it is started by calling its ``Ru
 
     host.Run();
 
-You can run the host by calling its ``Start`` method:
+You can run the host in a non-blocking manner by calling its ``Start`` method:
 
 .. code-block:: c#
 
@@ -176,10 +176,31 @@ You can run the host by calling its ``Start`` method:
     Console.ReadLine();
   }
 
+There is also an extension method that will start the web host and listen on urls specified:
 
-Important methods to call and ordering. Refer to hosting samples in hosting repo when working on this doc. (https://github.com/aspnet/Hosting/tree/dev/samples/SampleStartups ) (note samples don't run they're just for reference)
+.. code-block:: c#
 
-Note that environment variables are loaded first, automatically.
+  var urls = new List<string>() { 
+    "http://*:5000", 
+    "http://localhost:5001"
+    };
+  var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseStartup<Startup>();
+  
+  using (host)
+  {
+    host.Start(urls.ToArray());
+    Console.ReadLine();
+  }
+
+When configuring services as part of setting up a host, you can add services that will then be available to methods in the ``Startup`` class using :doc:`dependency-injection`.
+
+(example)
+
+
+
+Note that environment variables are loaded first, and used by the host automatically.
 You can specify explicit configuration (with settings for command line, files, whatever) and it will use the keys shown above). This will override anything that was set in environment.
 
 Differences between IIS Integration and Kestrel
