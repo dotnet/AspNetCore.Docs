@@ -65,7 +65,7 @@ Once you have a reference to the angular.js script file, you're ready to begin u
 Key Components
 --------------
 
-AngularJS includes a number of major components, such as *directives*, *templates*, *repeaters*, *modules*, *controllers*, and more. Let's examine how these components work together to add behavior to your web pages.
+AngularJS includes a number of major components, such as *directives*, *templates*, *repeaters*, *modules*, *controllers*, *components*, *component router* and more. Let's examine how these components work together to add behavior to your web pages.
 
 Directives
 ^^^^^^^^^^
