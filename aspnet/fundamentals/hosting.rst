@@ -39,6 +39,8 @@ The server's *content root* determines where it searches for content files, like
 
 If the app should work with IIS, the ``UseIISIntegration`` method should be called as part of building the host. Note that this does not configure a *server*, like ``UseKestrel`` does. To use IIS with ASP.NET Core, you must specify both ``UseKestrel`` and ``UseIISIntegration``.
 
+.. note:: ``UseKestrel`` and ``UseIISIntegration`` are very different actions. IIS is only used as a reverse proxy. ``UseKestrel`` creates the server the app should use, running on a specified port, and it hosts the code. It registers Kestrel as an ``IServerFactory``. At runtime, it gets the actual ``IServer`` service, instantiates it, and runs it. ``UseIISIntegration`` will look at environment variables used by IIS/IISExpress and will make decisions like which dynamic port to run on, which headers to set, etc. However, it doesn't deal with or create an ``IServer``.
+
 A ``Startup`` class can be specified by calling the ``UseStartup<T>`` generic method.
 
 A minimal implementation of configuring a host (and an ASP.NET app) would include just a server and configuration of the app's request pipeline:
@@ -194,26 +196,103 @@ There is also an extension method that will start the web host and listen on url
     Console.ReadLine();
   }
 
-When configuring services as part of setting up a host, you can add services that will then be available to methods in the ``Startup`` class using :doc:`dependency-injection`.
+When configuring services as part of setting up a host, you can add services that will then be available to the constructor or ``Configure`` method in the ``Startup`` class using :doc:`dependency-injection`. You can also configure logging as part of configuring the host, using the ``ConfigureLogging`` method (:doc:`learn more about logging <logging>`). The following example demonstrates how to configure logging and a custom ``IFormatter`` service as part of building the host, and then request and use these services from ``Startup``.
 
-(example)
+.. code-block:: c#
+  :emphasize-lines: 4-8
+
+  // configure host, in Main()
+  var host = new WebHostBuilder()
+            .UseKestrel()
+            .ConfigureServices(s => {
+                s.AddSingleton<IFormatter, LowercaseFormatter>();
+            })
+            .ConfigureLogging(f => f.AddConsole(LogLevel.Debug))
+            .UseStartup<Startup>()
+            .Build();
+
+  host.Run();
+
+Create the ``IFormatter`` interface and an implementation:
+
+.. code-block:: c#
+
+  public interface IFormatter
+  {
+    string Format(string input);
+  }
+
+  public class LowercaseFormatter : IFormatter
+  {
+    public string Format(string input)
+      {
+        return input.ToLower();
+      }
+  }
+
+Specify its dependencies in the ``Startup`` class's constructor:
+
+.. code-block:: c#
+    :emphasize-lines: 6,24
+
+    public class Startup
+    {
+        private readonly ILogger _logger;
+        private readonly IFormatter _formatter;
+        
+        public Startup(ILoggerFactory loggerFactory, IFormatter formatter)
+        {
+            _logger = loggerFactory.CreateLogger<Startup>();
+            _formatter = formatter;
+        }
+        
+        public void ConfigureServices(IServiceCollection services)
+        {
+            _logger.LogDebug($"Total Services Initially: {services.Count}");
+
+            // register additional services
+
+            _logger.LogDebug($"Total Services Afterward: {services.Count}");
+        }
+
+        public void Configure(IApplicationBuilder app, IFormatter formatter)
+        {
+            _logger.LogDebug("Configure() started...");
+            app.Run(async (context) => await context.Response.WriteAsync(formatter.Format("Hi!")));
+            _logger.LogDebug("Configure() complete.");
+        }
+    }
+
+Both the constructor and the ``Configure`` method can request the ``IFormatter`` service (and in this case, since it is configured as a Singleton, both of them will get the same instance of the service). Within the ``Configure`` method above, both ``formatter`` and ``_formatter`` are available to use.
+
+.. note:: The ``Startup`` class supports dependency injection in its constructor and the ``Configure`` method, but not the ``ConfigureServices`` method. However, ``ConfigureServices`` can access any registered service through its ``IServiceCollection`` parameter, if necessary.
+
+Ordering Importance
+^^^^^^^^^^^^^^^^^^^
+
+The order in which the host is configured using the ``WebHostBuilder`` is important. The host defaults to using predefined environment variables first, if defined. These environment variables must use the format ``ASPNETCORE_{configurationKey}``, so for example to set the URLs the server will listen on by default, you would set ``ASPNETCORE_URLS``.
+
+You can override any of these environment variable values by specifying configuration (using ``UseConfiguration``) or by setting the value explicitly (using ``UseUrls`` for instance). The host will use whichever option sets the value last, so for instance if you wanted to be programmatically set the default URL to one value, but allow it to be overridden with configuration, you could configure the host as follows:
+
+.. code-block:: c#
+
+    var config = new ConfigurationBuilder()
+    .AddCommandLine(args)
+    .Build();
+      
+    var host = new WebHostBuilder()
+        .UseUrls("http://*:1000") // default URL
+        .UseConfiguration(config) // override from command line
+        .UseKestrel()
+        .Build();
 
 
+Publishing Your App
+-------------------
 
-Note that environment variables are loaded first, and used by the host automatically.
-You can specify explicit configuration (with settings for command line, files, whatever) and it will use the keys shown above). This will override anything that was set in environment.
+The following references may be useful when it comes time to publish your app, depending on the platform you plan to publish to.
 
-Differences between IIS Integration and Kestrel
------------------------------------------------
-
-UseKestrel vs. UseIISIntegration are totally different things. We just use IIS as a reverse proxy.
-UseKestrel says this is the server I want to use, running on this port, and it hosts the code. It registers Kestrel as an IServerFactory. At runtime, will get the actual IServer service, instantiate it, and run it.
-UseIISIntegration will look at environment variables used by IIS/IISExpress and will make a bunch of decisions about running on a dynamic port, things with headers, etc. This method doesn't deal with or create an IServer. It calls UseUrls with the dynamic port and registers some middleware.
-
-Host Configuration References
------------------------------
-
-IIS (point to publishing on IIS doc)
-ngenx (point to hosting on linux doc)
-as a Windows Service (point to doc)
-embedded in an application (you can host ASPNET inside another app as a subcomponent)
+- :doc:`/publishing/iis`
+- :doc:`/publishing/linuxproduction`
+- Hosting ASP.NET Core as a Windows Service
+- Hosting ASP.NET Core Embedded in Another Application
