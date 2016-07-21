@@ -92,7 +92,7 @@ Role requirements can also be expressed using the new Policy syntax, where a dev
      services.AddAuthorization(options =>
      {
          options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Administrator"));
-     }
+     });
  }
 
 Policies are applied using the :dn:prop:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy` property on the :dn:class:`~Microsoft.AspNetCore.Authorization.AuthorizeAttribute` attribute;
