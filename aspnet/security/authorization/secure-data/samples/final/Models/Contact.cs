@@ -6,6 +6,9 @@ namespace ContactManager.Models
     {
         public int ContactId { get; set; }
 
+        // user ID from AspNetUser table
+        public string OwnerID { get; set; }
+
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

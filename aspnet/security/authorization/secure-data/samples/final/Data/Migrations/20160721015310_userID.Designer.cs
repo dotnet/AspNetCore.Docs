@@ -8,9 +8,10 @@ using ContactManager.Data;
 namespace ContactManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160721015310_userID")]
+    partial class userID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -77,6 +78,8 @@ namespace ContactManager.Data.Migrations
                     b.Property<string>("Email");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("OwnerID");
 
                     b.Property<string>("State");
 
