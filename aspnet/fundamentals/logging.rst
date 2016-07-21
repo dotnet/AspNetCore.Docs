@@ -194,9 +194,12 @@ The yellow line with the "warn: " prefix, along with the following line, is outp
 Configuring Other Providers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your *project.json* file, and then configure it just like any other provider. Typically, these packages should include extension methods on ``ILoggerFactory`` to make it easy to add them.
+In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your *project.json* file, and then configure it just like any other provider. Typically, these packages include extension methods on ``ILoggerFactory`` to make it easy to add them.
 
-.. note:: The ASP.NET Core team is still working with third party logging providers to publish support for this logging model. Once these ship, we will include links to them here.
+ * `elmah.io <https://github.com/elmahio/Elmah.Io.Framework.Logging>`_ - provider for the elmah.io service
+ * `Loggr <https://github.com/imobile3/Loggr.Extensions.Logging>`_ - provider for the Loggr service
+ * `NLog <https://github.com/NLog/NLog.Extensions.Logging>`_ - provider for the NLog library
+ * `Serilog <https://github.com/serilog/serilog-framework-logging>`_ - provider for the Serilog library
 
 You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements.
 
