@@ -5,18 +5,16 @@ Hosting
 
 By `Steve Smith`_
 
-To run an ASP.NET Core app, you need to configure and launch a host using ``WebHostBuilder``.
+To run an ASP.NET Core app, you need to configure and launch a host using `WebHostBuilder <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html?highlight=webhostbuilder>`_.
 
 .. contents:: Sections:
   :local:
   :depth: 1
 
-`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/hosting/sample>`__
-
 What is a Host?
 ---------------
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which in builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.WebHost` instance. The ``WebHost`` has a private ``Server`` property that is used once the application is up and running to handle requests. Learn more about :doc:`servers <servers>`.
+ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.Internal.WebHost` instance. The ``WebHost`` has a `private ``Server`` property <https://github.com/aspnet/Hosting/blob/1.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L40>`_ that specifies the server that will handle requests. Learn more about :doc:`servers <servers>`.
 
 What is the difference between a host and a server?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -33,15 +31,15 @@ You create a host using an instance of ``WebHostBuilder``. This is typically don
   :language: c#
   :caption: Program.cs
 
-The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` supports many optional extensions, but the specification of an ``IServer`` is required. The built-in server is Kestrel. Use ``UseKestrel`` (with options, if desired) to set it up as your app's server.
+The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` requires you provide a server that implements :dn:iface:`~Microsoft.AspNetCore.Hosting.Server.IServer` (``UseKestrel`` in the code above). ``UseKestrel`` specifies the built-in Kestrel server will be used by the app.
 
-The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder from which the application is run. Specifying ``Directory.GetCurrentDirectory`` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling ``dotnet run`` from the web project folder).
+The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder from which the application is run. 
 
-If the app should work with IIS, the ``UseIISIntegration`` method should be called as part of building the host. Note that this does not configure a *server*, like ``UseKestrel`` does. To use IIS with ASP.NET Core, you must specify both ``UseKestrel`` and ``UseIISIntegration``.
+.. note:: Specifying ``Directory.GetCurrentDirectory`` as the content root will use the web project's root folder as the app's content root when the app is started from this folder (for example, calling ``dotnet run`` from the web project folder). This is the default used in Visual Studio and ``dotnet new`` templates.
 
-.. note:: ``UseKestrel`` and ``UseIISIntegration`` are very different actions. IIS is only used as a reverse proxy. ``UseKestrel`` creates the server the app should use, running on a specified port, and it hosts the code. It registers Kestrel as an ``IServerFactory``. At runtime, it gets the actual ``IServer`` service, instantiates it, and runs it. ``UseIISIntegration`` will look at environment variables used by IIS/IISExpress and will make decisions like which dynamic port to run on, which headers to set, etc. However, it doesn't deal with or create an ``IServer``.
+If the app should work with IIS, the ``UseIISIntegration`` method should be called as part of building the host. Note that this does not configure a *server*, like ``UseKestrel`` does. To use IIS with ASP.NET Core, you must specify both ``UseKestrel`` and ``UseIISIntegration``. Kestrel is designed to be run behind a proxy and should not be deployed directly facing the Internet. ``UseIISIntegration`` specifies IIS as the reverse proxy server.
 
-A ``Startup`` class can be specified by calling the ``UseStartup<T>`` generic method.
+.. note:: ``UseKestrel`` and ``UseIISIntegration`` are very different actions. IIS is only used as a reverse proxy. ``UseKestrel`` creates the web server and hosts the code. ``UseIISIntegration`` specifies IIS as the reverse proxy server. It also examines environment variables used by IIS/IISExpress and makes decisions like which dynamic port use, which headers to set, etc. However, it doesn't deal with or create an ``IServer``.
 
 A minimal implementation of configuring a host (and an ASP.NET app) would include just a server and configuration of the app's request pipeline:
 
@@ -232,7 +230,7 @@ Create the ``IFormatter`` interface and an implementation:
 
 Specify its dependencies in the ``Startup`` class's constructor:
 
-.. code-block:: c#
+.. code-block:: none
     :emphasize-lines: 6,24
 
     public class Startup
