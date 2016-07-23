@@ -3,7 +3,7 @@ Adding a controller
 
 By `Rick Anderson`_
 
-The Model-View-Controller (MVC) architectural pattern separates an app into three main components: the **M**\odel, the **V**\iew, and the **C**\ontroller. The MVC pattern helps you create apps that are testable and easier to maintain and update than traditional monolithic apps. MVC-based apps contain: 
+The Model-View-Controller **MVC** architectural pattern separates an app into three main components: the **M**\odel, the **V**\iew, and the **C**\ontroller. The MVC pattern helps you create apps that are testable and easier to maintain and update than traditional monolithic apps. MVC-based apps contain: 
 
 - **M**\odels: Classes that represent the data of the app and that use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial, a ``Movie`` model retrieves movie data from a database, provides it to the view or updates it. Updated data is written to a SQL Server database.
 - **V**\iews: Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
