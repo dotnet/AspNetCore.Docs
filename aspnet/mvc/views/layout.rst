@@ -43,6 +43,8 @@ The layout specified can use a full path (example: ``/Views/Shared/_Layout.cshtm
 
 By default, every layout must call ``RenderBody``. Wherever the call to ``RenderBody`` is placed, the contents of the view will be rendered.
 
+.. _layout-sections-label:
+
 Sections
 ^^^^^^^^
 
