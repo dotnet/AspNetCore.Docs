@@ -1,4 +1,4 @@
-Controller methods and views
+﻿Controller methods and views
 =================================================
 
 By `Rick Anderson`_
@@ -154,7 +154,7 @@ Before the form is posted to the server, client side validation checks any valid
 
 .. image:: controller-methods-views/_static/val.png
 
-All the ``HttpGet`` methods in the movie controller follow a similar pattern. They get a movie object (or list of objects, in the case of ``Index``), and pass the object (model) to the view. The ``Create`` method passes an empty movie object to the ``Create`` view. All the methods that create, edit, delete, or otherwise modify data do so in the ``[HttpPost]`` overload of the method. Modifying data in an HTTP GET method is a security risk, as in `ASP.NET MVC Tip #46 – Don’t use Delete Links because they create Security Holes <http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx>`__. Modifying data in a ``HTTP GET`` method also violates HTTP best practices and the architectural `REST <http://rest.elkstein.org/>`__ pattern, which specifies that GET requests should not change the state of your application. In other words, performing a GET operation should be a safe operation that has no side effects and doesn't modify your persisted data.
+All the ``HttpGet`` methods in the movie controller follow a similar pattern. They get a movie object (or list of objects, in the case of ``Index``), and pass the object (model) to the view. The ``Create`` method passes an empty movie object to the ``Create`` view. All the methods that create, edit, delete, or otherwise modify data do so in the ``[HttpPost]`` overload of the method. Modifying data in an HTTP GET method is a security risk, as in `ASP.NET MVC Tip #46 – Don’t use Delete Links because they create Security Holes <http://stephenwalther.com/blog/archive/2009/01/21/asp.net-mvc-tip-46-ndash-donrsquot-use-delete-links-because.aspx>`__. Modifying data in a ``HTTPGET`` method also violates HTTP best practices and the architectural `REST <http://rest.elkstein.org/>`__ pattern, which specifies that GET requests should not change the state of your application. In other words, performing a GET operation should be a safe operation that has no side effects and doesn't modify your persisted data.
 
 Additional resources
 -----------------------
