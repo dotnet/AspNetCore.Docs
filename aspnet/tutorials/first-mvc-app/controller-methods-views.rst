@@ -1,4 +1,4 @@
-Controller methods and views
+﻿Controller methods and views
 =================================================
 
 By `Rick Anderson`_
@@ -97,9 +97,9 @@ Notice the second ``Edit`` action method is preceded by the ``[HttpPost]`` attri
   :emphasize-lines: 1
   :dedent: 8
 
-The :dn:class:`~Microsoft.AspNetCore.Mvc.HttpPostAttribute` attribute specifies that this ``Edit`` method can be invoked *only* for ``POST`` requests. You could apply the ``[HttpGet]`` attribute to the first edit method, but that's not necessary because ``[HttpGet]`` is the default.
+The :dn:class:`~Microsoft.AspNetCore.Mvc.HttpPost` attribute specifies that this ``Edit`` method can be invoked *only* for ``POST`` requests. You could apply the ``[HttpGet]`` attribute to the first edit method, but that's not necessary because ``[HttpGet]`` is the default.
 
-The :dn:class:`~Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute` attribute is used to prevent forgery of a request and is paired up with an anti-forgery token generated in the edit view file (*Views/Movies/Edit.cshtml*). The edit view file generates the anti-forgery token with the :doc:`Form Tag Helper </mvc/views/working-with-forms>`.
+The :dn:class:`~Microsoft.AspNetCore.Mvc.ValidateAntiForgeryToken` attribute is used to prevent forgery of a request and is paired up with an anti-forgery token generated in the edit view file (*Views/Movies/Edit.cshtml*). The edit view file generates the anti-forgery token with the :doc:`Form Tag Helper </mvc/views/working-with-forms>`.
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/Edit.cshtml
   :language: HTML
