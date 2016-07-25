@@ -14,7 +14,7 @@ To run an ASP.NET Core app, you need to configure and launch a host using `WebHo
 What is a Host?
 ---------------
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.Internal.WebHost` instance. The ``WebHost`` has a `private ``Server`` property <https://github.com/aspnet/Hosting/blob/1.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L40>`_ that specifies the server that will handle requests. Learn more about :doc:`servers <servers>`.
+ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.Internal.WebHost` instance. The ``WebHost`` has a `private Server property <https://github.com/aspnet/Hosting/blob/1.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L40>`_ that specifies the server that will handle requests. Learn more about :doc:`servers <servers>`.
 
 What is the difference between a host and a server?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -60,7 +60,7 @@ A minimal implementation of configuring a host (and an ASP.NET app) would includ
 Configuring a Host
 ------------------
 
-The ``WebHostBuilder`` provides useful methods for setting most of the available configuration values for the host, which can also be set directly using ``UseSetting`` and associated key. For example, to specify the application name:
+The ``WebHostBuilder`` provides methods for setting most of the available configuration values for the host, which can also be set directly using ``UseSetting`` and associated key. For example, to specify the application name:
 
 .. code-block:: c#
 
@@ -73,14 +73,14 @@ Application Name ``string``
     Key: ``applicationName``. This configuration setting specifies the value that will be returned from ``IHostingEnvironment.ApplicationName``.
 
 Capture Startup Errors ``bool``
-    Key: ``captureStartupErrors``. Defaults to ``false``. When ``false``, errors during startup result in the host exiting. When ``true``, the host will capture any exceptions from the ``Startup`` class, and attempt to start the server anyway, displaying an error page (generic, or detailed, based on the Detailed Errors setting, below) in response to every request. Set using the ``CaptureStartupErrors`` method.
+    Key: ``captureStartupErrors``. Defaults to ``false``. When ``false``, errors during startup result in the host exiting. When ``true``, the host will capture any exceptions from the ``Startup`` class and attempt to start the server. It will display an error page (generic, or detailed, based on the Detailed Errors setting, below) for every request. Set using the ``CaptureStartupErrors`` method.
 
 .. code-block:: c#
 
     .CaptureStartupErrors(true)
 
 Content Root ``string``
-    Key: ``contentRoot``. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the Web Root setting, below. Set using the ``UseContentRoot`` method. Path must exist, or host will fail to start.
+    Key: ``contentRoot``. Defaults to the folder where the application assembly resides (for Kestrel; IIS will use the web project root by default). This setting determines where ASP.NET Core will begin searching for content files, such as MVC Views. Also used as the base path for the :ref:`Web Root setting <web-root-setting>`. Set using the ``UseContentRoot`` method. Path must exist, or host will fail to start.
 
 .. code-block:: c#
 
@@ -102,7 +102,7 @@ When Detailed Errors is set to ``true`` and Capture Startup Errors is ``true``, 
 .. image:: hosting/_static/detailed-error-page.png
 
 Environment ``string``
-    Key: ``environment``. Defaults to "Production". May be set to any value. Predefined values include "Development" and "Staging" in addition to "Production". Values are not case sensitive. See :doc:`environments`. Set using the ``UseEnvironment`` method.
+    Key: ``environment``. Defaults to "Production". May be set to any value. Framework-defined values include "Development", "Staging", and "Production". Values are not case sensitive. See :doc:`environments`. Set using the ``UseEnvironment`` method.
 
 .. code-block:: c#
 
@@ -111,18 +111,21 @@ Environment ``string``
 .. note:: By default, the environment is read from the ``ASPNETCORE_ENVIRONMENT`` environment variable. When using Visual Studio, the environment will be based on settings in the *launchSettings.json* file.
 
 Server URLs ``string``
-    Key: ``urls``. Set to a semicolon (;) separated list of URL prefixes to which the server should response. For example, "http://localhost:123". The domain/host name can be replaced with "*" to indicate the server listen to any request coming to any IP address or host on the specified port (for example, "http://*:5000"). The protocol ("http://" or "https://") must be included with each URL.
+    Key: ``urls``. Set to a semicolon (;) separated list of URL prefixes to which the server should respond. For example, "http://localhost:123". The domain/host name can be replaced with "*" to indicate the server should listen to requests on any IP address or host using the specified port and protocol (for example, "http://*:5000" or "https://*:5001"). The protocol ("http://" or "https://") must be included with each URL.
 
 .. code-block:: c#
 
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 
 Startup Assembly ``string``
-    Key: ``startupAssembly``. Determines the assembly to search for the ``Startup`` class (unless specified using ``WebHostBuilder.UseStartup<StartupType>``, which overrides this setting). Set using non-generic ``UseStartup`` method.
+    Key: ``startupAssembly``. Determines the assembly to search for the ``Startup`` class. Set using the ``UseStartup`` method. Note this setting is overridden by ``WebHostBuilder.UseStartup<StartupType>``.
 
 .. code-block:: c#
 
     .UseStartup("StartupAssemblyName")
+
+
+.. _web-root-setting:
 
 Web Root ``string``
     Key: ``webroot``. If not specified, Web Root will use the Content Root path. Determines default root location for static files to be served by the app (relative to Content Root). Set using ``UseWebRoot``.
@@ -131,10 +134,10 @@ Web Root ``string``
 
     .UseWebRoot("public")
 
-A host can use :doc:`configuration` to set its values, which may be subsequently overridden. This is specified using the ``UseConfiguration`` method.
+Use :doc:`configuration` to set configuration values to be used by the host. These values may be subsequently overridden. This is specified using ``UseConfiguration``.
 
 .. code-block:: c#
-  :emphasize-lines: 6
+  :emphasize-lines: 3-6,9
 
   public static void Main(string[] args)
   {
@@ -143,24 +146,25 @@ A host can use :doc:`configuration` to set its values, which may be subsequently
       .AddJsonFile("hosting.json", optional: true)
       .Build();
 
-      var host = new WebHostBuilder()
-        .UseConfiguration(config)
-        .UseKestrel()
-        .Configure(app => 
-        {
-            app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
-        })
-        .Build();
+    var host = new WebHostBuilder()
+      .UseConfiguration(config)
+      .UseKestrel()
+      .Configure(app => 
+      {
+        app.Run(async (context) => await context.Response.WriteAsync("Hi!"));
+      })
+    .Build();
 
     host.Run();
   }
-        
-  var host = new WebHostBuilder()    
-      .UseConfiguration(config)
-      .Build();
 
-    
-Once a host is built using ``WebHostBuilder``, it is started by calling its ``Run`` extension method, which starts the web application and blocks the calling thread until the host shutdown.
+In the example above, command line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from the command line:
+
+.. code-block:: none
+
+  dotnet run --urls "http://*:5000"
+
+The ``Run`` method starts the web app and blocks the calling thread until the host is shutdown.
 
 .. code-block:: c#
 
@@ -176,7 +180,7 @@ You can run the host in a non-blocking manner by calling its ``Start`` method:
     Console.ReadLine();
   }
 
-There is also an extension method that will start the web host and listen on urls specified:
+Pass a list of URLs to the ``Start`` method and it will listen on the URLs specified:
 
 .. code-block:: c#
 
@@ -194,7 +198,7 @@ There is also an extension method that will start the web host and listen on url
     Console.ReadLine();
   }
 
-When configuring services as part of setting up a host, you can add services that will then be available to the constructor or ``Configure`` method in the ``Startup`` class using :doc:`dependency-injection`. You can also configure logging as part of configuring the host, using the ``ConfigureLogging`` method (:doc:`learn more about logging <logging>`). The following example demonstrates how to configure logging and a custom ``IFormatter`` service as part of building the host, and then request and use these services from ``Startup``.
+You can configure services with :doc:`dependency-injection` and these services will be available in the ``Startup`` class constructor and ``Configure`` method. The following configures :doc:`logging <logging>` and a custom ``IFormatter`` service, and requests and uses these services from ``Startup``.
 
 .. code-block:: c#
   :emphasize-lines: 4-8
@@ -268,7 +272,7 @@ Both the constructor and the ``Configure`` method can request the ``IFormatter``
 Ordering Importance
 ^^^^^^^^^^^^^^^^^^^
 
-The order in which the host is configured using the ``WebHostBuilder`` is important. The host defaults to using predefined environment variables first, if defined. These environment variables must use the format ``ASPNETCORE_{configurationKey}``, so for example to set the URLs the server will listen on by default, you would set ``ASPNETCORE_URLS``.
+``WebHostBuilder`` settings are first read from certain environment variables, if set. These environment variables must use the format ``ASPNETCORE_{configurationKey}``, so for example to set the URLs the server will listen on by default, you would set ``ASPNETCORE_URLS``.
 
 You can override any of these environment variable values by specifying configuration (using ``UseConfiguration``) or by setting the value explicitly (using ``UseUrls`` for instance). The host will use whichever option sets the value last, so for instance if you wanted to be programmatically set the default URL to one value, but allow it to be overridden with configuration, you could configure the host as follows:
 
@@ -285,10 +289,8 @@ You can override any of these environment variable values by specifying configur
         .Build();
 
 
-Publishing Your App
--------------------
-
-The following references may be useful when it comes time to publish your app, depending on the platform you plan to publish to.
+Additional resources
+--------------------
 
 - :doc:`/publishing/iis`
 - :doc:`/publishing/linuxproduction`
