@@ -29,7 +29,6 @@ You create a host using an instance of ``WebHostBuilder``. This is typically don
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Program.cs
   :emphasize-lines: 14-21
   :language: c#
-  :caption: Program.cs
 
 The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` requires you provide a server that implements :dn:iface:`~Microsoft.AspNetCore.Hosting.Server.IServer` (``UseKestrel`` in the code above). ``UseKestrel`` specifies the built-in Kestrel server will be used by the app.
 
