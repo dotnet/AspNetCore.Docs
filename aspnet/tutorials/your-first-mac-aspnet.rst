@@ -49,7 +49,7 @@ In the left navigation bar, there are four icons, representing four viewlets:
 - Git
 - Debug
 
-The Explore viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
+The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
 
 The Search viewlet allows you to quickly search within the folder structure, searching filenames as well as contents.
 
@@ -136,7 +136,7 @@ Record the Git URL for the Web App from the Azure portal:
 
   .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
-- Browse to the newly deployed web app. You should see ``Hello world!``
+- Browse to the newly deployed web app. You should see ``Hello World!``
 
 .. .. image:: your-first-mac-aspnet/_static/azure.png 
 
