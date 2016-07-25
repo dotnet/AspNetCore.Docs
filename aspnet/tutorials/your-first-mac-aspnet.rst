@@ -136,7 +136,7 @@ Record the Git URL for the Web App from the Azure portal:
 
   .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
-- Browse to the newly deployed web app. You should see ``Hello world!``
+- Browse to the newly deployed web app. You should see ``Hello World!``
 
 .. .. image:: your-first-mac-aspnet/_static/azure.png 
 
