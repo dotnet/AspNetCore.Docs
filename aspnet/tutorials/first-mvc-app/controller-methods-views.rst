@@ -1,4 +1,4 @@
-Controller methods and views
+﻿Controller methods and views
 =================================================
 
 By `Rick Anderson`_
@@ -63,7 +63,7 @@ Recall the format for routing set in the *Startup.cs* file.
   :start-after: app.UseIdentity();
   :end-before: SeedData.Initialize(app.ApplicationServices);
 
-ASP.NET Core translates ``http://localhost:1234/Movies/Edit/4`` into a request to the ``Edit`` action method of the ``Movies`` controller with the parameter ``ID`` of 4. (Controller methods are also known as action methods.)
+ASP.NET Core translates ``http://localhost:1234/Movies/Edit/4`` into a request to the ``Edit`` action method of the ``Movies`` controller with the parameter ``Id`` of 4. (Controller methods are also known as action methods.)
 
 :doc:`/mvc/views/tag-helpers/index` are one of the most popular new features in ASP.NET Core. See `Additional resources`_ for more information.
 
