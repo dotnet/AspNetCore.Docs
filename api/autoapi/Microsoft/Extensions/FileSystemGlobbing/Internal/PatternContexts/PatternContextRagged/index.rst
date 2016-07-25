@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged.Pattern
-    
-        
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern
-    
-        
-        .. code-block:: csharp
-    
-            protected IRaggedPattern Pattern
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -196,5 +174,24 @@ Methods
         .. code-block:: csharp
     
             protected bool TestMatchingSegment(string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged.Pattern
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern
+    
+        
+        .. code-block:: csharp
+    
+            protected IRaggedPattern Pattern { get; }
     
 

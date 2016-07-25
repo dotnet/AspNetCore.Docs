@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.DisableCorsAuthorizationFilter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.DisableCorsAuthorizationFilter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.DisableCorsAuthorizationFilter.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -98,5 +76,24 @@ Methods
         .. code-block:: csharp
     
             public Task OnAuthorizationAsync(AuthorizationFilterContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.DisableCorsAuthorizationFilter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.DisableCorsAuthorizationFilter.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

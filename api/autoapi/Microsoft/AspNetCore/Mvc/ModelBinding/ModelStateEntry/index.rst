@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AttemptedValue
-            {
-                get;
-                set;
-            }
+            public string AttemptedValue { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry.Children
     
@@ -96,10 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IReadOnlyList<ModelStateEntry> Children
-            {
-                get;
-            }
+            public abstract IReadOnlyList<ModelStateEntry> Children { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry.Errors
     
@@ -114,10 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelErrorCollection Errors
-            {
-                get;
-            }
+            public ModelErrorCollection Errors { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry.IsContainerNode
     
@@ -125,7 +115,7 @@ Properties
     
         
         Gets a value that determines if the current instance of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry` is a container node.
-        Container nodes represent prefix nodes that aren't explicitly added to the
+        Container nodes represent prefix nodes that aren't explicitly added to the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
     
         
@@ -134,10 +124,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract bool IsContainerNode
-            {
-                get;
-            }
+            public abstract bool IsContainerNode { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry.RawValue
     
@@ -152,11 +139,7 @@ Properties
         
         .. code-block:: csharp
     
-            public object RawValue
-            {
-                get;
-                set;
-            }
+            public object RawValue { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry.ValidationState
     
@@ -171,11 +154,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelValidationState ValidationState
-            {
-                get;
-                set;
-            }
+            public ModelValidationState ValidationState { get; set; }
     
 
 Methods

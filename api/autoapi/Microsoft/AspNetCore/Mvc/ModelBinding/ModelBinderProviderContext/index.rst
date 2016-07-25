@@ -69,7 +69,7 @@ Properties
         
     
         
-        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext.BindingInfo`\. May be <code>null</code>.
+        Gets the :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext.BindingInfo`\.
     
         
         :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo
@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract BindingInfo BindingInfo
-            {
-                get;
-            }
+            public abstract BindingInfo BindingInfo { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext.Metadata
     
@@ -95,10 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract ModelMetadata Metadata
-            {
-                get;
-            }
+            public abstract ModelMetadata Metadata { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderProviderContext.MetadataProvider
     
@@ -113,10 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IModelMetadataProvider MetadataProvider
-            {
-                get;
-            }
+            public abstract IModelMetadataProvider MetadataProvider { get; }
     
 
 Methods

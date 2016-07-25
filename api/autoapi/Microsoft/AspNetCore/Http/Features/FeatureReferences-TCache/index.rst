@@ -44,39 +44,48 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>
 
-Properties
-----------
+Methods
+-------
 
 .. dn:structure:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Collection
+    .. dn:method:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Fetch<TFeature>(ref TFeature, System.Func<Microsoft.AspNetCore.Http.Features.IFeatureCollection, TFeature>)
     
         
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
     
         
-        .. code-block:: csharp
-    
-            public IFeatureCollection Collection
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Revision
+        :type cached: TFeature
     
         
-        :rtype: System.Int32
+        :type factory: System.Func<System.Func`2>{Microsoft.AspNetCore.Http.Features.IFeatureCollection<Microsoft.AspNetCore.Http.Features.IFeatureCollection>, TFeature}
+        :rtype: TFeature
     
         
         .. code-block:: csharp
     
-            public int Revision
-            {
-                get;
-            }
+            public TFeature Fetch<TFeature>(ref TFeature cached, Func<IFeatureCollection, TFeature> factory)where TFeature : class
+    
+    .. dn:method:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Fetch<TFeature, TState>(ref TFeature, TState, System.Func<TState, TFeature>)
+    
+        
+    
+        
+        :type cached: TFeature
+    
+        
+        :type state: TState
+    
+        
+        :type factory: System.Func<System.Func`2>{TState, TFeature}
+        :rtype: TFeature
+    
+        
+        .. code-block:: csharp
+    
+            public TFeature Fetch<TFeature, TState>(ref TFeature cached, TState state, Func<TState, TFeature> factory)where TFeature : class
     
 
 Constructors
@@ -100,6 +109,35 @@ Constructors
             public FeatureReferences(IFeatureCollection collection)
     
 
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Collection
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection Collection { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Revision
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Revision { get; }
+    
+
 Fields
 ------
 
@@ -117,49 +155,5 @@ Fields
         .. code-block:: csharp
     
             public TCache Cache
-    
-
-Methods
--------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Fetch<TFeature>(ref TFeature, System.Func<Microsoft.AspNetCore.Http.Features.IFeatureCollection, TFeature>)
-    
-        
-    
-        
-        :type cached: TFeature
-    
-        
-        :type factory: System.Func<System.Func`2>{Microsoft.AspNetCore.Http.Features.IFeatureCollection<Microsoft.AspNetCore.Http.Features.IFeatureCollection>, TFeature}
-        :rtype: TFeature
-    
-        
-        .. code-block:: csharp
-    
-            public TFeature Fetch<TFeature>(ref TFeature cached, Func<IFeatureCollection, TFeature> factory)
-    
-    .. dn:method:: Microsoft.AspNetCore.Http.Features.FeatureReferences<TCache>.Fetch<TFeature, TState>(ref TFeature, TState, System.Func<TState, TFeature>)
-    
-        
-    
-        
-        :type cached: TFeature
-    
-        
-        :type state: TState
-    
-        
-        :type factory: System.Func<System.Func`2>{TState, TFeature}
-        :rtype: TFeature
-    
-        
-        .. code-block:: csharp
-    
-            public TFeature Fetch<TFeature, TState>(ref TFeature cached, TState state, Func<TState, TFeature> factory)
     
 

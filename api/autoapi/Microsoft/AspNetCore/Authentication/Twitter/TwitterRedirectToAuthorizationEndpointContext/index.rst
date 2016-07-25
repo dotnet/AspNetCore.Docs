@@ -58,51 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext.Properties
-    
-        
-    
-        
-        Gets the authentication properties of the challenge.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext.RedirectUri
-    
-        
-    
-        
-        Gets the URI used for the redirect operation.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RedirectUri
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -144,5 +99,44 @@ Constructors
         .. code-block:: csharp
     
             public TwitterRedirectToAuthorizationEndpointContext(HttpContext context, TwitterOptions options, AuthenticationProperties properties, string redirectUri)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext.Properties
+    
+        
+    
+        
+        Gets the authentication properties of the challenge.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterRedirectToAuthorizationEndpointContext.RedirectUri
+    
+        
+    
+        
+        Gets the URI used for the redirect operation.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RedirectUri { get; }
     
 

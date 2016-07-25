@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ActivityContext Activity
-            {
-                get;
-                set;
-            }
+            public ActivityContext Activity { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.Views.DetailsPageModel.Options
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public ViewOptions Options
-            {
-                get;
-                set;
-            }
+            public ViewOptions Options { get; set; }
     
 

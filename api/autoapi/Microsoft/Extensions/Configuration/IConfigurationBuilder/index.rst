@@ -48,52 +48,6 @@ Syntax
 
 .. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationBuilder
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties
-    
-        
-    
-        
-        Gets a key/value collection that can be used to share data between the :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`
-        and the registered :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\s.
-    
-        
-        :rtype: System.Collections.Generic.Dictionary<System.Collections.Generic.Dictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            Dictionary<string, object> Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources
-    
-        
-    
-        
-        Gets the sources used to obtain configuation values
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Configuration.IConfigurationSource<Microsoft.Extensions.Configuration.IConfigurationSource>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<IConfigurationSource> Sources
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -128,7 +82,7 @@ Methods
         
     
         
-        Builds an :any:`Microsoft.Extensions.Configuration.IConfiguration` with keys and values from the set of sources registered in
+        Builds an :any:`Microsoft.Extensions.Configuration.IConfiguration` with keys and values from the set of sources registered in 
         :dn:prop:`Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources`\.
     
         
@@ -139,5 +93,45 @@ Methods
         .. code-block:: csharp
     
             IConfigurationRoot Build()
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.Extensions.Configuration.IConfigurationBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties
+    
+        
+    
+        
+        Gets a key/value collection that can be used to share data between the :any:`Microsoft.Extensions.Configuration.IConfigurationBuilder`
+        and the registered :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\s.
+    
+        
+        :rtype: System.Collections.Generic.Dictionary<System.Collections.Generic.Dictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            Dictionary<string, object> Properties { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources
+    
+        
+    
+        
+        Gets the sources used to obtain configuation values
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.Extensions.Configuration.IConfigurationSource<Microsoft.Extensions.Configuration.IConfigurationSource>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<IConfigurationSource> Sources { get; }
     
 

@@ -39,7 +39,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class MvcRazorHost : RazorEngineHost, IMvcRazorHost, IDisposable
+    public class MvcRazorHost : RazorEngineHost, IMvcRazorHost
 
 
 
@@ -52,120 +52,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.CreateModelExpressionMethod
-    
-        
-    
-        
-        Gets the method name used to create model expressions.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string CreateModelExpressionMethod
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.DefaultInheritedChunks
-    
-        
-    
-        
-        Gets the list of chunks that are injected by default by this host.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Chunks.Chunk<Microsoft.AspNetCore.Razor.Chunks.Chunk>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IReadOnlyList<Chunk> DefaultInheritedChunks
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.DefaultModel
-    
-        
-    
-        
-        Gets the model type used by default when no model is specified.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string DefaultModel
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.InjectAttribute
-    
-        
-    
-        
-        Gets or sets the name attribute that is used to decorate properties that are injected and need to be
-        activated.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string InjectAttribute
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.ModelExpressionType
-    
-        
-    
-        
-        Gets the type name used to represent :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` model expression properties.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string ModelExpressionType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.TagHelperDescriptorResolver
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
-    
-        
-        .. code-block:: csharp
-    
-            public override ITagHelperDescriptorResolver TagHelperDescriptorResolver
-            {
-                get;
-                set;
-            }
-    
 
 Constructors
 ------------
@@ -217,6 +103,131 @@ Constructors
         .. code-block:: csharp
     
             public MvcRazorHost(string root)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.CreateModelExpressionMethod
+    
+        
+    
+        
+        Gets the method name used to create model expressions.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string CreateModelExpressionMethod { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.DefaultInheritedChunks
+    
+        
+    
+        
+        Gets the list of chunks that are injected by default by this host.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Chunks.Chunk<Microsoft.AspNetCore.Razor.Chunks.Chunk>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IReadOnlyList<Chunk> DefaultInheritedChunks { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.DefaultModel
+    
+        
+    
+        
+        Gets the model type used by default when no model is specified.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string DefaultModel { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.InjectAttribute
+    
+        
+    
+        
+        Gets or sets the name attribute that is used to decorate properties that are injected and need to be
+        activated.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string InjectAttribute { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.ModelExpressionProvider
+    
+        
+    
+        
+        Gets the property name for <code>IModelExpressionProvider</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string ModelExpressionProvider { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.ModelExpressionType
+    
+        
+    
+        
+        Gets the type name used to represent :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` model expression properties.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string ModelExpressionType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.TagHelperDescriptorResolver
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
+    
+        
+        .. code-block:: csharp
+    
+            public override ITagHelperDescriptorResolver TagHelperDescriptorResolver { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.ViewDataPropertyName
+    
+        
+    
+        
+        Gets the property name for <code>ViewDataDictionary</code>.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string ViewDataPropertyName { get; }
     
 
 Methods
@@ -271,15 +282,6 @@ Methods
         .. code-block:: csharp
     
             public override RazorParser DecorateRazorParser(RazorParser razorParser, string sourceFileName)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.Dispose()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public void Dispose()
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.MvcRazorHost.GenerateCode(System.String, System.IO.Stream)
     

@@ -58,149 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Attributes
-    
-        
-    
-        
-        The HTML attributes.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode<Microsoft.AspNetCore.Razor.Parser.SyntaxTree.SyntaxTreeNode>}}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<KeyValuePair<string, SyntaxTreeNode>> Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Descriptors
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s for the HTML element.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<TagHelperDescriptor> Descriptors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Length
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.SourceEndTag
-    
-        
-    
-        
-        Gets the unrewritten source end tag.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block SourceEndTag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.SourceStartTag
-    
-        
-    
-        
-        Gets the unrewritten source start tag.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
-    
-        
-        .. code-block:: csharp
-    
-            public Block SourceStartTag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            public override SourceLocation Start
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagMode
-    
-        
-    
-        
-        Gets the HTML syntax of the element in the Razor source.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
-    
-        
-        .. code-block:: csharp
-    
-            public TagMode TagMode
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagName
-    
-        
-    
-        
-        The HTML tag name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TagName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -230,6 +87,125 @@ Constructors
             public TagHelperBlock(TagHelperBlockBuilder source)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Attributes
+    
+        
+    
+        
+        The HTML attributes.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode<Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperAttributeNode>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<TagHelperAttributeNode> Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Descriptors
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s for the HTML element.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<TagHelperDescriptor> Descriptors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Length
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.SourceEndTag
+    
+        
+    
+        
+        Gets the unrewritten source end tag.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block SourceEndTag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.SourceStartTag
+    
+        
+    
+        
+        Gets the unrewritten source start tag.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block SourceStartTag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            public override SourceLocation Start { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagMode
+    
+        
+    
+        
+        Gets the HTML syntax of the element in the Razor source.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
+    
+        
+        .. code-block:: csharp
+    
+            public TagMode TagMode { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagName
+    
+        
+    
+        
+        The HTML tag name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TagName { get; }
+    
+
 Methods
 -------
 
@@ -243,8 +219,8 @@ Methods
         
     
         
-        Determines whether two :any:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock`\s are equal by comparing the :dn:prop:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagName`\,
-        :dn:prop:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Attributes`\, :dn:prop:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Type`\, :dn:prop:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.ChunkGenerator` and
+        Determines whether two :any:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock`\s are equal by comparing the :dn:prop:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.TagName`\, 
+        :dn:prop:`Microsoft.AspNetCore.Razor.Parser.TagHelpers.TagHelperBlock.Attributes`\, :dn:prop:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Type`\, :dn:prop:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.ChunkGenerator` and 
         :dn:prop:`Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block.Children`\.
     
         

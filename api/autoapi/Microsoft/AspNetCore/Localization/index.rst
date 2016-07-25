@@ -128,6 +128,23 @@ Microsoft.AspNetCore.Localization Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Localization
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IRequestCultureFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Localization.IRequestCultureFeature
+
+        
+        Represents the feature that provides the current request's culture information.
+
+
+    interface :dn:iface:`IRequestCultureProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Localization.IRequestCultureProvider
+
+        
+        Represents a provider for determining the culture information of an :any:`Microsoft.AspNetCore.Http.HttpRequest`\.
+
+
     .. rubric:: Classes
 
 
@@ -193,22 +210,5 @@ Microsoft.AspNetCore.Localization Namespace
         
         Enables automatic setting of the culture for :any:`Microsoft.AspNetCore.Http.HttpRequest`\s based on information
         sent by the client in headers and logic provided by the application.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IRequestCultureFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Localization.IRequestCultureFeature
-
-        
-        Represents the feature that provides the current request's culture information.
-
-
-    interface :dn:iface:`IRequestCultureProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Localization.IRequestCultureProvider
-
-        
-        Represents a provider for determining the culture information of an :any:`Microsoft.AspNetCore.Http.HttpRequest`\.
 
 

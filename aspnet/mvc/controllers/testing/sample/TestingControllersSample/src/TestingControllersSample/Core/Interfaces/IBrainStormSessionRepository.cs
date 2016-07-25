@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TestingControllersSample.Core.Model;
 
 namespace TestingControllersSample.Core.Interfaces
 {
     public interface IBrainstormSessionRepository
     {
-        BrainstormSession GetById(int id);
-        List<BrainstormSession> List();
-        void Add(BrainstormSession session);
-        void Update(BrainstormSession session);
+        Task<BrainstormSession> GetByIdAsync(int id);
+        Task<List<BrainstormSession>> ListAsync();
+        Task AddAsync(BrainstormSession session);
+        Task UpdateAsync(BrainstormSession session);
     }
 }

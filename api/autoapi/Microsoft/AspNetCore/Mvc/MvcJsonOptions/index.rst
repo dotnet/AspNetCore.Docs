@@ -77,9 +77,6 @@ Properties
         
         .. code-block:: csharp
     
-            public JsonSerializerSettings SerializerSettings
-            {
-                get;
-            }
+            public JsonSerializerSettings SerializerSettings { get; }
     
 

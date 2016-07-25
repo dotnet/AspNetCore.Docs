@@ -73,10 +73,6 @@ Properties
         
         .. code-block:: csharp
     
-            StringValues this[string key]
-            {
-                get;
-                set;
-            }
+            StringValues this[string key] { get; set; }
     
 

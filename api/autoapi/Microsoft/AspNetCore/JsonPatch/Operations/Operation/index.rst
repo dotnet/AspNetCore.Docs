@@ -53,30 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.Operation
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.Operation
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.Operation.value
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            [JsonProperty("value")]
-            public object value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,5 +142,25 @@ Methods
         .. code-block:: csharp
     
             public bool ShouldSerializevalue()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.Operations.Operation
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Operations.Operation.value
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            [JsonProperty("value")]
+            public object value { get; set; }
     
 

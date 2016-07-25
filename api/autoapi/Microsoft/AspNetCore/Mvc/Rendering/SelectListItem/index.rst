@@ -81,11 +81,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Disabled
-            {
-                get;
-                set;
-            }
+            public bool Disabled { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectListItem.Group
     
@@ -102,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public SelectListGroup Group
-            {
-                get;
-                set;
-            }
+            public SelectListGroup Group { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectListItem.Selected
     
@@ -123,11 +115,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool Selected
-            {
-                get;
-                set;
-            }
+            public bool Selected { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectListItem.Text
     
@@ -143,11 +131,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Text
-            {
-                get;
-                set;
-            }
+            public string Text { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.SelectListItem.Value
     
@@ -164,10 +148,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Value
-            {
-                get;
-                set;
-            }
+            public string Value { get; set; }
     
 

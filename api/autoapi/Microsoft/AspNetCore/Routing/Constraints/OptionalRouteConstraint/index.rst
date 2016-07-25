@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Constraints.OptionalRouteConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.OptionalRouteConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.OptionalRouteConstraint.InnerConstraint
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.IRouteConstraint
-    
-        
-        .. code-block:: csharp
-    
-            public IRouteConstraint InnerConstraint
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -97,6 +75,25 @@ Constructors
         .. code-block:: csharp
     
             public OptionalRouteConstraint(IRouteConstraint innerConstraint)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Constraints.OptionalRouteConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Constraints.OptionalRouteConstraint.InnerConstraint
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.IRouteConstraint
+    
+        
+        .. code-block:: csharp
+    
+            public IRouteConstraint InnerConstraint { get; }
     
 
 Methods

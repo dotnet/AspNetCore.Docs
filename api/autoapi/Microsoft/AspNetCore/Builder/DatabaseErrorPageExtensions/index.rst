@@ -84,7 +84,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDatabaseErrorPage(IApplicationBuilder app)
+            public static IApplicationBuilder UseDatabaseErrorPage(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.DatabaseErrorPageOptions)
     
@@ -111,6 +111,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseDatabaseErrorPage(IApplicationBuilder app, DatabaseErrorPageOptions options)
+            public static IApplicationBuilder UseDatabaseErrorPage(this IApplicationBuilder app, DatabaseErrorPageOptions options)
     
 

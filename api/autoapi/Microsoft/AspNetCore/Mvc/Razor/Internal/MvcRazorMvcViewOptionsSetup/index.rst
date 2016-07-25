@@ -65,7 +65,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.Internal.MvcRazorMvcViewOptionsSetup.MvcRazorMvcViewOptionsSetup(System.IServiceProvider)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.Internal.MvcRazorMvcViewOptionsSetup.MvcRazorMvcViewOptionsSetup(Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine)
     
         
     
@@ -75,14 +75,14 @@ Constructors
         
     
         
-        :param serviceProvider: The application's :any:`System.IServiceProvider`\.
+        :param razorViewEngine: The :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine`\.
         
-        :type serviceProvider: System.IServiceProvider
+        :type razorViewEngine: Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine
     
         
         .. code-block:: csharp
     
-            public MvcRazorMvcViewOptionsSetup(IServiceProvider serviceProvider)
+            public MvcRazorMvcViewOptionsSetup(IRazorViewEngine razorViewEngine)
     
 
 Methods
@@ -93,7 +93,7 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.Internal.MvcRazorMvcViewOptionsSetup.ConfigureMvc(System.IServiceProvider, Microsoft.AspNetCore.Mvc.MvcViewOptions)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.Internal.MvcRazorMvcViewOptionsSetup.ConfigureMvc(Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine, Microsoft.AspNetCore.Mvc.MvcViewOptions)
     
         
     
@@ -103,9 +103,9 @@ Methods
         
     
         
-        :param serviceProvider: The application's :any:`System.IServiceProvider`\.
+        :param razorViewEngine: The :any:`Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine`\.
         
-        :type serviceProvider: System.IServiceProvider
+        :type razorViewEngine: Microsoft.AspNetCore.Mvc.Razor.IRazorViewEngine
     
         
         :param options: The :any:`Microsoft.AspNetCore.Mvc.MvcViewOptions` to configure.
@@ -115,6 +115,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void ConfigureMvc(IServiceProvider serviceProvider, MvcViewOptions options)
+            public static void ConfigureMvc(IRazorViewEngine razorViewEngine, MvcViewOptions options)
     
 

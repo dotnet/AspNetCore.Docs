@@ -48,69 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Key
-    
-        
-    
-        
-        The model prefix associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Key
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Metadata
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadata Metadata
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model
-    
-        
-    
-        
-        The model object.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Model
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -147,5 +84,59 @@ Constructors
         .. code-block:: csharp
     
             public ValidationEntry(ModelMetadata metadata, string key, object model)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Key
+    
+        
+    
+        
+        The model prefix associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Key { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Metadata
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` associated with :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadata Metadata { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationEntry.Model
+    
+        
+    
+        
+        The model object.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Model { get; }
     
 

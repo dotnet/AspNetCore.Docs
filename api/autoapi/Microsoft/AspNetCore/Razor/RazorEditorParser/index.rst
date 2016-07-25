@@ -56,65 +56,28 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorEditorParser
 
-Properties
-----------
+Events
+------
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorEditorParser
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.CurrentParseTree
+    .. dn:event:: Microsoft.AspNetCore.Razor.RazorEditorParser.DocumentParseComplete
     
         
-        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
     
         
-        .. code-block:: csharp
-    
-            public Block CurrentParseTree
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.FileName
+        Event fired when a full reparse of the document completes.
     
         
-        :rtype: System.String
+        :rtype: System.EventHandler<System.EventHandler`1>{Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs<Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs>}
     
         
         .. code-block:: csharp
     
-            public string FileName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.Host
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
-    
-        
-        .. code-block:: csharp
-    
-            public RazorEngineHost Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.LastResultProvisional
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool LastResultProvisional
-            {
-                get;
-            }
+            public event EventHandler<DocumentParseCompleteEventArgs> DocumentParseComplete
     
 
 Constructors
@@ -151,30 +114,6 @@ Constructors
         .. code-block:: csharp
     
             public RazorEditorParser(RazorEngineHost host, string sourceFileName)
-    
-
-Events
-------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorEditorParser
-    :noindex:
-    :hidden:
-
-    
-    .. dn:event:: Microsoft.AspNetCore.Razor.RazorEditorParser.DocumentParseComplete
-    
-        
-    
-        
-        Event fired when a full reparse of the document completes.
-    
-        
-        :rtype: System.EventHandler<System.EventHandler`1>{Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs<Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs>}
-    
-        
-        .. code-block:: csharp
-    
-            public event EventHandler<DocumentParseCompleteEventArgs> DocumentParseComplete
     
 
 Methods
@@ -242,5 +181,54 @@ Methods
         .. code-block:: csharp
     
             public virtual string GetAutoCompleteString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorEditorParser
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.CurrentParseTree
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Block
+    
+        
+        .. code-block:: csharp
+    
+            public Block CurrentParseTree { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.FileName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.Host
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
+    
+        
+        .. code-block:: csharp
+    
+            public RazorEngineHost Host { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEditorParser.LastResultProvisional
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool LastResultProvisional { get; }
     
 

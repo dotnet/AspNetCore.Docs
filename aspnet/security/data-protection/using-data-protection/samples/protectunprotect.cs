@@ -1,6 +1,6 @@
 using System;
-using Microsoft.AspNet.DataProtection;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.DependencyInjection;
 
 public class Program
 {

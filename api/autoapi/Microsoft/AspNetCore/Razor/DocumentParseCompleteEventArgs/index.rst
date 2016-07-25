@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public GeneratorResults GeneratorResults
-            {
-                get;
-                set;
-            }
+            public GeneratorResults GeneratorResults { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs.SourceChange
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TextChange SourceChange
-            {
-                get;
-                set;
-            }
+            public TextChange SourceChange { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.DocumentParseCompleteEventArgs.TreeStructureChanged
     
@@ -116,10 +108,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool TreeStructureChanged
-            {
-                get;
-                set;
-            }
+            public bool TreeStructureChanged { get; set; }
     
 

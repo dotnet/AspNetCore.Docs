@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ModelMetadata ModelMetadata
-            {
-                get;
-                set;
-            }
+            public ModelMetadata ModelMetadata { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterDescription.Name
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterDescription.RouteInfo
     
@@ -115,11 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ApiParameterRouteInfo RouteInfo
-            {
-                get;
-                set;
-            }
+            public ApiParameterRouteInfo RouteInfo { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterDescription.Source
     
@@ -134,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BindingSource Source
-            {
-                get;
-                set;
-            }
+            public BindingSource Source { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiParameterDescription.Type
     
@@ -153,10 +137,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Type Type
-            {
-                get;
-                set;
-            }
+            public Type Type { get; set; }
     
 

@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.AttributeRouteInfo.Order
     
@@ -100,11 +96,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int Order
-            {
-                get;
-                set;
-            }
+            public int Order { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.Routing.AttributeRouteInfo.Template
     
@@ -119,10 +111,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Template
-            {
-                get;
-                set;
-            }
+            public string Template { get; set; }
     
 

@@ -18,10 +18,10 @@ Topics
 .. toctree::
     :titlesonly:
 
+    Introduction <intro>
     getting-started
-    API <https://docs.asp.net/projects/api>
+    Release notes <https://github.com/aspnet/home/releases>
     tutorials/index
-    conceptual-overview/index
     fundamentals/index
     mvc/index
     testing/index
@@ -33,8 +33,9 @@ Topics
     security/index
     performance/index
     migration/index
+    API <https://docs.asp.net/projects/api>
     contribute/index
-    
+
 
 Related Resources
 -----------------

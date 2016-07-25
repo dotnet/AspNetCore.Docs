@@ -8,7 +8,8 @@ NameAuthorizationRequirement Class
 
 
 
-Requirement that ensures a specific Name
+Implements an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler` and :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement`
+which requires the current user name must match the specified value.
 
 
 Namespace
@@ -57,28 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement.RequiredName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RequiredName
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -91,6 +70,13 @@ Constructors
     
         
     
+        
+        Constructs a new instance of :any:`Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement`\.
+    
+        
+    
+        
+        :param requiredName: The required name that the current user must have.
         
         :type requiredName: System.String
     
@@ -108,19 +94,53 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement.Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext, Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        Makes a decision if authorization is allowed based on a specific requirement.
     
+        
+    
+        
+        :param context: The authorization context.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
+    
+        
+        :param requirement: The requirement to evaluate.
         
         :type requirement: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override void Handle(AuthorizationContext context, NameAuthorizationRequirement requirement)
+            protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, NameAuthorizationRequirement requirement)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authorization.Infrastructure.NameAuthorizationRequirement.RequiredName
+    
+        
+    
+        
+        Gets the required name that the current user must have.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RequiredName { get; }
     
 

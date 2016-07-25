@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.Data1
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Data1
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.Data2
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Data2
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.FakeService
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
-    
-        
-        .. code-block:: csharp
-    
-            public IFakeService FakeService
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -167,5 +119,44 @@ Constructors
         .. code-block:: csharp
     
             public ClassWithAmbiguousCtors(string data)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.Data1
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Data1 { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.Data2
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Data2 { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.ClassWithAmbiguousCtors.FakeService
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.Specification.Fakes.IFakeService
+    
+        
+        .. code-block:: csharp
+    
+            public IFakeService FakeService { get; }
     
 

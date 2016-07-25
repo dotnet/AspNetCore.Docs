@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<string, LogLevel, bool> Filter
-            {
-                get;
-                set;
-            }
+            public Func<string, LogLevel, bool> Filter { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmOptions.Path
     
@@ -97,10 +93,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString Path
-            {
-                get;
-                set;
-            }
+            public PathString Path { get; set; }
     
 

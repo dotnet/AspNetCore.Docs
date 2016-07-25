@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Code
-            {
-                get;
-                set;
-            }
+            public string Code { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.IdentityError.Description
     
@@ -100,10 +96,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Description
-            {
-                get;
-                set;
-            }
+            public string Description { get; set; }
     
 

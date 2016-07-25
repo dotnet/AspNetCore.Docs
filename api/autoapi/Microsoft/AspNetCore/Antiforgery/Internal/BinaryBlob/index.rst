@@ -53,28 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Antiforgery.Internal.BinaryBlob
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Antiforgery.Internal.BinaryBlob
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.BinaryBlob.BitLength
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int BitLength
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +87,25 @@ Constructors
         .. code-block:: csharp
     
             public BinaryBlob(int bitLength, byte[] data)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Antiforgery.Internal.BinaryBlob
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.BinaryBlob.BitLength
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int BitLength { get; }
     
 
 Methods

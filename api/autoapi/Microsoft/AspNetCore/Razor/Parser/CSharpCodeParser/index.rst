@@ -25,7 +25,7 @@ Inheritance Hierarchy
 
 * :dn:cls:`System.Object`
 * :dn:cls:`Microsoft.AspNetCore.Razor.Parser.ParserBase`
-* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser{Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
+* :dn:cls:`Microsoft.AspNetCore.Razor.Parser.TokenizerBackedParser{Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol,Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType}`
 * :dn:cls:`Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser`
 
 
@@ -53,68 +53,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.IsNested
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsNested
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Keywords
-    
-        
-        :rtype: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            protected ISet<string> Keywords
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Language
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics<Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics`3>{Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer<Microsoft.AspNetCore.Razor.Tokenizer.CSharpTokenizer>, Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol>, Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType>}
-    
-        
-        .. code-block:: csharp
-    
-            protected override LanguageCharacteristics<CSharpTokenizer, CSharpSymbol, CSharpSymbolType> Language
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.OtherParser
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserBase
-    
-        
-        .. code-block:: csharp
-    
-            protected override ParserBase OtherParser
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -422,5 +360,54 @@ Methods
         .. code-block:: csharp
     
             protected bool TryGetDirectiveHandler(string directive, out Action handler)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.IsNested
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsNested { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Keywords
+    
+        
+        :rtype: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            protected ISet<string> Keywords { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.Language
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics<Microsoft.AspNetCore.Razor.Parser.LanguageCharacteristics`3>{Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer<Microsoft.AspNetCore.Razor.Tokenizer.Internal.CSharpTokenizer>, Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbol>, Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType<Microsoft.AspNetCore.Razor.Tokenizer.Symbols.CSharpSymbolType>}
+    
+        
+        .. code-block:: csharp
+    
+            protected override LanguageCharacteristics<CSharpTokenizer, CSharpSymbol, CSharpSymbolType> Language { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Parser.CSharpCodeParser.OtherParser
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Parser.ParserBase
+    
+        
+        .. code-block:: csharp
+    
+            protected override ParserBase OtherParser { get; }
     
 

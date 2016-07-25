@@ -8,7 +8,6 @@ Fundamentals
     middleware
     static-files
     routing
-    diagnostics
     error-handling
     localization
     configuration
@@ -20,4 +19,5 @@ Fundamentals
     servers
     request-features
     owin
+    choosing-the-right-dotnet
 

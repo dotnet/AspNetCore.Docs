@@ -30,10 +30,6 @@ Microsoft.AspNetCore.CookiePolicy Namespace
    /autoapi/Microsoft/AspNetCore/CookiePolicy/HttpOnlyPolicy/index
    
    
-   
-   /autoapi/Microsoft/AspNetCore/CookiePolicy/SecurePolicy/index
-   
-   
 
 
 
@@ -44,10 +40,6 @@ Microsoft.AspNetCore.CookiePolicy Namespace
    :hidden:
    :maxdepth: 2
 
-   
-   
-   
-   
    
    
    
@@ -106,12 +98,6 @@ Microsoft.AspNetCore.CookiePolicy Namespace
 
     enum :dn:enum:`HttpOnlyPolicy`
         .. object: type=enum name=Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy
-
-        
-
-
-    enum :dn:enum:`SecurePolicy`
-        .. object: type=enum name=Microsoft.AspNetCore.CookiePolicy.SecurePolicy
 
         
 

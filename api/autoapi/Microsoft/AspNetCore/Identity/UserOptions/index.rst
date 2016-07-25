@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AllowedUserNameCharacters
-            {
-                get;
-                set;
-            }
+            public string AllowedUserNameCharacters { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.UserOptions.RequireUniqueEmail
     
@@ -100,10 +96,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool RequireUniqueEmail
-            {
-                get;
-                set;
-            }
+            public bool RequireUniqueEmail { get; set; }
     
 

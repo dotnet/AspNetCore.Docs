@@ -15,7 +15,7 @@ Microsoft.Extensions.DependencyInjection.Extensions Namespace
 
    
    
-   /autoapi/Microsoft/Extensions/DependencyInjection/Extensions/ServiceCollectionExtensions/index
+   /autoapi/Microsoft/Extensions/DependencyInjection/Extensions/ServiceCollectionDescriptorExtensions/index
    
    
 
@@ -47,8 +47,8 @@ Microsoft.Extensions.DependencyInjection.Extensions Namespace
     .. rubric:: Classes
 
 
-    class :dn:cls:`ServiceCollectionExtensions`
-        .. object: type=class name=Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionExtensions
+    class :dn:cls:`ServiceCollectionDescriptorExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions
 
         
 

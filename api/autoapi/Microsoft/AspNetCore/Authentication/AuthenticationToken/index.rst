@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.AuthenticationToken.Value
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Value
-            {
-                get;
-                set;
-            }
+            public string Value { get; set; }
     
 

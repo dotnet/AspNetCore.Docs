@@ -7,6 +7,10 @@ BindingBehaviorAttribute Class
 
 
 
+
+Specifies the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior` that should be applied.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.ModelBinding`
 Assemblies
@@ -54,28 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute.Behavior
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior
-    
-        
-        .. code-block:: csharp
-    
-            public BindingBehavior Behavior
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -89,11 +71,42 @@ Constructors
         
     
         
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute` instance.
+    
+        
+    
+        
+        :param behavior: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior` to apply.
+        
         :type behavior: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior
     
         
         .. code-block:: csharp
     
             public BindingBehaviorAttribute(BindingBehavior behavior)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehaviorAttribute.Behavior
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior` to apply.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.BindingBehavior
+    
+        
+        .. code-block:: csharp
+    
+            public BindingBehavior Behavior { get; }
     
 

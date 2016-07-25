@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static PropertiesSerializer Default
-            {
-                get;
-            }
+            public static PropertiesSerializer Default { get; }
     
 
 Methods

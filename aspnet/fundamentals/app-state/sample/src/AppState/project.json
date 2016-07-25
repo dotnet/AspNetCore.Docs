@@ -1,33 +1,31 @@
 ﻿{
-  "webroot": "wwwroot",
-  "version": "1.0.0-*",
-
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
   "dependencies": {
-    "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
-    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Session": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
-    "Newtonsoft.Json": "7.0.1"
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.Session": "1.0.0",
+    "Microsoft.Extensions.Caching.Memory": "1.0.0",
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Newtonsoft.Json": "9.0.1"
   },
-
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel"
-  },
-
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "net451": {},
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        }
+      }
+    }
   },
-
-  "exclude": [
-    "wwwroot",
-    "node_modules"
-  ],
-  "publishExclude": [
-    "**.user",
-    "**.vspscc"
-  ]
+  "publishOptions": {
+    "include": [
+      "wwwroot"
+    ]
+  }
 }

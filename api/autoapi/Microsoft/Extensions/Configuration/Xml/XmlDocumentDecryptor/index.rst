@@ -7,6 +7,10 @@ XmlDocumentDecryptor Class
 
 
 
+
+Class responsible for encrypting and decrypting XML.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration.Xml`
 Assemblies
@@ -65,33 +69,14 @@ Constructors
         
     
         
-        .. code-block:: csharp
-    
-            protected XmlDocumentDecryptor()
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor.Instance
+        Initializes a XmlDocumentDecryptor.
     
         
-    
-        
-        Accesses the singleton decryptor instance.
-    
-        
-        :rtype: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor
     
         
         .. code-block:: csharp
     
-            public static readonly XmlDocumentDecryptor Instance
+            protected XmlDocumentDecryptor()
     
 
 Methods
@@ -128,12 +113,44 @@ Methods
         
     
         
+        Override to process encrypted XML.
+    
+        
+    
+        
+        :param document: The document.
+        
         :type document: System.Xml.XmlDocument
         :rtype: System.Xml.XmlReader
+        :return: An XmlReader which can read the document.
     
         
         .. code-block:: csharp
     
             protected virtual XmlReader DecryptDocumentAndCreateXmlReader(XmlDocument document)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor.Instance
+    
+        
+    
+        
+        Accesses the singleton decryptor instance.
+    
+        
+        :rtype: Microsoft.Extensions.Configuration.Xml.XmlDocumentDecryptor
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly XmlDocumentDecryptor Instance
     
 

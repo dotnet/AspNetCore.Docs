@@ -52,140 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.CreationDate
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? CreationDate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.DispositionType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DispositionType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.FileName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.FileNameStar
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileNameStar
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.ModificationDate
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? ModificationDate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Parameters
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<NameValueHeaderValue> Parameters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.ReadDate
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
-    
-        
-        .. code-block:: csharp
-    
-            public DateTimeOffset? ReadDate
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Size
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? Size
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -205,6 +71,105 @@ Constructors
         .. code-block:: csharp
     
             public ContentDispositionHeaderValue(string dispositionType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.CreationDate
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? CreationDate { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.DispositionType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DispositionType { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.FileName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileName { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.FileNameStar
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileNameStar { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.ModificationDate
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? ModificationDate { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Parameters
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<NameValueHeaderValue> Parameters { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.ReadDate
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.DateTimeOffset<System.DateTimeOffset>}
+    
+        
+        .. code-block:: csharp
+    
+            public DateTimeOffset? ReadDate { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentDispositionHeaderValue.Size
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? Size { get; set; }
     
 
 Methods

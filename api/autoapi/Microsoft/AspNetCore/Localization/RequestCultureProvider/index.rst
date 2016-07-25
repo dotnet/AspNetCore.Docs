@@ -56,6 +56,28 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureProvider
 
+Methods
+-------
+
+.. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Localization.RequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
+    
+        
+    
+        
+        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
+    
+        
+        .. code-block:: csharp
+    
+            public abstract Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+    
+
 Properties
 ----------
 
@@ -77,32 +99,6 @@ Properties
         
         .. code-block:: csharp
     
-            public RequestLocalizationOptions Options
-            {
-                get;
-                set;
-            }
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Localization.RequestCultureProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Localization.RequestCultureProvider.DetermineProviderCultureResult(Microsoft.AspNetCore.Http.HttpContext)
-    
-        
-    
-        
-        :type httpContext: Microsoft.AspNetCore.Http.HttpContext
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Localization.ProviderCultureResult<Microsoft.AspNetCore.Localization.ProviderCultureResult>}
-    
-        
-        .. code-block:: csharp
-    
-            public abstract Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+            public RequestLocalizationOptions Options { get; set; }
     
 

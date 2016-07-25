@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>da8e46f0-30e8-4c24-b81e-e315f93b4758</ProjectGuid>
+    <ProjectGuid>b2ef155b-64c8-4c6c-8c4b-526a2756c3e4</ProjectGuid>
     <RootNamespace>PartialViewsSample</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
@@ -18,8 +18,6 @@
   <ItemGroup>
     <DnxInvisibleContent Include="bower.json" />
     <DnxInvisibleContent Include=".bowerrc" />
-    <DnxInvisibleContent Include="package.json" />
-    <DnxInvisibleContent Include=".npmrc" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

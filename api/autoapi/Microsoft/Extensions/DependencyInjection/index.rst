@@ -23,6 +23,10 @@ Microsoft.Extensions.DependencyInjection Namespace
    
    
    
+   /autoapi/Microsoft/Extensions/DependencyInjection/AntiforgeryServiceCollectionExtensions/index
+   
+   
+   
    /autoapi/Microsoft/Extensions/DependencyInjection/ApplicationModelConventionExtensions/index
    
    
@@ -203,7 +207,11 @@ Microsoft.Extensions.DependencyInjection Namespace
    
    
    
-   /autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionExtensions/index
+   /autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionContainerBuilderExtensions/index
+   
+   
+   
+   /autoapi/Microsoft/Extensions/DependencyInjection/ServiceCollectionServiceExtensions/index
    
    
    
@@ -215,7 +223,7 @@ Microsoft.Extensions.DependencyInjection Namespace
    
    
    
-   /autoapi/Microsoft/Extensions/DependencyInjection/ServiceProviderExtensions/index
+   /autoapi/Microsoft/Extensions/DependencyInjection/ServiceProviderServiceExtensions/index
    
    
    
@@ -469,6 +477,14 @@ Microsoft.Extensions.DependencyInjection Namespace
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
 
 
 
@@ -478,6 +494,64 @@ Microsoft.Extensions.DependencyInjection Namespace
 
 
 .. dn:namespace:: Microsoft.Extensions.DependencyInjection
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IMvcBuilder`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IMvcBuilder
+
+        
+        An interface for configuring MVC services.
+
+
+    interface :dn:iface:`IMvcCoreBuilder`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
+
+        
+        An interface for configuring essential MVC services.
+
+
+    interface :dn:iface:`IServiceCollection`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceCollection
+
+        
+        Specifies the contract for a collection of service descriptors.
+
+
+    interface :dn:iface:`IServiceScope`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceScope
+
+        
+        The :dn:meth:`System.IDisposable.Dispose` method ends the scope lifetime. Once Dispose
+        is called, any scoped services that have been resolved from 
+        :dn:prop:`Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider` will be
+        disposed.
+
+
+    interface :dn:iface:`IServiceScopeFactory`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceScopeFactory
+
+        
+
+
+    interface :dn:iface:`ISupportRequiredService`
+        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.ISupportRequiredService
+
+        
+        Optional contract used by :dn:meth:`Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService\`\`1(System.IServiceProvider)`
+        to resolve services if supported by :any:`System.IServiceProvider`\.
+
+
+    .. rubric:: Enumerations
+
+
+    enum :dn:enum:`ServiceLifetime`
+        .. object: type=enum name=Microsoft.Extensions.DependencyInjection.ServiceLifetime
+
+        
+        Specifies the lifetime of a service in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
     .. rubric:: Classes
@@ -495,6 +569,13 @@ Microsoft.Extensions.DependencyInjection Namespace
 
         
         Extension methods for setting up diagnostic services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+    class :dn:cls:`AntiforgeryServiceCollectionExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions
+
+        
+        Extension methods for setting up antiforgery services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
     class :dn:cls:`ApplicationModelConventionExtensions`
@@ -724,12 +805,14 @@ Microsoft.Extensions.DependencyInjection Namespace
         .. object: type=class name=Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions
 
         
+        Extension methods for adding configuration related options services to the DI container.
 
 
     class :dn:cls:`OptionsServiceCollectionExtensions`
         .. object: type=class name=Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions
 
         
+        Extension methods for adding options services to the DI container.
 
 
     class :dn:cls:`RedisCacheServiceCollectionExtensions`
@@ -753,11 +836,17 @@ Microsoft.Extensions.DependencyInjection Namespace
         Default implementation of :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
-    class :dn:cls:`ServiceCollectionExtensions`
-        .. object: type=class name=Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions
+    class :dn:cls:`ServiceCollectionContainerBuilderExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions
 
         
-        Extension methods for setting up antiforgery services in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
+
+
+    class :dn:cls:`ServiceCollectionServiceExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions
+
+        
+        Extension methods for adding services to an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
 
 
     class :dn:cls:`ServiceDescriptor`
@@ -766,8 +855,8 @@ Microsoft.Extensions.DependencyInjection Namespace
         
 
 
-    class :dn:cls:`ServiceProviderExtensions`
-        .. object: type=class name=Microsoft.Extensions.DependencyInjection.ServiceProviderExtensions
+    class :dn:cls:`ServiceProviderServiceExtensions`
+        .. object: type=class name=Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions
 
         
         Extension methods for getting services from an :any:`System.IServiceProvider`\.
@@ -800,16 +889,6 @@ Microsoft.Extensions.DependencyInjection Namespace
         
 
 
-    .. rubric:: Enumerations
-
-
-    enum :dn:enum:`ServiceLifetime`
-        .. object: type=enum name=Microsoft.Extensions.DependencyInjection.ServiceLifetime
-
-        
-        Specifies the lifetime of a service in an :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection`\.
-
-
     .. rubric:: Delegates
 
 
@@ -818,53 +897,5 @@ Microsoft.Extensions.DependencyInjection Namespace
 
         
         The result of :dn:meth:`Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(System.Type,System.Type[])`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IMvcBuilder`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IMvcBuilder
-
-        
-        An interface for configuring MVC services.
-
-
-    interface :dn:iface:`IMvcCoreBuilder`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IMvcCoreBuilder
-
-        
-        An interface for configuring essential MVC services.
-
-
-    interface :dn:iface:`IServiceCollection`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceCollection
-
-        
-        Specifies the contract for a collection of service descriptors.
-
-
-    interface :dn:iface:`IServiceScope`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceScope
-
-        
-        The :dn:meth:`System.IDisposable.Dispose` method ends the scope lifetime. Once Dispose
-        is called, any scoped services that have been resolved from
-        :dn:prop:`Microsoft.Extensions.DependencyInjection.IServiceScope.ServiceProvider` will be
-        disposed.
-
-
-    interface :dn:iface:`IServiceScopeFactory`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.IServiceScopeFactory
-
-        
-
-
-    interface :dn:iface:`ISupportRequiredService`
-        .. object: type=interface name=Microsoft.Extensions.DependencyInjection.ISupportRequiredService
-
-        
-        Optional contract used by :dn:meth:`Microsoft.Extensions.DependencyInjection.ServiceProviderExtensions.GetRequiredService\`\`1(System.IServiceProvider)`
-        to resolve services if supported by :any:`System.IServiceProvider`\.
 
 

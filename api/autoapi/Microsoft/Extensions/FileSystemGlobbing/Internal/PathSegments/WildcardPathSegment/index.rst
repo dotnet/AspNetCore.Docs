@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.BeginsWith
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string BeginsWith
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.CanProduceStem
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool CanProduceStem
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.Contains
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<string> Contains
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.EndsWith
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string EndsWith
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,23 +82,53 @@ Constructors
             public WildcardPathSegment(string beginsWith, List<string> contains, string endsWith, StringComparison comparisonType)
     
 
-Fields
-------
+Properties
+----------
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
     :noindex:
     :hidden:
 
     
-    .. dn:field:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.MatchAll
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.BeginsWith
     
         
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
+        :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public static readonly WildcardPathSegment MatchAll
+            public string BeginsWith { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.CanProduceStem
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool CanProduceStem { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.Contains
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<string> Contains { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.EndsWith
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string EndsWith { get; }
     
 
 Methods
@@ -182,5 +151,24 @@ Methods
         .. code-block:: csharp
     
             public bool Match(string value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment.MatchAll
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.WildcardPathSegment
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly WildcardPathSegment MatchAll
     
 

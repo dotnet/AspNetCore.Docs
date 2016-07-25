@@ -64,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ViewFeatures.JsonHelper.JsonHelper(Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ViewFeatures.JsonHelper.JsonHelper(Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter, System.Buffers.ArrayPool<System.Char>)
     
         
     
@@ -79,9 +79,16 @@ Constructors
         :type jsonOutputFormatter: Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter
     
         
+        :param charPool: 
+            The :any:`System.Buffers.ArrayPool\`1` for use with custom :any:`Newtonsoft.Json.JsonSerializerSettings` (see 
+            :dn:meth:`Microsoft.AspNetCore.Mvc.ViewFeatures.JsonHelper.Serialize(System.Object,Newtonsoft.Json.JsonSerializerSettings)`\).
+        
+        :type charPool: System.Buffers.ArrayPool<System.Buffers.ArrayPool`1>{System.Char<System.Char>}
+    
+        
         .. code-block:: csharp
     
-            public JsonHelper(JsonOutputFormatter jsonOutputFormatter)
+            public JsonHelper(JsonOutputFormatter jsonOutputFormatter, ArrayPool<char> charPool)
     
 
 Methods

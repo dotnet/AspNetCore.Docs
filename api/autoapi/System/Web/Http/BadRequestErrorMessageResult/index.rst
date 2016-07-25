@@ -59,33 +59,6 @@ Syntax
 
 .. dn:class:: System.Web.Http.BadRequestErrorMessageResult
 
-Properties
-----------
-
-.. dn:class:: System.Web.Http.BadRequestErrorMessageResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: System.Web.Http.BadRequestErrorMessageResult.Message
-    
-        
-    
-        
-        Gets the error message.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Message
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +106,29 @@ Methods
         .. code-block:: csharp
     
             public override Task ExecuteResultAsync(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: System.Web.Http.BadRequestErrorMessageResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: System.Web.Http.BadRequestErrorMessageResult.Message
+    
+        
+    
+        
+        Gets the error message.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Message { get; }
     
 

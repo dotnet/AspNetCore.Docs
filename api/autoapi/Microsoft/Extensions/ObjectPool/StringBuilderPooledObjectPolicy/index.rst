@@ -52,43 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy.InitialCapacity
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int InitialCapacity
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy.MaximumRetainedCapacity
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int MaximumRetainedCapacity
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -119,5 +82,34 @@ Methods
         .. code-block:: csharp
     
             public bool Return(StringBuilder obj)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy.InitialCapacity
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int InitialCapacity { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy.MaximumRetainedCapacity
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int MaximumRetainedCapacity { get; set; }
     
 

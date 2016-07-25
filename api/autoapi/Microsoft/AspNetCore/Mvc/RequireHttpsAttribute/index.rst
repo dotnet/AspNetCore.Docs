@@ -58,29 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -94,7 +71,7 @@ Methods
         
     
         
-        Called from :dn:meth:`Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)` if the request is not received over HTTPS. Expectation is
+        Called from :dn:meth:`Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)` if the request is not received over HTTPS. Expectation is 
         :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result` will not be <code>null</code> after this method returns.
     
         
@@ -115,7 +92,7 @@ Methods
     
         
         Called early in the filter pipeline to confirm request is authorized. Confirms requests are received over
-        HTTPS. Takes no action for HTTPS requests. Otherwise if it was a GET request, sets
+        HTTPS. Takes no action for HTTPS requests. Otherwise if it was a GET request, sets 
         :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result` to a result which will redirect the client to the HTTPS
         version of the request URI. Otherwise, sets :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext.Result` to a result
         which will set the status code to <code>403</code> (Forbidden).
@@ -129,5 +106,40 @@ Methods
         .. code-block:: csharp
     
             public virtual void OnAuthorization(AuthorizationFilterContext filterContext)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.RequireHttpsAttribute.Permanent
+    
+        
+    
+        
+        Specifies whether a permanent redirect, <code>301 Moved Permanently</code>,
+        should be used instead of a temporary redirect, <code>302 Found</code>.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Permanent { get; set; }
     
 

@@ -52,43 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.CookieHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.CookieHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CookieHeaderValue.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.CookieHeaderValue.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -252,5 +215,34 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParseStrictList(IList<string> inputs, out IList<CookieHeaderValue> parsedValues)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.CookieHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CookieHeaderValue.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.CookieHeaderValue.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; set; }
     
 

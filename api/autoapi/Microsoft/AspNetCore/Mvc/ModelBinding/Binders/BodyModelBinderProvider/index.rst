@@ -64,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider.BodyModelBinderProvider(Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider.BodyModelBinderProvider(System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter>, Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory)
     
         
     
@@ -74,6 +74,11 @@ Constructors
         
     
         
+        :param formatters: The list of :any:`Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter`\.
+        
+        :type formatters: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter<Microsoft.AspNetCore.Mvc.Formatters.IInputFormatter>}
+    
+        
         :param readerFactory: The :any:`Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory`\.
         
         :type readerFactory: Microsoft.AspNetCore.Mvc.Internal.IHttpRequestStreamReaderFactory
@@ -81,7 +86,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public BodyModelBinderProvider(IHttpRequestStreamReaderFactory readerFactory)
+            public BodyModelBinderProvider(IList<IInputFormatter> formatters, IHttpRequestStreamReaderFactory readerFactory)
     
 
 Methods

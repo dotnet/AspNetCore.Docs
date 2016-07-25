@@ -56,75 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Name
-    
-        
-    
-        
-        Gets the name of this instance.
-    
-        
-        :rtype: System.String
-        :return: 
-            The name of this instance.
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Options
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions` for this instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions
-        :return: 
-            The :any:`Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions` for this instance.
-    
-        
-        .. code-block:: csharp
-    
-            protected DataProtectionTokenProviderOptions Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Protector
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` for this instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.DataProtection.IDataProtector
-        :return: 
-            The :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` for this instance.
-    
-        
-        .. code-block:: csharp
-    
-            protected IDataProtector Protector
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -226,37 +157,6 @@ Methods
     
             public virtual Task<string> GenerateAsync(string purpose, UserManager<TUser> manager, TUser user)
     
-    .. dn:method:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.NotifyAsync(System.String, Microsoft.AspNetCore.Identity.UserManager<TUser>, TUser)
-    
-        
-    
-        
-        Creates a notification for the specified <em>user</em> based on the supplied <em>token</em> as an asynchronous operation.
-    
-        
-    
-        
-        :param token: The token to generate notifications for.
-        
-        :type token: System.String
-    
-        
-        :param manager: The :any:`Microsoft.AspNetCore.Identity.UserManager\`1` to retrieve user properties from.
-        
-        :type manager: Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.UserManager`1>{TUser}
-    
-        
-        :param user: The <em>TUser</em> the token was generated for.
-        
-        :type user: TUser
-        :rtype: System.Threading.Tasks.Task
-        :return: A :any:`System.Threading.Tasks.Task\`1` that represents the asynchronous notification.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual Task NotifyAsync(string token, UserManager<TUser> manager, TUser user)
-    
     .. dn:method:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.ValidateAsync(System.String, System.String, Microsoft.AspNetCore.Identity.UserManager<TUser>, TUser)
     
         
@@ -294,5 +194,65 @@ Methods
         .. code-block:: csharp
     
             public virtual Task<bool> ValidateAsync(string purpose, string token, UserManager<TUser> manager, TUser user)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Name
+    
+        
+    
+        
+        Gets the name of this instance.
+    
+        
+        :rtype: System.String
+        :return: 
+            The name of this instance.
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Options
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions` for this instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions
+        :return: 
+            The :any:`Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions` for this instance.
+    
+        
+        .. code-block:: csharp
+    
+            protected DataProtectionTokenProviderOptions Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectorTokenProvider<TUser>.Protector
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` for this instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.DataProtection.IDataProtector
+        :return: 
+            The :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` for this instance.
+    
+        
+        .. code-block:: csharp
+    
+            protected IDataProtector Protector { get; }
     
 

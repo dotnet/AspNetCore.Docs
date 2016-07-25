@@ -80,7 +80,6 @@ Constructors
     
         
         :param chunkTreeCache: :any:`Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkTreeCache` that caches :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree` instances.
-            
         
         :type chunkTreeCache: Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkTreeCache
     
@@ -110,7 +109,7 @@ Methods
         
         Gets an ordered :any:`System.Collections.Generic.IReadOnlyList\`1` of parsed :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree`\s and
         file paths for each <code>_ViewImports</code> that is applicable to the page located at
-        <em>pagePath</em>. The list is ordered so that the :any:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult`\'s
+        <em>pagePath</em>. The list is ordered so that the :any:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult`\'s 
         :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.Directives.ChunkTreeResult.ChunkTree` for the <code>_ViewImports</code> closest to the
         <em>pagePath</em> in the file system appears first.
     
@@ -146,7 +145,7 @@ Methods
     
         
         :param inheritedChunkTrees: :any:`System.Collections.Generic.IReadOnlyList\`1` inherited from <code>_ViewImports</code>
-            files.
+                files.
         
         :type inheritedChunkTrees: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Razor.Chunks.ChunkTree<Microsoft.AspNetCore.Razor.Chunks.ChunkTree>}
     

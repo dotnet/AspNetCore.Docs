@@ -68,7 +68,6 @@ Methods
         
         :param parts: The list of :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart`\s of the
             application.
-            
         
         :type parts: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart<Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart>}
     

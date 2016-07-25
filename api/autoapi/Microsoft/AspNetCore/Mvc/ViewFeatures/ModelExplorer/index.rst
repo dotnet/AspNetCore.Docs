@@ -57,100 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Container
-    
-        
-    
-        
-        Gets the container :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
-    
-        
-        .. code-block:: csharp
-    
-            public ModelExplorer Container
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Metadata
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadata Metadata
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Model
-    
-        
-    
-        
-        Gets the model object.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Model
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.ModelType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ModelType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Properties
-    
-        
-    
-        
-        Gets the properties.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer<Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<ModelExplorer> Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -255,6 +161,85 @@ Constructors
         .. code-block:: csharp
     
             public ModelExplorer(IModelMetadataProvider metadataProvider, ModelExplorer container, ModelMetadata metadata, object model)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Container
+    
+        
+    
+        
+        Gets the container :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
+    
+        
+        .. code-block:: csharp
+    
+            public ModelExplorer Container { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Metadata
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadata Metadata { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Model
+    
+        
+    
+        
+        Gets the model object.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Model { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.ModelType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ModelType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer.Properties
+    
+        
+    
+        
+        Gets the properties.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer<Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<ModelExplorer> Properties { get; }
     
 
 Methods

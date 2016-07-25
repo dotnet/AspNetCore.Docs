@@ -176,6 +176,41 @@ Microsoft.AspNetCore.Antiforgery.Internal Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Antiforgery.Internal
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAntiforgeryFeature`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature
+
+        
+
+
+    interface :dn:iface:`IAntiforgeryTokenGenerator`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenGenerator
+
+        
+        Generates and validates antiforgery tokens.
+
+
+    interface :dn:iface:`IAntiforgeryTokenSerializer`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenSerializer
+
+        
+
+
+    interface :dn:iface:`IAntiforgeryTokenStore`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenStore
+
+        
+
+
+    interface :dn:iface:`IClaimUidExtractor`
+        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IClaimUidExtractor
+
+        
+        This interface can extract unique identifers for a :any:`System.Security.Claims.ClaimsPrincipal`\.
+
+
     .. rubric:: Classes
 
 
@@ -254,40 +289,5 @@ Microsoft.AspNetCore.Antiforgery.Internal Namespace
 
         
         Default implementation of :any:`Microsoft.AspNetCore.Antiforgery.Internal.IClaimUidExtractor`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAntiforgeryFeature`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature
-
-        
-
-
-    interface :dn:iface:`IAntiforgeryTokenGenerator`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenGenerator
-
-        
-        Generates and validates antiforgery tokens.
-
-
-    interface :dn:iface:`IAntiforgeryTokenSerializer`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenSerializer
-
-        
-
-
-    interface :dn:iface:`IAntiforgeryTokenStore`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryTokenStore
-
-        
-
-
-    interface :dn:iface:`IClaimUidExtractor`
-        .. object: type=interface name=Microsoft.AspNetCore.Antiforgery.Internal.IClaimUidExtractor
-
-        
-        This interface can extract unique identifers for a :any:`System.Security.Claims.ClaimsPrincipal`\.
 
 

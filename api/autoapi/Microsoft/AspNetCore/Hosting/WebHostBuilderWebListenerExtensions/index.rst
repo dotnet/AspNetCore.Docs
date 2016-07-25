@@ -81,7 +81,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWebHostBuilder UseWebListener(IWebHostBuilder hostBuilder)
+            public static IWebHostBuilder UseWebListener(this IWebHostBuilder hostBuilder)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostBuilderWebListenerExtensions.UseWebListener(Microsoft.AspNetCore.Hosting.IWebHostBuilder, System.Action<Microsoft.AspNetCore.Server.WebListener.WebListenerOptions>)
     
@@ -110,6 +110,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWebHostBuilder UseWebListener(IWebHostBuilder hostBuilder, Action<WebListenerOptions> options)
+            public static IWebHostBuilder UseWebListener(this IWebHostBuilder hostBuilder, Action<WebListenerOptions> options)
     
 

@@ -56,296 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.UserManager<TUser>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.UserManager<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-        :return: 
-            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual ILogger Logger
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Store
-    
-        
-    
-        
-        Gets or sets the persistence store the manager operates over.
-    
-        
-        :rtype: Microsoft.AspNetCore.Identity.IUserStore<Microsoft.AspNetCore.Identity.IUserStore`1>{TUser}
-        :return: The persistence store the manager operates over.
-    
-        
-        .. code-block:: csharp
-    
-            protected IUserStore<TUser> Store
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsQueryableUsers
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports returning
-        :any:`System.Linq.IQueryable` collections of information.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports returning :any:`System.Linq.IQueryable` collections of
-            information, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsQueryableUsers
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserAuthenticationTokens
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports authentication tokens.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports  authentication tokens, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserAuthenticationTokens
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserClaim
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user claims.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user claims, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserClaim
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserEmail
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user emails.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user emails, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserEmail
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserLockout
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user lock-outs.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user lock-outs, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserLockout
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserLogin
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports external logins.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports external logins, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserLogin
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserPassword
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user passwords.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user passwords, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserPassword
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserPhoneNumber
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user telephone numbers.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user telephone numbers, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserPhoneNumber
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserRole
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports user roles.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user roles, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserRole
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserSecurityStamp
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports security stamps.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user security stamps, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserSecurityStamp
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserTwoFactor
-    
-        
-    
-        
-        Gets a flag indicating whether the backing user store supports two factor authentication.
-    
-        
-        :rtype: System.Boolean
-        :return: 
-            true if the backing user store supports user two factor authentication, otherwise false.
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool SupportsUserTwoFactor
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Users
-    
-        
-    
-        
-            Returns an IQueryable of users if the store is an IQueryableUserStore
-    
-        
-        :rtype: System.Linq.IQueryable<System.Linq.IQueryable`1>{TUser}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IQueryable<TUser> Users
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -412,35 +122,6 @@ Constructors
         .. code-block:: csharp
     
             public UserManager(IUserStore<TUser> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<TUser> passwordHasher, IEnumerable<IUserValidator<TUser>> userValidators, IEnumerable<IPasswordValidator<TUser>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<TUser>> logger)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.UserManager<TUser>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Identity.UserManager<TUser>.ConfirmEmailTokenPurpose
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected const string ConfirmEmailTokenPurpose = "EmailConfirmation"
-    
-    .. dn:field:: Microsoft.AspNetCore.Identity.UserManager<TUser>.ResetPasswordTokenPurpose
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            protected const string ResetPasswordTokenPurpose = "ResetPassword"
     
 
 Methods
@@ -2508,5 +2189,280 @@ Methods
         .. code-block:: csharp
     
             public virtual Task<bool> VerifyUserTokenAsync(TUser user, string tokenProvider, string purpose, string token)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.UserManager<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Identity.UserManager<TUser>.ConfirmEmailTokenPurpose
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected const string ConfirmEmailTokenPurpose = "EmailConfirmation"
+    
+    .. dn:field:: Microsoft.AspNetCore.Identity.UserManager<TUser>.ResetPasswordTokenPurpose
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            protected const string ResetPasswordTokenPurpose = "ResetPassword"
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.UserManager<TUser>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+        :return: 
+            The :any:`Microsoft.Extensions.Logging.ILogger` used to log messages from the manager.
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual ILogger Logger { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Store
+    
+        
+    
+        
+        Gets or sets the persistence store the manager operates over.
+    
+        
+        :rtype: Microsoft.AspNetCore.Identity.IUserStore<Microsoft.AspNetCore.Identity.IUserStore`1>{TUser}
+        :return: The persistence store the manager operates over.
+    
+        
+        .. code-block:: csharp
+    
+            protected IUserStore<TUser> Store { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsQueryableUsers
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports returning 
+        :any:`System.Linq.IQueryable` collections of information.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports returning :any:`System.Linq.IQueryable` collections of
+            information, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsQueryableUsers { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserAuthenticationTokens
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports authentication tokens.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports  authentication tokens, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserAuthenticationTokens { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserClaim
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user claims.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user claims, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserClaim { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserEmail
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user emails.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user emails, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserEmail { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserLockout
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user lock-outs.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user lock-outs, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserLockout { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserLogin
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports external logins.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports external logins, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserLogin { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserPassword
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user passwords.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user passwords, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserPassword { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserPhoneNumber
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user telephone numbers.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user telephone numbers, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserPhoneNumber { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserRole
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports user roles.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user roles, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserRole { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserSecurityStamp
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports security stamps.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user security stamps, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserSecurityStamp { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.SupportsUserTwoFactor
+    
+        
+    
+        
+        Gets a flag indicating whether the backing user store supports two factor authentication.
+    
+        
+        :rtype: System.Boolean
+        :return: 
+            true if the backing user store supports user two factor authentication, otherwise false.
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool SupportsUserTwoFactor { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.UserManager<TUser>.Users
+    
+        
+    
+        
+            Returns an IQueryable of users if the store is an IQueryableUserStore
+    
+        
+        :rtype: System.Linq.IQueryable<System.Linq.IQueryable`1>{TUser}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual IQueryable<TUser> Users { get; }
     
 

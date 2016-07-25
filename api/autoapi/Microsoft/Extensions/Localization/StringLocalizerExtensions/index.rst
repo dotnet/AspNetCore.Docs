@@ -79,7 +79,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<LocalizedString> GetAllStrings(IStringLocalizer stringLocalizer)
+            public static IEnumerable<LocalizedString> GetAllStrings(this IStringLocalizer stringLocalizer)
     
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizerExtensions.GetString(Microsoft.Extensions.Localization.IStringLocalizer, System.String)
     
@@ -105,7 +105,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name)
+            public static LocalizedString GetString(this IStringLocalizer stringLocalizer, string name)
     
     .. dn:method:: Microsoft.Extensions.Localization.StringLocalizerExtensions.GetString(Microsoft.Extensions.Localization.IStringLocalizer, System.String, System.Object[])
     
@@ -136,6 +136,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static LocalizedString GetString(IStringLocalizer stringLocalizer, string name, params object[] arguments)
+            public static LocalizedString GetString(this IStringLocalizer stringLocalizer, string name, params object[] arguments)
     
 

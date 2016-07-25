@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual TKey RoleId
-            {
-                get;
-                set;
-            }
+            public virtual TKey RoleId { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<TKey>.UserId
     
@@ -97,10 +93,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual TKey UserId
-            {
-                get;
-                set;
-            }
+            public virtual TKey UserId { get; set; }
     
 

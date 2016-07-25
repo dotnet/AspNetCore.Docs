@@ -59,61 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.ServiceType
-    
-        
-    
-        
-        Gets the :any:`System.Type` of filter to find.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ServiceType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -162,5 +107,49 @@ Methods
         .. code-block:: csharp
     
             public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.ServiceType
+    
+        
+    
+        
+        Gets the :any:`System.Type` of filter to find.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ServiceType { get; }
     
 

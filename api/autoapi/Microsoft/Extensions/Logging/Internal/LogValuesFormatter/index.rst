@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.OriginalFormat
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string OriginalFormat
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.ValueNames
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<string> ValueNames
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -161,5 +126,34 @@ Methods
         .. code-block:: csharp
     
             public IEnumerable<KeyValuePair<string, object>> GetValues(object[] values)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.OriginalFormat
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string OriginalFormat { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Internal.LogValuesFormatter.ValueNames
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<string> ValueNames { get; }
     
 

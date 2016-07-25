@@ -59,28 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter.Encoding
-    
-        
-        :rtype: System.Text.Encoding
-    
-        
-        .. code-block:: csharp
-    
-            public override Encoding Encoding
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -145,30 +123,6 @@ Constructors
         .. code-block:: csharp
     
             public HttpResponseStreamWriter(Stream stream, Encoding encoding, int bufferSize, ArrayPool<byte> bytePool, ArrayPool<char> charPool)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter.DefaultBufferSize
-    
-        
-    
-        
-        Default buffer size.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public const int DefaultBufferSize = 1024
     
 
 Methods
@@ -296,5 +250,48 @@ Methods
         .. code-block:: csharp
     
             public override Task WriteAsync(string value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter.DefaultBufferSize
+    
+        
+    
+        
+        Default buffer size.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public const int DefaultBufferSize = 1024
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.HttpResponseStreamWriter.Encoding
+    
+        
+        :rtype: System.Text.Encoding
+    
+        
+        .. code-block:: csharp
+    
+            public override Encoding Encoding { get; }
     
 

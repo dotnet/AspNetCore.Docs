@@ -49,34 +49,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree.Version
-    
-        
-    
-        
-        Gets the version. The same as the value of
-        :dn:prop:`Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection.Version`\.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Version
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -106,5 +78,30 @@ Methods
         .. code-block:: csharp
     
             IReadOnlyList<ActionDescriptor> Select(IDictionary<string, object> routeValues)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.IActionSelectionDecisionTree.Version
+    
+        
+    
+        
+        Gets the version. The same as the value of 
+        :dn:prop:`Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection.Version`\.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Version { get; }
     
 

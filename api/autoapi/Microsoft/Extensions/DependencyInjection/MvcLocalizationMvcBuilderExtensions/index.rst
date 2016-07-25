@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder)
+            public static IMvcBuilder AddViewLocalization(this IMvcBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat)
     
@@ -109,7 +109,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format)
+            public static IMvcBuilder AddViewLocalization(this IMvcBuilder builder, LanguageViewLocationExpanderFormat format)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
     
@@ -140,7 +140,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, LanguageViewLocationExpanderFormat format, Action<LocalizationOptions> setupAction)
+            public static IMvcBuilder AddViewLocalization(this IMvcBuilder builder, LanguageViewLocationExpanderFormat format, Action<LocalizationOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.Extensions.Localization.LocalizationOptions>)
     
@@ -166,6 +166,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddViewLocalization(IMvcBuilder builder, Action<LocalizationOptions> setupAction)
+            public static IMvcBuilder AddViewLocalization(this IMvcBuilder builder, Action<LocalizationOptions> setupAction)
     
 

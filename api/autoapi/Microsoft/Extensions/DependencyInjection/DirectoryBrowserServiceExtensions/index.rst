@@ -83,6 +83,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddDirectoryBrowser(IServiceCollection services)
+            public static IServiceCollection AddDirectoryBrowser(this IServiceCollection services)
     
 

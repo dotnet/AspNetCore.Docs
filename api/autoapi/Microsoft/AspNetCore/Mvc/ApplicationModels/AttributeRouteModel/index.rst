@@ -52,83 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Attribute
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IRouteTemplateProvider Attribute
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.IsAbsoluteTemplate
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsAbsoluteTemplate
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            public int ? Order
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Template
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Template
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -171,6 +94,65 @@ Constructors
             public AttributeRouteModel(IRouteTemplateProvider templateProvider)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Attribute
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IRouteTemplateProvider Attribute { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.IsAbsoluteTemplate
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsAbsoluteTemplate { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            public int ? Order { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Template
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Template { get; set; }
+    
+
 Methods
 -------
 
@@ -208,7 +190,7 @@ Methods
     
             public static AttributeRouteModel CombineAttributeRouteModel(AttributeRouteModel left, AttributeRouteModel right)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.ReplaceTokens(System.String, System.Collections.Generic.IDictionary<System.String, System.Object>)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.ReplaceTokens(System.String, System.Collections.Generic.IDictionary<System.String, System.String>)
     
         
     
@@ -216,12 +198,12 @@ Methods
         :type template: System.String
     
         
-        :type values: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+        :type values: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
         :rtype: System.String
     
         
         .. code-block:: csharp
     
-            public static string ReplaceTokens(string template, IDictionary<string, object> values)
+            public static string ReplaceTokens(string template, IDictionary<string, string> values)
     
 

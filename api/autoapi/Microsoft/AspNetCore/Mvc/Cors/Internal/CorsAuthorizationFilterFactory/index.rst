@@ -56,41 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory.IsReusable
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReusable
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -139,5 +104,34 @@ Methods
         .. code-block:: csharp
     
             public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory.IsReusable
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReusable { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Cors.Internal.CorsAuthorizationFilterFactory.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

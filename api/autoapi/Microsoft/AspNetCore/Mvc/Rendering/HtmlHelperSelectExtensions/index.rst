@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownList(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent DropDownList(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownList(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
     
@@ -122,7 +122,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownList(IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList)
+            public static IHtmlContent DropDownList(this IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownList(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>, System.Object)
     
@@ -153,7 +153,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -163,7 +163,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownList(IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList, object htmlAttributes)
+            public static IHtmlContent DropDownList(this IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownList(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>, System.String)
     
@@ -203,7 +203,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownList(IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList, string optionLabel)
+            public static IHtmlContent DropDownList(this IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList, string optionLabel)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownList(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -236,7 +236,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownList(IHtmlHelper htmlHelper, string expression, string optionLabel)
+            public static IHtmlContent DropDownList(this IHtmlHelper htmlHelper, string expression, string optionLabel)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownListFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
     
@@ -270,7 +270,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownListFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList)
+            public static IHtmlContent DropDownListFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownListFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>, System.Object)
     
@@ -301,7 +301,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the <select> element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML attributes.
         
         :type htmlAttributes: System.Object
@@ -311,7 +311,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownListFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList, object htmlAttributes)
+            public static IHtmlContent DropDownListFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.DropDownListFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>, System.String)
     
@@ -351,7 +351,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent DropDownListFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList, string optionLabel)
+            public static IHtmlContent DropDownListFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList, string optionLabel)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.ListBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -377,7 +377,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ListBox(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent ListBox(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.ListBox(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
     
@@ -411,7 +411,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ListBox(IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList)
+            public static IHtmlContent ListBox(this IHtmlHelper htmlHelper, string expression, IEnumerable<SelectListItem> selectList)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperSelectExtensions.ListBoxFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)
     
@@ -445,6 +445,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ListBoxFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList)
+            public static IHtmlContent ListBoxFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, IEnumerable<SelectListItem> selectList)
     
 

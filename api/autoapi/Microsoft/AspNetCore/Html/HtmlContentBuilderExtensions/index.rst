@@ -70,7 +70,7 @@ Methods
     
         
         Appends the specified <em>format</em> to the existing content with information from the
-        <em>formatProvider</em> after replacing each format item with the HTML encoded
+        <em>formatProvider</em> after replacing each format item with the HTML encoded 
         :any:`System.String` representation of the corresponding item in the <em>args</em> array.
     
         
@@ -103,7 +103,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendFormat(IHtmlContentBuilder builder, IFormatProvider formatProvider, string format, params object[] args)
+            public static IHtmlContentBuilder AppendFormat(this IHtmlContentBuilder builder, IFormatProvider formatProvider, string format, params object[] args)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.AppendFormat(Microsoft.AspNetCore.Html.IHtmlContentBuilder, System.String, System.Object[])
     
@@ -139,7 +139,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendFormat(IHtmlContentBuilder builder, string format, params object[] args)
+            public static IHtmlContentBuilder AppendFormat(this IHtmlContentBuilder builder, string format, params object[] args)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.AppendHtmlLine(Microsoft.AspNetCore.Html.IHtmlContentBuilder, System.String)
     
@@ -166,7 +166,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendHtmlLine(IHtmlContentBuilder builder, string encoded)
+            public static IHtmlContentBuilder AppendHtmlLine(this IHtmlContentBuilder builder, string encoded)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.AppendLine(Microsoft.AspNetCore.Html.IHtmlContentBuilder)
     
@@ -187,7 +187,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendLine(IHtmlContentBuilder builder)
+            public static IHtmlContentBuilder AppendLine(this IHtmlContentBuilder builder)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.AppendLine(Microsoft.AspNetCore.Html.IHtmlContentBuilder, Microsoft.AspNetCore.Html.IHtmlContent)
     
@@ -213,7 +213,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendLine(IHtmlContentBuilder builder, IHtmlContent content)
+            public static IHtmlContentBuilder AppendLine(this IHtmlContentBuilder builder, IHtmlContent content)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.AppendLine(Microsoft.AspNetCore.Html.IHtmlContentBuilder, System.String)
     
@@ -240,7 +240,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder AppendLine(IHtmlContentBuilder builder, string unencoded)
+            public static IHtmlContentBuilder AppendLine(this IHtmlContentBuilder builder, string unencoded)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.SetContent(Microsoft.AspNetCore.Html.IHtmlContentBuilder, System.String)
     
@@ -267,7 +267,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder SetContent(IHtmlContentBuilder builder, string unencoded)
+            public static IHtmlContentBuilder SetContent(this IHtmlContentBuilder builder, string unencoded)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.SetHtmlContent(Microsoft.AspNetCore.Html.IHtmlContentBuilder, Microsoft.AspNetCore.Html.IHtmlContent)
     
@@ -293,7 +293,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder SetHtmlContent(IHtmlContentBuilder builder, IHtmlContent content)
+            public static IHtmlContentBuilder SetHtmlContent(this IHtmlContentBuilder builder, IHtmlContent content)
     
     .. dn:method:: Microsoft.AspNetCore.Html.HtmlContentBuilderExtensions.SetHtmlContent(Microsoft.AspNetCore.Html.IHtmlContentBuilder, System.String)
     
@@ -320,6 +320,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContentBuilder SetHtmlContent(IHtmlContentBuilder builder, string encoded)
+            public static IHtmlContentBuilder SetHtmlContent(this IHtmlContentBuilder builder, string encoded)
     
 

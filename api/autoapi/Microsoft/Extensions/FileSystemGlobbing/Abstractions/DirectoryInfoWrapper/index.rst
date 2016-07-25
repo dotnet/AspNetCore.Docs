@@ -54,54 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.FullName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string FullName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string Name
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.ParentDirectory
-    
-        
-        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
-    
-        
-        .. code-block:: csharp
-    
-            public override DirectoryInfoBase ParentDirectory
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -169,5 +121,44 @@ Methods
         .. code-block:: csharp
     
             public override FileInfoBase GetFile(string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.FullName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string FullName { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string Name { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoWrapper.ParentDirectory
+    
+        
+        :rtype: Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    
+        
+        .. code-block:: csharp
+    
+            public override DirectoryInfoBase ParentDirectory { get; }
     
 

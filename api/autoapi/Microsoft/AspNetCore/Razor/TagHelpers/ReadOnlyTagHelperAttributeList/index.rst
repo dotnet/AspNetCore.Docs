@@ -57,43 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList.Item[System.String]
-    
-        
-    
-        
-        Gets the first :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name`
-        matching <em>name</em>.
-    
-        
-    
-        
-        :param name: 
-            The :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` of the :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` to get.
-        
-        :type name: System.String
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
-        :return: The first :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name`
-            matching <em>name</em>.
-            
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperAttribute this[string name]
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -163,7 +126,7 @@ Methods
         :type name: System.String
         :rtype: System.Boolean
         :return: 
-            <code>true</code> if a :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the same
+            <code>true</code> if a :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with the same 
             :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` exists in the collection; otherwise, <code>false</code>.
     
         
@@ -259,7 +222,7 @@ Methods
         
     
         
-        Retrieves :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute`\s in the collection with
+        Retrieves :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute`\s in the collection with 
         :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` matching <em>name</em>.
     
         
@@ -283,5 +246,38 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetAttributes(string name, out IReadOnlyList<TagHelperAttribute> attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.ReadOnlyTagHelperAttributeList.Item[System.String]
+    
+        
+    
+        
+        Gets the first :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name`
+        matching <em>name</em>.
+    
+        
+    
+        
+        :param name: 
+            The :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name` of the :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` to get.
+        
+        :type name: System.String
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute
+        :return: The first :any:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute` with :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute.Name`
+            matching <em>name</em>.
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperAttribute this[string name] { get; }
     
 

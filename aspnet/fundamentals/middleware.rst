@@ -36,6 +36,7 @@ You can see an example of setting up the request pipeline in the default web sit
 #. MVC
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
+  :linenos:
   :language: c#
   :lines: 58-86
   :dedent: 8
@@ -148,8 +149,6 @@ ASP.NET ships with the following middleware components:
      - Provides authentication support.
   *  - :doc:`CORS </security/cors>`
      - Configures Cross-Origin Resource Sharing.
-  *  - :doc:`Diagnostics <diagnostics>`
-     - Includes support for error pages and runtime information.
   *  - :doc:`Routing <routing>`
      - Define and constrain request routes.
   *  - :ref:`Session <session>`
@@ -169,7 +168,7 @@ For more complex request handling functionality, the ASP.NET team recommends imp
 .. literalinclude:: middleware/sample/src/MiddlewareSample/RequestLoggerMiddleware.cs
 	:language: c#
 	:caption: RequestLoggerMiddleware.cs
-	:emphasize-lines: 13, 19
+	:emphasize-lines: 12, 18
 
 The middleware follows the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_ and exposes all of its dependencies in its constructor. Middleware can take advantage of the `UseMiddleware<T>`_ extension to inject services directly into their constructors, as shown in the example below. Dependency injected services are automatically filled, and the extension takes a ``params`` array of arguments to be used for non-injected parameters.
 

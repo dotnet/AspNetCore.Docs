@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Stream Body
-            {
-                get;
-            }
+            public Stream Body { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.CacheTtl
     
@@ -81,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? CacheTtl
-            {
-                get;
-                set;
-            }
+            public TimeSpan? CacheTtl { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ContentLength
     
@@ -95,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public long ? ContentLength
-            {
-                get;
-                set;
-            }
+            public long ? ContentLength { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ContentType
     
@@ -109,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-                set;
-            }
+            public string ContentType { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.HasStarted
     
@@ -123,10 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasStarted
-            {
-                get;
-            }
+            public bool HasStarted { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.HasStartedSending
     
@@ -136,10 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasStartedSending
-            {
-                get;
-            }
+            public bool HasStartedSending { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.Headers
     
@@ -149,10 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HeaderCollection Headers
-            {
-                get;
-            }
+            public HeaderCollection Headers { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ReasonPhrase
     
@@ -162,11 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ReasonPhrase
-            {
-                get;
-                set;
-            }
+            public string ReasonPhrase { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.ShouldBuffer
     
@@ -176,11 +148,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ShouldBuffer
-            {
-                get;
-                set;
-            }
+            public bool ShouldBuffer { get; set; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Response.StatusCode
     
@@ -190,11 +158,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int StatusCode
-            {
-                get;
-                set;
-            }
+            public int StatusCode { get; set; }
     
 
 Methods

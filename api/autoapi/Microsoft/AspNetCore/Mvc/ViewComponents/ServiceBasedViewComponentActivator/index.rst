@@ -8,7 +8,7 @@ ServiceBasedViewComponentActivator Class
 
 
 
-A :any:`Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator` that retrieves view components as services from the request's
+A :any:`Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator` that retrieves view components as services from the request's 
 :any:`System.IServiceProvider`\.
 
 

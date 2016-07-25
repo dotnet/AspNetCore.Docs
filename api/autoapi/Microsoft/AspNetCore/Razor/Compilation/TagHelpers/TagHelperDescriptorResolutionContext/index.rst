@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext.DirectiveDescriptors
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor`\s used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<TagHelperDirectiveDescriptor> DirectiveDescriptors
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext.ErrorSink
-    
-        
-    
-        
-        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
-    
-        
-        .. code-block:: csharp
-    
-            public ErrorSink ErrorSink
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,5 +88,44 @@ Constructors
         .. code-block:: csharp
     
             public TagHelperDescriptorResolutionContext(IEnumerable<TagHelperDirectiveDescriptor> directiveDescriptors, ErrorSink errorSink)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext.DirectiveDescriptors
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor`\s used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor<Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDirectiveDescriptor>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<TagHelperDirectiveDescriptor> DirectiveDescriptors { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptorResolutionContext.ErrorSink
+    
+        
+    
+        
+        Used to aggregate :any:`Microsoft.AspNetCore.Razor.RazorError`\s.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.ErrorSink
+    
+        
+        .. code-block:: csharp
+    
+            public ErrorSink ErrorSink { get; }
     
 

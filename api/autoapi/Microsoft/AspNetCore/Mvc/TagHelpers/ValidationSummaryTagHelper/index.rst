@@ -59,78 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.Generator
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            protected IHtmlGenerator Generator
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.ValidationSummary
-    
-        
-    
-        
-        If :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.All` or :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.ModelOnly`\, appends a validation
-        summary. Otherwise ( :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.None`\, the default), this tag helper does nothing.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-validation-summary")]
-            public ValidationSummary ValidationSummary
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -157,6 +85,64 @@ Constructors
         .. code-block:: csharp
     
             public ValidationSummaryTagHelper(IHtmlGenerator generator)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.Generator
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            protected IHtmlGenerator Generator { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.ValidationSummary
+    
+        
+    
+        
+        If :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.All` or :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.ModelOnly`\, appends a validation
+        summary. Otherwise ( :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary.None`\, the default), this tag helper does nothing.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ValidationSummary
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-validation-summary")]
+            public ValidationSummary ValidationSummary { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
     
 
 Methods

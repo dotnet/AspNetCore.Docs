@@ -56,91 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.TempData
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ITempDataDictionary TempData
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewData
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ViewDataDictionary ViewData
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewEngine
-    
-        
-    
-        
-        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewEngine`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine
-    
-        
-        .. code-block:: csharp
-    
-            public IViewEngine ViewEngine
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewName
-    
-        
-    
-        
-        Gets or sets the view name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ViewName
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -190,5 +105,74 @@ Methods
         .. code-block:: csharp
     
             public Task ExecuteAsync(ViewComponentContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.TempData
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` instance.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ITempDataDictionary TempData { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewData
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ViewDataDictionary ViewData { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewEngine
+    
+        
+    
+        
+        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewEngine`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine
+    
+        
+        .. code-block:: csharp
+    
+            public IViewEngine ViewEngine { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ViewName
+    
+        
+    
+        
+        Gets or sets the view name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ViewName { get; set; }
     
 

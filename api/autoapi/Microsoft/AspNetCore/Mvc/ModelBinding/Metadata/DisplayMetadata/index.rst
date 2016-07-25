@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<object, object> AdditionalValues
-            {
-                get;
-            }
+            public IDictionary<object, object> AdditionalValues { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.ConvertEmptyStringToNull
     
@@ -96,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ConvertEmptyStringToNull
-            {
-                get;
-                set;
-            }
+            public bool ConvertEmptyStringToNull { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.DataTypeName
     
@@ -116,11 +109,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string DataTypeName
-            {
-                get;
-                set;
-            }
+            public string DataTypeName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.Description
     
@@ -136,11 +125,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<string> Description
-            {
-                get;
-                set;
-            }
+            public Func<string> Description { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.DisplayFormatString
     
@@ -156,11 +141,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string DisplayFormatString
-            {
-                get;
-                set;
-            }
+            public string DisplayFormatString { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.DisplayName
     
@@ -176,11 +157,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<string> DisplayName
-            {
-                get;
-                set;
-            }
+            public Func<string> DisplayName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.EditFormatString
     
@@ -196,19 +173,15 @@ Properties
         
         .. code-block:: csharp
     
-            public string EditFormatString
-            {
-                get;
-                set;
-            }
+            public string EditFormatString { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.EnumGroupedDisplayNamesAndValues
     
         
     
         
-        Gets the ordered and grouped display names and values of all :any:`System.Enum` values in
-        :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType`\. See
+        Gets the ordered and grouped display names and values of all :any:`System.Enum` values in 
+        :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType`\. See 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.EnumGroupedDisplayNamesAndValues`\.
     
         
@@ -217,18 +190,14 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<KeyValuePair<EnumGroupAndName, string>> EnumGroupedDisplayNamesAndValues
-            {
-                get;
-                set;
-            }
+            public IEnumerable<KeyValuePair<EnumGroupAndName, string>> EnumGroupedDisplayNamesAndValues { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.EnumNamesAndValues
     
         
     
         
-        Gets the names and values of all :any:`System.Enum` values in
+        Gets the names and values of all :any:`System.Enum` values in 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType`\. See :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.EnumNamesAndValues`\.
     
         
@@ -237,11 +206,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IReadOnlyDictionary<string, string> EnumNamesAndValues
-            {
-                get;
-                set;
-            }
+            public IReadOnlyDictionary<string, string> EnumNamesAndValues { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.HasNonDefaultEditFormat
     
@@ -257,11 +222,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasNonDefaultEditFormat
-            {
-                get;
-                set;
-            }
+            public bool HasNonDefaultEditFormat { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.HideSurroundingHtml
     
@@ -277,11 +238,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HideSurroundingHtml
-            {
-                get;
-                set;
-            }
+            public bool HideSurroundingHtml { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.HtmlEncode
     
@@ -297,18 +254,14 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HtmlEncode
-            {
-                get;
-                set;
-            }
+            public bool HtmlEncode { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.IsEnum
     
         
     
         
-        Gets a value indicating whether :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType` is for an
+        Gets a value indicating whether :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType` is for an 
         :any:`System.Enum`\. See :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsEnum`\.
     
         
@@ -317,19 +270,15 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsEnum
-            {
-                get;
-                set;
-            }
+            public bool IsEnum { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.IsFlagsEnum
     
         
     
         
-        Gets a value indicating whether :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType` is for an
-        :any:`System.Enum` with an associated :any:`System.FlagsAttribute`\. See
+        Gets a value indicating whether :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.UnderlyingOrModelType` is for an 
+        :any:`System.Enum` with an associated :any:`System.FlagsAttribute`\. See 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsFlagsEnum`\.
     
         
@@ -338,11 +287,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsFlagsEnum
-            {
-                get;
-                set;
-            }
+            public bool IsFlagsEnum { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.NullDisplayText
     
@@ -358,11 +303,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string NullDisplayText
-            {
-                get;
-                set;
-            }
+            public string NullDisplayText { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.Order
     
@@ -378,11 +319,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int Order
-            {
-                get;
-                set;
-            }
+            public int Order { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.Placeholder
     
@@ -398,11 +335,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Func<string> Placeholder
-            {
-                get;
-                set;
-            }
+            public Func<string> Placeholder { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.ShowForDisplay
     
@@ -418,11 +351,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ShowForDisplay
-            {
-                get;
-                set;
-            }
+            public bool ShowForDisplay { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.ShowForEdit
     
@@ -438,11 +367,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ShowForEdit
-            {
-                get;
-                set;
-            }
+            public bool ShowForEdit { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.SimpleDisplayProperty
     
@@ -458,11 +383,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string SimpleDisplayProperty
-            {
-                get;
-                set;
-            }
+            public string SimpleDisplayProperty { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata.TemplateHint
     
@@ -478,10 +399,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TemplateHint
-            {
-                get;
-                set;
-            }
+            public string TemplateHint { get; set; }
     
 

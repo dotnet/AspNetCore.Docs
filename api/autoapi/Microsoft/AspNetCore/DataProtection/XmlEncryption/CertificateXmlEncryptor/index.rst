@@ -113,7 +113,7 @@ Constructors
         
     
         
-        Creates a :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.CertificateXmlEncryptor` given a certificate's thumbprint and an
+        Creates a :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.CertificateXmlEncryptor` given a certificate's thumbprint and an 
         :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.ICertificateResolver` that can be used to resolve the certificate.
     
         
@@ -139,7 +139,7 @@ Constructors
         
     
         
-        Creates a :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.CertificateXmlEncryptor` given a certificate's thumbprint, an
+        Creates a :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.CertificateXmlEncryptor` given a certificate's thumbprint, an 
         :any:`Microsoft.AspNetCore.DataProtection.XmlEncryption.ICertificateResolver` that can be used to resolve the certificate, and
         an :any:`System.IServiceProvider`\.
     

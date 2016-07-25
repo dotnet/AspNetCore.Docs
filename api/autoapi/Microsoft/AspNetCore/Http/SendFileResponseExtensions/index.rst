@@ -98,7 +98,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task SendFileAsync(HttpResponse response, IFileInfo file, long offset, long ? count, CancellationToken cancellationToken = null)
+            public static Task SendFileAsync(this HttpResponse response, IFileInfo file, long offset, long ? count, CancellationToken cancellationToken = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsync(Microsoft.AspNetCore.Http.HttpResponse, Microsoft.Extensions.FileProviders.IFileInfo, System.Threading.CancellationToken)
     
@@ -126,7 +126,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task SendFileAsync(HttpResponse response, IFileInfo file, CancellationToken cancellationToken = null)
+            public static Task SendFileAsync(this HttpResponse response, IFileInfo file, CancellationToken cancellationToken = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsync(Microsoft.AspNetCore.Http.HttpResponse, System.String, System.Int64, System.Nullable<System.Int64>, System.Threading.CancellationToken)
     
@@ -162,7 +162,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task SendFileAsync(HttpResponse response, string fileName, long offset, long ? count, CancellationToken cancellationToken = null)
+            public static Task SendFileAsync(this HttpResponse response, string fileName, long offset, long ? count, CancellationToken cancellationToken = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsync(Microsoft.AspNetCore.Http.HttpResponse, System.String, System.Threading.CancellationToken)
     
@@ -190,6 +190,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static Task SendFileAsync(HttpResponse response, string fileName, CancellationToken cancellationToken = null)
+            public static Task SendFileAsync(this HttpResponse response, string fileName, CancellationToken cancellationToken = null)
     
 

@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.CookiePolicyOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookiePolicyOptions Options
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -119,5 +96,24 @@ Methods
         .. code-block:: csharp
     
             public Task Invoke(HttpContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.CookiePolicyOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookiePolicyOptions Options { get; set; }
     
 

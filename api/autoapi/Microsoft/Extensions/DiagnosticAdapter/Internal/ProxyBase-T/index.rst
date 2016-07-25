@@ -53,41 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstance
-    
-        
-        :rtype: T
-    
-        
-        .. code-block:: csharp
-    
-            public T UnderlyingInstance
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstanceAsObject
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public override object UnderlyingInstanceAsObject
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,6 +72,35 @@ Constructors
         .. code-block:: csharp
     
             public ProxyBase(T instance)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstance
+    
+        
+        :rtype: T
+    
+        
+        .. code-block:: csharp
+    
+            public T UnderlyingInstance { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyBase<T>.UnderlyingInstanceAsObject
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public override object UnderlyingInstanceAsObject { get; }
     
 
 Fields

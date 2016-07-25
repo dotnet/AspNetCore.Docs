@@ -72,11 +72,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool CallbackConfirmed
-            {
-                get;
-                set;
-            }
+            public bool CallbackConfirmed { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.RequestToken.Properties
     
@@ -91,11 +87,7 @@ Properties
         
         .. code-block:: csharp
     
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
+            public AuthenticationProperties Properties { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.RequestToken.Token
     
@@ -110,11 +102,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Token
-            {
-                get;
-                set;
-            }
+            public string Token { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.RequestToken.TokenSecret
     
@@ -129,10 +117,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TokenSecret
-            {
-                get;
-                set;
-            }
+            public string TokenSecret { get; set; }
     
 

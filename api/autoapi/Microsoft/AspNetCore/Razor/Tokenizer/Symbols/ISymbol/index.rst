@@ -44,41 +44,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol.Content
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string Content
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol.Start
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
-    
-        
-        .. code-block:: csharp
-    
-            SourceLocation Start
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -110,5 +75,34 @@ Methods
         .. code-block:: csharp
     
             void OffsetStart(SourceLocation documentStart)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol.Content
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string Content { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Tokenizer.Symbols.ISymbol.Start
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.SourceLocation
+    
+        
+        .. code-block:: csharp
+    
+            SourceLocation Start { get; }
     
 

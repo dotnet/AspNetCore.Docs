@@ -74,11 +74,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Type BinderType
-            {
-                get;
-                set;
-            }
+            public Type BinderType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinderAttribute.BindingSource
     
@@ -88,11 +84,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual BindingSource BindingSource
-            {
-                get;
-                protected set;
-            }
+            public virtual BindingSource BindingSource { get; protected set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinderAttribute.Name
     
@@ -102,10 +94,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
 

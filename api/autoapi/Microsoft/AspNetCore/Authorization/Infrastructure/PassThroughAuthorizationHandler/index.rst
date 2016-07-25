@@ -7,6 +7,11 @@ PassThroughAuthorizationHandler Class
 
 
 
+
+Infrastructre class which allows an :any:`Microsoft.AspNetCore.Authorization.IAuthorizationRequirement` to
+be its own :any:`Microsoft.AspNetCore.Authorization.IAuthorizationHandler`\.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization.Infrastructure`
 Assemblies
@@ -60,17 +65,24 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.PassThroughAuthorizationHandler.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationContext)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.Infrastructure.PassThroughAuthorizationHandler.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        Makes a decision if authorization is allowed.
+    
+        
+    
+        
+        :param context: The authorization context.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            public Task HandleAsync(AuthorizationContext context)
+            public Task HandleAsync(AuthorizationHandlerContext context)
     
 

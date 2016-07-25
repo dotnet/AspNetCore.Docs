@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager.Mappings
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
-    
-        
-        .. code-block:: csharp
-    
-            public List<LineMapping> Mappings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -114,5 +92,24 @@ Methods
         .. code-block:: csharp
     
             public void AddMapping(MappingLocation documentLocation, MappingLocation generatedLocation)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.LineMappingManager.Mappings
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
+    
+        
+        .. code-block:: csharp
+    
+            public List<LineMapping> Mappings { get; }
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCookieAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseCookieAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.CookieAppBuilderExtensions.UseCookieAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.CookieAuthenticationOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseCookieAuthentication(IApplicationBuilder app, CookieAuthenticationOptions options)
+            public static IApplicationBuilder UseCookieAuthentication(this IApplicationBuilder app, CookieAuthenticationOptions options)
     
 

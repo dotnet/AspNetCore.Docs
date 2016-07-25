@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ServerAddress Address
-            {
-                get;
-                set;
-            }
+            public ServerAddress Address { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.Filter.ConnectionFilterContext.Connection
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Stream Connection
-            {
-                get;
-                set;
-            }
+            public Stream Connection { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Server.Kestrel.Filter.ConnectionFilterContext.PrepareRequest
     
@@ -96,10 +88,6 @@ Properties
         
         .. code-block:: csharp
     
-            public Action<IFeatureCollection> PrepareRequest
-            {
-                get;
-                set;
-            }
+            public Action<IFeatureCollection> PrepareRequest { get; set; }
     
 

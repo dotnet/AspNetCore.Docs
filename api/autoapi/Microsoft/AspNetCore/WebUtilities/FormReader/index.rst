@@ -56,72 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.WebUtilities.FormReader
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.FormReader
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.KeyCountLimit
-    
-        
-    
-        
-        The limit on the number of form keys to allow in ReadForm or ReadFormAsync.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int KeyCountLimit
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.KeyLengthLimit
-    
-        
-    
-        
-        The limit on the length of form keys.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int KeyLengthLimit
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.ValueLengthLimit
-    
-        
-    
-        
-        The limit on the length of form values.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int ValueLengthLimit
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -201,45 +135,6 @@ Constructors
         .. code-block:: csharp
     
             public FormReader(string data, ArrayPool<char> charPool)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.FormReader
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultKeyCountLimit
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public const int DefaultKeyCountLimit = 1024
-    
-    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultKeyLengthLimit
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public const int DefaultKeyLengthLimit = 2048
-    
-    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultValueLengthLimit
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public const int DefaultValueLengthLimit = 4194304
     
 
 Methods
@@ -331,5 +226,98 @@ Methods
         .. code-block:: csharp
     
             public Task<KeyValuePair<string, string>? > ReadNextPairAsync(CancellationToken cancellationToken = null)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.FormReader
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultKeyLengthLimit
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public const int DefaultKeyLengthLimit = 2048
+    
+    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultValueCountLimit
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public const int DefaultValueCountLimit = 1024
+    
+    .. dn:field:: Microsoft.AspNetCore.WebUtilities.FormReader.DefaultValueLengthLimit
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public const int DefaultValueLengthLimit = 4194304
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.FormReader
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.KeyLengthLimit
+    
+        
+    
+        
+        The limit on the length of form keys.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int KeyLengthLimit { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.ValueCountLimit
+    
+        
+    
+        
+        The limit on the number of form values to allow in ReadForm or ReadFormAsync.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int ValueCountLimit { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.FormReader.ValueLengthLimit
+    
+        
+    
+        
+        The limit on the length of form values.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int ValueLengthLimit { get; set; }
     
 

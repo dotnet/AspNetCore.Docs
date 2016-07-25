@@ -56,96 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.Duration
-    
-        
-    
-        
-        Gets or sets the duration in seconds for which the response is cached.
-        This is a required parameter.
-        This sets "max-age" in "Cache-control" header.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Duration
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.Location
-    
-        
-    
-        
-        Gets or sets the location where the data from a particular URL must be cached.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ResponseCacheLocation
-    
-        
-        .. code-block:: csharp
-    
-            public ResponseCacheLocation Location
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.NoStore
-    
-        
-    
-        
-        Gets or sets the value which determines whether the data should be stored or not.
-        When set to <xref uid="langword_csharp_true" name="true" href=""></xref>, it sets "Cache-control" header to "no-store".
-        Ignores the "Location" parameter for values other than "None".
-        Ignores the "duration" parameter.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool NoStore
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.VaryByHeader
-    
-        
-    
-        
-        Gets or sets the value for the Vary response header.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string VaryByHeader
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -173,6 +83,80 @@ Constructors
         .. code-block:: csharp
     
             public ResponseCacheFilter(CacheProfile cacheProfile)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.Duration
+    
+        
+    
+        
+        Gets or sets the duration in seconds for which the response is cached.
+        This is a required parameter.
+        This sets "max-age" in "Cache-control" header.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Duration { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.Location
+    
+        
+    
+        
+        Gets or sets the location where the data from a particular URL must be cached.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ResponseCacheLocation
+    
+        
+        .. code-block:: csharp
+    
+            public ResponseCacheLocation Location { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.NoStore
+    
+        
+    
+        
+        Gets or sets the value which determines whether the data should be stored or not.
+        When set to <xref uid="langword_csharp_true" name="true" href=""></xref>, it sets "Cache-control" header to "no-store".
+        Ignores the "Location" parameter for values other than "None".
+        Ignores the "duration" parameter.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool NoStore { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter.VaryByHeader
+    
+        
+    
+        
+        Gets or sets the value for the Vary response header.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string VaryByHeader { get; set; }
     
 
 Methods

@@ -56,91 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Name
-    
-        
-    
-        
-        The HTML attribute name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.NameComparison
-    
-        
-    
-        
-        The comparison method to use for :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Name` when determining if an HTML attribute name matches.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeNameComparison
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperRequiredAttributeNameComparison NameComparison
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Value
-    
-        
-    
-        
-        The HTML attribute value.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.ValueComparison
-    
-        
-    
-        
-        The comparison method to use for :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Value` when determining if an HTML attribute value matches.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeValueComparison
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperRequiredAttributeValueComparison ValueComparison
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -176,5 +91,74 @@ Methods
         .. code-block:: csharp
     
             public bool IsMatch(string attributeName, string attributeValue)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Name
+    
+        
+    
+        
+        The HTML attribute name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.NameComparison
+    
+        
+    
+        
+        The comparison method to use for :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Name` when determining if an HTML attribute name matches.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeNameComparison
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperRequiredAttributeNameComparison NameComparison { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Value
+    
+        
+    
+        
+        The HTML attribute value.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.ValueComparison
+    
+        
+    
+        
+        The comparison method to use for :dn:prop:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeDescriptor.Value` when determining if an HTML attribute value matches.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperRequiredAttributeValueComparison
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperRequiredAttributeValueComparison ValueComparison { get; set; }
     
 

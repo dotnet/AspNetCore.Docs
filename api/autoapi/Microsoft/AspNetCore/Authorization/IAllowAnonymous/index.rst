@@ -7,6 +7,10 @@ IAllowAnonymous Interface
 
 
 
+
+Marker interface to enable the :any:`Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute`\.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization`
 Assemblies

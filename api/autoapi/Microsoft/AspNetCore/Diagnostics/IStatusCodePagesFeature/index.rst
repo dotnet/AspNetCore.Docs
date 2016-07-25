@@ -69,10 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            bool Enabled
-            {
-                get;
-                set;
-            }
+            bool Enabled { get; set; }
     
 

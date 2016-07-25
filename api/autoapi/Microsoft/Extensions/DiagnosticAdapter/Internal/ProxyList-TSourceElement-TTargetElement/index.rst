@@ -52,44 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: TTargetElement
-    
-        
-        .. code-block:: csharp
-    
-            public TTargetElement this[int index]
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -124,6 +86,38 @@ Constructors
         .. code-block:: csharp
     
             protected ProxyList(IList<TSourceElement> source, Type proxyType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Extensions.DiagnosticAdapter.Internal.ProxyList<TSourceElement, TTargetElement>.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: TTargetElement
+    
+        
+        .. code-block:: csharp
+    
+            public TTargetElement this[int index] { get; }
     
 
 Methods

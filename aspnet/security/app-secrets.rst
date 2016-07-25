@@ -36,17 +36,15 @@ Installing the Secret Manager tool
   :emphasize-lines: 6-9
 
   "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final": {
-      "version": "1.0.0-preview1-final"
-    },
-    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final": {
-      "version": "1.0.0-preview1-final"
-    }
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
+    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final"
   },
 
 - Test the Secret Manager tool by running the following command::
 
     dotnet user-secrets -h
+
+.. note:: When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
 
 The Secret Manager tool will display usage, options and command help.
 

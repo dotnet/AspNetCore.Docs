@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -82,17 +60,17 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider.AuthorizationApplicationModelProvider(Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Authorization.AuthorizationOptions>)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider.AuthorizationApplicationModelProvider(Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider)
     
         
     
         
-        :type authorizationOptionsAccessor: Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Options.IOptions`1>{Microsoft.AspNetCore.Authorization.AuthorizationOptions<Microsoft.AspNetCore.Authorization.AuthorizationOptions>}
+        :type policyProvider: Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider
     
         
         .. code-block:: csharp
     
-            public AuthorizationApplicationModelProvider(IOptions<AuthorizationOptions> authorizationOptionsAccessor)
+            public AuthorizationApplicationModelProvider(IAuthorizationPolicyProvider policyProvider)
     
 
 Methods
@@ -126,5 +104,24 @@ Methods
         .. code-block:: csharp
     
             public void OnProvidersExecuting(ApplicationModelProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.AuthorizationApplicationModelProvider.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

@@ -64,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRoslynCompilationService.DefaultRoslynCompilationService(Microsoft.AspNetCore.Hosting.IHostingEnvironment, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>, Microsoft.AspNetCore.Mvc.Razor.Internal.IRazorViewEngineFileProviderAccessor, Microsoft.Extensions.Logging.ILoggerFactory)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRoslynCompilationService.DefaultRoslynCompilationService(Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>, Microsoft.AspNetCore.Mvc.Razor.Internal.IRazorViewEngineFileProviderAccessor, Microsoft.Extensions.Logging.ILoggerFactory)
     
         
     
@@ -74,9 +74,9 @@ Constructors
         
     
         
-        :param environment: The :any:`Microsoft.AspNetCore.Hosting.IHostingEnvironment`\.
+        :param partManager: The :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager`\.
         
-        :type environment: Microsoft.AspNetCore.Hosting.IHostingEnvironment
+        :type partManager: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager
     
         
         :param optionsAccessor: Accessor to :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions`\.
@@ -96,7 +96,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public DefaultRoslynCompilationService(IHostingEnvironment environment, IOptions<RazorViewEngineOptions> optionsAccessor, IRazorViewEngineFileProviderAccessor fileProviderAccessor, ILoggerFactory loggerFactory)
+            public DefaultRoslynCompilationService(ApplicationPartManager partManager, IOptions<RazorViewEngineOptions> optionsAccessor, IRazorViewEngineFileProviderAccessor fileProviderAccessor, ILoggerFactory loggerFactory)
     
 
 Methods
@@ -122,5 +122,21 @@ Methods
         .. code-block:: csharp
     
             public CompilationResult Compile(RelativeFileInfo fileInfo, string compilationContent)
+    
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRoslynCompilationService.GetCompilationReferences()
+    
+        
+    
+        
+        Gets the sequence of :any:`Microsoft.CodeAnalysis.MetadataReference` instances used for compilation.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.CodeAnalysis.MetadataReference<Microsoft.CodeAnalysis.MetadataReference>}
+        :return: The :any:`Microsoft.CodeAnalysis.MetadataReference` instances.
+    
+        
+        .. code-block:: csharp
+    
+            protected virtual IList<MetadataReference> GetCompilationReferences()
     
 

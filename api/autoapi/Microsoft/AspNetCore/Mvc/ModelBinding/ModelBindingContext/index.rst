@@ -64,6 +64,21 @@ Properties
     :hidden:
 
     
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ActionContext
+    
+        
+    
+        
+        Represents the :any:`Microsoft.AspNetCore.Mvc.ActionContext` associated with this context.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public abstract ActionContext ActionContext { get; set; }
+    
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.BinderModelName
     
         
@@ -77,18 +92,14 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string BinderModelName
-            {
-                get;
-                set;
-            }
+            public abstract string BinderModelName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.BindingSource
     
         
     
         
-        Gets or sets a value which represents the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` associated with the
+        Gets or sets a value which represents the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource` associated with the 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Model`\.
     
         
@@ -97,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract BindingSource BindingSource
-            {
-                get;
-                set;
-            }
+            public abstract BindingSource BindingSource { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.FieldName
     
@@ -116,11 +123,22 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string FieldName
-            {
-                get;
-                set;
-            }
+            public abstract string FieldName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.HttpContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` associated with this context.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public virtual HttpContext HttpContext { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.IsTopLevelObject
     
@@ -135,11 +153,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract bool IsTopLevelObject
-            {
-                get;
-                set;
-            }
+            public abstract bool IsTopLevelObject { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Model
     
@@ -154,11 +168,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract object Model
-            {
-                get;
-                set;
-            }
+            public abstract object Model { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ModelMetadata
     
@@ -173,18 +183,14 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract ModelMetadata ModelMetadata
-            {
-                get;
-                set;
-            }
+            public abstract ModelMetadata ModelMetadata { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ModelName
     
         
     
         
-        Gets or sets the name of the model. This property is used as a key for looking up values in
+        Gets or sets the name of the model. This property is used as a key for looking up values in 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` during model binding.
     
         
@@ -193,11 +199,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string ModelName
-            {
-                get;
-                set;
-            }
+            public abstract string ModelName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ModelState
     
@@ -213,11 +215,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract ModelStateDictionary ModelState
-            {
-                get;
-                set;
-            }
+            public abstract ModelStateDictionary ModelState { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ModelType
     
@@ -232,29 +230,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract Type ModelType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.OperationBindingContext
-    
-        
-    
-        
-        Represents the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.OperationBindingContext` associated with this context.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.OperationBindingContext
-    
-        
-        .. code-block:: csharp
-    
-            public abstract OperationBindingContext OperationBindingContext
-            {
-                get;
-                set;
-            }
+            public virtual Type ModelType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.PropertyFilter
     
@@ -270,11 +246,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract Func<ModelMetadata, bool> PropertyFilter
-            {
-                get;
-                set;
-            }
+            public abstract Func<ModelMetadata, bool> PropertyFilter { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result
     
@@ -282,28 +254,21 @@ Properties
     
         
         <p>
-        On completion returns a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` which
-        represents the result of the model binding process.
+        Gets or sets a :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` which represents the result of the model binding process.
         </p>
         <p>
-        If model binding was successful, the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` should be a value created
-        with :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.String,System.Object)`\. If model binding failed, the
-        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` should be a value created with :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Failed(System.String)`\.
-        If there was no data, or this model binder cannot handle the operation, the
-        :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult` should be null.
+        Before an :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` is called, :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result` will be set to a value indicating
+        failure. The binder should set :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.Result` to a value created with 
+        :dn:meth:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult.Success(System.Object)` if model binding succeeded.
         </p>
     
         
-        :rtype: System.Nullable<System.Nullable`1>{Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult<Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult>}
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingResult
     
         
         .. code-block:: csharp
     
-            public abstract ModelBindingResult? Result
-            {
-                get;
-                set;
-            }
+            public abstract ModelBindingResult Result { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValidationState
     
@@ -319,11 +284,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract ValidationStateDictionary ValidationState
-            {
-                get;
-                set;
-            }
+            public abstract ValidationStateDictionary ValidationState { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValueProvider
     
@@ -338,11 +299,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IValueProvider ValueProvider
-            {
-                get;
-                set;
-            }
+            public abstract IValueProvider ValueProvider { get; set; }
     
 
 Methods

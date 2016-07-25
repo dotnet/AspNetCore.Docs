@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeModelValidatorProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeModelValidatorProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeModelValidatorProvider.ValidatorProviders
-    
-        
-    
-        
-        Gets the list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider` instances.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<IModelValidatorProvider> ValidatorProviders
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -131,5 +104,29 @@ Methods
         .. code-block:: csharp
     
             public void CreateValidators(ModelValidatorProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeModelValidatorProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeModelValidatorProvider.ValidatorProviders
+    
+        
+    
+        
+        Gets the list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider` instances.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<IModelValidatorProvider> ValidatorProviders { get; }
     
 

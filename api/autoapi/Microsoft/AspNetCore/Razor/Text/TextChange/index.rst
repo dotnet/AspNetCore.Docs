@@ -44,158 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Razor.Text.TextChange
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Razor.Text.TextChange
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsDelete
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsDelete
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsInsert
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsInsert
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsReplace
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReplace
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewBuffer
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.ITextBuffer
-    
-        
-        .. code-block:: csharp
-    
-            public ITextBuffer NewBuffer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewLength
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int NewLength
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewPosition
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int NewPosition
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewText
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string NewText
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldBuffer
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Text.ITextBuffer
-    
-        
-        .. code-block:: csharp
-    
-            public ITextBuffer OldBuffer
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldLength
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int OldLength
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldPosition
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int OldPosition
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldText
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string OldText
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -323,5 +171,165 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.Text.TextChange
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.Text.TextChange.Equality(Microsoft.AspNetCore.Razor.Text.TextChange, Microsoft.AspNetCore.Razor.Text.TextChange)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.Text.TextChange
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.Text.TextChange
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(TextChange left, TextChange right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Razor.Text.TextChange.Inequality(Microsoft.AspNetCore.Razor.Text.TextChange, Microsoft.AspNetCore.Razor.Text.TextChange)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Razor.Text.TextChange
+    
+        
+        :type right: Microsoft.AspNetCore.Razor.Text.TextChange
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(TextChange left, TextChange right)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.Text.TextChange
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsDelete
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsDelete { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsInsert
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsInsert { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.IsReplace
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReplace { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewBuffer
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.ITextBuffer
+    
+        
+        .. code-block:: csharp
+    
+            public ITextBuffer NewBuffer { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewLength
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int NewLength { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewPosition
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int NewPosition { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.NewText
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string NewText { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldBuffer
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Text.ITextBuffer
+    
+        
+        .. code-block:: csharp
+    
+            public ITextBuffer OldBuffer { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldLength
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int OldLength { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldPosition
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int OldPosition { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Text.TextChange.OldText
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string OldText { get; }
     
 

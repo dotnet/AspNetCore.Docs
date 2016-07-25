@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IList<IPathSegment>> Contains
-            {
-                get;
-            }
+            IList<IList<IPathSegment>> Contains { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern.EndsWith
     
@@ -73,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IPathSegment> EndsWith
-            {
-                get;
-            }
+            IList<IPathSegment> EndsWith { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern.Segments
     
@@ -86,10 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IPathSegment> Segments
-            {
-                get;
-            }
+            IList<IPathSegment> Segments { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.IRaggedPattern.StartsWith
     
@@ -99,9 +90,6 @@ Properties
         
         .. code-block:: csharp
     
-            IList<IPathSegment> StartsWith
-            {
-                get;
-            }
+            IList<IPathSegment> StartsWith { get; }
     
 

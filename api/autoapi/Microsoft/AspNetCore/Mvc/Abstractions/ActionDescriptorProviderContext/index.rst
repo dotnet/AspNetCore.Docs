@@ -68,9 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<ActionDescriptor> Results
-            {
-                get;
-            }
+            public IList<ActionDescriptor> Results { get; }
     
 

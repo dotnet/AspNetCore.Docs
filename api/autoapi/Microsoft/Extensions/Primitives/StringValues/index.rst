@@ -48,74 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.Primitives.StringValues
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.Primitives.StringValues
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string this[int index]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.System.Collections.Generic.ICollection<System.String>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<string>.IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.System.Collections.Generic.IList<System.String>.Item[System.Int32]
-    
-        
-    
-        
-        :type index: System.Int32
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            string IList<string>.this[int index]
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -147,25 +79,6 @@ Constructors
         .. code-block:: csharp
     
             public StringValues(string[] values)
-    
-
-Fields
-------
-
-.. dn:structure:: Microsoft.Extensions.Primitives.StringValues
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.Extensions.Primitives.StringValues.Empty
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly StringValues Empty
     
 
 Methods
@@ -498,5 +411,364 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringValues
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(Microsoft.Extensions.Primitives.StringValues, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(StringValues left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(Microsoft.Extensions.Primitives.StringValues, System.Object)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.Object
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(StringValues left, object right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(Microsoft.Extensions.Primitives.StringValues, System.String)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.String
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(StringValues left, string right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(Microsoft.Extensions.Primitives.StringValues, System.String[])
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.String<System.String>[]
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(StringValues left, string[] right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(System.Object, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.Object
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(object left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(System.String, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.String
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(string left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Equality(System.String[], Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.String<System.String>[]
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(string[] left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Implicit(Microsoft.Extensions.Primitives.StringValues to System.String)
+    
+        
+    
+        
+        :type values: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator string (StringValues values)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Implicit(Microsoft.Extensions.Primitives.StringValues to System.String[])
+    
+        
+    
+        
+        :type value: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.String<System.String>[]
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator string[](StringValues value)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Implicit(System.String to Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type value: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator StringValues(string value)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Implicit(System.String[] to Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type values: System.String<System.String>[]
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator StringValues(string[] values)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(Microsoft.Extensions.Primitives.StringValues, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(StringValues left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(Microsoft.Extensions.Primitives.StringValues, System.Object)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.Object
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(StringValues left, object right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(Microsoft.Extensions.Primitives.StringValues, System.String)
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.String
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(StringValues left, string right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(Microsoft.Extensions.Primitives.StringValues, System.String[])
+    
+        
+    
+        
+        :type left: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        :type right: System.String<System.String>[]
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(StringValues left, string[] right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(System.Object, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.Object
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(object left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(System.String, Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.String
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(string left, StringValues right)
+    
+    .. dn:operator:: Microsoft.Extensions.Primitives.StringValues.Inequality(System.String[], Microsoft.Extensions.Primitives.StringValues)
+    
+        
+    
+        
+        :type left: System.String<System.String>[]
+    
+        
+        :type right: Microsoft.Extensions.Primitives.StringValues
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(string[] left, StringValues right)
+    
+
+Fields
+------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringValues
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.Primitives.StringValues.Empty
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly StringValues Empty
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringValues
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string this[int index] { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.System.Collections.Generic.ICollection<System.String>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<string>.IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.System.Collections.Generic.IList<System.String>.Item[System.Int32]
+    
+        
+    
+        
+        :type index: System.Int32
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            string IList<string>.this[int index] { get; set; }
     
 

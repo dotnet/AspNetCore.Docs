@@ -57,53 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents.OnCreatingTicket
-    
-        
-    
-        
-        Gets or sets the function that is invoked when the CreatingTicket method is invoked.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OAuth.OAuthCreatingTicketContext<Microsoft.AspNetCore.Authentication.OAuth.OAuthCreatingTicketContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<OAuthCreatingTicketContext, Task> OnCreatingTicket
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents.OnRedirectToAuthorizationEndpoint
-    
-        
-    
-        
-        Gets or sets the delegate that is invoked when the RedirectToAuthorizationEndpoint method is invoked.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext<Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<OAuthRedirectToAuthorizationContext, Task> OnRedirectToAuthorizationEndpoint
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -152,5 +105,44 @@ Methods
         .. code-block:: csharp
     
             public virtual Task RedirectToAuthorizationEndpoint(OAuthRedirectToAuthorizationContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents.OnCreatingTicket
+    
+        
+    
+        
+        Gets or sets the function that is invoked when the CreatingTicket method is invoked.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OAuth.OAuthCreatingTicketContext<Microsoft.AspNetCore.Authentication.OAuth.OAuthCreatingTicketContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<OAuthCreatingTicketContext, Task> OnCreatingTicket { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents.OnRedirectToAuthorizationEndpoint
+    
+        
+    
+        
+        Gets or sets the delegate that is invoked when the RedirectToAuthorizationEndpoint method is invoked.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext<Microsoft.AspNetCore.Authentication.OAuth.OAuthRedirectToAuthorizationContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<OAuthRedirectToAuthorizationContext, Task> OnRedirectToAuthorizationEndpoint { get; set; }
     
 

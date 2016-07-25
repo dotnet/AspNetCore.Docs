@@ -56,46 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext.ControllerTypes
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Reflection.TypeInfo<System.Reflection.TypeInfo>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<TypeInfo> ControllerTypes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext.Result
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
-    
-        
-        .. code-block:: csharp
-    
-            public ApplicationModel Result
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -115,5 +75,39 @@ Constructors
         .. code-block:: csharp
     
             public ApplicationModelProviderContext(IEnumerable<TypeInfo> controllerTypes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext.ControllerTypes
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Reflection.TypeInfo<System.Reflection.TypeInfo>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<TypeInfo> ControllerTypes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext.Result
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
+    
+        
+        .. code-block:: csharp
+    
+            public ApplicationModel Result { get; }
     
 

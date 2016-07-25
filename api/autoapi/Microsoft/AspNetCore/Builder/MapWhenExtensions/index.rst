@@ -90,6 +90,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder MapWhen(IApplicationBuilder app, Func<HttpContext, bool> predicate, Action<IApplicationBuilder> configuration)
+            public static IApplicationBuilder MapWhen(this IApplicationBuilder app, Func<HttpContext, bool> predicate, Action<IApplicationBuilder> configuration)
     
 

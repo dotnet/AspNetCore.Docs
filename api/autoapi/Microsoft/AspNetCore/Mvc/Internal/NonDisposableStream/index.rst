@@ -60,140 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanRead
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanRead
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanSeek
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanSeek
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanTimeout
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanTimeout
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanWrite
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public override bool CanWrite
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.InnerStream
-    
-        
-    
-        
-        The inner stream this object delegates to.
-    
-        
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-            protected Stream InnerStream
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.Length
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public override long Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.Position
-    
-        
-        :rtype: System.Int64
-    
-        
-        .. code-block:: csharp
-    
-            public override long Position
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.ReadTimeout
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int ReadTimeout
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.WriteTimeout
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int WriteTimeout
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -497,5 +363,109 @@ Methods
         .. code-block:: csharp
     
             public override void WriteByte(byte value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanRead
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanRead { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanSeek
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanSeek { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanTimeout
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanTimeout { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.CanWrite
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool CanWrite { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.InnerStream
+    
+        
+    
+        
+        The inner stream this object delegates to.
+    
+        
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            protected Stream InnerStream { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.Length
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public override long Length { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.Position
+    
+        
+        :rtype: System.Int64
+    
+        
+        .. code-block:: csharp
+    
+            public override long Position { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.ReadTimeout
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int ReadTimeout { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.NonDisposableStream.WriteTimeout
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int WriteTimeout { get; set; }
     
 

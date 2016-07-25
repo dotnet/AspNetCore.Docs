@@ -1,3 +1,5 @@
+:version: 1.0.0-rc1
+
 Using Angular for Single Page Applications (SPAs)
 =================================================
 

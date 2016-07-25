@@ -81,7 +81,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWebHostBuilder UseKestrel(IWebHostBuilder hostBuilder)
+            public static IWebHostBuilder UseKestrel(this IWebHostBuilder hostBuilder)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel(Microsoft.AspNetCore.Hosting.IWebHostBuilder, System.Action<Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>)
     
@@ -110,6 +110,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IWebHostBuilder UseKestrel(IWebHostBuilder hostBuilder, Action<KestrelServerOptions> options)
+            public static IWebHostBuilder UseKestrel(this IWebHostBuilder hostBuilder, Action<KestrelServerOptions> options)
     
 

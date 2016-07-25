@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Http.Features;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace NowinSample
@@ -17,11 +16,8 @@ namespace NowinSample
         {
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World via " + app.ServerFeatures.Get<INowinServerInformation>().Name + "!");
+                await context.Response.WriteAsync("Hello World via Nowin");
             });
         }
-        
-        // Entry point for the application.        
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

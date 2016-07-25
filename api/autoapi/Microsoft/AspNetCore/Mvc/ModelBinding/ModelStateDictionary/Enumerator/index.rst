@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator.Current
-    
-        
-        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>}
-    
-        
-        .. code-block:: csharp
-    
-            public KeyValuePair<string, ModelStateEntry> Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,6 +66,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(ModelStateDictionary dictionary, string prefix)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator.Current
+    
+        
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry<Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateEntry>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, ModelStateEntry> Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

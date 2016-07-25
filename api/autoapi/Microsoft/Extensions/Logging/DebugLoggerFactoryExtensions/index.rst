@@ -82,7 +82,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddDebug(ILoggerFactory factory)
+            public static ILoggerFactory AddDebug(this ILoggerFactory factory)
     
     .. dn:method:: Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug(Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.Extensions.Logging.LogLevel)
     
@@ -107,7 +107,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddDebug(ILoggerFactory factory, LogLevel minLevel)
+            public static ILoggerFactory AddDebug(this ILoggerFactory factory, LogLevel minLevel)
     
     .. dn:method:: Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug(Microsoft.Extensions.Logging.ILoggerFactory, System.Func<System.String, Microsoft.Extensions.Logging.LogLevel, System.Boolean>)
     
@@ -132,6 +132,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ILoggerFactory AddDebug(ILoggerFactory factory, Func<string, LogLevel, bool> filter)
+            public static ILoggerFactory AddDebug(this ILoggerFactory factory, Func<string, LogLevel, bool> filter)
     
 

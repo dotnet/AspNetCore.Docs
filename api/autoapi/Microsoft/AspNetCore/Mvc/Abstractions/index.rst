@@ -104,6 +104,27 @@ Microsoft.AspNetCore.Mvc.Abstractions Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Abstractions
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IActionDescriptorProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider
+
+        
+
+
+    interface :dn:iface:`IActionInvoker`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker
+
+        
+
+
+    interface :dn:iface:`IActionInvokerProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -134,27 +155,6 @@ Microsoft.AspNetCore.Mvc.Abstractions Namespace
 
     class :dn:cls:`ParameterDescriptor`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Abstractions.ParameterDescriptor
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IActionDescriptorProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider
-
-        
-
-
-    interface :dn:iface:`IActionInvoker`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionInvoker
-
-        
-
-
-    interface :dn:iface:`IActionInvokerProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Abstractions.IActionInvokerProvider
 
         
 

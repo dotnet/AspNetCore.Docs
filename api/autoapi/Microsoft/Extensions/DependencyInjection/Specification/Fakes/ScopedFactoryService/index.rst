@@ -68,10 +68,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IFakeService FakeService
-            {
-                get;
-                set;
-            }
+            public IFakeService FakeService { get; set; }
     
 

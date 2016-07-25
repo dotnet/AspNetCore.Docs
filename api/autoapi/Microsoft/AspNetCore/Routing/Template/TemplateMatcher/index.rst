@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.Defaults
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary Defaults
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.Template
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.Template.RouteTemplate
-    
-        
-        .. code-block:: csharp
-    
-            public RouteTemplate Template
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -111,6 +76,35 @@ Constructors
             public TemplateMatcher(RouteTemplate template, RouteValueDictionary defaults)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.Defaults
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary Defaults { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.Template
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.Template.RouteTemplate
+    
+        
+        .. code-block:: csharp
+    
+            public RouteTemplate Template { get; }
+    
+
 Methods
 -------
 
@@ -119,17 +113,20 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.Match(Microsoft.AspNetCore.Http.PathString)
+    .. dn:method:: Microsoft.AspNetCore.Routing.Template.TemplateMatcher.TryMatch(Microsoft.AspNetCore.Http.PathString, Microsoft.AspNetCore.Routing.RouteValueDictionary)
     
         
     
         
         :type path: Microsoft.AspNetCore.Http.PathString
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        :type values: Microsoft.AspNetCore.Routing.RouteValueDictionary
+        :rtype: System.Boolean
     
         
         .. code-block:: csharp
     
-            public RouteValueDictionary Match(PathString path)
+            public bool TryMatch(PathString path, RouteValueDictionary values)
     
 

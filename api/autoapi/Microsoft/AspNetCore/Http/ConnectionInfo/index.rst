@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract X509Certificate2 ClientCertificate
-            {
-                get;
-                set;
-            }
+            public abstract X509Certificate2 ClientCertificate { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.ConnectionInfo.LocalIpAddress
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IPAddress LocalIpAddress
-            {
-                get;
-                set;
-            }
+            public abstract IPAddress LocalIpAddress { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.ConnectionInfo.LocalPort
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract int LocalPort
-            {
-                get;
-                set;
-            }
+            public abstract int LocalPort { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IPAddress RemoteIpAddress
-            {
-                get;
-                set;
-            }
+            public abstract IPAddress RemoteIpAddress { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.ConnectionInfo.RemotePort
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract int RemotePort
-            {
-                get;
-                set;
-            }
+            public abstract int RemotePort { get; set; }
     
 
 Methods

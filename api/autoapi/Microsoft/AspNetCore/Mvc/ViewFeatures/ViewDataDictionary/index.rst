@@ -52,177 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Item[System.String]
-    
-        
-    
-        
-        :type index: System.String
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object this[string index]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model
-    
-        
-    
-        
-        Gets or sets the current model.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Model
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelExplorer
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer` for the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
-    
-        
-        .. code-block:: csharp
-    
-            public ModelExplorer ModelExplorer
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelMetadata
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` for an expression, the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model` (if
-        non-<code>null</code>), or the declared :any:`System.Type`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
-    
-        
-        .. code-block:: csharp
-    
-            public ModelMetadata ModelMetadata
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelState
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary ModelState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.TemplateInfo
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo
-    
-        
-        .. code-block:: csharp
-    
-            public TemplateInfo TemplateInfo
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<object> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -563,7 +392,7 @@ Methods
         
     
         
-        Gets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` for named <em>expression</em> in this
+        Gets :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` for named <em>expression</em> in this 
         :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`\.
     
         
@@ -574,7 +403,7 @@ Methods
         :type expression: System.String
         :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo
         :return: 
-            :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` for named <em>expression</em> in this
+            :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataInfo` for named <em>expression</em> in this 
             :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary`\.
     
         
@@ -663,5 +492,143 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Item[System.String]
+    
+        
+    
+        
+        :type index: System.String
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object this[string index] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model
+    
+        
+    
+        
+        Gets or sets the current model.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Model { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelExplorer
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer` for the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExplorer
+    
+        
+        .. code-block:: csharp
+    
+            public ModelExplorer ModelExplorer { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelMetadata
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata` for an expression, the :dn:prop:`Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Model` (if
+        non-<code>null</code>), or the declared :any:`System.Type`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata
+    
+        
+        .. code-block:: csharp
+    
+            public ModelMetadata ModelMetadata { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.ModelState
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary ModelState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.TemplateInfo
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo
+    
+        
+        .. code-block:: csharp
+    
+            public TemplateInfo TemplateInfo { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<object> Values { get; }
     
 

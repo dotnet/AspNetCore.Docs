@@ -52,113 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.Application
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Application
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.CaptureStartupErrors
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool CaptureStartupErrors
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.ContentRootPath
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ContentRootPath
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.DetailedErrors
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool DetailedErrors
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.Environment
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Environment
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.ServerAssembly
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ServerAssembly
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.WebRoot
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string WebRoot
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -187,5 +80,84 @@ Constructors
         .. code-block:: csharp
     
             public WebHostOptions(IConfiguration configuration)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.ApplicationName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ApplicationName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.CaptureStartupErrors
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool CaptureStartupErrors { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.ContentRootPath
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ContentRootPath { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.DetailedErrors
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool DetailedErrors { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.Environment
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Environment { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.StartupAssembly
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string StartupAssembly { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions.WebRoot
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string WebRoot { get; set; }
     
 

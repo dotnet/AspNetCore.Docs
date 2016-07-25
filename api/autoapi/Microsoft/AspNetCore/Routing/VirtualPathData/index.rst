@@ -57,71 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathData
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathData
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens
-    
-        
-    
-        
-        Gets the collection of custom values for the :dn:prop:`Microsoft.AspNetCore.Routing.VirtualPathData.Router`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public RouteValueDictionary DataTokens
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.Router
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Routing.IRouter` that was used to generate the URL.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.IRouter
-    
-        
-        .. code-block:: csharp
-    
-            public IRouter Router
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath
-    
-        
-    
-        
-        Gets or sets the URL that was generated from the :dn:prop:`Microsoft.AspNetCore.Routing.VirtualPathData.Router`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string VirtualPath
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -182,5 +117,59 @@ Constructors
         .. code-block:: csharp
     
             public VirtualPathData(IRouter router, string virtualPath, RouteValueDictionary dataTokens)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.VirtualPathData
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.DataTokens
+    
+        
+    
+        
+        Gets the collection of custom values for the :dn:prop:`Microsoft.AspNetCore.Routing.VirtualPathData.Router`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteValueDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public RouteValueDictionary DataTokens { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.Router
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Routing.IRouter` that was used to generate the URL.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.IRouter
+    
+        
+        .. code-block:: csharp
+    
+            public IRouter Router { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath
+    
+        
+    
+        
+        Gets or sets the URL that was generated from the :dn:prop:`Microsoft.AspNetCore.Routing.VirtualPathData.Router`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string VirtualPath { get; set; }
     
 

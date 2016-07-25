@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.EntityTagHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.EntityTagHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.Any
-    
-        
-        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
-    
-        
-        .. code-block:: csharp
-    
-            public static EntityTagHeaderValue Any
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.IsWeak
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsWeak
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.Tag
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Tag
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -134,6 +86,45 @@ Constructors
         .. code-block:: csharp
     
             public EntityTagHeaderValue(string tag, bool isWeak)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.EntityTagHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.Any
+    
+        
+        :rtype: Microsoft.Net.Http.Headers.EntityTagHeaderValue
+    
+        
+        .. code-block:: csharp
+    
+            public static EntityTagHeaderValue Any { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.IsWeak
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsWeak { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.EntityTagHeaderValue.Tag
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Tag { get; }
     
 
 Methods

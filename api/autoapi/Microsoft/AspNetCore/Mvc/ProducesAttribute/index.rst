@@ -9,7 +9,7 @@ ProducesAttribute Class
 
 
 A filter that specifies the expected :any:`System.Type` the action will return and the supported
-response content types. The :dn:prop:`Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes` value is used to set
+response content types. The :dn:prop:`Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes` value is used to set 
 :dn:prop:`Microsoft.AspNetCore.Mvc.ObjectResult.ContentTypes`\.
 
 
@@ -61,61 +61,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ProducesAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ProducesAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes
-    
-        
-    
-        
-        Gets or sets the supported response content types. Used to set :dn:prop:`Microsoft.AspNetCore.Mvc.ObjectResult.ContentTypes`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeCollection ContentTypes
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.StatusCode
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int StatusCode
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.Type
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type Type
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,6 +111,50 @@ Constructors
         .. code-block:: csharp
     
             public ProducesAttribute(Type type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ProducesAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.ContentTypes
+    
+        
+    
+        
+        Gets or sets the supported response content types. Used to set :dn:prop:`Microsoft.AspNetCore.Mvc.ObjectResult.ContentTypes`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeCollection ContentTypes { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.StatusCode
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int StatusCode { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ProducesAttribute.Type
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type Type { get; set; }
     
 
 Methods

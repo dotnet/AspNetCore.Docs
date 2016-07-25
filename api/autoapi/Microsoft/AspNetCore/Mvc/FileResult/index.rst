@@ -58,52 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.FileResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.FileResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.FileResult.ContentType
-    
-        
-    
-        
-        Gets the Content-Type header for the response.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ContentType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.FileResult.FileDownloadName
-    
-        
-    
-        
-        Gets the file name that will be used in the Content-Disposition header of the response.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileDownloadName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -133,47 +87,42 @@ Constructors
             protected FileResult(string contentType)
     
 
-Methods
--------
+Properties
+----------
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.FileResult
     :noindex:
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.FileResult.ExecuteResultAsync(Microsoft.AspNetCore.Mvc.ActionContext)
+    .. dn:property:: Microsoft.AspNetCore.Mvc.FileResult.ContentType
     
         
     
         
-        :type context: Microsoft.AspNetCore.Mvc.ActionContext
-        :rtype: System.Threading.Tasks.Task
+        Gets the Content-Type header for the response.
     
         
-        .. code-block:: csharp
-    
-            public override Task ExecuteResultAsync(ActionContext context)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.FileResult.WriteFileAsync(Microsoft.AspNetCore.Http.HttpResponse)
-    
-        
-    
-        
-        Writes the file to the specified <em>response</em>.
-    
-        
-    
-        
-        :param response: The :any:`Microsoft.AspNetCore.Http.HttpResponse`\.
-        
-        :type response: Microsoft.AspNetCore.Http.HttpResponse
-        :rtype: System.Threading.Tasks.Task
-        :return: 
-            A :any:`System.Threading.Tasks.Task` that will complete when the file has been written to the response.
+        :rtype: System.String
     
         
         .. code-block:: csharp
     
-            protected abstract Task WriteFileAsync(HttpResponse response)
+            public string ContentType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.FileResult.FileDownloadName
+    
+        
+    
+        
+        Gets the file name that will be used in the Content-Disposition header of the response.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileDownloadName { get; set; }
     
 

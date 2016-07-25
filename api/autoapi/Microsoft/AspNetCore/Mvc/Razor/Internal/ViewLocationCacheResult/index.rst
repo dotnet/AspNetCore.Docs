@@ -56,87 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.SearchedLocations
-    
-        
-    
-        
-        The sequence of locations that were searched.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<string> SearchedLocations
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.Success
-    
-        
-    
-        
-        Gets a value that indicates whether the view was successfully found.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Success
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.ViewEntry
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem` for the located view.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem
-    
-        
-        .. code-block:: csharp
-    
-            public ViewLocationCacheItem ViewEntry
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.ViewStartEntries
-    
-        
-    
-        
-        :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem`\s for applicable _ViewStarts.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem<Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<ViewLocationCacheItem> ViewStartEntries
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -189,5 +108,74 @@ Constructors
         .. code-block:: csharp
     
             public ViewLocationCacheResult(IEnumerable<string> searchedLocations)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.SearchedLocations
+    
+        
+    
+        
+        The sequence of locations that were searched.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<string> SearchedLocations { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.Success
+    
+        
+    
+        
+        Gets a value that indicates whether the view was successfully found.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Success { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.ViewEntry
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem` for the located view.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem
+    
+        
+        .. code-block:: csharp
+    
+            public ViewLocationCacheItem ViewEntry { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheResult.ViewStartEntries
+    
+        
+    
+        
+        :any:`Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem`\s for applicable _ViewStarts.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem<Microsoft.AspNetCore.Mvc.Razor.Internal.ViewLocationCacheItem>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<ViewLocationCacheItem> ViewStartEntries { get; }
     
 

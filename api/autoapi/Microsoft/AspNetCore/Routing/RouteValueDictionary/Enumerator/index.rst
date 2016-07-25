@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator.Current
-    
-        
-        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public KeyValuePair<string, object> Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,6 +63,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(RouteValueDictionary dictionary)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator.Current
+    
+        
+        :rtype: System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public KeyValuePair<string, object> Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.RouteValueDictionary.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

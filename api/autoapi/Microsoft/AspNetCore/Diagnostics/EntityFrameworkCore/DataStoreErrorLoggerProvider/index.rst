@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLoggerProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLoggerProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLoggerProvider.Logger
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger
-    
-        
-        .. code-block:: csharp
-    
-            public virtual DataStoreErrorLogger Logger
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -103,5 +81,24 @@ Methods
         .. code-block:: csharp
     
             public virtual void Dispose()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLoggerProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLoggerProvider.Logger
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DataStoreErrorLogger
+    
+        
+        .. code-block:: csharp
+    
+            public virtual DataStoreErrorLogger Logger { get; }
     
 

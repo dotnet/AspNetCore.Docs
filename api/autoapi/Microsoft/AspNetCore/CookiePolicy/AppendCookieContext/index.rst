@@ -52,69 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CookieName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieOptions
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.CookieOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookieOptions CookieOptions
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieValue
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CookieValue
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,5 +80,54 @@ Constructors
         .. code-block:: csharp
     
             public AppendCookieContext(HttpContext context, CookieOptions options, string name, string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CookieName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieOptions
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.CookieOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookieOptions CookieOptions { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.AppendCookieContext.CookieValue
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CookieValue { get; set; }
     
 

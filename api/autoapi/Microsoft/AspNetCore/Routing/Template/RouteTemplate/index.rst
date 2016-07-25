@@ -53,54 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Template.RouteTemplate
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Template.RouteTemplate
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.Parameters
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.Template.TemplatePart<Microsoft.AspNetCore.Routing.Template.TemplatePart>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<TemplatePart> Parameters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.Segments
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.Template.TemplateSegment<Microsoft.AspNetCore.Routing.Template.TemplateSegment>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<TemplateSegment> Segments
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.TemplateText
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TemplateText
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -166,5 +118,44 @@ Methods
         .. code-block:: csharp
     
             public TemplateSegment GetSegment(int index)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Template.RouteTemplate
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.Parameters
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.Template.TemplatePart<Microsoft.AspNetCore.Routing.Template.TemplatePart>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<TemplatePart> Parameters { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.Segments
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Routing.Template.TemplateSegment<Microsoft.AspNetCore.Routing.Template.TemplateSegment>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<TemplateSegment> Segments { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.RouteTemplate.TemplateText
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TemplateText { get; }
     
 

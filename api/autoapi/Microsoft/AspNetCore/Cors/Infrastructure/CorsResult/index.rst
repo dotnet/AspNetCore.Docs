@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> AllowedExposedHeaders
-            {
-                get;
-            }
+            public IList<string> AllowedExposedHeaders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.AllowedHeaders
     
@@ -95,10 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> AllowedHeaders
-            {
-                get;
-            }
+            public IList<string> AllowedHeaders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.AllowedMethods
     
@@ -113,10 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> AllowedMethods
-            {
-                get;
-            }
+            public IList<string> AllowedMethods { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.AllowedOrigin
     
@@ -131,11 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AllowedOrigin
-            {
-                get;
-                set;
-            }
+            public string AllowedOrigin { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.PreflightMaxAge
     
@@ -150,11 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? PreflightMaxAge
-            {
-                get;
-                set;
-            }
+            public TimeSpan? PreflightMaxAge { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.SupportsCredentials
     
@@ -169,11 +152,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SupportsCredentials
-            {
-                get;
-                set;
-            }
+            public bool SupportsCredentials { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsResult.VaryByOrigin
     
@@ -188,11 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool VaryByOrigin
-            {
-                get;
-                set;
-            }
+            public bool VaryByOrigin { get; set; }
     
 
 Methods

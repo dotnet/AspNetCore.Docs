@@ -52,173 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Boundary
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Boundary
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Charset
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Charset
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Encoding
-    
-        
-        :rtype: System.Text.Encoding
-    
-        
-        .. code-block:: csharp
-    
-            public Encoding Encoding
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MatchesAllSubTypes
-    
-        
-    
-        
-        SubType = "*"
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MatchesAllSubTypes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MatchesAllTypes
-    
-        
-    
-        
-        MediaType = "*/*"
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool MatchesAllTypes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MediaType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string MediaType
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Parameters
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<NameValueHeaderValue> Parameters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Quality
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Double<System.Double>}
-    
-        
-        .. code-block:: csharp
-    
-            public double ? Quality
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.SubType
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string SubType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Type
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Type
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -253,6 +86,135 @@ Constructors
         .. code-block:: csharp
     
             public MediaTypeHeaderValue(string mediaType, double quality)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Boundary
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Boundary { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Charset
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Charset { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Encoding
+    
+        
+        :rtype: System.Text.Encoding
+    
+        
+        .. code-block:: csharp
+    
+            public Encoding Encoding { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MatchesAllSubTypes
+    
+        
+    
+        
+        SubType = "*"
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MatchesAllSubTypes { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MatchesAllTypes
+    
+        
+    
+        
+        MediaType = "*/*"
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool MatchesAllTypes { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.MediaType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string MediaType { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Parameters
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.Net.Http.Headers.NameValueHeaderValue<Microsoft.Net.Http.Headers.NameValueHeaderValue>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<NameValueHeaderValue> Parameters { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Quality
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Double<System.Double>}
+    
+        
+        .. code-block:: csharp
+    
+            public double ? Quality { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.SubType
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string SubType { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Type
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Type { get; }
     
 
 Methods

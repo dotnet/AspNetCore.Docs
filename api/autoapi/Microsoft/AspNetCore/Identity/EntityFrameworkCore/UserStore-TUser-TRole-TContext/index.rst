@@ -8,7 +8,7 @@ UserStore<TUser, TRole, TContext> Class
 
 
 
-Creates a new instance of a persistence store for the specified user and role types.
+Represents a new instance of a persistence store for the specified user and role types.
 
 
 Namespace
@@ -28,6 +28,7 @@ Inheritance Hierarchy
 
 
 * :dn:cls:`System.Object`
+* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{{TUser},{TRole},{TContext},System.String,Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore{{TUser},{TRole},{TContext},System.String}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore\<TUser, TRole, TContext>`
 
@@ -43,7 +44,7 @@ Syntax
 
 .. code-block:: csharp
 
-    public class UserStore<TUser, TRole, TContext> : UserStore<TUser, TRole, TContext, string>, IUserLoginStore<TUser>, IUserRoleStore<TUser>, IUserClaimStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser>, IUserEmailStore<TUser>, IUserLockoutStore<TUser>, IUserPhoneNumberStore<TUser>, IQueryableUserStore<TUser>, IUserTwoFactorStore<TUser>, IUserAuthenticationTokenStore<TUser>, IUserStore<TUser>, IDisposable where TUser : IdentityUser<string>, new ()where TRole : IdentityRole<string>, new ()where TContext : DbContext
+    public class UserStore<TUser, TRole, TContext> : UserStore<TUser, TRole, TContext, string>, IUserLoginStore<TUser>, IUserRoleStore<TUser>, IUserClaimStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser>, IUserEmailStore<TUser>, IUserLockoutStore<TUser>, IUserPhoneNumberStore<TUser>, IQueryableUserStore<TUser>, IUserTwoFactorStore<TUser>, IUserAuthenticationTokenStore<TUser>, IUserStore<TUser>, IDisposable where TUser : IdentityUser<string> where TRole : IdentityRole<string> where TContext : DbContext
 
 
 

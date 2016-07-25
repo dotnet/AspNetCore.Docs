@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string FullName
-            {
-                get;
-            }
+            public abstract string FullName { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase.Name
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string Name
-            {
-                get;
-            }
+            public abstract string Name { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase.ParentDirectory
     
@@ -94,9 +88,6 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract DirectoryInfoBase ParentDirectory
-            {
-                get;
-            }
+            public abstract DirectoryInfoBase ParentDirectory { get; }
     
 

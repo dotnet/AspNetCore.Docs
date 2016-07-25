@@ -128,6 +128,15 @@ Microsoft.AspNetCore.Razor.CodeGenerators.Visitors Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IChunkVisitor`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.IChunkVisitor
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -190,15 +199,6 @@ Microsoft.AspNetCore.Razor.CodeGenerators.Visitors Namespace
 
     class :dn:cls:`CodeVisitor\<TWriter>`
         .. object: type=class name=Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CodeVisitor\<TWriter>
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IChunkVisitor`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.IChunkVisitor
 
         
 

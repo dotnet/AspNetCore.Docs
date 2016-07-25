@@ -52,67 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Accepted
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool Accepted
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.AuthenticationScheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AuthenticationScheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Behavior
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeBehavior
-    
-        
-        .. code-block:: csharp
-    
-            public ChallengeBehavior Behavior
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, string> Properties
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -168,5 +107,54 @@ Methods
         .. code-block:: csharp
     
             public void Accept()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Accepted
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool Accepted { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.AuthenticationScheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AuthenticationScheme { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Behavior
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeBehavior
+    
+        
+        .. code-block:: csharp
+    
+            public ChallengeBehavior Behavior { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Features.Authentication.ChallengeContext.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, string> Properties { get; }
     
 

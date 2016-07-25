@@ -64,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Session.SessionMiddleware.SessionMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.AspNetCore.Session.ISessionStore, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.SessionOptions>)
+    .. dn:constructor:: Microsoft.AspNetCore.Session.SessionMiddleware.SessionMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.AspNetCore.DataProtection.IDataProtectionProvider, Microsoft.AspNetCore.Session.ISessionStore, Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.SessionOptions>)
     
         
     
@@ -84,6 +84,11 @@ Constructors
         :type loggerFactory: Microsoft.Extensions.Logging.ILoggerFactory
     
         
+        :param dataProtectionProvider: The :any:`Microsoft.AspNetCore.DataProtection.IDataProtectionProvider` used to protect and verify the cookie.
+        
+        :type dataProtectionProvider: Microsoft.AspNetCore.DataProtection.IDataProtectionProvider
+    
+        
         :param sessionStore: The :any:`Microsoft.AspNetCore.Session.ISessionStore` representing the session store.
         
         :type sessionStore: Microsoft.AspNetCore.Session.ISessionStore
@@ -96,7 +101,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public SessionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, ISessionStore sessionStore, IOptions<SessionOptions> options)
+            public SessionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IDataProtectionProvider dataProtectionProvider, ISessionStore sessionStore, IOptions<SessionOptions> options)
     
 
 Methods

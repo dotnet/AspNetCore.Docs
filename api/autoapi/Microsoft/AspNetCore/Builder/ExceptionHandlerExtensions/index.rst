@@ -77,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app)
+            public static IApplicationBuilder UseExceptionHandler(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.ExceptionHandlerOptions)
     
@@ -99,7 +99,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, ExceptionHandlerOptions options)
+            public static IApplicationBuilder UseExceptionHandler(this IApplicationBuilder app, ExceptionHandlerOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Action<Microsoft.AspNetCore.Builder.IApplicationBuilder>)
     
@@ -121,7 +121,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, Action<IApplicationBuilder> configure)
+            public static IApplicationBuilder UseExceptionHandler(this IApplicationBuilder app, Action<IApplicationBuilder> configure)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -143,6 +143,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseExceptionHandler(IApplicationBuilder app, string errorHandlingPath)
+            public static IApplicationBuilder UseExceptionHandler(this IApplicationBuilder app, string errorHandlingPath)
     
 

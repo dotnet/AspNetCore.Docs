@@ -94,6 +94,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ModelMetadata GetMetadataForProperty(IModelMetadataProvider provider, Type containerType, string propertyName)
+            public static ModelMetadata GetMetadataForProperty(this IModelMetadataProvider provider, Type containerType, string propertyName)
     
 

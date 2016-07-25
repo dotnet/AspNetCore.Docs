@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.Secret
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.Secret
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Secret.Length
-    
-        
-    
-        
-        The length (in bytes) of the secret value.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Length
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -247,5 +220,29 @@ Methods
         .. code-block:: csharp
     
             public void WriteSecretIntoBuffer(byte *buffer, int bufferLength)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.Secret
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Secret.Length
+    
+        
+    
+        
+        The length (in bytes) of the secret value.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Length { get; }
     
 

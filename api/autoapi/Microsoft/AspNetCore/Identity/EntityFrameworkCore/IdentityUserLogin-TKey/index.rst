@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string LoginProvider
-            {
-                get;
-                set;
-            }
+            public virtual string LoginProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<TKey>.ProviderDisplayName
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string ProviderDisplayName
-            {
-                get;
-                set;
-            }
+            public virtual string ProviderDisplayName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<TKey>.ProviderKey
     
@@ -116,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual string ProviderKey
-            {
-                get;
-                set;
-            }
+            public virtual string ProviderKey { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<TKey>.UserId
     
@@ -135,10 +123,6 @@ Properties
         
         .. code-block:: csharp
     
-            public virtual TKey UserId
-            {
-                get;
-                set;
-            }
+            public virtual TKey UserId { get; set; }
     
 

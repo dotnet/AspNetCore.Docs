@@ -7,6 +7,10 @@ ConfigureFromConfigurationOptions<TOptions> Class
 
 
 
+
+Configures an option instance by using ConfigurationBinder.Bind against an IConfiguration.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -65,6 +69,13 @@ Constructors
     
         
     
+        
+        Constructor that takes the IConfiguration instance to bind against.
+    
+        
+    
+        
+        :param config: The IConfiguration instance.
         
         :type config: Microsoft.Extensions.Configuration.IConfiguration
     

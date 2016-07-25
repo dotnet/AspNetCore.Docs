@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>.Attributes
-    
-        
-    
-        
-        Gets the names of attributes required for this mode.
-    
-        
-        :rtype: System.String<System.String>[]
-    
-        
-        .. code-block:: csharp
-    
-            public string[] Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>.Mode
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s mode.
-    
-        
-        :rtype: TMode
-    
-        
-        .. code-block:: csharp
-    
-            public TMode Mode
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -132,5 +87,44 @@ Constructors
         .. code-block:: csharp
     
             public ModeAttributes(TMode mode, string[] attributes)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>.Attributes
+    
+        
+    
+        
+        Gets the names of attributes required for this mode.
+    
+        
+        :rtype: System.String<System.String>[]
+    
+        
+        .. code-block:: csharp
+    
+            public string[] Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.ModeAttributes<TMode>.Mode
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\'s mode.
+    
+        
+        :rtype: TMode
+    
+        
+        .. code-block:: csharp
+    
+            public TMode Mode { get; }
     
 

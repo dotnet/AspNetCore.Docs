@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.ApplicationServices
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceProvider ApplicationServices
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.Properties
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, object> Properties
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.ServerFeatures
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFeatureCollection ServerFeatures
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -135,6 +86,45 @@ Constructors
         .. code-block:: csharp
     
             public ApplicationBuilder(IServiceProvider serviceProvider, object server)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.ApplicationServices
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceProvider ApplicationServices { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.Properties
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, object> Properties { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Builder.Internal.ApplicationBuilder.ServerFeatures
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection ServerFeatures { get; }
     
 
 Methods

@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
-    
-        
-        .. code-block:: csharp
-    
-            protected CodeGeneratorContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>.Writer
-    
-        
-        :rtype: TWriter
-    
-        
-        .. code-block:: csharp
-    
-            protected TWriter Writer
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -358,5 +323,34 @@ Methods
         .. code-block:: csharp
     
             protected abstract void Visit(UsingChunk chunk)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorContext
+    
+        
+        .. code-block:: csharp
+    
+            protected CodeGeneratorContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.ChunkVisitor<TWriter>.Writer
+    
+        
+        :rtype: TWriter
+    
+        
+        .. code-block:: csharp
+    
+            protected TWriter Writer { get; }
     
 

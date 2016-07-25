@@ -128,6 +128,23 @@ Microsoft.AspNetCore.Razor.Runtime.TagHelpers Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Razor.Runtime.TagHelpers
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`ITagHelperDescriptorFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Runtime.TagHelpers.ITagHelperDescriptorFactory
+
+        
+        Factory for :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor` instances.
+
+
+    interface :dn:iface:`ITagHelperTypeResolver`
+        .. object: type=interface name=Microsoft.AspNetCore.Razor.Runtime.TagHelpers.ITagHelperTypeResolver
+
+        
+        Locates valid :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s within an assembly.
+
+
     .. rubric:: Classes
 
 
@@ -156,7 +173,7 @@ Microsoft.AspNetCore.Razor.Runtime.TagHelpers Namespace
         .. object: type=class name=Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperDesignTimeDescriptorFactory
 
         
-        Factory for providing :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDesignTimeDescriptor`\s from :any:`System.Type`\s and
+        Factory for providing :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDesignTimeDescriptor`\s from :any:`System.Type`\s and 
         :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperAttributeDesignTimeDescriptor`\s from :any:`System.Reflection.PropertyInfo`\s.
 
 
@@ -193,22 +210,5 @@ Microsoft.AspNetCore.Razor.Runtime.TagHelpers Namespace
 
         
         Extracts summary and remarks XML documentation from an XML documentation file.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`ITagHelperDescriptorFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Runtime.TagHelpers.ITagHelperDescriptorFactory
-
-        
-        Factory for :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor` instances.
-
-
-    interface :dn:iface:`ITagHelperTypeResolver`
-        .. object: type=interface name=Microsoft.AspNetCore.Razor.Runtime.TagHelpers.ITagHelperTypeResolver
-
-        
-        Locates valid :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s within an assembly.
 
 

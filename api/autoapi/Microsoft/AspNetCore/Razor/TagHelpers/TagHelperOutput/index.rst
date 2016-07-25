@@ -56,180 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes
-    
-        
-    
-        
-        The HTML element's attributes.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperAttributeList Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Content
-    
-        
-    
-        
-        Get or set the HTML element's main content.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContent Content
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.IsContentModified
-    
-        
-    
-        
-        <code>true</code> if :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Content` has been set, <code>false</code> otherwise.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsContentModified
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PostContent
-    
-        
-    
-        
-        The HTML element's post content.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContent PostContent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PostElement
-    
-        
-    
-        
-        Content that follows the HTML element.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContent PostElement
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PreContent
-    
-        
-    
-        
-        The HTML element's pre content.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContent PreContent
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PreElement
-    
-        
-    
-        
-        Content that precedes the HTML element.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperContent PreElement
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.TagMode
-    
-        
-    
-        
-        Syntax of the element in the generated HTML.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
-    
-        
-        .. code-block:: csharp
-    
-            public TagMode TagMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.TagName
-    
-        
-    
-        
-        The HTML element's tag name.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TagName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -270,6 +96,150 @@ Constructors
             public TagHelperOutput(string tagName, TagHelperAttributeList attributes, Func<bool, HtmlEncoder, Task<TagHelperContent>> getChildContentAsync)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Attributes
+    
+        
+    
+        
+        The HTML element's attributes.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttributeList
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperAttributeList Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Content
+    
+        
+    
+        
+        Get or set the HTML element's main content.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContent Content { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.IsContentModified
+    
+        
+    
+        
+        <code>true</code> if :dn:prop:`Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.Content` has been set, <code>false</code> otherwise.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsContentModified { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PostContent
+    
+        
+    
+        
+        The HTML element's post content.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContent PostContent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PostElement
+    
+        
+    
+        
+        Content that follows the HTML element.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContent PostElement { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PreContent
+    
+        
+    
+        
+        The HTML element's pre content.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContent PreContent { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.PreElement
+    
+        
+    
+        
+        Content that precedes the HTML element.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContent
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperContent PreElement { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.TagMode
+    
+        
+    
+        
+        Syntax of the element in the generated HTML.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.TagHelpers.TagMode
+    
+        
+        .. code-block:: csharp
+    
+            public TagMode TagMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput.TagName
+    
+        
+    
+        
+        The HTML element's tag name.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TagName { get; set; }
+    
+
 Methods
 -------
 
@@ -305,7 +275,7 @@ Methods
     
         
         :param useCachedResult: 
-            If <code>true</code>, multiple calls will not cause children to re-execute with the page's original
+            If <code>true</code>, multiple calls will not cause children to re-execute with the page's original 
             :any:`System.Text.Encodings.Web.HtmlEncoder`\; returns cached content.
         
         :type useCachedResult: System.Boolean

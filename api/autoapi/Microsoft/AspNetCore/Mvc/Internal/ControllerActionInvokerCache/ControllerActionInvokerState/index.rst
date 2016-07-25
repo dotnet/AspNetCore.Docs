@@ -44,42 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState.ActionMethodExecutor
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor
-    
-        
-        .. code-block:: csharp
-    
-            public ObjectMethodExecutor ActionMethodExecutor
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState.Filters
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata<Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>[]
-    
-        
-        .. code-block:: csharp
-    
-            public IFilterMetadata[] Filters
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -102,5 +66,34 @@ Constructors
         .. code-block:: csharp
     
             public ControllerActionInvokerState(IFilterMetadata[] filters, ObjectMethodExecutor actionMethodExecutor)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState.ActionMethodExecutor
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Internal.ObjectMethodExecutor
+    
+        
+        .. code-block:: csharp
+    
+            public ObjectMethodExecutor ActionMethodExecutor { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.ControllerActionInvokerState.Filters
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata<Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>[]
+    
+        
+        .. code-block:: csharp
+    
+            public IFilterMetadata[] Filters { get; }
     
 

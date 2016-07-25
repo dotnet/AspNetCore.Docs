@@ -65,249 +65,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.AppendVersion
-    
-        
-    
-        
-        Value indicating if file version should be appended to src urls.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-append-version")]
-            public bool ? AppendVersion
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Cache
-    
-        
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            protected IMemoryCache Cache
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc
-    
-        
-    
-        
-        The URL of a Script tag to fallback to in the case the primary one fails.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-fallback-src")]
-            public string FallbackSrc
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcExclude
-    
-        
-    
-        
-        A comma separated list of globbed file patterns of JavaScript scripts to exclude from the fallback list, in
-        the case the primary one fails.
-        The glob patterns are assessed relative to the application's 'webroot' setting.
-        Must be used in conjunction with :dn:prop:`Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcInclude`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-fallback-src-exclude")]
-            public string FallbackSrcExclude
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcInclude
-    
-        
-    
-        
-        A comma separated list of globbed file patterns of JavaScript scripts to fallback to in the case the
-        primary one fails.
-        The glob patterns are assessed relative to the application's 'webroot' setting.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-fallback-src-include")]
-            public string FallbackSrcInclude
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestExpression
-    
-        
-    
-        
-        The script method defined in the primary script to use for the fallback test.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-fallback-test")]
-            public string FallbackTestExpression
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.GlobbingUrlBuilder
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder
-    
-        
-        .. code-block:: csharp
-    
-            protected GlobbingUrlBuilder GlobbingUrlBuilder
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.HostingEnvironment
-    
-        
-        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
-    
-        
-        .. code-block:: csharp
-    
-            protected IHostingEnvironment HostingEnvironment
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.JavaScriptEncoder
-    
-        
-        :rtype: System.Text.Encodings.Web.JavaScriptEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected JavaScriptEncoder JavaScriptEncoder
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Src
-    
-        
-    
-        
-        Address of the external script to use.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("src")]
-            public string Src
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcExclude
-    
-        
-    
-        
-        A comma separated list of globbed file patterns of JavaScript scripts to exclude from loading.
-        The glob patterns are assessed relative to the application's 'webroot' setting.
-        Must be used in conjunction with :dn:prop:`Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcInclude`\.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-src-exclude")]
-            public string SrcExclude
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcInclude
-    
-        
-    
-        
-        A comma separated list of globbed file patterns of JavaScript scripts to load.
-        The glob patterns are assessed relative to the application's 'webroot' setting.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-src-include")]
-            public string SrcInclude
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -354,6 +111,201 @@ Constructors
         .. code-block:: csharp
     
             public ScriptTagHelper(IHostingEnvironment hostingEnvironment, IMemoryCache cache, HtmlEncoder htmlEncoder, JavaScriptEncoder javaScriptEncoder, IUrlHelperFactory urlHelperFactory)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.AppendVersion
+    
+        
+    
+        
+        Value indicating if file version should be appended to src urls.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Boolean<System.Boolean>}
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-append-version")]
+            public bool ? AppendVersion { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Cache
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            protected IMemoryCache Cache { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc
+    
+        
+    
+        
+        The URL of a Script tag to fallback to in the case the primary one fails.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-fallback-src")]
+            public string FallbackSrc { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcExclude
+    
+        
+    
+        
+        A comma separated list of globbed file patterns of JavaScript scripts to exclude from the fallback list, in
+        the case the primary one fails.
+        The glob patterns are assessed relative to the application's 'webroot' setting.
+        Must be used in conjunction with :dn:prop:`Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcInclude`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-fallback-src-exclude")]
+            public string FallbackSrcExclude { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrcInclude
+    
+        
+    
+        
+        A comma separated list of globbed file patterns of JavaScript scripts to fallback to in the case the
+        primary one fails.
+        The glob patterns are assessed relative to the application's 'webroot' setting.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-fallback-src-include")]
+            public string FallbackSrcInclude { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestExpression
+    
+        
+    
+        
+        The script method defined in the primary script to use for the fallback test.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-fallback-test")]
+            public string FallbackTestExpression { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.GlobbingUrlBuilder
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.TagHelpers.Internal.GlobbingUrlBuilder
+    
+        
+        .. code-block:: csharp
+    
+            protected GlobbingUrlBuilder GlobbingUrlBuilder { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.HostingEnvironment
+    
+        
+        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
+    
+        
+        .. code-block:: csharp
+    
+            protected IHostingEnvironment HostingEnvironment { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.JavaScriptEncoder
+    
+        
+        :rtype: System.Text.Encodings.Web.JavaScriptEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected JavaScriptEncoder JavaScriptEncoder { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.Src
+    
+        
+    
+        
+        Address of the external script to use.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("src")]
+            public string Src { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcExclude
+    
+        
+    
+        
+        A comma separated list of globbed file patterns of JavaScript scripts to exclude from loading.
+        The glob patterns are assessed relative to the application's 'webroot' setting.
+        Must be used in conjunction with :dn:prop:`Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcInclude`\.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-src-exclude")]
+            public string SrcExclude { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.SrcInclude
+    
+        
+    
+        
+        A comma separated list of globbed file patterns of JavaScript scripts to load.
+        The glob patterns are assessed relative to the application's 'webroot' setting.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-src-include")]
+            public string SrcInclude { get; set; }
     
 
 Methods

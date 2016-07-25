@@ -112,6 +112,23 @@ Microsoft.AspNetCore.Mvc.Razor.Directives Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Razor.Directives
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IChunkMerger`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkMerger
+
+        
+        Defines the contract for merging :any:`Microsoft.AspNetCore.Razor.Chunks.Chunk` instances from _ViewStart files.
+
+
+    interface :dn:iface:`IChunkTreeCache`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkTreeCache
+
+        
+        A cache for parsed :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree`\s.
+
+
     .. rubric:: Classes
 
 
@@ -162,22 +179,5 @@ Microsoft.AspNetCore.Mvc.Razor.Directives Namespace
 
         
         A :any:`Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkMerger` that merges :any:`Microsoft.AspNetCore.Razor.Chunks.UsingChunk` instances.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IChunkMerger`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkMerger
-
-        
-        Defines the contract for merging :any:`Microsoft.AspNetCore.Razor.Chunks.Chunk` instances from _ViewStart files.
-
-
-    interface :dn:iface:`IChunkTreeCache`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Razor.Directives.IChunkTreeCache
-
-        
-        A cache for parsed :any:`Microsoft.AspNetCore.Razor.Chunks.ChunkTree`\s.
 
 

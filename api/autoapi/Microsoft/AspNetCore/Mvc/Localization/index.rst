@@ -120,6 +120,38 @@ Microsoft.AspNetCore.Mvc.Localization Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Localization
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IHtmlLocalizer`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer
+
+        
+        Represents a type that that does HTML-aware localization of strings, by HTML encoding arguments that are
+        formatted in the resource string.
+
+
+    interface :dn:iface:`IHtmlLocalizerFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizerFactory
+
+        
+        A factory that creates :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` instances.
+
+
+    interface :dn:iface:`IHtmlLocalizer\<TResource>`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer\<TResource>
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` that provides localized HTML content.
+
+
+    interface :dn:iface:`IViewLocalizer`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer
+
+        
+        Represents a type that provides HTML-aware localization for views.
+
+
     .. rubric:: Classes
 
 
@@ -167,37 +199,5 @@ Microsoft.AspNetCore.Mvc.Localization Namespace
         
         An :any:`Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer` implementation that derives the resource location from the executing view's
         file path.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IHtmlLocalizer`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer
-
-        
-        Represents a type that that does HTML-aware localization of strings, by HTML encoding arguments that are
-        formatted in the resource string.
-
-
-    interface :dn:iface:`IHtmlLocalizerFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizerFactory
-
-        
-        A factory that creates :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` instances.
-
-
-    interface :dn:iface:`IHtmlLocalizer\<TResource>`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer\<TResource>
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` that provides localized HTML content.
-
-
-    interface :dn:iface:`IViewLocalizer`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer
-
-        
-        Represents a type that provides HTML-aware localization for views.
 
 

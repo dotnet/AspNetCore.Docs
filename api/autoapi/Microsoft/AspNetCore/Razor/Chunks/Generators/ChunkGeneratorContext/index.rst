@@ -52,81 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.ChunkTreeBuilder
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder
-    
-        
-        .. code-block:: csharp
-    
-            public ChunkTreeBuilder ChunkTreeBuilder
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.ClassName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ClassName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.Host
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
-    
-        
-        .. code-block:: csharp
-    
-            public RazorEngineHost Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.RootNamespace
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string RootNamespace
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.SourceFile
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string SourceFile
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -170,5 +95,64 @@ Constructors
         .. code-block:: csharp
     
             public ChunkGeneratorContext(RazorEngineHost host, string className, string rootNamespace, string sourceFile, bool shouldGenerateLinePragmas)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.ChunkTreeBuilder
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Chunks.ChunkTreeBuilder
+    
+        
+        .. code-block:: csharp
+    
+            public ChunkTreeBuilder ChunkTreeBuilder { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.ClassName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ClassName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.Host
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.RazorEngineHost
+    
+        
+        .. code-block:: csharp
+    
+            public RazorEngineHost Host { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.RootNamespace
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RootNamespace { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext.SourceFile
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string SourceFile { get; }
     
 

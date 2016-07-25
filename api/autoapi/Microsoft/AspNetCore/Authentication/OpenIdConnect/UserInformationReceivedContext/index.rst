@@ -55,29 +55,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext.User
-    
-        
-        :rtype: Newtonsoft.Json.Linq.JObject
-    
-        
-        .. code-block:: csharp
-    
-            public JObject User
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -100,5 +77,24 @@ Constructors
         .. code-block:: csharp
     
             public UserInformationReceivedContext(HttpContext context, OpenIdConnectOptions options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.OpenIdConnect.UserInformationReceivedContext.User
+    
+        
+        :rtype: Newtonsoft.Json.Linq.JObject
+    
+        
+        .. code-block:: csharp
+    
+            public JObject User { get; set; }
     
 

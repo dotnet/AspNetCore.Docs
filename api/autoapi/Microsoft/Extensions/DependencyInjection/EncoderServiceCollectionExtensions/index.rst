@@ -84,7 +84,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddWebEncoders(IServiceCollection services)
+            public static IServiceCollection AddWebEncoders(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.EncoderServiceCollectionExtensions.AddWebEncoders(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.Extensions.WebEncoders.WebEncoderOptions>)
     
@@ -111,6 +111,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddWebEncoders(IServiceCollection services, Action<WebEncoderOptions> setupAction)
+            public static IServiceCollection AddWebEncoders(this IServiceCollection services, Action<WebEncoderOptions> setupAction)
     
 

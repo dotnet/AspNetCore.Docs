@@ -8,7 +8,7 @@ BinderTypeModelBinder Class
 
 
 
-An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` for models which specify an :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` using
+An :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` for models which specify an :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder` using 
 :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BinderType`\.
 
 

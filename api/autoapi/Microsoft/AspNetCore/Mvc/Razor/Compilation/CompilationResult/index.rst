@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.CompilationFailures
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Diagnostics.CompilationFailure`\s produced from parsing or compiling the Razor file.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<CompilationFailure> CompilationFailures
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.CompiledType
-    
-        
-    
-        
-        Gets the type produced as a result of compilation.
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type CompiledType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -112,7 +67,7 @@ Constructors
     
         
         :param compilationFailures: :any:`Microsoft.AspNetCore.Diagnostics.CompilationFailure`\s produced from parsing or
-            compiling the Razor file.
+                compiling the Razor file.
         
         :type compilationFailures: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
     
@@ -139,6 +94,45 @@ Constructors
         .. code-block:: csharp
     
             public CompilationResult(Type type)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.CompilationFailures
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Diagnostics.CompilationFailure`\s produced from parsing or compiling the Razor file.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<CompilationFailure> CompilationFailures { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationResult.CompiledType
+    
+        
+    
+        
+        Gets the type produced as a result of compilation.
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type CompiledType { get; }
     
 
 Methods

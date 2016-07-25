@@ -53,67 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.CloseStatus
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Net.WebSockets.WebSocketCloseStatus<System.Net.WebSockets.WebSocketCloseStatus>}
-    
-        
-        .. code-block:: csharp
-    
-            public override WebSocketCloseStatus? CloseStatus
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.CloseStatusDescription
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string CloseStatusDescription
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.State
-    
-        
-        :rtype: System.Net.WebSockets.WebSocketState
-    
-        
-        .. code-block:: csharp
-    
-            public override WebSocketState State
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.SubProtocol
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string SubProtocol
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -239,5 +178,54 @@ Methods
         .. code-block:: csharp
     
             public override Task SendAsync(ArraySegment<byte> buffer, WebSocketMessageType messageType, bool endOfMessage, CancellationToken cancellationToken)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.CloseStatus
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Net.WebSockets.WebSocketCloseStatus<System.Net.WebSockets.WebSocketCloseStatus>}
+    
+        
+        .. code-block:: csharp
+    
+            public override WebSocketCloseStatus? CloseStatus { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.CloseStatusDescription
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string CloseStatusDescription { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.State
+    
+        
+        :rtype: System.Net.WebSockets.WebSocketState
+    
+        
+        .. code-block:: csharp
+    
+            public override WebSocketState State { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAdapter.SubProtocol
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string SubProtocol { get; }
     
 

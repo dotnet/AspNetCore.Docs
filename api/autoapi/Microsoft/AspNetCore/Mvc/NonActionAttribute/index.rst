@@ -7,6 +7,10 @@ NonActionAttribute Class
 
 
 
+
+Indicates that a controller method is not an action method.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc`
 Assemblies

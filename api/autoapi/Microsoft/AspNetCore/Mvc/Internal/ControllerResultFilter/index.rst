@@ -56,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -102,5 +79,24 @@ Methods
         .. code-block:: csharp
     
             public Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ControllerResultFilter.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 

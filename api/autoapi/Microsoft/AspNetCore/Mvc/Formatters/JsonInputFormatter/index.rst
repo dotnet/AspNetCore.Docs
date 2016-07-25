@@ -8,7 +8,7 @@ JsonInputFormatter Class
 
 
 
-An :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON content.
+A :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON content.
 
 
 Namespace
@@ -58,34 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter.SerializerSettings
-    
-        
-    
-        
-        Gets or sets the :any:`Newtonsoft.Json.JsonSerializerSettings` used to configure the :any:`Newtonsoft.Json.JsonSerializer`\.
-    
-        
-        :rtype: Newtonsoft.Json.JsonSerializerSettings
-    
-        
-        .. code-block:: csharp
-    
-            public JsonSerializerSettings SerializerSettings
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -93,49 +65,6 @@ Constructors
     :noindex:
     :hidden:
 
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter.JsonInputFormatter(Microsoft.Extensions.Logging.ILogger)
-    
-        
-    
-        
-        Initializes a new instance of :any:`Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter`\.
-    
-        
-    
-        
-        :param logger: The :any:`Microsoft.Extensions.Logging.ILogger`\.
-        
-        :type logger: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            public JsonInputFormatter(ILogger logger)
-    
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter.JsonInputFormatter(Microsoft.Extensions.Logging.ILogger, Newtonsoft.Json.JsonSerializerSettings)
-    
-        
-    
-        
-        Initializes a new instance of :any:`Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter`\.
-    
-        
-    
-        
-        :param logger: The :any:`Microsoft.Extensions.Logging.ILogger`\.
-        
-        :type logger: Microsoft.Extensions.Logging.ILogger
-    
-        
-        :param serializerSettings: The :any:`Newtonsoft.Json.JsonSerializerSettings`\.
-        
-        :type serializerSettings: Newtonsoft.Json.JsonSerializerSettings
-    
-        
-        .. code-block:: csharp
-    
-            public JsonInputFormatter(ILogger logger, JsonSerializerSettings serializerSettings)
     
     .. dn:constructor:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter.JsonInputFormatter(Microsoft.Extensions.Logging.ILogger, Newtonsoft.Json.JsonSerializerSettings, System.Buffers.ArrayPool<System.Char>, Microsoft.Extensions.ObjectPool.ObjectPoolProvider)
     
@@ -152,7 +81,10 @@ Constructors
         :type logger: Microsoft.Extensions.Logging.ILogger
     
         
-        :param serializerSettings: The :any:`Newtonsoft.Json.JsonSerializerSettings`\.
+        :param serializerSettings: 
+            The :any:`Newtonsoft.Json.JsonSerializerSettings`\. Should be either the application-wide settings
+            ( :dn:prop:`Microsoft.AspNetCore.Mvc.MvcJsonOptions.SerializerSettings`\) or an instance 
+            :dn:meth:`Microsoft.AspNetCore.Mvc.Formatters.JsonSerializerSettingsProvider.CreateSerializerSettings` initially returned.
         
         :type serializerSettings: Newtonsoft.Json.JsonSerializerSettings
     
@@ -230,5 +162,29 @@ Methods
         .. code-block:: csharp
     
             protected virtual void ReleaseJsonSerializer(JsonSerializer serializer)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.JsonInputFormatter.SerializerSettings
+    
+        
+    
+        
+        Gets the :any:`Newtonsoft.Json.JsonSerializerSettings` used to configure the :any:`Newtonsoft.Json.JsonSerializer`\.
+    
+        
+        :rtype: Newtonsoft.Json.JsonSerializerSettings
+    
+        
+        .. code-block:: csharp
+    
+            protected JsonSerializerSettings SerializerSettings { get; }
     
 

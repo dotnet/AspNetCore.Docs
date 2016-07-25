@@ -52,106 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Server.UrlPrefix
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Server.UrlPrefix
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Host
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Host
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.IsHttps
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsHttps
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Path
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Port
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Port
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.PortValue
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int PortValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Scheme
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Scheme
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Whole
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Whole
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -275,5 +175,84 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Server.UrlPrefix
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Host
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Host { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.IsHttps
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsHttps { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Path { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Port
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Port { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.PortValue
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int PortValue { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Scheme
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Scheme { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.UrlPrefix.Whole
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Whole { get; }
     
 

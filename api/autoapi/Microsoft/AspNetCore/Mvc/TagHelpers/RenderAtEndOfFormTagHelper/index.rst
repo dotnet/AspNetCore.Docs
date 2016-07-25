@@ -60,43 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -132,5 +95,35 @@ Methods
         .. code-block:: csharp
     
             public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
     
 

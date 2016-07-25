@@ -69,18 +69,14 @@ Properties
         
     
         
-        Gets the :any:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString` instance.
+        Gets the :any:`Microsoft.AspNetCore.Html.HtmlString` instance.
     
         
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.HtmlString
+        :rtype: Microsoft.AspNetCore.Html.HtmlString
     
         
         .. code-block:: csharp
     
-            public HtmlString Html
-            {
-                get;
-                set;
-            }
+            public HtmlString Html { get; set; }
     
 

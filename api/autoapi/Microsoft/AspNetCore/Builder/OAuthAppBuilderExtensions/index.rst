@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseOAuthAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseOAuthAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.OAuthAppBuilderExtensions.UseOAuthAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.OAuthOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseOAuthAuthentication(IApplicationBuilder app, OAuthOptions options)
+            public static IApplicationBuilder UseOAuthAuthentication(this IApplicationBuilder app, OAuthOptions options)
     
 

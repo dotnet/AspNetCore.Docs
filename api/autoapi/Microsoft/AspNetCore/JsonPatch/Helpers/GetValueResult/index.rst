@@ -59,51 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult.HasError
-    
-        
-    
-        
-        HasError: true when an error occurred, the operation didn't complete succesfully
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasError
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult.PropertyValue
-    
-        
-    
-        
-        The value of the property we're trying to get
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object PropertyValue
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -126,5 +81,44 @@ Constructors
         .. code-block:: csharp
     
             public GetValueResult(object propertyValue, bool hasError)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult.HasError
+    
+        
+    
+        
+        HasError: true when an error occurred, the operation didn't complete succesfully
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasError { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.JsonPatch.Helpers.GetValueResult.PropertyValue
+    
+        
+    
+        
+        The value of the property we're trying to get
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object PropertyValue { get; }
     
 

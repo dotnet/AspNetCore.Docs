@@ -59,94 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion
-    
-        
-    
-        
-        Value indicating if file version should be appended to the src urls.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-append-version")]
-            public bool AppendVersion
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Cache
-    
-        
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            protected IMemoryCache Cache
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.HostingEnvironment
-    
-        
-        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
-    
-        
-        .. code-block:: csharp
-    
-            protected IHostingEnvironment HostingEnvironment
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Src
-    
-        
-    
-        
-        Source of the image.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("src")]
-            public string Src
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -188,6 +100,77 @@ Constructors
         .. code-block:: csharp
     
             public ImageTagHelper(IHostingEnvironment hostingEnvironment, IMemoryCache cache, HtmlEncoder htmlEncoder, IUrlHelperFactory urlHelperFactory)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion
+    
+        
+    
+        
+        Value indicating if file version should be appended to the src urls.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-append-version")]
+            public bool AppendVersion { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Cache
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            protected IMemoryCache Cache { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.HostingEnvironment
+    
+        
+        :rtype: Microsoft.AspNetCore.Hosting.IHostingEnvironment
+    
+        
+        .. code-block:: csharp
+    
+            protected IHostingEnvironment HostingEnvironment { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.Src
+    
+        
+    
+        
+        Source of the image.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("src")]
+            public string Src { get; set; }
     
 
 Methods

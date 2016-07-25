@@ -1,35 +1,36 @@
 Adding Search
-==================================================
+==========================================
 
 By `Rick Anderson`_
-
 
 In this section you'll add search capability to the ``Index`` action method that lets you search movies by *genre* or *name*.
 
 Update the ``Index`` action method to enable search:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 154-166
- :dedent: 8
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :start-after: // First Search
+  :end-before: // End first Search
+  :dedent: 8
 
 The first line of the ``Index`` action method creates a `LINQ <http://msdn.microsoft.com/en-us/library/bb397926.aspx>`__ query to select the movies:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 156-157
- :dedent: 12
+.. code-block:: c#
 
+    var movies = from m in _context.Movie
+                 select m;
 
 The query is *only* defined at this point, it **has not** been run against the database.
 
 If the ``searchString`` parameter contains a string, the movies query is modified to filter on the value of the search string, using the following code:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
-  :language: c#
-  :lines: 159-163
-  :dedent: 12
+.. code-block:: c#
   :emphasize-lines: 3
+  
+     if (!String.IsNullOrEmpty(searchString))
+     {
+         movies = movies.Where(s => s.Title.Contains(searchString));
+     }
 
 The ``s => s.Title.Contains()`` code above is a `Lambda Expression <http://msdn.microsoft.com/en-us/library/bb397687.aspx>`__. Lambdas are used in method-based `LINQ <http://msdn.microsoft.com/en-us/library/bb397926.aspx>`__ queries as arguments to standard query operator methods such as the `Where <http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx>`__ method or ``Contains`` used in the code above. LINQ queries are not executed when they are defined or when they are modified by calling a method such as ``Where``, ``Contains``  or ``OrderBy``. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the ``ToListAsync`` method is called. For more information about deferred query execution, see `Query Execution <http://msdn.microsoft.com/en-us/library/bb738633.aspx>`__.
 
@@ -42,11 +43,11 @@ Navigate to ``/Movies/Index``. Append a query string such as ``?searchString=gho
 
 If you change the signature of the ``Index`` method to have a parameter named ``id``, the ``id`` parameter will match the optional ``{id}`` placeholder for the default routes set in *Startup.cs*.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
-  :language: c#
-  :lines: 80-86
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :dedent: 12
-  :emphasize-lines: 5
+  :emphasize-lines: 6
+  :start-after: app.UseIdentity();
+  :end-before: SeedData.Initialize(app.ApplicationServices);
 
 You can quickly rename the ``searchString`` parameter to ``id`` with the **rename** command. Right click on ``searchString`` **> Rename**.
 
@@ -62,19 +63,21 @@ Change the parameter to ``id`` and all occurrences of ``searchString`` change to
 
 The previous ``Index`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 154-166
- :emphasize-lines: 1, 6,8
- :dedent: 8
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :start-after: // First Search
+  :end-before: // End first Search
+  :dedent: 8
+  :emphasize-lines: 1,8
 
 The updated ``Index`` method:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 173-185
- :emphasize-lines: 1, 6,8
- :dedent: 8
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :start-after: // Search ID
+  :end-before: // End search ID
+  :dedent: 8
+  :emphasize-lines: 1,8
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -82,20 +85,23 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the ``Index`` method to test how to pass the route-bound ``ID`` parameter, change it back so that it takes a parameter named ``searchString``:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 154-166
- :emphasize-lines: 1, 6,8
- :dedent: 8
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :start-after: // First Search
+  :end-before: // End first Search
+  :dedent: 8
+  :emphasize-lines: 1
 
 .. Index.cshtml is never referenced in the .rst files and is used only to test the code.
   Copy the relevant IndexXXX.cshtml file to Index.cshtml and test.
-  Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below:
+  
+Open the *Views/Movies/Index.cshtml* file, and add the ``<form>`` markup highlighted below:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexForm1.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexForm1.cshtml
   :language: HTML
-  :lines: 1-21
-  :emphasize-lines: 13-18
+  :start-after: @model IEnumerable<MvcMovie.Models.Movie>
+  :end-before:  <thead>
+  :emphasize-lines: 11-16
 
 The HTML ``<form>`` tag uses the :doc:`Form Tag Helper </mvc/views/working-with-forms>`, so when you submit the form, the filter string is posted to the ``Index`` action of the movies controller. Save your changes and then test the filter.
 
@@ -105,11 +111,12 @@ There's no ``[HttpPost]`` overload of the ``Index`` method as you might expect. 
 
 You could add the following ``[HttpPost] Index`` method.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
   :language: c#
-  :lines: 212-218
   :dedent: 8
   :emphasize-lines: 1
+  :start-after: // Search Post
+  :end-before:  // End SP
 
 The ``notUsed`` parameter is used to create an overload for the ``Index`` method. We'll talk about that later in the tutorial.
 
@@ -136,19 +143,23 @@ Notice the distinctive font in the ``<form>`` tag. That distinctive font indicat
 
 .. image:: search/_static/th_font.png
 
-
 Now when you submit a search, the URL contains the search query string. Searching will also go to the ``HttpGet Index`` action method, even if you have a ``HttpPost Index`` method.
 
 .. image:: search/_static/search_get.png
 
+The following markup shows the change to the ``form`` tag:
+
+.. code-block:: html
+
+  <form asp-controller="Movies" asp-action="Index" method="get">
 
 Adding Search by Genre
 ------------------------
 
 Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Models/MovieGenreViewModel.cs
- :language: c#
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieGenreViewModel.cs
+  :language: c#
 
 The move-genre view model will contain:
 
@@ -158,31 +169,30 @@ The move-genre view model will contain:
 
 Replace the ``Index`` method with the following code:
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 223-247
- :dedent: 8
-
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :dedent: 8
+  :start-after: // Search by genre.
+  :end-before:  // End of genre search.
 
 The following code is a ``LINQ`` query that retrieves all the genres from the database.
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 225-228
- :dedent: 12
-
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
+  :language: c#
+  :dedent: 12
+  :start-after: // Use LINQ to get list of genre's.
+  :end-before: var movies = from m in _context.Movie
+ 
 The ``SelectList`` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :lines: 243
- :dedent: 12
+.. code-block:: c#
 
+   movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Adding search by genre to the Index view
 --------------------------------------------
 
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml
+.. literalinclude:: start-mvc/sample2/src/MvcMovie/Views/Movies/IndexFormGenre.cshtml
   :language: HTML
   :lines: 1-64
   :emphasize-lines: 1, 15-17,27,41

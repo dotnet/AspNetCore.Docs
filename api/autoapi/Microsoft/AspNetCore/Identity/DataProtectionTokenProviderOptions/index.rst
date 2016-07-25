@@ -79,11 +79,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Name
-            {
-                get;
-                set;
-            }
+            public string Name { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions.TokenLifespan
     
@@ -100,10 +96,6 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan TokenLifespan
-            {
-                get;
-                set;
-            }
+            public TimeSpan TokenLifespan { get; set; }
     
 

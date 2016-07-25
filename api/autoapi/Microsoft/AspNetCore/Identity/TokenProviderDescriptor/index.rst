@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.TokenProviderDescriptor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.TokenProviderDescriptor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.TokenProviderDescriptor.ProviderType
-    
-        
-        :rtype: System.Type
-    
-        
-        .. code-block:: csharp
-    
-            public Type ProviderType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -93,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public TokenProviderDescriptor(Type type)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.TokenProviderDescriptor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.TokenProviderDescriptor.ProviderType
+    
+        
+        :rtype: System.Type
+    
+        
+        .. code-block:: csharp
+    
+            public Type ProviderType { get; }
     
 

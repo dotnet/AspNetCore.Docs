@@ -60,97 +60,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.For
-    
-        
-    
-        
-        An expression to be evaluated against the current model.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ModelExpression
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-for")]
-            public ModelExpression For
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Generator
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
-    
-        
-        .. code-block:: csharp
-    
-            protected IHtmlGenerator Generator
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Items
-    
-        
-    
-        
-        A collection of :any:`Microsoft.AspNetCore.Mvc.Rendering.SelectListItem` objects used to populate the <select> element with
-        <optgroup> and <option> elements.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.Rendering.SelectListItem<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>}
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeName("asp-items")]
-            public IEnumerable<SelectListItem> Items
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public override int Order
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -177,6 +86,79 @@ Constructors
         .. code-block:: csharp
     
             public SelectTagHelper(IHtmlGenerator generator)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.For
+    
+        
+    
+        
+        An expression to be evaluated against the current model.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-for")]
+            public ModelExpression For { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Generator
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator
+    
+        
+        .. code-block:: csharp
+    
+            protected IHtmlGenerator Generator { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Items
+    
+        
+    
+        
+        A collection of :any:`Microsoft.AspNetCore.Mvc.Rendering.SelectListItem` objects used to populate the <select> element with
+        <optgroup> and <option> elements.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Mvc.Rendering.SelectListItem<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>}
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("asp-items")]
+            public IEnumerable<SelectListItem> Items { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int Order { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeNotBound]
+            public ViewContext ViewContext { get; set; }
     
 
 Methods

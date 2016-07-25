@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            ViewComponentDescriptorCollection ViewComponents
-            {
-                get;
-            }
+            ViewComponentDescriptorCollection ViewComponents { get; }
     
 

@@ -52,54 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.HttpContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.Next
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.RequestDelegate
-    
-        
-        .. code-block:: csharp
-    
-            public RequestDelegate Next
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.Options
-    
-        
-        :rtype: Microsoft.AspNetCore.Builder.StatusCodePagesOptions
-    
-        
-        .. code-block:: csharp
-    
-            public StatusCodePagesOptions Options
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -125,5 +77,44 @@ Constructors
         .. code-block:: csharp
     
             public StatusCodeContext(HttpContext context, StatusCodePagesOptions options, RequestDelegate next)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.HttpContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.Next
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.RequestDelegate
+    
+        
+        .. code-block:: csharp
+    
+            public RequestDelegate Next { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.StatusCodeContext.Options
+    
+        
+        :rtype: Microsoft.AspNetCore.Builder.StatusCodePagesOptions
+    
+        
+        .. code-block:: csharp
+    
+            public StatusCodePagesOptions Options { get; }
     
 

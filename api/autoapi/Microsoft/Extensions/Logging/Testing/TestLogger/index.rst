@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Logging.Testing.TestLogger
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Logging.Testing.TestLogger
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestLogger.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -159,5 +136,24 @@ Methods
         .. code-block:: csharp
     
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Logging.Testing.TestLogger
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.Testing.TestLogger.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
     
 

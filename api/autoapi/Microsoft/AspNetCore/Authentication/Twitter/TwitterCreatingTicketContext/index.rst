@@ -58,125 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.AccessToken
-    
-        
-    
-        
-        Gets the Twitter access token
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AccessToken
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.AccessTokenSecret
-    
-        
-    
-        
-        Gets the Twitter access token secret
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string AccessTokenSecret
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.Principal
-    
-        
-    
-        
-        Gets the :any:`System.Security.Claims.ClaimsPrincipal` representing the user
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal Principal
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.Properties
-    
-        
-    
-        
-        Gets or sets a property bag for common authentication properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.ScreenName
-    
-        
-    
-        
-        Gets the Twitter screen name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ScreenName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.UserId
-    
-        
-    
-        
-        Gets the Twitter user ID
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string UserId
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -185,7 +66,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.TwitterCreatingTicketContext(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Builder.TwitterOptions, System.String, System.String, System.String, System.String)
+    .. dn:constructor:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.TwitterCreatingTicketContext(Microsoft.AspNetCore.Http.HttpContext, Microsoft.AspNetCore.Builder.TwitterOptions, System.String, System.String, System.String, System.String, Newtonsoft.Json.Linq.JObject)
     
         
     
@@ -225,8 +106,128 @@ Constructors
         :type accessTokenSecret: System.String
     
         
+        :param user: User details
+        
+        :type user: Newtonsoft.Json.Linq.JObject
+    
+        
         .. code-block:: csharp
     
-            public TwitterCreatingTicketContext(HttpContext context, TwitterOptions options, string userId, string screenName, string accessToken, string accessTokenSecret)
+            public TwitterCreatingTicketContext(HttpContext context, TwitterOptions options, string userId, string screenName, string accessToken, string accessTokenSecret, JObject user)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.AccessToken
+    
+        
+    
+        
+        Gets the Twitter access token
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AccessToken { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.AccessTokenSecret
+    
+        
+    
+        
+        Gets the Twitter access token secret
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string AccessTokenSecret { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.Principal
+    
+        
+    
+        
+        Gets the :any:`System.Security.Claims.ClaimsPrincipal` representing the user
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal Principal { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.Properties
+    
+        
+    
+        
+        Gets or sets a property bag for common authentication properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.ScreenName
+    
+        
+    
+        
+        Gets the Twitter screen name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ScreenName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.User
+    
+        
+    
+        
+        Gets the JSON-serialized user or an empty 
+        :any:`Newtonsoft.Json.Linq.JObject` if it is not available.
+    
+        
+        :rtype: Newtonsoft.Json.Linq.JObject
+    
+        
+        .. code-block:: csharp
+    
+            public JObject User { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Twitter.TwitterCreatingTicketContext.UserId
+    
+        
+    
+        
+        Gets the Twitter user ID
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string UserId { get; }
     
 

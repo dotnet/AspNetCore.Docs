@@ -58,51 +58,29 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper
 
-Properties
-----------
+Methods
+-------
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.MemoryCache
+    .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext, Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)
     
         
     
         
-        Gets the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` instance used to cache entries.
+        :type context: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
     
         
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            protected IMemoryCache MemoryCache
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.Priority
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.Extensions.Caching.Memory.CacheItemPriority` policy for the cache entry.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{Microsoft.Extensions.Caching.Memory.CacheItemPriority<Microsoft.Extensions.Caching.Memory.CacheItemPriority>}
+        :type output: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
+        :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            [HtmlAttributeName("priority")]
-            public CacheItemPriority? Priority
-            {
-                get;
-                set;
-            }
+            public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     
 
 Constructors
@@ -138,6 +116,46 @@ Constructors
             public CacheTagHelper(IMemoryCache memoryCache, HtmlEncoder htmlEncoder)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.MemoryCache
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Caching.Memory.IMemoryCache` instance used to cache entries.
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            protected IMemoryCache MemoryCache { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.Priority
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.Extensions.Caching.Memory.CacheItemPriority` policy for the cache entry.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{Microsoft.Extensions.Caching.Memory.CacheItemPriority<Microsoft.Extensions.Caching.Memory.CacheItemPriority>}
+    
+        
+        .. code-block:: csharp
+    
+            [HtmlAttributeName("priority")]
+            public CacheItemPriority? Priority { get; set; }
+    
+
 Fields
 ------
 
@@ -160,30 +178,5 @@ Fields
         .. code-block:: csharp
     
             public static readonly string CacheKeyPrefix
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.TagHelpers.CacheTagHelper.ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext, Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput)
-    
-        
-    
-        
-        :type context: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext
-    
-        
-        :type output: Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput
-        :rtype: System.Threading.Tasks.Task
-    
-        
-        .. code-block:: csharp
-    
-            public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     
 

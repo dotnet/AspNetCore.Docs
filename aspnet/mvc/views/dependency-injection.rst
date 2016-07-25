@@ -40,7 +40,7 @@ The ``StatisticsService`` performs some calculations on the set of ``ToDoItem`` 
 .. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Model/Services/StatisticsService.cs
   :linenos:
   :language: c#
-  :emphasize-lines: 16,21,27
+  :emphasize-lines: 15,20,26
 
 The sample repository uses an in-memory collection. The implementation shown above (which operates on all of the data in memory) is not recommended for large, remotely accessed data sets.
 
@@ -90,7 +90,7 @@ As you can see, the default fields include ``Html``, ``Component``, and ``Url`` 
 .. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Helper/Index.cshtml
   :linenos:
   :language: html
-  :emphasize-lines: 5,13
+  :emphasize-lines: 3,11
 
 If you want to extend existing services, you can simply use this technique while inheriting from or wrapping the existing implementation with your own.
 

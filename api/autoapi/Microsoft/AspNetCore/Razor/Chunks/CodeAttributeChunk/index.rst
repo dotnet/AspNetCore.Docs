@@ -70,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Attribute
-            {
-                get;
-                set;
-            }
+            public string Attribute { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.CodeAttributeChunk.Prefix
     
@@ -84,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LocationTagged<string> Prefix
-            {
-                get;
-                set;
-            }
+            public LocationTagged<string> Prefix { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.CodeAttributeChunk.Suffix
     
@@ -98,10 +90,6 @@ Properties
         
         .. code-block:: csharp
     
-            public LocationTagged<string> Suffix
-            {
-                get;
-                set;
-            }
+            public LocationTagged<string> Suffix { get; set; }
     
 

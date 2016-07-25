@@ -8,7 +8,7 @@ DataProtectorShim Class
 
 
 
-Converts an :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` to an
+Converts an :any:`Microsoft.AspNetCore.DataProtection.IDataProtector` to an 
 :any:`Microsoft.Owin.Security.DataProtection.IDataProtector`\.
 
 

@@ -57,50 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer.Item[System.String]
-    
-        
-    
-        
-        :type name: System.String
-        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
-    
-        
-        .. code-block:: csharp
-    
-            public virtual LocalizedHtmlString this[string name]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer.Item[System.String, System.Object[]]
-    
-        
-    
-        
-        :type name: System.String
-    
-        
-        :type arguments: System.Object<System.Object>[]
-        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
-    
-        
-        .. code-block:: csharp
-    
-            public virtual LocalizedHtmlString this[string name, params object[] arguments]
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -227,5 +183,43 @@ Methods
         .. code-block:: csharp
     
             public virtual IHtmlLocalizer WithCulture(CultureInfo culture)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer.Item[System.String]
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedHtmlString this[string name] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Localization.HtmlLocalizer.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.AspNetCore.Mvc.Localization.LocalizedHtmlString
+    
+        
+        .. code-block:: csharp
+    
+            public virtual LocalizedHtmlString this[string name, params object[] arguments] { get; }
     
 

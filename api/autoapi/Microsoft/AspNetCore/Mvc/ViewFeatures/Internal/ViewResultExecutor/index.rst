@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.Logger
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
-    
-        
-        :rtype: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            protected ILogger Logger
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -92,7 +65,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.ViewResultExecutor(Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.MvcViewOptions>, Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory, Microsoft.AspNetCore.Mvc.ViewEngines.ICompositeViewEngine, Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionaryFactory, System.Diagnostics.DiagnosticSource, Microsoft.Extensions.Logging.ILoggerFactory)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.ViewResultExecutor(Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Mvc.MvcViewOptions>, Microsoft.AspNetCore.Mvc.Internal.IHttpResponseStreamWriterFactory, Microsoft.AspNetCore.Mvc.ViewEngines.ICompositeViewEngine, Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionaryFactory, System.Diagnostics.DiagnosticSource, Microsoft.Extensions.Logging.ILoggerFactory, Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider)
     
         
     
@@ -132,9 +105,14 @@ Constructors
         :type loggerFactory: Microsoft.Extensions.Logging.ILoggerFactory
     
         
+        :param modelMetadataProvider: The :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
+        
+        :type modelMetadataProvider: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+    
+        
         .. code-block:: csharp
     
-            public ViewResultExecutor(IOptions<MvcViewOptions> viewOptions, IHttpResponseStreamWriterFactory writerFactory, ICompositeViewEngine viewEngine, ITempDataDictionaryFactory tempDataFactory, DiagnosticSource diagnosticSource, ILoggerFactory loggerFactory)
+            public ViewResultExecutor(IOptions<MvcViewOptions> viewOptions, IHttpResponseStreamWriterFactory writerFactory, ICompositeViewEngine viewEngine, ITempDataDictionaryFactory tempDataFactory, DiagnosticSource diagnosticSource, ILoggerFactory loggerFactory, IModelMetadataProvider modelMetadataProvider)
     
 
 Methods
@@ -201,5 +179,29 @@ Methods
         .. code-block:: csharp
     
             public virtual ViewEngineResult FindView(ActionContext actionContext, ViewResult viewResult)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor.Logger
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.Logging.ILogger`\.
+    
+        
+        :rtype: Microsoft.Extensions.Logging.ILogger
+    
+        
+        .. code-block:: csharp
+    
+            protected ILogger Logger { get; }
     
 

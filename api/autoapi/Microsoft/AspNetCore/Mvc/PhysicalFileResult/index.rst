@@ -59,34 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.PhysicalFileResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.PhysicalFileResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.PhysicalFileResult.FileName
-    
-        
-    
-        
-        Gets or sets the path to the file that will be sent back as the response.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FileName
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -154,38 +126,41 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.PhysicalFileResult.GetFileStream(System.String)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.PhysicalFileResult.ExecuteResultAsync(Microsoft.AspNetCore.Mvc.ActionContext)
     
         
     
         
-        Returns :any:`System.IO.Stream` for the specified <em>path</em>.
-    
-        
-    
-        
-        :param path: The path for which the :any:`System.IO.FileStream` is needed.
-        
-        :type path: System.String
-        :rtype: System.IO.Stream
-        :return: :any:`System.IO.FileStream` for the specified <em>path</em>.
-    
-        
-        .. code-block:: csharp
-    
-            protected virtual Stream GetFileStream(string path)
-    
-    .. dn:method:: Microsoft.AspNetCore.Mvc.PhysicalFileResult.WriteFileAsync(Microsoft.AspNetCore.Http.HttpResponse)
-    
-        
-    
-        
-        :type response: Microsoft.AspNetCore.Http.HttpResponse
+        :type context: Microsoft.AspNetCore.Mvc.ActionContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override Task WriteFileAsync(HttpResponse response)
+            public override Task ExecuteResultAsync(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.PhysicalFileResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.PhysicalFileResult.FileName
+    
+        
+    
+        
+        Gets or sets the path to the file that will be sent back as the response.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FileName { get; set; }
     
 

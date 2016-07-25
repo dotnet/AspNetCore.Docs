@@ -57,35 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings
-    
-        
-    
-        
-        Gets the mutable collection of character encodings supported by
-        this :any:`Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter`\. The encodings are
-        used when writing the data.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Text.Encoding<System.Text.Encoding>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<Encoding> SupportedEncodings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -129,7 +100,6 @@ Methods
     
         
         :param context: The formatter context associated with the call.
-            
         
         :type context: Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterWriteContext
         :rtype: System.Text.Encoding
@@ -191,5 +161,31 @@ Methods
         .. code-block:: csharp
     
             public abstract Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings
+    
+        
+    
+        
+        Gets the mutable collection of character encodings supported by
+        this :any:`Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter`\. The encodings are
+        used when writing the data.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.Text.Encoding<System.Text.Encoding>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<Encoding> SupportedEncodings { get; }
     
 

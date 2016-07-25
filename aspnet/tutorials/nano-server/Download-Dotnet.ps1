@@ -1,4 +1,4 @@
-$SourcePath = "https://dotnetcli.blob.core.windows.net/dotnet/beta/Binaries/Latest/dotnet-win-x64.latest.zip"
+$SourcePath = "https://go.microsoft.com/fwlink/?LinkID=809115"
 $DestinationPath = "C:\dotnet"
 
 $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId

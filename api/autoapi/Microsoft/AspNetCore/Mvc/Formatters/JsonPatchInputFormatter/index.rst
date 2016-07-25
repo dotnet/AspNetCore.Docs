@@ -7,6 +7,10 @@ JsonPatchInputFormatter Class
 
 
 
+
+A :any:`Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter` for JSON Patch (application/json-patch+json) content.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Mvc.Formatters`
 Assemblies
@@ -63,31 +67,35 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter.JsonPatchInputFormatter(Microsoft.Extensions.Logging.ILogger)
-    
-        
-    
-        
-        :type logger: Microsoft.Extensions.Logging.ILogger
-    
-        
-        .. code-block:: csharp
-    
-            public JsonPatchInputFormatter(ILogger logger)
-    
     .. dn:constructor:: Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter.JsonPatchInputFormatter(Microsoft.Extensions.Logging.ILogger, Newtonsoft.Json.JsonSerializerSettings, System.Buffers.ArrayPool<System.Char>, Microsoft.Extensions.ObjectPool.ObjectPoolProvider)
     
         
     
         
+        Initializes a new :any:`Microsoft.AspNetCore.Mvc.Formatters.JsonPatchInputFormatter` instance.
+    
+        
+    
+        
+        :param logger: The :any:`Microsoft.Extensions.Logging.ILogger`\.
+        
         :type logger: Microsoft.Extensions.Logging.ILogger
     
+        
+        :param serializerSettings: 
+            The :any:`Newtonsoft.Json.JsonSerializerSettings`\. Should be either the application-wide settings
+            ( :dn:prop:`Microsoft.AspNetCore.Mvc.MvcJsonOptions.SerializerSettings`\) or an instance 
+            :dn:meth:`Microsoft.AspNetCore.Mvc.Formatters.JsonSerializerSettingsProvider.CreateSerializerSettings` initially returned.
         
         :type serializerSettings: Newtonsoft.Json.JsonSerializerSettings
     
         
+        :param charPool: The :any:`System.Buffers.ArrayPool\`1`\.
+        
         :type charPool: System.Buffers.ArrayPool<System.Buffers.ArrayPool`1>{System.Char<System.Char>}
     
+        
+        :param objectPoolProvider: The :any:`Microsoft.Extensions.ObjectPool.ObjectPoolProvider`\.
         
         :type objectPoolProvider: Microsoft.Extensions.ObjectPool.ObjectPoolProvider
     

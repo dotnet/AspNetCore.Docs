@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            ISession Session
-            {
-                get;
-                set;
-            }
+            ISession Session { get; set; }
     
 

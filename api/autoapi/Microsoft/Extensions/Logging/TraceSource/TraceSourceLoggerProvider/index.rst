@@ -64,6 +64,23 @@ Constructors
     :hidden:
 
     
+    .. dn:constructor:: Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider.TraceSourceLoggerProvider(System.Diagnostics.SourceSwitch)
+    
+        
+    
+        
+        Initializes a new instance of the :any:`Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider` class.
+    
+        
+    
+        
+        :type rootSourceSwitch: System.Diagnostics.SourceSwitch
+    
+        
+        .. code-block:: csharp
+    
+            public TraceSourceLoggerProvider(SourceSwitch rootSourceSwitch)
+    
     .. dn:constructor:: Microsoft.Extensions.Logging.TraceSource.TraceSourceLoggerProvider.TraceSourceLoggerProvider(System.Diagnostics.SourceSwitch, System.Diagnostics.TraceListener)
     
         

@@ -70,7 +70,7 @@ Properties
     
         
         Gets or sets a value indicating whether or not the model is a required value. Will be ignored
-        if the model metadata being created is not a property. If <code>null</code> then
+        if the model metadata being created is not a property. If <code>null</code> then 
         :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsRequired` will be computed based on the model :any:`System.Type`\.
         See :dn:prop:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata.IsRequired`\.
     
@@ -80,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ? IsRequired
-            {
-                get;
-                set;
-            }
+            public bool ? IsRequired { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata.ValidateChildren
     
@@ -102,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool ? ValidateChildren
-            {
-                get;
-                set;
-            }
+            public bool ? ValidateChildren { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ValidationMetadata.ValidatorMetadata
     
@@ -121,9 +113,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<object> ValidatorMetadata
-            {
-                get;
-            }
+            public IList<object> ValidatorMetadata { get; }
     
 

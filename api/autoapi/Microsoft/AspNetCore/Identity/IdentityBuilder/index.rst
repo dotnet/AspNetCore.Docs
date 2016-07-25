@@ -56,75 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Identity.IdentityBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Identity.IdentityBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.RoleType
-    
-        
-    
-        
-        Gets the :any:`System.Type` used for roles.
-    
-        
-        :rtype: System.Type
-        :return: 
-            The :any:`System.Type` used for roles.
-    
-        
-        .. code-block:: csharp
-    
-            public Type RoleType
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.Services
-    
-        
-    
-        
-        Gets the :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` services are attached to.
-    
-        
-        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
-        :return: 
-            The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` services are attached to.
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceCollection Services
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.UserType
-    
-        
-    
-        
-        Gets the :any:`System.Type` used for users.
-    
-        
-        :rtype: System.Type
-        :return: 
-            The :any:`System.Type` used for users.
-    
-        
-        .. code-block:: csharp
-    
-            public Type UserType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -362,5 +293,65 @@ Methods
         .. code-block:: csharp
     
             public virtual IdentityBuilder AddUserValidator<T>()where T : class
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Identity.IdentityBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.RoleType
+    
+        
+    
+        
+        Gets the :any:`System.Type` used for roles.
+    
+        
+        :rtype: System.Type
+        :return: 
+            The :any:`System.Type` used for roles.
+    
+        
+        .. code-block:: csharp
+    
+            public Type RoleType { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.Services
+    
+        
+    
+        
+        Gets the :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` services are attached to.
+    
+        
+        :rtype: Microsoft.Extensions.DependencyInjection.IServiceCollection
+        :return: 
+            The :any:`Microsoft.Extensions.DependencyInjection.IServiceCollection` services are attached to.
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceCollection Services { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Identity.IdentityBuilder.UserType
+    
+        
+    
+        
+        Gets the :any:`System.Type` used for users.
+    
+        
+        :rtype: System.Type
+        :return: 
+            The :any:`System.Type` used for users.
+    
+        
+        .. code-block:: csharp
+    
+            public Type UserType { get; }
     
 

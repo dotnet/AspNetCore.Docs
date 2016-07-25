@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IClientModelValidatorProvider> ClientModelValidatorProviders
-            {
-                get;
-            }
+            public IList<IClientModelValidatorProvider> ClientModelValidatorProviders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcViewOptions.HtmlHelperOptions
     
@@ -95,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HtmlHelperOptions HtmlHelperOptions
-            {
-                get;
-                set;
-            }
+            public HtmlHelperOptions HtmlHelperOptions { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Mvc.MvcViewOptions.ViewEngines
     
@@ -114,9 +107,6 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<IViewEngine> ViewEngines
-            {
-                get;
-            }
+            public IList<IViewEngine> ViewEngines { get; }
     
 

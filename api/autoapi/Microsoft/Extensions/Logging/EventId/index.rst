@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.Logging.EventId
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.Logging.EventId
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Logging.EventId.Id
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Id
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Logging.EventId.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,5 +66,56 @@ Constructors
         .. code-block:: csharp
     
             public EventId(int id, string name = null)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.Logging.EventId
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Logging.EventId.Id
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Id { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Logging.EventId.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; }
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.Extensions.Logging.EventId
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.Extensions.Logging.EventId.Implicit(System.Int32 to Microsoft.Extensions.Logging.EventId)
+    
+        
+    
+        
+        :type i: System.Int32
+        :rtype: Microsoft.Extensions.Logging.EventId
+    
+        
+        .. code-block:: csharp
+    
+            public static implicit operator EventId(int i)
     
 

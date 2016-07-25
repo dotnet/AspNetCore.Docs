@@ -70,7 +70,7 @@ Methods
     
         
         Helper method for creating an :any:`System.Net.Http.HttpResponseMessage` message with a "416 (Requested Range Not
-        Satisfiable)" status code. This response can be used in combination with the
+        Satisfiable)" status code. This response can be used in combination with the 
         :any:`System.Net.Http.ByteRangeStreamContent` to indicate that the requested range or
         ranges do not overlap with the current resource. The response contains a "Content-Range" header indicating
         the valid upper and lower bounds for requested ranges.
@@ -95,7 +95,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, InvalidByteRangeException invalidByteRangeException)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, InvalidByteRangeException invalidByteRangeException)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
     
@@ -103,7 +103,7 @@ Methods
     
         
         Helper method that performs content negotiation and creates a :any:`System.Net.Http.HttpResponseMessage`
-        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an
+        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an 
         :any:`System.Web.Http.HttpError` for model state <em>modelState</em>. If no formatter is found, this
         method returns a response with status 406 NotAcceptable.
     
@@ -130,7 +130,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, ModelStateDictionary modelState)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, HttpStatusCode statusCode, ModelStateDictionary modelState)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, System.Exception)
     
@@ -138,7 +138,7 @@ Methods
     
         
         Helper method that performs content negotiation and creates a :any:`System.Net.Http.HttpResponseMessage`
-        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an
+        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an 
         :any:`System.Web.Http.HttpError` for exception <em>exception</em>. If no formatter is found, this method
         returns a response with status 406 NotAcceptable.
     
@@ -165,7 +165,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, Exception exception)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, HttpStatusCode statusCode, Exception exception)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, System.String)
     
@@ -173,7 +173,7 @@ Methods
     
         
         Helper method that performs content negotiation and creates a :any:`System.Net.Http.HttpResponseMessage`
-        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an
+        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an 
         :any:`System.Web.Http.HttpError` with message <em>message</em>. If no formatter is found, this method
         returns a response with status 406 NotAcceptable.
     
@@ -201,7 +201,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, string message)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, HttpStatusCode statusCode, string message)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, System.String, System.Exception)
     
@@ -209,7 +209,7 @@ Methods
     
         
         Helper method that performs content negotiation and creates a :any:`System.Net.Http.HttpResponseMessage`
-        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an
+        representing an error with an instance of :any:`System.Net.Http.ObjectContent\`1` wrapping an 
         :any:`System.Web.Http.HttpError` with error message <em>message</em> for exception
         <em>exception</em>. If no formatter is found, this method returns a response with status 406
         NotAcceptable.
@@ -242,7 +242,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, string message, Exception exception)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, HttpStatusCode statusCode, string message, Exception exception)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, System.Web.Http.HttpError)
     
@@ -276,7 +276,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateErrorResponse(HttpRequestMessage request, HttpStatusCode statusCode, HttpError error)
+            public static HttpResponseMessage CreateErrorResponse(this HttpRequestMessage request, HttpStatusCode statusCode, HttpError error)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T)
     
@@ -310,7 +310,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.Collections.Generic.IEnumerable<System.Net.Http.Formatting.MediaTypeFormatter>)
     
@@ -348,7 +348,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, IEnumerable<MediaTypeFormatter> formatters)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, IEnumerable<MediaTypeFormatter> formatters)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.Net.Http.Formatting.MediaTypeFormatter)
     
@@ -385,7 +385,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.Net.Http.Formatting.MediaTypeFormatter, System.Net.Http.Headers.MediaTypeHeaderValue)
     
@@ -428,7 +428,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter, MediaTypeHeaderValue mediaType)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter, MediaTypeHeaderValue mediaType)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.Net.Http.Formatting.MediaTypeFormatter, System.String)
     
@@ -471,7 +471,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter, string mediaType)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeFormatter formatter, string mediaType)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.Net.Http.Headers.MediaTypeHeaderValue)
     
@@ -510,7 +510,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeHeaderValue mediaType)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, MediaTypeHeaderValue mediaType)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, System.Net.HttpStatusCode, T, System.String)
     
@@ -549,7 +549,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, HttpStatusCode statusCode, T value, string mediaType)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value, string mediaType)
     
     .. dn:method:: System.Net.Http.HttpRequestMessageExtensions.CreateResponse<T>(System.Net.Http.HttpRequestMessage, T)
     
@@ -579,6 +579,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpResponseMessage CreateResponse<T>(HttpRequestMessage request, T value)
+            public static HttpResponseMessage CreateResponse<T>(this HttpRequestMessage request, T value)
     
 

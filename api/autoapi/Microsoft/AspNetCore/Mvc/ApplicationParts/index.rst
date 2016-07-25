@@ -38,6 +38,10 @@ Microsoft.AspNetCore.Mvc.ApplicationParts Namespace
    /autoapi/Microsoft/AspNetCore/Mvc/ApplicationParts/IApplicationPartTypeProvider/index
    
    
+   
+   /autoapi/Microsoft/AspNetCore/Mvc/ApplicationParts/ICompilationReferencesProvider/index
+   
+   
 
 
 
@@ -48,6 +52,10 @@ Microsoft.AspNetCore.Mvc.ApplicationParts Namespace
    :hidden:
    :maxdepth: 2
 
+   
+   
+   
+   
    
    
    
@@ -88,30 +96,6 @@ Microsoft.AspNetCore.Mvc.ApplicationParts Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ApplicationParts
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ApplicationPart`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart
-
-        
-        A part of an MVC application.
-
-
-    class :dn:cls:`ApplicationPartManager`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager
-
-        
-        Manages the parts and features of an MVC application.
-
-
-    class :dn:cls:`AssemblyPart`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart
-
-        
-        An :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` backed by an :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart.Assembly`\.
-
-
     .. rubric:: Interfaces
 
 
@@ -135,5 +119,36 @@ Microsoft.AspNetCore.Mvc.ApplicationParts Namespace
 
         
         Exposes a set of types from an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart`\.
+
+
+    interface :dn:iface:`ICompilationReferencesProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApplicationParts.ICompilationReferencesProvider
+
+        
+        Exposes one or more reference paths from an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart`\.
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ApplicationPart`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart
+
+        
+        A part of an MVC application.
+
+
+    class :dn:cls:`ApplicationPartManager`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager
+
+        
+        Manages the parts and features of an MVC application.
+
+
+    class :dn:cls:`AssemblyPart`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart
+
+        
+        An :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` backed by an :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart.Assembly`\.
 
 

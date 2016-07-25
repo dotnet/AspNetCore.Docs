@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ConnectionString
-            {
-                get;
-                set;
-            }
+            public string ConnectionString { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ExpiredItemsDeletionInterval
     
@@ -96,11 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? ExpiredItemsDeletionInterval
-            {
-                get;
-                set;
-            }
+            public TimeSpan? ExpiredItemsDeletionInterval { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.Microsoft.Extensions.Options.IOptions<Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions>.Value
     
@@ -110,10 +102,7 @@ Properties
         
         .. code-block:: csharp
     
-            SqlServerCacheOptions IOptions<SqlServerCacheOptions>.Value
-            {
-                get;
-            }
+            SqlServerCacheOptions IOptions<SqlServerCacheOptions>.Value { get; }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName
     
@@ -128,11 +117,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string SchemaName
-            {
-                get;
-                set;
-            }
+            public string SchemaName { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SystemClock
     
@@ -147,11 +132,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ISystemClock SystemClock
-            {
-                get;
-                set;
-            }
+            public ISystemClock SystemClock { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName
     
@@ -166,10 +147,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string TableName
-            {
-                get;
-                set;
-            }
+            public string TableName { get; set; }
     
 

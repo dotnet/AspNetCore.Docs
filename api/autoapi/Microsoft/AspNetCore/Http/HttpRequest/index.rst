@@ -78,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract Stream Body
-            {
-                get;
-                set;
-            }
+            public abstract Stream Body { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.ContentLength
     
@@ -97,11 +93,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract long ? ContentLength
-            {
-                get;
-                set;
-            }
+            public abstract long ? ContentLength { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.ContentType
     
@@ -117,11 +109,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string ContentType
-            {
-                get;
-                set;
-            }
+            public abstract string ContentType { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Cookies
     
@@ -137,11 +125,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IRequestCookieCollection Cookies
-            {
-                get;
-                set;
-            }
+            public abstract IRequestCookieCollection Cookies { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Form
     
@@ -156,11 +140,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IFormCollection Form
-            {
-                get;
-                set;
-            }
+            public abstract IFormCollection Form { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType
     
@@ -175,10 +155,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract bool HasFormContentType
-            {
-                get;
-            }
+            public abstract bool HasFormContentType { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Headers
     
@@ -194,10 +171,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IHeaderDictionary Headers
-            {
-                get;
-            }
+            public abstract IHeaderDictionary Headers { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Host
     
@@ -212,11 +186,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract HostString Host
-            {
-                get;
-                set;
-            }
+            public abstract HostString Host { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.HttpContext
     
@@ -231,10 +201,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract HttpContext HttpContext
-            {
-                get;
-            }
+            public abstract HttpContext HttpContext { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.IsHttps
     
@@ -250,11 +217,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract bool IsHttps
-            {
-                get;
-                set;
-            }
+            public abstract bool IsHttps { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Method
     
@@ -270,11 +233,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string Method
-            {
-                get;
-                set;
-            }
+            public abstract string Method { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Path
     
@@ -290,11 +249,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract PathString Path
-            {
-                get;
-                set;
-            }
+            public abstract PathString Path { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.PathBase
     
@@ -310,11 +265,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract PathString PathBase
-            {
-                get;
-                set;
-            }
+            public abstract PathString PathBase { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Protocol
     
@@ -330,11 +281,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string Protocol
-            {
-                get;
-                set;
-            }
+            public abstract string Protocol { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Query
     
@@ -350,11 +297,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract IQueryCollection Query
-            {
-                get;
-                set;
-            }
+            public abstract IQueryCollection Query { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.QueryString
     
@@ -370,11 +313,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract QueryString QueryString
-            {
-                get;
-                set;
-            }
+            public abstract QueryString QueryString { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Http.HttpRequest.Scheme
     
@@ -390,11 +329,7 @@ Properties
         
         .. code-block:: csharp
     
-            public abstract string Scheme
-            {
-                get;
-                set;
-            }
+            public abstract string Scheme { get; set; }
     
 
 Methods

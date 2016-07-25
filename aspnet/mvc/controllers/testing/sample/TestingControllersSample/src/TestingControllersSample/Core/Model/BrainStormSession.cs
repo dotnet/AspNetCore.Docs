@@ -5,7 +5,7 @@ namespace TestingControllersSample.Core.Model
 {
     public class BrainstormSession
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTimeOffset DateCreated { get; set; }
 

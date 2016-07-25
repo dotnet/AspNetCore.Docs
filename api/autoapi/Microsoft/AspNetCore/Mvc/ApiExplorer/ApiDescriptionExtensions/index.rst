@@ -84,7 +84,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static T GetProperty<T>(ApiDescription apiDescription)
+            public static T GetProperty<T>(this ApiDescription apiDescription)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionExtensions.SetProperty<T>(Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription, T)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void SetProperty<T>(ApiDescription apiDescription, T value)
+            public static void SetProperty<T>(this ApiDescription apiDescription, T value)
     
 

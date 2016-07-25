@@ -56,218 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ControllerBase
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ControllerBase
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ControllerContext
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ControllerContext`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ControllerContext
-    
-        
-        .. code-block:: csharp
-    
-            public ControllerContext ControllerContext
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` for the executing action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext HttpContext
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.MetadataProvider
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IModelMetadataProvider MetadataProvider
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ModelBinderFactory
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory
-    
-        
-        .. code-block:: csharp
-    
-            public IModelBinderFactory ModelBinderFactory
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ModelState
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` that contains the state of the model and of model-binding validation.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ModelStateDictionary ModelState
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ObjectValidator
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator
-    
-        
-        .. code-block:: csharp
-    
-            public IObjectModelValidator ObjectValidator
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Request
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Http.HttpRequest` for the executing action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpRequest
-    
-        
-        .. code-block:: csharp
-    
-            public HttpRequest Request
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Response
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Http.HttpResponse` for the executing action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpResponse
-    
-        
-        .. code-block:: csharp
-    
-            public HttpResponse Response
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.RouteData
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Routing.RouteData` for the executing action.
-    
-        
-        :rtype: Microsoft.AspNetCore.Routing.RouteData
-    
-        
-        .. code-block:: csharp
-    
-            public RouteData RouteData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Url
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
-    
-        
-        .. code-block:: csharp
-    
-            public IUrlHelper Url
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.User
-    
-        
-    
-        
-        Gets or sets the :any:`System.Security.Claims.ClaimsPrincipal` for user associated with the executing action.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public ClaimsPrincipal User
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -357,7 +145,7 @@ Methods
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
         :rtype: Microsoft.AspNetCore.Mvc.ChallengeResult
@@ -380,7 +168,7 @@ Methods
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
     
@@ -959,7 +747,7 @@ Methods
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
         :rtype: Microsoft.AspNetCore.Mvc.ForbidResult
@@ -982,7 +770,7 @@ Methods
     
         
         :param properties: :any:`Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties` used to perform the authentication
-            challenge.
+                challenge.
         
         :type properties: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
     
@@ -1768,7 +1556,7 @@ Methods
         
     
         
-        Updates the specified <em>model</em> instance using values from the controller's current
+        Updates the specified <em>model</em> instance using values from the controller's current 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` and a <em>prefix</em>.
     
         
@@ -1785,7 +1573,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the current :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider`\.
-            
         
         :type prefix: System.String
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
@@ -1818,7 +1605,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the <em>valueProvider</em>.
-            
         
         :type prefix: System.String
     
@@ -1844,7 +1630,7 @@ Methods
         
     
         
-        Updates the specified <em>model</em> instance using values from the controller's current
+        Updates the specified <em>model</em> instance using values from the controller's current 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider`\.
     
         
@@ -1866,7 +1652,7 @@ Methods
         
     
         
-        Updates the specified <em>model</em> instance using values from the controller's current
+        Updates the specified <em>model</em> instance using values from the controller's current 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` and a <em>prefix</em>.
     
         
@@ -1878,7 +1664,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the current :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider`\.
-            
         
         :type prefix: System.String
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
@@ -1906,7 +1691,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the <em>valueProvider</em>.
-            
         
         :type prefix: System.String
     
@@ -1939,7 +1723,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the <em>valueProvider</em>.
-            
         
         :type prefix: System.String
     
@@ -1977,7 +1760,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the <em>valueProvider</em>.
-            
         
         :type prefix: System.String
     
@@ -1987,8 +1769,8 @@ Methods
         :type valueProvider: Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider
     
         
-        :param includeExpressions:  :any:`System.Linq.Expressions.Expression`\(s) which represent top-level properties
-            which need to be included for the current model.
+        :param includeExpressions: :any:`System.Linq.Expressions.Expression`\(s) which represent top-level properties
+               which need to be included for the current model.
         
         :type includeExpressions: System.Linq.Expressions.Expression<System.Linq.Expressions.Expression`1>{System.Func<System.Func`2>{TModel, System.Object<System.Object>}}[]
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
@@ -2004,7 +1786,7 @@ Methods
         
     
         
-        Updates the specified <em>model</em> instance using values from the controller's current
+        Updates the specified <em>model</em> instance using values from the controller's current 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` and a <em>prefix</em>.
     
         
@@ -2016,7 +1798,6 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the current :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider`\.
-            
         
         :type prefix: System.String
     
@@ -2037,7 +1818,7 @@ Methods
         
     
         
-        Updates the specified <em>model</em> instance using values from the controller's current
+        Updates the specified <em>model</em> instance using values from the controller's current 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider` and a <em>prefix</em>.
     
         
@@ -2049,13 +1830,12 @@ Methods
     
         
         :param prefix: The prefix to use when looking up values in the current :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider`\.
-            
         
         :type prefix: System.String
     
         
-        :param includeExpressions:  :any:`System.Linq.Expressions.Expression`\(s) which represent top-level properties
-            which need to be included for the current model.
+        :param includeExpressions: :any:`System.Linq.Expressions.Expression`\(s) which represent top-level properties
+               which need to be included for the current model.
         
         :type includeExpressions: System.Linq.Expressions.Expression<System.Linq.Expressions.Expression`1>{System.Func<System.Func`2>{TModel, System.Object<System.Object>}}[]
         :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{System.Boolean<System.Boolean>}
@@ -2103,7 +1883,6 @@ Methods
     
         
         :param prefix: The key to use when looking up information in :dn:prop:`Microsoft.AspNetCore.Mvc.ControllerBase.ModelState`\.
-            
         
         :type prefix: System.String
         :rtype: System.Boolean
@@ -2129,5 +1908,179 @@ Methods
         .. code-block:: csharp
     
             public virtual UnauthorizedResult Unauthorized()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ControllerBase
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ControllerContext
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ControllerContext`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ControllerContext
+    
+        
+        .. code-block:: csharp
+    
+            public ControllerContext ControllerContext { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpContext` for the executing action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext HttpContext { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.MetadataProvider
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IModelMetadataProvider MetadataProvider { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ModelBinderFactory
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderFactory
+    
+        
+        .. code-block:: csharp
+    
+            public IModelBinderFactory ModelBinderFactory { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ModelState
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` that contains the state of the model and of model-binding validation.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ModelStateDictionary ModelState { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.ObjectValidator
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IObjectModelValidator
+    
+        
+        .. code-block:: csharp
+    
+            public IObjectModelValidator ObjectValidator { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Request
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpRequest` for the executing action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpRequest
+    
+        
+        .. code-block:: csharp
+    
+            public HttpRequest Request { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Response
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Http.HttpResponse` for the executing action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpResponse
+    
+        
+        .. code-block:: csharp
+    
+            public HttpResponse Response { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.RouteData
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Routing.RouteData` for the executing action.
+    
+        
+        :rtype: Microsoft.AspNetCore.Routing.RouteData
+    
+        
+        .. code-block:: csharp
+    
+            public RouteData RouteData { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.Url
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.IUrlHelper`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.IUrlHelper
+    
+        
+        .. code-block:: csharp
+    
+            public IUrlHelper Url { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ControllerBase.User
+    
+        
+    
+        
+        Gets or sets the :any:`System.Security.Claims.ClaimsPrincipal` for user associated with the executing action.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public ClaimsPrincipal User { get; }
     
 

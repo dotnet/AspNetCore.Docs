@@ -60,9 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            ICollection<string> Addresses
-            {
-                get;
-            }
+            ICollection<string> Addresses { get; }
     
 

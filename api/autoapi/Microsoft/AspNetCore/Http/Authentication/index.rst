@@ -15,6 +15,10 @@ Microsoft.AspNetCore.Http.Authentication Namespace
 
    
    
+   /autoapi/Microsoft/AspNetCore/Http/Authentication/AuthenticateInfo/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Http/Authentication/AuthenticationDescription/index
    
    
@@ -53,6 +57,10 @@ Microsoft.AspNetCore.Http.Authentication Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -65,6 +73,13 @@ Microsoft.AspNetCore.Http.Authentication Namespace
 
 
     .. rubric:: Classes
+
+
+    class :dn:cls:`AuthenticateInfo`
+        .. object: type=class name=Microsoft.AspNetCore.Http.Authentication.AuthenticateInfo
+
+        
+        Used to store the results of an Authenticate call.
 
 
     class :dn:cls:`AuthenticationDescription`

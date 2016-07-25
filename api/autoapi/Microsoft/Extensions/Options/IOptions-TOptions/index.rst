@@ -7,6 +7,10 @@ IOptions<TOptions> Interface
 
 
 
+
+Used to retreive configured TOptions instances.
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Options`
 Assemblies
@@ -56,14 +60,16 @@ Properties
     .. dn:property:: Microsoft.Extensions.Options.IOptions<TOptions>.Value
     
         
+    
+        
+        The configured TOptions instance.
+    
+        
         :rtype: TOptions
     
         
         .. code-block:: csharp
     
-            TOptions Value
-            {
-                get;
-            }
+            TOptions Value { get; }
     
 

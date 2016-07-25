@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult.Code
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Code
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult.DesignTimeLineMappings
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<LineMapping> DesignTimeLineMappings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,5 +74,34 @@ Constructors
         .. code-block:: csharp
     
             public CodeGeneratorResult(string code, IList<LineMapping> designTimeLineMappings)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult.Code
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Code { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeGeneratorResult.DesignTimeLineMappings
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping<Microsoft.AspNetCore.Razor.CodeGenerators.LineMapping>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<LineMapping> DesignTimeLineMappings { get; }
     
 

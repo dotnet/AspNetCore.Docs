@@ -57,28 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException.CompilationFailures
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<CompilationFailure> CompilationFailures
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,7 +76,7 @@ Constructors
     
         
         :param compilationFailures: :any:`Microsoft.AspNetCore.Diagnostics.CompilationFailure`\s containing
-            details of the compilation failure.
+                details of the compilation failure.
         
         :type compilationFailures: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
     
@@ -106,5 +84,24 @@ Constructors
         .. code-block:: csharp
     
             public CompilationFailedException(IEnumerable<CompilationFailure> compilationFailures)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException.CompilationFailures
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{Microsoft.AspNetCore.Diagnostics.CompilationFailure<Microsoft.AspNetCore.Diagnostics.CompilationFailure>}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<CompilationFailure> CompilationFailures { get; }
     
 

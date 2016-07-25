@@ -69,7 +69,7 @@ Methods
         
     
         
-        Adds a terminal middleware delagate to the application's request pipeline.
+        Adds a terminal middleware delegate to the application's request pipeline.
     
         
     
@@ -86,6 +86,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Run(IApplicationBuilder app, RequestDelegate handler)
+            public static void Run(this IApplicationBuilder app, RequestDelegate handler)
     
 

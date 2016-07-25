@@ -95,6 +95,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ModelExplorer GetModelExplorerForType(IModelMetadataProvider provider, Type modelType, object model)
+            public static ModelExplorer GetModelExplorerForType(this IModelMetadataProvider provider, Type modelType, object model)
     
 

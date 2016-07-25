@@ -56,91 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed
-    
-        
-    
-        
-        Invoked if exceptions are thrown during request processing. The exceptions will be re-thrown after this event unless suppressed.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.AuthenticationFailedContext<Microsoft.AspNetCore.Authentication.JwtBearer.AuthenticationFailedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<AuthenticationFailedContext, Task> OnAuthenticationFailed
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnChallenge
-    
-        
-    
-        
-        Invoked before a challenge is sent back to the caller.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerChallengeContext<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerChallengeContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<JwtBearerChallengeContext, Task> OnChallenge
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived
-    
-        
-    
-        
-        Invoked when a protocol message is first received.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext<Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<MessageReceivedContext, Task> OnMessageReceived
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated
-    
-        
-    
-        
-        Invoked after the security token has passed validation and a ClaimsIdentity has been generated.
-    
-        
-        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext<Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<TokenValidatedContext, Task> OnTokenValidated
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -200,5 +115,74 @@ Methods
         .. code-block:: csharp
     
             public virtual Task TokenValidated(TokenValidatedContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed
+    
+        
+    
+        
+        Invoked if exceptions are thrown during request processing. The exceptions will be re-thrown after this event unless suppressed.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.AuthenticationFailedContext<Microsoft.AspNetCore.Authentication.JwtBearer.AuthenticationFailedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<AuthenticationFailedContext, Task> OnAuthenticationFailed { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnChallenge
+    
+        
+    
+        
+        Invoked before a challenge is sent back to the caller.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerChallengeContext<Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerChallengeContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<JwtBearerChallengeContext, Task> OnChallenge { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived
+    
+        
+    
+        
+        Invoked when a protocol message is first received.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext<Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<MessageReceivedContext, Task> OnMessageReceived { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated
+    
+        
+    
+        
+        Invoked after the security token has passed validation and a ClaimsIdentity has been generated.
+    
+        
+        :rtype: System.Func<System.Func`2>{Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext<Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext>, System.Threading.Tasks.Task<System.Threading.Tasks.Task>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<TokenValidatedContext, Task> OnTokenValidated { get; set; }
     
 

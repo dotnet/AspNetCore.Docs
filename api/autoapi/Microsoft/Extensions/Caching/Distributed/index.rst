@@ -80,6 +80,15 @@ Microsoft.Extensions.Caching.Distributed Namespace
 .. dn:namespace:: Microsoft.Extensions.Caching.Distributed
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IDistributedCache`
+        .. object: type=interface name=Microsoft.Extensions.Caching.Distributed.IDistributedCache
+
+        
+
+
     .. rubric:: Classes
 
 
@@ -104,15 +113,6 @@ Microsoft.Extensions.Caching.Distributed Namespace
 
     class :dn:cls:`MemoryDistributedCache`
         .. object: type=class name=Microsoft.Extensions.Caching.Distributed.MemoryDistributedCache
-
-        
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IDistributedCache`
-        .. object: type=interface name=Microsoft.Extensions.Caching.Distributed.IDistributedCache
 
         
 

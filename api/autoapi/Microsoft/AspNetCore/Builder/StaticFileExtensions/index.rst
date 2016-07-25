@@ -80,7 +80,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStaticFiles(IApplicationBuilder app)
+            public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.StaticFileOptions)
     
@@ -101,7 +101,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStaticFiles(IApplicationBuilder app, StaticFileOptions options)
+            public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, StaticFileOptions options)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.String)
     
@@ -124,6 +124,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseStaticFiles(IApplicationBuilder app, string requestPath)
+            public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, string requestPath)
     
 

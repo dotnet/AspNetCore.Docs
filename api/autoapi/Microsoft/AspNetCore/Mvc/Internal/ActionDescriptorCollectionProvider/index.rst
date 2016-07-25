@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.ActionDescriptors
-    
-        
-    
-        
-        Returns a cached collection of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection
-    
-        
-        .. code-block:: csharp
-    
-            public ActionDescriptorCollection ActionDescriptors
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,5 +83,29 @@ Constructors
         .. code-block:: csharp
     
             public ActionDescriptorCollectionProvider(IServiceProvider serviceProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.ActionDescriptors
+    
+        
+    
+        
+        Returns a cached collection of :any:`Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Infrastructure.ActionDescriptorCollection
+    
+        
+        .. code-block:: csharp
+    
+            public ActionDescriptorCollection ActionDescriptors { get; }
     
 

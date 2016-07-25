@@ -59,7 +59,7 @@ Content negotiated response
   Instead of returning an object directly, an action can return a content negotiated response (using ``Ok``, ``Created``, ``CreatedAtRoute`` or ``CreatedAtAction``). Examples: ``return Ok();`` or ``return CreatedAtRoute("routename",values,newobject");``
 
 Redirect
-  Returns a redirect to another action or destination (using ``Redirect``,``LocalRedirect``,``RedirectToAction`` or ``RedirectToRoute``). Example: ``return RedirectToAction("Complete", new {id = 123});``
+  Returns a redirect to another action or destination (using ``Redirect``, ``LocalRedirect``, ``RedirectToAction`` or ``RedirectToRoute``). Example: ``return RedirectToAction("Complete", new {id = 123});``
 
 In addition to the methods above, an action can also simply return an object. In this case, the object will be formatted based on the client's request. Learn more about :doc:`/mvc/models/formatting`
 

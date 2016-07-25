@@ -56,70 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.AreaViewLocationFormats
-    
-        
-    
-        
-        Gets the locations where this instance of :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` will search for views within an
-        area.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IEnumerable<string> AreaViewLocationFormats
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewLocationFormats
-    
-        
-    
-        
-        Gets the locations where this instance of :any:`Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine` will search for views.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual IEnumerable<string> ViewLocationFormats
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewLookupCache
-    
-        
-    
-        
-        A cache for results of view lookups.
-    
-        
-        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
-    
-        
-        .. code-block:: csharp
-    
-            protected IMemoryCache ViewLookupCache
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -277,5 +213,48 @@ Methods
         .. code-block:: csharp
     
             public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewExtension
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly string ViewExtension
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewLookupCache
+    
+        
+    
+        
+        A cache for results of view lookups.
+    
+        
+        :rtype: Microsoft.Extensions.Caching.Memory.IMemoryCache
+    
+        
+        .. code-block:: csharp
+    
+            protected IMemoryCache ViewLookupCache { get; }
     
 

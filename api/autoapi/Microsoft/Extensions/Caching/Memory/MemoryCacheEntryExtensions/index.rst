@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions AddExpirationToken(MemoryCacheEntryOptions options, IChangeToken expirationToken)
+            public static MemoryCacheEntryOptions AddExpirationToken(this MemoryCacheEntryOptions options, IChangeToken expirationToken)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.RegisterPostEvictionCallback(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, Microsoft.Extensions.Caching.Memory.PostEvictionDelegate)
     
@@ -104,7 +104,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions RegisterPostEvictionCallback(MemoryCacheEntryOptions options, PostEvictionDelegate callback)
+            public static MemoryCacheEntryOptions RegisterPostEvictionCallback(this MemoryCacheEntryOptions options, PostEvictionDelegate callback)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.RegisterPostEvictionCallback(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, Microsoft.Extensions.Caching.Memory.PostEvictionDelegate, System.Object)
     
@@ -128,7 +128,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions RegisterPostEvictionCallback(MemoryCacheEntryOptions options, PostEvictionDelegate callback, object state)
+            public static MemoryCacheEntryOptions RegisterPostEvictionCallback(this MemoryCacheEntryOptions options, PostEvictionDelegate callback, object state)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetAbsoluteExpiration(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, System.DateTimeOffset)
     
@@ -149,7 +149,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions SetAbsoluteExpiration(MemoryCacheEntryOptions options, DateTimeOffset absolute)
+            public static MemoryCacheEntryOptions SetAbsoluteExpiration(this MemoryCacheEntryOptions options, DateTimeOffset absolute)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetAbsoluteExpiration(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, System.TimeSpan)
     
@@ -170,7 +170,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions SetAbsoluteExpiration(MemoryCacheEntryOptions options, TimeSpan relative)
+            public static MemoryCacheEntryOptions SetAbsoluteExpiration(this MemoryCacheEntryOptions options, TimeSpan relative)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetPriority(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, Microsoft.Extensions.Caching.Memory.CacheItemPriority)
     
@@ -191,7 +191,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions SetPriority(MemoryCacheEntryOptions options, CacheItemPriority priority)
+            public static MemoryCacheEntryOptions SetPriority(this MemoryCacheEntryOptions options, CacheItemPriority priority)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetSlidingExpiration(Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions, System.TimeSpan)
     
@@ -213,6 +213,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static MemoryCacheEntryOptions SetSlidingExpiration(MemoryCacheEntryOptions options, TimeSpan offset)
+            public static MemoryCacheEntryOptions SetSlidingExpiration(this MemoryCacheEntryOptions options, TimeSpan offset)
     
 

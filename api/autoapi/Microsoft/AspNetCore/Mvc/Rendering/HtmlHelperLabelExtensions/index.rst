@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Label(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent Label(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.Label(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -119,7 +119,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent Label(IHtmlHelper htmlHelper, string expression, string labelText)
+            public static IHtmlContent Label(this IHtmlHelper htmlHelper, string expression, string labelText)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper)
     
@@ -140,7 +140,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelForModel(IHtmlHelper htmlHelper)
+            public static IHtmlContent LabelForModel(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Object)
     
@@ -158,7 +158,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -169,7 +169,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelForModel(IHtmlHelper htmlHelper, object htmlAttributes)
+            public static IHtmlContent LabelForModel(this IHtmlHelper htmlHelper, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
@@ -195,7 +195,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelForModel(IHtmlHelper htmlHelper, string labelText)
+            public static IHtmlContent LabelForModel(this IHtmlHelper htmlHelper, string labelText)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelForModel(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -218,7 +218,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -229,7 +229,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelForModel(IHtmlHelper htmlHelper, string labelText, object htmlAttributes)
+            public static IHtmlContent LabelForModel(this IHtmlHelper htmlHelper, string labelText, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -255,7 +255,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent LabelFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.Object)
     
@@ -278,7 +278,7 @@ Methods
     
         
         :param htmlAttributes: 
-            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an
+            An :any:`System.Object` that contains the HTML attributes for the element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -289,7 +289,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
+            public static IHtmlContent LabelFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperLabelExtensions.LabelFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String)
     
@@ -320,6 +320,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent LabelFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string labelText)
+            public static IHtmlContent LabelFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string labelText)
     
 

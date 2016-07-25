@@ -1,16 +1,17 @@
-﻿//#define StartupDefault
-#if StartupDefault
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace empty
+namespace StaticFiles
 {
-    public class StartupEmpty
+    public class StartupDefault
     {
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // >Configure
         public void Configure(IApplicationBuilder app)
         {
             // Serve my app-specific default file, if present.
@@ -20,7 +21,6 @@ namespace empty
             app.UseDefaultFiles(options);
             app.UseStaticFiles();
         }
+        // <Configure
     }
 }
-
-#endif

@@ -52,70 +52,26 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.WebUtilities.MultipartReader
 
-Properties
-----------
+Methods
+-------
 
 .. dn:class:: Microsoft.AspNetCore.WebUtilities.MultipartReader
     :noindex:
     :hidden:
 
     
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.BodyLengthLimit
+    .. dn:method:: Microsoft.AspNetCore.WebUtilities.MultipartReader.ReadNextSectionAsync(System.Threading.CancellationToken)
     
         
     
         
-        The optional limit for the total response body length.
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+        :type cancellationToken: System.Threading.CancellationToken
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.WebUtilities.MultipartSection<Microsoft.AspNetCore.WebUtilities.MultipartSection>}
     
         
         .. code-block:: csharp
     
-            public long ? BodyLengthLimit
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.HeadersCountLimit
-    
-        
-    
-        
-        The limit for the number of headers to read.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int HeadersCountLimit
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.HeadersLengthLimit
-    
-        
-    
-        
-        The combined size limit for headers per multipart section.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int HeadersLengthLimit
-            {
-                get;
-                set;
-            }
+            public Task<MultipartSection> ReadNextSectionAsync(CancellationToken cancellationToken = null)
     
 
 Constructors
@@ -160,6 +116,60 @@ Constructors
             public MultipartReader(string boundary, Stream stream, int bufferSize)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.WebUtilities.MultipartReader
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.BodyLengthLimit
+    
+        
+    
+        
+        The optional limit for the total response body length.
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? BodyLengthLimit { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.HeadersCountLimit
+    
+        
+    
+        
+        The limit for the number of headers to read.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int HeadersCountLimit { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.WebUtilities.MultipartReader.HeadersLengthLimit
+    
+        
+    
+        
+        The combined size limit for headers per multipart section.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int HeadersLengthLimit { get; set; }
+    
+
 Fields
 ------
 
@@ -187,27 +197,5 @@ Fields
         .. code-block:: csharp
     
             public const int DefaultHeadersLengthLimit = 16384
-    
-
-Methods
--------
-
-.. dn:class:: Microsoft.AspNetCore.WebUtilities.MultipartReader
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.WebUtilities.MultipartReader.ReadNextSectionAsync(System.Threading.CancellationToken)
-    
-        
-    
-        
-        :type cancellationToken: System.Threading.CancellationToken
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.WebUtilities.MultipartSection<Microsoft.AspNetCore.WebUtilities.MultipartSection>}
-    
-        
-        .. code-block:: csharp
-    
-            public Task<MultipartSection> ReadNextSectionAsync(CancellationToken cancellationToken = null)
     
 

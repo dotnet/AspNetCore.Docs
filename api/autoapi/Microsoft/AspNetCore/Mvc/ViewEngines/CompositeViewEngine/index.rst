@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.ViewEngines
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine<Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<IViewEngine> ViewEngines
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -147,5 +125,24 @@ Methods
         .. code-block:: csharp
     
             public ViewEngineResult GetView(string executingFilePath, string viewPath, bool isMainPage)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.ViewEngines
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine<Microsoft.AspNetCore.Mvc.ViewEngines.IViewEngine>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<IViewEngine> ViewEngines { get; }
     
 

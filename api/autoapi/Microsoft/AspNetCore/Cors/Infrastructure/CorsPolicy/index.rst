@@ -77,10 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AllowAnyHeader
-            {
-                get;
-            }
+            public bool AllowAnyHeader { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyMethod
     
@@ -95,10 +92,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AllowAnyMethod
-            {
-                get;
-            }
+            public bool AllowAnyMethod { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyOrigin
     
@@ -113,10 +107,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AllowAnyOrigin
-            {
-                get;
-            }
+            public bool AllowAnyOrigin { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.ExposedHeaders
     
@@ -131,10 +122,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> ExposedHeaders
-            {
-                get;
-            }
+            public IList<string> ExposedHeaders { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.Headers
     
@@ -149,10 +137,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> Headers
-            {
-                get;
-            }
+            public IList<string> Headers { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.Methods
     
@@ -167,10 +152,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> Methods
-            {
-                get;
-            }
+            public IList<string> Methods { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.Origins
     
@@ -185,10 +167,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> Origins
-            {
-                get;
-            }
+            public IList<string> Origins { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.PreflightMaxAge
     
@@ -203,11 +182,7 @@ Properties
         
         .. code-block:: csharp
     
-            public TimeSpan? PreflightMaxAge
-            {
-                get;
-                set;
-            }
+            public TimeSpan? PreflightMaxAge { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.SupportsCredentials
     
@@ -222,11 +197,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool SupportsCredentials
-            {
-                get;
-                set;
-            }
+            public bool SupportsCredentials { get; set; }
     
 
 Methods

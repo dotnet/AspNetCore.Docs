@@ -57,33 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ModelChunk
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ModelChunk
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ModelChunk.ModelType
-    
-        
-    
-        
-        Gets the type of the view's model.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string ModelType
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -110,5 +83,29 @@ Constructors
         .. code-block:: csharp
     
             public ModelChunk(string modelType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.ModelChunk
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.ModelChunk.ModelType
+    
+        
+    
+        
+        Gets the type of the view's model.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string ModelType { get; }
     
 

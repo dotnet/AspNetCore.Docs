@@ -56,35 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter.TreatNullValueAsNoContent
-    
-        
-    
-        
-        Indicates whether to select this formatter if the returned value from the action
-        is null.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool TreatNullValueAsNoContent
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -118,5 +89,30 @@ Methods
         .. code-block:: csharp
     
             public Task WriteAsync(OutputFormatterWriteContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter.TreatNullValueAsNoContent
+    
+        
+    
+        
+        Indicates whether to select this formatter if the returned value from the action
+        is null.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool TreatNullValueAsNoContent { get; set; }
     
 

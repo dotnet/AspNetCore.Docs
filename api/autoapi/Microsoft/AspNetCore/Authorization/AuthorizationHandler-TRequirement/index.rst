@@ -7,6 +7,10 @@ AuthorizationHandler<TRequirement> Class
 
 
 
+
+Base class for authorization handlers that need to be called for a specific requirement type.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization`
 Assemblies
@@ -60,53 +64,42 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
-    
-        
-        .. code-block:: csharp
-    
-            public void Handle(AuthorizationContext context)
-    
-    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext, TRequirement)
+        Makes a decision if authorization is allowed.
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
-    
+        :param context: The authorization context.
         
-        :type requirement: TRequirement
-    
-        
-        .. code-block:: csharp
-    
-            protected abstract void Handle(AuthorizationContext context, TRequirement requirement)
-    
-    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationContext)
-    
-        
-    
-        
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            public virtual Task HandleAsync(AuthorizationContext context)
+            public virtual Task HandleAsync(AuthorizationHandlerContext context)
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationContext, TRequirement)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.AuthorizationHandler<TRequirement>.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext, TRequirement)
+    
+        
+    
+        
+        Makes a decision if authorization is allowed based on a specific requirement.
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        :param context: The authorization context.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
     
+        
+        :param requirement: The requirement to evaluate.
         
         :type requirement: TRequirement
         :rtype: System.Threading.Tasks.Task
@@ -114,6 +107,6 @@ Methods
         
         .. code-block:: csharp
     
-            protected virtual Task HandleAsync(AuthorizationContext context, TRequirement requirement)
+            protected abstract Task HandleRequirementAsync(AuthorizationHandlerContext context, TRequirement requirement)
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMicrosoftAccountAuthentication(IApplicationBuilder app)
+            public static IApplicationBuilder UseMicrosoftAccountAuthentication(this IApplicationBuilder app)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.MicrosoftAccountAppBuilderExtensions.UseMicrosoftAccountAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Builder.MicrosoftAccountOptions)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMicrosoftAccountAuthentication(IApplicationBuilder app, MicrosoftAccountOptions options)
+            public static IApplicationBuilder UseMicrosoftAccountAuthentication(this IApplicationBuilder app, MicrosoftAccountOptions options)
     
 

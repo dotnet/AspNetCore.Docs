@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AdditionalData
-            {
-                get;
-                set;
-            }
+            public string AdditionalData { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.AntiforgeryToken.ClaimUid
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BinaryBlob ClaimUid
-            {
-                get;
-                set;
-            }
+            public BinaryBlob ClaimUid { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.AntiforgeryToken.IsCookieToken
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsCookieToken
-            {
-                get;
-                set;
-            }
+            public bool IsCookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.AntiforgeryToken.SecurityToken
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public BinaryBlob SecurityToken
-            {
-                get;
-                set;
-            }
+            public BinaryBlob SecurityToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.AntiforgeryToken.Username
     
@@ -124,10 +108,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string Username
-            {
-                get;
-                set;
-            }
+            public string Username { get; set; }
     
 

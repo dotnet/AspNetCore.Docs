@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ShortFormDictionaryValidationStrategy<TKey, TValue>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ShortFormDictionaryValidationStrategy<TKey, TValue>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ShortFormDictionaryValidationStrategy<TKey, TValue>.KeyMappings
-    
-        
-    
-        
-        Gets the mapping from model prefix key to dictionary key.
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, TKey}}
-    
-        
-        .. code-block:: csharp
-    
-            public IEnumerable<KeyValuePair<string, TKey>> KeyMappings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -143,5 +116,29 @@ Methods
         .. code-block:: csharp
     
             public IEnumerator<ValidationEntry> GetChildren(ModelMetadata metadata, string key, object model)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.ShortFormDictionaryValidationStrategy<TKey, TValue>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.ShortFormDictionaryValidationStrategy<TKey, TValue>.KeyMappings
+    
+        
+    
+        
+        Gets the mapping from model prefix key to dictionary key.
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair`2>{System.String<System.String>, TKey}}
+    
+        
+        .. code-block:: csharp
+    
+            public IEnumerable<KeyValuePair<string, TKey>> KeyMappings { get; }
     
 

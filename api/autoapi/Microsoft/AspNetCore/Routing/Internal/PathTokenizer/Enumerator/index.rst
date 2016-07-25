@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator.Current
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,6 +63,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(PathTokenizer tokenizer)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator.Current
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.PathTokenizer.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

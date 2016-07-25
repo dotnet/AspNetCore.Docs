@@ -59,29 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -130,5 +107,24 @@ Methods
         .. code-block:: csharp
     
             public abstract bool IsValidForRequest(RouteContext routeContext, ActionDescriptor action)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ActionConstraints.ActionMethodSelectorAttribute.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; set; }
     
 

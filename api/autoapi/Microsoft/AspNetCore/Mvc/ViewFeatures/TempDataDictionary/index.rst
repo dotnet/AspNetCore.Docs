@@ -52,84 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            bool ICollection<KeyValuePair<string, object>>.IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<object> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -374,5 +296,67 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.String, System.Object>>.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            bool ICollection<KeyValuePair<string, object>>.IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<object> Values { get; }
     
 

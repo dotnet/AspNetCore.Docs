@@ -56,86 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Server.WebListener
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Server.WebListener
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Server.WebListener.AuthenticationManager
-    
-        
-        :rtype: Microsoft.Net.Http.Server.AuthenticationManager
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationManager AuthenticationManager
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.WebListener.BufferResponses
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool BufferResponses
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.WebListener.IsListening
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsListening
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.WebListener.TimeoutManager
-    
-        
-    
-        
-        Exposes the Http.Sys timeout configurations.  These may also be configured in the registry.
-    
-        
-        :rtype: Microsoft.Net.Http.Server.TimeoutManager
-    
-        
-        .. code-block:: csharp
-    
-            public TimeoutManager TimeoutManager
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.WebListener.UrlPrefixes
-    
-        
-        :rtype: Microsoft.Net.Http.Server.UrlPrefixCollection
-    
-        
-        .. code-block:: csharp
-    
-            public UrlPrefixCollection UrlPrefixes
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -164,6 +84,70 @@ Constructors
         .. code-block:: csharp
     
             public WebListener(ILoggerFactory factory)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Server.WebListener
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Server.WebListener.AuthenticationManager
+    
+        
+        :rtype: Microsoft.Net.Http.Server.AuthenticationManager
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationManager AuthenticationManager { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.WebListener.BufferResponses
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool BufferResponses { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.WebListener.IsListening
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsListening { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.WebListener.TimeoutManager
+    
+        
+    
+        
+        Exposes the Http.Sys timeout configurations.  These may also be configured in the registry.
+    
+        
+        :rtype: Microsoft.Net.Http.Server.TimeoutManager
+    
+        
+        .. code-block:: csharp
+    
+            public TimeoutManager TimeoutManager { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.WebListener.UrlPrefixes
+    
+        
+        :rtype: Microsoft.Net.Http.Server.UrlPrefixCollection
+    
+        
+        .. code-block:: csharp
+    
+            public UrlPrefixCollection UrlPrefixes { get; }
     
 
 Methods

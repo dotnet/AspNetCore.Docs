@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public StringBuilder Builder
-            {
-                get;
-            }
+            public StringBuilder Builder { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeWriter.CurrentIndent
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int CurrentIndent
-            {
-                get;
-            }
+            public int CurrentIndent { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeWriter.IsAfterNewLine
     
@@ -94,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsAfterNewLine
-            {
-                get;
-            }
+            public bool IsAfterNewLine { get; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CodeWriter.NewLine
     
@@ -107,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string NewLine
-            {
-                get;
-                set;
-            }
+            public string NewLine { get; set; }
     
 
 Methods

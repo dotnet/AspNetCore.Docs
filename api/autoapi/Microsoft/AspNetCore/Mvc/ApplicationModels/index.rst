@@ -192,66 +192,6 @@ Microsoft.AspNetCore.Mvc.ApplicationModels Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ApplicationModels
 
 
-    .. rubric:: Classes
-
-
-    class :dn:cls:`ActionModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel
-
-        
-
-
-    class :dn:cls:`ApiExplorerModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel
-
-        
-        A model for ApiExplorer properties associated with a controller or action.
-
-
-    class :dn:cls:`ApplicationModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
-
-        
-
-
-    class :dn:cls:`ApplicationModelProviderContext`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext
-
-        
-        A context object for :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider`\.
-
-
-    class :dn:cls:`AttributeRouteModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
-
-        
-
-
-    class :dn:cls:`ControllerModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel
-
-        
-
-
-    class :dn:cls:`ParameterModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel
-
-        
-
-
-    class :dn:cls:`PropertyModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.PropertyModel
-
-        
-        A type which is used to represent a property in a :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel`\.
-
-
-    class :dn:cls:`SelectorModel`
-        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel
-
-        
-
-
     .. rubric:: Interfaces
 
 
@@ -316,6 +256,66 @@ Microsoft.AspNetCore.Mvc.ApplicationModels Namespace
 
     interface :dn:iface:`IPropertyModel`
         .. object: type=interface name=Microsoft.AspNetCore.Mvc.ApplicationModels.IPropertyModel
+
+        
+
+
+    .. rubric:: Classes
+
+
+    class :dn:cls:`ActionModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel
+
+        
+
+
+    class :dn:cls:`ApiExplorerModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel
+
+        
+        A model for ApiExplorer properties associated with a controller or action.
+
+
+    class :dn:cls:`ApplicationModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel
+
+        
+
+
+    class :dn:cls:`ApplicationModelProviderContext`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelProviderContext
+
+        
+        A context object for :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider`\.
+
+
+    class :dn:cls:`AttributeRouteModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel
+
+        
+
+
+    class :dn:cls:`ControllerModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel
+
+        
+
+
+    class :dn:cls:`ParameterModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel
+
+        
+
+
+    class :dn:cls:`PropertyModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.PropertyModel
+
+        
+        A type which is used to represent a property in a :any:`Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel`\.
+
+
+    class :dn:cls:`SelectorModel`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel
 
         
 

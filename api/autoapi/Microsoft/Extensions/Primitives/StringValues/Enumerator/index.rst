@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.Primitives.StringValues.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.Primitives.StringValues.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Enumerator.Current
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,6 +63,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(ref StringValues values)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringValues.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Enumerator.Current
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Current { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringValues.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

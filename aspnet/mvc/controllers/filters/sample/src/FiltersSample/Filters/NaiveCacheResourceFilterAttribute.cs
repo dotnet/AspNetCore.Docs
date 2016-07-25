@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiltersSample.Filters
 {
     public class NaiveCacheResourceFilterAttribute : Attribute,
         IResourceFilter
     {
-        private static readonly Dictionary<string, object> _cache 
+        private static readonly Dictionary<string, object> _cache
                     = new Dictionary<string, object>();
         private string _cacheKey;
-          
+
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             _cacheKey = context.HttpContext.Request.Path.ToString();
@@ -21,7 +21,7 @@ namespace FiltersSample.Filters
                 if (cachedValue != null)
                 {
                     context.Result = new ContentResult()
-                    { Content= cachedValue };
+                    { Content = cachedValue };
                 }
             }
         }

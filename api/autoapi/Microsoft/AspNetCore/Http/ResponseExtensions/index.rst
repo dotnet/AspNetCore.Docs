@@ -70,6 +70,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static void Clear(HttpResponse response)
+            public static void Clear(this HttpResponse response)
     
 

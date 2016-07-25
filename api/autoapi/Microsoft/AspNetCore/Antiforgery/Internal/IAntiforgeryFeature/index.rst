@@ -60,11 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            AntiforgeryToken CookieToken
-            {
-                get;
-                set;
-            }
+            AntiforgeryToken CookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.HaveDeserializedCookieToken
     
@@ -74,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HaveDeserializedCookieToken
-            {
-                get;
-                set;
-            }
+            bool HaveDeserializedCookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.HaveDeserializedRequestToken
     
@@ -88,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HaveDeserializedRequestToken
-            {
-                get;
-                set;
-            }
+            bool HaveDeserializedRequestToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.HaveGeneratedNewCookieToken
     
@@ -102,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HaveGeneratedNewCookieToken
-            {
-                get;
-                set;
-            }
+            bool HaveGeneratedNewCookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.HaveStoredNewCookieToken
     
@@ -116,11 +100,7 @@ Properties
         
         .. code-block:: csharp
     
-            bool HaveStoredNewCookieToken
-            {
-                get;
-                set;
-            }
+            bool HaveStoredNewCookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.NewCookieToken
     
@@ -130,11 +110,7 @@ Properties
         
         .. code-block:: csharp
     
-            AntiforgeryToken NewCookieToken
-            {
-                get;
-                set;
-            }
+            AntiforgeryToken NewCookieToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.NewCookieTokenString
     
@@ -144,11 +120,7 @@ Properties
         
         .. code-block:: csharp
     
-            string NewCookieTokenString
-            {
-                get;
-                set;
-            }
+            string NewCookieTokenString { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.NewRequestToken
     
@@ -158,11 +130,7 @@ Properties
         
         .. code-block:: csharp
     
-            AntiforgeryToken NewRequestToken
-            {
-                get;
-                set;
-            }
+            AntiforgeryToken NewRequestToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.NewRequestTokenString
     
@@ -172,11 +140,7 @@ Properties
         
         .. code-block:: csharp
     
-            string NewRequestTokenString
-            {
-                get;
-                set;
-            }
+            string NewRequestTokenString { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Antiforgery.Internal.IAntiforgeryFeature.RequestToken
     
@@ -186,10 +150,6 @@ Properties
         
         .. code-block:: csharp
     
-            AntiforgeryToken RequestToken
-            {
-                get;
-                set;
-            }
+            AntiforgeryToken RequestToken { get; set; }
     
 

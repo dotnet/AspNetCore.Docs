@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IRequestCookieCollection Cookies
-            {
-                get;
-                set;
-            }
+            IRequestCookieCollection Cookies { get; set; }
     
 

@@ -29,6 +29,7 @@ Inheritance Hierarchy
 
 * :dn:cls:`System.Object`
 * :dn:cls:`Microsoft.EntityFrameworkCore.DbContext`
+* :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{{TUser},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,System.String,Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim{System.String},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken{System.String}}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{{TUser},Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole,System.String}`
 * :dn:cls:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext\<TUser>`
 

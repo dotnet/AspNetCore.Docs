@@ -143,10 +143,9 @@ Methods
         
         :type item: Microsoft.Net.Http.Headers.MediaTypeHeaderValue
         :rtype: System.Boolean
-        :return: <pre>
-            <code>true</code>
-            </pre> if <em>item</em> is successfully removed; otherwise, <pre><code>false</code></pre>.
-            This method also returns <pre><code>false</code></pre> if <em>item</em> was not found in the original 
+        :return:
+            ``true`` if *item* is successfully removed; otherwise, false.
+            This method also returns ``false`` if *item* was not found in the original 
             :any:`Microsoft.AspNetCore.Mvc.Formatters.MediaTypeCollection`\.
     
         

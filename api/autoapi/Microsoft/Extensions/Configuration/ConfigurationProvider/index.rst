@@ -7,6 +7,10 @@ ConfigurationProvider Class
 
 
 
+
+Base helper class for implementing an :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
+
+
 Namespace
     :dn:ns:`Microsoft.Extensions.Configuration`
 Assemblies
@@ -52,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Configuration.ConfigurationProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationProvider.Data
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.String, System.String>
-    
-        
-        .. code-block:: csharp
-    
-            protected IDictionary<string, string> Data
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -88,9 +69,38 @@ Constructors
         
     
         
+        Initializes a new :any:`Microsoft.Extensions.Configuration.IConfigurationProvider`
+    
+        
+    
+        
         .. code-block:: csharp
     
             protected ConfigurationProvider()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Configuration.ConfigurationProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Configuration.ConfigurationProvider.Data
+    
+        
+    
+        
+        The configuration key value pairs for this provider.
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            protected IDictionary<string, string> Data { get; set; }
     
 
 Methods
@@ -106,11 +116,21 @@ Methods
         
     
         
-        :type earlierKeys: System.Collections.Generic.IEnumerable<System.String>
+        Returns the list of keys that this provider has.
     
         
+    
+        
+        :param earlierKeys: The earlier keys that other providers contain.
+        
+        :type earlierKeys: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        :param parentPath: The path for the parent IConfiguration.
+        
         :type parentPath: System.String
-        :rtype: System.Collections.Generic.IEnumerable<System.String>
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+        :return: The list of keys for this provider.
     
         
         .. code-block:: csharp
@@ -118,6 +138,11 @@ Methods
             public virtual IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string parentPath)
     
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationProvider.GetReloadToken()
+    
+        
+    
+        
+        Returns a :any:`Microsoft.Extensions.Primitives.IChangeToken` that can be used to listen when this provider is reloaded.
     
         
         :rtype: Microsoft.Extensions.Primitives.IChangeToken
@@ -132,6 +157,11 @@ Methods
         
     
         
+        Loads (or reloads) the data for this provider.
+    
+        
+    
+        
         .. code-block:: csharp
     
             public virtual void Load()
@@ -141,7 +171,7 @@ Methods
         
     
         
-        Fires the Change Token
+        Triggers the reload change token and creates a new one.
     
         
     
@@ -155,8 +185,17 @@ Methods
         
     
         
+        Sets a value for a given key.
+    
+        
+    
+        
+        :param key: The configuration key to set.
+        
         :type key: System.String
     
+        
+        :param value: The value to set.
         
         :type value: System.String
     
@@ -170,11 +209,21 @@ Methods
         
     
         
+        Attempts to find a value with the given key, returns true if one is found, false otherwise.
+    
+        
+    
+        
+        :param key: The key to lookup.
+        
         :type key: System.String
     
         
+        :param value: The value found at key if one is found.
+        
         :type value: System.String
         :rtype: System.Boolean
+        :return: True if key has a value, false otherwise.
     
         
         .. code-block:: csharp

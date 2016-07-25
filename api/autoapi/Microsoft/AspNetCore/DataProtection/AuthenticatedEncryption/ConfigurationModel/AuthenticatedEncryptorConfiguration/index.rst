@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorConfiguration
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorConfiguration
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorConfiguration.Settings
-    
-        
-        :rtype: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.AuthenticatedEncryptionSettings
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticatedEncryptionSettings Settings
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -131,5 +109,24 @@ Methods
         .. code-block:: csharp
     
             public IAuthenticatedEncryptorDescriptor CreateNewDescriptor()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorConfiguration
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorConfiguration.Settings
+    
+        
+        :rtype: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.AuthenticatedEncryptionSettings
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticatedEncryptionSettings Settings { get; }
     
 

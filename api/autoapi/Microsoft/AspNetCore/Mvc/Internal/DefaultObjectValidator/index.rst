@@ -64,7 +64,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.DefaultObjectValidator.DefaultObjectValidator(Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider, Microsoft.AspNetCore.Mvc.Internal.ValidatorCache)
+    .. dn:constructor:: Microsoft.AspNetCore.Mvc.Internal.DefaultObjectValidator.DefaultObjectValidator(Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider, System.Collections.Generic.IList<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>)
     
         
     
@@ -79,14 +79,14 @@ Constructors
         :type modelMetadataProvider: Microsoft.AspNetCore.Mvc.ModelBinding.IModelMetadataProvider
     
         
-        :param validatorCache: The :any:`Microsoft.AspNetCore.Mvc.Internal.ValidatorCache`\.
+        :param validatorProviders: The list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider`\.
         
-        :type validatorCache: Microsoft.AspNetCore.Mvc.Internal.ValidatorCache
+        :type validatorProviders: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider>}
     
         
         .. code-block:: csharp
     
-            public DefaultObjectValidator(IModelMetadataProvider modelMetadataProvider, ValidatorCache validatorCache)
+            public DefaultObjectValidator(IModelMetadataProvider modelMetadataProvider, IList<IModelValidatorProvider> validatorProviders)
     
 
 Methods
@@ -97,15 +97,12 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.DefaultObjectValidator.Validate(Microsoft.AspNetCore.Mvc.ActionContext, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary, System.String, System.Object)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Internal.DefaultObjectValidator.Validate(Microsoft.AspNetCore.Mvc.ActionContext, Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary, System.String, System.Object)
     
         
     
         
         :type actionContext: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        :type validatorProvider: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidatorProvider
     
         
         :type validationState: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary
@@ -119,6 +116,6 @@ Methods
         
         .. code-block:: csharp
     
-            public void Validate(ActionContext actionContext, IModelValidatorProvider validatorProvider, ValidationStateDictionary validationState, string prefix, object model)
+            public void Validate(ActionContext actionContext, ValidationStateDictionary validationState, string prefix, object model)
     
 

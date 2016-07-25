@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHost
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHost
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHost.ServerFeatures
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
-    
-        
-        .. code-block:: csharp
-    
-            public IFeatureCollection ServerFeatures
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHost.Services
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            public IServiceProvider Services
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -95,7 +60,7 @@ Constructors
     :hidden:
 
     
-    .. dn:constructor:: Microsoft.AspNetCore.Hosting.Internal.WebHost.WebHost(Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.AspNetCore.Hosting.Startup.IStartupLoader, Microsoft.AspNetCore.Hosting.Internal.WebHostOptions, Microsoft.Extensions.Configuration.IConfiguration)
+    .. dn:constructor:: Microsoft.AspNetCore.Hosting.Internal.WebHost.WebHost(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.IServiceProvider, Microsoft.AspNetCore.Hosting.Internal.WebHostOptions, Microsoft.Extensions.Configuration.IConfiguration)
     
         
     
@@ -103,7 +68,7 @@ Constructors
         :type appServices: Microsoft.Extensions.DependencyInjection.IServiceCollection
     
         
-        :type startupLoader: Microsoft.AspNetCore.Hosting.Startup.IStartupLoader
+        :type hostingServiceProvider: System.IServiceProvider
     
         
         :type options: Microsoft.AspNetCore.Hosting.Internal.WebHostOptions
@@ -114,7 +79,7 @@ Constructors
         
         .. code-block:: csharp
     
-            public WebHost(IServiceCollection appServices, IStartupLoader startupLoader, WebHostOptions options, IConfiguration config)
+            public WebHost(IServiceCollection appServices, IServiceProvider hostingServiceProvider, WebHostOptions options, IConfiguration config)
     
 
 Methods
@@ -151,5 +116,34 @@ Methods
         .. code-block:: csharp
     
             public virtual void Start()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Hosting.Internal.WebHost
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHost.ServerFeatures
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Features.IFeatureCollection
+    
+        
+        .. code-block:: csharp
+    
+            public IFeatureCollection ServerFeatures { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.WebHost.Services
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            public IServiceProvider Services { get; }
     
 

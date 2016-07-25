@@ -54,28 +54,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpDesignTimeCodeVisitor
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpDesignTimeCodeVisitor
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpDesignTimeCodeVisitor.CSharpCodeVisitor
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor
-    
-        
-        .. code-block:: csharp
-    
-            public CSharpCodeVisitor CSharpCodeVisitor
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -182,5 +160,24 @@ Methods
         .. code-block:: csharp
     
             protected override void Visit(TagHelperPrefixDirectiveChunk chunk)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpDesignTimeCodeVisitor
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpDesignTimeCodeVisitor.CSharpCodeVisitor
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.Visitors.CSharpCodeVisitor
+    
+        
+        .. code-block:: csharp
+    
+            public CSharpCodeVisitor CSharpCodeVisitor { get; }
     
 

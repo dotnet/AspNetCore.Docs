@@ -58,49 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext.CookieOptions
-    
-        
-    
-        
-        The options for creating the outgoing cookie.
-        May be replace or altered during the SigningOut call.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.CookieOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookieOptions CookieOptions
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext.Properties
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
-    
-        
-        .. code-block:: csharp
-    
-            public AuthenticationProperties Properties
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -134,5 +91,40 @@ Constructors
         .. code-block:: csharp
     
             public CookieSigningOutContext(HttpContext context, CookieAuthenticationOptions options, AuthenticationProperties properties, CookieOptions cookieOptions)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext.CookieOptions
+    
+        
+    
+        
+        The options for creating the outgoing cookie.
+        May be replace or altered during the SigningOut call.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.CookieOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookieOptions CookieOptions { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Authentication.Cookies.CookieSigningOutContext.Properties
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties
+    
+        
+        .. code-block:: csharp
+    
+            public AuthenticationProperties Properties { get; set; }
     
 

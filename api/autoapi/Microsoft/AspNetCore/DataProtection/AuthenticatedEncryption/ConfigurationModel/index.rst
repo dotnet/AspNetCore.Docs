@@ -176,6 +176,31 @@ Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel N
 .. dn:namespace:: Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IAuthenticatedEncryptorConfiguration`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorConfiguration
+
+        
+        The basic configuration that serves as a factory for types related to authenticated encryption.
+
+
+    interface :dn:iface:`IAuthenticatedEncryptorDescriptor`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor
+
+        
+        A self-contained descriptor that wraps all information (including secret key
+        material) necessary to create an instance of an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.IAuthenticatedEncryptor`\.
+
+
+    interface :dn:iface:`IAuthenticatedEncryptorDescriptorDeserializer`
+        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptorDeserializer
+
+        
+        The basic interface for deserializing an XML element into an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor`\.
+
+
     .. rubric:: Classes
 
 
@@ -255,7 +280,7 @@ Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel N
 
         
         Represents a configured authenticated encryption mechanism which uses
-        managed :any:`System.Security.Cryptography.SymmetricAlgorithm` and
+        managed :any:`System.Security.Cryptography.SymmetricAlgorithm` and 
         :any:`System.Security.Cryptography.KeyedHashAlgorithm` types.
 
 
@@ -285,33 +310,8 @@ Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel N
         .. object: type=class name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.XmlSerializedDescriptorInfo
 
         
-        Wraps an :any:`System.Xml.Linq.XElement` that contains the XML-serialized representation of an
+        Wraps an :any:`System.Xml.Linq.XElement` that contains the XML-serialized representation of an 
         :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor` along with the type that can be used
         to deserialize it.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IAuthenticatedEncryptorConfiguration`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorConfiguration
-
-        
-        The basic configuration that serves as a factory for types related to authenticated encryption.
-
-
-    interface :dn:iface:`IAuthenticatedEncryptorDescriptor`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor
-
-        
-        A self-contained descriptor that wraps all information (including secret key
-        material) necessary to create an instance of an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.IAuthenticatedEncryptor`\.
-
-
-    interface :dn:iface:`IAuthenticatedEncryptorDescriptorDeserializer`
-        .. object: type=interface name=Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptorDeserializer
-
-        
-        The basic interface for deserializing an XML element into an :any:`Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.IAuthenticatedEncryptorDescriptor`\.
 
 

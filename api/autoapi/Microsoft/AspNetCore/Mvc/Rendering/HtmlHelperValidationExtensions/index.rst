@@ -91,7 +91,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessage(IHtmlHelper htmlHelper, string expression)
+            public static IHtmlContent ValidationMessage(this IHtmlHelper htmlHelper, string expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessage(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
@@ -116,7 +116,7 @@ Methods
         
         :param htmlAttributes: 
             An :any:`System.Object` that contains the HTML attributes for the
-            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an
+            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -129,7 +129,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessage(IHtmlHelper htmlHelper, string expression, object htmlAttributes)
+            public static IHtmlContent ValidationMessage(this IHtmlHelper htmlHelper, string expression, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessage(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
@@ -153,7 +153,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -166,7 +166,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessage(IHtmlHelper htmlHelper, string expression, string message)
+            public static IHtmlContent ValidationMessage(this IHtmlHelper htmlHelper, string expression, string message)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessage(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.Object)
     
@@ -190,7 +190,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -199,7 +199,7 @@ Methods
         
         :param htmlAttributes: 
             An :any:`System.Object` that contains the HTML attributes for the
-            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an
+            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -212,7 +212,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessage(IHtmlHelper htmlHelper, string expression, string message, object htmlAttributes)
+            public static IHtmlContent ValidationMessage(this IHtmlHelper htmlHelper, string expression, string message, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessage(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String, System.String)
     
@@ -236,7 +236,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -244,7 +244,7 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\.
         
         :type tag: System.String
@@ -256,7 +256,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessage(IHtmlHelper htmlHelper, string expression, string message, string tag)
+            public static IHtmlContent ValidationMessage(this IHtmlHelper htmlHelper, string expression, string message, string tag)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessageFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>)
     
@@ -285,7 +285,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessageFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
+            public static IHtmlContent ValidationMessageFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessageFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String)
     
@@ -309,7 +309,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -322,7 +322,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessageFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message)
+            public static IHtmlContent ValidationMessageFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessageFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String, System.Object)
     
@@ -346,7 +346,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -355,7 +355,7 @@ Methods
         
         :param htmlAttributes: 
             An :any:`System.Object` that contains the HTML attributes for the
-            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an
+            ( :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\) element. Alternatively, an 
             :any:`System.Collections.Generic.IDictionary\`2` instance containing the HTML
             attributes.
         
@@ -368,7 +368,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessageFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message, object htmlAttributes)
+            public static IHtmlContent ValidationMessageFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationMessageFor<TModel, TResult>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TResult>>, System.String, System.String)
     
@@ -392,7 +392,7 @@ Methods
     
         
         :param message: 
-            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the
+            The message to be displayed. If <code>null</code> or empty, method extracts an error string from the 
             :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object. Message will always be visible but client-side
             validation may update the associated CSS class.
         
@@ -400,7 +400,7 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationMessageElement`\.
         
         :type tag: System.String
@@ -412,14 +412,14 @@ Methods
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationMessageFor<TModel, TResult>(IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message, string tag)
+            public static IHtmlContent ValidationMessageFor<TModel, TResult>(this IHtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TResult>> expression, string message, string tag)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -430,20 +430,20 @@ Methods
         :type htmlHelper: Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <ul> element.
-            :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side validation is disabled).
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <ul> element. 
+            :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Boolean)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -460,20 +460,20 @@ Methods
         :type excludePropertyErrors: System.Boolean
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <ul> element.
-            :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side validation is disabled).
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <ul> element. 
+            :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, bool excludePropertyErrors)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, bool excludePropertyErrors)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Boolean, System.String)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -495,22 +495,22 @@ Methods
         :type message: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement` element (which, in turn, wraps the
-            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model
+            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model
             is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, bool excludePropertyErrors, string message)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, bool excludePropertyErrors, string message)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Boolean, System.String, System.Object)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -540,22 +540,22 @@ Methods
         :type htmlAttributes: System.Object
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement` element (which wraps the
-            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model
+            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model
             is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, bool excludePropertyErrors, string message, object htmlAttributes)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, bool excludePropertyErrors, string message, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.Boolean, System.String, System.String)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -578,27 +578,27 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement`\.
         
         :type tag: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
             New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <em>tag</em> element
-            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side
+            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side
             validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, bool excludePropertyErrors, string message, string tag)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, bool excludePropertyErrors, string message, string tag)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -614,22 +614,22 @@ Methods
         :type message: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement` element (which wraps the
-            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model
+            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model
             is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, string message)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, string message)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -653,22 +653,22 @@ Methods
         :type htmlAttributes: System.Object
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
-            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the
+            New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement` element (which wraps the
-            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model
+            <em>message</em>) and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model
             is valid and client-side validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, string message, object htmlAttributes)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, string message, object htmlAttributes)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.Object, System.String)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -693,27 +693,27 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement`\.
         
         :type tag: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
             New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <em>tag</em> element
-            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side
+            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side
             validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, string message, object htmlAttributes, string tag)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, string message, object htmlAttributes, string tag)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperValidationExtensions.ValidationSummary(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper, System.String, System.String)
     
         
     
         
-        Returns an unordered list (<ul> element) of validation messages that are in the
+        Returns an unordered list (<ul> element) of validation messages that are in the 
         :any:`Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary` object.
     
         
@@ -730,19 +730,19 @@ Methods
     
         
         :param tag: 
-            The tag to wrap the <em>message</em> in the generated HTML. Its default value is
+            The tag to wrap the <em>message</em> in the generated HTML. Its default value is 
             :dn:prop:`Microsoft.AspNetCore.Mvc.Rendering.ViewContext.ValidationSummaryMessageElement`\.
         
         :type tag: System.String
         :rtype: Microsoft.AspNetCore.Html.IHtmlContent
         :return: 
             New :any:`Microsoft.AspNetCore.Html.IHtmlContent` containing a <div> element wrapping the <em>tag</em> element
-            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` if the current model is valid and client-side
+            and the <ul> element. :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` if the current model is valid and client-side
             validation is disabled).
     
         
         .. code-block:: csharp
     
-            public static IHtmlContent ValidationSummary(IHtmlHelper htmlHelper, string message, string tag)
+            public static IHtmlContent ValidationSummary(this IHtmlHelper htmlHelper, string message, string tag)
     
 

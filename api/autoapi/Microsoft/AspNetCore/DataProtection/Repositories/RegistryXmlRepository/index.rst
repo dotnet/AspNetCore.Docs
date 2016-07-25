@@ -56,70 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.DefaultRegistryKey
-    
-        
-    
-        
-        The default key storage directory, which currently corresponds to
-        "HKLM\SOFTWARE\Microsoft\ASP.NET\4.0.30319.0\AutoGenKeys\{SID}".
-    
-        
-        :rtype: Microsoft.Win32.RegistryKey
-    
-        
-        .. code-block:: csharp
-    
-            public static RegistryKey DefaultRegistryKey
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.RegistryKey
-    
-        
-    
-        
-        The registry key into which key material will be written.
-    
-        
-        :rtype: Microsoft.Win32.RegistryKey
-    
-        
-        .. code-block:: csharp
-    
-            public RegistryKey RegistryKey
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.Services
-    
-        
-    
-        
-        The :any:`System.IServiceProvider` provided to the constructor.
-    
-        
-        :rtype: System.IServiceProvider
-    
-        
-        .. code-block:: csharp
-    
-            protected IServiceProvider Services
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -170,6 +106,61 @@ Constructors
         .. code-block:: csharp
     
             public RegistryXmlRepository(RegistryKey registryKey, IServiceProvider services)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.DefaultRegistryKey
+    
+        
+    
+        
+        The default key storage directory, which currently corresponds to
+        "HKLM\SOFTWARE\Microsoft\ASP.NET\4.0.30319.0\AutoGenKeys\{SID}".
+    
+        
+        :rtype: Microsoft.Win32.RegistryKey
+    
+        
+        .. code-block:: csharp
+    
+            public static RegistryKey DefaultRegistryKey { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.RegistryKey
+    
+        
+    
+        
+        The registry key into which key material will be written.
+    
+        
+        :rtype: Microsoft.Win32.RegistryKey
+    
+        
+        .. code-block:: csharp
+    
+            public RegistryKey RegistryKey { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository.Services
+    
+        
+    
+        
+        The :any:`System.IServiceProvider` provided to the constructor.
+    
+        
+        :rtype: System.IServiceProvider
+    
+        
+        .. code-block:: csharp
+    
+            protected IServiceProvider Services { get; }
     
 
 Methods

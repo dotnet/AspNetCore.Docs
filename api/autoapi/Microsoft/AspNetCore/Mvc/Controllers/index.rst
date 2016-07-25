@@ -43,23 +43,11 @@ Microsoft.AspNetCore.Mvc.Controllers Namespace
    
    
    
-   /autoapi/Microsoft/AspNetCore/Mvc/Controllers/IControllerActionArgumentBinder/index
-   
-   
-   
    /autoapi/Microsoft/AspNetCore/Mvc/Controllers/IControllerActivator/index
    
    
    
    /autoapi/Microsoft/AspNetCore/Mvc/Controllers/IControllerFactory/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Controllers/IControllerPropertyActivator/index
-   
-   
-   
-   /autoapi/Microsoft/AspNetCore/Mvc/Controllers/IControllerTypeProvider/index
    
    
    
@@ -121,18 +109,6 @@ Microsoft.AspNetCore.Mvc.Controllers Namespace
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 
 
 
@@ -142,6 +118,23 @@ Microsoft.AspNetCore.Mvc.Controllers Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.Controllers
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IControllerActivator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator
+
+        
+        Provides methods to create a controller.
+
+
+    interface :dn:iface:`IControllerFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory
+
+        
+        Provides methods for creation and disposal of controllers.
 
 
     .. rubric:: Classes
@@ -202,44 +195,7 @@ Microsoft.AspNetCore.Mvc.Controllers Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator
 
         
-        A :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` that retrieves controllers as services from the request's
+        A :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` that retrieves controllers as services from the request's 
         :any:`System.IServiceProvider`\.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IControllerActionArgumentBinder`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerActionArgumentBinder
-
-        
-        Provides a dictionary of action arguments.
-
-
-    interface :dn:iface:`IControllerActivator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator
-
-        
-        Provides methods to create a controller.
-
-
-    interface :dn:iface:`IControllerFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerFactory
-
-        
-        Provides methods for creation and disposal of controllers.
-
-
-    interface :dn:iface:`IControllerPropertyActivator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerPropertyActivator
-
-        
-
-
-    interface :dn:iface:`IControllerTypeProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.Controllers.IControllerTypeProvider
-
-        
-        Provides methods for discovery of controller types.
 
 

@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOpenGenericService<TVal>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOpenGenericService<TVal>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOpenGenericService<TVal>.Value
-    
-        
-        :rtype: TVal
-    
-        
-        .. code-block:: csharp
-    
-            public TVal Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -93,5 +71,24 @@ Constructors
         .. code-block:: csharp
     
             public FakeOpenGenericService(TVal value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOpenGenericService<TVal>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.DependencyInjection.Specification.Fakes.FakeOpenGenericService<TVal>.Value
+    
+        
+        :rtype: TVal
+    
+        
+        .. code-block:: csharp
+    
+            public TVal Value { get; }
     
 

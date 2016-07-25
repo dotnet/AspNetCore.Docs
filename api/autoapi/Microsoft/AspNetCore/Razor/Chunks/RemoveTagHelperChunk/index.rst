@@ -80,10 +80,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string LookupText
-            {
-                get;
-                set;
-            }
+            public string LookupText { get; set; }
     
 

@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public PostEvictionDelegate EvictionCallback
-            {
-                get;
-                set;
-            }
+            public PostEvictionDelegate EvictionCallback { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Caching.Memory.PostEvictionCallbackRegistration.State
     
@@ -82,10 +78,6 @@ Properties
         
         .. code-block:: csharp
     
-            public object State
-            {
-                get;
-                set;
-            }
+            public object State { get; set; }
     
 

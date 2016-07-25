@@ -69,7 +69,7 @@ Methods
         
     
         
-        Adds an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` to the list of :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager.ApplicationParts` on the
+        Adds an :any:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPart` to the list of :dn:prop:`Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager.ApplicationParts` on the 
         :dn:prop:`Microsoft.Extensions.DependencyInjection.IMvcBuilder.PartManager`\.
     
         
@@ -89,7 +89,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddApplicationPart(IMvcBuilder builder, Assembly assembly)
+            public static IMvcBuilder AddApplicationPart(this IMvcBuilder builder, Assembly assembly)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.AddControllersAsServices(Microsoft.Extensions.DependencyInjection.IMvcBuilder)
     
@@ -110,7 +110,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddControllersAsServices(IMvcBuilder builder)
+            public static IMvcBuilder AddControllersAsServices(this IMvcBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.AddFormatterMappings(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.Formatters.FormatterMappings>)
     
@@ -126,7 +126,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddFormatterMappings(IMvcBuilder builder, Action<FormatterMappings> setupAction)
+            public static IMvcBuilder AddFormatterMappings(this IMvcBuilder builder, Action<FormatterMappings> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.AddMvcOptions(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.MvcOptions>)
     
@@ -152,7 +152,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddMvcOptions(IMvcBuilder builder, Action<MvcOptions> setupAction)
+            public static IMvcBuilder AddMvcOptions(this IMvcBuilder builder, Action<MvcOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.ConfigureApplicationPartManager(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager>)
     
@@ -179,6 +179,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder ConfigureApplicationPartManager(IMvcBuilder builder, Action<ApplicationPartManager> setupAction)
+            public static IMvcBuilder ConfigureApplicationPartManager(this IMvcBuilder builder, Action<ApplicationPartManager> setupAction)
     
 

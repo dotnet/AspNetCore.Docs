@@ -248,6 +248,57 @@ Microsoft.AspNetCore.Mvc.ViewComponents Namespace
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ViewComponents
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IViewComponentActivator`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator
+
+        
+        Provides methods to instantiate and release a ViewComponent.
+
+
+    interface :dn:iface:`IViewComponentDescriptorCollectionProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorCollectionProvider
+
+        
+        Provides the currently cached collection of :any:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor`\.
+
+
+    interface :dn:iface:`IViewComponentDescriptorProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorProvider
+
+        
+        Discovers the view components in the application.
+
+
+    interface :dn:iface:`IViewComponentFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentFactory
+
+        
+        Provides methods for creation and disposal of view components.
+
+
+    interface :dn:iface:`IViewComponentInvoker`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentInvoker
+
+        
+        Specifies the contract for execution of a view component.
+
+
+    interface :dn:iface:`IViewComponentInvokerFactory`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentInvokerFactory
+
+        
+
+
+    interface :dn:iface:`IViewComponentSelector`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentSelector
+
+        
+        Selects a view component based on a view component name.
+
+
     .. rubric:: Classes
 
 
@@ -324,7 +375,7 @@ Microsoft.AspNetCore.Mvc.ViewComponents Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewComponents.ServiceBasedViewComponentActivator
 
         
-        A :any:`Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator` that retrieves view components as services from the request's
+        A :any:`Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator` that retrieves view components as services from the request's 
         :any:`System.IServiceProvider`\.
 
 
@@ -339,7 +390,7 @@ Microsoft.AspNetCore.Mvc.ViewComponents Namespace
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContextAttribute
 
         
-        Specifies that a controller property should be set with the current
+        Specifies that a controller property should be set with the current 
         :any:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentContext` when creating the view component. The property must have a public
         set method.
 
@@ -386,56 +437,5 @@ Microsoft.AspNetCore.Mvc.ViewComponents Namespace
 
         
         A :any:`Microsoft.AspNetCore.Mvc.IViewComponentResult` that renders a partial view when executed.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IViewComponentActivator`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentActivator
-
-        
-        Provides methods to instantiate and release a ViewComponent.
-
-
-    interface :dn:iface:`IViewComponentDescriptorCollectionProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorCollectionProvider
-
-        
-        Provides the currently cached collection of :any:`Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentDescriptor`\.
-
-
-    interface :dn:iface:`IViewComponentDescriptorProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentDescriptorProvider
-
-        
-        Discovers the view components in the application.
-
-
-    interface :dn:iface:`IViewComponentFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentFactory
-
-        
-        Provides methods for creation and disposal of view components.
-
-
-    interface :dn:iface:`IViewComponentInvoker`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentInvoker
-
-        
-        Specifies the contract for execution of a view component.
-
-
-    interface :dn:iface:`IViewComponentInvokerFactory`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentInvokerFactory
-
-        
-
-
-    interface :dn:iface:`IViewComponentSelector`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewComponents.IViewComponentSelector
-
-        
-        Selects a view component based on a view component name.
 
 

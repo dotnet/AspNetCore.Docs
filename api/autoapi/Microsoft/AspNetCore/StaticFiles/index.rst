@@ -104,6 +104,23 @@ Microsoft.AspNetCore.StaticFiles Namespace
 .. dn:namespace:: Microsoft.AspNetCore.StaticFiles
 
 
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IContentTypeProvider`
+        .. object: type=interface name=Microsoft.AspNetCore.StaticFiles.IContentTypeProvider
+
+        
+        Used to look up MIME types given a file path
+
+
+    interface :dn:iface:`IDirectoryFormatter`
+        .. object: type=interface name=Microsoft.AspNetCore.StaticFiles.IDirectoryFormatter
+
+        
+        Generates the view for a directory
+
+
     .. rubric:: Classes
 
 
@@ -149,22 +166,5 @@ Microsoft.AspNetCore.StaticFiles Namespace
 
         
         Contains information about the request and the file that will be served in response.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IContentTypeProvider`
-        .. object: type=interface name=Microsoft.AspNetCore.StaticFiles.IContentTypeProvider
-
-        
-        Used to look up MIME types given a file path
-
-
-    interface :dn:iface:`IDirectoryFormatter`
-        .. object: type=interface name=Microsoft.AspNetCore.StaticFiles.IDirectoryFormatter
-
-        
-        Generates the view for a directory
 
 

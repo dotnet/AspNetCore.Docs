@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationBasePath
-            {
-                get;
-            }
+            public string ApplicationBasePath { get; }
     
     .. dn:property:: Microsoft.Extensions.PlatformAbstractions.ApplicationEnvironment.ApplicationName
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationName
-            {
-                get;
-            }
+            public string ApplicationName { get; }
     
     .. dn:property:: Microsoft.Extensions.PlatformAbstractions.ApplicationEnvironment.ApplicationVersion
     
@@ -94,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationVersion
-            {
-                get;
-            }
+            public string ApplicationVersion { get; }
     
     .. dn:property:: Microsoft.Extensions.PlatformAbstractions.ApplicationEnvironment.RuntimeFramework
     
@@ -107,9 +98,6 @@ Properties
         
         .. code-block:: csharp
     
-            public FrameworkName RuntimeFramework
-            {
-                get;
-            }
+            public FrameworkName RuntimeFramework { get; }
     
 

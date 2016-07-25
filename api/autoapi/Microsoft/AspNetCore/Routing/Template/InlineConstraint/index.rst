@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Routing.Template.InlineConstraint
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Routing.Template.InlineConstraint
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Template.InlineConstraint.Constraint
-    
-        
-    
-        
-        Gets the constraint text.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Constraint
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,5 +82,29 @@ Constructors
         .. code-block:: csharp
     
             public InlineConstraint(string constraint)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Routing.Template.InlineConstraint
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Template.InlineConstraint.Constraint
+    
+        
+    
+        
+        Gets the constraint text.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Constraint { get; }
     
 

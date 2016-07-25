@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public static ConsoleLogScope Current
-            {
-                get;
-                set;
-            }
+            public static ConsoleLogScope Current { get; set; }
     
     .. dn:property:: Microsoft.Extensions.Logging.Console.ConsoleLogScope.Parent
     
@@ -82,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ConsoleLogScope Parent
-            {
-                get;
-            }
+            public ConsoleLogScope Parent { get; }
     
 
 Methods

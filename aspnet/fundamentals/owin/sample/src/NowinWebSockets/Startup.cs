@@ -1,10 +1,10 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
 using System.Net.WebSockets;
-using System.Threading.Tasks;
 using System.Threading;
-using Microsoft.AspNet.Hosting;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace NowinWebSockets
 {
@@ -50,8 +50,5 @@ namespace NowinWebSockets
             await webSocket.CloseAsync(webSocket.CloseStatus.Value, 
                 webSocket.CloseStatusDescription, CancellationToken.None);
         }
-
-        // Entry point for the application.        
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

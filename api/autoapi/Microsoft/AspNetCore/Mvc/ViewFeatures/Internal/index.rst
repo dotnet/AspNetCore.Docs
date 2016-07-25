@@ -115,6 +115,10 @@ Microsoft.AspNetCore.Mvc.ViewFeatures.Internal Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/Internal/ViewComponentResultExecutor/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/Internal/ViewResultExecutor/index
    
    
@@ -237,6 +241,10 @@ Microsoft.AspNetCore.Mvc.ViewFeatures.Internal Namespace
    
    
    
+   
+   
+   
+   
 
 
 
@@ -246,6 +254,16 @@ Microsoft.AspNetCore.Mvc.ViewFeatures.Internal Namespace
 
 
 .. dn:namespace:: Microsoft.AspNetCore.Mvc.ViewFeatures.Internal
+
+
+    .. rubric:: Interfaces
+
+
+    interface :dn:iface:`IViewBufferScope`
+        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.IViewBufferScope
+
+        
+        Creates and manages the lifetime of :any:`ViewBufferValue[]` instances.
 
 
     .. rubric:: Classes
@@ -404,6 +422,12 @@ Microsoft.AspNetCore.Mvc.ViewFeatures.Internal Namespace
         
 
 
+    class :dn:cls:`ViewComponentResultExecutor`
+        .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewComponentResultExecutor
+
+        
+
+
     class :dn:cls:`ViewResultExecutor`
         .. object: type=class name=Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.ViewResultExecutor
 
@@ -419,15 +443,5 @@ Microsoft.AspNetCore.Mvc.ViewFeatures.Internal Namespace
 
         
         Encapsulates a string or :any:`Microsoft.AspNetCore.Html.IHtmlContent` value.
-
-
-    .. rubric:: Interfaces
-
-
-    interface :dn:iface:`IViewBufferScope`
-        .. object: type=interface name=Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.IViewBufferScope
-
-        
-        Creates and manages the lifetime of :any:`ViewBufferValue[]` instances.
 
 

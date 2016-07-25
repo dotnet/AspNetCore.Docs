@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            IFileProvider FileProvider
-            {
-                get;
-            }
+            IFileProvider FileProvider { get; }
     
 

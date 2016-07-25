@@ -7,6 +7,10 @@ IAuthorizationHandler Interface
 
 
 
+
+Classes implementing this interface are able to make a decision if authorization is allowed.
+
+
 Namespace
     :dn:ns:`Microsoft.AspNetCore.Authorization`
 Assemblies
@@ -52,17 +56,24 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationContext)
+    .. dn:method:: Microsoft.AspNetCore.Authorization.IAuthorizationHandler.HandleAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext)
     
         
     
         
-        :type context: Microsoft.AspNetCore.Authorization.AuthorizationContext
+        Makes a decision if authorization is allowed.
+    
+        
+    
+        
+        :param context: The authorization information.
+        
+        :type context: Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            Task HandleAsync(AuthorizationContext context)
+            Task HandleAsync(AuthorizationHandlerContext context)
     
 

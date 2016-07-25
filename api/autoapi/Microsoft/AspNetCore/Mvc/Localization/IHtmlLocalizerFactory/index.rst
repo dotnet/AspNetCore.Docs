@@ -87,7 +87,7 @@ Methods
         
     
         
-        Creates an :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` using the :any:`System.Reflection.Assembly` and
+        Creates an :any:`Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer` using the :any:`System.Reflection.Assembly` and 
         :dn:prop:`System.Type.FullName` of the specified :any:`System.Type`\.
     
         

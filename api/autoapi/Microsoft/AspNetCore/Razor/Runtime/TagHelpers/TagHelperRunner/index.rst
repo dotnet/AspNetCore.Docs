@@ -75,7 +75,6 @@ Methods
     
         
         :param executionContext: Contains information associated with running :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper`\s.
-            
         
         :type executionContext: Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext
         :rtype: System.Threading.Tasks.Task

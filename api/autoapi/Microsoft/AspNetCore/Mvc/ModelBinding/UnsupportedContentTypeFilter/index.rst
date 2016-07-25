@@ -8,7 +8,7 @@ UnsupportedContentTypeFilter Class
 
 
 
-A filter that scans for :any:`Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeException` in the
+A filter that scans for :any:`Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeException` in the 
 :dn:prop:`Microsoft.AspNetCore.Mvc.ActionContext.ModelState` and short-circuits the pipeline
 with an Unsupported Media Type (415) response.
 

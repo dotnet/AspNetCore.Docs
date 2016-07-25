@@ -69,22 +69,20 @@ namespace CachingSample.Tests
             var cts = new CancellationTokenSource();
             var pause = new ManualResetEvent(false);
 
-            using (var cacheLink = _memoryCache.CreateLinkingScope())
+            using (var cacheEntry = _memoryCache.CreateEntry(_cacheKey))
             {
                 _memoryCache.Set("master key", "some value",
                     new MemoryCacheEntryOptions()
                     .AddExpirationToken(new CancellationChangeToken(cts.Token)));
 
-                _memoryCache.Set(_cacheKey, _cacheItem,
-                    new MemoryCacheEntryOptions()
-                    .AddEntryLink(cacheLink)
+                cacheEntry.SetValue(_cacheItem)
                     .RegisterPostEvictionCallback(
                         (key, value, reason, substate) =>
                         {
                             _result = $"'{key}':'{value}' was evicted because: {reason}";
                             pause.Set();
                         }
-                    ));
+                    );
             }
 
             // trigger the token to expire the master item

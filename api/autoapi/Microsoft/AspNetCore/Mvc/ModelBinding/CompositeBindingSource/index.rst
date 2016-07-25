@@ -78,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IEnumerable<BindingSource> BindingSources
-            {
-                get;
-            }
+            public IEnumerable<BindingSource> BindingSources { get; }
     
 
 Methods

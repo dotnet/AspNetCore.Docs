@@ -3,7 +3,7 @@ ASP.NET Core Module Configuration Reference
 
 By `Luke Latham`_, `Rick Anderson`_ and `Sourabh Shirhatti`_
 
-In ASP.NET Core, the web application is hosted by an external process outside of IIS. The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the ASP.NET Core Module for shared hosting of ASP.NET Core.
+In ASP.NET Core, the web application is hosted by an external process outside of IIS. The ASP.NET Core Module is an IIS 7.5+ module, which is responsible for process management of ASP.NET Core http listeners and to proxy requests to processes that it manages. This document provides an overview of how to configure the ASP.NET Core Module for shared hosting of ASP.NET Core.
 
 .. contents:: Sections:
   :local:
@@ -12,7 +12,7 @@ In ASP.NET Core, the web application is hosted by an external process outside of
 Installing the ASP.NET Core Module
 ----------------------------------
 
-Install the `.NET Core Windows Server Hosting <http://go.microsoft.com/fwlink/?LinkId=798480>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module.
+Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=817246>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module.
 
 Configuring the ASP.NET Core Module
 -----------------------------------
@@ -20,7 +20,7 @@ Configuring the ASP.NET Core Module
 The ASP.NET Core Module is configured via a site or application *web.config* file and has its own configuration section within ``system.webServer - aspNetCore``.
 
 Configuration Attributes
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 +---------------------------+----------------------------------------------------+
 | Attribute                 |     Description                                    |
@@ -30,7 +30,7 @@ Configuration Attributes
 |                           | | Path to the executable or script that will launch|
 |                           | | a process listening for HTTP requests.           |
 |                           | | Relative paths are supported. If the path        |
-|                           | | begins with '.' the path is considered to be     |
+|                           | | begins with '.', the path is considered to be    |
 |                           | | relative to the site root.                       |
 |                           | |                                                  |
 |                           | | There is no default value.                       |
@@ -59,14 +59,6 @@ Configuration Attributes
 |                           | | the handler will wait for the executable or      |
 |                           | | script to gracefully shutdown when the           |
 |                           | | *app_offline.htm* file is detected               |
-|                           | |                                                  |
-|                           | | The default value is 10.                         |
-+---------------------------+----------------------------------------------------+
-| startupRetryCount         | | Optional integer attribute.                      |
-|                           | |                                                  |
-|                           | | The number of times the handler will try to      |
-|                           | | launch the process specified in **processPath**. |
-|                           | | See **startupTimeLimit** for details.            |
 |                           | |                                                  |
 |                           | | The default value is 10.                         |
 +---------------------------+----------------------------------------------------+
@@ -120,6 +112,17 @@ Configuration Attributes
 |                           | |                                                  |
 |                           | | The default value is false.                      |
 +---------------------------+----------------------------------------------------+
+| disableStartUpErrorPage   | | True or False.                                   |
+|                           | |                                                  |
+|                           | | If true, the **502.5 - Process Failure** page    |
+|                           | | will be supressed and the 502 status code page   |
+|                           | | configured in your *web.config* will take        |
+|                           | | precedence.                                      |
+|                           | |                                                  |
+|                           | | The default value is false.                      |
++---------------------------+----------------------------------------------------+
+
+
 
 Child Elements
 ^^^^^^^^^^^^^^^
@@ -131,17 +134,23 @@ Child Elements
 |                           | | for the process specified in **processPath**.    |
 +---------------------------+----------------------------------------------------+
 | recycleOnFileChange       | | Specify a list of files to monitor. If any of    |
-|                           | | these files get updated/deleted, the Core Module |
+|                           | | these files are updated/deleted, the Core Module |
 |                           | | will restart the backend process.                |
 +---------------------------+----------------------------------------------------+
 
 ASP.NET Core Module *app_offline.htm*
---------------------------------------
+-------------------------------------
 
 If you place a file with the name *app_offline.htm* at the root of a web application directory, the ASP.NET Core Module will attempt to gracefully shut-down the application and stop processing any new incoming requests. If the application is still running after ``shutdownTimeLimit`` number of seconds, the ASP.NET Core Module will kill the running process.
 
 While the *app_offline..htm* file is present, the ASP.NET Core Module will repond to all requests by sending back the contents of the *app_offline.htm* file. Once the *app_offline.htm* file is removed, the next request loads the application, which then responds to requests.
 
+ASP.NET Core Module Start-up Error Page
+---------------------------------------
+
+.. image:: aspnet-core-module/_static/ANCM-502_5.png
+
+If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, you will see an HTTP 502.5 status code page. To supress this page and revert to the default IIS 502 status code page, use the ``disableStartUpErrorPage`` attribute. Look at the `HTTP Errors attribute <https://www.iis.net/configreference/system.webserver/httperrors>`__ to override this page with a custom error page.
 
 ASP.NET Core Module configuration examples
 -------------------------------------------
@@ -151,7 +160,7 @@ ASP.NET Core Module configuration examples
 Log creation and redirection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For logs to be saved, you must create the log directory. The ASP.NET Core Module can redirect ``stdout`` and ``stderr`` logs to disk by setting the ``stdoutLogEnabled`` and ``stdoutLogFile`` attributes of the ``aspNetCore`` element. Logs are not rotated. It is the responsibilty of the hoster to limit the disk space the logs consume.
+To save logs, you must create the *logs* directory. The ASP.NET Core Module can redirect ``stdout`` and ``stderr`` logs to disk by setting the ``stdoutLogEnabled`` and ``stdoutLogFile`` attributes of the ``aspNetCore`` element. Logs are not rotated (unless process recycling/restart occurs). It is the responsibilty of the hoster to limit the disk space the logs consume.
 
 .. literalinclude:: aspnet-core-module/sample/web.config
   :language: xml

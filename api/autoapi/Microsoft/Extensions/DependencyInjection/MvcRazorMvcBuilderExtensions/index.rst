@@ -88,7 +88,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddRazorOptions(IMvcBuilder builder, Action<RazorViewEngineOptions> setupAction)
+            public static IMvcBuilder AddRazorOptions(this IMvcBuilder builder, Action<RazorViewEngineOptions> setupAction)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcBuilderExtensions.AddTagHelpersAsServices(Microsoft.Extensions.DependencyInjection.IMvcBuilder)
     
@@ -110,7 +110,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder AddTagHelpersAsServices(IMvcBuilder builder)
+            public static IMvcBuilder AddTagHelpersAsServices(this IMvcBuilder builder)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.MvcRazorMvcBuilderExtensions.InitializeTagHelper<TTagHelper>(Microsoft.Extensions.DependencyInjection.IMvcBuilder, System.Action<TTagHelper, Microsoft.AspNetCore.Mvc.Rendering.ViewContext>)
     
@@ -136,6 +136,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcBuilder InitializeTagHelper<TTagHelper>(IMvcBuilder builder, Action<TTagHelper, ViewContext> initialize)where TTagHelper : ITagHelper
+            public static IMvcBuilder InitializeTagHelper<TTagHelper>(this IMvcBuilder builder, Action<TTagHelper, ViewContext> initialize)where TTagHelper : ITagHelper
     
 

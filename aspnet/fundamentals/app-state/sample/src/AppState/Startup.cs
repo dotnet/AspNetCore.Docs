@@ -1,20 +1,19 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+using AppState.Model;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AppState.Model;
-using Microsoft.AspNet.Hosting;
 using Newtonsoft.Json;
 
 namespace AppState
 {
     public class Startup
     {
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCaching();
+            services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
             {
@@ -22,17 +21,20 @@ namespace AppState
             });
         }
 
-        public void Configure(IApplicationBuilder app, 
-            IHostingEnvironment env, 
-            ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Debug;
             loggerFactory.AddConsole(LogLevel.Debug);
-            app.UseIISPlatformHandler();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.Use(async (context, next) =>
+            {
+                context.Items["entry_time"] = DateTime.Now;
+                await next.Invoke();
+            });
 
             // don't count favicon requests
             app.Map("/favicon.ico", ignore => { });
@@ -43,7 +45,7 @@ namespace AppState
                 subApp.Run(async context =>
                 {
                     await context.Response.WriteAsync("<html><body>");
-                    await context.Response.WriteAsync("Requested at: " + DateTime.Now.ToString() + "<br>");
+                    await context.Response.WriteAsync("Requested at: " + DateTime.Now.ToString("hh:mm:ss.ffff") + "<br>");
                     await context.Response.WriteAsync("This part of the application isn't referencing Session...<br><a href=\"/\">Return</a>");
                     await context.Response.WriteAsync("</body></html>");
                 });
@@ -65,10 +67,10 @@ namespace AppState
                     {
                         context.Session.SetString("StartTime", DateTime.Now.ToString());
                     }
+
                     await context.Response.WriteAsync("<html><body>");
                     await context.Response.WriteAsync($"Counting: You have made {collection.TotalCount()} requests to this application.<br><a href=\"/\">Return</a>");
                     await context.Response.WriteAsync("</body></html>");
-
                 });
             });
 
@@ -128,8 +130,5 @@ namespace AppState
 
             context.Session.Set("RequestEntries", serializedResult);
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => Microsoft.AspNet.Hosting.WebApplication.Run<Startup>(args);
     }
 }

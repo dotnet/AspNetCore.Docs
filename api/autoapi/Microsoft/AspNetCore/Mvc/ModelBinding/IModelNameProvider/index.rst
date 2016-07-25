@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            string Name
-            {
-                get;
-            }
+            string Name { get; }
     
 

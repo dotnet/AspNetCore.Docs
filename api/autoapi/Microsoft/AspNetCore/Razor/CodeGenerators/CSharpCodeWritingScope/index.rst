@@ -113,6 +113,24 @@ Constructors
             public CSharpCodeWritingScope(CodeWriter writer, int tabSize, bool autoSpace)
     
 
+Methods
+-------
+
+.. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWritingScope
+    :noindex:
+    :hidden:
+
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWritingScope.Dispose()
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public void Dispose()
+    
+
 Fields
 ------
 
@@ -130,23 +148,5 @@ Fields
         .. code-block:: csharp
     
             public Action OnClose
-    
-
-Methods
--------
-
-.. dn:structure:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWritingScope
-    :noindex:
-    :hidden:
-
-    
-    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpCodeWritingScope.Dispose()
-    
-        
-    
-        
-        .. code-block:: csharp
-    
-            public void Dispose()
     
 

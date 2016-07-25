@@ -52,101 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Server.HeaderCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Server.HeaderCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-    
-        
-        .. code-block:: csharp
-    
-            public StringValues this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.System.Collections.Generic.IDictionary<System.String, Microsoft.Extensions.Primitives.StringValues>.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-    
-        
-        .. code-block:: csharp
-    
-            StringValues IDictionary<string, StringValues>.this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Extensions.Primitives.StringValues<Microsoft.Extensions.Primitives.StringValues>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<StringValues> Values
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -375,5 +280,80 @@ Methods
         .. code-block:: csharp
     
             public static void ValidateHeaderCharacters(string headerCharacters)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Server.HeaderCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            public StringValues this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.System.Collections.Generic.IDictionary<System.String, Microsoft.Extensions.Primitives.StringValues>.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+    
+        
+        .. code-block:: csharp
+    
+            StringValues IDictionary<string, StringValues>.this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.HeaderCollection.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{Microsoft.Extensions.Primitives.StringValues<Microsoft.Extensions.Primitives.StringValues>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<StringValues> Values { get; }
     
 

@@ -52,6 +52,8 @@ Managing Tag Helper scope
 
 Tag Helpers scope is controlled by a combination of ``@addTagHelper``, ``@removeTagHelper``, and the "!" opt-out character.
 
+.. _add-helper-label:
+
 ``@addTagHelper`` makes Tag Helpers available
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -74,10 +76,12 @@ If your project contains an ``EmailTagHelper`` with the default namespace (``Aut
 
 .. FQN syntax
 
-.. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml
-   :language: html
-   :lines: 1-3
+.. code-block:: html
    :emphasize-lines: 3
+   
+    @using AuthoringTagHelpers
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+    @addTagHelper "AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers"
 
 To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTagHelpers.TagHelpers.EmailTagHelper``), and then the assembly name (*AuthoringTagHelpers*). Most developers prefer to use the  "\*" wildcard syntax. The wildcard syntax allows you to insert the wildcard character "\*" as the suffix in an FQN. For example, any of the following directives will bring in the ``EmailTagHelper``:
 
@@ -87,6 +91,8 @@ To add a Tag Helper to a view using an FQN, you first add the FQN (``AuthoringTa
     @addTagHelper "AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers"
 
 As mentioned previously, adding the ``@addTagHelper`` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the ``@addTagHelper`` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
+
+.. _remove-razor-directives-label:
 
 ``@removeTagHelper`` removes Tag Helpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,6 +115,8 @@ You can disable a Tag Helper at the element level with the Tag Helper opt-out ch
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
+.. _prefix-razor-directives-label:
+
 Using ``@tagHelperPrefix`` to make Tag Helper usage explicit
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -126,7 +134,7 @@ The same hierarchy rules that apply to ``@addTagHelper`` also apply to ``@tagHel
 IntelliSense support for Tag Helpers
 ----------------------------------------
 
-When you create a new ASP.NET web app in Visual Studio, it adds "Microsoft.AspNetCore.Tooling.Razor" to the *project.json* file. This is the package that adds Tag Helper tooling. 
+When you create a new ASP.NET web app in Visual Studio, it adds "Microsoft.AspNetCore.Razor.Tools" to the *project.json* file. This is the package that adds Tag Helper tooling. 
 
 Consider writing an HTML ``<label>`` element. As soon as you enter ``<l`` in the Visual Studio editor, IntelliSense displays matching elements:
 

@@ -93,7 +93,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMiddleware(IApplicationBuilder app, Type middleware, params object[] args)
+            public static IApplicationBuilder UseMiddleware(this IApplicationBuilder app, Type middleware, params object[] args)
     
     .. dn:method:: Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware<TMiddleware>(Microsoft.AspNetCore.Builder.IApplicationBuilder, System.Object[])
     
@@ -119,6 +119,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IApplicationBuilder UseMiddleware<TMiddleware>(IApplicationBuilder app, params object[] args)
+            public static IApplicationBuilder UseMiddleware<TMiddleware>(this IApplicationBuilder app, params object[] args)
     
 

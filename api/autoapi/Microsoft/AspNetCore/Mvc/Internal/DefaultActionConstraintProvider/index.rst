@@ -56,28 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Internal.DefaultActionConstraintProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.DefaultActionConstraintProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.DefaultActionConstraintProvider.Order
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -109,5 +87,24 @@ Methods
         .. code-block:: csharp
     
             public void OnProvidersExecuting(ActionConstraintProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Internal.DefaultActionConstraintProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Internal.DefaultActionConstraintProvider.Order
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Order { get; }
     
 

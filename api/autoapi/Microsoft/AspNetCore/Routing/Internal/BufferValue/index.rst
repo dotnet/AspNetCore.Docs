@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Routing.Internal.BufferValue
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.BufferValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.BufferValue.RequiresEncoding
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool RequiresEncoding
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.BufferValue.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -101,5 +66,34 @@ Constructors
         .. code-block:: csharp
     
             public BufferValue(string value, bool requiresEncoding)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Routing.Internal.BufferValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.BufferValue.RequiresEncoding
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool RequiresEncoding { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Routing.Internal.BufferValue.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

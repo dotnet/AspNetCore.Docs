@@ -72,10 +72,6 @@ Properties
         
         .. code-block:: csharp
     
-            public AuthenticationSchemes AuthenticationSchemes
-            {
-                get;
-                set;
-            }
+            public AuthenticationSchemes AuthenticationSchemes { get; set; }
     
 

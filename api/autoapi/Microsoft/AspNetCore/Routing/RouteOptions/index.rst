@@ -73,11 +73,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool AppendTrailingSlash
-            {
-                get;
-                set;
-            }
+            public bool AppendTrailingSlash { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap
     
@@ -87,11 +83,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IDictionary<string, Type> ConstraintMap
-            {
-                get;
-                set;
-            }
+            public IDictionary<string, Type> ConstraintMap { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Routing.RouteOptions.LowercaseUrls
     
@@ -106,10 +98,6 @@ Properties
         
         .. code-block:: csharp
     
-            public bool LowercaseUrls
-            {
-                get;
-                set;
-            }
+            public bool LowercaseUrls { get; set; }
     
 

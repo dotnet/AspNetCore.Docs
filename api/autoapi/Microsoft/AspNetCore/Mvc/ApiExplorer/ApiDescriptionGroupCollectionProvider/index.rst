@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollection
-    
-        
-        .. code-block:: csharp
-    
-            public ApiDescriptionGroupCollection ApiDescriptionGroups
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,5 +85,24 @@ Constructors
         .. code-block:: csharp
     
             public ApiDescriptionGroupCollectionProvider(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider, IEnumerable<IApiDescriptionProvider> apiDescriptionProviders)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollection
+    
+        
+        .. code-block:: csharp
+    
+            public ApiDescriptionGroupCollection ApiDescriptionGroups { get; }
     
 

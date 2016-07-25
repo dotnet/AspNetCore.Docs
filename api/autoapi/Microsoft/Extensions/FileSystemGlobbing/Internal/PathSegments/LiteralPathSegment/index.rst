@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment.CanProduceStem
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool CanProduceStem
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment.Value
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -109,6 +74,35 @@ Constructors
         .. code-block:: csharp
     
             public LiteralPathSegment(string value, StringComparison comparisonType)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment.CanProduceStem
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool CanProduceStem { get; }
+    
+    .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments.LiteralPathSegment.Value
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 
 Methods

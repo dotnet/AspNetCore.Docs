@@ -71,7 +71,7 @@ Microsoft.Extensions.Configuration.Ini Namespace
         .. object: type=class name=Microsoft.Extensions.Configuration.Ini.IniConfigurationSource
 
         
-        An INI file based :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
+        Represents an INI file as an :any:`Microsoft.Extensions.Configuration.IConfigurationSource`\.
         Files are simple line structures (<a href="http://en.wikipedia.org/wiki/INI_file">INI Files on Wikipedia</a>)
 
 

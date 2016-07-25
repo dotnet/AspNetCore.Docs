@@ -48,51 +48,6 @@ Syntax
 
 .. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.FragmentString.HasValue
-    
-        
-    
-        
-        True if the fragment string is not empty
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasValue
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.FragmentString.Value
-    
-        
-    
-        
-        The escaped fragment string with the leading '#' character
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Value
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -120,30 +75,6 @@ Constructors
         .. code-block:: csharp
     
             public FragmentString(string value)
-    
-
-Fields
-------
-
-.. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Http.FragmentString.Empty
-    
-        
-    
-        
-        Represents the empty fragment string. This field is read-only.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.FragmentString
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly FragmentString Empty
     
 
 Methods
@@ -268,5 +199,109 @@ Methods
         .. code-block:: csharp
     
             public string ToUriComponent()
+    
+
+Operators
+---------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.FragmentString.Equality(Microsoft.AspNetCore.Http.FragmentString, Microsoft.AspNetCore.Http.FragmentString)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.FragmentString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.FragmentString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator ==(FragmentString left, FragmentString right)
+    
+    .. dn:operator:: Microsoft.AspNetCore.Http.FragmentString.Inequality(Microsoft.AspNetCore.Http.FragmentString, Microsoft.AspNetCore.Http.FragmentString)
+    
+        
+    
+        
+        :type left: Microsoft.AspNetCore.Http.FragmentString
+    
+        
+        :type right: Microsoft.AspNetCore.Http.FragmentString
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool operator !=(FragmentString left, FragmentString right)
+    
+
+Fields
+------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Http.FragmentString.Empty
+    
+        
+    
+        
+        Represents the empty fragment string. This field is read-only.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.FragmentString
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly FragmentString Empty
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.AspNetCore.Http.FragmentString
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.FragmentString.HasValue
+    
+        
+    
+        
+        True if the fragment string is not empty
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasValue { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.FragmentString.Value
+    
+        
+    
+        
+        The escaped fragment string with the leading '#' character
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Value { get; }
     
 

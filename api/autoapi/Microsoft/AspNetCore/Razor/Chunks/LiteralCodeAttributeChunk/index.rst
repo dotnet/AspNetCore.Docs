@@ -70,11 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Code
-            {
-                get;
-                set;
-            }
+            public string Code { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.LiteralCodeAttributeChunk.Prefix
     
@@ -84,11 +80,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LocationTagged<string> Prefix
-            {
-                get;
-                set;
-            }
+            public LocationTagged<string> Prefix { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.LiteralCodeAttributeChunk.Value
     
@@ -98,11 +90,7 @@ Properties
         
         .. code-block:: csharp
     
-            public LocationTagged<string> Value
-            {
-                get;
-                set;
-            }
+            public LocationTagged<string> Value { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.LiteralCodeAttributeChunk.ValueLocation
     
@@ -112,10 +100,6 @@ Properties
         
         .. code-block:: csharp
     
-            public SourceLocation ValueLocation
-            {
-                get;
-                set;
-            }
+            public SourceLocation ValueLocation { get; set; }
     
 

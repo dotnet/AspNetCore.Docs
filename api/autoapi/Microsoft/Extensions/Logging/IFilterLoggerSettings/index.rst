@@ -64,10 +64,7 @@ Properties
         
         .. code-block:: csharp
     
-            IChangeToken ChangeToken
-            {
-                get;
-            }
+            IChangeToken ChangeToken { get; }
     
 
 Methods

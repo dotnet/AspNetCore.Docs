@@ -57,51 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext.Container
-    
-        
-    
-        
-        Gets the model container object.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Container
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext.Model
-    
-        
-    
-        
-        Gets the model object.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public object Model
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -148,5 +103,44 @@ Constructors
         .. code-block:: csharp
     
             public ModelValidationContext(ActionContext actionContext, ModelMetadata modelMetadata, IModelMetadataProvider metadataProvider, object container, object model)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext.Container
+    
+        
+    
+        
+        Gets the model container object.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Container { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ModelValidationContext.Model
+    
+        
+    
+        
+        Gets the model object.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public object Model { get; }
     
 

@@ -8,7 +8,7 @@ ServiceBasedControllerActivator Class
 
 
 
-A :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` that retrieves controllers as services from the request's
+A :any:`Microsoft.AspNetCore.Mvc.Controllers.IControllerActivator` that retrieves controllers as services from the request's 
 :any:`System.IServiceProvider`\.
 
 

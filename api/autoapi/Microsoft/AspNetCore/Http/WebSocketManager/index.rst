@@ -56,51 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.WebSocketManager
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.WebSocketManager
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.WebSocketManager.IsWebSocketRequest
-    
-        
-    
-        
-        Gets a value indicating whether the request is a WebSocket establishment request.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public abstract bool IsWebSocketRequest
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.WebSocketManager.WebSocketRequestedProtocols
-    
-        
-    
-        
-        Gets the list of requested WebSocket sub-protocols.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public abstract IList<string> WebSocketRequestedProtocols
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -145,5 +100,44 @@ Methods
         .. code-block:: csharp
     
             public abstract Task<WebSocket> AcceptWebSocketAsync(string subProtocol)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.WebSocketManager
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.WebSocketManager.IsWebSocketRequest
+    
+        
+    
+        
+        Gets a value indicating whether the request is a WebSocket establishment request.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public abstract bool IsWebSocketRequest { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.WebSocketManager.WebSocketRequestedProtocols
+    
+        
+    
+        
+        Gets the list of requested WebSocket sub-protocols.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public abstract IList<string> WebSocketRequestedProtocols { get; }
     
 

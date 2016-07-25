@@ -49,34 +49,6 @@ Syntax
 
 .. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterProvider
 
-Properties
-----------
-
-.. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.IFilterProvider.Order
-    
-        
-    
-        
-        Gets the order value for determining the order of execution of providers. Providers execute in
-        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.IFilterProvider.Order` property.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            int Order
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -122,5 +94,30 @@ Methods
         .. code-block:: csharp
     
             void OnProvidersExecuting(FilterProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:interface:: Microsoft.AspNetCore.Mvc.Filters.IFilterProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.IFilterProvider.Order
+    
+        
+    
+        
+        Gets the order value for determining the order of execution of providers. Providers execute in
+        ascending numeric value of the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.IFilterProvider.Order` property.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            int Order { get; }
     
 

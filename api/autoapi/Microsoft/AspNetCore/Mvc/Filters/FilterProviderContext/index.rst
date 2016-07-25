@@ -56,55 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.ActionContext
-    
-        
-    
-        
-        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.ActionContext`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActionContext ActionContext
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.Results
-    
-        
-    
-        
-        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.Filters.FilterItem`\s, initially created from :any:`Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor`\s or a
-        cache entry. :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterProvider`\s should set :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` on existing items or
-        add new :any:`Microsoft.AspNetCore.Mvc.Filters.FilterItem`\s to make executable filters available.
-    
-        
-        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Filters.FilterItem<Microsoft.AspNetCore.Mvc.Filters.FilterItem>}
-    
-        
-        .. code-block:: csharp
-    
-            public IList<FilterItem> Results
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -137,5 +88,46 @@ Constructors
         .. code-block:: csharp
     
             public FilterProviderContext(ActionContext actionContext, IList<FilterItem> items)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.ActionContext
+    
+        
+    
+        
+        Gets or sets the :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.ActionContext`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ActionContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActionContext ActionContext { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Filters.FilterProviderContext.Results
+    
+        
+    
+        
+        Gets or sets the :any:`Microsoft.AspNetCore.Mvc.Filters.FilterItem`\s, initially created from :any:`Microsoft.AspNetCore.Mvc.Filters.FilterDescriptor`\s or a
+        cache entry. :any:`Microsoft.AspNetCore.Mvc.Filters.IFilterProvider`\s should set :dn:prop:`Microsoft.AspNetCore.Mvc.Filters.FilterItem.Filter` on existing items or
+        add new :any:`Microsoft.AspNetCore.Mvc.Filters.FilterItem`\s to make executable filters available.
+    
+        
+        :rtype: System.Collections.Generic.IList<System.Collections.Generic.IList`1>{Microsoft.AspNetCore.Mvc.Filters.FilterItem<Microsoft.AspNetCore.Mvc.Filters.FilterItem>}
+    
+        
+        .. code-block:: csharp
+    
+            public IList<FilterItem> Results { get; set; }
     
 

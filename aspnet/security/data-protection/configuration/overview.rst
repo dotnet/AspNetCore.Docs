@@ -29,12 +29,9 @@ You can configure the system to protect keys at rest by calling any of the Prote
 
   public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDataProtection();
-        services.ConfigureDataProtection(configure =>
-        {
-            configure.PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
-            configure.ProtectKeysWithCertificate("thumbprint");
-        });
+        services.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
+            .ProtectKeysWithCertificate("thumbprint");
     }
 
 See :ref:`key encryption at rest <data-protection-implementation-key-encryption-at-rest>` for more examples and for discussion on the built-in key encryption mechanisms.
@@ -78,7 +75,7 @@ Finally, you may have a scenario where you do not want an application to automat
 Per-application isolation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When the data protection system is provided by an ASP.NET host, it will automatically isolate applications from one another, even if those applications are running under the same worker process account and are using the same master keying material. This is somewhat similar to the IsolateApps modifier from System.Web's <machineKey> element.
+When the data protection system is provided by an ASP.NET Core host, it will automatically isolate applications from one another, even if those applications are running under the same worker process account and are using the same master keying material. This is somewhat similar to the IsolateApps modifier from System.Web's <machineKey> element.
 
 The isolation mechanism works by considering each application on the local machine as a unique tenant, thus the IDataProtector rooted for any given application automatically includes the application ID as a discriminator. The application's unique ID comes from one of two places.
 
@@ -89,7 +86,7 @@ The unique identifier is designed to survive resets - both of the individual app
 
 This isolation mechanism assumes that the applications are not malicious. A malicious application can always impact any other application running under the same worker process account. In a shared hosting environment where applications are mutually untrusted, the hosting provider should take steps to ensure OS-level isolation between applications, including separating the applications' underlying key repositories.
 
-If the data protection system is not provided by an ASP.NET host (e.g., if the developer instantiates it himself via the DataProtectionProvider concrete type), application isolation is disabled by default, and all applications backed by the same keying material can share payloads as long as they provide the appropriate purposes. To provide application isolation in this environment, call the SetApplicationName method on the configuration object, see the :ref:`code sample <data-protection-code-sample-application-name>` above.
+If the data protection system is not provided by an ASP.NET Core host (e.g., if the developer instantiates it himself via the DataProtectionProvider concrete type), application isolation is disabled by default, and all applications backed by the same keying material can share payloads as long as they provide the appropriate purposes. To provide application isolation in this environment, call the SetApplicationName method on the configuration object, see the :ref:`code sample <data-protection-code-sample-application-name>` above.
 
 .. _data-protection-changing-algorithms:
 
@@ -99,14 +96,12 @@ The data protection stack allows changing the default algorithm used by newly-ge
 
 .. code-block:: c#
 
-  services.ConfigureDataProtection(configure =>
-  {
-      configure.UseCryptographicAlgorithms(new AuthenticatedEncryptionOptions()
+  services.AddDataProtection()
+      .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
       {
           EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
           ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
       });
-  });
 
 The default EncryptionAlgorithm and ValidationAlgorithm are AES-256-CBC and HMACSHA256, respectively. The default policy can be set by a system administrator via :doc:`machine-wide-policy`, but an explicit call to UseCryptographicAlgorithms will override the default policy.
 
@@ -122,25 +117,23 @@ The developer can manually specify an implementation if desired via a call to Us
 Specifying custom managed algorithms
 ------------------------------------
 
-To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionOptions instance that points to the implementation types.
+To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
 
 
 .. code-block:: c#
 
-  services.ConfigureDataProtection(configure =>
-  {
-      configure.UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionOptions()
+  serviceCollection.AddDataProtection()
+      .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
       {
           // a type that subclasses SymmetricAlgorithm
           EncryptionAlgorithmType = typeof(Aes),
- 
+
           // specified in bits
           EncryptionAlgorithmKeySize = 256,
- 
+
           // a type that subclasses KeyedHashAlgorithm
           ValidationAlgorithmType = typeof(HMACSHA256)
       });
-  });
 
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.
 
@@ -152,42 +145,39 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 Specifying custom Windows CNG algorithms
 ----------------------------------------
 
-To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionOptions instance that contains the algorithmic information.
+To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
 .. code-block:: c#
 
-  services.ConfigureDataProtection(configure =>
-  {
-      configure.UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionOptions()
+  services.AddDataProtection()
+      .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
       {
           // passed to BCryptOpenAlgorithmProvider
           EncryptionAlgorithm = "AES",
           EncryptionAlgorithmProvider = null,
- 
+
           // specified in bits
           EncryptionAlgorithmKeySize = 256,
- 
+
           // passed to BCryptOpenAlgorithmProvider
           HashAlgorithm = "SHA256",
           HashAlgorithmProvider = null
       });
-  });
 
 .. note:: 
   The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the `BCryptOpenAlgorithmProvider <https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx>`_ documentation for more information.
 
-To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionOptions instance that contains the algorithmic information.
+To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
 .. code-block:: c#
 
-  services.ConfigureDataProtection(configure =>
-  {
-      configure.UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionOptions()
+  services.AddDataProtection()
+      .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
       {
           // passed to BCryptOpenAlgorithmProvider
           EncryptionAlgorithm = "AES",
           EncryptionAlgorithmProvider = null,
- 
+
           // specified in bits
           EncryptionAlgorithmKeySize = 256
       });

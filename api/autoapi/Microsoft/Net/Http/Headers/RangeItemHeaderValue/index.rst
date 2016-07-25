@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.From
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? From
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.To
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? To
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -151,5 +116,34 @@ Methods
         .. code-block:: csharp
     
             public override string ToString()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.RangeItemHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.From
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? From { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.RangeItemHeaderValue.To
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? To { get; }
     
 

@@ -52,28 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.BufferingHelper
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.BufferingHelper
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.BufferingHelper.TempDirectory
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public static string TempDirectory
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -99,7 +77,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static HttpRequest EnableRewind(HttpRequest request, int bufferThreshold = 30720, long ? bufferLimit = null)
+            public static HttpRequest EnableRewind(this HttpRequest request, int bufferThreshold = 30720, long ? bufferLimit = null)
     
     .. dn:method:: Microsoft.AspNetCore.Http.Internal.BufferingHelper.EnableRewind(Microsoft.AspNetCore.WebUtilities.MultipartSection, System.Action<System.IDisposable>, System.Int32, System.Nullable<System.Int64>)
     
@@ -121,6 +99,25 @@ Methods
         
         .. code-block:: csharp
     
-            public static MultipartSection EnableRewind(MultipartSection section, Action<IDisposable> registerForDispose, int bufferThreshold = 30720, long ? bufferLimit = null)
+            public static MultipartSection EnableRewind(this MultipartSection section, Action<IDisposable> registerForDispose, int bufferThreshold = 30720, long ? bufferLimit = null)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.BufferingHelper
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.BufferingHelper.TempDirectory
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public static string TempDirectory { get; }
     
 

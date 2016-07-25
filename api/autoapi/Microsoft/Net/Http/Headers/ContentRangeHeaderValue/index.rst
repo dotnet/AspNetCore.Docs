@@ -52,94 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.From
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? From
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.HasLength
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasLength
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.HasRange
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool HasRange
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.Length
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? Length
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.To
-    
-        
-        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
-    
-        
-        .. code-block:: csharp
-    
-            public long ? To
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.Unit
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Unit
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -263,5 +175,74 @@ Methods
         .. code-block:: csharp
     
             public static bool TryParse(string input, out ContentRangeHeaderValue parsedValue)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.From
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? From { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.HasLength
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasLength { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.HasRange
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool HasRange { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.Length
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? Length { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.To
+    
+        
+        :rtype: System.Nullable<System.Nullable`1>{System.Int64<System.Int64>}
+    
+        
+        .. code-block:: csharp
+    
+            public long ? To { get; }
+    
+    .. dn:property:: Microsoft.Net.Http.Headers.ContentRangeHeaderValue.Unit
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Unit { get; set; }
     
 

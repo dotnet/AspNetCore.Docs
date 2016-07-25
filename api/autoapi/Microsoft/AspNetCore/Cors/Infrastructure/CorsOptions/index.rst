@@ -56,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.DefaultPolicyName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string DefaultPolicyName
-            {
-                get;
-                set;
-            }
-    
-
 Methods
 -------
 
@@ -155,5 +132,24 @@ Methods
         .. code-block:: csharp
     
             public CorsPolicy GetPolicy(string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.DefaultPolicyName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string DefaultPolicyName { get; set; }
     
 

@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string AccessToken
-            {
-                get;
-                set;
-            }
+            public string AccessToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse.Error
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Exception Error
-            {
-                get;
-                set;
-            }
+            public Exception Error { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse.ExpiresIn
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ExpiresIn
-            {
-                get;
-                set;
-            }
+            public string ExpiresIn { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse.RefreshToken
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string RefreshToken
-            {
-                get;
-                set;
-            }
+            public string RefreshToken { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse.Response
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public JObject Response
-            {
-                get;
-                set;
-            }
+            public JObject Response { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Authentication.OAuth.OAuthTokenResponse.TokenType
     
@@ -138,11 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string TokenType
-            {
-                get;
-                set;
-            }
+            public string TokenType { get; set; }
     
 
 Methods

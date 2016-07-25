@@ -8,7 +8,7 @@ ResourceManagerWithCultureStringLocalizer Class
 
 
 
-An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and
+An :any:`Microsoft.Extensions.Localization.IStringLocalizer` that uses the :any:`System.Resources.ResourceManager` and 
 :any:`System.Resources.ResourceReader` to provide localized strings for a specific :any:`System.Globalization.CultureInfo`\.
 
 
@@ -57,50 +57,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer
-
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer.Item[System.String]
-    
-        
-    
-        
-        :type name: System.String
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-            public override LocalizedString this[string name]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer.Item[System.String, System.Object[]]
-    
-        
-    
-        
-        :type name: System.String
-    
-        
-        :type arguments: System.Object<System.Object>[]
-        :rtype: Microsoft.Extensions.Localization.LocalizedString
-    
-        
-        .. code-block:: csharp
-    
-            public override LocalizedString this[string name, params object[] arguments]
-            {
-                get;
-            }
-    
 
 Constructors
 ------------
@@ -170,5 +126,43 @@ Methods
         .. code-block:: csharp
     
             public override IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer.Item[System.String]
+    
+        
+    
+        
+        :type name: System.String
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public override LocalizedString this[string name] { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Localization.ResourceManagerWithCultureStringLocalizer.Item[System.String, System.Object[]]
+    
+        
+    
+        
+        :type name: System.String
+    
+        
+        :type arguments: System.Object<System.Object>[]
+        :rtype: Microsoft.Extensions.Localization.LocalizedString
+    
+        
+        .. code-block:: csharp
+    
+            public override LocalizedString this[string name, params object[] arguments] { get; }
     
 

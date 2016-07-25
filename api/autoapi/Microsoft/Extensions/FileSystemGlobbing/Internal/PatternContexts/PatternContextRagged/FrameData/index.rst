@@ -60,10 +60,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Stem
-            {
-                get;
-            }
+            public string Stem { get; }
     
     .. dn:property:: Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts.PatternContextRagged.FrameData.StemItems
     
@@ -73,10 +70,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IList<string> StemItems
-            {
-                get;
-            }
+            public IList<string> StemItems { get; }
     
 
 Fields

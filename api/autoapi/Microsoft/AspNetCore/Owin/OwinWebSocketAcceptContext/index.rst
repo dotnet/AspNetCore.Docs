@@ -53,42 +53,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext.Options
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, object> Options
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext.SubProtocol
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public override string SubProtocol
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -117,5 +81,34 @@ Constructors
         .. code-block:: csharp
     
             public OwinWebSocketAcceptContext(IDictionary<string, object> options)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext.Options
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, System.Object<System.Object>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, object> Options { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Owin.OwinWebSocketAcceptContext.SubProtocol
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public override string SubProtocol { get; set; }
     
 

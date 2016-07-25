@@ -59,34 +59,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.FileStreamResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.FileStreamResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.FileStreamResult.FileStream
-    
-        
-    
-        
-        Gets or sets the stream with the file that will be sent back as the response.
-    
-        
-        :rtype: System.IO.Stream
-    
-        
-        .. code-block:: csharp
-    
-            public Stream FileStream
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -156,17 +128,41 @@ Methods
     :hidden:
 
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.FileStreamResult.WriteFileAsync(Microsoft.AspNetCore.Http.HttpResponse)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.FileStreamResult.ExecuteResultAsync(Microsoft.AspNetCore.Mvc.ActionContext)
     
         
     
         
-        :type response: Microsoft.AspNetCore.Http.HttpResponse
+        :type context: Microsoft.AspNetCore.Mvc.ActionContext
         :rtype: System.Threading.Tasks.Task
     
         
         .. code-block:: csharp
     
-            protected override Task WriteFileAsync(HttpResponse response)
+            public override Task ExecuteResultAsync(ActionContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.FileStreamResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.FileStreamResult.FileStream
+    
+        
+    
+        
+        Gets or sets the stream with the file that will be sent back as the response.
+    
+        
+        :rtype: System.IO.Stream
+    
+        
+        .. code-block:: csharp
+    
+            public Stream FileStream { get; set; }
     
 

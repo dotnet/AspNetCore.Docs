@@ -8,7 +8,7 @@ TagHelperPrefixDirectiveChunkGenerator Class
 
 
 
-A :any:`Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator` responsible for generating
+A :any:`Microsoft.AspNetCore.Razor.Chunks.Generators.SpanChunkGenerator` responsible for generating 
 :any:`Microsoft.AspNetCore.Razor.Chunks.TagHelperPrefixDirectiveChunk`\s.
 
 
@@ -95,6 +95,19 @@ Methods
     :hidden:
 
     
+    .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator.Equals(System.Object)
+    
+        
+    
+        
+        :type obj: System.Object
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public override bool Equals(object obj)
+    
     .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator.GenerateChunk(Microsoft.AspNetCore.Razor.Parser.SyntaxTree.Span, Microsoft.AspNetCore.Razor.Chunks.Generators.ChunkGeneratorContext)
     
         
@@ -120,5 +133,39 @@ Methods
         .. code-block:: csharp
     
             public override void GenerateChunk(Span target, ChunkGeneratorContext context)
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator.GetHashCode()
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public override int GetHashCode()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.Chunks.Generators.TagHelperPrefixDirectiveChunkGenerator.Prefix
+    
+        
+    
+        
+        Text used as a required prefix when matching HTML.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Prefix { get; }
     
 

@@ -77,11 +77,7 @@ Properties
         
         .. code-block:: csharp
     
-            public RequestDelegate Branch
-            {
-                get;
-                set;
-            }
+            public RequestDelegate Branch { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Builder.Extensions.MapOptions.PathMatch
     
@@ -96,10 +92,6 @@ Properties
         
         .. code-block:: csharp
     
-            public PathString PathMatch
-            {
-                get;
-                set;
-            }
+            public PathString PathMatch { get; set; }
     
 

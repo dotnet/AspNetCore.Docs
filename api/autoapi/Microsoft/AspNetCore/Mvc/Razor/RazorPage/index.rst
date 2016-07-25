@@ -56,241 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorPage
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorPage
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BodyContent
-    
-        
-        :rtype: Microsoft.AspNetCore.Html.IHtmlContent
-    
-        
-        .. code-block:: csharp
-    
-            public IHtmlContent BodyContent
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context
-    
-        
-    
-        
-        An :any:`Microsoft.AspNetCore.Http.HttpContext` representing the current request execution.
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.DiagnosticSource
-    
-        
-    
-        
-        Gets or sets a :dn:meth:`System.Diagnostics.DiagnosticSource.#ctor` instance used to instrument the page execution.
-    
-        
-        :rtype: System.Diagnostics.DiagnosticSource
-    
-        
-        .. code-block:: csharp
-    
-            public DiagnosticSource DiagnosticSource
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.HtmlEncoder
-    
-        
-    
-        
-        Gets the :any:`System.Text.Encodings.Web.HtmlEncoder` to use when this :any:`Microsoft.AspNetCore.Mvc.Razor.RazorPage`
-        handles non- :any:`Microsoft.AspNetCore.Html.IHtmlContent` C# expressions.
-    
-        
-        :rtype: System.Text.Encodings.Web.HtmlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            public HtmlEncoder HtmlEncoder
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.IsLayoutBeingRendered
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsLayoutBeingRendered
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Layout
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Layout
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Output
-    
-        
-    
-        
-        Gets the :any:`System.IO.TextWriter` that the page is writing output to.
-    
-        
-        :rtype: System.IO.TextWriter
-    
-        
-        .. code-block:: csharp
-    
-            public virtual TextWriter Output
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Path
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Path
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.PreviousSectionWriters
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate<Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, RenderAsyncDelegate> PreviousSectionWriters
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.SectionWriters
-    
-        
-        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate<Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate>}
-    
-        
-        .. code-block:: csharp
-    
-            public IDictionary<string, RenderAsyncDelegate> SectionWriters
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.TempData
-    
-        
-    
-        
-        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` from the :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewContext`\.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public ITempDataDictionary TempData
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.User
-    
-        
-    
-        
-        Gets the :any:`System.Security.Claims.ClaimsPrincipal` of the current logged in user.
-    
-        
-        :rtype: System.Security.Claims.ClaimsPrincipal
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ClaimsPrincipal User
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewBag
-    
-        
-    
-        
-        Gets the dynamic view data dictionary.
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            public dynamic ViewBag
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewContext
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
-    
-        
-        .. code-block:: csharp
-    
-            public ViewContext ViewContext
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -344,7 +109,7 @@ Methods
     
             public void AddHtmlAttributeValue(string prefix, int prefixOffset, object value, int valueOffset, int valueLength, bool isLiteral)
     
-    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BeginAddHtmlAttributeValues(Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext, System.String, System.Int32)
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BeginAddHtmlAttributeValues(Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext, System.String, System.Int32, Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle)
     
         
     
@@ -358,9 +123,12 @@ Methods
         :type attributeValuesCount: System.Int32
     
         
+        :type attributeValueStyle: Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle
+    
+        
         .. code-block:: csharp
     
-            public void BeginAddHtmlAttributeValues(TagHelperExecutionContext executionContext, string attributeName, int attributeValuesCount)
+            public void BeginAddHtmlAttributeValues(TagHelperExecutionContext executionContext, string attributeName, int attributeValuesCount, HtmlAttributeValueStyle attributeValueStyle)
     
     .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BeginContext(System.Int32, System.Int32, System.Boolean)
     
@@ -437,6 +205,20 @@ Methods
     
             public virtual void BeginWriteAttributeTo(TextWriter writer, string name, string prefix, int prefixOffset, string suffix, int suffixOffset, int attributeValuesCount)
     
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BeginWriteTagHelperAttribute()
+    
+        
+    
+        
+        Starts a new scope for writing :any:`Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper` attribute values.
+    
+        
+    
+        
+        .. code-block:: csharp
+    
+            public void BeginWriteTagHelperAttribute()
+    
     .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.CreateTagHelper<TTagHelper>()
     
         
@@ -458,7 +240,7 @@ Methods
         
     
         
-        Creates a named content section in the page that can be invoked in a Layout page using
+        Creates a named content section in the page that can be invoked in a Layout page using 
         :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection(System.String)` or :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSectionAsync(System.String,System.Boolean)`\.
     
         
@@ -536,6 +318,22 @@ Methods
     
             public virtual void EndWriteAttributeTo(TextWriter writer)
     
+    .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.EndWriteTagHelperAttribute()
+    
+        
+    
+        
+        Ends the current writing scope that was started by calling :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.BeginWriteTagHelperAttribute`\.
+    
+        
+        :rtype: System.String
+        :return: The content buffered by the shared :any:`System.IO.StringWriter` of this :any:`Microsoft.AspNetCore.Mvc.Razor.RazorPage`\.
+    
+        
+        .. code-block:: csharp
+    
+            public string EndWriteTagHelperAttribute()
+    
     .. dn:method:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.EnsureRenderedBodyOrSections()
     
         
@@ -564,9 +362,9 @@ Methods
         on the response stream, writing out any buffered content to the :dn:prop:`Microsoft.AspNetCore.Http.HttpResponse.Body`\.
     
         
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.Rendering.HtmlString<Microsoft.AspNetCore.Mvc.Rendering.HtmlString>}
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.HtmlString<Microsoft.AspNetCore.Html.HtmlString>}
         :return: A :any:`System.Threading.Tasks.Task\`1` that represents the asynchronous flush operation and on
-            completion returns :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty`\.
+            completion returns :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty`\.
     
         
         .. code-block:: csharp
@@ -700,8 +498,8 @@ Methods
         :param name: The name of the section to render.
         
         :type name: System.String
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.HtmlString
-        :return: Returns :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` to allow the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to
+        :rtype: Microsoft.AspNetCore.Html.HtmlString
+        :return: Returns :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` to allow the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to
             succeed.
     
         
@@ -727,8 +525,8 @@ Methods
         :param required: Indicates if this section must be rendered.
         
         :type required: System.Boolean
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.HtmlString
-        :return: Returns :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` to allow the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to
+        :rtype: Microsoft.AspNetCore.Html.HtmlString
+        :return: Returns :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` to allow the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to
             succeed.
     
         
@@ -749,8 +547,8 @@ Methods
         :param name: The section to render.
         
         :type name: System.String
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.Rendering.HtmlString<Microsoft.AspNetCore.Mvc.Rendering.HtmlString>}
-        :return: A :any:`System.Threading.Tasks.Task\`1` that on completion returns :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` that
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.HtmlString<Microsoft.AspNetCore.Html.HtmlString>}
+        :return: A :any:`System.Threading.Tasks.Task\`1` that on completion returns :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` that
             allows the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to succeed.
     
         
@@ -777,8 +575,8 @@ Methods
             (using <code>@section</code>) in the page.
         
         :type required: System.Boolean
-        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Mvc.Rendering.HtmlString<Microsoft.AspNetCore.Mvc.Rendering.HtmlString>}
-        :return: A :any:`System.Threading.Tasks.Task\`1` that on completion returns :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty` that
+        :rtype: System.Threading.Tasks.Task<System.Threading.Tasks.Task`1>{Microsoft.AspNetCore.Html.HtmlString<Microsoft.AspNetCore.Html.HtmlString>}
+        :return: A :any:`System.Threading.Tasks.Task\`1` that on completion returns :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty` that
             allows the :dn:meth:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.Write(System.Object)` call to succeed.
     
         
@@ -794,8 +592,8 @@ Methods
         Sets antiforgery cookie and X-Frame-Options header on the response.
     
         
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.HtmlString
-        :return: :dn:field:`Microsoft.AspNetCore.Mvc.Rendering.HtmlString.Empty`\.
+        :rtype: Microsoft.AspNetCore.Html.HtmlString
+        :return: :dn:field:`Microsoft.AspNetCore.Html.HtmlString.Empty`\.
     
         
         .. code-block:: csharp
@@ -1043,5 +841,190 @@ Methods
         .. code-block:: csharp
     
             public static void WriteTo(TextWriter writer, HtmlEncoder encoder, object value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Razor.RazorPage
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.BodyContent
+    
+        
+        :rtype: Microsoft.AspNetCore.Html.IHtmlContent
+    
+        
+        .. code-block:: csharp
+    
+            public IHtmlContent BodyContent { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context
+    
+        
+    
+        
+        An :any:`Microsoft.AspNetCore.Http.HttpContext` representing the current request execution.
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.DiagnosticSource
+    
+        
+    
+        
+        Gets or sets a :dn:meth:`System.Diagnostics.DiagnosticSource.#ctor` instance used to instrument the page execution.
+    
+        
+        :rtype: System.Diagnostics.DiagnosticSource
+    
+        
+        .. code-block:: csharp
+    
+            public DiagnosticSource DiagnosticSource { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.HtmlEncoder
+    
+        
+    
+        
+        Gets the :any:`System.Text.Encodings.Web.HtmlEncoder` to use when this :any:`Microsoft.AspNetCore.Mvc.Razor.RazorPage`
+        handles non- :any:`Microsoft.AspNetCore.Html.IHtmlContent` C# expressions.
+    
+        
+        :rtype: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            public HtmlEncoder HtmlEncoder { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.IsLayoutBeingRendered
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsLayoutBeingRendered { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Layout
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Layout { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Output
+    
+        
+    
+        
+        Gets the :any:`System.IO.TextWriter` that the page is writing output to.
+    
+        
+        :rtype: System.IO.TextWriter
+    
+        
+        .. code-block:: csharp
+    
+            public virtual TextWriter Output { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.Path
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Path { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.PreviousSectionWriters
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate<Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, RenderAsyncDelegate> PreviousSectionWriters { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.SectionWriters
+    
+        
+        :rtype: System.Collections.Generic.IDictionary<System.Collections.Generic.IDictionary`2>{System.String<System.String>, Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate<Microsoft.AspNetCore.Mvc.Razor.RenderAsyncDelegate>}
+    
+        
+        .. code-block:: csharp
+    
+            public IDictionary<string, RenderAsyncDelegate> SectionWriters { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.TempData
+    
+        
+    
+        
+        Gets the :any:`Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary` from the :dn:prop:`Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewContext`\.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public ITempDataDictionary TempData { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.User
+    
+        
+    
+        
+        Gets the :any:`System.Security.Claims.ClaimsPrincipal` of the current logged in user.
+    
+        
+        :rtype: System.Security.Claims.ClaimsPrincipal
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ClaimsPrincipal User { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewBag
+    
+        
+    
+        
+        Gets the dynamic view data dictionary.
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            public dynamic ViewBag { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Razor.RazorPage.ViewContext
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.ViewContext
+    
+        
+        .. code-block:: csharp
+    
+            public ViewContext ViewContext { get; set; }
     
 

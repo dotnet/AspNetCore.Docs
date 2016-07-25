@@ -52,29 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptions
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptions
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptions.Formatters
-    
-        
-        :rtype: System.Net.Http.Formatting.MediaTypeFormatterCollection
-    
-        
-        .. code-block:: csharp
-    
-            public MediaTypeFormatterCollection Formatters
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -91,5 +68,24 @@ Constructors
         .. code-block:: csharp
     
             public WebApiCompatShimOptions()
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptions
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiCompatShimOptions.Formatters
+    
+        
+        :rtype: System.Net.Http.Formatting.MediaTypeFormatterCollection
+    
+        
+        .. code-block:: csharp
+    
+            public MediaTypeFormatterCollection Formatters { get; set; }
     
 

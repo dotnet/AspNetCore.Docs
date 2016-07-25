@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IEnumerable<KeyValuePair<string, string>> AsEnumerable(IConfiguration configuration)
+            public static IEnumerable<KeyValuePair<string, string>> AsEnumerable(this IConfiguration configuration)
     
     .. dn:method:: Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString(Microsoft.Extensions.Configuration.IConfiguration, System.String)
     
@@ -108,6 +108,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static string GetConnectionString(IConfiguration configuration, string name)
+            public static string GetConnectionString(this IConfiguration configuration, string name)
     
 

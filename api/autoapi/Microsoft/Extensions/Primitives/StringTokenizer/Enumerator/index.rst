@@ -44,41 +44,6 @@ Syntax
 
 .. dn:structure:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator
 
-Properties
-----------
-
-.. dn:structure:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.Current
-    
-        
-        :rtype: Microsoft.Extensions.Primitives.StringSegment
-    
-        
-        .. code-block:: csharp
-    
-            public StringSegment Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -98,6 +63,35 @@ Constructors
         .. code-block:: csharp
     
             public Enumerator(ref StringTokenizer tokenizer)
+    
+
+Properties
+----------
+
+.. dn:structure:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.Current
+    
+        
+        :rtype: Microsoft.Extensions.Primitives.StringSegment
+    
+        
+        .. code-block:: csharp
+    
+            public StringSegment Current { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Primitives.StringTokenizer.Enumerator.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

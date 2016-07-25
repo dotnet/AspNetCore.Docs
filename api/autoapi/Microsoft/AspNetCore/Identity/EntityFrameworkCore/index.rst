@@ -27,6 +27,10 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/IdentityDbContext-TUser-TRole-TKey-TUserClaim-TUserRole-TUserLogin-TRoleClaim-TUserToken/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/IdentityRole/index
    
    
@@ -36,6 +40,10 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/IdentityRole-TKey/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/IdentityRole-TKey-TUserRole-TRoleClaim/index
    
    
    
@@ -63,6 +71,10 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    
    
    
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/IdentityUser-TKey-TUserClaim-TUserRole-TUserLogin/index
+   
+   
+   
    /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/RoleStore-TRole/index
    
    
@@ -72,6 +84,10 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    
    
    /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/RoleStore-TRole-TContext-TKey/index
+   
+   
+   
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/RoleStore-TRole-TContext-TKey-TUserRole-TRoleClaim/index
    
    
    
@@ -90,6 +106,10 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/UserStore-TUser-TRole-TContext-TKey/index
    
    
+   
+   /autoapi/Microsoft/AspNetCore/Identity/EntityFrameworkCore/UserStore-TUser-TRole-TContext-TKey-TUserClaim-TUserRole-TUserLogin-TUserToken/index
+   
+   
 
 
 
@@ -100,6 +120,26 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
    :hidden:
    :maxdepth: 2
 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    
@@ -216,6 +256,13 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
         Base class for the Entity Framework database context used for identity.
 
 
+    class :dn:cls:`IdentityDbContext\<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>`
+        .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext\<TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+
+        
+        Base class for the Entity Framework database context used for identity.
+
+
     class :dn:cls:`IdentityRole`
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole
 
@@ -232,6 +279,13 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
 
     class :dn:cls:`IdentityRole\<TKey>`
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole\<TKey>
+
+        
+        Represents a role in the identity system
+
+
+    class :dn:cls:`IdentityRole\<TKey, TUserRole, TRoleClaim>`
+        .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole\<TKey, TUserRole, TRoleClaim>
 
         
         Represents a role in the identity system
@@ -279,6 +333,13 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
         Represents a user in the identity system
 
 
+    class :dn:cls:`IdentityUser\<TKey, TUserClaim, TUserRole, TUserLogin>`
+        .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser\<TKey, TUserClaim, TUserRole, TUserLogin>
+
+        
+        Represents a user in the identity system
+
+
     class :dn:cls:`RoleStore\<TRole>`
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.RoleStore\<TRole>
 
@@ -300,11 +361,18 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
         Creates a new instance of a persistence store for roles.
 
 
+    class :dn:cls:`RoleStore\<TRole, TContext, TKey, TUserRole, TRoleClaim>`
+        .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.RoleStore\<TRole, TContext, TKey, TUserRole, TRoleClaim>
+
+        
+        Creates a new instance of a persistence store for roles.
+
+
     class :dn:cls:`UserStore`
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore
 
         
-        Creates a new instance of a persistence store for users, using the default implementation
+        Represents a new instance of a persistence store for users, using the default implementation
         of :any:`Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser\`1` with a string as a primary key.
 
 
@@ -319,11 +387,18 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore Namespace
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore\<TUser, TRole, TContext>
 
         
-        Creates a new instance of a persistence store for the specified user and role types.
+        Represents a new instance of a persistence store for the specified user and role types.
 
 
     class :dn:cls:`UserStore\<TUser, TRole, TContext, TKey>`
         .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore\<TUser, TRole, TContext, TKey>
+
+        
+        Represents a new instance of a persistence store for the specified user and role types.
+
+
+    class :dn:cls:`UserStore\<TUser, TRole, TContext, TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>`
+        .. object: type=class name=Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore\<TUser, TRole, TContext, TKey, TUserClaim, TUserRole, TUserLogin, TUserToken>
 
         
         Represents a new instance of a persistence store for the specified user and role types.

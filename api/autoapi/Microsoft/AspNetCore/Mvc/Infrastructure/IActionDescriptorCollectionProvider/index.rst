@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            ActionDescriptorCollection ActionDescriptors
-            {
-                get;
-            }
+            ActionDescriptorCollection ActionDescriptors { get; }
     
 

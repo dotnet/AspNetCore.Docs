@@ -61,7 +61,7 @@ Methods
         
     
         
-        Sends the requested file in the response body. This may bypass the IHttpResponseFeature.Body
+        Sends the requested file in the response body. This may bypass the IHttpResponseFeature.Body 
         :any:`System.IO.Stream`\. A response may include multiple writes.
     
         

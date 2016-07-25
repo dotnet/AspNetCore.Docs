@@ -12,7 +12,7 @@ namespace CustomConfigurationProvider
             // work with with a builder using multiple calls
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsettings.json").Build();
+            builder.AddJsonFile("appsettings.json");
             var connectionStringConfig = builder.Build();
 
             // chain calls together as a fluent API

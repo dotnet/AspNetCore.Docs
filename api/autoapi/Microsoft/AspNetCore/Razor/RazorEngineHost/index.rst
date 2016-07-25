@@ -56,261 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.RazorEngineHost
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.RazorEngineHost
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.CodeLanguage
-    
-        
-    
-        
-        The language of the code within the Razor template.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.RazorCodeLanguage
-    
-        
-        .. code-block:: csharp
-    
-            public virtual RazorCodeLanguage CodeLanguage
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultBaseClass
-    
-        
-    
-        
-        The base-class of the generated class
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string DefaultBaseClass
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultClassName
-    
-        
-    
-        
-        The name of the generated class
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string DefaultClassName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultNamespace
-    
-        
-    
-        
-        The namespace which will contain the generated class
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string DefaultNamespace
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DesignTimeMode
-    
-        
-    
-        
-        Indicates if the parser and chunk generator should run in design-time mode
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool DesignTimeMode
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.EnableInstrumentation
-    
-        
-    
-        
-        Boolean indicating if instrumentation code should be injected into the output page
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool EnableInstrumentation
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.GeneratedClassContext
-    
-        
-    
-        
-        Details about the methods and types that should be used to generate code for Razor constructs
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
-    
-        
-        .. code-block:: csharp
-    
-            public virtual GeneratedClassContext GeneratedClassContext
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.InstrumentedSourceFilePath
-    
-        
-    
-        
-        Gets or sets the path to use for this document when generating Instrumentation calls
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public virtual string InstrumentedSourceFilePath
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.IsIndentingWithTabs
-    
-        
-    
-        
-        Gets or sets whether the design time editor is using tabs or spaces for indentation.
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool IsIndentingWithTabs
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.NamespaceImports
-    
-        
-    
-        
-        A list of namespaces to import in the generated file
-    
-        
-        :rtype: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ISet<string> NamespaceImports
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.StaticHelpers
-    
-        
-    
-        
-        Boolean indicating if helper methods should be instance methods or static methods
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public virtual bool StaticHelpers
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.TabSize
-    
-        
-    
-        
-        Tab size used by the hosting editor, when indenting with tabs.
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public virtual int TabSize
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.TagHelperDescriptorResolver
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver` used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
-    
-        
-        .. code-block:: csharp
-    
-            public virtual ITagHelperDescriptorResolver TagHelperDescriptorResolver
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -361,6 +106,210 @@ Constructors
         .. code-block:: csharp
     
             public RazorEngineHost(RazorCodeLanguage codeLanguage, Func<ParserBase> markupParserFactory)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.RazorEngineHost
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.CodeLanguage
+    
+        
+    
+        
+        The language of the code within the Razor template.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.RazorCodeLanguage
+    
+        
+        .. code-block:: csharp
+    
+            public virtual RazorCodeLanguage CodeLanguage { get; protected set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultBaseClass
+    
+        
+    
+        
+        The base-class of the generated class
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string DefaultBaseClass { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultClassName
+    
+        
+    
+        
+        The name of the generated class
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string DefaultClassName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DefaultNamespace
+    
+        
+    
+        
+        The namespace which will contain the generated class
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string DefaultNamespace { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.DesignTimeMode
+    
+        
+    
+        
+        Indicates if the parser and chunk generator should run in design-time mode
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool DesignTimeMode { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.EnableInstrumentation
+    
+        
+    
+        
+        Boolean indicating if instrumentation code should be injected into the output page
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool EnableInstrumentation { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.GeneratedClassContext
+    
+        
+    
+        
+        Details about the methods and types that should be used to generate code for Razor constructs
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.GeneratedClassContext
+    
+        
+        .. code-block:: csharp
+    
+            public virtual GeneratedClassContext GeneratedClassContext { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.InstrumentedSourceFilePath
+    
+        
+    
+        
+        Gets or sets the path to use for this document when generating Instrumentation calls
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public virtual string InstrumentedSourceFilePath { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.IsIndentingWithTabs
+    
+        
+    
+        
+        Gets or sets whether the design time editor is using tabs or spaces for indentation.
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool IsIndentingWithTabs { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.NamespaceImports
+    
+        
+    
+        
+        A list of namespaces to import in the generated file
+    
+        
+        :rtype: System.Collections.Generic.ISet<System.Collections.Generic.ISet`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ISet<string> NamespaceImports { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.StaticHelpers
+    
+        
+    
+        
+        Boolean indicating if helper methods should be instance methods or static methods
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public virtual bool StaticHelpers { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.TabSize
+    
+        
+    
+        
+        Tab size used by the hosting editor, when indenting with tabs.
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public virtual int TabSize { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.RazorEngineHost.TagHelperDescriptorResolver
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver` used to resolve :any:`Microsoft.AspNetCore.Razor.Compilation.TagHelpers.TagHelperDescriptor`\s.
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.Compilation.TagHelpers.ITagHelperDescriptorResolver
+    
+        
+        .. code-block:: csharp
+    
+            public virtual ITagHelperDescriptorResolver TagHelperDescriptorResolver { get; set; }
     
 
 Methods

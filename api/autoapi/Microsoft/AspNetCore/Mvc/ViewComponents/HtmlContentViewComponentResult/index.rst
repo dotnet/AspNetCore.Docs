@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.HtmlContentViewComponentResult
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.HtmlContentViewComponentResult
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.HtmlContentViewComponentResult.EncodedContent
-    
-        
-    
-        
-        Gets the encoded content.
-    
-        
-        :rtype: Microsoft.AspNetCore.Html.IHtmlContent
-    
-        
-        .. code-block:: csharp
-    
-            public IHtmlContent EncodedContent
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -107,6 +80,30 @@ Constructors
         .. code-block:: csharp
     
             public HtmlContentViewComponentResult(IHtmlContent encodedContent)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewComponents.HtmlContentViewComponentResult
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewComponents.HtmlContentViewComponentResult.EncodedContent
+    
+        
+    
+        
+        Gets the encoded content.
+    
+        
+        :rtype: Microsoft.AspNetCore.Html.IHtmlContent
+    
+        
+        .. code-block:: csharp
+    
+            public IHtmlContent EncodedContent { get; }
     
 
 Methods

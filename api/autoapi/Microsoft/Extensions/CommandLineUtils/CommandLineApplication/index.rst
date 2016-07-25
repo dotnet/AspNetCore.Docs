@@ -52,167 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Description
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Description
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.FullName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string FullName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Invoke
-    
-        
-        :rtype: System.Func<System.Func`1>{System.Int32<System.Int32>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<int> Invoke
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.IsShowingInformation
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsShowingInformation
-            {
-                get;
-                protected set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.LongVersionGetter
-    
-        
-        :rtype: System.Func<System.Func`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string> LongVersionGetter
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Name
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Name
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.OptionHelp
-    
-        
-        :rtype: Microsoft.Extensions.CommandLineUtils.CommandOption
-    
-        
-        .. code-block:: csharp
-    
-            public CommandOption OptionHelp
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.OptionVersion
-    
-        
-        :rtype: Microsoft.Extensions.CommandLineUtils.CommandOption
-    
-        
-        .. code-block:: csharp
-    
-            public CommandOption OptionVersion
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Parent
-    
-        
-        :rtype: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
-    
-        
-        .. code-block:: csharp
-    
-            public CommandLineApplication Parent
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.ShortVersionGetter
-    
-        
-        :rtype: System.Func<System.Func`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public Func<string> ShortVersionGetter
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Syntax
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string Syntax
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -232,55 +71,6 @@ Constructors
         .. code-block:: csharp
     
             public CommandLineApplication(bool throwOnUnexpectedArg = true)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Arguments
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandArgument<Microsoft.Extensions.CommandLineUtils.CommandArgument>}
-    
-        
-        .. code-block:: csharp
-    
-            public readonly List<CommandArgument> Arguments
-    
-    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Commands
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandLineApplication<Microsoft.Extensions.CommandLineUtils.CommandLineApplication>}
-    
-        
-        .. code-block:: csharp
-    
-            public readonly List<CommandLineApplication> Commands
-    
-    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Options
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandOption<Microsoft.Extensions.CommandLineUtils.CommandOption>}
-    
-        
-        .. code-block:: csharp
-    
-            public readonly List<CommandOption> Options
-    
-    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.RemainingArguments
-    
-        
-        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public readonly List<string> RemainingArguments
     
 
 Methods
@@ -528,5 +318,173 @@ Methods
         .. code-block:: csharp
     
             public CommandOption VersionOption(string template, string shortFormVersion, string longFormVersion = null)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Arguments
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandArgument<Microsoft.Extensions.CommandLineUtils.CommandArgument>}
+    
+        
+        .. code-block:: csharp
+    
+            public readonly List<CommandArgument> Arguments
+    
+    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Commands
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandLineApplication<Microsoft.Extensions.CommandLineUtils.CommandLineApplication>}
+    
+        
+        .. code-block:: csharp
+    
+            public readonly List<CommandLineApplication> Commands
+    
+    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Options
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{Microsoft.Extensions.CommandLineUtils.CommandOption<Microsoft.Extensions.CommandLineUtils.CommandOption>}
+    
+        
+        .. code-block:: csharp
+    
+            public readonly List<CommandOption> Options
+    
+    .. dn:field:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.RemainingArguments
+    
+        
+        :rtype: System.Collections.Generic.List<System.Collections.Generic.List`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public readonly List<string> RemainingArguments
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Description
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Description { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.FullName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string FullName { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Invoke
+    
+        
+        :rtype: System.Func<System.Func`1>{System.Int32<System.Int32>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<int> Invoke { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.IsShowingInformation
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsShowingInformation { get; protected set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.LongVersionGetter
+    
+        
+        :rtype: System.Func<System.Func`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string> LongVersionGetter { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Name
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Name { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.OptionHelp
+    
+        
+        :rtype: Microsoft.Extensions.CommandLineUtils.CommandOption
+    
+        
+        .. code-block:: csharp
+    
+            public CommandOption OptionHelp { get; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.OptionVersion
+    
+        
+        :rtype: Microsoft.Extensions.CommandLineUtils.CommandOption
+    
+        
+        .. code-block:: csharp
+    
+            public CommandOption OptionVersion { get; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Parent
+    
+        
+        :rtype: Microsoft.Extensions.CommandLineUtils.CommandLineApplication
+    
+        
+        .. code-block:: csharp
+    
+            public CommandLineApplication Parent { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.ShortVersionGetter
+    
+        
+        :rtype: System.Func<System.Func`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public Func<string> ShortVersionGetter { get; set; }
+    
+    .. dn:property:: Microsoft.Extensions.CommandLineUtils.CommandLineApplication.Syntax
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string Syntax { get; set; }
     
 

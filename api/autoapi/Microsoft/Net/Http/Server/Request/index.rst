@@ -68,10 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Stream Body
-            {
-                get;
-            }
+            public Stream Body { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ConnectionId
     
@@ -81,10 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public ulong ConnectionId
-            {
-                get;
-            }
+            public ulong ConnectionId { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ContentLength
     
@@ -94,10 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public long ? ContentLength
-            {
-                get;
-            }
+            public long ? ContentLength { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ContentType
     
@@ -107,10 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentType
-            {
-                get;
-            }
+            public string ContentType { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.HasEntityBody
     
@@ -120,10 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool HasEntityBody
-            {
-                get;
-            }
+            public bool HasEntityBody { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Headers
     
@@ -133,10 +118,7 @@ Properties
         
         .. code-block:: csharp
     
-            public HeaderCollection Headers
-            {
-                get;
-            }
+            public HeaderCollection Headers { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.IsHeadMethod
     
@@ -146,10 +128,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsHeadMethod
-            {
-                get;
-            }
+            public bool IsHeadMethod { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.IsSecureConnection
     
@@ -159,10 +138,7 @@ Properties
         
         .. code-block:: csharp
     
-            public bool IsSecureConnection
-            {
-                get;
-            }
+            public bool IsSecureConnection { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.LocalIpAddress
     
@@ -172,10 +148,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IPAddress LocalIpAddress
-            {
-                get;
-            }
+            public IPAddress LocalIpAddress { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.LocalPort
     
@@ -185,10 +158,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int LocalPort
-            {
-                get;
-            }
+            public int LocalPort { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Method
     
@@ -198,10 +168,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Method
-            {
-                get;
-            }
+            public string Method { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Path
     
@@ -211,10 +178,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Path
-            {
-                get;
-            }
+            public string Path { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.PathBase
     
@@ -224,10 +188,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string PathBase
-            {
-                get;
-            }
+            public string PathBase { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.ProtocolVersion
     
@@ -237,10 +198,7 @@ Properties
         
         .. code-block:: csharp
     
-            public Version ProtocolVersion
-            {
-                get;
-            }
+            public Version ProtocolVersion { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.QueryString
     
@@ -250,11 +208,17 @@ Properties
         
         .. code-block:: csharp
     
-            public string QueryString
-            {
-                get;
-                set;
-            }
+            public string QueryString { get; set; }
+    
+    .. dn:property:: Microsoft.Net.Http.Server.Request.RawUrl
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string RawUrl { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.RemoteIpAddress
     
@@ -264,10 +228,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IPAddress RemoteIpAddress
-            {
-                get;
-            }
+            public IPAddress RemoteIpAddress { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.RemotePort
     
@@ -277,10 +238,7 @@ Properties
         
         .. code-block:: csharp
     
-            public int RemotePort
-            {
-                get;
-            }
+            public int RemotePort { get; }
     
     .. dn:property:: Microsoft.Net.Http.Server.Request.Scheme
     
@@ -290,10 +248,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string Scheme
-            {
-                get;
-            }
+            public string Scheme { get; }
     
 
 Methods

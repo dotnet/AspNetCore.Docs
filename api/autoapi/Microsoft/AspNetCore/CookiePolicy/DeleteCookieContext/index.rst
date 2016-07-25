@@ -52,55 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            public HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.CookieName
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string CookieName
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.CookieOptions
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.CookieOptions
-    
-        
-        .. code-block:: csharp
-    
-            public CookieOptions CookieOptions
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -126,5 +77,44 @@ Constructors
         .. code-block:: csharp
     
             public DeleteCookieContext(HttpContext context, CookieOptions options, string name)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            public HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.CookieName
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string CookieName { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.CookiePolicy.DeleteCookieContext.CookieOptions
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.CookieOptions
+    
+        
+        .. code-block:: csharp
+    
+            public CookieOptions CookieOptions { get; }
     
 

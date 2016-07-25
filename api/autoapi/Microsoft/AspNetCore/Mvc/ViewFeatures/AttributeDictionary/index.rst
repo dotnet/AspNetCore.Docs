@@ -56,110 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Count
-    
-        
-        :rtype: System.Int32
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.IsReadOnly
-    
-        
-        :rtype: System.Boolean
-    
-        
-        .. code-block:: csharp
-    
-            public bool IsReadOnly
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Item[System.String]
-    
-        
-    
-        
-        :type key: System.String
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string this[string key]
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>.Keys
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<string> IReadOnlyDictionary<string, string>.Keys
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>.Values
-    
-        
-        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            IEnumerable<string> IReadOnlyDictionary<string, string>.Values
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Values
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Values
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -316,5 +212,87 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Count
+    
+        
+        :rtype: System.Int32
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.IsReadOnly
+    
+        
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public bool IsReadOnly { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Item[System.String]
+    
+        
+    
+        
+        :type key: System.String
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string this[string key] { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>.Keys
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<string> IReadOnlyDictionary<string, string>.Keys { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>.Values
+    
+        
+        :rtype: System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            IEnumerable<string> IReadOnlyDictionary<string, string>.Values { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary.Values
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Values { get; }
     
 

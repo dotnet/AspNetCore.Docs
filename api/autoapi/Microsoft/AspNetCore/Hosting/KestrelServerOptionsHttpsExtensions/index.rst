@@ -87,7 +87,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseHttps(KestrelServerOptions options, HttpsConnectionFilterOptions httpsOptions)
+            public static KestrelServerOptions UseHttps(this KestrelServerOptions options, HttpsConnectionFilterOptions httpsOptions)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.KestrelServerOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions, System.Security.Cryptography.X509Certificates.X509Certificate2)
     
@@ -116,7 +116,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseHttps(KestrelServerOptions options, X509Certificate2 serverCertificate)
+            public static KestrelServerOptions UseHttps(this KestrelServerOptions options, X509Certificate2 serverCertificate)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.KestrelServerOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions, System.String)
     
@@ -145,7 +145,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseHttps(KestrelServerOptions options, string fileName)
+            public static KestrelServerOptions UseHttps(this KestrelServerOptions options, string fileName)
     
     .. dn:method:: Microsoft.AspNetCore.Hosting.KestrelServerOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions, System.String, System.String)
     
@@ -180,6 +180,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static KestrelServerOptions UseHttps(KestrelServerOptions options, string fileName, string password)
+            public static KestrelServerOptions UseHttps(this KestrelServerOptions options, string fileName, string password)
     
 

@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            IEnumerable<TypeInfo> Types
-            {
-                get;
-            }
+            IEnumerable<TypeInfo> Types { get; }
     
 

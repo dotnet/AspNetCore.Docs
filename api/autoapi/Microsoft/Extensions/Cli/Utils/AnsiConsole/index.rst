@@ -52,41 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.Extensions.Cli.Utils.AnsiConsole
 
-Properties
-----------
-
-.. dn:class:: Microsoft.Extensions.Cli.Utils.AnsiConsole
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.Extensions.Cli.Utils.AnsiConsole.OriginalForegroundColor
-    
-        
-        :rtype: System.ConsoleColor
-    
-        
-        .. code-block:: csharp
-    
-            public ConsoleColor OriginalForegroundColor
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.Extensions.Cli.Utils.AnsiConsole.Writer
-    
-        
-        :rtype: System.IO.TextWriter
-    
-        
-        .. code-block:: csharp
-    
-            public TextWriter Writer
-            {
-                get;
-            }
-    
-
 Methods
 -------
 
@@ -138,5 +103,34 @@ Methods
         .. code-block:: csharp
     
             public void WriteLine(string message)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.Extensions.Cli.Utils.AnsiConsole
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.Extensions.Cli.Utils.AnsiConsole.OriginalForegroundColor
+    
+        
+        :rtype: System.ConsoleColor
+    
+        
+        .. code-block:: csharp
+    
+            public ConsoleColor OriginalForegroundColor { get; }
+    
+    .. dn:property:: Microsoft.Extensions.Cli.Utils.AnsiConsole.Writer
+    
+        
+        :rtype: System.IO.TextWriter
+    
+        
+        .. code-block:: csharp
+    
+            public TextWriter Writer { get; }
     
 

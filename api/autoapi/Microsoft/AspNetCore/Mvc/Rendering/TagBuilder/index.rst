@@ -58,88 +58,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.Attributes
-    
-        
-    
-        
-        Gets the set of attributes that will be written to the tag.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary
-    
-        
-        .. code-block:: csharp
-    
-            public AttributeDictionary Attributes
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.InnerHtml
-    
-        
-    
-        
-        Gets the inner HTML content of the element.
-    
-        
-        :rtype: Microsoft.AspNetCore.Html.IHtmlContentBuilder
-    
-        
-        .. code-block:: csharp
-    
-            public IHtmlContentBuilder InnerHtml
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.TagName
-    
-        
-    
-        
-        Gets the tag name for this tag.
-    
-        
-        :rtype: System.String
-    
-        
-        .. code-block:: csharp
-    
-            public string TagName
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.TagRenderMode
-    
-        
-    
-        
-        The :any:`Microsoft.AspNetCore.Mvc.Rendering.TagRenderMode` with which the tag is written.
-    
-        
-        :rtype: Microsoft.AspNetCore.Mvc.Rendering.TagRenderMode
-    
-        
-        .. code-block:: csharp
-    
-            public TagRenderMode TagRenderMode
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -326,5 +244,74 @@ Methods
         .. code-block:: csharp
     
             public void WriteTo(TextWriter writer, HtmlEncoder encoder)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.Attributes
+    
+        
+    
+        
+        Gets the set of attributes that will be written to the tag.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.ViewFeatures.AttributeDictionary
+    
+        
+        .. code-block:: csharp
+    
+            public AttributeDictionary Attributes { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.InnerHtml
+    
+        
+    
+        
+        Gets the inner HTML content of the element.
+    
+        
+        :rtype: Microsoft.AspNetCore.Html.IHtmlContentBuilder
+    
+        
+        .. code-block:: csharp
+    
+            public IHtmlContentBuilder InnerHtml { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.TagName
+    
+        
+    
+        
+        Gets the tag name for this tag.
+    
+        
+        :rtype: System.String
+    
+        
+        .. code-block:: csharp
+    
+            public string TagName { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Rendering.TagBuilder.TagRenderMode
+    
+        
+    
+        
+        The :any:`Microsoft.AspNetCore.Mvc.Rendering.TagRenderMode` with which the tag is written.
+    
+        
+        :rtype: Microsoft.AspNetCore.Mvc.Rendering.TagRenderMode
+    
+        
+        .. code-block:: csharp
+    
+            public TagRenderMode TagRenderMode { get; set; }
     
 

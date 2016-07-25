@@ -128,7 +128,7 @@ Methods
         
     
         
-        Creates a :any:`Microsoft.Extensions.Localization.ResourceManagerStringLocalizer` using the :any:`System.Reflection.Assembly` and
+        Creates a :any:`Microsoft.Extensions.Localization.ResourceManagerStringLocalizer` using the :any:`System.Reflection.Assembly` and 
         :dn:prop:`System.Type.FullName` of the specified :any:`System.Type`\.
     
         

@@ -1,7 +1,6 @@
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
-using Microsoft.Framework.Logging;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace MiddlewareSample
 {

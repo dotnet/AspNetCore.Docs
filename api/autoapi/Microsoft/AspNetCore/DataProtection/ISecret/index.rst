@@ -69,10 +69,7 @@ Properties
         
         .. code-block:: csharp
     
-            int Length
-            {
-                get;
-            }
+            int Length { get; }
     
 
 Methods

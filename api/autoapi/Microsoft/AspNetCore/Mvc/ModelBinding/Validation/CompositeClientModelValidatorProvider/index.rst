@@ -56,33 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeClientModelValidatorProvider
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeClientModelValidatorProvider
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeClientModelValidatorProvider.ValidatorProviders
-    
-        
-    
-        
-        Gets a list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider` instances.
-    
-        
-        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider>}
-    
-        
-        .. code-block:: csharp
-    
-            public IReadOnlyList<IClientModelValidatorProvider> ValidatorProviders
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -131,5 +104,29 @@ Methods
         .. code-block:: csharp
     
             public void CreateValidators(ClientValidatorProviderContext context)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeClientModelValidatorProvider
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.ModelBinding.Validation.CompositeClientModelValidatorProvider.ValidatorProviders
+    
+        
+    
+        
+        Gets a list of :any:`Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider` instances.
+    
+        
+        :rtype: System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyList`1>{Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider<Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidatorProvider>}
+    
+        
+        .. code-block:: csharp
+    
+            public IReadOnlyList<IClientModelValidatorProvider> ValidatorProviders { get; }
     
 

@@ -52,71 +52,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Context
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext
-    
-        
-        .. code-block:: csharp
-    
-            public ActivityContext Context
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Current
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
-    
-        
-        .. code-block:: csharp
-    
-            public static ElmScope Current
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Node
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode
-    
-        
-        .. code-block:: csharp
-    
-            public ScopeNode Node
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Parent
-    
-        
-        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
-    
-        
-        .. code-block:: csharp
-    
-            public ElmScope Parent
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -139,6 +74,55 @@ Constructors
         .. code-block:: csharp
     
             public ElmScope(string name, object state)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Context
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ActivityContext
+    
+        
+        .. code-block:: csharp
+    
+            public ActivityContext Context { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Current
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
+    
+        
+        .. code-block:: csharp
+    
+            public static ElmScope Current { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Node
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ScopeNode
+    
+        
+        .. code-block:: csharp
+    
+            public ScopeNode Node { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope.Parent
+    
+        
+        :rtype: Microsoft.AspNetCore.Diagnostics.Elm.ElmScope
+    
+        
+        .. code-block:: csharp
+    
+            public ElmScope Parent { get; set; }
     
 
 Methods

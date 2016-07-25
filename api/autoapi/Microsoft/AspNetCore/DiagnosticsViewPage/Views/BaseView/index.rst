@@ -14,7 +14,7 @@ Infrastructure
 Namespace
     :dn:ns:`Microsoft.AspNetCore.DiagnosticsViewPage.Views`
 Assemblies
-    * Microsoft.AspNetCore.Diagnostics
+    * Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 ----
 
@@ -55,144 +55,6 @@ Syntax
     :hidden:
 
 .. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView
-
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Context
-    
-        
-    
-        
-        The request context
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpContext
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpContext Context
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.HtmlEncoder
-    
-        
-    
-        
-        Html encoder used to encode content.
-    
-        
-        :rtype: System.Text.Encodings.Web.HtmlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected HtmlEncoder HtmlEncoder
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.JavaScriptEncoder
-    
-        
-    
-        
-        JavaScript encoder used to encode content.
-    
-        
-        :rtype: System.Text.Encodings.Web.JavaScriptEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected JavaScriptEncoder JavaScriptEncoder
-            {
-                get;
-                set;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Output
-    
-        
-    
-        
-        The output stream
-    
-        
-        :rtype: System.IO.StreamWriter
-    
-        
-        .. code-block:: csharp
-    
-            protected StreamWriter Output
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Request
-    
-        
-    
-        
-        The request
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpRequest
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpRequest Request
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Response
-    
-        
-    
-        
-        The response
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.HttpResponse
-    
-        
-        .. code-block:: csharp
-    
-            protected HttpResponse Response
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.UrlEncoder
-    
-        
-    
-        
-        Url encoder used to encode content.
-    
-        
-        :rtype: System.Text.Encodings.Web.UrlEncoder
-    
-        
-        .. code-block:: csharp
-    
-            protected UrlEncoder UrlEncoder
-            {
-                get;
-                set;
-            }
-    
 
 Methods
 -------
@@ -532,5 +394,119 @@ Methods
         .. code-block:: csharp
     
             protected void WriteTo(TextWriter writer, string value)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Context
+    
+        
+    
+        
+        The request context
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpContext
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpContext Context { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.HtmlEncoder
+    
+        
+    
+        
+        Html encoder used to encode content.
+    
+        
+        :rtype: System.Text.Encodings.Web.HtmlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected HtmlEncoder HtmlEncoder { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.JavaScriptEncoder
+    
+        
+    
+        
+        JavaScript encoder used to encode content.
+    
+        
+        :rtype: System.Text.Encodings.Web.JavaScriptEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected JavaScriptEncoder JavaScriptEncoder { get; set; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Output
+    
+        
+    
+        
+        The output stream
+    
+        
+        :rtype: System.IO.StreamWriter
+    
+        
+        .. code-block:: csharp
+    
+            protected StreamWriter Output { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Request
+    
+        
+    
+        
+        The request
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpRequest
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpRequest Request { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.Response
+    
+        
+    
+        
+        The response
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.HttpResponse
+    
+        
+        .. code-block:: csharp
+    
+            protected HttpResponse Response { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.DiagnosticsViewPage.Views.BaseView.UrlEncoder
+    
+        
+    
+        
+        Url encoder used to encode content.
+    
+        
+        :rtype: System.Text.Encodings.Web.UrlEncoder
+    
+        
+        .. code-block:: csharp
+    
+            protected UrlEncoder UrlEncoder { get; set; }
     
 

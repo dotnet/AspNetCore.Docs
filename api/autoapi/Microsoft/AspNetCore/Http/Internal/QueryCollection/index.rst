@@ -56,71 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Http.Internal.QueryCollection
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.QueryCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Count
-    
-        
-    
-        
-        Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\;.
-    
-        
-        :rtype: System.Int32
-        :return: The number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\.
-    
-        
-        .. code-block:: csharp
-    
-            public int Count
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Item[System.String]
-    
-        
-    
-        
-        Get or sets the associated value from the collection as a single string.
-    
-        
-    
-        
-        :param key: The header name.
-        
-        :type key: System.String
-        :rtype: Microsoft.Extensions.Primitives.StringValues
-        :return: the associated value from the collection as a StringValues or StringValues.Empty if the key is not present.
-    
-        
-        .. code-block:: csharp
-    
-            public StringValues this[string key]
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Keys
-    
-        
-        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
-    
-        
-        .. code-block:: csharp
-    
-            public ICollection<string> Keys
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -173,25 +108,6 @@ Constructors
         .. code-block:: csharp
     
             public QueryCollection(int capacity)
-    
-
-Fields
-------
-
-.. dn:class:: Microsoft.AspNetCore.Http.Internal.QueryCollection
-    :noindex:
-    :hidden:
-
-    
-    .. dn:field:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Empty
-    
-        
-        :rtype: Microsoft.AspNetCore.Http.Internal.QueryCollection
-    
-        
-        .. code-block:: csharp
-    
-            public static readonly QueryCollection Empty
     
 
 Methods
@@ -296,5 +212,80 @@ Methods
         .. code-block:: csharp
     
             public bool TryGetValue(string key, out StringValues value)
+    
+
+Fields
+------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.QueryCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:field:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Empty
+    
+        
+        :rtype: Microsoft.AspNetCore.Http.Internal.QueryCollection
+    
+        
+        .. code-block:: csharp
+    
+            public static readonly QueryCollection Empty
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Http.Internal.QueryCollection
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Count
+    
+        
+    
+        
+        Gets the number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\;.
+    
+        
+        :rtype: System.Int32
+        :return: The number of elements contained in the :any:`Microsoft.AspNetCore.Http.HeaderDictionary`\.
+    
+        
+        .. code-block:: csharp
+    
+            public int Count { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Item[System.String]
+    
+        
+    
+        
+        Get or sets the associated value from the collection as a single string.
+    
+        
+    
+        
+        :param key: The header name.
+        
+        :type key: System.String
+        :rtype: Microsoft.Extensions.Primitives.StringValues
+        :return: the associated value from the collection as a StringValues or StringValues.Empty if the key is not present.
+    
+        
+        .. code-block:: csharp
+    
+            public StringValues this[string key] { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Http.Internal.QueryCollection.Keys
+    
+        
+        :rtype: System.Collections.Generic.ICollection<System.Collections.Generic.ICollection`1>{System.String<System.String>}
+    
+        
+        .. code-block:: csharp
+    
+            public ICollection<string> Keys { get; }
     
 

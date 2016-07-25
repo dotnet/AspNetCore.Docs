@@ -69,9 +69,6 @@ Properties
         
         .. code-block:: csharp
     
-            DateTimeOffset UtcNow
-            {
-                get;
-            }
+            DateTimeOffset UtcNow { get; }
     
 

@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry AddExpirationToken(ICacheEntry entry, IChangeToken expirationToken)
+            public static ICacheEntry AddExpirationToken(this ICacheEntry entry, IChangeToken expirationToken)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.RegisterPostEvictionCallback(Microsoft.Extensions.Caching.Memory.ICacheEntry, Microsoft.Extensions.Caching.Memory.PostEvictionDelegate)
     
@@ -104,7 +104,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry RegisterPostEvictionCallback(ICacheEntry entry, PostEvictionDelegate callback)
+            public static ICacheEntry RegisterPostEvictionCallback(this ICacheEntry entry, PostEvictionDelegate callback)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.RegisterPostEvictionCallback(Microsoft.Extensions.Caching.Memory.ICacheEntry, Microsoft.Extensions.Caching.Memory.PostEvictionDelegate, System.Object)
     
@@ -128,7 +128,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry RegisterPostEvictionCallback(ICacheEntry entry, PostEvictionDelegate callback, object state)
+            public static ICacheEntry RegisterPostEvictionCallback(this ICacheEntry entry, PostEvictionDelegate callback, object state)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetAbsoluteExpiration(Microsoft.Extensions.Caching.Memory.ICacheEntry, System.DateTimeOffset)
     
@@ -149,7 +149,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetAbsoluteExpiration(ICacheEntry entry, DateTimeOffset absolute)
+            public static ICacheEntry SetAbsoluteExpiration(this ICacheEntry entry, DateTimeOffset absolute)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetAbsoluteExpiration(Microsoft.Extensions.Caching.Memory.ICacheEntry, System.TimeSpan)
     
@@ -170,7 +170,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetAbsoluteExpiration(ICacheEntry entry, TimeSpan relative)
+            public static ICacheEntry SetAbsoluteExpiration(this ICacheEntry entry, TimeSpan relative)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetOptions(Microsoft.Extensions.Caching.Memory.ICacheEntry, Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions)
     
@@ -191,7 +191,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetOptions(ICacheEntry entry, MemoryCacheEntryOptions options)
+            public static ICacheEntry SetOptions(this ICacheEntry entry, MemoryCacheEntryOptions options)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetPriority(Microsoft.Extensions.Caching.Memory.ICacheEntry, Microsoft.Extensions.Caching.Memory.CacheItemPriority)
     
@@ -212,7 +212,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetPriority(ICacheEntry entry, CacheItemPriority priority)
+            public static ICacheEntry SetPriority(this ICacheEntry entry, CacheItemPriority priority)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetSlidingExpiration(Microsoft.Extensions.Caching.Memory.ICacheEntry, System.TimeSpan)
     
@@ -234,7 +234,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetSlidingExpiration(ICacheEntry entry, TimeSpan offset)
+            public static ICacheEntry SetSlidingExpiration(this ICacheEntry entry, TimeSpan offset)
     
     .. dn:method:: Microsoft.Extensions.Caching.Memory.CacheEntryExtensions.SetValue(Microsoft.Extensions.Caching.Memory.ICacheEntry, System.Object)
     
@@ -255,6 +255,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static ICacheEntry SetValue(ICacheEntry entry, object value)
+            public static ICacheEntry SetValue(this ICacheEntry entry, object value)
     
 

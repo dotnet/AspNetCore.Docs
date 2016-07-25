@@ -57,41 +57,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>.Current
-    
-        
-        :rtype: TWrapped
-    
-        
-        .. code-block:: csharp
-    
-            public TWrapped Current
-            {
-                get;
-            }
-    
-    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>.System.Collections.IEnumerator.Current
-    
-        
-        :rtype: System.Object
-    
-        
-        .. code-block:: csharp
-    
-            object IEnumerator.Current
-            {
-                get;
-            }
-    
-
 Constructors
 ------------
 
@@ -106,7 +71,7 @@ Constructors
     
         
         Initializes a :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerable\`2` which enumerates 
-        over the elements of the original enumerator and wraps them using the supplied
+        over the elements of the original enumerator and wraps them using the supplied 
         :any:`Microsoft.AspNetCore.Mvc.Formatters.Xml.IWrapperProvider`\.
     
         
@@ -125,6 +90,35 @@ Constructors
         .. code-block:: csharp
     
             public DelegatingEnumerator(IEnumerator<TDeclared> inner, IWrapperProvider wrapperProvider)
+    
+
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>.Current
+    
+        
+        :rtype: TWrapped
+    
+        
+        .. code-block:: csharp
+    
+            public TWrapped Current { get; }
+    
+    .. dn:property:: Microsoft.AspNetCore.Mvc.Formatters.Xml.DelegatingEnumerator<TWrapped, TDeclared>.System.Collections.IEnumerator.Current
+    
+        
+        :rtype: System.Object
+    
+        
+        .. code-block:: csharp
+    
+            object IEnumerator.Current { get; }
     
 
 Methods

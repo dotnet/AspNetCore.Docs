@@ -68,11 +68,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ApplicationName
-            {
-                get;
-                set;
-            }
+            public string ApplicationName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingEnvironment.ContentRootFileProvider
     
@@ -82,11 +78,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IFileProvider ContentRootFileProvider
-            {
-                get;
-                set;
-            }
+            public IFileProvider ContentRootFileProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingEnvironment.ContentRootPath
     
@@ -96,11 +88,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string ContentRootPath
-            {
-                get;
-                set;
-            }
+            public string ContentRootPath { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingEnvironment.EnvironmentName
     
@@ -110,11 +98,7 @@ Properties
         
         .. code-block:: csharp
     
-            public string EnvironmentName
-            {
-                get;
-                set;
-            }
+            public string EnvironmentName { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingEnvironment.WebRootFileProvider
     
@@ -124,11 +108,7 @@ Properties
         
         .. code-block:: csharp
     
-            public IFileProvider WebRootFileProvider
-            {
-                get;
-                set;
-            }
+            public IFileProvider WebRootFileProvider { get; set; }
     
     .. dn:property:: Microsoft.AspNetCore.Hosting.Internal.HostingEnvironment.WebRootPath
     
@@ -138,10 +118,6 @@ Properties
         
         .. code-block:: csharp
     
-            public string WebRootPath
-            {
-                get;
-                set;
-            }
+            public string WebRootPath { get; set; }
     
 

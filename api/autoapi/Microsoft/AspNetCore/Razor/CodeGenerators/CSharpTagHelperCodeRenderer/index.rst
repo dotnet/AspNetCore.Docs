@@ -56,29 +56,6 @@ Syntax
 
 .. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer
 
-Properties
-----------
-
-.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer
-    :noindex:
-    :hidden:
-
-    
-    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer.AttributeValueCodeRenderer
-    
-        
-        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.TagHelperAttributeValueCodeRenderer
-    
-        
-        .. code-block:: csharp
-    
-            public TagHelperAttributeValueCodeRenderer AttributeValueCodeRenderer
-            {
-                get;
-                set;
-            }
-    
-
 Constructors
 ------------
 
@@ -118,6 +95,25 @@ Constructors
             public CSharpTagHelperCodeRenderer(IChunkVisitor bodyVisitor, CSharpCodeWriter writer, CodeGeneratorContext context)
     
 
+Properties
+----------
+
+.. dn:class:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer
+    :noindex:
+    :hidden:
+
+    
+    .. dn:property:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer.AttributeValueCodeRenderer
+    
+        
+        :rtype: Microsoft.AspNetCore.Razor.CodeGenerators.TagHelperAttributeValueCodeRenderer
+    
+        
+        .. code-block:: csharp
+    
+            public TagHelperAttributeValueCodeRenderer AttributeValueCodeRenderer { get; set; }
+    
+
 Methods
 -------
 
@@ -142,6 +138,19 @@ Methods
         .. code-block:: csharp
     
             protected virtual string GenerateUniqueId()
+    
+    .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer.IsDynamicAttributeValue(Microsoft.AspNetCore.Razor.Chunks.Chunk)
+    
+        
+    
+        
+        :type attributeValueChunk: Microsoft.AspNetCore.Razor.Chunks.Chunk
+        :rtype: System.Boolean
+    
+        
+        .. code-block:: csharp
+    
+            public static bool IsDynamicAttributeValue(Chunk attributeValueChunk)
     
     .. dn:method:: Microsoft.AspNetCore.Razor.CodeGenerators.CSharpTagHelperCodeRenderer.RenderTagHelper(Microsoft.AspNetCore.Razor.Chunks.TagHelperChunk)
     

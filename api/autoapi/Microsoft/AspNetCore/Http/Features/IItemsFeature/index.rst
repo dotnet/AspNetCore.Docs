@@ -60,10 +60,6 @@ Properties
         
         .. code-block:: csharp
     
-            IDictionary<object, object> Items
-            {
-                get;
-                set;
-            }
+            IDictionary<object, object> Items { get; set; }
     
 

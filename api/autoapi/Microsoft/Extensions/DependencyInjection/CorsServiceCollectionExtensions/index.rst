@@ -83,7 +83,7 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddCors(IServiceCollection services)
+            public static IServiceCollection AddCors(this IServiceCollection services)
     
     .. dn:method:: Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions>)
     
@@ -109,6 +109,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IServiceCollection AddCors(IServiceCollection services, Action<CorsOptions> setupAction)
+            public static IServiceCollection AddCors(this IServiceCollection services, Action<CorsOptions> setupAction)
     
 

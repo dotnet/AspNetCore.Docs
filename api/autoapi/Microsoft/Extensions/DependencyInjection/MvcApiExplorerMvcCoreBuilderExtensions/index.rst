@@ -71,6 +71,6 @@ Methods
         
         .. code-block:: csharp
     
-            public static IMvcCoreBuilder AddApiExplorer(IMvcCoreBuilder builder)
+            public static IMvcCoreBuilder AddApiExplorer(this IMvcCoreBuilder builder)
     
 
