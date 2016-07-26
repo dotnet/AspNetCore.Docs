@@ -20,7 +20,7 @@ What is AngularJS?
 
 AngularJS is not a DOM manipulation library like jQuery, but it uses a subset of jQuery called jQLite. AngularJS is primarily based on declarative HTML attributes that you can add to your HTML tags. You can try AngularJS in your browser using the `Code School website <http://campus.codeschool.com/courses/shaping-up-with-angular-js/intro>`_.
 
-Version 1.5.x is the current stable version and the Angular team is working towards a big rewrite of AngularJS for V2.0 which is currently still in development. This article focuses on Angular 1.X with some notes on where Angular is heading with 2.0.
+This article focuses on Angular 1.X with some notes on where Angular is heading with 2.0.
 
 Getting Started
 ---------------
@@ -441,16 +441,6 @@ The running example demonstrates that the controller's ``sayName`` function is c
 .. image:: angular/_static/events.png
 
 For more detail on AngularJS built-in event handler directives, be sure to head to the `documentation website <https://docs.angularjs.org/api/ng/directive/ngClick>`_ of AngularJS.
-
-Angular 2.0
------------
-
-Angular 2.0 is the next version of AngularJS, which is completely reimagined with ES6 and mobile in mind. It's built using Microsoft's TypeScript language. Angular 2.0 is currently a RC product and is expected to be released in early 2016. Several breaking changes will be introduced in the Angular 2.0 release, so the Angular team is working hard to provide guidance to developers. A migration path will become more clear as the release date approaches. If you wish to play with Angular 2.0 now, the Angular team has created `Angular.io <http://angular.io>`_ to show their progress, to provide early documentation, and to gather feedback. 
-
-Summary
--------
-
-This article provides an overview of AngularJS for ASP.NET developers. It aims to help developers who are new to this SPA framework get up-to-speed quickly.
 
 Related Resources
 -----------------
