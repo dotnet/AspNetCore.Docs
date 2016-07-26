@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using ContactManager.Data;
 using ContactManager.Models;
 using ContactManager.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ContactManager
 {
@@ -52,6 +55,34 @@ namespace ContactManager
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // Require SSL.
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+
+            // Default authentication policy will require authenticated user.
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+            // Authorization handlers.
+
+            // We can add the ContactRoleAuthorizationHandler as a singleton as all the information
+            // it needs is in the Context parameter.
+            //services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
+
+            // As ContactIsOwner requires identity, which in turn requires EF, we add this handler
+            // scoped. See Entity Framework and Scoped in https://docs.asp.net/en/latest/fundamentals/dependency-injection.html 
+            // services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+
+            // ContactHasOne requires EF.
+            //  services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

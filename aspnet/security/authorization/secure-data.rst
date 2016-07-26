@@ -83,11 +83,12 @@ Test that the app seeded the database.
 Require SSL and authenticated users
 ------------------------------------
 
-In the ``ConfigureServices`` method of the *Startup.cs* file, add the following code which will require SSL:
+In the ``ConfigureServices`` method of the *Startup.cs* file, add the :dn:cls:`~Microsoft.AspNetCore.Mvc.RequireHttpsAttribute` authorization filter that confirms requests are received over HTTPS:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :lines: 63-66
+  :start-after:  // Require SSL.
+  :end-before:  // Default authentication policy 
   :dedent: 12
 
 If you are using Visual Studio, see :ref:`Enable-ssl-visual-studio-label`.
@@ -96,7 +97,8 @@ Set the default authentication policy to require users to be authenticated. You 
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :lines: 68-75
+  :start-after: // Default authentication policy will require authenticated user.
+  :end-before:  // Authorization handlers.
   :dedent: 12
   
 Add ``[AllowAnonymous]`` to the home controller so anonymous users can get information about the site before they register.
