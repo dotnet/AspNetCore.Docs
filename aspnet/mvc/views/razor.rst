@@ -42,7 +42,7 @@ would render the following HTML:
 
 .. _razor-email-ref:
 
-HTML attributes containing email addresses don’t treat the ``@`` symbol as a transition character.
+HTML attributes and content containing email addresses don’t treat the ``@`` symbol as a transition character.
 
  ``<a href="mailto:Support@contoso.com">Support@contoso.com</a>``
 
@@ -88,6 +88,19 @@ Which renders the following HTML:
 
   <p>Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)</p>
 
+You can use an explicit expression to concatenate text with an expression result:
+
+.. code-block:: none
+  :emphasize-lines: 5
+
+  @{
+      var joe = new Person("Joe", 33);
+   }
+
+  <p>Age@(joe.Age)</p>
+
+Without the explicit expression, ``<p>Age@joe.Age</p>`` would be treated as an email address and ``<p>Age@joe.Age</p>`` would be rendered. When written as an explicit expression, ``<p>Age33</p>`` is rendered.
+
 .. _expression-encoding-label:
 
 Expression encoding
@@ -109,8 +122,7 @@ Which the browser renders as:
 
 ``<span>Hello World</span>``
 
-
-:dn:cls:`~Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper` :dn:method:`~Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Raw` output is not encoded but rendered as HTML markup. :dn:cls:`~Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper` implements :dn:iface:`~Microsoft.AspNetCore.Html.IHtmlContent`
+:dn:cls:`~Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper` :dn:method:`~Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Raw` output is not encoded but rendered as HTML markup.
 
 .. warning:: Using ``HtmlHelper.Raw`` on unsanitized user input is a security risk. User input might contain malicious JavaScript or other exploits. Sanitizing user input is difficult, avoid using ``HtmlHelper.Raw`` on user input.
 
@@ -125,10 +137,6 @@ Renders this HTML:
 .. code-block:: html
 
   <span>Hello World</span>
-
-Which the browser renders as:
-
-``Hello World``
 
 .. _razor-code-blocks-label:
 
@@ -400,7 +408,7 @@ Understanding how Razor generates code for a view will make it easier to underst
 .. literalinclude:: razor/sample/Views/Home/Contact8.cshtml
   :language: html
 
-Generate a class similar to the following:
+Generates a class similar to the following:
 
 .. code-block:: c#
 
@@ -433,9 +441,9 @@ The ``@model`` directive allows you to specify the type of the model passed to y
 
 .. code-block:: none
 
-  @model TypeNameOfModel<TModel>
+  @model TypeNameOfModel
 
-For example, if you create an ASP.NET Core MVC app with individual user accounts, the *Views/Account/Login.cshtml* Razor view contains the follow model declaration:
+For example, if you create an ASP.NET Core MVC app with individual user accounts, the *Views/Account/Login.cshtml* Razor view contains the following model declaration:
 
 .. code-block:: c#
 
@@ -480,29 +488,14 @@ The following Razor would generate ``<div>Custom text: Hello World</div>``.
 .. literalinclude:: razor/sample/Views/Home/Contact10.cshtml
   :language: html
 
-The ``@inherits`` keyword is not allowed on the same page with the ``@model`` statement. You can pass a model as shown with the following Razor page:
-
-.. literalinclude:: razor/sample/Views/Home/Login1.cshtml
-  :language: html
-  :lines: 1-
-
-Generates this HTML when passed "Rick@contoso.com" in the model:
-
-.. code-block:: none
-
-  <div>The Login Email: Rick@contoso.com</div>
-  <div>Custom text: Hello World.</div>
-
-.. review: Adding the model to _ViewImports is not needed. We don't need it to pass a model.
-
-While you can't use ``@model`` and ``@inherits`` on the same page, you can have ``@model`` in a *_ViewImports.cshtml* file that the Razor page imports. See :doc:`/mvc/views/layout`. For example, if your Razor view imported the following *_ViewImports.cshtml* file:
+You can't use ``@model`` and ``@inherits`` on the same page. You can have ``@inherits`` in a *_ViewImports.cshtml* file that the Razor page imports. For example, if your Razor view imported the following *_ViewImports.cshtml* file:
 
 .. literalinclude:: razor/sample/Views/_ViewImportsModel.cshtml
   :language: html
 
-The following Razor page, when passed "Rick@contoso.com" in the model:
+The following strongly typed Razor page
 
-.. literalinclude:: razor/sample/Views/Home/Login2.cshtml
+.. literalinclude:: razor/sample/Views/Home/Login1.cshtml
   :language: html
 
 Generates this HTML markup:
@@ -512,25 +505,13 @@ Generates this HTML markup:
   <div>The Login Email: Rick@contoso.com</div>
   <div>Custom text: Hello World</div>
 
+When passed "Rick@contoso.com" in the model:
+
+ See :doc:`/mvc/views/layout` for more information.
 
 ``@inject``
 ^^^^^^^^^^^^^^
 The ``@inject`` directive enables you to inject a service from your :doc:`service container </fundamentals/dependency-injection>`  into your Razor page for use. See :doc:`/mvc/views/dependency-injection`.
-
-An additional feature of ``@inject`` is that it also enables you to replace a few properties that are automatically injected into a Razor page. For instance, we could replace the Html property on our Razor page with the hosting environment:
-
-.. literalinclude:: razor/sample/Views/Home/Contact4.cshtml
-  :language: html
-
-If you inject a property that already exists on your Razor page and has been ``@injected`` before, or is one of the following properties:
-
-- Html
-- Json
-- Component
-- Url
-- :dn:cls:`~Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpressionProvider`
-
-Your ``@inject`` statement will override that property and it will be available as the overridden type.
 
 ``@functions``
 ^^^^^^^^^^^^^^
@@ -616,54 +597,6 @@ The following sample show all the Razor reserved words escaped:
 
 .. literalinclude:: razor/sample/Views/Home/Contact5.cshtml
   :language: html
-
-Miscellaneous
----------------
-
-.. _explicit-email-override-label:
-
-``@()`` explicit expression to override email @ symbol
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Consider the following Razor markup:
-
-.. code-block:: none
-  :emphasize-lines: 5
-
-  @{
-      var joe = new Person("Joe", 33);
-   }
-
-  <p>Age @joe.Age</p>
-
-Predictably, the server renders ``<p>Age 33</p>``. But suppose you need to concatenate the output to get ``Age33`` with no space between "Age" and "33". The following markup:
-
-.. code-block:: none
-  :emphasize-lines: 5
-
-  @{
-      var joe = new Person("Joe", 33);
-   }
-
-  <p>Age@joe.Age</p>
-
-generates:
-
-.. code-block:: none
-
-  <p>Age@joe.Age</p>
-
-Razor is treating ``Age@joe.Age`` as an email alias. In cases like this, create an explicit expression with ``@()``:
-
-.. code-block:: none
-
- <p>Age@(joe.Age)</p>
-
-Which renders
-
-.. code-block:: none
-
-  <p>Age33</p>
 
 .. _razor-customcompilationservice-label:
 
