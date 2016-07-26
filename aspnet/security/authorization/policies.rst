@@ -126,7 +126,7 @@ You can see in our :ref:`handler example <security-authorization-handler-example
 
 * A handler indicates success by calling ``context.Succeed(IAuthorizationRequirement requirement)``, passing the requirement that has been successfully validated.
 * A handler does not need to handle failures generally, as other handlers for the same requirement may succeed.
-* To guarantee failure even if other handlers for a requirement succeed, call ``context.Fail``. 
+* To guarantee failure even if other handlers for a requirement succeed, call ``context.Fail()``. 
  
 Regardless of what you call inside your handler all handlers for a requirement will be called when a policy requires the requirement. This allows requirements to have side effects, such as logging, which will always take place even if ``context.Fail()`` has been called in another handler.
 
