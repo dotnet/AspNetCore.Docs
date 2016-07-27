@@ -58,13 +58,13 @@ The ResponseCacheAttribute_ is used to configure and create (via IFilterFactory_
 
 The ``Vary`` Header
 ^^^^^^^^^^^^^^^^^^^
-This header is only written when the ``VaryByHeader`` propery is set, in which case it is set to that property's value.
+This header is only written when the ``VaryByHeader`` property is set, in which case it is set to that property's value.
 
 ``NoStore`` and ``Location.None``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``NoStore`` is a special property that overrides most of the other properties. When this property is set to ``true``, the ``Cache-Control`` header will be set to "no-store". Additionally, if ``Location`` is set to ``None``, then ``Cache-Control`` will be set to "no-store, no-cache" and ``Pragma`` is likewise set to ``no-cache``. (If ``NoStore`` is ``false`` and ``Location`` is ``None``, then both ``Cache-Control`` and ``Pragma`` will be set to ``no-cache``).
 
-A good scenario in which to set ``NoStore`` to ``true`` is error pages. It's unlikely you would want to respond to a user's request with the error response a different user previously generated, and such responses may include stack traces and other sensitive information that shouldn't be stored on intermdiate servers. For example:
+A good scenario in which to set ``NoStore`` to ``true`` is error pages. It's unlikely you would want to respond to a user's request with the error response a different user previously generated, and such responses may include stack traces and other sensitive information that shouldn't be stored on intermediate servers. For example:
 
 .. literalinclude:: response/sample/src/ResponseCacheSample/Controllers/HomeController.cs
   :lines: 30-34
