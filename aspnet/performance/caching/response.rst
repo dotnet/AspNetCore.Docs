@@ -106,7 +106,8 @@ Instead of duplicating ``ResponseCache`` settings on many controller action attr
 Setting up a cache profile:
 
 .. literalinclude:: response/sample/src/ResponseCacheSample/Startup.cs
-  :lines: 29-45
+  :start-after: Use this method to add services to the container.
+  :end-before: // This
   :emphasize-lines: 5-15
   :dedent: 8
   :language: c#
