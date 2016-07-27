@@ -1,9 +1,7 @@
 .. _security-authorization-di:
 
-Dependency Injection in Requirement Handlers
+Dependency Injection in requirement handlers
 ============================================
-
-By `Barry Dorrans`_
 
 :ref:`Authorization handlers must be registered <security-authorization-policies-based-handler-registration>` in the service collection during configuration (using :ref:`dependency injection <fundamentals-dependency-injection>`). 
 
@@ -37,3 +35,5 @@ You would register the handler with ``services.AddSingleton()``:
  services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
 
 An instance of the handler will be created when your application starts, and DI will inject the registered :dn:iface:`~Microsoft.Extensions.Logging.ILoggerFactory` into your constructor.
+
+.. note:: Handlers that use Entity Framework shouldn't be registered as singletons.
