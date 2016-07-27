@@ -1,4 +1,4 @@
-:version: 1.0.0-rc1
+﻿:version: 1.0.0-rc1
 
 Using Angular for Single Page Applications (SPAs)
 =================================================
@@ -287,7 +287,7 @@ Below is a snippet of code that registers a new component. The ``personApp`` var
 
 The view where we are displaying the custom HTML element.
 
-.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Component.cshtml
+.. literalinclude:: angular/sample/AngularSample/src/AngularSample/Views/Home/Components.cshtml
   :language: html
   :linenos:
   :emphasize-lines: 8
