@@ -58,6 +58,7 @@ namespace ContactManager.Data
                     Email = "debra@example.com",
                     OwnerID = uid
                 },
+                // End
              new Contact
              {
                  Name = "Thorsten Weinrich",

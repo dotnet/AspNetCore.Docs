@@ -83,6 +83,18 @@ namespace ContactManager
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            try
+            {
+                SeedData.Initialize(app.ApplicationServices, "").Wait();
+            }
+            catch
+            {
+                throw new System.Exception("You need to update the DB "
+                    + "\nPM > Update - Database " + "\n or \n" +
+                      "> dotnet ef database update"
+                      + "\nIf that doesn't work, comment out SeedData and register a new user");
+            }
         }
     }
 }

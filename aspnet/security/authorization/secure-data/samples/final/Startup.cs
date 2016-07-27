@@ -114,6 +114,27 @@ namespace ContactManager
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Set password with  the Secret Manager tool.
+            var testUserPw = Configuration["SeedUserPW"];
+
+            if (String.IsNullOrEmpty(testUserPw))
+            {
+                throw new System.Exception("Use secrets manager/environment to set SeedUserPW");
+            }
+
+            try
+            {
+                SeedData.Initialize(app.ApplicationServices, testUserPw).Wait();
+            }
+            catch
+            {
+                throw new System.Exception("You need to update the DB "
+                    + "\nPM > Update - Database " + "\n or \n" +
+                      "> dotnet ef database update"
+                      + "\nIf that doesn't work, comment out SeedData and register a new user");
+            }
+            // End
         }
     }
 }

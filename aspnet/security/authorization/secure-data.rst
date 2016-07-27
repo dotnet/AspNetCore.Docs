@@ -27,7 +27,7 @@ The app was created by scaffolding the following ``Contact`` model:
   
 The contact information properties (Address, name, etc) are displayed in the images above. ``ContactId`` is the primary key for the table. 
 
-A user authorization filter ensures only users can edit their data. A ``canDelete`` authorization filter ensures only users in the "canDelete" role are permitted to delete any data. 
+A user authorization filter ensures only the logged in user can edit their data. A ``canDelete`` authorization filter allows users in the "canDelete" role to delete any data. 
 
 The starter app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -62,23 +62,7 @@ Scaffold a new migration and update the database:
   dotnet ef migrations add userID
   dotnet ef database update
 
-Seed the database
-^^^^^^^^^^^^^^^^^^
-
-Add the ``SeedData`` class to the *Data* folder. If you've downloaded the completed application, you can copy the *SeedData.cs* file to the *Data* folder.
-
-.. literalinclude::  secure-data/samples/final/Data/SeedData.cs
-  :language: c#
-
-Add the highlighted code to the end of the ``Configure`` method in the *Startup.cs* file:
-
-.. literalinclude::  secure-data/samples/final/Startup.cs
-  :language: c#
-  :start-after: // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-  :dedent: 12
-  :emphasize-lines: 8-
-  
-Test that the app seeded the database.
+.. _create-secure_data-require-ssl-label:
 
 Require SSL and authenticated users
 ------------------------------------
@@ -103,43 +87,33 @@ Set the default authentication policy to require users to be authenticated. You 
   
 Add ``[AllowAnonymous]`` to the home controller so anonymous users can get information about the site before they register.
 
-.. _Create-Secure_data-starter-app-label:
+Configure the test account 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create the starter app
-^^^^^^^^^^^^^^^^^^^^^^^
-
-- Create a new **ASP.NET Core Web Application** using `Visual Studio 2015 <https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx>`__ named "ContactManager"  
-
-  - Create the app with **Individual User Accounts**
-  - Name it "ContactManager" so your namespace will match the namespace use in the sample
-  
-- Add the following ``Contact`` model:
-
-.. literalinclude::  secure-data/samples/starter/Models/Contact.cs
-  :language: c#
-
-- Scaffold the ``Contact`` model using Entity Framework Core and the ``ApplicationDbContext`` data context. Accept all the scaffolding defaults. Using ``ApplicationDbContext`` for the data context class  puts the contact table in the :doc:`Identity </security/authentication/identity>` database. See :doc:`/first-mvc-app/adding-model` for more information.
-- Update the **ContactManager** anchor in the *Views/Shared/_Layout.cshtml* file from ``asp-controller="Home"`` to ``asp-controller="Contacts"`` so tapping the **ContactManager** link will invoke the Contacts controller. The original markup:
-
-.. code-block:: html
-
-   <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ContactManager</a>
-   
-The updated markup:
-
-.. code-block:: html
-   
-   <a asp-area="" asp-controller="Contacts" asp-action="Index" class="navbar-brand">ContactManager</a>
-   
-- Scaffold the initial migration and update the database
+The ``SeedData`` class creates a test user account. Use the  :doc:`Secret Manager tool </security/app-secrets>` to set a password for the account. Do this from the project directory (the directory containing *Program.cs*).
 
 .. code-block:: none
- 
-  dotnet ef migrations add initial
-  dotnet ef database update
 
-- Test the app by creating, editing and deleting a contact
+  dotnet user-secrets set SeedUserPW <PW>
   
+Update ``Configure`` to use the test password:
+
+.. literalinclude::  secure-data/samples/final/Startup.cs
+  :language: c#
+  :start-after: // Set password with  the Secret Manager tool.
+  :end-before: // End
+  :dedent: 12
+ 
+Add the test accounts user ID to the seed data:
+
+.. literalinclude::  secure-data/samples/final/Data/SeedData.cs
+  :language: c#
+  :start-after: context.Contact.AddRange(
+  :end-before: // End
+  :dedent: 12
+  :emphasize-lines: 9
+
+Delete all the records in the ``Contact`` table and seed the database. If you're using Visual Studio you might need to stop IIS Express to force the seed initializer to run.
 
 
 
@@ -150,4 +124,26 @@ The updated markup:
 
 
 
-``OwnerID`` is the data owners user ID from the **AspNetUser** table in the :doc:`ASP.NET Core Identity database </security/authentication/identity>`. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
