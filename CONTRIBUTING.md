@@ -21,13 +21,18 @@ Once you have cloned the Docs to your local machine, the following instructions 
  
 4. Navigate to the Docs repo and install the build dependencies:
 
+	```cd docs```
+
 	```pip install -r requirements.txt```
+	
 	
   **Note**: You might need to run this command from Power Shell.
 	
 5. Navigate to the  *aspnet* directory and run ``make`` (make.bat on Windows, Makefile on Mac/Linux)
 
-    ```make html```
+	```cd aspnet```
+
+	```make html ```
 
 6. Once make completes, the generated docs will be in the .../docs/<project>/_build/html directory. Open the `index.html` file in your browser to see the built docs for that project. ``make livehtml`` is recommended, see the next section.
 
