@@ -32,7 +32,7 @@ A user authorization filter ensures only the logged in user can edit their data.
 The starter app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`Download <https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter>`__ and test the starter app. See :ref:`Create-Secure_data-starter-app-label`  if you'd like to create the starter app.
+`Download <https://github.com/aspnet/Docs/tree/master/aspnet/security/authorization/secure-data/samples/starter>`__ and test the starter app. See :ref:`Create-Secure_data-starter-app-label` if you'd like to create the starter app.
 
 Update the database:
 
@@ -134,7 +134,7 @@ The ``ContactIsOwner`` authorization handler uses ASP.NET Core Identity, which i
 
 Update the ``ContactsController`` constructor to resolve the *ContactIsOwnerAuthorizationHandler* service. While we're at it we'll also get the ``Identity`` ``UserManager`` service:
 
-.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs 
   :language: c#
   :start-after: //
   :end-before: // GET:
@@ -208,3 +208,7 @@ Using two browsers
 
 
 
+.. _create-secure_data-starter-app-label:
+
+Create the starter app
+^^^^^^^^^^^^^^^^^^^^^^^
