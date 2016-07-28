@@ -15,6 +15,7 @@ using ContactManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using ContactManager.Authorization;
 
 namespace ContactManager
 {
@@ -73,16 +74,11 @@ namespace ContactManager
 
             // Authorization handlers.
 
-            // We can add the ContactRoleAuthorizationHandler as a singleton as all the information
+            services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+
+            // Add the ContactRoleAuthorizationHandler as a singleton as all the information
             // it needs is in the Context parameter.
             //services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
-
-            // As ContactIsOwner requires identity, which in turn requires EF, we add this handler
-            // scoped. See Entity Framework and Scoped in https://docs.asp.net/en/latest/fundamentals/dependency-injection.html 
-            // services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
-
-            // ContactHasOne requires EF.
-            //  services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

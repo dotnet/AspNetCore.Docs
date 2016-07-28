@@ -115,24 +115,85 @@ Add the test accounts user ID to the seed data:
 
 Delete all the records in the ``Contact`` table and seed the database. If you're using Visual Studio you might need to stop IIS Express to force the seed initializer to run.
 
+Resource based authorization
+-----------------------------
 
+- Create an *Authorization* folder for the filters and classes we will create to implement authorization.
+- Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
+.. literalinclude:: secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs
+  :language: c#
 
+The ``ContactIsOwner`` authorization handler uses ASP.NET Core Identity, which is built on Entity Framework Core, which requires we add this handler as scoped. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to ``ConfigureServices``: 
 
+.. literalinclude::  secure-data/samples/final/Startup.cs
+  :language: c#
+  :start-after: // Authorization handlers.
+  :end-before: // Add
+  :dedent: 12
 
+Update the ``ContactsController`` constructor to resolve the *ContactIsOwnerAuthorizationHandler* service. While we're at it we'll also get the ``Identity`` ``UserManager`` service:
 
+.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+  :language: c#
+  :start-after: //
+  :end-before: // GET:
+  :dedent: 4
+  :emphasize-lines: 4,5,9,10,13,14
 
+Add a ``ContactOperationsRequirements`` class to the *Authorization* folder to contain the requirements our app supports:
 
+.. literalinclude:: secure-data/samples/final/Authorization/ContactOperationsRequirements.cs
+  :language: c#
+  
+Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` model:
 
+.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+  :language: c#
+  :start-after: // POST: Contacts/Create
+  :end-before: // GET:
+  :dedent: 8
+  :emphasize-lines: 7
 
+Update both ``Edit`` methods to use the authorization filter to verify the users owns the contact. Add ``OwnerID`` to the ``Bind`` list:
 
+.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+  :language: c#
+  :start-after: // GET: Contacts/Edit/5
+  :end-before: // GET: Contacts/Delete/5
+  :dedent: 8
+  :emphasize-lines: 14-19,35-40,28
 
+Add the ``OwnerID`` as a hidden field so it will be available to the ``HTTP POST Edit`` method:
 
+.. literalinclude:: secure-data\samples\final\Views\Contacts\Edit.cshtml
+  :language: none
+  :start-after: <h2>Edit</h2>
+  :end-before: <label asp-for="Address" 
+  :emphasize-lines: 8
 
+.. _update-access-denied--label:
 
+Update the ``AccountController`` to display friendly access denied errors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Add the ``AccessDenied`` method to the ``AccountController``. This method will be invoked when we call ``ChallengeResult``.
 
+.. literalinclude:: secure-data/samples/final/Controllers/AccountController.cs
+  :language: c#
+  :start-after: // GET /Account/AccessDenied
+  :end-before: // 
+  :dedent: 8
 
+Add the *Views\Account\AccessDenied.cshtml* Razor view:
+
+.. literalinclude:: secure-data\samples\final\Views\Account\AccessDenied.cshtml
+  :language: html
+
+Test the ``Edit`` and ``Create`` methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Using two browsers
 
 
 
