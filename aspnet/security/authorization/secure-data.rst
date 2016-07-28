@@ -134,7 +134,7 @@ The ``ContactIsOwner`` authorization handler uses ASP.NET Core Identity, which i
 
 Update the ``ContactsController`` constructor to resolve the *ContactIsOwnerAuthorizationHandler* service. While we're at it we'll also get the ``Identity`` ``UserManager`` service:
 
-.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs 
+.. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs                    
   :language: c#
   :start-after: //
   :end-before: // GET:
@@ -157,7 +157,7 @@ Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` mod
 
 Update both ``Edit`` methods to use the authorization filter to verify the users owns the contact. Add ``OwnerID`` to the ``Bind`` list:
 
-.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+.. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
   :start-after: // GET: Contacts/Edit/5
   :end-before: // GET: Contacts/Delete/5
