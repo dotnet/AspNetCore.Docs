@@ -162,6 +162,13 @@ namespace ContactManager.Controllers
                 return NotFound();
             }
 
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperationsRequirements.Update);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
+
             return View(contact);
         }
 
@@ -171,6 +178,12 @@ namespace ContactManager.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+                                        ContactOperationsRequirements.Update);
+            if (!isAuthorized)
+            {
+                return new ChallengeResult();
+            }
             _context.Contact.Remove(contact);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

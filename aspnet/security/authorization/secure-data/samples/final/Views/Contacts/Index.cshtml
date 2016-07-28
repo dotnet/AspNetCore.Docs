@@ -1,4 +1,6 @@
 @model IEnumerable<ContactManager.Models.Contact>
+@using ContactManager.Authorization;
+
 
 @{
     ViewData["Title"] = "Index";
@@ -34,32 +36,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    @if (await AuthorizationService.AuthorizeAsync(User, item, ContactOperationsRequirements.Update))
+                {
+                        <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a><text> | </text>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
+                    @if (await AuthorizationService.AuthorizeAsync(User, item, ContactOperationsRequirements.Update))
+                {
+                        <text> | </text>
+                        <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

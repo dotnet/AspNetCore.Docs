@@ -155,7 +155,7 @@ Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` mod
   :dedent: 8
   :emphasize-lines: 7
 
-Update both ``Edit`` methods to use the authorization filter to verify the users owns the contact. Add ``OwnerID`` to the ``Bind`` list:
+Update both ``Edit`` methods to use the authorization filter to verify the user owns the contact. Add ``OwnerID`` to the ``Bind`` list:
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
@@ -172,7 +172,16 @@ Add the ``OwnerID`` as a hidden field so it will be available to the ``HTTP POST
   :end-before: <label asp-for="Address" 
   :emphasize-lines: 8
 
-.. _update-access-denied--label:
+Update both ``Delete`` methods to use the authorization filter to verify the user owns the contact. Add ``OwnerID`` to the ``Bind`` list:
+
+.. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
+  :language: c#
+  :start-after: // GET: Contacts/Edit/5
+  :end-before: // GET: Contacts/Delete/5
+  :dedent: 8
+  :emphasize-lines: 14-19,35-40,28
+ 
+ .. _update-access-denied--label:
 
 Update the ``AccountController`` to display friendly access denied errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,10 +199,17 @@ Add the *Views/Account/AccessDenied.cshtml* Razor view:
 .. literalinclude:: secure-data/samples/final/Views/Account/AccessDenied.cshtml
   :language: html
 
-Test the ``Edit`` and ``Create`` methods
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Test the ``Edit``, ``Delete``, and ``Create`` methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using two browsers
+An easy way to test the changes we made is to launch two different browsers (for example Edge and Internet Explorer). Log into one browser as user ``test@example.com``. In the other browser register a new user (for example ``rick@example.com``) and create a new contact.
+
+Verify ``test@example.com`` can edit and delete the seed data and any contacts created with that account. Verify ``test@example.com`` cannot edit or delete a contact created by the second account.
+
+Currently the UI shows 
+
+Inject the authorization service into the views:
+
 
 
 
