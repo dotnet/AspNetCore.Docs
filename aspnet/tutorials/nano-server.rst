@@ -29,7 +29,7 @@ Before proceeding with this tutorial, you will need the :doc:`published </publis
 Setting up the Nano Server Instance
 -----------------------------------
 
-`Create a new Virtual Machine using Hyper-V <https://technet.microsoft.com/en-us/library/hh846766.aspx>`_ on your development machine using the previously downloaded VHD. The machine will require you to set an administator password before logging on. At the VM console, press F11 to set the password before the first logon.
+`Create a new Virtual Machine using Hyper-V <https://technet.microsoft.com/en-us/library/hh846766.aspx>`_ on your development machine using the previously downloaded VHD. The machine will require you to set an administrator password before logging on. At the VM console, press F11 to set the password before the first log in.
 
 After setting the local password, you will manage Nano Server using PowerShell remoting.
 
@@ -86,7 +86,10 @@ Run the following commands in the PowerShell session that was created earlier:
 
   Install-PackageProvider NanoServerPackage
   Import-PackageProvider NanoServerPackage
+  Install-NanoServerPackage -Name Microsoft-NanoServer-Storage-Package
   Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
+
+.. Note:: Installing *Microsoft-NanoServer-Storage-Package* requires a reboot. This is a temporary work around and won't be required in the future.
 
 To quickly verify if IIS is setup correctly, you can visit the url ``http://<nanoserver-ip-address>/`` and should see a welcome page. When IIS is installed, by default a web site called ``Default Web Site`` listening on port 80 is created.
 
