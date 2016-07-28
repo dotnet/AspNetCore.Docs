@@ -14,12 +14,12 @@ To run an ASP.NET Core app, you need to configure and launch a host using `WebHo
 What is a Host?
 ---------------
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.Internal.WebHost` instance. The ``WebHost`` has a `private Server property <https://github.com/aspnet/Hosting/blob/1.0.0/src/Microsoft.AspNetCore.Hosting/Internal/WebHost.cs#L40>`_ that specifies the server that will handle requests. Learn more about :doc:`servers <servers>`.
+ASP.NET Core apps require a *host* in which to execute. A host must implement the :dn:iface:`~Microsoft.AspNetCore.Hosting.IWebHost` interface, which exposes collections of features and services, and a ``Start`` method. The host is typically created using an instance of a :dn:class:`~Microsoft.AspNetCore.Hosting.WebHostBuilder`, which builds and returns a  :dn:class:`~Microsoft.AspNetCore.Hosting.Internal.WebHost` instance. The ``WebHost`` references the server that will handle requests. Learn more about :doc:`servers <servers>`.
 
 What is the difference between a host and a server?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The host is responsible for ensuring the application's services and the server are available and properly configured. You can think of the host as being a wrapper around the server. The host is configured to use a particular server; the server is unaware of its host.
+The host is responsible for application startup and lifetime management. The server is responsible for accepting HTTP requests. Part of the host's responsibility includes ensuring the application's services and the server are available and properly configured. You can think of the host as being a wrapper around the server. The host is configured to use a particular server; the server is unaware of its host.
 
 Setting up a Host
 -----------------
@@ -30,7 +30,7 @@ You create a host using an instance of ``WebHostBuilder``. This is typically don
   :emphasize-lines: 14-21
   :language: c#
 
-The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` requires you provide a server that implements :dn:iface:`~Microsoft.AspNetCore.Hosting.Server.IServer` (``UseKestrel`` in the code above). ``UseKestrel`` specifies the built-in Kestrel server will be used by the app.
+The ``WebHostBuilder`` is responsible for creating the host that will bootstrap the server for the app. ``WebHostBuilder`` requires you provide a server that implements :dn:iface:`~Microsoft.AspNetCore.Hosting.Server.IServer` (``UseKestrel`` in the code above). ``UseKestrel`` specifies the Kestrel server will be used by the app.
 
 The server's *content root* determines where it searches for content files, like MVC View files. The default content root is the folder from which the application is run. 
 
@@ -196,77 +196,6 @@ Pass a list of URLs to the ``Start`` method and it will listen on the URLs speci
     host.Start(urls.ToArray());
     Console.ReadLine();
   }
-
-You can configure services with :doc:`dependency-injection` and these services will be available in the ``Startup`` class constructor and ``Configure`` method. The following configures :doc:`logging <logging>` and a custom ``IFormatter`` service, and requests and uses these services from ``Startup``.
-
-.. code-block:: c#
-  :emphasize-lines: 4-8
-
-  // configure host, in Main()
-  var host = new WebHostBuilder()
-            .UseKestrel()
-            .ConfigureServices(s => {
-                s.AddSingleton<IFormatter, LowercaseFormatter>();
-            })
-            .ConfigureLogging(f => f.AddConsole(LogLevel.Debug))
-            .UseStartup<Startup>()
-            .Build();
-
-  host.Run();
-
-Create the ``IFormatter`` interface and an implementation:
-
-.. code-block:: c#
-
-  public interface IFormatter
-  {
-    string Format(string input);
-  }
-
-  public class LowercaseFormatter : IFormatter
-  {
-    public string Format(string input)
-      {
-        return input.ToLower();
-      }
-  }
-
-Specify its dependencies in the ``Startup`` class's constructor:
-
-.. code-block:: none
-    :emphasize-lines: 6,24
-
-    public class Startup
-    {
-        private readonly ILogger _logger;
-        private readonly IFormatter _formatter;
-        
-        public Startup(ILoggerFactory loggerFactory, IFormatter formatter)
-        {
-            _logger = loggerFactory.CreateLogger<Startup>();
-            _formatter = formatter;
-        }
-        
-        public void ConfigureServices(IServiceCollection services)
-        {
-            _logger.LogDebug($"Total Services Initially: {services.Count}");
-
-            // register additional services
-
-            _logger.LogDebug($"Total Services Afterward: {services.Count}");
-        }
-
-        public void Configure(IApplicationBuilder app, IFormatter formatter)
-        {
-            _logger.LogDebug("Configure() started...");
-            app.Run(async (context) => await context.Response.WriteAsync(formatter.Format("Hi!")));
-            _logger.LogDebug("Configure() complete.");
-        }
-    }
-
-Both the constructor and the ``Configure`` method can request the ``IFormatter`` service (and in this case, since it is configured as a Singleton, both of them will get the same instance of the service). Within the ``Configure`` method above, both ``formatter`` and ``_formatter`` are available to use.
-
-.. note:: The ``Startup`` class supports dependency injection in its constructor and the ``Configure`` method, but not the ``ConfigureServices`` method. However, ``ConfigureServices`` can access any registered service through its ``IServiceCollection`` parameter, if necessary.
 
 Ordering Importance
 ^^^^^^^^^^^^^^^^^^^
