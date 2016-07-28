@@ -181,7 +181,7 @@ Update both ``Delete`` methods to use the authorization filter to verify the use
   :dedent: 8
   :emphasize-lines: 14-19,35-40,28
  
- .. _update-access-denied--label:
+.. _update-access-denied--label:
 
 Update the ``AccountController`` to display friendly access denied errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -206,9 +206,17 @@ An easy way to test the changes we made is to launch two different browsers (for
 
 Verify ``test@example.com`` can edit and delete the seed data and any contacts created with that account. Verify ``test@example.com`` cannot edit or delete a contact created by the second account.
 
-Currently the UI shows 
 
-Inject the authorization service into the views:
+Inject the authorization service into the views
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization filter to the views.
+
+Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
+
+.. literalinclude:: secure-data/samples/final/Views/_ViewImports.cshtml
+  :language: none
+  :emphasize-lines: 7,8
 
 
 
