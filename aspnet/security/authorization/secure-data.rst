@@ -148,7 +148,7 @@ Add a ``ContactOperationsRequirements`` class to the *Authorization* folder to c
   
 Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` model:
 
-.. literalinclude:: secure-data/samples/final/controllers/ContactsController.cs
+.. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
   :start-after: // POST: Contacts/Create
   :end-before: // GET:
@@ -166,7 +166,7 @@ Update both ``Edit`` methods to use the authorization filter to verify the users
 
 Add the ``OwnerID`` as a hidden field so it will be available to the ``HTTP POST Edit`` method:
 
-.. literalinclude:: secure-data\samples\final\Views\Contacts\Edit.cshtml
+.. literalinclude:: secure-data/samples/final/Views/Contacts/Edit.cshtml
   :language: none
   :start-after: <h2>Edit</h2>
   :end-before: <label asp-for="Address" 
@@ -185,9 +185,9 @@ Add the ``AccessDenied`` method to the ``AccountController``. This method will b
   :end-before: // 
   :dedent: 8
 
-Add the *Views\Account\AccessDenied.cshtml* Razor view:
+Add the *Views/Account/AccessDenied.cshtml* Razor view:
 
-.. literalinclude:: secure-data\samples\final\Views\Account\AccessDenied.cshtml
+.. literalinclude:: secure-data/samples/final/Views/Account/AccessDenied.cshtml
   :language: html
 
 Test the ``Edit`` and ``Create`` methods
