@@ -20,7 +20,7 @@ Routing uses *routes* (implementations of :dn:iface:`~Microsoft.AspNetCore.Routi
 - map incoming requests to *route handlers*
 - generate URLs used in responses
 
-Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by :ref:`URL-Matching-ref`. Responses use routing to genenerate URLs.
+Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by :ref:`URL-Matching-ref`. Responses use routing to generate URLs.
 
 Routing is connected to the :doc:`middleware <middleware>` pipeline by the :dn:class:`~Microsoft.AspNetCore.Builder.RouterMiddleware` class. :doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
 
