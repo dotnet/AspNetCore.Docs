@@ -1,12 +1,11 @@
 @model IEnumerable<ContactManager.Models.Contact>
 @using ContactManager.Authorization;
 
-
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index User Authz Only, no Admin</h2>
+<h2>Index Has one filter</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -58,20 +57,24 @@
                     @Html.DisplayFor(modelItem => item.Zip)
                 </td>
                 <td>
-                    @if (await AuthorizationService.AuthorizeAsync(User, 
-                                                       item, ContactOperationsRequirements.Update))
-                    {
+                    @if (await AuthorizationService.AuthorizeAsync(User, item, ContactOperationsRequirements.Update))
+                {
                         <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a><text> | </text>
                     }
-                    <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
-                    @if (await AuthorizationService.AuthorizeAsync(User, 
-                                                         item, ContactOperationsRequirements.Delete))
+                    @* Has 1 filter *@
+                    @if (await AuthorizationService.AuthorizeAsync(User, item, 
+                                                       ContactOperationsRequirements.ContainsOne))
                     {
+                        <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
+                    }
+                    <!--End-->
+                    @if (await AuthorizationService.AuthorizeAsync(User, item, ContactOperationsRequirements.Delete))
+                {
                         <text> | </text>
                         <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
                     }
                 </td>
-                </tr>
+            </tr>
         }
     </tbody>
 </table>

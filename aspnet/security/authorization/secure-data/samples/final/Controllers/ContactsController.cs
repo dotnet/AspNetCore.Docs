@@ -31,9 +31,11 @@ namespace ContactManager.Controllers
         }
 
         // GET: Contacts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            return View(await _context.Contact.ToListAsync());
+            var viewName = id == null ? "Index" : $"Index{id}";
+
+            return View(viewName, await _context.Contact.ToListAsync());
         }
 
         // GET: Contacts/Details/5
@@ -163,7 +165,7 @@ namespace ContactManager.Controllers
             }
 
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Update);
+                                        ContactOperationsRequirements.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
@@ -178,12 +180,14 @@ namespace ContactManager.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+
             var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
-                                        ContactOperationsRequirements.Update);
+                                        ContactOperationsRequirements.Delete);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
+
             _context.Contact.Remove(contact);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

@@ -1,6 +1,7 @@
 ﻿#define SeedOnly
 #if SeedOnly
 
+using ContactManager.Authorization;
 using ContactManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace ContactManager.Data
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
                 var uid = await CreateTestUser(serviceProvider, testUserPw);
+                await CreateCanDeleteRole(serviceProvider, uid, Constants.canDelete);
                 SeedDB(context, uid);
             }
         }
@@ -39,6 +41,28 @@ namespace ContactManager.Data
 
             return user.Id;
         }
+
+        // "canDelete" role
+        private static async Task<IdentityResult> CreateCanDeleteRole(IServiceProvider serviceProvider, 
+                                                                       string uid, string canDeleteRole)
+        {
+            IdentityResult IR = null;
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+
+            if (!await roleManager.RoleExistsAsync(canDeleteRole))
+            {
+                IR = await roleManager.CreateAsync(new IdentityRole(canDeleteRole));
+            }
+
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+
+            var user = await userManager.FindByIdAsync(uid);
+
+            IR = await userManager.AddToRoleAsync(user, canDeleteRole);
+
+            return IR;
+        }
+        // End
 
         public static void SeedDB(ApplicationDbContext context, string uid)
         {

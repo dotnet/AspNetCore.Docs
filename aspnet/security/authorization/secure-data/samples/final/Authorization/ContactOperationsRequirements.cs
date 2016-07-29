@@ -13,10 +13,13 @@ namespace ContactManager.Authorization
             new OperationAuthorizationRequirement { Name = "canUpdate" };
         public static OperationAuthorizationRequirement Delete =
             new OperationAuthorizationRequirement { Name = Constants.canDelete };
+        public static OperationAuthorizationRequirement ContainsOne =
+          new OperationAuthorizationRequirement { Name = Constants.ContainsOne };
     }
 
     public class Constants
     {
         public static readonly string canDelete = "canDelete";
+        public static readonly string ContainsOne = "ContainsOne";
     }
 }

@@ -16,7 +16,9 @@ namespace ContactManager.Authorization
             _userManager = userManager;
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, OperationAuthorizationRequirement requirement, Contact resource)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+                                             OperationAuthorizationRequirement requirement, 
+                                             Contact resource)
         {
             if (context.User == null)
             {

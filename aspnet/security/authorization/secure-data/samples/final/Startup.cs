@@ -78,7 +78,11 @@ namespace ContactManager
 
             // Add the ContactRoleAuthorizationHandler as a singleton as all the information
             // it needs is in the Context parameter.
-            //services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
+            // End
+
+            // ContactHasOne requires EF.
+            services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
