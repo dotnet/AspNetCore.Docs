@@ -27,7 +27,7 @@ namespace RoutingSample
 
             routeBuilder.MapRoute(
                 "Track Package Route",
-                "package/{operation:regex(track|create|detonate)}/{id:int}");
+                "package/{operation:regex(^track|create|detonate$)}/{id:int}");
 
             routeBuilder.MapGet("hello/{name}", context =>
             {

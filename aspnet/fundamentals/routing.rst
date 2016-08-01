@@ -353,7 +353,7 @@ The following table demonstrates some route constraints and their expected behav
     - Steve
     - String must consist of alphabetical characters.
   * - ``regex(expression)``
-    - {ssn:regex(\d{3}-\d{2}-\d{4})}
+    - {ssn:regex(^\d{3}-\d{2}-\d{4}$)}
     - 123-45-6789
     - String must match the provided regular expression.
   * - ``required``
