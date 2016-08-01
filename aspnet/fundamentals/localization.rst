@@ -263,6 +263,8 @@ Resource file naming
 
 Resources are named for the type of their class minus the default namespace (which is also the name of the assembly). For example, a French resource in the ``LocalizationWebsite.Web`` project for the class ``LocalizationWebsite.Web.Startup`` would be named *Startup.fr.resx*. The class ``LocalizationWebsite.Web.Controllers.HomeController`` would be *Controllers.HomeController.fr.resx*. If for some reason your targeted class is in the same project but not in the base namespace you will need the full type name. For example, in the sample project a type ``ExtraNamespace.Tools`` would be *ExtraNamespace.Tools.fr.resx*.
 
+.. note::Cross-project localization isn't currently supported.
+
 In the sample project, the ``ConfigureServices`` method sets the ``ResourcesPath`` to "Resources", so the project relative path for the home controller's French resource file is *Resources/Controllers.HomeController.fr.resx*. Alternatively, you can use folders to organize resource files. For the home controller, the path would be *Resources/Controllers/HomeController.fr.resx*. If you don't use the ``ResourcesPath`` option, the *.resx* file would go in the project base directory. The resource file for ``HomeController`` would be named *Controllers.HomeController.fr.resx*. The choice of using the dot or path naming convention depends on how you want to organize your resource files.
 
 +-----------------------------------------------+--------------------+
