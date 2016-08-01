@@ -115,7 +115,8 @@ namespace ContactManager
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // Set password with  the Secret Manager tool.
+            // Set password with the Secret Manager tool.
+            // dotnet user-secrets set SeedUserPW <pw>
             var testUserPw = Configuration["SeedUserPW"];
 
             if (String.IsNullOrEmpty(testUserPw))

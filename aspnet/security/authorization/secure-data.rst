@@ -100,7 +100,7 @@ Update ``Configure`` to use the test password:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after: // Set password with  the Secret Manager tool.
+  :start-after: // Set password with the Secret Manager tool.
   :end-before: // End
   :dedent: 12
 
