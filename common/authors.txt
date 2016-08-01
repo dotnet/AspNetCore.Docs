@@ -22,3 +22,4 @@
 .. _Barry Dorrans: https://twitter.com/blowdart
 .. _Cesar Blum Silveira: https://github.com/cesarbs
 .. _Victor Hurdugaci: https://twitter.com/victorhurdugaci
+.. _Shayne Boyer: https://twitter.com/spboyer
