@@ -25,7 +25,7 @@ The app was created by scaffolding the following ``Contact`` model:
   :dedent: 4
   :emphasize-lines: 3
 
-The contact information properties (Address, name, etc) are displayed in the images above. ``ContactId`` is the primary key for the table.
+The contact information properties (Address, Name, etc.) are displayed in the images above. ``ContactId`` is the primary key for the table.
 
 A user authorization filter ensures only the logged in user can edit their data. A ``canDelete`` authorization filter allows users in the "canDelete" role to delete any data.
 
@@ -124,7 +124,7 @@ Resource based authorization
 .. literalinclude:: secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs
   :language: c#
 
-The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement, an owner can perform any requirement on data they own.
+The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement; an owner can perform any requirement on data they own.
 
 The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core, which requires we add this handler as scoped. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to ``ConfigureServices``:
 
@@ -243,7 +243,7 @@ Adding an administrative role
 
 Applications frequently support an administrator account with permissions to modify user data.  In this sample we'll create the "canDelete" role, and users in this role will be able to delete any contacts. A best practice is to name roles by the actions they can perform, so "canDelete" is preferred over a role called "admin". When your application evolves, you can add new roles such as "canDeleteMembers" rather than the less descriptive "superAdmin".
 
-The "canDelete" requirement will have two handlers, one for the owners and the following for user in the "canDelete" role.  See :ref:`security-authorization-policies-based-authorization-handler` for more information.
+The "canDelete" requirement will have two handlers, one for the contact owner and one for administrative users in the "canDelete" role. Using multiple handlers for a requirement significantly simplifies your code, as the controller and UI code don't change, you simply add the administrative "canDelete" filter. See :ref:`security-authorization-policies-based-authorization-handler` for more information.
 
 Log out of the "test@example.com" browser session so you don't have a stale authentication cookie.
 
@@ -272,7 +272,7 @@ The ``ContactRoleAuthorizationHandler`` is added as a singleton because all the 
 
 Test the app and verify the "test@example.com" user can delete contacts created by other users. Verify that regular users can't edit or delete other users data. An easy way to test this is to tap on another users **Details** link and change the URL from /Contacts/Details/18 to /Contacts/Delete/18.
 
-The ``ContactRoleAuthorizationHandler`` allowed us to add an administrator that can delete user data without changing the UI code or the controller code. We were able to do this because we wrote the filters to be **OR** ed together, and any filter that succeeds allows the requirement to be met.
+The ``ContactRoleAuthorizationHandler`` allowed us to add an administrator that can delete user data without changing the UI code or the controller code. We were able to do this because we wrote the filters to OR evaluate; any filter that succeeds allows the requirement to be met. This is typical for authorization handlers.
 
 You could write a filter that fails the requirements, even if the other filters succeed. For example, consider the following filter that fails if the contact address doesn't contain "1":
 
