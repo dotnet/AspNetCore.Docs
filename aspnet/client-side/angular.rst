@@ -275,7 +275,9 @@ The page shows "Mary" and "Jane" that correspond to the ``firstName`` and ``last
 
 Components
 ^^^^^^^^^^
-`Components <https://docs.angularjs.org/guide/component>`_ in AngularJS  are commonly used for creating custom HTML elements just like a directive. Angular developers have been using controllers and directives to build out the features for many years. Angular team introduced new component programming model in Angular 1.5. Components are the best way to program with Angular. Components offer the best of both the world when it comes to the feature of controller and directive. And writing components will make easier to migrate your application to Angular 2.
+`Components <https://docs.angularjs.org/guide/component>`_ in Angular 1.5.x allow for the encapsulation and capability of creating individual HTML elements. In Angular 1.4.x you could achieve the same feature using the .directive() method.
+
+By using the .component() method, development is simplified gaining the functionality of the directive and the controller. Other benefits include; scope isolation, best practices are inherent, and migration to Angular 2 becomes an easier task.
 The ``<module name>.component()`` function call is used to create and register components in AngularJS.
 
 Below is a snippet of code that registers a new component. The ``personApp`` variable in the snippet references an Angular module, which is defined on line 2.
