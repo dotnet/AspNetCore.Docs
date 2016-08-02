@@ -197,7 +197,7 @@ Routes must configured in the ``Configure`` method in the ``Startup`` class. The
   :start-after: // Routes must configured in Configure
   :end-before: // Show link generation when no routes match.
 
-The table below shows the resposes with the given URIs.
+The table below shows the responses with the given URIs.
 
 ===================== ====================================================
 URI                    Response
