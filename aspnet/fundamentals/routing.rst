@@ -359,7 +359,7 @@ The following table demonstrates some route constraints and their expected behav
   * - ``required``
     - {name:required}
     - Steve
-    - Used to enforce that a non-parameter value is present during during URL generation.
+    - Used to enforce that a non-parameter value is present during URL generation.
 
 .. warning:: Route constraints that verify the URL can be converted to a CLR type (such as ``int`` or ``DateTime``) always use the invariant culture - they assume the URL is non-localizable. The framework-provided route constraints do not modify the values stored in route values. All route values parsed from the URL will be stored as strings. For example, the `Float route constraint <https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/Constraints/FloatRouteConstraint.cs#L44-L60>`__ will attempt to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
