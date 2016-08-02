@@ -20,7 +20,7 @@ Routing uses *routes* (implementations of :dn:iface:`~Microsoft.AspNetCore.Routi
 - map incoming requests to *route handlers*
 - generate URLs used in responses
 
-Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by :ref:`URL-Matching-ref`. Responses use routing to genenerate URLs.
+Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by :ref:`URL-Matching-ref`. Responses use routing to generate URLs.
 
 Routing is connected to the :doc:`middleware <middleware>` pipeline by the :dn:class:`~Microsoft.AspNetCore.Builder.RouterMiddleware` class. :doc:`ASP.NET MVC </mvc/overview>` adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see using-routing-middleware_.
 
@@ -197,7 +197,7 @@ Routes must configured in the ``Configure`` method in the ``Startup`` class. The
   :start-after: // Routes must configured in Configure
   :end-before: // Show link generation when no routes match.
 
-The table below shows the resposes with the given URIs.
+The table below shows the responses with the given URIs.
 
 ===================== ====================================================
 URI                    Response
@@ -219,7 +219,7 @@ The framework provides a set of extension methods for creating routes such as:
 - :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapGet`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPost`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapPut`
-- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapRoute`
+- :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapDelete`
 - :dn:method:`~Microsoft.AspNetCore.Routing.RequestDelegateRouteBuilderExtensions.MapVerb`
 
 Some of these methods such as ``MapGet`` require a :dn:delegate:`~Microsoft.AspNetCore.Http.RequestDelegate` to be provided. The ``RequestDelegate`` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as ``MapRoute``, then it will use the :dn:prop:`~Microsoft.AspNetCore.Routing.IRouteBuilder.DefaultHandler`.
@@ -353,7 +353,7 @@ The following table demonstrates some route constraints and their expected behav
     - Steve
     - String must consist of alphabetical characters.
   * - ``regex(expression)``
-    - {ssn:regex(\d{3}-\d{2}-\d{4})}
+    - {ssn:regex(^\d{3}-\d{2}-\d{4}$)}
     - 123-45-6789
     - String must match the provided regular expression.
   * - ``required``
