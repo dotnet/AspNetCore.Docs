@@ -161,7 +161,7 @@ Add the following ``MovieGenreViewModel`` class to the *Models* folder:
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieGenreViewModel.cs
   :language: c#
 
-The move-genre view model will contain:
+The movie-genre view model will contain:
 
  - a list of movies
  - a `SelectList <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectList/index.html>`__ containing the list of genres. This will allow the user to select a genre from the list.
