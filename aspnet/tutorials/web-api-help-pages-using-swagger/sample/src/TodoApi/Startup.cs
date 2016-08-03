@@ -25,6 +25,7 @@ namespace TodoApi
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+
             // Add the detail Info for the API
             services.ConfigureSwaggerGen(options =>
             {
@@ -37,9 +38,12 @@ namespace TodoApi
                     Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "http://twitter.com/spboyer"},
                     License = new License { Name = "Use under LICX", Url = "http://url.com" }
                 });
-                var path = PlatformServices.Default.Application.ApplicationBasePath;
 
-                options.IncludeXmlComments(path + "ToDoApi.xml");
+                //determine base path for executing application
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+
+                //set the comments path for the swagger json and ui
+                options.IncludeXmlComments(basePath + "ToDoApi.xml");
             });
         }
 
