@@ -15,6 +15,7 @@ namespace ContactManager.Data
 {
     public static class SeedData
     {
+        #region snippet_Initialize
         public static async Task Initialize(IServiceProvider serviceProvider, string testUserPw)
         {
             using (var context = new ApplicationDbContext(
@@ -25,7 +26,7 @@ namespace ContactManager.Data
                 SeedDB(context, uid);
             }
         }
-
+        #endregion
         private static async Task<string> CreateTestUser(IServiceProvider serviceProvider, string testUserPw)
         {
             const string SeedUserName = "test@example.com";
@@ -42,7 +43,7 @@ namespace ContactManager.Data
             return user.Id;
         }
 
-        // "canDelete" role
+        #region snippet_CreateCanDeleteRole
         private static async Task<IdentityResult> CreateCanDeleteRole(IServiceProvider serviceProvider, 
                                                                        string uid, string canDeleteRole)
         {
@@ -62,7 +63,7 @@ namespace ContactManager.Data
 
             return IR;
         }
-        // End
+        #endregion
 
         public static void SeedDB(ApplicationDbContext context, string uid)
         {

@@ -18,6 +18,7 @@ wwwroot
 Properties
 node_modules
 Project_Readme.html
+*.sln
 
 # Build results
 [Dd]ebug/

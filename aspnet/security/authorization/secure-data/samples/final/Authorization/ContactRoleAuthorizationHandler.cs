@@ -13,7 +13,7 @@ namespace ContactManager.Authorization
         {
             if (context.User == null)
             {
-                return Task.FromResult(0); ;
+                return Task.FromResult(0);
             }
 
             if (context.User.IsInRole(requirement.Name))

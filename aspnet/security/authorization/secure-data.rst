@@ -7,7 +7,7 @@ By `Barry Dorrans`_ and `Rick Anderson`_
   :local:
   :depth: 1
 
-This tutorial shows how to create a web app with secure user data. Authenticated users can read all the contacts but can only edit their own contacts.  A user in the administrator role can can delete any contact.
+This tutorial shows how to create a web app with secure user data. Authenticated users can read all the contacts but can only edit their own contacts.  A user in the administrator role can delete any contact.
 
 In the image below, user *rick@example.com* can edit and delete his contacts, and read other contacts.
 
@@ -28,6 +28,12 @@ The app was created by scaffolding the following ``Contact`` model:
 The contact information properties (Address, Name, etc.) are displayed in the images above. ``ContactId`` is the primary key for the table.
 
 A user authorization filter ensures only the logged in user can edit their data. A ``canDelete`` authorization filter allows users in the "canDelete" role to delete any data.
+
+
+Prerequisites
+^^^^^^^^^^^^^^
+
+This is not a begging tutorial. You should be famailar with :doc:`creating an ASP.NET Core MVC app </tutorials/first-mvc-app/start-mvc>`.
 
 The starter app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -104,7 +110,7 @@ Update ``Configure`` to use the test password:
   :end-before: // End
   :dedent: 12
 
-Add the test accounts user ID to the seed data:
+Add the test accounts user ID to the seed data. Only one contact is shown, add the user ID to all contacts:
 
 .. literalinclude::  secure-data/samples/final/Data/SeedData.cs
   :language: c#
@@ -118,15 +124,15 @@ Delete all the records in the ``Contact`` table and seed the database. If you're
 Resource based authorization
 -----------------------------
 
-- Create an *Authorization* folder for the filters and classes we will create to implement authorization.
+- Create an *Authorization* folder for the handlers and classes we will create to implement authorization.
 - Create a *ContactIsOwnerAuthorizationHandler* class we can invoke to verify the user acting on the resource owns the resource. Create this in the *Authorization* folder.
 
 .. literalinclude:: secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs
   :language: c#
 
-The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement; an owner can perform any requirement on data they own.
+The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement parameter; an owner can perform any requirement on data they own.
 
-The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core, which requires we add this handler as scoped. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to ``ConfigureServices``:
+Services using Entity Framework Core must be registred for :ref:`dependency injection <fundamentals-dependency-injection>` using :dn:method:`~Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped`. The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to ``ConfigureServices``:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
@@ -247,15 +253,22 @@ The "canDelete" requirement will have two handlers, one for the contact owner an
 
 Log out of the "test@example.com" browser session so you don't have a stale authentication cookie.
 
-Update ``SeedData`` to create the "canDelete" role:
+Update ``SeedData`` to create and call the "canDelete" role:
 
 .. literalinclude::  secure-data/samples/final/Data/SeedData.cs
   :language: c#
-  :start-after:  // "canDelete" role
-  :end-before: // End
+  :start-after:  #region snippet_CreateCanDeleteRole
+  :end-before: #endregion
   :dedent: 8
-
-Add a role filter to validate the user is in the specified role:
+  
+.. literalinclude::  secure-data/samples/final/Data/SeedData.cs
+  :language: c#
+  :start-after:  #region snippet_Initialize
+  :end-before: #endregion
+  :emphasize-lines: 7
+  :dedent: 8
+  
+Create a new class called ``ContactRoleAuthorizationHandler`` for the role filter to validate the user is in the specified role:
 
 .. literalinclude::  secure-data/samples/final/Authorization/ContactRoleAuthorizationHandler.cs
   :language: c#
@@ -268,7 +281,7 @@ Add the role authorization filter to the service container in ``ConfigureService
   :end-before:  // End
   :dedent: 12
 
-The ``ContactRoleAuthorizationHandler`` is added as a singleton because all the information it needs is in the ``Context`` parameter.
+The ``ContactRoleAuthorizationHandler`` is added as a singleton because all the information it needs is in the ``Context`` parameter of the `HandleRequirementAsync` method.
 
 Test the app and verify the "test@example.com" user can delete contacts created by other users. Verify that regular users can't edit or delete other users data. An easy way to test this is to tap on another users **Details** link and change the URL from /Contacts/Details/18 to /Contacts/Delete/18.
 
