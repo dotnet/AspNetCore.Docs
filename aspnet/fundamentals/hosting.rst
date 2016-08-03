@@ -209,7 +209,7 @@ Ordering Importance
 
 ``WebHostBuilder`` settings are first read from certain environment variables, if set. These environment variables must use the format ``ASPNETCORE_{configurationKey}``, so for example to set the URLs the server will listen on by default, you would set ``ASPNETCORE_URLS``.
 
-You can override any of these environment variable values by specifying configuration (using ``UseConfiguration``) or by setting the value explicitly (using ``UseUrls`` for instance). The host will use whichever option sets the value last, so for instance if you wanted to be programmatically set the default URL to one value, but allow it to be overridden with configuration, you could configure the host as follows:
+You can override any of these environment variable values by specifying configuration (using ``UseConfiguration``) or by setting the value explicitly (using ``UseUrls`` for instance). The host will use whichever option sets the value last. For this reason, ``UseIISIntegration`` must appear after ``UseUrls``, because it replaces the URL with one dynamically provided by IIS. If you want to programmatically set the default URL to one value, but allow it to be overridden with configuration, you could configure the host as follows:
 
 .. code-block:: c#
 
