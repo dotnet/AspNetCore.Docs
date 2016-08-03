@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TodoApi.Models;
+using Swashbuckle.Swagger.Model;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace TodoApi
 {
@@ -23,6 +25,22 @@ namespace TodoApi
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+            // Add the detail Info for the API
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "ToDo API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Shayne Boyer", Email = "", Url = "http://twitter.com/spboyer"},
+                    License = new License { Name = "Use under LICX", Url = "http://url.com" }
+                });
+                var path = PlatformServices.Default.Application.ApplicationBasePath;
+
+                options.IncludeXmlComments(path + "ToDoApi.xml");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

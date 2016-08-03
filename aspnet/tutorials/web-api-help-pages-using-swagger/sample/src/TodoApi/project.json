@@ -1,7 +1,8 @@
 {
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "xmlDoc": true
   },
   "dependencies": {
     "Microsoft.AspNetCore.Hosting": "1.0.0-*",
