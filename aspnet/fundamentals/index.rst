@@ -15,6 +15,7 @@ Fundamentals
     file-providers
     dependency-injection
     environments
+    hosting
     app-state
     servers
     request-features
