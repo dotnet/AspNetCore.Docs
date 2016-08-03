@@ -57,12 +57,14 @@ namespace ContactManager
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            // Require SSL.
+            #region snippet_SSL 
             services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(new RequireHttpsAttribute());
             });
+            #endregion
 
+            #region snippet_defaultPolicy
             // Default authentication policy will require authenticated user.
             services.AddMvc(config =>
             {
@@ -71,15 +73,16 @@ namespace ContactManager
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+            #endregion
 
             // Authorization handlers.
-
+            #region snippet_AddScoped
             services.AddScoped<IAuthorizationHandler, ContactIsOwnerAuthorizationHandler>();
+            #endregion
 
-            // Add the ContactRoleAuthorizationHandler as a singleton as all the information
-            // it needs is in the Context parameter.
+            #region snippet_ContactRoleAuthorizationHandler
             services.AddSingleton<IAuthorizationHandler, ContactRoleAuthorizationHandler>();
-            // End
+            #endregion
 
             // ContactHasOne requires EF.
             services.AddScoped<IAuthorizationHandler, ContactHasOneAuthorizationHandler>();
@@ -107,7 +110,6 @@ namespace ContactManager
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -115,6 +117,7 @@ namespace ContactManager
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            #region snippet_SeedUserPW
             // Set password with the Secret Manager tool.
             // dotnet user-secrets set SeedUserPW <pw>
             var testUserPw = Configuration["SeedUserPW"];
@@ -135,7 +138,7 @@ namespace ContactManager
                       "> dotnet ef database update"
                       + "\nIf that doesn't work, comment out SeedData and register a new user");
             }
-            // End
+            #endregion
         }
     }
 }

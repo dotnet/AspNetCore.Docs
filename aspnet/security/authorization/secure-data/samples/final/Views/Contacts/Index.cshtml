@@ -52,26 +52,27 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.State)
+                    @Html.DisplayFor(modelItem => item.State) @*<snippet_1>*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Zip)
                 </td>
                 <td>
-                    @if (await AuthorizationService.AuthorizeAsync(User, 
-                                                       item, ContactOperationsRequirements.Update))
+                    @if (await AuthorizationService.AuthorizeAsync(User,
+                                                           item, ContactOperationsRequirements.Update))
                     {
                         <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a><text> | </text>
                     }
                     <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
-                    @if (await AuthorizationService.AuthorizeAsync(User, 
-                                                         item, ContactOperationsRequirements.Delete))
+                    @if (await AuthorizationService.AuthorizeAsync(User,
+                                                             item, ContactOperationsRequirements.Delete))
                     {
                         <text> | </text>
                         <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
                     }
                 </td>
-                </tr>
+                @*</snippet_1>*@
+            </tr>
         }
     </tbody>
 </table>

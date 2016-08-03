@@ -47,6 +47,7 @@ namespace ContactManager.Controllers
             return View();
         }
 
+        #region snippet_AccessDenied
         //
         // GET /Account/AccessDenied
         [HttpGet]
@@ -55,6 +56,7 @@ namespace ContactManager.Controllers
         {
             return View();
         }
+        #endregion
 
         //
         // POST: /Account/Login

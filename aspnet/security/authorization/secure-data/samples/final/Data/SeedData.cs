@@ -44,7 +44,7 @@ namespace ContactManager.Data
         }
 
         #region snippet_CreateCanDeleteRole
-        private static async Task<IdentityResult> CreateCanDeleteRole(IServiceProvider serviceProvider, 
+        private static async Task<IdentityResult> CreateCanDeleteRole(IServiceProvider serviceProvider,
                                                                        string uid, string canDeleteRole)
         {
             IdentityResult IR = null;
@@ -73,6 +73,7 @@ namespace ContactManager.Data
             }
 
             context.Contact.AddRange(
+            #region snippet_Contact
                 new Contact
                 {
                     Name = "Debra Garcia",
@@ -83,17 +84,17 @@ namespace ContactManager.Data
                     Email = "debra@example.com",
                     OwnerID = uid
                 },
-                // End
-             new Contact
-             {
-                 Name = "Thorsten Weinrich",
-                 Address = "5678 1st Ave W",
-                 City = "Redmond",
-                 State = "WA",
-                 Zip = "10999",
-                 Email = "thorsten@example.com",
-                 OwnerID = uid
-             },
+            #endregion
+                new Contact
+                {
+                    Name = "Thorsten Weinrich",
+                    Address = "5678 1st Ave W",
+                    City = "Redmond",
+                    State = "WA",
+                    Zip = "10999",
+                    Email = "thorsten@example.com",
+                    OwnerID = uid
+                },
              new Contact
              {
                  Name = "Yuhong Li",

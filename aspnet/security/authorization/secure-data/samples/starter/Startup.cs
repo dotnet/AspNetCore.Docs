@@ -76,7 +76,7 @@ namespace ContactManager
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
+            #region snippet_SeedData 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -95,6 +95,7 @@ namespace ContactManager
                       "> dotnet ef database update"
                       + "\nIf that doesn't work, comment out SeedData and register a new user");
             }
+            #endregion
         }
     }
 }

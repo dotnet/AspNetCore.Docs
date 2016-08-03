@@ -13,7 +13,7 @@ using ContactManager.Authorization;
 
 namespace ContactManager.Controllers
 {
-    //
+    #region snippet_ContactsController
     public class ContactsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,6 +29,7 @@ namespace ContactManager.Controllers
             _userManager = userManager;
             _authorizationService = authorizationService;
         }
+        #endregion
 
         // GET: Contacts
         public async Task<IActionResult> Index(int? id)
@@ -69,11 +70,12 @@ namespace ContactManager.Controllers
                 Zip = "59405"
             });
         }
-
+        #region snippet_Create
         // POST: Contacts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+        public async Task<IActionResult> Create(
+                    [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
         {
             if (ModelState.IsValid)
             {
@@ -84,8 +86,10 @@ namespace ContactManager.Controllers
             }
             return View(contact);
         }
+        #endregion
 
         // GET: Contacts/Edit/5
+        #region snippet_Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -149,8 +153,10 @@ namespace ContactManager.Controllers
             }
             return View(contact);
         }
+        #endregion
 
         // GET: Contacts/Delete/5
+        #region snippet_Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -192,6 +198,7 @@ namespace ContactManager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
         private bool ContactExists(int id)
         {

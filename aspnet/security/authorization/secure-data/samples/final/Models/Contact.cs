@@ -2,6 +2,7 @@
 
 namespace ContactManager.Models
 {
+    #region snippet_1
     public class Contact
     {
         public int ContactId { get; set; }
@@ -17,4 +18,5 @@ namespace ContactManager.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
+    #endregion
 }

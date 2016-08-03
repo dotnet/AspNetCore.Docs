@@ -21,7 +21,8 @@ The app was created by scaffolding the following ``Contact`` model:
 
 .. literalinclude::  secure-data/samples/starter/Models/Contact.cs
   :language: c#
-  :lines: 5-16
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :dedent: 4
   :emphasize-lines: 3
 
@@ -33,7 +34,7 @@ A user authorization filter ensures only the logged in user can edit their data.
 Prerequisites
 ^^^^^^^^^^^^^^
 
-This is not a begging tutorial. You should be famailar with :doc:`creating an ASP.NET Core MVC app </tutorials/first-mvc-app/start-mvc>`.
+This is not a beginning tutorial. You should be famailar with :doc:`creating an ASP.NET Core MVC app </tutorials/first-mvc-app/start-mvc>`.
 
 The starter app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -46,7 +47,7 @@ Update the database:
 
   dotnet ef database update
 
-Run the app, tap the **ContactManager** link and verify you can create, edit and delete a contact.
+Run the app, tap the **ContactManager** link and verify you can create, edit, and delete a contact.
 
 Tie the contact data to the user
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,7 +56,8 @@ We'll use the ASP.NET :doc:`Identity </security/authentication/identity>` user I
 
 .. literalinclude::  secure-data/samples/final/Models/Contact.cs
   :language: c#
-  :lines: 5-19
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :dedent: 4
   :emphasize-lines: 5-6
 
@@ -73,12 +75,12 @@ Scaffold a new migration and update the database:
 Require SSL and authenticated users
 ------------------------------------
 
-In the ``ConfigureServices`` method of the *Startup.cs* file, add the :dn:cls:`~Microsoft.AspNetCore.Mvc.RequireHttpsAttribute` authorization filter that requires all requests are HTTPS:
+In the ``ConfigureServices`` method of the *Startup.cs* file, add the :dn:cls:`~Microsoft.AspNetCore.Mvc.RequireHttpsAttribute` authorization filter that requires all requests use HTTPS:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after:  // Require SSL.
-  :end-before:  // Default authentication policy
+  :start-after:  #region snippet_SSL
+  :end-before:  #endregion
   :dedent: 12
 
 If you are using Visual Studio, see :ref:`Enable-ssl-visual-studio-label`.
@@ -87,8 +89,8 @@ Set the default authentication policy to require users to be authenticated. You 
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after: // Default authentication policy will require authenticated user.
-  :end-before:  // Authorization handlers.
+  :start-after: #region snippet_defaultPolicy
+  :end-before:  #endregion
   :dedent: 12
 
 Add ``[AllowAnonymous]`` to the home controller so anonymous users can get information about the site before they register.
@@ -106,20 +108,20 @@ Update ``Configure`` to use the test password:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after: // Set password with the Secret Manager tool.
-  :end-before: // End
+  :start-after: #region snippet_SeedUserPW
+  :end-before: #endregion
   :dedent: 12
 
 Add the test accounts user ID to the seed data. Only one contact is shown, add the user ID to all contacts:
 
 .. literalinclude::  secure-data/samples/final/Data/SeedData.cs
   :language: c#
-  :start-after: context.Contact.AddRange(
-  :end-before: // End
+  :start-after: #region snippet_Contact
+  :end-before: #endregion
   :dedent: 12
   :emphasize-lines: 9
 
-Delete all the records in the ``Contact`` table and seed the database. If you're using Visual Studio you might need to stop IIS Express to force the seed initializer to run.
+Delete all the records in the ``Contact`` table and restart the app to seed the database. If you're using Visual Studio you might need to stop IIS Express to force the seed initializer to run.
 
 Resource based authorization
 -----------------------------
@@ -132,20 +134,20 @@ Resource based authorization
 
 The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement parameter; an owner can perform any requirement on data they own.
 
-Services using Entity Framework Core must be registred for :ref:`dependency injection <fundamentals-dependency-injection>` using :dn:method:`~Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped`. The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to ``ConfigureServices``:
+Services using Entity Framework Core must be registered for :ref:`dependency injection <fundamentals-dependency-injection>` using :dn:method:`~Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped`. The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to the end of ``ConfigureServices``:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after: // Authorization handlers.
-  :end-before: // Add
+  :start-after: #region snippet_AddScoped
+  :end-before: #endregion
   :dedent: 12
 
-Update the ``ContactsController`` constructor to resolve the *ContactIsOwnerAuthorizationHandler* service. While we're at it we'll also get the ``Identity`` ``UserManager`` service:
+Update the ``ContactsController`` constructor to resolve the ``IAuthorizationService`` service so we'll have access to our authorization handlers we have registered. While we're at it we'll also get the ``Identity`` ``UserManager`` service:
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
-  :start-after: //
-  :end-before: // GET:
+  :start-after: #region snippet_ContactsController
+  :end-before: #endregion
   :dedent: 4
   :emphasize-lines: 4,5,9,10,13,14
 
@@ -158,17 +160,17 @@ Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` mod
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
-  :start-after: // POST: Contacts/Create
-  :end-before: // GET:
+  :start-after: #region snippet_Create
+  :end-before: #endregion
   :dedent: 8
-  :emphasize-lines: 7
+  :emphasize-lines: 8
 
 Update both ``Edit`` methods to use the authorization filter to verify the user owns the contact. Add ``OwnerID`` to the ``Bind`` list:
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
-  :start-after: // GET: Contacts/Edit/5
-  :end-before: // GET: Contacts/Delete/5
+  :start-after: #region snippet_Edit
+  :end-before: #endregion
   :dedent: 8
   :emphasize-lines: 14-19,35-40,28
 
@@ -176,18 +178,17 @@ Add the ``OwnerID`` as a hidden field so it will be available to the ``HTTP POST
 
 .. literalinclude:: secure-data/samples/final/Views/Contacts/Edit.cshtml
   :language: none
-  :start-after: <h2>Edit</h2>
-  :end-before: <label asp-for="Address"
-  :emphasize-lines: 8
+  :start-after: <snippet_1>
+  :end-before: </snippet_1>
+  :emphasize-lines: 7
 
 Update both ``Delete`` methods to use the authorization filter to verify the user owns the contact.
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
-  :start-after: // GET: Contacts/Delete/5
-  :end-before: private
+  :start-after: #region snippet_Delete
+  :end-before: #endregion
   :dedent: 8
-  :linenos:
   :emphasize-lines: 14-19,31-36
 
 .. _update-access-denied--label:
@@ -199,8 +200,8 @@ Add the ``AccessDenied`` method to the ``AccountController``. This method will b
 
 .. literalinclude:: secure-data/samples/final/Controllers/AccountController.cs
   :language: c#
-  :start-after: // GET /Account/AccessDenied
-  :end-before: //
+  :start-after:  #region snippet_AccessDenied
+  :end-before: #endregion
   :dedent: 8
 
 Add the *Views/Account/AccessDenied.cshtml* Razor view:
@@ -235,9 +236,9 @@ Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edi
 
 .. literalinclude:: secure-data/samples/final/Views/Contacts/Index.cshtml
   :language: none
-  :emphasize-lines: 6-17
-  :start-after: item.State)
-  :end-before: </tr>
+  :emphasize-lines: 6-10, 12-17
+  :start-after: <snippet_1>
+  :end-before: </snippet_1>
   :dedent: 16
 
 Test the app with two different browsers and users to verify they cannot edit or delete contacts they didn't create.
@@ -277,8 +278,8 @@ Add the role authorization filter to the service container in ``ConfigureService
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after:  Context parameter.
-  :end-before:  // End
+  :start-after: #region snippet_ContactRoleAuthorizationHandler
+  :end-before:  #endregion
   :dedent: 12
 
 The ``ContactRoleAuthorizationHandler`` is added as a singleton because all the information it needs is in the ``Context`` parameter of the `HandleRequirementAsync` method.
@@ -296,8 +297,8 @@ If you applied this filter to the **Details** link , addresses without a "1" wou
 
 .. literalinclude:: secure-data/samples/final/Views/Contacts/Index2.cshtml
   :language: none
-  :start-after:  1 filter *@
-  :end-before:  <!--End-->  
+  :start-after: <snippet_1>
+  :end-before: </snippet_1>
   :dedent: 16
 
 See :ref:`secure-data-add-resources-label` for more information.
@@ -351,7 +352,8 @@ Add the highlighted code to the end of the ``Configure`` method in the *Startup.
 
 .. literalinclude::  secure-data/samples/starter/Startup.cs
   :language: c#
-  :start-after: // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+  :start-after: #region snippet_SeedData
+  :end-before: #endregion 
   :dedent: 12
   :emphasize-lines: 8-
 

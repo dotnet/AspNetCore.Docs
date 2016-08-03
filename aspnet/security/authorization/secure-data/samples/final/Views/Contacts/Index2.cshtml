@@ -61,13 +61,14 @@
                 {
                         <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a><text> | </text>
                     }
+                    @*<snippet_1>*@
                     @* Has 1 filter *@
                     @if (await AuthorizationService.AuthorizeAsync(User, item, 
                                                        ContactOperationsRequirements.ContainsOne))
                     {
                         <a asp-action="Details" asp-route-id="@item.ContactId">Details</a>
                     }
-                    <!--End-->
+                    @*</snippet_1>*@
                     @if (await AuthorizationService.AuthorizeAsync(User, item, ContactOperationsRequirements.Delete))
                 {
                         <text> | </text>
