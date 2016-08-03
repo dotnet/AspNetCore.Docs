@@ -110,7 +110,7 @@ ASP.NET ships with several implementations of ``IDistributedCache``, including a
   services.AddDistributedMemoryCache();
   services.AddSession();
 
-Then, add the following to ``Configure`` and you're ready to use session in your application code:
+Then, add the following to ``Configure`` **before** ``app.UseMVC()`` and you're ready to use session in your application code:
 
 .. code-block:: c#
 
