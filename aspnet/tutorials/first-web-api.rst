@@ -219,7 +219,7 @@ Use Postman to send a Create request
 - Tap the **Body** radio button
 - Tap the **raw** radio button
 - Set the type to JSON
-- In the key-value editor, enter a Todo item such as ``{"<Name>":"<your to-do item>"}``
+- In the key-value editor, enter a Todo item such as ``{"Name":"<your to-do item>"}``
 - Tap **Send**
 
 Tap the Headers tab and copy the **Location** header:
