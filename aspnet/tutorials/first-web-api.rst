@@ -35,7 +35,7 @@ The following diagram show the basic design of the app.
 
 .. image:: first-web-api/_static/architecture.png
 
-- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use `Postman <https://www.getpostman.com/>`__ or `Fiddler <http://www.fiddler2.com/fiddler2/>`__  for the client to test the app.
+- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use `Postman <https://www.getpostman.com/>`__ to test the app.
 - A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
 - A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller.
 - To keep the tutorial simple, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
@@ -45,7 +45,7 @@ Create the project
 
 Start Visual Studio. From the **File** menu, select **New** > **Project**.
 
-Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project ``TodoApi`` and tap **OK**.
+Select the **ASP.NET Core Web Application (.NET Core)** project template. Name the project ``TodoApi``, clear **Host in the cloud**, and tap **OK**.
 
 .. image:: first-web-api/_static/new-project.png
 
@@ -64,9 +64,7 @@ Add a folder named "Models". In Solution Explorer, right-click the project. Sele
 
 .. note:: You can put model classes anywhere in your project, but the *Models* folder is used by convention.
 
-Next, add a ``TodoItem`` class. Right-click the *Models* folder and select **Add** > **New Item**.
-
-In the **Add New Item** dialog, select the **Class** template. Name the class ``TodoItem`` and click **OK**.
+Add a ``TodoItem`` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class ``TodoItem`` and tap **Add**.
 
 .. image:: first-web-api/_static/add-class.png
 
@@ -97,7 +95,7 @@ Build the app to verify you don't have any compiler errors.
 Register the repository
 -----------------------
 
-By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of instantiating a ``TodoRepository`` inside the controller we will inject an ``ITodoRepository`` the built-in support in ASP.NET Core for :doc:`dependency injection </fundamentals/dependency-injection>`.
+By defining a repository interface, we can decouple the repository class from the MVC controller that uses it. Instead of instantiating a ``TodoRepository`` inside the controller we will inject an ``ITodoRepository`` using the built-in support in ASP.NET Core for :doc:`dependency injection </fundamentals/dependency-injection>`.
 
 This approach makes it easier to unit test your controllers. Unit tests should inject a mock or stub version of ``ITodoRepository``. That way, the test narrowly targets the controller logic and not the data access layer.
 
@@ -115,7 +113,6 @@ In the ``ConfigureServices`` method, add the highlighted code:
   :end-before: #endregion
   :emphasize-lines: 6
   :dedent: 8
-  :linenos:
 
 Add a controller
 ----------------
@@ -157,7 +154,7 @@ Here is an example HTTP response for the ``GetAll`` method::
 
   [{"Key":"4f67d7c5-a2a9-4aae-b030-16003dd829ae","Name":"Item1","IsComplete":false}]
 
-Later in the tutorial I'll show how you can view the HTTP response using `Postman <https://www.getpostman.com/>`__ or `Fiddler <http://www.fiddler2.com/fiddler2/>`__.
+Later in the tutorial I'll show how you can view the HTTP response using `Postman <https://www.getpostman.com/>`__.
 
 Routing and URL paths
 ^^^^^^^^^^^^^^^^^^^^^
@@ -178,7 +175,7 @@ In the ``GetById`` method:
 
 ``"{id}"`` is a placeholder variable for the ID of the ``todo`` item. When ``GetById`` is invoked, it assigns the value of "{id}" in the URL to the method's ``id`` parameter.
 
-``Name = "GetTodo"`` creates an named route and allows you to link to this route in an HTTP Response. I'll explain it with an example later.
+``Name = "GetTodo"`` creates a named route and allows you to link to this route in an HTTP Response. I'll explain it with an example later.
 
 Return values
 ^^^^^^^^^^^^^
@@ -193,40 +190,12 @@ In contrast, the ``GetById`` method returns the more general ``IActionResult`` t
 Launch the app
 ^^^^^^^^^^^^^^^
 
-In Visual Studio, press ^F5 to launch the app. Visual Studio launches a browser and navigates to ``http://localhost:port/api/values``, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the *todo* data will be displayed. If you're using IE, IE will prompt to you open or save the *todo.json* file.
-
-
-Use Postman to call the API
----------------------------
-
-Launch `Postman <https://www.getpostman.com/>`__, enter the URL \http://localhost:<port>/api/todo, and tap **Send**. See `Sending Requests <https://www.getpostman.com/docs/requests>`__ for more information.
-
-.. image:: first-web-api/_static/pm1.png
-
-The image above shows the response body and the response code (200).
-
-Use Fiddler to call the API
----------------------------
-
-`Fiddler <http://www.fiddler2.com/fiddler2/>`__ is a web debugging tool that lets you compose HTTP requests and view the raw HTTP responses.
-
-Launch Fiddler. From the **File** menu, uncheck the **Capture Traffic** option. This turns off capturing HTTP traffic.
-
-.. image:: first-web-api/_static/fiddler1.png
-  :scale: 100%
-
-Select the **Composer** page. In the **Parsed** tab, type ``http://localhost:port/api/todo``, where *port* is the port number. Click **Execute** to send the request.
-
-.. image:: first-web-api/_static/fiddler2.png
-
-The result appears in the sessions list. The response code should be 200. Use the **Inspectors** tab to view the content of the response, including the response body.
-
-.. image:: first-web-api/_static/fiddler3.png
+In Visual Studio, press CTRL+F5 to launch the app. Visual Studio launches a browser and navigates to ``http://localhost:port/api/values``, where *port* is a randomly chosen port number. If you're using Chrome, Edge or Firefox, the data will be displayed. If you're using IE, IE will prompt to you open or save the *values.json* file.
 
 Implement the other CRUD operations
 ------------------------------------
 
-We'll add ``Create``, ``Update``, and ``Delete`` methods to the controller. These are variations on a theme, so I'll just show the code and highlight the main differences.
+We'll add ``Create``, ``Update``, and ``Delete`` methods to the controller. These are variations on a theme, so I'll just show the code and highlight the main differences. Build the project after adding or changing code.
 
 Create
 ^^^^^^
@@ -241,12 +210,14 @@ This is an HTTP POST method, indicated by the `[HttpPost] <https://docs.asp.net/
 
 The `CreatedAtRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
 
-Using use Postman to send a Create request
+Use Postman to send a Create request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: first-web-api/_static/pmc.png
 
 - Set the HTTP method to ``POST``
+- Tap the **Body** radio button
+- Tap the **raw** radio button
 - Set the type to JSON
 - In the key-value editor, enter a Todo item such as ``{"<Name>":"<your to-do item>"}``
 - Tap **Send**
@@ -255,46 +226,12 @@ Tap the Headers tab and copy the **Location** header:
 
 .. image:: first-web-api/_static/pmget.png
 
-You can use the URI got get the resource you just created. Recall the ``GetById`` method created the ``"GetTodo"`` named route:
+You can use the Location header URI to access the resource you just created. Recall the ``GetById`` method created the ``"GetTodo"`` named route:
 
 .. code-block:: c#
 
   [HttpGet("{id}", Name = "GetTodo")]
   public IActionResult GetById(string id)
-
-Using Fiddler to send a Create request:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#.  In the **Composer** page, select POST from the drop-down.
-#.  In the request headers text box, add ``Content-Type: application/json``, which is a ``Content-Type`` header with the value ``application/json``. Fiddler automatically adds the Content-Length header.
-#.  In the request body text box, enter the following: ``{"<Name>":"<your to-do item>"}``
-#.  Click **Execute**.
-
-.. image:: first-web-api/_static/fiddler4.png
-
-Here is an example HTTP session. Use the **Raw** tab to see the session data in this format.
-
-Request::
-
-  POST http://localhost:29359/api/todo HTTP/1.1
-  User-Agent: Fiddler
-  Host: localhost:29359
-  Content-Type: application/json
-  Content-Length: 33
-
-  {"Name":"Alphabetize paperclips"}
-
-Response::
-
-  HTTP/1.1 201 Created
-  Content-Type: application/json; charset=utf-8
-  Location: http://localhost:29359/api/Todo/8fa2154d-f862-41f8-a5e5-a9a3faba0233
-  Server: Microsoft-IIS/10.0
-  Date: Thu, 18 Jun 2015 20:51:55 GMT
-  Content-Length: 97
-
-  {"Key":"8fa2154d-f862-41f8-a5e5-a9a3faba0233","Name":"Alphabetize paperclips","IsComplete":false}
-
 
 Update
 ^^^^^^
@@ -336,7 +273,7 @@ Delete
   :end-before: #endregion
   :dedent: 8
 
-The return type is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ response.
+The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__.
 
 .. image:: first-web-api/_static/pmd.png
 
