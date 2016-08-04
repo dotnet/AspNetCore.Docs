@@ -252,7 +252,7 @@ Applications frequently support an administrator account with permissions to mod
 
 The "canDelete" requirement will have two handlers, one for the contact owner and one for administrative users in the "canDelete" role. Using multiple handlers for a requirement significantly simplifies your code, as the controller and UI code don't change, you simply add the administrative "canDelete" filter. See :ref:`security-authorization-policies-based-authorization-handler` for more information.
 
-Log out of the "test@example.com" browser session so you don't have a stale authentication cookie.
+Log out of the "test@example.com" browser session or close the browser to clear the identity cookie.
 
 Update ``SeedData`` to create and call the "canDelete" role:
 
@@ -364,5 +364,6 @@ Test that the app seeded the database. The seed method will not run if there are
 Additional resources
 --------------------
 
+-  `ASP.NET Core Authorization Lab <https://github.com/blowdart/AspNetAuthorizationWorkshop>`__
 - :doc:`/security/authorization/index`
 - :doc:`/security/authorization/policies`
