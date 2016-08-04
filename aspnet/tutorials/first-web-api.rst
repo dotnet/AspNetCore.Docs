@@ -66,8 +66,6 @@ Add a folder named "Models". In Solution Explorer, right-click the project. Sele
 
 Add a ``TodoItem`` class. Right-click the *Models* folder and select **Add** > **Class**. Name the class ``TodoItem`` and tap **Add**.
 
-.. image:: first-web-api/_static/add-class.png
-
 Replace the generated code with:
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Models/TodoItem.cs
@@ -211,7 +209,7 @@ This is an HTTP POST method, indicated by the `[HttpPost] <https://docs.asp.net/
 The `CreatedAtRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
 
 Use Postman to send a Create request
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: first-web-api/_static/pmc.png
 
@@ -247,8 +245,6 @@ According to the HTTP spec, a PUT request requires the client to send the entire
 
 .. image:: first-web-api/_static/pmcput.png
 
-.. image:: first-web-api/_static/put.png
-
 .. review: Added this, should I remove it?
 
 Update with Patch
@@ -276,8 +272,6 @@ Delete
 The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__.
 
 .. image:: first-web-api/_static/pmd.png
-
-.. image:: first-web-api/_static/delete.png
 
 Next steps
 ----------
