@@ -14,6 +14,7 @@ The MVC pattern helps you create apps that separate the different aspects of the
 We'll be covering all these concepts in this tutorial series and show you how to use them to build a simple movie app. The following image shows the *Models*, *Views* and *Controllers* folders in the MVC project.
 
 .. image:: adding-controller/_static/mvc1.png
+  :scale: 100% 
 
 - In **Solution Explorer**, right-click **Controllers > Add > New Item... > MVC Controller Class**
 
@@ -25,15 +26,10 @@ Replace the contents of *Controllers/HelloWorldController.cs* with the following
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
   :language: c#
-  :lines: 5-28
+  :start-after: #region snippet_1
+  :end-before: #endregion
 
-Every ``public`` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string.  Note the comments preceding each method:
-
-.. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
-  :language: c#
-  :lines: 10-28
-  :dedent: 4
-  :emphasize-lines: 4,12
+Every ``public`` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string.  Note the comments preceding each method.
 
 The first comment states this is an `HTTP GET <http://www.w3schools.com/tags/ref_httpmethods.asp>`__ method that is invoked by appending "/HelloWorld/" to the base URL. The second comment specifies an `HTTP GET <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate ``HTTP POST`` methods.
 
@@ -49,9 +45,10 @@ You set the format for routing in the *Startup.cs* file.
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Startup.cs
   :language: c#
-  :start-after: // Default routing.
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :emphasize-lines: 5
-  :dedent: 8
+  :dedent: 12
 
 When you run the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
@@ -65,7 +62,8 @@ Let's modify the example slightly so that you can pass some parameter informatio
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
   :language: none
-  :lines: 51-54
+  :start-after: #region snippet_2
+  :end-before: #endregion
   :dedent: 8
 
 .. note:: The code above uses ``HtmlEncoder.Default.Encode`` to protect the app from malicious input (namely JavaScript). It also uses `Interpolated Strings <https://msdn.microsoft.com/en-us/library/dn961160.aspx>`__.
@@ -86,7 +84,8 @@ Replace the ``Welcome`` method with the following code:
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
   :language: none
-  :lines: 80-84
+  :start-after: #region snippet_3
+  :end-before: #endregion
   :dedent: 8
 
 Run the app and enter the following URL:  ``http://localhost:xxx/HelloWorld/Welcome/3?name=Rick``
@@ -97,8 +96,8 @@ This time the third URL segment  matched the route parameter ``id``. The ``Welco
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :language: c#
-  :start-after: app.UseIdentity();
-  :end-before:  SeedData.Initialize(app.ApplicationServices);
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :dedent: 12
   :emphasize-lines: 5
   

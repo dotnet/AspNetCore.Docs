@@ -1,7 +1,7 @@
-﻿#define VD 
+﻿#define VD
 
 #if FIRST
-
+#region snippet_1
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -26,7 +26,7 @@ namespace MvcMovie.Controllers
         }
     }
 }
-
+#endregion
 #endif
 
 #if Second
@@ -47,11 +47,12 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-
+        #region snippet_2
         public string Welcome(string name, int numTimes = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}");
         }
+        #endregion
     }
 }
 
@@ -76,11 +77,13 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-
+        #region snippet_3
         public string Welcome(string name, int ID = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, id: {ID}");
         }
+        #endregion
+
     }
 }
 
