@@ -65,7 +65,7 @@ namespace TodoApi.Controllers
 
         #region snippet_Patch
         [HttpPatch("{id}")]
-        public IActionResult UpdateP(string id, [FromBody] TodoItem item)
+        public IActionResult Update([FromBody] TodoItem item, string id)
         {
             if (item == null)
             {

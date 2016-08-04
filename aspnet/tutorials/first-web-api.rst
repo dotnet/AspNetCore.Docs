@@ -35,10 +35,10 @@ The following diagram show the basic design of the app.
 
 .. image:: first-web-api/_static/architecture.png
 
-- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use `Postman <https://www.getpostman.com/>`__ or `Fiddler <http://www.fiddler2.com/fiddler2/>`__  for the client.
+- The client is whatever consumes the web API (browser, mobile app, and so forth). We aren’t writing a client in this tutorial. We'll use `Postman <https://www.getpostman.com/>`__ or `Fiddler <http://www.fiddler2.com/fiddler2/>`__  for the client to test the app.
 - A *model* is an object that represents the data in your application. In this case, the only model is a to-do item. Models are represented as simple C# classes (POCOs).
 - A *controller* is an object that handles HTTP requests and creates the HTTP response. This app will have a single controller.
-- To keep the tutorial simple the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
+- To keep the tutorial simple, the app doesn’t use a database. Instead, it just keeps to-do items in memory. But we’ll still include a (trivial) data access layer, to illustrate the separation between the web API and the data layer. For a tutorial that uses a database, see :doc:`first-mvc-app/index`.
 
 Create the project
 ------------------
@@ -138,7 +138,7 @@ To get to-do items, add the following methods to the ``TodoController`` class.
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :start-after: snippet_GetAll
+  :start-after: #region snippet_GetAll
   :end-before: #endregion
   :dedent: 8
 
@@ -178,7 +178,7 @@ In the ``GetById`` method:
 
 ``"{id}"`` is a placeholder variable for the ID of the ``todo`` item. When ``GetById`` is invoked, it assigns the value of "{id}" in the URL to the method's ``id`` parameter.
 
-``Name = "GetTodo"`` allows you to link the route in an HTTP Response. I'll explain it with an example later.
+``Name = "GetTodo"`` creates an named route and allows you to link to this route in an HTTP Response. I'll explain it with an example later.
 
 Return values
 ^^^^^^^^^^^^^
@@ -233,7 +233,7 @@ Create
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :start-after: snippet_Create
+  :start-after: #region snippet_Create
   :end-before: #endregion
   :dedent: 8
 
@@ -242,29 +242,35 @@ This is an HTTP POST method, indicated by the `[HttpPost] <https://docs.asp.net/
 The `CreatedAtRoute <https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html>`_ method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. ``CreateAtRoute`` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See `10.2.2 201 Created <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_.
 
 Using use Postman to send a Create request
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: first-web-api/_static/pmc.png
 
 - Set the HTTP method to ``POST``
 - Set the type to JSON
-- In the key-value editor, enter a Todo item such as ``{"Name":"<your to-do item>"}``
+- In the key-value editor, enter a Todo item such as ``{"<Name>":"<your to-do item>"}``
 - Tap **Send**
 
-Copy the key from the POST and use it to test the ``GetById`` method:
+Tap the Headers tab and copy the **Location** header:
 
 .. image:: first-web-api/_static/pmget.png
 
+You can use the URI got get the resource you just created. Recall the ``GetById`` method created the ``"GetTodo"`` named route:
 
-We can use Fiddler to send a Create request:
+.. code-block:: c#
+
+  [HttpGet("{id}", Name = "GetTodo")]
+  public IActionResult GetById(string id)
+
+Using Fiddler to send a Create request:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #.  In the **Composer** page, select POST from the drop-down.
 #.  In the request headers text box, add ``Content-Type: application/json``, which is a ``Content-Type`` header with the value ``application/json``. Fiddler automatically adds the Content-Length header.
-#.  In the request body text box, enter the following: ``{"Name":"<your to-do item>"}``
+#.  In the request body text box, enter the following: ``{"<Name>":"<your to-do item>"}``
 #.  Click **Execute**.
 
 .. image:: first-web-api/_static/fiddler4.png
-
 
 Here is an example HTTP session. Use the **Raw** tab to see the session data in this format.
 
@@ -295,7 +301,8 @@ Update
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :lines: 44-60
+  :start-after: #region snippet_Update
+  :end-before: #endregion
   :dedent: 8
 
 ``Update`` is similar to ``Create``, but uses HTTP PUT. The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__.
@@ -305,16 +312,18 @@ According to the HTTP spec, a PUT request requires the client to send the entire
 
 .. image:: first-web-api/_static/put.png
 
+.. review: Added this, should I remove it?
+
 Update with Patch
 ^^^^^^^^^^^^^^^^^^
+
+This overload is similar to the previously shown ``Update``, but uses HTTP PATCH. The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__.
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
   :start-after: #region snippet_Patch
   :end-before: #endregion
   :dedent: 8
-
-``UpdateP`` is similar to ``#Update``, but uses HTTP PATCH. The response is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__.
 
 .. image:: first-web-api/_static/pmcpat.png
 
@@ -323,10 +332,11 @@ Delete
 
 .. literalinclude:: first-web-api/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
-  :lines: 62-68
+  :start-after: #region snippet_Delete
+  :end-before: #endregion
   :dedent: 8
 
-The return type is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ response. 
+The return type is `204 (No Content) <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>`__ response.
 
 .. image:: first-web-api/_static/pmd.png
 
@@ -338,8 +348,5 @@ Next steps
 - To learn about creating a backend for a native mobile app, see :doc:`/mobile/native-mobile-backend`.
 - For information about deploying your API, see :doc:`Publishing and Deployment </publishing/index>`.
 - `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample>`__
-
-
-
 - `Postman <https://www.getpostman.com/>`__
-- `Fiddler <http://www.fiddler2.com/fiddler2/>`__ 
+- `Fiddler <http://www.fiddler2.com/fiddler2/>`__
