@@ -50,13 +50,14 @@ namespace MvcMovie
             app.UseStaticFiles();
 
             // Default routing.
-
+            #region snippet_1
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            #endregion
         }
     }
 }
