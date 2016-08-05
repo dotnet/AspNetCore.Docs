@@ -74,7 +74,7 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-
+        #region snippet_edit_get
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -90,12 +90,14 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        #endregion
 
         // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 #if BindNoRating
         // Edit Post 
+        //         #region snippet_edit_post1
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Genre,Price,ReleaseDate,Title")] Movie movie)
@@ -127,6 +129,7 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        //  #endregion
         // End of Edit Post
 #else
         [HttpPost]

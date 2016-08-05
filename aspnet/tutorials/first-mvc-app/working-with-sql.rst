@@ -7,8 +7,8 @@ The ``ApplicationDbContext`` class handles the task of connecting to the databas
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :language: c#
-  :start-after: // This method gets called by the runtime. Use this method to add services to the container.
-  :end-before: services.AddIdentity<ApplicationUser, IdentityRole>()
+  :start-after: snippet_details
+  :end-before: #endregion
   :dedent: 8
 
 The ASP.NET Core :doc:`Configuration </fundamentals/configuration>` system reads the ``ConnectionString``. For local development, it gets the connection string from the *appsettings.json* file:
@@ -32,6 +32,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine that 
 - Right click on the ``Movie`` table **> View Designer**
 
 .. image:: working-with-sql/_static/design.png
+   :scale: 100%
 
 .. image:: working-with-sql/_static/dv.png
 
@@ -52,24 +53,24 @@ Create a new class named ``SeedData`` in the *Models* folder. Replace the genera
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/SeedData.cs
   :language: c#
-  :start-after: // Seed without Rating
-  :end-before: #endif
+  :start-after: snippet_1
+  :end-before: #endregion
 
 Notice if there are any movies in the DB, the seed initializer returns.
 
-.. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/SeedData.cs
-  :language: c#
-  :start-after: // Look for any movies.
-  :end-before: context.Movie.AddRange(
-  :dedent: 16
+.. code-block:: c#
+
+  if (context.Movie.Any())
+  {
+      return;   // DB has been seeded.
+  }
 
 Add the seed initializer to the end of the ``Configure`` method in the *Startup.cs* file:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Startup.cs
   :dedent: 8
   :emphasize-lines: 9
-  :start-after: app.UseIdentity();
-  :end-before: // End of Configure.
+  :start-after: snippet_1
 
 Test the app
 

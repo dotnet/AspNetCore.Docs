@@ -1,6 +1,7 @@
 ﻿//#define First
 #if First
 // Seed without Rating
+#region snippet_1 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
@@ -60,4 +61,5 @@ namespace MvcMovie.Models
         }
     }
 }
+#endregion
 #endif

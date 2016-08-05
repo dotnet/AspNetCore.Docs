@@ -1,5 +1,6 @@
 ﻿//#define AddDate 
 #if AddDate
+#region snippet_1
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,5 +18,5 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
     }
 }
-
+#endregion
 #endif
