@@ -47,12 +47,12 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-        #region snippet_2
+        //#region snippet_2
         public string Welcome(string name, int numTimes = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, numTimes: {numTimes}");
         }
-        #endregion
+        //#endregion
     }
 }
 
@@ -77,19 +77,16 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-        #region snippet_3
+        //#region snippet_3
         public string Welcome(string name, int ID = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, id: {ID}");
         }
-        #endregion
+        //#endregion
 
     }
 }
-
-
 #endif
-
 
 #if View
 using Microsoft.AspNetCore.Mvc;
@@ -101,13 +98,13 @@ namespace MvcMovie.Controllers
     {
         // 
         // GET: /HelloWorld/ 
-
+        //#region snippet_4
         public IActionResult Index()
         {
             return View();
         }
-
-        // 
+        //#endregion
+// 
         // GET: /HelloWorld/Welcome/ 
 
         public string Welcome(string name, int ID = 1)
@@ -151,7 +148,7 @@ namespace MvcMovie.Controllers
 
 #if VD
 
-
+#region snippet_5
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -173,5 +170,5 @@ namespace MvcMovie.Controllers
         }
     }
 }
-
+#endregion
 #endif

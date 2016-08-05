@@ -1,6 +1,6 @@
 ﻿//#define MovieNoEF
 #if MovieNoEF
-
+#region snippet_1
 using System;
 
 namespace MvcMovie.Models
@@ -14,4 +14,5 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
     }
 }
+#endregion
 #endif

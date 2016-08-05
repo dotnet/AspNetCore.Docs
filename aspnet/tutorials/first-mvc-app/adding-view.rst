@@ -11,7 +11,8 @@ Currently the ``Index`` method returns a string with a message that is hard-code
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
   :language: c#
-  :lines: 102-105
+  :start-after: #region snippet_4
+  :end-before: #endregion
   :dedent: 8
 
 The ``Index`` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the ``Index`` method above, generally return an ``IActionResult`` (or a class derived from ``ActionResult``), not primitive types like string.
@@ -57,7 +58,8 @@ Change the contents of the title element. Change the anchor text in the layout t
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Views/Shared/_Layout.cshtml
   :language: HTML
   :emphasize-lines: 29,6
-  :lines: 1-46
+  :start-after: <snippet_1>
+  :end-before: </snippet_1>
 
 .. warning:: We haven't implemented the ``Movies`` controller yet, so if you click on that link, you'll get a 404 (Not found) error.
 
@@ -110,7 +112,8 @@ Return to the *HelloWorldController.cs* file and change the ``Welcome`` method t
 
 .. literalinclude:: start-mvc/sample/src/MvcMovie/Controllers/HelloWorldController.cs
   :language: c#
-  :lines: 152-172
+  :start-after: #region snippet_5
+  :end-before: #endregion
 
 The ``ViewData`` dictionary object contains data that will be passed to the view. Next, you need a Welcome view template.
 
