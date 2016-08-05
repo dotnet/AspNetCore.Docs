@@ -2,7 +2,6 @@ Adding a model
 ==================================================
 By `Rick Anderson`_
 
-
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**\odel" part of the **M**\VC app.
 
 You’ll use a .NET Framework data-access technology known as the `Entity Framework Core <http://ef.readthedocs.org/>`__ to define and work with these data model classes. Entity Framework Core (often referred to as **EF** Core) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development.
@@ -50,7 +49,8 @@ In Solution Explorer, right click the *Models* folder > **Add** > **Class**. Nam
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieNoEF.cs
   :language: c#
-  :lines: 4-16
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :dedent: 0
   :emphasize-lines: 7
 
@@ -105,8 +105,7 @@ To Stop IIS Express:
 - Right click the IIS Express system tray icon in the notification area
 
  .. image:: working-with-sql/_static/iisExIcon.png
-  :height: 100px
-  :width: 200 px
+   :scale: 100%
 
 - Tap **Exit** or **Stop Site**
 
@@ -153,7 +152,6 @@ dotnet ef commands
 - ``dotnet ef migrations add Initial`` Runs the Entity Framework .NET Core CLI migrations command and creates the initial migration. The parameter "Initial" is arbitrary, but customary for the first (*initial*) database migration. This operation creates the *Data/Migrations/<date-time>_Initial.cs* file containing the migration commands to add (or drop) the `Movie` table to the database
 - ``dotnet ef database update``  Updates the database with the migration we just created
 
-
 Test the app
 ------------------
 
@@ -172,8 +170,8 @@ Test the app
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Models/MovieDateFormat.cs
   :language: c#
-  :start-after: // Start
-  :end-before:  */
+  :start-after: #region snippet_1
+  :end-before: #endregion
   :emphasize-lines: 10,2
 
 
@@ -187,6 +185,8 @@ Examining the Generated Code
 ---------------------------------
 
 Open the *Controllers/MoviesController.cs* file and examine the generated ``Index`` method. A portion of the movie controller with the ``Index`` method is shown below:
+
+.. see comment below for the reason to have following code block and not a literalinclude
 
 .. code-block:: c#
 
@@ -206,11 +206,11 @@ Open the *Controllers/MoviesController.cs* file and examine the generated ``Inde
         }
 
 
-.. can't use this because we commenent out the initial index method and update it later
+.. can't use this because we comment out the initial index method and update it later
 .. comment literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
   :language: c#
   :start-after: // The Movies Controller
-  :end-before: // GET: Movies/Details/5
+  :end-before: #endregion
   :dedent: 4
 
 The constructor uses :doc:`Dependency Injection  </fundamentals/dependency-injection>` to inject the database context into the controller. The database context is used in each of the `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ methods in the controller.
@@ -229,10 +229,10 @@ MVC also provides the ability to pass strongly typed objects to a view. This str
 Examine the generated ``Details`` method in the *Controllers/MoviesController.cs* file:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :start-after: // GET: Movies/Details/5
- :end-before: // GET: Movies/Create
- :dedent: 8
+  :language: c#
+  :start-after: #region snippet_details
+  :end-before: #endregion
+  :dedent: 8
 
 The ``id`` parameter is generally passed as route data, for example ``http://localhost:1234/movies/details/1`` sets:
 
@@ -269,10 +269,10 @@ This ``@model`` directive allows you to access the movie that the controller pas
 Examine the *Index.cshtml* view and the ``Index`` method in the Movies controller. Notice how the code creates a ``List`` object when it calls the View method. The code passes this ``Movies`` list from the ``Index`` action method to the view:
 
 .. literalinclude:: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs
- :language: c#
- :start-after:  // GET: Movies
- :end-before:  // End of first Index
- :dedent: 8
+  :language: c#
+  :start-after:  snippet_index
+  :end-before: #endregion
+  :dedent: 8
 
 When you created the movies controller, Visual Studio automatically included the following ``@model`` statement at the top of the *Index.cshtml* file:
 

@@ -26,14 +26,17 @@ namespace MvcMovie.Controllers
             _context = context;
         }
         /*
+         * #region snippet_index
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
+        * #endregion
         // End of first Index
         */
-        // GET: Movies/Details/5
+        #region snippet_details
+        // GET: Movies/Details/5 
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,7 +52,7 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-
+        #endregion
         // GET: Movies/Create
         public IActionResult Create()
         {
