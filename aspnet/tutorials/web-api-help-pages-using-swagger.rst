@@ -510,17 +510,18 @@ Then for a simple example, here is a cutom header to add a header title to the p
   :language: css
 
 **index.html body**
+
 .. code-block:: html
 
     <body class="swagger-section">
-
-    <div id="header">
+       <div id="header">
         <h1>ToDo API Documentation</h1>
-    </div>
+       </div>
     
-    <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
-    <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+       <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
+       <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
     </body>
+    
 
 .. image:: web-api-help-pages-using-swagger/_static/custom-header.png
 
