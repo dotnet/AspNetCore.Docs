@@ -7,7 +7,8 @@ By `Shayne Boyer`_
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application. 
 
-Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of nuget packages and modifying the Startup.cs.
+Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding
+ a couple of nuget packages and modifying the Startup.cs.
 
 This tutorial builds on the sample on :doc:`first-web-api`. 
 
@@ -467,9 +468,9 @@ Take the ``Create()`` method for example, currently it returns only "201 Created
 .. image:: web-api-help-pages-using-swagger/_static/data-annotations-response-types.png
 
 Customizing the UI
-------------------
+''''''''''''''''''
 
 Multiple Versions
------------------
+'''''''''''''''''
 
 
