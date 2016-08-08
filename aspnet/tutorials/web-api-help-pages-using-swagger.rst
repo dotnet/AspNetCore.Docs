@@ -7,8 +7,7 @@ By `Shayne Boyer`_
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application. 
 
-Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding
- a couple of nuget packages and modifying the Startup.cs.
+Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of nuget packages and modifying the Startup.cs.
 
 This tutorial builds on the sample on :doc:`first-web-api`. 
 
@@ -469,6 +468,64 @@ Take the ``Create()`` method for example, currently it returns only "201 Created
 
 Customizing the UI
 ''''''''''''''''''
+The stock UI is very functional as well as presentable, however when building documentation pages for your API you want it to represent your brand or look and feel. 
+
+Accomplishing that task with the Swashbuckle components is simple but requires adding the resources to serve static files that would not normally be included in a Web API project and then building the folder structur to host those files.
+
+First, add the ``"Microsoft.AspNetCore.StaticFiles": "1.0.0-*"`` NuGet package to the project either using one of the methods mentioned prior in this tutorial and then open the ``Startup.cs`` file to add the necessary code for the static file middleware.
+
+.. code-block:: c#
+    :emphasize-lines: 4
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            app.UseStaticFiles();
+
+            app.UseMvcWithDefaultRoute();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            app.UseSwaggerUi();
+            
+        }
+
+Next, is to acquire the core ``index.html`` file used for the Swagger UI page from the `Github repository <a href="https://github.com/swagger-api/swagger-ui/blob/master/src/main/html/index.html">`_ and put that in the ``wwwroot/swagger/ui`` folder and also create a new ``custom.css`` file in the same folder.
+
+.. image:: web-api-help-pages-using-swagger/_static/custom-files-folder-view.png
+
+In the ``index.html`` file be sure to reference the ``custom.css`` file 
+
+.. code-block:: html
+
+    <link href='custom.css' media='screen' rel='stylesheet' type='text/css' />
+
+Then for a simple example, here is a cutom header to add a header title to the page.
+
+**custom.css file**
+
+.. literalinclude:: web-api-help-pages-using-swagger/sample/src/TodoApi/wwwroot/swagger/ui/custom.css
+  :language: css
+
+**index.html body**
+.. code-block:: html
+    emphasize-lines: 
+
+    <body class="swagger-section">
+
+    <div id="header">
+        <h1>ToDo API Documentation</h1>
+    </div>
+    
+    <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
+    <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+    </body>
+
+.. image:: web-api-help-pages-using-swagger/_static/custom-header.png
+
+There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_ . 
 
 Multiple Versions
 '''''''''''''''''
