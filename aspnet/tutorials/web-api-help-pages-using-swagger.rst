@@ -288,7 +288,7 @@ At this point, the basic implementation of the Swagger functionality is complete
 
 Customization & Extensibility 
 -----------------------------
-Swagger is not only a simple way to represent the API, but has options for documenting the object model, supporting multiple versions, as well as customizing the interactive UI to match your look and feel or design language.
+Swagger is not only a simple way to represent the API, but has options for documenting the object model, as well as customizing the interactive UI to match your look and feel or design language.
 
 API Info and Description
 ''''''''''''''''''''''''
@@ -527,7 +527,10 @@ Then for a simple example, here is a cutom header to add a header title to the p
 
 There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_ . 
 
-Multiple Versions
-'''''''''''''''''
 
+Summary
+=======
+In this tutorial, you've seen how to quickly add the Swagger components to your Web API project with a single NuGet package and few lines of code, shwn the various options to to drive the Swagger UI either using the defaults from the ASP.NET controllers, ``ComponentModel.DataAnnotations`` or XML Comments and can also modify the UI to match the look and feel of your business.
+
+Using Swagger to describe the capabilities of your API can help self document and potentially reduce developer friction for building comsuming applications even within your own organization.
 
