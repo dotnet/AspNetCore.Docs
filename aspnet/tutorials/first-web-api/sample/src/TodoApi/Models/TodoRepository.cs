@@ -35,7 +35,6 @@ namespace TodoApi.Models
         public TodoItem Remove(string key)
         {
             TodoItem item;
-            _todos.TryGetValue(key, out item);
             _todos.TryRemove(key, out item);
             return item;
         }
