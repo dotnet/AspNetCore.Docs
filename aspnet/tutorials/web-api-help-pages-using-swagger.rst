@@ -511,7 +511,6 @@ Then for a simple example, here is a cutom header to add a header title to the p
 
 **index.html body**
 .. code-block:: html
-    emphasize-lines: 
 
     <body class="swagger-section">
 
