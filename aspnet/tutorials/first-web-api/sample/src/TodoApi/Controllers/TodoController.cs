@@ -13,7 +13,7 @@ namespace TodoApi.Controllers
         }
         public ITodoRepository TodoItems { get; set; }
 
-        [HttpGet]
+        #region snippet_GetAll
         public IEnumerable<TodoItem> GetAll()
         {
             return TodoItems.GetAll();
@@ -29,7 +29,8 @@ namespace TodoApi.Controllers
             }
             return new ObjectResult(item);
         }
-
+        #endregion
+        #region snippet_Create
         [HttpPost]
         public IActionResult Create([FromBody] TodoItem item)
         {
@@ -40,7 +41,9 @@ namespace TodoApi.Controllers
             TodoItems.Add(item);
             return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
         }
+        #endregion
 
+        #region snippet_Update
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] TodoItem item)
         {
@@ -58,11 +61,43 @@ namespace TodoApi.Controllers
             TodoItems.Update(item);
             return new NoContentResult();
         }
+        #endregion
 
-        [HttpDelete("{id}")]
-        public void Delete(string id)
+        #region snippet_Patch
+        [HttpPatch("{id}")]
+        public IActionResult Update([FromBody] TodoItem item, string id)
         {
-            TodoItems.Remove(id);
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            var todo = TodoItems.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            item.Key = todo.Key;
+
+            TodoItems.Update(item);
+            return new NoContentResult();
         }
+        #endregion
+
+        #region snippet_Delete
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            var todo = TodoItems.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            TodoItems.Remove(id);
+            return new NoContentResult();
+        }
+        #endregion
     }
 }
