@@ -136,7 +136,7 @@ This document is used to drive the Swagger UI which can be viewed by navigating 
 
 .. image:: web-api-help-pages-using-swagger/_static/swagger-ui.png
 
-Each of the methods in the ``ToDo`` controller can be tested using the UI be clicking the method to expand the section, completing the parameters (if required) and clicking the "Try it out!" button to see the result.
+Each of the methods in the ToDo controller can be tested from the UI. Tap a method to expand the section, add any necessary parameters and tap "Try it out!".
 
 .. image:: web-api-help-pages-using-swagger/_static/get-try-it-out.png
 
