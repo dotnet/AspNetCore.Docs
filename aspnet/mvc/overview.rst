@@ -1,8 +1,27 @@
-.. include:: /../common/stub-topic.txt
+:version: 1.0.0
 
-|stub-icon| Overview of ASP.NET MVC
-===================================
+Overview of ASP.NET Core MVC
+============================
 
-.. include:: /../common/stub-notice.txt
+By `Steve Smith`_
 
-.. _issue: https://github.com/aspnet/Docs/issues/113
+ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
+
+.. contents:: Sections:
+  :local:
+  :depth: 1
+
+What is ASP.NET Core MVC
+------------------------
+
+More to come.
+
+What is the MVC pattern?
+------------------------
+
+More to come.
+
+Using MVC for Web Apps and Web APIs
+-----------------------------------
+
+More to come.
