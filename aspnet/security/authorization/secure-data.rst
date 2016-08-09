@@ -34,7 +34,7 @@ A user authorization filter ensures only the logged in user can edit their data.
 Prerequisites
 ^^^^^^^^^^^^^^
 
-This is not a beginning tutorial. You should be famailar with :doc:`creating an ASP.NET Core MVC app </tutorials/first-mvc-app/start-mvc>`.
+This is not a beginning tutorial. You should be familiar with :doc:`creating an ASP.NET Core MVC app </tutorials/first-mvc-app/start-mvc>`.
 
 The starter app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -246,7 +246,7 @@ Test the app with two different browsers and users to verify they cannot edit or
 .. warning:: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own, it's up to the controller to secure the data.
 
 Adding an administrative role
-------------------------------
+-------------------------------
 
 Applications frequently support an administrator account with permissions to modify user data.  In this sample we'll create the "canDelete" role, and users in this role will be able to delete any contacts. A best practice is to name roles by the actions they can perform, so "canDelete" is preferred over a role called "admin". When your application evolves, you can add new roles such as "canDeleteMembers" rather than the less descriptive "superAdmin".
 
@@ -293,7 +293,7 @@ You could write a filter that fails the requirements, even if the other filters 
 .. literalinclude::  secure-data/samples/final/Authorization/ContactNotOneAuthorizationHandler.cs
   :language: c#
 
-If you applied this filter to the **Details** link , addresses without a "1" would not display the **Details** link.
+If you applied this filter to the **Details** link, addresses without a "1" would not display the **Details** link.
 
 .. literalinclude:: secure-data/samples/final/Views/Contacts/Index2.cshtml
   :language: none
