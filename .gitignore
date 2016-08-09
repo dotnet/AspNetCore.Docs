@@ -197,6 +197,9 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
+# VS Code workspace / user options
+.vscode
+
 project.lock.json
 **/sample/**/wwwroot/lib/
 **/samples/**/wwwroot/lib/
