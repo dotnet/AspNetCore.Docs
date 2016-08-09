@@ -30,7 +30,7 @@ Static files can be stored in any folder under the ``web root`` and accessed wit
 - \http://localhost:9189/images/banner3.svg
 
 
-In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the :dn:method:`~Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles` extension method from ``Startup.Configure``:
+In order for static files to be served, you must configure the :doc:`middleware` to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the ``Microsoft.AspNetCore.StaticFiles`` package to your project and then calling the :dn:method:`~Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles` extension method from ``Startup.Configure``:
 
 .. literalinclude:: static-files/sample/StartupStaticFiles.cs
   :language: c#
