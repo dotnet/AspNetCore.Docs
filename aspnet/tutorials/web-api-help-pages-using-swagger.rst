@@ -39,11 +39,11 @@ You can add Swashbuckle with any of the following approaches:
     "Swashbuckle": "6.0.0-"
 
 - In Visual Studio:
-	- Right click yur project in Solution Explorer > Manage NuGet Packages 
-	- Enter Swashbukle in the search box
-	- Check Includeprerelease 
+	- Right click your project in Solution Explorer > Manage NuGet Packages 
+	- Enter Swashbuckle in the search box
+	- Check "Include prerelease" 
 	- Set the Package source to nuget.org 
-	- Tap the Swashuckle package and then tap Install 
+	- Tap the Swashbuckle package and then tap Install 
 
 
 
@@ -171,7 +171,7 @@ In order to enable the generation of xml comments, right click the project in Vi
 
 Configure the OperationFilter to use the generated xml file. An additional item to point out here is the use of ``PlatformServices.Default.Application.ApplicationBasePath`` to access the executing location of the application. This is the location where the generated xml file will be placed. Notably it can vary depending on the .NET Framework used for the environment.
 
-.. note:: For Linux or non Windows operating systems, file names and paths can be case sensitive. So ``ToDoApi.xml`` would be found on Windows but not Centos for example.
+.. note:: For Linux or non-Windows operating systems, file names and paths can be case sensitive. So ``ToDoApi.xml`` would be found on Windows but not Centos for example.
 
 .. literalinclude:: web-api-help-pages-using-swagger/sample/src/TodoApi/Startup.cs
     :language: c#
@@ -299,7 +299,7 @@ In the *index.html* file be sure to reference the *custom.css* file
 
     <link href='custom.css' media='screen' rel='stylesheet' type='text/css' />
 
-Then for a simple example, here is a cutom header to add a header title to the page.
+Then for a simple example, here is a custom header to add a header title to the page.
 
 *custom.css file*
 
@@ -322,7 +322,7 @@ Then for a simple example, here is a cutom header to add a header title to the p
 
 .. image:: web-api-help-pages-using-swagger/_static/custom-header.png
 
-There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_ . 
+There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_. 
 
 
 
