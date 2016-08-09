@@ -55,7 +55,7 @@ namespace TodoApi.Controllers
             }
             return new ObjectResult(item);
         }
-
+        #region Create_Method
         /// <summary>
         /// Creates a TodoItem
         /// </summary>
@@ -86,7 +86,7 @@ namespace TodoApi.Controllers
             TodoItems.Add(item);
             return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
         }
-        
+        #endregion
         /// <summary>
         /// Updates a specific TodoItem
         /// </summary>
@@ -114,7 +114,7 @@ namespace TodoApi.Controllers
 
             return new NoContentResult();
         }
-
+        #region Delete_Method
         /// <summary>
         /// Deletes a specific TodoItem
         /// </summary>
@@ -124,5 +124,6 @@ namespace TodoApi.Controllers
         {
             TodoItems.Remove(id);
         }
+        #endregion
     }
 }

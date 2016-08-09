@@ -12,6 +12,8 @@ namespace TodoApi
 {
     public class Startup
     {
+
+        #region snippet_Configure
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -61,6 +63,7 @@ namespace TodoApi
             app.UseSwaggerUi();
             
         }
+        #endregion
 
         public static void Main(string[] args)
         {

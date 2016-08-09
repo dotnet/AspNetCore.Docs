@@ -1,0 +1,11 @@
+{
+    "language": "en",
+    "ignoreWordsList": [
+        "NuGet"
+    ],
+    "languageIDs": [
+        "markdown",
+        "plaintext",
+        "reStructuredText"
+    ]
+}
