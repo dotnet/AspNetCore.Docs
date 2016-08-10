@@ -1,5 +1,5 @@
 Create an app with user data protected by authorization
-=========================================================
+========================================================
 
 By `Rick Anderson`_
 
