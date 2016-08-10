@@ -20,7 +20,7 @@ The syntax for ``@inject``:
 
 An example of ``@inject`` in action:
 
-.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/Todo/Index.cshtml
+.. literalinclude:: dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml
   :linenos:
   :language: c#
   :emphasize-lines: 4-5,15-17
