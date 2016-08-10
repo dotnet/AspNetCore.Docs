@@ -119,7 +119,7 @@ To include the `publish-iis` tool in your application, add entries to the `tools
 Deploy the application
 ----------------------
 
-#. On the target IIS server, create a folder to contain the application's assets.
+#. On the target IIS server, create a folder to contain the application's published folders and files, which are described in :doc:`/hosting/directory-structure`.
 #. Within the folder you created, create a *logs* folder to hold application logs (if you plan to enable logging). If you plan to deploy your application with a *logs* folder in the payload, you may skip this step.
 #. Deploy the application to the folder you created on the target IIS server. MSDeploy (Web Deploy) is the recommended mechanism for deployment, but you may use any of several methods to move the application to the server (for example, Xcopy, Robocopy, or PowerShell). Visual Studio users may use the `default Visual Studio web publish script <https://github.com/aspnet/vsweb-publish/blob/master/samples/default-publish.ps1>`__. For information on using Web Deploy, see :doc:`iis-with-msdeploy`.
 
