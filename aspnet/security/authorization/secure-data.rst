@@ -1,5 +1,5 @@
-Create an app with secure user data
-======================================
+Create an app with user data protected by authorization
+=========================================================
 
 By `Rick Anderson`_
 
@@ -7,7 +7,7 @@ By `Rick Anderson`_
   :local:
   :depth: 1
 
-This tutorial shows how to create a web app with secure user data. Authenticated users can read all the contacts but can only edit their own contacts.  A user in the administrator role can delete any contact.
+This tutorial shows how to create a web app with user data protected by authorization. Authenticated users can read all the contacts but can only edit their own contacts.  A user in the administrator role can delete any contact.
 
 In the image below, user *rick@example.com* can edit and delete his contacts, and read other contacts.
 
@@ -21,15 +21,14 @@ The app was created by scaffolding the following ``Contact`` model:
 
 .. literalinclude::  secure-data/samples/starter/Models/Contact.cs
   :language: c#
-  :start-after: #region snippet_1
+  :start-after: snippet_1
   :end-before: #endregion
   :dedent: 4
   :emphasize-lines: 3
 
 The contact information properties (Address, Name, etc.) are displayed in the images above. ``ContactId`` is the primary key for the table.
 
-A user authorization filter ensures only the logged in user can edit their data. A ``canDelete`` authorization filter allows users in the "canDelete" role to delete any data.
-
+An authorization handler ensures that data can only be edited by the data owner. A ``canDelete`` handler allows administrators to delete any data.
 
 Prerequisites
 ^^^^^^^^^^^^^^
@@ -132,13 +131,13 @@ Resource based authorization
 .. literalinclude:: secure-data/samples/final/Authorization/ContactIsOwnerAuthorizationHandler.cs
   :language: c#
 
-The ``ContactIsOwnerAuthorizationHandler`` returns ``Succeed`` if the user is the contact owner. We're not checking the requirement parameter; an owner can perform any requirement on data they own.
+The ``ContactIsOwnerAuthorizationHandler`` calls ``context.Succeed`` if the current authenticated user is the contact owner. We allow contact owners to perform any operation on their own data, so we don't need to check the operation passed in the requirement parameter,
 
 Services using Entity Framework Core must be registered for :ref:`dependency injection <fundamentals-dependency-injection>` using :dn:method:`~Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped`. The ``ContactIsOwnerAuthorizationHandler`` uses ASP.NET Core Identity, which is built on Entity Framework Core. Register the ``ContactIsOwner`` handler with the service collection so it will be available to the ``ContactsController`` through :ref:`dependency injection <fundamentals-dependency-injection>`. Add the following code to the end of ``ConfigureServices``:
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
-  :start-after: #region snippet_AddScoped
+  :start-after: snippet_AddScoped
   :end-before: #endregion
   :dedent: 12
 
@@ -146,7 +145,7 @@ Update the ``ContactsController`` constructor to resolve the ``IAuthorizationSer
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
-  :start-after: #region snippet_ContactsController
+  :start-after: snippet_ContactsController
   :end-before: #endregion
   :dedent: 4
   :emphasize-lines: 4,5,9,10,13,14
@@ -163,9 +162,9 @@ Update the ``HTTP POST Create`` method to add the user ID to the ``Contact`` mod
   :start-after: #region snippet_Create
   :end-before: #endregion
   :dedent: 8
-  :emphasize-lines: 8
+  :emphasize-lines: 9
 
-Update both ``Edit`` methods to use the authorization filter to verify the user owns the contact. Add ``OwnerID`` to the ``Bind`` list:
+Update both ``Edit`` methods to use the authorization handler to verify the user owns the contact. Because we are performing resource authorization we cannot use the ``[Authorize]`` attribute as we don't have access to the resource when attributes are evaluated. Resource based authorization must be imperative. Checks must be performed once we have access to the resource, either by loading it in our controller, or by loading it within the handler itself. Frequently you will access the resource by passing in the resource key.
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
@@ -174,15 +173,7 @@ Update both ``Edit`` methods to use the authorization filter to verify the user 
   :dedent: 8
   :emphasize-lines: 14-19,35-40,28
 
-Add the ``OwnerID`` as a hidden field so it will be available to the ``HTTP POST Edit`` method:
-
-.. literalinclude:: secure-data/samples/final/Views/Contacts/Edit.cshtml
-  :language: none
-  :start-after: <snippet_1>
-  :end-before: </snippet_1>
-  :emphasize-lines: 7
-
-Update both ``Delete`` methods to use the authorization filter to verify the user owns the contact.
+Update both ``Delete`` methods to use the authorization handler to verify the user owns the contact.
 
 .. literalinclude:: secure-data/samples/final/Controllers/ContactsController.cs
   :language: c#
@@ -220,7 +211,7 @@ Verify ``test@example.com`` can edit and delete the seed data and any contacts c
 Inject the authorization service into the views
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization filter to the views.
+Currently the UI shows edit and delete links for data the user cannot modify. We'll fix that by applying the authorization handler to the views.
 
 Inject the authorization service in the *Views/_ViewImports.cshtml* file so it will be available to all views:
 
@@ -243,14 +234,14 @@ Update the *Views/Contacts/Index.cshtml* Razor view to show only display the edi
 
 Test the app with two different browsers and users to verify they cannot edit or delete contacts they didn't create.
 
-.. warning:: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own, it's up to the controller to secure the data.
+.. warning:: Hiding links from users that do not have permission to edit or delete data does not secure that app, it makes the app more user friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own.  The controller must repeat the access checks to be secure.
 
 Adding an administrative role
 -------------------------------
 
-Applications frequently support an administrator account with permissions to modify user data.  In this sample we'll create the "canDelete" role, and users in this role will be able to delete any contacts. A best practice is to name roles by the actions they can perform, so "canDelete" is preferred over a role called "admin". When your application evolves, you can add new roles such as "canDeleteMembers" rather than the less descriptive "superAdmin".
+Applications frequently support an administrator account with permissions to modify user data.  In this sample we'll create the "canDelete" role, and users in this role will be able to delete any contacts. 
 
-The "canDelete" requirement will have two handlers, one for the contact owner and one for administrative users in the "canDelete" role. Using multiple handlers for a requirement significantly simplifies your code, as the controller and UI code don't change, you simply add the administrative "canDelete" filter. See :ref:`security-authorization-policies-based-authorization-handler` for more information.
+The "canDelete" requirement will have two handlers, one for the contact owner and one for administrative users in the "canDelete" role. Using multiple handlers for a requirement significantly simplifies your code, as the controller and UI code don't change, you simply add the administrative "canDelete" handler. See :ref:`security-authorization-policies-based-authorization-handler` for more information.
 
 Log out of the "test@example.com" browser session or close the browser to clear the identity cookie.
 
@@ -269,12 +260,14 @@ Update ``SeedData`` to create and call the "canDelete" role:
   :emphasize-lines: 7
   :dedent: 8
   
-Create a new class called ``ContactRoleAuthorizationHandler`` for the role filter to validate the user is in the specified role:
+Create a new class called ``ContactRoleAuthorizationHandler`` for the role handler to validate the user is in the specified role:
 
 .. literalinclude::  secure-data/samples/final/Authorization/ContactRoleAuthorizationHandler.cs
   :language: c#
 
-Add the role authorization filter to the service container in ``ConfigureServices``.
+Then, if we have the "Admin" role, you'd have two handlers for the requirement/operation, one which is "Admin" which ignores the operation entirely.
+
+Add the role authorization handler to the service container in ``ConfigureServices``.
 
 .. literalinclude::  secure-data/samples/final/Startup.cs
   :language: c#
@@ -286,14 +279,14 @@ The ``ContactRoleAuthorizationHandler`` is added as a singleton because all the 
 
 Test the app and verify the "test@example.com" user can delete contacts created by other users. Verify that regular users can't edit or delete other users data. An easy way to test this is to tap on another users **Details** link and change the URL from /Contacts/Details/18 to /Contacts/Delete/18.
 
-The ``ContactRoleAuthorizationHandler`` allowed us to add an administrator that can delete user data without changing the UI code or the controller code. We were able to do this because we wrote the filters to OR evaluate; any filter that succeeds allows the requirement to be met. This is typical for authorization handlers.
+The ``ContactRoleAuthorizationHandler`` allowed us to add an administrator that can delete user data without changing the UI code or the controller code. We were able to do this because we wrote the handlers to OR evaluate; any handler that succeeds allows the requirement to be met. This is typical for authorization handlers.
 
-You could write a filter that fails the requirements, even if the other filters succeed. For example, consider the following filter that fails if the contact address doesn't contain "1":
+You could write a handler that fails the requirements, even if the other handlers succeed. For example, consider the following handler that fails if the contact address doesn't contain "1":
 
 .. literalinclude::  secure-data/samples/final/Authorization/ContactNotOneAuthorizationHandler.cs
   :language: c#
 
-If you applied this filter to the **Details** link, addresses without a "1" would not display the **Details** link.
+If you applied this handler to the **Details** link, addresses without a "1" would not display the **Details** link.
 
 .. literalinclude:: secure-data/samples/final/Views/Contacts/Index2.cshtml
   :language: none

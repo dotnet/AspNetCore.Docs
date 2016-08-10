@@ -5,16 +5,14 @@
 }
 
 <h2>Edit</h2>
-@*<snippet_1>*@
+
 <form asp-action="Edit">
     <div class="form-horizontal">
         <h4>Contact</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ContactId" />
-        <input type="hidden" asp-for="OwnerID" />
         <div class="form-group">
-            @*</snippet_1>*@
             <label asp-for="Address" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Address" class="form-control" />

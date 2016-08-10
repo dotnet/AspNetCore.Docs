@@ -97,39 +97,48 @@ namespace ContactManager.Controllers
                 return NotFound();
             }
 
-            var contact = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
-            if (contact == null)
+            var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            if (contactDB == null)
             {
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact, 
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB, 
                                         ContactOperationsRequirements.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
 
-            return View(contact);
+            return View(contactDB);
         }
 
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, 
-            [Bind("ContactId,Address,City,Email,Name,State,Zip,OwnerID")] Contact contact)
+            [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
         {
             if (id != contact.ContactId)
             {
                 return NotFound();
             }
 
-            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contact,
+            // Fetch Contact from DB to get OwnerID.
+            var contactDB = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            if (contactDB == null)
+            {
+                return NotFound();
+            }
+
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, contactDB,
                                         ContactOperationsRequirements.Update);
             if (!isAuthorized)
             {
                 return new ChallengeResult();
             }
+            contact.OwnerID = contactDB.OwnerID;
+            _context.Entry(contactDB).State = EntityState.Detached;
 
             if (ModelState.IsValid)
             {
