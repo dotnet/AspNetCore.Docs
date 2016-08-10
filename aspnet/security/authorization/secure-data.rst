@@ -1,7 +1,7 @@
 Create an app with secure user data
 ======================================
 
-By `Barry Dorrans`_ and `Rick Anderson`_
+By `Rick Anderson`_
 
 .. contents:: Sections:
   :local:
