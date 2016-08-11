@@ -44,6 +44,16 @@ When not in development, it's a good idea to configure an exception handler path
 
   app.UseExceptionHandler("/Error");
 
+For the action associated with the endpoint, don't explicitly decorate the ``IActionResult`` with HTTP method attributes, such as ``HttpGet``. Using explicit verbs could prevent some requests from reaching the method.
+
+.. code-block:: c#
+
+  [Route("/Error")]
+  public IActionResult Index()
+  {
+      // Handle error here
+  }
+
 Using the Developer Exception Page
 ----------------------------------
 
