@@ -23,7 +23,7 @@ The following diagram shows the three main components and which ones reference t
 Kinds of Models
 ^^^^^^^^^^^^^^^
 
-In simple applications, there may be just one kind of model class that is used by persistence, presentation, and any business logic. However, frequently this kind of one-size-fits-all approach doesn't scale to complex applications. 
+In simple applications, there may be just one kind of model class that is used by persistence, presentation, and any business logic. However, frequently this kind of one-size-fits-all approach doesn't scale to complex applications. In that case, it may make sense to have different model types (classes) with different responsibilities.
 
 Domain Model
 ############
@@ -43,17 +43,19 @@ Many developers are familiar with the concept of a ViewModel, especially those w
 Binding Model
 ############
 
-Sometimes it may be worthwhile to create a type specifically for use with :doc:`model binding </mvc/models/model-binding>`. These types are typically just data objects with no behavior.
+Sometimes it may be worthwhile to create a type specifically for use with :doc:`model binding </mvc/models/model-binding>`. These types are typically just data containers with no behavior.
+
+.. note:: Using a binding model (or viewmodel) is recommended to avoid allowing a malicious user to set properties on the model that are not included in the UI, but are exposed via model binding.
 
 API Model
 #########
 
-If you application exposes an API, the format of the data you expose to clients may be separated from your app's internal domain model by defining custom API model types.
+If your application exposes an API, the format of the data you expose to clients may be separated from your app's internal domain model by defining custom API model types. This allows you to change your internal model types without impacting clients that may be using your exposed APIs.
 
 Controller Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Controllers are the initial entry point for each request to an MVC app. Their primary responsibility is to work with the model to perform user commands and retrieve data in response to queries. The Controller then performs any necessary mapping from one model type to another (for instance creating a ViewModel needed for a particular View and pouplating it with results from the Domain Model), and then returns a particular View.
+Controllers are the initial entry point for each request to an MVC app. Their primary responsibility is to work with the model to perform user commands and retrieve data in response to queries. The Controller then performs any necessary mapping from one model type to another (for instance creating a ViewModel needed for a particular View and populating it with results from the Domain Model), and then returns a particular View.
 
 .. note:: It's not uncommon for controllers to become bloated with too many responsibilities. Try to follow the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_ and push business logic out of the controller and into the domain model whenever possible.
 
@@ -62,15 +64,30 @@ Controllers are the initial entry point for each request to an MVC app. Their pr
 View Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^
 
-Views should only be responsible for presenting content through the user interface. There should be minimal logic within views, and any logic that is there should relate to presenting content.
-
-
+Views are responsible for presenting content through the user interface. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a ViewModel instead that is designed to suit the needs of the View.
 
 What is ASP.NET Core MVC
 ------------------------
 
-The ASP.NET Core MVC frameowrk is a lightweight, highly testable presentation framework optimized for use with ASP.NET Core. It is defined in the 
+The ASP.NET Core MVC frameowrk is a lightweight, open source, highly testable presentation framework optimized for use with ASP.NET Core. It is available in the "Microsoft.AspNetCore.Mvc" package, and is used by Visual Studio's "Web API" and "Web Application" ASP.NET Core Templates.
 
+ASP.NET Core MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and gives you full control over markup for enjoyable, agile development. ASP.NET Core MVC includes many features that enable fast, TDD-friendly development for creating sophisticated applications that use the latest web standards.
+
+ASP.NET Core MVC in ASP.NET Core includes support for building web pages and HTTP services in a single aligned framework that can be hosted in IIS or self-hosted in your own process.
+
+ASP.NET Core MVC Features
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* :doc:`Filters </mvc/controllers/filters>`, for cross-cutting concerns
+* :doc:`Dependency injection </fundamentals/dependency-injection>` for :doc:`Controllers </mvc/controllers/dependency-injection>` and :doc:`Views </mvc/views/dependency-injection>`
+* Support for :doc:`separate Areas within web apps </mvc/controllers/areas>`
+* Support for :doc:`testing Controller logic </mvc/controllers/testing>`
+* :doc:`View files use razor </mvc/views/overview>`, requiring minimal ceremony to render HTML combined with app data
+* View files can use :doc:`Tag Helpers </mvc/views/tag-helpers/intro>`, :doc:`View Components </mvc/views/view-components>`, and :doc:`HTML Helpers </mvc/views/html-helpers>`
+* Views can be shared using :doc:`partial views </mvc/views/partial>` and :doc:`layout support </mvc/views/layout>`
+* Automatically :doc:`bind client data to the app's model </mvc/models/model-binding>`
+* Automatically :doc:`validate client data sent to the app </mvc/models/validation>`
+* Support for :doc:`multiple data formats </mvc/models/formatting>` for APIs
 
 
 Using MVC for Web Apps and Web APIs
