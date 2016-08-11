@@ -29,7 +29,7 @@ namespace TodoApi.Controllers
         public ITodoRepository TodoItems { get; set; }
 
         /// <summary>
-        /// returns a collection of TodoItems
+        /// returns a collection of TodoItems.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +40,7 @@ namespace TodoApi.Controllers
         }
 
         /// <summary>
-        /// Returns a specific TodoItem 
+        /// Returns a specific TodoItem. 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace TodoApi.Controllers
         }
         #region Create_Method
         /// <summary>
-        /// Creates a TodoItem
+        /// Creates a TodoItem.
         /// </summary>
         /// <remarks>
         /// Note that the key is a GUID and not an integer.
@@ -88,7 +88,7 @@ namespace TodoApi.Controllers
         }
         #endregion
         /// <summary>
-        /// Updates a specific TodoItem
+        /// Updates a specific TodoItem.
         /// </summary>
         /// <remarks>
         /// This is just some additional information that you can put in regarding the method.
@@ -116,7 +116,7 @@ namespace TodoApi.Controllers
         }
         #region Delete_Method
         /// <summary>
-        /// Deletes a specific TodoItem
+        /// Deletes a specific TodoItem.
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
