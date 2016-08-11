@@ -22,13 +22,13 @@ namespace TodoApi
 
             services.AddLogging();
 
-            // Add our repository type
+            // Add our repository type.
             services.AddSingleton<ITodoRepository, TodoRepository>();
 
-            // Inject an implementation of ISwaggerProvider with defaulted settings applied
+            // Inject an implementation of ISwaggerProvider with defaulted settings applied.
             services.AddSwaggerGen();
 
-            // Add the detail Info for the API
+            // Add the detail information for the API.
             services.ConfigureSwaggerGen(options =>
             {
                 options.SingleApiVersion(new Info
@@ -41,10 +41,10 @@ namespace TodoApi
                     License = new License { Name = "Use under LICX", Url = "http://url.com" }
                 });
 
-                //determine base path for executing application
+                //Determine base path for the application.
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
 
-                //set the comments path for the swagger json and ui
+                //Set the comments path for the swagger json and ui.
                 options.IncludeXmlComments(basePath + "\\TodoApi.xml");
             });
         }
@@ -56,7 +56,7 @@ namespace TodoApi
 
             app.UseMvcWithDefaultRoute();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
