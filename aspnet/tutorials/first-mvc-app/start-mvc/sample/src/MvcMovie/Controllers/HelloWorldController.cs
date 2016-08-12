@@ -80,7 +80,7 @@ namespace MvcMovie.Controllers
         //#region snippet_3
         public string Welcome(string name, int ID = 1)
         {
-            return HtmlEncoder.Default.Encode($"Hello {name}, id: {ID}");
+            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
         }
         //#endregion
 
