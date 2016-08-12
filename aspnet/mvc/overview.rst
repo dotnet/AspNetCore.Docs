@@ -47,7 +47,7 @@ View Model
 Many developers are familiar with the concept of a ViewModel, especially those who have used application frameworks that use the Model-View-ViewModel pattern. In an MVC web application, a ViewModel is a type that includes just the data a View requires for display (and perhaps sending back to the server). ViewModel types can also simplify `model binding`_. ViewModel types are generally just data containers; any logic they may have should be specific to helping the View render data.
 
 Binding Model
-############
+#############
 
 Sometimes it may be worthwhile to create a type specifically for use with `model binding`_. These types are typically just data containers with no behavior.
 
