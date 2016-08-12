@@ -150,7 +150,7 @@ Update the ``ContactsController`` constructor to resolve the ``IAuthorizationSer
   :dedent: 4
   :emphasize-lines: 4,5,9,10,13,14
 
-Add a ``ContactOperationsRequirements`` class to the *Authorization* folder to contain the requirements our app supports:
+Add the ``ContactOperationsRequirements`` class to the *Authorization* folder to contain the requirements our app supports:
 
 .. literalinclude:: secure-data/samples/final/Authorization/ContactOperationsRequirements.cs
   :language: c#

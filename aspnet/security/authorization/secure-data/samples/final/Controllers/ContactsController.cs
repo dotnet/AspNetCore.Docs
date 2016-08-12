@@ -113,12 +113,14 @@ namespace ContactManager.Controllers
             return View(contactDB);
         }
 
+        // Make ContactViewModel -- might need multiple viewModeles
         // POST: Contacts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, 
             [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
         {
+            // Why is this here? Scaffolding??
             if (id != contact.ContactId)
             {
                 return NotFound();
@@ -137,6 +139,8 @@ namespace ContactManager.Controllers
             {
                 return new ChallengeResult();
             }
+            // Review with EF - should I copy changed fields to contactDB and update
+            // rather that what I'm doing here.
             contact.OwnerID = contactDB.OwnerID;
             _context.Entry(contactDB).State = EntityState.Detached;
 

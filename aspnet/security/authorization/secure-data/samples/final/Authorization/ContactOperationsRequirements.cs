@@ -1,16 +1,19 @@
 ﻿using ContactManager.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 
+// Add https://github.com/blowdart/AspNetAuthorization-Samples/blob/master/src/AspNetAuthorization/Authorization/DocumentAuthorizationHandler.cs
+// MapClaimsToOperations
+
 namespace ContactManager.Authorization
 {
     public static class ContactOperationsRequirements
     {
-        public static OperationAuthorizationRequirement Create =
-            new OperationAuthorizationRequirement { Name = "canCreate" };
+        public static OperationAuthorizationRequirement Create =  // Add a create handler
+            new OperationAuthorizationRequirement { Name = "Create" };
         public static OperationAuthorizationRequirement Read =
-            new OperationAuthorizationRequirement { Name = "canRead" };
+            new OperationAuthorizationRequirement { Name = "Read" };  // Add a read handler
         public static OperationAuthorizationRequirement Update =
-            new OperationAuthorizationRequirement { Name = "canUpdate" };
+            new OperationAuthorizationRequirement { Name = "Update" }; // Add a delete handler
         public static OperationAuthorizationRequirement Delete =
             new OperationAuthorizationRequirement { Name = Constants.canDelete };
         public static OperationAuthorizationRequirement ContainsOne =
@@ -23,3 +26,5 @@ namespace ContactManager.Authorization
         public static readonly string ContainsOne = "ContainsOne";
     }
 }
+
+// operations are not permission, permissions are what grant operations
