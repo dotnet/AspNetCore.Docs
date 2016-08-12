@@ -171,44 +171,8 @@ In web farm scenarios, an application can be configured to use a UNC path to sto
 Configuration of sub-applications
 ---------------------------------
 
-When adding applications to an IIS Site's root application, the root application *web.config* file should include the ``<handlers>`` section, which adds the ASP.NET Core Module as a handler for the app.
+When adding applications to an IIS Site's root application, the root application *web.config* file should include the ``<handlers>`` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the ``<handlers>`` section. If you repeat the ``<handlers>`` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
 
-.. code-block:: xml
-
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-    <system.webServer>
-      <handlers>
-        <add 
-          name="aspNetCore" 
-          path="*" 
-          verb="*" 
-          modules="AspNetCoreModule" 
-          resourceType="Unspecified" />
-      </handlers>
-      <aspNetCore 
-        processPath="dotnet" 
-        arguments=".\root_application.dll" 
-        stdoutLogEnabled="false" 
-        stdoutLogFile=".\logs\stdout" />
-    </system.webServer>
-  </configuration>
-
-Applications added to the root application shouldn't include the ``<handlers>`` section, as shown below. If you repeat the ``<handlers>`` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
-
-.. code-block:: xml
-
-  <?xml version="1.0" encoding="utf-8"?>
-  <configuration>
-    <system.webServer>
-      <aspNetCore 
-        processPath="dotnet" 
-        arguments=".\sub_application.dll" 
-        stdoutLogEnabled="false" 
-        stdoutLogFile=".\logs\stdout" />
-    </system.webServer>
-  </configuration>
-  
 Common errors
 -------------
 
