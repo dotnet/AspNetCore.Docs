@@ -70,7 +70,7 @@ Controllers are the components that handle user interaction, work with the model
 View Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^
 
-Views are responsible for presenting content through the user interface. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a :doc:`View Component </mvc/views/view-components>`, ViewModel, or view template to simplify the view.
+Views are responsible for presenting content through the user interface. They use the `Razor view engine`_ to embed .NET code in HTML markup. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a :doc:`View Component </mvc/views/view-components>`, ViewModel, or view template to simplify the view.
 
 What is ASP.NET Core MVC
 ------------------------
@@ -83,17 +83,20 @@ Features
 --------
 
 ASP.NET Core MVC includes the following features:
-  - `Routing`_
-  - `Model binding`_
-  - `Model validation`_
-  - `Dependency injection`_
-  - `Filters`_
-  - `Areas`_
-  - `Web APIs`_
-  - `Testability`_
-  - `Razor view engine`_
-  - `Strongly typed views`_
-  - `Mobile support`_
+
+- `Routing`_
+- `Model binding`_
+- `Model validation`_
+- `Dependency injection`_
+- `Filters`_
+- `Areas`_
+- `Web APIs`_
+- `Testability`_
+- `Razor view engine`_
+- `Strongly typed views`_
+- `Tag Helpers`_
+- `View Components`_
+- `HTML Helpers`_
 
 Routing
 ^^^^^^^
@@ -212,7 +215,7 @@ Filters
 Areas
 ^^^^^
 
-:doc:Areas </mvc/controllers/areas> provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models.
+:doc:`Areas </mvc/controllers/areas>` provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models.
 
 Web APIs
 ^^^^^^^^
@@ -258,7 +261,7 @@ Razor views in MVC can be strongly typed based on your model. A strongly-typed v
       }
   </ul>
 
-Tag helpers
+Tag Helpers
 ^^^^^^^^^^^
 
 :doc:`Tag Helpers </mvc/views/tag-helpers/intro>` enable you to dynamically generate or modify the HTML returned to the client. You can use tag helpers to define custom tags or to modify the behavior of existing tags. Tag Helpers bind to specific elements based on the element name and its attributes. Tag Helpers give you all of the benefits of server-side rendering while still preserving an HTML editing experience.
@@ -310,8 +313,3 @@ HTML Helpers
   }
 
 ASP.NET Core MVC includes a comprehensive set of HTML Helpers for generating forms, labels, input elements, validation messages and links. You can customize the behavior of HTML Helpers for specific types using editor and display templates.
-
-Mobile support
-^^^^^^^^^^^^^^
-
-ASP.NET Core MVC has great support for mobile development, including the ability to create :doc:`mobile-specific views </mvc/views/mobile>` to give your users the best possible experience on their devices.
