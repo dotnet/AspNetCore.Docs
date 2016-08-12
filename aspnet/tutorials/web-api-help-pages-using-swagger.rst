@@ -7,7 +7,11 @@ By `Shayne Boyer`_
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application. 
 
-Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*.
+Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*. 
+
+- `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is an open source project for generating Swagger documents for Web APIs and built with ASP.NET Core MVC. 
+
+- `Swagger <a href="http://swagger.io/">`_ is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
 
 This tutorial builds on the sample on :doc:`first-web-api`. If you'd like to follow along, download the sample at https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample.
 
@@ -30,7 +34,7 @@ You can add Swashbuckle with any of the following approaches:
 
 .. code-block:: bash
 
-    Install=Package Swashbuckle -Pre
+    Install-Package Swashbuckle -Pre
 
 - Add Swashbuckle to *project.json*:
 
