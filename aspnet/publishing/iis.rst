@@ -155,7 +155,7 @@ Set the **.NET CLR version** to **No Managed Code**.
 
 Browse the website.
 
-        .. image:: iis/_static/browsewebsite.png
+  .. image:: iis/_static/browsewebsite.png
 
 Create a Data Protection Registry Hive
 --------------------------------------
@@ -173,7 +173,7 @@ Configuration of sub-applications
 
 When adding applications to an IIS Site's root application, the root application *web.config* file should include the ``<handlers>`` section, which adds the ASP.NET Core Module as a handler for the app.
 
-..code-block:: xml
+.. code-block:: xml
 
   <?xml version="1.0" encoding="utf-8"?>
   <configuration>
@@ -196,7 +196,7 @@ When adding applications to an IIS Site's root application, the root application
 
 Applications added to the root application shouldn't include the ``<handlers>`` section, as shown below. If you repeat the ``<handlers>`` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
 
-..code-block:: xml
+.. code-block:: xml
 
   <?xml version="1.0" encoding="utf-8"?>
   <configuration>
