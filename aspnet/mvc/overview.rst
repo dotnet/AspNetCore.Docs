@@ -20,7 +20,9 @@ The following diagram shows the three main components and which ones reference t
 
 .. image:: overview/_static/mvc.png
 
-This delineation of responsibilities helps you scale the application in terms of complexity because it’s much easier to code, debug, and test something (model, view, or controller) that has a single job rather than something that performs multiple tasks.
+This delineation of responsibilities helps you scale the application in terms of complexity because it’s easier to code, debug, and test something (model, view, or controller) that has a single job (and follows the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_). It's more difficult to update, test, and debug code that has dependencies spread across two or more of these three areas. For example, user interface logic tends to change more frequently than business logic. If presentation code and business logic are combined in a single object, you have to modify an object containing business logic every time you change the user interface. This is likely to introduce errors and require the retesting of all business logic after every minimal user interface change.
+
+.. note:: Both the view and the controller depend on the model. However, the model depends on neither the view nor the controller. This is one the key benefits of the separation. This separation allows the model to be built and tested independent of the visual presentation.
 
 Kinds of Models
 ^^^^^^^^^^^^^^^
@@ -30,12 +32,14 @@ In simple applications, there may be just one kind of model class that is used b
 Domain Model
 ############
 
-Many developers choose to encapsulate complex business logic within a *domain model*, which doesn't depend on infrastructure concerns and is easily validated with :doc:`unit tests </testing/index>`. The domain model will often include abstractions and services that allow the Controller to operate at a higher level of abstraction, and keep low-level plumbing code from cluttering the Controller and making it harder to test.
+Many developers choose to encapsulate complex business logic within a *domain model*, which doesn't depend on infrastructure concerns and is easily validated with :doc:`unit tests </testing/index>`. The domain model will often include abstractions and services that allow the Controller to operate at a higher level of abstraction, and keep low-level plumbing code from cluttering the Controller and making it harder to test. The domain model will usually include interface definitions (for services, repositories, etc.) used by the app, as well as `persistence-ignorant <http://deviq.com/persistence-ignorance/>`_ entities (and some services) that represent the state and behavior of the app's business logic.
 
 Persistence Model
 #################
 
-Some applications have separate classes that map closely to how data is stored and retrieved from persistence. If you're using Entity Framework, it can usually map your domain model directly to persistence without the need for a separate persistence model.
+Some applications have separate classes that map closely to how data is stored and retrieved from persistence, often because a tool generates the classes based on a database schema. It may make sense to add business logic to these classes and use them as the domain model, but in some cases the app can benefit from a domain model that is separate from this persistence model. In such scenarios, the classes responsible for persistence (for example, repositories) would be responsible for mapping to and from the different models.
+
+If you're using Entity Framework, it can generally map your domain model entities directly to persistence without the need for a separate persistence model.
 
 View Model
 ##########
@@ -57,25 +61,23 @@ If your application exposes an API, the format of the data you expose to clients
 Controller Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Controllers are the initial entry point for each request to an MVC app. Their primary responsibility is to work with the model to perform user commands and retrieve data in response to queries. The Controller then performs any necessary mapping from one model type to another (for instance creating a ViewModel needed for a particular View and populating it with results from the Domain Model), and then returns a particular View.
+Controllers are the components that handle user interaction, work with the model, and ultimately select a view to render. In an MVC application, the view only displays information; the controller handles and responds to user input and interaction. In the MVC pattern, the controller is the initial entry point, and is responsible for selecting which model types to work with and which view to render (hence its name - it controls how the app responds to a given request).
 
-.. note:: It's not uncommon for controllers to become bloated with too many responsibilities. Try to follow the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_ and push business logic out of the controller and into the domain model whenever possible.
+.. note:: Controllers should not be overly complicated by too many responsibilities. To keep controller logic from becoming overly complex, use the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_ to push business logic out of the controller and into the domain model.
 
 .. tip:: If you find that your controller actions frequently perform the same kinds of actions, you can follow the `Don't Repeat Yourself principle <http://deviq.com/don-t-repeat-yourself/>`_ by moving these common actions into `filters`_.
 
 View Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^
 
-Views are responsible for presenting content through the user interface. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a ViewModel instead that is designed to suit the needs of the View.
+Views are responsible for presenting content through the user interface. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a :doc:`View Component </mvc/views/view-components>`, ViewModel, or view template to simplify the view.
 
 What is ASP.NET Core MVC
 ------------------------
 
-The ASP.NET Core MVC framework is a lightweight, open source, highly testable presentation framework optimized for use with ASP.NET Core. It is available in the "Microsoft.AspNetCore.Mvc" package, and is used by Visual Studio's "Web API" and "Web Application" ASP.NET Core Templates.
+The ASP.NET Core MVC framework is a lightweight, open source, highly testable presentation framework optimized for use with ASP.NET Core.
 
-ASP.NET Core MVC gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and gives you full control over markup for enjoyable, agile development. ASP.NET Core MVC includes many features that enable fast, TDD-friendly development for creating sophisticated applications that use the latest web standards.
-
-ASP.NET Core MVC in ASP.NET Core includes support for building web pages and HTTP services in a single aligned framework that can be hosted in IIS or self-hosted in your own process.
+ASP.NET Core MVC provides a patterns-based way to build dynamic websites that enables a clean separation of concerns. It gives you full control over markup, supports TDD-friendly development and uses the latest web standards.
 
 Features
 --------
@@ -98,7 +100,7 @@ Routing
 
 ASP.NET Core MVC is built on top of :doc:`ASP.NET Core's routing </fundamentals/routing>`, a powerful URL-mapping component that lets you build applications that have comprehensible and searchable URLs. This enables you to define your application's URL naming patterns that work well for search engine optimization (SEO) and for link generation, without regard for how the files on your web server are organized. You can define your routes using a convenient route template syntax that supports route value constraints, defaults and optional values.
 
-*Convention-based routing* enables you to globally define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the incoming URL and matches it to one of the defined URL formats, and calls the associated controller's action method.
+*Convention-based routing* enables you to globally define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the URL and matches it to one of the defined URL formats, and then calls the associated controller's action method.
 
 
 .. code-block:: c#
@@ -125,6 +127,8 @@ Model binding
 
 ASP.NET Core MVC :doc:`model binding </mvc/models/model-binding>` converts client request data  (form values, route data, query string parameters, HTTP headers) into objects that the controller can handle. As a result, your controller logic doesn't have to do the work of figuring out the incoming request data; it simply has the data as parameters to its action methods.
 
+
+
 .. code-block:: C#
 
   public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null) { ... }
@@ -132,7 +136,7 @@ ASP.NET Core MVC :doc:`model binding </mvc/models/model-binding>` converts clien
 Model validation
 ^^^^^^^^^^^^^^^^
 
-In addition to binding request data to model objects, ASP.NET Core MVC provides a powerful :doc:`validation <mvc/models/validation>` system. Simply add validation attributes to your model types using data annotation attributes and then check for model errors in your controller action.
+ASP.NET Core MVC supports :doc:validation <mvc/models/validation> by decorating your model object with data annotation validation attributes. The validation attributes are check on the client side before values are posted to the server, as well as on the server before the controller action is called.
 
 .. code-block:: c#
   :emphasize-lines: 4-5,8-9
@@ -167,12 +171,12 @@ A controller action:
       return View(model);
   }
 
-The framework will handle validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser via `jQuery Validation <http://jqueryvalidation.org/>`__.
+The framework will handle validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with `jQuery Validation <http://jqueryvalidation.org/>`__.
 
 Dependency injection
 ^^^^^^^^^^^^^^^^^^^^
 
-ASP.NET Core MVC leverages ASP.NET Core's built-in support for :doc:`dependency injection </fundamentals/dependency-injection>`. :doc:`Controllers </mvc/controllers/dependency-injection>` can request needed services through their constructors, allowing them to follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_:
+ASP.NET Core has built-in support for :doc:`dependency injection (DI) </fundamentals/dependency-injection>`. In ASP.NET Core MVC, :doc:`controllers </mvc/controllers/dependency-injection>` can request needed services through their constructors, allowing them to follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
   :lines: 17-38
@@ -198,7 +202,7 @@ Your app can also use :doc:`dependency injection in view files </mvc/views/depen
 Filters
 ^^^^^^^
 
-:doc:`Filters </mvc/controllers/filters>` help developers encapsulate cross-cutting concerns, like exception handling or authorization. Filters enable running custom pre- and post-processing logic for action methods, and can be configured to run at certain points within the execution pipeline for a given request. Filters can be applied to controllers or actions as attributes, and several filters (such as ``Authorize``) are included in the framework.
+:doc:`Filters </mvc/controllers/filters>` help developers encapsulate cross-cutting concerns, like exception handling or authorization. Filters enable running custom pre- and post-processing logic for action methods, and can be configured to run at certain points within the execution pipeline for a given request. Filters can be applied to controllers or actions as attributes (or can be run globally). Several filters (such as ``Authorize``) are included in the framework.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
   :lines: 17-19
