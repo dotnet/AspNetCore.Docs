@@ -5,6 +5,7 @@ Authorization
    :titlesonly:
    
    introduction
+   secure-data
    simple
    roles
    claims
