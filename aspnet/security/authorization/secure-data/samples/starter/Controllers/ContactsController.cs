@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContactManager.Data;
 using ContactManager.Models;
+using ContactManager.Models.ContactViewModels;
 
 namespace ContactManager.Controllers
 {
@@ -45,19 +46,21 @@ namespace ContactManager.Controllers
         // GET: Contacts/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new ContactViewModel());
         }
 
         // POST: Contacts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+        // public async Task<IActionResult> Create([Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+        public async Task<IActionResult> Create( ContactViewModel contact)
+
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contact);
+                var contactDb = new Contact();
+                UpdateContact(contactDb, contact);
+                _context.Add(contactDb);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -77,17 +80,21 @@ namespace ContactManager.Controllers
             {
                 return NotFound();
             }
-            return View(contact);
-        }
+            return View(new ContactViewModel(contact));
+        }        
 
         // POST: Contacts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+        //public async Task<IActionResult> Edit(int id, [Bind("ContactId,Address,City,Email,Name,State,Zip")] Contact contact)
+        public async Task<IActionResult> Edit(int id,  ContactViewModel contact)
         {
             if (id != contact.ContactId)
+            {
+                return NotFound();
+            }
+            var contactDb = await _context.Contact.SingleOrDefaultAsync(m => m.ContactId == id);
+            if (contact == null)
             {
                 return NotFound();
             }
@@ -96,7 +103,9 @@ namespace ContactManager.Controllers
             {
                 try
                 {
-                    _context.Update(contact);
+                    UpdateContact(contactDb, contact);
+
+                    _context.Update(contactDb);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -146,6 +155,17 @@ namespace ContactManager.Controllers
         private bool ContactExists(int id)
         {
             return _context.Contact.Any(e => e.ContactId == id);
+        }
+
+        private Contact UpdateContact(Contact contact, ContactViewModel contactVM)
+        {
+            contact.Address = contactVM.Address;
+            contact.City = contactVM.City;
+            contact.Email = contactVM.Email;
+            contact.Name = contactVM.Name;
+
+            contact.Zip = contactVM.Zip;
+            return contact;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ContactManager.Models
+﻿namespace ContactManager.Models
 {
     #region snippet_1
     public class Contact
@@ -12,7 +10,6 @@ namespace ContactManager.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
     #endregion
