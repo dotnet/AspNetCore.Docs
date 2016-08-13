@@ -42,6 +42,8 @@ Require SSL
 
 In this section we'll set up our Visual Studio project to use SSL and our project to require SSL.
 
+.. _Enable-ssl-visual-studio-label:
+
 Enable SSL in Visual Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
