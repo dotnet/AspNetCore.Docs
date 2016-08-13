@@ -155,7 +155,7 @@ Set the **.NET CLR version** to **No Managed Code**.
 
 Browse the website.
 
-        .. image:: iis/_static/browsewebsite.png
+  .. image:: iis/_static/browsewebsite.png
 
 Create a Data Protection Registry Hive
 --------------------------------------
@@ -167,6 +167,11 @@ For standalone IIS installations, you may use the `Data Protection Provision-Aut
 In web farm scenarios, an application can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys are not encrypted. You can deploy an x509 certificate to each machine to encrypt the key ring. See :ref:`Configuring Data Protection <data-protection-configuring>` for details.
 
 .. include:: ./dataProtectionWarning.txt
+
+Configuration of sub-applications
+---------------------------------
+
+When adding applications to an IIS Site's root application, the root application *web.config* file should include the ``<handlers>`` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the ``<handlers>`` section. If you repeat the ``<handlers>`` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
 
 Common errors
 -------------
@@ -321,6 +326,17 @@ Troubleshooting
 
 - Confirm that you have correctly referenced the IIS Integration middleware by calling the `.UseIISIntegration()` method of the application's `WebHostBuilder()`.
 - If you are using the `.UseUrls()` extension method when self-hosting with Kestrel, confirm that it is positioned before the `.UseIISIntegration()` extension method on `WebHostBuilder()`. `.UseIISIntegration()` must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by `.UseUrls()`.
+
+Sub-application includes a ``<handlers>`` section
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** HTTP Error 500.19 - Internal Server Error
+- **Application Log:** No entry
+- **ASP.NET Core Module Log:** Log file created and shows normal operation for the root application. Log file not created for the sub-application.
+
+Troubleshooting
+
+- Confirm that the sub-application's *web.config* file doesn't include a ``<handlers>`` section.
 
 Additional resources
 --------------------
