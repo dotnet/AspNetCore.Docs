@@ -1,6 +1,6 @@
 Routing
 =======
-By `Ryan Nowak <https://github.com/rynowak>`__, `Steve Smith`_, and `Rick Anderson`_
+By `Ryan Nowak`_, `Steve Smith`_, and `Rick Anderson`_
 
 Routing is used to map requests to route handlers. Routes are configured when the application starts up, and can extract values from the URL that will be used for request processing. Routing functionality is also responsible for generating links using the defined routes in ASP.NET apps.
 
