@@ -12,3 +12,4 @@ Tutorials
    ASP.NET Core and Azure Service Fabric <https://azure.microsoft.com/en-us/documentation/articles/service-fabric-add-a-web-frontend/>
    /mobile/native-mobile-backend
    dotnet-watch
+   web-api-help-pages-using-swagger
