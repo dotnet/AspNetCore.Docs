@@ -31,6 +31,11 @@ The Model in an MVC application represents the state of the application and any 
 
 .. note:: There are many ways to organize the model in an app that uses the MVC architectural pattern. Learn more about some `different kinds of model types <http://deviq.com/kinds-of-models/>`_.
 
+View Responsibilities
+^^^^^^^^^^^^^^^^^^^^^
+
+Views are responsible for presenting content through the user interface. They use the `Razor view engine`_ to embed .NET code in HTML markup. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a :doc:`View Component </mvc/views/view-components>`, ViewModel, or view template to simplify the view.
+
 Controller Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -39,11 +44,6 @@ Controllers are the components that handle user interaction, work with the model
 .. note:: Controllers should not be overly complicated by too many responsibilities. To keep controller logic from becoming overly complex, use the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_ to push business logic out of the controller and into the domain model.
 
 .. tip:: If you find that your controller actions frequently perform the same kinds of actions, you can follow the `Don't Repeat Yourself principle <http://deviq.com/don-t-repeat-yourself/>`_ by moving these common actions into `filters`_.
-
-View Responsibilities
-^^^^^^^^^^^^^^^^^^^^^
-
-Views are responsible for presenting content through the user interface. They use the `Razor view engine`_ to embed .NET code in HTML markup. There should be minimal logic within views, and any logic in them should relate to presenting content. If you find the need to perform a great deal of logic in view files in order to display data from a complex model, consider using a :doc:`View Component </mvc/views/view-components>`, ViewModel, or view template to simplify the view.
 
 What is ASP.NET Core MVC
 ------------------------
