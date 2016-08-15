@@ -1,11 +1,9 @@
-:version: 1.0.0-rc2
-
 .. _fundamentals-dependency-injection:
 
 Dependency Injection
 ====================
 
-`Steve Smith`_
+`Steve Smith`_, `Scott Addie`_
 
 ASP.NET Core is designed from the ground up to support and leverage dependency injection. ASP.NET Core applications can leverage built-in framework services by having them injected into methods in the Startup class, and application services can be configured for injection as well. The default services container provided by ASP.NET Core provides a minimal feature set and is not intended to replace other containers.
 
@@ -33,7 +31,7 @@ ASP.NET Core includes a simple built-in container (represented by the ``IService
 Using Framework-Provided Services
 ---------------------------------
 
-The ``ConfigureServices`` method in the ``Startup`` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the ``IServiceCollection`` provided to ``ConfigureServices`` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extensions methods like ``AddDbContext``, ``AddIdentity``, and ``AddMvc``.
+The ``ConfigureServices`` method in the ``Startup`` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the ``IServiceCollection`` provided to ``ConfigureServices`` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like ``AddDbContext``, ``AddIdentity``, and ``AddMvc``.
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
   :language: c#
@@ -41,7 +39,7 @@ The ``ConfigureServices`` method in the ``Startup`` class is responsible for def
   :dedent: 8
   :emphasize-lines: 5,8,12
 
-The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add\ *Service*\  extension method to register all of the services required by that feature. 
+The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add\ *Service*\ extension method to register all of the services required by that feature. 
 
 .. tip:: You can request certain framework-provided services within ``Startup`` methods through their parameter lists - see :doc:`startup` for more details.
 
@@ -57,7 +55,7 @@ You can register your own application services as follows. The first generic typ
   :lines: 53-54
   :dedent: 12
 
-.. note:: Each ``services.Add<service>`` calls adds (and potentially configures) services. For example, ``services.AddMvc()`` adds the services MVC requires.
+.. note:: Each ``services.Add<service>`` call adds (and potentially configures) services. For example, ``services.AddMvc()`` adds the services MVC requires.
 
 The ``AddTransient`` method is used to map abstract types to concrete services that are instantiated separately for every object that requires it. This is known as the service's *lifetime*, and additional lifetime options are described below. It is important to choose an appropriate lifetime for each of the services you register. Should a new instance of the service be provided to each class that requests it? Should one instance be used throughout a given web request? Or should a single instance be used for the lifetime of the application?
 
@@ -69,7 +67,7 @@ In the sample for this article, there is a simple controller that displays chara
   :dedent: 4
   :emphasize-lines: 3,5-8,14,21,23-26
 
-The `ICharacterRepository` simply defines the two methods the controller needs to work with `Character` instances.
+The ``ICharacterRepository`` simply defines the two methods the controller needs to work with ``Character`` instances.
 
 .. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Interfaces/ICharacterRepository.cs
   :language: c#
@@ -92,7 +90,7 @@ In this case, both ``ICharacterRepository`` and in turn ``ApplicationDbContext``
 .. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Startup.cs
   :language: c#
   :lines: 17-33
-  :emphasize-lines: 3-5,11
+  :emphasize-lines: 2-4,10
   :dedent: 8
 
 Entity Framework contexts should be added to the services container using the ``Scoped`` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
@@ -127,7 +125,7 @@ Next, in ``ConfigureServices``, each type is added to the container according to
 
 .. literalinclude:: dependency-injection/sample/DependencyInjectionSample/Startup.cs
   :language: c#
-  :lines: 28-32
+  :lines: 26-32
   :dedent: 12
 
 Note that the ``IOperationSingletonInstance`` service is using a specific instance with a known ID of ``Guid.Empty`` so it will be clear when this type is in use. We have also registered an ``OperationService`` that depends on each of the other ``Operation`` types, so that it will be clear within a request whether this service is getting the same instance as the controller, or a new one, for each operation type. All this service does is expose its dependencies as properties, so they can be displayed in the view.
@@ -167,7 +165,7 @@ Generally, you shouldn't use these properties directly, preferring instead to re
 Designing Your Services For Dependency Injection
 ------------------------------------------------
 
-You should design your services to use dependency injection to get their collaborators. This means avoiding the use of stateful static method calls (which result in a code smell known as `static cling <http://deviq.com/static-cling/>`_) and the direct instantiation of dependent classes within your services. It may help to remember the phrase, `New is Glue <http://ardalis.com/new-is-glue>`_, when choosing whether to instantiate a type or to request it via dependency injection. By following the `SOLID Principles of Object Oriented Design <http://deviq.com/solid/>`_, your classes will naturally tend to be small,  well-factored, and easily tested.
+You should design your services to use dependency injection to get their collaborators. This means avoiding the use of stateful static method calls (which result in a code smell known as `static cling <http://deviq.com/static-cling/>`_) and the direct instantiation of dependent classes within your services. It may help to remember the phrase, `New is Glue <http://ardalis.com/new-is-glue>`_, when choosing whether to instantiate a type or to request it via dependency injection. By following the `SOLID Principles of Object Oriented Design <http://deviq.com/solid/>`_, your classes will naturally tend to be small, well-factored, and easily tested.
 
 What if you find that your classes tend to have way too many dependencies being injected? This is generally a sign that your class is trying to do too much, and is probably violating SRP - the `Single Responsibility Principle <http://deviq.com/single-responsibility-principle/>`_. See if you can refactor the class by moving some of its responsibilities into a new class. Keep in mind that your ``Controller`` classes should be focused on UI concerns, so business rules and data access implementation details should be kept in classes appropriate to these `separate concerns <http://deviq.com/separation-of-concerns/>`_.
 
@@ -178,9 +176,9 @@ With regards to data access specifically, you can inject the ``DbContext`` into 
 Replacing the default services container
 ----------------------------------------
 
-The built-in services container is mean to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the `Autofac <http://autofac.org/>`_ package is used.
+The built-in services container is meant to serve the basic needs of the framework and most consumer applications built on it. However, developers who wish to replace the built-in container with their preferred container can easily do so. The ``ConfigureServices`` method typically returns ``void``, but if its signature is changed to return ``IServiceProvider``, a different container can be configured and returned. There are many IOC containers available for .NET. In this example, the `Autofac <http://autofac.org/>`_ package is used.
 
-First, add the appropriate container package(s) to the dependencies property in project.json:
+First, add the appropriate container package(s) to the dependencies property in ``project.json``:
 
 .. code-block:: javascript
 
@@ -221,7 +219,7 @@ Finally, configure Autofac as normal in ``DefaultModule``:
     }
   }
 
-At runtime, Autofac will be used to resolve types and inject dependencies. `Learn more about using Autofac and ASP.NET Core <http://docs.autofac.org/en/latest/integration/aspnetcore.html>`_
+At runtime, Autofac will be used to resolve types and inject dependencies. `Learn more about using Autofac and ASP.NET Core <http://docs.autofac.org/en/latest/integration/aspnetcore.html>`_.
 
 Recommendations
 ---------------
