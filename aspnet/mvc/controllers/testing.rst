@@ -155,6 +155,6 @@ The following set of tests target the ``Create`` method in the :ref:`IdeasContro
 
 Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a ``BrainstormSession`` instance, and confirms that the idea was correctly added to its collection of ideas.
 
-You'll find additional examples of integration tests in this article's `sample project <https://github.com/aspnet/Docs/tree/1.0.0-rc1/aspnet/mvc/controllers/testing/sample>`_.
+You'll find additional examples of integration tests in this article's `sample project <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/testing/sample>`_.
 
 .. _Unit testing: https://docs.microsoft.com/en-us/dotnet/articles/core/testing/unit-testing-with-dotnet-test
