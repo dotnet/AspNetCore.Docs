@@ -24,39 +24,10 @@ This delineation of responsibilities helps you scale the application in terms of
 
 .. note:: Both the view and the controller depend on the model. However, the model depends on neither the view nor the controller. This is one the key benefits of the separation. This separation allows the model to be built and tested independent of the visual presentation.
 
-Kinds of Models
-^^^^^^^^^^^^^^^
+Model Responsibilities
+^^^^^^^^^^^^^^^^^^^^^^
 
-In simple applications, there may be just one kind of model class that is used by persistence, presentation, and any business logic. However, frequently this kind of one-size-fits-all approach doesn't scale to complex applications. In that case, it may make sense to have different model types (classes) with different responsibilities. Some MVC applications will include some combination of the following types of model objects.
-
-Domain Model
-############
-
-Many developers choose to encapsulate complex business logic within a *domain model*, which doesn't depend on infrastructure concerns and is easily validated with :doc:`unit tests </testing/index>`. The domain model will often include abstractions and services that allow the Controller to operate at a higher level of abstraction, and keep low-level plumbing code from cluttering the Controller and making it harder to test. The domain model will usually include interface definitions (for services, repositories, etc.) used by the app, as well as `persistence-ignorant <http://deviq.com/persistence-ignorance/>`_ entities (and some services) that represent the state and behavior of the app's business logic.
-
-Persistence Model
-#################
-
-Some applications have separate classes that map closely to how data is stored and retrieved from persistence, often because a tool generates the classes based on a database schema. It may make sense to add business logic to these classes and use them as the domain model, but in some cases the app can benefit from a domain model that is separate from this persistence model. In such scenarios, the classes responsible for persistence (for example, repositories) would be responsible for mapping to and from the different models.
-
-If you're using Entity Framework, it can generally map your domain model entities directly to persistence without the need for a separate persistence model.
-
-View Model
-##########
-
-Many developers are familiar with the concept of a ViewModel, especially those who have used application frameworks that use the Model-View-ViewModel pattern. In an MVC web application, a ViewModel is a type that includes just the data a View requires for display (and perhaps sending back to the server). ViewModel types can also simplify `model binding`_. ViewModel types are generally just data containers; any logic they may have should be specific to helping the View render data.
-
-Binding Model
-#############
-
-Sometimes it may be worthwhile to create a type specifically for use with `model binding`_. These types are typically just data containers with no behavior.
-
-.. note:: Using a binding model (or viewmodel) is recommended to avoid allowing a malicious user to set properties on the model that are not included in the UI, but are exposed via model binding.
-
-API Model
-#########
-
-If your application exposes an API, the format of the data you expose to clients may be separated from your app's internal domain model by defining custom API model types. This allows you to change your internal model types without impacting clients that may be using your exposed APIs.
+The Model in an MVC application represents the state of the application and any business logic or operations that should be performed by it. Business logic should be encapsulated in the model, along with any implementation logic for persisting the state of the application. Strongly-typed views will typically use ViewModel types specifically designed to contain the data to display on that view; the controller will create and populate these ViewModel instances from the model.
 
 Controller Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
