@@ -16,7 +16,7 @@ Install Visual Studio and .NET Core
 
 
 Create a web app
------------------------------------
+------------------------
 
 From the Visual Studio **Start** page, tap **New Project**.
 
