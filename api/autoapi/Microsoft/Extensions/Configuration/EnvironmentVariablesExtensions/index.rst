@@ -101,7 +101,7 @@ Methods
         :type configurationBuilder: Microsoft.Extensions.Configuration.IConfigurationBuilder
     
         
-        :param prefix: The prefix that environment variable names must start with. The prefix will be removed from the environment variable names
+        :param prefix: The prefix that environment variable names must start with. The prefix will be removed from the environment variable names.
         
         :type prefix: System.String
         :rtype: Microsoft.Extensions.Configuration.IConfigurationBuilder
