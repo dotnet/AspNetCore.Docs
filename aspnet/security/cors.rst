@@ -36,14 +36,14 @@ Setting up CORS
 
 To setup CORS for your application you use the ``Microsoft.AspNetCore.Cors`` package. In your project.json file, add the following:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample1/project.json
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample1/project.json
   :language: javascript
   :lines: 2-12
   :emphasize-lines: 10
   
 Add the CORS services in Startup.cs:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample1/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample1/Startup.cs
   :language: csharp
   :start-after: snippet_addcors
   :end-before: #endregion
@@ -56,7 +56,7 @@ To enable CORS for your entire application add the CORS middleware to your reque
 
 You can specify a cross-origin policy when adding the CORS middleware using the ``CorsPolicyBuilder`` class. There are two ways to do this. The first is to call UseCors with a lambda:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample1/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample1/Startup.cs
   :language: csharp
   :start-after: #startconfigure
   :end-before: #endconfigure
@@ -67,7 +67,7 @@ The lambda takes a CorsPolicyBuilder object. I’ll describe all of the configur
 
 Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample3/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample3/Startup.cs
   :language: csharp
   :start-after: BEGIN FLUENT
   :end-before: END FLUENT
@@ -76,7 +76,7 @@ Note that CorsPolicyBuilder has a fluent API, so you can chain method calls:
 
 The second approach is to define one or more named CORS policies, and then select the policy by name at run time.
 
-.. literalinclude:: cors/sample/src/CorsExample2/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample2/Startup.cs
   :language: csharp
   :start-after: snippet_begin
   :end-before: endregion
@@ -96,7 +96,7 @@ Per action
 
 To specify a CORS policy for a specific action add the ``[EnableCors]`` attribute to the action. Specify the policy name.
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsMVC/Controllers/HomeController.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsMVC/Controllers/HomeController.cs
     :language: csharp
     :lines: 9-17
     :dedent: 4
@@ -106,7 +106,7 @@ Per controller
 
 To specify the CORS policy for a specific controller add the ``[EnableCors]`` attribute to the controller class. Specify the policy name.
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsMVC/Controllers/HomeController.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsMVC/Controllers/HomeController.cs
     :language: csharp
     :lines: 10-12
     :dedent: 4
@@ -116,7 +116,7 @@ Globally
 
 You can enable CORS globally for all controllers by adding the ``CorsAuthorizationFilterFactory`` filter to the global filter collection:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsMvc/Startup2.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsMvc/Startup2.cs
   :language: csharp
   :start-after: snippet_configureservices
   :end-before: endregion
@@ -129,7 +129,7 @@ Disable CORS
 
 To disable CORS for a controller or action, use the ``[DisableCors]`` attribute.
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsMVC/Controllers/HomeController.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsMVC/Controllers/HomeController.cs
     :language: csharp
     :lines: 19-23
     :dedent: 4
@@ -153,7 +153,7 @@ Set the allowed origins
 
 To allow one or more specific origins:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN01
   :end-before: END01
@@ -161,7 +161,7 @@ To allow one or more specific origins:
 
 To allow all origins:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN02
   :end-before: END02
@@ -174,7 +174,7 @@ Set the allowed HTTP methods
 
 To specify which HTTP methods are allowed to access the resource.
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN03
   :end-before: END03
@@ -182,7 +182,7 @@ To specify which HTTP methods are allowed to access the resource.
 
 To allow all HTTP methods:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN04
   :end-before: END04
@@ -197,7 +197,7 @@ A CORS preflight request might include an Access-Control-Request-Headers header,
 
 To whitelist specific headers:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN05
   :end-before: END05
@@ -205,7 +205,7 @@ To whitelist specific headers:
 
 To allow all author request headers:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN06
   :end-before: END06
@@ -227,7 +227,7 @@ By default, the browser does not expose all of the response headers to the appli
 
 The CORS spec calls these *simple response headers*. To make other headers available to the application:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN07
   :end-before: END07
@@ -259,7 +259,7 @@ In jQuery:
 
 In addition, the server must allow the credentials. To allow cross-origin credentials:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN08
   :end-before: END08
@@ -276,7 +276,7 @@ Set the preflight expiration time
 
 The Access-Control-Max-Age header specifies how long the response to the preflight request can be cached. To set this header:
 
-.. literalinclude:: cors/sample/src/CorsExamplesRTM/CorsExample4/Startup.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsExample4/Startup.cs
   :language: csharp
   :start-after: BEGIN09
   :end-before: END09
