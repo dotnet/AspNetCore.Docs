@@ -209,7 +209,7 @@ Razor view engine
 
 :doc:`ASP.NET Core MVC views </mvc/views/overview>` use the the :doc:`Razor view engine </mvc/views/razor>` to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded .NET code. Razor is used to dynamically generate web content on the server. Unlike most template syntaxes, you do not need to interrupt your coding to explicitly denote server blocks within your HTML. The parser is smart enough to infer this from your code. This makes creating views in Razor clean, fast and fun!
 
-.. code-block:: html
+.. code-block:: text
 
   <ul>
     @for (int i = 0; i < 5; i++) {
