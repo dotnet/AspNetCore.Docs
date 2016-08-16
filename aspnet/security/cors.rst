@@ -116,7 +116,7 @@ Globally
 
 You can enable CORS globally for all controllers by adding the ``CorsAuthorizationFilterFactory`` filter to the global filter collection:
 
-.. literalinclude:: cors/sample/src/CorsExamples/CorsMvc/Startup2.cs
+.. literalinclude:: cors/sample/src/CorsExamples/CorsMVC/Startup2.cs
   :language: csharp
   :start-after: snippet_configureservices
   :end-before: endregion
