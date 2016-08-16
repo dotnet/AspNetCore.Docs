@@ -24,12 +24,14 @@ namespace CorsExample3
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            // Shows fluent API.
+            
+            // BEGIN FLUENT
             app.UseCors(builder =>
                 builder.WithOrigins("http://example.com")
                        .AllowAnyHeader()
                 );
+            
+            // END FLUENT
 
             app.Run(async (context) =>
             {
