@@ -124,26 +124,27 @@ Update _LoginPartial.cshtml with the following code (replace all of its contents
 
 .. code-block:: c#
 
-  @using System.Security.Principal
+  @inject SignInManager<User> SignInManager
+  @inject UserManager<User> UserManager
 
-  @if (User.Identity.IsAuthenticated)
+  @if (SignInManager.IsSignedIn(User))
   {
-      using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-      {
-          @Html.AntiForgeryToken()
+      <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
           <ul class="nav navbar-nav navbar-right">
               <li>
-                  @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+                  <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
               </li>
-              <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+              <li>
+                  <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
+              </li>
           </ul>
-      }
+      </form>
   }
   else
   {
       <ul class="nav navbar-nav navbar-right">
-          <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-          <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+          <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+          <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
       </ul>
   }
 
