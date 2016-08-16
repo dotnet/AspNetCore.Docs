@@ -69,7 +69,6 @@ ASP.NET Core MVC includes the following features:
 - `Strongly typed views`_
 - `Tag Helpers`_
 - `View Components`_
-- `HTML Helpers`_
 
 Routing
 ^^^^^^^
@@ -207,7 +206,7 @@ The framework's use of interfaces and dependency injection make it well-suited t
 Razor view engine
 ^^^^^^^^^^^^^^^^^
 
-:doc:`ASP.NET Core MVC views </mvc/views/overview>` use the the :doc:`Razor view engine </mvc/views/razor>` to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded .NET code. Razor is used to dynamically generate web content on the server. Unlike most template syntaxes, you do not need to interrupt your coding to explicitly denote server blocks within your HTML. The parser is smart enough to infer this from your code. This makes creating views in Razor clean, fast and fun!
+:doc:`ASP.NET Core MVC views </mvc/views/overview>` use the the :doc:`Razor view engine </mvc/views/razor>` to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded C# code. Razor is used to dynamically generate web content on the server. You can cleanly mix server code with client side content and code.
 
 .. code-block:: text
 
@@ -222,7 +221,9 @@ Using the Razor view engine you can define :doc:`layouts </mvc/views/layout>`, :
 Strongly typed views
 ^^^^^^^^^^^^^^^^^^^^
 
-Razor views in MVC can be strongly typed based on your model. A strongly-typed view explicitly specifies the model type for the view. You can then leverage the compiler and IntelliSense to ensure that references to property names and types in your views are correct:
+Razor views in MVC can be strongly typed based on your model. Controllers can pass a strongly typed model to views enabling your views to have type checking and IntelliSense support.
+
+For example, the following view defines a model of type ``IEnumerable<Product>``:
 
 .. code-block:: html
 
@@ -237,9 +238,9 @@ Razor views in MVC can be strongly typed based on your model. A strongly-typed v
 Tag Helpers
 ^^^^^^^^^^^
 
-:doc:`Tag Helpers </mvc/views/tag-helpers/intro>` enable you to dynamically generate or modify the HTML returned to the client. You can use tag helpers to define custom tags or to modify the behavior of existing tags. Tag Helpers bind to specific elements based on the element name and its attributes. Tag Helpers give you all of the benefits of server-side rendering while still preserving an HTML editing experience.
+:doc:`Tag Helpers </mvc/views/tag-helpers/intro>` enable server side code to participate in creating and rendering HTML elements in Razor files. You can use tag helpers to define custom tags (for example, ``<environment>``) or to modify the behavior of existing tags (for example, ``<label>``). Tag Helpers bind to specific elements based on the element name and its attributes. They provide the benefits of server-side rendering while still preserving an HTML editing experience.
 
-For example, you can use the built-in ``LinkTagHelper`` to create a link to the ``Login`` action of your ``AccountsController``:
+There are many built-in Tag Helpers for common tasks - such as creating forms, links, loading assets and more - and even more available in public GitHub repositories and as NuGet packages. Tag Helpers are authored in C#, and they target HTML elements based on element name, attribute name, or parent tag. For example, the built-in LinkTagHelper can be used to create a link to the ``Login`` action of the ``AccountsController``:
 
 .. code-block:: html
   :emphasize-lines: 3
@@ -249,7 +250,7 @@ For example, you can use the built-in ``LinkTagHelper`` to create a link to the 
       Please <a asp-controller="Account" asp-action="Login">Click here to Log in</a>.
   </p>
 
-Or you can use the ``EnvironmentTagHelper`` to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staring, or Production:
+The ``EnvironmentTagHelper`` can be used to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staring, or Production:
 
 .. code-block:: html
   :emphasize-lines: 1,3-4,9
@@ -264,25 +265,10 @@ Or you can use the ``EnvironmentTagHelper`` to include different scripts in your
       </script>
   </environment>
 
-ASP.NET Core MVC includes a full set of built-in Tag Helpers that you can use or you can build your own.
+Tag Helpers provide an HTML-friendly development experience and a rich IntelliSense environment for creating HTML and Razor markup. Most of the built-in Tag Helpers target existing HTML elements and provide server-side attributes for the element.
 
 View Components
 ^^^^^^^^^^^^^^^
 
-:doc:`View Components </mvc/views/view-components>` are like :doc:`partial views </mvc/views/partial>` with associated application buisiness logic. View Components can have asynchronous logic and can be reused throughout your application's views.
+:doc:`View Components </mvc/views/view-components>` allow you to package rendering logic and reuse it throughout the application. They're similar to :doc:`partial views </mvc/views/partial>`, but with associated logic.
 
-HTML Helpers
-^^^^^^^^^^^^
-
-:doc:`HTML Helpers </mvc/views/html-helpers>` are .NET methods that you can use in Razor views to generate HTML. HTML Helpers help you generate views based on your model while handling concerns like HTML encoding for you. 
-
-.. code-block:: html
-  :emphasize-lines: 1
-
-  @using (Html.BeginForm("Search", "Home", FormMethod.Get)) 
-  {
-      <input type="text" name="q" />
-      <input type="submit" value="Search" />
-  }
-
-ASP.NET Core MVC includes a comprehensive set of HTML Helpers for generating forms, labels, input elements, validation messages and links. You can customize the behavior of HTML Helpers for specific types using editor and display templates.
