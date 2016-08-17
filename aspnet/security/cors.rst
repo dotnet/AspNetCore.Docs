@@ -34,12 +34,7 @@ These URLs have different origins than the previous two:
 Setting up CORS
 ---------------
 
-To setup CORS for your application you use the ``Microsoft.AspNetCore.Cors`` package. In your project.json file, add the following:
-
-.. literalinclude:: cors/sample/src/CorsExamples/CorsExample1/project.json
-  :language: javascript
-  :lines: 2-12
-  :emphasize-lines: 10
+To setup CORS for your application add the ``Microsoft.AspNetCore.Cors`` package to your project.
   
 Add the CORS services in Startup.cs:
 
