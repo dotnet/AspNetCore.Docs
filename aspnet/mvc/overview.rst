@@ -111,7 +111,7 @@ ASP.NET Core MVC :doc:`model binding </mvc/models/model-binding>` converts clien
 Model validation
 ^^^^^^^^^^^^^^^^
 
-ASP.NET Core MVC supports :doc:validation <mvc/models/validation> by decorating your model object with data annotation validation attributes. The validation attributes are check on the client side before values are posted to the server, as well as on the server before the controller action is called.
+ASP.NET Core MVC supports :doc:`validation </mvc/models/validation>` by decorating your model object with data annotation validation attributes. The validation attributes are check on the client side before values are posted to the server, as well as on the server before the controller action is called.
 
 .. code-block:: c#
   :emphasize-lines: 4-5,8-9
@@ -151,12 +151,7 @@ The framework will handle validating request data both on the client and on the 
 Dependency injection
 ^^^^^^^^^^^^^^^^^^^^
 
-ASP.NET Core has built-in support for :doc:`dependency injection (DI) </fundamentals/dependency-injection>`. In ASP.NET Core MVC, :doc:`controllers </mvc/controllers/dependency-injection>` can request needed services through their constructors, allowing them to follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_:
-
-.. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Controllers/AccountController.cs
-  :lines: 17-38
-  :emphasize-lines: 10-14
-  :language: c#
+ASP.NET Core has built-in support for :doc:`dependency injection (DI) </fundamentals/dependency-injection>`. In ASP.NET Core MVC, :doc:`controllers </mvc/controllers/dependency-injection>` can request needed services through their constructors, allowing them to follow the `Explicit Dependencies Principle <http://deviq.com/explicit-dependencies-principle/>`_.
 
 Your app can also use :doc:`dependency injection in view files </mvc/views/dependency-injection>`, using the ``@inject`` directive:
 
