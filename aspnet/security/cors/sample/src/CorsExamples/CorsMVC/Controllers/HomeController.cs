@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNet.Cors.Core;
-using Microsoft.AspNet.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CorsMvc.Controllers
+namespace CorsMVC.Controllers
 {
     [EnableCors("AllowSpecificOrigin")]
     public class HomeController : Controller
     {
-        [EnableCors("AllowSpecificOrigin")] 
+        [EnableCors("AllowSpecificOrigin")]
         public IActionResult Index()
         {
             return View();

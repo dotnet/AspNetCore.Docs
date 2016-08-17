@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Cors;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace CorsMvc
+namespace CorsMVC
 {
     public class Startup
     {
-
+       #region snippet_configureservices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -28,9 +33,18 @@ namespace CorsMvc
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
             });
         }
-
+        #endregion
+        
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseMvc();
         }
     }

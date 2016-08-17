@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CorsExample2
 {
     public class Startup
     {
+        #region snippet_begin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -15,14 +18,22 @@ namespace CorsExample2
             });
         }
 
-        // Shows UseCors with named policy
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
             });
         }
+        #endregion
     }
 }
