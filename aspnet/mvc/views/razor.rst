@@ -1,6 +1,6 @@
 Razor Syntax Reference
 ===========================
-`Taylor Mullen <https://twitter.com/ntaylormullen>`__, and `Rick Anderson`_
+`Taylor Mullen <https://twitter.com/ntaylormullen>`__ and `Rick Anderson`_
 
 .. contents:: Sections
   :local:
@@ -592,11 +592,6 @@ Reserved keywords not used by Razor
 
 - namespace
 - class
-
-The following sample show all the Razor reserved words escaped:
-
-.. literalinclude:: razor/sample/Views/Home/Contact5.cshtml
-  :language: html
 
 .. _razor-customcompilationservice-label:
 
