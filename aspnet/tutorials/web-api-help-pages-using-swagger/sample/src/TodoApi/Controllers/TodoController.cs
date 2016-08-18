@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Net;
-using Swashbuckle.SwaggerGen.Annotations;
 
 namespace TodoApi.Controllers
 {
@@ -72,11 +70,11 @@ namespace TodoApi.Controllers
         /// </remarks>
         /// <param name="item"></param>
         /// <returns>New Created Todo Item</returns>
-        /// <response code="201">Todo Item created</response>
-        /// <response code="400">Todo Item invalid</response>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">If the item is null</response>
         [HttpPost]
-        [SwaggerResponse(HttpStatusCode.Created, "Returns the newly created Todo item.", typeof(TodoItem))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "If the item is null", typeof(TodoItem))]
+        [ProducesResponseType(typeof(TodoItem), 201)]
+        [ProducesResponseType(typeof(TodoItem), 400)]
         public IActionResult Create([FromBody, Required] TodoItem item)
         {
             if (item == null)
