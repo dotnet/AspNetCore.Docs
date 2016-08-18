@@ -19,7 +19,7 @@ When MVC receives an HTTP request, it routes it to a specific action method of a
 
 `http://contoso.com/movies/edit/2`
 
-Since the route template looks like this, ``{controller=Home}/{action=Index}/{id?}``, ``movies/edit/2`` routes to the ``Movies`` controller, and its ``Edit`` action method. It also accepts an optional parameter called ``id``. The code for the action method should look something like this: 
+Since the route template looks like this, ``{controller=Home}/{action=Edit}/{id?}``, ``movies/edit/2`` routes to the ``Movies`` controller, and its ``Edit`` action method. It also accepts an optional parameter called ``id``. The code for the action method should look something like this: 
 
 .. code-block:: c#
   :linenos:
