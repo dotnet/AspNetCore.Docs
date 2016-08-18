@@ -183,8 +183,8 @@ First, add the appropriate container package(s) to the dependencies property in 
 .. code-block:: javascript
 
   "dependencies" : {
-    "Autofac": "4.0.0-rc2-237",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-200"
+    "Autofac": "4.0.0",
+    "Autofac.Extensions.DependencyInjection": "4.0.0"
   },
 
 Next, configure the container in ``ConfigureServices`` and return an ``IServiceProvider``:
@@ -202,7 +202,7 @@ Next, configure the container in ``ConfigureServices`` and return an ``IServiceP
     containerBuilder.RegisterModule<DefaultModule>();
     containerBuilder.Populate(services);
     var container = containerBuilder.Build();
-    return container.Resolve<IServiceProvider>();
+    return new AutofacServiceProvider(container);
   }
 
 .. note:: When using a third-party DI container, you must change ``ConfigureServices`` so that it returns ``IServiceProvider`` instead of ``void``.
