@@ -24,3 +24,4 @@
 .. _Victor Hurdugaci: https://twitter.com/victorhurdugaci
 .. _Shayne Boyer: https://twitter.com/spboyer
 .. _Ryan Nowak: https://github.com/rynowak
+.. _Tom Dykstra: https://github.com/tdykstra
