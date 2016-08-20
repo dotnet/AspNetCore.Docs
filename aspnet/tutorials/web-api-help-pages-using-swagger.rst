@@ -371,7 +371,7 @@ The following CSS provides a simple sample of a custom header title to the page.
 
 .. image:: web-api-help-pages-using-swagger/_static/custom-header.png
 
-There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_. 
+There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <https://github.com/swagger-api/swagger-ui>`_. 
 
 
 
