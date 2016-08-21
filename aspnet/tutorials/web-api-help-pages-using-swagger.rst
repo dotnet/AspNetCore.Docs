@@ -9,7 +9,7 @@ Understanding the various methods of an API can be a challenge for a developer w
 
 Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*. 
 
-- `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is an open source project for generating Swagger documents for Web APIs and built with ASP.NET Core MVC. 
+- `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is an open source project for generating Swagger documents for Web APIs that are built with ASP.NET Core MVC. 
 
 - `Swagger <a href="http://swagger.io/">`_ is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
 
@@ -23,7 +23,7 @@ Getting Started
 ---------------
 There are two core components to Swashbuckle 
 
-- *Swashbuckle.SwaggerGen* : provides the functionality to scaffold your Web API and generate JSON Swagger documents that describe the objects, methods, return types, etc. 
+- *Swashbuckle.SwaggerGen* : provides the functionality to generate JSON Swagger documents that describe the objects, methods, return types, etc. 
 - *Swashbuckle.SwaggerUI* : an embedded version of the Swagger UI tool which uses the above documents for a rich customizable experience for describing the Web API functionality and includes built in test harness capabilities for the public methods.
 
 NuGet Packages
@@ -40,7 +40,7 @@ You can add Swashbuckle with any of the following approaches:
 
 .. code-block:: javascript
 
-    "Swashbuckle": "6.0.0-*"
+    "Swashbuckle": "6.0.0-beta902"
 
 - In Visual Studio:
 	- Right click your project in Solution Explorer > Manage NuGet Packages 
