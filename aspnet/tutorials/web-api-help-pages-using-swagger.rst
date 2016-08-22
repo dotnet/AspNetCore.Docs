@@ -7,11 +7,11 @@ By `Shayne Boyer`_
 
 Understanding the various methods of an API can be a challenge for a developer when building a consuming application. 
 
-Generating good documentation and help pages as a part of your Web API using `Swagger <a href="http://swagger.io/">`_ with the .NET Core implementation `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*. 
+Generating good documentation and help pages as a part of your Web API using Swagger_ with the .NET Core implementation `Swashbuckle <https://github.com/domaindrivendev/Ahoy>`_ is as easy as adding a couple of NuGet packages and modifying the *Startup.cs*. 
 
-- `Swashbuckle <a href="https://github.com/domaindrivendev/Ahoy">`_ is an open source project for generating Swagger documents for Web APIs that are built with ASP.NET Core MVC. 
+- `Swashbuckle <https://github.com/domaindrivendev/Ahoy>`_ is an open source project for generating Swagger documents for Web APIs that are built with ASP.NET Core MVC. 
 
-- `Swagger <a href="http://swagger.io/">`_ is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
+- Swagger_ is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
 
 This tutorial builds on the sample on :doc:`first-web-api`. If you'd like to follow along, download the sample at https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample.
 
@@ -371,7 +371,7 @@ The following CSS provides a simple sample of a custom header title to the page.
 
 .. image:: web-api-help-pages-using-swagger/_static/custom-header.png
 
-There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <a href="https://github.com/swagger-api/swagger-ui">`_. 
+There is much more you can do with the page, see the full capabilities for the UI resources at the `Swagger UI Github repository <https://github.com/swagger-api/swagger-ui>`_. 
 
 
 
