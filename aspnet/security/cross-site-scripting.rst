@@ -68,7 +68,7 @@ Javascript Encoding using Razor
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values
 is to place the value in a the data attribute of a tag and retrieve it in your JavaScript. For example;
 
-.. code-block:: html
+.. code-block
 
   @{
       var untrustedInput = "<\"123\">";
@@ -118,14 +118,14 @@ This will produce the following HTML
 
 Which, when it runs, will render the following;
 
-.. code-block:: html
+.. code-block
 
   <"123">
   <"123">
 
 You can also call the JavaScript encoder directly,
 
-.. code-block:: html
+.. code-block
 
   @using System.Text.Encodings.Web;
   @inject JavaScriptEncoder encoder;
