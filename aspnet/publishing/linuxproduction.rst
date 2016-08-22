@@ -223,15 +223,13 @@ Configure SSL
 - Adding an ``HTTP Strict-Transport-Security`` (HSTS) header ensures all subsequent requests made by the client are over HTTPS only.
 - Do not add the Strict-Transport-Security header or chose an appropriate ``max-age`` if you plan to disable SSL in the future.
 
-.. literalinclude:: linuxproduction/nginx.conf
-  :language: nginx
-  :emphasize-lines: 2
+Add ``/etc/nginx/proxy.conf`` configuration file.
 
 .. literalinclude:: linuxproduction/proxy.conf
   :language: nginx
 
+Edit ``/etc/nginx/nginx.conf`` configuration file. The example contains both http and server sections in one configuration file.
 
-
-
-
-
+.. literalinclude:: linuxproduction/nginx.conf
+  :language: nginx
+  :emphasize-lines: 2
