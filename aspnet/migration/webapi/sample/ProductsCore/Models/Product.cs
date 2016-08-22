@@ -1,5 +1,4 @@
-﻿
-namespace ProductsCore.Models
+﻿namespace ProductsCore.Models
 {
     public class Product
     {

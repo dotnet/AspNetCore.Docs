@@ -1,5 +1,3 @@
-:version: 1.0.0-rc1
-
 Migrating from ASP.NET Web API
 ==============================
 
@@ -69,18 +67,18 @@ Delete the ``Project_Readme.html`` file from the new project. Your solution shou
 Migrate Configuration
 ---------------------
 
-ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project (see :doc:`/fundamentals/startup`). In ASP.NET Core MVC attribute-based routing is now included by default when ``UseMvc()`` is called and this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
+ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project (see :doc:`/fundamentals/startup`). In ASP.NET Core MVC, attribute-based routing is now included by default when ``UseMvc()`` is called; and, this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
 
 .. literalinclude:: webapi/sample/ProductsCore/Startup.cs
-  :language: c#
-  :emphasize-lines: 43
+  :language: none
+  :emphasize-lines: 40
   :linenos:
 
 Assuming you want to use attribute routing in your project going forward, no additional configuration is needed. Simply apply the attributes as needed to your controllers and actions, as is done in the sample ``ValuesController`` class that is included in the Web API starter project:
 
 .. literalinclude:: webapi/sample/ProductsCore/Controllers/ValuesController.cs
   :language: c#
-  :emphasize-lines: 8,12,19,26,32,38
+  :emphasize-lines: 9,13,20,27,33,39
   :linenos:
 
 Note the presence of *[controller]* on line 8. Attribute-based routing now supports certain tokens, such as *[controller]* and *[action]*. These tokens are replaced at runtime with the name of the controller or action, respectively, to which the attribute has been applied. This serves to reduce the number of magic strings in the project, and it ensures the routes will be kept synchronized with their corresponding controllers and actions when automatic rename refactorings are applied.
@@ -112,22 +110,18 @@ The last step in the migration process for this simple Web API project is to cop
 - `ApiController` does not exist
 - `System.Web.Http` namespace does not exist
 - `IHttpActionResult` does not exist
-- `NotFound` does not exist
-- `Ok` does not exist
 
 Fortunately, these are all very easy to correct:
 
 - Change `ApiController` to `Controller` (you may need to add `using Microsoft.AspNetCore.Mvc`)
 - Delete any using statement referring to `System.Web.Http`
 - Change any method returning `IHttpActionResult` to return a `IActionResult`
-- Change `NotFound` to `HttpNotFound`
-- Change `Ok(product)` to `new ObjectResult(product)`
 
 Once these changes have been made and unused using statements removed, the migrated *ProductsController* class looks like this:
 
 .. literalinclude:: webapi/sample/ProductsCore/Controllers/ProductsController.cs
   :language: c#
-  :emphasize-lines: 1,2,6,8-9,27,32,34
+  :emphasize-lines: 1,2,6,8-9,27
   :linenos:
 
 You should now be able to run the migrated project and browse to */api/products*; and, you should see the full list of 3 products. Browse to */api/products/1* and you should see the first product.
