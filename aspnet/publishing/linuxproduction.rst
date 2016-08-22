@@ -225,14 +225,10 @@ Configure SSL
 
 Add ``/etc/nginx/proxy.conf`` configuration file.
 
-.. code-block:: c
-
 .. literalinclude:: linuxproduction/proxy.conf
   :language: nginx
 
 Edit ``/etc/nginx/nginx.conf`` configuration file. The example contains both http and server sections in one configuration file.
-
-.. code-block:: c
 
 .. literalinclude:: linuxproduction/nginx.conf
   :language: nginx
