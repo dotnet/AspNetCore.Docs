@@ -109,6 +109,7 @@ rst_epilog = """
 .. _Entity Framework Core: https://docs.efproject.net
 .. _NuGet: https://nuget.org
 .. _xUnit: https://xunit.github.io
+.. _Swagger: http://swagger.io
 .. _Dependency Injection: :doc:`</fundamentals/dependency-injection>`
 """
 
