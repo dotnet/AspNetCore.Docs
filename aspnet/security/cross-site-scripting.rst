@@ -20,7 +20,7 @@ into an element. Developers should use the following prevention steps to avoid i
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. 
    Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings,
-   HTTP headers, even data sourced from a database, as an attacker may be able to breach your database if not your application.
+   HTTP headers, even data sourced from a database as an attacker may be able to breach your database even if they cannot breach your application.
 #. Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as < and 
    changes them into a safe form like &lt;
 #. Before putting untrusted data into an HTML attribute ensure it is HTML attribute encoded. HTML attribute encoding is a superset of
@@ -28,7 +28,7 @@ into an element. Developers should use the following prevention steps to avoid i
 #. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime.
    If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript
    and replaces them with their hex, for example < would be encoded as ``\u003C``.
-#. Before putting untrusted data into a Url query string ensure it is Url encoded.
+#. Before putting untrusted data into a URL query string ensure it is URL encoded.
 
 
 
@@ -154,7 +154,7 @@ This will render in the browser as follows;
 Accessing encoders in code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The HTML, JavaScript and Url encoders are available to your code in two ways, you can inject them via :ref:`dependency injection <fundamentals-dependency-injection>` 
+The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via :ref:`dependency injection <fundamentals-dependency-injection>` 
 or you can use the default encoders contained in the ``System.Text.Encodings.Web`` namespace. If you use the default encoders then 
 any :ref:`customization <security-cross-site-scripting-customization>` you applied to character ranges to be treated as safe will not take effect - 
 the default encoders use the safest encoding rules possible.
@@ -179,7 +179,7 @@ To use the configurable encoders via DI your constructors should take an `HtmlEn
       }
   }
 
-Encoding Url Parameters
+Encoding URL Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to build a URL query string with untrusted input as a value you should use the ``UrlEncoder`` to encode the value. For example,
