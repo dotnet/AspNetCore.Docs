@@ -37,13 +37,13 @@ HTML Encoding using Razor
 
 The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work really hard to prevent it doing so.
 It uses HTML Attribute encoding rules whenever you use the `@` directive. As HTML attribute encoding is a superset of HTML encoding this
-means you don't have to concern yourself with whether you should use HTML or HTML attribute encoding, you just need to ensure that you
+means you don't have to concern yourself with whether you should use HTML encoding or HTML attribute encoding. You must ensure that you
 only use @ in an HTML context, not when attempting to insert untrusted input directly into JavaScript. Tag helpers will also encode 
 input you use in tag parameters.
 
 Take the following Razor view;
 
-:: 
+.. code-block:: none
 
   @{
       var untrustedInput = "<\"123\">";
@@ -51,24 +51,24 @@ Take the following Razor view;
 
   @untrustedInput
 
-This view outputs the contents of the `untrustedInput` variable. This variable includes some characters which are using in XSS attacks, namely
-<, " and >. If you look at the source for the rendered page you will see the characters have been encoded. The source for the page will be
+This view outputs the contents of the `untrustedInput` variable. This variable includes some characters which are used in XSS attacks, namely
+<, " and >. Examining the source shows the rendered output encoded as:
 
 .. code-block:: html
 
   &lt;&quot;123&quot;&gt;
 
 .. WARNING::  
-  MVC provides an ``HtmlString`` class which is not automatically encoded upon output. This should never be used in combination with untrusted
+  ASP.NET Core MVC provides an ``HtmlString`` class which is not automatically encoded upon output. This should never be used in combination with untrusted
   input as this will expose an XSS vulnerability.
 
 Javascript Encoding using Razor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values
-is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example;
+is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
-.. code-block
+.. code-block:: none
 
   @{
       var untrustedInput = "<\"123\">";
@@ -118,14 +118,14 @@ This will produce the following HTML
 
 Which, when it runs, will render the following;
 
-.. code-block
+.. code-block:: none
 
   <"123">
   <"123">
 
 You can also call the JavaScript encoder directly,
 
-.. code-block
+.. code-block:: none
 
   @using System.Text.Encodings.Web;
   @inject JavaScriptEncoder encoder;
@@ -182,7 +182,7 @@ To use the configurable encoders via DI your constructors should take an `HtmlEn
 Encoding URL Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want to build a URL query string with untrusted input as a value you should use the ``UrlEncoder`` to encode the value. For example,
+If you want to build a URL query string with untrusted input as a value use the ``UrlEncoder`` to encode the value. For example,
 
 .. code-block:: c#
 
@@ -200,7 +200,7 @@ unsafe characters will be percent encoded to their hexadecimal value, for exampl
 Customizing the Encoders
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default the encoding safe list the Basic Latin Unicode range and encode all characters outside of that range as their character code equivalents. This behavior 
+By default encoders use a safe list limited to the Basic Latin Unicode range and encode all characters outside of that range as their character code equivalents. This behavior 
 also affects Razor TagHelper and HtmlHelper rendering as it will use the encoders to output your strings.
 
 The reasoning behind this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your 
@@ -252,5 +252,5 @@ Validation as an XSS prevention technique
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 will not trigger an XSS attack. Validation becomes
-more complicated should you wish to accept HTML in user input - parsing HTML input is hard, if not impossible. MarkDown and other text formats would be a safer option for rich input. You 
+more complicated should you wish to accept HTML in user input - parsing HTML input is difficult, if not impossible. MarkDown and other text formats would be a safer option for rich input. You 
 should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
