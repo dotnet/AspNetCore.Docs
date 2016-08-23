@@ -8,7 +8,7 @@
 .. _Pranav Rastogi: https://github.com/rustd
 .. _Tom Archer: https://github.com/tomarcher
 .. _David Paquette: https://github.com/dpaquette
-.. _Scott Addie: http://scottaddie.com
+.. _Scott Addie: https://scottaddie.com
 .. _Sayed Ibrahim Hashimi: https://github.com/sayedihashimi
 .. _Sourabh Shirhatti: https://twitter.com/sshirhatti
 .. _Matt Perdeck: http://www.linkedin.com/in/mattperdeck
