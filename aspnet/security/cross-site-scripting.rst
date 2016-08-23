@@ -5,8 +5,8 @@ Preventing Cross-Site Scripting
 
 Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages.
 When other users load affected pages the attackers scripts will run, enabling the attacher to steal cookies and session tokens, change the contents
-of the web page via DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user 
-input and outputs it in a page without validating or encoding or escaping it.
+of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user 
+input and outputs it in a page without validating, encoding or escaping it.
 
 .. contents:: Sections:
   :local:
@@ -20,13 +20,13 @@ into an element. Developers should use the following prevention steps to avoid i
 
 1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. 
    Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings,
-   HTML headers, even data sourced from a database, as an attacker may be able to breach your database if not your application.
+   HTTP headers, even data sourced from a database, as an attacker may be able to breach your database if not your application.
 #. Before putting untrusted data inside an HTML element ensure it is HTML encoded. HTML encoding takes characters such as < and 
    changes them into a safe form like &lt;
 #. Before putting untrusted data into an HTML attribute ensure it is HTML attribute encoded. HTML attribute encoding is a superset of
    HTML encoding and encodes additional characters such as " and \'.
 #. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime.
-   If this is not possible then ensure the data is JavaScript encoding. JavaScript encoding takes dangerous characters for JavaScript
+   If this is not possible then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript
    and replaces them with their hex, for example < would be encoded as ``\u003C``.
 #. Before putting untrusted data into a Url query string ensure it is Url encoded.
 
@@ -66,7 +66,7 @@ Javascript Encoding using Razor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values
-is to place the value in a the data attribute of a tag and retrieve it in your JavaScript. For example;
+is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example;
 
 .. code-block
 
@@ -155,7 +155,7 @@ Accessing encoders in code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The HTML, JavaScript and Url encoders are available to your code in two ways, you can inject them via :ref:`dependency injection <fundamentals-dependency-injection>` 
-or you can use the default encoders contained in the ``System.Text.Encodings.Web`` namespace. If you choose to use the default encoders then 
+or you can use the default encoders contained in the ``System.Text.Encodings.Web`` namespace. If you use the default encoders then 
 any :ref:`customization <security-cross-site-scripting-customization>` you applied to character ranges to be treated as safe will not take effect - 
 the default encoders use the safest encoding rules possible.
 
@@ -203,7 +203,7 @@ Customizing the Encoders
 By default the encoding safe list the Basic Latin Unicode range and encode all characters outside of that range as their character code equivalents. This behavior 
 also affects Razor TagHelper and HtmlHelper rendering as it will use the encoders to output your strings.
 
-The reasoning behing this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your 
+The reasoning behind this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your 
 web site makes heavy use of non-Latin characters, such as Chinese, Cyrillic or others this is probably not the behavior you want.
 
 You can customize the encoder safe lists to include Unicode ranges appropriate to your application during startup, in ``ConfigureServices()``.
@@ -251,6 +251,6 @@ and allows you to take advantage of any changes or bug fixes made to encoders.
 Validation as an XSS prevention technique
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Validation can be a useful tool in limiting XSS attacks. For example a simple numeric string, containing only the characters 0-9 will not trigger an XSS attack. Validation becomes
+Validation can be a useful tool in limiting XSS attacks. For example, a simple numeric string containing only the characters 0-9 will not trigger an XSS attack. Validation becomes
 more complicated should you wish to accept HTML in user input - parsing HTML input is hard, if not impossible. MarkDown and other text formats would be a safer option for rich input. You 
 should never rely on validation alone. Always encode untrusted input before output, no matter what validation you have performed.
