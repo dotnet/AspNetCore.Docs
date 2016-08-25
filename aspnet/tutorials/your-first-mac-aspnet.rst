@@ -51,8 +51,6 @@ Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
 - Start **Visual Studio Code**
 
-.. image:: your-first-mac-aspnet/_static/vscode-welcome.png
-
 - Tap **File > Open** and navigate to your ASP.NET Core app
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
