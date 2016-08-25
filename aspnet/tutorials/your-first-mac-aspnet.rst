@@ -33,6 +33,7 @@ Run the ASP.NET Core generator
     yo aspnet
 
 * Select **Web Application Basic [without Membership and Authorization]** and tap Enter
+* Select Bootstrap (3.3.6) as the UI framework and tap Enter
 * Use "MyFirstApp" for the app name and tap Enter
 
 When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
@@ -45,6 +46,7 @@ When the generator completes scaffolding the files, it will instruct you to rest
         dotnet build (optional, build will also happen with it's run)
         dotnet run
 
+.. note:: Mac keyboard symbols - ⌘ : Command, ⌃ : Ctrl, ⇧ : Shift, ⌥ : Option
 
 Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 ---------------------------------------------------------------------
@@ -55,7 +57,7 @@ Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
-From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` in Visual Studio Code and then type ``dot`` as shown:
+From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``⌘⇧P`` in Visual Studio Code and then type ``dot`` as shown:
 
 .. image:: your-first-mac-aspnet/_static/dotnet-restore.png
 
@@ -67,12 +69,13 @@ This empty project template simply displays "Hello World!". Open *Startup.cs* in
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
 
-In the left navigation bar, there are four icons, representing four viewlets:
+In the left navigation bar, there are five icons, representing four viewlets:
 
 - Explore
 - Search
 - Git
 - Debug
+- Extensions
 
 The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
 
@@ -84,9 +87,9 @@ The Search viewlet allows you to quickly search within the folder structure, sea
 
 The Debug viewlet supports interactive debugging of applications.
 
-Finally, Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using ``command .`` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as ``command k c`` to comment a block of code, and ``command k u`` to uncomment.
+Finally, Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using ``⌘ .`` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as ``⌘KC`` to comment a block of code, and ``⌘KU`` to uncomment.
 
-Running Locally Using Kestrel
+Running Locally Using Kestrel 
 -----------------------------
 
 The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
