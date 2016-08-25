@@ -1,7 +1,7 @@
 Building Projects with Yeoman
 =============================
 
-By `Steve Smith`_, `Scott Addie`_, `Rick Anderson`_ and `Noel Rice`_
+By `Steve Smith`_, `Scott Addie`_, `Rick Anderson`_, `Noel Rice`_, and `Shayne Boyer`_
 
 `Yeoman <http://yeoman.io/>`_ generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool `yo <https://github.com/yeoman/yo>`__ works alongside a Yeoman generator. Generators define the technologies that go into a project. 
 
@@ -18,7 +18,7 @@ Follow the instructions on http://yeoman.io/learning/ to install `yo <https://gi
 
 .. code-block:: console
   
-  npm install -g yo bower grunt-cli gulp
+  npm install -g yo bower grunt grunt-cli gulp gulp-cli
     
 .. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` on Mac OS, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
 
