@@ -18,7 +18,7 @@ Follow the instructions on http://yeoman.io/learning/ to install `yo <https://gi
 
 .. code-block:: console
   
-  npm install -g yo bower grunt grunt-cli gulp gulp-cli
+  npm install -g yo bower
     
 .. note:: If you get the error ``npm ERR! Please try running this command again as root/Administrator.`` on Mac OS, run the following command using `sudo <https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html>`__: ``sudo npm install -g yo bower grunt-cli gulp``
 
@@ -75,16 +75,11 @@ At this point you can navigate to the URL shown to test the newly created ASP.NE
 
 .. tip:: If you were directed to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
 
-Specifying the client-side task runner
---------------------------------------
+Client-Side Packages 
+--------------------
+The front end resources are provided by the templates from the yeoman generator using the :doc:`Bower </client-side/bower>` client-side package manager, adding *bower.json* and *.bowerrc* files to restore client-side packages using the :doc:`Bower </client-side/bower>` client-side package manager.
 
-The `ASP.NET generator <https://www.npmjs.com/package/generator-aspnet>`_ creates supporting files to configure client-side build tools. A :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` task runner file is added to your project to automate build tasks for Web projects. The default generator creates *gulpfile.js* to run tasks. Running the generator with the ``--grunt`` argument generates *Gruntfile.js*:
-
-.. code-block:: console 
-
-  yo aspnet --grunt
- 
-The generator also configures *package.json* to load :doc:`Grunt </client-side/using-grunt>` or :doc:`Gulp </client-side/using-gulp>` dependencies. It also adds *bower.json* and *.bowerrc* files to restore client-side packages using the :doc:`Bower </client-side/bower>` client-side package manager. 
+The `BundlerMinifier <https://github.com/madskristensen/BundlerMinifier/wiki>`_ component is also included by default for ease of concatenation, minification of CSS, JavaScript and HTML. 
 
 Building and Running from Visual Studio
 ---------------------------------------
