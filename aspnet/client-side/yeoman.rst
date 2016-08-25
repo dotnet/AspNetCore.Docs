@@ -137,7 +137,7 @@ Open a web browser, and navigate to \http://localhost:5000.
 Adding to Your Project with Sub Generators
 ------------------------------------------
 
-You can add new generated files using Yeoman even after the project is created. Use `sub generators <https://www.npmjs.com/package/generator-aspnet#sub-generators>`_ to add any of the file types that make up your project. For example, to add a new class to your project, enter the ``yo aspnet:Class`` command followed by the name of the class. Execute the following command from the directory in which the file should be created: 
+You can add new generated files using Yeoman even after the project is created. Use `sub generators <https://www.github.com/omnisharp/generator-aspnet#sub-generators>`_ to add any of the file types that make up your project. For example, to add a new class to your project, enter the ``yo aspnet:Class`` command followed by the name of the class. Execute the following command from the directory in which the file should be created: 
 
 .. code-block:: console
 
