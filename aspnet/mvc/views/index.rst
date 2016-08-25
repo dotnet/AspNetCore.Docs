@@ -14,5 +14,3 @@ Views
     dependency-injection
     view-components
     custom-view-engine
-    mobile
-
