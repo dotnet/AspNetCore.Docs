@@ -1,7 +1,7 @@
 Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 =====================================================================
 
-By `Daniel Roth`_, `Steve Smith`_ and `Rick Anderson`_
+By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_ and `Shayne Boyer`_
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 
@@ -9,15 +9,42 @@ This article will show you how to write your first ASP.NET Core application on a
   :local:
   :depth: 1
 
+
 Setting Up Your Development Environment
 ---------------------------------------
 
-To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__.
+To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__. Node.js and npm is also required, if not already installed visit `nodejs.org <https://nodejs.org/en/download/package-manager/#osx>`_. 
 
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
-Follow the instruction in :doc:`/client-side/yeoman` to create an ASP.NET Core project.
+We will be using ``yo aspnet`` to generate the **Web Application Basic** template, you may follow the full instructions in :doc:`/client-side/yeoman` to create an ASP.NET Core project which show an **Empty Web** for reference.
+
+Install the necessary yeoman generators and bower (for client side assets) using npm.
+
+.. code-block:: console
+
+    npm install -g yo generator-aspnet bower
+
+Run the ASP.NET Core generator
+
+.. code-block:: console
+
+    yo aspnet
+
+* Select **Web Application Basic [without Membership and Authorization]** and tap Enter
+* Use "MyFirstApp" for the app name and tap Enter
+
+When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
+
+.. code-block:: console
+
+    Your project is now created, you can use the following commands to get going
+        cd "MyFirstApp"
+        dotnet restore
+        dotnet build (optional, build will also happen with it's run)
+        dotnet run
+
 
 Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 ---------------------------------------------------------------------
@@ -26,7 +53,7 @@ Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
 .. image:: your-first-mac-aspnet/_static/vscode-welcome.png
 
-- Tap **File > Open** and navigate to your Empty ASP.NET Core app
+- Tap **File > Open** and navigate to your ASP.NET Core app
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
