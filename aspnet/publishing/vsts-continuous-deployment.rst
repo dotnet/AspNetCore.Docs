@@ -80,7 +80,7 @@ VSTS Release management can alternatively be used to manage the release pipeline
   * Click **Add build step...** and choose **Utility** > **Copy and Publish Build Artifacts** > **Add**
   * Set the arguments for the copy and publish step as:
       * Contents: ``$(DeployPackage)``
-      * Arifact Name: ``DeployPackage``
+      * Artifact Name: ``DeployPackage``
       * Artifact Type: ``Server``
 
 3. You will be able to create a release definition and link to the Build definition and utilise the artifacts copied from step 2 here for publishing.
