@@ -62,6 +62,8 @@ The order in which configuration sources are specified is important, as this est
 
 .. note:: To override nested keys through environment variables in shells that don't support ``:`` in variable names, replace them with ``__`` (double underscore).
 
+.. note:: To override nested keys through environment variables in shells that don't support ``:`` in variable names replace them with ``__`` (double underscore).
+
 It can be useful to have environment-specific configuration files. This can be achieved using the following:
 
 .. literalinclude:: /../common/samples/WebApplication1/src/WebApplication1/Startup.cs
