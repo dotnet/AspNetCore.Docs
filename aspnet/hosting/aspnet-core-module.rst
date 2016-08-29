@@ -58,7 +58,7 @@ Configuration Attributes
 |                           | | Duration in seconds for which the                |
 |                           | | the handler will wait for the executable or      |
 |                           | | script to gracefully shutdown when the           |
-|                           | | *app_offline.htm* file is detected               |
+|                           | | *app_offline.htm* file is detected.              |
 |                           | |                                                  |
 |                           | | The default value is 10.                         |
 +---------------------------+----------------------------------------------------+
@@ -134,8 +134,8 @@ Child Elements
 |                           | | for the process specified in **processPath**.    |
 +---------------------------+----------------------------------------------------+
 | recycleOnFileChange       | | Specify a list of files to monitor. If any of    |
-|                           | | these files are updated/deleted, the Core Module |
-|                           | | will restart the backend process.                |
+|                           | | these files are updated/deleted, the ASP.NET     |
+|                           | | Core Module will restart the backend process.    |
 +---------------------------+----------------------------------------------------+
 
 ASP.NET Core Module *app_offline.htm*
@@ -143,7 +143,7 @@ ASP.NET Core Module *app_offline.htm*
 
 If you place a file with the name *app_offline.htm* at the root of a web application directory, the ASP.NET Core Module will attempt to gracefully shut-down the application and stop processing any new incoming requests. If the application is still running after ``shutdownTimeLimit`` number of seconds, the ASP.NET Core Module will kill the running process.
 
-While the *app_offline..htm* file is present, the ASP.NET Core Module will repond to all requests by sending back the contents of the *app_offline.htm* file. Once the *app_offline.htm* file is removed, the next request loads the application, which then responds to requests.
+While the *app_offline.htm* file is present, the ASP.NET Core Module will respond to all requests by sending back the contents of the *app_offline.htm* file. Once the *app_offline.htm* file is removed, the next request loads the application, which then responds to requests.
 
 ASP.NET Core Module Start-up Error Page
 ---------------------------------------
@@ -175,3 +175,10 @@ The ASP.NET Core Module allows you specify environment variables for the process
 .. literalinclude:: aspnet-core-module/sample/web.config
   :language: xml
   :lines: 12-19
+
+ASP.NET Core Module with IIS Shared Configuration
+-------------------------------------------------
+
+The ASP.NET Core Module installer, which is included in the .NET Core Windows Server Hosting bundle installer, runs with the privileges of the **SYSTEM** account. Because the local system account does not have modify permission for the share path which is used by the IIS Shared Configuration, the installer will hit an access denied error when attempting to configure the module settings in *applicationhost.config* on the share.
+
+The unsupported workaround is to disable the IIS Shared Configuration, run the installer, export the updated *applicationhost.config* file to the share, and re-enable the IIS Shared Configuration.
