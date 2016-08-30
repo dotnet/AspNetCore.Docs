@@ -33,15 +33,7 @@ namespace WebApplication3.Services
                 Options.SendGridKey);
             // Create a Web transport for sending email.
             var transportWeb = new SendGrid.Web(credentials);
-            // Send the email.
-            if (transportWeb != null)
-            {
-                return transportWeb.DeliverAsync(myMessage);
-            }
-            else
-            {
-                return Task.FromResult(0);
-            }
+            return transportWeb.DeliverAsync(myMessage);
         }
 
         public Task SendSmsAsync(string number, string message)
