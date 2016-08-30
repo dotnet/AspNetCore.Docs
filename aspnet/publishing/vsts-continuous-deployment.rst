@@ -24,9 +24,9 @@ Setup VSTS Build
 ----------------
 1. Setup some build variables to make later steps clearer and easier to retain consistent paths across build steps.
 
-  Create a variable for **PublishOutput** and set it to your desired path. We have used **$(Build.StagingDirectory)/WebApplication**
+  Create a variable for **PublishOutput** and set it to your desired path. We have used ``$(Build.StagingDirectory)/WebApplication``
   
-  Create a variable for **DeployPackage** and set it to the path you would like the zipped web package to be at. We have used **$(Build.StagingDirectory)/WebApplication.zip** to have it alongside our published output.
+  Create a variable for **DeployPackage** and set it to the path you would like the zipped web package to be at. We have used ``$(Build.StagingDirectory)/WebApplication.zip`` to have it alongside our published output.
   
   .. image:: vsts-continuous-deployment/_static/setup-build-variables.png
   
@@ -34,8 +34,8 @@ Setup VSTS Build
 
   * Click **Add build step...** and choose **Utility** > **Command Line** > **Add**
   * Set the arguments for the build step as:
-      * Tool: **dotnet**
-      * Arguments: **restore**
+      * Tool: ``dotnet``
+      * Arguments: ``restore``
 
 .. image:: vsts-continuous-deployment/_static/dotnet-restore.png
   
@@ -43,8 +43,8 @@ Setup VSTS Build
 
   * Click **Add build step...** and choose **Utility** > **Command Line** > **Add**
   * Set the arguments for the build step as:
-      * Tool: **dotnet**
-      * Arguments: **publish src/WebApplication --configuration $(BuildConfiguration) --output $(PublishOutput)**
+      * Tool: ``dotnet``
+      * Arguments: ``publish src/WebApplication --configuration $(BuildConfiguration) --output $(PublishOutput)``
   * Replace src/WebApplication to the path of your app to be deployed as appropriate 
   
   .. image:: vsts-continuous-deployment/_static/dotnet-publish.png
@@ -53,8 +53,8 @@ Setup VSTS Build
 
   * Click **Add build step...** and choose **Utility** > **Trackyon Zip** > **Add**
   * Set the arguments for the zip build step as:
-      * Folder to Zip: **$(PublishOutput)**
-      * Path to final Zip file: **$(DeployPackage)**
+      * Folder to Zip: ``$(PublishOutput)``
+      * Path to final Zip file: ``$(DeployPackage)``
 
 .. image:: vsts-continuous-deployment/_static/compress-publish-output.png
 
@@ -65,7 +65,7 @@ Setup VSTS Build
       * Azure Subscription: *<your configured azure connection>*
       * Web App Location: *<desired region>*
       * Web App Name: *<desired app service name>*
-      * Web Deploy Package: **$(DeployPackage)**
+      * Web Deploy Package: ``$(DeployPackage)``
 
 .. image:: vsts-continuous-deployment/_static/web-app-deployment.png
 
@@ -79,9 +79,9 @@ VSTS Release management can alternatively be used to manage the release pipeline
 
   * Click **Add build step...** and choose **Utility** > **Copy and Publish Build Artifacts** > **Add**
   * Set the arguments for the copy and publish step as:
-      * Contents: **$(DeployPackage)**
-      * Arifact Name: **DeployPackage**
-      * Artifact Type: **Server**
+      * Contents: ``$(DeployPackage)``
+      * Artifact Name: ``DeployPackage``
+      * Artifact Type: ``Server``
 
 3. You will be able to create a release definition and link to the Build definition and utilise the artifacts copied from step 2 here for publishing.
 
