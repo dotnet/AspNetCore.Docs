@@ -73,13 +73,11 @@ Build and run the app using ``dotnet build`` and ``dotnet run``:
 
 At this point you can navigate to the URL shown to test the newly created ASP.NET Core app.
 
-.. tip:: If you were directed to this tutorial from :doc:`/tutorials/your-first-mac-aspnet`, you can return now.
-
 Client-Side Packages 
 --------------------
 The front end resources are provided by the templates from the yeoman generator using the :doc:`Bower </client-side/bower>` client-side package manager, adding *bower.json* and *.bowerrc* files to restore client-side packages using the :doc:`Bower </client-side/bower>` client-side package manager.
 
-The `BundlerMinifier <https://github.com/madskristensen/BundlerMinifier/wiki>`_ component is also included by default for ease of concatenation, minification of CSS, JavaScript and HTML. 
+The `BundlerMinifier <https://github.com/madskristensen/BundlerMinifier/wiki>`_ component is also included by default for ease of concatenation (bundling) and minification of CSS, JavaScript and HTML. 
 
 Building and Running from Visual Studio
 ---------------------------------------
