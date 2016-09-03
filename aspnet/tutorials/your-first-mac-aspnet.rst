@@ -13,14 +13,14 @@ This article will show you how to write your first ASP.NET Core application on a
 Setting Up Your Development Environment
 ---------------------------------------
 
-To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__. Node.js and npm is also required, if not already installed visit `nodejs.org <https://nodejs.org/en/download/package-manager/#osx>`_. 
+To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__. Node.js and npm is also required. If not already installed visit `nodejs.org <https://nodejs.org/en/download/package-manager/#osx>`_. 
 
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
 We will be using ``yo aspnet`` to generate the **Web Application Basic** template, you may follow the full instructions in :doc:`/client-side/yeoman` to create an ASP.NET Core project which show an **Empty Web** for reference.
 
-Install the necessary yeoman generators and bower (for client side assets) using npm.
+Install the necessary yeoman generators and bower using npm.
 
 .. code-block:: console
 
@@ -45,8 +45,6 @@ When the generator completes scaffolding the files, it will instruct you to rest
         dotnet restore
         dotnet build (optional, build will also happen with it's run)
         dotnet run
-
-.. note:: Mac keyboard symbols - ⌘ : Command, ⌃ : Ctrl, ⇧ : Shift, ⌥ : Option
 
 Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 ---------------------------------------------------------------------
@@ -98,7 +96,7 @@ Code's editor has a ton of great features. You'll notice unused using statements
 
 More on editor in `Visual Studio Code`_.  
 
-Running Locally Using Kestrel 
+Running Locally Using Kestrel
 -----------------------------
 
 The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
@@ -125,7 +123,7 @@ The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You
 
 Using Visual Studio Code Debugger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you chose to have the debug and build assets added to the project
+If you chose to have the debug and build assets added to the project:
 
 - Tap the Debug icon in the View Bar on the left pane
 - Tap the "Play (F5)" icon to launch the app
@@ -136,7 +134,7 @@ Your default browser will automatically launch and navigate to ``http://localhos
 
 .. image:: your-first-mac-aspnet/_static/myfirstapp.png
 
-- To stop the applicatio, close the browser and hit the "Stop" icon on the debug bar
+- To stop the application, close the browser and hit the "Stop" icon on the debug bar
 
 .. image:: your-first-mac-aspnet/_static/debugger.png
 
@@ -145,7 +143,7 @@ Using the dotnet commands
 - Run ``dotnet run`` command to launch the app from terminal/bash
 
 - Navigate to ``http://localhost:5000``
-- To stop the web server enter ``Ctrl+C``.
+- To stop the web server enter ``⌃+C``.
 
 
 Publishing to Azure
