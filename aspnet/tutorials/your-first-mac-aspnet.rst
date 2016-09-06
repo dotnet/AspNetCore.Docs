@@ -1,7 +1,7 @@
 Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 =====================================================================
 
-By `Daniel Roth`_, `Steve Smith`_ and `Rick Anderson`_
+By `Daniel Roth`_, `Steve Smith`_, `Rick Anderson`_ and `Shayne Boyer`_
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 
@@ -9,45 +9,78 @@ This article will show you how to write your first ASP.NET Core application on a
   :local:
   :depth: 1
 
+
 Setting Up Your Development Environment
 ---------------------------------------
 
-To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__.
+To setup your development machine download and install `.NET Core`_ and `Visual Studio Code`_ with the `C# extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp>`__. Node.js and npm is also required. If not already installed visit `nodejs.org <https://nodejs.org/en/download/package-manager/#osx>`_. 
 
 Scaffolding Applications Using Yeoman
 -------------------------------------
 
-Follow the instruction in :doc:`/client-side/yeoman` to create an ASP.NET Core project.
+We will be using ``yo aspnet`` to generate the **Web Application Basic** template, you may follow the full instructions in :doc:`/client-side/yeoman` to create an ASP.NET Core project which show an **Empty Web** for reference.
+
+Install the necessary yeoman generators and bower using npm.
+
+.. code-block:: console
+
+    npm install -g yo generator-aspnet bower
+
+Run the ASP.NET Core generator
+
+.. code-block:: console
+
+    yo aspnet
+
+* Select **Web Application Basic [without Membership and Authorization]** and tap Enter
+* Select Bootstrap (3.3.6) as the UI framework and tap Enter
+* Use "MyFirstApp" for the app name and tap Enter
+
+When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
+
+.. code-block:: console
+
+    Your project is now created, you can use the following commands to get going
+        cd "MyFirstApp"
+        dotnet restore
+        dotnet build (optional, build will also happen with it's run)
+        dotnet run
 
 Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 ---------------------------------------------------------------------
 
 - Start **Visual Studio Code**
 
-.. image:: your-first-mac-aspnet/_static/vscode-welcome.png
-
-- Tap **File > Open** and navigate to your Empty ASP.NET Core app
+- Tap **File > Open** and navigate to your ASP.NET Core app
 
 .. image:: your-first-mac-aspnet/_static/file-open.png
 
-From a Terminal / bash prompt, run ``dotnet restore`` to restore the project's dependencies. Alternately, you can enter ``command shift p`` in Visual Studio Code and then type ``dot`` as shown:
+When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies. 
 
-.. image:: your-first-mac-aspnet/_static/dotnet-restore.png
+.. image:: your-first-mac-aspnet/_static/dependencies-restore.png 
+    :scale: 100%
 
-You can run commands directly from within Visual Studio Code, including ``dotnet restore`` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*.
+Tap "Yes" to add the build and debug assets.
 
-This empty project template simply displays "Hello World!". Open *Startup.cs* in Visual Studio Code to see how this is configured:
+.. image:: your-first-mac-aspnet/_static/debug-items-added.png 
+    :scale: 100%
 
-.. image:: your-first-mac-aspnet/_static/vscode-startupcs.png
+Tap "Restore" to restore the project dependencies. Alternately, you can enter ``⌘⇧P`` in Visual Studio Code and then type ``dot`` as shown:
+
+.. image:: your-first-mac-aspnet/_static/dot-restore.png
+
+You can run commands directly from within Visual Studio Code, including ``dotnet restore`` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console ``⌃``` where you can execute these commands without leaving the editor. 
+
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive. 
 
-In the left navigation bar, there are four icons, representing four viewlets:
+In the left navigation bar, there are five icons, representing four viewlets:
 
 - Explore
 - Search
 - Git
 - Debug
+- Extensions
 
 The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
 
@@ -59,7 +92,9 @@ The Search viewlet allows you to quickly search within the folder structure, sea
 
 The Debug viewlet supports interactive debugging of applications.
 
-Finally, Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using ``command .`` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as ``command k c`` to comment a block of code, and ``command k u`` to uncomment.
+Code's editor has a ton of great features. You'll notice unused using statements are underlined and can be removed automatically by using ``⌘ .`` when the lightbulb icon appears. Classes and methods also display how many references there are in the project to them. If you're coming from Visual Studio, Code includes many of the same keyboard shortcuts, such as ``⌘KC`` to comment a block of code, and ``⌘KU`` to uncomment.
+
+More on editor in `Visual Studio Code`_.  
 
 Running Locally Using Kestrel
 -----------------------------
@@ -67,32 +102,48 @@ Running Locally Using Kestrel
 The sample is configured to use :ref:`Kestrel <kestrel>` for the web server. You can see it configured in the *project.json* file, where it is specified as a dependency.
 
 .. code-block:: json
-  :emphasize-lines: 10
+  :emphasize-lines: 14
  
   {
-    "buildOptions": {
-      "emitEntryPoint": true
-    },
     "dependencies": {
       "Microsoft.NETCore.App": {
-        "type": "platform",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "type": "platform"
       },
-      "Microsoft.AspNetCore.Server.Kestrel": "1.0.0"
-    },
-    "frameworks": {
-      "netcoreapp1.0": {}
-    }
-  }
+      "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+      "Microsoft.AspNetCore.Mvc": "1.0.0",
+      "Microsoft.AspNetCore.Razor.Tools": {
+        "version": "1.0.0-preview2-final",
+        "type": "build"
+      },
+      "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+      "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+      "Microsoft.AspNetCore.StaticFiles": "1.0.0",
 
 
-- Run ``dotnet run`` command to launch the app
+Using Visual Studio Code Debugger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you chose to have the debug and build assets added to the project:
 
-- Navigate to ``localhost:5000``:
+- Tap the Debug icon in the View Bar on the left pane
+- Tap the "Play (F5)" icon to launch the app
 
-.. image:: your-first-mac-aspnet/_static/hello-world.png
+.. image:: your-first-mac-aspnet/_static/launch-debugger.png
 
-- To stop the web server enter ``Ctrl+C``.
+Your default browser will automatically launch and navigate to ``http://localhost:5000``
+
+.. image:: your-first-mac-aspnet/_static/myfirstapp.png
+
+- To stop the application, close the browser and hit the "Stop" icon on the debug bar
+
+.. image:: your-first-mac-aspnet/_static/debugger.png
+
+Using the dotnet commands
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Run ``dotnet run`` command to launch the app from terminal/bash
+
+- Navigate to ``http://localhost:5000``
+- To stop the web server enter ``⌃+C``.
 
 
 Publishing to Azure
@@ -118,27 +169,34 @@ Initialize Azure Website
 
 You can deploy to Azure Web Apps directly using Git. 
 
-- `Create a new Web App <https://tryappservice.azure.com/>`__ in Azure. If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
+- If you don't have an Azure account, you can `create a free trial <http://azure.microsoft.com/en-us/pricing/free-trial/>`__. 
 
-- Configure the Web App in Azure to support `continuous deployment using Git <http://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/>`__.
+Create a Web App in the Azure Portal to host your new application.
 
-Record the Git URL for the Web App from the Azure portal:
+.. image:: your-first-mac-aspnet/_static/create-web-app.png
+
+Configure the Web App in Azure to support `continuous deployment using Git <https://azure.microsoft.com/en-us/documentation/articles/app-service-deploy-local-git/>`__.
+
+Record the Git URL for the Web App from the Azure portal.
 
 .. image:: your-first-mac-aspnet/_static/azure-portal.png
 
-- In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
+In a Terminal window, add a remote named ``azure`` with the Git URL you noted previously.
 
-  - ``git remote add azure https://ardalis-git@firstaspnetcoremac.scm.azurewebsites.net:443/firstaspnetcoremac.git``
+``git remote add azure https://shayneboyer@myfirstappmac.scm.azurewebsites.net:443/MyFirstAppMac.git``
 
-- Push to master.
-
-  - ``git push azure master`` to deploy. 
+Push to master.  ``git push azure master`` to deploy. 
 
   .. image:: your-first-mac-aspnet/_static/git-push-azure-master.png
 
-- Browse to the newly deployed web app. You should see ``Hello World!``
+ 
+Browse to the newly deployed web app.
 
-.. .. image:: your-first-mac-aspnet/_static/azure.png 
+.. image:: your-first-mac-aspnet/_static/azure.png 
+
+Looking at the Deployment Details in the Azure Portal, you can see the logs and steps each time there is a commit to the branch.
+
+.. image:: your-first-mac-aspnet/_static/deployment.png 
 
 
 Additional Resources
