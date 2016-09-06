@@ -14,7 +14,7 @@ In the previous article we :doc:`migrated configuration from an ASP.NET MVC proj
 Configure Identity and Membership
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Identity.Cookies`` to the list of dependencies:
+In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Authentication.Cookies`` to the list of dependencies:
 
 .. code-block:: none
 
