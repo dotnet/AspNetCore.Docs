@@ -269,7 +269,7 @@ Troubleshooting:
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
 - You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS with the IISReset command-line utility or using IIS Manager.
 
-Incorrect `proecessPath`, missing PATH variable, or *dotnet.exe* access violation
+Incorrect `processPath`, missing PATH variable, or *dotnet.exe* access violation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Browser:** HTTP Error 502.5 - Process Failure
