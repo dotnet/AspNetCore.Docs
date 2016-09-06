@@ -267,7 +267,7 @@ Hosting bundle not installed or server not restarted
 Troubleshooting:
 
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
-- You may have deployed a portable application and installed .NET Core without restarting the server. Restart the server.
+- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS with the IISReset command-line utility or using IIS Manager.
 
 Incorrect `proecessPath`, missing PATH variable, or *dotnet.exe* access violation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -281,6 +281,7 @@ Troubleshooting:
 - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
 - For a portable application, *dotnet.exe* might not be accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
 - For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the `C:\\Program Files\\dotnet` directory.
+- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS with the IISReset command-line utility or using IIS Manager.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
