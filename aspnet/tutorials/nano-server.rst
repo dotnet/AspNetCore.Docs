@@ -155,7 +155,7 @@ Run the following commands in the remote session to create a new site in IIS for
 
 Known issue running .NET Core CLI on Nano Server and Workaround
 ---------------------------------------------------------------
-If you’re using Nano Server Technical Preview 5 with .NET Core CLI, you will need to copy all DLL files from ``c:\windows\system32\forwarders`` to ``c:\windows\system32``, due to a bug that has since been fixed in later releases.
+If you’re using Nano Server Technical Preview 5 with .NET Core CLI, you will need to copy all DLL files from ``c:\windows\system32\forwarders`` to ``c:\Program Files\dotnet\shared\Microsoft.NETCore.App\1.0.0\`` and your  .NET Core binaries directory ``c:\dotnet`` (in this example), due to a bug that has since been fixed in later releases.
 
 If you use ``dotnet publish``, make sure to copy all DLL files from ``c:\windows\system32\forwarders`` to your publish directory as well.
 
