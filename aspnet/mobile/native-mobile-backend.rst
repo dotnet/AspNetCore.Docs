@@ -16,11 +16,9 @@ Mobile apps can easily communicate with ASP.NET Core backend services.
 The Sample App
 --------------
 
-This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the `Xamarin Forms TodoRest app <https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/>`_ as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. The sample application includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core MVC app replaces (with no changes required by the client).
+This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the `Xamarin Forms TodoRest app <https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/>`_ as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. The sample application includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
 
 .. image:: native-mobile-backend/_static/todo-android.png
-
-.. note:: Securing web APIs is not covered in this article, but will be covered in follow-up documentation.
 
 Features
 ^^^^^^^^
@@ -29,7 +27,7 @@ The TodoRest app supports listing, adding, deleting, and updating To-Do items. E
 
 The main view of the items, as shown above, lists each item's name and indicates if it is done with a checkmark.
 
-Tapping the `+` icon opens an add item dialog:
+Tapping the ``+`` icon opens an add item dialog:
 
 .. image:: native-mobile-backend/_static/todo-android-new-item.png
 
@@ -37,7 +35,7 @@ Tapping an item on the main list screen opens up an edit dialog where the item's
 
 .. image:: native-mobile-backend/_static/todo-android-edit-item.png
 
-This sample works with a read-only set of backend services by default. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's ``RestUrl`` constant. Navigate to the ``TodoREST`` project and open the `Constants.cs` file. Replace the ``RestUrl`` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
+This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's ``RestUrl`` constant. Navigate to the ``TodoREST`` project and open the `Constants.cs` file. Replace the ``RestUrl`` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
 
 .. code-block:: csharp
 
@@ -48,8 +46,8 @@ This sample works with a read-only set of backend services by default. To test i
     public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
 
 
-Creating the ASP.NET Core MVC Project
--------------------------------------
+Creating the ASP.NET Core Project
+---------------------------------
 
 Create a new ASP.NET Core MVC project in Visual Studio. Choose the Web API template and No Authentication.
 
@@ -63,7 +61,7 @@ The application should respond to all requests made to port 5000. Update `Progra
   :dedent: 12
   :emphasize-lines: 3
 
-.. note:: Make sure you run the application using Kestrel, not IIS Express. This can be done from Visual Studio, or by running ``dotnet run`` from the command line.
+.. note:: Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run ``dotnet run`` from the command line, or choose the application name profile from the debug menu in Visual Studio.
 
 Add a model class to represent To-Do items. Mark required fields using the ``[Required]`` attribute:
 
