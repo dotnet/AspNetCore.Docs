@@ -6,7 +6,7 @@ using ToDoApi.Models;
 
 namespace ToDoApi.Controllers
 {
-    [Route("api/[controller]/{id?}")]
+    [Route("api/[controller]")]
     public class TodoItemsController : Controller
     {
         private readonly ITodoRepository _todoRepository;
@@ -23,6 +23,7 @@ namespace ToDoApi.Controllers
         }
 
         [HttpPost]
+        [Route("{id}")]
         public IActionResult Create(string id, [FromBody]TodoItem item)
         {
             try
@@ -46,6 +47,7 @@ namespace ToDoApi.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public IActionResult Edit(string id, [FromBody] TodoItem item)
         {
             try
@@ -69,6 +71,7 @@ namespace ToDoApi.Controllers
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public IActionResult Delete(string id)
         {
             try

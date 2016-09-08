@@ -11,12 +11,12 @@ Mobile apps can easily communicate with ASP.NET Core backend services.
   :local:
   :depth: 1
 
-`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample>`__
+`View or download sample backend services code <https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample>`__
 
-The Sample App
---------------
+The Sample Native Mobile App
+----------------------------
 
-This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the `Xamarin Forms TodoRest app <https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/>`_ as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. The sample application includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
+This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the `Xamarin Forms TodoRest app <https://developer.xamarin.com/guides/xamarin-forms/web-services/consuming/rest/>`_ as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
 
 .. image:: native-mobile-backend/_static/todo-android.png
 
@@ -73,7 +73,7 @@ The API methods require some way to work with data. Use the same ITodoRepository
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Interfaces/ITodoRepository.cs
   :language: c#
 
-For this sample, the implementation just uses a private collection of items. Configure the implementation in `Startup.cs`:
+For this sample, the implementation just uses a private collection of items (available `here <https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample>`__). Configure the implementation in `Startup.cs`:
 
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs
   :language: c#
@@ -82,6 +82,8 @@ For this sample, the implementation just uses a private collection of items. Con
   :emphasize-lines: 6
   
 At this point, you're ready to create the `TodoItemsController`.
+
+.. tip:: Learn more about creating web APIs in :doc:`/tutorials/first-web-api`.
 
 Creating the Controller
 -----------------------
@@ -99,12 +101,14 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 Reading Items
 ^^^^^^^^^^^^^
 
-Requesting a list of items is done with a GET request to the List() method. The method name doesn't matter as long as it's the only method matching the request for the given HTTP verb (in this case, GET). If there were multiple GET methods, it would be necessary to add ``[Route]`` attributes to each action (or add ``[action]`` to the route, which would use the action's name as part of the route).
+Requesting a list of items is done with a GET request to the ``List`` method. The ``[HttpGet]`` attribute on the ``List`` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/TodoItemsController.cs
   :language: c#
   :lines: 19-23
   :dedent: 8
+
+The ``List`` method returns a 200 OK response code and all of the ToDo items, serialized as JSON.
 
 You can test your new API method using a variety of tools, such as `Postman <https://www.getpostman.com/docs/>`_, shown here:
 
@@ -115,7 +119,7 @@ Creating Items
 
 By convention, creating new data items is mapped to the HTTP POST verb. The ``Create`` method has an ``[HttpPost]`` attribute applied to it, and accepts an ID parameter and a ``TodoItem`` instance. Since the item will be passed in the body of the POST, this parameter is decorated with the ``[FromBody]`` attribute.
 
-Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it is added using the repository. The error handling  mirrors the behavior of the original service used by the native app.
+Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it is added using the repository. Checking ``ModelState.IsValid`` performs :doc:`model validation </mvc/models/validation>`, and should be done in every API method that accepts user input.
 
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/TodoItemsController.cs
   :language: c#
