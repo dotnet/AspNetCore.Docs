@@ -11,4 +11,4 @@ Authentication
   oauth2
   cookie
   azure-active-directory/index
-  identityserver/index
+  Securing ASP.NET Core apps with IdentityServer4 <https://identityserver4.readthedocs.io>
