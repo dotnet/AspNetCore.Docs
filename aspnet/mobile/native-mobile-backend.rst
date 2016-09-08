@@ -73,7 +73,12 @@ The API methods require some way to work with data. Use the same ITodoRepository
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Interfaces/ITodoRepository.cs
   :language: c#
 
-For this sample, the implementation just uses a private collection of items (available `here <https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample>`__). Configure the implementation in `Startup.cs`:
+For this sample, the implementation just uses a private collection of items:
+
+.. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Services/TodoRepository.cs
+  :language: c#
+
+Configure the implementation in `Startup.cs`:
 
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs
   :language: c#
