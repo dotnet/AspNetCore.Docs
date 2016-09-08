@@ -11,11 +11,9 @@ By `Rick Anderson`_, `Cesar Blum Silveira`_
 Set up the development environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Install the latest `Azure SDK for Visual Studio 2015 <http://go.microsoft.com/fwlink/?linkid=518003>`__. The SDK installs Visual Studio 2015 if you don't already have it.
+- Install the latest `Azure SDK for Visual Studio <https://www.visualstudio.com/features/azure-tools-vs>`__. The SDK installs Visual Studio and the .NET Core tools if you don't already have them.
 
 .. note:: The SDK installation can take more than 30 minutes if your machine doesn't have many of the dependencies.
-
-- Install `.NET Core + Visual Studio tooling <http://go.microsoft.com/fwlink/?LinkID=798306>`__
 
 - Verify your `Azure account <https://portal.azure.com/>`__. You can `open a free Azure account <https://azure.microsoft.com/pricing/free-trial/>`__ or `Activate Visual Studio subscriber benefits <https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/>`__.
 
