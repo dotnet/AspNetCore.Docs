@@ -11,4 +11,4 @@ Authentication
   oauth2
   cookie
   azure-active-directory/index
-  indentityserver/index
+  identityserver/index
