@@ -11,7 +11,7 @@ By `Rick Anderson`_, `Cesar Blum Silveira`_
 Set up the development environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Install the latest `Azure SDK for Visual Studio 2015 <http://go.microsoft.com/fwlink/?linkid=518003>`__. The SDK installs Visual Studio 2015 if you don't already have it.
+- Install the latest `Azure SDK for Visual Studio <https://www.visualstudio.com/features/azure-tools-vs>`__. The SDK installs Visual Studio if you don't already have it.
 
 .. note:: The SDK installation can take more than 30 minutes if your machine doesn't have many of the dependencies.
 
