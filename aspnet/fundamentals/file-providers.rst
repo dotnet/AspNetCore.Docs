@@ -11,19 +11,109 @@ ASP.NET Core abstracts file system access through the use of File Providers.
   :local:
   :depth: 1
 
+`View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/file-providers/sample>`__
+
 File Provider Abstractions
 --------------------------
 
-File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.FileProviders.IChangeToken`). These types wrap the ``System.IO.File`` type, but also scope all paths to a directory and its children.
+File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`). These types wrap the ``System.IO.File`` type, scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary.
+
+``IFileInfo`` provides methods and properties about individual files or directories. It has two boolean properties, ``Exists`` and ``IsDirectory``, as well as properties describing the file's ``Name``, ``Length`` (in bytes), and ``LastModified`` date. You can read from the file using its ``CreateReadStream`` method.
 
 File Provider Implementations
 -----------------------------
 
-Physical
+Three implementations of ``IFileProvider`` are available: Physical, Embedded, and Composite.
 
-Embedded (for assembly resources)
+PhysicalFileProvider
+^^^^^^^^^^^^^^^^^^^^
+The :dn:class:`~Microsoft.Extensions.FileProviders.PhysicalFileProvider` provides access to the physical file system. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a ``PhysicalFileProvider``` provider directly, or you can request an ``IFileProvider`` in a Controller or service's constructor through :doc:`dependency injection </fundamentals/dependency-injection>`. The latter approach will typically yield a more flexible and testable solution.
 
-Composite (aggregates over multiple providers)
+To create a ``PhysicalFileProvider``, simply instantiate it, passing it a physcial path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
+
+.. code-block:: c#
+
+  IFileProvider provider = new PhysicalFileProvider(applicationRoot);
+  IDirectoryContents contents = provider.GetDirectoryContents(""); // the applicationRoot contents
+  IFileInfo fileInfo = provider.GetFileInfo("wwwroot/js/site.js"); // a file under applicationRoot
+
+To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/Controllers/HomeController.cs
+  :lines: 7-21
+  :emphasize-lines: 6
+  :dedent: 4
+
+Then, create the provider in the app's ``Startup`` class:
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/Startup.cs
+  :lines: 11-15, 23-24, 29-34, 38, 41
+  :emphasize-lines: 13-14
+  :dedent: 4
+
+In the *Index.cshtml* view, iterate through the ``IDirectoryContents`` provided:
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/Views/Home/Index.cshtml
+  :emphasize-lines: 2,7,9,11,15
+
+The result:
+
+.. image:: /fundamentals/file-providers/_static/physical-directory-listing.png
+
+EmbeddedFileProvider
+^^^^^^^^^^^^^^^^^^^^
+
+The ``EmbeddedFileProvider`` is used to access files embedded in assemblies. In .NET Core, you embed files in an assembly by specifying them in ``buildOptions`` in the *project.json* file:
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/project.json
+  :lines: 42-49
+  :emphasize-lines: 4-7
+
+You can use `globbing patterns`_ when specifying files to embed in the assembly.
+
+When creating an ``EmbeddedFileProvider``, pass the assembly it will read to its constructor.
+
+.. code-block:: c#
+
+  var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
+
+The snippet above demonstrates how to create an ``EmbeddedFileProvider`` with access to the currently executing assembly.
+
+Updating the sample app to use an ``EmbeddedFileProvider`` results in the following output:
+
+.. image:: /fundamentals/file-providers/_static/embedded-directory-listing.png
+
+.. note:: Embedded resources do not expose directories. Rather, the path to the resource is embedded in its filename using ``.`` separators.
+
+CompositeFileProvider
+^^^^^^^^^^^^^^^^^^^^^
+
+The ``CompositeFileProvider`` combines ``IFileProvider`` instances, exposing a single interface for working with files from multiple providers. When creating the ``CompositeFileProvider``, you pass one or more ``IFileProvider`` instances to its constructor:
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/Startup.cs
+  :lines: 34-36
+  :emphasize-lines: 3
+  :dedent: 12
+
+Updating the sample app to use a ``CompositeFileProvider`` that includes both the physical and embedded providers configured previously, results in the following output:
+
+.. image:: /fundamentals/file-providers/_static/composite-directory-listing.png
+
+
+Watching for changes
+--------------------
+
+The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use `globbing patterns`_ to specify multiple files, and returns an ``IChangeToken``. This token exposes a ``HasChanged`` property that can be inspected, and a ``RegisterChangeCallback`` method that is called when changes are detected to the specified path string.
+
+In this article's sample, the ``Watch`` action on the ``HomeController`` sets up a watch on a particular file, and configures a callback that sets a static field on the controller with the time when the file was last changed. Note that each change token will only call its callback once - if you need to constantly monitor for changes, you will need create a new token each time a change is fired.
+
+.. literalinclude:: file-providers/sample/src/FileProviderSample/Controllers/HomeController.cs
+  :lines: 23-33
+  :emphasize-lines: 3-7
+  :dedent: 8
+
+This example will register a new callback every time a request is handled by the ``Watch`` action. 
+**REVIEWER**: Is there a better example for using Watch in an MVC action that would avoid this behavior?
 
 .. note:: Some file systems, such as Docker containers and network chares, may not reliably send change notifications. Set the ``DOTNET_USE_POLLINGFILEWATCHER`` environment variable to ``1`` or ``true`` to poll the file system for changes every 4 seconds.
 
@@ -53,7 +143,7 @@ Globbing Pattern Examples
 File Provider Usage
 -------------------
 
-Several parts of ASP.NET Core utilize file providers. IHostingEnvironment exposes the app's content root and web root as ``IFileProvider`` types. The static files middleware uses file providers to locate static files. Razor makes heavy use of ``IFileProvider`` in locating views. Dotnet's publish functionality uses file providers and globbing patterns to specify which files should be published.
+Several parts of ASP.NET Core utilize file providers. ``IHostingEnvironment`` exposes the app's content root and web root as ``IFileProvider`` types. The static files middleware uses file providers to locate static files. Razor makes heavy use of ``IFileProvider`` in locating views. Dotnet's publish functionality uses file providers and globbing patterns to specify which files should be published.
 
-If your ASP.NET Core app requires file system access, you can request an instance of ``IFileProvider`` through dependency injection, and then use its methods to perform the access. Following this convention will produce a more loosely-coupled, testable app than working directly with concrete file system implementation types.
+If your ASP.NET Core app requires file system access, you can request an instance of ``IFileProvider`` through dependency injection, and then use its methods to perform the access, as shown in this sample. This allows you to configure the provider once, when the app starts up, and reduces the number of implementation types your app instantiates.
 
