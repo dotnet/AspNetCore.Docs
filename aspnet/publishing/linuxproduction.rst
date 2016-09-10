@@ -121,7 +121,7 @@ To have supervisor monitor our application, we will add a file to the ``/etc/sup
     autorestart=true
     stderr_logfile=/var/log/hellomvc.err.log
     stdout_logfile=/var/log/hellomvc.out.log
-    environment=ASPNETCORE_ENVIRONMENT=Production
+    environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
     user=www-data
     stopsignal=INT
 
