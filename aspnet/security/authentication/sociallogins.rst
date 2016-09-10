@@ -35,11 +35,11 @@ Create a New ASP.NET Core Project
     
 .. image:: sociallogins/_static/ssl.png
 
-- Require SSL. Add the following code to ``ConfigureServices`` in ``Startup``:
+- Require SSL. Modify the services.AddMvc(); code in ``Startup`` under ``ConfigureServices``:
 
 .. code-block:: c#
 
-   services.Configure<MvcOptions>(options =>
+   services.AddMvc(options =>
    {
        options.Filters.Add(new RequireHttpsAttribute ());
    });
