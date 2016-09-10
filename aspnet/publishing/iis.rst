@@ -47,7 +47,7 @@ Install the .NET Core Windows Server Hosting bundle
 ---------------------------------------------------
 
 #. Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=817246>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
-#. Execute **iisreset** at the command line or restart the server to pickup changes to the system PATH.
+#. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
 For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see :doc:`ASP.NET Core Module Configuration Reference </hosting/aspnet-core-module>`.
 
@@ -267,7 +267,7 @@ Hosting bundle not installed or server not restarted
 Troubleshooting:
 
 - You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See `Install the .NET Core Windows Server Hosting Bundle`_.
-- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS with the IISReset command-line utility or using IIS Manager.
+- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command-line.
 
 Incorrect `processPath`, missing PATH variable, or *dotnet.exe* access violation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -281,7 +281,7 @@ Troubleshooting:
 - Check the `processPath` attribute on the `\<aspNetCore\>` element in *web.config* to confirm that it is `dotnet` for a portable application or `.\\my_application.exe` for a self-contained application.
 - For a portable application, *dotnet.exe* might not be accessible via the PATH settings. Confirm that `C:\\Program Files\\dotnet\\` exists in the System PATH settings.
 - For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the `C:\\Program Files\\dotnet` directory.
-- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS with the IISReset command-line utility or using IIS Manager.
+- You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command-line.
 
 Incorrect `arguments` of `\<aspNetCore\>` element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
