@@ -35,7 +35,7 @@ Handle connection strings
 
 The EF6 command-line tools that you'll use in the EF6 class library project require a default constructor so they can instantiate the context. But you'll probably want to specify the connection string to use in the ASP.NET Core project, in which case your context constructor must have a parameter that lets you pass in the connection string. Here's an example.
 
-.. literalinclude::  entity-framework-6/sample/ef6/SchoolContext.cs
+.. literalinclude::  entity-framework-6/sample/EF6/SchoolContext.cs
   :language: c#
   :start-after: snippet_Constructor
   :end-before:  #endregion
@@ -43,7 +43,7 @@ The EF6 command-line tools that you'll use in the EF6 class library project requ
 
 Since your EF6 context doesn't have a parameterless constructor, your EF6 project has to provide an implementation of `IDbContextFactory <https://msdn.microsoft.com/library/hh506876>`__. The EF6 command-line tools will find and use that implementation so they can instantiate the context. Here's an example.
 
-.. literalinclude::  entity-framework-6/sample/ef6/SchoolContextFactory.cs
+.. literalinclude::  entity-framework-6/sample/EF6/SchoolContextFactory.cs
   :language: c#
   :start-after: snippet_IDbContextFactory
   :end-before:  #endregion
