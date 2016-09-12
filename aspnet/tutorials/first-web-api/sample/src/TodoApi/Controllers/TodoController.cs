@@ -14,6 +14,7 @@ namespace TodoApi.Controllers
         public ITodoRepository TodoItems { get; set; }
 
         #region snippet_GetAll
+        [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
             return TodoItems.GetAll();
