@@ -3,6 +3,8 @@ Areas
 
 By `Dhananjay Kumar <https://twitter.com/debug_mode>`__  and `Rick Anderson`_
 
+Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, ``area``, to ``controller`` and ``action``.
+
 Areas provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the  app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models. In this scenario, you can use Areas to physically partition the business components in the same project.
 
 An area can be defined as smaller functional units in an ASP.NET Core MVC project with its own set of controllers, views, and models.
@@ -17,6 +19,7 @@ Area features:
 - An ASP.NET Core MVC app can have any number of areas
 - Each area has its own controllers, models, and views
 - Allows you to organize large MVC projects into multiple high-level components that can be worked on independently
+- Supports multiple controllers with the same name - as long as they have different *areas*
 
 Let's take a look at an example to illustrate how Areas are created and used. Let's say you have a store app that has two distinct groupings of controllers and views: Products and Services. A typical folder structure for that using MVC areas looks like below:
 
