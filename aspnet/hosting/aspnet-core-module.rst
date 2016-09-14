@@ -12,7 +12,7 @@ In ASP.NET Core, the web application is hosted by an external process outside of
 Installing the ASP.NET Core Module
 ----------------------------------
 
-Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=817246>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module.
+Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=827547>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module.
 
 Configuring the ASP.NET Core Module
 -----------------------------------
