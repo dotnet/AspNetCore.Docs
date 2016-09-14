@@ -372,7 +372,7 @@ In *Models/Enrollment.cs*, replace the code you added earlier with the following
   :language: c#
   :start-after: snippet_Final
   :end-before:  #endregion
-  :emphasize-lines: 1-2,17
+  :emphasize-lines: 1-2,16
 
 Foreign key and navigation properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

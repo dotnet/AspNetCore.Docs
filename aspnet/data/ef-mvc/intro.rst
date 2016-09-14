@@ -1,4 +1,4 @@
-Getting started with ASP.NET Core and Entity Framework Core using Visual Studio
+Get started with ASP.NET Core and Entity Framework Core using Visual Studio
 ===============================================================================
 
 By `Tom Dykstra`_
@@ -17,7 +17,7 @@ Prerequisites
 -------------
 
 * `Visual Studio 2015 <https://www.visualstudio.com/products/vs-2015-product-editions>`__ with `Update 3 <https://www.visualstudio.com/news/releasenotes/vs2015-update3-vs>`__ or later.
-* `.NET Core 1.0.1 with Visual Studio tools <https://go.microsoft.com/fwlink/?LinkId=827545>`__.
+* `.NET Core 1.0 with Visual Studio tools <https://go.microsoft.com/fwlink/?LinkId=827545>`__.
 
 Entity Framework Core 1.0 is not a prerequisite because you install the EF NuGet package as part of the tutorial.
 
@@ -78,7 +78,7 @@ The changes are highlighted.
 
 .. literalinclude::  intro/samples/cu/Views/Shared/_Layout.cshtml
    :language: html
-   :emphasize-lines: 6,30,36-39,49
+   :emphasize-lines: 6,29,35-38,48
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -206,9 +206,7 @@ Register the context with dependency injection
 
 ASP.NET Core implements :doc:`dependency injection </fundamentals/dependency-injection>` by default. Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as MVC controllers) are provided these services via constructor parameters. You'll see the controller constructor code that gets a context instance later in this tutorial.
 
-So that ASP.NET Core can provide an instance of ``SchoolContext`` to your controllers, you'll register it as a service.
-
-Open *Startup.cs*, and add the highlighted lines to the ``ConfigureServices`` method.
+To register ``SchoolContext`` as a service, open *Startup.cs*, and add the highlighted lines to the ``ConfigureServices`` method.
 
 .. literalinclude::  intro/samples/cu/Startup.cs
   :language: c#
@@ -217,13 +215,13 @@ Open *Startup.cs*, and add the highlighted lines to the ``ConfigureServices`` me
   :emphasize-lines: 1-2
   :dedent: 12
 
-The name of the connection string is passed in to the context by calling a method on a ``DbContextOptionsBuilder`` object. For local development, the :doc:`ASP.NET Core configuration system </fundamentals/configuration>` reads the connection string from the *appsettings.json* file. 
+The name of the connection string is passed in to the context by calling a method on a ``DbContextOptionsBuilder`` object. For local development, the :doc:`ASP.NET Core configuration system </fundamentals/configuration>` reads the connection string from the *appsettings.json* file. The connection string is highlighted in the following *appsettings.json* example. 
 
 .. literalinclude::  intro/samples/cu/appsettings1.json
   :language: json
   :emphasize-lines: 2-3
 
-Your *appsettings.json* file created by the Visual Studio new-project template will have a generated database name with a numeric suffix to guarantee uniqueness. You don't have to change that name.
+The connection string created by the Visual Studio new-project template has a generated database name with a numeric suffix to guarantee uniqueness. You don't have to change that name.
 
 SQL Server Express LocalDB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -374,9 +372,9 @@ Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
 A web server has a limited number of threads available, and in high load situations all of the available threads might be in use. When that happens, the server can't process new requests until the threads are freed up. With synchronous code, many threads may be tied up while they aren't actually doing any work because they're waiting for I/O to complete. With asynchronous code, when a process is waiting for I/O to complete, its thread is freed up for the server to use for processing other requests. As a result, asynchronous code enables server resources to be use more efficiently, and the server is enabled to handle more traffic without delays.
 
-In versions of .NET Framework earlier than 4.5, writing and testing asynchronous code was complex, error prone, and hard to debug. In .NET Framework 4.5 and in .NET Core, writing, testing, and debugging asynchronous code is so much easier that you should generally write asynchronous code unless you have a reason not to. Asynchronous code does introduce a small amount of overhead at run time, but for low traffic situations the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
+Asynchronous code does introduce a small amount of overhead at run time, but for low traffic situations the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
 
-In the following code, the ``async`` keyword, ``Task`` return value, ``await`` keyword, and ``ToListAsync`` method make the code execute asynchronously.
+In the following code, the ``async`` keyword, ``Task<T>`` return value, ``await`` keyword, and ``ToListAsync`` method make the code execute asynchronously.
 
 .. literalinclude::  intro/samples/cu/Controllers/StudentsController.cs
   :language: c#
@@ -384,10 +382,10 @@ In the following code, the ``async`` keyword, ``Task`` return value, ``await`` k
   :end-before:  #endregion
   :dedent: 8
 
-* The method is marked with the ``async`` keyword, which tells the compiler to generate callbacks for parts of the method body and to automatically create the ``Task<ActionResult>`` object that is returned.
-* The return type is ``Task<IActionResult>`` rather than ``IActionResult``. The ``Task<T>`` return type represents ongoing work with a result of type ``T``.
-* The ``await`` keyword was applied to the ``ToListAsync`` method call. When the compiler sees this keyword, behind the scenes it splits the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.
-* The asynchronous version of the ``ToList`` extension method was called.
+* The ``async`` keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the ``Task<IActionResult>`` object that is returned.
+* The return type ``Task<IActionResult>`` represents ongoing work with a result of type ``IActionResult``.
+* The ``await`` keyword causes the compiler to split the method into two parts. The first part ends with the operation that is started asynchronously. The second part is put into a callback method that is called when the operation completes.
+* ``ToListAsync`` is the asynchronous version of the ``ToList`` extension method.
 
 Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
 

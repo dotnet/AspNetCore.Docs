@@ -43,7 +43,7 @@ Save your changes and build the project. Then open a command window and navigate
   .. image:: migrations/_static/open-command-window.png
      :alt: Open command window
 
-.. note:: Before you can enter a command, stop IIS Express for the site, or you may get an error message: "cannot access the file ... ContosoUniversity.dll because it is being used by another process." To stop the site, find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**. 
+.. note:: Before you enter a command, stop IIS Express for the site, or you may get an error message: "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" To stop the site, find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**. 
 
 In the command window, enter the following command:
 

@@ -32,12 +32,9 @@ There are several ways that Object-Relational Mapping (ORM) software such as Ent
   .. image:: read-related-data/_static/separate-queries.png
     :alt: Separate queries example
 
-* Explicit loading. When the entity is first read, related data isn't retrieved. You write code to retrieve the related data when you need to access the data. As in the case of eager loading with separate queries, explicit loading results in multiple queries sent to the database. The difference is that with explicit loading, the code specifies the navigation properties to be loaded. Entity Framework 6.x supports explicit loading, but Entity Framework Core 1.0 does not.
+* Explicit loading. When the entity is first read, related data isn't retrieved. You write code to retrieve the related data when you need to access the data. As in the case of eager loading with separate queries, explicit loading results in multiple queries sent to the database. The difference is that with explicit loading, the code specifies the navigation properties to be loaded. Entity Framework Core 1.0 does not provide an explicit loading API.
 
-* Lazy loading. When the entity is first read, related data isn't retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the database each time you try to get data from a navigation property for the first time. Entity Framework 6.x supports lazy loading, but Entity Framework Core 1.0 does not. 
-
-Because they don't immediately retrieve the related data, lazy loading and explicit loading are also both known as deferred loading.
-
+* Lazy loading. When the entity is first read, related data isn't retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the database each time you try to get data from a navigation property for the first time. Entity Framework Core 1.0 does not support lazy loading. 
 Performance considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -260,7 +257,7 @@ To see this in action, replace the ``Index`` method with the following code:
   :language: c#
   :start-after: snippet_ExplicitLoading
   :end-before:  #endregion
-  :emphasize-lines: 26-28
+  :emphasize-lines: 25-27
   :dedent: 8
 
 The new code drops the `ThenInclude` method calls for enrollment data from the code that retrieves instructor entities. If an instructor and course are selected, the highlighted code retrieves Enrollment entities for the selected course.  With these Enrollment entities, the code eagerly loads the Student navigation property.  

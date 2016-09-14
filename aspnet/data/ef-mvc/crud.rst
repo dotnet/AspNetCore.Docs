@@ -41,9 +41,9 @@ In *Controllers/StudentsController.cs*, the action method for the Details view u
   :emphasize-lines: 8-12
   :dedent: 8
 
-The ``Include`` and ``ThenInclude`` methods cause the context to load the ``Student.Enrollments`` navigation property, and within each enrollment the ``Enrollment.Course`` navigation property.  You'll learn more about the ``Include`` method in the :doc:`reading related data </data/ef-mvc/read-related-data>` tutorial.
+The ``Include`` and ``ThenInclude`` methods cause the context to load the ``Student.Enrollments`` navigation property, and within each enrollment the ``Enrollment.Course`` navigation property.  You'll learn more about these methods in the :doc:`reading related data </data/ef-mvc/read-related-data>` tutorial.
 
-The ``AsNoTracking`` method improves performance in scenarios where you know the entities returned will not need to be updated in the current context's lifetime. You'll learn more about ``AsNoTracking`` at the end of this tutorial.
+The ``AsNoTracking`` method improves performance in scenarios where the entities returned will not be updated in the current context's lifetime. You'll learn more about ``AsNoTracking`` at the end of this tutorial.
 
 .. note::  The key value that is passed to the ``Details`` method comes from *route data*.
 
@@ -228,7 +228,7 @@ The recommended HttpPost edit code ensures that only changed columns get updated
   :end-before:  #endregion
   :emphasize-lines: 1,7,11
 
-This approach is viable when the web page UI includes all of the fields in the entity and can update any of them.
+You can use this approach when the web page UI includes all of the fields in the entity and can update any of them. 
 
 Entity States
 ^^^^^^^^^^^^^
@@ -309,6 +309,8 @@ If improving performance in a high-volume application is a priority, you could a
   :emphasize-lines: 7-8
   :dedent: 8
 
+If the entity has related data that should also be deleted, make sure that cascade delete is configured in the database. With this approach to entity deletion, EF might not realize there are related entities to be deleted.
+
 Update the Delete view
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -346,11 +348,11 @@ When a database context retrieves table rows and creates entity objects that rep
 
 You can disable tracking of entity objects in memory by calling the ``AsNoTracking`` method. Typical scenarios in which you might want to do that include the following:
 
-* You know that the context will be disposed without updating any of the entities returned from a query. This is typically the case with HttpGet methods in a web application.
+* During the context lifetime you don't need to update any entities, and you don't need EF to :doc:`automatically load navigation properties with  entities retrieved by separate queries </data/ef-mvc/read-related-data>`. Frequently these conditions are met in a controller's HttpGet action methods.
 * You are running a query that retrieves a large volume of data, and only a small portion of the returned data will be updated. It may be more efficient to turn off tracking for the large query, and run a query later for the few entities that need to be updated.
 * You want to attach an entity in order to update it, but earlier you retrieved the same entity for a different purpose. Because the entity is already being tracked by the database context, you can't attach the entity that you want to change. One way to handle this situation is to call ``AsNoTracking`` on the earlier query.
 
-For more information, see `Tracking <https://ef.readthedocs.io/en/latest/querying/tracking.html>`__.
+For more information, see `Tracking vs. No-Tracking <https://ef.readthedocs.io/en/latest/querying/tracking.html>`__.
 
 Summary
 -------
