@@ -1,4 +1,3 @@
-
 Routing to Controller Actions
 ========================================
 
@@ -161,7 +160,7 @@ This controller defines two actions that would match the URL path ``/Products/Ed
 
 The :dn:cls:`~Microsoft.AspNetCore.Mvc.HttpPostAttribute` is an implementation of :dn:iface:`~Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` that will only allow the action to be selected when the HTTP verb is ``POST``. The presence of an ``IActionConstraint`` makes the ``Edit(int, Product)`` a 'better' match than ``Edit(int)``, so ``Edit(int, Product)`` will be tried first. See :ref:`iactionconstraint-ref-label` for details.
 
-You will only need to write custom ``IActionConstraint`` implementations in specialized scenarios, but it's important to understand the role of attributes like ``HttpPostAttribute``  - similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they are part of a ``show form -> submit form`` workflow. The convenience of this pattern will become more apparent after reviewing :ref:`url-gen-ref-label`.
+You will only need to write custom ``IActionConstraint`` implementations in specialized scenarios, but it's important to understand the role of attributes like ``HttpPostAttribute``  - similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they are part of a ``show form -> submit form`` workflow. The convenience of this pattern will become more apparent after reviewing :ref:`routing-url-gen-ref-label`.
 
 If multiple routes match, and MVC can't find a 'best' route, it will throw an :dn:cls:`~Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException`.
 
@@ -467,7 +466,7 @@ The :dn:iface:`~Microsoft.AspNetCore.Mvc.IUrlHelper` interface is the underlying
 In this example, the ``IUrlHelper`` interface is used through the ``Controller.Url`` property to generate a URL to another action.
 
 .. literalinclude:: routing/sample/main/Controllers/UrlGenerationController.cs
-  :language: c#
+  :language: none
   :start-after: snippet_1
   :end-before: #endregion
 
@@ -662,7 +661,7 @@ When executing an action inside an area, the route value for ``area`` will be av
   :end-before: #endregion
   :dedent: 12
 
-.. literalinclude:: routing\sample\AreasRouting\Areas\Duck\Controllers\UsersController.cs
+.. literalinclude:: routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs
   :language: c#
 
 .. _iactionconstraint-ref-label:
@@ -670,7 +669,10 @@ When executing an action inside an area, the route value for ``area`` will be av
 Understanding IActionConstraint
 ---------------------------------
 
-.. note:: This section is a deep-dive on framework internals and how MVC chooses an action to execute. A typical application won't use any custom ``IActionConstraint``s.
+.. note:: This section is a deep-dive on framework internals and how MVC chooses an action to execute. A typical application won't use any custom ``IActionConstraint``
+
+
+.
 
 You have likely already used :dn:iface:`~Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint` even if you're not familiar with the interface. The ``[HttpGet]`` Attribute and similar ``[Http-VERB]`` attributes implement ``IActionConstraint`` in order to limit the execution of an action method.
 
