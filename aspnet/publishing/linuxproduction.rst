@@ -124,6 +124,8 @@ To have supervisor monitor our application, we will add a file to the ``/etc/sup
     environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
     user=www-data
     stopsignal=INT
+    stopasgroup=true
+    killasgroup=true
 
 Once you are done editing the configuration file, restart the ``supervisord`` process to change the set of programs controlled by supervisord.
 
