@@ -12,7 +12,7 @@ namespace EF6
     {
         public SchoolContext Create()
         {
-            return new EF6.SchoolContext("Server=(localdb)\\mssqllocaldb;Database=EF6MVCCore-1;Trusted_Connection=True;MultipleActiveResultSets=true");
+            return new EF6.SchoolContext("Server=(localdb)\\mssqllocaldb;Database=EF6MVCCore;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
     }
     #endregion

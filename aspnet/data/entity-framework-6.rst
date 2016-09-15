@@ -12,6 +12,8 @@ This article will show you how to use Entity Framework 6 inside an ASP.NET Core 
 Overview
 --------
 
+To use Entity Framework 6, your project has to compile against the full .NET Framework, as Entity Framework 6 does not support .NET Core. If you need cross-platform features you will need to upgrade to `Entity Framework Core`_.  
+
 The recommended way to use Entity Framework 6 in an ASP.NET Core 1.0 application is to put the EF6 context and model classes in a class library project (*.csproj* project file) that targets the full framework. Add a reference to the class library from the ASP.NET Core project. See the sample `Visual Studio solution with EF6 and ASP.NET Core projects <https://github.com/aspnet/Docs/tree/master/aspnet/data/entity-framework-6/sample/>`__.
 
 It's not feasible to put an EF6 context in an ASP.NET Core 1.0 project because *.xproj*-based projects don't support all of the functionality that EF6 commands such as `Enable-Migrations` require. In a future release of ASP.NET Core, Core projects will be based on *.csproj* files, and at that time you'll be able to include an EF6 context directly in an ASP.NET Core project. 
@@ -62,7 +64,7 @@ In the Core project's *Startup.cs* file, set up the EF6 context for dependency i
   :end-before:  #endregion
   :dedent: 8
 
-You can then get an instance of the context in your controllers by using DI the same way you would for an EF Core context.
+You can then get an instance of the context in your controllers by using DI. The code is similar to what you'd write for an EF Core context:
 
 .. literalinclude::  entity-framework-6/sample/MVCCore/Controllers/StudentsController.cs
   :language: c#
@@ -82,7 +84,7 @@ This sample can be created from scratch by the following steps in Visual Studio:
 * **Add New Project > Windows > Class Library**
 * In **Package Manager Console** (PMC) for both projects, run the command ``install-package entityframework``.
 * In the class library project, create data model classes and a context class, and an implementation of ``IDbContextFactory``.
-* In PMC for the class library project, run the commands ``enable-migrations`` and ``add-migration Initial``.
+* In PMC for the class library project, run the commands ``enable-migrations`` and ``add-migration Initial``. If you have set the ASP.NET Core project as the startup project, add ``-StartupProjectName EF6`` to these commands.
 * In the Core project, add a project reference to the class library project.
 * In the Core project, in *Startup.cs*, register the context for DI.
 * In the Core project, add a controller and view(s) to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)

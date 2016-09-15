@@ -49,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SchoolContextFactory.cs" />
-    <Compile Include="Migrations\201609012114033_Initial.cs" />
-    <Compile Include="Migrations\201609012114033_Initial.Designer.cs">
-      <DependentUpon>201609012114033_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201609151705275_Initial.cs" />
+    <Compile Include="Migrations\201609151705275_Initial.Designer.cs">
+      <DependentUpon>201609151705275_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SchoolContextFactory.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,8 +66,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609012114033_Initial.resx">
-      <DependentUpon>201609012114033_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609151705275_Initial.resx">
+      <DependentUpon>201609151705275_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

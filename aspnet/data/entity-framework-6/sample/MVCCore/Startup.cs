@@ -32,7 +32,7 @@ namespace MVCCore
         {
             // Add framework services.
             services.AddMvc();
-            services.AddScoped<SchoolContext>(c => new SchoolContext(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<SchoolContext>(_ => new SchoolContext(Configuration.GetConnectionString("DefaultConnection")));
         }
         #endregion  
 
