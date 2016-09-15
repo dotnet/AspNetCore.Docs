@@ -131,7 +131,8 @@ Run the application in debug mode, and go to the Details page for a student.
 Go to the **Output** window showing debug output, and you see the query:
 
 .. code-block:: text
-   Microsoft.EntityFrameworkCore.Storage.Internal
+
+  Microsoft.EntityFrameworkCore.Storage.Internal
   .RelationalCommandBuilderFactory:Information: 
   Executed DbCommand (9ms) [Parameters=[@__id_0='?'], 
   CommandType='Text', CommandTimeout='30']
