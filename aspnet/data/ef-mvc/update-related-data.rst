@@ -198,14 +198,14 @@ The code does the following:
 
   .. literalinclude::  intro/samples/cu/Controllers/InstructorsController.cs
     :language: c#
-    :lines: 232-235
+    :lines: 241-244
     :dedent: 12
 
 * If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
   .. literalinclude::  intro/samples/cu/Controllers/InstructorsController.cs
     :language: c#
-    :lines: 237-240
+    :lines: 246-249
     :dedent: 16
 
 * Saves the changes to the database.
@@ -315,7 +315,7 @@ Update the Instructor views
 
 In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of check boxes by adding the following code immediately after the ``div`` elements for the **Office** field and before the ``div`` element for the **Save** button.
 
-.. note:: Open the file in a text editor such as Notepad to make this change.  If you use Visual Studio, line breaks will be changed in a way that breaks the code.  If that happens, you will have to manually fix everything so that it looks like what you see here. The indentation doesn't have to be perfect, but the ``@</tr><tr>``, ``@:<td>``, ``@:</td>``, and ``@:</tr>`` lines must each be on a single line as shown or you'll get a runtime error. After editing the file in a text editor, you can open it in Visual Studio, highlight the block of new code, and press Tab twice to line up the new code with the existing code.
+.. note:: Open the file in a text editor such as Notepad to make this change.  If you use Visual Studio, line breaks will be changed in a way that breaks the code.  If that happens, fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the ``@</tr><tr>``, ``@:<td>``, ``@:</td>``, and ``@:</tr>`` lines must each be on a single line as shown or you'll get a runtime error. After editing the file in a text editor, you can open it in Visual Studio, highlight the block of new code, and press Tab twice to line up the new code with the existing code.
 
 .. literalinclude:: intro/samples/cu/Views/Instructors/Edit.cshtml
   :language: none
@@ -349,12 +349,12 @@ In *InstructorsController.cs*, delete the ``DeleteConfirmed`` method and insert 
   :start-after: snippet_DeleteConfirmed
   :end-before: #endregion
   :dedent: 8
-  :emphasize-lines: 6-7,10-15
+  :emphasize-lines: 6,9-12
 
 This code makes the following changes:
 
 *  Does eager loading for the ``Courses`` navigation property.  You have to include this or EF won't know about related ``CourseAssignment`` entities and won't delete them.  To avoid needing to read them here you could configure cascade delete in the database.
-* If the instructor is assigned as administrator of any department, removes the instructor assignment from that department. Without this code, you would get a referential integrity error if you tried to delete an instructor who was assigned as administrator for a department. This code doesn't handle the scenario of one instructor assigned as administrator for multiple departments. 
+* If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
 Add office location and courses to the Create page
 --------------------------------------------------
@@ -366,7 +366,7 @@ In *InstructorController.cs*, delete the HttpGet and HttpPost ``Create`` methods
   :start-after: snippet_Create
   :end-before:  #endregion
   :dedent: 8
-  :emphasize-lines: 5,14-21
+  :emphasize-lines: 5,14-22
 
 This code is similar to what you saw for the ``Edit`` methods except that initially no courses are selected. The HttpGet ``Create`` method calls the ``PopulateAssignedCourseData`` method not because there might be courses selected but in order to provide an empty collection for the ``foreach`` loop in the view (otherwise the view code would throw a null reference exception).
 
@@ -395,9 +395,9 @@ As an alternative to doing this in controller code, you could do it in the Instr
       } 
   }
 
-If you modify the ``Courses property`` in this way, you can remove the explicit property initialization code in the controller.
+If you modify the ``Courses`` property in this way, you can remove the explicit property initialization code in the controller.
 
-In *Views/Instructor/Create.cshtml*, add an office location text box and course check boxes after the hire date field and before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
+In *Views/Instructor/Create.cshtml*, add an office location text box and check boxes for courses after the hire date field and before the Submit button. As in the case of the Edit page, this will work better if you do it in a text editor such as Notepad.
 
 .. literalinclude::  intro/samples/cu/Views/Instructors/Create.cshtml
   :language: none

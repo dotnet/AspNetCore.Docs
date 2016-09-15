@@ -370,12 +370,10 @@ namespace ContosoUniversity.Controllers
                 .Include(i => i.Courses)
                 .SingleAsync(i => i.ID == id);
 
-            var department = await _context.Departments
-                .SingleOrDefaultAsync(d => d.InstructorID == id);
-            if (department != null)
-            {
-                department.InstructorID = null;
-            }
+            var departments = await _context.Departments
+                .Where(d => d.InstructorID == id)
+                .ToListAsync();
+            departments.ForEach(d => d.InstructorID = null);
 
             _context.Instructors.Remove(instructor);
 

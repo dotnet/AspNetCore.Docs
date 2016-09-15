@@ -34,7 +34,8 @@ There are several ways that Object-Relational Mapping (ORM) software such as Ent
 
 * Explicit loading. When the entity is first read, related data isn't retrieved. You write code to retrieve the related data when you need to access the data. As in the case of eager loading with separate queries, explicit loading results in multiple queries sent to the database. The difference is that with explicit loading, the code specifies the navigation properties to be loaded. Entity Framework Core 1.0 does not provide an explicit loading API.
 
-* Lazy loading. When the entity is first read, related data isn't retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the database each time you try to get data from a navigation property for the first time. Entity Framework Core 1.0 does not support lazy loading. 
+* Lazy loading. When the entity is first read, related data isn't retrieved. However, the first time you attempt to access a navigation property, the data required for that navigation property is automatically retrieved. A query is sent to the database each time you try to get data from a navigation property for the first time. Entity Framework Core 1.0 does not support lazy loading.
+
 Performance considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 

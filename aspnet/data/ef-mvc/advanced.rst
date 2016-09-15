@@ -9,7 +9,7 @@ In the previous tutorial you implemented table-per-hierarchy inheritance. This t
   :local:
   :depth: 1
 
-Performing Raw SQL Queries
+Raw SQL Queries
 --------------------------
 
 One of the advantages of using the Entity Framework is that it avoids tying your code too closely to a particular method of storing data. It does this by generating SQL queries and commands for you, which also frees you from having to write them yourself. But there are exceptional scenarios when you need to run specific SQL queries that you have manually created. For these scenarios, the Entity Framework Code First API includes methods that enable you to pass SQL commands directly to the database. You have the following options in EF Core 1.0:
@@ -22,7 +22,7 @@ If you need to run a query that returns types that aren't entities, you can use 
 
 As is always true when you execute SQL commands in a web application, you must take precautions to protect your site against SQL injection attacks. One way to do that is to use parameterized queries to make sure that strings submitted by a web page can't be interpreted as SQL commands. In this tutorial you'll use parameterized queries when integrating user input into a query.
 
-Call a Query that returns entities
+Call a query that returns entities
 ----------------------------------
 
 The ``DbSet<TEntity>`` class provides a method that you can use to execute a query that returns an entity of type ``TEntity``. To see how this works you'll change the code in the ``Details`` method of the Department controller.
@@ -33,7 +33,7 @@ In *DepartmentsController.cs*, in the ``Details`` method, replace the code that 
   :language: c#
   :start-after: snippet_RawSQL
   :end-before:  #endregion
-  :emphasize-lines: 8-10
+  :emphasize-lines: 8-10,13
   :dedent: 8
 
 To verify that the new code works correctly, select the **Departments** tab and then **Details** for one of the departments.
@@ -119,7 +119,7 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 For more information about raw SQL queries, see `Raw SQL Queries <https://ef.readthedocs.io/en/latest/querying/raw-sql.html>`__.
 
-Examining SQL sent to the database
+Examine SQL sent to the database
 ----------------------------------
 
 Sometimes it's helpful to be able to see the actual SQL queries that are sent to the database. Built-in logging functionality for ASP.NET Core is automatically used by EF Core to write logs that contain the SQL for queries and updates. In this section you'll see some examples of SQL logging.
@@ -131,7 +131,6 @@ Run the application in debug mode, and go to the Details page for a student.
 Go to the **Output** window showing debug output, and you see the query:
 
 .. code-block:: text
-
    Microsoft.EntityFrameworkCore.Storage.Internal
   .RelationalCommandBuilderFactory:Information: 
   Executed DbCommand (9ms) [Parameters=[@__id_0='?'], 
@@ -145,7 +144,7 @@ Go to the **Output** window showing debug output, and you see the query:
       WHERE ([s].[ID] = @__id_0) AND ([e].[StudentID] = [s].[ID]))
   ORDER BY [e].[StudentID]
 
-You'll notice something here that might surprise you: the SQL selects up to 2 rows (``TOP(2)``). The ``SingleOrDefaultAsync`` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the ``SingleOrDefault`` method is the same.
+You'll notice something here that might surprise you: the SQL selects up to 2 rows (``TOP(2)``). The ``SingleOrDefaultAsync`` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the ``SingleOrDefault`` method is the same as if 2 rows match.
 
 Note that you don't have to use debug mode and stop at a breakpoint to get logging output in the **Output** window. It's just a convenient way to stop the logging at the point you want to look at the output. If you don't do that, logging continues and you have to scroll back to find the parts you're interested in.
 
