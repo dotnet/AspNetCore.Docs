@@ -46,11 +46,7 @@ Manual Installation in bower.json
   .. image:: bower/_static/version-intellisense.png
 
   
-  .. note:: Notice that there are three versions to choose from in the list. If you were starting with a package 1.0.4, each time the ``bower restore`` command is run, the following result will occur.
-
-    - Patch releases: ~1.0.4, any 1.0.x versions will be downloaded and installed that is 1.0.10.
-    - Minor releases: ^1.0.4, any 1.x versions will be downloaded and installed that is 1.5.0.
-    - Major releases: 1.0.4, no updates will occur.
+  .. note:: Bower uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
 
 - Save the bower.json file.
 
