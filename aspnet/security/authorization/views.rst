@@ -3,7 +3,7 @@
 View Based Authorization
 ========================
 
-Often a developer will want to show, hide or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via :ref:`dependency injection <fundamentals-dependency-injection>`. To inject the authorization service into a Razor view use the ``@inject`` directive, for example ``@inject IAuthorizationService AuthorizationService``. If you want the authorization service in every view then place the ``@inject`` directive into the ``_ViewImports.cshtml`` file in the ``Views`` directory.
+Often a developer will want to show, hide or otherwise modify a UI based on the current user identity. You can access the authorization service within MVC views via :ref:`dependency injection <fundamentals-dependency-injection>`. To inject the authorization service into a Razor view use the ``@inject`` directive, for example ``@inject IAuthorizationService AuthorizationService``. If you want the authorization service in every view then place the ``@inject`` directive into the ``_ViewImports.cshtml`` file in the ``Views`` directory. For more information on dependency injection into views see :doc:`/mvc/views/dependency-injection`.
 
 Once you have injected the authorization service you use it by calling the :dn:method:`~Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync` method in exactly the same way as you would check during :ref:`resource based authorization <security-authorization-resource-based-imperative>`. 
 
