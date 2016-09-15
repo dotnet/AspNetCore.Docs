@@ -45,7 +45,6 @@ Manual Installation in bower.json
 
   .. image:: bower/_static/version-intellisense.png
 
-  
   .. note:: Bower uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
 
 - Save the bower.json file.
