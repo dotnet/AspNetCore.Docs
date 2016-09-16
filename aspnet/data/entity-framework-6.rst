@@ -82,9 +82,9 @@ This sample can be created from scratch by the following steps in Visual Studio:
 * Create a solution.
 * **Add New Project > Web > ASP.NET Core Web Application (.NET Framework)**
 * **Add New Project > Windows > Class Library**
-* In **Package Manager Console** (PMC) for both projects, run the command ``install-package entityframework``.
+* In **Package Manager Console** (PMC) for both projects, run the command ``Install-Package Entityframework``.
 * In the class library project, create data model classes and a context class, and an implementation of ``IDbContextFactory``.
-* In PMC for the class library project, run the commands ``enable-migrations`` and ``add-migration Initial``. If you have set the ASP.NET Core project as the startup project, add ``-StartupProjectName EF6`` to these commands.
+* In PMC for the class library project, run the commands ``Enable-Migrations`` and ``Add-Migration Initial``. If you have set the ASP.NET Core project as the startup project, add ``-StartupProjectName EF6`` to these commands.
 * In the Core project, add a project reference to the class library project.
 * In the Core project, in *Startup.cs*, register the context for DI.
 * In the Core project, add a controller and view(s) to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)
