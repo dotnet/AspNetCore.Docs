@@ -3,9 +3,9 @@
 [Route("Home")]
 public class HomeController : Controller
 {
-    [Route("")] // Combines to define the route template "Home"
+    [Route("")]      // Combines to define the route template "Home"
     [Route("Index")] // Combines to define the route template "Home/Index"
-    [Route("/")] // Does not combine, defines the route template ""
+    [Route("/")]     // Does not combine, defines the route template ""
     public IActionResult Index()
     {
         ViewData["Message"] = "Home index";
@@ -21,12 +21,3 @@ public class HomeController : Controller
     }   
 }
 #endregion
-
-/*
- [Route("Contact")] // Combines to define the route template "Home/Contact"
-    public IActionResult Contact()
-    {
-        return View();
-    }
-
-    */
