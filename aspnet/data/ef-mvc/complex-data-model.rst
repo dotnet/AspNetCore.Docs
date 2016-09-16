@@ -430,6 +430,7 @@ The composite key ensures that while you can have multiple rows for one course, 
 Join entity names
 ^^^^^^^^^^^^^^^^^
 
+It's common to name a join entity ``EntityName1EntityName2``, which in this case would be ``CourseInstructor``. However, we recommend that you choose a name that describes the relationship. Data models start out simple and grow, with no-payload joins frequently getting payloads later. If you start with a descriptive entity name, you won't have to change the name later. 
 
 Update the database context   
 ---------------------------
