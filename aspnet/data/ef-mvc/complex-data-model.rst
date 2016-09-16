@@ -509,7 +509,10 @@ You get a warning about possible data loss.
   Time elapsed 00:00:02.9907258
 
   An operation was scaffolded that may result in the loss of data. Please review the migration for accuracy.
-  Done. To undo this action, use 'dotnet ef migrations remove'
+  
+  Done.
+
+  To undo this action, use 'dotnet ef migrations remove'
 
 If you tried to run the ``database update`` command at this point (don't do it yet), you would get the following error:
 

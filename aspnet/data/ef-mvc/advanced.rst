@@ -232,8 +232,7 @@ Migration scaffolded with no code in Up and Down methods
 
 Possible cause:
 
-The EF CLI commands don't automatically close and save code files. If you have unsaved changes when you run the ``migrations add`` command, EF won't find your changes. 
-
+The EF CLI commands don't automatically close and save code files. If you have unsaved changes when you run the ``migrations add`` command, EF won't find your changes.
 
 Solution:
 
@@ -248,7 +247,7 @@ The simplest approach is to rename the database in *appsettings.json*. The next 
 
 To delete a database in SSOX, right-click the database, click **Delete**, and then in the **Delete Database** dialog box select **Close existing connections** and click **OK**.
 
-To delete a database using the CLI, run the ``database drop`` CLI command:
+To delete a database by using the CLI, run the ``database drop`` CLI command:
 
   .. code-block:: none
 

@@ -32,6 +32,8 @@ This change sets up the project so that the first migration will create a new da
 
   .. code-block:: none
 
+    dotnet ef database drop -c SchoolContext
+
   The following section explains how to run CLI commands.
 
 Create an initial migration
