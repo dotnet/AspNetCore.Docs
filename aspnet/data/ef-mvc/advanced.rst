@@ -246,7 +246,13 @@ It's possible to get other errors when making schema changes in a database that 
 
 The simplest approach is to rename the database in *appsettings.json*. The next time you run ``database update``, a new database will be created.
 
-To delete a database, right-click the database in SSOX, click **Delete**, and then in the **Delete Database** dialog box select **Close existing connections** and click **OK**.
+To delete a database in SSOX, right-click the database, click **Delete**, and then in the **Delete Database** dialog box select **Close existing connections** and click **OK**.
+
+To delete a database using the CLI, run the ``database drop`` CLI command:
+
+  .. code-block:: none
+
+    dotnet ef database drop -c SchoolContext
 
 Error locating SQL Server instance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

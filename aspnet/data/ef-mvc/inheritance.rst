@@ -133,11 +133,7 @@ Run the ``database update`` command again:
 
 (In a production system you would make corresponding changes to the ``Down`` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the ``Down`` method.) 
 
-.. note:: It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is much more likely to complete without errors. 
-
-  The simplest approach is to rename the database in *appsettings.json*. The next time you run ``database update``, a new database will be created.
-
-  To delete a database, right-click the database in SSOX, click **Delete**, and then in the **Delete Database** dialog box select **Close existing connections** and click **OK**.
+.. note:: It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors that you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there is no data to migrate, and the update-database command is more likely to complete without errors. To delete the database, use SSOX or run the ``database drop`` CLI command.
 
 Test with inheritance implemented
 ---------------------------------

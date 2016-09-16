@@ -250,7 +250,7 @@ Use multiple queries
 
 When you retrieved the list of instructors in *InstructorsController.cs*, you specified eager loading for the ``Courses`` navigation property. 
 
-Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it's requested. To do that you (a) omit eager loading for enrollments when reading instructors, and (b) only when enrollments are needed, call the ``Load`` method on an ``IQueryable`` that reads the ones you need (in EF Core 1.0.0, ``LoadAsync`` is not recommended).  EF automatically "fixes up" the ``Courses`` navigation property of already-retrieved Instructor entities with data retrieved by the ``Load`` method.
+Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it's requested. To do that you (a) omit eager loading for enrollments when reading instructors, and (b) only when enrollments are needed, call the ``Load`` method on an ``IQueryable`` that reads the ones you need (starting in EF Core 1.0.1, you can use ``LoadAsync``).  EF automatically "fixes up" the ``Courses`` navigation property of already-retrieved Instructor entities with data retrieved by the ``Load`` method.
 
 To see this in action, replace the ``Index`` method with the following code:
 

@@ -420,9 +420,16 @@ Create *Models/CourseAssignment.cs* with the following code:
 .. literalinclude::  intro/samples/cu/Models/CourseAssignment.cs
   :language: c#
 
+Composite key
+^^^^^^^^^^^^^
+
 Since the foreign keys are not nullable and together uniquely identify each row of the table, there is no need for a separate primary key. The `InstructorID` and `CourseID` properties should function as a composite primary key. The only way to identify composite primary keys to EF is by using the *fluent API* (it can't be done by using attributes). You'll see how to configure the composite primary key in the next section.
 
-It's common to name a join table ``EntityName1EntityName2``, which in this case would be ``CourseInstructor``. However, we recommend that you use a more descriptive name for the relationship. It frequently happens that a data model starts out simple, and many-to-many join entities need to begin carrying a payload after having been created without a payload. It's not always easy to change an entity name, and the descriptive name for the relationship is likely to work better when it becomes a many-to-many-with-payload relationship, like ``Enrollment`` in the Contoso University data model.
+The composite key ensures that while you can have multiple rows for one course, and multiple rows for one instructor, you can't have multiple rows for the same instructor and course. The ``Enrollment`` join entity defines its own primary key, so duplicates of this sort are possible. To prevent such duplicates, you could add a unique index on the foreign key fields, or configure ``Enrollment`` with a primary composite key similar to ``CourseAssignment``. For more information, see `Indexes <https://docs.efproject.net/en/latest/modeling/indexes.html>`__.
+
+Join entity names
+^^^^^^^^^^^^^^^^^
+
 
 Update the database context   
 ---------------------------
@@ -533,7 +540,15 @@ You now have new code in the ``DbInitializer`` class that adds seed data for the
   :end-before:  Logging
   :emphasize-lines: 6
 
-Save your change to *appsettings.json*, and then enter the ``database update`` command in the command window to execute the migration.
+Save your change to *appsettings.json*.
+
+.. note:: As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the ``database drop`` CLI command:
+
+  .. code-block:: none
+
+    dotnet ef database drop -c SchoolContext
+
+After you have changed the database name or deleted the database, run the ``database update`` command in the command window to execute the migrations.
 
 .. code-block:: none
 

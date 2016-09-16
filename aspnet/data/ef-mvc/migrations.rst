@@ -28,6 +28,12 @@ In the *appsettings.json* file, change the name of the database in the connectio
 
 This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
 
+.. note:: As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the ``database drop`` CLI command:
+
+  .. code-block:: none
+
+  The following section explains how to run CLI commands.
+
 Create an initial migration
 ---------------------------
 
@@ -43,9 +49,9 @@ Save your changes and build the project. Then open a command window and navigate
   .. image:: migrations/_static/open-command-window.png
      :alt: Open command window
 
-.. note:: Before you enter a command, stop IIS Express for the site, or you may get an error message: "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" To stop the site, find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**. 
+Before you enter a command, stop IIS Express for the site, or you may get an error message: "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*" To stop the site, find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**. 
 
-In the command window, enter the following command:
+After you have stopped IIS Express, enter the following command in the command window:
 
 .. code-block:: text
 

@@ -19,8 +19,6 @@ Prerequisites
 * `Visual Studio 2015 <https://www.visualstudio.com/products/vs-2015-product-editions>`__ with `Update 3 <https://www.visualstudio.com/news/releasenotes/vs2015-update3-vs>`__ or later.
 * `.NET Core 1.0 with Visual Studio tools <https://go.microsoft.com/fwlink/?LinkId=827545>`__.
 
-Entity Framework Core 1.0 is not a prerequisite because you install the EF NuGet package as part of the tutorial.
-
 Troubleshooting
 ---------------
 
