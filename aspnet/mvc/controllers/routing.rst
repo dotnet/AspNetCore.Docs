@@ -512,7 +512,7 @@ Generating URLs by route
 
 The code above demonstrated generating a URL by passing in the controller and action name. ``IUrlHelper`` also provides the ``Url.RouteUrl`` family of methods. These methods are similar to ``Url.Action``, but they do not copy the current values of ``action`` and ``controller`` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
 
-.. code-block:: c#
+.. code-block:: none
 
    public class UrlGenerationController : Controller
    {
