@@ -117,7 +117,6 @@ Run the application to see the changes.
 
 Exploring the Client Build Process
 ----------------------------------
- 
 Most ASP.NET Core project templates are already configured to use Bower. This next walkthrough starts with an empty ASP.NET Core project and adds each piece manually, so you can get a feel for how Bower is used in a project. See what happens to the project structure and the runtime output as each configuration change is made to the project. 
 
 The general steps to use the client-side build process with Bower are: 
