@@ -82,7 +82,6 @@ Can be used to replace::
    // Create route collection and add the middleware.
    app.UseRouter(routes.Build());
 
-**[review: this section rewritten]**
 :dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the ``attribute`` route. The overload ``UseMvc(Action<IRouteBuilder>)`` lets you add your own routes and also supports attribute routing. :dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The :ref:`attribute-routing-ref-label` section includes more details on attribute routing.
 
 .. _routing-conventional-ref-label:
@@ -102,7 +101,7 @@ is an example of a *conventional routing*. We call this style *conventional rout
 
 Using this ``default`` route, the URL path ``/Products/List`` maps to the ``ProductsController.List`` action, and ``/Blog/Article/17`` maps to ``BlogController.Article``. This mapping is based on the controller and action names **only** and is not based on namespaces, source file locations, or method parameters.
 
-.. Tip:: Using conventional routing with the default route allows you to build the application quickly without having to come up with a new URL pattern for each action you define. For an application with CRUD style actions, having consistency for the URLs across your controllers can help simplify .. review [things -  Edit replaced with following] your code and make your UI more predictable.
+.. Tip:: Using conventional routing with the default route allows you to build the application quickly without having to come up with a new URL pattern for each action you define. For an application with CRUD style actions, having consistency for the URLs across your controllers can help simplify your code and make your UI more predictable.
 
 .. warning: The ``id`` is defined as optional by the route template, meaning that your actions can execute *without* the ``id`` provided as part of the URL. [Original - see replacement below: Usually what will happen if ``id`` is omitted from the URL is that it will be set to ``0`` by model binding, and as a result no entity will be found in the database matching ``id == 0``.][{are there exceptions, for example can ambient values be used - if so we need to list exceptions and tell them they need to use attribute routing to prevent getting the wrong ID} ] Attribute routing can give you fine-grained control to make the id required for some actions and not for others. By convention the documentation will include optional parameters like ``id`` when they are likely to appear in correct usage.
 
@@ -188,8 +187,6 @@ Route names have no impact on URL matching or handling of requests; they are use
 Attribute Routing
 -------------------------
 
-.. review required: Your original does not match About/Contact so I think this might be a better example.
-
 Attribute routing uses a set of attributes to map actions directly to route templates. In the following example, ``app.UseMvc();`` is used in the ``Configure`` method and no route is passed. The ``HomeController`` will match a set of URLs similar to what the default route ``{controller=Home}/{action=Index}/{id?}`` would match:
 
 .. code-block:: c#
@@ -247,8 +244,6 @@ With attribute routing the controller name and action names play **no** role in 
 .. note:: The route templates  above doesn't define route parameters for ```action``, ``area``, and ``controller``. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
 
 Attribute routing can also make use of the ``HTTP[Verb]`` attributes such as :dn:cls:`~Microsoft.AspNetCore.Mvc.HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
-
-.. review: changed CreateProduct from Put to Post
 
 .. code-block:: c#
 
@@ -320,8 +315,6 @@ Ordering attribute routes
 In contrast to conventional routes which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.
 
 For example, a route like ``blog/search/{topic}`` is more specific than a route like ``blog/{*article}``. Logically speaking the ``blog/search/{topic}`` route 'runs' first, by default, because that's the only sensible ordering. Using conventional routing, the developer is  responsible for placing routes in the desired order.
-
-.. review: I added The default order is ``0``
 
 Attribute routes can configure an order, using the ``Order`` property of all of the framework provided route attributes. Routes are processed according to an ascending sort of the ``Order`` property. The default order is ``0``. Setting a route using ``Order = -1`` will run before routes that don't set an order. Setting a route using ``Order = 1`` will run after default route ordering.
 
@@ -438,8 +431,6 @@ Using Application Model to customize attribute routes
 
 The *application model* is an object model created at startup with all of the metadata used by MVC to route and execute your actions. The *application model* includes all of the data gathered from route attributes (through ``IRouteTemplateProvider``). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
 
-.. review: removed: See the application model section for detailed documentation. (we don't seem to have an application model section)
-
 .. literalinclude:: routing/sample/main/NamespaceRoutingConvention.cs
   :language: c#
 
@@ -448,11 +439,6 @@ The *application model* is an object model created at startup with all of the me
 Mixed Routing
 --------------
 
-.. review Replaced:
-  It's possible, for instance, to use conventional routes for controllers serving HTML
-  with
-  It's typical to use conventional routes for controllers serving HTML
-  
 MVC applications can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes all actions in the controller attribute routed.
@@ -526,8 +512,8 @@ Generating URLs by route
 
 The code above demonstrated generating a URL by passing in the controller and action name. ``IUrlHelper`` also provides the ``Url.RouteUrl`` family of methods. These methods are similar to ``Url.Action``, but they do not copy the current values of ``action`` and ``controller`` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
 
-.. review required: I commented out   //[HttpGet("")] - so you hit the source via
-   // http://localhost:23441/UrlGeneration/source in lieu of http://localhost
+.. code-block:: c#
+
    public class UrlGenerationController : Controller
    {
        //[HttpGet("")]
@@ -568,10 +554,6 @@ The examples above have shown using ``IUrlHelper`` in a controller, while the mo
 
 The ``ControllerBase`` and ``Controller`` base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input.
 
-.. review - replaced return RedirectToAction("Index", "Customer");
-   with return RedirectToAction("Index");
-   Generally don't need to specify controller
-
 .. code-block:: c#
 
    public Task<IActionResult> Edit(int id, Customer customer)
@@ -609,9 +591,6 @@ Dedicated conventional routes rely on a special behavior of default values that 
 
 Areas
 ---------
-
-.. review - replaced:  into a group as a separate namespace (for routing) -- with
-                       into a group as a separate routing-namespace (for controller actions)
 
 :doc:`/mvc/controllers/areas` are an MVC feature used to organize related functionality into a group as a separate routing-namespace (for controller actions) and folder structure (for views). Using areas allows an application to have multiple controllers with the same name - as long as they have different *areas*. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, ``area`` to ``controller`` and ``action``. This section will discuss how routing interacts with areas - see :doc:`/mvc/controllers/areas` for details about how areas are used with views.
 
