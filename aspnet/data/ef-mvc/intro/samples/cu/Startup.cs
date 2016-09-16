@@ -64,7 +64,6 @@ namespace ContosoUniversity
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            loggerFactory.AddTraceSource("defaultSwitch");
             #endregion
 
             if (env.IsDevelopment())
