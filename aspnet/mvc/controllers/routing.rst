@@ -82,7 +82,7 @@ Can be used to replace::
    // Create route collection and add the middleware.
    app.UseRouter(routes.Build());
 
-:dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the ``attribute`` route. The overload ``UseMvc(Action<IRouteBuilder>)`` lets you add your own routes and also supports attribute routing. :dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The :ref:`attribute-routing-ref-label` section includes more details on attribute routing.
+:dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the ``attribute`` route. The overload ``UseMvc(Action<IRouteBuilder>)`` lets you add your own routes and also supports attribute routing.  ``UseMvc`` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure ``UseMvc``. :dn:method:`~Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The :ref:`attribute-routing-ref-label` section includes more details on attribute routing.
 
 .. _routing-conventional-ref-label:
 
@@ -103,22 +103,7 @@ Using this ``default`` route, the URL path ``/Products/List`` maps to the ``Prod
 
 .. Tip:: Using conventional routing with the default route allows you to build the application quickly without having to come up with a new URL pattern for each action you define. For an application with CRUD style actions, having consistency for the URLs across your controllers can help simplify your code and make your UI more predictable.
 
-.. warning: The ``id`` is defined as optional by the route template, meaning that your actions can execute *without* the ``id`` provided as part of the URL. [Original - see replacement below: Usually what will happen if ``id`` is omitted from the URL is that it will be set to ``0`` by model binding, and as a result no entity will be found in the database matching ``id == 0``.][{are there exceptions, for example can ambient values be used - if so we need to list exceptions and tell them they need to use attribute routing to prevent getting the wrong ID} ] Attribute routing can give you fine-grained control to make the id required for some actions and not for others. By convention the documentation will include optional parameters like ``id`` when they are likely to appear in correct usage.
-
-You can make the ``id`` parameter optional to verify the ``id`` value has been provided in the URL::
-
-   public IActionResult Index(int? id)
-   {
-      if (id == null)
-      {
-         HandleNullId();
-      }
-      else
-      {
-       // ...
-      }
-      return View();
-   }
+.. warning:: The ``id`` is defined as optional by the route template, meaning that your actions can execute without the ID provided as part of the URL. Usually what will happen if ``id`` is omitted from the URL is that it will be set to ``0`` by model binding, and as a result no entity will be found in the database matching ``id == 0``. Attribute routing can give you fine-grained control to make the ID required for some actions and not for others. By convention the documentation will include optional parameters like ``id`` when they are likely to appear in correct usage.
 
 Multiple Routes
 -------------------
@@ -511,23 +496,6 @@ Generating URLs by route
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The code above demonstrated generating a URL by passing in the controller and action name. ``IUrlHelper`` also provides the ``Url.RouteUrl`` family of methods. These methods are similar to ``Url.Action``, but they do not copy the current values of ``action`` and ``controller`` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
-
-.. code-block:: none
-
-   public class UrlGenerationController : Controller
-   {
-       //[HttpGet("")]
-       public IActionResult Source()
-       {
-           var url = Url.RouteUrl("Destination_Route"); // Generates /custom/url/to/destination
-           return Content($"See {url}, it's really great.");
-       }
-
-       [HttpGet("custom/url/to/destination", Name = "Destination_Route")]
-       public IActionResult Destination() {
-           return View();
-       }
-   }
 
 .. literalinclude:: routing/sample/main/Controllers/UrlGenerationControllerRouting.cs
   :language: none

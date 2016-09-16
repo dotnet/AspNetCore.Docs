@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 public class UrlGenerationController : Controller
 {
-    //[HttpGet("")]
+    [HttpGet("")]
     public IActionResult Source()
     {
         var url = Url.RouteUrl("Destination_Route"); // Generates /custom/url/to/destination
