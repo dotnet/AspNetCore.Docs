@@ -11,6 +11,7 @@ Bower is a "package manager for the web." Bower lets you install and restore cli
 
 Getting Started with Bower
 --------------------------
+
 ASP.NET Core project templates pre-construct the client build process for you. The ubiquitous jQuery and Bootstrap packages are installed, and the plumbing for Bower is already in place. The screenshot below depicts the initial project in Solution Explorer. It's important to enable the "Show All Files" option, as the bower.json file is hidden by default.
 
 .. image:: bower/_static/mvc-project.png
