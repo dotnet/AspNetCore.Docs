@@ -145,28 +145,28 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
 
  public class BadgeEntryHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     protected override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
+     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.BadgeId && 
                                         c.Issuer == "http://microsoftsecurity"))
          {
              context.Succeed(requirement);
-             return Task.FromResult(0);
          }
+         return Task.FromResult(0);
      }
  }
 
  public class HasTemporaryStickerHandler : AuthorizationHandler<EnterBuildingRequirement>
  {
-     protected override Task HandleRequirementAsync(AuthorizationContext context, EnterBuildingRequirement requirement)
+     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, EnterBuildingRequirement requirement)
      {
          if (context.User.HasClaim(c => c.Type == ClaimTypes.TemporaryBadgeId && 
                                         c.Issuer == "https://microsoftsecurity"))
          {
              // We'd also check the expiration date on the sticker.
              context.Succeed(requirement);
-             return Task.FromResult(0);
          }
+         return Task.FromResult(0);
      }
  }
 
