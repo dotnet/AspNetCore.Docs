@@ -3,13 +3,13 @@ using ToDoApi.Models;
 
 namespace ToDoApi.Interfaces
 {
-    public interface ITodoRepository
+    public interface IToDoRepository
     {
         bool DoesItemExist(string id);
-        IEnumerable<TodoItem> All { get; }
-        TodoItem Find(string id);
-        void Insert(TodoItem item);
-        void Update(TodoItem item);
+        IEnumerable<ToDoItem> All { get; }
+        ToDoItem Find(string id);
+        void Insert(ToDoItem item);
+        void Update(ToDoItem item);
         void Delete(string id);
     }
 }

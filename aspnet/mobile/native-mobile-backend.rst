@@ -49,7 +49,7 @@ This sample is configured by default to use backend services hosted at developer
 Creating the ASP.NET Core Project
 ---------------------------------
 
-Create a new ASP.NET Core MVC project in Visual Studio. Choose the Web API template and No Authentication.
+Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API template and No Authentication. Name the project `ToDoApi`.
 
 .. image:: native-mobile-backend/_static/web-api-template.png
 
@@ -61,7 +61,7 @@ The application should respond to all requests made to port 5000. Update `Progra
   :dedent: 12
   :emphasize-lines: 3
 
-.. note:: Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run ``dotnet run`` from the command line, or choose the application name profile from the debug menu in Visual Studio.
+.. note:: Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run ``dotnet run`` from the command line, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
 
 Add a model class to represent To-Do items. Mark required fields using the ``[Required]`` attribute:
 
@@ -93,13 +93,14 @@ At this point, you're ready to create the `TodoItemsController`.
 Creating the Controller
 -----------------------
 
-Add a new controller to the project, `TodoItemsController`. It should inherit from Microsoft.AspNetCore.Mvc.Controller. Add a ``Route`` attribute to indicate that the controller will handle requests made to paths starting with ``api/todoitems``, which may optionally include an ``id`` argument as part of the URL path. The ``[controller]`` token in the route is replaced by the name of the controller (omitting the ``Controller`` suffix), and is especially helpful for global routes. Learn more about :doc:`routing </fundamentals/routing>`.
+Add a new controller to the project, `TodoItemsController`. It should inherit from Microsoft.AspNetCore.Mvc.Controller. Add a ``Route`` attribute to indicate that the controller will handle requests made to paths starting with ``api/todoitems``. The ``[controller]`` token in the route is replaced by the name of the controller (omitting the ``Controller`` suffix), and is especially helpful for global routes. Learn more about :doc:`routing </fundamentals/routing>`.
 
 The controller requires an ``ITodoRepository`` to function; request an instance of this type through the controller's constructor. At runtime, this instance will be provided using the framework's support for :doc:`dependency injection </fundamentals/dependency-injection>`.
 
 .. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/TodoItemsController.cs
   :language: c#
   :lines: 1-17
+  :emphasize-lines: 9, 14
 
 This API supports four different HTTP verbs to perform CRUD (Create, Read, Update, Delete) operations on the data source. The simplest of these is the Read operation, which corresponds to an HTTP GET request.
 
@@ -122,7 +123,7 @@ You can test your new API method using a variety of tools, such as `Postman <htt
 Creating Items
 ^^^^^^^^^^^^^^
 
-By convention, creating new data items is mapped to the HTTP POST verb. The ``Create`` method has an ``[HttpPost]`` attribute applied to it, and accepts an ID parameter and a ``TodoItem`` instance. Since the item will be passed in the body of the POST, this parameter is decorated with the ``[FromBody]`` attribute.
+By convention, creating new data items is mapped to the HTTP POST verb. The ``Create`` method has an ``[HttpPost]`` attribute applied to it, and accepts an ID parameter and a ``TodoItem`` instance. The HTTP verb attributes, like ``[HttpPost]``, optionally accept a route template string (``{id}`` in this example). This has the same effect as adding a ``[Route]`` attribute to the action. Since the ``item`` argument will be passed in the body of the POST, this parameter is decorated with the ``[FromBody]`` attribute.
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it is added using the repository. Checking ``ModelState.IsValid`` performs :doc:`model validation </mvc/models/validation>`, and should be done in every API method that accepts user input.
 
@@ -130,6 +131,13 @@ Inside the method, the item is checked for validity and prior existence in the d
   :language: c#
   :lines: 25-46
   :dedent: 8
+
+The sample uses an enum containing error codes that are passed to the mobile client:
+
+.. literalinclude:: native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/TodoItemsController.cs
+  :language: c#
+  :lines: 91-99
+  :dedent: 4
 
 Test adding new items using Postman by choosing the POST verb providing the new object in JSON format in the Body of the request. You should also add a request header specifying a ``Content-Type`` of ``application/json``.
  

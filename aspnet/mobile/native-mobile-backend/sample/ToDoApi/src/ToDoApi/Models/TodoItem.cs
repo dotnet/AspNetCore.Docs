@@ -2,7 +2,7 @@
 
 namespace ToDoApi.Models
 {
-    public class TodoItem
+    public class ToDoItem
     {
         [Required]
         public string ID { get; set; }

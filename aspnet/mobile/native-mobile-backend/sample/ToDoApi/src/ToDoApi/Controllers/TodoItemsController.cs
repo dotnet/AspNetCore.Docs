@@ -7,24 +7,23 @@ using ToDoApi.Models;
 namespace ToDoApi.Controllers
 {
     [Route("api/[controller]")]
-    public class TodoItemsController : Controller
+    public class ToDoItemsController : Controller
     {
-        private readonly ITodoRepository _todoRepository;
+        private readonly IToDoRepository _toDoRepository;
 
-        public TodoItemsController(ITodoRepository todoRepository)
+        public ToDoItemsController(IToDoRepository toDoRepository)
         {
-            _todoRepository = todoRepository;
+            _toDoRepository = toDoRepository;
         }
 
         [HttpGet]
         public IActionResult List()
         {
-            return Ok(_todoRepository.All);
+            return Ok(_toDoRepository.All);
         }
 
-        [HttpPost]
-        [Route("{id}")]
-        public IActionResult Create(string id, [FromBody]TodoItem item)
+        [HttpPost("{id}")]
+        public IActionResult Create(string id, [FromBody]ToDoItem item)
         {
             try
             {
@@ -32,12 +31,12 @@ namespace ToDoApi.Controllers
                 {
                     return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
                 }
-                bool itemExists = _todoRepository.DoesItemExist(item.ID);
+                bool itemExists = _toDoRepository.DoesItemExist(item.ID);
                 if (itemExists)
                 {
                     return StatusCode(StatusCodes.Status409Conflict, ErrorCode.TodoItemIDInUse.ToString());
                 }
-                _todoRepository.Insert(item);
+                _toDoRepository.Insert(item);
             }
             catch (Exception)
             {
@@ -46,9 +45,8 @@ namespace ToDoApi.Controllers
             return Ok(item);
         }
 
-        [HttpPut]
-        [Route("{id}")]
-        public IActionResult Edit(string id, [FromBody] TodoItem item)
+        [HttpPut("{id}")]
+        public IActionResult Edit(string id, [FromBody] ToDoItem item)
         {
             try
             {
@@ -56,12 +54,12 @@ namespace ToDoApi.Controllers
                 {
                     return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
                 }
-                var existingItem = _todoRepository.Find(id);
+                var existingItem = _toDoRepository.Find(id);
                 if (existingItem == null)
                 {
                     return NotFound(ErrorCode.RecordNotFound.ToString());
                 }
-                _todoRepository.Update(item);
+                _toDoRepository.Update(item);
             }
             catch (Exception)
             {
@@ -70,18 +68,17 @@ namespace ToDoApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
             try
             {
-                var item = _todoRepository.Find(id);
+                var item = _toDoRepository.Find(id);
                 if (item == null)
                 {
                     return NotFound(ErrorCode.RecordNotFound.ToString());
                 }
-                _todoRepository.Delete(id);
+                _toDoRepository.Delete(id);
             }
             catch (Exception)
             {
