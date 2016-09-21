@@ -16,7 +16,7 @@ ASP.NET Core abstracts file system access through the use of File Providers.
 File Provider Abstractions
 --------------------------
 
-File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`). These types wrap the ``System.IO.File`` type, scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary.
+File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`). These types wrap the ``System.IO.File`` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. The embedded provider doesn't have directories; it wraps embedded resources and uses namespaces instead of directories.
 
 ``IFileInfo`` provides methods and properties about individual files or directories. It has two boolean properties, ``Exists`` and ``IsDirectory``, as well as properties describing the file's ``Name``, ``Length`` (in bytes), and ``LastModified`` date. You can read from the file using its ``CreateReadStream`` method.
 
@@ -29,7 +29,7 @@ PhysicalFileProvider
 ^^^^^^^^^^^^^^^^^^^^
 The :dn:class:`~Microsoft.Extensions.FileProviders.PhysicalFileProvider` provides access to the physical file system. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a ``PhysicalFileProvider``` provider directly, or you can request an ``IFileProvider`` in a Controller or service's constructor through :doc:`dependency injection </fundamentals/dependency-injection>`. The latter approach will typically yield a more flexible and testable solution.
 
-To create a ``PhysicalFileProvider``, simply instantiate it, passing it a physcial path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
+To create a ``PhysicalFileProvider``, simply instantiate it, passing it a physical path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
 
 .. code-block:: c#
 
@@ -47,9 +47,8 @@ To request a provider from a controller, specify it in the controller's construc
 Then, create the provider in the app's ``Startup`` class:
 
 .. literalinclude:: file-providers/sample/src/FileProviderSample/Startup.cs
-  :lines: 11-15, 23-24, 29-34, 38, 41
-  :emphasize-lines: 13-14
-  :dedent: 4
+  :lines: 1-43
+  :emphasize-lines: 35, 40
 
 In the *Index.cshtml* view, iterate through the ``IDirectoryContents`` provided:
 
@@ -71,6 +70,8 @@ The ``EmbeddedFileProvider`` is used to access files embedded in assemblies. In 
 
 You can use `globbing patterns`_ when specifying files to embed in the assembly.
 
+.. note:: It's unlikely you would ever want to actually embed every .js file in your project in its assembly; the above sample is for demo purposes only.
+
 When creating an ``EmbeddedFileProvider``, pass the assembly it will read to its constructor.
 
 .. code-block:: c#
@@ -83,7 +84,9 @@ Updating the sample app to use an ``EmbeddedFileProvider`` results in the follow
 
 .. image:: /fundamentals/file-providers/_static/embedded-directory-listing.png
 
-.. note:: Embedded resources do not expose directories. Rather, the path to the resource is embedded in its filename using ``.`` separators.
+.. note:: Embedded resources do not expose directories. Rather, the path to the resource (via its namespace) is embedded in its filename using ``.`` separators.
+
+.. tip:: The ``EmbeddedFileProvider`` constructor accepts an optional ``baseNamespace`` parameter. Specifying this will scope calls to ``GetDirectoryContents`` to those resources under the provided namespace.
 
 CompositeFileProvider
 ^^^^^^^^^^^^^^^^^^^^^
@@ -91,7 +94,7 @@ CompositeFileProvider
 The ``CompositeFileProvider`` combines ``IFileProvider`` instances, exposing a single interface for working with files from multiple providers. When creating the ``CompositeFileProvider``, you pass one or more ``IFileProvider`` instances to its constructor:
 
 .. literalinclude:: file-providers/sample/src/FileProviderSample/Startup.cs
-  :lines: 34-36
+  :lines: 35-37
   :emphasize-lines: 3
   :dedent: 12
 
@@ -107,7 +110,7 @@ The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files
 
 In this article's sample, the ``Watch`` action on the ``HomeController`` sets up a watch on a particular file, and configures a callback that sets a static field on the controller with the time when the file was last changed. Note that each change token will only call its callback once - if you need to constantly monitor for changes, you will need create a new token each time a change is fired.
 
-.. literalinclude:: file-providers/sample/src/FileProviderSample/Controllers/HomeController.cs
+.. literalinclude:: file-providers/sample/src/WatchConsole/Program.cs
   :lines: 23-33
   :emphasize-lines: 3-7
   :dedent: 8
@@ -136,6 +139,9 @@ Globbing Pattern Examples
 
 ``directory/*.txt``
     Matches all files with ``.txt`` extension in a specific directory.
+
+``directory/*/project.json``
+    Matches all ``project.json`` files in directories exactly one level below the ``directory`` directory.
 
 ``directory/**/*.txt``
     Matches all files with ``.txt`` extension found anywhere under the ``directory`` directory.

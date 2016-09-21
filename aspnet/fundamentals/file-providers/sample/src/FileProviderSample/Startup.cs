@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ namespace FileProviderSample
 {
     public class Startup
     {
-        private string _contentRootPath;
+        private IHostingEnvironment _hostingEnvironment;
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -20,7 +21,7 @@ namespace FileProviderSample
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            _contentRootPath = env.ContentRootPath;
+            _hostingEnvironment = env;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -31,12 +32,13 @@ namespace FileProviderSample
             // Add framework services.
             services.AddMvc();
 
-            var physicalProvider = new PhysicalFileProvider(_contentRootPath);
+            var physicalProvider = _hostingEnvironment.ContentRootFileProvider;
             var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
             var compositeProvider = new CompositeFileProvider(physicalProvider, embeddedProvider);
 
-            services.AddSingleton<IFileProvider>(physicalProvider);
-            services.AddSingleton<IFileProvider>(embeddedProvider);
+            // choose one provider to use for the app and register it
+            //services.AddSingleton<IFileProvider>(physicalProvider);
+            //services.AddSingleton<IFileProvider>(embeddedProvider);
             services.AddSingleton<IFileProvider>(compositeProvider);
         }
 

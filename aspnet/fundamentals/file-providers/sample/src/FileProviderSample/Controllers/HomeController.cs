@@ -20,18 +20,6 @@ namespace FileProviderSample.Controllers
             return View(contents);
         }
 
-        public IActionResult Watch()
-        {
-            var token = _fileProvider.Watch("wwwroot/js/site.js");
-            token.RegisterChangeCallback(state =>
-            {
-                _dateFileLastChanged = DateTime.Now.ToString("HH:mm:ss");
-            }, state: null);
-
-            ViewData.Add("LastChanged", _dateFileLastChanged);
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View();
