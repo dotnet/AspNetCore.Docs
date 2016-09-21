@@ -106,17 +106,16 @@ Updating the sample app to use a ``CompositeFileProvider`` that includes both th
 Watching for changes
 --------------------
 
-The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use `globbing patterns`_ to specify multiple files, and returns an ``IChangeToken``. This token exposes a ``HasChanged`` property that can be inspected, and a ``RegisterChangeCallback`` method that is called when changes are detected to the specified path string.
+The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use `globbing patterns`_ to specify multiple files, and returns an ``IChangeToken``. This token exposes a ``HasChanged`` property that can be inspected, and a ``RegisterChangeCallback`` method that is called when changes are detected to the specified path string. Note that each change token only calls its associated callback in response to a single change. To enable constant monitoring, you will need to recreate change tokens as changes occur.
 
-In this article's sample, the ``Watch`` action on the ``HomeController`` sets up a watch on a particular file, and configures a callback that sets a static field on the controller with the time when the file was last changed. Note that each change token will only call its callback once - if you need to constantly monitor for changes, you will need create a new token each time a change is fired.
+In this article's sample, a console application is configured to display a message whenever a text file is modified:
 
 .. literalinclude:: file-providers/sample/src/WatchConsole/Program.cs
-  :lines: 23-33
-  :emphasize-lines: 3-7
-  :dedent: 8
+  :emphasize-lines: 11,14,23-30
 
-This example will register a new callback every time a request is handled by the ``Watch`` action. 
-**REVIEWER**: Is there a better example for using Watch in an MVC action that would avoid this behavior?
+The result, after saving the file several times:
+
+.. image:: /fundamentals/file-providers/_static/watch-console.png
 
 .. note:: Some file systems, such as Docker containers and network chares, may not reliably send change notifications. Set the ``DOTNET_USE_POLLINGFILEWATCHER`` environment variable to ``1`` or ``true`` to poll the file system for changes every 4 seconds.
 

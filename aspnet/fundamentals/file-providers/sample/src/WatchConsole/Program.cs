@@ -28,7 +28,6 @@ namespace WatchConsole
                 RegisterCallback(PhysicalFileProvider.Watch("foo.txt"));
 
             }, state: null);
-
         }
     }
 }
