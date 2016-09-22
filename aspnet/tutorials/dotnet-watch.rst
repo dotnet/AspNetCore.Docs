@@ -3,7 +3,7 @@
 Developing ASP.NET Core applications using dotnet watch
 =======================================================
 
-By `Victor Hurdugaci`_
+By `Victor Hurdugaci`_ and `Shayne Boyer`_
 
 Introduction
 ------------
@@ -55,8 +55,8 @@ Adding ``dotnet watch`` to a project
 
 .. literalinclude:: dotnet-watch/sample/WebAppTests/project.json
    :language: javascript
-   :lines: 21-23
-   :emphasize-lines: 2
+   :lines: 21-26
+   :emphasize-lines: 2-5
    :dedent: 2
 
 2. Run ``dotnet restore``.

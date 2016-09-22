@@ -19,7 +19,10 @@
     }
   },
   "tools": {
-    "Microsoft.DotNet.Watcher.Tools": "1.0.0-preview2-final"
+    "Microsoft.DotNet.Watcher.Tools": {
+      "version": "1.0.0-*",
+      "imports": "portable-net451+win8"
+    }
   },
   "testRunner": "xunit"
 }
