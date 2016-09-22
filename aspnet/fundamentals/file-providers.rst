@@ -13,14 +13,14 @@ ASP.NET Core abstracts file system access through the use of File Providers.
 
 `View or download sample code <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/file-providers/sample>`__
 
-File Provider Abstractions
+File Provider abstractions
 --------------------------
 
 File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`).
 
 ``IFileInfo`` provides methods and properties about individual files or directories. It has two boolean properties, ``Exists`` and ``IsDirectory``, as well as properties describing the file's ``Name``, ``Length`` (in bytes), and ``LastModified`` date. You can read from the file using its ``CreateReadStream`` method.
 
-File Provider Implementations
+File Provider implementations
 -----------------------------
 
 Three implementations of ``IFileProvider`` are available: Physical, Embedded, and Composite. The physical provider is used to access the actual system's files. The embedded provider is used to access files embedded in assemblies. The composite provider is used to provide combined access to files and directories from one or more other providers.
@@ -119,7 +119,7 @@ The result, after saving the file several times:
 
 .. note:: Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the ``DOTNET_USE_POLLINGFILEWATCHER`` environment variable to ``1`` or ``true`` to poll the file system for changes every 4 seconds.
 
-Globbing Patterns
+Globbing patterns
 -----------------
 
 File system paths use wildcard patterns called *globbing patterns*. These simple patterns can be used to specify groups of files. The two wildcard characters are ``*`` and ``**``.
@@ -130,7 +130,7 @@ File system paths use wildcard patterns called *globbing patterns*. These simple
 ``**``
     Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
-Globbing Pattern Examples
+Globbing pattern examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``directory/file.txt``
@@ -145,10 +145,13 @@ Globbing Pattern Examples
 ``directory/**/*.txt``
     Matches all files with ``.txt`` extension found anywhere under the ``directory`` directory.
 
-File Provider Usage
--------------------
+File Provider usage in ASP.NET Core
+-----------------------------------
 
 Several parts of ASP.NET Core utilize file providers. ``IHostingEnvironment`` exposes the app's content root and web root as ``IFileProvider`` types. The static files middleware uses file providers to locate static files. Razor makes heavy use of ``IFileProvider`` in locating views. Dotnet's publish functionality uses file providers and globbing patterns to specify which files should be published.
+
+Recommendations for use in apps
+-------------------------------
 
 If your ASP.NET Core app requires file system access, you can request an instance of ``IFileProvider`` through dependency injection, and then use its methods to perform the access, as shown in this sample. This allows you to configure the provider once, when the app starts up, and reduces the number of implementation types your app instantiates.
 
