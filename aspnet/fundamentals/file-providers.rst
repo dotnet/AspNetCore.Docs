@@ -106,12 +106,12 @@ Updating the sample app to use a ``CompositeFileProvider`` that includes both th
 Watching for changes
 --------------------
 
-The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use `globbing patterns`_ to specify multiple files, and returns an ``IChangeToken``. This token exposes a ``HasChanged`` property that can be inspected, and a ``RegisterChangeCallback`` method that is called when changes are detected to the specified path string. Note that each change token only calls its associated callback in response to a single change. To enable constant monitoring, you will need to recreate change tokens as changes occur.
+The ``IFileProvider`` ``Watch`` method provides a way to watch one or more files or directories for changes. This method accepts a path string, which can use `globbing patterns`_ to specify multiple files, and returns an ``IChangeToken``. This token exposes a ``HasChanged`` property that can be inspected, and a ``RegisterChangeCallback`` method that is called when changes are detected to the specified path string. Note that each change token only calls its associated callback in response to a single change. To enable constant monitoring, you can use a ``TaskCompletionSource`` as shown below, or re-create ``IChangeToken`` instances in response to changes.
 
 In this article's sample, a console application is configured to display a message whenever a text file is modified:
 
 .. literalinclude:: file-providers/sample/src/WatchConsole/Program.cs
-  :emphasize-lines: 11,14,23-30
+  :emphasize-lines: 11-12,24,26-27
 
 The result, after saving the file several times:
 
