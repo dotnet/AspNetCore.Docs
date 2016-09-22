@@ -16,18 +16,18 @@ ASP.NET Core abstracts file system access through the use of File Providers.
 File Provider Abstractions
 --------------------------
 
-File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`). These types wrap the ``System.IO.File`` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. The embedded provider doesn't have directories; it wraps embedded resources and uses namespaces instead of directories.
+File Providers are an abstraction over file systems. The main interface is :dn:iface:`~Microsoft.Extensions.FileProviders.IFileProvider`. ``IFileProvider`` exposes methods to get file information (:dn:iface:`~Microsoft.Extensions.FileProviders.IFileInfo`), directory information (:dn:iface:`~Microsoft.Extensions.FileProviders.IDirectoryContents`), and to set up change notifications (using an :dn:iface:`~Microsoft.Extensions.Primitives.IChangeToken`).
 
 ``IFileInfo`` provides methods and properties about individual files or directories. It has two boolean properties, ``Exists`` and ``IsDirectory``, as well as properties describing the file's ``Name``, ``Length`` (in bytes), and ``LastModified`` date. You can read from the file using its ``CreateReadStream`` method.
 
 File Provider Implementations
 -----------------------------
 
-Three implementations of ``IFileProvider`` are available: Physical, Embedded, and Composite.
+Three implementations of ``IFileProvider`` are available: Physical, Embedded, and Composite. The physical provider is used to access the actual system's files. The embedded provider is used to access files embedded in assemblies. The composite provider is used to provide combined access to files and directories from one or more other providers.
 
 PhysicalFileProvider
 ^^^^^^^^^^^^^^^^^^^^
-The :dn:class:`~Microsoft.Extensions.FileProviders.PhysicalFileProvider` provides access to the physical file system. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a ``PhysicalFileProvider``` provider directly, or you can request an ``IFileProvider`` in a Controller or service's constructor through :doc:`dependency injection </fundamentals/dependency-injection>`. The latter approach will typically yield a more flexible and testable solution.
+The :dn:class:`~Microsoft.Extensions.FileProviders.PhysicalFileProvider` provides access to the physical file system. It wraps the ``System.IO.File`` type (for the physical provider), scoping all paths to a directory and its children. This scoping limits access to a certain directory and its children, preventing access to the file system outside of this boundary. When instantiating this provider, you must provide it with a directory path, which serves as the base path for all requests made to this provider (and which restricts access outside of this path). In an ASP.NET Core app, you can instantiate a ``PhysicalFileProvider`` provider directly, or you can request an ``IFileProvider`` in a Controller or service's constructor through :doc:`dependency injection </fundamentals/dependency-injection>`. The latter approach will typically yield a more flexible and testable solution.
 
 To create a ``PhysicalFileProvider``, simply instantiate it, passing it a physical path. You can then iterate through its directory contents or get a specific file's information by providing a subpath.
 
@@ -40,8 +40,8 @@ To create a ``PhysicalFileProvider``, simply instantiate it, passing it a physic
 To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
 
 .. literalinclude:: file-providers/sample/src/FileProviderSample/Controllers/HomeController.cs
-  :lines: 7-21
-  :emphasize-lines: 6
+  :lines: 6-19
+  :emphasize-lines: 5,7,12
   :dedent: 4
 
 Then, create the provider in the app's ``Startup`` class:
@@ -68,7 +68,7 @@ The ``EmbeddedFileProvider`` is used to access files embedded in assemblies. In 
   :lines: 42-49
   :emphasize-lines: 4-7
 
-You can use `globbing patterns`_ when specifying files to embed in the assembly.
+You can use `globbing patterns`_ when specifying files to embed in the assembly. These patterns can be used to match one or more files.
 
 .. note:: It's unlikely you would ever want to actually embed every .js file in your project in its assembly; the above sample is for demo purposes only.
 
@@ -117,12 +117,12 @@ The result, after saving the file several times:
 
 .. image:: /fundamentals/file-providers/_static/watch-console.png
 
-.. note:: Some file systems, such as Docker containers and network chares, may not reliably send change notifications. Set the ``DOTNET_USE_POLLINGFILEWATCHER`` environment variable to ``1`` or ``true`` to poll the file system for changes every 4 seconds.
+.. note:: Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the ``DOTNET_USE_POLLINGFILEWATCHER`` environment variable to ``1`` or ``true`` to poll the file system for changes every 4 seconds.
 
 Globbing Patterns
 -----------------
 
-File system paths use wilcard patterns called *globbing patterns*. These simple patterns can be used to specify groups of files. The two wildcard characters are ``*`` and ``**``.
+File system paths use wildcard patterns called *globbing patterns*. These simple patterns can be used to specify groups of files. The two wildcard characters are ``*`` and ``**``.
 
 ``*``
     Matches anything at the current folder level, or any filename, or any file extension. Matches are terminated by ``/`` and ``.`` characters in the file path.
