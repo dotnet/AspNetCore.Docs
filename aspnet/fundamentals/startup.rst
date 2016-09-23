@@ -52,7 +52,7 @@ Just as with ``Configure``, it is recommended that features that require substan
   :dedent: 8
   :emphasize-lines: 4,7,11
 
-Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`. The methods of the ``Startup`` class require particular dependencies as parameters. This way, the ``Startup`` class can specifiy them dynamically, rather than hardcoding these to a specific implementation. The same goes for all the following layers of your application: the middleware, MVC controllers and other classes. They all receive their dependencies from the services container.
+Adding services to the services container makes them available within your application via :doc:`dependency injection <dependency-injection>`.
 
 The ``ConfigureServices`` method is also where you should add configuration option classes that you would like to have available in your application. See the :doc:`configuration` topic to learn more about configuring options.
 
