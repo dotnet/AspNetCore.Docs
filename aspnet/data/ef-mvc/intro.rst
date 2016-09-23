@@ -1,5 +1,5 @@
-Get started with ASP.NET Core and Entity Framework Core using Visual Studio
-===============================================================================
+Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
+===================================================================================
 
 By `Tom Dykstra`_
 
