@@ -198,7 +198,7 @@ Configuring Other Providers
 
 In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your *project.json* file, and then configure it just like any other provider. Typically, these packages include extension methods on ``ILoggerFactory`` to make it easy to add them.
 
- * `elmah.io <https://github.com/elmahio/Elmah.Io.Framework.Logging>`_ - provider for the elmah.io service
+ * `elmah.io <https://github.com/elmahio/Elmah.Io.Extensions.Logging>`_ - provider for the elmah.io service
  * `Loggr <https://github.com/imobile3/Loggr.Extensions.Logging>`_ - provider for the Loggr service
  * `NLog <https://github.com/NLog/NLog.Extensions.Logging>`_ - provider for the NLog library
  * `Serilog <https://github.com/serilog/serilog-framework-logging>`_ - provider for the Serilog library
