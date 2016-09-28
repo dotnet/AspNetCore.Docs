@@ -56,6 +56,8 @@ You can configure other actions to take place within the OWIN pipeline.
       });
   });
 
+.. _hosting-on-owin:
+
 Using ASP.NET Hosting on an OWIN-based server
 ---------------------------------------------
 

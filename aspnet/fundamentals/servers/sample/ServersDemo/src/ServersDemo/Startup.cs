@@ -1,55 +1,45 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Http.Features;
-using Microsoft.AspNet.Server.Features;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.Net.Http.Server;
-using System;
-using System.Linq;
-
 
 namespace ServersDemo
 {
     public class Startup
     {
-
-        public Startup(IHostingEnvironment env, 
-            IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
-            // Setup configuration sources.
-            var configBuilder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
-                .AddEnvironmentVariables();
-
-            Configuration = configBuilder.Build();
-
-            
-        }
-        public IConfiguration Configuration { get; private set; }
-        public void ConfigureServices(IServiceCollection services)
-        {
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables()
+                .Build();
         }
 
-        public void Configure(IApplicationBuilder app, IApplicationLifetime lifetime, ILoggerFactory loggerFactory)
-        {
-            var webListenerInfo = app.ServerFeatures.Get<WebListener>();
-            if (webListenerInfo != null)
-            {
-                webListenerInfo.AuthenticationManager.AuthenticationSchemes =
-                    AuthenticationSchemes.AllowAnonymous;
-            }
+        public IConfigurationRoot Configuration { get; private set; }
 
-            var serverAddress = app.ServerFeatures.Get<IServerAddressesFeature>()?.Addresses.FirstOrDefault();
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
+            var serverAddressesFeature = app.ServerFeatures.Get<IServerAddressesFeature>();
+
+            app.UseStaticFiles();
 
             app.Run(async (context) =>
             {
-                var message = String.Format("Hello World from {0}",
-                                        serverAddress);
-                await context.Response.WriteAsync(message);
+                await context.Response.WriteAsync($"Hosted by {Program.Server}\r\n\r\n");
+
+                if (serverAddressesFeature != null)
+                {
+                    await context.Response.WriteAsync($"Listening on the following addresses: {string.Join(", ", serverAddressesFeature.Addresses)}\r\n");
+                }
+
+                await context.Response.WriteAsync($"Request URL: {context.Request.GetDisplayUrl()}");
             });
         }
     }
