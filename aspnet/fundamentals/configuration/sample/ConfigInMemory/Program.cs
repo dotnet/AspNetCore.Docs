@@ -1,28 +1,45 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 
-// Add NuGet  <package id="Microsoft.Extensions.Configuration"
+// Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
+
+public class MyWindow
+{
+    public int Height { get; set; }
+    public int Width { get; set; }
+    public int Top { get; set; }
+    public int Left { get; set; }
+
+}
+
 public class Program
 {
-    static IReadOnlyDictionary<string, string> ConfigStrings { get; } =
+    static IReadOnlyDictionary<string, string> DefaultConfigurationStrings { get; } =
       new Dictionary<string, string>()
       {
           ["Profile:UserName"] = Environment.UserName,
-          [$"AppConfig:MyconfigString"] = "Sample config string.",
-          [$"AppConfig:MainWindow:Height"] = "400",
+          [$"AppConfiguration:MainWindow:Height"] = "400",
+          [$"AppConfiguration:MainWindow:Width"] = "600",
+          [$"AppConfiguration:MainWindow:Top"] = "5",
+          [$"AppConfiguration:MainWindow:Left"] = "11",
       };
     static public IConfiguration Configuration { get; set; }
     public static void Main(string[] args = null)
     {
-        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-        configurationBuilder.AddInMemoryCollection(ConfigStrings);
+        ConfigurationBuilder configurationBuilder =
+          new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(
+          DefaultConfigurationStrings);
         Configuration = configurationBuilder.Build();
+        Console.WriteLine($"Hello {Configuration["Profile:UserName"]}");
+        // Set the default value to 80
+        var left = Configuration.GetValue<int>("AppConfiguration:MainWindow:Left", 80);
+        Console.WriteLine($"Left {left}");
 
-        Console.WriteLine($"Hello  {Configuration["Profile:UserName"]}");
-        Console.WriteLine(
-          $"My config string: {Configuration["AppConfig:MyconfigString"]}");
-        Console.WriteLine(
-          $"Window Height: {Configuration["AppConfig:MainWindow:Height"]}");
+        var window = new MyWindow();
+        Configuration.GetSection("AppConfiguration:MainWindow").Bind(window);
+        Configuration.GetValue<MyWindow>("AppConfiguration:MainWindow");
+        Console.WriteLine($"Left {window.Left}");
     }
 }
