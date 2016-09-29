@@ -4,5 +4,4 @@
     public int Width { get; set; }
     public int Top { get; set; }
     public int Left { get; set; }
-
 }
