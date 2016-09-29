@@ -1,7 +1,5 @@
 .. _fundamentals-configuration:
 
-.. @svick  @pranavkm please review
-
 Configuration
 =============
 `Rick Anderson`_, `Mark Michaelis <http://intellitect.com/author/mark-michaelis/>`__, `Steve Smith`_, `Daniel Roth`_
@@ -158,11 +156,11 @@ The sample above displays the user name and the ``Left`` window position. Note t
 
 The following sample shows how to bind to a class and use the options pattern with a ASP.NET Core MVC app:
 
-.. literalinclude:: configuration\sample\src\WebConfigBind\MyWindow.cs
-  :language: c#
-
 .. literalinclude:: configuration\sample\src\WebConfigBind\appsettings.json
   :language: json
+
+.. literalinclude:: configuration\sample\src\WebConfigBind\MyWindow.cs
+  :language: c#
 
 Bind the custom class in ``ConfigureServices`` in the ``Startup`` class:
 
