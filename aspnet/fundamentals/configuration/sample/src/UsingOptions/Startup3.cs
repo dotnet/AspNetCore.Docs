@@ -1,4 +1,4 @@
-﻿#define UseMe
+﻿//#define UseMe
 #if UseMe
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +9,6 @@ using UsingOptions.Models;
 
 namespace UsingOptions
 {
-    #region snippet1
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -24,13 +23,25 @@ namespace UsingOptions
 
         public IConfigurationRoot Configuration { get; set; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             // Adds services required for using options.
             services.AddOptions();
 
-            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Configure with Microsoft.Extensions.Options.ConfigurationExtensions
             services.Configure<MyOptions>(Configuration);
+
+            // Configure MyOptions using code.
+            services.Configure<MyOptions>(myOptions =>
+            {
+                myOptions.Option1 = "value1_from_action";
+            });
+
+            // Configure using a sub-section of the appsettings.json file.
+            services.Configure<MySubOptions>(Configuration.GetSection("subsection"));
 
             // Add framework services.
             services.AddMvc();
