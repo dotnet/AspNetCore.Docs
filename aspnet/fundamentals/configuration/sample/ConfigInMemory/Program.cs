@@ -19,10 +19,10 @@ public class Program
       new Dictionary<string, string>()
       {
           ["Profile:UserName"] = Environment.UserName,
-          [$"AppConfiguration:MainWindow:Height"] = "400",
-          [$"AppConfiguration:MainWindow:Width"] = "600",
-          [$"AppConfiguration:MainWindow:Top"] = "5",
-          [$"AppConfiguration:MainWindow:Left"] = "11",
+          ["AppConfiguration:MainWindow:Height"] = "400",
+          ["AppConfiguration:MainWindow:Width"] = "600",
+          ["AppConfiguration:MainWindow:Top"] = "5",
+          ["AppConfiguration:MainWindow:Left"] = "11",
       };
     static public IConfiguration Configuration { get; set; }
     public static void Main(string[] args = null)

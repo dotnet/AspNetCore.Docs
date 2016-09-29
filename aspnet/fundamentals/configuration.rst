@@ -18,11 +18,11 @@ Simple configuration
 
 The following console app uses the JSON configuration provider:
 
-.. literalinclude:: configuration/sample/JsonConfig/Program.cs
+.. literalinclude:: configuration/sample/src/ConfigJson/Program.cs
 
 The app reads and displays the following configuation settings:
 
-.. literalinclude:: configuration/sample/JsonConfig/appsettings.json
+.. literalinclude:: configuration/sample/src/ConfigJson/appsettings.json
   :language: json
 
 Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a particular value, you access the ``Configuration`` indexer with the corresponding item’s key::
@@ -64,9 +64,12 @@ The environment is typically set to one of ``Development``, ``Staging``, or ``Pr
 Using Options and configuration objects
 ---------------------------------------
 
-The options pattern enables using custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follows the `Interface Segregation Principle (ISP) <http://deviq.com/interface-segregation-principle/>`_ (classes depend only on the configuration settings they use) as well as `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ (settings for disparate parts of your app are managed separately, and not dependent or coupled with one another).
+The options pattern enables using custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
 
-The options class must be non-abstract with a public parameterless constructor:
+- The `Interface Segregation Principle (ISP) <http://deviq.com/interface-segregation-principle/>`_ : Classes depend only on the configuration settings they use.
+- `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ : Settings for disparate parts of your app are managed separately, and not dependent or coupled with one another.
+
+The options class must be non-abstract with a public parameterless constructor. For example:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Models/MyOptions.cs
   :language: c#
@@ -75,7 +78,7 @@ The options class must be non-abstract with a public parameterless constructor:
 
 .. _options-example:
 
-In the code below, ``ConfigurationBuilder`` is initialized in the ``Startup`` class. In the ``ConfigureServices`` method, an ``IConfigurationRoot`` interface is passed to the  to the :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>`, which adds ``ConfigurationBuilder`` to the dependency injection container:
+In the code below, ``ConfigurationBuilder`` is initialized in the ``Startup`` class. In the ``ConfigureServices`` method, an ``IConfigurationRoot`` interface is passed to the to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>`, which adds ``ConfigurationBuilder`` to the dependency injection container:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup.cs
   :language: c#
@@ -108,7 +111,7 @@ In the following code, a second :dn:iface:`~Microsoft.Extensions.Options.IConfig
   :dedent: 8
   :emphasize-lines: 9-13
 
-There is no limit to the number of ``IConfigureOptions<TOptions>`` services you can add. They are all applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is configured, the last configuration source specified “wins”. With the code above, ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
+There is no limit to the number of ``IConfigureOptions<TOptions>`` services you can add. Each configuration service comes in a NuGet package. They are all applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is configured, the last configuration source specified “wins”. With the code above, the ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
 
 .. note:: Configuration keys are case insensitive.
 
@@ -154,9 +157,7 @@ The sample above displays the user name and the ``Left`` window position. Note t
 
    var left = Configuration.GetValue<int>("AppConfiguration:MainWindow:Left", 80);
 
-The following sample shows how to bind to a class and use the options pattern with a ASP.NET Core MVC app:
-
-..                  configuration/sample/src/WebConfigBind/MyWindow.cs
+Configuration values are not limited to scalars. You can retrieve POCO objects or even entire object graphs. The following sample shows how to bind to the ``MyWindow`` class and use the options pattern with a ASP.NET Core MVC app:
 
 .. literalinclude:: configuration/sample/src/WebConfigBind/MyWindow.cs
   :language: c#
@@ -178,6 +179,8 @@ Display the settings from the ``HomeController``:
   :language: none
 
 .. _custom-config-providers:
+
+Note that Dependency Injection (DI) is not setup until after ``ConfigureServices`` is invoked and the configuration system is not DI aware.
 
 Entity Framework custom provider
 ---------------------------------
