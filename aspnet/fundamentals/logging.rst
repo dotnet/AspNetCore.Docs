@@ -5,7 +5,7 @@ Logging
 
 By `Steve Smith`_ and `Tom Dykstra`_
 
-ASP.NET Core has built-in support for a logging API that works with a variety of logging providers. You can use built-in providers to send logs to the Console, Visual Studio Debug window, Windows event log, or the .NET Framework TraceSource. Or you can just as easily plug in a third-party logging framework, such as Elmah.Io, Loggr, NLog, or Serilog. This article shows how to use the built-in logging API and providers in your code.
+ASP.NET Core has built-in support for a logging API that works with a variety of logging providers. You can use built-in providers to send logs to the Console, Visual Studio Debug window, Windows event log, or the .NET Framework TraceSource. You can also plug in a third-party logging framework, such as Elmah.Io, Loggr, NLog, or Serilog. This article shows how to use the built-in logging API and providers in your code.
 
 .. contents:: Sections:
   :local:
