@@ -1,188 +1,437 @@
 ---
 title: Logging | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
-ms.author: riande
+description: Introduces the logging framework in ASP.NET Core. Includes a section for each built-in logging provider and links to some popular third-party providers.
+keywords: ASP.NET Core, logging, logging providers, Microsoft.Extensions.Logging, ILogger, ILoggerFactory, LogLevel, WithFilter, TraceSource, EventLog, EventSource, scopes
+ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 585a6214-9696-43e7-9f26-cd12454f4671
+ms.assetid: ac27ac68-d76a-4f8e-b8ab-ea045803e5f2
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/logging
 ---
-# Logging
+# Logging in ASP.NET Core
 
-<a name=fundamentals-logging></a>
+By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra)
 
-By [Steve Smith](http://ardalis.com)
-
-ASP.NET Core has built-in support for logging, and allows developers to easily leverage their preferred logging framework's functionality as well. Implementing logging in your application requires a minimal amount of setup code. Once this is in place, logging can be added wherever it is desired.
+ASP.NET Core supports a logging API that works with a variety of logging providers. Built-in providers let you send logs to one or more destinations, and you can plug in a third-party logging framework. This article shows how to use the built-in logging API and providers in your code.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
 
-## Implementing Logging in your Application
+## How to add providers
 
-Adding logging to a component in your application is done by requesting either an `ILoggerFactory` or an `ILogger<T>` via [Dependency Injection](dependency-injection.md). If an `ILoggerFactory` is requested, a logger must be created using its `CreateLogger` method. The following example shows how to do this:
+A logging provider takes some action on logged data, such as display it on the console or store it in Azure blob storage. To use a provider, install its NuGet package and call the provider's extension method on an instance of `ILoggerFactory`, as shown in the following example.
 
-[!code-csharp[Main](logging/sample/src/TodoApi/Startup.cs?range=53-54)]
+[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_AddConsoleAndDebug&highlight=3,5-7)]
 
-When a logger is created, a category name must be provided. The category name specifies the source of the logging events. By convention this string is hierarchical, with categories separated by dot (`.`) characters. Some logging providers have filtering support that leverages this convention, making it easier to locate logging output of interest. In this article's sample application, logging is configured to use the built-in `ConsoleLogger` (see [Configuring Logging in your Application](#configuring-logging-in-your-application) below). To see the console logger in action, run the sample application using the `dotnet run` command, and make a request to configured URL (`localhost:5000`). You should see output similar to the following:
-
-![image](logging/_static/console-logger-output.png)
-
-You may see more than one log statement per web request you make in your browser, since most browsers will make multiple requests (i.e. for the favicon file) when attempting to load a page. Note that the console logger displayed the log level (`info` in the image above) followed by the category (`[Catchall Endpoint]`), and then the message that was logged.
-
-The call to the log method can utilize a format string with named placeholders (like *{path}*). These placeholders are populated in the order in which they appear by the args values passed into the method call. Some logging providers will store these names along with their mapped values in a dictionary that can later be queried. In the example below, the request path is passed in as a named placeholder:
-
-[!code-csharp[Main](logging/sample/src/TodoApi/Startup.cs?range=54)]
-
-In your real world applications, you will want to add logging based on application-level, not framework-level, events. For instance, if you have created a Web API application for managing To-Do Items (see [Building Your First Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md)), you might add logging around the various operations that can be performed on these items.
-
-The logic for the API is contained within the *TodoController*, which uses [Dependency Injection](dependency-injection.md) to request the services it requires via its constructor. Ideally, classes should follow this example and use their constructor to [define their dependencies explicitly](http://deviq.com/explicit-dependencies-principle/) as parameters. Rather than requesting an *ILoggerFactory* and creating an instance of *ILogger* explicitly, *TodoController* demonstrates another way to work with loggers in your application - you can request an *ILogger<T>* (where *T* is the class requesting the logger).
-
-[!code-csharp[Main](../fundamentals/logging/sample/src/TodoApi/Controllers/TodoController.cs?highlight=5,8,11,17&range=11-30)]
-
-Within each controller action, logging is done through the use of the local field, *_logger*, as shown on line 17, above. This technique is not limited to controllers, but can be utilized by any of your application services that utilize [Dependency Injection](dependency-injection.md).
-
-### Working with ILogger\<T>
-
-As we have just seen, your application can request an instance of `ILogger<T>` as a dependency in a class's constructor, where `T` is the type performing logging. The `TodoController` shows an example of this approach. When this technique is used, the logger will automatically use the type's name as its category name. By requesting an instance of `ILogger<T>`, your class doesn't need to create an instance of a logger via `ILoggerFactory`. You can use this approach anywhere you don't need the additional functionality offered by `ILoggerFactory`.
-
-### Logging Verbosity Levels
-
-When adding logging statements to your application, you must specify a `LogLevel`. The LogLevel allows you to control the verbosity of the logging output from your application, as well as the ability to pipe different kinds of log messages to different loggers. For example, you may wish to log debug messages to a local file, but log errors to the machine's event log or a database.
-
-ASP.NET Core defines six levels of logging verbosity, ordered by increasing importance or severity:
-
-**Trace**
-
-Used for the most detailed log messages, typically only valuable to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
-
-**Debug**
-
-These messages have short-term usefulness during development. They contain information that may be useful for debugging, but have no long-term value. This is the default most verbose level of logging. Example: `Entering method Configure with flag set to true`
-
-**Information**
-
-These messages are used to track the general flow of the application. These logs should have some long term value, as opposed to `Verbose` level messages, which do not. Example: `Request received for path /foo`
-
-**Warning**
-
-The Warning level should be used for abnormal or unexpected events in the application flow. These may include errors or other conditions that do not cause the application to stop, but which may need to be investigated in the future. Handled exceptions are a common place to use the Warning log level. Examples: `Login failed for IP 127.0.0.1` or `FileNotFoundException for file foo.txt`
-
-**Error**
-
-An error should be logged when the current flow of the application must stop due to some failure, such as an exception that cannot be handled or recovered from. These messages should indicate a failure in the current activity or operation (such as the current HTTP request), not an application-wide failure. Example: `Cannot insert record due to duplicate key violation`
-
-**Critical**
-
-A critical log level should be reserved for unrecoverable application or system crashes, or catastrophic failure that requires immediate attention. Examples: data loss scenarios, out of disk space
-
-The `Logging` package provides helper extension methods for each `LogLevel` value, allowing you to call, for example, `LogInformation`, rather than the more verbose `Log(LogLevel.Information, ...)` method. Each of the `LogLevel`-specific extension methods has several overloads, allowing you to pass in some or all of the following parameters:
-
-**string data**
-
-The message to log.
-
-**EventId eventId**
-
-A numeric id to associate with the log, which can be used to associate a series of logged events with one another. Event IDs should be static and specific to a particular kind of event that is being logged. For instance, you might associate adding an item to a shopping cart as event id 1000 and completing a purchase as event id 1001. This allows intelligent filtering and processing of log statements.
-
-**string format**
-
-A format string for the log message.
-
-**object[] args**
-
-An array of objects to format.
-
-**Exception error**
-
-An exception instance to log.
+ASP.NET Core [dependency injection](dependency-injection.md) (DI) provides the `ILoggerFactory` instance. The `AddConsole` and `AddDebug` extension methods are defined in the [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/) and [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/) packages. Each extension method calls the `ILoggerFactory.AddProvider` method, passing in an instance of the provider. 
 
 > [!NOTE]
-> The `EventId` type can be implicitly casted to `int`, so you can just pass an `int` to this argument.
+> The sample application for this article adds logging providers in the `Configure` method of the `Startup` class. If you want to get log output from code that executes earlier, add logging providers in the `Startup` class constructor instead. 
+
+You'll find information about each [built-in logging provider](#built-in-logging-providers) and links to [third-party logging providers](#third-party-logging-providers) later in the article.
+
+## How to create logs
+
+To create logs, get an `ILogger` object from DI and store it in a field, then call logging methods on that logger object.
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7,10)]
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+This example requests `ILogger<TodoController>` from DI to specify the `TodoController` class as the *category* of logs that are created with the logger.  Categories are explained [later in this article](#log-category).
+
+## Sample logging output
+
+With the sample code shown above, you'll see logs in the console when you run from the command line, and in the Debug window when you run in Visual Studio in Debug mode. 
+
+Here's an example of what you see in the console if you run the sample application from the command line and go to URL `http://localhost:5000/api/todo/0`:
+
+```console
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/api/todo/invalidid
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (invalidid) - ModelState is Valid
+info: TodoApi.Controllers.TodoController[1002]
+      Getting item invalidid
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(invalidid) NOT FOUND
+info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
+      Executing HttpStatusCodeResult, setting HTTP status code 404
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 243.2636ms
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 628.9188ms 404
+````
+
+Here's an example of what you see in the Debug window if you run the sample application from Visual Studio in debug mode and go to URL `http://localhost:55070/api/todo/0`:
+
+```
+Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:55070/api/todo/invalidid
+Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (invalidid) - ModelState is Valid
+TodoApi.Controllers.TodoController:Information: Getting item invalidid
+TodoApi.Controllers.TodoController:Warning: GetById(invalidid) NOT FOUND
+Microsoft.AspNetCore.Mvc.StatusCodeResult:Information: Executing HttpStatusCodeResult, setting HTTP status code 404
+Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 12.5003ms
+Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 19.0913ms 404
+```
+
+From these examples you can see that ASP.NET Core itself and your application code are using the same logging API and the same logging providers.
+
+The remainder of this article explains some details and options for logging.
+
+## NuGet packages
+
+The `ILogger` and `ILoggerFactory` interfaces are in [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/), and default implementations for them are in [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/).
+
+## Log category
+
+A *category* is specified with each log that you create. The category may be any string, but a convention is to use the fully qualified name of the class from which the logs are written.  For example: "TodoApi.Controllers.TodoController".
+
+You specify the category when you create a logger object or request one from DI, and the category is automatically included with every log written by that logger. You can specify the category explicitly or you can use an extension method that derives the category from the type. To specify the category explicitly, call `CreateLogger` on an *ILoggerFactory* instance, as shown below.
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
+
+Most of the time it will be easier to use  `ILogger<T>`, as in the following example.
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7,10)]
+
+This is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
+
+## Log level
+
+Each time you write a log, you specify its [LogLevel](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Logging/LogLevel/index.html). The log level indicates the degree of severity or importance.  For example, you might write an `Information` log when a method ends normally, a `Warning` log when a method returns a 404 return code, and an `Error` log when you catch an unexpected exception.
+
+In the following code example, the names of the methods specify the log level:
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+Log methods that include the level in the method name are [extension methods for ILogger](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loggerextensions) that the *Microsoft.Extensions.Logging* package provides.  Behind the scenes these methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see the [ILogger interface](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.ilogger) and the [logger extensions source code](https://github.com/aspnet/Logging/blob/master/src/Microsoft.Extensions.Logging.Abstractions/LoggerExtensions.cs).
+
+ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.loglevel), ordered here from least to highest severity.
+
+* Trace = 0
+
+  For information that is valuable only to a developer debugging an issue. These messages may contain sensitive application data and so should not be enabled in a production environment. *Disabled by default.* Example: `Credentials: {"User":"someuser", "Password":"P@ssword"}`
+
+* Debug = 1
+
+  For information that has short-term usefulness during development and debugging. Example: `Entering method Configure with flag set to true.`
+
+* Information = 2
+
+  For tracking the general flow of the application. These logs typically have some long term value. Example: `Request received for path /api/todo`
+
+* Warning = 3
+
+  For abnormal or unexpected events in the application flow. These may include errors or other conditions that do not cause the application to stop, but which may need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
+
+* Error = 4
+
+  For errors and exceptions that cannot be handled. These messages indicate a failure in the current activity or operation (such as the current HTTP request), not an application-wide failure. Example log message: `Cannot insert record due to duplicate key violation.`
+
+* Critical = 5
+
+  For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
+
+You can use the log level to control how much log output is written to a particular storage medium or display window. For example, in production you might want all logs of `Information` level and higher to go to a high-volume data store, and all logs of `Warning` level and higher to go to a high-value data store. During development you might normally direct only logs of `Warning` or higher severity to the console, but add `Debug` level when you need to investigate a problem. The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
+
+The ASP.NET Core framework writes `Debug` logs for framework events. Here's an example of what you see from the console provider if you run the sample application with the minimum log level set to `Debug` and go to URL `http://localhost:5000/api/todo/0`:
+
+```console
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+      Request starting HTTP/1.1 GET http://localhost:5000/api/todo/0
+dbug: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[4]
+      The request path /api/todo/0 does not match a supported file type
+dbug: Microsoft.AspNetCore.Routing.Tree.TreeRouter[1]
+      Request successfully matched the route with name 'GetTodo' and template 'api/Todo/{id}'.
+dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
+      Action 'TodoApi.Controllers.TodoController.Update (TodoApi)' with id '6cada879-f7a8-4152-b244-7b41831791cc' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
+      Action 'TodoApi.Controllers.TodoController.Delete (TodoApi)' with id '529c0e82-aea6-466c-bbe2-e77ded858853' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
+dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action TodoApi.Controllers.TodoController.GetById (TodoApi)
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
+      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
+info: TodoApi.Controllers.TodoController[1002]
+      Getting item 0
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(0) NOT FOUND
+dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action method TodoApi.Controllers.TodoController.GetById (TodoApi), returned result Microsoft.AspNetCore.Mvc.NotFoundResult.
+info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
+      Executing HttpStatusCodeResult, setting HTTP status code 404
+info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
+      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 198.8402ms
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+      Request finished in 550.6837ms 404
+dbug: Microsoft.AspNetCore.Server.Kestrel[9]
+      Connection id "0HKV8M5ARIH5P" completed keep alive response.
+```
+
+## Log event ID
+
+Each time you write a log, you can specify an *event ID*. The sample app does this by using a locally-defined `LoggingEvents` class:
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+[!code-csharp[](logging/sample/src/TodoApi/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
+
+An event ID is an integer value that you can use to associate a set of logged events with one another. For instance, a log for adding an item to a shopping cart could be event ID 1000 and a log for completing a purchase could be event ID 1001.
+
+In logging output, the event ID may be stored in a field or included in the text message, depending on the provider.  The Debug provider doesn't show event IDs, but the console provider shows them in brackets after the category:
+
+```console
+info: TodoApi.Controllers.TodoController[1002]
+      Getting item invalidid
+warn: TodoApi.Controllers.TodoController[4000]
+      GetById(invalidid) NOT FOUND
+```
+
+## Log message format string
+
+Each time you write a log, you provide a text message. The message string can contain named placeholders into which argument values are placed, as in the following example:
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+The order of placeholders, not their names, determines which parameters are used for them. For example, if you have the following code:
+
+```csharp
+string p1 = "parm1";
+string p2 = "parm2";
+_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
+```
+
+The resulting log message would look like this:
+
+```
+Parameter values: parm1, parm2
+```
+
+The logging framework does message formatting in this way to make it possible for logging providers to implement [semantic logging, also known as structured logging](http://programmers.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). Because the arguments themselves are passed to the logging system, not just the formatted message string, logging providers can store the parameter values as fields in addition to the message string. For example, if you are directing your log output to Azure Table Storage, and your logger method call looks like this:
+
+```csharp
+_logger.LogInformation("Getting item {ID} at {RequestTime}", id, DateTime.Now);
+```
+
+Each Azure Table entity could have `ID` and `RequestTime` properties, which would simplify queries on log data. You could find all logs within a particular `RequestTime` range, without having to parse the time out of the text message.
+
+## Logging exceptions
+
+The logger methods have overloads that let you pass in an exception, as in the following example:
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
+
+Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
+
+```
+TodoApi.Controllers.TodoController:Warning: GetById(036dd898-fb01-47e8-9a65-f92eb73cf924) NOT FOUND
+
+System.Exception: Item not found exception.
+ at TodoApi.Controllers.TodoController.GetById(String id) in C:\logging\sample\src\TodoApi\Controllers\TodoController.cs:line 226
+```
+
+## Log filtering
+
+Some logging providers let you specify when logs should be written to a storage medium or ignored based on log level and category.
+
+The `AddConsole` and `AddDebug` extension methods provide overloads that let you pass in filtering criteria. The following sample code causes the console provider to ignore logs below `Warning` level, while the Debug provider ignores logs that the framework creates.
+
+[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_AddConsoleAndDebugWithFilter&highlight=6-7)]
+
+The `AddEventLog` method has an overload that takes an `EventLogSettings` instance, which may contain a filtering function in its `Filter` property. The TraceSource provider does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
+
+You can set filtering rules for all providers that are registered with an `ILoggerFactory` instance by using the `WithFilter` extension method. The example below limits framework logs (category begins with "Microsoft" or "System") to warnings while letting the app log at debug level.
+
+[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_FactoryFilter&highlight=6-11)]
+
+If you want to use filtering to prevent all logs from being written for a particular category, you can specify `LogLevel.None` as the minimum log level for that category. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+
+The `WithFilter` extension method is provided by the [Microsoft.Extensions.Logging.Filter](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Filter) NuGet package. The method returns a new `ILoggerFactory` instance that will filter the log messages passed to all logger providers registered with it. It does not affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
+
+## Log scopes
+
+You can group a set of logical operations within a *scope* in order to attach the same data to each log that is created as part of that set.  For example, you might want every log created as part of processing a transaction to include the transaction ID.
+
+A scope is an `IDisposable` type that is returned by the `ILogger.BeginScope<TState>` method and lasts until it is disposed. You use a scope by wrapping your logger calls in a `using` block, as shown here:
+
+[!code-csharp[](logging/sample/src/TodoApi/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
+
+The following code enables scopes for the console provider:
+
+[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_Scopes&highlight=6)]
+
+Each log message includes the scoped information:
+
+```
+info: TodoApi.Controllers.TodoController[1002]
+      => RequestId:0HKV9C49II9CK RequestPath:/api/todo/0 => TodoApi.Controllers.TodoController.GetById (TodoApi) => Message attached to logs created in the using block
+      Getting item 0
+warn: TodoApi.Controllers.TodoController[4000]
+      => RequestId:0HKV9C49II9CK RequestPath:/api/todo/0 => TodoApi.Controllers.TodoController.GetById (TodoApi) => Message attached to logs created in the using block
+      GetById(0) NOT FOUND
+```
+
+## Built-in logging providers
+
+ASP.NET Core ships the following providers:
+
+* [Console](#console)
+* [Debug](#debug)
+* [EventSource](#eventsource)
+* [EventLog](#eventlog)
+* [TraceSource](#tracesource)
+* [Azure App Service](#appservice)
+
+<a id="console"></a>
+### The console provider
+
+The [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) provider package sends log output to the console. 
+
+```csharp
+loggerFactory.AddConsole()
+```
+
+[AddConsole overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.consoleloggerextensions) let you pass in an a minimum log level, a filter function, and a boolean that indicates whether scopes are supported.  Another option is to pass in an `IConfiguration` object, which can specify scopes support and logging levels. 
+
+If you are considering the console provider for use in production, be aware that it has a significant impact on performance.
+
+When you create a new project in Visual Studio, the `AddConsole` method looks like this:
+
+```csharp
+loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+```
+
+This code refers to the `Logging` section of the *appSettings.json* file:
+
+[!code-json[](logging/sample/src/TodoApi/appsettings.json)]
+
+The settings shown limit framework logs to warnings while allowing the app to log at debug level, as explained in the [Log filtering](#log-filtering) section. For more information, see [Configuration](configuration.md).
+
+<a id="debug"></a>
+### The Debug provider
+
+The [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) provider package writes log output by using the [System.Diagnostics.Debug](https://docs.microsoft.com/dotnet/core/api/system.diagnostics.debug#System_Diagnostics_Debug) class.
+
+```csharp
+loggerFactory.AddDebug()
+```
+
+[AddDebug overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.debugloggerfactoryextensions) let you pass in a minimum log level or a filter function.
+
+<a id="eventsource"></a>
+### The EventSource provider
+
+The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package does event tracing. On Windows it uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803). The provider is cross-platform but there are no event collection and display tools yet for Linux or macOS. 
+
+```csharp
+loggerFactory.AddEventSourceLogger()
+```
+
+The best way to collect and view logs is to use the [PerfView utility](https://www.microsoft.com/en-us/download/details.aspx?id=28567). There are other tools for viewing ETW logs, but they don't work well with the dynamic provider registration that the ASP.NET Core EventSource provider uses. 
+
+To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
+
+![Perfview Additional Providers](logging/_static/perfview-additional-providers.png)
+
+Capturing events on Nano Server requires some additional setup:
+
+* Connect PowerShell remoting to the Nano Server:
+
+  ```powershell
+  Enter-PSSession [name]
+  ```
+
+* Create an ETW session:
+
+  ```powershell
+  New-EtwTraceSession -Name "MyAppTrace" -LocalFilePath C:\trace.etl
+  ```
+
+* Add ETW providers for [CLR](https://msdn.microsoft.com/library/ff357718), ASP.NET Core, and others as needed. The ASP.NET Core provider GUID is `3ac73b97-af73-50e9-0822-5da4367920d0`. 
+
+  ```powershell
+  Add-EtwTraceProvider -Guid "{e13c0d23-ccbc-4e12-931b-d9cc2eee27e4}" -SessionName MyAppTrace
+  Add-EtwTraceProvider -Guid "{3ac73b97-af73-50e9-0822-5da4367920d0}" -SessionName MyAppTrace
+  ```
+
+* Run the site and do whatever actions you want tracing information for.
+
+* Stop the tracing session when you're finished:
+
+  ```powershell
+  Remove-EtwTraceSession MyAppTrace
+  ```
+
+The resulting *C:\trace.etl* file can be analyzed with PerfView as on other editions of Windows.
+
+<a id="eventlog"></a>
+### The Windows EventLog provider
+
+The [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog) provider package sends log output to the Windows Event Log.
+
+```csharp
+loggerFactory.AddEventLog()
+```
+
+[AddEventLog overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.eventloggerfactoryextensions) let you pass in `EventLogSettings` or a minimum log level.
+
+<a id="tracesource"></a>
+### The TraceSource provider
+
+The [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource) provider package uses the [System.Diagnostics.TraceSource](https://msdn.microsoft.com/library/system.diagnostics.tracesource.aspx) libraries and providers.
+
+```csharp
+loggerFactory.AddTraceSource(sourceSwitchName);
+```
+
+[AddTraceSource overloads](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.logging.tracesourcefactoryextensions) let you pass in a source switch and a trace listener.
+
+To use this provider, an application has to run on the .NET Framework (rather than .NET Core). The provider lets you route messages to a variety of [listeners](https://msdn.microsoft.com/library/4y5y10s7), such as the [TextWriterTraceListener](https://msdn.microsoft.com/library/system.diagnostics.textwritertracelistener) used in the sample application.
+
+The following example configures a `TraceSource` provider that logs `Warning` and higher messages to the console window.
+
+[!code-csharp[](logging/sample/src/TodoApi/Startup.cs?name=snippet_TraceSource&highlight=8-12)]
+
+<a id="appservice"></a>
+### The Azure App Service provider
+
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. 
+
+```csharp
+loggerFactory.AddAzureWebAppDiagnostics();
+```
+
+An `AddAzureWebAppDiagnostics` overload lets you pass in [AzureAppServicesDiagnosticsSettings](https://github.com/aspnet/Logging/blob/dev/src/Microsoft.Extensions.Logging.AzureAppServices/AzureAppServicesDiagnosticsSettings.cs), with which you can override default settings such as the logging output template, blob name, and file size limit.
+
+When you deploy to an App Service app, your application honors the settings in the [Diagnostic Logs](https://azure.microsoft.com/en-us/documentation/articles/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** blade of the Azure portal. When you change those settings, the changes take effect immediately without requiring that you restart the app or redeploy code to it. 
+
+![Azure logging settings](logging/_static/azure-logging-settings.png)
+
+The default location for log files is in the *D:\\home\\LogFiles\\Application* folder, and the default file name is *diagnostics-yyyymmdd.txt*. The default blob name is *{app-name}{timestamp}/yyyy/mm/dd/hh/{guid}-applicationLog.txt*.
+
+The provider only works when your project runs in the Azure environment.  It has no effect when you run locally -- it does not write to local files or local development storage for blobs.
 
 > [!NOTE]
-> Some loggers, such as the built-in `ConsoleLogger` used in this article, will ignore the `eventId` parameter. If you need to display it, you can include it in the message string. This is done in the following sample so you can easily see the eventId associated with each message, but in practice you would not typically include it in the log message.
+> If you don't need to change the provider default settings, there's an alternative way to set up App Service logging in your application. Install [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) (which includes the logging package as a dependency), and call its extension method on `WebHostBuilder` in your `Main` method.
+>
+> ```csharp
+> var host = new WebHostBuilder()
+>     .UseKestrel()    
+>     .UseAzureAppServices()    
+>     .UseStartup<Startup>()    
+>     .Build();
+> ```
+>
+>  Behind the scenes, `UseAzureAppServices` calls `UseIISIntegration` and the logging provider extension method `AddAzureWebAppDiagnostics`.
 
-In the `TodoController` example, event id constants are defined for each event, and log statements are configured at the appropriate verbosity level based on the success of the operation. In this case, successful operations log as `Information` and not found results are logged as `Warning` (error handling is not shown).
+## Third-party logging providers
 
-[!code-csharp[Main](../fundamentals/logging/sample/src/TodoApi/Controllers/TodoController.cs?highlight=4,12,16&range=24-43)]
+Here are some third-party logging frameworks that work with ASP.NET Core:
 
-> [!NOTE]
-> It is recommended that you perform application logging at the level of your application and its APIs, not at the level of the framework. The framework already has logging built in which can be enabled simply by setting the appropriate logging verbosity level.
-
-To see more detailed logging at the framework level, you can adjust the *LogLevel* specified to your logging provider to something more verbose (like *Debug* or *Trace*). For example, if you modify the *AddConsole* call in the *Configure* method to use *LogLevel.Trace* and run the application, the result shows much more framework-level detail about each request:
-
-![image](logging/_static/console-logger-trace-output.png)
-
-The console logger prefixes debug output with "dbug: "; there is no trace level debugging enabled by the framework by default. Each log level has a corresponding four character prefix that is used, so that log messages are consistently aligned.
-
-|Log Level	   |Prefix|
-|---|---|
-|Critical       |crit|
-|Error          |fail|
-|Warning        |warn|
-|Information    |info|
-|Debug          |dbug|
-|Trace          |trce|
-
-### Scopes
-
-In the course of logging information within your application, you can group a set of logical operations within a *scope*. A scope is an `IDisposable` type returned by calling the `ILogger.BeginScope<TState>` method, which lasts from the moment it is created until it is disposed. The built-in `TraceSource` logger returns a scope instance that is responsible for starting and stopping tracing operations. Any logging state, such as a transaction id, is attached to the scope when it is created.
-
-Scopes are not required, and should be used sparingly, if at all. They're best used for operations that have a distinct beginning and end, such as a transaction involving multiple resources.
-
-## Configuring Logging in your Application
-
-To configure logging in your ASP.NET Core application, you should resolve `ILoggerFactory` in the `Configure` method of your `Startup` class. ASP.NET Core will automatically provide an instance of `ILoggerFactory` using [Dependency Injection](dependency-injection.md) when you add a parameter of this type to the `Configure` method.
-
-[!code-csharp[Main](logging/sample/src/TodoApi/Startup.cs?highlight=3&range=23-25)]
-
-Once you've added `ILoggerFactory` as a parameter, you configure loggers within the `Configure` method by calling methods (or extension methods) on the logger factory. We have already seen an example of this configuration at the beginning of this article, when we added console logging by calling `loggerFactory.AddConsole`.
-
-> [!NOTE]
-> You can optionally configure logging when setting up [Hosting](hosting.md), rather than in `Startup`.
-
-Each logger provides its own set of extension methods to `ILoggerFactory`. The console, debug, and event log loggers allow you to specify the minimum logging level at which those loggers should write log messages. The console and debug loggers provide extension methods accepting a function to filter log messages according to their logging level and/or category (for example, `logLevel => logLevel >= LogLevel.Warning` or `(category, loglevel) => category.Contains("MyController") && loglevel >= LogLevel.Trace`). The event log logger provides a similar overload that takes an `EventLogSettings` instance as argument, which may contain a filtering function in its `Filter` property. The TraceSource logger does not provide any of those overloads, since its logging level and other parameters are based on the  `SourceSwitch` and `TraceListener` it uses.
-
-A LoggerFactory instance can optionally be configured with custom `FilterLoggerSettings`. The example below configures custom log levels for different scopes, limiting system and Microsoft built-in logging to warnings while allowing the app to log at debug level by default. The `WithFilter` method returns a new `ILoggerFactory` that will filter the log messages passed to all logger providers registered with it. It does not affect any other `ILoggerFactory` instances, including the original `ILoggerFactory` instance.
-
-[!code-csharp[Main](logging/sample/src/TodoApi/Startup.cs?range=27-34)]
-
-### Configuring TraceSource Logging
-
-When running on the full .NET Framework you can configure logging to use the existing [System.Diagnostics.TraceSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource(v=vs.110).aspx) libraries and providers, including easy access to the Windows event log. `TraceSource` allows you to route messages to a variety of listeners and is already in use by many organizations.
-
-First, be sure to add the `Microsoft.Extensions.Logging.TraceSource` package to your project (in *project.json*), along with any specific trace source packages you'll be using (in this case, `TextWriterTraceListener`):
-
-[!code-javascript[Main](../fundamentals/logging/sample/src/TodoApi/project.json?highlight=7,10&range=8-18)]
-
-The following example demonstrates how to configure a `TraceSourceLogger` instance for an application, logging only `Warning` or higher priority messages. Each call to `AddTraceSource` takes a `TraceListener`. The call configures a `TextWriterTraceListener` to write to the console window. This log output will be in addition to the console logger that was already added to this sample, but its behavior is slightly different.
-
-[!code-csharp[Main](logging/sample/src/TodoApi/Startup.cs?range=36-40)]
-
-The `sourceSwitch` is configured to use `SourceLevels.Warning`, so only `Warning` (or higher) log messages are picked up by the `TraceListener` instance.
-
-The API action below logs a warning when the specified `id` is not found:
-
-[!code-csharp[Main](../fundamentals/logging/sample/src/TodoApi/Controllers/TodoController.cs?highlight=8&range=32-43)]
-
-
-To test out this code, you can trigger logging a warning by running the app from the console and navigating to `http://localhost:5000/api/Todo/0`. You should see output similar to the following:
-
-![image](logging/_static/trace-source-console-output.png)
-
-The yellow line with the "warn: " prefix, along with the following line, is output by the `ConsoleLogger`. The next line, beginning with "TodoApi.Controllers.TodoController", is output from the TraceSource logger. There are many other TraceSource listeners available, and the `TextWriterTraceListener` can be configured to use any `TextWriter` instance, making this a very flexible option for logging.
-
-### Configuring Other Providers
-
-In addition to the built-in loggers, you can configure logging to use other providers. Add the appropriate package to your *project.json* file, and then configure it just like any other provider. Typically, these packages include extension methods on `ILoggerFactory` to make it easy to add them.
-
-   * [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the elmah.io service
+   * [elmah.io](https://github.com/elmahio/Elmah.Io.Extensions.Logging) - provider for the Elmah.Io service
 
    * [Loggr](https://github.com/imobile3/Loggr.Extensions.Logging) - provider for the Loggr service
 
@@ -190,26 +439,8 @@ In addition to the built-in loggers, you can configure logging to use other prov
 
    * [Serilog](https://github.com/serilog/serilog-framework-logging) - provider for the Serilog library
 
-You can create your own custom providers as well, to support other logging frameworks or your own internal logging requirements.
+Some third-party frameworks can do [semantic logging, also known as structured logging](http://programmers.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
-## Logging Recommendations
+Using a third-party framework is similar to using one of the built-in providers: add a NuGet package to your project and call an extension method on `ILoggerFactory`. For more information, see each framework's documentation.
 
-The following are some recommendations you may find helpful when implementing logging in your ASP.NET Core applications.
-
-1. Log using the correct `LogLevel`. This will allow you to consume and route logging output appropriately based on the importance of the messages.
-
-2. Log information that will enable errors to be identified quickly. Avoid logging irrelevant or redundant information.
-
-3. Keep log messages concise without sacrificing important information.
-
-4. Although loggers will not log if disabled, consider adding code guards around logging methods to prevent extra method calls and log message setup overhead, especially within loops and performance critical methods.
-
-5. Name your loggers with a distinct prefix so they can easily be filtered or disabled. Remember the `Create<T>` extension will create loggers named with the full name of the class.
-
-6. Use Scopes sparingly, and only for actions with a bounded start and end. For example, the framework provides a scope around MVC actions. Avoid nesting many scopes within one another.
-
-7. Application logging code should be related to the business concerns of the application. Increase the logging verbosity to reveal additional framework-related concerns, rather than implementing framework-level logging yourself.
-
-## Summary
-
-ASP.NET Core provides built-in support for logging, which can easily be configured within the `Startup` class and used throughout the application. Logging verbosity can be configured globally and per logging provider to ensure actionable information is logged appropriately. Built-in providers for console and trace source logging are included in the framework; other logging frameworks can easily be configured as well.
+You can create your own custom providers as well, to support other logging frameworks or your own logging requirements.
