@@ -150,10 +150,13 @@ In-memory provider and binding to a POCO class
 
 The following sample shows how to use the in-memory provider and bind to a class:
 
-.. literalinclude:: configuration/sample/ConfigInMemory/Program.cs
+.. literalinclude:: configuration/sample/src/InMemory/Program.cs
   :language: none
 
-The sample above displays the user name and the ``Left`` window position. Note the ConfigurationBinder’s ``GetValue<T>`` extension method allows you to specify a default value (80 in the sample)::
+.. literalinclude:: configuration/sample/src/InMemory/MyWindow.cs
+  :language: none
+
+Note the ConfigurationBinder’s ``GetValue<T>`` extension method allows you to specify a default value (80 in the sample)::
 
    var left = Configuration.GetValue<int>("AppConfiguration:MainWindow:Left", 80);
 
