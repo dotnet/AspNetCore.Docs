@@ -27,12 +27,11 @@ public class Program
     static public IConfiguration Configuration { get; set; }
     public static void Main(string[] args = null)
     {
-        ConfigurationBuilder configurationBuilder =
-          new ConfigurationBuilder();
-        configurationBuilder.AddInMemoryCollection(
-          DefaultConfigurationStrings);
-        Configuration = configurationBuilder.Build();
+        var builder = new ConfigurationBuilder();
+        builder.AddInMemoryCollection(DefaultConfigurationStrings);
+        Configuration = builder.Build();
         Console.WriteLine($"Hello {Configuration["Profile:UserName"]}");
+
         // Set the default value to 80
         var left = Configuration.GetValue<int>("AppConfiguration:MainWindow:Left", 80);
         Console.WriteLine($"Left {left}");
