@@ -20,7 +20,7 @@ The following console app uses the JSON configuration provider:
 
 .. literalinclude:: configuration/sample/src/ConfigJson/Program.cs
 
-The app reads and displays the following configuation settings:
+The app reads and displays the following configuration settings:
 
 .. literalinclude:: configuration/sample/src/ConfigJson/appsettings.json
   :language: json
@@ -32,11 +32,11 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 
 Name/value pairs written to the built in ``Configuration`` providers are **not** persisted, however, you can create a custom provider that saves values. See :ref:`custom configuration provider <custom-config-providers>`.
 
-The sample above uses the configuation indexer to read values. In ASP.NET Core applications, we recommend you use the :ref:`options pattern <options-config-objects>` rather than the indexer to read configuration values. We'll demonstrate that later in this document.
+The sample above uses the configuration indexer to read values. In ASP.NET Core applications, we recommend you use the :ref:`options pattern <options-config-objects>` rather than the indexer to read configuration values. We'll demonstrate that later in this document.
 
 .. The mechanism to read your app settings can be decoupled from the app by using the :ref:`options pattern <options-config-objects>`. With the options pattern you create an options class (probably several different classes, corresponding to different cohesive groups of settings) that you inject into your app using an options service. 
 
-It's typical to have different configuration settings for different environments, for example, developement, test and production. The following highlighted code hooks up two configuration providers to three sources:
+It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
 
 #. JSON provider, reading *appsettings.json*
 #. JSON provider, reading *appsettings.<EnvironmentName>.json*
@@ -49,7 +49,7 @@ It's typical to have different configuration settings for different environments
   :dedent: 4
   :emphasize-lines: 5-7
 
-See :dn:method:`~Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile` for an explaination of the parameters. Configuration sources are read in the order they are specified. In the code above, the environment variables are read last, any configuration values set through the environment would replace those set in the two previous providers.
+See :dn:method:`~Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile` for an explanation of the parameters. Configuration sources are read in the order they are specified. In the code above, the environment variables are read last, any configuration values set through the environment would replace those set in the two previous providers.
 
 The environment is typically set to one of ``Development``, ``Staging``, or ``Production``. See :doc:`environments` for more information.
 
@@ -111,7 +111,7 @@ In the following code, a second :dn:iface:`~Microsoft.Extensions.Options.IConfig
   :dedent: 8
   :emphasize-lines: 9-13
 
-There is no limit to the number of ``IConfigureOptions<TOptions>`` services you can add. Each configuration service comes in a NuGet package. They are all applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is configured, the last configuration source specified “wins”. With the code above, the ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
+There is no limit to the number of ``IConfigureOptions<TOptions>`` services you can add. Each configuration service comes in a NuGet package. They are all applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
 
 .. note:: Configuration keys are case insensitive.
 
@@ -185,6 +185,53 @@ Display the settings from the ``HomeController``:
 
 Note that Dependency Injection (DI) is not setup until after ``ConfigureServices`` is invoked and the configuration system is not DI aware.
 
+Binding to an object graph
+---------------------------
+
+You can recursively bind to each object in a class. Consider the following ``AppOptions`` class:
+
+.. literalinclude:: configuration\sample\src\ObjectGraph\AppOptions.cs
+  :language: c#
+
+The following sample binds to the ``AppOptions`` class:
+
+.. literalinclude:: configuration\sample\src\ObjectGraph\Program.cs
+  :language: none
+
+Using the following *appsettings.json* file:
+
+.. literalinclude:: configuration\sample\src\ObjectGraph\appsettings.json
+  :language: json
+
+The program displays ``Height 11``.
+
+The following code can be used to unit test the configuration:
+
+.. code-block:: c#
+
+    [Fact]
+    public void CanBindObjectTree()
+    {
+        var dict = new Dictionary<string, string>
+                {
+                    {"App:Profile:Machine", "Rick"},
+                    {"App:Connection:Value", "connectionstring"},
+                    {"App:Window:Height", "11"},
+                    {"App:Window:Width", "11"}
+                };
+        var builder = new ConfigurationBuilder();
+        builder.AddInMemoryCollection(dict);
+        var config = builder.Build();
+
+        var options = new AppOptions();
+        config.GetSection("App").Bind(options);
+
+        Assert.Equal("Rick", options.Profile.Machine);
+        Assert.Equal(11, options.Window.Height);
+        Assert.Equal(11, options.Window.Width);
+        Assert.Equal("connectionstring", options.Connection.Value);
+    }
+
 Entity Framework custom provider
 ---------------------------------
 
@@ -210,7 +257,7 @@ Create an ``EntityFrameworkConfigurationSource`` that inherits from :dn:iface:`~
   :language: c#
   :emphasize-lines: 7,16-19
 
-Create the custom configuration provider by inheriting from :dn:class:`~Microsoft.Extensions.Configuration.ConfigurationProvider`. The configuration data is loaded by overriding the ``Load`` method, which reads in all of the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
+Create the custom configuration provider by inheriting from :dn:class:`~Microsoft.Extensions.Configuration.ConfigurationProvider`. The configuration data is loaded by overriding the ``Load`` method, which reads in all the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs
   :language: c#
@@ -240,6 +287,42 @@ The following displayed::
   key1=value_from_ef_1
   key2=value_from_ef_2
   key3=value_from_json_3
+
+CommandLine configuration provider
+----------------------------------
+
+The following sample enables the CommandLine configuration provider last:
+
+.. literalinclude:: configuration/sample/src/CommandLine/Program.cs
+  :language: none
+
+The following command uses the command line provided settings::
+
+  dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
+
+And displays::
+
+   Hello Bob
+   Left 1234
+
+The ``GetSwitchMappings`` method allows you to use ``-`` rather than ``/`` and it strips the leading subkey prefixes. For example::
+
+   dotnet run -MachineName=Bob -Left=7734
+
+Displays::
+
+   Hello Bob
+   Left 7734
+
+Command-line arguments must include a value (it can be null). For example::
+
+   dotnet run /Profile:MachineName=
+
+Is OK, but ::
+
+   dotnet run /Profile:MachineName
+
+results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping
 
 Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^
