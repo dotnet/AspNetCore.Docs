@@ -313,7 +313,7 @@ namespace TodoApi.Controllers
         public IActionResult GetById(string id)
         {
             TodoItem item;
-            using (_logger.BeginScope("This message is attached to all logs written within the using block"))
+            using (_logger.BeginScope("Message attached to logs created in the using block"))
             {
                 _logger.LogInformation(LoggingEvents.GET_ITEM, "Getting item {ID}", id);
                 item = _todoRepository.Find(id);
