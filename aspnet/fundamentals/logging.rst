@@ -111,8 +111,6 @@ Most of the time it will be easier to use  ``ILogger<T>``, as in the following e
 
 This is equivalent to calling ``CreateLogger`` with the fully qualified type name of ``T``.
 
-The category does not have to be a class name, but by convention it is a list delimited by periods (``.``). Some logging providers have filtering support that assumes this convention is in use. You'll see an example of that later, in the `Log filtering`_ section.
-
 Log level
 ---------
 
@@ -158,19 +156,6 @@ ASP.NET Core defines the following six log levels, ordered here from least to hi
 * Critical = 5
 
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
-
-The console logger prefixes each log with a four-character level identifier so that log messages are consistently aligned.
-
-=============  =============
-Log Level	   Prefix
-=============  =============
-Critical       crit
-Error          fail
-Warning        warn
-Information    info
-Debug          dbug
-Trace          trce
-=============  =============
 
 Log event ID
 ------------
