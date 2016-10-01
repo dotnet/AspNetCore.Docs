@@ -190,17 +190,17 @@ Binding to an object graph
 
 You can recursively bind to each object in a class. Consider the following ``AppOptions`` class:
 
-.. literalinclude:: configuration\sample\src\ObjectGraph\AppOptions.cs
+.. literalinclude:: configuration/sample/src/ObjectGraph/AppOptions.cs
   :language: c#
 
 The following sample binds to the ``AppOptions`` class:
 
-.. literalinclude:: configuration\sample\src\ObjectGraph\Program.cs
+.. literalinclude:: configuration/sample/src/ObjectGraph/Program.cs
   :language: none
 
 Using the following *appsettings.json* file:
 
-.. literalinclude:: configuration\sample\src\ObjectGraph\appsettings.json
+.. literalinclude:: configuration/sample/src/ObjectGraph/appsettings.json
   :language: json
 
 The program displays ``Height 11``.
