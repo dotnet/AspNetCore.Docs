@@ -90,7 +90,7 @@ Once you have completed making changes to your nginx configuration you can run `
 Monitoring our Web Application
 ------------------------------
 
-Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not mangage your Kestrel process. In this tutorial, we will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure.
+Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not manage your Kestrel process. In this tutorial, we will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure.
 
 Installing supervisor
 ~~~~~~~~~~~~~~~~~~~~~
