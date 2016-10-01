@@ -18,7 +18,18 @@ How to write logs in application code
 
 The built-in logging in ASP.NET Core is provided by several NuGet packages. The logging framework is in `Microsoft.Extensions.Logging`, and there's a separate package for each logging provider.  A logging provider is responsible for taking some action on logged data, such as displaying it on the console. The sample app includes packages for displaying logs on the console (`Microsoft.Extensions.Logging.Console`) and in the Visual Studio Debug window (`Microsoft.Extensions.Logging.Debug`).
 
-To call logging methods from one of your classes, get a logger object from :doc:`dependency-injection` (DI) and store it in a field, as shown in this example.
+Configure logging providers in your ``Startup`` class. Include an ``ILoggerFactory`` parameter in the signature of the ``Configure`` method, and :doc:`dependency-injection` (DI) provides an object that you call methods on to add and configure providers. The following example adds the providers for sending log output to the console and to the Visual Studio Debug window.
+
+.. literalinclude:: logging/sample/src/TodoApi/Startup.cs
+  :language: c#
+  :start-after: snippet_AddConsoleAndDebug
+  :end-before: endregion
+  :emphasize-lines: 3,5-7
+  :dedent: 8
+
+``AddConsole`` and ``AddDebug`` are extension methods on ``ILoggerFactory``. They are provided by the `Microsoft.Extensions.Logging.Console` and `Microsoft.Extensions.Logging.Debug` NuGet packages.  Each extension method calls the ``AddProvider`` method, passing in an instance of the provider.
+
+To call logging methods from one of your classes, get a logger object from DI and store it in a field, as shown in this example.
 
 .. literalinclude:: logging/sample/src/TodoApi/Controllers/TodoController.cs
   :language: c#
@@ -35,19 +46,6 @@ You can then create logs by calling methods named ``Log`` + the severity level o
   :end-before: endregion
   :emphasize-lines: 3,7
   :dedent: 8
-
-At this point, your logging method calls will be successful, but you won't see log output anywhere until you configure at least one logging provider.
-
-Configure logging providers in your ``Startup`` class. Include an ``ILoggerFactory`` parameter in the method signature of the ``Configure`` method, and DI provides an object that you call methods on to add and configure providers. To add a provider, you can call an ``AddProvider`` method and pass in a provider instance, but there's typically an extension method that simplifies the syntax. The following example adds the providers for sending log output to the console and to the Visual Studio Debug window.
-
-.. literalinclude:: logging/sample/src/TodoApi/Startup.cs
-  :language: c#
-  :start-after: snippet_AddConsoleAndDebug
-  :end-before: endregion
-  :emphasize-lines: 3,5-7
-  :dedent: 8
-
-``AddConsole`` and ``AddDebug`` are extension methods on ``ILoggerFactory``. They are provided by the `Microsoft.Extensions.Logging.Console` and `Microsoft.Extensions.Logging.Debug` NuGet packages.  The extension methods call the ``AddProvider`` method for you behind the scenes.
 
 With the sample code shown above, you'll see logs in the console when you run from the command line, and in the Debug window when you run in Visual Studio in Debug mode. 
 
