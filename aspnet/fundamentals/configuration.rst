@@ -296,11 +296,11 @@ The following sample enables the CommandLine configuration provider last:
 .. literalinclude:: configuration/sample/src/CommandLine/Program.cs
   :language: none
 
-The following command uses the command line provided settings::
+Use the following to pass in configuration settings::
 
   dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
 
-And displays::
+Which displays::
 
    Hello Bob
    Left 1234
@@ -322,7 +322,12 @@ Is OK, but ::
 
    dotnet run /Profile:MachineName
 
-results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping
+results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping.
+
+The *web.config* file
+----------------------
+
+*web.config* is required when you host the app in IIS or IIS-Express. It turns on the AspNetCoreModule in IIS to launch your app. It may also be used to configure other IIS settings and modules.If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
 Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^
