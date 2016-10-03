@@ -76,6 +76,7 @@ The minimum age handler might look like this:
          if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
                                     c.Issuer == "http://contoso.com"))
          {
+             // .NET 4.x -> return Task.FromResult(0);
              return Task.CompletedTask;
          }
 
