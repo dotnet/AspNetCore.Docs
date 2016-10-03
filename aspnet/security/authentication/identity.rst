@@ -96,8 +96,18 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     :dedent: 8 
  
   The code above shows the ``SignInManager.SignOutAsync`` method. The ``SignOutAsync`` method clears the users claims stored in a cookie. 
+  
+5. Configuration.
 
-5. View the database.
+  Identity has some default behaviors that you can override in your application's startup class.
+  
+   .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Startup.cs
+    :language: c#
+    :lines: 57-75
+    :emphasize-lines: 5
+    :dedent: 8
+
+6. View the database.
 
   After stopping the application, view the user database from Visual Studio by selecting **View** -> **SQL Server Object Explorer**. Then, expand the following within the **SQL Server Object Explorer**:
  
