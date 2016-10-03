@@ -101,6 +101,16 @@ This `sample  <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/ow
 .. image:: owin/_static/websocket-test.png
 
 
+OWIN environment
+----------------
+You can construct a OWIN environment using the ``HttpContext``.
+
+.. code-block:: c#
+
+  var environment = new OwinEnvironment(HttpContext);
+  var features = new OwinFeatureCollection(environment);
+
+
 OWIN keys
 ---------
 
