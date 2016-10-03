@@ -108,7 +108,7 @@ The :dn:interface:`~Microsoft.AspNetCore.Builder.IApplicationBuilder` available 
 Port 0 binding with Kestrel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Kestrel supports dynamically binding to unspeicified available port by specifying port number 0 in :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls`, e.g. ``builder.UseUrls("http://127.0.0.1:0")``. The :dn:interface:`~Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature` can be used to determine which available port Kestrel actually bound to.
+Kestrel supports dynamically binding to an unspecified, available port by specifying port number 0 in :dn:method:`~Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls`, e.g. ``builder.UseUrls("http://127.0.0.1:0")``. The :dn:interface:`~Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature` can be used to determine which available port Kestrel actually bound to.
 
 .. literalinclude:: servers/sample/ServersDemo/src/ServersDemo/Startup.cs
   :linenos:
