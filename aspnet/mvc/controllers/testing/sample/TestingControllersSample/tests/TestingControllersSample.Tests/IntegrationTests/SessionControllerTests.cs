@@ -4,11 +4,11 @@ using Xunit;
 
 namespace TestingControllersSample.Tests.IntegrationTests
 {
-    public class SessionControllerTests : IClassFixture<TestFixture<TestingControllersSample.Startup>>
+    public class SessionControllerTests : IClassFixture<TestFixture<Startup>>
     {
         private readonly HttpClient _client;
 
-        public SessionControllerTests(TestFixture<TestingControllersSample.Startup> fixture)
+        public SessionControllerTests(TestFixture<Startup> fixture)
         {
             _client = fixture.Client;
         }
