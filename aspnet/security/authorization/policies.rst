@@ -76,7 +76,8 @@ The minimum age handler might look like this:
          if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth && 
                                     c.Issuer == "http://contoso.com"))
          {
-             return Task.FromResult(0);
+             // .NET 4.x -> return Task.FromResult(0);
+             return Task.CompletedTask;
          }
 
          var dateOfBirth = Convert.ToDateTime(context.User.FindFirst(
@@ -92,7 +93,7 @@ The minimum age handler might look like this:
          {
              context.Succeed(requirement);
          }
-         return Task.FromResult(0);
+         return Task.CompletedTask;
      }
  }
 
@@ -152,7 +153,7 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
          {
              context.Succeed(requirement);
          }
-         return Task.FromResult(0);
+         return Task.CompletedTask;
      }
  }
 
@@ -166,7 +167,7 @@ In cases where you want evaluation to be on an **OR** basis you implement multip
              // We'd also check the expiration date on the sticker.
              context.Succeed(requirement);
          }
-         return Task.FromResult(0);
+         return Task.CompletedTask;
      }
  }
 
@@ -210,4 +211,3 @@ The use of the ``Resource`` property is framework specific. Using information in
  {
      // Examine MVC specific things like routing data.
  }
-
