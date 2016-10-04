@@ -193,7 +193,7 @@ IIS (x86/amd64):
   * %windir%\\System32\\inetsrv\\aspnetcore.dll
   * %windir%\\SysWOW64\\inetsrv\\aspnetcore.dll
 
-IISExpress (x86/amd64):
+IIS Express (x86/amd64):
   * %ProgramFiles%\\IIS Express\\aspnetcore.dll
   * %ProgramFiles(x86)%\\IIS Express\\aspnetcore.dll
 
@@ -203,7 +203,7 @@ Schema
 IIS
   * %windir%\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml
 
-IISExpress
+IIS Express
   * %ProgramFiles%\\IIS Express\\config\\schema\\aspnetcore_schema.xml
 
 Configuration
@@ -212,7 +212,7 @@ Configuration
 IIS
   * %windir%\\System32\\inetsrv\\config\\applicationHost.config
 
-IISExpress
+IIS Express
   * .vs\\config\\applicationHost.config
 
 You can search for *aspnetcore.dll* in the *applicationHost.config* file. For IIS Express, the *applicationHost.config* file won't exist by default. The file is created at *<appliation root>\\.vs\\config* when you start any existing web application project of the Visual Studio solution.
