@@ -7,5 +7,3 @@ Caching
   memory
   distributed
   response
-  output
-
