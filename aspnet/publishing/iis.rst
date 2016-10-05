@@ -339,6 +339,17 @@ Troubleshooting
 
 - Confirm that the sub-application's *web.config* file doesn't include a ``<handlers>`` section.
 
+Application configuration general issue
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log:** Failed to start process with commandline '"dotnet" .\my_application.dll' (portable app) or '".\my_application.exe"' (self-contained app), ErrorCode = '0x800705b4'
+- **ASP.NET Core Module Log:** Log file created but empty
+
+Troubleshooting
+
+- This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to :doc:`Directory Structure </hosting/directory-structure>`, confirm that your application's deployed assets are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment.
+
 Additional resources
 --------------------
 
