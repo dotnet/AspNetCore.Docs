@@ -8,4 +8,5 @@ Models
     validation
     formatting
     custom-formatters
+    file-uploads
     

@@ -34,7 +34,7 @@ MVC will try to bind request data to the action parameters by name. MVC will loo
 #. ``Route values``: The set of route values provided by `routing <https://docs.asp.net/projects/mvc/en/latest/controllers/routing.html>`_. 
 #. ``Query strings``: The query string part of the URI.
 
-.. note:: Form values, route data, and query strings are all stored as name-value pairs.
+.. note:: Form values, route data, and query strings are all stored as name-value pairs. The one exception to this is :doc:`file uploads`, which are handled differently.
 
 Since model binding asked for a key named ``id`` and there is nothing named ``id`` in the form values, it moved on to the route values looking for that key. In our example, it's a match. Binding happens, and the value is converted to the integer 2. The same request using Edit(string id) would convert to the string "2". 
 
@@ -48,7 +48,7 @@ When a parameter is bound, model binding stops looking for values with that name
 
 Additionally, there are some special data types that MVC must consider when performing model binding:
 
-- ``IFormFile``, ``IEnumerable<IFormFile>``: One or more uploaded files that are part of the HTTP request.
+- ``IFormFile``, ``IEnumerable<IFormFile>``: One or more uploaded files that are part of the HTTP request. :doc:`Learn more <file-uploads>`.
 - ``CancelationToken``: Used to cancel activity in asynchronous controllers.
 
 These types can be bound to action parameters or to properties on a class type.
