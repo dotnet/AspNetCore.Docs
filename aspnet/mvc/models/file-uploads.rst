@@ -38,3 +38,28 @@ If the size or frequency of files uploads is causing performance or resource pro
       </div>
       </div>
   </form>
+
+Troubleshooting
+---------------
+
+HTTP 404.13 - Not Found
+The request filtering module is configured to deny a request that exceeds the request content length.
+
+Check in web.config <system.webServer><security><requestFiltering><requestLimits maxAllowedContentLength="" /></></></> setting.
+
+More info: https://www.iis.net/configreference/system.webserver/security/requestfiltering/requestlimits
+
+The default is 30000000, which is approximately 28.6MB.
+
+Workarounds:
+1) Configure the maxAllowedContentLength
+  <system.webServer>
+    <security>
+      <requestFiltering>
+        <!-- This will handle requests up to 50MB -->
+        <requestLimits maxAllowedContentLength="52428800" />
+      </requestFiltering>
+    </security>
+  </system.webServer>
+
+2) Host from Kestrel
