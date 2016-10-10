@@ -30,15 +30,7 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 Installing the Secret Manager tool
 -----------------------------------
 
-- Add ``SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``.
-
-.. code-block:: none
-  :emphasize-lines: 6-9
-
-  "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-    "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final"
-  },
+- Add ``Microsoft.Extensions.SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``.
 
 - Test the Secret Manager tool by running the following command::
 
@@ -74,11 +66,6 @@ Accessing user secrets via configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You access Secret Manager secrets through the configuration system. Add the ``Microsoft.Extensions.Configuration.UserSecrets`` as a dependency in your *project.json* file and run ``dotnet restore``.
-
-.. code-block:: none
-  :emphasize-lines: 2
-
-    "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc2-final",
 
 Add the user secrets configuration source to the ``Startup`` method:
 
