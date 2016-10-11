@@ -72,6 +72,9 @@ namespace webapptemplate
                 options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
                 options.Cookies.ApplicationCookie.LoginPath = "/Account/LogIn";
                 options.Cookies.ApplicationCookie.LogoutPath = "/Account/LogOff";
+                
+                // User settings
+                options.User.RequireUniqueEmail = true;
             });
         }
 

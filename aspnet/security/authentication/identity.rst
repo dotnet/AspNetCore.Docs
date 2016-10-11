@@ -103,7 +103,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
   
    .. literalinclude:: identity/sample/src/ASPNET-IdentityDemo/Startup.cs
     :language: c#
-    :lines: 57-75
+    :lines: 57-78
     :emphasize-lines: 5
     :dedent: 8
 
