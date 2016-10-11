@@ -155,7 +155,7 @@ You can add support for WebListener to your ASP.NET application by adding the ``
 Choosing a server
 -----------------
 
-If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache or Nginx to proxy requests to Kestrel (see :doc:`/publishing/linuxproduction`).
+If you intend to deploy your application on a Windows server, you should run IIS as a reverse proxy server that manages and proxies requests to Kestrel. If deploying on Linux, you should run a comparable reverse proxy server such as Apache (see :doc:`/publishing/apache-proxy`) or Nginx to proxy requests to Kestrel (see :doc:`/publishing/linuxproduction`).
 
 Custom Servers
 --------------
