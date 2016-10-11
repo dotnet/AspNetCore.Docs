@@ -3,7 +3,7 @@
 Using Gulp
 ==========
 
-By `Erik Reitan`_, `Scott Addie`_ and `Daniel Roth`_ 
+By `Erik Reitan`_, `Scott Addie`_, `Daniel Roth`_ and `Shayne Boyer`_ 
 
 In a typical modern web application, the build process might:
 
@@ -23,31 +23,7 @@ Introducing Gulp
 
 Gulp is a JavaScript-based streaming build toolkit for client-side code. It is commonly used to stream client-side files through a series of processes when a specific event is triggered in a build environment. Some advantages of using Gulp include the automation of common development tasks, the simplification of repetitive tasks, and a decrease in overall development time. For instance, Gulp can be used to automate :doc:`bundling and minification <bundling-and-minification>` or the cleansing of a development environment before a new build.
 
-The ASP.NET Core Web Application project template is used to help you get started designing and coding a new Web application in Visual Studio. It contains default functionality to demonstrate many aspects of ASP.NET. The template also includes Node Package Manager (`npm <https://www.npmjs.com/>`_) and Gulp, making it easier to add bundling and minification to a project.
-
-.. note:: You don't need the ASP.NET Core Web Application project template or Visual Studio to implement bundling and minification. For example, create an ASP.NET project using Yeoman, push it to GitHub, clone it on a Mac, and then bundle and minify the project.
-
-When you create a new web project using ASP.NET Core Web Application template, Visual Studio includes the `Gulp.js npm package <https://www.npmjs.com/package/gulp>`_, the *gulpfile.js* file, and a set of Gulp dependencies. The npm package contains all the prerequisites for running Gulp tasks in your Visual Studio project. The provided *gulpfile.js* file defines a set of Gulp tasks which can be run from the **Task Runner Explorer** window in Visual Studio. The ``devDependencies`` section of the *package.json* file specifies the development-time dependencies to install. These dependencies are not deployed with the application. You can add new packages to ``devDependencies`` and save the file:
-
-.. code-block:: json
-
-  {
-    "name": "ASP.NET",
-    "version": "0.0.0",
-    "devDependencies": {
-    "gulp": "3.8.11",
-    "gulp-concat": "2.5.2",
-    "gulp-cssmin": "0.1.7",
-    "gulp-uglify": "1.2.0",
-    "rimraf": "2.2.8"
-    }
-  }
-
-After adding a new key-value pair in ``devDependencies`` and saving the file, Visual Studio will download and install the corresponding version of the package. In **Solution Explorer**, these packages are found in **Dependencies** > **npm**. 
-
-Gulp Starter Tasks in Visual Studio
------------------------------------
-A starter set of Gulp tasks is defined in *gulpfile.js*. These tasks delete and minify the CSS and JavaScript files. The following JavaScript, from the first half of *gulpfile.js*, includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
+A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript, includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
 .. code-block:: javascript
 
@@ -83,7 +59,7 @@ gulp-cssmin    A module that will minify CSS files. For more information, see `g
 gulp-uglify    A module that minifies *.js* files using the `UglifyJS <https://www.npmjs.com/package/gulp-cssmin>`_ toolkit. For more information, see `gulp-uglify <https://www.npmjs.com/package/gulp-uglify>`_.
 =============  =============================================================================================================================== 
 
-Once the requisite modules are imported in *gulpfile.js*, the tasks can be specified. Visual Studio registers six tasks, represented by the following code in *gulpfile.js*:
+Once the requisite modules are imported, the tasks can be specified. Here there are six tasks registered, represented by the following code:
 
 .. code-block:: javascript
   :emphasize-lines: 1,5,9,11,18,25
@@ -132,13 +108,71 @@ Running Default Tasks
 
 If you haven’t already created a new Web app, create a new ASP.NET Web Application project in Visual Studio.
 
-1. Select **File** > **New** > **Project** from the menu bar. The **New Project** dialog box is displayed.
+1. Add a new JavaScript file to your Project and name it *gulpfile.js*, copy the following code.
 
-  .. image:: using-gulp/_static/01-NewProjectDB.png
+.. code-block:: javascript
 
-2. Select the **ASP.NET Web Application** template, choose a project name, and click **OK**.
-3. In the **New ASP.NET Project** dialog box, select the ASP.NET Core **Web Application** template and click **OK**.
-4. In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**. 
+  /// <binding Clean='clean' />
+  "use strict";
+  
+  var gulp = require("gulp"),
+    rimraf = require("rimraf"),
+    concat = require("gulp-concat"),
+    cssmin = require("gulp-cssmin"),
+    uglify = require("gulp-uglify");
+
+  var paths = {
+    webroot: "./wwwroot/"
+  };
+
+  paths.js = paths.webroot + "js/**/*.js";
+  paths.minJs = paths.webroot + "js/**/*.min.js";
+  paths.css = paths.webroot + "css/**/*.css";
+  paths.minCss = paths.webroot + "css/**/*.min.css";
+  paths.concatJsDest = paths.webroot + "js/site.min.js";
+  paths.concatCssDest = paths.webroot + "css/site.min.css";
+
+  gulp.task("clean:js", function (cb) {
+    rimraf(paths.concatJsDest, cb);
+  });
+
+  gulp.task("clean:css", function (cb) {
+    rimraf(paths.concatCssDest, cb);
+  });
+
+  gulp.task("clean", ["clean:js", "clean:css"]);
+
+  gulp.task("min:js", function () {
+    return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
+      .pipe(concat(paths.concatJsDest))
+      .pipe(uglify())
+      .pipe(gulp.dest("."));
+  });
+
+  gulp.task("min:css", function () {
+    return gulp.src([paths.css, "!" + paths.minCss])
+      .pipe(concat(paths.concatCssDest))
+      .pipe(cssmin())
+      .pipe(gulp.dest("."));
+  });
+
+  gulp.task("min", ["min:js", "min:css"]);
+
+2. Open the *project.json* file (add if not there) and add the following.
+
+.. code-block:: javascript
+
+  {
+    "devDependencies": {
+      "gulp": "3.8.11",
+      "gulp-concat": "2.5.2",
+      "gulp-cssmin": "0.1.7",
+      "gulp-uglify": "1.2.0",
+      "rimraf": "2.2.8"
+    }
+  }
+
+3. In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**. 
 
   .. image:: using-gulp/_static/02-SolutionExplorer-TaskRunnerExplorer.png
 
@@ -146,13 +180,13 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
   .. image:: using-gulp/_static/03-TaskRunnerExplorer.png 
 
-5. Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
+4. Underneath **Tasks** in **Task Runner Explorer**, right-click **clean**, and select **Run** from the pop-up menu.
 
   .. image:: using-gulp/_static/04-TaskRunner-clean.png 
 
 **Task Runner Explorer** will create a new tab named **clean** and execute the related clean task as it is defined in *gulpfile.js*.
 
-6. Next, right-click the **clean** task, then select **Bindings** > **Before Build**.
+5. Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
   .. image:: using-gulp/_static/05-TaskRunner-BeforeBuild.png 
 
