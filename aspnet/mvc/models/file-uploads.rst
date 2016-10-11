@@ -12,7 +12,23 @@ ASP.NET MVC actions support uploading of one or more files, using simple model b
 Uploading Small Files with Model Binding
 ----------------------------------------
 
-To upload small files, you can use a multi-part HTML form or construct a POST request using JavaScript.
+To upload small files, you can use a multi-part HTML form or construct a POST request using JavaScript. To POST files using a form an HTML form, you can use something like the following:
+
+(sample HTML markup)
+
+The individual files uploaded to the server can be accessed through Model Binding(link) using the IFormFile(link) interface. IFormFile has the following structure:
+
+(sample)
+
+The following example loops through the files that were uploaded and displays information about each file, such as its filename and size.
+
+(sample)
+
+(screenshot)
+
+
+
+
 
 Uploading Large Files with Streaming
 ------------------------------------
