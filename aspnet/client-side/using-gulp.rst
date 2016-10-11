@@ -186,7 +186,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
 **Task Runner Explorer** will create a new tab named **clean** and execute the related clean task as it is defined in *gulpfile.js*.
 
-5. Next, right-click the **clean** task, then select **Bindings** > **Before Build**.
+5. Right-click the **clean** task, then select **Bindings** > **Before Build**.
 
   .. image:: using-gulp/_static/05-TaskRunner-BeforeBuild.png 
 
