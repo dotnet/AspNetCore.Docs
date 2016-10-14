@@ -9,7 +9,7 @@ ASP.NET Core MVC has built-in support for formatting response data, using fixed 
     :local:
     :depth: 1
 
-`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/mvc/models/formatting/sample>`_.
+`View or download sample from GitHub <https://github.com/aspnet/Docs/tree/master/aspnet/mvc/models/formatting/sample>`_.
 
 Format-Specific Action Results
 ------------------------------
