@@ -3,7 +3,7 @@ Using Apache Web Server as a reverse-proxy
 
 By `Shayne Boyer`_
 
-Apache is a very popular HTTP server and can be configured as a proxy to redirect HTTP traffic similar to nginx. In this guide, we will learn how to set up Apache on Ubuntu-14.04 and use it as a reverse-proxy to welcome incoming connections and redirect them to the ASP.NET Core application running on Kestrel. For this purpose, we will use the *mod_proxy* extension and other related Apache modules.
+Apache is a very popular HTTP server and can be configured as a proxy to redirect HTTP traffic similar to nginx. In this guide, we will learn how to set up Apache on CentOS 7 and use it as a reverse-proxy to welcome incoming connections and redirect them to the ASP.NET Core application running on Kestrel. For this purpose, we will use the *mod_proxy* extension and other related Apache modules.
 
 .. contents:: Sections:
   :local:
@@ -12,7 +12,7 @@ Apache is a very popular HTTP server and can be configured as a proxy to redirec
 Prerequisites
 -------------
 
-1. A server running Ubuntu-14.04, with a standard user account with
+1. A server running CentOS 7, with a standard user account with
    sudo privilege.
 2. An existing ASP.NET Core application. 
 
@@ -36,35 +36,37 @@ These instances could exist on separate physical machines, Docker containers, or
 Install Apache
 ~~~~~~~~~~~~~~
 
-Start by making sure your Ubuntu installation is up to date using the following command.
+Installing the Apache web server on CentOS is a single command, but first let's update our ``yum`` package.
 
 .. code-block:: bash
 
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
+    yum update -y
 
-Install Apache using ``apt-get``
-
-.. code-block:: bash
-
-    sudo apt-get install apache2 -y
-
-Once it is installed, start the service and configure Apache to start automically when the server boots.
+This ensures that all of the installed packages are updated to their latest version. Install Apache using ``yum``
 
 .. code-block:: bash
 
-    sudo /etc/init.d/apache2 start
-    sudo update-rc.d apache2 defaults
+    yum -y install httpd
 
-Install mod_proxy
-~~~~~~~~~~~~~~~~~
-*mod_proxy* is the Apache module that implements a proxy/gateway for Apache HTTP Server.
+The output should reflect something similar to the following.
 
-Install mod_proxy and its dependencies using the following command:
+... code-block:: bash
 
-.. code-block:: bash
+    Downloading packages:
+    httpd-2.4.6-40.el7.centos.4.x86_64.rpm               | 2.7 MB  00:00:01     
+    Running transaction check
+    Running transaction test
+    Transaction test succeeded
+    Running transaction
+    Installing : httpd-2.4.6-40.el7.centos.4.x86_64      1/1 
+    Verifying  : httpd-2.4.6-40.el7.centos.4.x86_64      1/1 
 
-    sudo apt-get install libapache2-mod-proxy-html libxml2-dev -y
+    Installed:
+    httpd.x86_64 0:2.4.6-40.el7.centos.4                                                                           
+
+    Complete!
+
+.. note:: In this example the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. The output may be different for your server. To verify where Apache is installed, run ``whereis httpd`` from the command line. 
 
 Configure Apache for reverse-proxy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
