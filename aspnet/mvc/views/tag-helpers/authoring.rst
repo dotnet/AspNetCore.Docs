@@ -59,7 +59,7 @@ That is, an anchor tag that makes this an email link. You might want to do this 
 
 .. wildcard syntax
 
-.. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml
+.. literalinclude:: authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml
   :language: html
   :emphasize-lines: 2,3
 
