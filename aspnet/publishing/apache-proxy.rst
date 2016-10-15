@@ -46,7 +46,7 @@ This ensures that all of the installed packages are updated to their latest vers
 
 .. code-block:: bash
 
-    yum -y install httpd
+    yum -y install httpd mod_ssl
 
 The output should reflect something similar to the following.
 
@@ -70,46 +70,44 @@ The output should reflect something similar to the following.
 
 Configure Apache for reverse-proxy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In addition to the *mod_proxy* extension, there are a number of Apache modules that are needed for HTTP headers, proxy funcctionality, connnection, etc. To see a list of the modules available, run ``sudo a2enmod``. For the purpose of a reverse-proxy, the following modules will be the ones needed.
+Configuration files for Apache are located within the ``/etc/httpd/conf.d/`` directory. Any file with the **.conf** extension will be processed in alphabetical order in addition to the module configuration files in ``/etc/httpd/conf.modules.d/``, which contains
+configuration files necessary to load modules.
 
-.. code-block:: bash
-    
-    sudo a2enmod proxy proxy_http proxy_ajp rewrite deflate headers proxy_balancer proxy_connect proxy_html
-
-Disable the default Apache configuration file.
-
-.. code-block:: bash
-
-    sudo a2dissite 000-default
-
-Create a new virtual host file insde the ``/etc/apace2/sites-available`` directory setup the proxy function.
-
-.. code-block:: bash
-
-    sudo nano /etc/apache2/sites-available/proxy-host.conf
-
-Here is an example ``proxy-host.conf`` file
+Create a configuration file for your app, for this example we'll call it ``hellomvc.conf``
 
 .. code-block:: text
 
     <VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-        ProxyPreserveHost On
-        # Servers to proxy the connection, or
-        # List of application servers Usage
-        ProxyPass / http://127.0.0.1:5000/
-        ProxyPassReverse / http://127.0.0.1:5000
         ServerName localhost
+        ProxyPreserveHost On
+        ProxyRequests Off
+        ProxyPass / http://127.0.0.1:5000
+        ProxyPassReverse / http://127.0.0.1:5000
+        ErrorLog /var/log/httpd/hellomvc-error.log
+        CustomLog /var/log/httpd/hellomvc-common.log common
     </VirtualHost>
 
-Save the file and restart Apache.
+The *VirtualHost* node, of which there can be multiple in a file or on a server in many files, is set to listen on any IP address using port 80. *ProxyRequests* allows or prevents Apache httpd from functioning as a forward proxy server. In a typical reverse proxy or gateway configuration, this option should be set to Off. The next two lines are set to pass all requests received at the root to the machine 127.0.0.1 port 5000 and in reverse. For there to be bi-directional communication, both settings *ProxyPass* and *ProxyPassReverse** are required.
+
+Logging can be configured per VirtualHost using *ErrorLog* and *CustomLog* directives. *ErrorLog* is the location where the server will log errors and *CustomLog* sets the filename and format of log file. In our case this is where common web server information will be logged.
+
+
+Save the file, and test the configuration.
+
+.. code-block:: bash
+
+    service httpd configtest
+    Syntax OK
+
+Restart Apache.
 
 .. code-block:: text
 
-    sudo /etc/init.d/apache2 restart
+    systemctl stop httpd
+    systemctl start httpd
+    systemctl enable httpd
+
 
 Apache is now setup to forward requests made to ``http://localhost:80`` on to the ASP.NET Core application running on Kestrel at ``http://127.0.0.1:5000``.  However, Apache is not setup to manage the Kestrel process. We will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure. For more on installing and configuring supervisor, see `Configuring supervisor <https://docs.asp.net/en/latest/publishing/linuxproduction.html?#configuring-supervisor>`_
 
