@@ -172,7 +172,7 @@ Localization is configured in the ``ConfigureServices`` method:
 Localization middleware
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The current culture on a request is set in the localization :doc:`/fundamentals/middleware`. The localization middleware is enabled in the ``Configure`` method of *Startup.cs* file.
+The current culture on a request is set in the localization :doc:`/fundamentals/middleware`. The localization middleware is enabled in the ``Configure`` method of *Startup.cs* file. Note: The middleware must be configured early in the app's pipeline to set the request language. Enable the middleware before calling other app builder extensions, such as app.UseMvc().
 
 .. literalinclude:: localization/sample/Startup.cs
   :language: c#
