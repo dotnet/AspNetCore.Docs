@@ -40,13 +40,13 @@ Installing the Apache web server on CentOS is a single command, but first let's 
 
 .. code-block:: bash
 
-    yum update -y
+    sudo yum update -y
 
 This ensures that all of the installed packages are updated to their latest version. Install Apache using ``yum``
 
 .. code-block:: bash
 
-    yum -y install httpd mod_ssl
+    sudo yum -y install httpd mod_ssl
 
 The output should reflect something similar to the following.
 
@@ -97,19 +97,28 @@ Save the file, and test the configuration.
 
 .. code-block:: bash
 
-    service httpd configtest
+    sudo service httpd configtest
     Syntax OK
 
 Restart Apache.
 
 .. code-block:: text
 
-    systemctl stop httpd
-    systemctl start httpd
-    systemctl enable httpd
+    sudo systemctl stop httpd
+    sudo systemctl start httpd
+    sudo systemctl enable httpd
 
 
-Apache is now setup to forward requests made to ``http://localhost:80`` on to the ASP.NET Core application running on Kestrel at ``http://127.0.0.1:5000``.  However, Apache is not setup to manage the Kestrel process. We will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure. For more on installing and configuring supervisor, see `Configuring supervisor <https://docs.asp.net/en/latest/publishing/linuxproduction.html?#configuring-supervisor>`_
+Apache is now setup to forward requests made to ``http://localhost:80`` on to the ASP.NET Core application running on Kestrel at ``http://127.0.0.1:5000``.  However, Apache is not setup to manage the Kestrel process. We will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure. 
+
+Install supervisor using ``easy_install``
+
+.. code:: bash
+
+    sudo yum install python-setuptools
+    sudo easy_install supervisor
+
+
 
 Once supervisor is configured to run and manage the Kestrel process, see the logs for the application by running the command.
 
@@ -141,7 +150,7 @@ With the reverse-proxy configured and Kestrel managed through supervisor, the we
     Connection: Keep-Alive
     Transfer-Encoding: chunked
 
-To add or remove headers, edit the ``proxy-host.conf`` file and add the following withing the ``<VirtualHost>`` node.
+To add or remove headers, edit the ``hellomvc.conf`` file and add the following withing the ``<VirtualHost>`` node.
 
 .. code-block:: text
 
