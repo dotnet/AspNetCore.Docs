@@ -70,7 +70,7 @@ Migrate Configuration
 ASP.NET Core no longer uses *Global.asax*, *web.config*, or *App_Start* folders. Instead, all startup tasks are done in *Startup.cs* in the root of the project (see :doc:`/fundamentals/startup`). In ASP.NET Core MVC, attribute-based routing is now included by default when ``UseMvc()`` is called; and, this is the recommended approach for configuring Web API routes (and is how the Web API starter project handles routing).
 
 .. literalinclude:: webapi/sample/ProductsCore/Startup.cs
-  :language: none
+  :language: c#
   :emphasize-lines: 40
   :linenos:
 
