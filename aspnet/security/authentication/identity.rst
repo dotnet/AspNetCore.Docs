@@ -108,6 +108,7 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     :dedent: 8
 	
   You can also easily configure some other behaviors, like the data type you want for the primary keys :
+  
 - :ref:`security-authentication-identity-primary-key-configuration`
 
 6. View the database.
