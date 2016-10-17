@@ -36,7 +36,8 @@ How to
     :emphasize-lines: 47-49
     :dedent: 8
 
-4. 
+
+	
 
   If the data type of the columns in the database are still in NVARCHAR, you can see that the primary keys of the Identity model is the one you want
 
