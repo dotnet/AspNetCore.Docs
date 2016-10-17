@@ -69,6 +69,9 @@ The default is 30000000, which is approximately 28.6MB.
 
 Workarounds:
 1) Configure the maxAllowedContentLength
+
+.. code-block:: xml
+
   <system.webServer>
     <security>
       <requestFiltering>
