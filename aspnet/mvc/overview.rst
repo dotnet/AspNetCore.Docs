@@ -183,7 +183,7 @@ Areas
 ^^^^^
 
 :doc:`Areas </mvc/controllers/areas>` provide a way to partition a large ASP.NET Core MVC Web app into smaller functional groupings. An area is effectively an MVC structure inside an application. In an MVC project, logical components like Model, Controller, and View are kept in different folders, and MVC uses naming conventions to create the relationship between these components. For a large app, it may be advantageous to partition the app into separate high level areas of functionality. For instance, an e-commerce app with multiple business units, such as checkout, billing, and search etc. Each of these units have their own logical component views, controllers, and models.
-
+g
 Web APIs
 ^^^^^^^^
 
@@ -193,8 +193,7 @@ The framework includes support for HTTP content-negotiation with built-in suppor
 
 Use link generation to enable support for hypermedia. Easily enable support for `cross-origin resource sharing (CORS) <http://www.w3.org/TR/cors/>`__ so that your Web APIs shared across multiple Web applications.
 
-Testability
-^^^^^^^^^^^
+Testability^^^^^^^^^^^
 
 The framework's use of interfaces and dependency injection make it well-suited to unit testing, and the framework includes features (like a TestHost and InMemory provider for Entity Framework) that make :doc:`integration testing </testing/integration-testing>` quick and easy as well. Learn more about :doc:`testing controller logic </mvc/controllers/testing>`.
 
@@ -245,7 +244,7 @@ There are many built-in Tag Helpers for common tasks - such as creating forms, l
       Please <a asp-controller="Account" asp-action="Login">Click here to Log in</a>.
   </p>
 
-The ``EnvironmentTagHelper`` can be used to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staring, or Production:
+The ``EnvironmentTagHelper`` can be used to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staging, or Production:
 
 .. code-block:: html
   :emphasize-lines: 1,3-4,9
