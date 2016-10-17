@@ -179,6 +179,40 @@ The ASP.NET Core Module allows you specify environment variables for the process
 ASP.NET Core Module with IIS Shared Configuration
 -------------------------------------------------
 
-The ASP.NET Core Module installer, which is included in the .NET Core Windows Server Hosting bundle installer, runs with the privileges of the **SYSTEM** account. Because the local system account does not have modify permission for the share path which is used by the IIS Shared Configuration, the installer will hit an access denied error when attempting to configure the module settings in *applicationhost.config* on the share.
+The ASP.NET Core Module installer, which is included in the .NET Core Windows Server Hosting bundle installer, runs with the privileges of the **SYSTEM** account. Because the local system account does not have modify permission for the share path which is used by the IIS Shared Configuration, the installer will hit an access denied error when attempting to configure the module settings in *applicationHost.config* on the share.
 
-The unsupported workaround is to disable the IIS Shared Configuration, run the installer, export the updated *applicationhost.config* file to the share, and re-enable the IIS Shared Configuration.
+The unsupported workaround is to disable the IIS Shared Configuration, run the installer, export the updated *applicationHost.config* file to the share, and re-enable the IIS Shared Configuration.
+
+Module, schema, and configuration file locations
+------------------------------------------------
+
+Module
+^^^^^^
+
+IIS (x86/amd64):
+  * %windir%\\System32\\inetsrv\\aspnetcore.dll
+  * %windir%\\SysWOW64\\inetsrv\\aspnetcore.dll
+
+IIS Express (x86/amd64):
+  * %ProgramFiles%\\IIS Express\\aspnetcore.dll
+  * %ProgramFiles(x86)%\\IIS Express\\aspnetcore.dll
+
+Schema
+^^^^^^
+
+IIS
+  * %windir%\\System32\\inetsrv\\config\\schema\\aspnetcore_schema.xml
+
+IIS Express
+  * %ProgramFiles%\\IIS Express\\config\\schema\\aspnetcore_schema.xml
+
+Configuration
+^^^^^^^^^^^^^
+
+IIS
+  * %windir%\\System32\\inetsrv\\config\\applicationHost.config
+
+IIS Express
+  * .vs\\config\\applicationHost.config
+
+You can search for *aspnetcore.dll* in the *applicationHost.config* file. For IIS Express, the *applicationHost.config* file won't exist by default. The file is created at *<appliation root>\\.vs\\config* when you start any existing web application project of the Visual Studio solution.

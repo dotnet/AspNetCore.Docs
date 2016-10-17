@@ -18,8 +18,7 @@ namespace TestingControllersSample.Api
             _sessionRepository = sessionRepository;
         }
 
-        [Route("forsession/{sessionId}")]
-        [HttpGet]
+        [HttpGet("forsession/{sessionId}")]
         public async Task<IActionResult> ForSession(int sessionId)
         {
             var session = await _sessionRepository.GetByIdAsync(sessionId);
@@ -39,8 +38,7 @@ namespace TestingControllersSample.Api
             return Ok(result);
         }
 
-        [Route("create")]
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]NewIdeaModel model)
         {
             if (!ModelState.IsValid)

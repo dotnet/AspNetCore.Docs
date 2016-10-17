@@ -19,7 +19,7 @@ namespace TestingControllersSample.Tests.IntegrationTests
         [Fact]
         public async Task ReturnsInitialListOfBrainstormSessions()
         {
-            // Arrange
+            // Arrange - get a session known to exist
             var testSession = Startup.GetTestSession();
 
             // Act

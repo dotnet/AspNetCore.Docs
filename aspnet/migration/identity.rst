@@ -14,17 +14,11 @@ In the previous article we :doc:`migrated configuration from an ASP.NET MVC proj
 Configure Identity and Membership
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*. Before pulling in the required services and configuring them, we should add the required dependencies to the project. Open *project.json* and add ``Microsoft.AspNetCore.Identity.EntityFramework`` and ``Microsoft.AspNetCore.Authentication.Cookies`` to the list of dependencies:
+In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in Startup.Auth.cs and IdentityConfig.cs, located in the App_Start folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*. 
 
-.. code-block:: none
+Add ``Microsoft.AspNetCore.Identity.EntityFrameworkCore`` and ``Microsoft.AspNetCore.Authentication.Cookies`` to the list of dependencies in project.json.
 
-  "dependencies": {
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Microsoft.AspNetCore.Identity.EntityFramework": "1.0.0",
-    "Microsoft.AspNetCore.Security.Cookies": "1.0.0"
-  },
-
-Now, open Startup.cs and update the ConfigureServices() method to use Entity Framework and Identity services:
+Then, open Startup.cs and update the ``ConfigureServices()`` method to use Entity Framework and Identity services:
 
 .. code-block:: c#
 
@@ -68,17 +62,9 @@ ApplicationDbContext.cs:
   {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-      private static bool _created = false;
       public ApplicationDbContext()
       {
-        // Create the database and schema if it doesn't exist
-        // This is a temporary workaround to create database until Entity Framework database migrations 
-        // are supported in ASP.NET Core
-        if (!_created)
-        {
-          Database.AsMigrationsEnabled().ApplyMigrations();
-          _created = true;
-        }
+        Database.EnsureCreated();
       }
 
       protected override void OnConfiguring(DbContextOptions options)

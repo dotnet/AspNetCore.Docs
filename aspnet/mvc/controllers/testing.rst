@@ -1,4 +1,4 @@
-:version: 1.0.0-rc1
+:version: 1.0.0
 
 Testing Controller Logic
 ========================
@@ -47,22 +47,25 @@ The controller is following the `explicit dependencies principle <http://deviq.c
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
+  :lines: 1-33,77-95
   :emphasize-lines: 17-18
 
-The ``HTTP POST Index`` method (shown below) should verify:
+The ``HomeController`` ``HTTP POST Index`` method (shown above) should verify:
 
-- The action method returns a ``ViewResult`` with the appropriate data when ``ModelState.IsValid`` is ``false``
+- The action method returns a Bad Request ``ViewResult`` with the appropriate data when ``ModelState.IsValid`` is ``false``
 - The ``Add`` method on the repository is called and a ``RedirectToActionResult`` is returned with the correct arguments when ``ModelState.IsValid`` is true.
+
+Invalid model state can be tested by adding errors using ``AddModelError`` as shown in the first test below.
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs
   :language: c#
-  :lines: 29-57
-  :dedent: 4
-  :emphasize-lines: 1-2,10-12,15-16,19,24-25,28
+  :lines: 35-75
+  :dedent: 8
+  :emphasize-lines: 8,15-16,37-39
 
-The first test confirms when ``ModelState`` is not valid, the same ``ViewResult`` is returned as for a ``GET`` request. Note that the test doesn't attempt to pass in an invalid model. That wouldn't work anyway since model binding isn't running - we're just calling the method directly. However, we're not trying to test model binding - we're only testing what our code in the action method does. The simplest approach is to add an error to ``ModelState``.
+The first test confirms when ``ModelState`` is not valid, the same ``ViewResult`` is returned as for a ``GET`` request. Note that the test doesn't attempt to pass in an invalid model. That wouldn't work anyway since model binding isn't running (though an :ref:`integration test <integration-testing>` would use exercise model binding). In this case, model binding is not being tested. These unit tests are only testing what the code in the action method does.
 
-The second test verifies that when ``ModelState`` is valid, a new ``BrainstormSession`` is added (via the repository), and the method returns a ``RedirectToActionResult`` with the expected properties. Mocked calls that aren't called are normally ignored, but calling ``Verifiable`` at the end of the setup call allows it to be verified in the test. This is done with the call to ``mockRepo.Verify``.
+The second test verifies that when ``ModelState`` is valid, a new ``BrainstormSession`` is added (via the repository), and the method returns a ``RedirectToActionResult`` with the expected properties. Mocked calls that aren't called are normally ignored, but calling ``Verifiable`` at the end of the setup call allows it to be verified in the test. This is done with the call to ``mockRepo.Verify``, which will fail the test if the expected method was not called.
 
 .. note:: The Moq library used in this sample makes it easy to mix verifiable, or "strict", mocks with non-verifiable mocks (also called "loose" mocks or stubs). Learn more about `customizing Mock behavior with Moq <https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior>`_.
 
@@ -70,13 +73,13 @@ Another controller in the app displays information related to a particular brain
 
 .. literalinclude:: testing/sample/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs
   :language: c#
-  :emphasize-lines: 16,20,25,33
+  :emphasize-lines: 19-22,25-28
 
 The controller action has three cases to test, one for each ``return`` statement:
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/SessionControllerTests.cs
   :language: c#
-  :emphasize-lines: 16,26,39
+  :emphasize-lines: 27-29,46-47,64-68
 
 The app exposes functionality as a web API (a list of ideas associated with a brainstorming session and a method for adding new ideas to a session):
 
@@ -84,19 +87,20 @@ The app exposes functionality as a web API (a list of ideas associated with a br
 
 .. literalinclude:: testing/sample/TestingControllersSample/src/TestingControllersSample/Api/IdeasController.cs
   :language: c#
-  :emphasize-lines: 20-22,27,29-36,39-41,45,50,60
+  :emphasize-lines: 21-22,27,30-36,41-42,46,52,65
 
-The ``ForSession`` method returns a list of ``IdeaDTO`` types, with property names camel cased to match JavaScript conventions. Avoid returning your business domain entities directly via API calls, since frequently they include more data than the API client requires, and they unnecessarily couple your app's internal domain model with the API you expose externally. Mapping between domain entities and the types you will return over the wire can be done manually (using a LINQ ``Select`` as shown here) or using a library like `AutoMapper <https://github.com/AutoMapper/AutoMapper>`_
+The ``ForSession`` method returns a list of ``IdeaDTO`` types. Avoid returning your business domain entities directly via API calls, since frequently they include more data than the API client requires, and they unnecessarily couple your app's internal domain model with the API you expose externally. Mapping between domain entities and the types you will return over the wire can be done manually (using a LINQ ``Select`` as shown here) or using a library like `AutoMapper <https://github.com/AutoMapper/AutoMapper>`_
 
 The unit tests for the ``Create`` and ``ForSession`` API methods:
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs
   :language: c#
-  :emphasize-lines: 16-17,26-27,37-38,65-66,76-77
+  :lines: 1-83,121-135
+  :emphasize-lines: 18,23,29,33,38-39,43,50,58-59,68-70,76-78
 
 As stated previously, to test the behavior of the method when ``ModelState`` is invalid, add a model error to the controller as part of the test. Don't try to test model validation or model binding in your unit tests - just test your action method's behavior when confronted with a particular ``ModelState`` value.
 
-The second test depends on the repository returning null, so the mock repository is configured to return null. There's no need to create a test database (in memory or otherwise) and construct a query that will return this result - it can be done in a single line as shown.
+The second test depends on the repository returning null, so the mock repository is configured to return null. There's no need to create a test database (in memory or otherwise) and construct a query that will return this result - it can be done in a single statement as shown.
 
 The last test verifies that the repository's ``Update`` method is called. As we did previously, the mock is called with ``Verifiable`` and then the mocked repository's ``Verify`` method is called to confirm the verifiable method was executed. It's not a unit test responsibility to ensure that the ``Update`` method saved the data; that can be done with an integration test.
 
@@ -134,13 +138,21 @@ Each integration test class configures the ``TestServer`` that will run the ASP.
   The view 'Index' was not found. The following locations were searched:
   (list of locations)
 
-To correct this issue, you need to configure the server to use the ``ApplicationBasePath`` and ``ApplicationName`` of the web project. This is done in the call to ``UseServices`` in the integration test class shown:
+To correct this issue, you need to configure the server's content root, so it can locate the views for the project being tested. This is done by a call to ``UseContentRoot`` in the in the ``TestFixture`` class, shown below:
+
+.. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/TestFixture.cs
+  :language: text
+  :emphasize-lines: 32,35
+
+The ``TestFixture`` class is responsible for configuring and creating the ``TestServer``, setting up an ``HttpClient`` to communicate with the ``TestServer``. Each of the integration tests uses the ``Client`` property to connect to the test server and make a request.
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/HomeControllerTests.cs
   :language: c#
-  :emphasize-lines: 20,22-32,36-37,42
+  :emphasize-lines: 20,26,29-31,35,38-41,44,47-48
 
-In the test above, the ``responseString`` gets the actual rendered HTML from the View, which can be inspected to confirm it contains expected results.
+In the first test above, the ``responseString`` holds the actual rendered HTML from the View, which can be inspected to confirm it contains expected results.
+
+The second test constructs a form POST with a unique session name and POSTs it to the app, then verifies that the expected redirect is returned.
 
 API Methods
 ^^^^^^^^^^^
@@ -151,7 +163,6 @@ The following set of tests target the ``Create`` method in the :ref:`IdeasContro
 
 .. literalinclude:: testing/sample/TestingControllersSample/tests/TestingControllersSample.Tests/IntegrationTests/ApiIdeasControllerTests.cs
   :language: c#
-  :lines: 37-142
 
 Unlike integration tests of actions that returns HTML views, web API methods that return results can usually be deserialized as strongly typed objects, as the last test above shows. In this case, the test deserializes the result to a ``BrainstormSession`` instance, and confirms that the idea was correctly added to its collection of ideas.
 
