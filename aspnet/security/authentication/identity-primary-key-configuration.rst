@@ -1,3 +1,5 @@
+.. _security-authentication-identity-primary-key-configuration:
+
 Configure Identity primary keys data type
 ========================
 
