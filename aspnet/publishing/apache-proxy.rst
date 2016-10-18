@@ -115,16 +115,40 @@ Install supervisor using ``easy_install``
 
 .. code:: bash
 
-    sudo yum install python-setuptools
     sudo easy_install supervisor
 
+Create the configuration file using the built command line tool. The tool generates an example supervisor.conf file, replace the contents with the settings that are relative to your application.
 
+.. code:: bash
+
+    echo_supervisord_conf > /etc/supervisord.conf
 
 Once supervisor is configured to run and manage the Kestrel process, see the logs for the application by running the command.
 
 .. code-block:: bash
 
-    sudo tail -f /var/log/supervisor/supervisord.log
+     /usr/bin/supervisord -c /etc/supervisord.conf
+
+.. note:: If you don’t have root access, or you’d rather not put the supervisord.conf file in /etc/supervisord.conf`, you can place it in the current directory (echo_supervisord_conf > supervisord.conf) and start supervisord with the -c flag in order to specify the configuration file location.   
+
+An example configuration file for for a **hellomvc** application.
+
+.. code-block:: text
+    [program:hellomvc]
+    command=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+    directory=/var/aspnetcore/HelloMVC/
+    autostart=true
+    autorestart=true
+    stderr_logfile=/var/log/hellomvc.err.log
+    stdout_logfile=/var/log/hellomvc.out.log
+    environment=HOME="/var/www/",ASPNETCORE_ENVIRONMENT="Production"
+    user=www_user
+    stopsignal=INT
+    stopasgroup=true
+    killasgroup=true
+    [supervisord]
+
+For more information on the configuration file format and options see: `http://supervisord.org/<http://supervisord.org/configuration.html>`_.
 
 The output shows the application process has successfully started.
 
