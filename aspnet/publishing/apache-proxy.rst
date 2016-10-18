@@ -139,6 +139,7 @@ Once supervisor is configured to run and manage the Kestrel process, see the log
 An example configuration file for for a **hellomvc** application.
 
 .. code-block:: text
+    
     [program:hellomvc]
     command=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     directory=/var/aspnetcore/HelloMVC/
@@ -199,3 +200,44 @@ You can redirect application logs (STDOUT and STERR) in the program section of y
 .. code-block:: bash
 
     tail -f /var/log/hellomvc.out.log
+
+Securing our application
+------------------------
+
+Configure firewall
+~~~~~~~~~~~~~~~~~~
+*Firewalld* is a dynamic daemon to manage firewall with support for network zones, although you can still use iptables to manage ports and packet filtering; it is not recommended to use them both at the same time. Firewalld should be installed by default, if not use yum to install it.
+
+.. code-block:: bash
+
+    sudo yum install firewalld -y
+
+Using ``firewalld`` you can open only the ports needed for the application. In this case, port 80 and 443 are used. The following command permanently sets these to open.
+
+.. code-block:: bash
+
+    sudo firewall-cmd --add-port=80/tcp --permanent
+    sudo firewall-cmd --add-port=443/tcp --permanent
+
+Reload the firewall settings, and check the available services, ports on the default zone. Options are available by inspecting ``firewall-cmd -ht``
+
+.. code-block:: bash 
+
+    sudo firewall-cmd --reload
+    sudo firewall-cmd --list-all
+
+.. code-block:: bash
+
+    public (default, active)
+    interfaces: eth0
+    sources: 
+    services: dhcpv6-client
+    ports: 443/tcp 80/tcp
+    masquerade: no
+    forward-ports: 
+    icmp-blocks: 
+    rich rules: 
+
+
+SSL configuration
+~~~~~~~~~~~~~~~~~
