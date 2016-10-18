@@ -2,8 +2,8 @@ Basic configuration examples of Identity
 ========================================
 
 .. toctree::
-  :titlesonly:
+   :titlesonly:
 
-   authentication/identity-primary-key-configuration
-   authentication/identity-options
+   identity-primary-key-configuration
+   identity-options
    

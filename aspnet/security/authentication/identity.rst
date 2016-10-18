@@ -107,9 +107,9 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     :emphasize-lines: 5
     :dedent: 8
 	
-  You can also easily configure some other behaviors, like the data type you want for the primary keys :
+  For more information about how to configure Identity :
   
-- :ref:`security-authentication-identity-primary-key-configuration`
+- :ref:`security-authentication-identity-options`
 
 6. View the database.
 

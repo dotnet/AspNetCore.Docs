@@ -1,3 +1,5 @@
+.. _security-authentication-identity-options:
+
 Configure Identity
 ==================
 
