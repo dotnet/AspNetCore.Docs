@@ -5,5 +5,5 @@ Basic configuration examples of Identity
   :titlesonly:
 
    authentication/identity-primary-key-configuration
-   authentication/identity-password-policy
+   authentication/identity-options
    
