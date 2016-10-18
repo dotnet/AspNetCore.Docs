@@ -1,7 +1,7 @@
 .. include:: /../common/stub-topic.txt
 
 |stub-icon| Custom Formatters
-=============================
+==============================
 
 .. include:: /../common/stub-notice.txt
 
