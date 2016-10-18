@@ -3,7 +3,7 @@
 Manage Client-Side Packages with Bower
 ======================================
 
-By `Noel Rice`_, `Scott Addie`_
+By `Noel Rice`_, `Scott Addie`_, and `Shayne Boyer`_
 
 Bower is a "package manager for the web." Bower lets you install and restore client-side packages, including JavaScript and CSS libraries. For example, with Bower you can install CSS files, fonts, client frameworks, and JavaScript libraries from external sources. Bower resolves dependencies and will automatically download and install all the packages you need. For example, if you configure Bower to load the Bootstrap package, the necessary jQuery package will automatically come along for the ride. For .NET libraries you still use NuGet_ package manager.
 
@@ -12,42 +12,42 @@ Bower is a "package manager for the web." Bower lets you install and restore cli
 Getting Started with Bower
 --------------------------
 
-ASP.NET Core project templates pre-construct the client build process for you. The ubiquitous jQuery and Bootstrap packages are installed, and the plumbing for NPM, Gulp, and Bower is already in place. The screenshot below depicts the initial project in Solution Explorer. It's important to enable the "Show All Files" option, as the bower.json file is hidden by default.
+ASP.NET Core project templates pre-construct the client build process for you. The ubiquitous jQuery and Bootstrap packages are installed, and the plumbing for Bower is already in place. The screenshot below depicts the initial project in Solution Explorer. It's important to enable the "Show All Files" option, as the bower.json file is hidden by default.
 
 .. image:: bower/_static/mvc-project.png
   :width: 300px
 
 Client-side packages are listed in the bower.json file. The ASP.NET Core project template pre-configures bower.json with jQuery, jQuery validation, and Bootstrap. 
 
-Let’s add support for photo albums by installing the `Fotorama <http://fotorama.io/>`_ jQuery plugin. Bower packages can be installed either via the Manage Bower Packages UI or manually in the bower.json file.
+Let’s add support for `Font Awesome <http://fontawesome.io>`_ to add some scalable vector css icons to the HTML. Bower packages can be installed either via the Manage Bower Packages UI or manually in the bower.json file.
 
 Installation via Manage Bower Packages UI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#.  Right-click the project name in Solution Explorer, and select the "Manage Bower Packages" menu option.
+-  Right-click the project name in Solution Explorer, and select the "Manage Bower Packages" menu option.
 
-#.  In the window that appears, click the "Browse" tab, and filter the packages list by typing "fotorama" into the search box:
+-  In the window that appears, click the "Browse" tab, and filter the packages list by typing "font-awesome" into the search box:
 
   .. image:: bower/_static/manage-bower-packages.png
 
-#.  Confirm that the "Save changes to bower.json" checkbox is checked, select the desired version from the drop-down list, and click the Install button.
+-  Confirm that the "Save changes to bower.json" checkbox is checked, select the desired version from the drop-down list, and click the Install button.
 
-#.  Across the bottom status bar of the IDE, an *Installing "fotorama" complete* message appears to indicate a successful installation. 
+-  Across the bottom status bar of the IDE, an *Installing "font-awesome" complete* message appears to indicate a successful installation. 
 
 Manual Installation in bower.json
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. At the end of the ``dependencies`` section in bower.json, add a comma and type "fotorama". Notice as you type that you get IntelliSense with a list of available packages. Select "fotorama" from the list. 
+- At the end of the ``dependencies`` section in bower.json, add a comma and type "font-awesome". Notice as you type that you get IntelliSense with a list of available packages. Select "font-awesome" from the list. 
 
   .. image:: bower/_static/add-package.png
-    :width: 150px
 
-#. Add a colon and then select the latest stable version of the package from the drop-down list. The double quotes will be added automatically.
+- Add a colon and then select the latest stable version of the package from the drop-down list. The double quotes will be added automatically.
 
   .. image:: bower/_static/version-intellisense.png
-    :width: 200px
 
-#. Save the bower.json file.
+  .. note:: Bower uses `semantic versioning <http://semver.org/>`_ to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme <major>.<minor>.<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
+
+- Save the bower.json file.
 
   .. note:: Visual Studio watches the bower.json file for changes. Upon saving, the `bower install` command is executed. See the Output window's "Bower/npm" view for the exact command which was executed. 
 
@@ -59,39 +59,61 @@ Now that the installation step has been completed, expand the twisty to the left
       "directory": "wwwroot/lib"
     }
 
-In Solution Explorer, expand the *wwwroot* node. The *lib* directory should now contain all of the packages, including the fotorama package. 
+In Solution Explorer, expand the *wwwroot* node. The *lib* directory should now contain all of the packages, including the font-awesome package. 
 
   .. image:: bower/_static/package-lib.png
     :width: 300px
 
-Next, let's add an HTML page to the project. In Solution Explorer, right-click *wwwroot* node and select **Add** > **New Item** > **HTML Page**. Name the page Index.html. Replace the contents of the file with the following:
+Let's add the Font Awesome Icons to the Home Page.  Open ``Views\Shared\_Layout.cshtml`` and add the css resource to the environment tag helper for **Development**.
 
-.. code-block:: html
+  .. code-block:: html
+    :emphasize-lines: 4
 
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Bower and Fotorama</title>
-    <link href="lib/fotorama/fotorama.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="fotorama" data-nav="thumbs">
-      <img src="images/asp-net-banners-01.png" />
-      <img src="images/asp-net-banners-02.png" />
-      <img src="images/banner-01-azure.png" />
-      <img src="images/banner-02-vs.png" />
+      <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+      </environment>
+
+In the environment tag helper for **Staging,Production**, use the CDN location of the css resource and the local file as the fallback. If the CDN fails, then the local file will be used.
+
+  .. code-block:: html
+    :emphasize-lines: 5,6
+
+      <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+              asp-fallback-href="~/lib/font-awesome/css/font-awesome.min.css" />
+      </environment>
+
+Open ``Views\Home\Index.cshtml`` and add the icons to the **How to**, **Overview**, and **Run & Deploy** headers. You'll notice when typing, IntelliSense is available on the css classes.
+
+  .. image:: bower/_static/css-intellisense.png
+
+Add the question icon to the **How to** header.
+
+  .. code-block:: html
+    :emphasize-lines: 2
+    
+    <div class="col-md-3">
+        <h2><i class="fa fa-question"></i> How to</h2>
+        <ul>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkID=699562">Add an appsetting in config and access it in app.</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
+            <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
+        </ul>
     </div>
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/fotorama/fotorama.js"></script>
-  </body>
-  </html>
+    
+Run the application to see the changes.
 
-This example uses images currently available inside *wwwroot/images*, but you can add any images on hand. 
-
-Press ``Ctrl+Shift+W`` to display the page in the browser. The control displays the images and allows navigation by clicking the thumbnail list below the main image. This quick test shows that Bower installed the correct packages and dependencies. 
-
-.. image:: bower/_static/photo-gallery.png
+  .. image:: bower/_static/app-with-icons.png
 
 Exploring the Client Build Process
 ----------------------------------

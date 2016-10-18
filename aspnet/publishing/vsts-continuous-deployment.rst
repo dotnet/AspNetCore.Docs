@@ -29,6 +29,11 @@ Setup VSTS Build
   Create a variable for **DeployPackage** and set it to the path you would like the zipped web package to be at. We have used ``$(Build.StagingDirectory)/WebApplication.zip`` to have it alongside our published output.
   
   .. image:: vsts-continuous-deployment/_static/setup-build-variables.png
+
+  .. note:: If you are using hosted build agents to build your ASP.NET Core application, the host will try to cache packages. As the hosted servers won't retain the cache, you can skip this step and reduce restore times by adding another variable here:
+    
+    - Name: `DOTNET_SKIP_FIRST_TIME_EXPERIENCE`
+    - Value: `true`
   
 2. Use a Command Line build step to restore packages. 
 

@@ -285,7 +285,7 @@ DataAnnotations
 '''''''''''''''
 You can decorate the API controller with ``System.ComponentModel.DataAnnotations`` to help drive the Swagger UI components.
 
-Adding the ``[Required]`` annotation to the ``Name`` property of the TodoItem class will change the ModelSchema information in the UI. ``[Produces("application/json"]``, RegularExpression validators and more will further detail the information delivered in the generated page.  The more metadata that is in the code produces a more desciptive UI or API help page. 
+Adding the ``[Required]`` annotation to the ``Name`` property of the TodoItem class will change the ModelSchema information in the UI. ``[Produces("application/json")]``, RegularExpression validators and more will further detail the information delivered in the generated page.  The more metadata that is in the code produces a more desciptive UI or API help page. 
 
 
 .. literalinclude:: web-api-help-pages-using-swagger/sample/src/TodoApi/Models/TodoItem.cs
@@ -337,7 +337,7 @@ Enable static files middleware.
         
     }
 
-Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/swagger-api/swagger-ui/blob/master/src/main/html/index.html>`_ and put that in the ``wwwroot/swagger/ui`` folder and also create a new ``custom.css`` file in the same folder.
+Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Ahoy/tree/master/test/WebSites/CustomizedUi/wwwroot/swagger/ui>`_ and put that in the ``wwwroot/swagger/ui`` folder and also create a new ``custom.css`` file in the same folder.
 
 .. image:: web-api-help-pages-using-swagger/_static/custom-files-folder-view.png
     :scale: 80%

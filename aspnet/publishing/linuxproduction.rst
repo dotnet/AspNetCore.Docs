@@ -90,7 +90,7 @@ Once you have completed making changes to your nginx configuration you can run `
 Monitoring our Web Application
 ------------------------------
 
-Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not mangage your Kestrel process. In this tutorial, we will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure.
+Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not manage your Kestrel process. In this tutorial, we will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure.
 
 Installing supervisor
 ~~~~~~~~~~~~~~~~~~~~~
@@ -121,9 +121,11 @@ To have supervisor monitor our application, we will add a file to the ``/etc/sup
     autorestart=true
     stderr_logfile=/var/log/hellomvc.err.log
     stdout_logfile=/var/log/hellomvc.out.log
-    environment=ASPNETCORE_ENVIRONMENT=Production
+    environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
     user=www-data
     stopsignal=INT
+    stopasgroup=true
+    killasgroup=true
 
 Once you are done editing the configuration file, restart the ``supervisord`` process to change the set of programs controlled by supervisord.
 

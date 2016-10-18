@@ -56,6 +56,8 @@ You can configure other actions to take place within the OWIN pipeline.
       });
   });
 
+.. _hosting-on-owin:
+
 Using ASP.NET Hosting on an OWIN-based server
 ---------------------------------------------
 
@@ -97,6 +99,16 @@ Another example of how OWIN-based servers' features can be leveraged by ASP.NET 
 This `sample  <https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample>`__ is configured using the same ``NowinServer`` as the previous one - the only difference is in how the application is configured in its ``Configure`` method. A test using `a simple websocket client <https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en>`_ demonstrates  the application:
 
 .. image:: owin/_static/websocket-test.png
+
+
+OWIN environment
+----------------
+You can construct a OWIN environment using the ``HttpContext``.
+
+.. code-block:: c#
+
+  var environment = new OwinEnvironment(HttpContext);
+  var features = new OwinFeatureCollection(environment);
 
 
 OWIN keys

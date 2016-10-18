@@ -160,7 +160,7 @@ Methods
         
     
         
-        Copies the contents of the uploaded file to the <em>target</em> stream.
+        Copies the contents of the uploaded file to the *target* stream.
     
         
     
@@ -179,7 +179,7 @@ Methods
         
     
         
-        Asynchronously copies the contents of the uploaded file to the <em>target</em> stream.
+        Asynchronously copies the contents of the uploaded file to the *target* stream.
     
         
     

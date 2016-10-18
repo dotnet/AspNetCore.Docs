@@ -1,5 +1,5 @@
-Injecting Services Into Views
-=============================
+Dependency injection into views
+================================
 
 By `Steve Smith`_
 

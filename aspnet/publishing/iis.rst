@@ -46,7 +46,7 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 Install the .NET Core Windows Server Hosting bundle
 ---------------------------------------------------
 
-#. Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkId=817246>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
+#. Install the `.NET Core Windows Server Hosting <https://go.microsoft.com/fwlink/?LinkID=827547>`__ bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 #. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
 For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see :doc:`ASP.NET Core Module Configuration Reference </hosting/aspnet-core-module>`.
@@ -197,7 +197,7 @@ Installer unable to obtain VC++ Redistributable
 
 Troubleshooting:
 
-- If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`__.
+- If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the `Microsoft Download Center <https://www.microsoft.com/en-us/download/details.aspx?id=53840>`__.
 
 Platform conflicts with RID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -338,6 +338,17 @@ Sub-application includes a ``<handlers>`` section
 Troubleshooting
 
 - Confirm that the sub-application's *web.config* file doesn't include a ``<handlers>`` section.
+
+Application configuration general issue
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **Browser:** HTTP Error 502.5 - Process Failure
+- **Application Log:** Failed to start process with commandline '"dotnet" .\my_application.dll' (portable app) or '".\my_application.exe"' (self-contained app), ErrorCode = '0x800705b4'
+- **ASP.NET Core Module Log:** Log file created but empty
+
+Troubleshooting
+
+- This general exception indicates that the process failed to start, most likely due to an application configuration issue. Referring to :doc:`Directory Structure </hosting/directory-structure>`, confirm that your application's deployed assets are appropriate and that your application's configuration files are present and contain the correct settings for your app and environment.
 
 Additional resources
 --------------------
