@@ -108,8 +108,13 @@ Restart Apache.
     sudo systemctl start httpd
     sudo systemctl enable httpd
 
+Monitoring our application
+--------------------------
 
 Apache is now setup to forward requests made to ``http://localhost:80`` on to the ASP.NET Core application running on Kestrel at ``http://127.0.0.1:5000``.  However, Apache is not setup to manage the Kestrel process. We will use `supervisor <http://supervisord.org/>`_ to start our application on system boot and restart our process in the event of a failure. 
+
+Installing supervisor
+~~~~~~~~~~~~~~~~~~~~~
 
 Install supervisor using ``easy_install``
 
@@ -180,3 +185,17 @@ To add or remove headers, edit the ``hellomvc.conf`` file and add the following 
 
     Header add ProxyServer "Apache"
     Header remove Server
+
+Viewing logs
+~~~~~~~~~~~~
+Supervisord logs messages about its own health and its subprocess’ state changes to the activity log. The path to the activity log is configured via the logfile parameter in the configuration file.
+
+.. code-block:: bash
+
+    sudo tail -f /etc/supervisord.log
+
+You can redirect application logs (STDOUT and STERR) in the program section of your configuration file.
+
+.. code-block:: bash
+
+    tail -f /var/log/hellomvc.out.log
