@@ -241,3 +241,59 @@ Reload the firewall settings, and check the available services, ports on the def
 
 SSL configuration
 ~~~~~~~~~~~~~~~~~
+To configure Apache for SSL, the mod_ssl module is used.  This was installed initially when we installed the `httpd` module. If it was missed or not installed, use yum to add it to your configuration.
+
+.. code-block:: bash
+
+    sudo yum install mod_ssl
+
+To enforce SSL, install ``mod_rewrite``
+
+    sudo yum install mod_rewrite
+
+The ``hellomvc.conf`` file that was created for this example needs to be modified to enable the rewrite as well as adding the new **VirtualHost** section for HTTPS.
+
+.. code-block:: text
+
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName localhost
+        RewriteEngine On
+        RewriteCond %{HTTPS} !=on
+        RewriteRule ^/?(.*) https://%{SERVER_NAME}/ [R,L]
+    </VirtualHost>
+
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName localhost
+        ProxyPreserveHost On
+        ProxyRequests Off
+        ProxyPass / http://127.0.0.1:5000
+        ProxyPassReverse / http://127.0.0.1:5000
+        ErrorLog /var/log/httpd/hellomvc-error.log
+        CustomLog /var/log/httpd/hellomvc-common.log common
+        SSLEngine on
+        SSLProtocol all -SSLv2
+        SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:!RC4+RSA:+HIGH:+MEDIUM:!LOW:!RC4
+        SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+        SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    </VirtualHost>    
+
+
+.. note:: This example is using a locally generated certificate. **SSLCertificateFile** should be your primary certificate file for your domain name. **SSLCertificateKeyFile** should be the key file generated when you created the CSR. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by your certificate authority
+
+Save the file, and test the configuration.
+
+.. code-block:: bash
+
+    sudo service httpd configtest
+    Syntax OK
+
+Restart Apache.
+
+.. code-block:: text
+
+    sudo systemctl stop httpd
+    sudo systemctl start httpd
+
+
