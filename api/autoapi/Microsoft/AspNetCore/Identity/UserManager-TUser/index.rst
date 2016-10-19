@@ -983,7 +983,7 @@ Methods
         
     
         
-        Retrieves a flag indicating whether user lockout can enabled for the specified user.
+        Retrieves a flag indicating whether user lockout can be enabled for the specified user.
     
         
     
@@ -1006,7 +1006,7 @@ Methods
     
         
         Gets the last :any:`System.DateTimeOffset` a user's last lockout expired, if any.
-        Any time in the past should be indicates a user is not locked out.
+        Any time value in the past indicates a user is not currently locked out.
     
         
     
@@ -1351,7 +1351,7 @@ Methods
         
     
         
-        Returns a flag indicating whether the specified <em>user</em> is a member of the give named role.
+        Returns a flag indicating whether the specified <em>user</em> is a member of the given named role.
     
         
     
