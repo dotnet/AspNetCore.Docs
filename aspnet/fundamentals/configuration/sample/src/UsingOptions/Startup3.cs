@@ -1,5 +1,6 @@
 ﻿//#define UseMe
 #if UseMe
+// Use with HomeController2.cs
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +26,7 @@ namespace UsingOptions
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-        #region snippet1
+#region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             // Adds services required for using options.
@@ -46,7 +47,7 @@ namespace UsingOptions
             // Add framework services.
             services.AddMvc();
         }
-        #endregion
+#endregion
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
             ILoggerFactory loggerFactory)

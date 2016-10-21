@@ -8,17 +8,17 @@ namespace UsingOptions.Controllers
     #region snippet1
     public class HomeController : Controller
     {
-        private readonly IOptions<MyOptions> _optionsAccessor;
+        private readonly MyOptions _optionsAccessor;
 
         public HomeController(IOptions<MyOptions> optionsAccessor)
         {
-            _optionsAccessor = optionsAccessor;
+            _optionsAccessor = optionsAccessor.Value;
         }
 
         public IActionResult Index()
         {
-            var option1 = _optionsAccessor.Value.Option1;
-            var option2 = _optionsAccessor.Value.Option2;
+            var option1 = _optionsAccessor.Option1;
+            var option2 = _optionsAccessor.Option2;
             return Content($"option1 = {option1}, option2 = {option2}");
         }
     }

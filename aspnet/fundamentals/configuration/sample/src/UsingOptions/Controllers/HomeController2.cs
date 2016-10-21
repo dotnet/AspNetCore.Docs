@@ -1,4 +1,4 @@
-﻿//#define First
+﻿#define First
 #if First
 // use with Startup3.cs
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +9,17 @@ namespace UsingOptions.Controllers
     #region snippet1
     public class HomeController : Controller
     {
-        private readonly IOptions<MySubOptions> _subOptionsAccessor;
+        private readonly MySubOptions _subOptionsAccessor;
 
-        public HomeController(IOptions<MyOptions> optionsAccessor, 
-                              IOptions<MySubOptions> subOptionsAccessor)
+        public HomeController(IOptions<MySubOptions> subOptionsAccessor)
         {
-            _subOptionsAccessor = subOptionsAccessor;
+            _subOptionsAccessor = subOptionsAccessor.Value;
         }
 
         public IActionResult Index()
         {
-            var subOption1 = _subOptionsAccessor.Value.SubOption1;
-            var subOption2 = _subOptionsAccessor.Value.SubOption2;
+            var subOption1 = _subOptionsAccessor.SubOption1;
+            var subOption2 = _subOptionsAccessor.SubOption2;
             return Content($"subOption1 = {subOption1}, subOption2 = {subOption2}");
         }
     }
