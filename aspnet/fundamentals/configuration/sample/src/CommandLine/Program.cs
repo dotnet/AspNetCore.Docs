@@ -6,7 +6,7 @@ using System.Linq;
 // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
 public class Program
 {
-    static public IConfiguration Configuration { get; set; }
+    static public IConfigurationRoot Configuration { get; set; }
 
     static public Dictionary<string, string> GetSwitchMappings(
     IReadOnlyDictionary<string, string> configurationStrings)

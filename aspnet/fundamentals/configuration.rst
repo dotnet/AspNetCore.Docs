@@ -4,7 +4,7 @@ Configuration
 =============
 `Rick Anderson`_, `Mark Michaelis <http://intellitect.com/author/mark-michaelis/>`__, `Steve Smith`_, `Daniel Roth`_
 
-The configuration API reads lists of name-value pairs, which can be grouped into a multi-level hierarchy. There are configuration providers for file formats (INI, JSON, and XML), command-line arguments, environment variables, in-memory .NET objects, an encrypted user store, and custom providers you install or create. Each configuration value maps to a string, and there’s built-in binding support to deserialize settings into a custom POCO object (.NET class). 
+The configuration API reads lists of name-value pairs, which can be grouped into a multi-level hierarchy. There are configuration providers for file formats (INI, JSON, and XML), command-line arguments, environment variables, in-memory .NET objects, an encrypted user store, and custom providers you install or create. Each configuration value maps to a string key, and there’s built-in binding support to deserialize settings into a custom POCO object (.NET class). 
 
 .. contents:: Sections:
   :local:
@@ -53,32 +53,37 @@ See :dn:method:`~Microsoft.Extensions.Configuration.JsonConfigurationExtensions.
 
 The environment is typically set to one of ``Development``, ``Staging``, or ``Production``. See :doc:`environments` for more information.
 
-.. note:: To override nested keys through environment variables in shells that don't support ``:`` in variable names, replace them with ``__`` (double underscore).
+Configuration considerations:
 
-.. Tip:: A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
+- Configuration keys are case insensitive
 
-.. warning:: Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into your repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
+- A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files
+
+- **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into your repository. Learn more about :doc:`environments` and managing :doc:`/security/app-secrets`.
+
+- To override nested keys through environment variables in shells that don't support ``:`` in variable names, replace ``:``  with ``__`` (double underscore)
+
 
 .. _options-config-objects:
 
 Using Options and configuration objects
 ---------------------------------------
 
-The options pattern enables using custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
+The options pattern uses custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
 
 - The `Interface Segregation Principle (ISP) <http://deviq.com/interface-segregation-principle/>`_ : Classes depend only on the configuration settings they use.
-- `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ : Settings for disparate parts of your app are managed separately, and not dependent or coupled with one another.
+- `Separation of Concerns <http://deviq.com/separation-of-concerns/>`_ : Settings for disparate parts of your app are managed separately, and not dependent on or coupled with one another.
 
 The options class must be non-abstract with a public parameterless constructor. For example:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Models/MyOptions.cs
   :language: c#
-  :lines: 3-7
-  :dedent: 4
 
 .. _options-example:
 
-In the code below, ``ConfigurationBuilder`` is initialized in the ``Startup`` class. In the ``ConfigureServices`` method, an ``IConfigurationRoot`` interface is passed to the to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>`, which adds ``ConfigurationBuilder`` to the dependency injection container:
+
+In the following code, the JSON configuration provider is enabled and  
+``MyOptions`` class is added to the service container. The ``MyOptions`` class is bound to configuration.
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup.cs
   :language: c#
@@ -111,13 +116,11 @@ In the following code, a second :dn:iface:`~Microsoft.Extensions.Options.IConfig
   :dedent: 8
   :emphasize-lines: 9-13
 
-There is no limit to the number of ``IConfigureOptions<TOptions>`` services you can add. Each configuration service comes in a NuGet package. They are all applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
+You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered. Each call to :dn:method:`~Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure\<TOptions>` adds an :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service to the service container. In the example above, the values of ``Option1`` and ``Option2`` are both specified in `appsettings.json`, but the value of ``Option1`` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the ``HomeController.Index`` method returns ``option1 = value1_from_action, option2 = 2``.
 
-.. note:: Configuration keys are case insensitive.
+When you bind options to configuration, each property in your options type is bound to a configuration key of the form ``property[:sub-property:]``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in *appsettings.json*. A sub-property sample is shown later in this article.
 
-When you bind options to configuration, each property in your options type is bound to a configuration key of the form ``property[:subproperty:]``. For example, the ``MyOptions.Option1`` property is bound to the key ``Option1``, which is read from the ``option1`` property in *appsettings.json*.
-
-In the following code, a third :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service is added to the service container. It binds ``MySubOptions`` to the section ``subsection`` of the *appsettings.json*:
+In the following code, a third :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service is added to the service container. It binds ``MySubOptions`` to the section ``subsection`` of the *appsettings.json* file:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup3.cs
   :language: c#
@@ -130,6 +133,12 @@ Using the following *appsettings.json* file:
 
 .. literalinclude:: configuration/sample/src/UsingOptions/appsettings.json
   :language: json
+
+The ``MySubOptions`` class:
+
+.. literalinclude:: configuration/sample/src/UsingOptions/Models/MySubOptions.cs
+  :language: c#
+
 
 With the following ``Controller``:
 
@@ -156,9 +165,7 @@ The following sample shows how to use the in-memory provider and bind to a class
 .. literalinclude:: configuration/sample/src/InMemory/MyWindow.cs
   :language: none
 
-Note the ConfigurationBinder’s ``GetValue<T>`` extension method allows you to specify a default value (80 in the sample)::
 
-   var left = Configuration.GetValue<int>("AppConfiguration:MainWindow:Left", 80);
 
 Configuration values are not limited to scalars. You can retrieve POCO objects or even entire object graphs. The following sample shows how to bind to the ``MyWindow`` class and use the options pattern with a ASP.NET Core MVC app:
 
@@ -183,7 +190,16 @@ Display the settings from the ``HomeController``:
 
 .. _custom-config-providers:
 
-Note that Dependency Injection (DI) is not setup until after ``ConfigureServices`` is invoked and the configuration system is not DI aware.
+GetValue
+^^^^^^^^^^^^^
+
+The following sample demonstrates the ``GetValue<T>`` extension method:
+
+.. literalinclude:: configuration/sample/src/InMemoryGetValue/Program.cs
+  :language: none
+  :emphasize-lines: 25-29
+
+The ConfigurationBinder’s ``GetValue<T>``  method allows you to specify a default value (80 in the sample). Default values are more easily set in the class constructor. ``GetValue`` is basically just syntax sugar for ``GetSection(<key>).TypeConverter.Convert<T>``, it's not doing any binding.
 
 Binding to an object graph
 ---------------------------
@@ -237,7 +253,7 @@ Entity Framework custom provider
 
 In this section we'll create a simple configuration provider that reads name-value pairs from a database using EF.
 
-Define a `ConfigurationValue`` entity for storing configuration values in the database:
+Define a ``ConfigurationValue`` entity for storing configuration values in the database:
 
 .. literalinclude:: configuration/sample/src/CustomConfigurationProvider/ConfigurationValue.cs
   :language: c#
@@ -328,6 +344,15 @@ The *web.config* file
 ----------------------
 
 *web.config* is required when you host the app in IIS or IIS-Express. It turns on the AspNetCoreModule in IIS to launch your app. It may also be used to configure other IIS settings and modules.If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
+
+Additional notes
+^^^^^^^^^^^^^^^^^
+
+- Dependency Injection (DI) is not setup until after ``ConfigureServices`` is invoked and the configuration system is not DI aware
+- ``IConfiguration`` has two specializations:
+
+  - ``IConfigurationRoot``  Used for the root node. Can trigger a reload.
+  - ``IConfigurationSection``  Represents a section of configuration values. The ``GetSection`` and ``GetChildren`` methods return an ``IConfigurationSection``
 
 Additional Resources
 ^^^^^^^^^^^^^^^^^^^^^

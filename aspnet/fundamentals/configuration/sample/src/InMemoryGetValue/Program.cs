@@ -22,6 +22,12 @@ public class Program
         Configuration = builder.Build();
         Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
 
+        // Show GetValue overload and set the default value to 80
+        // You typically would set default values in the constructor.
+        // Requires NuGet package "Microsoft.Extensions.Configuration.Binder"
+        var left = Configuration.GetValue<int>("App:MainWindow:Left", 80);
+        Console.WriteLine($"Left {left}");
+
         var window = new MyWindow();
         Configuration.GetSection("App:MainWindow").Bind(window);
         Console.WriteLine($"Left {window.Left}");

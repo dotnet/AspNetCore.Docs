@@ -1,4 +1,4 @@
-﻿#define UseMe
+﻿//#define UseMe
 #if UseMe
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,25 +11,11 @@ namespace UsingOptions
     #region snippet1
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
-        {
-            // Set up configuration sources.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json");
-
-            Configuration = builder.Build();
-        }
-
-        public IConfigurationRoot Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Adds services required for using options.
-            services.AddOptions();
-
             // Register the ConfigurationBuilder instance which MyOptions binds against.
-            services.Configure<MyOptions>(Configuration);
+            services.AddSingleton<MyOptions>();
 
             // Add framework services.
             services.AddMvc();

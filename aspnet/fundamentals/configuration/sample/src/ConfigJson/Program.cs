@@ -2,11 +2,11 @@
 using System;
 using System.IO;
 
-// Add NuGet  <package id="Microsoft.Extensions.Configuration" and
+// Add NuGet <package id="Microsoft.Extensions.Configuration" and
 // <package id="Microsoft.Extensions.Configuration.Json"
 public class Program
 {
-    static public IConfiguration Configuration { get; set; }
+    static public IConfigurationRoot Configuration { get; set; }
     public static void Main(string[] args = null)
     {
         var builder = new ConfigurationBuilder()
