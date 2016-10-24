@@ -38,14 +38,3 @@ How to
     :emphasize-lines: 47-49
     :dedent: 8
 
-
-	
-
-  If the data type of the columns in the database are still in NVARCHAR, you can see that the primary keys of the Identity model is the one you want
-
-  .. literalinclude:: identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Controllers/AccountController.cs
-    :language: c#
-    :lines: 35-42
-    :emphasize-lines: 39-40
-    :dedent: 8
-	

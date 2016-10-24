@@ -34,11 +34,10 @@ namespace webapptemplate.Controllers
 
         [HttpGet]
 		[AllowAnonymous]
-        public async Task<IActionResult> Test()
+        public async Task<Guid> GetCurrentUserId()
         {
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
-            Guid userId = user.Id; // No cast here, the data type of the identifier of the user is Guid
-            throw new NotImplementedException();
+            return user.Id; // No need to cast here because user.Id is already a Guid, and not a string
         }
     }
 }
