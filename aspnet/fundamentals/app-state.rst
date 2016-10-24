@@ -15,15 +15,14 @@ The following sections provide an overview of the most common approachs to savin
 
 https://msdn.microsoft.com/en-us/library/z1hkazw7.aspx
 
-
 MVC also exposes a TempData property on a Controller which is an additional w
 rapper around Session. This can be used for storing transient data that only needs to be available for a single request after the current one.
  
 
- fact that app restarts will clear the session. 
+fact that app restarts will clear the session. 
 http://andrewlock.net/an-introduction-to-session-storage-in-asp-net-core/
 show session cookie
-eilon in SO — — ———  TempData is not the same thing as Session State, it is merely built on top of it. (And it is also not yet implemented in ASP.NET vNext.)
+eilon in SO TempData is not the same thing as Session State, it is merely built on top of it. (And it is also not yet implemented in ASP.NET vNext.)
 
 TempData behaves totally different than Session in that data stored there only persists to the next request, whereas traditional Session data persists for the lifetime of the session which could vary from some timeframe like 15 minutes to potentially forever. 
 
