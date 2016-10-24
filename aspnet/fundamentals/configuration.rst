@@ -4,7 +4,7 @@ Configuration
 =============
 `Rick Anderson`_, `Mark Michaelis <http://intellitect.com/author/mark-michaelis/>`__, `Steve Smith`_, `Daniel Roth`_
 
-The configuration API reads lists of name-value pairs, which can be grouped into a multi-level hierarchy. There are configuration providers for file formats (INI, JSON, and XML), command-line arguments, environment variables, in-memory .NET objects, an encrypted user store, and custom providers you install or create. Each configuration value maps to a string key, and there’s built-in binding support to deserialize settings into a custom POCO object (.NET class). 
+The configuration API reads lists of name-value pairs, which can be grouped into a multi-level hierarchy. There are configuration providers for file formats (INI, JSON, and XML), command-line arguments, environment variables, in-memory .NET objects, an encrypted user store, and custom providers you install or create. Each configuration value maps to a string key, and there’s built-in binding support to deserialize settings into a custom POCO object (.NET class).
 
 .. contents:: Sections:
   :local:
@@ -13,7 +13,7 @@ The configuration API reads lists of name-value pairs, which can be grouped into
 `View or download sample code <https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample>`__
 
 
-Simple configuration 
+Simple configuration
 ------------------------------------------
 
 The following console app uses the JSON configuration provider:
@@ -34,7 +34,7 @@ Name/value pairs written to the built in ``Configuration`` providers are **not**
 
 The sample above uses the configuration indexer to read values. In ASP.NET Core applications, we recommend you use the :ref:`options pattern <options-config-objects>` rather than the indexer to read configuration values. We'll demonstrate that later in this document.
 
-.. The mechanism to read your app settings can be decoupled from the app by using the :ref:`options pattern <options-config-objects>`. With the options pattern you create an options class (probably several different classes, corresponding to different cohesive groups of settings) that you inject into your app using an options service. 
+.. The mechanism to read your app settings can be decoupled from the app by using the :ref:`options pattern <options-config-objects>`. With the options pattern you create an options class (probably several different classes, corresponding to different cohesive groups of settings) that you inject into your app using an options service.
 
 It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
 
@@ -54,6 +54,8 @@ See :dn:method:`~Microsoft.Extensions.Configuration.JsonConfigurationExtensions.
 The environment is typically set to one of ``Development``, ``Staging``, or ``Production``. See :doc:`environments` for more information.
 
 Configuration considerations:
+
+- The built in configuration providers are not refreshed when the configuration data changes. If your configuration data changes, you'll need to restart your app to get the new data
 
 - Configuration keys are case insensitive
 
@@ -82,7 +84,7 @@ The options class must be non-abstract with a public parameterless constructor. 
 .. _options-example:
 
 
-In the following code, the JSON configuration provider is enabled and  
+In the following code, the JSON configuration provider is enabled and
 ``MyOptions`` class is added to the service container. The ``MyOptions`` class is bound to configuration.
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup.cs
@@ -93,7 +95,7 @@ In the following code, the JSON configuration provider is enabled and
   :emphasize-lines: 5-8,10,13,15,17,18,20,21
 
 The following :doc:`controller </mvc/controllers/index>`  uses :doc:`dependency-injection` on :dn:iface:`~Microsoft.Extensions.Options.IOptions\<TOptions>` to access settings:
- 
+
 .. literalinclude:: configuration/sample/src/UsingOptions/Controllers/HomeController.cs
   :language: none
   :start-after: snippet1
@@ -107,7 +109,7 @@ With the following *appsettings.json* file:
 
 The ``HomeController.Index`` method returns ``option1 = value1_from_json, option2 = 2``.
 
-In the following code, a second :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service is added to the service container. It uses a delegate to configure the binding with ``MyOptions``. 
+In the following code, a second :dn:iface:`~Microsoft.Extensions.Options.IConfigureOptions\<TOptions>` service is added to the service container. It uses a delegate to configure the binding with ``MyOptions``.
 
 .. literalinclude:: configuration/sample/src/UsingOptions/Startup2.cs
   :language: c#
