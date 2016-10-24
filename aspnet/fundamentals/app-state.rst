@@ -4,12 +4,12 @@ Session and application state
 By `Rick Anderson`_ and `Steve Smith`_
 
 HTTP is a stateless protocol; the Web server treats each HTTP request as an independent request. The server retains no knowledge of variable values that were used in previous requests. 
-This article discusses various approaches to perserving application and user (session) state between requests. Although perserving state is often derried, judicious use of state can reduce app complexity and increase performance.
+This article discusses various approaches to preserving application and user (session) state between requests. Although preserving state is often derried, judicious use of state can reduce app complexity and increase performance.
 
 
 Application state, unlike session state, applies to all users and sessions. 
 
-The following sections provide an overview of the most common approachs to saving state in an ASP.NET Core app.
+The following sections provide an overview of the most common approaches to saving state in an ASP.NET Core app.
 
 .. note: If you are using RedisCache try to use it as a Singleton service as it uses StackExchange's api which recommends sharing the ConnectionMultiplexer https://github.com/aspnet/Announcements/issues/43
 
