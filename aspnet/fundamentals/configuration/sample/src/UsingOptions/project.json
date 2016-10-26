@@ -1,7 +1,8 @@
 {
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "define": []
   },
   "dependencies": {
     "Microsoft.NETCore.App": {
