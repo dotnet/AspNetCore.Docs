@@ -106,6 +106,10 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     :lines: 57-78
     :emphasize-lines: 5
     :dedent: 8
+	
+  For more information about how to configure Identity :
+  
+- :ref:`security-authentication-identity-options`
 
 6. View the database.
 

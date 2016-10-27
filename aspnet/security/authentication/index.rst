@@ -5,6 +5,7 @@ Authentication
   :titlesonly:
 
   identity
+  identity-configuration-index
   sociallogins
   accconfirm
   2fa
