@@ -5,7 +5,7 @@
   "docsets_to_publish": [
     {
       "docset_name": "aspnet-core-conceptual",
-      "build_source_folder": "aspnet-core-conceptual",
+      "build_source_folder": "aspnetcore",
       "build_output_subfolder": "aspnet/core",
       "locale": "en-us",
       "version": 0,
@@ -15,6 +15,21 @@
         "ManagedReference": "Content",
         "RestApi": "Content"
       },
+      "template_folder": "_themes"
+    },
+    {
+      "docset_name": "aspnet-conceptual",
+      "build_source_folder": "aspnet",
+      "build_output_subfolder": "aspnet/core",
+      "locale": "en-us",
+      "version": 0,
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
       "template_folder": "_themes"
     }
   ],
