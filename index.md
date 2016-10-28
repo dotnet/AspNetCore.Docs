@@ -33,12 +33,7 @@ ms.assetid:
                 <li><a href="https://docs.microsoft.com/dotnet">Get started with .NET Core</a></li>
             </ul>
             <ul class="column-half">
-                <li>
-&lt;a href=&quot;aspnetcore/intro.md&quot;&gt;Get started with ASP.NET Core&lt;/a&gt;
-<!--
-<a href="aspnetcore/intro.md">Get started with ASP.NET Core</a>
--->
-</li>
+                <li><a href="aspnetcore/intro.md">Get started with ASP.NET Core</a></li>
             </ul>
         </div>
     </section>
@@ -64,9 +59,7 @@ ms.assetid:
                                 </a>
                             </li>
                             <li class="column column-third">
-<!--
                                 <a href="aspnet/index.md">
--->
                                     <h3>ASP.NET Documentation</h3>
                                     <p>Learn ASP.NET</p>
                                 </a>
