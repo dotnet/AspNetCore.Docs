@@ -6,7 +6,7 @@
     {
       "docset_name": "aspnet-conceptual",
       "build_source_folder": "aspnet",
-      "build_output_subfolder": "aspnet/core",
+      "build_output_subfolder": "aspnet",
       "locale": "en-us",
       "version": 0,
       "open_to_public_contributors": true,
