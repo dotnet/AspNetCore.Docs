@@ -25,5 +25,5 @@ The command above starts the preview on localhost:8080 where you can view the up
 
 Notes:
 
-* Currently DocFX requires the .NET Framework on Windows or Mono (for Linux or macOS).
-* The local preview currently doesn't contain any themes or render table correctly; the view will differ slightly from the published site.
+* Currently DocFX requires the .NET Framework on Windows or Mono (for Linux or macOS)
+* The local preview currently doesn't contain themes or render table correctly; the view will differ slightly from the published site
