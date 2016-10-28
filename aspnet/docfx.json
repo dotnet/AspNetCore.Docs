@@ -7,8 +7,9 @@
         ],
         "exclude": [
           "**/obj/**",
-          "aspnet/core/**",
-          "**/includes/**"
+          "aspnet/**",
+          "**/includes/**",
+          "**/aspnet-core-conceptual/**"
         ]
       }
     ],
