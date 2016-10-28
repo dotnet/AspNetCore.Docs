@@ -1,7 +1,7 @@
 Contributing
 ============
 
-The document covers the basic process for adding or updating content to the [ASP.NET Core documentation site](https://docs.asp.net). See the [ASP.NET Core contributing guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) for information on contributing to ASP.NET Core source.
+The document covers the basic process for contributing to the [ASP.NET Core documentation site](https://docs.asp.net). See the [ASP.NET Core contributing guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) for information on contributing to ASP.NET Core source.
 
 ## Contributing process
 
@@ -10,13 +10,11 @@ Small changes to one *.MD* file can be made in the browser by tapping the **Edit
 * Open an issue describing the article you wish to write or update. Get approval before you invest too much time.
 * Fork the [aspnet/docs](https://github.com/aspnet/Docs/) repo and create a branch for your article.
 * Write or update your article using [DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *<article-name>/_static* folder. Code goes in the *<article-name>/samples* folder. It's often helpful to review an existing article to use as an example.
-* Submit a Pull Request from your branch to `aspnet/docs/master`.
-* Respond to PR feedback.
-
+* Submit a Pull Request from your branch to `aspnet/docs/master` and respond to PR feedback.
 
 ## Building the docs
 
-Build and preview the resulting site with [DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool). Navigate to the aspnet folder (which contains the *docfx.json* file) and enter the following in a command prompt:
+Build and preview your changes with [DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool). Navigate to the aspnet folder (which contains the *docfx.json* file) and enter the following in a command prompt:
 
 ```
 docfx -t default --serve
