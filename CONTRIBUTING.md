@@ -21,7 +21,8 @@ Small changes to one *.MD* file can be made in the browser by tapping the **Edit
 Build and preview the resulting site with [DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool). Navigate to the aspnet folder (which contains the *docfx.json* file) and enter the following in a command prompt:
 
 ```
-docfx -t default --serve```
+docfx -t default --serve
+```
 	
 The command above starts the preview on localhost:8080 where you can view the updated content in your browser.
 
