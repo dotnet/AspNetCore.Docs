@@ -35,7 +35,7 @@ Views that are specific to a controller are created in the *Views/[ControllerNam
 
 A sample view file (*About.cshtml*):
 
-[!code-html[Main](../../common/samples/WebApplication1/src/WebApplication1/Views/Home/About.cshtml)]
+[!code-html[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
 *Razor* code is denoted by the `@` symbol. C# statements are run within Razor code blocks set off by curly braces (`{` `}`), such as the assignment of "About" to the `ViewData["Title"]` element shown above. Razor can be used to display values within HTML by simply referencing the value with the `@` symbol, as shown within the `<h2>` and `<h3>` elements above.
 
@@ -47,7 +47,7 @@ Views are typically returned from actions as a [`ViewResult`](http://docs.asp.ne
 
 *HomeController.cs*
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
 
 The `View` helper method has several overloads to make returning views easier for app developers. You can optionally specify a view to return, as well as a model object to pass to the view.
 

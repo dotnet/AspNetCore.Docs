@@ -93,7 +93,7 @@ You access Secret Manager secrets through the configuration system. Add the `Mic
 
 Add the user secrets configuration source to the `Startup` method:
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-35)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-35)]
 
 You can now access user secrets via the configuration API:
 
