@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "";
+}
+<html>
+<body ng-app>
+    <h1>Repeaters2</h1>
+
+    <div ng-init="names=[
+		{firstName:'John', lastName:'Doe'},
+		{firstName:'Mary', lastName:'Jane'},
+		{firstName:'Bob', lastName:'Parker'}]">
+        <ul>
+            <li ng-repeat="name in names">
+                {{name.firstName + ' ' + name.lastName}} at index {{$index}}
+                <span ng-show="{{$first}}">, the first position</span>
+                <span ng-show="{{$last}}">, the last position</span>
+                <span ng-show="{{$odd}}">,which is odd-numbered.</span>
+                <span ng-show="{{$even}}">,which is even-numbered.</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="~/lib/angular/angular.js"></script>
+</body>
+</html>

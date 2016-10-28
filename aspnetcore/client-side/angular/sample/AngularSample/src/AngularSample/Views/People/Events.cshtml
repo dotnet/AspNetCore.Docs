@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "";
+}
+<html>
+<body ng-app="personApp">
+    <div ng-controller="eventHandlerController">
+        <strong>First Name:</strong> {{firstName}} <br />
+        <strong>Last Name:</strong> {{lastName}} <br />
+        <input ng-click="sayName()" type="button" value="Say Name" />
+    </div>
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/lib/angular-route/angular-route.js"></script>
+
+    <script src="~/app/personModule.js"></script>
+    <script src="~/app/eventHandlerController.js"></script>
+</body>
+</html>
