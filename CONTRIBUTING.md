@@ -17,11 +17,11 @@ Small changes to one *.md* file can be made in the browser by tapping the **Edit
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases). Add DocFX to your PATH.
 * Build and preview your changes with [DocFX command line](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool). Navigate to the aspnet folder (which contains the *docfx.json* file) and enter the following in a command prompt:
 
-```
-docfx -t default --serve
-```
+   ```
+   docfx -t default --serve
+   ```
 	
-The command above starts the preview on localhost:8080 where you can view the updated content in your browser.
+   The command above starts the preview on localhost:8080 where you can view the updated content in your browser.
 
 Notes:
 
