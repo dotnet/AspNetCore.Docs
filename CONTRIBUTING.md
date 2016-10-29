@@ -12,7 +12,7 @@ Small changes to one *.md* file can be made in the browser by tapping the **Edit
 * Write or update your article using [DocFX](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *\<article-name>/_static* folder. Code goes in the *\<article-name>/samples* folder. It's often helpful to review an existing article to use as an template (for example, *tutorials\first-web-api.md* and the assets in *tutorials\first-web-api*). See the [style guide](./aspnetcore/contribute/style-guide.md) for more details.
 * Submit a pull request (PR) from your branch to `aspnet/docs/master` and respond to PR feedback.
 
-## Building the docs
+## Build and test your article with DocFX
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases). Add DocFX to your PATH.
 * Build and preview your changes with [DocFX command line](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool). Navigate to the aspnet folder (which contains the *docfx.json* file) and enter the following in a command prompt:
