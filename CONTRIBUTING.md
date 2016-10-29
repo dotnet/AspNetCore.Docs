@@ -1,15 +1,15 @@
 Contributing
 ============
 
-The document covers the basic process for contributing to the [ASP.NET Core documentation site](https://docs.asp.net). See the [ASP.NET Core contributing guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) for information on contributing to ASP.NET Core source.
+The document covers the basic process for contributing to the [ASP.NET Core documentation site](https://docs.asp.net). For information on contributing to ASP.NET Core source, see [ASP.NET Core contributing guide](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) .
 
 ## Contributing process
 
-Small changes to one *.MD* file can be made in the browser by tapping the **Edit on GitHub** link in the upper right corner of the browser window. For new articles and changes involving more than one file:
+Small changes to one *.md* file can be made in the browser by tapping the **Edit** link in the upper right corner of the browser window (you might need to expand the **options** in small browser windows). For new articles and changes involving more than one file:
 
 * Open an issue describing the article you wish to write or update. Get approval before you invest too much time.
 * Fork the [aspnet/docs](https://github.com/aspnet/Docs/) repo and create a branch for your article.
-* Write or update your article using [DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *\<article-name>/_static* folder. Code goes in the *\<article-name>/samples* folder. It's often helpful to review an existing article to use as an template (for example, *tutorials\first-web-api.md* and the assets in *tutorials\first-web-api*).
+* Write or update your article using [DocFX](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *\<article-name>/_static* folder. Code goes in the *\<article-name>/samples* folder. It's often helpful to review an existing article to use as an template (for example, *tutorials\first-web-api.md* and the assets in *tutorials\first-web-api*). See the [style guide](./style-guide.md) for more details.
 * Submit a pull request (PR) from your branch to `aspnet/docs/master` and respond to PR feedback.
 
 ## Building the docs
