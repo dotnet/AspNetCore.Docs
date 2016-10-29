@@ -9,7 +9,7 @@ Small changes to one *.md* file can be made in the browser by tapping the **Edit
 
 * Open an issue describing the article you wish to write or update. Get approval before you invest too much time.
 * Fork the [aspnet/docs](https://github.com/aspnet/Docs/) repo and create a branch for your article.
-* Write or update your article using [DocFX](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *\<article-name>/_static* folder. Code goes in the *\<article-name>/samples* folder. It's often helpful to review an existing article to use as an template (for example, *tutorials\first-web-api.md* and the assets in *tutorials\first-web-api*). See the [style guide](./style-guide.md) for more details.
+* Write or update your article using [DocFX](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) in [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/). Images go in the *\<article-name>/_static* folder. Code goes in the *\<article-name>/samples* folder. It's often helpful to review an existing article to use as an template (for example, *tutorials\first-web-api.md* and the assets in *tutorials\first-web-api*). See the [style guide](./aspnetcore/contribute/style-guide.md) for more details.
 * Submit a pull request (PR) from your branch to `aspnet/docs/master` and respond to PR feedback.
 
 ## Building the docs
