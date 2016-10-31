@@ -119,7 +119,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Facebook middleware
 

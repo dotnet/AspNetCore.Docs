@@ -38,7 +38,7 @@ It's not unusual to store configuration values in a hierarchical structure, espe
 
 <a name=config-json></a>
 
-[!code-json[Main](../common/samples/WebApplication1/src/WebApplication1/appsettings.json)]
+[!code-json[Main](../common/samples/WebApplication1/appsettings.json)]
 
 The application uses configuration to configure the right connection string. Access to the `DefaultConnection` setting is achieved through this key: `ConnectionStrings:DefaultConnection`, or by using the [`GetConnectionString`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString) extension method and passing in `"DefaultConnection"`.
 
@@ -64,7 +64,7 @@ The order in which configuration sources are specified is important, as this est
 
 It can be useful to have environment-specific configuration files. This can be achieved using the following:
 
-[!code-none[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=6&range=20-35)]
+[!code-none[Main](../common/samples/WebApplication1/Startup.cs?highlight=6&range=20-35)]
 
 The [`IHostingEnvironment`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index.html#Microsoft.AspNetCore.Hosting.IHostingEnvironment) service is used to get the current environment. In the `Development` environment, the highlighted line of code above would look for a file named `appsettings.Development.json` and use its values, overriding any other values, if it's present. Learn more about [Working with Multiple Environments](environments.md).
 
