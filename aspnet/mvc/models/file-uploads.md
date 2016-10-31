@@ -145,6 +145,8 @@ Specify a viewmodel property of type `IFormFile`:
    }
    ````
 
+Note: `IFormFile` can be used directly as an action method parameter or as a viewmodel property, as shown above.
+
 Copy the `IFormFile` to a stream and save it to the byte array:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
@@ -176,62 +178,11 @@ Copy the `IFormFile` to a stream and save it to the byte array:
 
 Note: Use caution when storing binary data in relational databases, as it can adversely impact performance.
 
-  ### IFormFile and ViewModels
-
-In addition to accepting raw `IFormFile` parameters, action methods can accept viewmodel types with `IFormFile` properties. Consider the following `ProfileEditViewModel`:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/ViewModels/ProfileEditViewModel.cs", "highlight_args": {"linenostart": 1, "hl_lines": [11]}, "names": []} -->
-
-````c#
-
-   using System.ComponentModel.DataAnnotations;
-   using Microsoft.AspNetCore.Http;
-
-   namespace FileUploadSample.ViewModels
-   {
-       public class ProfileEditViewModel
-       {
-           [Required]
-           public string Name { get; set; }
-           public string AvatarPath { get; set; }
-           public IFormFile AvatarFile { get; set; }
-       }
-   }
-   ````
-
-The following action method accepts this type and saves the associated `AvatarFile` property to the local file system:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Controllers/ProfileController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [2, 10, 13]}, "names": []} -->
-
-````c#
-
-   [HttpPost("Save")]
-   public async Task<IActionResult> Save(ProfileEditViewModel model)
-   {
-       _profile.Name = model.Name;
-
-       var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-
-       if (model.AvatarFile.Length > 0)
-       {
-           var filePath = Path.Combine(uploadPath, model.AvatarFile.FileName);
-           using (var stream = new FileStream(filePath, FileMode.Create))
-           {
-               await model.AvatarFile.CopyToAsync(stream);
-           }
-       }
-       _profile.AvatarPath = model.AvatarFile.FileName;
-
-       return RedirectToAction("Index");
-   }
-
-   ````
-
   ## Uploading Large Files with Streaming
 
 If the size or frequency of file uploads is causing performance or resource problems for the app, consider streaming the file upload rather than buffering it in its entirety (as the model binding approach shown above does). Using `IFormFile` and model binding is a much simpler solution; streaming requires a number of steps to implement properly.
 
-The following example demonstrates how to using JavaScript/Angular to stream to a controller action. The file's antiforgery token will be generated using a custom filter attribute, and then passed in HTTP headers instead of in the request body. Because the action method will be processing the uploaded data directly, model binding will be disabled by another filter. Within the action, the form's contents are read using a MultipartReader, which reads each individual MultipartSection, processing the file or storing the contents as appropriate. Once all sections have been read, the action performs its own model binding.
+The following example demonstrates using JavaScript/Angular to stream to a controller action. The file's antiforgery token is generated using a custom filter attribute, and then passed in HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, model binding is disabled by another filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. Once all sections have been read, the action performs its own model binding.
 
 The initial action loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieForAjax` attribute):
 
@@ -336,7 +287,7 @@ The `DisableFormValueModelBinding` attribute is used to disable model binding fo
    }
    ````
 
-Since model binding is disabled, the `Upload` action method doesn't accept any parameters. It works directly with the `Request` property of `ControllerBase`. A `MultipartReader` is used to read each section, and either save the file (with a GUID filename) or accumulate the key/value data in a `KeyValueAccumulator`. Once all sections have been read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
+Since model binding is disabled, the `Upload` action method doesn't accept any parameters. It works directly with the `Request` property of `ControllerBase`. A `MultipartReader` is used to read each section. The file is saved with a GUID filename and the the key/value data is stored in a `KeyValueAccumulator`. Once all sections have been read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
 The complete `Upload` method is shown below:
 
@@ -383,8 +334,11 @@ The complete `Upload` method is shown below:
                    ?? string.Empty;
 
                var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+
                // save the file with a new GUID name
-               targetFilePath = Path.Combine(uploadPath, Guid.NewGuid().ToString());
+               string newFilename = Guid.NewGuid().ToString() + '.' + fileName.Split('.').Last();
+               targetFilePath = Path.Combine(uploadPath, newFilename);
+               
                using (var targetStream = System.IO.File.Create(targetFilePath))
                {
                    await section.Body.CopyToAsync(targetStream);
@@ -415,6 +369,7 @@ The complete `Upload` method is shown below:
                {
                    // The value length limit is enforced by MultipartBodyLengthLimit
                    var value = await streamReader.ReadToEndAsync();
+                   if (value == "undefined") value = String.Empty;
                    formAccumulator.Append(key, value);
 
                    if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
@@ -498,4 +453,3 @@ This setting only applies to IIS; the behavior doesn't occur by default when hos
 
 If your controller is accepting uploaded files using `IFormFile`, but you find that the value is always null, be sure that your HTML form is specifying an `enctype` value of `multipart/form-data`. If this attribute is not set on the `<form>` element, the file upload will not occur (and any bound `IFormFile` arguments will be null).
 
-Tip: HTML file uploads must specify `<form enctype="multipart/form-data">`.

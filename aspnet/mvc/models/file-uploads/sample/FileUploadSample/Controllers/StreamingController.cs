@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileUploadSample.Filters;
@@ -79,8 +80,10 @@ namespace FileUploadSample.Controllers
                         ?? string.Empty;
 
                     var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+
                     // save the file with a new GUID name
-                    targetFilePath = Path.Combine(uploadPath, Guid.NewGuid().ToString());
+                    string newFilename = Guid.NewGuid().ToString() + '.' + fileName.Split('.').Last();
+                    targetFilePath = Path.Combine(uploadPath, newFilename);
                     using (var targetStream = System.IO.File.Create(targetFilePath))
                     {
                         await section.Body.CopyToAsync(targetStream);
@@ -111,6 +114,7 @@ namespace FileUploadSample.Controllers
                     {
                         // The value length limit is enforced by MultipartBodyLengthLimit
                         var value = await streamReader.ReadToEndAsync();
+                        if (value == "undefined") value = String.Empty;
                         formAccumulator.Append(key, value);
 
                         if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)

@@ -6,46 +6,51 @@
 <h2>Upload files using Ajax and multipart/form-data</h2>
 <div ng-app="myApp">
     <div ng-controller="myCtrl">
+        <ul>
+            <li id="errorMessages" class="error" data-ng-repeat="e in errors">
+                {{e}}
+            </li>
+        </ul>
         <div>
             <div>
                 <label for="Name">Name</label>
                 <div>
-                    <input type="text" name="Name" ng-model="name" />
+                    <input type="text" name="Name" ng-model="name"/>
                 </div>
             </div>
-            <br />
+            <br/>
             <div>
                 <label for="Age">Age</label>
                 <div>
-                    <input type="text" name="Age" ng-model="age" />
+                    <input type="text" name="Age" ng-model="age"/>
                 </div>
             </div>
-            <br />
+            <br/>
             <div>
                 <label for="Zipcode">Zipcode</label>
                 <div>
-                    <input type="text" name="Zipcode" ng-model="zipCode" />
+                    <input type="text" name="Zipcode" ng-model="zipCode"/>
                 </div>
             </div>
-            <br />
+            <br/>
             <div>
                 <label for="CurriculumVitae">Curriculum Vitae</label>
                 <div>
-                    <input name="CurriculumVitae" type="file" file-model="curriculumVitae" />
+                    <input name="CurriculumVitae" type="file" file-model="curriculumVitae"/>
                 </div>
             </div>
-            <br />
+            <br/>
             <div>
                 <button ng-click="createUser()">Create User</button>
             </div>
-            <br />
+            <br/>
             <div ng-show="showUploadStatus">
                 <b><span ng-bind="uploadStatus"></span></b>
             </div>
             <div ng-show="showUploadedData">
-                <b>Name:</b> <span ng-bind="uploadedData.name"></span><br />
-                <b>Age:</b><span ng-bind="uploadedData.age"></span><br />
-                <b>Zipcode:</b> <span ng-bind="uploadedData.zipcode"></span><br />
+                <b>Name:</b> <span ng-bind="uploadedData.name"></span><br/>
+                <b>Age:</b><span ng-bind="uploadedData.age"></span><br/>
+                <b>Zipcode:</b> <span ng-bind="uploadedData.zipcode"></span><br/>
                 <b>File:</b> <span ng-bind="uploadedData.filePath"></span>
             </div>
         </div>
