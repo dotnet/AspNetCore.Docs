@@ -273,7 +273,6 @@ Restart Apache.
 
 ## Additional Apache suggestions
 
-
 ### Additional Headers 
 In order to secure against malicious attacks there are a few headers that should either be modified or added. Ensure that the `mod_headers` module is installed.
 

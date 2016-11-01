@@ -237,3 +237,14 @@ Add `/etc/nginx/proxy.conf` configuration file.
 Edit `/etc/nginx/nginx.conf` configuration file. The example contains both http and server sections in one configuration file.
 
 [!code-nginx[Main](../publishing/linuxproduction/nginx.conf?highlight=2)]
+
+#### Secure Nginx from clickjacking
+Clickjacking is a malicious technique to collect an infected user's clicks. Clickjacking tricks the victim (visitor) into clicking on an infected site. Use X-FRAME-OPTIONS to secure your site.
+
+Edit the nginx.conf file.
+
+```bash
+    sudo nano /etc/nginx/nginx.conf
+```
+
+Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
