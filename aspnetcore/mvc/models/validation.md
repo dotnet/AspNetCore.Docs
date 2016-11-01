@@ -6,8 +6,8 @@ manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3a8676dd-7ed8-4a05-bca2-44e288ab99ee
-ms.prod: aspnet-core
-﻿uid: mvc/models/validation
+ms.prod: aspnet-core ﻿
+uid:  mvc/models/validation
 ---
 # Model Validation
 

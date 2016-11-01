@@ -62,13 +62,7 @@ Additionally, there are some special data types that MVC must consider when perf
 
 These types can be bound to action parameters or to properties on a class type.
 
-<!-- The following links should all work but they don't
-* [Validation xref](xref:mvc/models/validation)
-* [Val ~/file](~/mvc/models/validation.md)
-* @mvc/models/validation
--->
-
-Once model binding is complete, [validation](../models/validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
+Once model binding is complete, [Validation](xref:mvc/models/validation) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
 
 ## Customize model binding behavior with attributes
 
@@ -111,3 +105,7 @@ public void ConfigureServices(IServiceCollection services)
    ````
 
 Code in the *Startup.cs* file contains a `ConfigureServices` method with a `services` argument you can use to build up services for your ASP.NET app. In the sample, we are adding an XML formatter as a service that MVC will provide for this app. The `options` argument passed into the `AddMvc` method allows you to add and manage filters, formatters, and other system options from MVC upon app startup. Then apply the `Consumes` attribute to controller classes or action methods to work with the format you want.
+
+## Additional Resources
+
+* [Validation xref](xref:mvc/models/validation)
