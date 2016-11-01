@@ -139,4 +139,4 @@ In the next part of the series, we'll review the application and make some impro
 
 * [Authoring Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
 
->[&larr; **Previous**](.\new-field.md)     [**Next** &rarr;](.\details.md)  
+>[&larr; **Previous**](new-field.md)     [**Next** &rarr;](details.md)  

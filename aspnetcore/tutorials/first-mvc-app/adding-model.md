@@ -279,4 +279,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 
 * [Globalization and localization](../../fundamentals/localization.md)
 
->[&larr; **Previous**](.\adding-view.md)     [**Next** &rarr;](.\working-with-sql.md)  
+>[&larr; **Previous**](adding-view.md)     [**Next** &rarr;](working-with-sql.md)  
