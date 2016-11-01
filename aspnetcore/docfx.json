@@ -22,7 +22,8 @@
         "exclude": [
           "**/obj/**",
           "aspnet/core/**",
-          "**/includes/**"
+          "**/includes/**",
+          "_site/**"
         ]
       }
     ],
@@ -31,6 +32,6 @@
     "globalMetadata": {},
     "fileMetadata": {},
     "template": [],
-    "dest": "aspnet/core"
+    "dest": "_site"
   }
 }
