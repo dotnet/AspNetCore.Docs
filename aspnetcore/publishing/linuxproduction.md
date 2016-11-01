@@ -248,3 +248,15 @@ Edit the nginx.conf file.
 ```
 
 Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
+
+#### MIME-type sniffing
+
+This header prevents Internet Explorer from MIME-sniffing a response away from the declared content-type as the header instructs the browser not to override the response content type. With the nosniff option, if the server says the content is text/html, the browser will render it as text/html.
+
+Edit the nginx.conf file.
+
+```bash
+    sudo nano /etc/nginx/nginx.conf
+```
+
+Add the the line `add_header X-Content-Type-Options "nosniff"` and save the file, then restart Nginx.
