@@ -6,6 +6,6 @@
     tocHref: /aspnet/
     topicHrefepage: /aspnet/index
     items:
-    - name: ASP.NET Core
-      tocHref: /aspnet/core/
-      topicHref: /aspnet/core/intro
+  - name: ASP.NET Core
+    tocHref: /aspnet/core/
+    topicHref: /aspnet/core/intro
