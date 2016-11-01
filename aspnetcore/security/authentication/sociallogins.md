@@ -3,7 +3,7 @@ title: Enabling authentication using Facebook, Google and other external provide
 author: rick-anderson
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.prod: aspnet-core
@@ -15,9 +15,19 @@ ms.prod: aspnet-core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial shows you how to build an ASP.NET Core app that enables users to log in using OAuth 2.0  with credentials from an external authentication provider, such as Facebook, Twitter, LinkedIn, Microsoft, and Google. For simplicity, this tutorial focuses on working with credentials from Facebook and Google.
+This tutorial shows you how to build an ASP.NET Core app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
 
-Enabling these credentials in your web sites provides a significant advantage because millions of users already have accounts with these external providers. These users may be more inclined to sign up for your site if they do not have to create and remember new credentials.
+[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following topics. Many third-party packages such as the ones by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
+
+<img src="sociallogins/_static/facebook.svg" width="24">&nbsp;
+<img src="sociallogins/_static/twitter.svg" width="24">&nbsp;
+<img src="sociallogins/_static/google.svg" width="24">&nbsp;
+<img src="sociallogins/_static/microsoft.svg" width="24">
+
+Enabling users to login to your application using their existing credentials is convenient for your users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions on your site, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://developers.facebook.com/case-studies/).
+
+> [!NOTE]
+> Packages presented here abstract a great deal of complexity of the OAuth 2.0 authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Many issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
 
 ## Create a New ASP.NET Core Project
 
@@ -32,19 +42,21 @@ Enabling these credentials in your web sites provides a significant advantage be
 
 ![image](sociallogins/_static/select-project.png)
 
-* Enable SSL
+## Enable SSL
 
-     * In solution explorer, right click the project and select **Properties**
+Some external authentication providers will reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
 
-     * On the left pane, tap **Debug**
+* In solution explorer, right click the project and select **Properties**
 
-     * Check **Enable SSL**
+* On the left pane, tap **Debug**
 
-     * Copy the SSL URL and paste it into the **App URL**
+* Check **Enable SSL**
+
+* Copy the SSL URL and paste it into the **App URL**
 
 ![image](sociallogins/_static/ssl.png)
 
-* Require SSL. Modify the services.AddMvc(); code in `Startup` under `ConfigureServices`:
+* Require SSL. Modify the services.AddMvc(); code in `Startup.cs` under `ConfigureServices`:
 
 ````csharp
 services.AddMvc(options =>
@@ -53,118 +65,50 @@ services.AddMvc(options =>
 });
 ````
 
-* Test the app
+* Test the app to ensure that static files are still being served and publicly exposed routes are accessible. There shouldn't be any warnings logged to the browser console in Developer Tools. Attempting to navigate to your previous URL that used the http protocol should now result in **connection rejected** errors from the browser or a blank page.
 
-## Creating the app in Facebook
+## Use SecretManager to store tokens assigned by login providers
 
-Each of the OAuth2 providers require provider specific keys to enable OAuth2.
+The template used to create the sample project in this topic has code in `Startup.cs` which reads the configuration values from a secret store:
 
-* Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in.
+````csharp
+if (env.IsDevelopment())
+{
+    builder.AddUserSecrets();
+}
+````
 
-* If you aren’t already registered as a Facebook developer, click  *Register as a Developer* and follow the directions to register.
+As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
+The **SecretManager** tool will store sensitive application settings in the user profile folder on your machine. These settings are seamlessly merged with settings from all other sources during the application startup.
 
-* Tap **Add a New App**
+> [NOTE!]
+> Most login providers will assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application will use to access their API, and constitute the "secrets" you will be linking to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
-* Select **Website** from the platform choices.
-
-* Tap **Skip and Create App ID**
-
-![image](sociallogins/_static/FBApp03.png)
-
-* Enter a display name,  category, contact email and tap **Create App ID**.
-
-![image](sociallogins/_static/FBApp04.png)
-
-* Tap **Settings** from the left menu bar.
-
-![image](sociallogins/_static/FBApp05.png)
-
-* On the **Basic** settings section of the page select Add Platform to specify that you are adding a website app.
-
-![image](sociallogins/_static/FBApp06.png)
-
-* Select Website from the platform choices.
-
-![image](sociallogins/_static/FBApp07.png)
-
-* Add your Site URL (https://localhost:44320/)
-
-* Make a note of your App ID and your App Secret so that you can add both into your ASP.NET Core app later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application.
-
-![image](sociallogins/_static/FBApp08.png)
-
-## Use SecretManager to store Facebook AppId and AppSecret
-
-The project created has code in Startup which reads the configuration values from a secret store. As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
-
-Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
+Follow these steps to add the tokens assigned by each of the login providers below to the Secret Manager:
 
 * Install the [Secret Manager tool](../app-secrets.md).
 
-* Set the Facebook AppId:
+* Set the secret configuration values by using the following syntax:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
   ````
-  dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
+  dotnet user-secrets set key value
      ````
 
-* Set the Facebook AppSecret:
+## Setup login providers required by your application
 
-  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
+Please use the following topics to configure your application to use the respective providers:
 
-  ````
-  dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-     ````
-
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
-
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
-
-## Enable Facebook middleware
-
-**Note:** You will need to use NuGet to install the Microsoft.AspNetCore.Authentication.Facebook package if it hasn't already been installed.
-
-Add the Facebook middleware in the `Configure` method in `Startup`:
-
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-96)]
-
-## Login with Facebook
-
-Run your application and click Login. You will see an option for Facebook.
-
-![image](sociallogins/_static/FBLogin1.PNG)
-
-When you click on Facebook, you will be redirected to Facebook for authentication.
-
-![image](sociallogins/_static/FBLogin2.PNG)
-
-Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
-
-You are now logged in using your Facebook credentials.
-
-![image](sociallogins/_static/FBLogin3.PNG)
-
-## Optionally set password
-
-When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
-
-To create a password and login using your email that you set during the login process with external providers:
-
-* Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
-
-![image](sociallogins/_static/pass1.PNG)
-
-* Tap **Create**
-
-![image](sociallogins/_static/pass2.PNG)
-
-* Set a valid password and you can use this to login with your email
+* [Facebook](facebook-logins.md) instructions
+* [Twitter](twitter-logins.md) instructions
+* [Google](google-logins.md) instructions
+* [Microsoft](microsoft-logins.md) instructions
+* [Other provider](other-logins.md) instructions
+* Instructions for [setting up a custom login provider](custom-logins.md)
 
 ## Next steps
 
-* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
+* This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
 
-* Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal.
-
-* Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Please reference provider-specific topics to configure logins for the providers required by your app.
