@@ -1,6 +1,6 @@
 - name: ASP.NET
   tocHref: /aspnet/
-  topicHref: /aspenet/index
+  topicHref: /aspnet/index
   items:
   - name: ASP.NET Home
     tocHref: /aspnet/webhooks/
