@@ -5,7 +5,6 @@
   - name: ASP.NET Home
     tocHref: /aspnet/
     topicHrefepage: /aspnet/index
-    items:
   - name: ASP.NET Core
     tocHref: /aspnet/core/
     topicHref: /aspnet/core/intro
