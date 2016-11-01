@@ -19,7 +19,10 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 - Spell and grammar check the document
 - Use short and simple sentences, they are easier to understand and more easily translated. Split up long sentences if you can do it without being too redundant or sounding unnatural
-- Use everyday words. Use natural language, be less formal but not less technical.
+- Use everyday words. Use natural language, be less formal but not less technical
+- Avoid the following words:
+  - Please
+  - First, next, last, finally. List the instructions without these words.
 - Use a screenshot when it can save words or simplify the section
 - Add code comments to help explain a step, especially in code snippets you import
 - Don't copy/paste code into the *.md* file (except for small code segments). Use code snippets (see next section)
