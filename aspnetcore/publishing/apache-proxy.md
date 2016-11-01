@@ -1,4 +1,12 @@
 ---
+title: Using Apache Web Server as a reverse proxy
+author: spboyer
+ms.author: pboyer
+manager: wpickett
+ms.date: 10/19/2016
+ms.topic: article
+ms.assetid: fa9b0cb7-afb3-4361-9e7e-33afffeaca0c
+ms.prod: aspnet-core
 uid: publishing/apache-proxy
 ---
 # Using Apache Web Server as a reverse proxy
