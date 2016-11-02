@@ -1,4 +1,4 @@
-﻿---
+---
 title: Password Hashing
 author: rick-anderson
 ms.author: riande
