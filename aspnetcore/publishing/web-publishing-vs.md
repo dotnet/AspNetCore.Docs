@@ -134,7 +134,7 @@ To customize this process, you can edit the PowerShell script directly. To perfo
    $externalImagesSourcePath = 'C:\resources\external-images'
    $externalImagesDestPath = (Join-Path "$packOutput\wwwroot" 'external-images')
    if(-not (Test-Path $externalImagesDestPath)){
-     -Item -Path $externalImagesDestPath -ItemType Directory
+     New-Item -Path $externalImagesDestPath -ItemType Directory
    }
 
    Get-ChildItem $externalImagesSourcePath -File | Copy-Item -Destination $externalImagesDestPath
