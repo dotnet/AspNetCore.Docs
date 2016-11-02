@@ -1,4 +1,4 @@
-﻿---
+---
 title: Machine Wide Policy
 author: rick-anderson
 ms.author: riande
