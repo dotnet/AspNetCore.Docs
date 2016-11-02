@@ -1,4 +1,4 @@
-﻿---
+---
 title: Limiting the lifetime of protected payloads
 author: rick-anderson
 ms.author: riande
