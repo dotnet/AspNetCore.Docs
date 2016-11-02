@@ -11,7 +11,9 @@ uid: intro
 ---
 # Introduction to ASP.NET Core
 
+<!--
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Shaun Luttin](https://twitter.com/dicshaunary)
+-->
 
 ASP.NET Core is a significant redesign of ASP.NET. This topic introduces the new concepts in ASP.NET Core and explains how they help you develop modern web apps.
 
@@ -28,30 +30,20 @@ ASP.NET Core has a number of architectural changes that result in a much leaner 
 With ASP.NET Core you gain the following foundational improvements:
 
 * A unified story for building web UI and web APIs
-
 * Integration of [modern client-side frameworks](client-side/index.md) and development workflows
-
 * A cloud-ready environment-based [configuration system](fundamentals/configuration.md)
-
 * Built-in [dependency injection](fundamentals/dependency-injection.md)
-
 * New light-weight and modular HTTP request pipeline
-
 * Ability to host on IIS or self-host in your own process
-
 * Built on [.NET Core](https://microsoft.com/net/core), which supports true side-by-side app versioning
-
-* Ships entirely as [NuGet](https://nuget.org)  packages
-
+* Ships entirely as [NuGet](https://nuget.org) packages
 * New tooling that simplifies modern web development
-
 * Build and run cross-platform ASP.NET apps on Windows, Mac and Linux
-
 * Open source and community focused
 
 ## Application anatomy
 
-An ASP.NET Core app is simply a console app that creates a web server in its `Main` method:
+An ASP.NET Core app is just a console app that creates a web server in its `Main` method:
 
 [!code-csharp[Main](getting-started/sample/aspnetcoreapp/Program.cs)]
 
@@ -95,9 +87,7 @@ In ASP.NET Core you compose your request pipeline using [Middleware](fundamental
 ASP.NET Core comes with a rich set of prebuilt middleware:
 
 * [Static files](fundamentals/static-files.md)
-
 * [Routing](fundamentals/routing.md)
-
 * [Authentication](security/authentication/index.md)
 
 You can also author your own [custom middleware](fundamentals/middleware.md).
@@ -132,18 +122,12 @@ Environments, like "Development" and "Production", are a first-class notion in A
 
 ## Build web UI and web APIs using ASP.NET Core MVC
 
-* You can create well-factored and testable web apps that follow the Model-View-Controller (MVC) pattern. See [MVC](mvc/index.md) and [Testing](testing/index.md).
-
+* You can create well-factored and testable web apps that follow the Model-View-Controller (MVC) pattern. See [MVC](mvc/index.md) and [Testing](testing/index.md)
 * You can build HTTP services that support multiple formats and have full support for content negotiation. See [Formatting Response Data](mvc/models/formatting.md)
-
 * [Razor](http://www.asp.net/web-pages/overview/getting-started/introducing-razor-syntax-c) provides a productive language to create [Views](mvc/views/index.md)
-
 * [Tag Helpers](mvc/views/tag-helpers/intro.md) enable server-side code to participate in creating and rendering HTML elements in Razor files
-
 * You can create HTTP services with full support for content negotiation using custom or built-in formatters (JSON, XML)
-
 * [Model Binding](mvc/models/model-binding.md) automatically maps data from HTTP requests to action method parameters
-
 * [Model Validation](mvc/models/validation.md) automatically performs client and server side validation
 
 ## Client-side development
@@ -153,9 +137,6 @@ ASP.NET Core is designed to integrate seamlessly with a variety of client-side f
 ## Next steps
 
 * [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
-
 * [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
-
 * [Building Your First Web API with ASP.NET Core MVC and Visual Studio](tutorials/first-web-api.md)
-
 * [Fundamentals](fundamentals/index.md)
