@@ -15,7 +15,7 @@ ms.prod: aspnet-core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial shows you how to build an ASP.NET Core app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
+This tutorial will demonstrate how to build an ASP.NET Core app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
 
 [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following topics. Many third-party packages such as the ones by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
 
@@ -24,21 +24,21 @@ This tutorial shows you how to build an ASP.NET Core app that enables users to l
 <img src="sociallogins/_static/google.svg" width="24">&nbsp;
 <img src="sociallogins/_static/microsoft.svg" width="24">
 
-Enabling users to login to your application using their existing credentials is convenient for your users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions on your site, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://developers.facebook.com/case-studies/).
+Enabling users to login with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://developers.facebook.com/case-studies/).
 
 > [!NOTE]
-> Packages presented here abstract a great deal of complexity of the OAuth 2.0 authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Many issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
+> Packages presented here abstract a great deal of complexity of the OAuth 2.0 authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Sometimes issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
 
 ## Create a New ASP.NET Core Project
 
 > [!NOTE]
 > The tutorial requires the latest version of Visual Studio 2015 and ASP.NET Core.
 
-* In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**)
+* In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**):
 
 ![image](sociallogins/_static/new-project.png)
 
-* Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**
+* Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**:
 
 ![image](sociallogins/_static/select-project.png)
 
@@ -46,17 +46,17 @@ Enabling users to login to your application using their existing credentials is 
 
 Some external authentication providers will reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
 
-* In solution explorer, right click the project and select **Properties**
+* In solution explorer, right click the project and select **Properties**.
 
-* On the left pane, tap **Debug**
+* On the left pane, tap **Debug**.
 
-* Check **Enable SSL**
+* Check **Enable SSL**.
 
-* Copy the SSL URL and paste it into the **App URL**
+* Copy the SSL URL and paste it into the **App URL**:
 
 ![image](sociallogins/_static/ssl.png)
 
-* Require SSL. Modify the services.AddMvc(); code in `Startup.cs` under `ConfigureServices`:
+* Modify the services.AddMvc(); code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
 ````csharp
 services.AddMvc(options =>
@@ -65,11 +65,13 @@ services.AddMvc(options =>
 });
 ````
 
-* Test the app to ensure that static files are still being served and publicly exposed routes are accessible. There shouldn't be any warnings logged to the browser console in Developer Tools. Attempting to navigate to your previous URL that used the http protocol should now result in **connection rejected** errors from the browser or a blank page.
+* Test the app to ensure that static files are still being served and publicly exposed routes are accessible.
+   * There shouldn't be any warnings logged to the browser console in Developer Tools.
+   * Attempting to navigate to the previous URI that used the *http* protocol should now result in **connection rejected** errors from the browser or a blank page.
 
 ## Use SecretManager to store tokens assigned by login providers
 
-The template used to create the sample project in this topic has code in `Startup.cs` which reads the configuration values from a secret store:
+The template used to create the sample project in this tutorial has code in `Startup.cs` which reads the configuration values from a secret store:
 
 ````csharp
 if (env.IsDevelopment())
@@ -79,26 +81,17 @@ if (env.IsDevelopment())
 ````
 
 As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
-The **SecretManager** tool will store sensitive application settings in the user profile folder on your machine. These settings are seamlessly merged with settings from all other sources during the application startup.
+
+The **SecretManager** tool will store sensitive application settings in the user profile folder on the local machine. These settings are then seamlessly merged with settings from all other sources during application startup.
 
 > [NOTE!]
-> Most login providers will assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application will use to access their API, and constitute the "secrets" you will be linking to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
+> Most login providers will assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application will use to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
-Follow these steps to add the tokens assigned by each of the login providers below to the Secret Manager:
-
-* Install the [Secret Manager tool](../app-secrets.md).
-
-* Set the secret configuration values by using the following syntax:
-
-  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
-  ````
-  dotnet user-secrets set key value
-     ````
+Install the Secret Manager tool now using the steps in [this section](../app-secrets.md) so that you can use it to store tokens assigned by each login provider later in this tutorial.
 
 ## Setup login providers required by your application
 
-Please use the following topics to configure your application to use the respective providers:
+Please use the following pages to configure your application to use the respective providers:
 
 * [Facebook](facebook-logins.md) instructions
 * [Twitter](twitter-logins.md) instructions
@@ -111,4 +104,4 @@ Please use the following topics to configure your application to use the respect
 
 * This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
 
-* Please reference provider-specific topics to configure logins for the providers required by your app.
+* Please reference provider-specific pages to configure logins for the providers required by your app.

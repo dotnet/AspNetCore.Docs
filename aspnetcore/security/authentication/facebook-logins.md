@@ -15,55 +15,44 @@ ms.prod: aspnet-core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial shows you how to enable your users to log into your application with their Facebook account using a sample ASP.NET Core project created in the [previous topic](sociallogins.md). We start by registering our app with Facebook by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to log in with their Facebook account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
-* Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in.
+*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in. If you don't already have a Facebook account, use the *sign up* link to create one.
 
-* Login to your Facebook user account or create a new user account using the [Facebook login page](https://www.facebook.com/login.php).
+* If you aren’t already registered as a Facebook developer, click  *Register as a Developer* and follow the directions to register.
 
-* Upgrade your Facebook account to a Developer account if you are not yet registered as a a developer.
+* Tap **My Apps** in the upper right corner:
 
-* Tap **Add a New App**
+![image](sociallogins/_static/FBMyApps.png)
 
-* Select **Website** from the platform choices.
+* Tap **Add a New App** and fill out the form to create a new app ID:
 
-* Tap **Skip and Create App ID**
+![image](sociallogins/_static/FBNewAppID.png)
 
-![image](sociallogins/_static/FBApp03.png)
+* The **Product Setup** page will be displayed, letting you select the features your new app will support. Tap **Get Started** on *Facebook Login*:
 
-* Enter a display name,  category, contact email and tap **Create App ID**.
+![image](sociallogins/_static/FBProductSetup.png)
 
-![image](sociallogins/_static/FBApp04.png)
+* You will be presented with the **Client OAuth Settings** page that has sensible defaults already set:
 
-* Tap **Settings** from the left menu bar.
+![image](sociallogins/_static/FBOAuthSetup.png)
 
-![image](sociallogins/_static/FBApp05.png)
+* Enter your base site URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, https://localhost:44320/**signin-facebook**.
 
-* On the **Basic** settings section of the page select Add Platform to specify that you are adding a website app.
+> [!NOTE]
+> You don't need to configure **signin-facebook** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
 
-![image](sociallogins/_static/FBApp06.png)
+* Make a note of your *App ID* and your *App Secret* before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
 
-* Select Website from the platform choices.
+* Tap **Save Changes** to complete the new application configuration.
 
-![image](sociallogins/_static/FBApp07.png)
+## Storing Facebook AppId and AppSecret
 
-* Add your Site URL (https://localhost:44320/)
+Link sensitive settings like Facebook *AppID* and *Secret* to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md). Execute the following in your project working directory:
 
-* Make a note of your App ID and your App Secret so that you can add both into your ASP.NET Core app later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application.
-
-![image](sociallogins/_static/FBApp08.png)
-
-## Use SecretManager to store Facebook AppId and AppSecret
-
-The project created has code in Startup which reads the configuration values from a secret store. As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
-
-Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager:
-
-* Install the [Secret Manager tool](../app-secrets.md).
-
-* Set the Facebook AppId:
+* Set the Facebook AppId
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
@@ -71,7 +60,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
   dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
      ````
 
-* Set the Facebook AppSecret:
+* Set the Facebook AppSecret
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
@@ -79,13 +68,16 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
   dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
      ````
 
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
+The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
 [!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Facebook middleware
 
-**Note:** You will need to use NuGet to install the Microsoft.AspNetCore.Authentication.Facebook package if it hasn't already been installed.
+> [!NOTE]
+> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook/1.1.0-preview1-final) package if it hasn't already been installed. Execute the following in your project directory:
+>
+> `dotnet install Microsoft.AspNetCore.Authentication.Facebook`
 
 Add the Facebook middleware in the `Configure` method in `Startup`:
 
@@ -125,8 +117,8 @@ To create a password and login using your email that you set during the login pr
 
 ## Next steps
 
-* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with Microsoft Account, Twitter, Google and other providers.
+* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with [Microsoft Account](microsoft-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md) and other providers.
 
-* Once you publish your Web site to Azure Web App, you should reset the AppSecret in the Facebook developer portal.
+* Once you publish your Web site to Azure Web App, you should reset the *AppSecret* in the Facebook developer portal.
 
-* Set the Facebook AppId and AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the *Authentication:Facebook:AppId* and Authentication:Facebook:AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
