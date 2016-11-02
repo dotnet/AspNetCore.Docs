@@ -1,4 +1,4 @@
-﻿---
+---
 title: ASP.NET Core on Nano Server
 author: rick-anderson
 ms.author: riande
