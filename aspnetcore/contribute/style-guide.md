@@ -1,4 +1,4 @@
-﻿---
+---
 title: ASP.NET Docs Style Guide
 author: rick-anderson
 ms.author: riande
@@ -35,6 +35,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 - Avoid the following words:
   - Please
   - First, next, last, finally when decribing steps
+  - Important (except for security steps)
 
 ## Internal links
 
