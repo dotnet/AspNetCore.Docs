@@ -29,7 +29,7 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {"breadcrumb_path": "/aspnet/breadcrumb/toc.json"},
     "fileMetadata": {},
     "template": [],
     "dest": "_site"
