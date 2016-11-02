@@ -1,4 +1,4 @@
-﻿---
+---
 title: View Components
 author: rick-anderson
 ms.author: riande
