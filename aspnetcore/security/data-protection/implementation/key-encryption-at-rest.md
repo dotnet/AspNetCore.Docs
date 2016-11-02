@@ -1,4 +1,4 @@
-﻿---
+---
 title: Key Encryption At Rest
 author: rick-anderson
 ms.author: riande
