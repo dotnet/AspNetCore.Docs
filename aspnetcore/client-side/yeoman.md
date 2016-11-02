@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
 ms.prod: aspnet-core
-﻿uid: client-side/yeoman
+uid: client-side/yeoman
 ---
 # Building Projects with Yeoman
 

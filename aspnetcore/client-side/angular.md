@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
 ms.prod: aspnet-core
-﻿uid: client-side/angular
+uid: client-side/angular
 ---
 # Using Angular for Single Page Applications (SPAs)
 

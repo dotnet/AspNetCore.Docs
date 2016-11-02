@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 95790927-2bfe-445e-b1fd-429c2c7030ce
 ms.prod: aspnet-core
-﻿uid: security/cross-site-scripting
+uid: security/cross-site-scripting
 ---
 # Preventing Cross-Site Scripting
 

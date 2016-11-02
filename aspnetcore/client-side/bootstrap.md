@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: bd27832c-2877-4b7b-9337-e009361d845f
 ms.prod: aspnet-core
-﻿uid: client-side/bootstrap
+uid: client-side/bootstrap
 ---
 # Building Beautiful, Responsive Sites with Bootstrap
 

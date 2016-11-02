@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.prod: aspnet-core
-﻿uid: tutorials/first-mvc-app/adding-model
+uid: tutorials/first-mvc-app/adding-model
 ---
 # Adding a model
 
