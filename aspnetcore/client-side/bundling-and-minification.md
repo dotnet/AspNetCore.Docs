@@ -1,4 +1,4 @@
-﻿---
+---
 title: Bundling and Minification
 author: rick-anderson
 ms.author: riande
