@@ -1,4 +1,4 @@
-﻿---
+---
 title: Publishing to IIS
 author: rick-anderson
 ms.author: riande
