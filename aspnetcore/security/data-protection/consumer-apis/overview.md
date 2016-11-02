@@ -1,4 +1,4 @@
-﻿---
+---
 title: Consumer APIs Overview
 author: rick-anderson
 ms.author: riande
