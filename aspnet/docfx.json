@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [
-          "**/*.md"
+          "**/*.md", "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
@@ -28,7 +28,7 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {"breadcrumb_path": "/aspnet/breadcrumb/toc.json"},
     "fileMetadata": {},
     "template": [],
     "dest": "aspnet/core"
