@@ -1,4 +1,4 @@
-﻿---
+---
 title: Globalization and localization
 author: rick-anderson
 ms.author: riande
