@@ -5,7 +5,7 @@ uid: index
 
   # ASP.NET WebHooks Documentation
 
-Note: This documentation is a work in progress. Topics marked with a 🔧 are placeholders that have not been written yet. You can track the status of these topics through our public documentation [issue tracker](https://github.com/aspnet/docs/issues). Learn how you can [contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md) on GitHub.
+Note: This is a work in progress. Topics marked with a 🔧 are placeholders that have not been written yet. You can track the status of these topics through our public documentation [issue tracker](https://github.com/aspnet/docs/issues). Learn how you can [contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md) on GitHub.
 
 * [Overview of ASP.NET WebHooks](overview.md)
 
