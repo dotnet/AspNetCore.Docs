@@ -1,4 +1,4 @@
-﻿---
+---
 title: Machine Wide Policy
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 285ae47d-e0bf-4b03-b0a8-2b1fb18bc3a1
 ms.prod: aspnet-core
-﻿uid: security/data-protection/configuration/machine-wide-policy
+uid: security/data-protection/configuration/machine-wide-policy
 ---
 # Machine Wide Policy
 

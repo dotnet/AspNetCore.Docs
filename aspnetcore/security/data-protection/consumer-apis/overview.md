@@ -1,4 +1,4 @@
-﻿---
+---
 title: Consumer APIs Overview
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f69beb9d-a519-43a8-857c-f6b01886a903
 ms.prod: aspnet-core
-﻿uid: security/data-protection/consumer-apis/overview
+uid: security/data-protection/consumer-apis/overview
 ---
 # Consumer APIs Overview
 
