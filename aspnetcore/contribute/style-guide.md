@@ -1,4 +1,4 @@
-﻿---
+---
 title: ASP.NET Docs Style Guide
 author: rick-anderson
 ms.author: riande
