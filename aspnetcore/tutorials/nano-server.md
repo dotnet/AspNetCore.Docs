@@ -15,22 +15,19 @@ uid: tutorials/nano-server
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
->[!IMPORTANT]
-> This tutorial uses a pre-release version of the Nano Server installation option of Windows Server Technical Preview 5. You may use the software in the virtual hard disk image only to internally demonstrate and evaluate it. You may not use the software in a live operating environment. Please see [https://go.microsoft.com/fwlink/?LinkId=624232](https://go.microsoft.com/fwlink/?LinkId=624232) for specific information about the end date for the preview.
-
 In this tutorial, you'll take an existing ASP.NET Core app and deploy it to a Nano Server instance running IIS.
 
 ## Introduction
 
-Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details.  There are 3 ways for you try out Nano Server for yourself:
+Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details.  There are 3 ways for you to try out Nano Server for yourself, you can download 180 days evaluation versions, when you sign in with your MS account.
 
-1. You can download the Windows Server 2016 Technical Preview 5 ISO file, and build a Nano Server image
+1. You can download the Windows Server 2016 ISO file, and build a Nano Server image
 
 2. Download the Nano Server developer VHD
 
 3. Create a VM in Azure using the Nano Server image in the Azure Gallery. If you don’t have an Azure account, you can get a free 30-day trial
 
-In this tutorial, we will be using the pre-built [Nano Server Developer VHD](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula)  from Windows Server Technical Preview 5.
+In this tutorial, we will be using the pre-built [Nano Server Developer VHD](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula)  from Windows Server 2016
 
 Before proceeding with this tutorial, you will need the [published](../publishing/index.md) output of an existing ASP.NET Core application. Ensure your application is built to run in a **64-bit** process.
 
@@ -216,11 +213,7 @@ Import-module IISAdministration
 
 ## Known issue running .NET Core CLI on Nano Server and Workaround
 
-If you’re using Nano Server Technical Preview 5 with .NET Core CLI, you will need to copy all DLL files from `c:\windows\system32\forwarders` to `c:\Program Files\dotnet\shared\Microsoft.NETCore.App\1.0.0\` and your  .NET Core binaries directory `c:\dotnet` (in this example), due to a bug that has since been fixed in later releases.
 
-If you use `dotnet publish`, make sure to copy all DLL files from `c:\windows\system32\forwarders` to your publish directory as well.
-
-If your Nano Server Technical Preview 5 build is updated or serviced, please make sure to repeat this process, in case any of the DLLs have been updated as well.
 
 ## Running the Application
 
