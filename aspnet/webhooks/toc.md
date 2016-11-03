@@ -1,5 +1,4 @@
-# [ASP.NET WebHooks Documentation - Index](index.md)
-# [ASP.NET WebHooks Documentation - Overview](overview.md)
+# [ASP.NET WebHooks](index.md)
 # [Source Code and Nugets](source.md)
 # [Receiving WebHooks](receiving/index.md)
 # [Sending WebHooks](sending/index.md)

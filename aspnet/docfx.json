@@ -3,13 +3,15 @@
     "content": [
       {
         "files": [
-          "**/*.md", "**/*.yml"
+          "**/*.md",
+          "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
           "aspnet/**",
           "**/includes/**",
-          "**/aspnet-core-conceptual/**"
+          "**/aspnet-core-conceptual/**",
+          "_site/**"
         ]
       }
     ],
@@ -22,15 +24,16 @@
         "exclude": [
           "**/obj/**",
           "aspnet/core/**",
-          "**/includes/**"
+          "**/includes/**",
+          "_site/**"
         ]
       }
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {"breadcrumb_path": "/aspnet/breadcrumb/toc.json"},
+    "globalMetadata": { "breadcrumb_path": "/aspnet/breadcrumb/toc.json" },
     "fileMetadata": {},
     "template": [],
-    "dest": "aspnet/core"
+    "dest": "_site"
   }
 }

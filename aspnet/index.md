@@ -1,19 +1,20 @@
 ---
 layout: HubPage
-
-title: .NET Core Documentation
+title: ASP.NET 
 description:
 keywords:
-author:
-manager:
+author: riande
+manager: wpickett
 ms.date: 06/20/2016
 ms.topic: hubpage
 ms.prod:
 ms.service:
 ms.technology:
 ms.suite:
-ms.assetid:
+ms.assetid:dc0604e3-2d09-480e-94b6-9a69f9ba7025
+uid: index
 ---
+
 
 <article id="main">
     <section id="hero-content" class="graph">
