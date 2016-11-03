@@ -1,6 +1,7 @@
 # [Introduction](intro.md)
 # [Getting Started](getting-started.md)
 # [Release notes](https://github.com/aspnet/home/releases)
+# [API Reference](/aspnet/core/api/)
 # [Tutorials](tutorials/toc.md)
 # [Fundamentals](fundamentals/toc.md)
 # [MVC](mvc/toc.md)
@@ -13,5 +14,4 @@
 # [Security](security/toc.md)
 # [Performance](performance/toc.md)
 # [Migration](migration/toc.md)
-# [API](/aspnet/core/api/)
 # [Contribute](contribute/toc.md)
