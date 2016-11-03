@@ -1,13 +1,8 @@
 $SourcePath = "https://go.microsoft.com/fwlink/?LinkID=809115"
 $DestinationPath = "C:\dotnet"
+$TempPath = [System.IO.Path]::GetTempFileName()+".zip"
 
-$EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
-
-
-        $SourcePath = "https://go.microsoft.com/fwlink/?LinkID=809115"
-        $TempPath = [System.IO.Path]::GetTempFileName()+".zip"
-
-        try
+   try
         {
           Invoke-WebRequest -URI $SourcePath -OutFile  $TempPath
           if ( (Get-Item $TempPath).length  -gt 10kb) #probably more than a warning page
@@ -23,7 +18,6 @@ $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\Curren
         {
             Write-Warning "something was wrong with the download"
             Write-Error $error[0].Exception
-
         }
 
     Remove-Item $TempPath
