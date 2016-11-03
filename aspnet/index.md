@@ -16,7 +16,6 @@ ms.assetid:56b5dcfb-856e-4d8e-b09c-525f137810dc
 uid: index
 ---
 
-
 <article id="main">
     <section id="hero-content" class="graph">
         <h1>ASP.NET Documentation</h1>
