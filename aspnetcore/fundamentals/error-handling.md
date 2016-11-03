@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 When errors occur in your ASP.NET app, you can handle them in a variety of ways, as described in this article.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/error-handling/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample)
 
 ## Configuring an Exception Handling Page
 
@@ -80,7 +80,7 @@ By default, this middleware adds very simple, text-only handlers for common stat
 
 ![image](error-handling/_static/default-404-status-code.png)
 
-The middleware supports several different extension methods. You can pass it a custom lamdba expression:
+The middleware supports several different extension methods. You can pass it a custom lambda expression:
 
 ````csharp
 app.UseStatusCodePages(context =>
