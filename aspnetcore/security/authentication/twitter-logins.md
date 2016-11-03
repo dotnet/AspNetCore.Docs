@@ -62,7 +62,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
 
-Add the Twitter middleware in the `Configure` method in `Startup`:
+Add the Twitter middleware in the `Configure` method in `Startup.cs`:
 
 [!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=90,91,92,93,94&range=64-114)]
 

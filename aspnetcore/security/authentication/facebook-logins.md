@@ -77,7 +77,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Facebook`
 
-Add the Facebook middleware in the `Configure` method in `Startup`:
+Add the Facebook middleware in the `Configure` method in `Startup.cs`:
 
 [!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-114)]
 

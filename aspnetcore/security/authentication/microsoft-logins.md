@@ -25,7 +25,7 @@ This tutorial shows you how to enable your users to log in with their Microsoft 
 
 ![image](sociallogins/_static/MicrosoftDevLogin.png)
 
-If you don't already have a Microsoft account, tap *[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)* After signing in you will be redirected to *My Applications* page:
+If you don't already have a Microsoft account, tap *[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)*. After signing in you will be redirected to *My applications* page:
 
 ![image](sociallogins/_static/MicrosoftDevApps.png)
 
@@ -41,14 +41,16 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 
 ![image](sociallogins/_static/MicrosoftDevAppPlatform.png)
 
-* In the new **Web** platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field and don't forget to tap **Add Url**. For example, https://localhost:44320/**signin-microsoft**:
+* In the new *Web* platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field.
+
+* Don't forget to tap **Add Url** to ensure the Url was added:
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
 
 > [!NOTE]
 > You don't need to configure **signin-microsoft** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
 
-* Tap **Save* to save changes.
+* Tap **Save** to save changes.
 
 ## Storing Microsoft ApplicationId and Secret
 
@@ -56,7 +58,7 @@ Link sensitive settings like Microsoft *ApplicationId* and *Secret* to your appl
 
 * Note the **Application Id** displayed on the *Registration* page.
 
-* Tap **Generate New Password** in the *Application Secrets* section on the *Registration* page. This will display a box where you can copy the application secret:
+* Tap **Generate New Password** in the *Application Secrets* section. This will display a box where you can copy the application secret:
 
 ![image](sociallogins/_static/MicrosoftDevPassword.png)
 
@@ -122,4 +124,4 @@ To create a password and login using your email that you set during the login pr
 
 * Once you publish your Web site to Azure Web App, you should reset the *Secret* in the Microsoft developer portal.
 
-* Set the *Authentication:Microsoft:ClientId* and Authentication:Microsoft:ClientSecret as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the *Authentication:Microsoft:ClientId* and *Authentication:Microsoft:ClientSecret* as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
