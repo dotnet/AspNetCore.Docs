@@ -17,7 +17,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core has built-in support for logging, and allows developers to easily leverage their preferred logging framework's functionality as well. Implementing logging in your application requires a minimal amount of setup code. Once this is in place, logging can be added wherever it is desired.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/logging/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/logging/sample)
 
 ## Implementing Logging in your Application
 
