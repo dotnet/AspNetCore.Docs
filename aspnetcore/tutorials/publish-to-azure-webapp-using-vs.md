@@ -195,6 +195,6 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 * [Getting started with ASP.NET Core MVC and Visual Studio](first-mvc-app/start-mvc.md)
 
-* [Introduction to ASP.NET Core](../intro.md)
+* [Introduction to ASP.NET Core](../index.md)
 
 * [Fundamentals](../fundamentals/index.md)
