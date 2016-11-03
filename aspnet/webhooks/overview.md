@@ -1,7 +1,8 @@
 ---
 uid: overview
 ---
-  # Overview of ASP.NET WebHooks
+
+  # ASP.NET WebHooks overview
 
 WebHooks is a lightweight HTTP pattern providing a simple pub/sub model for wiring together Web APIs and SaaS services. When an event happens in a service, a notification is sent in the form of an HTTP POST request to registered subscribers. The POST request contains information about the event which makes it possible for the receiver to act accordingly.
 
