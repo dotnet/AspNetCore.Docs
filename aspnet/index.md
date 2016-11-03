@@ -1,18 +1,18 @@
 ---
 layout: HubPage
 
-title: ASP.NET 
+title: ASP.NET
 description:
 keywords:
 author: riande
 manager: wpickett
-ms.date: 06/20/2016
+ms.date: 11/11/2016
 ms.topic: hubpage
 ms.prod:
 ms.service:
 ms.technology:
 ms.suite:
-ms.assetid:56b5dcfb-856e-4d8e-b09c-525f137810dc
+ms.assetid:
 ---
 
 <article id="main">
