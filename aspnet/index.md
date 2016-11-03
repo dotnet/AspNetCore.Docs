@@ -4,7 +4,7 @@ layout: HubPage
 title: ASP.NET
 description:
 keywords:
-author: riande
+author: Rick-Anderson
 manager: wpickett
 ms.date: 11/11/2016
 ms.topic: hubpage
