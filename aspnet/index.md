@@ -1,18 +1,20 @@
 ---
 layout: HubPage
 
-title: .NET Core Documentation
+title: ASP .NET Documentation
 description:
 keywords:
-author:
-manager:
+author: rick-anderson
+manager: wpickett
 ms.date: 06/20/2016
 ms.topic: hubpage
 ms.prod:
 ms.service:
 ms.technology:
 ms.suite:
-ms.assetid:
+ms.assetid: fd7441ee-2368-4230-b811-2ae23665ee14
+ms.prod: aspnet-webhooks
+uid: aspnet/index
 ---
 
 <article id="main">
