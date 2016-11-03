@@ -21,7 +21,7 @@ Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.N
 
 ## Serving static files
 
-Static files are typically located in the `web root` (*<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../intro.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
+Static files are typically located in the `web root` (*<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../index.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 
@@ -39,7 +39,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 > [!NOTE]
-> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with [`UseWebRoot`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/HostingAbstractionsWebHostBuilderExtensions/index.html#Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot). See [Introduction to ASP.NET Core](../intro.md) for more information.
+> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with [`UseWebRoot`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/HostingAbstractionsWebHostBuilderExtensions/index.html#Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot). See [Introduction to ASP.NET Core](../index.md) for more information.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
@@ -215,4 +215,4 @@ With the code above, a request for a file with an unknown content type will be r
 
 * [Middleware](middleware.md)
 
-* [Introduction to ASP.NET Core](../intro.md)
+* [Introduction to ASP.NET Core](../index.md)

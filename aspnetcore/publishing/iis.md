@@ -361,7 +361,7 @@ Troubleshooting
 
 ## Additional resources
 
-* [Introduction to ASP.NET Core](../intro.md)
+* [Introduction to ASP.NET Core](../index.md)
 
 * [The Official Microsoft IIS Site](http://www.iis.net/)
 
