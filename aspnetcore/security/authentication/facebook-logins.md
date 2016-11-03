@@ -19,15 +19,13 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 
 ## Creating the app in Facebook
 
-*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in. If you don't already have a Facebook account, use the *sign up* link to create one.
-
-* If you aren’t already registered as a Facebook developer, click  *Register as a Developer* and follow the directions to register.
+*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in. If you don't already have a Facebook account, use the *sign up* link on the login page to create one.
 
 * Tap **My Apps** in the upper right corner:
 
 ![image](sociallogins/_static/FBMyApps.png)
 
-* Tap **Add a New App** and fill out the form to create a new app ID:
+* Tap **+ Add a New App** and fill out the form to create a new app ID:
 
 ![image](sociallogins/_static/FBNewAppID.png)
 
@@ -35,11 +33,11 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 
 ![image](sociallogins/_static/FBProductSetup.png)
 
-* You will be presented with the **Client OAuth Settings** page that has sensible defaults already set:
+* You will be presented with the **Client OAuth Settings** page with some defaults already set:
 
 ![image](sociallogins/_static/FBOAuthSetup.png)
 
-* Enter your base site URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, https://localhost:44320/**signin-facebook**.
+* Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, https://localhost:44320/**signin-facebook**.
 
 > [!NOTE]
 > You don't need to configure **signin-facebook** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
@@ -81,7 +79,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Facebook middleware in the `Configure` method in `Startup`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-96)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-114)]
 
 ## Login with Facebook
 
@@ -97,7 +95,7 @@ Once you enter your Facebook credentials, then you will be redirected back to th
 
 You are now logged in using your Facebook credentials.
 
-![image](sociallogins/_static/FBLogin3.PNG)
+![image](sociallogins/_static/Done.PNG)
 
 ## Optionally set password
 
