@@ -21,19 +21,19 @@ ms.assetid:
         <h2>Welcome to ASP.NET! This is the home of the technical documentation for ASP.NET Core, including basic concepts, getting started instructions, tutorials and samples. You can look for an answer to a challenging problem or learn ASP.NET for the first time.</h2>
     </section>
     <aside class="alert section-border">
-        <p>Download ASP.NET Core today</p>
+        <p>Call to Action Here (if we want one, otherwise remove the whole 'aside')</p>
         <ol class="action-list">
-            <li><a href="https://dot.net/core" class="button-bordered button-translucent">Get it!</a></li>
+            <li><a href="https://dot.net/core" class="button-bordered button-translucent">Click Me</a></li>
         </ol>
     </aside>
     <section id="featured" class="container">
         <h2 class="section-heading"><span class="icon icon-lightbulb-checked"></span> Featured Content</h2>
         <div class="features row">
             <ul class="column-half">
-                <li><a href="docs/core/index.md">Get started with .NET Core</a></li>
+                <li><a href="">Featured Article One</a></li>
             </ul>
             <ul class="column-half">
-                <li><a href="https://docs.asp.net">Get started with ASP.NET Core</a></li>
+                <li><a href="">Featured Article Two</a></li>
             </ul>
         </div>
     </section>
