@@ -73,7 +73,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Facebook middleware
 
 > [!NOTE]
-> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook/1.1.0-preview1-final) package if it hasn't already been installed. Execute the following in your project directory:
+> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook/1.1.0-preview1-final) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Facebook`
 
@@ -93,7 +93,7 @@ When you click on Facebook, you will be redirected to Facebook for authenticatio
 
 Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
 
-You are now logged in using your Facebook credentials.
+You are now logged in using your Facebook credentials:
 
 ![image](sociallogins/_static/Done.PNG)
 

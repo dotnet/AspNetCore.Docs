@@ -47,8 +47,8 @@ Link sensitive settings like Twitter *ConsumerKey* and *ConsumerSecret* to your 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
   ````
-  dotnet user-secrets set Authentication:Twitter:ConsumerKey <app-Id>
-  dotnet user-secrets set Authentication:Twitter:ConsumerSecret <app-secret>
+  dotnet user-secrets set Authentication:Twitter:ConsumerKey <consumer-key>
+  dotnet user-secrets set Authentication:Twitter:ConsumerSecret <consumer-secret>
      ````
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
@@ -58,7 +58,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Twitter middleware
 
 > [!NOTE]
-> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/1.1.0-preview1-final) package if it hasn't already been installed. Execute the following in your project directory:
+> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/1.1.0-preview1-final) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
 
@@ -78,7 +78,7 @@ When you click on Twitter, you will be redirected to Twitter for authentication:
 
 Once you enter your Twitter credentials, then you will be redirected back to the Web site where you can set your email.
 
-You are now logged in using your Twitter credentials.
+You are now logged in using your Twitter credentials:
 
 ![image](sociallogins/_static/Done.PNG)
 
