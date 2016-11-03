@@ -17,11 +17,11 @@ ms.assetid:
 
 <article id="main">
     <section id="hero-content" class="graph">
-        <h1>.NET Documentation</h1>
-        <h2>Welcome to .NET! This is the home of the technical documentation for .NET Core, C#, F# and Visual Basic, including basic concepts, getting started instructions, tutorials and samples. You can look for an answer to a challenging problem or learn .NET for the first time.</h2>
+        <h1>ASP.NET Documentation</h1>
+        <h2>Welcome to ASP.NET! This is the home of the technical documentation for ASP.NET Core, including basic concepts, getting started instructions, tutorials and samples. You can look for an answer to a challenging problem or learn ASP.NET for the first time.</h2>
     </section>
     <aside class="alert section-border">
-        <p>Download .NET Core today</p>
+        <p>Download ASP.NET Core today</p>
         <ol class="action-list">
             <li><a href="https://dot.net/core" class="button-bordered button-translucent">Get it!</a></li>
         </ol>
@@ -53,21 +53,21 @@ ms.assetid:
                     <section class="journey-step-elements content">
                         <ul class="row">
                             <li class="column column-third">
-                                <a href="docs/welcome.md">
-                                    <h3>.NET Core Documentation</h3>
-                                    <p>Learn .NET Core concepts and language syntax.</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="api/index.md">
-                                    <h3>API Reference</h3>
-                                    <p>Browse the .NET API, organized by namespace.</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="docs/core/index.md">
-                                    <h3>Getting Started with .NET Core</h3>
-                                    <p>Learn how to build .NET Core console apps at the command-line or in Visual Studio.</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                         </ul>
