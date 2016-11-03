@@ -5,8 +5,7 @@ $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\Curren
 
 if (($EditionId -eq "ServerStandardNano") -or
     ($EditionId -eq "ServerDataCenterNano") -or
-    ($EditionId -eq "NanoServer") -or
-    ($EditionId -eq "ServerTuva")) {
+    ($EditionId -eq "NanoServer")) {
 
         $SourcePath = "https://go.microsoft.com/fwlink/?LinkID=809115"
           $DestinationPath = "C:\temp\RS"
