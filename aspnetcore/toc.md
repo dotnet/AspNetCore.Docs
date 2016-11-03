@@ -13,5 +13,5 @@
 # [Security](security/toc.md)
 # [Performance](performance/toc.md)
 # [Migration](migration/toc.md)
-# [API](https://docs.asp.net/projects/api)
+# [API](/aspnet/core/api/)
 # [Contribute](contribute/toc.md)
