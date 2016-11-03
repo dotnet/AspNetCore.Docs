@@ -80,7 +80,7 @@ By default, this middleware adds very simple, text-only handlers for common stat
 
 ![image](error-handling/_static/default-404-status-code.png)
 
-The middleware supports several different extension methods. You can pass it a custom lamdba expression:
+The middleware supports several different extension methods. You can pass it a custom lambda expression:
 
 ````csharp
 app.UseStatusCodePages(context =>
