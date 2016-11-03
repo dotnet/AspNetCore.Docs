@@ -1,19 +1,18 @@
 ---
 layout: HubPage
 
-title: ASP.NET 
+title: ASP.NET
 description:
 keywords:
-author: riande
+author: Rick-Anderson
 manager: wpickett
-ms.date: 06/20/2016
+ms.date: 11/11/2016
 ms.topic: hubpage
 ms.prod:
 ms.service:
 ms.technology:
 ms.suite:
-ms.assetid:56b5dcfb-856e-4d8e-b09c-525f137810dc
-uid: index
+ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
 ---
 
 <article id="main">
@@ -22,19 +21,19 @@ uid: index
         <h2>Welcome to ASP.NET! This is the home of the technical documentation for ASP.NET Core, including basic concepts, getting started instructions, tutorials and samples. You can look for an answer to a challenging problem or learn ASP.NET for the first time.</h2>
     </section>
     <aside class="alert section-border">
-        <p>Download ASP.NET Core today</p>
+        <p>Call to Action Here (if we want one, otherwise remove the whole 'aside')</p>
         <ol class="action-list">
-            <li><a href="https://dot.net/core" class="button-bordered button-translucent">Get it!</a></li>
+            <li><a href="https://dot.net/core" class="button-bordered button-translucent">Click Me</a></li>
         </ol>
     </aside>
     <section id="featured" class="container">
         <h2 class="section-heading"><span class="icon icon-lightbulb-checked"></span> Featured Content</h2>
         <div class="features row">
             <ul class="column-half">
-                <li><a href="https://docs.microsoft.com/dotnet">Get started with .NET Core</a></li>
+                <li><a href="">Featured Article One</a></li>
             </ul>
             <ul class="column-half">
-                <li><a href="aspnetcore/intro.md">Get started with ASP.NET Core</a></li>
+                <li><a href="">Featured Article Two</a></li>
             </ul>
         </div>
     </section>
@@ -54,21 +53,21 @@ uid: index
                     <section class="journey-step-elements content">
                         <ul class="row">
                             <li class="column column-third">
-                                <a href="aspnetcore/intro.md">
-                                    <h3>ASP.NET Core Documentation</h3>
-                                    <p>link removed Learn ASP.NET Core</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                    <a href="aspnet/index.md">
-                                    <h3>ASP.NET Documentation</h3>
-                                    <p>Learn ASP.NET</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="https://docs.microsoft.com/dotnet">
-                                    <h3>Getting Started with .NET Core</h3>
-                                    <p>Learn how to build .NET Core console apps at the command-line or in Visual Studio.</p>
+                                <a href="">
+                                    <h3>Heading</h3>
+                                    <p>Short Summary</p>
                                 </a>
                             </li>
                         </ul>
