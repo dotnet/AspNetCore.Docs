@@ -153,10 +153,6 @@ ASP.NET Core is designed to integrate seamlessly with a variety of client-side f
 ## Next steps
 
 * [Building your first ASP.NET Core MVC app with Visual Studio](tutorials/first-mvc-app/index.md)
-
 * [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](tutorials/your-first-mac-aspnet.md)
-
 * [Building Your First Web API with ASP.NET Core MVC and Visual Studio](tutorials/first-web-api.md)
-
 * [Fundamentals](fundamentals/index.md)
-# Welcome to aspnet-core-conceptual!
