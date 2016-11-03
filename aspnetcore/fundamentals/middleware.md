@@ -15,7 +15,7 @@ uid: fundamentals/middleware
 
 By [Steve Smith](http://ardalis.com) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/middleware/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample)
 
 ## What is middleware
 

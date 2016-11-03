@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com) and [Stephen Halter](https://twitter.com/ha
 
 ASP.NET Core is completely decoupled from the web server environment that hosts the application. ASP.NET Core supports hosting in IIS and IIS Express, and self-hosting scenarios using the Kestrel and WebListener HTTP servers. Additionally, developers and third party software vendors can create custom servers to host their ASP.NET Core apps.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/servers/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/servers/sample)
 
 ## Servers and WebHostBuilderExtensions
 

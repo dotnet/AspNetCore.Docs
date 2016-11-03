@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core abstracts file system access through the use of File Providers.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/file-providers/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/file-providers/sample)
 
 ## File Provider abstractions
 

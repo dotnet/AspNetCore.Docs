@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core introduces improved support for controlling application behavior across multiple environments, such as development, staging, and production. Environment variables are used to indicate which environment the application is running in, allowing the app to be configured appropriately.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/environments/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample)
 
 ## Development, Staging, Production
 
