@@ -1,10 +1,9 @@
 ---
 layout: HubPage
-
-title: ASP .NET Documentation
+title: ASP.NET 
 description:
 keywords:
-author: rick-anderson
+author: riande
 manager: wpickett
 ms.date: 06/20/2016
 ms.topic: hubpage
@@ -12,10 +11,10 @@ ms.prod:
 ms.service:
 ms.technology:
 ms.suite:
-ms.assetid: fd7441ee-2368-4230-b811-2ae23665ee14
-ms.prod: aspnet-webhooks
-uid: aspnet/index
+ms.assetid:dc0604e3-2d09-480e-94b6-9a69f9ba7025
+uid: index
 ---
+
 
 <article id="main">
     <section id="hero-content" class="graph">
