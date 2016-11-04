@@ -22,7 +22,6 @@ ASP.NET Core is completely decoupled from the web server environment that hosts 
 ASP.NET Core was designed to decouple web applications from the underlying HTTP server. Traditionally, ASP.NET apps have been windows-only hosted on Internet Information Server (IIS). The recommended way to run ASP.NET Core applications on Windows is still using IIS, but as a reverse-proxy server. The ASP.NET Core Module in IIS manages and proxies requests to the Kestrel HTTP server hosted out-of-process. ASP.NET Core ships with two different HTTP servers:
 
 * Microsoft.AspNetCore.Server.Kestrel (AKA Kestrel, cross-platform)
-
 * Microsoft.AspNetCore.Server.WebListener (AKA WebListener, Windows-only)
 
 ASP.NET Core does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of [feature interfaces](request-features.md) composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any of these servers via extension methods on [`WebHostBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md).
@@ -87,7 +86,7 @@ Kestrel supports dynamically binding to an unspecified, available port by specif
 
 IIS is the most feature rich server, and includes IIS management functionality and access to other IIS modules. Hosting ASP.NET Core no longer uses the `System.Web` infrastructure used by prior versions of ASP.NET.
 
-IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates. [Publishing and Deployment](../publishing/index.md#publishing-and-deployment.md) provides guidelines for publishing to IIS.
+IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates. [Publishing and Deployment](../publishing/index.md#publishing-and-deployment) provides guidelines for publishing to IIS.
 
 ### ASP.NET Core Module
 
@@ -124,7 +123,7 @@ Since Kestrel is open source, it makes an excellent starting point if you need t
 
 Kestrel currently supports a limited number of feature interfaces, but additional features will be added in the future.
 
-The [Using ASP.NET Hosting on an OWIN-based server](owin.md#hosting-on-owin.md) guide demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin) based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md).
+The [Using ASP.NET Hosting on an OWIN-based server](owin.md#hosting-on-owin) guide demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin) based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md).
 
 ## Additional Reading
 
