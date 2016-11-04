@@ -35,10 +35,10 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
         <h2 class="section-heading"><span class="icon icon-lightbulb-checked"></span> Featured Content</h2>
         <div class="features row">
             <ul class="column-half">
-                <li><a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc">Building your first ASP.NET Core MVC app with Visual Studio</a></li>
+                <li><a href="https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc">Building your first ASP.NET Core MVC app with Visual Studio</a></li>
             </ul>
             <ul class="column-half">
-                <li><a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/your-first-mac-aspnet">Your First ASP.NET Core Application on a Mac Using Visual Studio Code</a></li>
+                <li><a href="https://docs.microsoft.com/aspnet/core/tutorials/your-first-mac-aspnet">Your First ASP.NET Core Application on a Mac Using Visual Studio Code</a></li>
             </ul>
         </div>
     </section>
@@ -58,19 +58,19 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
                     <section class="journey-step-elements content">
                         <ul class="row">
                             <li class="column column-third">
-                                <a href="https://docs.microsoft.com/en-us/aspnet/core/getting-started">
+                                <a href="https://docs.microsoft.com/aspnet/core/getting-started">
                                     <h3>Getting Started</h3>
                                     <p>Learn how to create and run a simple ASP.NET Core application.</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="https://docs.microsoft.com/en-us/aspnet/core/api/">
+                                <a href="https://docs.microsoft.com/aspnet/core/api/">
                                     <h3>API Reference</h3>
                                     <p>Browse the ASP.NET Core API, organized by namespace.</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/">
+                                <a href="https://docs.microsoft.com/aspnet/core/fundamentals/">
                                     <h3>Fundamentals</h3>
                                     <p>Learn the fundamentals of ASP.NET Core.</p>
                                 </a>
