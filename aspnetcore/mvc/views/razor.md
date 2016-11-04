@@ -414,7 +414,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 }
 ````
 
- explains how to view this generated class.
+[Viewing the Razor C# class generated for a view](#razor-customcompilationservice-label) explains how to view this generated class.
 
 ### `@using`
 
