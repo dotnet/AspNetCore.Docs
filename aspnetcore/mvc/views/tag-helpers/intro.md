@@ -248,5 +248,9 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 ## Additional Resources
 
 * [Authoring Tag Helpers](authoring.md)
-* [Working with Forms ](xref:mvc/views/working-with-forms)
+* [Working with Forms ](../working-with-forms.md)
 * [TagHelperSamples on GitHub](https://github.com/dpaquette/TagHelperSamples) contains Tag Helper samples for working with [Bootstrap](http://getbootstrap.com/).
+
+<!--
+* [Working with Forms ](xref:mvc/views/working-with-forms)
+-->
