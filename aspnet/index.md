@@ -58,19 +58,19 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
                     <section class="journey-step-elements content">
                         <ul class="row">
                             <li class="column column-third">
-                                <a href="https://docs.asp.net/en/latest/getting-started.html">
+                                <a href="https://docs.microsoft.com/en-us/aspnet/core/getting-started">
                                     <h3>Getting Started</h3>
                                     <p>Learn how to create and run a simple ASP.NET Core application.</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="https://docs.asp.net/projects/api/en/latest/">
+                                <a href="https://docs.microsoft.com/en-us/aspnet/core/api/">
                                     <h3>API Reference</h3>
                                     <p>Browse the ASP.NET Core API, organized by namespace.</p>
                                 </a>
                             </li>
                             <li class="column column-third">
-                                <a href="https://docs.asp.net/en/latest/fundamentals/index.html">
+                                <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/">
                                     <h3>Fundamentals</h3>
                                     <p>Learn the fundamentals of ASP.NET Core.</p>
                                 </a>
