@@ -13,7 +13,7 @@ You'll need a basic understanding of [Git and GitHub.com](https://guides.github.
 * Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. 
 * Wait for approval from the ASP.NET documentation team before you invest much time. 
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
-* Edit files and commit your changes in your branch.
+~~* Edit files and commit your changes in your branch.~~
 * Submit a pull request (PR) from your branch in your fork to the master branch in the aspnet/Docs repo.
 * Respond to PR feedback.
 
