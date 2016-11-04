@@ -14,4 +14,4 @@
 # [Migration](migration/toc.md)
 # [API Reference](/aspnet/core/api/)
 # [Release notes](https://github.com/aspnet/home/releases)
-# [Contribute](contribute/toc.md)
+# [Contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md)
