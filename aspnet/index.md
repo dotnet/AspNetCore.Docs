@@ -35,10 +35,10 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
         <h2 class="section-heading"><span class="icon icon-lightbulb-checked"></span> Featured Content</h2>
         <div class="features row">
             <ul class="column-half">
-                <li><a href="https://docs.asp.net/en/latest/tutorials/first-mvc-app/index.html">Building your first ASP.NET Core MVC app with Visual Studio</a></li>
+                <li><a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc">Building your first ASP.NET Core MVC app with Visual Studio</a></li>
             </ul>
             <ul class="column-half">
-                <li><a href="https://docs.asp.net/en/latest/tutorials/your-first-mac-aspnet.html">Your First ASP.NET Core Application on a Mac Using Visual Studio Code</a></li>
+                <li><a href="https://docs.microsoft.com/en-us/aspnet/core/tutorials/your-first-mac-aspnet">Your First ASP.NET Core Application on a Mac Using Visual Studio Code</a></li>
             </ul>
         </div>
     </section>
