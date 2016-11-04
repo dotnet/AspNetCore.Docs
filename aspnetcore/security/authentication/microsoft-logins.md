@@ -73,7 +73,7 @@ Link sensitive settings like Microsoft *ApplicationId* and *Secret* to your appl
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Microsoft Account middleware
 
@@ -84,7 +84,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Microsoft Account middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=102,103,104,105,106&range=64-114)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=39,40,41,42,43&range=58-110)]
 
 ## Login with Microsoft Account
 

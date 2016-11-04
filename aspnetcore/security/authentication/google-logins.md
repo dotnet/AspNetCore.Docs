@@ -88,7 +88,7 @@ Link sensitive settings like Google *ClientID* and *ClientSecret* to your applic
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Google middleware
 
@@ -99,7 +99,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=96,97,98,99,100&range=64-114)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=33,34,35,36,37&range=58-110)]
 
 ## Login with Google
 

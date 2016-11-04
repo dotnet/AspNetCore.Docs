@@ -53,7 +53,7 @@ Link sensitive settings like Twitter *ConsumerKey* and *ConsumerSecret* to your 
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Twitter middleware
 
@@ -64,7 +64,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Twitter middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=90,91,92,93,94&range=64-114)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=27,28,29,30,31&range=58-110)]
 
 ## Login with Twitter
 

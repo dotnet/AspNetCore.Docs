@@ -124,7 +124,7 @@ Once you enter your Facebook credentials, then you will be redirected back to th
 
 You are now logged in using your Facebook credentials.
 
-![image](sociallogins/_static/FBLogin3.PNG)
+![image](sociallogins/_static/DoneFacebook.PNG)
 
 ## Optionally set password
 

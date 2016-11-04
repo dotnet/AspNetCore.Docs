@@ -68,7 +68,7 @@ Link sensitive settings like Facebook *AppID* and *Secret* to your application c
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Facebook middleware
 
@@ -79,7 +79,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Facebook middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-114)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=58-110)]
 
 ## Login with Facebook
 
