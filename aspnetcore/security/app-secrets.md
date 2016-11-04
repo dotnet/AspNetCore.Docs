@@ -76,7 +76,7 @@ You can run the secret manager tool from other directories, but you must use the
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
 ````
-dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1
+dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\webapp1
    ````
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.
