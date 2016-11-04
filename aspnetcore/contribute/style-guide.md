@@ -1,4 +1,4 @@
-﻿---
+---
 title: ASP.NET Docs Style Guide
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: bd1505c4-d46e-4df2-b6ce-5fe8f5991fe8
 ms.prod: aspnet-core
-﻿uid: contribute/style-guide
+uid: contribute/style-guide
 ---
 # ASP.NET Docs Style Guide
 

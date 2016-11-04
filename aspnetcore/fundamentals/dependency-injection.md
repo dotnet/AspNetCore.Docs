@@ -39,7 +39,7 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 
 The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
 
 The features and middleware provided by ASP.NET, such as MVC, follow a convention of using a single Add**Service**extension method to register all of the services required by that feature.
 
@@ -52,7 +52,7 @@ Of course, in addition to configuring the application to take advantage of vario
 
 You can register your own application services as follows. The first generic type represents the type (typically an interface) that will be requested from the container. The second generic type represents the concrete type that will be instantiated by the container and used to fulfill such requests.
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?range=53-54)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?range=53-54)]
 
 > [!NOTE]
 > Each `services.Add<service>` call adds (and potentially configures) services. For example, `services.AddMvc()` adds the services MVC requires.

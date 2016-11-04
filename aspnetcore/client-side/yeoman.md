@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building Projects with Yeoman
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
 ms.prod: aspnet-core
-﻿uid: client-side/yeoman
+uid: client-side/yeoman
 ---
 # Building Projects with Yeoman
 
@@ -25,8 +25,7 @@ Follow the instructions on [http://yeoman.io/learning/](http://yeoman.io/learnin
 npm install -g yo bower
    ````
 
-> [!NOTE]
-> If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower grunt-cli gulp`
+Note: If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
 From the command line, install the ASP.NET generator:
 

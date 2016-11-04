@@ -1,4 +1,4 @@
-﻿---
+---
 title: Middleware
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: db9a86ab-46c2-40e0-baed-86e38c16af1f
 ms.prod: aspnet-core
-﻿uid: fundamentals/middleware
+uid: fundamentals/middleware
 ---
 # Middleware
 
@@ -41,7 +41,7 @@ You can see an example of setting up the request pipeline in the default web sit
 3. Authentication
 4. MVC
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
 
 In the code above (in non-development environments), [`UseExceptionHandler`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/ExceptionHandlerExtensions/index.html) is the first middleware added to the pipeline, therefore will catch any exceptions that occur in later calls.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Enabling authentication using Facebook, Google and other external providers
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.prod: aspnet-core
-﻿uid: security/authentication/sociallogins
+uid: security/authentication/sociallogins
 ---
 # Enabling authentication using Facebook, Google and other external providers
 
@@ -79,6 +79,54 @@ if (env.IsDevelopment())
     builder.AddUserSecrets();
 }
 ````
+
+* Install the [Secret Manager tool](../app-secrets.md).
+
+* Set the Facebook AppId:
+
+  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
+
+  ````
+  dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
+     ````
+
+* Set the Facebook AppSecret:
+
+  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
+
+  ````
+  dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
+     ````
+
+The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
+
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+
+## Enable Facebook middleware
+
+**Note:** You will need to use NuGet to install the Microsoft.AspNetCore.Authentication.Facebook package if it hasn't already been installed.
+
+Add the Facebook middleware in the `Configure` method in `Startup`:
+
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-96)]
+
+## Login with Facebook
+
+Run your application and click Login. You will see an option for Facebook.
+
+![image](sociallogins/_static/FBLogin1.PNG)
+
+When you click on Facebook, you will be redirected to Facebook for authentication.
+
+![image](sociallogins/_static/FBLogin2.PNG)
+
+Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
+
+You are now logged in using your Facebook credentials.
+
+![image](sociallogins/_static/FBLogin3.PNG)
+
+## Optionally set password
 
 As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 

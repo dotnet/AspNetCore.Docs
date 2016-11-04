@@ -1,4 +1,4 @@
-﻿---
+---
 title: Error Handling
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4db51023-c8a6-4119-bbbe-3917e272c260
 ms.prod: aspnet-core
-﻿uid: fundamentals/error-handling
+uid: fundamentals/error-handling
 ---
 # Error Handling
 

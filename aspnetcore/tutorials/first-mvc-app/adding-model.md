@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a model
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 8dc28498-00ee-4d66-b903-b593059e9f39
 ms.prod: aspnet-core
-﻿uid: tutorials/first-mvc-app/adding-model
+uid: tutorials/first-mvc-app/adding-model
 ---
 # Adding a model
 
@@ -279,4 +279,4 @@ You now have a database and pages to display, edit, update and delete data. In t
 
 * [Globalization and localization](../../fundamentals/localization.md)
 
->[&larr; **Previous**](.\adding-view.md)     [**Next** &rarr;](.\working-with-sql.md)  
+>[&larr; **Previous**](adding-view.md)     [**Next** &rarr;](working-with-sql.md)  

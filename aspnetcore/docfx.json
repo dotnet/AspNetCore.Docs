@@ -22,15 +22,16 @@
         "exclude": [
           "**/obj/**",
           "aspnet/core/**",
-          "**/includes/**"
+          "**/includes/**",
+          "_site/**"
         ]
       }
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {"breadcrumb_path": "/aspnet/breadcrumb/toc.json"},
     "fileMetadata": {},
     "template": [],
-    "dest": "aspnet/core"
+    "dest": "_site"
   }
 }

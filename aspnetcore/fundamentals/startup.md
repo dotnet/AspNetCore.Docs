@@ -32,7 +32,7 @@ The `Configure` method is used to specify how the ASP.NET application will respo
 
 Your `Configure` method must accept an [`IApplicationBuilder`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/IApplicationBuilder/index.html) parameter. Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be specified, in which case these services will be [injected](dependency-injection.md) by the server if they are available. In the following example from the default web site template, you can see several extension methods are used to configure the pipeline with support for [BrowserLink](http://www.asp.net/visual-studio/overview/2013/using-browser-link), error pages, static files, ASP.NET MVC, and Identity.
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
 
 Each `Use` extension method adds [middleware](middleware.md) to the request pipeline. For instance, the `UseMvc` extension method adds the [routing](routing.md) middleware to the request pipeline and configures [MVC](../mvc/index.md) as the default handler.
 
@@ -44,7 +44,7 @@ Your `Startup` class can optionally include a `ConfigureServices` method for con
 
 Just as with `Configure`, it is recommended that features that require substantial setup within `ConfigureServices` be wrapped up in extension methods on [`IServiceCollection`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/IServiceCollection/index.html). You can see in this example from the default web site template that several `Add[Something]` extension methods are used to configure the app to use services from Entity Framework, Identity, and MVC:
 
-[!code-csharp[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=4,7,11&start=40&end=55)]
 
 Adding services to the services container makes them available within your application via [dependency injection](dependency-injection.md).
 

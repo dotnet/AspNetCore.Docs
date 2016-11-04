@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1c33e576-33de-481a-8ad3-896b94fde0e3
 ms.prod: aspnet-core
-﻿uid: publishing/linuxproduction
+uid: publishing/linuxproduction
 ---
 # Publish to a Linux Production Environment
 
@@ -85,66 +85,82 @@ This is one of the simplest configuration files for Nginx that forwards incoming
 
 Once you have completed making changes to your nginx configuration you can run `sudo nginx -t` to verify the syntax of your configuration files. If the configuration file test is successful you can ask nginx to pick up the changes by running `sudo nginx -s reload`.
 
-## Monitoring our Web Application
+## Monitoring our application
 
-Nginx will forward requests to your Kestrel server, however unlike IIS on Windows, it does not mangage your Kestrel process. In this tutorial, we will use [supervisor](http://supervisord.org/) to start our application on system boot and restart our process in the event of a failure.
+Nginx is now setup to forward requests made to `http://localhost:80` on to the ASP.NET Core application running on Kestrel at `http://127.0.0.1:5000`.  However, Nginx is not set up to manage the Kestrel process. We will use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping and managing processes. 
 
-### Installing supervisor
+### Create the service file
 
-````bash
-sudo apt-get install supervisor
-   ````
+Create the service definition file 
 
-> [!NOTE]
-> `supervisor` is a python based tool and you can acquire it through [pip](http://supervisord.org/installing.html#installing-via-pip) or [easy_install](http://supervisord.org/installing.html#internet-installing-with-setuptools) instead.
+```bash
+    sudo nano /etc/systemd/system/kestrel-hellomvc.service
+```
 
-### Configuring supervisor
+An example service file for our application.
 
-Supervisor works by creating child processes based on data in its configuration file. When a child process dies, supervisor is notified via the `SIGCHILD` signal and supervisor can react accordingly and restart your web application.
+```text
+[Unit]
+    Description=Example .NET Web API Application running on CentOS 7
 
-To have supervisor monitor our application, we will add a file to the `/etc/supervisor/conf.d/` directory.
+    [Service]
+    ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+    Restart=always
+    RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
+    SyslogIdentifier=dotnet-example
+    User=www-data
+    Environment=ASPNETCORE_ENVIRONMENT=Production 
 
-/etc/supervisor/conf.d/hellomvc.conf
+    [Install]
+    WantedBy=multi-user.target
+```
 
-````ini
-[program:hellomvc]
-command=/usr/bin/dotnet /var/aspnetcore/HelloMVC/HelloMVC.dll
-directory=/var/aspnetcore/HelloMVC/
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/hellomvc.err.log
-stdout_logfile=/var/log/hellomvc.out.log
-environment=HOME=/var/www/,ASPNETCORE_ENVIRONMENT=Production
-user=www-data
-stopsignal=INT
-stopasgroup=true
-killasgroup=true
-````
+>note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
-Once you are done editing the configuration file, restart the `supervisord` process to change the set of programs controlled by supervisord.
+Save the file and enable the service.
 
-````bash
-sudo service supervisor stop
-sudo service supervisor start
-````
+```bash
+    systemctl enable kestrel-hellomvc.service
+```
 
-## Start our web application on startup
+Start the service and verify that it is running.
 
-In our case, since we are using supervisor to manage our application, the application will be automatically started by supervisor. Supervisor uses a System V Init script to run as a daemon on system boot and will susbsequently launch your application. If you chose not to use supervisor or an equivalent tool, you will need to write a `systemd` or `upstart` or `SysVinit` script to start your application on startup.
+```
+    systemctl start kestrel-hellomvc.service
+    systemctl status kestrel-hellomvc.service
 
-## Viewing logs
+    ● kestrel-hellomvc.service - Example .NET Web API Application running on Ubuntu
+        Loaded: loaded (/etc/systemd/system/kestrel-hellomvc.service; enabled)
+        Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
+    Main PID: 9021 (dotnet)
+        CGroup: /system.slice/kestrel-hellomvc.service
+                └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+```
 
-**Supervisord** logs messages about its own health and its subprocess' state changes to the activity log. The path to the activity log is configured via the `logfile` parameter in the configuration file.
+With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the **Server** still shows the ASP.NET Core application being served by Kestrel.
 
-````bash
-sudo tail -f /var/log/supervisor/supervisord.log
-   ````
+```text
+    HTTP/1.1 200 OK
+    Date: Tue, 11 Oct 2016 16:22:23 GMT
+    Server: Kestrel
+    Keep-Alive: timeout=5, max=98
+    Connection: Keep-Alive
+    Transfer-Encoding: chunked
+```
 
-You can redirect application logs (`STDOUT` and `STERR`) in the program section of your configuration file.
+### Viewing logs
 
-````bash
-tail -f /var/log/hellomvc.out.log
-   ````
+Since the web application using Kestrel is managed using systemd, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by systemd. To view the `kestrel-hellomvc.service` specific items, use the following command.
+
+```bash
+    sudo journalctl -fu kestrel-hellomvc.service
+```
+
+For further filtering, time options such as `--since today`, `--until 1 hour ago` or a combination of these can reduce the amount of entries returned.
+
+```bash
+    sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
+```
 
 ## Securing our application
 
@@ -221,3 +237,26 @@ Add `/etc/nginx/proxy.conf` configuration file.
 Edit `/etc/nginx/nginx.conf` configuration file. The example contains both http and server sections in one configuration file.
 
 [!code-nginx[Main](../publishing/linuxproduction/nginx.conf?highlight=2)]
+
+#### Secure Nginx from clickjacking
+Clickjacking is a malicious technique to collect an infected user's clicks. Clickjacking tricks the victim (visitor) into clicking on an infected site. Use X-FRAME-OPTIONS to secure your site.
+
+Edit the nginx.conf file.
+
+```bash
+    sudo nano /etc/nginx/nginx.conf
+```
+
+Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
+
+#### MIME-type sniffing
+
+This header prevents Internet Explorer from MIME-sniffing a response away from the declared content-type as the header instructs the browser not to override the response content type. With the nosniff option, if the server says the content is text/html, the browser will render it as text/html.
+
+Edit the nginx.conf file.
+
+```bash
+    sudo nano /etc/nginx/nginx.conf
+```
+
+Add the the line `add_header X-Content-Type-Options "nosniff"` and save the file, then restart Nginx.
