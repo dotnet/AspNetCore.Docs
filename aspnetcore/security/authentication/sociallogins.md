@@ -139,7 +139,7 @@ Install the Secret Manager tool using the steps in [this section](../app-secrets
 
 ## Setup login providers required by your application
 
-Please use the following pages to configure your application to use the respective providers:
+Use the following pages to configure your application to use the respective providers:
 
 * [Facebook](facebook-logins.md) instructions
 * [Twitter](twitter-logins.md) instructions
@@ -151,4 +151,4 @@ Please use the following pages to configure your application to use the respecti
 
 * This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
 
-* Please reference provider-specific pages to configure logins for the providers required by your app.
+* Reference provider-specific pages to configure logins for the providers required by your app.
