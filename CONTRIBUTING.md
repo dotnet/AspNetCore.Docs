@@ -10,12 +10,10 @@ Articles are stored in the repository as Markdown files. Simple changes to the c
 
 You'll need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. 
-* Wait for approval from the ASP.NET documentation team before you invest much time. 
+* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the ASP.NET documentation team before you invest much time. 
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
-* Edit files and commit your changes in your branch.
-* Submit a pull request (PR) from your branch in your fork to the master branch in the aspnet/Docs repo.
-* Wait for the ASP.NET documentation team to review the PR and accept it or suggest changes.
+* Submit a pull request (PR) to master with your changes.
+* Respond to PR feedback.
 
 ## Markdown syntax
 
@@ -68,9 +66,9 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 
 ## Test your changes with DocFX
 
-Markdown editors can't render every feature of DFM. For example, they won't render snippets that reference separate code files.  To verify that your Markdown changes will render correctly when deployed to the docs.microsoft.com site, you can view them in your browser by using the [DocFX command line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool) to create a locally hosted version of the site. DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
+Test your changes with the [DocFX command line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. 
 
-The rendering isn't perfect (DocFX doesn't render style and site extensions created for docs.microsoft.com) but is closer than what a Markdown editor would provide.
+DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS. DocFX doesn't render style and site extensions created for docs.microsoft.com.
 
 Follow these steps to build the site locally and view your changes:
 
