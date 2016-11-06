@@ -195,7 +195,7 @@ If you published a portable app (FDD),
 > to understand the differences of Framework-dependent deployments (FDD) and Self-contained deployments (SCD) check
 > [deployment options](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/)
 
-[!code-powershell[Main](https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1)]
+[!code-powershell[Main](nano-server/Download-Dotnet.ps1)]
 
 ## Publishing the application
 
