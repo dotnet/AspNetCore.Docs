@@ -195,11 +195,11 @@ If you published a portable app (FDD),
 > to understand the differences of Framework-dependent deployments (FDD) and Self-contained deployments (SCD) check
 > [deployment options](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/)
 
-[!code-powershell[Main](nano-server/Download-Dotnet.ps1)]
+[!code-powershell[Main](https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1)]
 
 ## Publishing the application
 
-Copy over the published output of your existing application to the file share.
+Copy over the published output of your existing application to the file share's root.
 
 You may need to make changes to your *web.config* to point to where you extracted `dotnet.exe`. Alternatively, you can add `dotnet.exe` to your path.
 
@@ -219,16 +219,20 @@ Example of how a web.config might look like if `dotnet.exe` was **not** on the p
    </configuration>
    ````
 
-Run the following commands in the remote session to create a new site in IIS for the published app. This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
+Run the following commands in the remote session to create a new site in IIS for the published app on a different port than the default website. You also need to open that port to access the web.
+This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
 
 <!-- literal_block {"ids": [], "classes": ["code", "powershell"], "xml:space": "preserve"} -->
 
 ````
-Import-module IISAdministration
-   New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:8000:"
+   Import-module IISAdministration
+   New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:81:"
+
+   New-NetFirewallRule -Name "AspNetCore Port 81 IIS" -DisplayName "Allow HTTP on TCP/81" `
+    -Protocol TCP -LocalPort 81 -Action Allow -Enabled True
    ````
 
 
 ## Running the Application
 
-The published web app should be accessible in browser at `http://<nanoserver-ip-address>:8000`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+The published web app should be accessible in browser at `http://192.168.1.10:81`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
