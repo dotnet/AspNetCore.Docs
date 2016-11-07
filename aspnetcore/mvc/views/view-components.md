@@ -237,4 +237,4 @@ Add a `using` statement to your Razor view file and use the `nameof` operator:
 
 * [Dependency injection into views](dependency-injection.md)
 
-* `ViewComponent``
+* `ViewComponent`

@@ -82,17 +82,17 @@ Several of the filter interfaces have corresponding attributes that can be used 
 
 Filter attributes:
 
-* `ActionFilterAttribute``
+* `ActionFilterAttribute`
 
-* `ExceptionFilterAttribute``
+* `ExceptionFilterAttribute`
 
-* `ResultFilterAttribute``
+* `ResultFilterAttribute`
 
-* `FormatFilterAttribute``
+* `FormatFilterAttribute`
 
-* `ServiceFilterAttribute``
+* `ServiceFilterAttribute`
 
-* `TypeFilterAttribute``
+* `TypeFilterAttribute`
 
 ### Cancellation and Short Circuiting
 
@@ -116,9 +116,9 @@ Filters that are implemented as attributes and added directly to controller clas
 
 However, if your filters have dependencies you need to access from DI, there are several supported approaches. You can apply your filter to a class or action method using
 
-* `ServiceFilterAttribute``
+* `ServiceFilterAttribute`
 
-* `TypeFilterAttribute``
+* `TypeFilterAttribute`
 
 * `IFilterFactory` implemented on your attribute
 

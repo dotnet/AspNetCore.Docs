@@ -58,11 +58,11 @@ URL generation follows a similar iterative process, but starts with user or fram
 
 The primary inputs to `GetVirtualPath` are:
 
-* `VirtualPathContext` `HttpContext``
+* `VirtualPathContext` `HttpContext`
 
-* `VirtualPathContext` `Values``
+* `VirtualPathContext` `Values`
 
-* `VirtualPathContext` `AmbientValues``
+* `VirtualPathContext` `AmbientValues`
 
 Routes primarily use the route values provided by the `Values` and `AmbientValues` to decide where it is possible to generate a URL and what values to include. The `AmbientValues` are the set of route values that were produced from matching the current request with the routing system. In contrast, `Values` are the route values that specify how to generate the desired URL for the current operation. The `HttpContext` is provided in case a route needs to get services or additional data associated with the current context.
 
@@ -194,10 +194,10 @@ Add routing to the service container in *Startup.cs*:
 
 Routes must configured in the `Configure` method in the `Startup` class. The sample below uses these APIs:
 
-* `RouteBuilder``
-* `Build``
+* `RouteBuilder`
+* `Build`
 * `MapGet`  Matches only HTTP GET requests
-* `UseRouter``
+* `UseRouter`
 
 <!-- literal_block {"xml:space": "preserve", "source": "fundamentals/routing/sample/RoutingSample/Startup.cs", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
 
@@ -246,12 +246,12 @@ If you are configuring a single route, call `app.UseRouter` passing in an `IRout
 
 The framework provides a set of extension methods for creating routes such as:
 
-* `MapRoute``
-* `MapGet``
-* `MapPost``
-* `MapPut``
-* `MapDelete``
-* `MapVerb``
+* `MapRoute`
+* `MapGet`
+* `MapPost`
+* `MapPut`
+* `MapDelete`
+* `MapVerb`
 
 Some of these methods such as `MapGet` require a `RequestDelegate` to be provided. The `RequestDelegate` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute`, then it will use the `DefaultHandler`.
 

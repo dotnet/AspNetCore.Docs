@@ -106,7 +106,7 @@ Learn more about working with Kestrel to create [Your First ASP.NET Core Applica
 
 WebListener is a Windows-only HTTP server for ASP.NET Core. It runs directly on the [Http.Sys kernel driver](http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture), and has very little overhead. WebListener cannot be used with the ASP.NET Core Module for IIS. It can only be used independently.
 
-You can add support for WebListener to your ASP.NET application by adding the `Microsoft.AspNetCore.Server.WebListener` dependency in *project.json* and calling `UseWebListener``
+You can add support for WebListener to your ASP.NET application by adding the `Microsoft.AspNetCore.Server.WebListener` dependency in *project.json* and calling `UseWebListener`
 
 > [!NOTE]
 > Kestrel is designed to be run behind a proxy (for example IIS or Nginx) and should not be deployed directly facing the Internet.

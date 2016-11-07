@@ -95,7 +95,7 @@ Create the service definition file
 
 ```bash
     sudo nano /etc/systemd/system/kestrel-hellomvc.service
-```
+``
 
 An example service file for our application.
 
@@ -113,7 +113,7 @@ An example service file for our application.
 
     [Install]
     WantedBy=multi-user.target
-```
+``
 
 >note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
@@ -121,11 +121,11 @@ Save the file and enable the service.
 
 ```bash
     systemctl enable kestrel-hellomvc.service
-```
+``
 
 Start the service and verify that it is running.
 
-```
+``
     systemctl start kestrel-hellomvc.service
     systemctl status kestrel-hellomvc.service
 
@@ -135,7 +135,7 @@ Start the service and verify that it is running.
     Main PID: 9021 (dotnet)
         CGroup: /system.slice/kestrel-hellomvc.service
                 └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
-```
+``
 
 With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the **Server** still shows the ASP.NET Core application being served by Kestrel.
 
@@ -146,7 +146,7 @@ With the reverse proxy configured and Kestrel managed through systemd, the web a
     Keep-Alive: timeout=5, max=98
     Connection: Keep-Alive
     Transfer-Encoding: chunked
-```
+``
 
 ### Viewing logs
 
@@ -154,13 +154,13 @@ Since the web application using Kestrel is managed using systemd, all events and
 
 ```bash
     sudo journalctl -fu kestrel-hellomvc.service
-```
+``
 
 For further filtering, time options such as `--since today`, `--until 1 hour ago` or a combination of these can reduce the amount of entries returned.
 
 ```bash
     sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
-```
+``
 
 ## Securing our application
 
@@ -245,7 +245,7 @@ Edit the nginx.conf file.
 
 ```bash
     sudo nano /etc/nginx/nginx.conf
-```
+``
 
 Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
 
@@ -257,6 +257,6 @@ Edit the nginx.conf file.
 
 ```bash
     sudo nano /etc/nginx/nginx.conf
-```
+``
 
 Add the the line `add_header X-Content-Type-Options "nosniff"` and save the file, then restart Nginx.

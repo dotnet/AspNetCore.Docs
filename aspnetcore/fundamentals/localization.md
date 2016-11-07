@@ -152,9 +152,9 @@ The current culture on a request is set in the localization [Middleware](middlew
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
-1. `QueryStringRequestCultureProvider``
-2. `CookieRequestCultureProvider``
-3. `AcceptLanguageHeaderRequestCultureProvider``
+1. `QueryStringRequestCultureProvider`
+2. `CookieRequestCultureProvider`
+3. `AcceptLanguageHeaderRequestCultureProvider`
 
 The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the `DefaultRequestCulture` is used.
 

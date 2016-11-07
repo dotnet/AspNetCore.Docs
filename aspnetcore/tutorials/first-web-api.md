@@ -177,7 +177,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 * If no item matches the requested ID, the method returns a 404 error.  This is done by returning `NotFound`.
 
-* Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult``
+* Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult`
 
   
 ### Launch the app
