@@ -1,4 +1,4 @@
-﻿---
+---
 uid: receiving/handlers
 ---
   # Processing WebHooks
