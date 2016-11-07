@@ -86,7 +86,7 @@ Kestrel supports dynamically binding to an unspecified, available port by specif
 
 IIS is the most feature rich server, and includes IIS management functionality and access to other IIS modules. Hosting ASP.NET Core no longer uses the `System.Web` infrastructure used by prior versions of ASP.NET.
 
-IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates. [Publishing and Deployment](../publishing/index.md#publishing-and-deployment) provides guidelines for publishing to IIS.
+IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates. [Publishing and Deployment](../publishing/index.md) provides guidelines for publishing to IIS.
 
 ### ASP.NET Core Module
 
