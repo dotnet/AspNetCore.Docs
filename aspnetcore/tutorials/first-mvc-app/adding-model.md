@@ -79,7 +79,7 @@ In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Fr
 Complete the **Add Controller** dialog
 
 * **Model class:** *Movie(MvcMovie.Models)*
-* **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
+* **Data context class:** *ApplicationDbContext(MvcMovie.Data)*
 * **Views:**: Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
 * Tap **Add**
