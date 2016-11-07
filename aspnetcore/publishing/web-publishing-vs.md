@@ -1,4 +1,4 @@
-﻿---
+---
 title: How Web Publishing In Visual Studio Works
 author: rick-anderson
 ms.author: riande
