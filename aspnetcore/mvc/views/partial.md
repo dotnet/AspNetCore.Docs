@@ -46,7 +46,7 @@ From within a view page, there are several ways in which you can render a partia
 
 [!code-html[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=9)]
 
-The `PartialAsync`` method is available for partial views containing asynchronous code (although code in views is generally discouraged):
+The `PartialAsync` method is available for partial views containing asynchronous code (although code in views is generally discouraged):
 
 [!code-html[Main](partial/sample/src/PartialViewsSample/Views/Home/About.cshtml?range=8)]
 

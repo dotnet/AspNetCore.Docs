@@ -41,7 +41,7 @@ public void ConfigureServices(IServiceCollection services)
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
-You then apply the policy using the `Policy`` property on the `AuthorizeAttribute`` attribute to specify the policy name;
+You then apply the policy using the `Policy` property on the `AuthorizeAttribute` attribute to specify the policy name;
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -51,7 +51,7 @@ You then apply the policy using the `Policy`` property on the `AuthorizeAttribut
    }
    ````
 
-The `AuthorizeAttribute`` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
+The `AuthorizeAttribute` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -63,7 +63,7 @@ The `AuthorizeAttribute`` attribute can be applied to an entire controller, in t
    }
    ````
 
-If you have a controller that is protected by the `AuthorizeAttribute`` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute`` attribute;
+If you have a controller that is protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute;
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]

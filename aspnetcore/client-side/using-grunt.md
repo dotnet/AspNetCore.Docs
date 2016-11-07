@@ -1,4 +1,4 @@
----
+﻿---
 title: Using Grunt
 author: rick-anderson
 ms.author: riande

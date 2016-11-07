@@ -221,17 +221,17 @@ All classes and interfaces prefixed with `WebApplication` have been renamed to s
 
 The application base path is now called the content root.
 
-The web root of your application is no longer specified in your *project.json* file. It is defined when setting up the web host and defaults to `wwwroot`. Call the `UseWebRoot`` extension method to specify a different web root folder. Alternatively, you can specify the web root folder in configuration and call the `UseConfiguration`` extension method.
+The web root of your application is no longer specified in your *project.json* file. It is defined when setting up the web host and defaults to `wwwroot`. Call the `UseWebRoot` extension method to specify a different web root folder. Alternatively, you can specify the web root folder in configuration and call the `UseConfiguration` extension method.
 
 ### Server address binding
 
-The server addresses that your application listens on can be specified using the `UseUrls`` extension method or through configuration.
+The server addresses that your application listens on can be specified using the `UseUrls` extension method or through configuration.
 
 Specifying only a port number as a binding address is no longer supported. The default binding address is http://localhost:5000
 
 ### Hosting configuration
 
-The `UseDefaultHostingConfiguration` method is no longer available. The only configuration values read by default by `WebHostBuilder`` are those specified in environment variables prefixed with `ASPNETCORE_*`. All other configuration sources must now be added explicitly to an `IConfigurationBuilder`` instance. See [Configuration](../fundamentals/configuration.md) for more information.
+The `UseDefaultHostingConfiguration` method is no longer available. The only configuration values read by default by `WebHostBuilder` are those specified in environment variables prefixed with `ASPNETCORE_*`. All other configuration sources must now be added explicitly to an `IConfigurationBuilder` instance. See [Configuration](../fundamentals/configuration.md) for more information.
 
 The environment key is set with the `ASPNETCORE_ENVIRONMENT` environment variable. `ASPNET_ENV` and `Hosting:Environment` are still supported, but generate a deprecated message warning.
 
@@ -255,7 +255,7 @@ Kestrel configuration has changed. [This GitHub announcement](https://github.com
 
 ### Controller and action results renamed
 
-The following `Controller`` methods have been renamed and moved to `ControllerBase``:
+The following `Controller` methods have been renamed and moved to `ControllerBase``:
 
 |ASP.NET 5 RC1|ASP.NET Core 1.0|
 |---|---|
@@ -331,24 +331,24 @@ ASP.NET Core 1.0:
 
 There are changes that simplify controller discovery:
 
-The new `ControllerAttribute`` can be used to mark a class (and it's subclasses) as a controller. A class whose name doesn't end in `Controller` and derives from a base class that ends in `Controller` is no longer considered a controller. In this scenario, `ControllerAttribute`` must be applied to the derived class itself or to the base class.
+The new `ControllerAttribute` can be used to mark a class (and it's subclasses) as a controller. A class whose name doesn't end in `Controller` and derives from a base class that ends in `Controller` is no longer considered a controller. In this scenario, `ControllerAttribute` must be applied to the derived class itself or to the base class.
 
 A type is considered a controller if **all** the following conditions are met:
 
 * The type is a public, concrete, non-open generic class
 
-* `NonControllerAttribute`` is **not** applied to any type in its hierarchy
+* `NonControllerAttribute` is **not** applied to any type in its hierarchy
 
-* The type name ends with `Controller`, or `ControllerAttribute`` is applied to the type or one of its ancestors.
+* The type name ends with `Controller`, or `ControllerAttribute` is applied to the type or one of its ancestors.
 
 > [!NOTE]
-> If `NonControllerAttribute`` is applied anywhere in the type hierarchy, the discovery conventions will never consider that type or its descendants to be a controller. In other words, `NonControllerAttribute`` takes precedence over `ControllerAttribute``.
+> If `NonControllerAttribute` is applied anywhere in the type hierarchy, the discovery conventions will never consider that type or its descendants to be a controller. In other words, `NonControllerAttribute` takes precedence over `ControllerAttribute``.
 
 ## Configuration
 
-The `IConfigurationSource`` interface has been introduced to represent the configuration used to build an `IConfigurationProvider``. It is no longer possible to access the provider instances from `IConfigurationBuilder``, only the sources. This is intentional, and may cause loss of functionality as you can no longer do things like call `Load` on the provider instances.
+The `IConfigurationSource` interface has been introduced to represent the configuration used to build an `IConfigurationProvider``. It is no longer possible to access the provider instances from `IConfigurationBuilder``, only the sources. This is intentional, and may cause loss of functionality as you can no longer do things like call `Load` on the provider instances.
 
-File-based configuration providers support both relative and absolute paths to configuration files. If you want to specify file paths relative to your application's content root, you must call the `SetBasePath`` extension method on `IConfigurationBuilder``:
+File-based configuration providers support both relative and absolute paths to configuration files. If you want to specify file paths relative to your application's content root, you must call the `SetBasePath` extension method on `IConfigurationBuilder``:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4]}} -->
 
@@ -363,15 +363,15 @@ public Startup(IHostingEnvironment env)
 
 ### Automatic reload on change
 
-The `IConfigurationRoot.ReloadOnChanged` extension method is no longer available. File-based configuration providers now provide extension methods to `IConfigurationBuilder`` that allow you to specify whether configuration from those providers should be reloaded when there are changes in their files. See `AddJsonFile``, `AddXmlFile`` and
-`AddIniFile`` for details.
+The `IConfigurationRoot.ReloadOnChanged` extension method is no longer available. File-based configuration providers now provide extension methods to `IConfigurationBuilder` that allow you to specify whether configuration from those providers should be reloaded when there are changes in their files. See `AddJsonFile``, `AddXmlFile` and
+`AddIniFile` for details.
 
 ## Logging
 
-`LogLevel.Verbose` has been renamed to `Trace`` and is now considered less severe than `Debug``.
+`LogLevel.Verbose` has been renamed to `Trace` and is now considered less severe than `Debug``.
 
-The `MinimumLevel` property has been removed from `ILoggerFactory``. Each logging provider now provides extension methods to `ILoggerFactory`` that allow specifying a minimum logging level. See `AddConsole``, `AddDebug``, and
-`AddEventLog`` for details.
+The `MinimumLevel` property has been removed from `ILoggerFactory``. Each logging provider now provides extension methods to `ILoggerFactory` that allow specifying a minimum logging level. See `AddConsole``, `AddDebug``, and
+`AddEventLog` for details.
 
 ## Identity
 

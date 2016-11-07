@@ -30,7 +30,7 @@ Static files can be stored in any folder under the `web root` and accessed with 
 * `http://\<app>/images/\<imageFileName>`
 * `http://localhost:9189/images/banner3.svg`
 
-In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the [UseStaticFiles](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/StaticFileExtensions/index.html#Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles) extension method from `Startup.Configure`:
+In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the `UseStaticFiles` extension method from `Startup.Configure`:
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
@@ -67,15 +67,15 @@ The static file module provides **no** authorization checks. Any files served by
 
 * Store them outside of *wwwroot* and any directory accessible to the static file middleware **and**
 
-* Serve them through a controller action, returning a `FileResult`` where authorization is applied
+* Serve them through a controller action, returning a `FileResult` where authorization is applied
 
 ## Enabling directory browsing
 
-Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the [UseDirectoryBrowser](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DirectoryBrowserExtensions/index.html#Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser) extension method from  `Startup.Configure`:
+Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the `UseDirectoryBrowser` extension method from  `Startup.Configure`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
-And add required services by calling `AddDirectoryBrowser`` extension method from  `Startup.ConfigureServices`:
+And add required services by calling `AddDirectoryBrowser` extension method from  `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet2)]
 
@@ -96,7 +96,7 @@ Setting a default home page gives site visitors a place to start when visiting y
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupEmpty.cs?highlight=3&name=snippet1)]
 
 > [!NOTE]
-> `UseDefaultFiles`` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL re-writer that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
+> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL re-writer that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
 
 With `UseDefaultFiles``, requests to a folder will search for:
 
@@ -116,7 +116,7 @@ The following code shows how to change the default file name to *mydefault.html*
 
 ## UseFileServer
 
-`UseFileServer`` combines the functionality of `UseStaticFiles``, `UseDefaultFiles``, and `UseDirectoryBrowser``.
+`UseFileServer` combines the functionality of `UseStaticFiles``, `UseDefaultFiles``, and `UseDirectoryBrowser``.
 
 The following code enables static files and the default file to be served, but does not allow directory browsing:
 
@@ -130,7 +130,7 @@ The following code enables static files, default files and  directory browsing:
 app.UseFileServer(enableDirectoryBrowsing: true);
    ````
 
-See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an [FileServerOptions](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/FileServerOptions/index.html#Microsoft.AspNetCore.Builder.FileServerOptions) object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
+See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
 
 * wwwroot
 
@@ -150,7 +150,7 @@ Using the hierarchy example above, you might want to enable static files, defaul
 
 [!code-csharp[Main](static-files/sample/StartupUseFileServer.cs?highlight=5,6,7,8,9,10,11&name=snippet1)]
 
-If `enableDirectoryBrowsing` is set to `true` you are required to call `AddDirectoryBrowser`` extension method from  `Startup.ConfigureServices`:
+If `enableDirectoryBrowsing` is set to `true` you are required to call `AddDirectoryBrowser` extension method from  `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupUseFileServer.cs?name=snippet2)]
 
@@ -170,7 +170,7 @@ If no default named files are in the *MyStaticFiles* directory, http://<app>/Sta
 
 ### FileExtensionContentTypeProvider
 
-The `FileExtensionContentTypeProvider`` class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
+The `FileExtensionContentTypeProvider` class contains a  collection that maps file extensions to MIME content types. In the following sample, several file extensions are registered to known MIME types, the ".rtf" is replaced, and ".mp4" is removed.
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupFileExtensionContentTypeProvider.cs?highlight=3,4,5,6,7,8,9,10,11,12,19&name=snippet1)]
 
@@ -187,7 +187,7 @@ The following code enables serving unknown types and will render the unknown fil
 With the code above, a request for a file with an unknown content type will be returned as an image.
 
 >[!WARNING]
-> Enabling `ServeUnknownFileTypes`` is a security risk and using it is discouraged.  `FileExtensionContentTypeProvider``  (explained below) provides a safer alternative to serving files with non-standard extensions.
+> Enabling `ServeUnknownFileTypes` is a security risk and using it is discouraged.  `FileExtensionContentTypeProvider`  (explained below) provides a safer alternative to serving files with non-standard extensions.
 
 ### Considerations
 

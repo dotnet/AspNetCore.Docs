@@ -31,7 +31,7 @@ public class DocumentController : Controller
    }
    ````
 
-`IAuthorizationService`` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
+`IAuthorizationService` has two methods, one where you pass the resource and the policy name and the other where you pass the resource and a list of requirements to evaluate.
 
 ````csharp
 Task<bool> AuthorizeAsync(ClaimsPrincipal user,
@@ -44,7 +44,7 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
 
 <a name=security-authorization-resource-based-imperative></a>
 
-To call the service load your resource within your action then call the `AuthorizeAsync`` overload you require. For example
+To call the service load your resource within your action then call the `AuthorizeAsync` overload you require. For example
 
 ````csharp
 public async Task<IActionResult> Edit(Guid documentId)
@@ -93,7 +93,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 ### Operational Requirements
 
-If you are making decisions based on operations such as read, write, update and delete, you can use the `OperationAuthorizationRequirement`` class in the `Microsoft.AspNetCore.Authorization.Infrastructure`` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation. To use it provide some operation names:
+If you are making decisions based on operations such as read, write, update and delete, you can use the `OperationAuthorizationRequirement` class in the `Microsoft.AspNetCore.Authorization.Infrastructure` namespace. This prebuilt requirement class enables you to write a single handler which has a parameterized operation name, rather than create individual classes for each operation. To use it provide some operation names:
 
 ````csharp
 public static class Operations
@@ -129,7 +129,7 @@ public class DocumentAuthorizationHandler :
 
 You can see the handler works on `OperationAuthorizationRequirement``. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
 
-To call an operational resource handler you need to specify the operation when calling `AuthorizeAsync`` in your action. For example
+To call an operational resource handler you need to specify the operation when calling `AuthorizeAsync` in your action. For example
 
 ````csharp
 if (await authorizationService.AuthorizeAsync(User, document, Operations.Read))
@@ -142,4 +142,4 @@ if (await authorizationService.AuthorizeAsync(User, document, Operations.Read))
    }
    ````
 
-This example checks if the User is able to perform the Read operation for the current `document` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning `ChallengeResult`` will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.
+This example checks if the User is able to perform the Read operation for the current `document` instance. If authorization succeeds the view for the document will be returned. If authorization fails returning `ChallengeResult` will inform any authentication middleware authorization has failed and the middleware can take the appropriate response, for example returning a 401 or 403 status code, or redirecting the user to a login page for interactive browser clients.

@@ -1,4 +1,4 @@
----
+﻿---
 title: Enabling authentication using Facebook, Google and other external providers
 author: rick-anderson
 ms.author: riande

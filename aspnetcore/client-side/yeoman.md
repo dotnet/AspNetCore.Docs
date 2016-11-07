@@ -1,4 +1,4 @@
----
+﻿---
 title: Building Projects with Yeoman
 author: rick-anderson
 ms.author: riande

@@ -1,4 +1,4 @@
----
+﻿---
 title: Configuring Data Protection
 author: rick-anderson
 ms.author: riande

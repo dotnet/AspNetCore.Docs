@@ -103,7 +103,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ````
 
-Policies are applied using the `Policy`` property on the `AuthorizeAttribute`` attribute;
+Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute;
 
 ````csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -113,7 +113,7 @@ public IActionResult Shutdown()
 }
 ````
 
-If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole`` method;
+If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method;
 
 ````csharp
 options.AddPolicy("ElevatedRights", policy =>

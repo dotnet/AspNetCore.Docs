@@ -1,4 +1,4 @@
----
+﻿---
 title: Preventing Cross-Site Scripting
 author: rick-anderson
 ms.author: riande

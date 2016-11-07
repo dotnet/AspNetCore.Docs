@@ -138,7 +138,7 @@ The movie-genre view model will contain:
 
    * a list of movies
 
-   * a `SelectList`` containing the list of genres. This will allow the user to select a genre from the list.
+   * a `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
 
    * `movieGenre`, which contains the selected genre
 

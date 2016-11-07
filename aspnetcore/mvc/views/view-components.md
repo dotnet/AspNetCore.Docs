@@ -46,7 +46,7 @@ View Components are intended anywhere you have reusable rendering logic that is 
 
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A `view component`` consists of two parts, the class (typically derived from  `ViewComponent`) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A `view component` consists of two parts, the class (typically derived from  `ViewComponent`) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 ## Creating a view component
 
@@ -62,7 +62,7 @@ A view component class can be created by any of the following:
 
 * Creating a class where the name ends with the suffix *ViewComponent*
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name`` property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name` property.
 
 A view component class:
 
@@ -72,11 +72,11 @@ A view component class:
 
 ### View component methods
 
-A view component defines its logic in an `InvokeAsync` method that returns an `IViewComponentResult``. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View`` method. In summary, view component methods:
+A view component defines its logic in an `InvokeAsync` method that returns an `IViewComponentResult``. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
 
 * Define an *InvokeAsync`* method that returns an `IViewComponentResult`
 
-* Typically initializes a model and passes it to a view by calling the `ViewComponent``  `View`` method
+* Typically initializes a model and passes it to a view by calling the `ViewComponent`  `View` method
 
 * Parameters come from the calling method, not HTTP, there is no model binding
 

@@ -65,7 +65,7 @@ Sections defined in a view are available only in its immediate layout page. They
 
 By default, the body and all sections in a content page must all be rendered by the layout page. The Razor view engine enforces this by tracking whether the body and each section have been rendered.
 
-To instruct the view engine to ignore the body or sections, call the `IgnoreBody`` and `IgnoreSection`` methods.
+To instruct the view engine to ignore the body or sections, call the `IgnoreBody` and `IgnoreSection` methods.
 
 The body and every section in a Razor page must be either rendered or ignored.
 

@@ -17,7 +17,7 @@ Individual web server features related to how HTTP requests and responses are ha
 
 ## Feature interfaces
 
-ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCore.Http.Features`` which are used by servers to identify the features they support. The following feature interfaces handle requests and return responses:
+ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCore.Http.Features` which are used by servers to identify the features they support. The following feature interfaces handle requests and return responses:
 
 `IHttpRequestFeature``
    Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body.
@@ -59,15 +59,15 @@ ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCor
    Defines methods for working with TLS token binding parameters.
 
 > [!NOTE]
-> `ISessionFeature`` is not a server feature, but is implemented by the `SessionMiddleware`` (see [Managing Application State](app-state.md)).
+> `ISessionFeature` is not a server feature, but is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
 
 ## Feature collections
 
-The `Features`` property of `HttpContext`` provides an interface for getting and setting the available HTTP features for the current request. Since the feature collection is mutable even within the context of a request, middleware can be used to modify the collection and add support for additional features.
+The `Features` property of `HttpContext` provides an interface for getting and setting the available HTTP features for the current request. Since the feature collection is mutable even within the context of a request, middleware can be used to modify the collection and add support for additional features.
 
 ## Middleware and request features
 
-While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware`` accesses the `IHttpSendFileFeature`` feature. If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the `IHttpSendFileFeature`` allows the operating
+While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware` accesses the `IHttpSendFileFeature` feature. If the feature exists, it is used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the `IHttpSendFileFeature` allows the operating
 system to open the file and perform a direct kernel mode copy to the network card.
 
 Additionally, middleware can add to the feature collection established by the server. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.
