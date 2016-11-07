@@ -248,7 +248,7 @@ You saw earlier that the `Invoke` method in your middleware takes a parameter of
 public async Task Invoke(HttpContext context)
 ````
 
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx) to the new `Microsoft.AspNetCore.Http.HttpContext``.
+`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx) to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
 ### HttpContext
 

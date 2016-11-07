@@ -24,7 +24,7 @@ ASP.NET Core was designed to decouple web applications from the underlying HTTP 
 * Microsoft.AspNetCore.Server.Kestrel (AKA Kestrel, cross-platform)
 * Microsoft.AspNetCore.Server.WebListener (AKA WebListener, Windows-only)
 
-ASP.NET Core does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of [feature interfaces](request-features.md) composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any of these servers via extension methods on `WebHostBuilder``.
+ASP.NET Core does not directly listen for requests, but instead relies on the HTTP server implementation to surface the request to the application as a set of [feature interfaces](request-features.md) composed into an HttpContext. While WebListener is Windows-only, Kestrel is designed to run cross-platform. You can configure your application to be hosted by any of these servers via extension methods on `WebHostBuilder`.
 
 The default web host for ASP.NET apps developed using Visual Studio is IIS Express functioning as a reverse proxy server for Kestrel. The "Microsoft.AspNetCore.Server.Kestrel" and "Microsoft.AspNetCore.Server.IISIntegration" dependencies are included in *project.json* by default, even with the Empty web site template. Visual Studio provides support for multiple profiles. In addition to the default profile for running in IIS Express, the templates include a second profile that executes the app directly relying on Kestrel for self-hosting. You can manage these profiles and their settings in the **Debug** tab of your web application project's Properties menu or from the *launchSettings.json* file.
 
@@ -41,7 +41,7 @@ project.json (truncated)
 
 `UseKestrel` and `UseWebListener` both have an overload taking an options configuration callback that can be used for server-specific configuration. For instance, WebListener exposes `AuthenticationManager` that can be used to configure the server's authentication. Configuration can easily be driven by JSON text files, environment variables, command line arguments and more with the help of ASP.NET Core's [Configuration](configuration.md) facilities.
 
-Kestrel is selected by default in the sample project in the `Program.Main` method which is the entry point for the application. The sample is programmed so WebListener can be selected instead by passing `--server WebListener` as a command line argument. The sample explicitly reads the `--server` command line argument to determine whether to call `UseKestrel` or `UseWebListener``. The `--server` command line flag is **not** interpreted by the ASP.NET Core framework to have any special meaning.
+Kestrel is selected by default in the sample project in the `Program.Main` method which is the entry point for the application. The sample is programmed so WebListener can be selected instead by passing `--server WebListener` as a command line argument. The sample explicitly reads the `--server` command line argument to determine whether to call `UseKestrel` or `UseWebListener`. The `--server` command line flag is **not** interpreted by the ASP.NET Core framework to have any special meaning.
 
 > [!NOTE]
 > `builder.UseUrls("http://localhost")` configures Kestrel and WebListener to only listen to local requests. Replace "localhost" with "*" to also listen to external requests.
@@ -71,7 +71,7 @@ ASP.NET defines a number of [Request Features](request-features.md). The followi
 
 ### ServerFeatures Collection
 
-The `IApplicationBuilder` available in the `Startup`'s `Configure` method exposes the `ServerFeatures` property of type `IFeatureCollection``. Kestrel and WebListener both expose only a single feature, `IServerAddressesFeature``, but different server implementations may expose additional functionality.
+The `IApplicationBuilder` available in the `Startup`'s `Configure` method exposes the `ServerFeatures` property of type `IFeatureCollection`. Kestrel and WebListener both expose only a single feature, `IServerAddressesFeature`, but different server implementations may expose additional functionality.
 
 ### Port 0 binding with Kestrel
 
@@ -96,7 +96,7 @@ In ASP.NET Core on Windows, the web application is hosted by an external process
 
 ## Kestrel
 
-Kestrel is a cross-platform web server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. You add support for Kestrel by including `Microsoft.AspNetCore.Server.Kestrel` in your project's dependencies listed in *project.json* and calling `UseKestrel``.
+Kestrel is a cross-platform web server based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. You add support for Kestrel by including `Microsoft.AspNetCore.Server.Kestrel` in your project's dependencies listed in *project.json* and calling `UseKestrel`.
 
 Learn more about working with Kestrel to create [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../tutorials/your-first-mac-aspnet.md).
 
@@ -117,13 +117,13 @@ If you intend to deploy your application on a Windows server, you should run IIS
 
 ## Custom Servers
 
-You can create your own server in which to host ASP.NET apps, or use other open source servers. When implementing your own server, you're free to implement just the feature interfaces your application needs, though at a minimum you must support `IHttpRequestFeature` and `IHttpResponseFeature``.
+You can create your own server in which to host ASP.NET apps, or use other open source servers. When implementing your own server, you're free to implement just the feature interfaces your application needs, though at a minimum you must support `IHttpRequestFeature` and `IHttpResponseFeature`.
 
 Since Kestrel is open source, it makes an excellent starting point if you need to implement your own custom server. Like all of ASP.NET Core, you're welcome to [contribute](https://github.com/aspnet/KestrelHttpServer/blob/dev/CONTRIBUTING.md) any improvements you make back to the project.
 
 Kestrel currently supports a limited number of feature interfaces, but additional features will be added in the future.
 
-The [Using ASP.NET Hosting on an OWIN-based server](owin.md#hosting-on-owin) guide demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin) based `IServer``.
+The [Using ASP.NET Hosting on an OWIN-based server](owin.md#hosting-on-owin) guide demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin) based `IServer`.
 
 ## Additional Reading
 

@@ -117,7 +117,7 @@ The created table have the following schema:
 
 ![image](distributed/_static/SqlServerCacheTable.png)
 
-Like all cache implementations, your app should get and set cache values using an instance of `IDistributedCache``, not a `SqlServerCache`. The sample implements `SqlServerCache` in the `Production` environment (so it is configured in `ConfigureProductionServices`).
+Like all cache implementations, your app should get and set cache values using an instance of `IDistributedCache`, not a `SqlServerCache`. The sample implements `SqlServerCache` in the `Production` environment (so it is configured in `ConfigureProductionServices`).
 
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/Startup.cs?highlight=7,8,9,10,11,12&range=42-56)]
 

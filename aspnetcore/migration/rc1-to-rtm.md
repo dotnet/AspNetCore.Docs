@@ -237,7 +237,7 @@ The environment key is set with the `ASPNETCORE_ENVIRONMENT` environment variabl
 
 ### Hosting service changes
 
-Dependency injection code that uses `IApplicationEnvironment` must now use `IHostingEnvironment``. For example, in your `Startup` class, change:
+Dependency injection code that uses `IApplicationEnvironment` must now use `IHostingEnvironment`. For example, in your `Startup` class, change:
 
 ````csharp
 public Startup(IApplicationEnvironment applicationEnvironment)
@@ -342,11 +342,11 @@ A type is considered a controller if **all** the following conditions are met:
 * The type name ends with `Controller`, or `ControllerAttribute` is applied to the type or one of its ancestors.
 
 > [!NOTE]
-> If `NonControllerAttribute` is applied anywhere in the type hierarchy, the discovery conventions will never consider that type or its descendants to be a controller. In other words, `NonControllerAttribute` takes precedence over `ControllerAttribute``.
+> If `NonControllerAttribute` is applied anywhere in the type hierarchy, the discovery conventions will never consider that type or its descendants to be a controller. In other words, `NonControllerAttribute` takes precedence over `ControllerAttribute`.
 
 ## Configuration
 
-The `IConfigurationSource` interface has been introduced to represent the configuration used to build an `IConfigurationProvider``. It is no longer possible to access the provider instances from `IConfigurationBuilder``, only the sources. This is intentional, and may cause loss of functionality as you can no longer do things like call `Load` on the provider instances.
+The `IConfigurationSource` interface has been introduced to represent the configuration used to build an `IConfigurationProvider`. It is no longer possible to access the provider instances from `IConfigurationBuilder`, only the sources. This is intentional, and may cause loss of functionality as you can no longer do things like call `Load` on the provider instances.
 
 File-based configuration providers support both relative and absolute paths to configuration files. If you want to specify file paths relative to your application's content root, you must call the `SetBasePath` extension method on `IConfigurationBuilder``:
 
@@ -363,14 +363,14 @@ public Startup(IHostingEnvironment env)
 
 ### Automatic reload on change
 
-The `IConfigurationRoot.ReloadOnChanged` extension method is no longer available. File-based configuration providers now provide extension methods to `IConfigurationBuilder` that allow you to specify whether configuration from those providers should be reloaded when there are changes in their files. See `AddJsonFile``, `AddXmlFile` and
+The `IConfigurationRoot.ReloadOnChanged` extension method is no longer available. File-based configuration providers now provide extension methods to `IConfigurationBuilder` that allow you to specify whether configuration from those providers should be reloaded when there are changes in their files. See `AddJsonFile`, `AddXmlFile` and
 `AddIniFile` for details.
 
 ## Logging
 
-`LogLevel.Verbose` has been renamed to `Trace` and is now considered less severe than `Debug``.
+`LogLevel.Verbose` has been renamed to `Trace` and is now considered less severe than `Debug`.
 
-The `MinimumLevel` property has been removed from `ILoggerFactory``. Each logging provider now provides extension methods to `ILoggerFactory` that allow specifying a minimum logging level. See `AddConsole``, `AddDebug``, and
+The `MinimumLevel` property has been removed from `ILoggerFactory`. Each logging provider now provides extension methods to `ILoggerFactory` that allow specifying a minimum logging level. See `AddConsole`, `AddDebug`, and
 `AddEventLog` for details.
 
 ## Identity
@@ -415,7 +415,7 @@ The ASP.NET Core Module must be configured in *web.config*:
 
 The *Publish to IIS tool* generates a correct *web.config*. See [Publishing to IIS](../publishing/iis.md) for more details.
 
-IIS integration middleware is now configured when creating the `Microsoft.AspNetCore.Hosting.WebHostBuilder``, and is no longer called in the `Configure` method of the `Startup` class:
+IIS integration middleware is now configured when creating the `Microsoft.AspNetCore.Hosting.WebHostBuilder`, and is no longer called in the `Configure` method of the `Startup` class:
 
 ````csharp
 var host = new WebHostBuilder()

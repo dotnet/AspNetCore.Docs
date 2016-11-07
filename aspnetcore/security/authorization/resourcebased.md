@@ -17,7 +17,7 @@ Often authorization depends upon the resource being accessed. For example a docu
 
 ## Authorizing within your code
 
-Authorization is implemented as a service, `IAuthorizationService``, registered in the service collection and available via [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection) for Controllers to access.
+Authorization is implemented as a service, `IAuthorizationService`, registered in the service collection and available via [dependency injection](../../fundamentals/dependency-injection.md#fundamentals-dependency-injection) for Controllers to access.
 
 ````csharp
 public class DocumentController : Controller
@@ -127,7 +127,7 @@ public class DocumentAuthorizationHandler :
    }
    ````
 
-You can see the handler works on `OperationAuthorizationRequirement``. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
+You can see the handler works on `OperationAuthorizationRequirement`. The code inside the handler must take the Name property of the supplied requirement into account when making its evaluations.
 
 To call an operational resource handler you need to specify the operation when calling `AuthorizeAsync` in your action. For example
 

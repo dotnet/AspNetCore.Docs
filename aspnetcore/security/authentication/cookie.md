@@ -84,7 +84,7 @@ To implement an override for the `ValidateAsync()` event you must write a method
 Task ValidateAsync(CookieValidatePrincipalContext context);
    ````
 
-ASP.NET Core Identity implements this check as part of its `SecurityStampValidator``. A simple example would look something like as follows;
+ASP.NET Core Identity implements this check as part of its `SecurityStampValidator`. A simple example would look something like as follows;
 
 ````csharp
 public static class LastChangedValidator

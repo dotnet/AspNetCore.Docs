@@ -59,7 +59,7 @@ Becomes:
 
 ## Hosting
 
-The `UseServer` is no longer available for `IWebHostBuilder``. You must now use `UseKestrel` or `UseWebListener``.
+The `UseServer` is no longer available for `IWebHostBuilder`. You must now use `UseKestrel` or `UseWebListener`.
 
 ## ASP.NET MVC Core
 

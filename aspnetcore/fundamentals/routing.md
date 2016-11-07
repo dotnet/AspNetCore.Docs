@@ -38,7 +38,7 @@ Routing is connected to the [middleware](middleware.md) pipeline by the `RouterM
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
 
 Incoming requests enter the `RouterMiddleware` which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext` `Handler` to a non-null
-`RequestDelegate``. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all routes are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
+`RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all routes are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
 
 The primary input to `RouteAsync` is the `RouteContext` `HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext` `RouteData` are outputs that will be set after a successful match.
 
@@ -69,7 +69,7 @@ Routes primarily use the route values provided by the `Values` and `AmbientValue
 >[!TIP]
 > Think of `Values` as being a set of overrides for the `AmbientValues`. URL generation tries to reuse route values from the current request to make it easy to generate URLs for links using the same route or route values.
 
-The output of `GetVirtualPath` is a `VirtualPathData``. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL as well as the some additional properties that should be set by the route.
+The output of `GetVirtualPath` is a `VirtualPathData`. `VirtualPathData` is a parallel of `RouteData`; it contains the `VirtualPath` for the output URL as well as the some additional properties that should be set by the route.
 
 The `VirtualPathData` `VirtualPath` property contains the *virtual path* produced by the route. Depending on your needs you may need to process the path further. For instance, if you want to render the generated URL in HTML you need to prepend the base path of the application.
 
@@ -81,10 +81,10 @@ The `VirtualPathData` `DataTokens` properties is a dictionary of additional data
 
 Routing provides the `Route` class as the standard implementation of `IRouter`. `Route` uses the *route template* syntax to define patterns that will match against the URL path when `RouteAsync` is called. `Route` will use the same route template to generate a URL when `GetVirtualPath` is called.
 
-Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder``. All of these methods will create an instance of `Route` and add it to the route collection.
+Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
 > [!NOTE]
-> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler``. Since the default handler is an `IRouter``, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [ð"§ Routing to Controller Actions](../mvc/controllers/routing.md).
+> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [ð"§ Routing to Controller Actions](../mvc/controllers/routing.md).
 
 This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
 
@@ -253,7 +253,7 @@ The framework provides a set of extension methods for creating routes such as:
 * `MapDelete``
 * `MapVerb``
 
-Some of these methods such as `MapGet` require a `RequestDelegate` to be provided. The `RequestDelegate` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute`, then it will use the `DefaultHandler``.
+Some of these methods such as `MapGet` require a `RequestDelegate` to be provided. The `RequestDelegate` will be used as the *route handler* when the route matches. Other methods in this family allow configuring a middleware pipeline which will be used as the route handler. If the *Map* method doesn't accept a handler, such as `MapRoute`, then it will use the `DefaultHandler`.
 
 The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in the method name. For example, see [MapGet](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L85-L88) and [MapVerb](https://github.com/aspnet/Routing/blob/1.0.0/src/Microsoft.AspNetCore.Routing/RequestDelegateRouteBuilderExtensions.cs#L156-L180).
 

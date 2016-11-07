@@ -49,7 +49,7 @@ As we have just seen, your application can request an instance of `ILogger<T>` a
 
 ### Logging Verbosity Levels
 
-When adding logging statements to your application, you must specify a `LogLevel``. The LogLevel allows you to control the verbosity of the logging output from your application, as well as the ability to pipe different kinds of log messages to different loggers. For example, you may wish to log debug messages to a local file, but log errors to the machine's event log or a database.
+When adding logging statements to your application, you must specify a `LogLevel`. The LogLevel allows you to control the verbosity of the logging output from your application, as well as the ability to pipe different kinds of log messages to different loggers. For example, you may wish to log debug messages to a local file, but log errors to the machine's event log or a database.
 
 ASP.NET Core defines six levels of logging verbosity, ordered by increasing importance or severity:
 

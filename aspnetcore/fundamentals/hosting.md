@@ -13,11 +13,11 @@ uid: fundamentals/hosting
 
 By [Steve Smith](http://ardalis.com)
 
-To run an ASP.NET Core app, you need to configure and launch a host using `WebHostBuilder``.
+To run an ASP.NET Core app, you need to configure and launch a host using `WebHostBuilder`.
 
 ## What is a Host?
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder``, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers.md).
+ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers.md).
 
 ### What is the difference between a host and a server?
 

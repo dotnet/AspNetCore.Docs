@@ -39,7 +39,7 @@ In order for static files to be served, you must configure the [Middleware](midd
 You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 > [!NOTE]
-> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot``. See [Introduction to ASP.NET Core](../index.md) for more information.
+> `web root` defaults to the *wwwroot* directory, but you can set the `web root` directory with `UseWebRoot`. See [Introduction to ASP.NET Core](../index.md) for more information.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
@@ -98,7 +98,7 @@ Setting a default home page gives site visitors a place to start when visiting y
 > [!NOTE]
 > `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL re-writer that doesn't actually serve the file. You must enable the static file middleware (`UseStaticFiles`) to serve the file.
 
-With `UseDefaultFiles``, requests to a folder will search for:
+With `UseDefaultFiles`, requests to a folder will search for:
 
    * default.htm
 
@@ -116,7 +116,7 @@ The following code shows how to change the default file name to *mydefault.html*
 
 ## UseFileServer
 
-`UseFileServer` combines the functionality of `UseStaticFiles``, `UseDefaultFiles``, and `UseDirectoryBrowser``.
+`UseFileServer` combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`.
 
 The following code enables static files and the default file to be served, but does not allow directory browsing:
 
@@ -146,7 +146,7 @@ See [Considerations](#considerations) on the security risks when enabling browsi
 
   * default.html
 
-Using the hierarchy example above, you might want to enable static files, default files, and browsing for the `MyStaticFiles` directory. In the following code snippet, that is accomplished with a single call to `FileServerOptions``.
+Using the hierarchy example above, you might want to enable static files, default files, and browsing for the `MyStaticFiles` directory. In the following code snippet, that is accomplished with a single call to `FileServerOptions`.
 
 [!code-csharp[Main](static-files/sample/StartupUseFileServer.cs?highlight=5,6,7,8,9,10,11&name=snippet1)]
 
