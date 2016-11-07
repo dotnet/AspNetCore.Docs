@@ -76,9 +76,9 @@ Follow these steps to build the site locally and view your changes:
 * Add DocFX to your PATH.
 * In a command line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
 
-   ``
+   ```
    docfx -t default --serve
-   ``
+   ```
 	
 * In a browser, navigate to `http://localhost:8080`.
 
