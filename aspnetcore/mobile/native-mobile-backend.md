@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com)
 
 Mobile apps can easily communicate with ASP.NET Core backend services.
 
-[View or download sample backend services code](https://github.com/aspnet/Docs/tree/master/aspnet/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
 
 ## The Sample Native Mobile App
 

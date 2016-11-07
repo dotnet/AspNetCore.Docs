@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
 
 Web APIs are HTTP services that reach a broad range of clients, including browsers and mobile devices. ASP.NET Core MVC includes support for building Web APIs providing a single, consistent way of building web applications. In this article, we demonstrate the steps required to migrate a Web API implementation from ASP.NET Web API to ASP.NET Core MVC.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/migration/webapi/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/webapi/sample)
 
 ## Review ASP.NET Web API Project
 

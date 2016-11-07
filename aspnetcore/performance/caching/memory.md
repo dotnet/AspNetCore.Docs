@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 Caching involves keeping a copy of data in a location that can be accessed more quickly than the source data. ASP.NET Core has rich support for caching in a variety of ways, including keeping data in memory on the local server, which is referred to as *in memory caching*.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/performance/caching/memory/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample)
 
 <a name=caching-basics></a>
 

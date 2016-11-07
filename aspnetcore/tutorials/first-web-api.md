@@ -1,4 +1,4 @@
----
+﻿---
 title: Building Your First Web API with ASP.NET Core MVC and Visual Studio
 author: rick-anderson
 ms.author: riande
@@ -247,7 +247,7 @@ The response is [204 (No Content)](http://www.w3.org/Protocols/rfc2616/rfc2616-s
 
 * For information about deploying your API, see [Publishing and Deployment](../publishing/index.md).
 
-* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample)
+* [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample)
 
 * [Postman](https://www.getpostman.com/)
 

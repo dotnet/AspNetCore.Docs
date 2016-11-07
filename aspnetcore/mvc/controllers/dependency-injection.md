@@ -17,7 +17,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core MVC controllers should request their dependencies explicitly via their constructors. In some instances, individual controller actions may require a service, and it may not make sense to request at the controller level. In this case, you can also choose to inject a service as a parameter on the action method.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/dependency-injection/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/dependency-injection/sample)
 
 ## Dependency Injection
 
