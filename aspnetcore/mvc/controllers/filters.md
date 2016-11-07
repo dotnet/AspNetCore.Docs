@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com)
 
 *Filters* in ASP.NET MVC allow you to run code before or after a particular stage in the execution pipeline. Filters can be configured globally, per-controller, or per-action.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/filters/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
 
 ## How do filters work?
 
@@ -295,4 +295,4 @@ You can override the built-in `ResultFilterAttribute` to create result filters. 
 
 In general, filters are meant to handle cross-cutting business and application concerns. This is often the same use case for [middleware](../../fundamentals/middleware.md). Filters are very similar to middleware in capability, but let you scope that behavior and insert it into a location in your app where it makes sense, such as before a view, or after model binding. Filters are a part of MVC, and have access to its context and constructs. For instance, middleware can't easily detect whether model validation on a request has generated errors, and respond accordingly, but a filter can easily do so.
 
-To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/controllers/filters/sample).
+To experiment with filters, [download, test and modify the sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).

@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com)
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/models/formatting/sample).
+[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/formatting/sample).
 
 ## Format-Specific Action Results
 

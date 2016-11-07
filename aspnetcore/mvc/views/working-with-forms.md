@@ -585,4 +585,4 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 
 * [data annotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx)
 
-* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/forms/sample).
+* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/forms/sample).

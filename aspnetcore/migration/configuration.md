@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com) and [Scott Addie](https://scottaddie.com)
 
 In the previous article, we began [migrating an ASP.NET MVC project to ASP.NET Core MVC](mvc.md). In this article, we migrate configuration.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/migration/configuration/samples)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/migration/configuration/samples)
 
 ## Setup Configuration
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: Middleware
 author: rick-anderson
 ms.author: riande
@@ -165,7 +165,7 @@ Testing the middleware (by setting the `Hosting:Environment` environment variabl
 
 * [CodeLabs middleware tutorial](https://github.com/Microsoft-Build-2016/CodeLabs-WebDev/tree/master/Module2-AspNetCore)
 
-* [Sample code used in this doc](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/middleware/sample)
+* [Sample code used in this doc](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/middleware/sample)
 
 * [Migrating HTTP Modules to Middleware](../migration/http-modules.md)
 

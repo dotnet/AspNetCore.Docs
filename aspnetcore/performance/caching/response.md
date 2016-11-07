@@ -16,7 +16,7 @@ uid: performance/caching/response
 
 [Steve Smith](http://ardalis.com)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/performance/caching/response/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample)
 
 ## What is Response Caching
 

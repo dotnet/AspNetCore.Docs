@@ -13,7 +13,7 @@ uid: mvc/views/tag-helpers/authoring
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/tag-helpers/authoring/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/authoring/sample)
 
 ## Getting started with Tag Helpers
 
