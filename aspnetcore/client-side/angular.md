@@ -1,4 +1,4 @@
-﻿---
+---
 title: Using Angular for Single Page Applications (SPAs)
 author: rick-anderson
 ms.author: riande
