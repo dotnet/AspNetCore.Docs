@@ -1,4 +1,4 @@
-﻿---
+---
 title: Building Beautiful, Responsive Sites with Bootstrap
 author: rick-anderson
 ms.author: riande
