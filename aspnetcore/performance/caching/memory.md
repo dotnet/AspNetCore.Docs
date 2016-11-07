@@ -29,7 +29,7 @@ Caching can dramatically improve the performance and scalability of ASP.NET appl
 > [!NOTE]
 > Caching in all forms (in-memory or distributed, including session state) involves making a copy of data in order to optimize performance. The copied data should be considered ephemeral - it could disappear at any time. Apps should be written to not depend on cached data, but use it when available.
 
-ASP.NET supports several different kinds of caches, the simplest of which is represented by the [`IMemoryCache`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Caching/Memory/IMemoryCache/index.html) interface, which represents a cache stored in the memory of the local web server.
+ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache` interface, which represents a cache stored in the memory of the local web server.
 
 You should always write (and test!) your application such that it can use cached data if it's available, but otherwise will work correctly using the underlying data source.
 
@@ -92,7 +92,7 @@ new MemoryCacheEntryOptions()
   .SetAbsoluteExpiration(TimeSpan.FromHours(1))
 ````
 
-By default, an instance of `MemoryCache` will automatically manage the items stored, removing entries when necessary in response to memory pressure in the app. You can influence the way cache entries are managed by setting their [`CacheItemPriority`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Caching/Memory/CacheItemPriority/index.html) when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the `NeverRemove` priority option:
+By default, an instance of `MemoryCache` will automatically manage the items stored, removing entries when necessary in response to memory pressure in the app. You can influence the way cache entries are managed by setting their `CacheItemPriority` when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the `NeverRemove` priority option:
 
 ````csharp
 // keep item in cache indefinitely unless explicitly removed
@@ -117,7 +117,7 @@ The callback is run on a different thread from the code that removes the item fr
 >[!WARNING]
 > If the callback is used to repopulate the cache it is possible other requests for the cache will take place (and find it empty) before the callback completes, possibly resulting in several threads repopulating the cached value.
 
-Possible [`eviction reasons`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Caching/Memory/EvictionReason/index.html) are:
+Possible `eviction reasons` are:
 
 **None**
 

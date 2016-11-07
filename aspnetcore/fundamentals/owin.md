@@ -56,7 +56,7 @@ public Task OwinHello(IDictionary<string, object> environment)
 
 The sample signature returns a `Task` and accepts an `IDictionary<string, object>` as required by OWIN.
 
-The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the [UseOwin](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/OwinExtensions/index.html#Microsoft.AspNetCore.Builder.OwinExtensions.UseOwin) extension method.
+The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the `UseOwin` extension method.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/OwinSample/Startup.cs"} -->
 

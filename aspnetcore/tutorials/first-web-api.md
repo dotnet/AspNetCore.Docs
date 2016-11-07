@@ -150,7 +150,7 @@ Later in the tutorial I'll show how you can view the HTTP response using [Postma
 
 ### Routing and URL paths
 
-The `[HttpGet]` attribute ([`HttpGetAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpGetAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpGetAttribute)) specifies an HTTP GET method. The URL path for each method is constructed as follows:
+The `[HttpGet]` attribute (`HttpGetAttribute``) specifies an HTTP GET method. The URL path for each method is constructed as follows:
 
 * Take the template string in the controller’s route attribute,  `[Route("api/[controller]")]`
 
@@ -177,7 +177,7 @@ In contrast, the `GetById` method returns the more general `IActionResult` type,
 
 * If no item matches the requested ID, the method returns a 404 error.  This is done by returning `NotFound`.
 
-* Otherwise, the method returns 200 with a JSON response body. This is done by returning an [`ObjectResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ObjectResult/index.html#Microsoft.AspNetCore.Mvc.ObjectResult)
+* Otherwise, the method returns 200 with a JSON response body. This is done by returning an `ObjectResult`
 
   
 ### Launch the app
@@ -194,7 +194,7 @@ We'll add `Create`, `Update`, and `Delete` methods to the controller. These are 
 
 This is an HTTP POST method, indicated by the [`[HttpPost]`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpPostAttribute/index.html) attribute. The [`[FromBody]`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/FromBodyAttribute/index.html) attribute tells MVC to get the value of the to-do item from the body of the HTTP request.
 
-The [`CreatedAtRoute`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html) method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreateAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+The `CreatedAtRoute` method returns a 201 response, which is the standard response for an HTTP POST method that creates a new resource on the server. `CreateAtRoute` also adds a Location header to the response. The Location header specifies the URI of the newly created to-do item. See [10.2.2 201 Created](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
 ### Use Postman to send a Create request
 

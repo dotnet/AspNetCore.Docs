@@ -106,7 +106,7 @@ Without the explicit expression, `<p>Age@joe.Age</p>` would be treated as an ema
 
 ## Expression encoding
 
-C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to [`IHtmlContent`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Html/IHtmlContent/index.html#Microsoft.AspNetCore.Html.IHtmlContent) are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
+C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to `IHtmlContent` are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
 
 ````html
 @("<span>Hello World</span>")
@@ -122,7 +122,7 @@ Which the browser renders as:
 
 `<span>Hello World</span>`
 
-[`HtmlHelper`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper) [`Raw`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Raw) output is not encoded but rendered as HTML markup.
+`HtmlHelper` `Raw` output is not encoded but rendered as HTML markup.
 
 >[!WARNING]
 > Using `HtmlHelper.Raw` on unsanitized user input is a security risk. User input might contain malicious JavaScript or other exploits. Sanitizing user input is difficult, avoid using `HtmlHelper.Raw` on user input.
@@ -572,7 +572,7 @@ Add the following class to your ASP.NET Core MVC project:
 
 [!code-csharp[Main](razor/sample/Services/CustomCompilationService.cs)]
 
-Override the [`ICompilationService`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/ICompilationService/index.html#Microsoft.AspNetCore.Mvc.Razor.Compilation.ICompilationService) added by MVC with the above class;
+Override the `ICompilationService` added by MVC with the above class;
 
 [!code-csharp[Main](razor/sample/Startup.cs?highlight=4&range=29-33)]
 

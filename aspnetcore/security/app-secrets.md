@@ -35,7 +35,7 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 
 ### Installing the Secret Manager tool
 
-* Add ``Microsoft.Extensions.SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``. 
+* Add `Microsoft.Extensions.SecretManager.Tools` to the `tools` section of the *project.json* file and run `dotnet restore`. 
 
 * Test the Secret Manager tool by running the following command:
 

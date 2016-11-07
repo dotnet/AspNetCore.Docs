@@ -13,7 +13,7 @@ uid: security/authorization/simple
 
 <a name=security-authorization-simple></a>
 
-Authorization in MVC is controlled through the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute and its various parameters. At its simplest applying the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action limits access to the controller or action to any authenticated user.
+Authorization in MVC is controlled through the `AuthorizeAttribute` attribute and its various parameters. At its simplest applying the `AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authenticated user.
 
 For example, the following code limits access to the `AccountController` to any authenticated user.
 
@@ -31,7 +31,7 @@ For example, the following code limits access to the `AccountController` to any 
    }
    ````
 
-If you want to apply authorization to an action rather than the controller simply apply the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the action itself;
+If you want to apply authorization to an action rather than the controller simply apply the `AuthorizeAttribute` attribute to the action itself;
 
 ````csharp
 public class AccountController : Controller
@@ -49,7 +49,7 @@ public class AccountController : Controller
 
 Now only authenticated users can access the logout function.
 
-You can also use the [`AllowAnonymousAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AllowAnonymousAttribute/index.html#Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attribute to allow access by non-authenticated users to individual actions; for example
+You can also use the `AllowAnonymousAttribute` attribute to allow access by non-authenticated users to individual actions; for example
 
 ````csharp
 [Authorize]

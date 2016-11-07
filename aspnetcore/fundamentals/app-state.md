@@ -152,7 +152,7 @@ The `IdleTimeout` is used by the server to determine how long a session can be i
 
 ### ISession
 
-Once session is installed and configured, you refer to it via HttpContext, which exposes a property called `Session` of type [`ISession`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/ISession/index.html#Microsoft.AspNetCore.Http.ISession). You can use this interface to get and set values in `Session`, such as `byte[]`.
+Once session is installed and configured, you refer to it via HttpContext, which exposes a property called `Session` of type `ISession`. You can use this interface to get and set values in `Session`, such as `byte[]`.
 
 ````csharp
 public interface ISession
