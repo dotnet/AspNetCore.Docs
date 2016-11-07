@@ -1,4 +1,4 @@
-﻿---
+---
 title: Globalization and localization
 author: rick-anderson
 ms.author: riande
@@ -29,7 +29,7 @@ App localization involves the following:
 
 ## Make the app's content localizable
 
-Introduced in ASP.NET Core, [`IStringLocalizer`](IStringLocalizer) and [`IStringLocalizer<T>`](IStringLocalizer<T>) were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the [ResourceManager](https://msdn.microsoft.com/en-us/library/system.resources.resourcemanager(v=vs.110).aspx) and [ResourceReader](https://msdn.microsoft.com/en-us/library/system.resources.resourcereader(v=vs.110).aspx) to provide culture-specific resources at run time. The simple interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require you to store the default language strings in a resource file. You can develop an app
+Introduced in ASP.NET Core, [`IStringLocalizer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Localization/IStringLocalizer/index.html#Microsoft.Extensions.Localization.IStringLocalizer) and [`IStringLocalizer<T>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Localization/IStringLocalizer-T/index.html#Microsoft.Extensions.Localization.IStringLocalizer<T>) were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the [ResourceManager](https://msdn.microsoft.com/en-us/library/system.resources.resourcemanager(v=vs.110).aspx) and [ResourceReader](https://msdn.microsoft.com/en-us/library/system.resources.resourcereader(v=vs.110).aspx) to provide culture-specific resources at run time. The simple interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require you to store the default language strings in a resource file. You can develop an app
 targeted for localization and not need to create resource files early in development. The code below shows how to wrap the string "About Title" for localization.
 
 [!code-csharp[Main](localization/sample/Controllers/AboutController.cs)]
@@ -150,7 +150,7 @@ The current culture on a request is set in the localization [Middleware](middlew
 
 [!code-csharp[Main](localization/sample/Startup.cs?range=107,136-159)]
 
-[`UseRequestLocalization`](UseRequestLocalization) initializes a [`RequestLocalizationOptions`](https://review.docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.requestlocalizationoptions) object. On every request the list of [RequestCultureProvider`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestCultureProvider/index.html) in the [`RequestLocalizationOptions`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationOptions/index.html) is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
+[`UseRequestLocalization`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/ApplicationBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization) initializes a [`RequestLocalizationOptions`](https://review.docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.builder.requestlocalizationoptions) object. On every request the list of [RequestCultureProvider`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestCultureProvider/index.html) in the [`RequestLocalizationOptions`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/RequestLocalizationOptions/index.html) is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. [`QueryStringRequestCultureProvider`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/QueryStringRequestCultureProvider/index.html)
 2. [`CookieRequestCultureProvider`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html)
@@ -170,9 +170,9 @@ If you only pass in one of the two (`culture` or `ui-culture`), the query string
 
 ### CookieRequestCultureProvider
 
-Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the [`MakeCookieValue`](MakeCookieValue)  method to create a cookie.
+Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the [`MakeCookieValue`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html#Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue)  method to create a cookie.
 
-The [`CookieRequestCultureProvider`](CookieRequestCultureProvider) [`DefaultCookieName`](DefaultCookieName)  returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is ".AspNetCore.Culture".
+The [`CookieRequestCultureProvider`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html#Microsoft.AspNetCore.Localization.CookieRequestCultureProvider) [`DefaultCookieName`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Localization/CookieRequestCultureProvider/index.html#Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName)  returns the default cookie name used to track the user’s preferred culture information. The default cookie  name is ".AspNetCore.Culture".
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
