@@ -75,7 +75,7 @@ The [`IApplicationBuilder`](IApplicationBuilder) available in the `Startup`'s `C
 
 ### Port 0 binding with Kestrel
 
-Kestrel supports dynamically binding to an unspecified, available port by specifying port number 0 in [UseUrls](UseUrls), e.g. `builder.UseUrls("http://127.0.0.1:0")`. The [`IServerAddressesFeature`](IServerAddressesFeature) can be used to determine which available port Kestrel actually bound to.
+Kestrel supports dynamically binding to an unspecified, available port by specifying port number 0 in [UseUrls](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/HostingAbstractionsWebHostBuilderExtensions/index.html#Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls.md), e.g. `builder.UseUrls("http://127.0.0.1:0")`. The [`IServerAddressesFeature`](IServerAddressesFeature) can be used to determine which available port Kestrel actually bound to.
 
 [!code-csharp[Main](servers/sample/ServersDemo/src/ServersDemo/Startup.cs?highlight=5&range=25-44)]
 
