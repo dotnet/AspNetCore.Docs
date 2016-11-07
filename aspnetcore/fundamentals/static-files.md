@@ -30,7 +30,7 @@ Static files can be stored in any folder under the `web root` and accessed with 
 * `http://\<app>/images/\<imageFileName>`
 * `http://localhost:9189/images/banner3.svg`
 
-In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the [UseStaticFiles](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/StaticFileExtensions/index.html#Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles) extension method from `Startup.Configure`:
+In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the [UseStaticFiles](UseStaticFiles) extension method from `Startup.Configure`:
 
 [!code-csharp[Main](../fundamentals/static-files/sample/StartupStaticFiles.cs?highlight=3&name=snippet1)]
 
@@ -71,7 +71,7 @@ The static file module provides **no** authorization checks. Any files served by
 
 ## Enabling directory browsing
 
-Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the [UseDirectoryBrowser](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/DirectoryBrowserExtensions/index.html#Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser) extension method from  `Startup.Configure`:
+Directory browsing allows the user of your web app to see a list of directories and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). To enable directory browsing, call the [UseDirectoryBrowser](UseDirectoryBrowser) extension method from  `Startup.Configure`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
@@ -130,7 +130,7 @@ The following code enables static files, default files and  directory browsing:
 app.UseFileServer(enableDirectoryBrowsing: true);
    ````
 
-See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an [FileServerOptions](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/FileServerOptions/index.html#Microsoft.AspNetCore.Builder.FileServerOptions) object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
+See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an [FileServerOptions](FileServerOptions) object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
 
 * wwwroot
 
