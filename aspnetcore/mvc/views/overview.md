@@ -35,7 +35,7 @@ Views that are specific to a controller are created in the *Views/[ControllerNam
 
 A sample view file (*About.cshtml*):
 
-[!code-html[Main](../../common/samples/WebApplication1/src/WebApplication1/Views/Home/About.cshtml)]
+[!code-html[Main](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
 *Razor* code is denoted by the `@` symbol. C# statements are run within Razor code blocks set off by curly braces (`{` `}`), such as the assignment of "About" to the `ViewData["Title"]` element shown above. Razor can be used to display values within HTML by simply referencing the value with the `@` symbol, as shown within the `<h2>` and `<h3>` elements above.
 
@@ -43,11 +43,11 @@ This view focuses on just the portion of the output for which it is responsible.
 
 ## How do Controllers Specify Views?
 
-Views are typically returned from actions as a [`ViewResult`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewResult/index.html#Microsoft.AspNetCore.Mvc.ViewResult). Your action method can create and return a `ViewResult` directly, but more commonly if your controller inherits from [`Controller`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Controller/index.html#Microsoft.AspNetCore.Mvc.Controller), you'll simply use the `View` helper method, as this example demonstrates:
+Views are typically returned from actions as a `ViewResult`. Your action method can create and return a `ViewResult` directly, but more commonly if your controller inherits from `Controller`, you'll simply use the `View` helper method, as this example demonstrates:
 
 *HomeController.cs*
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
 
 The `View` helper method has several overloads to make returning views easier for app developers. You can optionally specify a view to return, as well as a model object to pass to the view.
 
@@ -74,7 +74,7 @@ A view file path can be provided, instead of a view name. In this case, the *.cs
 > [Partial views](partial.md) and [view components](view-components.md) use similar (but not identical) discovery mechanisms.
 
 > [!NOTE]
-> You can customize the default convention regarding where views are located within the app by using a custom [`IViewLocationExpander`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/IViewLocationExpander/index.html#Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander).
+> You can customize the default convention regarding where views are located within the app by using a custom `IViewLocationExpander`.
 
 >[!TIP]
 > View names may be case sensitive depending on the underlying file system. For compatibility across operating systems, always match case between controller and action names and associated view folders and filenames.

@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 Integration testing ensures that an application's components function correctly when assembled together. ASP.NET Core supports integration testing using unit test frameworks and a built-in test web host that can be used to handle requests without network overhead.
 
-[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnet/testing/integration-testing/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/testing/integration-testing/sample)
 
 ## Introduction to Integration Testing
 

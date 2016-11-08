@@ -1,4 +1,4 @@
-﻿---
+---
 title: Enabling authentication using Facebook, Google and other external providers
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.prod: aspnet-core
-﻿uid: security/authentication/sociallogins
+uid: security/authentication/sociallogins
 ---
 # Enabling authentication using Facebook, Google and other external providers
 
@@ -119,7 +119,7 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
 
-[!code-csharp[Main](../../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Facebook middleware
 

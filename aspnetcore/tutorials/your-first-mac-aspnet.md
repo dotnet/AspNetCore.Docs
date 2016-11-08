@@ -1,4 +1,4 @@
-﻿---
+---
 title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
 ms.prod: aspnet-core
-﻿uid: tutorials/your-first-mac-aspnet
+uid: tutorials/your-first-mac-aspnet
 ---
 # Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 
@@ -71,7 +71,7 @@ Tap "Restore" to restore the project dependencies. Alternately, you can enter `�
 
 ![image](your-first-mac-aspnet/_static/dot-restore.png)
 
-You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃`` where you can execute these commands without leaving the editor.
+You can run commands directly from within Visual Studio Code, including `dotnet restore` and any tools referenced in the *project.json* file, as well as custom tasks defined in *.vscode/tasks.json*. Visual Studio Code also includes an integrated console `⌃` where you can execute these commands without leaving the editor.
 
 If this is your first time using Visual Studio Code (or just *Code* for short), note that it provides a very streamlined, fast, clean interface for quickly working with files, while still providing tooling to make writing code extremely productive.
 

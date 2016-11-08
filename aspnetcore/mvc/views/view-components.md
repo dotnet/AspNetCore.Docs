@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ab4705b7-59d7-4f31-bc97-ea7f292fe926
 ms.prod: aspnet-core
-﻿uid: mvc/views/view-components
+uid: mvc/views/view-components
 ---
 # View Components
 
@@ -16,7 +16,7 @@ ms.prod: aspnet-core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/view-components/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample)
 
 ## Introducing view components
 
@@ -46,7 +46,7 @@ View Components are intended anywhere you have reusable rendering logic that is 
 
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A [`view component`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html) consists of two parts, the class (typically derived from  `ViewComponent`) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A `view component` consists of two parts, the class (typically derived from  `ViewComponent`) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 ## Creating a view component
 
@@ -62,7 +62,7 @@ A view component class can be created by any of the following:
 
 * Creating a class where the name ends with the suffix *ViewComponent*
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the [`ViewComponentAttribute.Name`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponentAttribute/index.html#prop-Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name) property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name` property.
 
 A view component class:
 
@@ -72,11 +72,11 @@ A view component class:
 
 ### View component methods
 
-A view component defines its logic in an `InvokeAsync` method that returns an [`IViewComponentResult`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IViewComponentResult/index.html). Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the [`View`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html) method. In summary, view component methods:
+A view component defines its logic in an `InvokeAsync` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
 
 * Define an *InvokeAsync`* method that returns an `IViewComponentResult`
 
-* Typically initializes a model and passes it to a view by calling the [`ViewComponent`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html)  [`View`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewResult/index.html) method
+* Typically initializes a model and passes it to a view by calling the `ViewComponent`  `View` method
 
 * Parameters come from the calling method, not HTTP, there is no model binding
 
@@ -106,7 +106,7 @@ To use the view component, call `@Component.InvokeAsync("Name of view component"
 
 ### Invoking a view component directly from a controller
 
-View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a [`ViewComponentResult`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponentResult/index.html).
+View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components do not define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
 
 In this example, the view component is called directly from the controller:
 
@@ -114,7 +114,7 @@ In this example, the view component is called directly from the controller:
 
 ## Walkthrough: Creating a simple view component
 
-[Download](https://github.com/aspnet/Docs/tree/master/aspnet/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `Todo` controller that displays a list of *Todo* items.
+[Download](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `Todo` controller that displays a list of *Todo* items.
 
 ![image](view-components/_static/2dos.png)
 
@@ -237,4 +237,4 @@ Add a `using` statement to your Razor view file and use the `nameof` operator:
 
 * [Dependency injection into views](dependency-injection.md)
 
-* [`ViewComponent`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewComponent/index.html)
+* `ViewComponent`

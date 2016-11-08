@@ -1,4 +1,4 @@
-﻿---
+---
 title: How Web Publishing In Visual Studio Works
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0377a02d-8fda-47a5-929a-24a16e1d2c93
 ms.prod: aspnet-core
-﻿uid: publishing/web-publishing-vs
+uid: publishing/web-publishing-vs
 ---
 # How Web Publishing In Visual Studio Works
 
@@ -134,7 +134,7 @@ To customize this process, you can edit the PowerShell script directly. To perfo
    $externalImagesSourcePath = 'C:\resources\external-images'
    $externalImagesDestPath = (Join-Path "$packOutput\wwwroot" 'external-images')
    if(-not (Test-Path $externalImagesDestPath)){
-     -Item -Path $externalImagesDestPath -ItemType Directory
+     New-Item -Path $externalImagesDestPath -ItemType Directory
    }
 
    Get-ChildItem $externalImagesSourcePath -File | Copy-Item -Destination $externalImagesDestPath

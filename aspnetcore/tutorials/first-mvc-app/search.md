@@ -138,7 +138,7 @@ The movie-genre view model will contain:
 
    * a list of movies
 
-   * a [`SelectList`](https://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/SelectList/index.html) containing the list of genres. This will allow the user to select a genre from the list.
+   * a `SelectList` containing the list of genres. This will allow the user to select a genre from the list.
 
    * `movieGenre`, which contains the selected genre
 
@@ -166,4 +166,4 @@ movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
 
 Test the app by searching by genre, by movie title, and by both.
 
-[&larr; **Previous**](.\controller-methods-views.md)     [**Next** &rarr;](.\new-field.md)  
+[&larr; **Previous**](controller-methods-views.md)     [**Next** &rarr;](new-field.md)  

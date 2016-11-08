@@ -7,8 +7,9 @@
         ],
         "exclude": [
           "**/obj/**",
-          "aspnet/core/**",
-          "**/includes/**"
+          "aspnet/**",
+          "**/includes/**",
+          "**/aspnet-core-conceptual/**"
         ]
       }
     ],
@@ -21,15 +22,20 @@
         "exclude": [
           "**/obj/**",
           "aspnet/core/**",
-          "**/includes/**"
+          "**/includes/**",
+          "_site/**"
         ]
       }
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {
+      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
+      "_navPath": "/foo",
+      "_navRel": "/foo"
+    },
     "fileMetadata": {},
     "template": [],
-    "dest": "aspnet/core"
+    "dest": "_site"
   }
 }

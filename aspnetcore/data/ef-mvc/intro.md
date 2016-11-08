@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015.
 
-The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnet/data/ef-mvc/intro/samples/cu-final).
+The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
 
 EF Core 1.0 is the latest version of EF but does not yet have all the features of EF 6.x. For information about how to choose between EF 6.x and EF Core 1.0, see [EF Core vs. EF6.x](https://ef.readthedocs.io/en/latest/efcore-vs-ef6/index.html).  If you choose EF 6.x, see [the previous version of this tutorial series](https://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application).
 

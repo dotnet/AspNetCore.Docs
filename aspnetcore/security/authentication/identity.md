@@ -122,12 +122,18 @@ These dependencies are needed to use the identity system in ASP.NET Core applica
 
 For additional information and guidance on migrating your existing identity store see [Migrating Authentication and Identity](../../migration/identity.md)
 
+<!-- replace ../../ relative links
+  [Authentication and Identity](../../migration/identity.md)
+with xref links
+ [Authentication and Identity](xref:migration/identity)
+-->
+
 ## Next Steps
 
-* [Migrating Authentication and Identity](../../migration/identity.md#migration-identity.md)
+* [Migrating Authentication and Identity](xref:migration/identity#migration-identity)
 
-* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation.md)
+* [Account Confirmation and Password Recovery](accconfirm.md#security-authentication-account-confirmation)
 
-* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa.md)
+* [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md#security-authentication-social-logins.md)
+* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md#security-authentication-social-logins)

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Error Handling
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4db51023-c8a6-4119-bbbe-3917e272c260
 ms.prod: aspnet-core
-﻿uid: fundamentals/error-handling
+uid: fundamentals/error-handling
 ---
 # Error Handling
 
@@ -18,13 +18,16 @@ By [Steve Smith](http://ardalis.com)
 
 When errors occur in your ASP.NET app, you can handle them in a variety of ways, as described in this article.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/error-handling/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/error-handling/sample)
 
 ## Configuring an Exception Handling Page
 
 You configure the pipeline for each request in the `Startup` class's `Configure()` method (learn more about [Application Startup](startup.md)). You can add a simple exception page, meant only for use during development, very easily. All that's required is to add a dependency on `Microsoft.AspNetCore.Diagnostics` to the project and then add one line to `Configure()` in `Startup.cs`:
 
 [!code-csharp[Main](../fundamentals/error-handling/sample/src/ErrorHandlingSample/Startup.cs?highlight=6,8&start=21&end=29)]
+
+>[!TIP]
+> Make sure to put `app.UseDeveloperExceptionPage()` before any middleware you want to catch the exception in (i.e. `app.UseMvc()`)
 
 The above code includes a check to ensure the environment is development before adding the call to `UseDeveloperExceptionPage`. This is a good practice, since you typically do not want to share detailed exception information about your application publicly while it is in production. [Learn more about configuring environments](environments.md).
 
@@ -80,7 +83,7 @@ By default, this middleware adds very simple, text-only handlers for common stat
 
 ![image](error-handling/_static/default-404-status-code.png)
 
-The middleware supports several different extension methods. You can pass it a custom lamdba expression:
+The middleware supports several different extension methods. You can pass it a custom lambda expression:
 
 ````csharp
 app.UseStatusCodePages(context =>

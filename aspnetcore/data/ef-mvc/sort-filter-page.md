@@ -111,7 +111,7 @@ In the project folder create `PaginatedList.cs`, and then replace the template c
 
 [!code-csharp[Main](intro/samples/cu/PaginatedList.cs)]
 
-The `CreateAsync` method in this code takes page size and page number and applies the appropriate `Skip` and `Take` statements to the `IQueryable`. When `ToListAsync` is called on the `IQueryable`, it will return a List containing only the requested page. The properties `HasPreviousPage` and ``HasNextPage` can be used to enable or disable **Previous** and **Next** paging buttons.
+The `CreateAsync` method in this code takes page size and page number and applies the appropriate `Skip` and `Take` statements to the `IQueryable`. When `ToListAsync` is called on the `IQueryable`, it will return a List containing only the requested page. The properties `HasPreviousPage` and `HasNextPage` can be used to enable or disable **Previous** and **Next** paging buttons.
 
 A `CreateAsync` method is used instead of a constructor to create the `PaginatedList<T>` object because constructors can't run asynchronous code.
 

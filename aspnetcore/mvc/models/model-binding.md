@@ -37,7 +37,13 @@ MVC will try to bind request data to the action parameters by name. MVC will loo
 
 1. `Form values`: These are form values that go in the HTTP request using the POST method. (including jQuery POST requests).
 
-2. `Route values`: The set of route values provided by @fundamentals/routing
+2. `Route values`: The set of route values provided by [Routing](../../fundamentals/routing.md)
+
+<!-- DocFX BUG
+This link works bug generates an error when building with DocFX
+@fundamentals/routing
+[Routing](xref:fundamentals/routing)
+-->
 
 3. `Query strings`: The query string part of the URI.
 
@@ -62,13 +68,7 @@ Additionally, there are some special data types that MVC must consider when perf
 
 These types can be bound to action parameters or to properties on a class type.
 
-<!-- The following links should all work but they don't
-* [Validation xref](xref:mvc/models/validation)
-* [Val ~/file](~/mvc/models/validation.md)
-* @mvc/models/validation
--->
-
-Once model binding is complete, [validation](../models/validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
+Once model binding is complete, [Validation](validation.md) occurs. Default model binding works great for the vast majority of development scenarios. It is also extensible so if you have unique needs you can customize the built-in behavior.
 
 ## Customize model binding behavior with attributes
 

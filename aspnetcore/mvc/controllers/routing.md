@@ -30,7 +30,7 @@ app.UseMvc(routes =>
 });
 ````
 
-Inside the call to [UseMvc](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MvcApplicationBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc), [MapRoute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MapRouteRouteBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute) is used to create a single route, which we'll refer to as the `default` route. Most MVC apps will use a route with a template similar to the `default` route.
+Inside the call to `UseMvc`, `MapRoute` is used to create a single route, which we'll refer to as the `default` route. Most MVC apps will use a route with a template similar to the `default` route.
 
 The route template `"{controller=Home}/{action=Index}/{id?}"` can match a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. MVC will attempt to locate a controller named `ProductsController` and run the action `Details`:
 
@@ -84,7 +84,7 @@ Using this controller definition and route template, the `HomeController.Index` 
 
 * `/`
 
-The convenience method [UseMvcWithDefaultRoute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MvcApplicationBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute):
+The convenience method `UseMvcWithDefaultRoute`:
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
@@ -103,7 +103,7 @@ app.UseMvc(routes =>
 });
 ````
 
-`UseMvc` and `UseMvcWithDefaultRoute` add an instance of [RouterMiddleware](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/RouterMiddleware/index.html#Microsoft.AspNetCore.Builder.RouterMiddleware) to the middleware pipeline. MVC doesn't interact directly with middleware, and uses routing to handle requests. MVC is connected to the routes through an instance of [MvcRouteHandler](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Internal/MvcRouteHandler/index.html#Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler). The code inside of `UseMvc` is similar to the following:
+`UseMvc` and `UseMvcWithDefaultRoute` add an instance of `RouterMiddleware` to the middleware pipeline. MVC doesn't interact directly with middleware, and uses routing to handle requests. MVC is connected to the routes through an instance of `MvcRouteHandler`. The code inside of `UseMvc` is similar to the following:
 
 <!-- literal_block {"ids": [], "names": [], "backrefs": [], "dupnames": [], "xml:space": "preserve", "classes": []} -->
 
@@ -120,7 +120,7 @@ routes.DefaultHandler = new MvcRouteHandler(...);
 app.UseRouter(routes.Build());
 ````
 
-[UseMvc](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MvcApplicationBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc) does not directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. [UseMvcWithDefaultRoute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MvcApplicationBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute) defines a default route and supports attribute routing. The <!-- Some exception as occured. Possible loss of data --> section includes more details on attribute routing.
+`UseMvc` does not directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations adds a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The <!-- Some exception as occured. Possible loss of data --> section includes more details on attribute routing.
 
 <a name=routing-conventional-ref-label></a>
 
@@ -194,11 +194,11 @@ public class ProductsController : Controller
 
 This controller defines two actions that would match the URL path `/Products/Edit/17` and route data `{ controller = Products, action = Edit, id = 17 }`. This is a typical pattern for MVC controllers where `Edit(int)` shows a form to edit a product, and `Edit(int, Product)` processes  the posted form. To make this possible MVC would need to choose `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else.
 
-The [HttpPostAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpPostAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpPostAttribute) ( `[HttpPost]` ) is an implementation of [IActionConstraint](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ActionConstraints/IActionConstraint/index.html#Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint) that will only allow the action to be selected when the HTTP verb is `POST`. The presence of an `IActionConstraint` makes the `Edit(int, Product)` a 'better' match than `Edit(int)`, so `Edit(int, Product)` will be tried first. See <!-- Some exception as occured. Possible loss of data --> for details.
+The `HttpPostAttribute` ( `[HttpPost]` ) is an implementation of `IActionConstraint` that will only allow the action to be selected when the HTTP verb is `POST`. The presence of an `IActionConstraint` makes the `Edit(int, Product)` a 'better' match than `Edit(int)`, so `Edit(int, Product)` will be tried first. See <!-- Some exception as occured. Possible loss of data --> for details.
 
 You will only need to write custom `IActionConstraint` implementations in specialized scenarios, but it's important to understand the role of attributes like `HttpPostAttribute`  - similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they are part of a `show form -> submit form` workflow. The convenience of this pattern will become more apparent after reviewing the <!-- Some exception as occured. Possible loss of data --> section.
 
-If multiple routes match, and MVC can't find a 'best' route, it will throw an [AmbiguousActionException](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Internal/AmbiguousActionException/index.html#Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException).
+If multiple routes match, and MVC can't find a 'best' route, it will throw an `AmbiguousActionException`.
 
 <a name=routing-route-name-ref-label></a>
 
@@ -285,9 +285,9 @@ public class MyDemoController : Controller
 ````
 
 > [!NOTE]
-> The route templates  above doesn't define route parameters for ``action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
+> The route templates  above doesn't define route parameters for `action`, `area`, and `controller`. In fact, these route parameters are not allowed in attribute routes. Since the route template is already assocated with an action, it wouldn't make sense to parse the action name from the URL.
 
-Attribute routing can also make use of the `HTTP[Verb]` attributes such as [HttpPostAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpPostAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpPostAttribute). All of these attributes can accept a route template. This example shows two actions that match the same route template:
+Attribute routing can also make use of the `HTTP[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
@@ -305,7 +305,7 @@ public IActionResult CreateProduct(...)
 }
 ````
 
-For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. Attribute routing first matches the URL against the set of route templates defined by route attributes. Once a route template matches,   [IActionConstraint](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ActionConstraints/IActionConstraint/index.html#Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint) constraints are applied to determine which actions can be executed.
+For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. Attribute routing first matches the URL against the set of route templates defined by route attributes. Once a route template matches,   `IActionConstraint` constraints are applied to determine which actions can be executed.
 
 > [!TIP]
 > When building a REST API, it's rare that you will want to use `[Route(...)]` on an action method. It's better to use the more specific `Http*Verb*Attributes` to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
@@ -349,7 +349,7 @@ public class ProductsApiController : Controller
 }
 ````
 
-In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they are decorated with the [HttpGetAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpGetAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpGetAttribute).
+In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they are decorated with the `HttpGetAttribute`.
 
 Route templates applied to an action that begin with a `/` do not get combined with route templates applied to the controller. This example matches a set of URL paths similar to the *default route*.
 
@@ -477,9 +477,9 @@ public class ProductsController : Controller
 
 <a name=routing-cust-rt-attr-irt-ref-label></a>
 
-### Custom route attributes using [IRouteTemplateProvider](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/IRouteTemplateProvider/index.html#Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider)
+### Custom route attributes using `IRouteTemplateProvider`
 
-All of the route attributes provided in the framework ( `[Route(...)]`, `[HttpGet(...)]` , etc.) implement the [IRouteTemplateProvider](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Routing/IRouteTemplateProvider/index.html#Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider) interface. MVC looks for attributes on controller classes and action methods when the app starts and uses the ones that implement `IRouteTemplateProvider` to build the initial set of routes.
+All of the route attributes provided in the framework ( `[Route(...)]`, `[HttpGet(...)]` , etc.) implement the `IRouteTemplateProvider` interface. MVC looks for attributes on controller classes and action methods when the app starts and uses the ones that implement `IRouteTemplateProvider` to build the initial set of routes.
 
 You can implement `IRouteTemplateProvider` to define your own route attributes. Each `IRouteTemplateProvider` allows you to define a single route with a custom route template, order, and name:
 
@@ -523,7 +523,7 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 
 MVC applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
 
-The [IUrlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IUrlHelper/index.html#Microsoft.AspNetCore.Mvc.IUrlHelper) interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
+The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
 
 In this example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
 
@@ -555,7 +555,7 @@ MVC builds a lookup table of all attribute routed actions and will match the `co
 
 ### Generating URLs by action name
 
-`Url.Action` ([IUrlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IUrlHelper/index.html#Microsoft.AspNetCore.Mvc.IUrlHelper) . [Action](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IUrlHelper/index.html#Microsoft.AspNetCore.Mvc.IUrlHelper.Action)) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
+`Url.Action` (`IUrlHelper` . `Action`) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
 
 > [!NOTE]
 > When using `Url.Action`, the current route values for `controller` and `action` are specified for you - the value of `controller` and `action` are part of both *ambient values* **and** *values*. The method `Url.Action`, always uses the current values of `action` and `controller` and will generate a URL path that routes to the current action.
@@ -586,11 +586,11 @@ The code above demonstrated generating a URL by passing in the controller and ac
 
 ### Generating URLs in HTML
 
-[IHtmlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Rendering/IHtmlHelper/index.html#Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper) provides the [HtmlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper) methods `Html.BeginForm` and `Html.ActionLink` to generate `<form>` and `<a>` elements respectively. These methods use the `Url.Action` method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for [HtmlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper) are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality. See [🔧 HTML Helpers](../views/html-helpers.md) for more details.
+`IHtmlHelper` provides the `HtmlHelper` methods `Html.BeginForm` and `Html.ActionLink` to generate `<form>` and `<a>` elements respectively. These methods use the `Url.Action` method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality. See [🔧 HTML Helpers](../views/html-helpers.md) for more details.
 
 TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. See [Working with Forms](../views/working-with-forms.md) for more information.
 
-Inside views, the [IUrlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IUrlHelper/index.html#Microsoft.AspNetCore.Mvc.IUrlHelper) is available through the `Url` property for any ad-hoc URL generation not covered by the above.
+Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the above.
 
 <a name=routing-gen-urls-action-ref-label></a>
 
@@ -613,7 +613,7 @@ public Task<IActionResult> Edit(int id, Customer customer)
 }
 ````
 
-The action results factory methods follow a similar pattern to the methods on [IUrlHelper](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/IUrlHelper/index.html#Microsoft.AspNetCore.Mvc.IUrlHelper).
+The action results factory methods follow a similar pattern to the methods on `IUrlHelper`.
 
 <a name=routing-dedicated-ref-label></a>
 
@@ -650,7 +650,7 @@ When matching a URL path like `/Manage/Users/AddUser`, the first route will prod
 
 [!code-csharp[Main](routing/sample/AreasRouting/Startup.cs?name=snippet2)]
 
-[MapAreaRoute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/MvcAreaRouteBuilderExtensions/index.html#Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute) creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
+`MapAreaRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
 > [!TIP]
 > Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they are more specific than routes without an area.
@@ -659,7 +659,7 @@ Using the above example, the route values would match the following action:
 
 [!code-csharp[Main](routing/sample/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
-The [AreaAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/AreaAttribute/index.html#Microsoft.AspNetCore.Mvc.AreaAttribute) is what denotes a controller as part of an area, we say that this controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
+The `AreaAttribute` is what denotes a controller as part of an area, we say that this controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
 
 [!code-csharp[Main](routing/sample/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
@@ -690,7 +690,7 @@ When executing an action inside an area, the route value for `area` will be avai
 > [!NOTE]
 > This section is a deep-dive on framework internals and how MVC chooses an action to execute. A typical application won't need a custom `IActionConstraint`
 
-You have likely already used [IActionConstraint](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ActionConstraints/IActionConstraint/index.html#Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint) even if you're not familiar with the interface. The `[HttpGet]` Attribute and similar `[Http-VERB]` attributes implement `IActionConstraint` in order to limit the execution of an action method.
+You have likely already used `IActionConstraint` even if you're not familiar with the interface. The `[HttpGet]` Attribute and similar `[Http-VERB]` attributes implement `IActionConstraint` in order to limit the execution of an action method.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
@@ -706,7 +706,7 @@ public class ProductsController : Controller
 
 Assuming the default conventional route, the URL path `/Products/Edit` would produce the values `{ controller = Products, action = Edit }`, which would match **both** of the actions shown here. In `IActionConstraint` terminology we would say that both of these actions are considered candidates - as they both match the route data.
 
-When the [HttpGetAttribute](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/HttpGetAttribute/index.html#Microsoft.AspNetCore.Mvc.HttpGetAttribute) executes, it will say that *Edit()* is a match for *GET* and is not a match for any other HTTP verb. The `Edit(...)` action doesn't have any constraints defined, and so will match any HTTP verb. So assuming a `POST` - only `Edit(...)` matches. But, for a `GET` both actions can still match - however, an action with an `IActionConstraint` is always considered *better* than an action without. So because `Edit()` has `[HttpGet]` it is considered more specific, and will be selected if both actions can match.
+When the `HttpGetAttribute` executes, it will say that *Edit()* is a match for *GET* and is not a match for any other HTTP verb. The `Edit(...)` action doesn't have any constraints defined, and so will match any HTTP verb. So assuming a `POST` - only `Edit(...)` matches. But, for a `GET` both actions can still match - however, an action with an `IActionConstraint` is always considered *better* than an action without. So because `Edit()` has `[HttpGet]` it is considered more specific, and will be selected if both actions can match.
 
 Conceptually, `IActionConstraint` is a form of *overloading*, but instead of overloading methods with the same name, it is overloading between actions that match the same URL. Attribute routing also uses `IActionConstraint` and can result in actions from different controllers both being considered candidates.
 
@@ -714,7 +714,7 @@ Conceptually, `IActionConstraint` is a form of *overloading*, but instead of ove
 
 ### Implementing IActionConstraint
 
-The simplest way to implement an [IActionConstraint](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ActionConstraints/IActionConstraint/index.html#Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint) is to create a class derived from `System.Attribute` and place it on your actions and controllers. MVC will automatically discover any `IActionConstraint` that are applied as attributes. You can use the application model to apply constraints, and this is probably the most flexible approach as it allows you to metaprogram how they are applied.
+The simplest way to implement an `IActionConstraint` is to create a class derived from `System.Attribute` and place it on your actions and controllers. MVC will automatically discover any `IActionConstraint` that are applied as attributes. You can use the application model to apply constraints, and this is probably the most flexible approach as it allows you to metaprogram how they are applied.
 
 In the following example a constraint chooses an action based on a *country code* from the route data. The [full sample on GitHub](https://github.com/aspnet/Entropy/blob/dev/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs).
 

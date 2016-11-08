@@ -18,4 +18,4 @@ You can build the application by following the steps in [a series of tutorials](
 
 ## Download it
 
-Download the [completed project](https://github.com/aspnet/Docs/tree/master/aspnet/data/ef-mvc/intro/samples/cu-final) from GitHub by downloading or cloning the [aspnet/Docs repository](https://github.com/aspnet/Docs) and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file system.
+Download the [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final) from GitHub by downloading or cloning the [aspnet/Docs repository](https://github.com/aspnet/Docs) and navigating to `aspnet\data\ef-mvc\intro\samples\cu-final` in your local file system.

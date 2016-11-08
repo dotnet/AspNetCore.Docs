@@ -17,7 +17,7 @@ uid: fundamentals/configuration
 
 ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables, command line arguments or an in-memory collection. You can also write your own [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample)
+[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 
 ## Getting and setting configuration settings
 
@@ -38,9 +38,9 @@ It's not unusual to store configuration values in a hierarchical structure, espe
 
 <a name=config-json></a>
 
-[!code-json[Main](../common/samples/WebApplication1/src/WebApplication1/appsettings.json)]
+[!code-json[Main](../common/samples/WebApplication1/appsettings.json)]
 
-The application uses configuration to configure the right connection string. Access to the `DefaultConnection` setting is achieved through this key: `ConnectionStrings:DefaultConnection`, or by using the [`GetConnectionString`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString) extension method and passing in `"DefaultConnection"`.
+The application uses configuration to configure the right connection string. Access to the `DefaultConnection` setting is achieved through this key: `ConnectionStrings:DefaultConnection`, or by using the `GetConnectionString` extension method and passing in `"DefaultConnection"`.
 
 The settings required by your application and the mechanism used to specify those settings (configuration being one example) can be decoupled using the [options pattern](xref:fundamentals/configuration#options-config-objects). To use the options pattern you create your own options class (probably several different classes, corresponding to different cohesive groups of settings) that you can inject into your application using an options service. You can then specify your settings using configuration or whatever mechanism you choose.
 
@@ -51,7 +51,7 @@ The settings required by your application and the mechanism used to specify thos
 
 The configuration framework has built-in support for JSON, XML, and INI configuration files, as well as support for in-memory configuration (directly setting values in code) and the ability to pull configuration from environment variables and command line parameters. Developers are not limited to using a single configuration source. In fact several may be set up together such that a default configuration is overridden by settings from another source if they are present.
 
-Adding support for additional configuration sources is accomplished through extension methods. These methods can be called on a [`ConfigurationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationBuilder/index.html#Microsoft.Extensions.Configuration.ConfigurationBuilder) instance in a standalone fashion, or chained together as a fluent API. Both of these approaches are demonstrated in the sample below.
+Adding support for additional configuration sources is accomplished through extension methods. These methods can be called on a `ConfigurationBuilder` instance in a standalone fashion, or chained together as a fluent API. Both of these approaches are demonstrated in the sample below.
 
 <a name=custom-config></a>
 
@@ -64,11 +64,11 @@ The order in which configuration sources are specified is important, as this est
 
 It can be useful to have environment-specific configuration files. This can be achieved using the following:
 
-[!code-none[Main](../common/samples/WebApplication1/src/WebApplication1/Startup.cs?highlight=6&range=20-35)]
+[!code-none[Main](../common/samples/WebApplication1/Startup.cs?highlight=6&range=20-35)]
 
-The [`IHostingEnvironment`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/IHostingEnvironment/index.html#Microsoft.AspNetCore.Hosting.IHostingEnvironment) service is used to get the current environment. In the `Development` environment, the highlighted line of code above would look for a file named `appsettings.Development.json` and use its values, overriding any other values, if it's present. Learn more about [Working with Multiple Environments](environments.md).
+The `IHostingEnvironment` service is used to get the current environment. In the `Development` environment, the highlighted line of code above would look for a file named `appsettings.Development.json` and use its values, overriding any other values, if it's present. Learn more about [Working with Multiple Environments](environments.md).
 
-When specifying files as configuration sources, you can optionally specify whether changes to the file should result in the settings being reloaded. This is configured by passing in a `true` value for the `reloadOnChange` parameter when calling [`AddJsonFile`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile) or similar file-based extension methods.
+When specifying files as configuration sources, you can optionally specify whether changes to the file should result in the settings being reloaded. This is configured by passing in a `true` value for the `reloadOnChange` parameter when calling `AddJsonFile` or similar file-based extension methods.
 
 >[!WARNING]
 > You should never store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into the configuration provider repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
@@ -93,14 +93,14 @@ A simple `MyOptions` class is shown here:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MyOptions.cs?range=3-7)]
 
-Options can be injected into your application using the [`IOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html#Microsoft.Extensions.Options.IOptions<TOptions>) accessor service. For example, the following [controller](../mvc/controllers/index.md)  uses `IOptions<MyOptions>` to access the settings it needs to render the `Index` view:
+Options can be injected into your application using the `IOptions<TOptions>` accessor service. For example, the following [controller](../mvc/controllers/index.md)  uses `IOptions<MyOptions>` to access the settings it needs to render the `Index` view:
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController.cs?highlight=3,5,8&range=9-20)]
 
 >[!TIP]
 > Learn more about [Dependency Injection](dependency-injection.md).
 
-To setup the [`IOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html#Microsoft.Extensions.Options.IOptions<TOptions>) service you call the [`AddOptions`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/OptionsServiceCollectionExtensions/index.html#Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions) extension method during startup in your `ConfigureServices` method:
+To setup the `IOptions<TOptions>` service you call the `AddOptions` extension method during startup in your `ConfigureServices` method:
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/UsingOptions/Startup.cs?highlight=4&range=26-30)]
 
@@ -110,22 +110,22 @@ The `Index` view displays the configured options:
 
 ![image](configuration/_static/index-view.png)
 
-You configure options using the [`Configure<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/OptionsServiceCollectionExtensions/index.html#Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure<TOptions>) extension method. You can configure options using a delegate or by binding your options to configuration:
+You configure options using the `Configure<TOptions>` extension method. You can configure options using a delegate or by binding your options to configuration:
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/UsingOptions/Startup.cs?highlight=7,10,11,12,13,16&range=26-45)]
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property:subproperty:...`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. Note that configuration keys are case insensitive.
 
-Each call to [`Configure<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/OptionsServiceCollectionExtensions/index.html#Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure<TOptions>) adds an [`IConfigureOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html#Microsoft.Extensions.Options.IConfigureOptions<TOptions>) service to the service container that is used by the [`IOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html#Microsoft.Extensions.Options.IOptions<TOptions>) service to provide the configured options to the application or framework. If you want to configure your options using objects that must be obtained from the service container (for example, to read settings from a database) you can use the
-`AddSingleton<IConfigureOptions<TOptions>>` extension method to register a custom [`IConfigureOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html#Microsoft.Extensions.Options.IConfigureOptions<TOptions>) service.
+Each call to `Configure<TOptions>` adds an `IConfigureOptions<TOptions>` service to the service container that is used by the `IOptions<TOptions>` service to provide the configured options to the application or framework. If you want to configure your options using objects that must be obtained from the service container (for example, to read settings from a database) you can use the
+`AddSingleton<IConfigureOptions<TOptions>>` extension method to register a custom `IConfigureOptions<TOptions>` service.
 
-You can have multiple [`IConfigureOptions<TOptions>`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html#Microsoft.Extensions.Options.IConfigureOptions<TOptions>) services for the same option type and they are all applied in order. In the [example](xref:fundamentals/configuration#options-example) above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate with the value "value1_from_action".
+You can have multiple `IConfigureOptions<TOptions>` services for the same option type and they are all applied in order. In the [example](xref:fundamentals/configuration#options-example) above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate with the value "value1_from_action".
 
 <a name=custom-config-providers></a>
 
 ## Writing custom providers
 
-In addition to using the built-in configuration providers, you can also write your own. To do so, you simply implement the [`IConfigurationSource`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfigurationSource/index.html#Microsoft.Extensions.Configuration.IConfigurationSource) interface, which exposes a [`Build`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfigurationSource/index.html#Microsoft.Extensions.Configuration.IConfigurationSource.Build) method. The build method configures and returns an [`IConfigurationProvider`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfigurationProvider/index.html#Microsoft.Extensions.Configuration.IConfigurationProvider).
+In addition to using the built-in configuration providers, you can also write your own. To do so, you simply implement the `IConfigurationSource` interface, which exposes a `Build` method. The build method configures and returns an `IConfigurationProvider`.
 
 ### Example: Entity Framework Settings
 
@@ -139,11 +139,11 @@ You need a `ConfigurationContext` to store and access the configured values usin
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs?highlight=7&range=5-12)]
 
-Create an `EntityFrameworkConfigurationSource` that inherits from [`IConfigurationSource`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfigurationSource/index.html#Microsoft.Extensions.Configuration.IConfigurationSource):
+Create an `EntityFrameworkConfigurationSource` that inherits from `IConfigurationSource``:
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs?highlight=7,16,17,18,19)]
 
-Next, create the custom configuration provider by inheriting from [`ConfigurationProvider`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationProvider/index.html#Microsoft.Extensions.Configuration.ConfigurationProvider). The configuration data is loaded by overriding the `Load` method, which reads in all of the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
+Next, create the custom configuration provider by inheriting from `ConfigurationProvider`. The configuration data is loaded by overriding the `Load` method, which reads in all of the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18,19,20,21,22,23,24,25,26,27,28,29,30,37,38)]
 
@@ -153,7 +153,7 @@ By convention you can also add an `AddEntityFrameworkConfiguration` extension me
 
 [!code-csharp[Main](../fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs?highlight=9)]
 
-You can see an example of how to use this custom configuration provider in your application in the following example. Create a new [`ConfigurationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationBuilder/index.html#Microsoft.Extensions.Configuration.ConfigurationBuilder) to set up your configuration sources. To add the `EntityFrameworkConfigurationProvider`, you first need to specify the EF data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the `EntityFrameworkConfigurationProvider`. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
+You can see an example of how to use this custom configuration provider in your application in the following example. Create a new `ConfigurationBuilder` to set up your configuration sources. To add the `EntityFrameworkConfigurationProvider`, you first need to specify the EF data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the `EntityFrameworkConfigurationProvider`. By adding the database settings to an existing configuration with other sources specified, any settings specified in the database will override settings specified in *appsettings.json*:
 
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=21,22,23,24)]
 

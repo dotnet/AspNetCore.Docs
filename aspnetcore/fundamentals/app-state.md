@@ -18,7 +18,7 @@ By [Steve Smith](http://ardalis.com)
 
 In ASP.NET Core, application state can be managed in a variety of ways, depending on when and how the state is to be retrieved. This article provides a brief overview of several options, and focuses on installing and configuring Session state support in ASP.NET Core applications.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/app-state/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/app-state/sample)
 
 ## Application State Options
 
@@ -152,7 +152,7 @@ The `IdleTimeout` is used by the server to determine how long a session can be i
 
 ### ISession
 
-Once session is installed and configured, you refer to it via HttpContext, which exposes a property called `Session` of type [`ISession`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/ISession/index.html#Microsoft.AspNetCore.Http.ISession). You can use this interface to get and set values in `Session`, such as `byte[]`.
+Once session is installed and configured, you refer to it via HttpContext, which exposes a property called `Session` of type `ISession`. You can use this interface to get and set values in `Session`, such as `byte[]`.
 
 ````csharp
 public interface ISession

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding Validation
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: edbed483-6858-4f19-8082-3ac7d2752986
 ms.prod: aspnet-core
-﻿uid: tutorials/first-mvc-app/validation
+uid: tutorials/first-mvc-app/validation
 ---
 # Adding Validation
 
@@ -139,4 +139,4 @@ In the next part of the series, we'll review the application and make some impro
 
 * [Authoring Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
 
->[&larr; **Previous**](.\new-field.md)     [**Next** &rarr;](.\details.md)  
+>[&larr; **Previous**](new-field.md)     [**Next** &rarr;](details.md)  

@@ -1,4 +1,4 @@
-﻿---
+---
 title: ASP.NET Core on Nano Server
 author: rick-anderson
 ms.author: riande
@@ -7,7 +7,7 @@ ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 50922cf1-ca58-4006-9236-99b7ff2dd0cf
 ms.prod: aspnet-core
-﻿uid: tutorials/nano-server
+uid: tutorials/nano-server
 ---
 # ASP.NET Core on Nano Server
 
@@ -118,8 +118,8 @@ On a regular (not Nano) machine run the following copy commands:
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
 ````
-copy C:\windows\system32\inetsrv\aspnetcore.dll ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
-   copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml ``\\<nanoserver-ip-address>\AspNetCoreSampleForNano``
+copy C:\windows\system32\inetsrv\aspnetcore.dll `\\<nanoserver-ip-address>\AspNetCoreSampleForNano`
+   copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml `\\<nanoserver-ip-address>\AspNetCoreSampleForNano`
    ````
 
 On a Nano machine, you will need to copy the following files from the file share that we created earlier to the valid locations. So, run the following copy commands:

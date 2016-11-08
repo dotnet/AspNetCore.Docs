@@ -15,7 +15,7 @@ By [Steve Smith](http://ardalis.com) and  [Rick Anderson](https://twitter.com/Ri
 
 ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web apps to be decoupled from web servers. It defines a standard way for middleware to be used in a pipeline to handle requests and associated responses. ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middleware.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample)
 
 ## Running OWIN middleware in the ASP.NET pipeline
 
@@ -56,7 +56,7 @@ public Task OwinHello(IDictionary<string, object> environment)
 
 The sample signature returns a `Task` and accepts an `IDictionary<string, object>` as required by OWIN.
 
-The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the [UseOwin](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/OwinExtensions/index.html#Microsoft.AspNetCore.Builder.OwinExtensions.UseOwin) extension method.
+The following code shows how to add the `OwinHello` middleware (shown above) to the ASP.NET pipeline with the `UseOwin` extension method.
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"linenostart": 1}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#", "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/owin/sample/src/OwinSample/Startup.cs"} -->
 
@@ -228,7 +228,7 @@ public class Startup
 }
 ````
 
-This [sample](https://github.com/aspnet/Docs/tree/master/aspnet/fundamentals/owin/sample) is configured using the same `NowinServer` as the previous one - the only difference is in how the application is configured in its `Configure` method. A test using [a simple websocket client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en) demonstrates  the application:
+This [sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/owin/sample) is configured using the same `NowinServer` as the previous one - the only difference is in how the application is configured in its `Configure` method. A test using [a simple websocket client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en) demonstrates  the application:
 
 ![image](owin/_static/websocket-test.png)
 
