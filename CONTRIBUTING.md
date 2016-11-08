@@ -99,7 +99,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
   }
   ```
 
-* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at http://localhost:8080.
+* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
 
 ## Voice and tone
 
