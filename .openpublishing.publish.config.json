@@ -1,7 +1,8 @@
 {
   "build_entry_point": "docs",
   "need_generate_pdf": false,
-  "need_generate_intellisense": false,
+  "need_generate_intellisense": true,
+  "git_repository_branch_open_to_public_contributors": "master",
   "docsets_to_publish": [
     {
       "docset_name": "aspnet-conceptual",
