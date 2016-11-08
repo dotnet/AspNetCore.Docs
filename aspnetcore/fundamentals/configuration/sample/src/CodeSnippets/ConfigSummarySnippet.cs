@@ -6,8 +6,7 @@ namespace CodeSnippets
     {
         public ConfigSummarySnippet()
         {
-            // Everything between SNIPPET-START and SNIPPET-END will be inlined in the doc!
-            // SNIPPET-START
+            #region snippet_1
             var builder = new ConfigurationBuilder();
             builder.AddInMemoryCollection();
             var config = builder.Build();
@@ -16,7 +15,7 @@ namespace CodeSnippets
             // do some other work
 
             var setting = config["somekey"]; // also returns "somevalue"
-            // SNIPPET-END
+            #endregion
         }
     }
 }
