@@ -23,9 +23,9 @@ Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/
 
 For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration.md), the images are in [fundamentals/configuration/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/_static) and the sample application project files are in [fundamentals/configuration/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/sample).  An image in the *fundamentals/configuration.md* file is rendered by the following Markdown.
 
-````none
+```none
 ![alt-text](configuration/_static/imagename.png)
-````
+```
 
 ## Code snippets
 
@@ -35,42 +35,42 @@ Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docf
 
 To render an entire code file as a snippet:
 
-````none
+```none
 [!code-csharp[Main](configuration/sample/Program.cs)]
-````
+```
 
 To render a portion of a file as a snippet by using line numbers:
 
-````none
+```none
 [!code-csharp[Main](configuration/sample/Program.cs?range=1-10,20,30,40-50]
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 [!code-javascript[Main](configuration/sample/Project.json?range=1-10,20,30,40-50]
-````
+```
 
 For C# snippets, you can reference a [C# region](https://msdn.microsoft.com/en-us/library/9a1ybwek.aspx). Whenever possible, use regions rather than line numbers, because line numbers in a code file tend to change and get out of sync with line number references in Markdown. C# regions can be nested, and if you reference the outer region, the inner `#region` and `#endregion` directives are not rendered in a snippet. 
 
 To render a C# region named "snippet_Example":
 
-````none
+```none
 [!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example)]
-````
+```
 
 To highlight selected lines in a rendered snippet (usually renders as yellow background color):
 
-````none
+```none
 [!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
 [!code-csharp[Main](configuration/sample/Program.cs?range=10-20&highlight=1-3]
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
 [!code-javascript[Main](configuration/sample/Project.json?range=10-20&highlight=1-3]
-````
+```
 
 ## Test your changes with DocFX
 
-Test your changes with the [DocFX command line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. 
+Test your changes with the [DocFX command line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
 
-DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS. DocFX doesn't render style and site extensions created for docs.microsoft.com.
+DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS. 
 
-Follow these steps to build the site locally and view your changes:
+### Windows instructions
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
@@ -81,6 +81,25 @@ Follow these steps to build the site locally and view your changes:
    ```
 	
 * In a browser, navigate to `http://localhost:8080`.
+
+### Mono instructions
+
+* Install Mono via Homebrew - `brew install mono`.
+* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases/tag/v2.7.2).
+* Extract to `\bin\docfx`.
+* Create an alias for **docfx**:
+
+  ```
+  function docfx {
+    mono $HOME/bin/docfx/docfx.exe
+  }
+    
+  function docfx-serve {
+    mono $HOME/bin/docfx/docfx.exe serve _site
+  }
+  ```
+
+* Run **docfx** in the `Docs\aspnetcore` directory to build the site, and **docfx-serve** to view the site at `http://localhost:8080`.
 
 ## Voice and tone
 
