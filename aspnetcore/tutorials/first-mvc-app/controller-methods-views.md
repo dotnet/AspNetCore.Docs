@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/controller-methods-views
 ---
 # Controller methods and views
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 We have a good start to the movie app, but the presentation is not ideal. We don't want to see the time (12:00:00 AM in the image below) and **ReleaseDate** should be two words.
 
 ![image](working-with-sql/_static/m55.png)
@@ -139,4 +137,6 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 * [Select Tag Helper](../../mvc/views/working-with-forms.md)
 * [Validation Tag Helper](../../mvc/views/working-with-forms.md)
 
->[&larr; **Previous**](working-with-sql.md)     [**Next** &rarr;](search.md)  
+>[!div class="step-by-step"]
+[Previous](working-with-sql.md)
+[Next](search.md)  

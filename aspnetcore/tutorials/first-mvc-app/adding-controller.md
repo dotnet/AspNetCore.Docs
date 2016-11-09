@@ -12,11 +12,6 @@ uid: tutorials/first-mvc-app/adding-controller
 ---
 # Adding a controller
 
-
-<!-- manual conversion complete -->
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: the **M**odel, the **V**iew, and the **C**ontroller. The MVC pattern helps you create apps that are testable and easier to maintain and update than traditional monolithic apps. MVC-based apps contain:
 
 * **M**odels: Classes that represent the data of the app and that use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial, a `Movie` model retrieves movie data from a database, provides it to the view or updates it. Updated data is written to a SQL Server database.
@@ -99,4 +94,6 @@ This time the third URL segment  matched the route parameter `id`. The `Welcome`
 
 In these examples the controller has been doing the "VC" portion  of MVC - that is, the view and controller work. The controller is returning HTML  directly. Generally you don't want controllers returning HTML directly, since  that becomes very cumbersome to code and maintain. Instead we'll typically use a separate Razor view template file to help generate the HTML response. We'll do that in the next tutorial.
 
->[&larr; **Previous**](start-mvc.md)     [**Next** &rarr;](adding-view.md)  
+>[!div class="step-by-step"]
+[Previous](start-mvc.md)
+[Next](adding-view.md)  

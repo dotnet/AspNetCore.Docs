@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/details
 ---
 # Examining the Details and Delete methods
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 Open the Movie controller and examine the `Details` method:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=40-55)]
@@ -50,3 +48,6 @@ There are two approaches to this problem, one is to give the methods different n
 Another common work around for methods that have identical names and signatures is to artificially change the signature of the POST method to include an extra (unused) parameter. That's what we did in a previous post when we added the `notUsed` parameter. You could do the same thing here for the `[HttpPost] Delete` method:
 
 [!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=66-74)]
+
+>[!div class="step-by-step"]
+[Previous](validation.md)
