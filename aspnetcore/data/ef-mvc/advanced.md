@@ -179,15 +179,7 @@ Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan 
 
 Error message:
 
-```text
-Cannot open 'C:\ContosoUniversity\src
-\ContosoUniversity\bin\Debug\netcoreapp1.0
-\ContosoUniversity.dll' for writing --
-'The process cannot access the file
-'C:\ContosoUniversity\src\ContosoUniversity\bin
-\Debug\netcoreapp1.0\ContosoUniversity.dll'
-because it is being used by another process.
-```
+> Cannot open 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' for writing -- 'The process cannot access the file 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' because it is being used by another process.
 
 Solution:
 
