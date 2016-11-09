@@ -73,15 +73,15 @@ This is all that the Entity Framework needs in order to configure table-per-hier
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following command:
 
-````text
+```console
 dotnet ef migrations add Inheritance -c SchoolContext
-````
+```
 
 Run the `database update` command:.
 
-````text
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 The command will fail at this point because you have existing data that migrations doesn't know how to handle. You get an error message like the following one:
 
@@ -115,9 +115,9 @@ This code takes care of the following database update tasks:
 
 Run the `database update` command again:
 
-````text
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 (In a production system you would make corresponding changes to the `Down` method in case you ever had to use that to go back to the previous database version. For this tutorial you won't be using the `Down` method.)
 
