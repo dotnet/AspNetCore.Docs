@@ -18,7 +18,16 @@ uid: fundamentals/configuration
 <!-- SEE https://github.com/aspnet/Configuration/issues/532
 -->
 
-The configuration API reads lists of name-value pairs, which can be grouped into a multi-level hierarchy. There are configuration providers for file formats (INI, JSON, and XML), command-line arguments, environment variables, in-memory .NET objects, an encrypted user store, and custom providers you install or create. Each configuration value maps to a string key, and there’s built-in binding support to deserialize settings into a custom POCO object (.NET class).
+The configuration API reads lists of name-value pairs. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
+
+* File formats (INI, JSON, and XML)
+* Command-line arguments
+* Environment variables
+* In-memory .NET objects
+* An encrypted user store
+* Custom providers, which you install or create
+
+Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom POCO object (.NET class).
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample)
 
@@ -26,62 +35,18 @@ The configuration API reads lists of name-value pairs, which can be grouped into
 
 The following console app uses the JSON configuration provider:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/ConfigJson/Program.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````
-
-   using Microsoft.Extensions.Configuration;
-   using System;
-   using System.IO;
-
-   // Add NuGet <package id="Microsoft.Extensions.Configuration" and
-   // <package id="Microsoft.Extensions.Configuration.Json"
-   public class Program
-   {
-       static public IConfigurationRoot Configuration { get; set; }
-       public static void Main(string[] args = null)
-       {
-           var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-               // .Net 4.X requires parent.parent directory.
-               //.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), @"..\.."))
-               .AddJsonFile("appsettings.json");
-
-           Configuration = builder.Build();
-
-           Console.WriteLine($"option1 = {Configuration["option1"]}");
-           Console.WriteLine($"option2 = {Configuration["option2"]}");
-           Console.WriteLine(
-               $"option1 = {Configuration["subsection:suboption1"]}");
-       }
-   }
-   ````
+[!code-csharp[Main](configuration/sample/JsonConfig/Program.cs)]
 
 The app reads and displays the following configuration settings:
 
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/ConfigJson/appsettings.json", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````json
-
-   {
-     "option1": "value1_from_json",
-     "option2": 2,
-
-     "subsection": {
-       "suboption1": "subvalue1_from_json"
-     }
-   }
-   ````
+[!code-json[Main](configuration/sample/JsonConfig/appsettings.json)]
 
 Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a particular value, you access the `Configuration` indexer with the corresponding item’s key:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    Console.WriteLine(
      $"option1 = {Configuration["subsection:suboption1"]}");
-   ````
+   ```
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
@@ -90,10 +55,10 @@ The sample above uses the configuration indexer to read values. In ASP.NET Core 
 It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
 
 1. JSON provider, reading *appsettings.json*
-
 2. JSON provider, reading *appsettings.<EnvironmentName>.json*
-
 3. Environment variables provider
+
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup4.cs?name=snippet1)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup4.cs", "highlight_args": {"linenostart": 1, "hl_lines": [5, 6, 7]}, "names": []} -->
 
@@ -101,6 +66,7 @@ It's typical to have different configuration settings for different environments
 
    public Startup(IHostingEnvironment env)
    {
+// rm
        var builder = new ConfigurationBuilder()
            .SetBasePath(env.ContentRootPath)
            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -110,22 +76,24 @@ It's typical to have different configuration settings for different environments
    }
 
    ````
-
-See [AddJsonFile](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index.html.md#Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile.md) for an explanation of the parameters. Configuration sources are read in the order they are specified. In the code above, the environment variables are read last, any configuration values set through the environment would replace those set in the two previous providers.
+<!--
+TODO add link
+http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile)
+-->
+See ``AddJsonFile`` for an explanation of the parameters. Configuration sources are read in the order they are specified. In the code above, the environment variables are read last, any configuration values set through the environment would replace those set in the two previous providers.
 
 The environment is typically set to one of `Development`, `Staging`, or `Production`. See [Working with Multiple Environments](environments.md) for more information.
 
 Configuration considerations:
 
-* The built in configuration providers are not refreshed when the configuration data changes. If your configuration data changes, you'll need to restart your app to get the new data
-
-* Configuration keys are case insensitive
-
-* A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files
-
+* The built in configuration providers are not refreshed when the configuration data changes. If your configuration data changes, you'll need to restart your app to get the new data.
+* Configuration keys are case insensitive.
+* A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
-
-* To override nested keys through environment variables in shells that don't support `:` in variable names, replace `:`  with `__` (double underscore)
+* [link_text](xref:security/app-secrets)
+* <xref:security/app-secrets>
+* If `:` cannot be used,  replace `:`  with `__` (double underscore)
+To override nested keys through environment variables in shells that don't support `:` in variable names, replace `:`  with `__` (double underscore)
 
 <a name=options-config-objects></a>
 
@@ -499,7 +467,6 @@ Display the settings from the `HomeController`:
    }
    ````
 
-<a name=custom-config-providers></a>
 
   ### GetValue
 
@@ -667,6 +634,8 @@ The following code can be used to unit test the configuration:
        Assert.Equal("connectionstring", options.Connection.Value);
    }
    ````
+
+<a name=custom-config-providers></a>
 
   ## Entity Framework custom provider
 

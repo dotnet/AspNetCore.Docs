@@ -12,7 +12,8 @@ public class Program
         var builder = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
             // .Net 4.X requires parent.parent directory.
-            //.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), @"..\.."))
+            //.SetBasePath(Path.Combine(
+            //     Directory.GetCurrentDirectory(), @"..\.."))
             .AddJsonFile("appsettings.json");
 
         Configuration = builder.Build();
