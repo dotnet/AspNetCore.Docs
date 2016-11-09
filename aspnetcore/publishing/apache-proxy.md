@@ -15,10 +15,6 @@ By [Shayne Boyer](https://www.github.com/spboyer)
 
 Apache is a very popular HTTP server and can be configured as a proxy to redirect HTTP traffic similar to nginx. In this guide, we will learn how to set up Apache on CentOS 7 and use it as a reverse proxy to welcome incoming connections and redirect them to the ASP.NET Core application running on Kestrel. For this purpose, we will use the *mod_proxy* extension and other related Apache modules.
 
-.. contents:: Sections:
-  :local:
-  :depth: 2
-
 ## Prerequisites
 
 1. A server running CentOS 7, with a standard user account with
@@ -30,7 +26,7 @@ Apache is a very popular HTTP server and can be configured as a proxy to redirec
 Run `dotnet publish -c Release` from your development environment to package your
 application into a self-contained directory that can run on your server. The published application must then be copied to the server using SCP, FTP or other file transfer method. 
 
-note Under a production deployment scenario, a continuous integration workflow does the work of publishing the application and copying the assets to the server. 
+> [!NOTE] Under a production deployment scenario, a continuous integration workflow does the work of publishing the application and copying the assets to the server. 
 
 ## Configure a proxy server
 
@@ -72,7 +68,7 @@ The output should reflect something similar to the following.
     Complete!
 ```
 
->note In this example the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. The output may be different for your server. To verify where Apache is installed, run `whereis httpd` from the command line. 
+> [!NOTE] In this example the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. The output may be different for your server. To verify where Apache is installed, run `whereis httpd` from the command line. 
 
 ### Configure Apache for reverse proxy
 
@@ -138,7 +134,7 @@ An example service file for our application.
     WantedBy=multi-user.target
 ```
 
->note **User** If *apache* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> [!NOTE] **User** -- If *apache* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 
@@ -257,7 +253,7 @@ The `hellomvc.conf` file that was created for this example needs to be modified 
     </VirtualHost>    
 ```
 
->note This example is using a locally generated certificate. **SSLCertificateFile** should be your primary certificate file for your domain name. **SSLCertificateKeyFile** should be the key file generated when you created the CSR. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by your certificate authority
+> [!NOTE] This example is using a locally generated certificate. **SSLCertificateFile** should be your primary certificate file for your domain name. **SSLCertificateKeyFile** should be the key file generated when you created the CSR. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by your certificate authority
 
 Save the file, and test the configuration.
 
