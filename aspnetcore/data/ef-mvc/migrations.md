@@ -25,15 +25,15 @@ This method of keeping the database in sync with the data model works well until
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
 
-[!code-javascript[](intro/samples/cu/appsettings2.json?range=1-4)]
+[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
 This change sets up the project so that the first migration will create a new database. This isn't required for getting started with migrations, but you'll see later why it's a good idea.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
-> ````none
+> ```console
 > dotnet ef database drop -c SchoolContext
-> ````
+> ```
 > The following section explains how to run CLI commands.
 
 ## Create an initial migration
@@ -52,20 +52,20 @@ Before you enter a command, stop IIS Express for the site, or you may get an err
 
 After you have stopped IIS Express, enter the following command in the command window:
 
-````none
+```console
 dotnet ef migrations add InitialCreate -c SchoolContext
-````
+```
 
 You see output like the following in the command window:
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add InitialCreate -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 
 Done.
 
 To undo this action, use 'dotnet ef migrations remove'
-````
+```
 
 You have to include the `-c SchoolContext` parameter to specify the database context class, because the project has two context classes (the other one is for ASP.NET Identity).
 
@@ -93,18 +93,18 @@ Because this code has to reflect the database state after the latest migration, 
 
 In the command window, enter the following command to create the database and tables in it.
 
-````none
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 The output from the command is similar to the `migrations add` command.
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef database update -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 
 Done.
-````
+```
 
 Use **SQL Server Object Explorer** to inspect the database as you did in the first tutorial.  You'll notice the addition of an __EFMigrationsHistory table that keeps track of which migrations have been applied to the database. View the data in that table and you'll see one entry for the first migration.
 
