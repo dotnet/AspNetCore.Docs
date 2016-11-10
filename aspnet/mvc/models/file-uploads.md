@@ -42,7 +42,7 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
 
    ````
 
-In order to support file uploads, HTML forms must specify an `enctype` of `multipart/form-data`. The `files` input element shown abovesupports uploading multiple files; omit the `multiple` attribute on this input element to allow just a single file to be uploaded. The above markup renders in a browser as:
+In order to support file uploads, HTML forms must specify an `enctype` of `multipart/form-data`. The `files` input element shown above supports uploading multiple files; omit the `multiple` attribute on this input element to allow just a single file to be uploaded. The above markup renders in a browser as:
 
 ![image](file-uploads/_static/upload-form.png)
 
@@ -72,48 +72,42 @@ When uploading files using model binding and the `IFormFile` interface, the acti
 
 ````c#
 
-   using System.Collections.Generic;
-   using System.IO;
-   using System.Linq;
-   using System.Threading.Tasks;
-   using Microsoft.AspNetCore.Hosting;
-   using Microsoft.AspNetCore.Http;
-   using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
 
-   namespace FileUploadSample.Controllers
-   {
-       public class UploadFilesController : Controller
-       {
-           private readonly IHostingEnvironment _hostingEnvironment;
+    namespace FileUploadSample.Controllers
+    {
+        public class UploadFilesController : Controller
+        {
+            [HttpPost("UploadFiles")]
+            public async Task<IActionResult> Post(List<IFormFile> files)
+            {
+                long size = files.Sum(f => f.Length);
 
-           public UploadFilesController(IHostingEnvironment hostingEnvironment)
-           {
-               _hostingEnvironment = hostingEnvironment;
-           }
+                // full path to file in temp location
+                var filePath = Path.GetTempFileName();
 
-           [HttpPost("UploadFiles")]
-           public async Task<IActionResult> Post(List<IFormFile> files)
-           {
-               long size = files.Sum(f => f.Length);
+                foreach (var formFile in files)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await formFile.CopyToAsync(stream);
+                        }
+                    }
+                }
 
-               // save files - "uploads" path must already exist
-               var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-               foreach (var formFile in files)
-               {
-                   if (formFile.Length > 0)
-                   {
-                       var filePath = Path.Combine(uploadPath, formFile.FileName);
-                       using (var stream = new FileStream(filePath, FileMode.Create))
-                       {
-                           await formFile.CopyToAsync(stream);
-                       }
-                   }
-               }
+                // process uploaded files
 
-               return Ok(new { count = files.Count, size});
-           }
-       }
-   }
+                return Ok(new { count = files.Count, size, filePath});
+            }
+        }
+    }
 
    ````
 
@@ -180,7 +174,9 @@ Note: Use caution when storing binary data in relational databases, as it can ad
 
   ## Uploading Large Files with Streaming
 
-If the size or frequency of file uploads is causing performance or resource problems for the app, consider streaming the file upload rather than buffering it in its entirety (as the model binding approach shown above does). Using `IFormFile` and model binding is a much simpler solution; streaming requires a number of steps to implement properly.
+If the size or frequency of file uploads is causing resource problems for the app, consider streaming the file upload rather than buffering it in its entirety (as the model binding approach shown above does). Using `IFormFile` and model binding is a much simpler solution; streaming requires a number of steps to implement properly.
+
+Note: Any single buffered file exceeding 64KB will be moved from RAM to a temp file on disk on the server. The resources (disk, RAM) used by file uploads depend on the number and size of the files being uploaded concurrently. Streaming is not so much about perf, it's about scale. If you try to buffer too many uploads your site will crash when it runs out of memory or disk.
 
 The following example demonstrates using JavaScript/Angular to stream to a controller action. The file's antiforgery token is generated using a custom filter attribute, and then passed in HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, model binding is disabled by another filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. Once all sections have been read, the action performs its own model binding.
 
@@ -295,123 +291,113 @@ The complete `Upload` method is shown below:
 
 ````c#
 
-   // 1. Disable the form value model binding here to take control of handling potentially large files.
-   // 2. Typically antiforgery tokens are sent in request body, but since we do not want to read the request body
-   //    early, the tokens are made to be sent via headers. The antiforgery token filter first looks for tokens
-   //    in the request header and then falls back to reading the body.
-   [HttpPost]
-   [DisableFormValueModelBinding]
-   [ValidateAntiForgeryToken]
-   public async Task<IActionResult> Upload()
-   {
-       if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
-       {
-           return BadRequest("Expected a multipart request, but got " + 
-               Request.ContentType);
-       }
+    // 1. Disable the form value model binding here to take control of handling potentially large files.
+    // 2. Typically antiforgery tokens are sent in request body, but since we do not want to read the request body
+    //    early, the tokens are made to be sent via headers. The antiforgery token filter first looks for tokens
+    //    in the request header and then falls back to reading the body.
+    [HttpPost]
+    [DisableFormValueModelBinding]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Upload()
+    {
+        if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
+        {
+            return BadRequest("Expected a multipart request, but got " +
+                Request.ContentType);
+        }
 
-       // Used to accumulate all the form url encoded key value pairs in the request.
-       var formAccumulator = new KeyValueAccumulator();
-       string targetFilePath = null;
+        // Used to accumulate all the form url encoded key value pairs in the request.
+        var formAccumulator = new KeyValueAccumulator();
+        string targetFilePath = null;
 
-       var boundary = MultipartRequestHelper.GetBoundary(
-           MediaTypeHeaderValue.Parse(Request.ContentType), 
-           _defaultFormOptions.MultipartBoundaryLengthLimit);
-       var reader = new MultipartReader(boundary, HttpContext.Request.Body);
+        var boundary = MultipartRequestHelper.GetBoundary(
+            MediaTypeHeaderValue.Parse(Request.ContentType),
+            _defaultFormOptions.MultipartBoundaryLengthLimit);
+        var reader = new MultipartReader(boundary, HttpContext.Request.Body);
 
-       var section = await reader.ReadNextSectionAsync();
-       while (section != null)
-       {
-           ContentDispositionHeaderValue contentDisposition;
-           ContentDispositionHeaderValue.TryParse(section.ContentDisposition, 
-               out contentDisposition);
+        var section = await reader.ReadNextSectionAsync();
+        while (section != null)
+        {
+            ContentDispositionHeaderValue contentDisposition;
+            var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition,
+                out contentDisposition);
 
-           if (MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
-           {
-               var name = HeaderUtilities.RemoveQuotes(contentDisposition.Name) 
-                   ?? string.Empty;
-               var fileName = HeaderUtilities.RemoveQuotes(contentDisposition.FileName) 
-                   ?? string.Empty;
+            if (hasContentDispositionHeader &&
+                MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
+            {
+                targetFilePath = Path.GetTempFileName();
+                using (var targetStream = System.IO.File.Create(targetFilePath))
+                {
+                    await section.Body.CopyToAsync(targetStream);
 
-               var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+                    _logger.LogInformation($"Copied the uploaded file '{targetFilePath}'");
+                }
+            }
+            else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))
+            {
+                // Content-Disposition: form-data; name="key"
+                //
+                // value
 
-               // save the file with a new GUID name
-               string newFilename = Guid.NewGuid().ToString() + '.' + fileName.Split('.').Last();
-               targetFilePath = Path.Combine(uploadPath, newFilename);
-               
-               using (var targetStream = System.IO.File.Create(targetFilePath))
-               {
-                   await section.Body.CopyToAsync(targetStream);
+                // Do not limit the key name length here because the multipart headers length
+                // limit is already in effect.
+                var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
+                var encoding = GetEncoding(section);
+                using (var streamReader = new StreamReader(
+                    section.Body,
+                    encoding,
+                    detectEncodingFromByteOrderMarks: true,
+                    bufferSize: 1024,
+                    leaveOpen: true))
+                {
+                    // The value length limit is enforced by MultipartBodyLengthLimit
+                    var value = await streamReader.ReadToEndAsync();
+                    if (String.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
+                    {
+                        value = String.Empty;
+                    }
+                    formAccumulator.Append(key, value);
 
-                   _logger.LogInformation(String.Format(
-                       "Copied the uploaded file '{0}' to '{1}'.", 
-                       fileName, targetFilePath));
-               }
-           }
-           else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))
-           {
-               // Content-Disposition: form-data; name="key"
-               //
-               // value
+                    if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
+                    {
+                        throw new InvalidDataException(
+                            "Form key count limit " + _defaultFormOptions.ValueCountLimit +
+                            " exceeded.");
+                    }
+                }
+            }
 
-               // Do not limit the key name length here because the multipart headers length
-               // limit is already in effect.
-               var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
-               MediaTypeHeaderValue mediaType;
-               MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
-               var encoding = FilterEncoding(mediaType?.Encoding);
-               using (var streamReader = new StreamReader(
-                   section.Body,
-                   encoding,
-                   detectEncodingFromByteOrderMarks: true,
-                   bufferSize: 1024,
-                   leaveOpen: true))
-               {
-                   // The value length limit is enforced by MultipartBodyLengthLimit
-                   var value = await streamReader.ReadToEndAsync();
-                   if (value == "undefined") value = String.Empty;
-                   formAccumulator.Append(key, value);
+            // Drains any remaining section body that has not been consumed and
+            // reads the headers for the next section.
+            section = await reader.ReadNextSectionAsync();
+        }
 
-                   if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
-                   {
-                       throw new InvalidDataException(
-                           "Form key count limit " + _defaultFormOptions.ValueCountLimit + 
-                           " exceeded.");
-                   }
-               }
-           }
+        // Bind form data to a model
+        var user = new User();
+        var formValueProvider = new FormValueProvider(
+            BindingSource.Form,
+            new FormCollection(formAccumulator.GetResults()),
+            CultureInfo.CurrentCulture);
 
-           // Drains any remaining section body that has not been consumed and
-           // reads the headers for the next section.
-           section = await reader.ReadNextSectionAsync();
-       }
+        var bindingSuccessful = await TryUpdateModelAsync(user, prefix: "",
+            valueProvider: formValueProvider);
+        if (!bindingSuccessful)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+        }
 
-       // Bind form data to a model
-       var user = new User();
-       var formValueProvider = new FormValueProvider(
-           BindingSource.Form,
-           new FormCollection(formAccumulator.GetResults()),
-           CultureInfo.CurrentCulture);
-
-       var bindingSuccessful = await TryUpdateModelAsync(user, prefix: "", 
-           valueProvider: formValueProvider);
-       if (!bindingSuccessful)
-       {
-           if (!ModelState.IsValid)
-           {
-               return BadRequest(ModelState);
-           }
-       }
-
-       var uploadedData = new UploadedData()
-       {
-           Name = user.Name,
-           Age = user.Age,
-           Zipcode = user.Zipcode,
-           FilePath = targetFilePath
-       };
-       return Json(uploadedData);
-   }
+        var uploadedData = new UploadedData()
+        {
+            Name = user.Name,
+            Age = user.Age,
+            Zipcode = user.Zipcode,
+            FilePath = targetFilePath
+        };
+        return Json(uploadedData);
+    }
 
    ````
 

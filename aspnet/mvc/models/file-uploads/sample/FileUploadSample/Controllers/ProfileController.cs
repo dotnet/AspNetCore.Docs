@@ -48,14 +48,14 @@ namespace FileUploadSample.Controllers
         {
             _profile.Name = model.Name;
 
-            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-
             if (model.AvatarFile.Length > 0)
             {
-                var filePath = Path.Combine(uploadPath, model.AvatarFile.FileName);
+                // don't rely on or trust the FileName property without validation
+                var filePath = Path.GetTempFileName();
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await model.AvatarFile.CopyToAsync(stream);
+                    // validate file, then move to CDN or public folder
                 }
             }
             _profile.AvatarPath = model.AvatarFile.FileName;

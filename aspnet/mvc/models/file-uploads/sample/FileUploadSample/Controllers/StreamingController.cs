@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileUploadSample.Filters;
 using FileUploadSample.Models;
 using FileUploadSample.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
@@ -20,17 +18,14 @@ namespace FileUploadSample.Controllers
 {
     public class StreamingController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
         private readonly ILogger<StreamingController> _logger;
 
         // Get the default form options so that we can use them to set the default limits for
         // request body data
         private static readonly FormOptions _defaultFormOptions = new FormOptions();
 
-        public StreamingController(IHostingEnvironment hostingEnvironment,
-            ILogger<StreamingController> logger)
+        public StreamingController(ILogger<StreamingController> logger)
         {
-            _hostingEnvironment = hostingEnvironment;
             _logger = logger;
         }
 
@@ -52,7 +47,7 @@ namespace FileUploadSample.Controllers
         {
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
-                return BadRequest("Expected a multipart request, but got " + 
+                return BadRequest("Expected a multipart request, but got " +
                     Request.ContentType);
             }
 
@@ -61,7 +56,7 @@ namespace FileUploadSample.Controllers
             string targetFilePath = null;
 
             var boundary = MultipartRequestHelper.GetBoundary(
-                MediaTypeHeaderValue.Parse(Request.ContentType), 
+                MediaTypeHeaderValue.Parse(Request.ContentType),
                 _defaultFormOptions.MultipartBoundaryLengthLimit);
             var reader = new MultipartReader(boundary, HttpContext.Request.Body);
 
@@ -69,28 +64,18 @@ namespace FileUploadSample.Controllers
             while (section != null)
             {
                 ContentDispositionHeaderValue contentDisposition;
-                ContentDispositionHeaderValue.TryParse(section.ContentDisposition, 
+                var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition,
                     out contentDisposition);
 
-                if (MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
+                if (hasContentDispositionHeader &&
+                    MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
                 {
-                    var name = HeaderUtilities.RemoveQuotes(contentDisposition.Name) 
-                        ?? string.Empty;
-                    var fileName = HeaderUtilities.RemoveQuotes(contentDisposition.FileName) 
-                        ?? string.Empty;
-
-                    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
-
-                    // save the file with a new GUID name
-                    string newFilename = Guid.NewGuid().ToString() + '.' + fileName.Split('.').Last();
-                    targetFilePath = Path.Combine(uploadPath, newFilename);
+                    targetFilePath = Path.GetTempFileName();
                     using (var targetStream = System.IO.File.Create(targetFilePath))
                     {
                         await section.Body.CopyToAsync(targetStream);
 
-                        _logger.LogInformation(String.Format(
-                            "Copied the uploaded file '{0}' to '{1}'.", 
-                            fileName, targetFilePath));
+                        _logger.LogInformation($"Copied the uploaded file '{targetFilePath}'");
                     }
                 }
                 else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))
@@ -102,9 +87,7 @@ namespace FileUploadSample.Controllers
                     // Do not limit the key name length here because the multipart headers length
                     // limit is already in effect.
                     var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
-                    MediaTypeHeaderValue mediaType;
-                    MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
-                    var encoding = FilterEncoding(mediaType?.Encoding);
+                    var encoding = GetEncoding(section);
                     using (var streamReader = new StreamReader(
                         section.Body,
                         encoding,
@@ -114,13 +97,16 @@ namespace FileUploadSample.Controllers
                     {
                         // The value length limit is enforced by MultipartBodyLengthLimit
                         var value = await streamReader.ReadToEndAsync();
-                        if (value == "undefined") value = String.Empty;
+                        if (String.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
+                        {
+                            value = String.Empty;
+                        }
                         formAccumulator.Append(key, value);
 
                         if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
                         {
                             throw new InvalidDataException(
-                                "Form key count limit " + _defaultFormOptions.ValueCountLimit + 
+                                "Form key count limit " + _defaultFormOptions.ValueCountLimit +
                                 " exceeded.");
                         }
                     }
@@ -138,7 +124,7 @@ namespace FileUploadSample.Controllers
                 new FormCollection(formAccumulator.GetResults()),
                 CultureInfo.CurrentCulture);
 
-            var bindingSuccessful = await TryUpdateModelAsync(user, prefix: "", 
+            var bindingSuccessful = await TryUpdateModelAsync(user, prefix: "",
                 valueProvider: formValueProvider);
             if (!bindingSuccessful)
             {
@@ -158,15 +144,16 @@ namespace FileUploadSample.Controllers
             return Json(uploadedData);
         }
 
-        private static Encoding FilterEncoding(Encoding encoding)
+        private static Encoding GetEncoding(MultipartSection section)
         {
+            MediaTypeHeaderValue mediaType;
+            var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse(section.ContentType, out mediaType);
             // UTF-7 is insecure and should not be honored. UTF-8 will succeed for most cases.
-            if (encoding == null || Encoding.UTF7.Equals(encoding))
+            if (!hasMediaTypeHeader || Encoding.UTF7.Equals(mediaType.Encoding))
             {
                 return Encoding.UTF8;
             }
-            return encoding;
+            return mediaType.Encoding;
         }
-
     }
 }
