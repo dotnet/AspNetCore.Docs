@@ -90,22 +90,20 @@ Configuration considerations:
 * Configuration keys are case insensitive.
 * A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
 * **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
-* [link_text](xref:security/app-secrets)
-* <xref:security/app-secrets>
-* If `:` cannot be used,  replace `:`  with `__` (double underscore)
-To override nested keys through environment variables in shells that don't support `:` in variable names, replace `:`  with `__` (double underscore)
+* If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
 
 <a name=options-config-objects></a>
 
-  ## Using Options and configuration objects
+## Using Options and configuration objects
 
 The options pattern uses custom options classes to represent a group of related settings. We recommended that you create decoupled classes for each feature within your app. Decoupled classes follow:
 
 * The [Interface Segregation Principle (ISP)](http://deviq.com/interface-segregation-principle/) : Classes depend only on the configuration settings they use.
-
-* [Separation of Concerns](http://deviq.com/separation-of-concerns/) : Settings for disparate parts of your app are managed separately, and not dependent on or coupled with one another.
+* [Separation of Concerns](http://deviq.com/separation-of-concerns/) : Settings for different parts of your app are not dependent or coupled with one another.
 
 The options class must be non-abstract with a public parameterless constructor. For example:
+
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MyOptions.cs)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Models/MyOptions.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
@@ -113,6 +111,7 @@ The options class must be non-abstract with a public parameterless constructor. 
 
    public class MyOptions
    {
+// rm
        public MyOptions()
        {
            // Set default value.
@@ -125,7 +124,9 @@ The options class must be non-abstract with a public parameterless constructor. 
 
 <a name=options-example></a>
 
-In the following code, the JSON configuration provider is enabled and `MyOptions` class is added to the service container. The `MyOptions` class is bound to configuration.
+In the following code, the JSON configuration provider is enabled and the `MyOptions` class is added to the service container. The `MyOptions` class is bound to configuration.
+
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup.cs", "highlight_args": {"linenostart": 1, "hl_lines": [5, 6, 7, 8, 10, 13, 15, 17, 18, 20, 21]}, "names": []} -->
 
@@ -133,6 +134,7 @@ In the following code, the JSON configuration provider is enabled and `MyOptions
 
    public class Startup
    {
+// RM
        public Startup(IHostingEnvironment env)
        {
            // Set up configuration sources.
@@ -159,14 +161,20 @@ In the following code, the JSON configuration provider is enabled and `MyOptions
 
    ````
 
-The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on [IOptions<TOptions>](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IOptions<TOptions>.md) to access settings:
+The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on `IOptions<TOptions>` to access settings:
+<!--
+http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IOptions<TOptions>.md
+-->
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController.cs?name=snippet1)]
+
+<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````none
 
    public class HomeController : Controller
    {
+// rm
        private readonly MyOptions _optionsAccessor;
 
        public HomeController(IOptions<MyOptions> optionsAccessor)
@@ -186,11 +194,14 @@ The following [controller](../mvc/controllers/index.md)  uses [Dependency Inject
 
 With the following *appsettings.json* file:
 
+[!code[Main](configuration/sample/src/UsingOptions/appsettings1.json)]
+
 <!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/appsettings1.json", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````json
 
    {
+removre me
      "option1": "value1_from_json",
      "option2": 2
    }
@@ -199,14 +210,19 @@ With the following *appsettings.json* file:
 
 The `HomeController.Index` method returns `option1 = value1_from_json, option2 = 2`.
 
-In the following code, a second [IConfigureOptions<TOptions>](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IConfigureOptions<TOptions>.md) service is added to the service container. It uses a delegate to configure the binding with `MyOptions`.
+In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptions`.
 
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup2.cs?name=snippet1)]
+<!--
+http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IConfigureOptions<TOptions>
+-->
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup2.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9, 10, 11, 12, 13]}, "names": []} -->
 
 ````c#
 
    public void ConfigureServices(IServiceCollection services)
    {
+// rm
        // Adds services required for using options.
        services.AddOptions();
 
@@ -225,19 +241,20 @@ In the following code, a second [IConfigureOptions<TOptions>](http://docs.asp.ne
 
    ````
 
-You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered. Each call to [Configure<TOptions>](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/DependencyInjection/OptionsServiceCollectionExtensions/index.html.md#Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure<TOptions>.md) adds an [IConfigureOptions<TOptions>](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IConfigureOptions<TOptions>.md) service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code
-above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
+You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered. Each call to `Configure<TOptions>]` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. A sub-property sample is shown later in this article.
 
-In the following code, a third [IConfigureOptions<TOptions>](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IConfigureOptions<TOptions>.md) service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
+In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
+
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup3.cs?name=snippet1)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup3.cs", "highlight_args": {"linenostart": 1, "hl_lines": [15, 16]}, "names": []} -->
 
 ````c#
 
    public void ConfigureServices(IServiceCollection services)
-   {
+   { // rm
        // Adds services required for using options.
        services.AddOptions();
 
@@ -267,13 +284,12 @@ In the following code, a third [IConfigureOptions<TOptions>](http://docs.asp.net
        app.UseMvcWithDefaultRoute();
    }
 
-
-
    ````
-
 Using the following *appsettings.json* file:
 
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/appsettings.json", "highlight_args": {"linenostart": 1}, "names": []} -->
+[!code[Main](configuration/sample/src/UsingOptions/appsettings.json)]
+
+<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````json
 
@@ -291,12 +307,14 @@ Using the following *appsettings.json* file:
 
 The `MySubOptions` class:
 
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs)]
+
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Models/MySubOptions.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````c#
 
    public class MySubOptions
-   {
+   { // rm
        public MySubOptions()
        {
            // Set default values.
@@ -311,12 +329,15 @@ The `MySubOptions` class:
 
 With the following `Controller`:
 
+[!code-csharp[Main](fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
+
+
 <!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController2.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````none
 
    public class HomeController : Controller
-   {
+   { // rm
        private readonly MySubOptions _subOptionsAccessor;
 
        public HomeController(IOptions<MySubOptions> subOptionsAccessor)
@@ -338,9 +359,11 @@ With the following `Controller`:
 
 <a name=in-memory-provider></a>
 
-  ## In-memory provider and binding to a POCO class
+## In-memory provider and binding to a POCO class
 
 The following sample shows how to use the in-memory provider and bind to a class:
+
+[!code-csharp[Main](configuration/sample/src/InMemory/Program.cs)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/InMemory/Program.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
@@ -351,6 +374,7 @@ The following sample shows how to use the in-memory provider and bind to a class
    using System.Collections.Generic;
 
    // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
+// rm
    public class Program
    {   
        static public IConfigurationRoot Configuration { get; set; }
@@ -377,12 +401,14 @@ The following sample shows how to use the in-memory provider and bind to a class
    }
    ````
 
+[!code-csharp[Main](configuration/sample/src/InMemory/MyWindow.cs)]
+
 <!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/InMemory/MyWindow.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
 ````none
 
    public class MyWindow
-   {
+   { // rm
        public int Height { get; set; }
        public int Width { get; set; }
        public int Top { get; set; }
