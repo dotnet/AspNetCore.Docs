@@ -1,6 +1,6 @@
 ---
 title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code
-author: rick-anderson
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
