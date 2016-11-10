@@ -111,7 +111,7 @@ When uploading files using model binding and the `IFormFile` interface, the acti
 
    ````
 
-Files uploaded using the `IFormFile` technique are buffered in memory on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to *Azure blob storage <https://azure.microsoft.com/en-us/documentation/articles/vs-storage-aspnet5-getting-started-blobs/>* or Entity Framework.
+Files uploaded using the `IFormFile` technique are buffered in memory or on disk on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to *Azure blob storage <https://azure.microsoft.com/en-us/documentation/articles/vs-storage-aspnet5-getting-started-blobs/>* or Entity Framework.
 
 To store binary file data in a database using Entity Framework, define a property of type `byte[]` on the entity:
 
@@ -322,47 +322,49 @@ The complete `Upload` method is shown below:
             var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition,
                 out contentDisposition);
 
-            if (hasContentDispositionHeader &&
-                MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
+            if (hasContentDispositionHeader)
             {
-                targetFilePath = Path.GetTempFileName();
-                using (var targetStream = System.IO.File.Create(targetFilePath))
+                if (MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
                 {
-                    await section.Body.CopyToAsync(targetStream);
-
-                    _logger.LogInformation($"Copied the uploaded file '{targetFilePath}'");
-                }
-            }
-            else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))
-            {
-                // Content-Disposition: form-data; name="key"
-                //
-                // value
-
-                // Do not limit the key name length here because the multipart headers length
-                // limit is already in effect.
-                var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
-                var encoding = GetEncoding(section);
-                using (var streamReader = new StreamReader(
-                    section.Body,
-                    encoding,
-                    detectEncodingFromByteOrderMarks: true,
-                    bufferSize: 1024,
-                    leaveOpen: true))
-                {
-                    // The value length limit is enforced by MultipartBodyLengthLimit
-                    var value = await streamReader.ReadToEndAsync();
-                    if (String.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
+                    targetFilePath = Path.GetTempFileName();
+                    using (var targetStream = System.IO.File.Create(targetFilePath))
                     {
-                        value = String.Empty;
+                        await section.Body.CopyToAsync(targetStream);
+
+                        _logger.LogInformation($"Copied the uploaded file '{targetFilePath}'");
                     }
-                    formAccumulator.Append(key, value);
+                }
+                else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))
+                {
+                    // Content-Disposition: form-data; name="key"
+                    //
+                    // value
 
-                    if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
+                    // Do not limit the key name length here because the multipart headers length
+                    // limit is already in effect.
+                    var key = HeaderUtilities.RemoveQuotes(contentDisposition.Name);
+                    var encoding = GetEncoding(section);
+                    using (var streamReader = new StreamReader(
+                        section.Body,
+                        encoding,
+                        detectEncodingFromByteOrderMarks: true,
+                        bufferSize: 1024,
+                        leaveOpen: true))
                     {
-                        throw new InvalidDataException(
-                            "Form key count limit " + _defaultFormOptions.ValueCountLimit +
-                            " exceeded.");
+                        // The value length limit is enforced by MultipartBodyLengthLimit
+                        var value = await streamReader.ReadToEndAsync();
+                        if (String.Equals(value, "undefined", StringComparison.OrdinalIgnoreCase))
+                        {
+                            value = String.Empty;
+                        }
+                        formAccumulator.Append(key, value);
+
+                        if (formAccumulator.ValueCount > _defaultFormOptions.ValueCountLimit)
+                        {
+                            throw new InvalidDataException(
+                                "Form key count limit " + _defaultFormOptions.ValueCountLimit +
+                                " exceeded.");
+                        }
                     }
                 }
             }
