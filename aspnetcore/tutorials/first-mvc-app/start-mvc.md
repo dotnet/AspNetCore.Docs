@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/start-mvc
 ---
 # Getting started with ASP.NET Core MVC and Visual Studio
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 This tutorial will teach you the basics of building an ASP.NET Core MVC web app using [Visual Studio 2015](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx).
 
 > [!NOTE]
@@ -83,4 +81,4 @@ The default template gives you working **Home, Contact, About, Register** and **
 In the next part of this tutorial, we'll learn about MVC and start writing some code.
 
 >[!div class="step-by-step"]
-[**Adding a controller** &rarr;](adding-controller.md)  
+[Next](adding-controller.md)  
