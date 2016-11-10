@@ -19,10 +19,7 @@ This tutorial will demonstrate how to build an ASP.NET Core app that enables use
 
 [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages such as the ones by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
 
-<img src="sociallogins/_static/facebook.svg" width="24">&nbsp;
-<img src="sociallogins/_static/twitter.svg" width="24">&nbsp;
-<img src="sociallogins/_static/google.svg" width="24">&nbsp;
-<img src="sociallogins/_static/microsoft.svg" width="24">
+![image](sociallogins/_static/social.png)
 
 Enabling users to login with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://developers.facebook.com/case-studies/).
 
@@ -73,60 +70,7 @@ services.AddMvc(options =>
 
 The template used to create the sample project in this tutorial has code in `Startup.cs` which reads the configuration values from a secret store:
 
-````csharp
-if (env.IsDevelopment())
-{
-    builder.AddUserSecrets();
-}
-````
-
-* Install the [Secret Manager tool](../app-secrets.md).
-
-* Set the Facebook AppId:
-
-  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
-  ````
-  dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
-     ````
-
-* Set the Facebook AppSecret:
-
-  <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
-
-  ````
-  dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-     ````
-
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
-
 [!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
-
-## Enable Facebook middleware
-
-**Note:** You will need to use NuGet to install the Microsoft.AspNetCore.Authentication.Facebook package if it hasn't already been installed.
-
-Add the Facebook middleware in the `Configure` method in `Startup`:
-
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=21,22,23,24,25&range=64-96)]
-
-## Login with Facebook
-
-Run your application and click Login. You will see an option for Facebook.
-
-![image](sociallogins/_static/FBLogin1.PNG)
-
-When you click on Facebook, you will be redirected to Facebook for authentication.
-
-![image](sociallogins/_static/FBLogin2.PNG)
-
-Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
-
-You are now logged in using your Facebook credentials.
-
-![image](sociallogins/_static/DoneFacebook.PNG)
-
-## Optionally set password
 
 As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 
