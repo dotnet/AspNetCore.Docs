@@ -24,17 +24,12 @@ Currently the `Index` method returns a string with a message that is hard-coded 
 The `Index` method above uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the `Index` method above, generally return an `IActionResult` (or a class derived from `ActionResult`), not primitive types like string.
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
-
 * Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
-
 * In the **Add New Item - MvcMovie** dialog
 
   * In the search box in the upper-right, enter *view*
-
   * Tap **MVC View Page**
-
   * In the **Name** box, keep the default *Index.cshtml*
-
   * Tap **Add**
 
 ![image](adding-view/_static/add_view.png)
@@ -132,15 +127,11 @@ Return to the *HelloWorldController.cs* file and change the `Welcome` method to 
 The `ViewData` dictionary object contains data that will be passed to the view. Next, you need a Welcome view template.
 
 * Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
-
 * In the **Add New Item - MvcMovie** dialog
 
   * In the search box in the upper-right, enter *view*
-
   * Tap **MVC View Page**
-
   * In the **Name** box, enter *Welcome.cshtml*
-
   * Tap **Add**
 
 You'll create a loop in the *Welcome.cshtml* view template that displays "Hello" `NumTimes`. Replace the contents of *Views/HelloWorld/Welcome.cshtml* with the following:
@@ -159,4 +150,4 @@ In the sample above, we used the `ViewData` dictionary to pass data from the con
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[&larr; **Previous**](adding-controller.md)     [**Next** &rarr;](adding-model.md)  
+>[&larr; **Previous**](adding-controller.md)  &nbsp;&nbsp;&nbsp;&nbsp;   [**Next** &rarr;](adding-model.md)  
