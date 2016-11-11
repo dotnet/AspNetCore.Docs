@@ -53,7 +53,7 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
-For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+For more information, see [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md).
 
 ## Application configuration
 
