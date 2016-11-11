@@ -61,7 +61,7 @@ Your project is now created, you can use the following commands to get going
 
 When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
 
-![image](your-first-mac-aspnet/_static/dependencies-restore.png)
+![VSCVisual Studio Code prompt to restore the needed project dependencies and add build and debug dependencies](your-first-mac-aspnet/_static/dependencies-restore.png)
 
 Tap "Yes" to add the build and debug assets.
 
