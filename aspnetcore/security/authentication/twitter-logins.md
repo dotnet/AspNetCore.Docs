@@ -86,7 +86,7 @@ You are now logged in using your Twitter credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with [Facebook](facebook-logins.md), [Microsoft Account](microsoft-logins.md), [Google](google-logins.md) and other providers.
+* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
 * Once you publish your Web site to Azure Web App, you should reset the *ConsumerSecret* in the Twitter developer portal.
 

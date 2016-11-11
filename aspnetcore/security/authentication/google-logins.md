@@ -124,7 +124,7 @@ You are now logged in using your Google credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Microsoft Account](microsoft-logins.md), [Google](google-logins.md) and other providers.
+* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
 * Once you publish your Web site to Azure Web App, you should reset the *ClientSecret* in the Google API Console.
 
