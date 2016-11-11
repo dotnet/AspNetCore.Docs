@@ -44,15 +44,10 @@ You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
    * wwwroot
-
      * css
-
      * images
-
      * ...
-
    * MyStaticFiles
-
      * test.png
 
 For a request to access *test.png*, configure the static files middleware as follows:
