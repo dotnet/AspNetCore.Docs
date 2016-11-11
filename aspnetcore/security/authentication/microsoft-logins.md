@@ -56,9 +56,9 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 
 ## Storing Microsoft ApplicationId and Secret
 
-Link sensitive settings like Microsoft *ApplicationId* and *Secret* to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
+Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
 
-* Note the **Application Id** displayed on the *Registration* page.
+* Note the `Application Id` displayed on the *Registration* page.
 
 * Tap **Generate New Password** in the *Application Secrets* section. This will display a box where you can copy the application secret:
 
@@ -113,6 +113,6 @@ You are now logged in using your Microsoft credentials:
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the *Secret* in the Microsoft developer portal.
+* Once you publish your Web site to Azure Web App, you should reset the `Secret` in the Microsoft developer portal.
 
-* Set the *Authentication:Microsoft:ClientId* and *Authentication:Microsoft:ClientSecret* as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

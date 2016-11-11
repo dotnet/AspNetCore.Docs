@@ -38,9 +38,9 @@ This tutorial shows you how to enable your users to [log in with their Twitter a
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
-Link sensitive settings like Twitter *ConsumerKey* and *ConsumerSecret* to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
+Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
 
-* Switch to the **Keys and Access Tokens** tab. Note the *Consumer Key* and *Consumer Secret*:
+* Switch to the **Keys and Access Tokens** tab. Note the `Consumer Key` and `Consumer Secret`:
 
 ![image](sociallogins/_static/TwitterKeys.png)
 
@@ -88,6 +88,6 @@ You are now logged in using your Twitter credentials:
 
 * This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the *ConsumerSecret* in the Twitter developer portal.
+* Once you publish your Web site to Azure Web App, you should reset the `ConsumerSecret` in the Twitter developer portal.
 
-* Set the *Authentication:Twitter:ConsumerKey* and Authentication:Twitter:ConsumerSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

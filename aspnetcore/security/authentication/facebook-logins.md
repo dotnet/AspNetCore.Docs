@@ -44,13 +44,13 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 > [!NOTE]
 > You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
 
-* Make a note of your *App ID* and your *App Secret* before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
+* Make a note of your `App ID` and your `App Secret` before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
 
 * Tap **Save Changes** to complete the new application configuration.
 
 ## Storing Facebook AppId and AppSecret
 
-Link sensitive settings like Facebook *AppID* and *Secret* to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md). Execute the following in your project working directory:
+Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md). Execute the following in your project working directory:
 
 * Set the Facebook AppId
 
@@ -103,6 +103,6 @@ You are now logged in using your Facebook credentials:
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the *AppSecret* in the Facebook developer portal.
+* Once you publish your Web site to Azure Web App, you should reset the `AppSecret` in the Facebook developer portal.
 
-* Set the *Authentication:Facebook:AppId* and Authentication:Facebook:AppSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

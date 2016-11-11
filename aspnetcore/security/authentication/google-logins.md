@@ -75,9 +75,9 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ## Storing Google ClientID and ClientSecret
 
-Link sensitive settings like Google *ClientID* and *ClientSecret* to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
+Link sensitive settings like Google `ClientID` and `ClientSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
 
-* Open the JSON file downloaded in the last step. Note the *client_id* and *client_secret* values present in the JSON structure.
+* Open the JSON file downloaded in the last step. Note the `client_id` and `client_secret` values present in the JSON structure.
 
 * Execute the following in your project working directory to store the Google secrets:
 
@@ -126,6 +126,6 @@ You are now logged in using your Google credentials:
 
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the *ClientSecret* in the Google API Console.
+* Once you publish your Web site to Azure Web App, you should reset the `ClientSecret` in the Google API Console.
 
-* Set the *Authentication:Google:ClientId* and Authentication:Google:ClientSecret as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
