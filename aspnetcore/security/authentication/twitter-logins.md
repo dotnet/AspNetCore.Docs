@@ -60,7 +60,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Twitter middleware
 
 > [!NOTE]
-> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/1.1.0-preview1-final) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
 
