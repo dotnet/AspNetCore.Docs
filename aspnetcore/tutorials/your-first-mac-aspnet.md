@@ -25,15 +25,15 @@ We will be using `yo aspnet` to generate the **Web Application Basic** template,
 
 Install the necessary yeoman generators and bower using npm.
 
-````console
+```console
 npm install -g yo generator-aspnet bower
-   ````
+   ```
 
 Run the ASP.NET Core generator
 
-````console
+```console
 yo aspnet
-   ````
+   ```
 
 * Select **Web Application Basic [without Membership and Authorization]** and tap Enter
 
@@ -43,13 +43,13 @@ yo aspnet
 
 When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
 
-````console
+```console
 Your project is now created, you can use the following commands to get going
        cd "MyFirstApp"
        dotnet restore
        dotnet build (optional, build will also happen with it's run)
        dotnet run
-   ````
+   ```
 
 ## Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
@@ -78,13 +78,9 @@ If this is your first time using Visual Studio Code (or just *Code* for short), 
 In the left navigation bar, there are five icons, representing four viewlets:
 
 * Explore
-
 * Search
-
 * Git
-
 * Debug
-
 * Extensions
 
 The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
@@ -184,7 +180,5 @@ Looking at the Deployment Details in the Azure Portal, you can see the logs and 
 ## Additional Resources
 
 * [Visual Studio Code](https://code.visualstudio.com)
-
 * [Building Projects with Yeoman](../client-side/yeoman.md)
-
 * [Fundamentals](../fundamentals/index.md)
