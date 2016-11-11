@@ -50,6 +50,8 @@ Adding services to the services container makes them available within your appli
 
 The `ConfigureServices` method is also where you should add configuration option classes that you would like to have available in your application. See the [Configuration](configuration.md) topic to learn more about configuring options.
 
+<a name='services-available-in-startup'></a>
+
 ## Services Available in Startup
 
 ASP.NET Core provides certain application services and objects during your application's startup. You can request certain sets of these services by simply including the appropriate interface as a parameter on your `Startup` class's constructor or one of its `Configure` or `ConfigureServices` methods. The services available to each method in the `Startup` class are described below. The framework services and objects include:
