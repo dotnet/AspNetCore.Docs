@@ -23,4 +23,4 @@ In ASP.NET Core authorization now provides simple declarative [role](roles.md#se
 
 ## Namespaces
 
-Authorization components, including the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`AllowAnonymousAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AllowAnonymousAttribute/index.html#Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) attributes are found in the [`Microsoft.AspNetCore.Authorization`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/index.html#Microsoft.AspNetCore.Authorization) namespace.
+Authorization components, including the `AuthorizeAttribute` and `AllowAnonymousAttribute` attributes are found in the `Microsoft.AspNetCore.Authorization` namespace.

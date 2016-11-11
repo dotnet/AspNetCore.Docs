@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/new-field
 ---
 # Adding a New Field
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 In this section you'll use [Entity Framework](http://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html) Code First Migrations to add a new field to the model and migrate that change to the database.
 
 When you use EF Code First to automatically create a database, Code First adds a table to the database to help track whether the schema of the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to track down issues at development time that you might otherwise only find (by obscure errors) at run time.
@@ -77,4 +75,6 @@ If you delete all the records in the DB, the initialize will seed the DB and inc
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. You should also add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
 
->[&larr; **Previous**](search.md)     [**Next** &rarr;](validation.md)  
+>[!div class="step-by-step"]
+[Previous](search.md)
+[Next](validation.md)  

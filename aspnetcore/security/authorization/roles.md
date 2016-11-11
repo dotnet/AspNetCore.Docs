@@ -103,7 +103,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ````
 
-Policies are applied using the [`Policy`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy) property on the [`AuthorizeAttribute`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizeAttribute/index.html#Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute;
+Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute;
 
 ````csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -113,7 +113,7 @@ public IActionResult Shutdown()
 }
 ````
 
-If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the [`RequireRole`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Authorization/AuthorizationPolicyBuilder/index.html#Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole) method;
+If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method;
 
 ````csharp
 options.AddPolicy("ElevatedRights", policy =>

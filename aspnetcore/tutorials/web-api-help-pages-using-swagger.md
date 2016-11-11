@@ -23,7 +23,7 @@ Generating good documentation and help pages as a part of your Web API using [Sw
 
 * [Swagger](http://swagger.io) is a machine readable representation of a RESTful API that enables support for interactive documentation, client SDK generation and discoverability.
 
-This tutorial builds on the sample on [Building Your First Web API with ASP.NET Core MVC and Visual Studio](first-web-api.md). If you'd like to follow along, download the sample at [https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample](https://github.com/aspnet/Docs/tree/master/aspnet/tutorials/first-web-api/sample).
+This tutorial builds on the sample on [Building Your First Web API with ASP.NET Core MVC and Visual Studio](first-web-api.md). If you'd like to follow along, download the sample at [https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-web-api/sample).
 
 ## Getting Started
 
@@ -324,7 +324,7 @@ Enable static files middleware.
    }
    ````
 
-Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Ahoy/tree/master/test/WebSites/CustomizedUi/wwwroot/swagger/ui>`_ and put that in the ``wwwroot/swagger/ui`` folder and also create a new ``custom.css`` file in the same folder.
+Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Ahoy/tree/master/test/WebSites/CustomizedUi/wwwroot/swagger/ui>`_ and put that in the `wwwroot/swagger/ui` folder and also create a new `custom.css` file in the same folder.
 
 ![image](web-api-help-pages-using-swagger/_static/custom-files-folder-view.png)
 

@@ -11,8 +11,6 @@ uid: data/ef-mvc/sort-filter-page
 ---
 # Sorting, filtering, paging, and grouping
 
-By [Tom Dykstra](https://github.com/tdykstra)
-
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial, you implemented a set of web pages for basic CRUD operations for Student entities. In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping.
@@ -111,7 +109,7 @@ In the project folder create `PaginatedList.cs`, and then replace the template c
 
 [!code-csharp[Main](intro/samples/cu/PaginatedList.cs)]
 
-The `CreateAsync` method in this code takes page size and page number and applies the appropriate `Skip` and `Take` statements to the `IQueryable`. When `ToListAsync` is called on the `IQueryable`, it will return a List containing only the requested page. The properties `HasPreviousPage` and ``HasNextPage` can be used to enable or disable **Previous** and **Next** paging buttons.
+The `CreateAsync` method in this code takes page size and page number and applies the appropriate `Skip` and `Take` statements to the `IQueryable`. When `ToListAsync` is called on the `IQueryable`, it will return a List containing only the requested page. The properties `HasPreviousPage` and `HasNextPage` can be used to enable or disable **Previous** and **Next** paging buttons.
 
 A `CreateAsync` method is used instead of a constructor to create the `PaginatedList<T>` object because constructors can't run asynchronous code.
 
@@ -168,13 +166,13 @@ The `@model` statement at the top of the page specifies that the view now gets a
 
 The column header links use the query string to pass the current search string to the controller so that the user can sort within filter results:
 
-````none
+```html
 <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter ="@ViewData["CurrentFilter"]">Enrollment Date</a>
-````
+```
 
 The paging buttons are displayed by tag helpers:
 
-````none
+```html
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex - 1)"
@@ -182,7 +180,7 @@ The paging buttons are displayed by tag helpers:
    class="btn btn-default @prevDisabled btn">
    Previous
 </a>
-````
+```
 
 Run the page.
 

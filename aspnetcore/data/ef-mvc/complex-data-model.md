@@ -65,9 +65,9 @@ Suppose you want to ensure that users don't enter more than 50 characters for a 
 
 The `StringLength` attribute won't prevent a user from entering white space for a name. You can use the `RegularExpression` attribute to apply restrictions to the input. For example the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
-````none
+```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
-````
+```
 
 The `MaxLength` attribute provides functionality similar to the `StringLength` attribute but doesn't provide client side validation.
 
@@ -75,10 +75,10 @@ The database model has now changed in a way that requires a change in the databa
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands:
 
-````none
+```console
 dotnet ef migrations add MaxLengthOnNames -c SchoolContext
 dotnet ef database update -c SchoolContext
-````
+```
 
 The `migrations add` command creates a file named *<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
 
@@ -104,10 +104,10 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
-````none
+```console
 dotnet ef migrations add ColummFirstName -c SchoolContext
 dotnet ef database update -c SchoolContext
-````
+```
 
 In **SQL Server Object Explorer**, open the Student table designer by double-clicking the **Student** table.
 
@@ -418,13 +418,13 @@ As you saw in the first tutorial, most of this code simply creates new entity ob
 
 Save your changes and build the project. Then open the command window in the project folder and enter the `migrations add` command (don't do the update-database command yet):
 
-````none
+```console
 dotnet ef migrations add ComplexDataModel -c SchoolContext
-````
+```
 
 You get a warning about possible data loss.
 
-````none
+```text
 C:\ContosoUniversity\src\ContosoUniversity>dotnet ef migrations add ComplexDataModel -c SchoolContext
 Project ContosoUniversity (.NETCoreApp,Version=v1.0) will be compiled because Input items removed from last build
 Compiling ContosoUniversity for .NETCoreApp,Version=v1.0
@@ -438,7 +438,7 @@ An operation was scaffolded that may result in the loss of data. Please review t
 Done.
 
 To undo this action, use 'dotnet ef migrations remove'
-````
+```
 
 If you tried to run the `database update` command at this point (don't do it yet), you would get the following error:
 
@@ -471,15 +471,15 @@ Save your change to *appsettings.json*.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
-> ````none
+> ```console
 > dotnet ef database drop -c SchoolContext
-> ````
+> ```
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
-````none
+```console
 dotnet ef database update -c SchoolContext
-````
+```
 
 Run the app to cause the `DbInitializer.Initialize` method to run and populate the new database.
 

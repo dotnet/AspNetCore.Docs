@@ -13,7 +13,7 @@ uid: security/authorization/policies
 
 <a name=security-authorization-policies-based></a>
 
-Underneath the covers the [role authorization](roles.md#security-authorization-role-based.md) and [claims authorization](claims.md#security-authorization-claims-based.md) make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
+Underneath the covers the [role authorization](roles.md#security-authorization-role-based) and [claims authorization](claims.md#security-authorization-claims-based) make use of a requirement, a handler for the requirement and a pre-configured policy. These building blocks allow you to express authorization evaluations in code, allowing for a richer, reusable, and easily testable authorization structure.
 
 An authorization policy is made up of one or more requirements and registered at application startup as part of the Authorization service configuration, in `ConfigureServices` in the *Startup.cs* file.
 
@@ -76,7 +76,7 @@ A requirement doesn't need to have data or properties.
 
 ## Authorization Handlers
 
-An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationContext` to decide if authorization is allowed. A requirement can have [multiple handlers](xref:security/authorization/policies#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
+An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
 
 <a name=security-authorization-handler-example></a>
 
@@ -142,7 +142,7 @@ Each handler is added to the services collection by using `services.AddSingleton
 
 ## What should a handler return?
 
-You can see in our [handler example](xref:security/authorization/policies#security-authorization-handler-example) that the `Handle()` method has no return value, so how do we indicate success or failure?
+You can see in our [handler example](policies.md#security-authorization-handler-example) that the `Handle()` method has no return value, so how do we indicate success or failure?
 
 * A handler indicates success by calling `context.Succeed(IAuthorizationRequirement requirement)`, passing the requirement that has been successfully validated.
 

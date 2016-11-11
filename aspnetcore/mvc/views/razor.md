@@ -29,7 +29,7 @@ Is rendered unchanged as `<p>Hello World</p>` by the server.
 
 ## Razor syntax
 
-Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a  it transitions into Razor specific markup, otherwise it transitions into plain C# .
+Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output. Razor can transition from HTML into C# or into Razor specific markup. When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords) it transitions into Razor specific markup, otherwise it transitions into plain C# .
 
 <a name=escape-at-label></a>
 
@@ -106,7 +106,7 @@ Without the explicit expression, `<p>Age@joe.Age</p>` would be treated as an ema
 
 ## Expression encoding
 
-C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to [`IHtmlContent`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Html/IHtmlContent/index.html#Microsoft.AspNetCore.Html.IHtmlContent) are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
+C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to `IHtmlContent` are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
 
 ````html
 @("<span>Hello World</span>")
@@ -122,7 +122,7 @@ Which the browser renders as:
 
 `<span>Hello World</span>`
 
-[`HtmlHelper`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper) [`Raw`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/HtmlHelper/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.Raw) output is not encoded but rendered as HTML markup.
+`HtmlHelper` `Raw` output is not encoded but rendered as HTML markup.
 
 >[!WARNING]
 > Using `HtmlHelper.Raw` on unsanitized user input is a security risk. User input might contain malicious JavaScript or other exploits. Sanitizing user input is difficult, avoid using `HtmlHelper.Raw` on user input.
@@ -414,7 +414,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 }
 ````
 
- explains how to view this generated class.
+[Viewing the Razor C# class generated for a view](#razor-customcompilationservice-label) explains how to view this generated class.
 
 ### `@using`
 
@@ -526,9 +526,7 @@ The `@section` directive is used in conjunction with the [layout page](layout.md
 The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the links provided.
 
 * [@addTagHelper](tag-helpers/intro.md#add-helper-label)
-
 * [@removeTagHelper](tag-helpers/intro.md#remove-razor-directives-label)
-
 * [@tagHelperPrefix](tag-helpers/intro.md#prefix-razor-directives-label)
 
 <a name=razor-reserved-keywords-label></a>
@@ -538,13 +536,9 @@ The following [Tag Helpers](tag-helpers/index.md) directives are detailed in the
 ### Razor keywords
 
 * functions
-
 * inherits
-
 * model
-
 * section
-
 * helper   (Not supported by ASP.NET Core.)
 
 Razor keywords can be escaped with `@(Razor Keyword)`, for example `@(functions)`. See the complete sample below.
@@ -552,25 +546,15 @@ Razor keywords can be escaped with `@(Razor Keyword)`, for example `@(functions)
 ### C# Razor keywords
 
 * case
-
 * do
-
 * default
-
 * for
-
 * foreach
-
 * if
-
 * lock
-
 * switch
-
 * try
-
 * using
-
 * while
 
 C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for example `@(@case)`. The first `@` escapes the Razor parser, the second `@` escapes the C# parser. See the complete sample below.
@@ -578,7 +562,6 @@ C# Razor keywords need to be double escaped with `@(@C# Razor Keyword)`, for exa
 ### Reserved keywords not used by Razor
 
 * namespace
-
 * class
 
 <a name=razor-customcompilationservice-label></a>
@@ -589,7 +572,7 @@ Add the following class to your ASP.NET Core MVC project:
 
 [!code-csharp[Main](razor/sample/Services/CustomCompilationService.cs)]
 
-Override the [`ICompilationService`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/Razor/Compilation/ICompilationService/index.html#Microsoft.AspNetCore.Mvc.Razor.Compilation.ICompilationService) added by MVC with the above class;
+Override the `ICompilationService` added by MVC with the above class;
 
 [!code-csharp[Main](razor/sample/Startup.cs?highlight=4&range=29-33)]
 

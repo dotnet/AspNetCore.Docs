@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/adding-view
 ---
 # Adding a view
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 In this section you're going to modify the `HelloWorldController` class to use Razor view template files to cleanly encapsulate the process of generating HTML responses to a client.
 
 You'll create a view template file using Razor. Razor-based view templates have a *.cshtml* file extension, and provide an elegant way to create HTML output using C#. Razor seamlessly blends C# and HTML, minimizing the number of characters and keystrokes required when writing a view template, and enables a fast, fluid coding workflow.
@@ -102,7 +100,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 <p>Hello from our View Template!</p>
 ````
 
-`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the [`ViewDataDictionary`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Mvc/ViewFeatures/ViewDataDictionary/index.html#Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary) to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
+`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewDataDictionary` to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
 
 ````HTML
@@ -159,4 +157,6 @@ In the sample above, we used the `ViewData` dictionary to pass data from the con
 
 Well, that was a kind of an "M" for model, but not the database kind. Let's take what we've learned and create a database of movies.
 
->[&larr; **Previous**](adding-controller.md)     [**Next** &rarr;](adding-model.md)  
+>[!div class="step-by-step"]
+[Previous](adding-controller.md)
+[Next](adding-model.md)  

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Publish to a Linux Production Environment
 author: rick-anderson
 ms.author: riande
@@ -46,9 +46,9 @@ For the purposes of this guide, we are going to use a single instance of Nginx t
 
 ### Install Nginx
 
-````bash
+````
 sudo apt-get install nginx
-   ````
+````
 
 > [!NOTE]
 > If you plan to install optional Nginx modules you may be required to build Nginx from source.
@@ -57,7 +57,7 @@ We are going to `apt-get` to install Nginx. The installer also creates a System 
 
 ````bash
 sudo service nginx start
-   ````
+````
 
 At this point you should be able to navigate to your browser and see the default landing page for Nginx.
 
@@ -93,13 +93,13 @@ Nginx is now setup to forward requests made to `http://localhost:80` on to the A
 
 Create the service definition file 
 
-```bash
+````bash
     sudo nano /etc/systemd/system/kestrel-hellomvc.service
-```
+````
 
 An example service file for our application.
 
-```text
+````text
 [Unit]
     Description=Example .NET Web API Application running on CentOS 7
 
@@ -113,19 +113,19 @@ An example service file for our application.
 
     [Install]
     WantedBy=multi-user.target
-```
+````
 
 >note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 
-```bash
+````bash
     systemctl enable kestrel-hellomvc.service
-```
+````
 
 Start the service and verify that it is running.
 
-```
+````
     systemctl start kestrel-hellomvc.service
     systemctl status kestrel-hellomvc.service
 
@@ -135,32 +135,32 @@ Start the service and verify that it is running.
     Main PID: 9021 (dotnet)
         CGroup: /system.slice/kestrel-hellomvc.service
                 └─9021 /usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
-```
+````
 
 With the reverse proxy configured and Kestrel managed through systemd, the web application is fully configured and can be accessed from a browser on the local machine at `http://localhost`. Inspecting the response headers, the **Server** still shows the ASP.NET Core application being served by Kestrel.
 
-```text
+````text
     HTTP/1.1 200 OK
     Date: Tue, 11 Oct 2016 16:22:23 GMT
     Server: Kestrel
     Keep-Alive: timeout=5, max=98
     Connection: Keep-Alive
     Transfer-Encoding: chunked
-```
+````
 
 ### Viewing logs
 
 Since the web application using Kestrel is managed using systemd, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by systemd. To view the `kestrel-hellomvc.service` specific items, use the following command.
 
-```bash
+````bash
     sudo journalctl -fu kestrel-hellomvc.service
-```
+````
 
 For further filtering, time options such as `--since today`, `--until 1 hour ago` or a combination of these can reduce the amount of entries returned.
 
-```bash
+````bash
     sudo journalctl -fu kestrel-hellomvc.service --since "2016-10-18" --until "2016-10-18 04:00"
-```
+````
 
 ## Securing our application
 
@@ -243,9 +243,9 @@ Clickjacking is a malicious technique to collect an infected user's clicks. Clic
 
 Edit the nginx.conf file.
 
-```bash
+````bash
     sudo nano /etc/nginx/nginx.conf
-```
+````
 
 Add the the line `add_header X-Frame-Options "SAMEORIGIN";` and save the file, then restart Nginx.
 
@@ -255,8 +255,8 @@ This header prevents Internet Explorer from MIME-sniffing a response away from t
 
 Edit the nginx.conf file.
 
-```bash
+````bash
     sudo nano /etc/nginx/nginx.conf
-```
+````
 
 Add the the line `add_header X-Content-Type-Options "nosniff"` and save the file, then restart Nginx.

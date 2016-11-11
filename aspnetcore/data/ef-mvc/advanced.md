@@ -79,7 +79,7 @@ In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with th
 
 [!code-html[Main](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
-Run the ``UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits)`. Enter a number in the text box:
+Run the `UpdateCourseCredits` method by selecting the **Courses** tab, then adding "/UpdateCourseCredits" to the end of the URL in the browser's address bar (for example: `http://localhost:50205/Course/UpdateCourseCredits)`. Enter a number in the text box:
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
@@ -103,7 +103,7 @@ Run the application in debug mode, and go to the Details page for a student.
 
 Go to the **Output** window showing debug output, and you see the query:
 
-````text
+```text
 
 Microsoft.EntityFrameworkCore.Storage.Internal
 .RelationalCommandBuilderFactory:Information:
@@ -117,7 +117,7 @@ WHERE EXISTS (
     FROM [Student] AS [s]
     WHERE ([s].[ID] = @__id_0) AND ([e].[StudentID] = [s].[ID]))
 ORDER BY [e].[StudentID]
-````
+```
 
 You'll notice something here that might surprise you: the SQL selects up to 2 rows (`TOP(2)`). The `SingleOrDefaultAsync` method doesn't resolve to one row on the server. If the Where clause matches multiple rows, the method must return null, so EF only has to select a maximum of 2 rows, because if 3 or more match the Where clause, the result from the `SingleOrDefault` method is the same as if 2 rows match.
 
@@ -179,15 +179,7 @@ Tom Dykstra and Rick Anderson (twitter @RickAndMSFT) wrote this tutorial. Rowan 
 
 Error message:
 
-````text
-Cannot open 'C:\ContosoUniversity\src
-\ContosoUniversity\bin\Debug\netcoreapp1.0
-\ContosoUniversity.dll' for writing --
-'The process cannot access the file
-'C:\ContosoUniversity\src\ContosoUniversity\bin
-\Debug\netcoreapp1.0\ContosoUniversity.dll'
-because it is being used by another process.
-````
+> Cannot open 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' for writing -- 'The process cannot access the file 'C:\ContosoUniversity\src\ContosoUniversity\bin\Debug\netcoreapp1.0\ContosoUniversity.dll' because it is being used by another process.
 
 Solution:
 
@@ -213,15 +205,15 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 
 To delete a database by using the CLI, run the `database drop` CLI command:
 
-````none
+```console
 dotnet ef database drop -c SchoolContext
-````
+```
 
 ### Error locating SQL Server instance
 
 Error Message:
 
-    A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+> A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
 
 Solution:
 

@@ -11,8 +11,6 @@ uid: tutorials/first-mvc-app/adding-model
 ---
 # Adding a model
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 In this section you'll add some classes for managing movies in a database. These classes will be the "**M**odel" part of the **M**VC app.
 
 You’ll use a .NET Framework data-access technology known as the [Entity Framework Core](http://ef.readthedocs.org/) to define and work with these data model classes. Entity Framework Core (often referred to as **EF** Core) features a development paradigm called *Code First*. You write the code first, and the database tables are created from this code. Code First allows you to create data model objects by writing simple classes. (These are also known as POCO classes, from "plain-old CLR objects.") The database is created from your classes. If you are required to create the database first, you can still follow this tutorial to learn about MVC and EF app development.
@@ -79,7 +77,7 @@ In the **Add Scaffold** dialog, tap **MVC Controller with views, using Entity Fr
 Complete the **Add Controller** dialog
 
 * **Model class:** *Movie(MvcMovie.Models)*
-* **Data context class:** *ApplicationDbContext(MvcMovie.Models)*
+* **Data context class:** *ApplicationDbContext(MvcMovie.Data)*
 * **Views:**: Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
 * Tap **Add**
@@ -279,4 +277,6 @@ You now have a database and pages to display, edit, update and delete data. In t
 
 * [Globalization and localization](../../fundamentals/localization.md)
 
->[&larr; **Previous**](adding-view.md)     [**Next** &rarr;](working-with-sql.md)  
+>[!div class="step-by-step"]
+[Previous](adding-view.md)
+[Next](working-with-sql.md)  

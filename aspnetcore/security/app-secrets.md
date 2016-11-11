@@ -35,7 +35,7 @@ The Secret Manager tool provides a more general mechanism to store sensitive dat
 
 ### Installing the Secret Manager tool
 
-* Add ``Microsoft.Extensions.SecretManager.Tools`` to the ``tools`` section of the *project.json* file and run ``dotnet restore``. 
+* Add `Microsoft.Extensions.SecretManager.Tools` to the `tools` section of the *project.json* file and run `dotnet restore`. 
 
 * Test the Secret Manager tool by running the following command:
 
@@ -76,7 +76,7 @@ You can run the secret manager tool from other directories, but you must use the
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
 ````
-dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1
+dotnet user-secrets set MySecret ValueOfMySecret --project c:\work\WebApp1\src\webapp1
    ````
 
 You can also use the Secret Manager tool to list, remove and clear app secrets.

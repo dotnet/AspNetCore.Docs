@@ -1,4 +1,4 @@
----
+﻿---
 title: Using Angular for Single Page Applications (SPAs)
 author: rick-anderson
 ms.author: riande
@@ -18,7 +18,7 @@ By [Venkata Koppaka](http://blog.falafel.com/author/venkata-koppaka/) and [Scott
 
 In this article, you will learn how to build a SPA-style ASP.NET application using AngularJS.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample)
+[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample)
 
 ## What is AngularJS?
 
@@ -316,7 +316,7 @@ Let's see the application in action:
 
 ![image](angular/_static/rest-bound.png)
 
-You can [view the application's structure on GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample).
+You can [view the application's structure on GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
 > [!NOTE]
 > For more on structuring AngularJS applications, see [John Papa's Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
@@ -361,7 +361,7 @@ If we navigate to a detail page, for example `people/spa#/persons/2`, we will se
 
 ![image](angular/_static/spa-persons-2.png)
 
-You can view the full source and any files not shown in this article on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnet/client-side/angular/sample).
+You can view the full source and any files not shown in this article on [GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/client-side/angular/sample).
 
 ### Event Handlers
 
