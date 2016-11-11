@@ -15,16 +15,16 @@ uid: security/authentication/sociallogins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial will demonstrate how to build an ASP.NET Core app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
+This tutorial will demonstrate how to build an ASP.NET Core app that enables users to log in using OAuth 2.0/1.0a with credentials from external authentication providers.
 
-[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
+[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages facilitate the use of other providers not covered here.
 
 ![image](sociallogins/_static/social.png)
 
 Enabling users to login with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://developers.facebook.com/case-studies/).
 
 > [!NOTE]
-> Packages presented here abstract a great deal of complexity of the OAuth 2.0 authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Some issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
+> Packages presented here abstract a great deal of complexity of the OAuth authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Some issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
 
 ## Create a New ASP.NET Core Project
 
