@@ -18,3 +18,5 @@ uid: mvc/models/index
 * [Formatting Response Data](formatting.md)
 
 * [🔧 Custom Formatters](custom-formatters.md)
+
+* [File Uploads](file-uploads.md)
