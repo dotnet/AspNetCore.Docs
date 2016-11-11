@@ -120,7 +120,7 @@ You are now logged in using your Google credentials:
 ![image](sociallogins/_static/Done.PNG)
 
 > [!NOTE]
-> If instead you receive a `403 (Forbidden)` error page from your own app (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). 
+> If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). If the login doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
 
 ## Next steps
 
