@@ -7,7 +7,7 @@ ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: E5931607-31C0-4B20-B416-85E3550F5EA8
 ms.prod: aspnet-core
-﻿uid: security/authentication/twitter-logins
+uid: security/authentication/twitter-logins
 ---
 # Configuring Twitter authentication
 
