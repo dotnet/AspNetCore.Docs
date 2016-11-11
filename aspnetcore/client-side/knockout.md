@@ -1,6 +1,6 @@
 ---
 title: Knockout.js MVVM Framework
-author: rick-anderson
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
