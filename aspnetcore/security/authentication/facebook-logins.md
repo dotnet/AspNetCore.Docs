@@ -99,22 +99,6 @@ You are now logged in using your Facebook credentials:
 
 ![image](sociallogins/_static/Done.PNG)
 
-## Optionally set password
-
-When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
-
-To create a password and login using your email that you set during the login process with external providers:
-
-* Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
-
-![image](sociallogins/_static/pass1.PNG)
-
-* Tap **Create**
-
-![image](sociallogins/_static/pass2.PNG)
-
-* Set a valid password and you can use this to login with your email
-
 ## Next steps
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with [Microsoft Account](microsoft-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md) and other providers.
