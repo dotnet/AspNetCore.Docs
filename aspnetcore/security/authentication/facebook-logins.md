@@ -87,7 +87,7 @@ Add the Facebook middleware in the `Configure` method in `Startup.cs`:
 
 Run your application and click Login. You will see an option for Facebook.
 
-![image](sociallogins/_static/FBLogin1.PNG)
+![image](sociallogins/_static/DoneFacebook.png)
 
 When you click on Facebook, you will be redirected to Facebook for authentication.
 
