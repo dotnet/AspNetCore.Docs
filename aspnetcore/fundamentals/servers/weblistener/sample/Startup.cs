@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace ServersDemo
+namespace WebListenerDemo
 {
     public class Startup
     {
@@ -32,14 +32,15 @@ namespace ServersDemo
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hosted by {Program.Server}\r\n\r\n");
+                context.Response.ContentType = "text/html";
+                await context.Response.WriteAsync("<p>Hosted by WebListener</p>");
 
                 if (serverAddressesFeature != null)
                 {
-                    await context.Response.WriteAsync($"Listening on the following addresses: {string.Join(", ", serverAddressesFeature.Addresses)}\r\n");
+                    await context.Response.WriteAsync($"<p>Listening on the following addresses: {string.Join(", ", serverAddressesFeature.Addresses)}</p>");
                 }
 
-                await context.Response.WriteAsync($"Request URL: {context.Request.GetDisplayUrl()}");
+                await context.Response.WriteAsync($"<p>Request URL: {context.Request.GetDisplayUrl()}</p>");
             });
         }
     }
