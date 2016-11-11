@@ -27,7 +27,7 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 
 * Tap **+ Add a New App** and fill out the form to create a new app ID:
 
-![image](sociallogins/_static/FBNewAppID.png)
+![image](sociallogins/_static/FBNewAppId.png)
 
 * The **Product Setup** page will be displayed, letting you select the features your new app will support. Tap **Get Started** on *Facebook Login*:
 
