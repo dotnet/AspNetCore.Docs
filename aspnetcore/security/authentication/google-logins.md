@@ -54,7 +54,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 * Because we are creating a Google+ project with just one feature (logins), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
-* Enter your current site URL with *signin-google* appended into the **Authorized redirect URIs** field. For example, https://localhost:44320/**signin-google**.
+* Enter your current site URL with *signin-google* appended into the **Authorized redirect URIs** field. For example, `https://localhost:44320/signin-google`.
 
 > [!NOTE]
 > You don't need to configure **signin-google** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.

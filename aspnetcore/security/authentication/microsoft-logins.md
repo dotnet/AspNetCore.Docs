@@ -41,14 +41,14 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 
 ![image](sociallogins/_static/MicrosoftDevAppPlatform.png)
 
-* In the new *Web* platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field.
-
-* Don't forget to tap **Add Url** to ensure the Url was added:
+* In the new *Web* platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
 
 > [!NOTE]
 > You don't need to configure **signin-microsoft** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
+
+* Don't forget to tap **Add Url** to ensure the Url was added.
 
 * Tap **Save** to save changes.
 
