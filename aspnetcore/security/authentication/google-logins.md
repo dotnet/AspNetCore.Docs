@@ -29,7 +29,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleNewProj.png)
 
-* You will be redirected back to the Library page allowing you to choose features your new app will support. Find *Google+ API* in the list and click on its link to add the API feature:
+* You will be redirected back to the Library page allowing you to choose features your new app will support. <a name="enable-googleplus">Find *Google+ API* in the list</a> and click on its link to add the API feature:
 
 ![image](sociallogins/_static/GoogleConsoleChooseApi.png)
 
@@ -118,6 +118,9 @@ Once you enter your Google credentials, then you will be redirected back to the 
 You are now logged in using your Google credentials:
 
 ![image](sociallogins/_static/Done.PNG)
+
+> [!NOTE]
+> If instead you receive a `403 (Forbidden)` error page from your own app (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). 
 
 ## Next steps
 
