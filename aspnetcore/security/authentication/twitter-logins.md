@@ -64,7 +64,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Twitter middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=27,28,29,30,31&range=58-110)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=27,28,29,30,31&range=64-115)]
 
 ## Login with Twitter
 

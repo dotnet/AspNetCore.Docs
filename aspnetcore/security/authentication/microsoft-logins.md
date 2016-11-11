@@ -84,7 +84,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Microsoft Account middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=39,40,41,42,43&range=58-110)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=39,40,41,42,43&range=64-115)]
 
 ## Login with Microsoft Account
 

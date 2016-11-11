@@ -99,7 +99,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=33,34,35,36,37&range=58-110)]
+[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=33,34,35,36,37&range=64-115)]
 
 ## Login with Google
 
