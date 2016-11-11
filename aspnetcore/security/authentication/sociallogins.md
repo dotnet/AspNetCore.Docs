@@ -53,7 +53,7 @@ Some external authentication providers will reject requests coming from origins 
 
 ![image](sociallogins/_static/ssl.png)
 
-* Modify the services.AddMvc(); code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
+* Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
 ````csharp
 services.AddMvc(options =>
