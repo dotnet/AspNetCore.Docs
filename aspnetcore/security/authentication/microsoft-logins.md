@@ -45,6 +45,8 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
 
+* When deploying the site you'll need to register a new public url.
+
 > [!NOTE]
 > You don't need to configure **signin-microsoft** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
 

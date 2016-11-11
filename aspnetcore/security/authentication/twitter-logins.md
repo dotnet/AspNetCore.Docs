@@ -27,6 +27,8 @@ This tutorial shows you how to enable your users to [log in with their Twitter a
 
 * Enter your current site URL with *signin-twitter* appended into the **Callback URL** field. For example, `https://localhost:44320/signin-twitter`.
 
+* When deploying the site you'll need to register a new public url.
+
 > [!NOTE]
 > You don't need to configure **signin-twitter** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
 
