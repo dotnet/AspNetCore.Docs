@@ -58,6 +58,7 @@ Some external authentication providers will reject requests coming from origins 
 ````csharp
 services.AddMvc(options =>
 {
+    options.SslPort = 44321;
     options.Filters.Add(new RequireHttpsAttribute ());
 });
 ````
