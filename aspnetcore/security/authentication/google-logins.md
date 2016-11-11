@@ -59,7 +59,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 * When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
-> You don't need to configure **signin-google** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
+> You don't need to configure **signin-google** as a route in your app. The Google middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
 
 * Tap **Create client ID**, which will take you to the third step:
 

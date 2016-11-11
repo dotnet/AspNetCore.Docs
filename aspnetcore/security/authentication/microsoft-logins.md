@@ -48,7 +48,7 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 * When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
-> You don't need to configure **signin-microsoft** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
+> You don't need to configure **signin-microsoft** as a route in your app. The Microsoft Account middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
 
 * Don't forget to tap **Add Url** to ensure the Url was added.
 

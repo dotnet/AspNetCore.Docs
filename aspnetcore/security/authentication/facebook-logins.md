@@ -42,7 +42,7 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 * When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
-> You don't need to configure **signin-facebook** as a route in your app. The ASP.NET Core team's implementation of the OAuth flow will create a temporary socket (called a *backchannel*) that listens at this route just for the duration of the OAuth flow.
+> You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
 
 * Make a note of your *App ID* and your *App Secret* before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
 
