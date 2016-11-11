@@ -104,6 +104,11 @@ You are now logged in using your Microsoft credentials:
 
 ![image](sociallogins/_static/Done.PNG)
 
+> [!NOTE]
+> If the Microsoft Account provider redirects you to a login error page, note the error title and description directly following the `#` (hashtag) in the Uri. The most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform. In this case, ensure protocol, host, and port are all correct. Your application should be using `https` protocol and the redirect uri should end with **signin-microsoft** as that's the route Microsoft Account middleware will request the login provider to redirect to.
+
+![image](sociallogins/_static/MicrosoftLoginError.png)
+
 ## Next steps
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md) and other providers.
