@@ -158,7 +158,7 @@ Testing the middleware (by setting the `Hosting:Environment` environment variabl
 ![image](middleware/_static/console-logmiddleware.png)
 
 > [!NOTE]
-> The `UseStaticFiles` extension method (which creates the `StaticFileMiddleware``) also uses `UseMiddleware<T>`. In this case, the `StaticFileOptions` parameter is passed in, but other constructor parameters are supplied by `UseMiddleware<T>` and dependency injection.
+> The `UseStaticFiles` extension method (which creates the `StaticFileMiddleware`) also uses `UseMiddleware<T>`. In this case, the `StaticFileOptions` parameter is passed in, but other constructor parameters are supplied by `UseMiddleware<T>` and dependency injection.
 
 ## Additional Resources
 
