@@ -7,13 +7,13 @@ ms.date: 11/3/2016
 ms.topic: article
 ms.assetid: BC36CA84-3DE8-496E-9AA2-2F1B74AE8309
 ms.prod: aspnet-core
-﻿uid: security/authentication/sociallogins
+uid: security/authentication/sociallogins
 ---
 # Short survey of other login providers
 
 <a name=security-authentication-other-logins></a>
 
-This section attempts to accelerate implementation of some popular login providers by listing useful links.
+Here are setup instructions for some other common OAuth login providers. Third-party NuGet packages such as the ones maintained by [aspnetcontrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) can be used to complement login providers implemented by the ASP.NET Core team.
 
 * Setup **LinkedIn** logins: [https://developer.linkedin.com/my-apps](https://developer.linkedin.com/my-apps). See [official steps](https://developer.linkedin.com/docs/oauth2).
 

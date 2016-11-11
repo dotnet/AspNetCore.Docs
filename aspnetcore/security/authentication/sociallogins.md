@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https:/
 
 This tutorial will demonstrate how to build an ASP.NET Core app that enables users to log in using OAuth 2.0 with credentials from external authentication providers.
 
-[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages such as the ones by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
+[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages facilitate the use of other providers not covered here, including GitHub, LinkedIn, Reddit, and so on.
 
 ![image](sociallogins/_static/social.png)
 
