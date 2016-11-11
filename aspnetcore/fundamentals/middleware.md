@@ -21,8 +21,7 @@ By [Steve Smith](http://ardalis.com) and [Rick Anderson](https://twitter.com/Ric
 
 Middleware are software components that are assembled into an application pipeline to handle requests and responses. Each component chooses whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component is invoked in the pipeline. Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
 
-Request delegates are configured using `Run`, `Map`,and `Use` extension methods on the `IApplicationBuilder` type that is passed into the `Configure` method in the `Startup` class. An individual request delegate can be specified in-line as an anonymous method,or it can be defined in a reusable class. These reusable classes  are *middleware*,or *middleware
-components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline, or short-circuiting the chain if appropriate.
+Request delegates are configured using `Run`, `Map`, and `Use` extension methods on the `IApplicationBuilder` type that is passed into the `Configure` method in the `Startup` class. An individual request delegate can be specified in-line as an anonymous method,or it can be defined in a reusable class. These reusable classes  are *middleware*, or *middleware components*. Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline, or short-circuiting the chain if appropriate.
 
 [Migrating HTTP Modules to Middleware](../migration/http-modules.md) explains the difference between request pipelines in ASP.NET Core and the previous versions and provides more middleware samples.
 
@@ -159,7 +158,7 @@ Testing the middleware (by setting the `Hosting:Environment` environment variabl
 ![image](middleware/_static/console-logmiddleware.png)
 
 > [!NOTE]
-> The `UseStaticFiles` extension method (which creates the `StaticFileMiddleware``) also uses `UseMiddleware<T>`. In this case, the `StaticFileOptions` parameter is passed in, but other constructor parameters are supplied by `UseMiddleware<T>` and dependency injection.
+> The `UseStaticFiles` extension method (which creates the `StaticFileMiddleware`) also uses `UseMiddleware<T>`. In this case, the `StaticFileOptions` parameter is passed in, but other constructor parameters are supplied by `UseMiddleware<T>` and dependency injection.
 
 ## Additional Resources
 
