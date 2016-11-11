@@ -1,4 +1,4 @@
-﻿---
+---
 title: Adding a view
 author: rick-anderson
 ms.author: riande
