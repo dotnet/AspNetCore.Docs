@@ -19,8 +19,8 @@ In this tutorial, you'll take an existing ASP.NET Core app and deploy it to a Na
 
 ## Introduction
 
-Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details.  
-There are 3 easy ways for you to try out Nano Server, you can download 180 days evaluation versions, when you sign in with your MS account.
+Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details and download links for 180 Days evaluation versions. 
+There are 3 easy ways for you to try out Nano Server, when you sign in with your MS account:
 
 1. You can download the Windows Server 2016 ISO file, and build a Nano Server image
 
