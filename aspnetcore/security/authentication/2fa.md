@@ -143,7 +143,7 @@ We recommend you use account lockout with 2FA. Once a user logs in (through a lo
 
 [!code-csharp[Main](./2fa/sample/WebSMS/src/WebSMS/Startup.cs?highlight=1,2,3,4,5&range=67-77)]
 
-## Debugging  Twilio
+## Debugging Twilio
 
 If you're able to use the Twilio API, but you don't get an SMS message, try the following:
 
