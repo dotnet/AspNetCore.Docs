@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 
-namespace ServersDemo
+namespace AspNetCoreModuleDemo
 {
     public class Startup
     {
@@ -32,14 +33,18 @@ namespace ServersDemo
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync($"Hosted by {Program.Server}\r\n\r\n");
-
+                await context.Response.WriteAsync($"<p>Hosted by Kestrel<p>");
+                // ASPNETCORE_PORT is the port that IIS proxies requests to.
+                if (Environment.GetEnvironmentVariable($"ASPNETCORE_PORT") != null)
+                {
+                    await context.Response.WriteAsync("Using IIS as reverse proxy.");
+                }
                 if (serverAddressesFeature != null)
                 {
-                    await context.Response.WriteAsync($"Listening on the following addresses: {string.Join(", ", serverAddressesFeature.Addresses)}\r\n");
+                    await context.Response.WriteAsync($"<p>Listening on the following addresses: {string.Join(", ", serverAddressesFeature.Addresses)}<p>");
                 }
 
-                await context.Response.WriteAsync($"Request URL: {context.Request.GetDisplayUrl()}");
+                await context.Response.WriteAsync($"<p>Request URL: {context.Request.GetDisplayUrl()}</p>");
             });
         }
     }
