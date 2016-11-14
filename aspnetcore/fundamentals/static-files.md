@@ -44,15 +44,10 @@ You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
    * wwwroot
-
      * css
-
      * images
-
      * ...
-
    * MyStaticFiles
-
      * test.png
 
 For a request to access *test.png*, configure the static files middleware as follows:
@@ -120,15 +115,15 @@ The following code shows how to change the default file name to *mydefault.html*
 
 The following code enables static files and the default file to be served, but does not allow directory browsing:
 
-````csharp
+```csharp
 app.UseFileServer();
-   ````
+   ```
 
 The following code enables static files, default files and  directory browsing:
 
-````csharp
+```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
-   ````
+   ```
 
 See [Considerations](#considerations) on the security risks when enabling browsing. As with `UseStaticFiles`, `UseDefaultFiles`, and `UseDirectoryBrowser`, if you wish to serve files that exist outside the `web root`, you instantiate and configure an `FileServerOptions` object that you pass as a parameter to `UseFileServer`. For example, given the following directory hierarchy in your Web app:
 

@@ -11,8 +11,6 @@ uid: data/ef-mvc/crud
 ---
 # Create, Read, Update, and Delete operations
 
-By [Tom Dykstra](https://github.com/tdykstra)
-
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 
 In the previous tutorial you created an MVC application that stores and displays data using the Entity Framework and SQL Server LocalDB. In this tutorial you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views.
@@ -51,15 +49,15 @@ The key value that is passed to the `Details` method comes from *route data*. Ro
 
 In the following URL, the default route maps Instructor as the controller, Index as the action, and 1 as the id; these are route data values.
 
-````none
+```
 http://localhost:1230/Instructor/Index/1?courseID=2021
-````
+```
 
 The last part of the URL ("?courseID=2021") is a query string value. The model binder will also pass the ID value to the `Details` method `id` parameter if you pass it as a query string value:
 
-````none
+```
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
-````
+```
 
 In the Index page, hyperlink URLs are created by tag helper statements in the Razor view. In the following Razor code, the id parameter matches the default route, so `id` is added to the route data.
 

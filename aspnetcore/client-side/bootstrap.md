@@ -1,6 +1,6 @@
 ---
 title: Building Beautiful, Responsive Sites with Bootstrap
-author: rick-anderson
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -166,13 +166,25 @@ The default theme can also be used to present HTML tables in a nicely formatted 
 
 [http://getbootstrap.com/examples/theme/](http://getbootstrap.com/examples/theme/)
 
-## More Themes
+## More themes
 
-You can extend the standard Bootstrap Theme by overriding some or all of its CSS, adjusting the colors and styles to suit your own application's needs. If you'd like to start from a ready-made theme, there are several theme galleries available online that specialize in Bootstrap Themes, such as WrapBootstrap.com (which has a variety of commercial themes) and Bootswatch.com (which offers free themes).  Some of the paid templates available provide a great deal of functionality on top of the basic Bootstrap theme, such as rich support for administrative menus, and dashboards with rich charts and gauges.   An example of a popular paid template is Inspinia, currently for sale for $18, which includes an ASP.NET MVC5 template in addition to AngularJS and static HTML versions.  A sample screenshot is shown below.
+You can extend the standard Bootstrap theme by overriding some or all of its CSS, adjusting the colors and styles to suit your own application's needs. If you'd like to start from a ready-made theme, there are several theme galleries available online that specialize in Bootstrap themes, such as WrapBootstrap.com (which has a variety of commercial themes) and Bootswatch.com (which offers free themes).  Some of the paid templates available provide a great deal of functionality on top of the basic Bootstrap theme, such as rich support for administrative menus, and dashboards with rich charts and gauges. An example of a popular paid template is Inspinia, currently for sale for $18, which includes an ASP.NET MVC5 template in addition to AngularJS and static HTML versions. A sample screenshot is shown below.
 
 ![image](bootstrap/_static/theme-inspinia.png)
 
-If you're interested in building your own dashboard, you may wish to start from the free example available here: [http://getbootstrap.com/examples/dashboard/](http://getbootstrap.com/examples/dashboard/).
+If you want to change your Bootstrap theme, put the *bootstrap.css* file for the theme you want in the *wwwroot/css* folder and change the references in *_Layout.cshtml* to point it.  Change the links for all environments:
+
+```html
+<environment names="Development">
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+```
+
+```html
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+```
+
+If you want to build your own dashboard, you can start from the free example available here: [http://getbootstrap.com/examples/dashboard/](http://getbootstrap.com/examples/dashboard/).
 
 ## Components
 

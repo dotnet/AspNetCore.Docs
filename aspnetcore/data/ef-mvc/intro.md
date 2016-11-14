@@ -11,8 +11,6 @@ uid: data/ef-mvc/intro
 ---
 # Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
 
-By [Tom Dykstra](https://github.com/tdykstra)
-
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015.
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This tutorial series explains how to build the Contoso University sample application from scratch. You can [download the completed application](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final).
@@ -102,7 +100,7 @@ If you want to add EF Core support to a new project that you create without the 
 
 If you open the *project.json* file, you'll see that these packages are already installed.
 
-[!code-javascript[](intro/samples/cu/project1.json?highlight=7-11,16)]
+[!code-json[](intro/samples/cu/project1.json?highlight=7-11,16)]
 
 ## Create the data model
 
@@ -184,7 +182,7 @@ To register `SchoolContext` as a service, open *Startup.cs*, and add the highlig
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration.md) reads the connection string from the *appsettings.json* file. The connection string is highlighted in the following *appsettings.json* example.
 
-[!code-javascript[](./intro/samples/cu/appsettings1.json?highlight=2-3)]
+[!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-3)]
 
 The connection string created by the Visual Studio new-project template has a generated database name with a numeric suffix to guarantee uniqueness. You don't have to change that name.
 

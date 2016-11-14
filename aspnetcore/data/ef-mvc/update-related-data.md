@@ -129,23 +129,23 @@ The code does the following:
 
     <!-- Snippets do not play well with <ul> [!code-csharp[Main](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
-    ````charp
+    ```csharp
     if (await TryUpdateModelAsync<Instructor>(
         instructorToUpdate,
         "",
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
-	````
+	```
 	
 -   If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
     <!-- Snippets do not play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
-    ````csharp
+    ```csharp
     if (String.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
     {
         instructorToUpdate.OfficeAssignment = null;
     }
-    ````
+    ```
 
 - Saves the changes to the database.
 

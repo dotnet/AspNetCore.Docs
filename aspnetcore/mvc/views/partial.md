@@ -1,6 +1,6 @@
 ---
 title: Partial Views
-author: rick-anderson
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -10,9 +10,6 @@ ms.prod: aspnet-core
 uid: mvc/views/partial
 ---
 # Partial Views
-
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
 By [Steve Smith](http://ardalis.com)
 
