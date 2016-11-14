@@ -100,7 +100,7 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
 Here's a code sample that demonstrates WebListener use outside of ASP.NET Core:
 
-````csharp
+```csharp
 var settings = new WebListenerSettings();
 settings.UrlPrefixes.Add("http://localhost:8080");
 
@@ -119,7 +119,7 @@ using (WebListener listener = new WebListener(settings))
         context.Dispose();
     }
 }
-````
+```
 
 ## Preregister URL prefixes and configure SSL
 
@@ -129,16 +129,16 @@ The most common tasks you need to use netsh.exe for are reserving URL prefixes a
 
 NetSh.exe is not an easy tool to use for beginners. The following example shows the bare minimum needed to reserve URL prefixes for ports 80 and 443:
 
-````none
+```console
 netsh http add urlacl url=http://+:80/ user=Users
 netsh http add urlacl url=https://+:443/ user=Users
-````
+```
 
 The following example shows how to assign an SSL certificate:
 
-````none
+```console
 netsh http add sslcert ipport=0.0.0.0:443 certhash=MyCertHash_Here appid={00000000-0000-0000-0000-000000000000}".
-````
+```
 
 Here is the official reference documentation:
 

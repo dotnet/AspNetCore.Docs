@@ -57,24 +57,24 @@ URL prefixes for Kestrel can be in any of the following formats.
 
 * IP address with port number
 
-  ````none
+  ```
   http://65.55.39.10:80/
   https://65.55.39.10:443/
-  ````
+  ```
 
   Address 0.0.0.0 is a special case that binds to all IP addresses.
 
 
 * IPV6 address with port number
 
-  ````none
+  ```
   http://[0:0:0:0:0:ffff:4137:270a]:80/ 
   https://[0:0:0:0:0:ffff:4137:270a]:443/ 
-  ````
+  ```
 
 * Host name with port number
 
-  ````none 
+  ```
   http://contoso.com:80/
   http://*:80/
   https://contoso.com:443/
@@ -85,26 +85,26 @@ URL prefixes for Kestrel can be in any of the following formats.
 
 * "Localhost" host name or IP, with port number
 
-  ````none
+  ```
   http://localhost:5000/
   http://127.0.0.1:5000/
   http://[::1]:5000/
-  ````
+  ```
 
   When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
 
 * Localhost IP with port number 0 (Kestrel dynamically binds to an available port)
 
-  ````none
+  ```
   http://127.0.0.1:0/
   http://[::1]:0/
-  ````
+  ```
 
 * Unix socket
 
-  ````none
+  ```
   http://unix:/run/dan-live.sock  
-  ````
+  ```
 
 When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md) to determine which port Kestrel actually bound to at runtime, as shown in the following example.
 
@@ -114,7 +114,7 @@ When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.as
 
 Be sure to include URL prefixes with `https:` if you call the `UseSSL` extension method, as shown below.
 
-````csharp
+```csharp
 var host = new WebHostBuilder() 
     .UseKestrel(options => 
     { 
@@ -126,7 +126,7 @@ var host = new WebHostBuilder()
    .UseContentRoot(Directory.GetCurrentDirectory()) 
    .UseStartup<Startup>() 
    .Build(); 
-````
+```
 
 ## Next steps
 
