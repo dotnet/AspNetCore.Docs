@@ -126,9 +126,11 @@ To demonstrate the object lifetimes within and between separate individual reque
 
 [!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Controllers/OperationsController.cs)]
 
-The image below shows several requests made to this controller:
+Now two separate requests are made to this controller action:
 
-![image](dependency-injection/_static/lifetimes.jpg)
+![image](dependency-injection/_static/lifetimes_request1.png)   
+
+![image](dependency-injection/_static/lifetimes_request2.png)
 
 Observe which of the `OperationId` values vary within a request, and between requests.
 
