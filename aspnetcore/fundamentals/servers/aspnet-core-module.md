@@ -23,7 +23,7 @@ Supported Windows versions:
 
 ## What ASP.NET Core Module does
 
-ANCM is a native IIS module that hooks into the IIS pipeline very early in the request cycle and immediately redirects all traffic to the backend ASP.NET Core application. All requests - even those mapped to top level Handlers like ASPX - bypass the IIS pipeline and are forwarded to the ASP.NET Core application.
+ANCM is a native IIS module that hooks into the IIS pipeline and redirects traffic to the backend ASP.NET Core application. Most other modules, such as windows authentication, still get a chance to run. ANCM only takes control when a handler is selected for the request, and handler mapping is defined in the application *web.config* file.
 
 Because ASP.NET Core applications run in a process separate from the IIS worker process, ANCM also does process management. ANCM starts the process for the ASP.NET Core application when the first request comes in and restarts it when it crashes. This is essentially the same behavior as classic ASP.NET applications that run in-process in IIS and are managed by WAS (Windows Activation Service).
 
@@ -31,7 +31,7 @@ Here's a diagram that illustrates the relationship between IIS, ANCM, and ASP.NE
 
 ![ASP.NET Core Module](aspnet-core-module/_static/ancm.png)
 
-Requests come in from the Web and hit the kernel mode Http.Sys driver which routes into IIS on the primary port (80) or SSL port (443). The request is then forwarded to the ASP.NET Core application on the HTTP port configured for the application, which is not port 80/443. Kestrel picks up the request and pushes it into the ASP.NET Core middleware pipeline which then handles the request and passes it on as an `HttpContext` instance to application logic. The application's response is then passed back to IIS, which pushes it back out over the Internet to the HTTP client that initiated the request.
+Requests come in from the Web and hit the kernel mode Http.Sys driver which routes into IIS on the primary port (80) or SSL port (443). The request is then forwarded to the ASP.NET Core application on the HTTP port configured for the application, which is not port 80/443. Kestrel picks up the request and pushes it into the ASP.NET Core middleware pipeline which then handles the request and passes it on as an `HttpContext` instance to application logic. The application's response is then passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
 ANCM has a few other functions as well:
 
@@ -45,7 +45,7 @@ This section provides an overview of the process for setting up an IIS server an
 
 ### Install ANCM
 
-The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [ASP.NET Core Server Hosting Bundle](http://go.microsoft.com/fwlink/?LinkId=827547). For development machines, Visual Studio automatically installs ANCM.
+The ASP.NET Core Module has to be installed in IIS on your servers and in IIS Express on your development machines. For servers, ANCM is included in the [ASP.NET Core Server Hosting Bundle](http://go.microsoft.com/fwlink/?LinkId=827547). For development machines, Visual Studio automatically installs ANCM in IIS Express, and in IIS if it is already installed on the machine.
 
 ### Install the IISIntegration NuGet package
 
@@ -61,7 +61,7 @@ The `UseIISIntegration` method looks for environment variables that ANCM sets, a
 
 ### Don't call UseUrls
 
-When you use ANCM, don't call the `UseUrls` method, because the `UseIISIntegration` method picks up the port to listen on from environment variables that ANCM sets. When you run the app without IIS, it listens on the default port number at http://localhost:5000.
+ANCM generates a dynamic port to assign to the back-end process. `IWebHostBuilder.UseIISIntegration` picks up this dynamic port and configures Kestrel to listen on `http://locahost:{dynamicPort}/`. This overwrites other URL configurations like calls to `IWebHostBuilder.UseUrls`. Therefore, you don't need to call `UseUrls` when you use ANCM. When you run the app without IIS, it listens on the default port number at http://localhost:5000.
 
 If you need to set the port number for when you run the app without IIS, call `UseURLs` **before** you call `IISIntegration`.  When you run without IIS, the port number that you provide to `UseUrls` will take effect because `IISIntegration` will do nothing. But when you run with IIS, the port number specified by ANCM will override whatever you passed to `UseUrls`.
 
@@ -71,9 +71,9 @@ Configuration for the ASP.NET Core Module is stored in the *Web.config* file tha
 
 ### Run with IIS Express in development
 
-IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates. There's no need to run full IIS as a development server since Core apps don't run in-process in IIS. Whether you run with IIS, IIS Express, or directly from the command line, you are running the exact same code and in most cases the exact same execution environment. Running inside of IIS doesn't buy you anything anymore that you can't easily simulate with a command line environment.
+IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates.
 
-The only reason you might need to run with IIS in development is if there is something that IIS provides in terms of HTTP services that is really separate from the ASP.NET Core processing. But even then it's likely that those features won't be something you need to debug in the context of your application.
+Since ASP.NET Core apps don't run in-process in IIS, there's not as much need to run full IIS on a development machine, compared to earlier versions of ASP.NET. In most cases, a Core app is in the same execution environment when it runs from the command line or with IIS or IIS Express. There are still some differences between IIS and IIS Express, such as application pools and running as a different user.
 
 ## Next steps
 
