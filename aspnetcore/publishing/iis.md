@@ -333,7 +333,7 @@ Troubleshooting
 
 * Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method of the application's *WebHostBuilder()*.
 
-* If you are using the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*.
+* If you are using ASP.NET Core 1.0, and you call the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*. In ASP.NET Core 1.1, this is not required, because `UseIISIntegration` overwrites `UseUrls` regardless of the order they are called in.
 
 ### Sub-application includes a `<handlers>` section
 
