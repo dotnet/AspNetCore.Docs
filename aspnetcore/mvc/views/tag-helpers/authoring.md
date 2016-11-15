@@ -264,7 +264,7 @@ The condition tag helper renders output when passed a true value.
 
     [!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Controllers/HomeController.cs?range=9-18)]
 
-4.  Run the app and browse to the home page. The markup in the conditional `div` will not be rendered. Append the query string `?approved=true` to the URL (for example, http://localhost:1235/Home/Index?approved=true). `approved` is set to true and the conditional markup will be displayed.
+4.  Run the app and browse to the home page. The markup in the conditional `div` will not be rendered. Append the query string `?approved=true` to the URL (for example, `http://localhost:1235/Home/Index?approved=true`). `approved` is set to true and the conditional markup will be displayed.
 
 >[!NOTE]
 >We use the [nameof](https://msdn.microsoft.com/en-us/library/dn986596.aspx) operator to specify the attribute to target rather than specifying a string as we did with the bold tag helper:
