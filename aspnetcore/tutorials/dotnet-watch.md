@@ -159,7 +159,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
 
 3. Open the controller file in *WebApp/Controllers/MathController.cs* and change some code. If you haven't fixed the product bug, do it now. Save the file.
 
-`dotnet watch` will detect the file change and rerun the tests. The console output will show messages similar to the one below:
+`dotnet watch` detects the file change and reruns the tests. The console output will show messages similar to the one below:
 
 ````bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs
