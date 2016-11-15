@@ -73,8 +73,6 @@ Configuration for the ASP.NET Core Module is stored in the *Web.config* file tha
 
 IIS Express can be launched by Visual Studio using the default profile defined by the ASP.NET Core templates.
 
-Since ASP.NET Core apps don't run in-process in IIS, there's not as much need to run full IIS on a development machine, compared to earlier versions of ASP.NET. In most cases, a Core app is in the same execution environment when it runs from the command line or with IIS or IIS Express. There are still some differences between IIS and IIS Express, such as application pools and running as a different user.
-
 ## Next steps
 
 For more information, see the following resources:
