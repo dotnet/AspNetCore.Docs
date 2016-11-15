@@ -37,9 +37,9 @@ If you expose your application to the Internet, we recommend that you use IIS, N
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
 
-Another scenario that requires a reverse proxy is when you have multiple applications that share the same port running on a single server. That doesn't work with Kestrel directly because Kestrel doesn't support host-header routing. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header.
+Another scenario that requires a reverse proxy is when you have multiple applications that share the same port running on a single server. That doesn't work with Kestrel directly because Kestrel doesn't support sharing a port between multiple processes. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header. A reverse proxy that can share ports must then forward to Kestrel on a unique port.
 
-Even if a reverse proxy server isn't required, you can use one to improve performance. A reverse proxy can let you offload some work from your application server, such as serving static content, and it can cache and compress responses. A reverse proxy can also simplify load balancing and SSL set-up -- only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.
+Even if a reverse proxy server isn't required, using one can simplify load balancing and SSL set-up -- only your reverse proxy server requires an SSL certificate, and that server can communicate with your application servers on the internal network using plain HTTP.
 
 ## How to use Kestrel in ASP.NET Core apps
 
@@ -51,21 +51,21 @@ Call the [`UseKestrel`](http://docs.asp.net/projects/api/en/latest/autoapi/Micro
 
 ### URL prefixes
 
-By default Kestrel binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseURLs` extension method, the `server.urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
+By default Kestrel binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseURLs` extension method, the `urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
 
 URL prefixes for Kestrel can be in any of the following formats. 
 
-* IP address with port number
+* IPv4 address with port number
 
   ```
   http://65.55.39.10:80/
   https://65.55.39.10:443/
   ```
 
-  Address 0.0.0.0 is a special case that binds to all IP addresses.
+  Address 0.0.0.0 is a special case that binds to all IPv4 addresses.
 
 
-* IPV6 address with port number
+* IPv6 address with port number
 
   ```
   http://[0:0:0:0:0:ffff:4137:270a]:80/ 
@@ -81,9 +81,9 @@ URL prefixes for Kestrel can be in any of the following formats.
   https://*:443/
   ````
 
-  Any host name other than `localhost` has the same effect as IP 0.0.0.0: it binds to all traffic on the specified port. It makes no difference whether the host name is an actual name or contains wildcards. If you need to bind different host names to different ASP.NET Core applications on the same port, use a reverse proxy server such as IIS, Nginx, or Apache.
+  Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 
-* "Localhost" host name or IP, with port number
+* "Localhost" name with port number or loopback IP with port number
 
   ```
   http://localhost:5000/
@@ -93,20 +93,15 @@ URL prefixes for Kestrel can be in any of the following formats.
 
   When `localhost` is specified, Kestrel tries to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 is not supported), Kestrel logs a warning. 
 
-* Localhost IP with port number 0 (Kestrel dynamically binds to an available port)
-
-  ```
-  http://127.0.0.1:0/
-  http://[::1]:0/
-  ```
-
 * Unix socket
 
   ```
   http://unix:/run/dan-live.sock  
   ```
 
-When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md) to determine which port Kestrel actually bound to at runtime, as shown in the following example.
+If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for loopback IPs.
+
+When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md) to determine which port Kestrel actually bound to at runtime. The following example gets the bound port and displays it on the console.
 
 [!code-csharp[](kestrel/sample/Startup.cs?name=snippet_Configure)]
 
@@ -118,15 +113,16 @@ Be sure to include URL prefixes with `https:` if you call the `UseSSL` extension
 var host = new WebHostBuilder() 
     .UseKestrel(options => 
     { 
-        options.NoDelay = true; 
         options.UseHttps("testCert.pfx", "testPassword"); 
-        options.UseConnectionLogging(); 
     }) 
    .UseUrls("http://localhost:5000", "https://localhost:5001") 
    .UseContentRoot(Directory.GetCurrentDirectory()) 
    .UseStartup<Startup>() 
    .Build(); 
 ```
+
+> [!NOTE]
+> HTTPS and HTTP cannot be hosted on the same port.
 
 ## Next steps
 

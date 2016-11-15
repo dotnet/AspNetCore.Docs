@@ -33,6 +33,7 @@ namespace AspNetCoreModuleDemo
 
             app.Run(async (context) =>
             {
+                context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync($"<p>Hosted by Kestrel<p>");
                 // ASPNETCORE_PORT is the port that IIS proxies requests to.
                 if (Environment.GetEnvironmentVariable($"ASPNETCORE_PORT") != null)

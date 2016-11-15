@@ -30,6 +30,7 @@ namespace KestrelDemo
 
             app.Run(async (context) =>
             {
+                context.Response.ContentType = "text/html";
                 await context.Response
                     .WriteAsync($"<p>Hosted by Kestrel</p>");
 
