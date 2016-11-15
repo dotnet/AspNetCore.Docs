@@ -32,7 +32,7 @@ namespace KestrelDemo
             {
                 context.Response.ContentType = "text/html";
                 await context.Response
-                    .WriteAsync($"<p>Hosted by Kestrel</p>");
+                    .WriteAsync("<p>Hosted by Kestrel</p>");
 
                 if (serverAddressesFeature != null)
                 {

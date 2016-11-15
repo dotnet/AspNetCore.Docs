@@ -34,9 +34,9 @@ namespace AspNetCoreModuleDemo
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/html";
-                await context.Response.WriteAsync($"<p>Hosted by Kestrel<p>");
+                await context.Response.WriteAsync("<p>Hosted by Kestrel<p>");
                 // ASPNETCORE_PORT is the port that IIS proxies requests to.
-                if (Environment.GetEnvironmentVariable($"ASPNETCORE_PORT") != null)
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_PORT") != null)
                 {
                     await context.Response.WriteAsync("Using IIS as reverse proxy.");
                 }

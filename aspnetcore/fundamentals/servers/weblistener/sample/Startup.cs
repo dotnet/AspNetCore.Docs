@@ -33,7 +33,7 @@ namespace WebListenerDemo
             app.Run(async (context) =>
             {
                 context.Response.ContentType = "text/html";
-                await context.Response.WriteAsync($"<p>Hosted by WebListener</p>");
+                await context.Response.WriteAsync("<p>Hosted by WebListener</p>");
 
                 if (serverAddressesFeature != null)
                 {
