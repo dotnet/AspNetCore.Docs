@@ -37,7 +37,7 @@ ASP.NET Core includes a simple built-in container (represented by the `IServiceP
 
 ## Using Framework-Provided Services
 
-The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined (see [Services Defined in Startup](startup#services-available-in-startup). Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
+The `ConfigureServices` method in the `Startup` class is responsible for defining the services the application will use, including platform features like Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has just a handful of services defined. Below is an example of how to add additional services to the container using a number of extension methods like `AddDbContext`, `AddIdentity`, and `AddMvc`.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=5,8,12&range=39-56)]
 
@@ -86,7 +86,7 @@ Entity Framework contexts should be added to the services container using the `S
 >[!WARNING]
 > The main danger to be wary of is resolving a `Scoped` service from a singleton. It's likely in such a case that the service will have incorrect state when processing subsequent requests.
 
-Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using the [options pattern and configuration](configuration#using-options-and-configuration-objects).
+Services that have dependencies should register them in the container. If a service's constructor requires a primitive, such as a `string`, this can be injected by using the [options pattern and configuration](configuration.md).
 
 <a name=service-lifetimes-and-registration-options></a>
 
@@ -126,9 +126,11 @@ To demonstrate the object lifetimes within and between separate individual reque
 
 [!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Controllers/OperationsController.cs)]
 
-The image below shows several requests made to this controller:
+Now two separate requests are made to this controller action:
 
-![image](dependency-injection/_static/lifetimes.gif)
+![image](dependency-injection/_static/lifetimes_request1.png)   
+
+![image](dependency-injection/_static/lifetimes_request2.png)
 
 Observe which of the `OperationId` values vary within a request, and between requests.
 
