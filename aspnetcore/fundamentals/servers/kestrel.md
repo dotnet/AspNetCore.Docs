@@ -13,7 +13,7 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-Kestrel is a cross-platform [web server for ASP.NET Core](overview.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core new-project templates. 
+Kestrel is a cross-platform [web server for ASP.NET Core](overview.md) based on [libuv](https://github.com/libuv/libuv), a cross-platform asynchronous I/O library. Kestrel is the web server that is included by default in ASP.NET Core new project templates. 
 
 Kestrel supports the following features:
 
@@ -31,11 +31,11 @@ If your application accepts requests only from an internal network, you can use 
 
 ![Kestrel to internal network](kestrel/_static/kestrel-to-internal.png)
 
-If you expose your application to the Internet, we recommend that you use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
+If you expose your application to the Internet, you must use IIS, Nginx, or Apache as a *reverse proxy server*. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel after some preliminary handling.
 
 ![Kestrel to Internet](kestrel/_static/kestrel-to-internet.png)
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
+A reverse proxy is required for edge deployments (exposed to traffic from the Internet) for security reasons. Kestrel is relatively new and does not yet have a full complement of defenses against attacks. This includes but isn't limited to appropriate timeouts, size limits, and concurrent connection limits.
 
 Another scenario that requires a reverse proxy is when you have multiple applications that share the same port running on a single server. That doesn't work with Kestrel directly because Kestrel doesn't support sharing a port between multiple processes. When you configure Kestrel to listen on a port, it handles all traffic for that port regardless of host header. A reverse proxy that can share ports must then forward to Kestrel on a unique port.
 
@@ -51,7 +51,7 @@ Call the [`UseKestrel`](http://docs.asp.net/projects/api/en/latest/autoapi/Micro
 
 ### URL prefixes
 
-By default Kestrel binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseURLs` extension method, the `urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
+By default Kestrel binds to `http://localhost:5000`. You can configure URL prefixes and ports for Kestrel to listen on by using the `UseUrls` extension method, the `urls` command-line argument, or the ASP.NET Core configuration system. For more information about these methods, see [Hosting](../../fundamentals/hosting.md). For information about how URL binding works when you use IIS as a reverse proxy, see [ASP.NET Core Module](aspnet-core-module.md). 
 
 URL prefixes for Kestrel can be in any of the following formats. 
 
@@ -62,7 +62,7 @@ URL prefixes for Kestrel can be in any of the following formats.
   https://65.55.39.10:443/
   ```
 
-  Address 0.0.0.0 is a special case that binds to all IPv4 addresses.
+  0.0.0.0 is a special case that binds to all IPv4 addresses.
 
 
 * IPv6 address with port number
@@ -71,6 +71,9 @@ URL prefixes for Kestrel can be in any of the following formats.
   http://[0:0:0:0:0:ffff:4137:270a]:80/ 
   https://[0:0:0:0:0:ffff:4137:270a]:443/ 
   ```
+
+  [::] is the IPv6 equivalent of IPv4 0.0.0.0.
+
 
 * Host name with port number
 
@@ -99,13 +102,13 @@ URL prefixes for Kestrel can be in any of the following formats.
   http://unix:/run/dan-live.sock  
   ```
 
-If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for loopback IPs.
+If you specify port number 0, Kestrel dynamically binds to an available port. Binding to port 0 is allowed for any host name or IP except for `localhost` name.
 
 When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md) to determine which port Kestrel actually bound to at runtime. The following example gets the bound port and displays it on the console.
 
 [!code-csharp[](kestrel/sample/Startup.cs?name=snippet_Configure)]
 
-### Url prefixes for SSL
+### URL prefixes for SSL
 
 Be sure to include URL prefixes with `https:` if you call the `UseSSL` extension method, as shown below.
 
