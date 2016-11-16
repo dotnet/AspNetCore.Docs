@@ -58,24 +58,6 @@ It's typical to have different configuration settings for different environments
 2. JSON provider, reading *appsettings.<EnvironmentName>.json*
 3. Environment variables provider
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup4.cs?name=snippet1)]
-
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup4.cs", "highlight_args": {"linenostart": 1, "hl_lines": [5, 6, 7]}, "names": []} -->
-
-````none
-
-   public Startup(IHostingEnvironment env)
-   {
-// rm
-       var builder = new ConfigurationBuilder()
-           .SetBasePath(env.ContentRootPath)
-           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-           .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-           .AddEnvironmentVariables();
-       Configuration = builder.Build();
-   }
-
-   ````
 <!--
 TODO add link
 http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile)
@@ -329,8 +311,7 @@ The `MySubOptions` class:
 
 With the following `Controller`:
 
-[!code-csharp[Main](fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
-
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
 
 <!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController2.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
 
