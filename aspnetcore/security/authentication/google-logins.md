@@ -101,7 +101,13 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 
-[!code-csharp[Main](./sociallogins/sample/Startup.cs?highlight=33,34,35,36,37&range=64-115)]
+````csharp
+app.UseGoogleAuthentication(new GoogleOptions()
+{
+    ClientId = Configuration["Authentication:Google:ClientId"],
+    ClientSecret = Configuration["Authentication:Google:ClientSecret"]
+});
+````
 
 ## Login with Google
 
