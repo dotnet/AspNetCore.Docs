@@ -75,30 +75,6 @@ namespace WebApplication1
 
             app.UseIdentity();
 
-            app.UseFacebookAuthentication(new FacebookOptions()
-            {
-                AppId = Configuration["Authentication:Facebook:AppId"],
-                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-            });
-
-            app.UseTwitterAuthentication(new TwitterOptions()
-            {
-                ConsumerKey = Configuration["Authentication:Twitter:ConsumerId"],
-                ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
-            });
-
-            app.UseGoogleAuthentication(new GoogleOptions()
-            {
-                ClientId = Configuration["Authentication:Google:ClientId"],
-                ClientSecret = Configuration["Authentication:Google:ClientSecret"]
-            });
-
-            app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
-            {
-                ClientId = Configuration["Authentication:Microsoft:ClientId"],
-                ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"]
-            });
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
