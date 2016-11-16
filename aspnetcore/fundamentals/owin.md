@@ -19,7 +19,7 @@ ASP.NET Core supports the Open Web Interface for .NET (OWIN). OWIN allows web ap
 
 ## Running OWIN middleware in the ASP.NET pipeline
 
-OWIN support is available by adding the `Microsoft.AspNetCore.Owin` package to your project. If you are using Visual Studio 2017 RC 1 or newer, add it to the projects \*.csproj file, otherwise add it to the *project.json* file.
+OWIN support is available by adding the `Microsoft.AspNetCore.Owin` package to your project. If you are using Visual Studio 2017 RC 1 or newer, add it to the projects *.csproj* file, otherwise add it to the *project.json* file.
 
 OWIN middleware conforms to the [OWIN specification](http://owin.org/spec/spec/owin-1.0.0.html), which requires a `Func<IDictionary<string, object>, Task>` interface, and specific keys be set (such as `owin.ResponseBody`). The following simple OWIN middleware displays "Hello World":
 
