@@ -15,7 +15,7 @@ In this section you'll add validation logic to the `Movie` model, and you'll ens
 
 ## Keeping things DRY
 
-One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
+One of the design tenets of MVC is [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
 The validation support provided by MVC and Entity Framework Core Code First is a great example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 

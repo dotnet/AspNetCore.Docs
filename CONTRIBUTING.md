@@ -23,9 +23,11 @@ Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/
 
 For each Markdown file there may be a folder for images and a folder for sample code. For example, if the article is [fundamentals/configuration.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration.md), the images are in [fundamentals/configuration/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/_static) and the sample application project files are in [fundamentals/configuration/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/sample).  An image in the *fundamentals/configuration.md* file is rendered by the following Markdown.
 
-```none
-![alt-text](configuration/_static/imagename.png)
 ```
+![description of image for alt attribute](configuration/_static/imagename.png)
+```
+
+All images should have [alt text](https://en.wikipedia.org/wiki/Alt_attribute).
 
 ## Code snippets
 
@@ -35,13 +37,13 @@ Here are some examples of [DFM code snippet syntax](http://dotnet.github.io/docf
 
 To render an entire code file as a snippet:
 
-```none
+```
 [!code-csharp[Main](configuration/sample/Program.cs)]
 ```
 
 To render a portion of a file as a snippet by using line numbers:
 
-```none
+```
 [!code-csharp[Main](configuration/sample/Program.cs?range=1-10,20,30,40-50]
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
 [!code-javascript[Main](configuration/sample/Project.json?range=1-10,20,30,40-50]
@@ -51,13 +53,13 @@ For C# snippets, you can reference a [C# region](https://msdn.microsoft.com/en-u
 
 To render a C# region named "snippet_Example":
 
-```none
+```
 [!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example)]
 ```
 
 To highlight selected lines in a rendered snippet (usually renders as yellow background color):
 
-```none
+```
 [!code-csharp[Main](configuration/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
 [!code-csharp[Main](configuration/sample/Program.cs?range=10-20&highlight=1-3]
 [!code-html[Main](configuration/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]

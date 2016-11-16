@@ -66,8 +66,8 @@ The console output will show messages similar to the ones below:
 ````bash
 log  : Restoring packages for /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
 log  : Restoring packages for tool 'Microsoft.DotNet.Watcher.Tools' in /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
-log  : Installing Microsoft.DotNet.Watcher.Core 1.0.0-preview2-final.
-log  : Installing Microsoft.DotNet.Watcher.Tools 1.0.0-preview2-final.
+log  : Installing Microsoft.DotNet.Watcher.Core ...
+log  : Installing Microsoft.DotNet.Watcher.Tools ...
 ````
 
 ## Running `dotnet` commands using `dotnet watch`
@@ -159,7 +159,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
 
 3. Open the controller file in *WebApp/Controllers/MathController.cs* and change some code. If you haven't fixed the product bug, do it now. Save the file.
 
-`dotnet watch` will detect the file change and rerun the tests. The console output will show messages similar to the one below:
+`dotnet watch` detects the file change and reruns the tests. The console output will show messages similar to the one below:
 
 ````bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs

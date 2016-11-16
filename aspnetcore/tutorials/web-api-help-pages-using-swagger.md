@@ -43,22 +43,12 @@ You can add Swashbuckle with any of the following approaches:
 Install-Package Swashbuckle -Pre
    ````
 
-* Add Swashbuckle to *project.json*:
-
-````javascript
-"Swashbuckle": "6.0.0-beta902"
-   ````
-
 * In Visual Studio:
 
      * Right click your project in Solution Explorer > Manage NuGet Packages
-
      * Enter Swashbuckle in the search box
-
      * Check "Include prerelease"
-
      * Set the Package source to nuget.org
-
      * Tap the Swashbuckle package and then tap Install
 
 ## Add and configure Swagger to the middleware
@@ -209,18 +199,6 @@ The following image shows the Swagger UI displaying the version information adde
 To enable XML comments, right click the project in Visual Studio and select **Properties** and then check the **XML Documentation file** box under the **Output Settings** section.
 
 ![image](web-api-help-pages-using-swagger/_static/swagger-xml-comments.png)
-
-Alternatively, you can enable XML comments by setting *"xmlDoc": true* in *project.json*.
-
-<!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [4]}} -->
-
-````javascript
-"buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "xmlDoc": true
-},
-````
 
 Configure Swagger to use the generated XML file.
 

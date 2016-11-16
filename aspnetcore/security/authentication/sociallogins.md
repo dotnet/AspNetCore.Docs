@@ -89,7 +89,7 @@ Each of the OAuth2 providers require provider specific keys to enable OAuth2.
 
 * Add your Site URL (`https://localhost:44320/`)
 
-* Make a note of your App ID and your App Secret so that you can add both into your ASP.NET Core app later in this tutorial. Also, Add your Site URL (https://localhost:44300/) to test your application.
+* Make a note of your App ID and your App Secret so that you can add both into your ASP.NET Core app later in this tutorial. Also, Add your Site URL (`https://localhost:44300/`) to test your application.
 
 ![image](sociallogins/_static/FBApp08.png)
 

@@ -120,9 +120,9 @@ Now that we have a minimal working ASP.NET Core project, we can start migrating 
 
 * Run the ASP.NET Core app and test each method. We haven't migrated the layout file or styles yet, so the rendered views will only contain the content in the view files. You won't have the layout file generated links for the `About` and `Contact` views, so you'll have to invoke them from the browser (replace **4492** with the port number used in your project).
 
-  * http://localhost:4492/home/about
+  * `http://localhost:4492/home/about`
 
-  * http://localhost:4492/home/contact
+  * `http://localhost:4492/home/contact`
 
 ![image](mvc/_static/contact-page.png)
 
