@@ -5,9 +5,9 @@ ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
-ms.assetid: 1c501638-114a-4cd3-ad39-0a5790b4e764
+ms.assetid: 1837c35d-2c24-493f-acf4-a07bf7db9bd9
 ms.prod: aspnet-core
-uid: index
+uid: intro
 ---
 # Introduction to ASP.NET Core
 
