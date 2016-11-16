@@ -13,7 +13,7 @@ uid: security/authentication/otherlogins
 
 <a name=security-authentication-other-logins></a>
 
-Here are setup instructions for some other common OAuth login providers. Third-party NuGet packages such as the ones maintained by [aspnetcontrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) can be used to complement login providers implemented by the ASP.NET Core team.
+Here are setup instructions for some other common OAuth login providers. Third-party NuGet packages such as the ones maintained by [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth) can be used to complement login providers implemented by the ASP.NET Core team.
 
 * Setup **LinkedIn** logins: [https://developer.linkedin.com/my-apps](https://developer.linkedin.com/my-apps). See [official steps](https://developer.linkedin.com/docs/oauth2).
 
