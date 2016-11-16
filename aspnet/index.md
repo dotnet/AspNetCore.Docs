@@ -52,7 +52,7 @@ ms.assetid: df662e78-04e0-489e-8e30-f90ed47e6512
                             <p>ASP.NET Core</p>
                         </div>
                         <p class="description column-two-thirds">
-                            ASP.NET Core is a new open-source and cross-platform .NET framework for building modern cloud-based web applications on Windows, Mac, or Linux.
+                            ASP.NET Core is a new open-source and cross-platform web framework for building modern cloud-based web applications on Windows, Mac, or Linux.
                         </p>
                     </header>
                     <section class="journey-step-elements content">
