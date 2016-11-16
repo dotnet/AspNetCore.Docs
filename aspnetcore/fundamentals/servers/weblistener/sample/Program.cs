@@ -34,13 +34,12 @@ namespace WebListenerDemo
             var builder = new WebHostBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(config)
-                .UseStartup<Startup>();
-
-            builder.UseWebListener(options =>
-            {
-                options.Listener.AuthenticationManager.AuthenticationSchemes =
-                    AuthenticationSchemes.AllowAnonymous;
-            });
+                .UseStartup<Startup>()
+                .UseWebListener(options =>
+                {
+                    options.Listener.AuthenticationManager.AuthenticationSchemes =
+                        AuthenticationSchemes.AllowAnonymous;
+                });
 
             var host = builder.Build();
             host.Run();

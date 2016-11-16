@@ -13,9 +13,9 @@ uid: fundamentals/servers/weblistener
 
 By [Tom Dykstra](http://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher)
 
-WebListener is a [web server for ASP.NET Core](overview.md) that runs only on Windows. It's the .NET Core successor to [HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx), built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
+WebListener is a [web server for ASP.NET Core](overview.md) that runs only on Windows. It's built on the [Http.Sys kernel mode driver](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364510.aspx). WebListener is an alternative to [Kestrel](kestrel.md) that can be used for direct connection to the Internet without relying on IIS as a reverse proxy server. In fact, **WebListener can't be used with IIS, as it isn't compatible with the [ASP.NET Core Module](aspnet-core-module.md).**
 
-Although WebListener was developed for ASP.NET Core, it can be used in any .NET Core or .NET Framework application that is compatible with the [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) NuGet package.
+Although WebListener was developed for ASP.NET Core, it can be used directly in any .NET Core or .NET Framework application via the [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) NuGet package.
 
 WebListener supports the following features:
 
@@ -51,15 +51,11 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
 ### Configure Windows Server
 
-* [Install .NET Core](https://go.microsoft.com/fwlink/?LinkID=827524).
-
-* Configure [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
-
-   Some of these options can be configured in application code, but the defaults are in the registry.
+* Install the version of .NET that your application requires, such as [.NET Core](https://go.microsoft.com/fwlink/?LinkID=827524) or .NET Framework 4.5.1.
 
 * Preregister URL prefixes to bind to WebListener, and set up SSL certificates
 
-   If you don't preregister URL prefixes in Windows, you have to run your application with administrator privileges. The only exception is if you bind to localhost with a port number greater than 1024; in that case administrator privileges aren't required.
+   If you don't preregister URL prefixes in Windows, you have to run your application with administrator privileges. The only exception is if you bind to localhost using HTTP (not HTTPS) with a port number greater than 1024; in that case administrator privileges aren't required.
 
    For details, see [How to preregister prefixes and configure SSL](#preregister-url-prefixes-and-configure-ssl) later in this article.
 
@@ -67,13 +63,15 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
    You can use netsh.exe or [PowerShell cmdlets](https://technet.microsoft.com/library/jj554906).
 
+There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
+
 ### Configure your ASP.NET Core application
 
 * Install the NuGet package [Microsoft.AspNetCore.Server.WebListener](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.WebListener/). This also installs [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) as a dependency.
 
 * Call the [`UseWebListener`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilderKestrelExtensions/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilderWebListenerExtensions.UseWebListener.md) extension method on [WebHostBuilder](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/WebHostBuilder/index.html#Microsoft.AspNetCore.Hosting.WebHostBuilder.md) in your `Main` method, specifying any WebListener [options](https://github.com/aspnet/WebListener/blob/dev/src/Microsoft.AspNetCore.Server.WebListener/WebListenerOptions.cs) and [settings](https://github.com/aspnet/WebListener/blob/dev/src/Microsoft.Net.Http.Server/WebListenerSettings.cs) that you need, as shown in the following example:
 
-  [!code-csharp[](weblistener/sample/Program.cs?name=snippet_Main&highlight=14-18)]
+  [!code-csharp[](weblistener/sample/Program.cs?name=snippet_Main&highlight=13-17)]
 
 * Configure URLs and ports to listen on 
 
@@ -94,9 +92,10 @@ Here's an overview of setup tasks for the host OS and your ASP.NET Core applicat
 
 * Install the [Microsoft.Net.Http.Server](https://www.nuget.org/packages/Microsoft.Net.Http.Server/) NuGet package.
 
-*  Configure [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
-
 * [Preregister URL prefixes to bind to WebListener, and set up SSL certificates](#preregister-url-prefixes-and-configure-ssl) as you would for use in ASP.NET Core.
+
+There are also [Http.Sys registry settings](https://support.microsoft.com/en-us/kb/820129).
+
 
 Here's a code sample that demonstrates WebListener use outside of ASP.NET Core:
 
@@ -145,11 +144,12 @@ Here is the official reference documentation:
 * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](http://technet.microsoft.com/library/cc725882.aspx)
 * [UrlPrefix Strings](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
 
-The following resources provide detailed instructions for several scenarios. Articles that refer to `HttpListener` apply equally to its .NET Core successor, WebListener.
+The following resources provide detailed instructions for several scenarios. Articles that refer to `HttpListener` apply equally to `WebListener`, as both are based on Http.Sys.
 
 * [How to: Configure a Port with an SSL Certificate](http://msdn.microsoft.com/library/ms733791.aspx)
 * [HTTPS Communication - HttpListener based Hosting and Client Certification](http://sunshaking.blogspot.com/2012/11/https-communication-httplistener-based.html) This is a third-party blog and is fairly old but still has useful information.
 * [How To: Walkthrough Using HttpListener or Http Server unmanaged code (C++) as an SSL Simple Server](http://blogs.msdn.com/b/jpsanders/archive/2009/09/29/walkthrough-using-httplistener-as-an-ssl-simple-server.aspx) This too is an older blog with useful information.
+* [How Do I Set Up A .NET Core WebListener With SSL?](https://blogs.msdn.microsoft.com/timomta/2016/11/04/how-do-i-set-up-a-net-core-weblistener-with-ssl/)
 
 Here are some third-party tools that can be easier to use than the netsh.exe command line. These are not provided by or endorsed by Microsoft. The tools run as administrator by default, since netsh.exe itself requires administrator privileges.
 

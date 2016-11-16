@@ -57,15 +57,13 @@ For internal network scenarios, Kestrel is generally recommended for best perfor
 
 The [`IApplicationBuilder`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Builder/IApplicationBuilder/index.html#Microsoft.AspNetCore.Builder.IApplicationBuilder.md) available in the `Startup` class `Configure` method exposes the `ServerFeatures` property of type [`IFeatureCollection`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IFeatureCollection/index.html#Microsoft.AspNetCore.Http.Features.IFeatureCollection.md). Kestrel and WebListener both expose only a single feature, [`IServerAddressesFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/Features/IServerAddressesFeature/index.html#Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature.md), but different server implementations may expose additional functionality.
 
-`IServerAddressesFeature` can be used to find out which port the server implementation has bound to at runtime when you've specified port 0 for dynamic port assignment. For more information, see [Kestrel](kestrel.md).
+`IServerAddressesFeature` can be used to find out which port the server implementation has bound to at runtime.
 
 ## Custom servers
 
 You can create custom server implementations to use in place of Kestrel or WebListener. The [Open Web Interface for .NET (OWIN) guide](../owin.md) demonstrates how to write a [Nowin](https://github.com/Bobris/Nowin)-based [`IServer`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Hosting/Server/IServer/index.html#Microsoft.AspNetCore.Hosting.Server.IServer.md) implementation. You're free to implement just the feature interfaces your application needs, though at a minimum you must support [`IHttpRequestFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpRequestFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpRequestFeature.md) and [`IHttpResponseFeature`](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/AspNetCore/Http/Features/IHttpResponseFeature/index.html#Microsoft.AspNetCore.Http.Features.IHttpResponseFeature.md).
 
-Since [Kestrel is open source](https://github.com/aspnet/KestrelHttpServer/), it makes an excellent starting point if you need to implement a custom server. Like all of ASP.NET Core, you're welcome to [contribute](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md) any improvements you make back to the project.
-
-### Next steps
+## Next steps
 
 For more information, see the following resources:
 
