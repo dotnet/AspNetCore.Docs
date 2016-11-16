@@ -1,11 +1,12 @@
 ---
-title: Knockout.js MVVM Framework
+title: Knockout.js MVVM Framework | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b20e3b23-1c51-47bf-adac-91b5048567e0
+ms.technology: asp.net
 ms.prod: aspnet-core
 uid: client-side/knockout
 ---
@@ -100,7 +101,7 @@ However, if we change the value in the textbox, the corresponding value in the `
 The issue is that nothing notified the `<span>` that it needed to be updated. Simply updating the ViewModel isn't by itself sufficient, unless the ViewModel's properties are wrapped in a special type. We need to use **observables** in the ViewModel for any properties that need to have changes automatically updated as they occur. By changing the ViewModel to use `ko.observable("value")` instead of just "value", the ViewModel will update any HTML elements that are bound to its value whenever a change occurs. Note that input boxes don't update their value until they lose focus, so you won't see changes to bound elements as you type.
 
 > [!NOTE]
-> Adding support for live updating after each keypress is simply a matter of adding `valueUpdate: "afterkeydown"` to the `data-bind` attribute's contents. You can also get this behavior by using `data-bind="textInput: authorName"` to get instant updates of values. 
+> Adding support for live updating after each keypress is simply a matter of adding `valueUpdate: "afterkeydown"` to the `data-bind` attribute's contents. You can also get this behavior by using `data-bind="textInput: authorName"` to get instant updates of values.
 
 Our viewModel, after updating it to use ko.observable:
 
