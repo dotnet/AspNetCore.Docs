@@ -1,5 +1,7 @@
 ---
 title: Publish to a Linux Production Environment
+description: Describes how to setup nginx as a reverse proxy on Ubuntu 14.04 to forward HTTP traffic to an ASP.NET Core web application running on Kestrel. 
+keywords: ASP.NET, .NET, Linux, nginx, Ubuntu, Reverse Proxy
 author: rick-anderson
 ms.author: riande
 manager: wpickett
