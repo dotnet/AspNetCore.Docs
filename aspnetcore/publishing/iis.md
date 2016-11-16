@@ -1,5 +1,5 @@
 ---
-title: Publishing to IIS with Web Deploy using Visual Studio
+title: Publishing to IIS
 author: rick-anderson
 ms.author: riande
 manager: wpickett
