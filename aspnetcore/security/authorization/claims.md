@@ -29,15 +29,15 @@ First you need to build and register the policy. This takes place as part of the
 
 ````csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddMvc();
+{
+    services.AddMvc();
 
-       services.AddAuthorization(options =>
-       {
-           options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
-       });
-   }
-   ````
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+    });
+}
+````
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
@@ -45,55 +45,55 @@ You then apply the policy using the `Policy` property on the `AuthorizeAttribute
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
-   public IActionResult VacationBalance()
-   {
-       return View();
-   }
-   ````
+public IActionResult VacationBalance()
+{
+    return View();
+}
+````
 
 The `AuthorizeAttribute` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
-   public class VacationController : Controller
-   {
-       public ActionResult VacationBalance()
-       {
-       }
-   }
-   ````
+public class VacationController : Controller
+{
+    public ActionResult VacationBalance()
+    {
+    }
+}
+````
 
 If you have a controller that is protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute;
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
-   public class VacationController : Controller
-   {
-       public ActionResult VacationBalance()
-       {
-       }
+public class VacationController : Controller
+{
+    public ActionResult VacationBalance()
+    {
+    }
 
-       [AllowAnonymous]
-       public ActionResult VacationPolicy()
-       {
-       }
-   }
-   ````
+    [AllowAnonymous]
+    public ActionResult VacationPolicy()
+    {
+    }
+}
+````
 
 Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
 
 ````csharp
 public void ConfigureServices(IServiceCollection services)
-   {
-       services.AddMvc();
+{
+    services.AddMvc();
 
-       services.AddAuthorization(options =>
-       {
-           options.AddPolicy("Founders", policy =>
-                             policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
-       }
-   }
-   ````
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Founders", policy =>
+                          policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
+    }
+}
+````
 
 ## Multiple Policy Evaluation
 
@@ -101,18 +101,18 @@ If you apply multiple policies to a controller or action then all policies must 
 
 ````csharp
 [Authorize(Policy = "EmployeeOnly")]
-   public class SalaryController : Controller
-   {
-       public ActionResult Payslip()
-       {
-       }
+public class SalaryController : Controller
+{
+    public ActionResult Payslip()
+    {
+    }
 
-       [Authorize(Policy = "HumanResources")]
-       public ActionResult UpdateSalary()
-       {
-       }
-   }
-   ````
+    [Authorize(Policy = "HumanResources")]
+    public ActionResult UpdateSalary()
+    {
+    }
+}
+````
 
 In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
