@@ -170,7 +170,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
        * "gulp-concat"
        * "gulp-cssmin"
        * "gulp-uglify"
-       * "rimraf
+       * "rimraf"
 
    If you are using Visual Studio 2017 RC 1 or higher, add these to the *.csproj* file, otherwise add them to the *project.json* file.
 
