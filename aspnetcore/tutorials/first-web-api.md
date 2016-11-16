@@ -38,7 +38,7 @@ Here is the API that you’ll create:
      
 <br>     
     
-The following diagram show the basic design of the app.
+The following diagram shows the basic design of the app.
 
 ![app basic design](first-web-api/_static/architecture.png)
 
