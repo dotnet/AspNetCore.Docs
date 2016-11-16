@@ -100,7 +100,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 <p>Hello from our View Template!</p>
 ````
 
-`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewDataDictionary` to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
+`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
 
 ````HTML
