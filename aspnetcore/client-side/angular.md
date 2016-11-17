@@ -1,11 +1,12 @@
 ﻿---
-title: Using Angular for Single Page Applications (SPAs)
+title: Using Angular for Single Page Applications (SPAs) | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4b30576b-2718-4c39-9253-a59966747893
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/angular
 ---

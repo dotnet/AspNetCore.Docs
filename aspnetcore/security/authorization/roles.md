@@ -1,11 +1,12 @@
 ---
-title: Role based Authorization
+title: Role based Authorization | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5e014da1-8bc0-409b-951a-88b92c661fdf
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/roles
 ---

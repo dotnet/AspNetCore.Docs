@@ -1,11 +1,12 @@
 ---
-title: Testing Controller Logic
-author: rick-anderson
+title: Testing Controller Logic | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dd4135ec-2b15-410c-b3fb-3d12eed4a1ac
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/testing
 ---

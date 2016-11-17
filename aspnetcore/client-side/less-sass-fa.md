@@ -1,11 +1,12 @@
 ---
-title: Styling Applications with Less, Sass, and Font Awesome
-author: rick-anderson
+title: Styling Applications with Less, Sass, and Font Awesome | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 94c988f9-95fd-425d-b37e-7f846598c6d4
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/less-sass-fa
 ---

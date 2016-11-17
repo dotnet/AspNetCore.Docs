@@ -1,11 +1,12 @@
 ---
-title: Context headers
+title: Context headers | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d026a58c-67f4-411e-a410-c35f29c2c517
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/implementation/context-headers
 ---

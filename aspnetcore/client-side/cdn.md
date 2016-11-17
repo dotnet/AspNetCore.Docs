@@ -1,11 +1,12 @@
 ---
-title: 🔧 Working with a Content Delivery Network (CDN)
+title: 🔧 Working with a Content Delivery Network (CDN) | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ab61949d-fc6f-4e9f-ae84-bde37e99cdcf
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/cdn
 ---

@@ -1,11 +1,12 @@
 ---
-title: Creating a complex data model
+title: Creating a complex data model | Microsoft Docs
 author: tdykstra
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0dd63913-a041-48b6-96a4-3aeaedbdf5d0
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/complex-data-model
 ---

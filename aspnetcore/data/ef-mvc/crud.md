@@ -1,11 +1,12 @@
 ---
-title: Create, Read, Update, and Delete operations
+title: Create, Read, Update, and Delete operations | Microsoft Docs
 author: tdykstra
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6e1cd570-40f1-4b24-8b6e-7d2d27758f18
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/crud
 ---

@@ -1,11 +1,12 @@
 ---
-title: In Memory Caching
-author: rick-anderson
+title: In Memory Caching | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 819511cf-d33e-410a-b5a9-bef7fa64d2f3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/memory
 ---

@@ -1,11 +1,12 @@
 ﻿---
-title: Getting Started with ASP.NET Core and Entity Framework 6
+title: Getting Started with ASP.NET Core and Entity Framework 6 | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 016cc836-4c43-45a4-b9a7-9efaf53350df
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/entity-framework-6
 ---

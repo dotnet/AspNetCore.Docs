@@ -1,11 +1,12 @@
 ---
-title: Adding a controller
+title: Adding a controller | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
+ms.technology: aspnet
 ms.prod: aspnet-core
 
 uid: tutorials/first-mvc-app/adding-controller
@@ -40,7 +41,7 @@ Every `public` method in a controller is callable as an HTTP endpoint. In the sa
 
 The first comment states this is an [HTTP GET](http://www.w3schools.com/tags/ref_httpmethods.asp) method that is invoked by appending "/HelloWorld/" to the base URL. The second comment specifies an [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that is invoked by appending "/HelloWorld/Welcome/" to the URL. Later on in the tutorial we'll use the scaffolding engine to generate `HTTP POST` methods.
 
-Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, [http://localhost:1234/HelloWorld](http://localhost:1234/HelloWorld) is used, but you'll have to replace *1234* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
+Run the app in non-debug mode (press Ctrl+F5) and append "HelloWorld" to the path in the address bar. (In the image below, `http://localhost:1234/HelloWorld` is used, but you'll have to replace *1234* with the port number of your app.) The `Index` method returns a string. You told the system to return some HTML, and it did!
 
 ![image](adding-controller/_static/hell1.png)
 

@@ -1,11 +1,12 @@
 ---
-title: Introduction to Data Protection
+title: Introduction to Data Protection | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4542cd37-b47c-454c-be19-d1b5810d67fe
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/introduction
 ---

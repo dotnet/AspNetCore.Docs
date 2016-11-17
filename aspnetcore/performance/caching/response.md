@@ -1,11 +1,12 @@
 ---
-title: Response Caching
-author: rick-anderson
+title: Response Caching | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/response
 ---
@@ -69,9 +70,9 @@ The `ResponseCacheAttribute` is used to specify how a controller action's header
 
 **Order `int`**
 
-   The order of the filter (from `IOrderedFilter``).
+   The order of the filter (from `IOrderedFilter`).
 
-The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory``) a `ResponseCacheFilter`, which performs the work of writing the appropriate HTTP headers to the response. The filter will first remove any existing headers for `Vary`, `Cache-Control`, and `Pragma`, and then will write out the appropriate headers based on the properties set in the `ResponseCacheAttribute`.
+The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`, which performs the work of writing the appropriate HTTP headers to the response. The filter will first remove any existing headers for `Vary`, `Cache-Control`, and `Pragma`, and then will write out the appropriate headers based on the properties set in the `ResponseCacheAttribute`.
 
 ### The `Vary` Header
 

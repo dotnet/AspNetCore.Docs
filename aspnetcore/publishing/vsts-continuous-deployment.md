@@ -1,11 +1,12 @@
 ---
-title: Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment
+title: Use VSTS to Build and Publish to an Azure Web App with Continuous Deployment | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3bfc8a31-c187-45d0-aa29-8942a5df6292
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/vsts-continuous-deployment
 ---

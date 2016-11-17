@@ -1,11 +1,12 @@
 ---
-title: Dependency Injection in requirement handlers
+title: Dependency Injection in requirement handlers | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5fb6625c-173a-4feb-8380-73c9844dc23c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/dependencyinjection
 ---

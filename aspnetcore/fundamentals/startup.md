@@ -1,11 +1,12 @@
 ---
-title: Application Startup
+title: Application Startup | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6538df00-4ec2-45e4-811a-d7ce2ee608ed
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/startup
 ---
@@ -49,6 +50,8 @@ Just as with `Configure`, it is recommended that features that require substanti
 Adding services to the services container makes them available within your application via [dependency injection](dependency-injection.md).
 
 The `ConfigureServices` method is also where you should add configuration option classes that you would like to have available in your application. See the [Configuration](configuration.md) topic to learn more about configuring options.
+
+<a name='services-available-in-startup'></a>
 
 ## Services Available in Startup
 

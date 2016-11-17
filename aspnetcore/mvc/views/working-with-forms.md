@@ -1,11 +1,12 @@
 ﻿---
-title: Working with Forms
+title: Working with Forms | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 25595059-4fac-4785-8152-f88590e3169b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/working-with-forms
 ---
@@ -14,7 +15,7 @@ uid: mvc/views/working-with-forms
 >[!WARNING]
 > This page documents version 1.0.0-rc1 and has not yet been updated for version 1.0.0
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Paquette](https://twitter.com/Dave_Paquette) and [Jerrie Pelser](https://twitter.com/jerriepelser)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Paquette](https://twitter.com/Dave_Paquette) and [Jerrie Pelser](https://github.com/jerriep)
 
 This document demonstrates working with Forms and the HTML elements commonly used on a Form. The HTML [Form](https://www.w3.org/TR/html401/interact/forms.html) element provides the primary mechanism web apps use to post back data to the server. Most of this document describes [Tag Helpers](tag-helpers/intro.md) and how they can help you productively create robust HTML forms. We recommend you read [Introduction to Tag Helpers](tag-helpers/intro.md) before you read this document.
 

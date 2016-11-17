@@ -1,11 +1,12 @@
 ---
-title: Controllers, Actions, and Action Results
-author: rick-anderson
+title: Controllers, Actions, and Action Results | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 9da9eb52-8583-4069-af91-155ba3529d7f
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/actions
 ---

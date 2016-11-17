@@ -1,11 +1,12 @@
 ---
-title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code
+title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/your-first-mac-aspnet
 ---
@@ -25,15 +26,15 @@ We will be using `yo aspnet` to generate the **Web Application Basic** template,
 
 Install the necessary yeoman generators and bower using npm.
 
-````console
+```console
 npm install -g yo generator-aspnet bower
-   ````
+   ```
 
 Run the ASP.NET Core generator
 
-````console
+```console
 yo aspnet
-   ````
+   ```
 
 * Select **Web Application Basic [without Membership and Authorization]** and tap Enter
 
@@ -43,13 +44,13 @@ yo aspnet
 
 When the generator completes scaffolding the files, it will instruct you to restore, build, and run the application.
 
-````console
+```console
 Your project is now created, you can use the following commands to get going
        cd "MyFirstApp"
        dotnet restore
        dotnet build (optional, build will also happen with it's run)
        dotnet run
-   ````
+   ```
 
 ## Developing ASP.NET Core Applications on a Mac With Visual Studio Code
 
@@ -61,7 +62,7 @@ Your project is now created, you can use the following commands to get going
 
 When the application is opened, Visual Studio Code will prompt to restore the needed project dependencies as well as add build and debug dependencies.
 
-![image](your-first-mac-aspnet/_static/dependencies-restore.png)
+![VSCVisual Studio Code prompt to restore the needed project dependencies and add build and debug dependencies](your-first-mac-aspnet/_static/dependencies-restore.png)
 
 Tap "Yes" to add the build and debug assets.
 
@@ -78,13 +79,9 @@ If this is your first time using Visual Studio Code (or just *Code* for short), 
 In the left navigation bar, there are five icons, representing four viewlets:
 
 * Explore
-
 * Search
-
 * Git
-
 * Debug
-
 * Extensions
 
 The Explorer viewlet allows you to quickly navigate within the folder system, as well as easily see the files you are currently working with. It displays a badge to indicate whether any files have unsaved changes, and new folders and files can easily be created (without having to open a separate dialog window). You can easily Save All from a menu option that appears on mouse over, as well.
@@ -184,7 +181,5 @@ Looking at the Deployment Details in the Azure Portal, you can see the logs and 
 ## Additional Resources
 
 * [Visual Studio Code](https://code.visualstudio.com)
-
 * [Building Projects with Yeoman](../client-side/yeoman.md)
-
 * [Fundamentals](../fundamentals/index.md)

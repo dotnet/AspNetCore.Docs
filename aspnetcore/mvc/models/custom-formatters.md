@@ -1,11 +1,12 @@
 ---
-title: 🔧 Custom Formatters
+title: 🔧 Custom Formatters | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1fb6fdc2-e199-4469-9012-b909d1913422
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/custom-formatters
 ---

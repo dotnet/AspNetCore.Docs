@@ -1,11 +1,12 @@
 ---
-title: Application Pools
+title: Application Pools | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a641f75c-38fe-4936-aff0-c825c407570f
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/apppool
 ---

@@ -1,11 +1,12 @@
 ---
-title: Two-factor authentication with SMS
+title: Two-factor authentication with SMS | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ff1c22d1-d1f2-4616-84dd-94ba61ec299a
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/2fa
 ---
@@ -143,7 +144,7 @@ We recommend you use account lockout with 2FA. Once a user logs in (through a lo
 
 [!code-csharp[Main](./2fa/sample/WebSMS/src/WebSMS/Startup.cs?highlight=1,2,3,4,5&range=67-77)]
 
-## Debugging  Twilio
+## Debugging Twilio
 
 If you're able to use the Twilio API, but you don't get an SMS message, try the following:
 

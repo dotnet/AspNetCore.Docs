@@ -1,11 +1,12 @@
 ---
-title: Tutorials
+title: Tutorials | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a5313c5c-fdee-4ec6-9920-d94de5746e9b
+ms.technology: aspnet
 ms.prod: aspnet-core
 ---
 # Tutorials

@@ -1,11 +1,12 @@
 ---
-title: Data Protection
+title: Data Protection | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1f402da8-1052-4970-9835-9f9f16a02dbc
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/index
 ---

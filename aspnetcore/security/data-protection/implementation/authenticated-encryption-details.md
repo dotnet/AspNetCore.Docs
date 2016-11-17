@@ -1,11 +1,12 @@
 ---
-title: Authenticated encryption details.
+title: Authenticated encryption details. | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 826e6d5d-9620-44e6-ad93-3b1d9969b70b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/implementation/authenticated-encryption-details
 ---

@@ -1,11 +1,12 @@
 ---
-title: Adding Search
+title: Adding Search | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d69e5529-8ef6-4628-855d-200206d962b9
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/search
 ---

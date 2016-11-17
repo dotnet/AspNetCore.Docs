@@ -1,11 +1,12 @@
 ﻿---
-title: Manage Client-Side Packages with Bower
+title: Manage Client-Side Packages with Bower | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: df7c43da-280e-4df6-86cb-eecec8f12bfc
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/bower
 ---

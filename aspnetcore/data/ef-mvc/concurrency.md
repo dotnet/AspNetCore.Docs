@@ -1,11 +1,12 @@
 ---
-title: Handling concurrency conflicts
+title: Handling concurrency conflicts | Microsoft Docs
 author: tdykstra
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 15e79e15-bda5-441d-80c7-8032a2628605
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/concurrency
 ---

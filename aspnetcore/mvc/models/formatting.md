@@ -1,11 +1,12 @@
 ---
-title: Formatting Response Data
-author: rick-anderson
+title: Formatting Response Data | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: c056df45-d013-4826-91a1-4a092bae1ea5
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/formatting
 ---

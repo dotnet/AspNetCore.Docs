@@ -1,18 +1,16 @@
 ---
-title: Partial Views
-author: rick-anderson
+title: Partial Views | Microsoft Docs
+author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4be1b12c-b74e-44ff-826b-99ce86e8d464
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/partial
 ---
 # Partial Views
-
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
 By [Steve Smith](http://ardalis.com)
 
