@@ -1,11 +1,12 @@
 ---
-title: Open Web Interface for .NET (OWIN)
+title: Open Web Interface for .NET (OWIN) | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 70c4e6bc-a773-4039-96ec-6fe557c9369d
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/owin
 ---
@@ -174,7 +175,7 @@ namespace NowinSample
 
 ````
 
-Learn more about ASP.NET [Servers](servers.md).
+Learn more about ASP.NET [Servers](servers/overview.md).
 
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
@@ -336,4 +337,4 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 
 * [Middleware](middleware.md)
 
-* [Servers](servers.md)
+* [Servers](servers/overview.md)

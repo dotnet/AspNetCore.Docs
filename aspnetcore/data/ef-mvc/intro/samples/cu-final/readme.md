@@ -1,11 +1,12 @@
 ---
-title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio
+title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6282a1d3-1796-4958-a2e6-afdf3364fcbf
+ms.technology: aspnet
 ms.prod: aspnet-core
 # Contoso University sample app
 

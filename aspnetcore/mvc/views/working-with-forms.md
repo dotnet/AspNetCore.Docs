@@ -1,11 +1,12 @@
 ﻿---
-title: Working with Forms
+title: Working with Forms | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 25595059-4fac-4785-8152-f88590e3169b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/working-with-forms
 ---

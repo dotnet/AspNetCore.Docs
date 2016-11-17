@@ -1,11 +1,12 @@
 ---
-title: ASP.NET Core on Nano Server
+title: ASP.NET Core on Nano Server | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 50922cf1-ca58-4006-9236-99b7ff2dd0cf
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/nano-server
 ---

@@ -1,11 +1,12 @@
 ---
-title: Developing ASP.NET Core applications using dotnet watch
+title: Developing ASP.NET Core applications using dotnet watch | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 563ffb3f-d369-4aa5-bf0a-7300b4e7832c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/dotnet-watch
 ---

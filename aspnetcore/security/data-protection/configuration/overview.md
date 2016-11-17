@@ -1,11 +1,12 @@
 ---
-title: Configuring Data Protection
+title: Configuring Data Protection | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0e4881a3-a94d-4e35-9c1c-f025d65dcff0
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/overview
 ---

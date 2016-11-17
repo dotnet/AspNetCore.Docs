@@ -1,11 +1,12 @@
 ---
-title: Enabling authentication using Facebook, Google and other external providers
+title: Enabling authentication using Facebook, Google and other external providers | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/sociallogins
 ---

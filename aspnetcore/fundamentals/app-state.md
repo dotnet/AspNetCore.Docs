@@ -1,11 +1,12 @@
 ---
-title: Managing Application State
+title: Managing Application State | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 18cda488-0769-4cb9-82f6-4c6685f2045d
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/app-state
 ---

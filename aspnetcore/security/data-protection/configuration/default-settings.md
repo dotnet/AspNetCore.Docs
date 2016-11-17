@@ -1,11 +1,12 @@
 ---
-title: Default Settings
+title: Default Settings | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ef7dad2a-7029-4ae5-8f06-1fbebedccaa4
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/configuration/default-settings
 ---

@@ -1,11 +1,12 @@
 ---
-title: Replacing <machineKey> in ASP.NET
+title: Replacing <machineKey> in ASP.NET | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5ac13589-3837-4b4d-8abe-81f843942120
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/compatibility/replacing-machinekey
 ---

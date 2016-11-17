@@ -1,11 +1,12 @@
 ---
-title: Adding a view
+title: Adding a view | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6942432b-bac0-41e6-9ad7-cad313abf4db
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/adding-view
 ---
@@ -100,7 +101,7 @@ You'll make them slightly different so you can see which bit of code changes whi
 <p>Hello from our View Template!</p>
 ````
 
-`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewDataDictionary` to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
+`ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
 
 ````HTML

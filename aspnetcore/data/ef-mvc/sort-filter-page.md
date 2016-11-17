@@ -1,11 +1,12 @@
 ---
-title: Sorting, filtering, paging, and grouping
+title: Sorting, filtering, paging, and grouping | Microsoft Docs
 author: rick-anderson
 author: tdykstra
 ms.author: tdykstra
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e6c1ff3c-5673-43bf-9c2d-077f6ada1f29
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/sort-filter-page
 ---

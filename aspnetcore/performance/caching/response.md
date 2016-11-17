@@ -1,11 +1,12 @@
 ---
-title: Response Caching
+title: Response Caching | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: cb42035a-60b0-472e-a614-cb79f443f654
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/response
 ---

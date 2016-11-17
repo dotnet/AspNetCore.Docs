@@ -1,11 +1,12 @@
 ---
-title: Introduction
+title: Introduction | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a6a556ed-ba59-4107-9358-44cf20e5931b
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/introduction
 ---

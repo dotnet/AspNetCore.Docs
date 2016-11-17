@@ -1,11 +1,12 @@
 ---
-title: How Web Publishing In Visual Studio Works
+title: How Web Publishing In Visual Studio Works | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0377a02d-8fda-47a5-929a-24a16e1d2c93
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/web-publishing-vs
 ---

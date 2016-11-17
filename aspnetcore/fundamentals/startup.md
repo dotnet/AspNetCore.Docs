@@ -1,11 +1,12 @@
 ---
-title: Application Startup
+title: Application Startup | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6538df00-4ec2-45e4-811a-d7ce2ee608ed
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/startup
 ---

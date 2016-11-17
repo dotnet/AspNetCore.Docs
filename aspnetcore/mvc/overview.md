@@ -1,11 +1,12 @@
 ---
-title: Overview of ASP.NET Core MVC
+title: Overview of ASP.NET Core MVC | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 89af38d1-52e0-4db7-b791-dbce909b0714
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/overview
 ---

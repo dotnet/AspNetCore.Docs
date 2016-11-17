@@ -1,11 +1,12 @@
 ---
-title: Azure Active Directory
+title: Azure Active Directory | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: bd272e10-7b7d-43cf-85e2-42a7f87fedb5
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/azure-active-directory/index
 ---

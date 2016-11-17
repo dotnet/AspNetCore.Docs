@@ -1,11 +1,12 @@
 ---
-title: ASP.NET Web API Help Pages using Swagger
+title: ASP.NET Web API Help Pages using Swagger | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 54bb961d-29d9-4dee-8e2c-a93fc33c16f2
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/web-api-help-pages-using-swagger
 ---

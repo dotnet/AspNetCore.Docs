@@ -1,11 +1,12 @@
 ---
-title: Adding a controller
+title: Adding a controller | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: e04b6665-d0de-4d99-b78f-d6a0c4634a87
+ms.technology: aspnet
 ms.prod: aspnet-core
 
 uid: tutorials/first-mvc-app/adding-controller

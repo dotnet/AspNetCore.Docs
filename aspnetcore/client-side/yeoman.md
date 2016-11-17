@@ -1,11 +1,12 @@
 ---
-title: Building Projects with Yeoman
+title: Building Projects with Yeoman | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fda0c2a8-1743-4505-be1a-7f8ceeef8647
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: client-side/yeoman
 ---
@@ -123,7 +124,7 @@ Run the application:
 dotnet run
    ````
 
-The cross-platform [Kestrel](../fundamentals/servers.md#kestrel) web server will begin listening on port 5000.
+The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will begin listening on port 5000.
 
 Open a web browser, and navigate to `http://localhost:5000`.
 
@@ -158,7 +159,7 @@ using System;
 
 ## Related Resources
 
-* [Servers (HttpPlatformHandler, Kestrel and WebListener)](../fundamentals/servers.md)
+* [Servers (Kestrel and WebListener)](../fundamentals/servers/overview.md)
 
 * [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../tutorials/your-first-mac-aspnet.md)
 

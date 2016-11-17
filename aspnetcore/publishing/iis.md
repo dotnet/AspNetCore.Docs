@@ -1,11 +1,12 @@
 ---
-title: Publishing to IIS
+title: Publishing to IIS | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/iis
 ---
@@ -49,11 +50,11 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 
 ## Install the .NET Core Windows Server Hosting bundle
 
-1. Install the [.NET Core Windows Server Hosting](https://go.microsoft.com/fwlink/?LinkID=827547) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
+1. Install the [.NET Core Windows Server Hosting](https://aka.ms/dotnetcore_windowshosting_1_1_0) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
-For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+For more information, see [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md).
 
 ## Application configuration
 
@@ -333,7 +334,7 @@ Troubleshooting
 
 * Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method of the application's *WebHostBuilder()*.
 
-* If you are using the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*.
+* If you are using ASP.NET Core 1.0, and you call the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*. In ASP.NET Core 1.1, this is not required, because `UseIISIntegration` overwrites `UseUrls` regardless of the order they are called in.
 
 ### Sub-application includes a `<handlers>` section
 

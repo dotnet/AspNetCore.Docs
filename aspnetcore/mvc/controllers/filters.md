@@ -1,11 +1,12 @@
 ---
-title: Filters
+title: Filters | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 531bda08-aa5b-4471-8f08-96add22c8683
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/filters
 ---

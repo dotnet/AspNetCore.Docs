@@ -1,11 +1,12 @@
 ---
-title: 🔧 Authorization Filters
+title: 🔧 Authorization Filters | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 0bf1ddf4-9d16-4ac8-a4df-9549e8031d19
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/authorization-filters
 ---

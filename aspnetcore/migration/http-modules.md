@@ -1,11 +1,12 @@
 ---
-title: Migrating HTTP Modules to Middleware
+title: Migrating HTTP Modules to Middleware | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 9c826a76-fbd2-46b5-978d-6ca6df53531a
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/http-modules
 ---
