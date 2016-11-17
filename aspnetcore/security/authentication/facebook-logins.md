@@ -1,11 +1,12 @@
 ---
-title: Facebook external login setup
+title: Facebook external login setup | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 11/1/2016
 ms.topic: article
 ms.assetid: 8c65179b-688c-4af1-8f5e-1862920cda95
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/facebook-logins
 ---
