@@ -107,7 +107,7 @@ You can use any [OWIN](http://owin.org)-based middleware with ASP.NET Core. See 
 
 ## Servers
 
-The ASP.NET Core hosting model does not directly listen for requests; rather it relies on an HTTP [server](../fundamentals/servers.md) implementation to forward the request to the application. The forwarded request is wrapped as a set of feature interfaces that the application then composes into an `HttpContext`.  ASP.NET Core includes a managed cross-platform web server, called [Kestrel](../fundamentals/servers.md#kestrel), that you would typically run behind a production web server like [IIS](https://iis.net) or [nginx](http://nginx.org).
+The ASP.NET Core hosting model does not directly listen for requests; rather it relies on an HTTP [server](../fundamentals/servers/overview.md) implementation to forward the request to the application. The forwarded request is wrapped as a set of feature interfaces that the application then composes into an `HttpContext`.  ASP.NET Core includes a managed cross-platform web server, called [Kestrel](../fundamentals/servers/kestrel.md), that you would typically run behind a production web server like [IIS](https://iis.net) or [nginx](http://nginx.org).
 
 <a name=content-root-lbl></a>
 
