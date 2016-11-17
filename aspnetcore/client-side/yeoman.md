@@ -124,7 +124,7 @@ Run the application:
 dotnet run
    ````
 
-The cross-platform [Kestrel](../fundamentals/servers.md#kestrel) web server will begin listening on port 5000.
+The cross-platform [Kestrel](../fundamentals/servers/kestrel.md) web server will begin listening on port 5000.
 
 Open a web browser, and navigate to `http://localhost:5000`.
 
@@ -159,7 +159,7 @@ using System;
 
 ## Related Resources
 
-* [Servers (HttpPlatformHandler, Kestrel and WebListener)](../fundamentals/servers.md)
+* [Servers (Kestrel and WebListener)](../fundamentals/servers/overview.md)
 
 * [Your First ASP.NET Core Application on a Mac Using Visual Studio Code](../tutorials/your-first-mac-aspnet.md)
 

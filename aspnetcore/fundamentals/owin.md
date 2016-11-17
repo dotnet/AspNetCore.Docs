@@ -175,7 +175,7 @@ namespace NowinSample
 
 ````
 
-Learn more about ASP.NET [Servers](servers.md).
+Learn more about ASP.NET [Servers](servers/overview.md).
 
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
@@ -337,4 +337,4 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 
 * [Middleware](middleware.md)
 
-* [Servers](servers.md)
+* [Servers](servers/overview.md)
