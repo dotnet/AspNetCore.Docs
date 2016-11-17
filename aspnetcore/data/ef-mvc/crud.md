@@ -1,6 +1,8 @@
 ---
 title: Create, Read, Update, and Delete operations | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016

@@ -1,6 +1,8 @@
 ---
 title: 🔧 Custom Formatters | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016

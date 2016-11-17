@@ -2,6 +2,8 @@
 title: Sorting, filtering, paging, and grouping | Microsoft Docs
 author: rick-anderson
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 ms.date: 10/14/2016
 ms.topic: article

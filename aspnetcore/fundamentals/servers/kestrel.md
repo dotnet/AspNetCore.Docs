@@ -1,6 +1,8 @@
 ---
 title: Kestrel server
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/27/2016

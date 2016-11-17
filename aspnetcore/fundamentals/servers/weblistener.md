@@ -1,6 +1,8 @@
 ---
 title: WebListener server
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/27/2016
