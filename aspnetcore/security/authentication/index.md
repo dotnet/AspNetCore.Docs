@@ -1,11 +1,12 @@
 ---
-title: Authentication
+title: Authentication | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 981852c9-78f9-4590-aaee-9d50a2838dfe
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/index
 ---

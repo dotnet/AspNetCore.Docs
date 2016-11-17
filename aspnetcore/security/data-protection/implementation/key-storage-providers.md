@@ -1,11 +1,12 @@
 ---
-title: Key Storage Providers
+title: Key Storage Providers | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 423e0a79-2f34-44c4-aaf3-146a53c39251
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/implementation/key-storage-providers
 ---

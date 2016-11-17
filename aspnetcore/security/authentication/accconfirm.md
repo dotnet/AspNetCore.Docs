@@ -1,11 +1,12 @@
 ---
-title: Account Confirmation and Password Recovery
+title: Account Confirmation and Password Recovery | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d794500b-86f7-4229-a237-e0dd00e2dc08
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authentication/accconfirm
 ---

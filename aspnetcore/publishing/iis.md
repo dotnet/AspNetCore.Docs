@@ -1,11 +1,12 @@
 ---
-title: Publishing to IIS
+title: Publishing to IIS | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a4449ad3-5bad-410c-afa7-dc32d832b552
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/iis
 ---

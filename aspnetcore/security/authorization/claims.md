@@ -1,11 +1,12 @@
 ---
-title: Claims-Based Authorization
+title: Claims-Based Authorization | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 737be5cd-3511-4f1c-b0ce-65403fb5eed3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/claims
 ---

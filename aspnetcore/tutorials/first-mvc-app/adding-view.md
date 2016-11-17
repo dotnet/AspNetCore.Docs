@@ -1,11 +1,12 @@
 ---
-title: Adding a view
+title: Adding a view | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 6942432b-bac0-41e6-9ad7-cad313abf4db
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/first-mvc-app/adding-view
 ---

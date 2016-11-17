@@ -1,11 +1,12 @@
 ---
-title: Core cryptography extensibility
+title: Core cryptography extensibility | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: edb4a776-f2ac-4502-8c26-0a66d3a3874c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/extensibility/core-crypto
 ---

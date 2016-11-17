@@ -1,11 +1,12 @@
 ---
-title: Choosing the Right .NET For You on the Server
+title: Choosing the Right .NET For You on the Server | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 7227b82f-9275-4006-85bc-be55f5e4d39e
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/choosing-the-right-dotnet
 ---

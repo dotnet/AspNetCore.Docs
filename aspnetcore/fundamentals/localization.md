@@ -1,11 +1,12 @@
 ---
-title: Globalization and localization
+title: Globalization and localization | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 7f275a09-f118-41c9-88d1-8de52d6a5aa1
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/localization
 ---

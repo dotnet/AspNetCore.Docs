@@ -1,11 +1,12 @@
 ---
-title: Inheritance
+title: Inheritance | Microsoft Docs
 author: tdykstra
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 41dc0db7-6f17-453e-aba6-633430609c74
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/inheritance
 ---

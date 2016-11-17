@@ -1,11 +1,12 @@
 ---
-title: Dependency Injection and Controllers
+title: Dependency Injection and Controllers | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: bc8b4ba3-e9ba-48fd-b1eb-cd48ff6bc7a1
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/dependency-injection
 ---

@@ -1,11 +1,12 @@
 ---
-title: Introduction to ASP.NET Core
+title: Introduction to ASP.NET Core | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 1837c35d-2c24-493f-acf4-a07bf7db9bd9
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: intro
 ---

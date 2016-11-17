@@ -1,11 +1,12 @@
 ---
-title: Razor Syntax Reference
+title: Razor Syntax Reference | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: a89a8433-8b0e-4795-a73a-82114d27e233
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/razor
 ---

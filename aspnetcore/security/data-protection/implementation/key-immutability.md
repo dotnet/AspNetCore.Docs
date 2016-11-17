@@ -1,11 +1,12 @@
 ---
-title: Key Immutability and Changing Settings
+title: Key Immutability and Changing Settings | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: fc911ae3-feca-4ffe-8b43-362bc632fe04
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/implementation/key-immutability
 ---

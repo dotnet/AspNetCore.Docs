@@ -1,11 +1,12 @@
 ---
-title: Working with Multiple Environments
+title: Working with Multiple Environments | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b5bba985-be12-4464-9a01-df3599b2a6f1
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/environments
 ---

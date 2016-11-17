@@ -1,11 +1,12 @@
 ---
-title: MVC
+title: MVC | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 64bc7105-36d0-4afa-98ac-af64f044567f
+ms.technology: aspnet
 ms.prod: aspnet-core
 ---
 # MVC

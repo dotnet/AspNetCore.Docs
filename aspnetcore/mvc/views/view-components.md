@@ -1,11 +1,12 @@
 ﻿---
-title: View Components
+title: View Components | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: ab4705b7-59d7-4f31-bc97-ea7f292fe926
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/views/view-components
 ---

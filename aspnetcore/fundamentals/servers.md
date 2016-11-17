@@ -1,11 +1,12 @@
 ---
-title: Servers
+title: Servers | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dba74f39-58cd-4dee-a061-6d15f7346959
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/servers
 ---
