@@ -1,7 +1,9 @@
 ---
 title: ASP.NET Web API Help Pages using Swagger | Microsoft Docs
-author: rick-anderson
-ms.author: riande
+author: spboyer
+description: Walkthrough of adding Swagger to a Web API Application
+keywords: ASP.NET Core, Swagger
+ms.author: spboyer
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article

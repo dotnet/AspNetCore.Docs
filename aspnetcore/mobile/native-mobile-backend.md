@@ -1,6 +1,8 @@
 ---
 title: Creating Backend Services for Native Mobile Applications | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
