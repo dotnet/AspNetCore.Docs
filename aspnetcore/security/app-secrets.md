@@ -1,11 +1,12 @@
 ---
-title: Safe storage of app secrets during development
+title: Safe storage of app secrets during development | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f85371b7-44cc-4592-ac8b-7029bdced911
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/app-secrets
 ---

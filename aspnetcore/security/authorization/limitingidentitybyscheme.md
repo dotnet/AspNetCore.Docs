@@ -1,11 +1,12 @@
 ---
-title: Limiting identity by scheme
+title: Limiting identity by scheme | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: d3d6ca1b-b4b5-4bf7-898e-dcd90ec1bf8c
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/limitingidentitybyscheme
 ---

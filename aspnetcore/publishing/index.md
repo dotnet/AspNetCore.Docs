@@ -1,11 +1,12 @@
 ---
-title: Publishing
+title: Publishing | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: f0930c68-4d17-4748-adbf-801e17601eb6
+ms.technology: aspnet
 ms.prod: aspnet-core
 ---
 # Publishing and Deployment

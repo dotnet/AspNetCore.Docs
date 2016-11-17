@@ -1,11 +1,12 @@
 ---
-title: Extensibility APIs
+title: Extensibility APIs | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 7b7d8a84-f126-4ea9-9921-ee8adc5a87b2
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/extensibility/index
 ---

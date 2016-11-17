@@ -1,11 +1,12 @@
 ---
-title: Simple Authorization
+title: Simple Authorization | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 391bcaad-205f-43e4-badc-fa592d6f79f3
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/authorization/simple
 ---

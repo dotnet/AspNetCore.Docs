@@ -1,11 +1,12 @@
 ---
-title: Contoso University sample app
+title: Contoso University sample app | Microsoft Docs
 author: tdykstra
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: b67c3d4a-f2bf-4132-a48b-4b0d599d7981
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/intro
 ---

@@ -1,11 +1,12 @@
 ---
-title: Model Validation
+title: Model Validation | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 3a8676dd-7ed8-4a05-bca2-44e288ab99ee
+ms.technology: aspnet
 ms.prod: aspnet-core 
 uid:  mvc/models/validation
 ---

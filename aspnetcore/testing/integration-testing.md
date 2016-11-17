@@ -1,11 +1,12 @@
 ---
-title: Integration Testing
+title: Integration Testing | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 40d534f2-89b3-4b09-9c2c-3494bf9991c9
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: testing/integration-testing
 ---

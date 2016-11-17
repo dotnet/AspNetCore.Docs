@@ -1,11 +1,12 @@
 ---
-title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code
+title: Your First ASP.NET Core Application on a Mac Using Visual Studio Code | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: dcc08e09-e73e-4feb-84ce-8219b7e544ef
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: tutorials/your-first-mac-aspnet
 ---

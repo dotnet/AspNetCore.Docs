@@ -1,11 +1,12 @@
 ---
-title: 🔧 Publishing to a Windows Virtual Machine on Azure
+title: 🔧 Publishing to a Windows Virtual Machine on Azure | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 17219af5-dad9-49fb-be4b-e94a78668e57
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: publishing/azure-windows-vm
 ---

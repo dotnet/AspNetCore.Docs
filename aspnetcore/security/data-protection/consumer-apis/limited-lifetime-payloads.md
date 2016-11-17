@@ -1,11 +1,12 @@
 ---
-title: Limiting the lifetime of protected payloads
+title: Limiting the lifetime of protected payloads | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 000175e2-10fc-43dd-bfc2-51e004b97b44
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
 ---

@@ -1,11 +1,12 @@
 ---
-title: 🔧 Enforcing SSL
+title: 🔧 Enforcing SSL | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 4694e563-e91a-4ecd-b7ed-00b3f1eee2b5
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/enforcing-ssl
 ---

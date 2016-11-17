@@ -1,11 +1,12 @@
 ---
-title: ASP.NET Core Module Configuration Reference
+title: ASP.NET Core Module Configuration Reference | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 5de0c8f7-50ce-4e2c-b3d4-a1bd9fdfcff5
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: hosting/aspnet-core-module
 ---

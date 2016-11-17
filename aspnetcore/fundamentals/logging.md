@@ -1,11 +1,12 @@
 ---
-title: Logging
+title: Logging | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 585a6214-9696-43e7-9f26-cd12454f4671
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/logging
 ---

@@ -1,11 +1,12 @@
 ---
-title: Preventing Cross-Site Scripting
+title: Preventing Cross-Site Scripting | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
 ms.assetid: 95790927-2bfe-445e-b1fd-429c2c7030ce
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: security/cross-site-scripting
 ---

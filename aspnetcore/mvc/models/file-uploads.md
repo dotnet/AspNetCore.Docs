@@ -1,11 +1,12 @@
 ---
-title: File Uploads
+title: File Uploads | Microsoft Docs
 author: ardalis
 ms.author: riande
 manager: wpickett
 ms.date: 11/10/2016
 ms.topic: article
 ms.assetid: ebc98159-a028-4a94-b06c-43981c79c6be
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/models/file-uploads
 ---
