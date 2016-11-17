@@ -165,21 +165,15 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
     gulp.task("min", ["min:js", "min:css"]);
     ````
 
-2.  Open the *project.json* file (add if not there) and add the following.
+2.  Add the following dependencies:
 
-    <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
-    
-    ````javascript
-    {
-      "devDependencies": {
-        "gulp": "3.8.11",
-        "gulp-concat": "2.5.2",
-        "gulp-cssmin": "0.1.7",
-        "gulp-uglify": "1.2.0",
-        "rimraf": "2.2.8"
-      }
-    }
-    ````
+       * "gulp"
+       * "gulp-concat"
+       * "gulp-cssmin"
+       * "gulp-uglify"
+       * "rimraf"
+
+   If you are using Visual Studio 2017 RC 1 or higher, add these to the *.csproj* file, otherwise add them to the *project.json* file.
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
