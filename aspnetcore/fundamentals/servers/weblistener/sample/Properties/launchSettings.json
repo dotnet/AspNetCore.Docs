@@ -17,7 +17,7 @@
     },
     "WebListenerDemo": {
       "commandName": "Project",
-      "commandLineArgs": "--server Kestrel",
+      "commandLineArgs": "",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000",
       "environmentVariables": {

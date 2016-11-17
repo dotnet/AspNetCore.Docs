@@ -79,15 +79,12 @@ Here's an example that sets two environment variables.
         stdoutLogEnabled="false"
         stdoutLogFile=".\logs\stdout">
   <environmentVariables>
+    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Staging" />
     <environmentVariable name="ENV_VAR_1" value="VALUE_1" />
     <environmentVariable name="ENV_VAR_2" value="VALUE_2" />
   </environmentVariables>
 </aspNetCore>
 ````
-
-### recycleOnFileChange child element of aspNetCore
-
-The recycleOnFileChange element is not used by the module and is included in the schema for backwards compatibility. Formerly, this element defined a collection of files, which when changed, would prompt a recycle of the worker process.
 
 ## app_offline.htm
 
@@ -105,7 +102,7 @@ To suppress this page and revert to the default IIS 502 status code page, use th
 
 ## Log creation and redirection
 
-The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path, *logs* in the example below, must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated (unless process recycling/restart occurs). It is the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
+The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated (unless process recycling/restart occurs). It is the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
 
 Here's a sample aspNetCore element that configures stdout logging:
 
@@ -113,7 +110,7 @@ Here's a sample aspNetCore element that configures stdout logging:
 <aspNetCore processPath="dotnet"
         arguments=".\MyApp.dll"
         stdoutLogEnabled="true"
-        stdoutLogFile=".\logs\stdout">
+        stdoutLogFile="\\?\%home%\LogFiles\stdout">
 </aspNetCore>
 ````
 

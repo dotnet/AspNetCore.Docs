@@ -2,7 +2,6 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Net.Http.Server;
 
 namespace AspNetCoreModuleDemo
 {
@@ -12,8 +11,6 @@ namespace AspNetCoreModuleDemo
     /// </summary>
     public class Program
     {
-        public static string Server;
-
         // The default listening address is http://localhost:5000 if none is specified.
         // You can use the --urls command line flag to change the listening address when
         // running without IIS. Example:

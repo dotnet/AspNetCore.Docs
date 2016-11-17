@@ -37,8 +37,8 @@ namespace WebListenerDemo
                 .UseStartup<Startup>()
                 .UseWebListener(options =>
                 {
-                    options.Listener.AuthenticationManager.AuthenticationSchemes =
-                        AuthenticationSchemes.AllowAnonymous;
+                    options.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
+                    options.ListenerSettings.Authentication.AllowAnonymous = true;
                 });
 
             var host = builder.Build();
