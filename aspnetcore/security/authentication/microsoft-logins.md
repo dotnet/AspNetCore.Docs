@@ -124,4 +124,4 @@ You are now logged in using your Microsoft credentials:
 
 * Once you publish your web site to Azure web app, you should reset the `Secret` in the Microsoft developer portal.
 
-* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
