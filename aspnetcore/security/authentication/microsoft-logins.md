@@ -120,6 +120,6 @@ You are now logged in using your Microsoft credentials:
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
-* Once you publish your web site to Azure Web App, you should reset the `Secret` in the Microsoft developer portal.
+* Once you publish your web site to Azure web app, you should reset the `Secret` in the Microsoft developer portal.
 
-* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure web app portal. The configuration system is setup to read keys from environment variables.

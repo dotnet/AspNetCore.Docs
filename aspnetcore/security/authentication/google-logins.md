@@ -133,6 +133,6 @@ You are now logged in using your Google credentials:
 
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
-* Once you publish your web site to Azure Web App, you should reset the `ClientSecret` in the Google API Console.
+* Once you publish your web site to Azure web app, you should reset the `ClientSecret` in the Google API Console.
 
-* Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application setting in the Azure web app portal. The configuration system is setup to read keys from environment variables.
