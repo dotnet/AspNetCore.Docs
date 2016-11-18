@@ -14,7 +14,7 @@ uid: security/authentication/microsoft-logins
 
 <a name=security-authentication-microsoft-logins></a>
 
-This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
+This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core project created on the [previous page](sociallogins.md).
 
 ## Creating the app in Microsoft Developer Portal
 
@@ -118,7 +118,7 @@ You are now logged in using your Microsoft credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
+* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
 * Once you publish your web site to Azure Web App, you should reset the `Secret` in the Microsoft developer portal.
 

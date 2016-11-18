@@ -14,7 +14,7 @@ uid: security/authentication/google-logins
 
 <a name=security-authentication-google-logins></a>
 
-This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
+This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core project created on the [previous page](sociallogins.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
 
 ## Creating the app in Google API Console
 
@@ -127,11 +127,11 @@ You are now logged in using your Google credentials:
 ![image](sociallogins/_static/Done.png)
 
 > [!NOTE]
-> If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
+> If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier on this page](#enable-googleplus). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
 
 ## Next steps
 
-* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
+* This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
 * Once you publish your web site to Azure Web App, you should reset the `ClientSecret` in the Google API Console.
 

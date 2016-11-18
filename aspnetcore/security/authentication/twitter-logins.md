@@ -14,7 +14,7 @@ uid: security/authentication/twitter-logins
 
 <a name=security-authentication-twitter-logins></a>
 
-This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
+This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](sociallogins.md).
 
 ## Creating the app in Twitter
 
@@ -39,7 +39,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
-Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](sociallogins.md).
+Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described on the [social login overview page](sociallogins.md).
 
 * Switch to the **Keys and Access Tokens** tab. Note the `Consumer Key` and `Consumer Secret`:
 
@@ -93,7 +93,7 @@ You are now logged in using your Twitter credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
+* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
 * Once you publish your web site to Azure Web App, you should reset the `ConsumerSecret` in the Twitter developer portal.
 

@@ -16,7 +16,7 @@ uid: security/authentication/facebook-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
@@ -108,7 +108,7 @@ You are now logged in using your Facebook credentials:
 
 ## Next steps
 
-* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
+* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
 
 * Once you publish your web site to Azure Web App, you should reset the `AppSecret` in the Facebook developer portal.
 
