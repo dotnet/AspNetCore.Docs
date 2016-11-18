@@ -4,7 +4,6 @@ author: riande
 description: Explains how to use Response caching to lower bandwidth and increase performance.
 keywords: ASP.NET Core,
 ms.author: riande
-ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
 ms.topic: article
