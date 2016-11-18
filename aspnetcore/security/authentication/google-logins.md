@@ -58,11 +58,12 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 * Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
 * Enter your current site URL with *signin-google* appended into the **Authorized redirect URIs** field. For example, `https://localhost:44320/signin-google`.
+  
+  > [!NOTE]
+  > When deploying the site you'll need to register a new public url.
 
-  When deploying the site you'll need to register a new public url.
-
-> [!NOTE]
-> You don't need to configure **signin-google** as a route in your app. The Google middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
+  > [!NOTE]
+  > You don't need to configure **signin-google** as a route in your app. The Google middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
 * Tap **Create client ID**, which takes you to the third step:
 

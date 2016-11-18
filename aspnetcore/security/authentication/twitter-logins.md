@@ -29,11 +29,12 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 ![image](sociallogins/_static/TwitterCreate.png)
 
 * Enter your current site URL with *signin-twitter* appended into the **Callback URL** field. For example, `https://localhost:44320/signin-twitter`.
+  
+  > [!NOTE]
+  > When deploying the site you'll need to register a new public url.
 
-  When deploying the site you'll need to register a new public url.
-
-> [!NOTE]
-> You don't need to configure **signin-twitter** as a route in your app. The Twitter middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
+  > [!NOTE]
+  > You don't need to configure **signin-twitter** as a route in your app. The Twitter middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
 * Tap **Create your Twitter application**. New application details are displayed:
 

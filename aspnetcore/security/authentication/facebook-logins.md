@@ -39,11 +39,12 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 ![image](sociallogins/_static/FBOAuthSetup.png)
 
 * Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`.
+  
+  > [!NOTE]
+  > When deploying the site you'll need to register a new public url.
 
-  When deploying the site you'll need to register a new public url.
-
-> [!NOTE]
-> You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
+  > [!NOTE]
+  > You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
 * Make a note of your `App ID` and your `App Secret` before dismissing this page so that you can add both into your ASP.NET Core app later in this tutorial.
 

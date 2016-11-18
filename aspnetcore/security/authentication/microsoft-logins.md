@@ -47,11 +47,12 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 * In the new **Web** platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
+  
+  > [!NOTE]
+  > When deploying the site you'll need to register a new public url.
 
-  When deploying the site you'll need to register a new public url.
-
-> [!NOTE]
-> You don't need to configure **signin-microsoft** as a route in your app. The Microsoft Account middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
+  > [!NOTE]
+  > You don't need to configure **signin-microsoft** as a route in your app. The Microsoft Account middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
 * Don't forget to tap **Add Url** to ensure the Url was added.
 
