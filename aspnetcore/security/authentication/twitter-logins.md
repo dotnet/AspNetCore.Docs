@@ -14,6 +14,8 @@ uid: security/authentication/twitter-logins
 
 <a name=security-authentication-twitter-logins></a>
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd) and [Valeriy Novytskyy](https://github.com/01binary)
+
 This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](sociallogins.md).
 
 ## Creating the app in Twitter

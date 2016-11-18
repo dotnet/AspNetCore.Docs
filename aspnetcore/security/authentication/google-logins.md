@@ -14,6 +14,8 @@ uid: security/authentication/google-logins
 
 <a name=security-authentication-google-logins></a>
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd) and [Valeriy Novytskyy](https://github.com/01binary)
+
 This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core project created on the [previous page](sociallogins.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
 
 ## Creating the app in Google API Console
