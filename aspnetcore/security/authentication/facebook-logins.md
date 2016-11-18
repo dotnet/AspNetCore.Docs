@@ -30,11 +30,11 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 
 ![image](sociallogins/_static/FBNewAppId.png)
 
-* The **Product Setup** page will be displayed, letting you select the features your new app will support. Tap **Get Started** on *Facebook Login*:
+* The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on *Facebook Login*:
 
 ![image](sociallogins/_static/FBProductSetup.png)
 
-* You will be presented with the **Client OAuth Settings** page with some defaults already set:
+* You are presented with the **Client OAuth Settings** page, with some defaults already set:
 
 ![image](sociallogins/_static/FBOAuthSetup.png)
 

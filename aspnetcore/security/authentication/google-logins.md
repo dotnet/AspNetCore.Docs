@@ -22,7 +22,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleLogin.png)
 
-* You will be redirected to API Manager Library page:
+* You are redirected to API Manager Library page:
 
 ![image](sociallogins/_static/GoogleConsoleSwitchboard.png)
 
@@ -30,11 +30,11 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleNewProj.png)
 
-* You will be redirected back to the Library page allowing you to choose features your new app will support. <a name="enable-googleplus">Find *Google+ API* in the list</a> and click on its link to add the API feature:
+* After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. <a name="enable-googleplus">Find *Google+ API* in the list</a> and click on its link to add the API feature:
 
 ![image](sociallogins/_static/GoogleConsoleChooseApi.png)
 
-* The page for the newly added API will be displayed. Tap **Enable** to add Google+ login feature to your app:
+* The page for the newly added API is displayed. Tap **Enable** to add Google+ login feature to your app:
 
 ![image](sociallogins/_static/GoogleConsoleEnableApi.png)
 
@@ -49,7 +49,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleChooseCred.png)
 
-* Tap **What credentials do I need?** which will take you to the second step of app configuration:
+* Tap **What credentials do I need?** which takes you to the second step of app configuration:
 
 ![image](sociallogins/_static/GoogleConsoleCreateClient.png)
 
@@ -60,9 +60,9 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 * When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
-> You don't need to configure **signin-google** as a route in your app. The Google middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
+> You don't need to configure **signin-google** as a route in your app. The Google middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
-* Tap **Create client ID**, which will take you to the third step:
+* Tap **Create client ID**, which takes you to the third step:
 
 ![image](sociallogins/_static/GoogleConsoleAddCred.png)
 
@@ -96,7 +96,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Google middleware
 
 > [!NOTE]
-> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Google`
 
@@ -112,15 +112,15 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 ## Login with Google
 
-Run your application and click Login. You will see an option for Google:
+Run your application and click Login. An option to login with Google appears:
 
 ![image](sociallogins/_static/DoneGoogle.PNG)
 
-When you click on Google, you will be redirected to Google for authentication:
+When you click on Google, you are redirected to Google for authentication:
 
 ![image](sociallogins/_static/GoogleLogin.PNG)
 
-Once you enter your Google credentials, then you will be redirected back to the Web site where you can set your email.
+After entering your Google credentials, then you are redirected back to the Web site where you can set your email.
 
 You are now logged in using your Google credentials:
 

@@ -16,9 +16,9 @@ uid: security/authentication/sociallogins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial will demonstrate how to build an ASP.NET Core app that enables users to log in using OAuth 2.0/1.0a with credentials from external authentication providers.
+This tutorial demonstrates how to build an ASP.NET Core app that enables users to log in using OAuth 2.0/1.0a with credentials from external authentication providers.
 
-[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are available out-of-the-box and will be covered in the following sections. Many third-party packages facilitate the use of other providers not covered here.
+[Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are covered in the following sections. Many third-party packages facilitate the use of other providers not covered here.
 
 ![image](sociallogins/_static/social.png)
 
@@ -42,7 +42,7 @@ Enabling users to login with their existing credentials is convenient for the us
 
 ## Enable SSL
 
-Some external authentication providers will reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
+Some external authentication providers reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
 
 * In solution explorer, right click the project and select **Properties**.
 
@@ -76,10 +76,10 @@ The template used to create the sample project in this tutorial has code in `Sta
 
 As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 
-The **SecretManager** tool will store sensitive application settings in the user profile folder on the local machine. These settings are then seamlessly merged with settings from all other sources during application startup.
+The **SecretManager** tool stores sensitive application settings in the user profile folder on the local machine. These settings are then seamlessly merged with settings from all other sources during application startup.
 
 > [NOTE!]
-> Most login providers will assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application will use to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
+> Most login providers assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application uses to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
 Install the Secret Manager tool using the steps in [this section](../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
 

@@ -18,7 +18,7 @@ This tutorial shows you how to enable your users to [log in with their Twitter a
 
 ## Creating the app in Twitter
 
-* Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the *[Sign up now](https://twitter.com/signup)* link to create one. After signing in you will be redirected to the *Application Management* page:
+* Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the *[Sign up now](https://twitter.com/signup)* link to create one. After signing in, the *Application Management* page is shown:
 
 ![image](sociallogins/_static/TwitterAppManage.png)
 
@@ -31,9 +31,9 @@ This tutorial shows you how to enable your users to [log in with their Twitter a
 * When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
-> You don't need to configure **signin-twitter** as a route in your app. The Twitter middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.
+> You don't need to configure **signin-twitter** as a route in your app. The Twitter middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
 
-* Tap **Create your Twitter application**. New application details will be displayed:
+* Tap **Create your Twitter application**. New application details are displayed:
 
 ![image](sociallogins/_static/TwitterAppDetails.png)
 
@@ -61,7 +61,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Twitter middleware
 
 > [!NOTE]
-> You will need to use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
 
@@ -77,15 +77,15 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 ## Login with Twitter
 
-Run your application and click Login. You will see an option for Twitter:
+Run your application and click Login. An option to login with Twitter appears:
 
 ![image](sociallogins/_static/DoneTwitter.PNG)
 
-When you click on Twitter, you will be redirected to Twitter for authentication:
+Clicking on **Twitter** redirects to Twitter for authentication:
 
 ![image](sociallogins/_static/TwitterLogin.PNG)
 
-Once you enter your Twitter credentials, then you will be redirected back to the Web site where you can set your email.
+After entering your Twitter credentials, you are redirected back to the Web site where you can set your email.
 
 You are now logged in using your Twitter credentials:
 
