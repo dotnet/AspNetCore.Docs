@@ -66,7 +66,7 @@ services.AddMvc(options =>
 
 * Test the app to ensure that static files are still being served and publicly exposed routes are accessible.
    * There shouldn't be any warnings logged to the browser console in Developer Tools.
-   * Attempting to navigate to the previous URI that used the *http* protocol should now result in **connection rejected** errors from the browser or a blank page.
+   * Attempting to navigate to the previous URL that used the *http* protocol should now result in **connection rejected** errors from the browser or a blank page.
 
 ## Use SecretManager to store tokens assigned by login providers
 
