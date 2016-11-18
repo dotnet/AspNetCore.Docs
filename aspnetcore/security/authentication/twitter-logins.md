@@ -45,7 +45,7 @@ Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your 
 
 ![image](sociallogins/_static/TwitterKeys.png)
 
-* Execute the following in your project working directory to store the Twitter secrets:
+* Execute the following commands in your project working directory to store the Twitter secrets:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
@@ -61,7 +61,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Twitter middleware
 
 > [!NOTE]
-> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Twitter`
 

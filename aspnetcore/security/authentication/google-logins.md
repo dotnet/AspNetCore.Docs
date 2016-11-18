@@ -80,7 +80,7 @@ Link sensitive settings like Google `ClientID` and `ClientSecret` to your applic
 
 * Open the JSON file downloaded in the last step. Note the `client_id` and `client_secret` values present in the JSON structure.
 
-* Execute the following in your project working directory to store the Google secrets:
+* Execute the following commands in your project working directory to store the Google secrets:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
@@ -96,7 +96,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Google middleware
 
 > [!NOTE]
-> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Google`
 

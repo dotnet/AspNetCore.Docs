@@ -65,7 +65,7 @@ Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your appl
 
 ![image](sociallogins/_static/MicrosoftDevPassword.png)
 
-* Execute the following in your project working directory to store the Microsoft secrets:
+* Execute the following commands in your project working directory to store the Microsoft secrets:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
@@ -81,7 +81,7 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Microsoft Account middleware
 
 > [!NOTE]
-> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package if it hasn't already been installed. Alternatively, execute the following in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
 > `dotnet install Microsoft.AspNetCore.Authentication.Microsoft`
 
