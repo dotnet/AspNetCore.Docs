@@ -112,7 +112,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 });
 ````
 
-## Login with Google
+## Sign in with Google
 
 Run your application and click **Log in**. An option to sign in with Google appears:
 

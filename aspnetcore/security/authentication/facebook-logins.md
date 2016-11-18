@@ -90,7 +90,7 @@ app.UseFacebookAuthentication(new FacebookOptions()
 });
 ````
 
-## Login with Facebook
+## Sign in with Facebook
 
 Run your application and click **Log in**. You will see an option to sign in with Facebook.
 

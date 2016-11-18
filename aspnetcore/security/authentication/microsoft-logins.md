@@ -97,7 +97,7 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 });
 ````
 
-## Login with Microsoft Account
+## Sign in with Microsoft Account
 
 Run your application and click **Log in**. An option to sign in with Microsoft appears:
 
