@@ -1,6 +1,6 @@
 ---
 title: Response Caching | Microsoft Docs
-author: riande
+author: rick-anderson
 description: Explains how to use Response caching to lower bandwidth and increase performance.
 keywords: ASP.NET Core,
 ms.author: riande
@@ -19,7 +19,7 @@ uid: performance/caching/response
 
 ## What is Response Caching
 
-*Response caching* adds cache-related headers to responses. These headers specify how you want client, intermediate (proxy) machines and middleware to cache responses. Response caching can reduce the number of requests a client or proxy makes to the web server. Response caching can also reduce the amount of work the web server performs to generate the response. Repeated matching may be served from the cache of the client, proxy or server. Cached responses can be returned by the client, the proxy or served by the response caching middleware. Cached requests served by the client or proxy save bandwidth and server load. Cached requests served by middleware can reduce web app server load.
+*Response caching* adds cache-related headers to responses. These headers specify how you want client, intermediate (proxy) machines and middleware to cache responses. Response caching can reduce the number of requests a client or proxy makes to the web server. Response caching can also reduce the amount of work the web server performs to generate the response. Repeated request URLs that match may be served from the cache of the client, proxy or server. Cached responses can be returned by the client, the proxy or served by the response caching middleware. Cached requests served by the client or proxy save bandwidth and server load. Cached requests served by middleware can reduce web app server load.
 
 The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 Caching](https://tools.ietf.org/html/rfc7234#section-5.2) and [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) for more information. Common cache directives:
 
