@@ -1,6 +1,8 @@
 ---
 title: Dependency Injection in requirement handlers | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -20,7 +22,7 @@ Suppose you had a repository of rules you wanted to evaluate inside an authoriza
 
 For example, if you wanted to use ASP.NET's logging infrastructure you would to inject `ILoggerFactory` into your handler. Such a handler might look like:
 
-````csharp
+```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    {
        ILogger _logger;
@@ -37,13 +39,13 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
            return Task.CompletedTask;
        }
    }
-   ````
+   ```
 
 You would register the handler with `services.AddSingleton()`:
 
-````csharp
+```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
-   ````
+   ```
 
 An instance of the handler will be created when your application starts, and DI will inject the registered `ILoggerFactory` into your constructor.
 

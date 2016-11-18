@@ -1,6 +1,8 @@
 ---
 title: Integration Testing | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -72,7 +74,7 @@ Refactoring is the process of changing an application's code to improve its desi
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}} -->
 
-````csharp
+```csharp
 public void Configure(IApplicationBuilder app,
       IHostingEnvironment env)
   {
@@ -110,7 +112,7 @@ public void Configure(IApplicationBuilder app,
           }
       });
   }
-````
+```
 
 This code works, but it's far from how we would like to implement this kind of functionality in an ASP.NET Core application, even as simple a one as this is. Imagine what the `Configure` method would look like if we needed to add this much code to it every time we added another URL endpoint!
 

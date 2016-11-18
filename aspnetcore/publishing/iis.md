@@ -1,6 +1,8 @@
----
+﻿---
 title: Publishing to IIS | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -54,7 +56,7 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
-For more information on the ASP.NET Core Module, including configuration of the module and setting environment variables with *web.config*, the use of *app_offline.htm* to suspend request processing, and activation of module logging, see [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
+For more information, see [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md).
 
 ## Application configuration
 
@@ -64,7 +66,7 @@ Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 
    var host = new WebHostBuilder()
      .UseKestrel()
@@ -72,7 +74,7 @@ Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package
      .UseIISIntegration()
      .UseStartup<Startup>()
      .Build();
-   ````
+   ```
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
@@ -82,12 +84,12 @@ To configure *IISIntegration* service options, include a service configuration f
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 
    services.Configure<IISOptions>(options => {
      ...
    });
-   ````
+   ```
 
 | Option               | Setting|
 | ----------------- | ------------ | 
@@ -103,7 +105,7 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
 
-````none
+```none
 
    "tools": {
      "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
@@ -111,7 +113,7 @@ To include the *publish-iis* tool in your application, add entries to the *tools
    "scripts": {
      "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
    }
-   ````
+   ```
 
 ## Deploy the application
 
@@ -334,7 +336,7 @@ Troubleshooting
 
 * Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method of the application's *WebHostBuilder()*.
 
-* If you are using the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*.
+* If you are using ASP.NET Core 1.0, and you call the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*. In ASP.NET Core 1.1, this is not required, because `UseIISIntegration` overwrites `UseUrls` regardless of the order they are called in.
 
 ### Sub-application includes a `<handlers>` section
 

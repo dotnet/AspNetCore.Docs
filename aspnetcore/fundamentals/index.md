@@ -1,6 +1,8 @@
 ---
 title: Fundamentals | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -9,6 +11,7 @@ ms.assetid: a19b7836-63e4-44e8-8250-50d426dd1070
 ms.technology: aspnet
 ms.prod: aspnet-core
 ---
+
 # Fundamentals
 
 - [Application Startup](startup.md)
@@ -24,7 +27,7 @@ ms.prod: aspnet-core
 - [Working with Multiple Environments](environments.md)
 - [Hosting](hosting.md)
 - [Managing Application State](app-state.md)
-- [Servers](servers.md)
+- [Servers](servers/overview.md)
 - [Request Features](request-features.md)
 - [Open Web Interface for .NET (OWIN)](owin.md)
 - [Choosing the Right .NET For You on the Server](choosing-the-right-dotnet.md)

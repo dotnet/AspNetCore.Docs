@@ -1,6 +1,8 @@
 ---
 title: Authenticated encryption details. | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -32,7 +34,7 @@ A sample protected payload is illustrated below.
 
 <!-- literal_block {"xml:space": "preserve", "source": "security/data-protection/implementation/authenticated-encryption-details/_static/protectedpayload.txt", "ids": [], "linenos": true, "highlight_args": {"linenostart": 1}} -->
 
-````
+```
 09 F0 C9 F0 80 9C 81 0C 19 66 19 40 95 36 53 F8
    AA FF EE 57 57 2F 40 4C 3F 7F CC 9D CC D9 32 3E
    84 17 99 16 EC BA 1F 4A A1 18 45 1F 2D 13 7A 28
@@ -42,7 +44,7 @@ A sample protected payload is illustrated below.
    8A AA 06 EF 43 CA 19 62 84 7C 11 B2 C8 71 9D AA
    52 19 2E 5B 4C 1E 54 F0 55 BE 88 92 12 C1 4B 5E
    52 C9 74 A0
-   ````
+   ```
 
 From the payload format above the first 32 bits, or 4 bytes are the magic header identifying the version (09 F0 C9 F0)
 

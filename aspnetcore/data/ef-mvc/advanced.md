@@ -1,6 +1,8 @@
 ---
 title: Advanced topics | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
@@ -150,9 +152,9 @@ The Entity Framework determines how an entity has changed (and therefore which u
 
 If you're tracking a large number of entities and you call one of these methods many times in a loop, you might get significant performance improvements by temporarily turning off automatic change detection using the `ChangeTracker.AutoDetectChangesEnabled` property. For example:
 
-````csharp
+```csharp
 _context.ChangeTracker.AutoDetectChangesEnabled = false;
-````
+```
 
 ## Entity Framework Core source code
 

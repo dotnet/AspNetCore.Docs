@@ -1,6 +1,8 @@
 ---
 title: Managing Application State | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -77,23 +79,23 @@ The `HttpContext` abstraction provides support for a simple dictionary collectio
 
 For example, some simple [Middleware](middleware.md) could add something to the `Items` collection:
 
-````csharp
+```csharp
 app.Use(async (context, next) =>
 {
     // perform some verification
     context.Items["isVerified"] = true;
     await next.Invoke();
 });
-````
+```
 
 and later in the pipeline, another piece of middleware could access it:
 
-````csharp
+```csharp
 app.Run(async (context) =>
 {
     await context.Response.WriteAsync("Verified request? " + context.Items["isVerified"]);
 });
-````
+```
 
 > [!NOTE]
 > Since keys into `Items` are simple strings, if you are developing middleware that needs to work across many applications, you may wish to prefix your keys with a unique identifier to avoid key collisions (e.g. "MyComponent.isVerified" instead of just "isVerified").
@@ -111,16 +113,16 @@ Once the package is installed, Session must be configured in your application's 
 
 ASP.NET ships with several implementations of `IDistributedCache`, including an in-memory option (to be used during development and testing only). To configure session using this in-memory option add the `Microsoft.Extensions.Caching.Memory` package in your project.json file and then add the following to `ConfigureServices`:
 
-````csharp
+```csharp
 services.AddDistributedMemoryCache();
 services.AddSession();
-````
+```
 
 Then, add the following to `Configure` **before** `app.UseMVC()` and you're ready to use session in your application code:
 
-````csharp
+```csharp
 app.UseSession();
-   ````
+   ```
 
 You can reference Session from `HttpContext` once it is installed and configured.
 
@@ -138,13 +140,13 @@ Session uses a cookie to track and disambiguate between requests from different 
 
 These defaults, as well as the default `IdleTimeout` (used on the server independent from the cookie), can be overridden when configuring `Session` by using `SessionOptions` as shown here:
 
-````csharp
+```csharp
 services.AddSession(options =>
 {
   options.CookieName = ".AdventureWorks.Session";
   options.IdleTimeout = TimeSpan.FromSeconds(10);
 });
-````
+```
 
 The `IdleTimeout` is used by the server to determine how long a session can be idle before its contents are abandoned. Each request made to the site that passes through the Session middleware (regardless of whether Session is read from or written to within that middleware) will reset the timeout. Note that this is independent of the cookie's expiration.
 
@@ -155,7 +157,7 @@ The `IdleTimeout` is used by the server to determine how long a session can be i
 
 Once session is installed and configured, you refer to it via HttpContext, which exposes a property called `Session` of type `ISession`. You can use this interface to get and set values in `Session`, such as `byte[]`.
 
-````csharp
+```csharp
 public interface ISession
 {
     bool IsAvailable { get; }
@@ -168,18 +170,18 @@ public interface ISession
     void Remove(string key);
     void Clear();
 }
-````
+```
 
 Because `Session` is built on top of `IDistributedCache`, you must always serialize the object instances being stored. Thus, the interface works with `byte[]` not simply `object`. However, there are extension methods that make working with simple types such as `String` and `Int32` easier, as well as making it easier to get a byte[] value from session.
 
-````csharp
+```csharp
 // session extension usage examples
 context.Session.SetInt32("key1", 123);
 int? val = context.Session.GetInt32("key1");
 context.Session.SetString("key2", "value");
 string stringVal = context.Session.GetString("key2");
 byte[] result = context.Session.Get("key3");
-````
+```
 
 If you're storing more complex objects, you will need to serialize the object to a `byte[]` in order to store them, and then deserialize them from `byte[]` when retrieving them.
 

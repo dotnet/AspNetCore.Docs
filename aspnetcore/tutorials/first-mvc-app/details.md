@@ -1,6 +1,8 @@
 ---
 title: Examining the Details and Delete methods | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -32,7 +34,7 @@ Note that the `HTTP GET Delete` method doesn't delete the specified movie, it re
 
 The `[HttpPost]` method that deletes the data is named `DeleteConfirmed` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-````csharp
+```csharp
 // GET: Movies/Delete/5
 public async Task<IActionResult> Delete(int? id)
 
@@ -40,7 +42,7 @@ public async Task<IActionResult> Delete(int? id)
 [HttpPost, ActionName("Delete")]
 [ValidateAntiForgeryToken]
 public async Task<IActionResult> DeleteConfirmed(int id)
-````
+```
 
 The common language runtime (CLR) requires overloaded methods to have a unique parameter signature (same method name but different list of parameters). However, here you need two `Delete` methods -- one for GET and one for POST -- that both have the same parameter signature. (They both need to accept a single integer as a parameter.)
 

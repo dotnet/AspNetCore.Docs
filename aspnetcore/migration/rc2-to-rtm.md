@@ -1,6 +1,8 @@
 ---
 title: Migrating from ASP.NET Core RC2 to ASP.NET Core 1.0 | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -24,20 +26,20 @@ Install the new tools from [https://dot.net/core](https://dot.net/core) and foll
 
 Update the global.json to
 
-````javascript
+```javascript
 {
      "projects": [ "src", "test" ],
      "sdk": {
          "version": "1.0.0-preview2-003121"
      }
    }
-   ````
+   ```
 
 ## Tools
 
 For the tools we ship, you no longer need to use `imports` in *project.json*. For example:
 
-````json
+```json
 {
      "tools": {
        "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
@@ -46,17 +48,17 @@ For the tools we ship, you no longer need to use `imports` in *project.json*. Fo
        }
      }
    }
-   ````
+   ```
 
 Becomes:
 
-````json
+```json
 {
      "tools": {
        "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
      }
    }
-   ````
+   ```
 
 ## Hosting
 

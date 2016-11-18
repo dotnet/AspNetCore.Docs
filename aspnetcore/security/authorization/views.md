@@ -1,6 +1,8 @@
 ---
 title: View Based Authorization | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -18,22 +20,22 @@ Often a developer will want to show, hide or otherwise modify a UI based on the 
 
 Once you have injected the authorization service you use it by calling the `AuthorizeAsync` method in exactly the same way as you would check during [resource based authorization](resourcebased.md#security-authorization-resource-based-imperative).
 
-````csharp
+```csharp
 @if (await AuthorizationService.AuthorizeAsync(User, "PolicyName"))
    {
        <p>This paragraph is displayed because you fulfilled PolicyName.</p>
    }
-   ````
+   ```
 
 In some cases the resource will be your view model, and you can call `AuthorizeAsync` in exactly the same way as you would check during [resource based authorization](resourcebased.md#security-authorization-resource-based-imperative);
 
-````csharp
+```csharp
 @if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
    {
        <p><a class="btn btn-default" role="button"
            href="@Url.Action("Edit", "Document", new { id = Model.Id })">Edit</a></p>
    }
-   ````
+   ```
 
 Here you can see the model is passed as the resource authorization should take into consideration.
 

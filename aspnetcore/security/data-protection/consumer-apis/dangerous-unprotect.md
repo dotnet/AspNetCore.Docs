@@ -1,6 +1,8 @@
 ---
 title: Unprotecting payloads whose keys have been revoked | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -27,10 +29,10 @@ To support the scenario of allowing payloads to be unprotected even in the face 
 
 IPersistedDataProtector exposes the following API surface:
 
-````csharp
+```csharp
 DangerousUnprotect(byte[] protectedData, bool ignoreRevocationErrors,
      out bool requiresMigration, out bool wasRevoked) : byte[]
-   ````
+   ```
 
 This API takes the protected payload (as a byte array) and returns the unprotected payload. There is no string-based overload. The two out parameters are as follows.
 

@@ -1,6 +1,8 @@
 ---
 title: Request Features | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -81,7 +83,7 @@ Feature interfaces define specific HTTP features that a given request may suppor
 
 ## Additional Resources
 
-* [Servers](servers.md)
+* [Servers](servers/overview.md)
 
 * [Middleware](middleware.md)
 

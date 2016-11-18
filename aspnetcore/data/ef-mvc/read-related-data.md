@@ -1,6 +1,8 @@
 ---
 title: Reading related data | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
@@ -70,9 +72,9 @@ You've made the following changes to the scaffolded code:
 
 * Added the **Department** column. Notice that for the **Department** column, the code displays the `Name` property of the Department entity that's loaded into the `Department` navigation property:
 
-  ````html
+  ```html
   @Html.DisplayFor(modelItem => item.Department.Name)
-  ````
+  ```
 
 Run the page (select the Courses tab on the Contoso University home page) to see the list with department names.
 
@@ -123,9 +125,9 @@ The code begins by creating an instance of the view model and putting in it the 
 Since the view always requires the OfficeAssignment entity, it's more efficient to fetch that in the same query. Course entities are required when an instructor is selected in the web page, so a single query is better than multiple queries only if the page is displayed more often with a course selected than without.
 
 The reason for
-````csharp
+```csharp
 .Include(i => i.Courses).ThenInclude(i => i.Course)
-````
+```
 is that `Courses` is the navigation property for the `CourseAssignment` join entity (it doesn't have `Course` entities), so you still have to get the `Course` entity out of the join entity which has both `Course` and `Instructor`.
 
 The `Enrollments` property does have `Enrollment` entities, so you can go directly from `Enrollments` to `Student`, which is a navigation property in the `Enrollment` entity.
@@ -140,15 +142,15 @@ The `Where` method returns a collection, but in this case the criteria passed to
 
 You use the `Single` method on a collection when you know the collection will have only one item. The Single method throws an exception if the collection passed to it is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. However, in this case that would still result in an exception (from trying to find a `Courses` property on a null reference), and the exception message would less clearly indicate the cause of the problem. When you call the `Single` method, you can also pass in the Where condition instead of calling the `Where` method separately:
 
-````csharp
+```csharp
 .Single(i => i.ID == id.Value)
-````
+```
 
 Instead of:
 
-````csharp
+```csharp
 .Where(I => i.ID == id.Value).Single()
-````
+```
 
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
 
@@ -168,30 +170,30 @@ You've made the following changes to the existing code:
 
 * Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` is not null. (Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.)
 
-  ````html
+  ```html
   @if (item.OfficeAssignment != null)
   {
       @item.OfficeAssignment.Location
   }
-  ````
+  ```
 
 * Added a **Courses** column that displays courses taught by each instructor.
 
 * Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
 
-  ````html
+  ```html
   string selectedRow = "";
   if (item.ID == (int?)ViewData["InstructorID"])
   {
       selectedRow = "success";
   }
-  ````
+  ```
 
 * Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.
 
-  ````html
+  ```html
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
-  ````
+  ```
 
 * Reordered the columns to display Last Name, First Name, Hire Date, and Office in that order.
 

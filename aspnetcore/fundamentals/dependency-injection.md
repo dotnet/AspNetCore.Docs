@@ -1,6 +1,8 @@
 ---
 title: Dependency Injection | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -170,18 +172,18 @@ The built-in services container is meant to serve the basic needs of the framewo
 
 First, add the appropriate container package(s) to the dependencies property in `project.json`:
 
-````javascript
+```javascript
 "dependencies" : {
      "Autofac": "4.0.0",
      "Autofac.Extensions.DependencyInjection": "4.0.0"
    },
-   ````
+   ```
 
 Next, configure the container in `ConfigureServices` and return an `IServiceProvider`:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [1, 11]}} -->
 
-````csharp
+```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
    {
      services.AddMvc();
@@ -194,14 +196,14 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
      var container = containerBuilder.Build();
      return new AutofacServiceProvider(container);
    }
-   ````
+   ```
 
 > [!NOTE]
 > When using a third-party DI container, you must change `ConfigureServices` so that it returns `IServiceProvider` instead of `void`.
 
 Finally, configure Autofac as normal in `DefaultModule`:
 
-````csharp
+```csharp
 public class DefaultModule : Module
    {
      protected override void Load(ContainerBuilder builder)
@@ -209,7 +211,7 @@ public class DefaultModule : Module
        builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
      }
    }
-   ````
+   ```
 
 At runtime, Autofac will be used to resolve types and inject dependencies. [Learn more about using Autofac and ASP.NET Core](http://docs.autofac.org/en/latest/integration/aspnetcore.html).
 

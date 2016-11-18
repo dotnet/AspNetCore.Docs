@@ -1,6 +1,8 @@
 ---
 title: Replacing <machineKey> in ASP.NET | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -25,16 +27,16 @@ To install the new data protection system into an existing ASP.NET 4.5.1+ projec
 
 When you install the package, it inserts a line into Web.config that tells ASP.NET to use it for [most cryptographic operations](http://blogs.msdn.com/b/webdev/archive/2012/10/23/cryptographic-improvements-in-asp-net-4-5-pt-2.aspx), including forms authentication, view state, and calls to MachineKey.Protect. The line that's inserted reads as follows.
 
-````xml
+```xml
 <machineKey compatibilityMode="Framework45" dataProtectorType="..." />
-````
+```
 
 >[!TIP]
 > You can tell if the new data protection system is active by inspecting fields like __VIEWSTATE, which should begin with "CfDJ8" as in the below example. "CfDJ8" is the base64 representation of the magic "09 F0 C9 F0" header that identifies a payload protected by the data protection system.
 
-````html
+```html
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="CfDJ8AWPr2EQPTBGs3L2GCZOpk..." />
-````
+```
 
 ## Package configuration
 
@@ -42,7 +44,7 @@ The data protection system is instantiated with a default zero-setup configurati
 
 Below is an example of a custom data protection startup type which configured both where keys are persisted and how they're encrypted at rest. It also overrides the default app isolation policy by providing its own application name.
 
-````csharp
+```csharp
 using System;
 using System.IO;
 using Microsoft.AspNetCore.DataProtection;
@@ -62,14 +64,14 @@ namespace DataProtectionDemo
         }
     }
 }
-````
+```
 
 >[!TIP]
 > You can also use <machineKey applicationName="my-app" ... /> in place of an explicit call to SetApplicationName. This is a convenience mechanism to avoid forcing the developer to create a DataProtectionStartup-derived type if all he wanted to configure was setting the application name.
 
 To enable this custom configuration, go back to Web.config and look for the <appSettings> element that the package install added to the config file. It will look like the below.
 
-````xml
+```xml
 <appSettings>
   <!--
   If you want to customize the behavior of the ASP.NET Core Data Protection stack, set the
@@ -78,13 +80,13 @@ To enable this custom configuration, go back to Web.config and look for the <app
   -->
   <add key="aspnet:dataProtectionStartupType" value="" />
 </appSettings>
-````
+```
 
 Fill in the blank value with the assembly-qualified name of the DataProtectionStartup-derived type you just created. If the name of the application is DataProtectionDemo, this would look like the below.
 
-````xml
+```xml
 <add key="aspnet:dataProtectionStartupType"
      value="DataProtectionDemo.MyDataProtectionStartup, DataProtectionDemo" />
-````
+```
 
 The newly-configured data protection system is now ready for use inside the application.

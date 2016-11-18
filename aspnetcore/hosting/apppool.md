@@ -1,6 +1,8 @@
 ---
 title: Application Pools | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -52,6 +54,6 @@ You can also do this via the command-line by using **ICACLS** tool.
 
 <!-- literal_block {"ids": [], "classes": ["code", "bat"], "xml:space": "preserve"} -->
 
-````
+```
    ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
-   ````
+   ```

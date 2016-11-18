@@ -1,6 +1,8 @@
 ---
 title: File Uploads | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 11/10/2016
@@ -24,7 +26,7 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
 
 <!-- literal_block {"xml:space": "preserve", "language": "html", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Views/Home/Index.cshtml", "highlight_args": {"linenostart": 1}, "names": []} -->
 
-````html
+```html
 
    <form method="post" enctype="multipart/form-data"
          asp-controller="UploadFiles" asp-action="Index">
@@ -41,7 +43,7 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
        </div>
    </form>
 
-   ````
+   ```
 
 In order to support file uploads, HTML forms must specify an `enctype` of `multipart/form-data`. The `files` input element shown above supports uploading multiple files; omit the `multiple` attribute on this input element to allow just a single file to be uploaded. The above markup renders in a browser as:
 
@@ -51,7 +53,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````c#
+```c#
 
    public interface IFormFile
    {
@@ -65,13 +67,13 @@ The individual files uploaded to the server can be accessed through [Model Bindi
      void CopyTo(Stream target);
      Task CopyToAsync(Stream target, CancellationToken cancellationToken = null);
    }
-   ````
+   ```
 
 When uploading files using model binding and the `IFormFile` interface, the action method can accept either a single `IFormFile` or an `IEnumerable<IFormFile>` (or `List<IFormFile>`) representing several files. The following example loops through one or more uploaded files, saves them to the local file system, and then returns the total number and size of files uploaded.
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Controllers/UploadFilesController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [21, 27, 34]}, "names": []} -->
 
-````c#
+```c#
 
     using System.Collections.Generic;
     using System.IO;
@@ -110,7 +112,7 @@ When uploading files using model binding and the `IFormFile` interface, the acti
         }
     }
 
-   ````
+   ```
 
 Files uploaded using the `IFormFile` technique are buffered in memory or on disk on the web server before being processed. Inside the action method, the `IFormFile` contents are accessible as a stream. In addition to the local file system, files can be streamed to *Azure blob storage <https://azure.microsoft.com/en-us/documentation/articles/vs-storage-aspnet5-getting-started-blobs/>* or Entity Framework.
 
@@ -118,19 +120,19 @@ To store binary file data in a database using Entity Framework, define a propert
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````c#
+```c#
 
    public class ApplicationUser : IdentityUser
    {
        public byte[] AvatarImage { get; set; }
    }
-   ````
+   ```
 
 Specify a viewmodel property of type `IFormFile`:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````c#
+```c#
 
    public class RegisterViewModel
    {
@@ -138,7 +140,7 @@ Specify a viewmodel property of type `IFormFile`:
 
        public IFormFile AvatarImage { get; set; }
    }
-   ````
+   ```
 
 Note: `IFormFile` can be used directly as an action method parameter or as a viewmodel property, as shown above.
 
@@ -146,7 +148,7 @@ Copy the `IFormFile` to a stream and save it to the byte array:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````c#
+```c#
 
    //
    // POST: /Account/Register
@@ -169,7 +171,7 @@ Copy the `IFormFile` to a stream and save it to the byte array:
          }
      // additional logic omitted
    }
-   ````
+   ```
 
 Note: Use caution when storing binary data in relational databases, as it can adversely impact performance.
 
@@ -185,7 +187,7 @@ The initial action loads the form and saves an antiforgery token in a cookie (vi
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [2]}, "names": []} -->
 
-````c#
+```c#
 
            [HttpGet]
            [GenerateAntiforgeryTokenCookieForAjax]
@@ -194,13 +196,13 @@ The initial action loads the form and saves an antiforgery token in a cookie (vi
                return View();
            }
 
-   ````
+   ```
 
 The attribute uses ASP.NET Core's built-in [Antiforgery](../../security/anti-request-forgery.md) support to set a cookie with a request token:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Filters/GenerateAntiforgeryTokenCookieForAjaxAttribute.cs", "highlight_args": {"linenostart": 1, "hl_lines": [16, 17, 18, 19]}, "names": []} -->
 
-````c#
+```c#
 
    using Microsoft.AspNetCore.Antiforgery;
    using Microsoft.AspNetCore.Http;
@@ -224,13 +226,13 @@ The attribute uses ASP.NET Core's built-in [Antiforgery](../../security/anti-req
            }
        }
    }
-   ````
+   ```
 
 Angular automatically passes an antiforgery token in a request header named `X-XSRF-TOKEN`; the ASP.NET Core MVC app is configured to refer to this header in its configuration in `Startup.cs`:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Startup.cs", "highlight_args": {"linenostart": 1, "hl_lines": [3, 4]}, "names": []} -->
 
-````c#
+```c#
 
            public void ConfigureServices(IServiceCollection services)
            {
@@ -240,13 +242,13 @@ Angular automatically passes an antiforgery token in a request header named `X-X
                services.AddMvc();
            }
 
-   ````
+   ```
 
 The `DisableFormValueModelBinding` attribute is used to disable model binding for the `Upload` action method:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Filters/DisableFormValueModelBindingAttribute.cs", "highlight_args": {"linenostart": 1, "hl_lines": [18, 26]}, "names": []} -->
 
-````c#
+```c#
 
    using System;
    using System.Linq;
@@ -282,7 +284,7 @@ The `DisableFormValueModelBinding` attribute is used to disable model binding fo
            }
        }
    }
-   ````
+   ```
 
 Since model binding is disabled, the `Upload` action method doesn't accept any parameters. It works directly with the `Request` property of `ControllerBase`. A `MultipartReader` is used to read each section. The file is saved with a GUID filename and the the key/value data is stored in a `KeyValueAccumulator`. Once all sections have been read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
@@ -290,7 +292,7 @@ The complete `Upload` method is shown below:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/mvc/models/file-uploads/sample/FileUploadSample/Controllers/StreamingController.cs", "highlight_args": {"linenostart": 1, "hl_lines": [6, 7, 17, 25, 32, 42, 44, 51, 72, 95, 96, 105, 106, 107, 108, 109, 110, 111]}, "names": []} -->
 
-````c#
+```c#
 
     // 1. Disable the form value model binding here to take control of handling potentially large files.
     // 2. Typically antiforgery tokens are sent in request body, but since we do not want to read the request body
@@ -402,7 +404,7 @@ The complete `Upload` method is shown below:
         return Json(uploadedData);
     }
 
-   ````
+   ```
 
   ## Troubleshooting
 
@@ -414,17 +416,17 @@ The following error indicates your file upload exceeds the server's configured `
 
 <!-- literal_block {"xml:space": "preserve", "language": "text", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````text
+```text
 
    HTTP 404.13 - Not Found
    The request filtering module is configured to deny a request that exceeds the request content length.
-   ````
+   ```
 
 The default setting is `30000000`, which is approxmiately 28.6MB. The value can be customized by editing `web.config`:
 
 <!-- literal_block {"xml:space": "preserve", "language": "xml", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
 
-````xml
+```xml
 
    <system.webServer>
      <security>
@@ -434,7 +436,7 @@ The default setting is `30000000`, which is approxmiately 28.6MB. The value can 
        </requestFiltering>
      </security>
    </system.webServer>
-   ````
+   ```
 
 This setting only applies to IIS; the behavior doesn't occur by default when hosting on Kestrel. [Learn more](https://www.iis.net/configreference/system.webserver/security/requestfiltering/requestlimits).
 

@@ -1,6 +1,8 @@
 ---
 title: Handling concurrency conflicts | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
@@ -88,10 +90,10 @@ The `Timestamp` attribute specifies that this column will be included in the Whe
 
 If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method to specify the tracking property, as shown in the following example:
 
-````csharp
+```csharp
 modelBuilder.Entity<Department>()
     .Property(p => p.RowVersion).IsConcurrencyToken();
-````
+```
 
 By adding a property you changed the database model, so you need to do another migration.
 
@@ -136,9 +138,9 @@ The code begins by trying to read the department to be updated. If the `SingleOr
 
 The view stores the original `RowVersion` value in a hidden field, and this method receives that value in the `rowVersion` parameter. Before you call `SaveChanges`, you have to put that original `RowVersion` property value in the `OriginalValues` collection for the entity.
 
-````csharp
+```csharp
 _context.Entry(departmentToUpdate).Property("RowVersion").OriginalValue = rowVersion;
-````
+```
 
 Then when the Entity Framework creates a SQL UPDATE command, that command will include a WHERE clause that looks for a row that has the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value),  the Entity Framework throws a `DbUpdateConcurrencyException` exception.
 
@@ -219,15 +221,15 @@ Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with 
 In the scaffolded code that you just replaced, this method accepted only a record ID:
 
 
-````csharp
+```csharp
 public async Task<IActionResult> DeleteConfirmed(int id)
-````
+```
 
 You've changed this parameter to a Department entity instance created by the model binder. This gives EF access to the RowVersion property value in addition to the record key.
 
-````csharp
+```csharp
 public async Task<IActionResult> Delete(Department department)
-````
+```
 
 You have also changed the action method name from `DeleteConfirmed` to `Delete`. The scaffolded code used the name `DeleteConfirmed` to give the HttpPost method a unique signature. (The CLR requires overloaded methods to have different method parameters.) Now that the signatures are unique, you can stick with the MVC convention and use the same name for the HttpPost and HttpGet delete methods.
 

@@ -1,6 +1,8 @@
----
+﻿---
 title: ASP.NET Core on Nano Server | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -47,10 +49,10 @@ Open an elevated PowerShell window to add your remote Nano Server instance to yo
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 $nanoServerIpAddress = "10.83.181.14"
    Set-Item WSMan:\localhost\Client\TrustedHosts "$nanoServerIpAddress" -Concatenate -Force
-   ````
+   ```
 
 > [!NOTE]
 > Replace the variable `$nanoServerIpAddress` with the correct IP address.
@@ -59,10 +61,10 @@ Once you have added your Nano Server instance to your `TrustedHosts`, you can co
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 $nanoServerSession = New-PSSession -ComputerName $nanoServerIpAddress -Credential ~\Administrator
    Enter-PSSession $nanoServerSession
-   ````
+   ```
 
 A successful connection results in a prompt with a format looking like: `[10.83.181.14]: PS C:\Users\Administrator\Documents>`
 
@@ -72,11 +74,11 @@ Create a file share on the Nano server so that the published application can be 
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 mkdir C:\PublishedApps\AspNetCoreSampleForNano
    netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=yes
    net share AspNetCoreSampleForNano=c:\PublishedApps\AspNetCoreSampleForNano /GRANT:EVERYONE`,FULL
-   ````
+   ```
 
 After running the above commands you should be able to access this share by visiting `\\<nanoserver-ip-address>\AspNetCoreSampleForNano` in the host machine's Windows Explorer.
 
@@ -86,9 +88,9 @@ Run the following commands in the remote session to open up a port in the firewa
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 New-NetFirewallRule -Name "AspNet5 IIS" -DisplayName "Allow HTTP on TCP/8000" -Protocol TCP -LocalPort 8000 -Action Allow -Enabled True
-   ````
+   ```
 
 ## Installing IIS
 
@@ -98,12 +100,12 @@ Run the following commands in the PowerShell session that was created earlier:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 Install-PackageProvider NanoServerPackage
    Import-PackageProvider NanoServerPackage
    Install-NanoServerPackage -Name Microsoft-NanoServer-Storage-Package
    Install-NanoServerPackage -Name Microsoft-NanoServer-IIS-Package
-   ````
+   ```
 
 > [!NOTE]
 > Installing *Microsoft-NanoServer-Storage-Package* requires a reboot. This is a temporary work around and won't be required in the future.
@@ -118,25 +120,25 @@ On a regular (not Nano) machine run the following copy commands:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 copy C:\windows\system32\inetsrv\aspnetcore.dll `\\<nanoserver-ip-address>\AspNetCoreSampleForNano`
    copy C:\windows\system32\inetsrv\config\schema\aspnetcore_schema.xml `\\<nanoserver-ip-address>\AspNetCoreSampleForNano`
-   ````
+   ```
 
 On a Nano machine, you will need to copy the following files from the file share that we created earlier to the valid locations. So, run the following copy commands:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
-````
+```
 copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore.dll C:\windows\system32\inetsrv\
    copy C:\PublishedApps\AspNetCoreSampleForNano\aspnetcore_schema.xml C:\windows\system32\inetsrv\config\schema\
-   ````
+   ```
 
 Run the following script in the remote session:
 
 <!-- literal_block {"xml:space": "preserve", "source": "tutorials/nano-server/enable-ancm.ps1", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
 
-````
+```
 # Backup existing applicationHost.config
    copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_BeforeInstallingANCM.config
 
@@ -173,7 +175,7 @@ Run the following script in the remote session:
    copy C:\Windows\System32\inetsrv\config\applicationHost.config C:\Windows\System32\inetsrv\config\applicationHost_AfterInstallingANCM.config
 
 
-   ````
+   ```
 
 > [!NOTE]
 > Delete the files `aspnetcore.dll` and `aspnetcore_schema.xml` from the share after the above step.
@@ -194,7 +196,7 @@ Example of how a web.config might look like if `dotnet.exe` was **not** on the p
 
 <!-- literal_block {"ids": [], "classes": ["code", "xml"], "xml:space": "preserve"} -->
 
-````
+```
 <?xml version="1.0" encoding="utf-8"?>
    <configuration>
      <system.webServer>
@@ -204,16 +206,16 @@ Example of how a web.config might look like if `dotnet.exe` was **not** on the p
        <aspNetCore processPath="C:\dotnet\dotnet.exe" arguments=".\AspNetCoreSampleForNano.dll" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout" forwardWindowsAuthToken="true" />
      </system.webServer>
    </configuration>
-   ````
+   ```
 
 Run the following commands in the remote session to create a new site in IIS for the published app. This script uses the `DefaultAppPool` for simplicity. For more considerations on running under an application pool, see [Application Pools](../hosting/apppool.md#apppool).
 
 <!-- literal_block {"ids": [], "classes": ["code", "powershell"], "xml:space": "preserve"} -->
 
-````
+```
 Import-module IISAdministration
    New-IISSite -Name "AspNetCore" -PhysicalPath c:\PublishedApps\AspNetCoreSampleForNano -BindingInformation "*:8000:"
-   ````
+   ```
 
 ## Known issue running .NET Core CLI on Nano Server and Workaround
 
@@ -225,4 +227,4 @@ If your Nano Server Technical Preview 5 build is updated or serviced, please mak
 
 ## Running the Application
 
-The published web app should be accessible in browser at `http://<nanoserver-ip-address>:8000`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.
+The published web app should be accessible in browser at `http://<nanoserver-ip-address>:8000`. If you have set up logging as described in [Log creation and redirection](../hosting/aspnet-core-module.md#log-creation-and-redirection), you should be able to view your logs at *C:\PublishedApps\AspNetCoreSampleForNano\logs*.

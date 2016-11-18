@@ -1,6 +1,8 @@
----
+﻿---
 title: Adding Validation | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -98,10 +100,10 @@ The `DataType` attributes only provide hints for the view engine to format the d
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
 
-````csharp
+```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 public DateTime ReleaseDate { get; set; }
-````
+```
 
 The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied when the value is displayed in a text box for editing. (You might not want that for some fields — for example, for currency values, you probably do not want the currency symbol in the text box for editing.)
 
@@ -116,9 +118,9 @@ You can use the `DisplayFormat` attribute by itself, but it's generally a good i
 > [!NOTE]
 > jQuery validation does not work with the `Range` attribute and `DateTime`. For example, the following code will always display a client side validation error, even when the date is in the specified range:
 
-````csharp
+```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
-   ````
+   ```
 
 You will need to disable jQuery date validation to use the `Range` attribute with `DateTime`. It's generally not a good practice to compile hard dates in your models, so using the `Range` attribute and `DateTime` is discouraged.
 

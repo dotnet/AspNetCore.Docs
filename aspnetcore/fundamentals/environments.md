@@ -1,6 +1,8 @@
 ---
 title: Working with Multiple Environments | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -33,7 +35,7 @@ This should be the environment used when developing an application. When using V
 
 ![image](environments/_static/project-properties-debug.png)
 
-When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
+When you modify the default settings created with the project, your changes are persisted in *launchSettings.json* in the `Properties` folder. This file holds settings specific to each profile Visual Studio is configured to use to launch the application, including any environment variables that should be used. (Debug profiles are discussed in more detail in [Servers](servers/overview.md)). For example, after adding another profile configured to use IIS Express, but using an `ASPNETCORE_ENVIRONMENT` value of `Staging`, the `launchSettings.json` file in our sample project is shown below:
 
 launchSettings.json
 

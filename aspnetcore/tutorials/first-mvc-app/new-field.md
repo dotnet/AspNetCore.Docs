@@ -1,6 +1,8 @@
----
+﻿---
 title: Adding a New Field | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -26,9 +28,9 @@ Build the app (Ctrl+Shift+B).
 
 Because you've added a new field to the `Movie` class, you also need to update the binding white list so this new property will be included. Update the `[Bind]` attribute for `Create` and `Edit` action methods to include the `Rating` property:
 
-````csharp
+```csharp
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
-   ````
+   ```
 
 You also need to update the view templates in order to display, create and edit the new `Rating` property in the browser view.
 
@@ -65,10 +67,10 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 Build the solution then open a command prompt. Enter the following commands:
 
-````console
+```console
 dotnet ef migrations add Rating
 dotnet ef database update
-````
+```
 
 The `migrations add` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model. The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration step.
 
