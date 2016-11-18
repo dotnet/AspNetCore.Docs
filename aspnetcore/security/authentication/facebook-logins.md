@@ -100,7 +100,7 @@ When you click on Facebook, you will be redirected to Facebook for authenticatio
 
 ![image](sociallogins/_static/FBLogin2.png)
 
-Once you enter your Facebook credentials, then you will be redirected back to the Web site where you can set your email.
+Once you enter your Facebook credentials, then you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Facebook credentials:
 
@@ -110,6 +110,6 @@ You are now logged in using your Facebook credentials:
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the `AppSecret` in the Facebook developer portal.
+* Once you publish your web site to Azure Web App, you should reset the `AppSecret` in the Facebook developer portal.
 
 * Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

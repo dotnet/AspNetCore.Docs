@@ -85,7 +85,7 @@ Clicking on **Twitter** redirects to Twitter for authentication:
 
 ![image](sociallogins/_static/TwitterLogin.png)
 
-After entering your Twitter credentials, you are redirected back to the Web site where you can set your email.
+After entering your Twitter credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Twitter credentials:
 
@@ -95,6 +95,6 @@ You are now logged in using your Twitter credentials:
 
 * This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the `ConsumerSecret` in the Twitter developer portal.
+* Once you publish your web site to Azure Web App, you should reset the `ConsumerSecret` in the Twitter developer portal.
 
 * Set the `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

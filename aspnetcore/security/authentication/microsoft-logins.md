@@ -105,7 +105,7 @@ When you click on Microsoft, you are redirected to Microsoft for authentication:
 
 ![image](sociallogins/_static/MicrosoftLogin.png)
 
-After entering your Microsoft Account credentials, you are redirected back to the Web site where you can set your email.
+After entering your Microsoft Account credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
 
@@ -120,6 +120,6 @@ You are now logged in using your Microsoft credentials:
 
 * This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the `Secret` in the Microsoft developer portal.
+* Once you publish your web site to Azure Web App, you should reset the `Secret` in the Microsoft developer portal.
 
 * Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Azure Web App portal. The configuration system is setup to read keys from environment variables.

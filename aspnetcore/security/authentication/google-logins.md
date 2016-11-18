@@ -120,7 +120,7 @@ When you click on Google, you are redirected to Google for authentication:
 
 ![image](sociallogins/_static/GoogleLogin.png)
 
-After entering your Google credentials, then you are redirected back to the Web site where you can set your email.
+After entering your Google credentials, then you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Google credentials:
 
@@ -133,6 +133,6 @@ You are now logged in using your Google credentials:
 
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed in the [previous section](sociallogins.md).
 
-* Once you publish your Web site to Azure Web App, you should reset the `ClientSecret` in the Google API Console.
+* Once you publish your web site to Azure Web App, you should reset the `ClientSecret` in the Google API Console.
 
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application setting in the Azure Web App portal. The configuration system is setup to read keys from environment variables.
