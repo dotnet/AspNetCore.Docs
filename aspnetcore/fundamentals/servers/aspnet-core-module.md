@@ -16,7 +16,7 @@ uid: fundamentals/servers/aspnet-core-module
 
 By [Tom Dykstra](http://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), and [Chris Ross](https://github.com/Tratcher) 
 
-ASP.NET Core Module (ANCM) is an IIS module that lets [Kestrel](kestrel.md) use IIS or IIS Express as a reverse proxy server. **ANCM works only with Kestrel; it isn't compatible with [WebListener](weblistener.md).** 
+ASP.NET Core Module (ANCM) lets you run ASP.NET Core applications behind IIS, using IIS for what it's good at (security, manageability, and lots more) and using [Kestrel](kestrel.md) for what it's good at (being really fast), and getting the benefits from both technologies at once. **ANCM works only with Kestrel; it isn't compatible with [WebListener](weblistener.md).** 
 
 Supported Windows versions:
 
