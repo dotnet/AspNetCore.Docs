@@ -40,7 +40,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`.
 
-* When deploying the site you'll need to register a new public url.
+  When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
 > You don't need to configure **signin-facebook** as a route in your app. The Facebook middleware will automatically intercept requests at this route and handle them to implement the OAuth flow.

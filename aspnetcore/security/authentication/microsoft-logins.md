@@ -46,7 +46,7 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
 
-* When deploying the site you'll need to register a new public url.
+  When deploying the site you'll need to register a new public url.
 
 > [!NOTE]
 > You don't need to configure **signin-microsoft** as a route in your app. The Microsoft Account middleware automatically intercepts requests at this route and handles them to implement the OAuth flow.
