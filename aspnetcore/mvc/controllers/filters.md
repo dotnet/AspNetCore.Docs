@@ -1,6 +1,8 @@
 ---
 title: Filters | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -129,10 +131,10 @@ A `TypeFilter` will instantiate an instance, using services from DI for its depe
 
 Using `ServiceFilter` without registering the filter type in `ConfigureServices`, throws the following exception:
 
-````none
+```none
 System.InvalidOperationException: No service for type
 'FiltersSample.Filters.AddHeaderFilterWithDI' has been registered.
-````
+```
 
 To avoid this exception, you must register the `AddHeaderFilterWithDI` type in `ConfigureServices`:
 
@@ -192,9 +194,9 @@ Every controller that inherits from the `Controller` base class includes `OnActi
 
 To modify the default, scope-based order, you could explicitly set the `Order` property of a class-level or method-level filter. For example, adding `Order=-1` to a method level attribute:
 
-````csharp
+```csharp
 [MyFilter(Name = "Method Level Attribute", Order=-1)]
-   ````
+   ```
 
 In this case, a value of less than zero would ensure this filter ran before both the Global and Class level filters (assuming their `Order` property was not set).
 

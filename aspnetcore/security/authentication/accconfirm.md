@@ -1,6 +1,8 @@
 ---
 title: Account Confirmation and Password Recovery | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -64,12 +66,12 @@ In this section we'll set up our Visual Studio project to use SSL and our projec
 
 * Add the following code to `ConfigureServices` in `Startup`:
 
-````csharp
+```csharp
 services.Configure<MvcOptions>(options =>
 {
     options.Filters.Add(new RequireHttpsAttribute ());
 });
-````
+```
 
 Add the `[RequireHttps]` attribute to each controller. The `[RequireHttps]` attribute will redirect all HTTP GET requests to HTTPS GET and will reject all HTTP POSTs. A security best practice is to use HTTPS for all requests.
 
@@ -95,10 +97,10 @@ We'll use the [Options pattern](../../fundamentals/configuration.md#options-conf
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
-````none
+```none
 C:\WebApplication3\src\WebApplication3>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
-````
+```
 
 On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file in the %APPDATA%/Microsoft/UserSecrets/<**userSecretsId**> directory. The **userSecretsId** directory can be found in your *project.json* file. For this example, the first few lines of the *project.json* file are shown below:
 
@@ -106,14 +108,14 @@ On Windows, Secret Manager stores your keys/value pairs in a *secrets.json* file
 
 At this time, the contents of the *secrets.json* file are not encrypted. The *secrets.json* file is shown below (the sensitive keys have been removed.)
 
-````json
+```json
 {
   "SendGridUser": "RickAndMSFT",
   "SendGridKey": "",
   "Authentication:Facebook:AppId": "",
   "Authentication:Facebook:AppSecret": ""
 }
-````
+```
 
 ### Configure startup to use `AuthMessageSenderOptions`
 
@@ -153,9 +155,9 @@ The template already has the code for account confirmation and password recovery
 > [!NOTE]
 > We're also preventing a newly registered user from being automatically logged on by commenting out the following line:
 >
-> ````csharp
+> ```csharp
 > //await _signInManager.SignInAsync(user, isPersistent: false);
-> ````
+> ```
 
 *  Enable password recovery by uncommenting the code in the `ForgotPassword` action in the *Controllers/AccountController.cs* file.
 

@@ -1,6 +1,8 @@
 ---
 title: Working with a Distributed Cache | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -102,17 +104,17 @@ To use sql-cache tool add SqlConfig.Tools to the tools section of the project.js
 
 Test SqlConfig.Tools by running the following command
 
-````none
+```none
 C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create --help
-   ````
+   ```
 
 sql-cache tool  will display usage, options and command help, now you can create tables into sql server, running "sql-cache create" command :
 
-````none
+```none
 C:\DistCacheSample\src\DistCacheSample>dotnet sql-cache create "Data Source=(localdb)\v11.0;Initial Catalog=DistCache;Integrated Security=True;" dbo TestCache
    info: Microsoft.Extensions.Caching.SqlConfig.Tools.Program[0]
        Table and index were created successfully.
-   ````
+   ```
 
 The created table have the following schema:
 

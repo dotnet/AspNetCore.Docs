@@ -1,6 +1,8 @@
 ---
 title: Publishing to an Azure Web App with Continuous Deployment | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -173,14 +175,14 @@ In this section, you will create a local Git repository using Visual Studio and 
 
     This command will start the process of pushing your local project files to Azure. The output from the above command ends with a message that deployment was successful.
         
-    ````
+    ```
     remote: Finished successfully.
     remote: Running post deployment command(s)...
     remote: Deployment successful.
     To https://username@samplewebappdemo01.scm.azurewebsites.net:443/SampleWebAppDemo01.git
     * [new branch]      master -> master
     Branch master set up to track remote branch master from Azure-SampleApp.
-    ````
+    ```
     > [!NOTE]
     > If you need to collaborate on a project, you should consider pushing to [GitHub](https://github.com) in between pushing to Azure.
  
@@ -212,18 +214,18 @@ After you make changes to your local code, you can republish.
 
 2.  In the `Configure` method, modify the `Response.WriteAsync` method so that it appears as follows:
 
-    ````aspx-cs
+    ```aspx-cs
     await context.Response.WriteAsync("Hello World! Deploy to Azure.");
-    ````
+    ```
 3.  Save changes to *Startup.cs*.
 
 4.  In **Solution Explorer**, right-click **Solution 'SampleWebAppDemo'** and select **Commit**. The **Team Explorer** will be displayed.
 
 5.  Enter a commit message, such as:
 
-    ````none
+    ```none
     Update #2
-    ````
+    ```
 
 6.  Press the **Commit** button to commit the project changes.
 

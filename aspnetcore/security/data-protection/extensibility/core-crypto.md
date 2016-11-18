@@ -1,6 +1,8 @@
 ---
 title: Core cryptography extensibility | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -46,7 +48,7 @@ The **IAuthenticatedEncryptorDescriptor** interface represents a type that knows
 
 Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor is assumed to wrap one specific key. This means that for any given IAuthenticatedEncryptorDescriptor instance, any authenticated encryptors created by its CreateEncryptorInstance method should be considered equivalent, as in the below code sample.
 
-````csharp
+```csharp
 // we have an IAuthenticatedEncryptorDescriptor instance
    IAuthenticatedEncryptorDescriptor descriptor = ...;
 
@@ -62,7 +64,7 @@ Like IAuthenticatedEncryptor, an instance of IAuthenticatedEncryptorDescriptor i
 
 
    // the 'roundTripped' and 'plaintext' buffers should be equivalent
-   ````
+   ```
 
 ## XML Serialization
 

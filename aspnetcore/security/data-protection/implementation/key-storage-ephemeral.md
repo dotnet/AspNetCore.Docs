@@ -1,6 +1,8 @@
 ---
 title: Ephemeral data protection providers | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -20,7 +22,7 @@ Each instance of EphemeralDataProtectionProvider uses its own unique master key.
 
 The following sample demonstrates instantiating an EphemeralDataProtectionProvider and using it to protect and unprotect data.
 
-````none
+```none
 using System;
    using Microsoft.AspNetCore.DataProtection;
 
@@ -60,4 +62,4 @@ using System;
     * Unprotect returned: Hello!
     * << throws CryptographicException >>
     */
-   ````
+   ```

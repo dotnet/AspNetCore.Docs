@@ -1,6 +1,8 @@
 ---
 title: Testing Controller Logic | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -124,10 +126,10 @@ Each integration test class configures the `TestServer` that will run the ASP.NE
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
 
-````none
+```none
 The view 'Index' was not found. The following locations were searched:
 (list of locations)
-````
+```
 
 To correct this issue, you need to configure the server's content root, so it can locate the views for the project being tested. This is done by a call to `UseContentRoot` in the in the `TestFixture` class, shown below:
 

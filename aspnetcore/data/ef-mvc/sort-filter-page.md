@@ -2,6 +2,8 @@
 title: Sorting, filtering, paging, and grouping | Microsoft Docs
 author: rick-anderson
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 ms.date: 10/14/2016
 ms.topic: article
@@ -92,9 +94,9 @@ Run the page, enter a search string, and click Search to verify that filtering i
 
 Notice that the URL contains the search string.
 
-````html
+```html
 http://localhost:5813/Students?SearchString=an
-````
+```
 
 If you bookmark this page, you'll get the filtered list when you use the bookmark. Adding `method="get"` to the `form` tag is what caused the query string to be generated.
 
@@ -122,13 +124,13 @@ In *StudentsController.cs*, replace the `Index` method with the following code.
 
 This code adds a page number parameter, a current sort order parameter, and a current filter parameter to the method signature.
 
-````csharp
+```csharp
 public async Task<IActionResult> Index(
     string sortOrder,
     string currentFilter,
     string searchString,
     int? page)
-````
+```
 
 The first time the page is displayed, or if the user hasn't clicked a paging or sorting link, all the parameters will be null.  If a paging link is clicked, the page variable will contain the page number to display.
 
@@ -138,7 +140,7 @@ The `ViewData` element named CurrentFilter provides the view with the current fi
 
 If the search string is changed during paging, the page has to be reset to 1, because the new filter can result in different data to display. The search string is changed when a value is entered in the text box and the Submit button is pressed. In that case, the `searchString` parameter is not null.
 
-````csharp
+```csharp
 if (searchString != null)
 {
     page = 1;
@@ -147,13 +149,13 @@ else
 {
     searchString = currentFilter;
 }
-````
+```
 
 At the end of the `Index` method, the `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging. That single page of students is then passed to the view.
 
-````csharp
+```csharp
 return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), page ?? 1, pageSize));
-````
+```
 
 The `PaginatedList.CreateAsync` method takes a page number. The two question marks represent the null-coalescing operator. The null-coalescing operator defines a default value for a nullable type; the expression `(page ?? 1)` means return the value of `page` if it has a value, or return 1 if `page` is null.
 

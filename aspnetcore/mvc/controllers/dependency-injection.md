@@ -1,6 +1,8 @@
 ---
 title: Dependency Injection and Controllers | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -44,12 +46,12 @@ If we run the application now, we will most likely encounter an error:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 An unhandled exception occurred while processing the request.
 
 InvalidOperationException: Unable to resolve service for type 'ControllerDI.Interfaces.IDateTime' while attempting to activate 'ControllerDI.Controllers.HomeController'.
 Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
-````
+```
 
 This error occurs when we have not configured a service in the `ConfigureServices` method in our `Startup` class. To specify that requests for `IDateTime` should be resolved using an instance of `SystemDateTime`, add the highlighted line in the listing below to your `ConfigureServices` method:
 
@@ -69,12 +71,12 @@ ASP.NET Core's built-in dependency injection supports having only a single const
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 An unhandled exception occurred while processing the request.
 
 InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'ControllerDI.Controllers.HomeController'. There should only be one applicable constructor.
 Microsoft.Extensions.DependencyInjection.ActivatorUtilities.FindApplicableConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& parameterMap)
-````
+```
 
 As the error message states, you can correct this problem having just a single constructor. You can also [replace the default dependency injection support with a third party implementation](../../fundamentals/dependency-injection.md#replacing-the-default-services-container), many of which support multiple constructors.
 

@@ -1,6 +1,8 @@
----
+﻿---
 title: Publishing to IIS | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -64,7 +66,7 @@ Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 
    var host = new WebHostBuilder()
      .UseKestrel()
@@ -72,7 +74,7 @@ Include a dependency on the *Microsoft.AspNetCore.Server.IISIntegration* package
      .UseIISIntegration()
      .UseStartup<Startup>()
      .Build();
-   ````
+   ```
 
 Note that code calling *.UseIISIntegration()* does not affect code portability.
 
@@ -82,12 +84,12 @@ To configure *IISIntegration* service options, include a service configuration f
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 
    services.Configure<IISOptions>(options => {
      ...
    });
-   ````
+   ```
 
 | Option               | Setting|
 | ----------------- | ------------ | 
@@ -103,7 +105,7 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
 
-````none
+```none
 
    "tools": {
      "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
@@ -111,7 +113,7 @@ To include the *publish-iis* tool in your application, add entries to the *tools
    "scripts": {
      "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
    }
-   ````
+   ```
 
 ## Deploy the application
 

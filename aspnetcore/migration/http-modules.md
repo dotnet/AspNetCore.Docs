@@ -1,6 +1,8 @@
 ---
 title: Migrating HTTP Modules to Middleware | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -245,9 +247,9 @@ The solution is to get the options objects with the actual options values in you
 
 You saw earlier that the `Invoke` method in your middleware takes a parameter of type `HttpContext`:
 
-````csharp
+```csharp
 public async Task Invoke(HttpContext context)
-````
+```
 
 `HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx) to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
@@ -357,12 +359,12 @@ The solution is to set a callback method that will be called right before writin
 
 The following code sets a callback method called `SetHeaders`:
 
-````csharp
+```csharp
 public async Task Invoke(HttpContext httpContext)
 {
     // ...
     httpContext.Response.OnStarting(SetHeaders, state: httpContext);
-````
+```
 
 The `SetHeaders` callback method would look like this:
 
@@ -372,13 +374,13 @@ The `SetHeaders` callback method would look like this:
 
 Cookies travel to the browser in a *Set-Cookie* response header. As a result, sending cookies requires the same callback as used for sending response headers:
 
-````csharp
+```csharp
 public async Task Invoke(HttpContext httpContext)
 {
     // ...
     httpContext.Response.OnStarting(SetCookies, state: httpContext);
     httpContext.Response.OnStarting(SetHeaders, state: httpContext);
-````
+```
 
 The `SetCookies` callback method would look like the following:
 

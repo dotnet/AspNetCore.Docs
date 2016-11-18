@@ -1,6 +1,8 @@
 ---
 title: Create, Read, Update, and Delete operations | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
@@ -62,15 +64,15 @@ http://localhost:1230/Instructor/Index?id=1&CourseID=2021
 
 In the Index page, hyperlink URLs are created by tag helper statements in the Razor view. In the following Razor code, the id parameter matches the default route, so `id` is added to the route data.
 
-````html
+```html
 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-````
+```
 
 In the following Razor code, `studentID` doesn't match a parameter in the default route, so it's added as a query string.
 
-````html
+```html
 <a asp-action="Edit" asp-route-studentID="@item.ID">Edit</a>
-````
+```
 
 ### Add enrollments to the Details view
 
@@ -108,7 +110,7 @@ The `ValidateAntiForgeryToken` attribute helps prevent cross-site request forger
 
 The `Bind` attribute that the scaffolded code includes on the `Create` method is one way to protect against overposting in create scenarios. For example, suppose the Student entity includes a `Secret` property that you don't want this web page to set.
 
-````csharp
+```csharp
 
 public class Student
 {
@@ -118,7 +120,7 @@ public class Student
     public DateTime EnrollmentDate { get; set; }
     public string Secret { get; set; }
 }
-````
+```
 
 Even if you don't have a `Secret` field on the web page, a hacker could use a tool such as Fiddler, or write some JavaScript, to post a `Secret` form value. Without the `Bind` attribute limiting the fields that the model binder uses when it creates a Student instance, the model binder would pick up that `Secret` form value and use it to create the Student entity instance. Then whatever value the hacker specified for the `Secret` form field would be updated in your database. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 

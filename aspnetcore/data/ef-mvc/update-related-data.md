@@ -1,6 +1,8 @@
 ---
 title: Updating related data | Microsoft Docs
 author: tdykstra
+description: 
+keywords: ASP.NET Core,
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/14/2016
@@ -258,13 +260,13 @@ The HttpPost `Create` method adds each selected course to the `Courses` navigati
 
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
-````csharp
+```csharp
 instructor.Courses = new List<Course>();
-````
+```
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
 
-````csharp
+```csharp
 private ICollection<Course> _courses;
 public ICollection<Course> Courses
 {
@@ -277,7 +279,7 @@ public ICollection<Course> Courses
         _courses = value;
     }
 }
-````
+```
 
 If you modify the `Courses` property in this way, you can remove the explicit property initialization code in the controller.
 

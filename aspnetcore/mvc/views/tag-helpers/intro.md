@@ -1,6 +1,8 @@
 ---
 title: Introduction to Tag Helpers | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -33,15 +35,15 @@ Tag Helpers enable server-side code to participate in creating and rendering HTM
 
 Most of the built-in Tag Helpers target existing HTML elements and provide server-side attributes for the element. For example, the `<input>` element used in many of the views in the *Views/Account* folder contains the `asp-for` attribute, which extracts the name of the specified model property into the rendered HTML. The following Razor markup:
 
-````html
+```html
 <label asp-for="Email"></label>
-   ````
+   ```
 
 Generates the following HTML:
 
-````html
+```html
 <label for="Email">Email</label>
-   ````
+   ```
 
 The `asp-for` attribute is made available by the `For` property in the `LabelTagHelper`. See [Authoring Tag Helpers](authoring.md) for more information.
 
@@ -67,18 +69,18 @@ If your project contains an `EmailTagHelper` with the default namespace (`Author
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3]}} -->
 
-````html
+```html
 @using AuthoringTagHelpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper "AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers"
-````
+```
 
 To add a Tag Helper to a view using an FQN, you first add the FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), and then the assembly name (*AuthoringTagHelpers*). Most developers prefer to use the  "\*" wildcard syntax. The wildcard syntax allows you to insert the wildcard character "\*" as the suffix in an FQN. For example, any of the following directives will bring in the `EmailTagHelper`:
 
-````csharp
+```csharp
 @addTagHelper "AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers"
 @addTagHelper "AuthoringTagHelpers.TagHelpers.Email*, AuthoringTagHelpers"
-````
+```
 
 As mentioned previously, adding the `@addTagHelper` directive to the *Views/_ViewImports.cshtml* file makes the Tag Helper available to all view files in the *Views* directory and sub-directories. You can use the `@addTagHelper` directive in specific view files if you want to opt-in to exposing the Tag Helper to only those views.
 
@@ -96,9 +98,9 @@ You can add a *_ViewImports.cshtml* to any view folder, and the view engine adds
 
 You can disable a Tag Helper at the element level with the Tag Helper opt-out character ("!"). For example, `Email` validation is disabled in the `<span>` with the Tag Helper opt-out character:
 
-````csharp
+```csharp
 <!span asp-validation-for="Email" class="text-danger"></!span>
-   ````
+   ```
 
 You must apply the Tag Helper opt-out character to the opening and closing tag. (The Visual Studio editor automatically adds the opt-out character to the closing tag when you add one to the opening tag). After you add the opt-out character, the element and Tag Helper attributes are no longer displayed in a distinctive font.
 
@@ -156,15 +158,15 @@ IntelliSense lists the properties and methods available to the model on the page
 
 Tag Helpers attach to HTML elements in Razor views, while [HTML Helpers](http://stephenwalther.com/archive/2009/03/03/chapter-6-understanding-html-helpers) are invoked as methods interspersed with HTML in Razor views. Consider the following Razor markup, which creates an HTML label with the CSS class "caption":
 
-````html
+```html
 @Html.Label("FirstName", "First Name:", new {@class="caption"})
-   ````
+   ```
 
 The at (`@`) symbol tells Razor this is the start of code. The next two parameters ("FirstName" and "First Name:") are strings, so [IntelliSense](https://msdn.microsoft.com/en-us/library/hcw1s69b.aspx) can't help. The last argument:
 
-````html
+```html
 new {@class="caption"}
-   ````
+   ```
 
 Is an anonymous object used to represent attributes. Because **class** is a reserved keyword in C#, you use the `@` symbol to force C# to interpret "@class=" as a symbol (property name). To a front-end designer (someone familiar with HTML/CSS/JavaScript and other client technologies but not familiar with C# and Razor), most of the line is foreign. The entire line must be authored with no help from IntelliSense.
 
@@ -183,9 +185,9 @@ IntelliSense helps you write the entire line. The `LabelTagHelper` also defaults
 generates:
 
 
-   ````html
+   ```html
    <label class="caption" for="FirstName">First Name</label>
-      ````
+      ```
 
 The  camel-cased to sentence-cased content is not used if you add content to the `<label>`. For example:
 
@@ -194,9 +196,9 @@ The  camel-cased to sentence-cased content is not used if you add content to the
 generates:
 
 
-   ````html
+   ```html
    <label class="caption" for="FirstName">Name First</label>
-      ````
+      ```
 
 The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the legacy ASP.NET 4.5.x MVC template included with Visual Studio 2015.
 
@@ -204,9 +206,9 @@ The following code image shows the Form portion of the *Views/Account/Register.c
 
 The Visual Studio editor displays C# code with a grey background. For example, the `AntiForgeryToken` HTML Helper:
 
-````html
+```html
 @Html.AntiForgeryToken()
-   ````
+   ```
 
 is displayed with a grey background. Most of the markup in the Register view is C#. Compare that to the equivalent approach using Tag Helpers:
 

@@ -1,6 +1,8 @@
 ---
 title: ASP.NET Core Module Configuration Reference | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/27/2016

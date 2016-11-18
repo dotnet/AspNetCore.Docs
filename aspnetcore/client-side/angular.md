@@ -1,6 +1,8 @@
 ﻿---
 title: Using Angular for Single Page Applications (SPAs) | Microsoft Docs
 author: rick-anderson
+description: Learn how to build a SPA-style ASP.NET application using AngularJS
+keywords: ASP.NET Core, Angular, SPA
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -219,15 +221,15 @@ A [module](https://docs.angularjs.org/guide/module) in AngularJS is a collection
 
 Below is a snippet of code that shows how to create a new module in AngularJS. The first parameter is the name of the module. The second parameter defines dependencies on other modules. Later in this article, we will be showing how to pass these dependencies to an `angular.module()` method call.
 
-````javascript
+```javascript
 var personApp = angular.module('personApp', []);
-   ````
+   ```
 
 Use the `ng-app` directive to represent an AngularJS module on the page. To use a module, assign the name of the module, `personApp` in this example, to the `ng-app` directive in our template.
 
-````html
+```html
 <body ng-app="personApp">
-   ````
+   ```
 
 ### Controllers
 
@@ -279,11 +281,11 @@ Below is an example that shows how to use factories in AngularJS:
 
 To call this factory from the controller, pass `personFactory` as a parameter to the `controller` function:
 
-````javascript
+```javascript
 personApp.controller('personController', function($scope,personFactory) {
   $scope.name = personFactory.getName();
 });
-````
+```
 
 ### Using services to talk to a REST endpoint
 

@@ -1,6 +1,8 @@
----
+﻿---
 title: Configuring Data Protection | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -20,14 +22,14 @@ When the data protection system is initialized it applies some [default settings
 
 There is an extension method AddDataProtection which returns an IDataProtectionBuilder which itself exposes extension methods that you can chain together to configure various data protection options. For instance, to store keys at a UNC share instead of %LOCALAPPDATA% (the default), configure the system as follows:
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
    {
        services.AddDataProtection()
            .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
 
    }
-   ````
+   ```
 
 >[!WARNING]
 > If you change the key persistence location, the system will no longer automatically encrypt keys at rest since it doesn't know whether DPAPI is an appropriate encryption mechanism.
@@ -36,26 +38,26 @@ public void ConfigureServices(IServiceCollection services)
 
 You can configure the system to protect keys at rest by calling any of the ProtectKeysWith* configuration APIs. Consider the example below, which stores keys at a UNC share and encrypts those keys at rest with a specific X.509 certificate.
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
      {
          services.AddDataProtection()
              .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
              .ProtectKeysWithCertificate("thumbprint");
      }
-   ````
+   ```
 
 See [key encryption at rest](../implementation/key-encryption-at-rest.md#data-protection-implementation-key-encryption-at-rest) for more examples and for discussion on the built-in key encryption mechanisms.
 
 To configure the system to use a default key lifetime of 14 days instead of 90 days, consider the following example:
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
    {
        services.AddDataProtection()
            .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
    }
-   ````
+   ```
 
 By default the data protection system isolates applications from one another, even if they're sharing the same physical key repository. This prevents the applications from understanding each other's protected payloads. To share protected payloads between two different applications, configure the system passing in the same application name for both applications as in the below example:
 
@@ -63,25 +65,25 @@ By default the data protection system isolates applications from one another, ev
 
 <!-- literal_block {"ids": ["data-protection-code-sample-application-name"], "linenos": false, "names": ["data-protection-code-sample-application-name"], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
    {
        services.AddDataProtection()
            .SetApplicationName("my application");
    }
-   ````
+   ```
 
 <a name=data-protection-configuring-disable-automatic-key-generation></a>
 
 Finally, you may have a scenario where you do not want an application to automatically roll keys as they approach expiration. One example of this might be applications set up in a primary / secondary relationship, where only the primary application is responsible for key management concerns, and all secondary applications simply have a read-only view of the key ring. The secondary applications can be configured to treat the key ring as read-only by configuring the system as below:
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
    {
      services.AddDataProtection()
          .DisableAutomaticKeyGeneration();
    }
-   ````
+   ```
 
 <a name=data-protection-configuration-per-app-isolation></a>
 
@@ -107,14 +109,14 @@ If the data protection system is not provided by an ASP.NET Core host (e.g., if 
 
 The data protection stack allows changing the default algorithm used by newly-generated keys. The simplest way to do this is to call UseCryptographicAlgorithms from the configuration callback, as in the below example.
 
-````csharp
+```csharp
 services.AddDataProtection()
        .UseCryptographicAlgorithms(new AuthenticatedEncryptionSettings()
        {
            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
        });
-   ````
+   ```
 
 The default EncryptionAlgorithm and ValidationAlgorithm are AES-256-CBC and HMACSHA256, respectively. The default policy can be set by a system administrator via [Machine Wide Policy](machine-wide-policy.md), but an explicit call to UseCryptographicAlgorithms will override the default policy.
 
@@ -131,7 +133,7 @@ The developer can manually specify an implementation if desired via a call to Us
 
 To specify custom managed algorithms, create a ManagedAuthenticatedEncryptionSettings instance that points to the implementation types.
 
-````csharp
+```csharp
 serviceCollection.AddDataProtection()
        .UseCustomCryptographicAlgorithms(new ManagedAuthenticatedEncryptionSettings()
        {
@@ -144,7 +146,7 @@ serviceCollection.AddDataProtection()
            // a type that subclasses KeyedHashAlgorithm
            ValidationAlgorithmType = typeof(HMACSHA256)
        });
-   ````
+   ```
 
 Generally the *Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of SymmetricAlgorithm and KeyedHashAlgorithm, though the system special-cases some values like typeof(Aes) for convenience.
 
@@ -157,7 +159,7 @@ Generally the *Type properties must point to concrete, instantiable (via a publi
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption + HMAC validation, create a CngCbcAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
-````csharp
+```csharp
 services.AddDataProtection()
        .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptionSettings()
        {
@@ -172,14 +174,14 @@ services.AddDataProtection()
            HashAlgorithm = "SHA256",
            HashAlgorithmProvider = null
        });
-   ````
+   ```
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of ≥ 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT_ALG_HANDLE_HMAC_FLAG flag. The *Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption + validation, create a CngGcmAuthenticatedEncryptionSettings instance that contains the algorithmic information.
 
-````csharp
+```csharp
 services.AddDataProtection()
        .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptionSettings()
        {
@@ -191,7 +193,7 @@ services.AddDataProtection()
            EncryptionAlgorithmKeySize = 256
        });
    });
-   ````
+   ```
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of ≥ 128 bits and a block size of exactly 128 bits, and it must support GCM encryption. The EncryptionAlgorithmProvider property can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](https://msdn.microsoft.com/en-us/library/windows/desktop/aa375479(v=vs.85).aspx) documentation for more information.

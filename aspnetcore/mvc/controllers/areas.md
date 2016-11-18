@@ -1,6 +1,8 @@
 ---
 title: Areas | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -74,17 +76,17 @@ Let's take a look at an example to illustrate how Areas are created and used. Le
 
 When MVC tries to render a view in an Area, by default, it tries to look in the following locations:
 
-````text
+```text
 /Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
    /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
    /Views/Shared/<Action-Name>.cshtml
-   ````
+   ```
 
 These are the default locations which can be changed via the `AreaViewLocationFormats` on the `Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions`.
 
 For example, in the below code instead of having the folder name as 'Areas', it has been changed to 'Categories'.
 
-````csharp
+```csharp
 services.Configure<RazorViewEngineOptions>(options =>
    {
        options.AreaViewLocationFormats.Clear();
@@ -92,7 +94,7 @@ services.Configure<RazorViewEngineOptions>(options =>
        options.AreaViewLocationFormats.Add("/Categories/{2}/Views/Shared/{0}.cshtml");
        options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
    });
-   ````
+   ```
 
 One thing to note is that the structure of the *Views* folder is the only one which is considered important here and the content of the rest of the folders like *Controllers* and *Models* does **not** matter. For example, you need not have a *Controllers* and *Models* folder at all. This works because the content of *Controllers* and *Models* is just code which gets compiled into a .dll where as the content of the *Views* is not until a request to that view has been made.
 
@@ -100,7 +102,7 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4]}} -->
 
-````csharp
+```csharp
 ...
    namespace MyStore.Areas.Products.Controllers
    {
@@ -120,13 +122,13 @@ Once you've defined the folder hierarchy, you need to tell MVC that each control
            }
        }
    }
-   ````
+   ```
 
 Set up a route definition that works with your newly created areas. The [🔧 Routing to Controller Actions](routing.md) article goes into detail about how to create route definitions, including using conventional routes versus attribute routes. In this example, we'll use a conventional route. To do so, open the *Startup.cs* file and modify it by adding the highlighted route definition below.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4, 5, 6]}} -->
 
-````csharp
+```csharp
 ...
    app.UseMvc(routes =>
    {
@@ -137,7 +139,7 @@ Set up a route definition that works with your newly created areas. The [🔧 Ro
          name: "default",
          template: "{controller=Home}/{action=Index}");
    });
-   ````
+   ```
 
 Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeController` in the `Products` area will be invoked.
 
@@ -185,11 +187,11 @@ Browsing to *http://<yourApp>/products*, the `Index` action method of the `HomeC
 
 To publish all views of the areas folder, in the `project.json` file include an entry in the `publishOptions`'s `include` node like below:
 
-````text
+```text
 "publishOptions": {
      "include": [
        "Areas/**/*.cshtml",
        ....
        ....
      ]
-   ````
+   ```

@@ -1,11 +1,14 @@
 ---
-title: Kestrel server
+title: Kestrel server | Microsoft Docs
 author: tdykstra
+description: Introduces Kestrel, the cross-platform web server for ASP.NET Core based on libuv.
+keywords: ASP.NET Core, Kestrel, libuv, url prefixes
 ms.author: tdykstra
 manager: wpickett
 ms.date: 10/27/2016
 ms.topic: article
 ms.assetid: 560bd66f-7dd0-4e68-b5fb-f31477e4b785
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/servers/kestrel
 ---
@@ -82,7 +85,7 @@ URL prefixes for Kestrel can be in any of the following formats.
   http://*:80/
   https://contoso.com:443/
   https://*:443/
-  ````
+  ```
 
   Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 

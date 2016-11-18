@@ -1,6 +1,8 @@
 ﻿---
 title: Using Gulp | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -34,7 +36,7 @@ Gulp is a JavaScript-based streaming build toolkit for client-side code. It is c
 
 A set of Gulp tasks is defined in *gulpfile.js*. The following JavaScript, includes Gulp modules and specifies file paths to be referenced within the forthcoming tasks:
 
-````javascript
+```javascript
 /// <binding Clean='clean' />
 "use strict";
 
@@ -54,7 +56,7 @@ paths.css = paths.webroot + "css/**/*.css";
 paths.minCss = paths.webroot + "css/**/*.min.css";
 paths.concatJsDest = paths.webroot + "js/site.min.js";
 paths.concatCssDest = paths.webroot + "css/site.min.css";
-````
+```
 
 The above code specifies which Node modules are required. The `require` function imports each module so that the dependent tasks can utilize their features. Each of the imported modules is assigned to a variable. The modules can be located either by name or path. In this example, the modules named `gulp`, `rimraf`, `gulp-concat`, `gulp-cssmin`, and `gulp-uglify` are retrieved by name. Additionally, a series of paths are created so that the locations of CSS and JavaScript files can be reused and referenced within the tasks. The following table provides descriptions of the modules included in *gulpfile.js*.
 
@@ -70,7 +72,7 @@ Once the requisite modules are imported, the tasks can be specified. Here there 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [1, 5, 9, 11, 18, 25]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
 
-````javascript
+```javascript
 gulp.task("clean:js", function (cb) {
   rimraf(paths.concatJsDest, cb);
 });
@@ -96,7 +98,7 @@ gulp.task("min:css", function () {
 });
 
 gulp.task("min", ["min:js", "min:css"]);
-````
+```
 
 The following table provides an explanation of the tasks specified in the code above:
 
@@ -117,7 +119,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
 
     <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
     
-    ````javascript
+    ```javascript
     /// <binding Clean='clean' />
     "use strict";
     
@@ -163,13 +165,13 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
     });
     
     gulp.task("min", ["min:js", "min:css"]);
-    ````
+    ```
 
 2.  Open the *project.json* file (add if not there) and add the following.
 
     <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
     
-    ````javascript
+    ```javascript
     {
       "devDependencies": {
         "gulp": "3.8.11",
@@ -179,7 +181,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
         "rimraf": "2.2.8"
       }
     }
-    ````
+    ```
 
 3.  In **Solution Explorer**, right-click *gulpfile.js*, and select **Task Runner Explorer**.
     
@@ -214,11 +216,11 @@ To define a new Gulp task, modify *gulpfile.js*.
 
     <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
     
-    ````javascript
+    ```javascript
     gulp.task("first", function () {
       console.log('first task! <-----');
     });
-    ````
+    ```
 
     This task is named `first`, and it simply displays a string.
 
@@ -240,7 +242,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
 
     <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
     
-    ````javascript
+    ```javascript
     gulp.task("series:first", function () {
       console.log('first task! <-----');
     });
@@ -250,7 +252,7 @@ When you run multiple tasks, the tasks run concurrently by default. However, if 
     });
  
     gulp.task("series", ["series:first", "series:second"], function () {});
-    ````
+    ```
  
     You now have three tasks: `series:first`, `series:second`, and `series`. The `series:second` task includes a second parameter which specifies an array of tasks to be run and completed before the `series:second` task will run.  As specified in the code above, only the `series:first` task must be completed before the `series:second` task will run.
 
@@ -276,7 +278,7 @@ When Gulp is used to optimize client-side files for staging and production, the 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <environment names="Development">
   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="~/css/site.css" />
@@ -287,7 +289,7 @@ When Gulp is used to optimize client-side files for staging and production, the 
       asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
   <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </environment>
-````
+```
 
 ## Switching Between Environments
 

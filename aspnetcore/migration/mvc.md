@@ -1,6 +1,8 @@
 ---
 title: Migrating From ASP.NET MVC to ASP.NET Core MVC | Microsoft Docs
 author: ardalis
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -87,9 +89,9 @@ Replace the contents of the *Views/Home/Index.cshtml* file with the following:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <h1>Hello world!</h1>
-````
+```
 
 Run the app.
 
@@ -182,18 +184,18 @@ The replacement CSS link:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-````
+```
 
 The replacement script tags:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "html"} -->
 
-````html
+```html
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-````
+```
 
 The updated _Layout.cshtml file is shown below:
 
@@ -232,7 +234,7 @@ There are many problems that can cause a HTTP 500 error message that contain no 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {"hl_lines": [3, 4, 5, 6]}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
     if (env.IsDevelopment())
@@ -249,7 +251,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
             template: "{controller=Home}/{action=Index}/{id?}");
     });
 }
-````
+```
 
 See **Using the Developer Exception Page** in [Error Handling](../fundamentals/error-handling.md) for more information.
 

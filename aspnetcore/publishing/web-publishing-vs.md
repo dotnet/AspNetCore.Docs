@@ -1,6 +1,8 @@
----
+﻿---
 title: How Web Publishing In Visual Studio Works | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -44,7 +46,7 @@ After `dotnet publish` has completed, the PowerShell script for the publish prof
 
 When you create a publish profile in Visual Studio for an ASP.NET Core project a PowerShell script is created that has the following structure.
 
-````powershell
+```powershell
 [cmdletbinding(SupportsShouldProcess=$true)]
    param($publishProperties=@{}, $packOutput,$pubProfilePath, $nugetUrl)
 
@@ -66,7 +68,7 @@ When you create a publish profile in Visual Studio for an ASP.NET Core project a
    catch{
        "An error occurred during publish.n{0}" -f $_.Exception.Message | Write-Error
    }
-   ````
+   ```
 
 In the above snippet some functions have been removed for readability. Those functions are used to bootstrap the script in the case that it’s executed from a machine which doesn’t have Visual Studio installed. The script contains the following important elements:
 
@@ -80,9 +82,9 @@ The publish module version, denoted by `$publishModuleVersion`, defines the vers
 
 The call to Publish-AspNet moves the files from your local machine to the final destination. Publish-AspNet will be passed all the properties defined in the .pubxml file, even custom properties. For Web Deploy publish, msdeploy.exe will be called to publish the files to the destination. Publish-AspNet is passed the same parameters as the original script. You can get more info on the parameters for Publish-AspNet use Get-Help Publish-AspNet. If you get an error that the publish-module is not loaded, you can load it with
 
-````none
+```none
 Import-Module “${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Web Tools\Publish\Scripts\1.0.1\publish-module.psm1"
-   ````
+   ```
 
 from a machine which has Visual Studio installed. Now let’s move on to discuss how to customize the publish process.
 
@@ -102,11 +104,11 @@ The image above shows the three main extension points, you’re most likely to u
     
     The supported scripts for publish are prepublish and postpublish. The ASP.NET Core Web Application template uses the prepublish step by default. The relevant snippet from *project.json* is shown below.
     
-    ````javascript
+    ```javascript
     "scripts": {
       "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ]
     }
-    ````
+    ```
     
     Here multiple comma separated calls are declared.
     
@@ -130,7 +132,7 @@ As mentioned previously the most important line in the default publish script is
 
 To customize this process, you can edit the PowerShell script directly. To perform an action before publish starts, add the action before the call to `Publish-AspNet`. To have an action performed after publish, add the appropriate calls after Publish-AspNet. When Publish-AspNet is called the contents of the $packOutput directory are published to the destination. For example, if you need add a file to the publish process, just copy it to the correct location in `$packOutput` before `Publish-AspNet` is called. The snippet below shows how to do that.
 
-````powershell
+```powershell
 # copy files from image repo to the wwwroot\external-images folder
    $externalImagesSourcePath = 'C:\resources\external-images'
    $externalImagesDestPath = (Join-Path "$packOutput\wwwroot" 'external-images')
@@ -143,7 +145,7 @@ To customize this process, you can edit the PowerShell script directly. To perfo
    'Calling Publish-AspNet' | Write-Verbose
    # call Publish-AspNet to perform the publish operation
    Publish-AspNet -publishProperties $publishProperties -packOutput $packOutput -pubProfilePath $pubProfilePath
-   ````
+   ```
 
 In this snippet external images are copied from `c:\resources\external-images to $packOutput\wwwroot\external-images`. Before starting the copy operation the script ensures that the destination folder exists. Since the copy operation takes place before the call to `Publish-AspNet` the new files will be included in the published content. To perform actions after the files have reached the destination then you can place those commands after the call to `Publish-AspNet`.
 

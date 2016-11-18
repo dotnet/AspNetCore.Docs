@@ -1,6 +1,8 @@
 ---
 title: Introduction to ASP.NET Core | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -66,7 +68,7 @@ The `UseStartup` method on `WebHostBuilder` specifies the `Startup` class for yo
 
 The `Startup` class is where you define the request handling pipeline and where any services needed by the app are configured. The `Startup` class must be public and contain the following methods:
 
-````csharp
+```csharp
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -77,7 +79,7 @@ public class Startup
     {
     }
 }
-````
+```
 
 * `ConfigureServices` defines the services (see [Services](#services) below) used by your app (such as the ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.)
 

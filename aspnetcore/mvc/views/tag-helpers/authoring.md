@@ -1,6 +1,8 @@
 ---
 title: Authoring Tag Helpers | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -30,15 +32,15 @@ A tag helper is any class that implements the `ITagHelper` interface. However, w
 
 In this section we will write a tag helper that updates an email tag. For example:
 
-````html
+```html
 <email>Support</email>
-   ````
+   ```
 
 The server will use our email tag helper to convert that markup into the following:
 
-````html
+```html
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
-   ````
+   ```
 
 That is, an anchor tag that makes this an email link. You might want to do this if you are writing a blog engine and need it to send email for marketing, support, and other contacts, all to the same domain.
 
@@ -60,9 +62,9 @@ That is, an anchor tag that makes this an email link. You might want to do this 
     
     * Our class name has a suffix of **TagHelper**, which is *not* required, but it's considered a best practice convention. You could declare the class as:
     
-    ````csharp
+    ```csharp
     public class Email : TagHelper
-    ````
+    ```
 
 2.  To make the `EmailTagHelper` class available to all our Razor views, we will add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:
     [!code-html[Main](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
@@ -164,15 +166,15 @@ Decorating a class with multiple `[HtmlTargetElement]` attributes results in a l
 
 When multiple attributes are added to the same statement, the runtime treats them as a logical-AND. For example, in the code below, an HTML element must be named "bold" with an attribute named "bold" ( <bold bold /> ) to match.
 
-````csharp
+```csharp
 [HtmlTargetElement("bold", Attributes = "bold")]
-   ````
+   ```
 
 You can also use the `[HtmlTargetElement]` to change the name of the targeted element. For example if you wanted the `BoldTagHelper` to target `<MyBold>` tags, you would use the following attribute:
 
-````csharp
+```csharp
 [HtmlTargetElement("MyBold")]
-   ````
+   ```
 
 ## Web site information Tag Helper
 
@@ -192,23 +194,23 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
     
     * We are not explicitly identifying the target element with the `[HtmlTargetElement]` attribute, so the default of `website-information` will be targeted. If you applied the following attribute (note it's not kebab case but matches the class name):
     
-    ````csharp
+    ```csharp
     [HtmlTargetElement("WebsiteInformation")]
-    ````
+    ```
     
     The lower kebab case tag `<website-information />` would not match. If you want use the `[HtmlTargetElement]` attribute, you would use kebab case as shown below:
     
-    ````csharp
+    ```csharp
     [HtmlTargetElement("Website-Information")]
-    ````
+    ```
     
     * Elements that are self-closing have no content. For this example, the Razor markup will use a self-closing tag, but the tag helper will be creating a [section](http://www.w3.org/TR/html5/sections.html#the-section-element) element (which is not self-closing and we are writing content inside the `section` element). Therefore, we need to set `TagMode` to `StartTagAndEndTag` to write output. Alternatively, you can comment out the line setting `TagMode` and write markup with a closing tag. (Example markup is provided later in this tutorial.)
     
     * The `$` (dollar sign) in the following line uses an [interpolated string](https://msdn.microsoft.com/en-us/library/Dn961160.aspx):
     
-    ````html
+    ```html
     $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
-    ````
+    ```
 
 4.  Add the following markup to the *About.cshtml* view. The highlighted markup displays the web site information.
     
@@ -241,7 +243,7 @@ The condition tag helper renders output when passed a true value.
 
     <!-- literal_block {"xml:space": "preserve", "source": "mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
     
-    ````
+    ```
     @using AuthoringTagHelpers.Models
     @model WebsiteContext
     
@@ -259,7 +261,7 @@ The condition tag helper renders output when passed a true value.
             </p>
         </div>
     </div>
-    ````
+    ```
     
 3.  Replace the `Index` method in the `Home` controller with the following code:
 
