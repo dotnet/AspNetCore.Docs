@@ -112,4 +112,4 @@ You are now logged in using your Facebook credentials:
 
 * Once you publish your web site to Azure web app, you should reset the `AppSecret` in the Facebook developer portal.
 
-* Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application setting in the Azure web app portal. The configuration system is setup to read keys from environment variables.
+* Set the `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret` as application settings in the Azure portal. The configuration system is setup to read keys from environment variables.
