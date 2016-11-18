@@ -74,10 +74,10 @@ Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your appl
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Microsoft:ClientId <client-id>
   dotnet user-secrets set Authentication:Microsoft:ClientSecret <client-secret>
-     ````
+     ```
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
@@ -92,13 +92,13 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Microsoft Account middleware in the `Configure` method in `Startup.cs`:
 
-````csharp
+```csharp
 app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 {
     ClientId = Configuration["Authentication:Microsoft:ClientId"],
     ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"]
 });
-````
+```
 
 ## Sign in with Microsoft Account
 

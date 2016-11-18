@@ -54,10 +54,10 @@ Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your 
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Twitter:ConsumerKey <consumer-key>
   dotnet user-secrets set Authentication:Twitter:ConsumerSecret <consumer-secret>
-     ````
+     ```
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
@@ -72,13 +72,13 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Twitter middleware in the `Configure` method in `Startup.cs`:
 
-````csharp
+```csharp
 app.UseTwitterAuthentication(new TwitterOptions()
 {
     ConsumerKey = Configuration["Authentication:Twitter:ConsumerId"],
     ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"]
 });
-````
+```
 
 ## Sign in with Twitter
 

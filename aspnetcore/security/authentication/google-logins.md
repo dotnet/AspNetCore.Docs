@@ -89,10 +89,10 @@ Link sensitive settings like Google `ClientID` and `ClientSecret` to your applic
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Google:ClientID <client_id>
   dotnet user-secrets set Authentication:Google:ClientSecret <client-secret>
-     ````
+     ```
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
@@ -107,13 +107,13 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Google middleware in the `Configure` method in `Startup.cs`:
 
-````csharp
+```csharp
 app.UseGoogleAuthentication(new GoogleOptions()
 {
     ClientId = Configuration["Authentication:Google:ClientId"],
     ClientSecret = Configuration["Authentication:Google:ClientSecret"]
 });
-````
+```
 
 ## Sign in with Google
 

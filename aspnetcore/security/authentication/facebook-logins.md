@@ -60,17 +60,17 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
-     ````
+     ```
 
 * Set the Facebook AppSecret
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-     ````
+     ```
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
 
@@ -85,13 +85,13 @@ The following code reads the configuration values stored by the [Secret Manager]
 
 Add the Facebook middleware in the `Configure` method in `Startup.cs`:
 
-````csharp
+```csharp
 app.UseFacebookAuthentication(new FacebookOptions()
 {
     AppId = Configuration["Authentication:Facebook:AppId"],
     AppSecret = Configuration["Authentication:Facebook:AppSecret"]
 });
-````
+```
 
 ## Sign in with Facebook
 

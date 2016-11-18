@@ -58,13 +58,13 @@ Some external authentication providers reject requests coming from origins that 
 
 * Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
     options.SslPort = 44321;
     options.Filters.Add(new RequireHttpsAttribute ());
 });
-````
+```
 
 * Test the app to ensure that static files are still being served and publicly exposed routes are accessible.
    * There shouldn't be any warnings logged to the browser console in Developer Tools.
