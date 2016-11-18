@@ -81,7 +81,7 @@ The **SecretManager** tool stores sensitive application settings in the user pro
 > [NOTE!]
 > Most login providers assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application uses to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
-Install the Secret Manager tool using the steps in [this section](../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
+Install the [Secret Manager tool](../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
 
 ## Setup login providers required by your application
 
