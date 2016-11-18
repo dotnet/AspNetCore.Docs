@@ -1,6 +1,8 @@
 ---
 title: Enabling authentication using Facebook, Google and other external  | Microsoft Docs
 author: rick-anderson
+description: 
+keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
 ms.date: 11/1/2016
