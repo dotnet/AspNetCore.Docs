@@ -44,7 +44,7 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 Some external authentication providers reject requests coming from origins that don't use the **https** protocol. This reflects the trend of major providers like [Google](https://security.googleblog.com/2014/08/https-as-ranking-signal_6.html) moving their public API services to https and discontinuing the use of unencrypted endpoints. We encourage you to follow this trend and enable SSL for your entire site.
 
-* In solution explorer, right click the project and select **Properties**.
+* In **Solution Explorer**, right-click the project and select **Properties**.
 
 * On the left pane, tap **Debug**.
 
