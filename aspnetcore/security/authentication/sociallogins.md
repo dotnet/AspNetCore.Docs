@@ -32,7 +32,7 @@ Enabling users to sign in with their existing credentials is convenient for the 
 > [!NOTE]
 > This tutorial requires the latest update (**Update 3**) for Visual Studio 2015 and ASP.NET Core.
 
-* In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**):
+* In Visual Studio, create a new project (from the Start Page, or via **File > New > Project**):
 
 ![image](sociallogins/_static/new-project.png)
 
