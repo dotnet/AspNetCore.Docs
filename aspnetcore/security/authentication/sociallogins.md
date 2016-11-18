@@ -22,7 +22,7 @@ This tutorial demonstrates how to build an ASP.NET Core app that enables users t
 
 ![image](sociallogins/_static/social.png)
 
-Enabling users to login with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://dev.twitter.com/resources/case-studies).
+Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
 > [!NOTE]
 > Packages presented here abstract a great deal of complexity of the OAuth authentication flow, but understanding the details may become necessary when troubleshooting. Many resources are available; for example, see [Introduction to OAuth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2) or [Understanding OAuth 2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/). Some issues can be resolved by looking at [ASP.NET Core implementation](https://github.com/aspnet/Security/tree/dev/src).
@@ -97,7 +97,7 @@ Use the following pages to configure your application to use the respective prov
 
 When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
 
-To create a password and login using your email that you set during the login process with external providers:
+To create a password and sign in using your email that you set during the sign in process with external providers:
 
 * Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
 
@@ -107,7 +107,7 @@ To create a password and login using your email that you set during the login pr
 
 ![image](sociallogins/_static/pass2.PNG)
 
-* Set a valid password and you can use this to login with your email.
+* Set a valid password and you can use this to sign in with your email.
 
 ## Next steps
 

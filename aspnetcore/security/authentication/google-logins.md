@@ -14,7 +14,7 @@ uid: security/authentication/google-logins
 
 <a name=security-authentication-google-logins></a>
 
-This tutorial shows you how to enable your users to login with their Google+ account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
+This tutorial shows you how to enable your users to sign in with their Google+ account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by following the [official steps](https://developers.google.com/identity/sign-in/web/devconsole-project) to create a new app in Google API Console.
 
 ## Creating the app in Google API Console
 
@@ -34,7 +34,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleChooseApi.png)
 
-* The page for the newly added API is displayed. Tap **Enable** to add Google+ login feature to your app:
+* The page for the newly added API is displayed. Tap **Enable** to add Google+ sign in feature to your app:
 
 ![image](sociallogins/_static/GoogleConsoleEnableApi.png)
 
@@ -53,7 +53,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleCreateClient.png)
 
-* Because we are creating a Google+ project with just one feature (logins), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
+* Because we are creating a Google+ project with just one feature (sign in), we can enter the same **Name** for the OAuth 2.0 client ID as the one we used for the project.
 
 * Enter your current site URL with *signin-google* appended into the **Authorized redirect URIs** field. For example, `https://localhost:44320/signin-google`.
 
@@ -66,7 +66,7 @@ This tutorial shows you how to enable your users to login with their Google+ acc
 
 ![image](sociallogins/_static/GoogleConsoleAddCred.png)
 
-* Enter your public facing *Email address* and the *Product name* shown for your app when Google+ prompts the user to login.
+* Enter your public facing *Email address* and the *Product name* shown for your app when Google+ prompts the user to sign in.
 
 * Tap **Continue** to proceed to the last step:
 
@@ -112,7 +112,7 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 ## Login with Google
 
-Run your application and click Login. An option to login with Google appears:
+Run your application and click **Log in**. An option to sign in with Google appears:
 
 ![image](sociallogins/_static/DoneGoogle.PNG)
 
@@ -127,7 +127,7 @@ You are now logged in using your Google credentials:
 ![image](sociallogins/_static/Done.PNG)
 
 > [!NOTE]
-> If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). If the login doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
+> If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
 
 ## Next steps
 

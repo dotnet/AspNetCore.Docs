@@ -77,7 +77,7 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 ## Login with Twitter
 
-Run your application and click Login. An option to login with Twitter appears:
+Run your application and click **Log in**. An option to sign in with Twitter appears:
 
 ![image](sociallogins/_static/DoneTwitter.PNG)
 
