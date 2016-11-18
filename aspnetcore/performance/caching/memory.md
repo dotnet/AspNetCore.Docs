@@ -77,37 +77,37 @@ The sample code (shown below) uses the `SetAbsoluteExpiration` method on `Memory
 
 In addition to setting an absolute expiration, a sliding expiration can be used to keep frequently requested items in the cache:
 
-````csharp
+```csharp
 // keep item in cache as long as it is requested at least
 // once every 5 minutes
 new MemoryCacheEntryOptions()
   .SetSlidingExpiration(TimeSpan.FromMinutes(5))
-````
+```
 
 To avoid having frequently-accessed cache entries growing too stale (because their sliding expiration is constantly reset), you can combine absolute and sliding expirations:
 
-````csharp
+```csharp
 // keep item in cache as long as it is requested at least
 // once every 5 minutes...
 // but in any case make sure to refresh it every hour
 new MemoryCacheEntryOptions()
   .SetSlidingExpiration(TimeSpan.FromMinutes(5))
   .SetAbsoluteExpiration(TimeSpan.FromHours(1))
-````
+```
 
 By default, an instance of `MemoryCache` will automatically manage the items stored, removing entries when necessary in response to memory pressure in the app. You can influence the way cache entries are managed by setting their `CacheItemPriority` when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the `NeverRemove` priority option:
 
-````csharp
+```csharp
 // keep item in cache indefinitely unless explicitly removed
 new MemoryCacheEntryOptions()
   .SetPriority(CacheItemPriority.NeverRemove))
-````
+```
 
 When you do want to explicitly remove an item from the cache, you can do so easily using the `Remove` method:
 
-````csharp
+```csharp
 cache.Remove(cacheKey);
-````
+```
 
 ## Cache Dependencies and Callbacks
 

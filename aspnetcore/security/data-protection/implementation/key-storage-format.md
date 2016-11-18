@@ -22,7 +22,7 @@ Objects are stored at rest in XML representation. The default directory for key 
 
 Keys exist as top-level objects in the key repository. By convention keys have the filename **key-{guid}.xml**, where {guid} is the id of the key. Each such file contains a single key. The format of the file is as follows.
 
-````xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <key id="80732141-ec8f-4b80-af9c-c4d2d1ff8901" version="1">
   <creationDate>2015-03-19T23:32:02.3949887Z</creationDate>
@@ -41,7 +41,7 @@ Keys exist as top-level objects in the key repository. By convention keys have t
     </descriptor>
   </descriptor>
 </key>
-````
+```
 
 The \<key> element contains the following attributes and child elements:
 
@@ -73,18 +73,18 @@ Revocations exist as top-level objects in the key repository. By convention revo
 
 For revocations of individual keys, the file contents will be as below.
 
-````xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <revocation version="1">
   <revocationDate>2015-03-20T22:45:30.2616742Z</revocationDate>
   <key id="eb4fc299-8808-409d-8a34-23fc83d026c9" />
   <reason>human-readable reason</reason>
 </revocation>
-````
+```
 
 In this case, only the specified key is revoked. If the key id is "*", however, as in the below example, all keys whose creation date is prior to the specified revocation date are revoked.
 
-````xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <revocation version="1">
   <revocationDate>2015-03-20T15:45:45.7366491-07:00</revocationDate>
@@ -92,6 +92,6 @@ In this case, only the specified key is revoked. If the key id is "*", however, 
   <key id="*" />
   <reason>human-readable reason</reason>
 </revocation>
-````
+```
 
 The \<reason> element is never read by the system. It is simply a convenient place to store a human-readable reason for revocation.

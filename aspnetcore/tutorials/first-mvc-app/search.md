@@ -22,10 +22,10 @@ Update the `Index` action method to enable search:
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
 
-````csharp
+```csharp
 var movies = from m in _context.Movie
              select m;
-````
+```
 
 The query is *only* defined at this point, it **has not** been run against the database.
 
@@ -33,12 +33,12 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3]}} -->
 
-````csharp
+```csharp
 if (!String.IsNullOrEmpty(searchString))
    {
        movies = movies.Where(s => s.Title.Contains(searchString));
    }
-````
+```
 
 The `s => s.Title.Contains()` code above is a [Lambda Expression](http://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method or `Contains` used in the code above. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/en-us/library/bb738633.aspx).
 
@@ -125,9 +125,9 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 The following markup shows the change to the `form` tag:
 
-````html
+```html
 <form asp-controller="Movies" asp-action="Index" method="get">
-   ````
+   ```
 
 ## Adding Search by Genre
 
@@ -149,17 +149,17 @@ Replace the `Index` method with the following code:
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
-````csharp
+```csharp
 IQueryable<string> genreQuery = from m in _context.Movie
                                    orderby m.Genre
                                    select m.Genre;
-   ````
+   ```
 
 The `SelectList` of genres is created by projecting the distinct genres (we don't want our select list to have duplicate genres).
 
-````csharp
+```csharp
 movieGenreVM.genres = new SelectList(await genreQuery.Distinct().ToListAsync())
-   ````
+   ```
 
 ## Adding search by genre to the Index view
 

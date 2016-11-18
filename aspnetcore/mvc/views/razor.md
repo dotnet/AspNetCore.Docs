@@ -24,9 +24,9 @@ Razor is a markup syntax for embedding server based code into web pages. The Raz
 
 The default Razor language is HTML. Rendering HTML from Razor is no different than in an HTML file. A Razor file with the following markup:
 
-````html
+```html
 <p>Hello World</p>
-   ````
+   ```
 
 Is rendered unchanged as `<p>Hello World</p>` by the server.
 
@@ -38,15 +38,15 @@ Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor e
 
 HTML containing `@` symbols may need to be escaped with a second `@` symbol. For example:
 
-````html
+```html
 <p>@@Username</p>
-   ````
+   ```
 
 would render the following HTML:
 
-````html
+```html
 <p>@Username</p>
-   ````
+   ```
 
 <a name=razor-email-ref></a>
 
@@ -58,16 +58,16 @@ HTML attributes and content containing email addresses don’t treat the `@` sym
 
 Implicit Razor expressions start with `@` followed by C# code. For example:
 
-````html
+```html
 <p>@DateTime.Now</p>
 <p>@DateTime.IsLeapYear(2016)</p>
-````
+```
 
 With the exception of the C# `await` keyword implicit expressions must not contain spaces. For example, you can intermingle spaces as long as the C# statement has a clear ending:
 
-````html
+```html
 <p>@await DoSomething("hello", "world")</p>
-````
+```
 
 <a name=explicit-razor-expressions></a>
 
@@ -75,9 +75,9 @@ With the exception of the C# `await` keyword implicit expressions must not conta
 
 Explicit Razor expressions consists of an @ symbol with balanced parenthesis. For example, to render last weeks’ time:
 
-````html
+```html
 <p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
-````
+```
 
 Any content within the @() parenthesis is evaluated and rendered to the output.
 
@@ -87,21 +87,21 @@ Implicit expressions generally cannot contain spaces. For example, in the code b
 
 Which renders the following HTML:
 
-````html
+```html
 <p>Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)</p>
-   ````
+   ```
 
 You can use an explicit expression to concatenate text with an expression result:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [5]}} -->
 
-````none
+```none
 @{
     var joe = new Person("Joe", 33);
  }
 
 <p>Age@(joe.Age)</p>
-````
+```
 
 Without the explicit expression, `<p>Age@joe.Age</p>` would be treated as an email address and `<p>Age@joe.Age</p>` would be rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
@@ -111,15 +111,15 @@ Without the explicit expression, `<p>Age@joe.Age</p>` would be treated as an ema
 
 C# expressions that evaluate to a string are HTML encoded. C# expressions that evaluate to `IHtmlContent` are rendered directly through *IHtmlContent.WriteTo*. C# expressions that don't evaluate to *IHtmlContent* are converted to a string (by *ToString*) and encoded before they are rendered. For example, the following Razor markup:
 
-````html
+```html
 @("<span>Hello World</span>")
-   ````
+   ```
 
 Renders this HTML:
 
-````html
+```html
 &lt;span&gt;Hello World&lt;/span&gt;
-   ````
+   ```
 
 Which the browser renders as:
 
@@ -132,15 +132,15 @@ Which the browser renders as:
 
 The following Razor markup:
 
-````html
+```html
 @Html.Raw("<span>Hello World</span>")
-   ````
+   ```
 
 Renders this HTML:
 
-````html
+```html
 <span>Hello World</span>
-   ````
+   ```
 
 <a name=razor-code-blocks-label></a>
 
@@ -148,19 +148,19 @@ Renders this HTML:
 
 Razor code blocks start with `@` and are enclosed by `{}`. Unlike expressions, C# code inside code blocks is not rendered. Code blocks and expressions in a Razor page share the same scope and are defined in order (that is, declarations in a code block will be in scope for later code blocks and expressions).
 
-````none
+```none
 @{
     var output = "Hello World";
 }
 
 <p>The rendered result: @output</p>
-````
+```
 
 Would render:
 
-````html
+```html
 <p>The rendered result: Hello World</p>
-   ````
+   ```
 
 <a name=implicit-transitions-label></a>
 
@@ -168,12 +168,12 @@ Would render:
 
 The default language in a code block is C#, but you can transition back to HTML. HTML within a code block will transition back into rendering HTML:
 
-````none
+```none
 @{
     var inCSharp = true;
     <p>Now in HTML, was in C# @inCSharp</p>
 }
-````
+```
 
 <a name=explicit-delimited-transition-label></a>
 
@@ -183,13 +183,13 @@ To define a sub-section of a code block that should render HTML, surround the ch
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [4]}} -->
 
-````none
+```none
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
     <text>Name: @person.Name</text>
 }
-````
+```
 
 You generally use this approach when you want to render HTML that is not surrounded by an HTML tag. Without an HTML or Razor tag, you get a Razor runtime error.
 
@@ -201,13 +201,13 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [4]}} -->
 
-````none
+```none
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
     @:Name: @person.Name
 }
-````
+```
 
 Without the `@:` in the code above, you'd get a Razor run time error.
 
@@ -221,16 +221,16 @@ Control structures are an extension of code blocks. All aspects of code blocks (
 
 The `@if` family controls when code runs:
 
-````none
+```none
 @if (value % 2 == 0)
 {
     <p>The value was even</p>
 }
-````
+```
 
 `else` and `else if` don't require the `@` symbol:
 
-````none
+```none
 @if (value % 2 == 0)
 {
     <p>The value was even</p>
@@ -243,11 +243,11 @@ else
 {
     <p>The value was not large and is odd.</p>
 }
-````
+```
 
 You can use a switch statement like this:
 
-````none
+```none
 @switch (value)
 {
     case 1:
@@ -260,13 +260,13 @@ You can use a switch statement like this:
         <p>Your number was not 1 or 1337.</p>
         break;
 }
-````
+```
 
 ### Looping `@for`, `@foreach`, `@while`, and `@do while`
 
 You can render templated HTML with looping control statements. For example, to render a list of people:
 
-````none
+```none
 @{
     var people = new Person[]
     {
@@ -274,34 +274,34 @@ You can render templated HTML with looping control statements. For example, to r
           new Person("Doe", 41),
     };
 }
-````
+```
 
 You can use any of the following looping statements:
 
 `@for`
 
-````none
+```none
 @for (var i = 0; i < people.Length; i++)
 {
     var person = people[i];
     <p>Name: @person.Name</p>
     <p>Age: @person.Age</p>
 }
-````
+```
 
 `@foreach`
 
-````none
+```none
 @foreach (var person in people)
 {
     <p>Name: @person.Name</p>
     <p>Age: @person.Age</p>
 }
-````
+```
 
 `@while`
 
-````none
+```none
 @{ var i = 0; }
 @while (i < people.Length)
 {
@@ -311,11 +311,11 @@ You can use any of the following looping statements:
 
     i++;
 }
-````
+```
 
 `@do while`
 
-````none
+```none
 @{ var i = 0; }
 @do
 {
@@ -325,13 +325,13 @@ You can use any of the following looping statements:
 
     i++;
 } while (i < people.Length);
-````
+```
 
 ### Compound `@using`
 
 In C# a using statement is used to ensure an object is disposed. In Razor this same mechanism can be used to create [HTML helpers](html-helpers.md) that contain additional content. For instance, we can utilize [🔧 HTML Helpers](html-helpers.md) to render a form tag with the `@using` statement:
 
-````none
+```none
 @using (Html.BeginForm())
 {
     <div>
@@ -340,7 +340,7 @@ In C# a using statement is used to ensure an object is disposed. In Razor this s
         <button type="submit"> Register </button>
     </div>
 }
-````
+```
 
 You can also perform scope level actions like the above with [Tag Helpers](tag-helpers/index.md).
 
@@ -354,34 +354,34 @@ Exception handling is similar to  C#:
 
 Razor has the capability to protect critical sections with lock statements:
 
-````none
+```none
 @lock (SomeLock)
 {
     // Do critical section work
 }
-````
+```
 
 ### Comments
 
 Razor supports C# and HTML comments. The following markup:
 
-````none
+```none
 @{
     /* C# comment. */
     // Another C# comment.
 }
 <!-- HTML comment -->
-````
+```
 
 Is rendered by the server as:
 
-````none
+```none
 <!-- HTML comment -->
-````
+```
 
 Razor comments are removed by the server before the page is rendered. Razor uses `@*  *@` to delimit comments. The following code is commented out, so the server will not render any markup:
 
-````none
+```none
  @*
  @{
      /* C# comment. */
@@ -389,7 +389,7 @@ Razor comments are removed by the server before the page is rendered. Razor uses
  }
  <!-- HTML comment -->
 *@
-````
+```
 
 <a name=razor-directives-label></a>
 
@@ -403,7 +403,7 @@ Understanding how Razor generates code for a view will make it easier to underst
 
 Generates a class similar to the following:
 
-````csharp
+```csharp
 public class _Views_Something_cshtml : RazorPage<dynamic>
 {
     public override async Task ExecuteAsync()
@@ -415,7 +415,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
         WriteLiteral("</div>");
     }
 }
-````
+```
 
 [Viewing the Razor C# class generated for a view](#razor-customcompilationservice-label) explains how to view this generated class.
 
@@ -429,33 +429,33 @@ The `@using` directive will add the c# `using` directive to the generated razor 
 
 The `@model` directive allows you to specify the type of the model passed to your Razor page. It uses the following syntax:
 
-````none
+```none
 @model TypeNameOfModel
-   ````
+   ```
 
 For example, if you create an ASP.NET Core MVC app with individual user accounts, the *Views/Account/Login.cshtml* Razor view contains the following model declaration:
 
-````csharp
+```csharp
 @model LoginViewModel
-   ````
+   ```
 
 In the class example in , the class generated inherits from `RazorPage<dynamic>`. By adding an `@model` you control what’s inherited. For example
 
-````csharp
+```csharp
 @model LoginViewModel
-   ````
+   ```
 
 Generates the following class
 
-````csharp
+```csharp
 public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
-   ````
+   ```
 
 Razor pages expose a `Model` property for accessing the model passed to the page.
 
-````html
+```html
 <div>The Login Email: @Model.Email</div>
-   ````
+   ```
 
 The `@model` directive specified the type of this property (by specifying the `T` in `RazorPage<T>` that the generated class for your page derives from). If you don't specify the `@model` directive the `Model` property will be of type `dynamic`. The value of the model is passed from the controller to the view. See [Strongly typed models and the @model keyword](../../tutorials/first-mvc-app/adding-model.md#strongly-typed-models-keyword-label) for more information.
 
@@ -463,9 +463,9 @@ The `@model` directive specified the type of this property (by specifying the `T
 
 The `@inherits` directive gives you full control of the class your Razor page inherits:
 
-````none
+```none
 @inherits TypeNameOfClassToInheritFrom
-   ````
+   ```
 
 For instance, let’s say we had the following custom Razor page type:
 
@@ -485,10 +485,10 @@ The following strongly typed Razor page
 
 Generates this HTML markup:
 
-````none
+```none
 <div>The Login Email: Rick@contoso.com</div>
 <div>Custom text: Hello World</div>
-````
+```
 
 When passed "[Rick@contoso.com](mailto:Rick@contoso.com)" in the model:
 
@@ -502,9 +502,9 @@ The `@inject` directive enables you to inject a service from your [service conta
 
 The `@functions` directive enables you to add function level content to your Razor page. The syntax is:
 
-````none
+```none
 @functions { // C# Code }
-   ````
+   ```
 
 For example:
 
@@ -512,9 +512,9 @@ For example:
 
 Generates the following HTML markup:
 
-````none
+```none
 <div>From method: Hello</div>
-   ````
+   ```
 
 The generated Razor C# looks like:
 

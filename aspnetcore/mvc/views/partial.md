@@ -63,7 +63,7 @@ Because it streams the result directly, `RenderPartial` and `RenderPartialAsync`
 
 When referencing a partial view, you can refer to its location in several ways:
 
-````text
+```text
 // Uses a view in current folder with this name
 // If none is found, searches the Shared folder
 @Html.Partial("ViewName")
@@ -78,7 +78,7 @@ When referencing a partial view, you can refer to its location in several ways:
 
 // Locate the view using relative paths
 @Html.Partial("../Account/LoginPartial.cshtml")
-````
+```
 
 If desired, you can have different partial views with the same name in different view folders. When referencing the views by name (without file extension), views in each folder will use the partial view in the same folder with them. You can also specify a default partial view to use, placing it in the *Shared* folder. This view will be used by any views that don't have their own copy of the partial view in their folder. In this way, you can have a default partial view (in *Shared*), which can be overridden by a partial view with the same name in the same folder as the parent view.
 
@@ -93,21 +93,21 @@ When a partial view is instantiated, it gets a copy of the parent view's `ViewDa
 
 You can pass an instance of `ViewDataDictionary` to the partial view:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", customViewData)
-   ````
+   ```
 
 You can also pass a model into a partial view. This can be the page's view model, or some portion of it, or a custom object. Simply pass in the model as the second parameter when calling `Partial`/`PartialAsync` or `RenderPartial`/`RenderPartialAsync`:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", viewModel)
-   ````
+   ```
 
 You can pass an instance of `ViewDataDictionary` and a view model to a partial view:
 
-````csharp
+```csharp
 @Html.Partial("PartialName", viewModel, customViewData)
-   ````
+   ```
 
 ### An Example
 

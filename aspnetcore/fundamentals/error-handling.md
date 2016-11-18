@@ -1,4 +1,4 @@
----
+﻿---
 title: Error Handling | Microsoft Docs
 author: ardalis
 description: 
@@ -44,19 +44,19 @@ If a request includes a non-empty querystring parameter for the variable `throw`
 
 When not in development, it's a good idea to configure an exception handler path using the `UseExceptionHandler` middleware:
 
-````csharp
+```csharp
 app.UseExceptionHandler("/Error");
-   ````
+   ```
 
 For the action associated with the endpoint, don't explicitly decorate the `IActionResult` with HTTP method attributes, such as `HttpGet`. Using explicit verbs could prevent some requests from reaching the method.
 
-````csharp
+```csharp
 [Route("/Error")]
 public IActionResult Index()
 {
     // Handle error here
 }
-````
+```
 
 ## Using the Developer Exception Page
 
@@ -78,9 +78,9 @@ In this case, you can see the value of the `throw` parameter that was passed to 
 
 By default, your app will not provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` adding this line to the `Configure` method:
 
-````csharp
+```csharp
 app.UseStatusCodePages();
-   ````
+   ```
 
 By default, this middleware adds very simple, text-only handlers for common status codes. For example, the following is the result of a 404 Not Found status code:
 
@@ -88,43 +88,43 @@ By default, this middleware adds very simple, text-only handlers for common stat
 
 The middleware supports several different extension methods. You can pass it a custom lambda expression:
 
-````csharp
+```csharp
 app.UseStatusCodePages(context =>
   context.HttpContext.Response.SendAsync("Handler, status code: " +
   context.HttpContext.Response.StatusCode, "text/plain"));
-````
+```
 
 Alternately, you can simply pass it a content type and a format string:
 
-````csharp
+```csharp
 app.UseStatusCodePages("text/plain", "Response, status code: {0}");
-   ````
+   ```
 
 The middleware can handle redirects (with either relative or absolute URL paths), passing the status code as part of the URL:
 
-````csharp
+```csharp
 app.UseStatusCodePagesWithRedirects("~/errors/{0}");
-   ````
+   ```
 
 In the above case, the client browser will see a `302 / Found` status and will redirect to the URL provided.
 
 Alternately, the middleware can re-execute the request from a new path format string:
 
-````csharp
+```csharp
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
-   ````
+   ```
 
 The `UseStatusCodePagesWithReExecute` method will still return the original status code to the browser, but will also execute the handler given at the path specified.
 
 If you need to disable status code pages for certain requests, you can do so using the following code:
 
-````csharp
+```csharp
 var statusCodePagesFeature = context.Features.Get<IStatusCodePagesFeature>();
 if (statusCodePagesFeature != null)
 {
   statusCodePagesFeature.Enabled = false;
 }
-````
+```
 
 ## Limitations of Exception Handling During Client-Server Interaction
 

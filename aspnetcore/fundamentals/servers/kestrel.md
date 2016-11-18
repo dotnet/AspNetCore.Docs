@@ -84,7 +84,7 @@ URL prefixes for Kestrel can be in any of the following formats.
   http://*:80/
   https://contoso.com:443/
   https://*:443/
-  ````
+  ```
 
   Host names, *, and +, are not special. Anything that is not a recognized IP address or "localhost" will bind to all IPv4 and IPv6 IPs. If you need to bind different host names to different ASP.NET Core applications on the same port, use [WebListener](weblistener.md) or a reverse proxy server such as IIS, Nginx, or Apache.
 

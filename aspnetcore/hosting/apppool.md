@@ -54,6 +54,6 @@ You can also do this via the command-line by using **ICACLS** tool.
 
 <!-- literal_block {"ids": [], "classes": ["code", "bat"], "xml:space": "preserve"} -->
 
-````
+```
    ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool" :F
-   ````
+   ```

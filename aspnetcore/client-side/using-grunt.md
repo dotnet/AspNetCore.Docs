@@ -1,4 +1,4 @@
----
+﻿---
 title: Using Grunt | Microsoft Docs
 author: rick-anderson
 description: 
@@ -54,13 +54,13 @@ To begin, set up a new empty web application and add TypeScript example files. T
 
 6.  Right-click the `TypeScript` directory and select **Add > New Item** from the context menu. Select the **JavaScript file** item and name the file **Tastes.ts** (note the *.ts extension). Copy the line of TypeScript code below into the file (when you save, a new Tastes.js file will appear with the JavaScript source).
     
-    ````javascript
+    ```javascript
     enum Tastes { Sweet, Sour, Salty, Bitter }
-       ````
+       ```
 
 7.  Add a second file to the **TypeScript** directory and name it `Food.ts`. Copy the code below into the file.
 
-    ````javascript
+    ```javascript
     class Food {
       constructor(name: string, calories: number) {
         this._name = name;
@@ -83,7 +83,7 @@ To begin, set up a new empty web application and add TypeScript example files. T
         this._taste = value;
       }
     }
-    ````
+    ```
 
 ## Configuring NPM
 
@@ -100,7 +100,7 @@ Next, configure NPM to download grunt and grunt-tasks.
 
 3. Add more dependencies to load grunt-contrib* packages for *clean, jshint, concat, uglify and watch* as shown in the example below. The versions do not need to match the example.
 
-    ````javascript
+    ```javascript
     "devDependencies": {
         "grunt": "0.4.5",
         "grunt-contrib-clean": "0.6.0",
@@ -109,7 +109,7 @@ Next, configure NPM to download grunt and grunt-tasks.
         "grunt-contrib-uglify": "0.8.0",
         "grunt-contrib-watch": "0.6.1"
     }
-    ````
+    ```
 
 4. Save the `package.json` file.
 
@@ -130,28 +130,28 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
 
     The initial code includes a module definition and the `grunt.initConfig()` method. The `initConfig()` is used to set options for each package, and the remainder of the module will load and register tasks.
     
-    ````javascript
+    ```javascript
     module.exports = function (grunt) {
       grunt.initConfig({
       });
     };
-    ````
+    ```
 
 2. Inside the `initConfig()` method, add options for the `clean` task as shown in the example Gruntfile.js below. The clean task accepts an array of directory strings. This task removes files from wwwroot/lib and removes the entire /temp directory.
 
-    ````javascript
+    ```javascript
     module.exports = function (grunt) {
       grunt.initConfig({
         clean: ["wwwroot/lib/*", "temp/"],
       });
     };
-    ````
+    ```
 
 3. Below the initConfig() method, add a call to `grunt.loadNpmTasks()`. This will make the task runnable from Visual Studio.
 
-    ````javascript
+    ```javascript
     grunt.loadNpmTasks("grunt-contrib-clean");
-       ````
+       ```
 
 4. Save Gruntfile.js. The file should look something like the screenshot below.
 
@@ -176,14 +176,14 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
 
     The `src` property array lists files to combine, in the order that they should be combined. The `dest` property assigns the path to the combined file that is produced.
 
-    ````javascript
+    ```javascript
     concat: {
       all: {
         src: ['TypeScript/Tastes.js', 'TypeScript/Food.js'],
         dest: 'temp/combined.js'
       }
     },
-    ````
+    ```
     
     > [!NOTE]
     > The `all` property in the code above is the name of a target. Targets are used in some Grunt tasks to allow multiple build environments. You can view the built-in targets using Intellisense or assign your own.
@@ -192,14 +192,14 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
 
     The jshint code-quality utility is run against every JavaScript file found in the temp directory.
     
-    ````javascript
+    ```javascript
     jshint: {
       files: ['temp/*.js'],
       options: {
         '-W069': false,
       }
     },
-    ````
+    ```
 
     > [!NOTE]
     > The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, i.e. `Tastes["Sweet"]` instead of `Tastes.Sweet`. The option turns off the warning to allow the rest of the process to continue.
@@ -208,22 +208,22 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
 
     The task minifies the combined.js file found in the temp directory and creates the result file in wwwroot/lib following the standard naming convention <file name>.min.js.
     
-    ````javascript
+    ```javascript
     uglify: {
       all: {
         src: ['temp/combined.js'],
         dest: 'wwwroot/lib/combined.min.js'
       }
     },
-    ````
+    ```
 
 11. Under the call grunt.loadNpmTasks() that loads grunt-contrib-clean, include the same call for jshint, concat and uglify using the code below.
     
-    ````javascript
+    ```javascript
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    ````
+    ```
 
 12. Save `Gruntfile.js`. The file should look something like the example below.
 
@@ -244,9 +244,9 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
 
 Use the Grunt `registerTask()` method to run a series of tasks in a particular sequence. For example, to run the example steps above in the order clean -> concat -> jshint -> uglify, add the code below to the module. The code should be added to the same level as the loadNpmTasks() calls, outside initConfig.
 
-````javascript
+```javascript
 grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify']);
-   ````
+   ```
 
 The new task shows up in Task Runner Explorer under Alias Tasks. You can right-click and run it just as you would other tasks. The `all` task will run `clean`, `concat`, `jshint` and `uglify`, in order.
 
@@ -256,18 +256,18 @@ The new task shows up in Task Runner Explorer under Alias Tasks. You can right-c
 
 A `watch` task keeps an eye on files and directories. The watch triggers tasks automatically if it detects changes. Add the code below to initConfig to watch for changes to *.js files in the TypeScript directory. If a JavaScript file is changed, `watch` will run the `all` task.
 
-````javascript
+```javascript
 watch: {
   files: ["TypeScript/*.js"],
   tasks: ["all"]
 }
-````
+```
 
 Add a call to `loadNpmTasks()` to show the `watch` task in Task Runner Explorer.
 
-````javascript
+```javascript
 grunt.loadNpmTasks('grunt-contrib-watch');
-````
+```
 
 Right-click the watch task in Task Runner Explorer and select Run from the context menu. The command window that shows the watch task running will display a "Waiting…" message. Open one of the TypeScript files, add a space, and then save the file. This will trigger the watch task and trigger the other tasks to run in order. The screenshot below shows a sample run.
 

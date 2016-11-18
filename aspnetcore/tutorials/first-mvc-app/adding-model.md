@@ -1,4 +1,4 @@
----
+﻿---
 title: Adding a model | Microsoft Docs
 author: rick-anderson
 description: 
@@ -144,10 +144,10 @@ You must stop IIS Express before you update the database.
 
 * Run the following commands in the command prompt:
 
-````console
+```console
 dotnet ef migrations add Initial
 dotnet ef database update
-   ````
+   ```
    
 Note: If IIS-Express is running, you might get the error *CS2012: Cannot open 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' for writing -- 'The process cannot access the file 'MvcMovie/bin/Debug/netcoreapp1.0/MvcMovie.dll' because it is being used by another process.'* If you get that error, exit and restart Visual Studio.
 
@@ -191,7 +191,7 @@ Open the *Controllers/MoviesController.cs* file and examine the generated `Index
 <!-- l.. can't use literalinclude  because we comment out the initial index method and update it later
 .. comment :: start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs -->
 
-````csharp
+```csharp
 public class MoviesController : Controller
    {
        private readonly ApplicationDbContext _context;
@@ -206,7 +206,7 @@ public class MoviesController : Controller
        {
            return View(await _context.Movie.ToListAsync());
        }
-   ````
+   ```
 
 The constructor uses [Dependency Injection](../../fundamentals/dependency-injection.md) to inject the database context into the controller. The database context is used in each of the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -238,9 +238,9 @@ You could also pass in the `id` with a query string as follows:
 
 If a Movie is found, an instance of the `Movie` model is passed to the `Details` view:
 
-````csharp
+```csharp
 return View(movie);
-   ````
+   ```
 
 Examine the contents of the *Views/Movies/Details.cshtml* file:
 
@@ -248,9 +248,9 @@ Examine the contents of the *Views/Movies/Details.cshtml* file:
 
 By including a `@model` statement at the top of the view file, you can specify the type of object that the view expects. When you created the movie controller, Visual Studio automatically included the following `@model` statement at the top of the *Details.cshtml* file:
 
-````HTML
+```HTML
 @model MvcMovie.Models.Movie
-   ````
+   ```
 
 This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 

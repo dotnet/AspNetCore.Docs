@@ -54,12 +54,12 @@ Create a new class named `SeedData` in the *Models* folder. Replace the generate
 
 Notice if there are any movies in the DB, the seed initializer returns.
 
-````csharp
+```csharp
 if (context.Movie.Any())
 {
     return;   // DB has been seeded.
 }
-````
+```
 
 Add the seed initializer to the end of the `Configure` method in the *Startup.cs* file:
 

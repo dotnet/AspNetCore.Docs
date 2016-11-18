@@ -44,13 +44,13 @@ This sample is configured by default to use backend services hosted at developer
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 // URL of REST service (Xamarin ReadOnly Service)
 //public static string RestUrl = "http://developer.xamarin.com:8081/api/todoitems{0}";
 
 // use your machine's IP address
 public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
-````
+```
 
 ## Creating the ASP.NET Core Project
 

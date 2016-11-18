@@ -54,11 +54,11 @@ A layout can optionally reference one or more *sections*, by calling `RenderSect
 
 An example `@section` definition in a view:
 
-````html
+```html
 @section Scripts {
      <script type="text/javascript" src="/scripts/main.js"></script>
    }
-   ````
+   ```
 
 In the code above, validation scripts are added to the `scripts` section on a view that includes a form. Other views in the same application might not require any additional scripts, and so wouldn't need to define a scripts section.
 

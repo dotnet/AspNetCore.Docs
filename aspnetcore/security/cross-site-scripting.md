@@ -1,4 +1,4 @@
----
+﻿---
 title: Preventing Cross-Site Scripting | Microsoft Docs
 author: rick-anderson
 description: 
@@ -38,19 +38,19 @@ The Razor engine used in MVC automatically encodes all output sourced from varia
 
 Take the following Razor view;
 
-````none
+```none
 @{
        var untrustedInput = "<\"123\">";
    }
 
    @untrustedInput
-   ````
+   ```
 
 This view outputs the contents of the *untrustedInput* variable. This variable includes some characters which are used in XSS attacks, namely <, " and >. Examining the source shows the rendered output encoded as:
 
-````html
+```html
 &lt;&quot;123&quot;&gt;
-   ````
+   ```
 
 >[!WARNING]
 > ASP.NET Core MVC provides an `HtmlString` class which is not automatically encoded upon output. This should never be used in combination with untrusted input as this will expose an XSS vulnerability.
@@ -59,7 +59,7 @@ This view outputs the contents of the *untrustedInput* variable. This variable i
 
 There may be times you want to insert a value into JavaScript to process in your view. There are two ways to do this. The safest way to insert simple values is to place the value in a data attribute of a tag and retrieve it in your JavaScript. For example:
 
-````none
+```none
 @{
        var untrustedInput = "<\"123\">";
    }
@@ -83,11 +83,11 @@ There may be times you want to insert a value into JavaScript to process in your
      document.write("<br />")
      document.write(clientSideUntrustedInputHtml5);
    </script>
-   ````
+   ```
 
 This will produce the following HTML
 
-````html
+```html
 <div
      id="injectedData"
      data-untrustedinput="&lt;&quot;123&quot;&gt;" />
@@ -105,18 +105,18 @@ This will produce the following HTML
      document.write("<br />")
      document.write(clientSideUntrustedInputHtml5);
    </script>
-   ````
+   ```
 
 Which, when it runs, will render the following;
 
-````none
+```none
 <"123">
    <"123">
-   ````
+   ```
 
 You can also call the JavaScript encoder directly,
 
-````none
+```none
 @using System.Text.Encodings.Web;
    @inject JavaScriptEncoder encoder;
 
@@ -127,15 +127,15 @@ You can also call the JavaScript encoder directly,
    <script>
        document.write("@encoder.Encode(untrustedInput)");
    </script>
-   ````
+   ```
 
 This will render in the browser as follows;
 
-````html
+```html
 <script>
        document.write("\u003C\u0022123\u0022\u003E");
    </script>
-   ````
+   ```
 
 >[!WARNING]
 > Do not concatenate untrusted input in JavaScript to create DOM elements. You should use `createElement()` and assign property values appropriately such as `node.TextContent=`, or use `element.SetAttribute()`/`element[attribute]=` otherwise you expose yourself to DOM-based XSS.
@@ -146,7 +146,7 @@ The HTML, JavaScript and URL encoders are available to your code in two ways, yo
 
 To use the configurable encoders via DI your constructors should take an *HtmlEncoder*, *JavaScriptEncoder* and *UrlEncoder* parameter as appropriate. For example;
 
-````csharp
+```csharp
 public class HomeController : Controller
    {
        HtmlEncoder _htmlEncoder;
@@ -162,16 +162,16 @@ public class HomeController : Controller
            _urlEncoder = urlEncoder;
        }
    }
-   ````
+   ```
 
 ## Encoding URL Parameters
 
 If you want to build a URL query string with untrusted input as a value use the `UrlEncoder` to encode the value. For example,
 
-````csharp
+```csharp
 var example = "\"Quoted Value with spaces and &\"";
    var encodedValue = _urlEncoder.Encode(example);
-   ````
+   ```
 
 After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%20spaces%20and%20%26%22`. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.
 
@@ -190,29 +190,29 @@ You can customize the encoder safe lists to include Unicode ranges appropriate t
 
 For example, using the default configuration you might use a Razor HtmlHelper like so;
 
-````html
+```html
 <p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
-   ````
+   ```
 
 When you view the source of the web page you will see it has been rendered as follows, with the Chinese text encoded;
 
-````html
+```html
 <p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
-   ````
+   ```
 
 To widen the characters treated as safe by the encoder you would insert the following line into the `ConfigureServices()` method in `startup.cs`;
 
-````csharp
+```csharp
 services.AddSingleton<HtmlEncoder>(
      HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
                                                UnicodeRanges.CjkUnifiedIdeographs }));
-   ````
+   ```
 
 This example widens the safe list to include the Unicode Range CjkUnifiedIdeographs. The rendered output would now become
 
-````html
+```html
 <p>This link text is in Chinese: <a href="/">汉语/漢語</a></p>
-   ````
+   ```
 
 Safe list ranges are specified as Unicode code charts, not languages. The [Unicode standard](http://unicode.org/) has a list of [code charts](http://www.unicode.org/charts/index.html) you can use to find the chart containing your characters. Each encoder, Html, JavaScript and Url, must be configured separately.
 

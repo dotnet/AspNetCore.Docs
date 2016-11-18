@@ -1,4 +1,4 @@
----
+﻿---
 title: Overview of ASP.NET Core MVC | Microsoft Docs
 author: ardalis
 description: 
@@ -92,15 +92,15 @@ ASP.NET Core MVC is built on top of [ASP.NET Core's routing](../fundamentals/rou
 
 *Convention-based routing* enables you to globally define the URL formats that your application accepts and how each of those formats maps to a specific action method on given controller. When an incoming request is received, the routing engine parses the URL and matches it to one of the defined URL formats, and then calls the associated controller's action method.
 
-````csharp
+```csharp
 routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");
-````
+```
 
 *Attribute routing* enables you to specify routing information by decorating your controllers and actions with attributes that define your application's routes. This means that your route definitions are placed next to the controller and action with which they're associated.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [1, 4]}} -->
 
-````csharp
+```csharp
 [Route("api/[controller]")]
 public class ProductsController : Controller
 {
@@ -110,15 +110,15 @@ public class ProductsController : Controller
     ...
   }
 }
-````
+```
 
 ### Model binding
 
 ASP.NET Core MVC [model binding](models/model-binding.md) converts client request data  (form values, route data, query string parameters, HTTP headers) into objects that the controller can handle. As a result, your controller logic doesn't have to do the work of figuring out the incoming request data; it simply has the data as parameters to its action methods.
 
-````csharp
+```csharp
 public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null) { ... }
-   ````
+   ```
 
 ### Model validation
 
@@ -126,7 +126,7 @@ ASP.NET Core MVC supports [validation](models/validation.md) by decorating your 
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4, 5, 8, 9]}} -->
 
-````csharp
+```csharp
 using System.ComponentModel.DataAnnotations;
 public class LoginViewModel
 {
@@ -141,13 +141,13 @@ public class LoginViewModel
     [Display(Name = "Remember me?")]
     public bool RememberMe { get; set; }
 }
-````
+```
 
 A controller action:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [3]}} -->
 
-````csharp
+```csharp
 public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
 {
     if (ModelState.IsValid)
@@ -157,7 +157,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
     // If we got this far, something failed, redisplay form
     return View(model);
 }
-````
+```
 
 The framework will handle validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](http://jqueryvalidation.org/).
 
@@ -169,7 +169,7 @@ Your app can also use [dependency injection in view files](views/dependency-inje
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [1]}} -->
 
-````html
+```html
 @inject SomeService ServiceName
 <!DOCTYPE html>
 <html>
@@ -180,19 +180,19 @@ Your app can also use [dependency injection in view files](views/dependency-inje
   <h1>@ServiceName.GetTitle</h1>
 </body>
 </html>
-````
+```
 
 ### Filters
 
 [Filters](controllers/filters.md) help developers encapsulate cross-cutting concerns, like exception handling or authorization. Filters enable running custom pre- and post-processing logic for action methods, and can be configured to run at certain points within the execution pipeline for a given request. Filters can be applied to controllers or actions as attributes (or can be run globally). Several filters (such as `Authorize`) are included in the framework.
 
 
-````csharp
+```csharp
 [Authorize]
    public class AccountController : Controller
    {
 
-````
+```
 
 ### Areas
 
@@ -214,13 +214,13 @@ The framework's use of interfaces and dependency injection make it well-suited t
 
 [ASP.NET Core MVC views](views/overview.md) use the the [Razor view engine](views/razor.md) to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded C# code. Razor is used to dynamically generate web content on the server. You can cleanly mix server code with client side content and code.
 
-````text
+```text
 <ul>
   @for (int i = 0; i < 5; i++) {
     <li>List item @i</li>
   }
 </ul>
-````
+```
 
 Using the Razor view engine you can define [layouts](views/layout.md), [partial views](views/partial.md) and replaceable sections.
 
@@ -230,7 +230,7 @@ Razor views in MVC can be strongly typed based on your model. Controllers can pa
 
 For example, the following view defines a model of type `IEnumerable<Product>`:
 
-````html
+```html
 @model IEnumerable<Product>
 <ul>
     @foreach (Product p in Model)
@@ -238,7 +238,7 @@ For example, the following view defines a model of type `IEnumerable<Product>`:
         <li>@p.Name</li>
     }
 </ul>
-````
+```
 
 ### Tag Helpers
 
@@ -248,18 +248,18 @@ There are many built-in Tag Helpers for common tasks - such as creating forms, l
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [3]}} -->
 
-````html
+```html
 <p>
     Thank you for confirming your email.
     Please <a asp-controller="Account" asp-action="Login">Click here to Log in</a>.
 </p>
-````
+```
 
 The `EnvironmentTagHelper` can be used to include different scripts in your views (for example, raw or minified) based on the runtime environment, such as Development, Staging, or Production:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [1, 3, 4, 9]}} -->
 
-````html
+```html
 <environment names="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </environment>
@@ -269,7 +269,7 @@ The `EnvironmentTagHelper` can be used to include different scripts in your view
             asp-fallback-test="window.jQuery">
     </script>
 </environment>
-````
+```
 
 Tag Helpers provide an HTML-friendly development experience and a rich IntelliSense environment for creating HTML and Razor markup. Most of the built-in Tag Helpers target existing HTML elements and provide server-side attributes for the element.
 

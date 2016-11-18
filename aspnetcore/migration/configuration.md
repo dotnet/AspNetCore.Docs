@@ -32,9 +32,9 @@ For this article, we are starting with the partially-migrated ASP.NET Core proje
 
 Note that at this point, the *Startup.cs* file will not compile, as we still need to add the following `using` statement:
 
-````csharp
+```csharp
 using Microsoft.Extensions.Configuration;
-````
+```
 
 Add an *appsettings.json* file to the root of the project using the appropriate item template:
 
