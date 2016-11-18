@@ -30,7 +30,7 @@ Enabling users to sign in with their existing credentials is convenient for the 
 ## Create a New ASP.NET Core Project
 
 > [!NOTE]
-> The tutorial requires the latest version of Visual Studio 2015 and ASP.NET Core.
+> This tutorial requires the latest update (**Update 3**) for Visual Studio 2015 and ASP.NET Core.
 
 * In Visual Studio, create a New Project (from the Start Page, or via **File > New > Project**):
 
