@@ -1,8 +1,8 @@
 ---
 title: Caching | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Demonstrates how to use caching for higher performance.
+keywords: ASP.NET Core, caching, performance
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -15,7 +15,6 @@ uid: performance/caching/index
 # Caching
 
 * [In Memory Caching](memory.md)
-
 * [Working with a Distributed Cache](distributed.md)
-
 * [Response Caching](response.md)
+* [Response caching middleware](middleware.md)
