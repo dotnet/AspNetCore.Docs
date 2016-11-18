@@ -101,11 +101,11 @@ To create a password and sign in using your email that you set during the sign i
 
 * Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
 
-![image](sociallogins/_static/pass1.PNG)
+![image](sociallogins/_static/pass1.png)
 
 * Tap **Create**
 
-![image](sociallogins/_static/pass2.PNG)
+![image](sociallogins/_static/pass2.png)
 
 * Set a valid password and you can use this to sign in with your email.
 

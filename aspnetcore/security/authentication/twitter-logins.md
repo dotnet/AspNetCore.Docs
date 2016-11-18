@@ -79,17 +79,17 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 Run your application and click **Log in**. An option to sign in with Twitter appears:
 
-![image](sociallogins/_static/DoneTwitter.PNG)
+![image](sociallogins/_static/DoneTwitter.png)
 
 Clicking on **Twitter** redirects to Twitter for authentication:
 
-![image](sociallogins/_static/TwitterLogin.PNG)
+![image](sociallogins/_static/TwitterLogin.png)
 
 After entering your Twitter credentials, you are redirected back to the Web site where you can set your email.
 
 You are now logged in using your Twitter credentials:
 
-![image](sociallogins/_static/Done.PNG)
+![image](sociallogins/_static/Done.png)
 
 ## Next steps
 

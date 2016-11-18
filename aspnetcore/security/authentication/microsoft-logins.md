@@ -99,17 +99,17 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 
 Run your application and click **Log in**. An option to sign in with Microsoft appears:
 
-![image](sociallogins/_static/DoneMicrosoft.PNG)
+![image](sociallogins/_static/DoneMicrosoft.png)
 
 When you click on Microsoft, you are redirected to Microsoft for authentication:
 
-![image](sociallogins/_static/MicrosoftLogin.PNG)
+![image](sociallogins/_static/MicrosoftLogin.png)
 
 After entering your Microsoft Account credentials, you are redirected back to the Web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
 
-![image](sociallogins/_static/Done.PNG)
+![image](sociallogins/_static/Done.png)
 
 > [!NOTE]
 > If the Microsoft Account provider redirects you to a sign in error page, note the error title and description directly following the `#` (hashtag) in the Uri. The most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform. In this case, ensure protocol, host, and port are all correct. Your application should be using `https` protocol and the redirect uri should end with **signin-microsoft** as that's the route Microsoft Account middleware requests the login provider to redirect to.

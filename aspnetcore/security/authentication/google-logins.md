@@ -114,17 +114,17 @@ app.UseGoogleAuthentication(new GoogleOptions()
 
 Run your application and click **Log in**. An option to sign in with Google appears:
 
-![image](sociallogins/_static/DoneGoogle.PNG)
+![image](sociallogins/_static/DoneGoogle.png)
 
 When you click on Google, you are redirected to Google for authentication:
 
-![image](sociallogins/_static/GoogleLogin.PNG)
+![image](sociallogins/_static/GoogleLogin.png)
 
 After entering your Google credentials, then you are redirected back to the Web site where you can set your email.
 
 You are now logged in using your Google credentials:
 
-![image](sociallogins/_static/Done.PNG)
+![image](sociallogins/_static/Done.png)
 
 > [!NOTE]
 > If instead you receive a `403 (Forbidden)` error page from your own app when running in development mode (or break into the debugger with the same error), ensure that **Google+ API** has been enabled in the **API Manager Library** by following the steps listed [earlier in this section](#enable-googleplus). If the sign in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
