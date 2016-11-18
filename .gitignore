@@ -5,7 +5,7 @@ node_modules/
 wwwroot/
 
 # Use git add -f to force override .sln when required. Not needed in most cases.
-# git add -f path/to/myProj.sln
+# git add -f myProj.sln
 *.sln
 
 Project_Readme.html
