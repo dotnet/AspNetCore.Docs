@@ -51,7 +51,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ## Storing Facebook AppId and AppSecret
 
-Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md). Execute the following in your project working directory:
+Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](sociallogins.md). Execute the following in your project working directory:
 
 * Set the Facebook AppId
 

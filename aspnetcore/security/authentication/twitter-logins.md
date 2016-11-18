@@ -39,7 +39,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
-Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
+Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](sociallogins.md).
 
 * Switch to the **Keys and Access Tokens** tab. Note the `Consumer Key` and `Consumer Secret`:
 
