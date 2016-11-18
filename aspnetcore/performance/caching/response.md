@@ -23,7 +23,7 @@ uid: performance/caching/response
 
 ## What is Response Caching
 
-*Response caching* refers to specifying cache-related headers on HTTP responses made by ASP.NET Core MVC actions. These headers specify how you want client and intermediate (proxy) machines to cache responses to certain requests (if at all). This can reduce the number of requests a client or proxy makes to the web server, since future requests for the same action may be served from the client or proxy's cache. In this case, the request is never made to the web server.
+*Response caching* refers to specifying cache-related headers on HTTP responses made by ASP.NET Core MVC actions. These headers specify how you want client, intermediate (proxy) machines and middleware to cache responses to certain requests (if at all). This can reduce the number of requests a client or proxy makes to the web server or reduce the amount of work the web server performs to generate the response, since future requests for the same action may be served from the cache of the client, proxy or server. In this case, either the request is never made to the web server or is served by the response caching middleware on the server.
 
 ![image](response/_static/proxy-and-cache.png)
 
@@ -42,7 +42,7 @@ The primary HTTP header used for caching is `Cache-Control`. The [HTTP 1.1 speci
    Indicates the response **must not** be used by a cache to satisfy any subsequent request (without successful revalidation with the origin server).
 
 > [!NOTE]
-> **Response caching does not cache responses on the web server**. It differs from [output caching](http://www.asp.net/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs), which would cache responses in memory on the server in earlier versions of ASP.NET and ASP.NET MVC. Output caching middleware is planned to be added to ASP.NET Core in a future release.
+> Caching responses on the web server can be enabled by adding the [response caching middleware](https://github.com/aspnet/responsecaching).
 
 Additional HTTP headers used for caching include `Pragma` and `Vary`, which are described below. Learn more about [Caching in HTTP from the specification](https://tools.ietf.org/html/rfc7234#section-3).
 
@@ -66,6 +66,13 @@ The `ResponseCacheAttribute` is used to specify how a controller action's header
 
    When set, a `vary` response header will be written with the response.
 
+**VaryByQueryKeys `string[]`**
+
+   When set, the response caching middleware will vary the stored response by the given list of query keys. The middleware will serve the stored response only if the query keys of the incoming request matches those of the original request that generated the stored response.
+
+   > [!NOTE]
+   > There is no corresponding HTTP header for this property as it is a HTTP feature specifically handled by the response caching middleware. As such a response caching middleware must be configured on the server to set the `VaryByQueryKeys` property.
+
 **CacheProfileName `string`**
 
    When set, determines the name of the cache profile to use.
@@ -74,7 +81,7 @@ The `ResponseCacheAttribute` is used to specify how a controller action's header
 
    The order of the filter (from `IOrderedFilter`).
 
-The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`, which performs the work of writing the appropriate HTTP headers to the response. The filter will first remove any existing headers for `Vary`, `Cache-Control`, and `Pragma`, and then will write out the appropriate headers based on the properties set in the `ResponseCacheAttribute`.
+The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`, which performs the work of updating the appropriate HTTP headers and features of the response. The filter will first remove any existing headers for `Vary`, `Cache-Control`, and `Pragma`, and then will write out the appropriate headers based on the properties set in the `ResponseCacheAttribute`. The filter will also update the response caching HTTP feature if `VaryByQueryKeys` is set.
 
 ### The `Vary` Header
 
