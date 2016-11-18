@@ -19,9 +19,9 @@ uid: performance/caching/response
 
 ## What is Response Caching
 
-*Response caching* adds cache-related headers to responses. These headers specify how you want client, intermediate (proxy) machines and middleware to cache responses. Response caching can reduce the number of requests a client or proxy makes to the web server. Response caching can also reduce the amount of work the web server performs to generate the response. Repeated request URLs that match may be served from the cache of the client, proxy or server. Cached responses can be returned by the client, the proxy or served by the response caching middleware. Cached requests served by the client or proxy save bandwidth and server load. Cached requests served by middleware can reduce web app server load.
+*Response caching* adds cache-related headers to responses. These headers specify how you want client, proxy and middleware to cache responses. Response caching can reduce the number of requests a client or proxy makes to the web server. Response caching can also reduce the amount of work the web server performs to generate the response. 
 
-The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 Caching](https://tools.ietf.org/html/rfc7234#section-5.2) and [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) for more information. Common cache directives:
+The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 Caching](https://tools.ietf.org/html/rfc7234#section-5.2) for more information. Common cache directives:
 
 * [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)
 * [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)
@@ -29,15 +29,15 @@ The primary HTTP header used for caching is `Cache-Control`. See the [HTTP 1.1 C
 * [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4)
 
-Caching responses on the web server can be enabled by adding the [response caching middleware](https://github.com/aspnet/responsecaching). See [Response caching middleware](middleware.md) for more information.
+The web server can cache responses by adding the response caching middleware. See [Response caching middleware](middleware.md) for more information.
 
 ## ResponseCache Attribute
 
-The [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
+The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
 
-`VaryByQueryKeys string[]`: When set, the response caching middleware will vary the stored response by the given list of query keys. The middleware will serve the stored response only if the query keys of the request matches those of the original request that generated the stored response. Setting this property without adding the middleware will throw a runttime exception. 
+`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1.0 and higher): When set, the response caching middleware will vary the stored response by the given list of query keys. The middleware will serve the stored response only if the query keys of the request matches those of the original request that generated the stored response. Setting this property without adding the middleware will throw a runtime exception. 
 
-  There is no corresponding HTTP header for this property. This property is an HTTP feature handled by the response caching middleware. To set the `VaryByQueryKeys` property, the response caching middleware must be enabled.
+There is no corresponding HTTP header for the ``VaryByQueryKeys` property. This property is an HTTP feature handled by the response caching middleware. To set the `VaryByQueryKeys` property, the response caching middleware must be enabled.
 
 The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
@@ -51,7 +51,7 @@ This header is only written when the `VaryByHeader` property is set. It is set t
 
 [!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
 
-You can view the response headers with your browsers network tools or the [Fidder tool](http://www.telerik.com/fiddler). The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is called:
+You can view the response headers with your browsers network tools or the [Fiddler tool](http://www.telerik.com/fiddler). It's instructive to compare the response headers on the first call to those on the second call when the request is cached. The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is refreshed. 
 
 ![Edge F12 output on the **Network** tab when the `About2` action method is called](response/_static/vary.png)
 
