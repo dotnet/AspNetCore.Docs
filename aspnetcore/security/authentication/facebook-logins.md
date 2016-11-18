@@ -16,11 +16,11 @@ uid: security/authentication/facebook-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Pranav Rastogi](https://github.com/rustd)
 
-This tutorial shows you how to enable your users to log in with their Facebook account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created in the [previous section](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
-*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and log in. If you don't already have a Facebook account, use the *sign up* link on the login page to create one.
+*  Navigate to [https://developers.facebook.com/apps](https://developers.facebook.com/apps) and sign in. If you don't already have a Facebook account, use the **sign up** link on the login page to create one.
 
 * Tap **My Apps** in the upper right corner:
 
@@ -30,7 +30,7 @@ This tutorial shows you how to enable your users to log in with their Facebook a
 
 ![image](sociallogins/_static/FBNewAppId.png)
 
-* The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on *Facebook Login*:
+* The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on **Facebook Login**:
 
 ![image](sociallogins/_static/FBProductSetup.png)
 

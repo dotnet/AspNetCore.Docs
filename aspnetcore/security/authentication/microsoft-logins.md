@@ -14,7 +14,7 @@ uid: security/authentication/microsoft-logins
 
 <a name=security-authentication-microsoft-logins></a>
 
-This tutorial shows you how to enable your users to log in with their Microsoft account using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
+This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
 
 ## Creating the app in Microsoft Developer Portal
 
@@ -26,23 +26,23 @@ This tutorial shows you how to enable your users to log in with their Microsoft 
 
 ![image](sociallogins/_static/MicrosoftDevLogin.png)
 
-If you don't already have a Microsoft account, tap *[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)*. After signing in you are redirected to *My applications* page:
+If you don't already have a Microsoft account, tap **[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)**. After signing in you are redirected to **My applications** page:
 
 ![image](sociallogins/_static/MicrosoftDevApps.png)
 
-* Tap **Add an app** in the upper right corner and enter your *application name*:
+* Tap **Add an app** in the upper right corner and enter your **application name**:
 
 ![image](sociallogins/_static/MicrosoftDevAppCreate.png)
 
-* The *Registration* page is displayed:
+* The **Registration** page is displayed:
 
 ![image](sociallogins/_static/MicrosoftDevAppReg.png)
 
-* Tap **Add Platform** in the *Platforms* section and select the **Web** platform:
+* Tap **Add Platform** in the **Platforms** section and select the **Web** platform:
 
 ![image](sociallogins/_static/MicrosoftDevAppPlatform.png)
 
-* In the new *Web* platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
+* In the new **Web** platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
 
 ![image](sociallogins/_static/MicrosoftRedirectUri.png)
 
@@ -59,9 +59,9 @@ If you don't already have a Microsoft account, tap *[Create one!](https://signup
 
 Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [previous section](sociallogins.md).
 
-* Note the `Application Id` displayed on the *Registration* page.
+* Note the `Application Id` displayed on the **Registration** page.
 
-* Tap **Generate New Password** in the *Application Secrets* section. This displays a box where you can copy the application secret:
+* Tap **Generate New Password** in the **Application Secrets** section. This displays a box where you can copy the application secret:
 
 ![image](sociallogins/_static/MicrosoftDevPassword.png)
 

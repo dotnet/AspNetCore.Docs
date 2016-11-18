@@ -14,15 +14,15 @@ uid: security/authentication/twitter-logins
 
 <a name=security-authentication-twitter-logins></a>
 
-This tutorial shows you how to enable your users to [log in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
+This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created in the [previous section](sociallogins.md).
 
 ## Creating the app in Twitter
 
-* Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the *[Sign up now](https://twitter.com/signup)* link to create one. After signing in, the *Application Management* page is shown:
+* Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one. After signing in, the **Application Management** page is shown:
 
 ![image](sociallogins/_static/TwitterAppManage.png)
 
-* Tap **Create New App** in the upper right corner and fill out the *application name*, *description*, and the expected *website* address after deployment:
+* Tap **Create New App** in the upper right corner and fill out the **application name**, **description**, and the expected **website** address after deployment:
 
 ![image](sociallogins/_static/TwitterCreate.png)
 

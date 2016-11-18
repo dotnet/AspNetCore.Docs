@@ -18,7 +18,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ## Creating the app in Google API Console
 
-* Navigate to [https://console.developers.google.com/projectselector/apis/library](https://console.developers.google.com/projectselector/apis/library) and sign in. If you don't already have a Google account, use the *[Create account](https://accounts.google.com/SignUpWithoutGmail?service=cloudconsole&continue=https%3A%2F%2Fconsole.developers.google.com%2Fprojectselector%2Fapis%2Flibrary&ltmpl=api)* link to create one:
+* Navigate to [https://console.developers.google.com/projectselector/apis/library](https://console.developers.google.com/projectselector/apis/library) and sign in. If you don't already have a Google account, use the **[Create account](https://accounts.google.com/SignUpWithoutGmail?service=cloudconsole&continue=https%3A%2F%2Fconsole.developers.google.com%2Fprojectselector%2Fapis%2Flibrary&ltmpl=api)** link to create one:
 
 ![image](sociallogins/_static/GoogleConsoleLogin.png)
 
@@ -30,7 +30,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ![image](sociallogins/_static/GoogleConsoleNewProj.png)
 
-* After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. <a name="enable-googleplus">Find *Google+ API* in the list</a> and click on its link to add the API feature:
+* After accepting the dialog, you are redirected back to the Library page allowing you to choose features for your new app. <a name="enable-googleplus">Find **Google+ API** in the list</a> and click on its link to add the API feature:
 
 ![image](sociallogins/_static/GoogleConsoleChooseApi.png)
 
@@ -66,7 +66,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ![image](sociallogins/_static/GoogleConsoleAddCred.png)
 
-* Enter your public facing *Email address* and the *Product name* shown for your app when Google+ prompts the user to sign in.
+* Enter your public facing **Email address** and the **Product name** shown for your app when Google+ prompts the user to sign in.
 
 * Tap **Continue** to proceed to the last step:
 
