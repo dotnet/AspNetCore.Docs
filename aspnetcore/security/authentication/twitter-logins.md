@@ -22,7 +22,7 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 ![image](sociallogins/_static/TwitterAppManage.png)
 
-* Tap **Create New App** in the upper right corner and fill out the **application name**, **description**, and the expected **website** address after deployment:
+* Tap **Create New App** and fill out the application **Name**:
 
 ![image](sociallogins/_static/TwitterCreate.png)
 
