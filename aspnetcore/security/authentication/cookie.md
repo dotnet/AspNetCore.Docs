@@ -24,7 +24,7 @@ ASP.NET Core provides cookie [middleware](../../fundamentals/middleware.md#funda
 
 The first step is adding the cookie middleware to your application. First use nuget to add the `Microsoft.AspNetCore.Authentication.Cookies` package. Then add the following lines to the `Configure` method in your *Startup.cs* file before the `app.UseMvc()` statement;
 
-````csharp
+```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions()
    {
        AuthenticationScheme = "MyCookieMiddlewareInstance",
@@ -33,7 +33,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions()
        AutomaticAuthenticate = true,
        AutomaticChallenge = true
    });
-   ````
+   ```
 
 The code snippet above configures a few options;
 
@@ -56,9 +56,9 @@ The code snippet above configures a few options;
 To create a cookie holding your user information you must construct a [ClaimsPrincipal](https://msdn.microsoft.com/en-us/library/system.security.claims.claimsprincipal(v=vs.110).aspx) holding the information you wish to be serialized in the cookie. Once you have a suitable *ClaimsPrincipal* inside your controller method call
 
 
-   ````csharp
+   ```csharp
    await HttpContext.Authentication.SignInAsync("MyCookieMiddlewareInstance", principal);
-      ````
+      ```
 
 This will create an encrypted cookie and add it to the current response. The `AuthenticationScheme` specified during [configuration](xref:security/authentication/cookie#security-authentication-cookie-middleware-configuring) must also be used when calling `SignInAsync`.
 
@@ -68,9 +68,9 @@ Under the covers the encryption used is ASP.NET's [Data Protection](../data-prot
 
 To sign out the current user, and delete their cookie call the following inside your controller
 
-````csharp
+```csharp
 await HttpContext.Authentication.SignOutAsync("MyCookieMiddlewareInstance");
-   ````
+   ```
 
 ## Reacting to back-end changes
 
@@ -83,13 +83,13 @@ Consider a back-end user database that may have a LastChanged column. In order t
 
 To implement an override for the `ValidateAsync()` event you must write a method with the following signature;
 
-````csharp
+```csharp
 Task ValidateAsync(CookieValidatePrincipalContext context);
-   ````
+   ```
 
 ASP.NET Core Identity implements this check as part of its `SecurityStampValidator`. A simple example would look something like as follows;
 
-````csharp
+```csharp
 public static class LastChangedValidator
    {
        public static async Task ValidateAsync(CookieValidatePrincipalContext context)
@@ -112,11 +112,11 @@ public static class LastChangedValidator
            }
        }
    }
-   ````
+   ```
 
 This would then be wired up during cookie middleware configuration
 
-````csharp
+```csharp
 app.UseCookieAuthentication(options =>
    {
        options.Events = new CookieAuthenticationEvents
@@ -125,7 +125,7 @@ app.UseCookieAuthentication(options =>
            OnValidatePrincipal = LastChangedValidator.ValidateAsync
        };
    });
-   ````
+   ```
 
 If you want to non-destructively update the user principal, for example, their name might have been updated, a decision which doesn't affect security in any way you can call `context.ReplacePrincipal()` and set the `context.ShouldRenew` flag to `true`.
 
@@ -155,7 +155,7 @@ You may want to make the cookie expire be remembered over browser sessions. You 
 
 For example;
 
-````csharp
+```csharp
 await HttpContext.Authentication.SignInAsync(
        "MyCookieMiddlewareInstance",
        principal,
@@ -163,7 +163,7 @@ await HttpContext.Authentication.SignInAsync(
        {
            IsPersistent = true
        });
-   ````
+   ```
 
 This code snippet will create an identity and corresponding cookie which will be survive through browser closures.Any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options) will still be honored, if the cookie expires whilst the browser is closed the browser will clear it once it is restarted.
 
@@ -171,7 +171,7 @@ This code snippet will create an identity and corresponding cookie which will be
 
 <!-- literal_block {"ids": ["security-authentication-absolute-expiry"], "linenos": false, "names": ["security-authentication-absolute-expiry"], "xml:space": "preserve", "language": "csharp"} -->
 
-````csharp
+```csharp
 await HttpContext.Authentication.SignInAsync(
        "MyCookieMiddlewareInstance",
        principal,
@@ -179,7 +179,7 @@ await HttpContext.Authentication.SignInAsync(
        {
            ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
        });
-   ````
+   ```
 
 This code snippet will create an identity and corresponding cookie which will be last for 20 minutes. This ignores any sliding expiration settings previously configured via [cookie options](xref:security/authentication/cookie#security-authentication-cookie-options).
 

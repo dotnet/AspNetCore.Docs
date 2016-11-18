@@ -1,4 +1,4 @@
----
+﻿---
 title: Enabling authentication using Facebook, Google and other external providers | Microsoft Docs
 author: rick-anderson
 description: 
@@ -49,12 +49,12 @@ Enabling these credentials in your web sites provides a significant advantage be
 
 * Require SSL. Modify the services.AddMvc(); code in `Startup` under `ConfigureServices`:
 
-````csharp
+```csharp
 services.AddMvc(options =>
 {
     options.Filters.Add(new RequireHttpsAttribute ());
 });
-````
+```
 
 * Test the app
 
@@ -108,17 +108,17 @@ Follow these steps to add the Facebook AppId and AppSecret to the Secret Manager
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Facebook:AppId <app-Id>
-     ````
+     ```
 
 * Set the Facebook AppSecret:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-     ````
+     ```
 
 The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets).
 

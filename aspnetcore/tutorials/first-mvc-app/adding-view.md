@@ -1,4 +1,4 @@
----
+﻿---
 title: Adding a view | Microsoft Docs
 author: rick-anderson
 description: 
@@ -74,11 +74,11 @@ Save your changes and tap the **About** link. Notice how each page displays the 
 Examine the *Views/_ViewStart.cshtml* file:
 
 
-````HTML
+```HTML
 @{
     Layout = "_Layout";
 }
-````
+```
 
 The *Views/_ViewStart.cshtml* file brings in the *Views/Shared/_Layout.cshtml* file to each view. You can use the `Layout` property to set a different layout view, or set it to `null` so no layout file will be used.
 
@@ -93,7 +93,7 @@ Open *Views/HelloWorld/Index.cshtml*. There are two places to make a change:
 You'll make them slightly different so you can see which bit of code changes which part of the app.
 
 
-````HTML
+```HTML
 @{
     ViewData["Title"] = "Movie List";
 }
@@ -101,14 +101,14 @@ You'll make them slightly different so you can see which bit of code changes whi
 <h2>My Movie List</h2>
 
 <p>Hello from our View Template!</p>
-````
+```
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
 
-````HTML
+```HTML
 <title>@ViewData["Title"] - Movie App</title>
-   ````
+   ```
 
 Save your change and refresh the page. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 

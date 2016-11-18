@@ -24,7 +24,7 @@ Languages that are compiled into other languages, in order to improve the experi
 
 As a quick example of how preprocessors can improve readability and maintainability of style information, consider this CSS:
 
-````css
+```css
 .header {
    color: black;
    font-weight: bold;
@@ -38,13 +38,13 @@ As a quick example of how preprocessors can improve readability and maintainabil
    font-size: 14px;
    font-family: Helvetica, Arial, sans-serif;
 }
-````
+```
 
 Using Less, this can be rewritten to eliminate all of the duplication, using a mixin (so named because it allows you to "mix in" properties from one class or rule-set into another):
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "css", "highlight_args": {"hl_lines": [9]}} -->
 
-````css
+```css
 .header {
    color: black;
    font-weight: bold;
@@ -56,7 +56,7 @@ Using Less, this can be rewritten to eliminate all of the duplication, using a m
    .header;
    font-size: 14px;
 }
-````
+```
 
 Visual Studio adds a great deal of built-in support for Less and Sass. You can also add support for earlier versions of Visual Studio by installing the [Web Essentials extension](http://vswebessentials.com/).
 
@@ -64,9 +64,9 @@ Visual Studio adds a great deal of built-in support for Less and Sass. You can a
 
 The Less CSS pre-processor runs using Node.js. You can quickly install it using the Node Package Manager (NPM), with:
 
-````console
+```console
 npm install -g less
-   ````
+   ```
 
 If you're using Visual Studio, you can get started with Less by adding one or more Less files to your project, and then configuring Gulp (or Grunt) to process them at compile-time. Add a Styles folder to your project, and then add a new Less file called main.less to this folder.
 
@@ -80,7 +80,7 @@ Now we can add some basic styling to the file, which will be compiled into CSS a
 
 Modify main.less to include the following content, which creates a simple color palette from a single base color.
 
-````none
+```none
 @base: #663333;
 @background: spin(@base, 180);
 @lighter: lighten(spin(@base, 5), 10%);
@@ -96,7 +96,7 @@ body {
 .bgLight2   {color:@lighter2}
 .bgDark     {color:@darker}
 .bgDark2    {color:@darker2}
-````
+```
 
 `@base` and the other @-prefixed items are variables. Each of them represents a color. Except for `@base`, they are set using color functions: lighten, darken, and spin. Lighten and darken do pretty much what you would expect; spin adjusts the hue of a color by a number of degrees (around the color wheel). The less processor is smart enough to ignore variables that aren't used, so to demonstrate how these variables work, we need to use them somewhere. The classes `.baseColor`, etc. will demonstrate the calculated values of each of the variables in the CSS file that is produced.
 
@@ -106,13 +106,13 @@ If you don't already have one in your project, add a new Gulp configuration file
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [3]}} -->
 
-````javascript
+```javascript
 "devDependencies": {
     "gulp": "3.8.11",
     "gulp-less": "3.0.2",
     "rimraf": "2.3.2"
   }
-````
+```
 
 Save your changes to the package.json file, and you should see that the all of the files referenced can be found in the Dependencies folder under NPM. If not, right-click on the NPM folder and select "Restore Packages."
 
@@ -120,28 +120,28 @@ Now open gulpfile.js. Add a variable at the top to represent less:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [4]}} -->
 
-````javascript
+```javascript
 var gulp = require("gulp"),
           rimraf = require("rimraf"),
           fs = require("fs"),
           less = require("gulp-less");
-````
+```
 
 add another variable to allow you to access project properties:
 
-````javascript
+```javascript
 var project = require('./project.json');
-   ````
+   ```
 
 Next, add a task to run less, using the syntax shown here:
 
-````javascript
+```javascript
 gulp.task("less", function () {
   return gulp.src('Styles/main.less')
     .pipe(less())
     .pipe(gulp.dest(project.webroot + '/css'));
 });
-````
+```
 
 Open the Task Runner Explorer (view>Other Windows > Task Runner Explorer). Among the tasks, you should see a new task named `less`. Run it, and you should have output similar to what is shown here:
 
@@ -153,7 +153,7 @@ Now refresh your Solution Explorer and inspect the contents of the wwwroot/css f
 
 Open main.css and you should see something like the following:
 
-````css
+```css
 body {
   background-color: #336666;
 }
@@ -172,11 +172,11 @@ body {
 .bgDark2 {
   color: #221114;
 }
-````
+```
 
 Add a simple HTML page to the wwwroot folder and reference main.css to see the color palette in action.
 
-````html
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,7 +194,7 @@ Add a simple HTML page to the wwwroot folder and reference main.css to see the c
   </div>
 </body>
 </html>
-````
+```
 
 You can see that the 180 degree spin on `@base` used to produce `@background` resulted in the color wheel opposing color of `@base`:
 
@@ -202,7 +202,7 @@ You can see that the 180 degree spin on `@base` used to produce `@background` re
 
 Less also provides support for nested rules, as well as nested media queries. For example, defining nested hierarchies like menus can result in verbose CSS rules like these:
 
-````css
+```css
 nav {
   height: 40px;
   width: 100%;
@@ -226,13 +226,13 @@ nav li a:hover {
 nav li a:active {
   text-decoration: underline;
 }
-````
+```
 
 Ideally all of the related style rules will be placed together within the CSS file, but in practice there is nothing enforcing this rule except convention and perhaps block comments.
 
 Defining these same rules using Less looks like this:
 
-````none
+```none
 nav {
   height: 40px;
   width: 100%;
@@ -248,7 +248,7 @@ nav {
     }
   }
 }
-````
+```
 
 Note that in this case, all of the subordinate elements of `nav` are contained within its scope. There is no longer any repetition of parent elements (`nav`, `li`, `a`), and the total line count has dropped as well (though some of that is a result of putting values on the same lines in the second example). It can be very helpful, organizationally, to see all of the rules for a given UI element within an explicitly bounded scope, in this case set off from the rest of the file by curly braces.
 
@@ -256,7 +256,7 @@ The `&` syntax is a Less selector feature, with & representing the current selec
 
 Media queries, extremely useful in creating responsive designs, can also contribute heavily to repetition and complexity in CSS. Less allows media queries to be nested within classes, so that the entire class definition doesn't need to be repeated within different top-level `@media` elements. For example, this CSS for a responsive menu:
 
-````css
+```css
 .navigation {
   margin-top: 30%;
   width: 100%;
@@ -272,11 +272,11 @@ Media queries, extremely useful in creating responsive designs, can also contrib
     margin: 0;
   }
 }
-````
+```
 
 This can be better defined in Less as:
 
-````none
+```none
 .navigation {
   margin-top: 30%;
   width: 100%;
@@ -288,7 +288,7 @@ This can be better defined in Less as:
     margin: 0;
   }
 }
-````
+```
 
 Another feature of Less that we have already seen is its support for mathematical operations, allowing style attributes to be constructed from pre-defined variables. This makes updating related styles much easier, since the base variable can be modified and all dependent values change automatically.
 
@@ -296,7 +296,7 @@ CSS files, especially for large sites (and especially if media queries are being
 
 *Mixins* can accept parameters, and Less supports conditional logic in the form of mixin guards, which provide a declarative way to define when certain mixins take effect. A common use for mixin guards is to adjust colors based on how light or dark the source color is. Given a mixin that accepts a parameter for color, a mixin guard can be used to modify the mixin based on that color:
 
-````css
+```css
 .box (@color) when (lightness(@color) >= 50%) {
   background-color: #000;
 }
@@ -310,16 +310,16 @@ CSS files, especially for large sites (and especially if media queries are being
 .feature {
   .box (@base);
 }
-````
+```
 
 Given our current `@base` value of `#663333`, this Less script will produce the following CSS:
 
-````css
+```css
 .feature {
   background-color: #FFF;
   color: #663333;
 }
-````
+```
 
 Less provides a number of additional features, but this should give you some idea of the power of this preprocessing language.
 
@@ -329,24 +329,24 @@ Sass is similar to Less, providing support for many of the same features, but wi
 
 To install Sass, typically you would first install Ruby (pre-installed on Mac), and then run:
 
-````console
+```console
 gem install sass
-   ````
+   ```
 
 However, assuming you're running Visual Studio, you can get started with Sass in much the same way as you would with Less. Open package.json and add the "gulp-sass" package to `devDependencies`:
 
-````javascript
+```javascript
 "devDependencies": {
   "gulp": "3.8.11",
   "gulp-less": "3.0.2",
   "gulp-sass": "1.3.3",
   "rimraf": "2.3.2"
 }
-````
+```
 
 Next, modify gulpfile.js to add a sass variable and a task to compile your Sass files and place the results in the wwwroot folder:
 
-````javascript
+```javascript
 var gulp = require("gulp"),
   rimraf = require("rimraf"),
   fs = require("fs"),
@@ -360,7 +360,7 @@ gulp.task("sass", function () {
     .pipe(sass())
     .pipe(gulp.dest(project.webroot + '/css'));
 });
-````
+```
 
 Now you can add the Sass file main2.scss to the Styles folder in the root of the project:
 
@@ -368,29 +368,29 @@ Now you can add the Sass file main2.scss to the Styles folder in the root of the
 
 Open main2.scss and add the following:
 
-````none
+```none
 $base: #CC0000;
 body {
   background-color: $base;
 }
-````
+```
 
 Save all of your files. Now in Task Runner Explorer, you should see a sass task. Run it, refresh solution explorer, and look in the /wwwroot/css folder. There should be a main2.css file, with these contents:
 
-````css
+```css
 body {
   background-color: #CC0000; }
-````
+```
 
 Sass supports nesting in much the same was that Less does, providing similar benefits. Files can be split up by function and included using the `@import` directive:
 
-````css
+```css
 @import 'anotherfile';
-   ````
+   ```
 
 Sass supports mixins as well, using the `@mixin` keyword to define them and @include to include them, as in this example from [sass-lang.com](http://sass-lang.com):
 
-````css
+```css
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
    -moz-border-radius: $radius;
@@ -399,13 +399,13 @@ Sass supports mixins as well, using the `@mixin` keyword to define them and @inc
 }
 
 .box { @include border-radius(10px); }
-````
+```
 
 In addition to mixins, Sass also supports the concept of inheritance, allowing one class to extend another. It's conceptually similar to a mixin, but results in less CSS code. It's accomplished using the `@extend` keyword. First, let's see how we might use mixins, and the resulting CSS code. Add the following to your main2.scss file:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "css", "highlight_args": {"hl_lines": [8, 13]}} -->
 
-````css
+```css
 @mixin alert {
   border: 1px solid black;
   padding: 5px;
@@ -423,13 +423,13 @@ In addition to mixins, Sass also supports the concept of inheritance, allowing o
   border-color: red;
   font-weight:bold;
 }
-````
+```
 
 Examine the output in main2.css after running the sass task in Task Runner Explorer:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "css", "highlight_args": {"hl_lines": [2, 3, 4, 9, 10, 11]}} -->
 
-````css
+```css
 .success {
   border: 1px solid black;
   padding: 5px;
@@ -445,7 +445,7 @@ Examine the output in main2.css after running the sass task in Task Runner Explo
   border-color: red;
   font-weight: bold;
 }
-````
+```
 
 Notice that all of the common properties of the alert mixin are repeated in each class. The mixin did a good job of helping use eliminate duplication at development time, but it's still creating CSS with a lot of duplication in it, resulting in larger than necessary CSS files - a potential performance issue. It would be great if we could follow the [Don't Repeat Yourself (DRY) Principle](http://deviq.com/don-t-repeat-yourself/) at both development time and runtime.
 
@@ -453,7 +453,7 @@ Now replace the alert mixin with a `.alert` class, and change `@include` to `@ex
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "css", "highlight_args": {"hl_lines": [8, 13]}} -->
 
-````css
+```css
 .alert {
   border: 1px solid black;
   padding: 5px;
@@ -471,11 +471,11 @@ Now replace the alert mixin with a `.alert` class, and change `@include` to `@ex
   border-color: red;
   font-weight:bold;
 }
-````
+```
 
 Run Sass once more, and examine the resulting CSS:
 
-````css
+```css
 .alert, .success, .error {
   border: 1px solid black;
   padding: 5px;
@@ -488,7 +488,7 @@ Run Sass once more, and examine the resulting CSS:
   color: red;
   border-color: red;
   font-weight: bold; }
-````
+```
 
 Now the properties are defined only as many times as needed, and better CSS is generated.
 
@@ -504,16 +504,16 @@ In addition to CSS pre-compilers, another great resource for styling modern web 
 
 The easiest way to get started with Font Awesome is to add a reference to it, using its public content delivery network (CDN) location:
 
-````html
+```html
 <link rel="stylesheet"
    href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-   ````
+   ```
 
 Of course, you can also quickly add it to your Visual Studio project by adding it to the "dependencies" in bower.json:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [11]}} -->
 
-````javascript
+```javascript
 {
   "name": "ASP.NET",
   "private": true,
@@ -527,13 +527,13 @@ Of course, you can also quickly add it to your Visual Studio project by adding i
     "Font-Awesome": "4.3.0"
   }
 }
-````
+```
 
 Then, to get the stylesheet added to the wwwroot folder, modify gulpfile.js as follows:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [10]}} -->
 
-````javascript
+```javascript
 gulp.task("copy", ["clean"], function () {
   var bower = {
     "angular": "angular/angular*.{js,map}",
@@ -551,7 +551,7 @@ gulp.task("copy", ["clean"], function () {
       .pipe(gulp.dest(paths.lib + destinationDir));
   }
 });
-````
+```
 
 Once this is in place (and saved), running the 'copy' task in Task Runner Explorer should copy the font awesome fonts and css files to `/lib/font-awesome`.
 
@@ -559,7 +559,7 @@ Once you have a reference to it on a page, you can add icons to your application
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [6, 9, 10, 11]}} -->
 
-````html
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -574,7 +574,7 @@ Once you have a reference to it on a page, you can add icons to your application
   </ul>
 </body>
 </html>
-````
+```
 
 This produces the following in the browser - note the icon beside each item:
 

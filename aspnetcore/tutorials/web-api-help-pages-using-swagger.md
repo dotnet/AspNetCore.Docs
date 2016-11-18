@@ -42,9 +42,9 @@ You can add Swashbuckle with any of the following approaches:
 
 * From the Package Manager Console:
 
-````bash
+```bash
 Install-Package Swashbuckle -Pre
-   ````
+   ```
 
 * In Visual Studio:
 
@@ -60,7 +60,7 @@ Add SwaggerGen to the services collection in the Configure method, and in the Co
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [12, 21, 24]}} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     // Add framework services.
@@ -87,14 +87,14 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
     app.UseSwaggerUi();
 
 }
-````
+```
 
 In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:<random_port>/swagger/v1/swagger.json` to see the document generated that describes the endpoints.
 
 > [!NOTE]
 > Microsoft Edge, Google Chrome and Firefox display JSON documents natively.  There are extensions for Chrome that will format the document for easier reading. *Example below reduced for brevity.*
 
-````javascript
+```javascript
 {
    "swagger": "2.0",
    "info": {
@@ -160,7 +160,7 @@ In Visual Studio, press ^F5 to launch the app and navigate to `http://localhost:
    },
    "securityDefinitions": {}
    }
-   ````
+   ```
 
 This document is used to drive the Swagger UI which can be viewed by navigating to `http://localhost:<random_port>/swagger/ui`
 
@@ -178,7 +178,7 @@ Swagger is not only a simple way to represent the API, but has options for docum
 
 The `ConfigureSwaggerGen` method can be used to add information such as the author, license, description.
 
-````csharp
+```csharp
 services.ConfigureSwaggerGen(options =>
    {
        options.SingleApiVersion(new Info
@@ -191,7 +191,7 @@ services.ConfigureSwaggerGen(options =>
            License = new License { Name = "Use under LICX", Url = "http://url.com" }
        });
    });
-   ````
+   ```
 
 The following image shows the Swagger UI displaying the version information added.
 
@@ -222,7 +222,7 @@ Note that the UI is driven by the generated JSON file, and these comments are al
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "javascript", "highlight_args": {"hl_lines": [5]}} -->
 
-````javascript
+```javascript
 "delete": {
   "tags": [
     "Todo"
@@ -247,7 +247,7 @@ Note that the UI is driven by the generated JSON file, and these comments are al
   },
   "deprecated": false
 }
-````
+```
 
 Here is a more robust example, adding `<remarks />` where the content can be just text or adding the JSON or XML object for further documentation of the method.
 
@@ -288,7 +288,7 @@ Enable static files middleware.
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp", "highlight_args": {"hl_lines": [4]}} -->
 
-````csharp
+```csharp
 // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
    {
@@ -303,7 +303,7 @@ Enable static files middleware.
        // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
        app.UseSwaggerUi();
    }
-   ````
+   ```
 
 Acquire the core *index.html* file used for the Swagger UI page from the `Github repository <https://github.com/domaindrivendev/Ahoy/tree/master/test/WebSites/CustomizedUi/wwwroot/swagger/ui>`_ and put that in the `wwwroot/swagger/ui` folder and also create a new `custom.css` file in the same folder.
 
@@ -311,9 +311,9 @@ Acquire the core *index.html* file used for the Swagger UI page from the `Github
 
 Reference *custom.css* in the *index.html* file.
 
-````html
+```html
 <link href='custom.css' media='screen' rel='stylesheet' type='text/css' />
-````
+```
 
 The following CSS provides a simple sample of a custom header title to the page.
 
@@ -323,7 +323,7 @@ The following CSS provides a simple sample of a custom header title to the page.
 
 *index.html body*
 
-````html
+```html
 <body class="swagger-section">
    <div id="header">
     <h1>ToDo API Documentation</h1>
@@ -332,7 +332,7 @@ The following CSS provides a simple sample of a custom header title to the page.
    <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
    <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 </body>
-````
+```
 
 ![image](web-api-help-pages-using-swagger/_static/custom-header.png)
 

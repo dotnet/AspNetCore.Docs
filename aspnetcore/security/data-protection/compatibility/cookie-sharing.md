@@ -26,22 +26,22 @@ In your configure method use the CookieAuthenticationOptions to set up the data 
 
 If you're using identity:
 
-````csharp
+```csharp
 app.AddIdentity<ApplicationUser, IdentityRole>(options =>
    {
        options.Cookies.ApplicationCookie.AuthenticationScheme = "ApplicationCookie";
        options.Cookies.ApplicationCookie.DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"));
    });
-   ````
+   ```
 
 If you're using cookies directly:
 
-````csharp
+```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
    {
        DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"c:\shared-auth-ticket-keys\"))
    });
-   ````
+   ```
 
 When used in this manner, the DirectoryInfo should point to a key storage location specifically set aside for authentication cookies. The cookie authentication middleware will use the explicitly provided implementation of the DataProtectionProvider, which is now isolated from the data protection system used by other parts of the application. The application name is ignored (intentionally so, since you're trying to get multiple applications to share payloads).
 
@@ -49,7 +49,7 @@ When used in this manner, the DirectoryInfo should point to a key storage locati
 >You should consider configuring the DataProtectionProvider such that keys are encrypted at rest, as in the below example.
 >
 >
->  ````csharp
+>  ```csharp
 >  app.UseCookieAuthentication(new CookieAuthenticationOptions
 >  {
 >      DataProtectionProvider = DataProtectionProvider.Create(
@@ -59,7 +59,7 @@ When used in this manner, the DirectoryInfo should point to a key storage locati
 >              configure.ProtectKeysWithCertificate("thumbprint");
 >          })
 >  });
->  ````
+>  ```
 
 ## Sharing authentication cookies between ASP.NET 4.x and ASP.NET Core applications
 
@@ -77,16 +77,16 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
 
 2.   In Startup.Auth.cs, locate the call to UseCookieAuthentication, which will generally look like the following.
 
-    ````csharp
+    ```csharp
     app.UseCookieAuthentication(new CookieAuthenticationOptions
     {
         // ...
     });
-    ````
+    ```
     
 3.  Modify the call to UseCookieAuthentication as follows, changing the CookieName to match the name used by the ASP.NET Core cookie authentication middleware, and providing an instance of a DataProtectionProvider that has been initialized to a key storage location.
 
-    ````csharp
+    ```csharp
     app.UseCookieAuthentication(new CookieAuthenticationOptions
        {
            AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
@@ -99,7 +99,7 @@ To share authentication cookies between your ASP.NET 4.x applications and your A
                    .CreateProtector("Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationMiddleware",
                    "Cookies", "v2")))
        });
-       ````
+       ```
     The DirectoryInfo has to point to the same storage location that you pointed your ASP.NET Core application to and should be configured using the same settings.
 
 The ASP.NET 4.x and ASP.NET Core applications are now configured to share authentication cookies.

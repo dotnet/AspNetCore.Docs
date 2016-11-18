@@ -60,12 +60,12 @@ First, let ( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = ""
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 5B B6 C9 83 13 78 22 1D 8E 10 73 CA CF 65 8E B0
    61 62 42 71 CB 83 21 DD A0 4A 05 00 5B AB C0 A2
    49 6F A5 61 E3 E2 49 87 AA 63 55 CD 74 0A DA C4
    B7 92 3D BF 59 90 00 A9
-   ````
+   ```
 
 Next, compute Enc_CBC (K_E, IV, "") for AES-192-CBC given IV = 0* and K_E as above.
 
@@ -79,13 +79,13 @@ This produces the full context header below:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 00 00 00 00 00 18 00 00 00 10 00 00 00 20 00 00
    00 20 F4 74 B1 87 2B 3B 53 E4 72 1D E1 9C 08 41
    DB 6F D4 79 11 84 B9 96 09 2E E1 20 2F 36 E8 60
    8F A8 FB D9 8A BD FF 54 02 F2 64 B1 D7 21 15 36
    22 0C
-   ````
+   ```
 
 This context header is the thumbprint of the authenticated encryption algorithm pair (AES-192-CBC encryption + HMACSHA256 validation). The components, as described [above](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers-cbc-components) are:
 
@@ -112,11 +112,11 @@ First, let ( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = ""
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 A2 19 60 2F 83 A9 13 EA B0 61 3A 39 B8 A6 7E 22
    61 D9 F8 6C 10 51 E2 BB DC 4A 00 D7 03 A2 48 3E
    D1 F7 5A 34 EB 28 3E D7 D4 67 B4 64
-   ````
+   ```
 
 Next, compute Enc_CBC (K_E, IV, "") for 3DES-192-CBC given IV = 0* and K_E as above.
 
@@ -130,11 +130,11 @@ This produces the full context header which is a thumbprint of the authenticated
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 00 00 00 00 00 18 00 00 00 08 00 00 00 14 00 00
    00 14 AB B1 00 F8 1E 53 E1 0E 76 EB 18 9B 35 CF
    03 46 1D DF 87 7C D9 F4 B1 B4 D6 3A 75 55
-   ````
+   ```
 
 The components break down as follows:
 
@@ -186,11 +186,11 @@ This produces the full context header below:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 00 01 00 00 00 20 00 00 00 0C 00 00 00 10 00 00
    00 10 E7 DC CE 66 DF 85 5A 32 3A 6B B7 BD 7A 59
    BE 45
-   ````
+   ```
 
 The components break down as follows:
 

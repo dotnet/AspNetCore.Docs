@@ -53,11 +53,11 @@ There might be circumstances where a key will be created with immediate activati
 
 The default key lifetime is 90 days, though this is configurable as in the following example.
 
-````csharp
+```csharp
 services.AddDataProtection()
        // use 14-day lifetime instead of 90-day lifetime
        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
-   ````
+   ```
 
 An administrator can also change the default system-wide, though an explicit call to SetDefaultKeyLifetime will override any system-wide policy. The default key lifetime cannot be shorter than 7 days.
 

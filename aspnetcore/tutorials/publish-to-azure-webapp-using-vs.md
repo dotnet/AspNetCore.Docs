@@ -79,9 +79,9 @@ You can fix the problem in two different ways:
 
   <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-  ````
+  ```
   dotnet ef database update
-     ````
+     ```
 
 The app displays the email used to register the new user and a **Log off** link.
 
@@ -164,7 +164,7 @@ Visual Studio will publish your app to Azure and launch the cloud app in your br
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [7]}} -->
 
-````html
+```html
 @{
        ViewData["Title"] = "About";
    }
@@ -172,7 +172,7 @@ Visual Studio will publish your app to Azure and launch the cloud app in your br
    <h3>@ViewData["Message"]</h3>
 
    <p>My updated about page.</p>
-   ````
+   ```
 
 * Right-click on the project and tap **Publish...** again
 

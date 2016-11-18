@@ -36,7 +36,7 @@ In a console, open the folder where you downloaded the sample application and ru
 
 The console output will show messages similar to the ones below, indicating that the application is now running and waiting for requests:
 
-````bash
+```bash
 $ dotnet run
 Project WebApp (.NETCoreApp,Version=v1.0) will be compiled because inputs were modified
 Compiling WebApp for .NETCoreApp,Version=v1.0
@@ -51,7 +51,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 In a web browser, navigate to `http://localhost:5000/api/math/sum?a=4&b=5` and you should see the result `9`.
 
@@ -66,12 +66,12 @@ We'll fix that.
 
 The console output will show messages similar to the ones below:
 
-````bash
+```bash
 log  : Restoring packages for /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
 log  : Restoring packages for tool 'Microsoft.DotNet.Watcher.Tools' in /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/project.json...
 log  : Installing Microsoft.DotNet.Watcher.Core ...
 log  : Installing Microsoft.DotNet.Watcher.Tools ...
-````
+```
 
 ## Running `dotnet` commands using `dotnet watch`
 
@@ -88,7 +88,7 @@ Any `dotnet` command can be run with  `dotnet watch`:  For example:
 
 To run `WebApp` using the watcher, run `dotnet watch run` in the `WebApp` folder. The console output will show messages similar to the ones below, indicating that `dotnet watch` is now watching code files:
 
-````bash
+```bash
 user$ dotnet watch run
 [DotNetWatcher] info: Running dotnet with the following arguments: run
 [DotNetWatcher] info: dotnet process id: 39746
@@ -97,7 +97,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 ## Making changes with `dotnet watch`
 
@@ -111,7 +111,7 @@ Fix the code by replacing `a + b` with `a * b`.
 
 Save the file. The console output will show messages similar to the ones below, indicating that `dotnet watch` detected a file change and restarted the application.
 
-````bash
+```bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs
 [DotNetWatcher] info: Running dotnet with the following arguments: run
 [DotNetWatcher] info: dotnet process id: 39940
@@ -126,7 +126,7 @@ Hosting environment: Production
 Content root path: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
-````
+```
 
 Verify `http://localhost:5000/api/math/product?a=4&b=5` returns the correct result.
 
@@ -140,7 +140,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
 
     If you previously fixed the bug in the `MathController` then you'll see an output similar to the one below, otherwise you'll see a test failure:
     
-    ````bash
+    ```bash
     WebAppTests user$ dotnet watch test
     [DotNetWatcher] info: Running dotnet with the following arguments: test
     [DotNetWatcher] info: dotnet process id: 40193
@@ -156,7 +156,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
     SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
     [DotNetWatcher] info: dotnet exit code: 0
     [DotNetWatcher] info: Waiting for a file to change before restarting dotnet...
-    ````
+    ```
     
     Once all the tests run, the watcher will indicate that it's waiting for a file to change before restarting `dotnet test`.
 
@@ -164,7 +164,7 @@ The file watcher can run other `dotnet` commands like `test` or `publish`.
 
 `dotnet watch` detects the file change and reruns the tests. The console output will show messages similar to the one below:
 
-````bash
+```bash
 [DotNetWatcher] info: File changed: /Users/user/dev/aspnet/Docs/aspnet/tutorials/dotnet-watch/sample/WebApp/Controllers/MathController.cs
 [DotNetWatcher] info: Running dotnet with the following arguments: test
 [DotNetWatcher] info: dotnet process id: 40233
@@ -192,4 +192,4 @@ SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
 [DotNetWatcher] info: dotnet exit code: 0
 
 [DotNetWatcher] info: Waiting for a file to change before restarting dotnet...
-````
+```

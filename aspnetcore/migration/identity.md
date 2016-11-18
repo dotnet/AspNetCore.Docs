@@ -30,7 +30,7 @@ Then, open Startup.cs and update the `ConfigureServices()` method to use Entity 
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
   // Add EF services to the services container.
@@ -44,7 +44,7 @@ public void ConfigureServices(IServiceCollection services)
 
   services.AddMvc();
 }
-````
+```
 
 At this point, there are two types referenced in the above code that we haven't yet migrated from the ASP.NET MVC project: `ApplicationDbContext` and `ApplicationUser`. Create a new *Models* folder in the ASP.NET Core project, and add two classes to it corresponding to these types. You will find the ASP.NET MVC versions of these classes in `/Models/IdentityModels.cs`, but we will use one file per class in the migrated project since that's more clear.
 
@@ -52,7 +52,7 @@ ApplicationUser.cs:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NewMvc6Project.Models
@@ -61,13 +61,13 @@ namespace NewMvc6Project.Models
   {
   }
 }
-````
+```
 
 ApplicationDbContext.cs:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 using Microsoft.AspNetCore.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
@@ -86,7 +86,7 @@ namespace NewMvc6Project.Models
     }
   }
 }
-````
+```
 
 The ASP.NET Core MVC Starter Web project doesn't include much customization of users, or the ApplicationDbContext. When migrating a real application, you will also need to migrate all of the custom properties and methods of your application's user and DbContext classes, as well as any other Model classes your application utilizes (for example, if your DbContext has a DbSet<Album>, you will of course need to migrate the Album class).
 
@@ -94,12 +94,12 @@ With these files in place, the Startup.cs file can be made to compile by updatin
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.AspNetCore.Hosting;
 using NewMvc6Project.Models;
 using Microsoft.AspNetCore.Identity;
-````
+```
 
 Our application is now ready to support authentication and identity services - it just needs to have these features exposed to users.
 
@@ -111,13 +111,13 @@ Update _Layout.cshtml; uncomment the @Html.Partial line:
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "none"} -->
 
-````none
+```none
       <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
     @*@Html.Partial("_LoginPartial")*@
   </div>
 </div>
-````
+```
 
 Now, add a new MVC View Page called _LoginPartial to the Views/Shared folder:
 
@@ -125,7 +125,7 @@ Update _LoginPartial.cshtml with the following code (replace all of its contents
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -149,7 +149,7 @@ else
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }
-````
+```
 
 At this point, you should be able to refresh the site in your browser.
 

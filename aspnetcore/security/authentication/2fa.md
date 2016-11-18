@@ -43,9 +43,9 @@ After you create the project, follow the instructions in [Account Confirmation a
 
    <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-   ````
+   ```
    Install-Package Twilio
-   ````
+   ```
 
 * Add code in the *Services/MessageServices.cs* file to enable SMS.
 
@@ -67,10 +67,10 @@ We'll use the [Options pattern](../../fundamentals/configuration.md#options-conf
 
 Set `SID`, `AuthToken`, and `SendNumber` with the [secret-manager tool](../app-secrets.md). For example:
 
-````none
+```none
 C:/WebSMS/src/WebApplication1>dotnet user-secrets set SID abcdefghi
 info: Successfully saved SID = abcdefghi to the secret store.
-````
+```
 
 ### Configure startup to use `AuthMessageSMSSenderOptions`
 
@@ -154,7 +154,7 @@ If you're able to use the Twilio API, but you don't get an SMS message, try the 
 
 2.  Use the following code in a console application to test Twilio:
 
-    ````csharp
+    ```csharp
     static void Main(string[] args)
     {
       string AccountSid = "";
@@ -165,5 +165,5 @@ If you're able to use the Twilio API, but you don't get an SMS message, try the 
       var message = twilio.SendMessage(FromPhone, toPhone, "Twilio Test");
       Console.WriteLine(message.Sid);
     }
-    ````
+    ```
     

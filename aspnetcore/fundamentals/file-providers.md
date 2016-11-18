@@ -38,11 +38,11 @@ To create a `PhysicalFileProvider`, simply instantiate it, passing it a physical
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 IFileProvider provider = new PhysicalFileProvider(applicationRoot);
 IDirectoryContents contents = provider.GetDirectoryContents(""); // the applicationRoot contents
 IFileInfo fileInfo = provider.GetFileInfo("wwwroot/js/site.js"); // a file under applicationRoot
-````
+```
 
 To request a provider from a controller, specify it in the controller's constructor and assign it to a local field. Use the local instance from your action methods:
 
@@ -75,9 +75,9 @@ When creating an `EmbeddedFileProvider`, pass the assembly it will read to its c
 
 <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "c#"} -->
 
-````csharp
+```csharp
 var embeddedProvider = new EmbeddedFileProvider(Assembly.GetEntryAssembly());
-````
+```
 
 The snippet above demonstrates how to create an `EmbeddedFileProvider` with access to the currently executing assembly.
 

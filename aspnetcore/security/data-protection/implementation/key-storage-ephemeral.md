@@ -22,7 +22,7 @@ Each instance of EphemeralDataProtectionProvider uses its own unique master key.
 
 The following sample demonstrates instantiating an EphemeralDataProtectionProvider and using it to protect and unprotect data.
 
-````none
+```none
 using System;
    using Microsoft.AspNetCore.DataProtection;
 
@@ -62,4 +62,4 @@ using System;
     * Unprotect returned: Hello!
     * << throws CryptographicException >>
     */
-   ````
+   ```

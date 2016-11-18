@@ -1,4 +1,4 @@
----
+﻿---
 title: Enabling Cross-Origin Requests (CORS) | Microsoft Docs
 author: rick-anderson
 description: 
@@ -181,22 +181,22 @@ Credentials require special handling in a CORS request. By default, the browser 
 
 Using XMLHttpRequest directly:
 
-````js
+```js
 var xhr = new XMLHttpRequest();
    xhr.open('get', 'http://www.example.com/api/test');
    xhr.withCredentials = true;
-   ````
+   ```
 
 In jQuery:
 
-````js
+```js
 $.ajax({
        type: 'get',
        url: 'http://www.example.com/home',
        xhrFields: {
            withCredentials: true
        }
-   ````
+   ```
 
 In addition, the server must allow the credentials. To allow cross-origin credentials:
 
@@ -226,7 +226,7 @@ Here is an example of a cross-origin request. The "Origin" header gives the doma
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 GET http://myservice.azurewebsites.net/api/test HTTP/1.1
    Referer: http://myclient.azurewebsites.net/
    Accept: */*
@@ -235,13 +235,13 @@ GET http://myservice.azurewebsites.net/api/test HTTP/1.1
    Accept-Encoding: gzip, deflate
    User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
    Host: myservice.azurewebsites.net
-   ````
+   ```
 
 If the server allows the request, it sets the Access-Control-Allow-Origin header. The value of this header either matches the Origin header, or is the wildcard value "*", meaning that any origin is allowed.:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 HTTP/1.1 200 OK
    Cache-Control: no-cache
    Pragma: no-cache
@@ -251,7 +251,7 @@ HTTP/1.1 200 OK
    Content-Length: 12
 
    Test message
-   ````
+   ```
 
 If the response does not include the Access-Control-Allow-Origin header, the AJAX request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser does not make the response available to the client application.
 
@@ -277,7 +277,7 @@ Here is an example of a preflight request:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 OPTIONS http://myservice.azurewebsites.net/api/test HTTP/1.1
    Accept: */*
    Origin: http://myclient.azurewebsites.net
@@ -287,7 +287,7 @@ OPTIONS http://myservice.azurewebsites.net/api/test HTTP/1.1
    User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
    Host: myservice.azurewebsites.net
    Content-Length: 0
-   ````
+   ```
 
 The pre-flight request uses the HTTP OPTIONS method. It includes two special headers:
 
@@ -299,7 +299,7 @@ Here is an example response, assuming that the server allows the request:
 
 <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-````
+```
 HTTP/1.1 200 OK
    Cache-Control: no-cache
    Pragma: no-cache
@@ -308,6 +308,6 @@ HTTP/1.1 200 OK
    Access-Control-Allow-Headers: x-my-custom-header
    Access-Control-Allow-Methods: PUT
    Date: Wed, 20 May 2015 06:33:22 GMT
-   ````
+   ```
 
 The response includes an Access-Control-Allow-Methods header that lists the allowed methods, and optionally an Access-Control-Allow-Headers header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request, as described earlier.

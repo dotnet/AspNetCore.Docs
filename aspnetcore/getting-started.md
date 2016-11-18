@@ -18,23 +18,23 @@ uid: getting-started
 
 2.  Create a new .NET Core project:
 
-    ````console
+    ```console
     mkdir aspnetcoreapp
     cd aspnetcoreapp
     dotnet new -t web
-    ````
+    ```
 
 3.  Restore the packages:
 
-    ````console
+    ```console
     dotnet restore
-    ````
+    ```
 
 4.  Run the app  (the `dotnet run` command will build the app when it's out of date):
 
-    ````console
+    ```console
     dotnet run
-    ````
+    ```
 
 5.  Browse to `http://localhost:5000`
 

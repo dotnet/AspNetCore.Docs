@@ -73,20 +73,20 @@ Note the presence of *[controller]* on line 8. Attribute-based routing now suppo
 
 To migrate the Products API controller, we must first copy *ProductsController* to the new project. Then simply include the route attribute on the controller:
 
-````csharp
+```csharp
 [Route("api/[controller]")]
-````
+```
 
 You also need to add the `[HttpGet]` attribute to the two methods, since they both should be called via HTTP Get. Include the expectation of an "id" parameter in the attribute for `GetProduct()`:
 
-````csharp
+```csharp
 // /api/products
 [HttpGet]
 ...
 
 // /api/products/1
 [HttpGet("{id}")]
-````
+```
 
 At this point, routing is configured correctly; however, we can't yet test it. Additional changes must be made before *ProductsController* will compile.
 

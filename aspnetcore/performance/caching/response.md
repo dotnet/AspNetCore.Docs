@@ -90,10 +90,10 @@ A good scenario in which to set `NoStore` to `true` is error pages. It's unlikel
 
 This will result in the following headers:
 
-````javascript
+```javascript
 Cache-Control: no-store,no-cache
 Pragma: no-cache
-````
+```
 
 ### Location and Duration
 
@@ -108,9 +108,9 @@ Below is an example showing the headers produced by setting `Duration` and leavi
 
 Produces the following headers:
 
-````javascript
+```javascript
 Cache-Control: public,max-age=60
-   ````
+   ```
 
 ### Cache Profiles
 
@@ -131,6 +131,6 @@ In the above example, a class-level attribute specifies a duration of 30 seconds
 
 The resulting header:
 
-````javascript
+```javascript
 Cache-Control: public,max-age=60
-   ````
+   ```

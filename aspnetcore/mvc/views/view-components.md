@@ -103,9 +103,9 @@ We recommend you name the view file *Default.cshtml* and use the *Views/Shared/C
 
 To use the view component, call `@Component.InvokeAsync("Name of view component", <anonymous type containing parameters>)` from a view. The parameters will be passed to the `InvokeAsync` method.  The `PriorityList` view component developed in the article is invoked from the *Views/Todo/Index.cshtml* view file. In the following, the `InvokeAsync` method is called with two parameters:
 
-````HTML
+```HTML
 @await Component.InvokeAsync("PriorityList", new { maxPriority = 2, isDone = false })
-   ````
+   ```
 
 ### Invoking a view component directly from a controller
 
@@ -137,10 +137,10 @@ Notes on the code:
 
   <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "csharp"} -->
 
-  ````csharp
+  ```csharp
   [ViewComponent(Name = "PriorityList")]
      public class XYZ : ViewComponent
-     ````
+     ```
 
 * The `[ViewComponent]` attribute above tells the view component selector to use the name `PriorityList` when looking for the views associated with the component, and to use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
 
@@ -208,7 +208,7 @@ If the PVC view is not rendered, verify you are calling the view component with 
 
    <!-- literal_block {"ids": [], "xml:space": "preserve"} -->
 
-   ````
+   ```
    An unhandled exception occurred while processing the request.
 
       InvalidOperationException: The view 'Components/PriorityList/Default'
@@ -216,7 +216,7 @@ If the PVC view is not rendered, verify you are calling the view component with 
          /Views/ToDo/Components/PriorityList/Default.cshtml
          /Views/Shared/Components/PriorityList/Default.cshtml.
       Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful()
-      ````
+      ```
 
 4. Copy  *Views/Shared/Components/PriorityList/Default.cshtml to *Views/Todo/Components/PriorityList/Default.cshtml*.
 

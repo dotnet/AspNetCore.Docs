@@ -43,12 +43,12 @@ Sample:
 
 The Form Tag Helper above generates the following HTML:
 
-````HTML
+```HTML
 <form method="post" action="/Demo/Register">
      <!-- Input and Submit elements -->
      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
     </form>
-   ````
+   ```
 
 The MVC runtime generates the `action` attribute value from the Form Tag Helper attributes `asp-controller` and `asp-action`. The Form Tag Helper also generates a hidden [Request Verification Token](http://www.asp.net/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages) to prevent cross-site request forgery (when used with the `[ValidateAntiForgeryToken]` attribute in the HTTP Post action method). Protecting a pure HTML Form from cross-site request forgery is very difficult, the Form Tag Helper provides this service for you.
 
@@ -62,11 +62,11 @@ Many of the views in the *Views/Account* folder (generated when you create a new
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "none", "highlight_args": {"hl_lines": [2]}} -->
 
-````none
+```none
 <form asp-controller="Account" asp-action="Login"
      asp-route-returnurl="@ViewData["ReturnUrl"]"
      method="post" class="form-horizontal" role="form">
-   ````
+   ```
 
 >[!NOTE]
 >With the built in templates, `returnUrl` is only populated automatically when you try to access an authorized resource but are not authenticated or authorized. When you attempt an unauthorized access, the security middleware redirects you to the login page with the `returnUrl` set.
@@ -77,9 +77,9 @@ The Input Tag Helper binds an HTML [\<input>](https://www.w3.org/wiki/HTML/Eleme
 
 Syntax:
 
-````HTML
+```HTML
 <input asp-for="<Expression Name>" />
-   ````
+   ```
 
 The Input Tag Helper:
 
@@ -95,7 +95,7 @@ The Input Tag Helper:
 
 * Provides strong typing. If the name of the property changes and you don't update the Tag Helper you'll get an error similar to the following:
 
-````HTML
+```HTML
 An error occurred during the compilation of a resource required to process
 this request. Please review the following specific error details and modify
 your source code appropriately.
@@ -104,7 +104,7 @@ Type expected
  'RegisterViewModel' does not contain a definition for 'Email' and no
  extension method 'Email' accepting a first argument of type 'RegisterViewModel'
  could be found (are you missing a using directive or an assembly reference?)
-````
+```
 
 The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. The following table lists some common .NET types and generated HTML type (not every .NET type is listed).
 
@@ -140,7 +140,7 @@ Sample:
 
 The code above generates the following HTML:
 
-````HTML
+```HTML
   <form method="post" action="/Demo/RegisterInput">
        Email:
        <input type="email" data-val="true"
@@ -154,7 +154,7 @@ The code above generates the following HTML:
        <button type="submit">Register</button>
      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
    </form>
-   ````
+   ```
 
 The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it is displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
 
@@ -166,18 +166,18 @@ The data annotations applied to the `Email` and `Password` properties generate m
 
 The `asp-for` attribute value is a `ModelExpression` and the right hand side of a lambda expression. Therefore, `asp-for="Property1"` becomes `m => m.Property1` in the generated code which is why you don't need to prefix with `Model`. You can use the "@" character to start an inline expression and move before the `m.`:
 
-````HTML
+```HTML
 @{
        var joe = "Joe";
    }
    <input asp-for="@joe" />
-   ````
+   ```
 
 Generates the following:
 
-````HTML
+```HTML
 <input type="text" id="joe" name="joe" value="Joe" />
-   ````
+   ```
 
 ### Navigating child properties
 
@@ -193,9 +193,9 @@ In the view, we bind to `Address.AddressLine1`:
 
 The following HTML is generated for `Address.AddressLine1`:
 
-````HTML
+```HTML
 <input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="" />
-   ````
+   ```
 
 ### Expression names and Collections
 
@@ -205,13 +205,13 @@ Sample, a model containing an array of `Colors`:
 
 The action method:
 
-````csharp
+```csharp
 public IActionResult Edit(int id, int colorIndex)
    {
        ViewData["Index"] = colorIndex;
        return View(GetPerson(id));
    }
-   ````
+   ```
 
 The following Razor shows how you access a specific `Color` element:
 
@@ -262,7 +262,7 @@ The following HTML is generated:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [2, 3, 4, 5, 6, 7, 8]}} -->
 
-````HTML
+```HTML
 <form method="post" action="/Demo/RegisterTextArea">
   <textarea data-val="true"
    data-val-maxlength="The field Description must be a string or array type with a maximum length of &#x27;1024&#x27;."
@@ -274,7 +274,7 @@ The following HTML is generated:
   <button type="submit">Test</button>
   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
 </form>
-````
+```
 
 ## The Label Tag Helper
 
@@ -298,9 +298,9 @@ Sample:
 
 The following HTML is generated for the `<label>` element:
 
-````HTML
+```HTML
 <label for="Email">Email Address</label>
-   ````
+   ```
 
 The Label Tag Helper generated the `for` attribute value of "Email", which is the ID associated with the `<input>` element. The Tag Helpers generate consistent `id` and `for` elements so they can be correctly associated. The caption in this sample comes from the `Display` attribute. If the model didn't contain a `Display` attribute, the caption would be the property name of the expression.
 
@@ -318,17 +318,17 @@ There are two Validation Tag Helpers. The `Validation Message Tag Helper` (which
 
 The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on a HTML [span](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element.
 
-````HTML
+```HTML
 <span asp-validation-for="Email"></span>
-   ````
+   ```
 
 The Validation Message Tag Helper will generate the following HTML:
 
-````HTML
+```HTML
 <span class="field-validation-valid"
   data-valmsg-for="Email"
   data-valmsg-replace="true"></span>
-````
+```
 
 You generally use the `Validation Message Tag Helper`  after an `Input` Tag Helper for the same property. Doing so displays any validation error messages near the input that caused the error.
 
@@ -337,12 +337,12 @@ You generally use the `Validation Message Tag Helper`  after an `Input` Tag Help
 
 When a server side validation error occurs (for example when you have custom server side validation or client-side validation is disabled), MVC places that error message as the body of the `<span>` element.
 
-````HTML
+```HTML
 <span class="field-validation-error" data-valmsg-for="Email"
             data-valmsg-replace="true">
    The Email Address field is required.
 </span>
-````
+```
 
 ### The Validation Summary Tag Helper
 
@@ -370,7 +370,7 @@ The generated HTML (when the model is valid):
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [2, 3, 8, 9, 12, 13]}} -->
 
-````HTML
+```HTML
 <form action="/DemoReg/Register" method="post">
   <div class="validation-summary-valid" data-valmsg-summary="true">
   <ul><li style="display:none"></li></ul></div>
@@ -387,7 +387,7 @@ The generated HTML (when the model is valid):
   <button type="submit">Register</button>
   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
 </form>
-````
+```
 
 ## The Select Tag Helper
 
@@ -419,7 +419,7 @@ Which generates the following HTML (with "CA" selected):
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [2, 3, 4, 5, 6]}} -->
 
-````HTML
+```HTML
 <form method="post" action="/">
      <select id="Country" name="Country">
        <option value="MX">Mexico</option>
@@ -429,7 +429,7 @@ Which generates the following HTML (with "CA" selected):
        <br /><button type="submit">Register</button>
      <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
    </form>
-   ````
+   ```
 
 > [!NOTE]
 > We do not recommend using `ViewBag` or `ViewData` with the Select Tag Helper. A view model is more robust at providing MVC metadata and generally less problematic.
@@ -460,7 +460,7 @@ The following HTML is generated:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [4, 5]}} -->
 
-````HTML
+```HTML
   <form method="post" action="/Home/IndexEnum">
          <select data-val="true" data-val-required="The EnumCountry field is required."
                  id="EnumCountry" name="EnumCountry">
@@ -474,7 +474,7 @@ The following HTML is generated:
          <br /><button type="submit">Register</button>
          <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
     </form>
-   ````
+   ```
 
 ### Option Group
 
@@ -492,7 +492,7 @@ The generated HTML:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}} -->
 
-````HTML
+```HTML
  <form method="post" action="/Home/IndexGroup">
       <select id="Country" name="Country">
           <optgroup label="North America">
@@ -509,7 +509,7 @@ The generated HTML:
       <br /><button type="submit">Register</button>
       <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
  </form>
-````
+```
 
 ### Multiple select
 
@@ -525,7 +525,7 @@ Generates the following HTML:
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [3]}} -->
 
-````HTML
+```HTML
 <form method="post" action="/Home/IndexMultiSelect">
     <select id="CountryCodes"
     multiple="multiple"
@@ -539,7 +539,7 @@ Generates the following HTML:
     <br /><button type="submit">Register</button>
   <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
 </form>
-````
+```
 
 ### No selection
 
@@ -561,7 +561,7 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "HTML", "highlight_args": {"hl_lines": [5]}} -->
 
-````HTML
+```HTML
  <form method="post" action="/Home/IndexEmpty">
       <select id="Country" name="Country">
           <option value="">&lt;none&gt;</option>
@@ -572,7 +572,7 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
       <br /><button type="submit">Register</button>
    <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>" />
  </form>
- ````
+ ```
 
 ## Additional Resources
 

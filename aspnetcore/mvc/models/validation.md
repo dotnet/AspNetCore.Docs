@@ -1,4 +1,4 @@
----
+﻿---
 title: Model Validation | Microsoft Docs
 author: rick-anderson
 description: 
@@ -110,7 +110,7 @@ The tag helpers above render the HTML below. Notice that the `data-` attributes 
 
 <!-- literal_block {"ids": [], "linenos": false, "xml:space": "preserve", "language": "html", "highlight_args": {"hl_lines": [8, 9, 10, 11, 12]}} -->
 
-````html
+```html
 <form action="/movies/Create" method="post">
   <div class="form-horizontal">
     <h4>Movie</h4>
@@ -127,7 +127,7 @@ The tag helpers above render the HTML below. Notice that the `data-` attributes 
     </div>
     </div>
 </form>
-````
+```
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.
 
@@ -141,14 +141,14 @@ You may create client side logic for your custom attribute, and [unobtrusive val
 
 Attributes that implement this interface can add HTML attributes to generated fields. Examining the output for the `ReleaseDate` element reveals HTML that is similar to the previous example, except now there is a `data-val-classicmovie` attribute that was defined in the `AddValidation` method of `IClientModelValidator`.
 
-````html
+```html
 <input class="form-control" type="datetime"
 data-val="true"
 data-val-classicmovie="Classic movies must have a release year earlier than 1960"
 data-val-classicmovie-year="1960"
 data-val-required="The ReleaseDate field is required."
 id="ReleaseDate" name="ReleaseDate" value="" />
-````
+```
 
 Unobtrusive validation uses the data in the `data-` attributes to display error messages. However, jQuery doesn't know about rules or messages until you add them to jQuery's `validator` object. This is shown in the example below that adds a method named `classicmovie` containing custom client validation code to the jQuery `validator` object.
 
