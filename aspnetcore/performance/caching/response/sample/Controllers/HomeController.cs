@@ -2,6 +2,7 @@
 
 namespace ResponseCacheSample.Controllers
 {
+    #region snippet_controller
     [ResponseCache(Duration = 30)]
     public class HomeController : Controller
     {
@@ -10,7 +11,8 @@ namespace ResponseCacheSample.Controllers
         {
             return View();
         }
-
+        #endregion
+        #region snippet_about
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         public IActionResult About()
         {
@@ -18,7 +20,8 @@ namespace ResponseCacheSample.Controllers
 
             return View();
         }
-
+        #endregion
+        #region snippet_duration
         [ResponseCache(Duration = 60)]
         public IActionResult Contact()
         {
@@ -26,11 +29,23 @@ namespace ResponseCacheSample.Controllers
 
             return View();
         }
-
+        #endregion
+        #region snippet1
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View();
+        }
+        #endregion
+        #region snippet_VaryByHeader
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
+        public IActionResult About2()
+        {
+            #endregion
+
+            ViewData["Message"] = "About2 VaryByHeader ";
+
+            return View("About");
         }
     }
 }
