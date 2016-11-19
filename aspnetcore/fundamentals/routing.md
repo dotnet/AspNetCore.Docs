@@ -287,7 +287,7 @@ The following table demonstrates some route templates and their behavior.
 | -------- | -------- | ------- |
 | hello  | /hello  | Only matches the single path `/hello` |
 | {Page=Home} | / | Matches and sets `Page` to `Home` |
-| {Page=Home}  | /Contact  \ Matches and sets `Page` to `Contact` |
+| {Page=Home}  | /Contact  | Matches and sets `Page` to `Contact` |
 | {controller}/{action}/{id?} | /Products/List | Maps to `Products` controller and `List`  action |
 | {controller}/{action}/{id?} | /Products/Details/123  |  Maps to `Products` controller and  `Details` action.  `id` set to 123 |
 | {controller=Home}/{action=Index}/{id?} | /  |  Maps to `Home` controller and `Index`  method; `id` is ignored. |
@@ -320,7 +320,7 @@ The following table demonstrates some route constraints and their expected behav
 | `long` | {ticks:long} | 123456789 | Matches a valid `long` value |
 | `minlength(value)` | {username:minlength(4)} | Rick | String must be at least 4 characters |
 | `maxlength(value)` | {filename:maxlength(8)} | somefile | String must be no more than 8 characters |
-| `length(min,max)` | {filename:length(4,16)} | *Somefile.txt* | String must be at least 8 and no more than 16 characters long |
+| `length(min,max)` | {filename:length(8,16)} | *Somefile.txt* | String must be at least 8 and no more than 16 characters long |
 | `min(value)` | {age:min(18)} | 19 | Value must be at least 18 |
 | `max(value)` | {age:max(120)} |  91 | Value must be no more than 120 |
 | `range(min,max)` | {age:range(18,120)} | 91 | Value must be at least 18 but no more than 120 |
