@@ -13,7 +13,7 @@ uid: performance/caching/response
 ---
 # Response Caching
 
-[Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
+[John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](http://ardalis.com)
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/response/sample)
 
@@ -35,9 +35,13 @@ The web server can cache responses by adding the response caching middleware. Se
 
 The `ResponseCacheAttribute` specifies the parameters necessary for setting appropriate headers in response caching. See [ResponseCacheAttribute](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute)  for a description of the parameters.
 
-`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1.0 and higher): When set, the response caching middleware will vary the stored response by the given list of query keys. The middleware will serve the stored response only if the query keys of the request matches those of the original request that generated the stored response. The response caching middleware must be enabled to set the VaryByQueryKeys property, otherwise a runtime exception will be thrown.
+`VaryByQueryKeys string[]` (requires ASP.NET Core 1.1.0 and higher): When set, the response caching middleware will vary the stored response by the values of the given list of query keys. The response caching middleware must be enabled to set the `VaryByQueryKeys` property, otherwise a runtime exception will be thrown. There is no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the following sequence:
 
-There is no corresponding HTTP header for the `VaryByQueryKeys` property. This property is an HTTP feature handled by the response caching middleware. The response caching middleware is required to use the `VaryByQueryKeys` property.
+| Request          | Result |
+| ----------------- | ------------ | 
+| `http://example.com?key1=value1` | returned from server |
+| `http://example.com?key1=value1` | returned from middleware |
+| `http://example.com?key1=value2` | returned from server |
 
 The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
@@ -51,7 +55,7 @@ This header is only written when the `VaryByHeader` property is set. It is set t
 
 [!code-csharp[Main](response/sample/Controllers/HomeController.cs?name=snippet_VaryByHeader&highlight=1)]
 
-You can view the response headers with your browsers network tools or the [Fiddler tool](http://www.telerik.com/fiddler). It's instructive to compare the response headers on the first call to those on the second call when the request is cached. The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is refreshed. 
+You can view the response headers with your browsers network tools. The following image shows the Edge F12 output on the **Network** tab when the `About2` action method is refreshed. 
 
 ![Edge F12 output on the **Network** tab when the `About2` action method is called](response/_static/vary.png)
 
