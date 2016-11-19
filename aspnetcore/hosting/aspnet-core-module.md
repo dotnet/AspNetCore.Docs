@@ -5,7 +5,7 @@ description:
 keywords: ASP.NET Core,
 ms.author: riande
 manager: wpickett
-ms.date: 10/27/2016
+ms.date: 11/18/2016
 ms.topic: article
 ms.assetid: 5de0c8f7-50ce-4e2c-b3d4-a1bd9fdfcff5
 ms.technology: aspnet
@@ -16,43 +16,50 @@ uid: hosting/aspnet-core-module
 
 By [Luke Latham](https://github.com/GuardRex), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-ASP.NET Core Module is an IIS module that lets [Kestrel](../fundamentals/servers/kestrel.md) use IIS or IIS Express as a reverse proxy server. This document provides an overview of how to configure the ASP.NET Core Module for shared hosting of ASP.NET Core applications.
+This document provides details on how to configure the ASP.NET Core Module for hosting ASP.NET Core applications. For an introduction to the ASP.NET Core Module and installation instructions, see the [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md).
 
-For an introduction to ASP.NET Core Module and information about how to install it, see [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md).
+## Configuration via web.config
 
-## The Web.config file
-
-The ASP.NET Core Module is configured via a site or application *web.config* file and has its own `aspNetCore` configuration section within `system.webServer`. Here's an example from a Visual Studio project, with placeholders for settings that Visual Studio plugs in when you run or debug the project.
+The ASP.NET Core Module is configured via a site or application *web.config* file and has its own `aspNetCore` configuration section within `system.webServer`. Here's an example *web.config* file with placeholders for values that `publish-iis` tooling will provide when the project is published.
 
 ```xml
 <configuration>
   <!--
-    Configure your application settings in appsettings.json. Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
+    Configure your application settings in appsettings.json. 
+    Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
   -->
   <system.webServer>
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath="%LAUNCHER_PATH%" arguments="%LAUNCHER_ARGS%" stdoutLogEnabled="true" stdoutLogFile=".\logs\stdout" forwardWindowsAuthToken="false" />
+    <aspNetCore processPath="%LAUNCHER_PATH%" 
+          arguments="%LAUNCHER_ARGS%" 
+          stdoutLogEnabled="false" 
+          stdoutLogFile=".\logs\aspnetcore-stdout" 
+          forwardWindowsAuthToken="false" />
   </system.webServer>
 </configuration>
 ```
 
-When the project is published, Visual Studio automatically plugs in the values required for the destination environment, as shown in this example of a project that has been deployed to an Azure web app.
+As shown in the example below for deployment to the [Azure App Service](https://azure.microsoft.com/en-us/services/app-service/), *publish-iis* tooling will provide the values required for `processPath`, `arguments`, and the `stdoutLogFile` path for the destination environment. For more information on the `publish-iis` tool, see [Publishing to IIS](../publishing/iis.md). See the *Configuration of sub-applications* section of *Publishing to IIS* for an important note pertaining to the configuration of *web.config* files in sub-applications.
 
 ```xml
 <configuration>
   <!--
-    Configure your application settings in appsettings.json. Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
+    Configure your application settings in appsettings.json. 
+    Learn more at http://go.microsoft.com/fwlink/?LinkId=786380
   -->
   <system.webServer>
     <handlers>
       <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModule" resourceType="Unspecified" />
     </handlers>
-    <aspNetCore processPath=".\sample.exe" arguments="" stdoutLogEnabled="true" stdoutLogFile="\\?\%home%\LogFiles\stdout" forwardWindowsAuthToken="false" />
+    <aspNetCore processPath=".\MyApp.exe" 
+          arguments="" 
+          stdoutLogEnabled="false" 
+          stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout" 
+          forwardWindowsAuthToken="false" />
   </system.webServer>
 </configuration>
-<!--ProjectGuid: c270f740-c62c-4f88-a2dc-c3f7e9dc61e8-->
 ```
 
 ### Attributes of the aspNetCore element
@@ -61,7 +68,7 @@ When the project is published, Visual Studio automatically plugs in the values r
 |---|---|
 | processPath             |<p>Required string attribute.</p><p>Path to the executable that will launch a process listening for HTTP requests. Relative paths are supported. If the path begins with '.', the path is considered to be relative to the site root.</p><p>There is no default value.</p>|
 | arguments               |<p>Optional string attribute.</p><p>Arguments to the executable specified in **processPath**.</p><p>The default value is an empty string.</p>|
-| startupTimeLimit        |<p>Optional integer attribute.</p><p>Duration in seconds for which the module will wait for the executable to start a process listening on the port. If this time limit is exceeded, the module will kill the process. The module will attempt to launch the process again when it receives a new request and will continue to attempt to restart the process on subsequent incoming requests unless the application fails to start **rapidFailsPerMinute** number of times in the last rolling minute.</p><p>The default value is 120.</p>|
+| startupTimeLimit        |<p>Optional integer attribute.</p><p>Duration in seconds that the module will wait for the executable to start a process listening on the port. If this time limit is exceeded, the module will kill the process. The module will attempt to launch the process again when it receives a new request and will continue to attempt to restart the process on subsequent incoming requests unless the application fails to start **rapidFailsPerMinute** number of times in the last rolling minute.</p><p>The default value is 120.</p>|
 | shutdownTimeLimit       |<p>Optional integer attribute.</p><p>Duration in seconds for which the module will wait for the executable to gracefully shutdown when the *app_offline.htm* file is detected.</p><p>The default value is 10.</p>|
 | rapidFailsPerMinute     |<p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module will stop launching the process for the remainder of the minute.</p><p>The default value is 10.</p>|
 | requestTimeout          |<p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module will wait for a response from the process listening on %ASPNETCORE_PORT%.</p><p>The default value is "00:02:00".</p>|
@@ -74,17 +81,16 @@ When the project is published, Visual Studio automatically plugs in the values r
 
 The ASP.NET Core Module allows you specify environment variables for the process specified in the `processPath` attribute by specifying them in one or more `environmentVariable` child elements of an `environmentVariables` collection element under the `aspNetCore` element. Environment variables set in this section take precedence over system environment variables for the process.
 
-Here's an example that sets two environment variables.
+The example below sets two environment variables. `ASPNETCORE_ENVIRONMENT` will configure the application's environment to `Development`. A developer may temporarily set this value in the *web.config* file in order to force the [developer exception page](../fundamentals/error-handling.md) to load when debugging an application exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that will read the value on startup to form a path in order to load the application's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
         arguments=".\MyApp.dll"
         stdoutLogEnabled="false"
-        stdoutLogFile="\\?\%home%\LogFiles\stdout">
+        stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout">
   <environmentVariables>
-    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Staging" />
-    <environmentVariable name="ENV_VAR_1" value="VALUE_1" />
-    <environmentVariable name="ENV_VAR_2" value="VALUE_2" />
+    <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
+    <environmentVariable name="CONFIG_DIR" value="f:\application_config" />
   </environmentVariables>
 </aspNetCore>
 ```
@@ -97,23 +103,21 @@ While the *app_offline.htm* file is present, the ASP.NET Core Module will respon
 
 ## Start-up error page
 
-If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, you will see an HTTP 502.5 status code page. 
+If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, you will see an HTTP 502.5 status code page shown below. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors `<httpErrors>`](https://www.iis.net/configreference/system.webserver/httperrors).
 
 ![image](aspnet-core-module/_static/ANCM-502_5.png)
 
-To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. Look at the [HTTP Errors attribute](https://www.iis.net/configreference/system.webserver/httperrors) to override this page with a custom error page.
-
 ## Log creation and redirection
 
-The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated (unless process recycling/restart occurs). It is the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
+The ASP.NET Core Module redirects `stdout` and `stderr` logs to disk if you set the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element. Any folders in the `stdoutLogFile` path must exist in order for the module to create the log file. A timestamp and file extension will be added automatically when the log file is created. Logs are not rotated, unless process recycling/restart occurs. It is the responsibility of the hoster to limit the disk space the logs consume. Using the `stdout` log is only recommended for troubleshooting application startup issues and not for general application logging purposes.
 
-Here's a sample aspNetCore element that configures stdout logging:
+Here's a sample `aspNetCore` element that configures `stdout` logging. The `stdoutLogFile` path shown in the example is appropriate for the Azure App Service. A local path or network share path is acceptable for local logging. Confirm that the AppPool user identity has permission to write to the path provided.
 
 ```xml
 <aspNetCore processPath="dotnet"
         arguments=".\MyApp.dll"
         stdoutLogEnabled="true"
-        stdoutLogFile="\\?\%home%\LogFiles\stdout">
+        stdoutLogFile="\\?\%home%\LogFiles\aspnetcore-stdout">
 </aspNetCore>
 ```
 
