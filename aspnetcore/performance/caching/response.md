@@ -43,6 +43,8 @@ The `ResponseCacheAttribute` specifies the parameters necessary for setting appr
 | `http://example.com?key1=value1` | returned from middleware |
 | `http://example.com?key1=value2` | returned from server |
 
+The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request is not in the middleware cache because the query string value doesn't match a previous request. 
+
 The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactory`) a `ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
 * Removes any existing headers for `Vary`, `Cache-Control`, and `Pragma`. 
