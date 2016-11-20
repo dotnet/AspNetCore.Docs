@@ -106,10 +106,10 @@ An example service file for our application.
 
 ```text
 [Unit]
-    Description=Example .NET Web API Application running on CentOS 7
+    Description=Example .NET Web API Application running on Ubuntu
 
     [Service]
-    ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+    ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
     RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
     SyslogIdentifier=dotnet-example
@@ -120,7 +120,8 @@ An example service file for our application.
     WantedBy=multi-user.target
 ```
 
->note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> [!NOTE]
+> **User** -- If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 
