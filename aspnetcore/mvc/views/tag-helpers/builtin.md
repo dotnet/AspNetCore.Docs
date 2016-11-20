@@ -45,6 +45,6 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 ## Additional Resources
 
-* [Client-Side Development](../../client-side/index.md)
+* [Client-Side Development](../../../client-side/index.md)
 
-* [Tag Helpers](../../mvc/views/tag-helpers/index.md)
+* [Tag Helpers](../../../mvc/views/tag-helpers/index.md)
