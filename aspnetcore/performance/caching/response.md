@@ -2,7 +2,7 @@
 title: Response Caching | Microsoft Docs
 author: rick-anderson
 description: Explains how to use Response caching to lower bandwidth and increase performance.
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, Response caching, HTTP headers
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -51,7 +51,7 @@ The `ResponseCacheAttribute` is used to configure and create (via `IFilterFactor
 * Writes out the appropriate headers based on the properties set in the `ResponseCacheAttribute`. 
 * Updates the response caching HTTP feature if `VaryByQueryKeys` is set.
 
-### `Vary` 
+### Vary
 
 This header is only written when the `VaryByHeader` property is set. It is set to the `Vary` property's value. The following sample uses the `VaryByHeader` property.
 
@@ -61,7 +61,7 @@ You can view the response headers with your browsers network tools. The followin
 
 ![Edge F12 output on the **Network** tab when the `About2` action method is called](response/_static/vary.png)
 
-### `NoStore` and `Location.None`
+### NoStore and Location.None
 
 `NoStore` overrides most of the other properties. When this property is set to `true`, the `Cache-Control` header will be set to "no-store". If `Location` is set to `None`:
 
@@ -116,7 +116,7 @@ In the above example, a class-level attribute specifies a duration of 30 seconds
 
 The resulting header:
 
-```javascript
+```
 Cache-Control: public,max-age=60
    ```
 
