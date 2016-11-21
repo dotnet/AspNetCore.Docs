@@ -119,7 +119,7 @@ At this time, the contents of the *secrets.json* file are not encrypted. The *se
 
 ### Configure startup to use `AuthMessageSenderOptions`
 
-Add the dependecy `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
+Add the dependency `Microsoft.Extensions.Options.ConfigurationExtensions` in the project.json file.
 
 Add `AuthMessageSenderOptions` to the service container at the end of the `ConfigureServices` method in the *Startup.cs* file:
 
