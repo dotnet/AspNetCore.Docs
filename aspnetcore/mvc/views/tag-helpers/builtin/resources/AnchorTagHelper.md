@@ -1,4 +1,4 @@
-﻿[Back To Built In Tag Helpers List](/mvc/views/tag-helpers/builtin)
+﻿[Back To Built In Tag Helpers List](../builtin.md)
 
 
 
@@ -11,7 +11,7 @@ The AnchorTagHelper enhances the anchor (`<a ... ></a>`). A new set of attribute
 
 For reference, the following ASP.NET ```startup.cs``` and ```SpeakerController.cs``` are defined as though in a default Visual Studio .Net Core Web Project.
 
-![](../builtin/_static/ProjectControllers.png)
+![](../_static/ProjectControllers.png)
 
 **startup.cs**
 ```
@@ -30,7 +30,7 @@ public void Configure(IApplicationBuilder app,
 
 **NOTE TO EDITOR, INCLUDE SOURCE FILES IN LINE OR REFERENCE FROM PROJECT?**
 
-[!code-csharp[SpeakerController.cs](builtin/sample/Controllers/SpeakerController.cs)]
+[!code-csharp[SpeakerController](../sample/TagHelpersBuiltInAspNetCore/src/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs)]
 
 
 **SpeakerController.cs**
@@ -165,7 +165,7 @@ Hash tags are useful when doing client side applications as they can be used for
 
 ```asp-area``` allows for a razor view area to be associated with the hyperlink URL.  That is, if you have a project setup in a similar fashion to the project pictured below, the link generated will include as it's first segment the area you mention.
 
-![](../builtin/_static/ProjectControllersArea.png)
+![](../_static/ProjectControllersArea.png)
 
 Specifying an area tag that is valid ```area="Blogs"``` when referencing the ```AboutBlog.cshtml``` file will look like the following using the AnchorTagHelper.
 

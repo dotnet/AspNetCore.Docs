@@ -9,37 +9,37 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 ## Built in ASP.NET Core Tag Helpers
 
-**[AnchorTagHelper](resources/AnchorTagHelper.md)**
+**[AnchorTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[CacheTagHelper](resources/AnchorTagHelper.md)**
+**[CacheTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[DistributedTagHelper](resources/AnchorTagHelper.md)**
+**[DistributedTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[EnvironmentTagHelper](resources/EnvironmentTagHelper.md)**
+**[EnvironmentTagHelper](builtin/resources/EnvironmentTagHelper.md)**
 
-**[FormActionTagHelper](resources/FormActionTagHelper.md)**
+**[FormActionTagHelper](builtin/resources/FormActionTagHelper.md)**
 
-**[FormTagTagHelper](resources/FormTagHelper.md)**
+**[FormTagTagHelper](builtin/resources/FormTagHelper.md)**
 
-**[ImageTagHelper](resources/ImageTagHelper.md)**
+**[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
 
-**[InputTagHelper](resources/InputTagHelper.md)**
+**[InputTagHelper](builtin/resources/InputTagHelper.md)**
 
-**[LabelTagHelper](resources/LabelTagHelper.md)**
+**[LabelTagHelper](builtin/resources/LabelTagHelper.md)**
 
-**[LinkTagHelper](resources/LinkTagHelper.md)**
+**[LinkTagHelper](builtin/resources/LinkTagHelper.md)**
 
-**[OptionTagHelper](resources/OptionTagHelper.md)**
+**[OptionTagHelper](builtin/resources/OptionTagHelper.md)**
 
-**[ScriptTagHelper](resources/ScriptTagTagHelper.md)**
+**[ScriptTagHelper](builtin/resources/ScriptTagTagHelper.md)**
 
-**[SelectTagHelper](resources/SelectTagTagHelper.md)**
+**[SelectTagHelper](builtin/resources/SelectTagTagHelper.md)**
 
-**[TextAreaTagHelper](resources/TextAreaTagHelper.md)**
+**[TextAreaTagHelper](builtin/resources/TextAreaTagHelper.md)**
 
-**[ValidationMessageTagHelper](resources/ValidationMessageTagHelper.md)**
+**[ValidationMessageTagHelper](builtin/resources/ValidationMessageTagHelper.md)**
 
-**[ValidationSummaryHelper](resources/ValidationSummaryTagHelper.md)**
+**[ValidationSummaryHelper](builtin/resources/ValidationSummaryTagHelper.md)**
 
 <br/>
 
