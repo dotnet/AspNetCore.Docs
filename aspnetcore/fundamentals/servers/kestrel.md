@@ -113,7 +113,7 @@ When you specify port 0, you can use  [`IServerAddressesFeature`](http://docs.as
 
 ### URL prefixes for SSL
 
-Be sure to include URL prefixes with `https:` if you call the `UseSSL` extension method, as shown below.
+Be sure to include URL prefixes with `https:` if you call the `UseHttps` extension method, as shown below.
 
 ```csharp
 var host = new WebHostBuilder() 
