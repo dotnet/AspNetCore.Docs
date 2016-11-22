@@ -2,7 +2,7 @@
 title: 🔧 Working with the Application Model | Microsoft Docs
 author: ardalis
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, ASP.NET Core MVC, application model
 ms.author: riande
 manager: wpickett
 ms.date: 10/14/2016
@@ -12,7 +12,13 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: mvc/controllers/application-model
 ---
-# 🔧 Working with the Application Model
+# Working with the Application Model
 
-> [!NOTE]
-> We are currently working on this topic.We welcome your input to help shape the scope and approach. You can track the status and provide input on this [issue](https://github.com/aspnet/Docs/issues/138) at GitHub.If you would like to review early drafts and outlines of this topic, please leave a note with your contact information in the [issue](https://github.com/aspnet/Docs/issues/138).Learn more about how you can [contribute](https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md) on GitHub.
+By [Steve Smith](http://ardalis.com)
+
+ASP.NET Core MVC defines an *application model* representing the components your MVC app. You can read and manipulate this model to modify how MVC elements behave.
+
+## Models and Conventions
+
+The ASP.NET Core MVC application models include both abstract interfaces and concrete implementations that define how MVC behaves. This behavior includes how MVC works with controller names, action names, action parameters, routes, and filters. By working with the application model, you can modify your app to follow different conventions, or provide a mechanism to explore your app (for instance, to provide dynamic documentation of its API).
+
