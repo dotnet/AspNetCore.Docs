@@ -3,6 +3,22 @@
   "need_generate_pdf": false,
   "need_generate_intellisense": true,
   "git_repository_branch_open_to_public_contributors": "master",
+  "need_generate_pdf_url_template": true,
+  "Targets": {
+    "Pdf": {
+      "template_folder": "_themes.pdf"
+    }
+  },
+  "branch_target_mapping": {
+    "live": [
+      "Publish",
+      "Pdf"
+    ],
+    "master": [
+      "Publish",
+      "Pdf"
+    ]
+  },
   "docsets_to_publish": [
     {
       "docset_name": "aspnet-conceptual",
@@ -41,8 +57,12 @@
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
-      "branch": "master",
-      "branch_mapping": {}
+      "branch": "master"
+    },
+    {
+      "path_to_root": "_themes.pdf",
+      "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
+      "branch": "master"
     }
   ]
 }
