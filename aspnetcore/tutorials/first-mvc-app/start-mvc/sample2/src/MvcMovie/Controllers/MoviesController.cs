@@ -26,16 +26,16 @@ namespace MvcMovie.Controllers
             _context = context;
         }
 #if snippet_index
-#region snippet_index
+        #region snippet_index
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-#endregion
+        #endregion
 #endif
         // End of first Index
-#region snippet_details
+        #region snippet_details
         // GET: Movies/Details/5 
         public async Task<IActionResult> Details(int? id)
         {
@@ -52,7 +52,7 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-#endregion
+        #endregion
         // GET: Movies/Create
         public IActionResult Create()
         {
@@ -74,7 +74,7 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-#region snippet_edit_get
+        #region snippet_edit_get
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -90,7 +90,7 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
-#endregion
+        #endregion
 
         // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -203,7 +203,7 @@ namespace MvcMovie.Controllers
         // End of Edit with rating in bind
         */
 
-
+        #region snippet_delete
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -231,6 +231,7 @@ namespace MvcMovie.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
         private bool MovieExists(int id)
         {
