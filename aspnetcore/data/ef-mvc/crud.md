@@ -267,7 +267,7 @@ In *Startup.cs* you call the [AddDbContext extension method](https://github.com/
 
 ## Handling Transactions
 
-By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](http://ef.readthedocs.io/en/latest/saving/transactions.html).
+By default the Entity Framework implicitly implements transactions. In scenarios where you make changes to multiple rows or tables and then call `SaveChanges`, the Entity Framework automatically makes sure that either all of your changes succeed or they all fail. If some changes are done first and then an error happens, those changes are automatically rolled back. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/en-us/ef/core/saving/transactions).
 
 ## No-tracking queries
 
@@ -281,7 +281,7 @@ You can disable tracking of entity objects in memory by calling the `AsNoTrackin
 
 * You want to attach an entity in order to update it, but earlier you retrieved the same entity for a different purpose. Because the entity is already being tracked by the database context, you can't attach the entity that you want to change. One way to handle this situation is to call `AsNoTracking` on the earlier query.
 
-For more information, see [Tracking vs. No-Tracking](https://ef.readthedocs.io/en/latest/querying/tracking.html).
+For more information, see [Tracking vs. No-Tracking](https://docs.microsoft.com/en-us/ef/core/querying/tracking).
 
 ## Summary
 
