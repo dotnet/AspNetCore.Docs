@@ -1,11 +1,6 @@
 ﻿[Back To Built In Tag Helpers List](../builtin.md)
 
-
-
-
 # AnchorTagHelper
-
-
 
 The AnchorTagHelper enhances the anchor (`<a ... ></a>`). A new set of attributes are defined that work with the anchor tag such that the link generated (on the href tag) is based on a combination of these new attributes that work together to form the final redirect URL which includes an optional protocol update such as https.
 
