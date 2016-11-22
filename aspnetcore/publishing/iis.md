@@ -34,21 +34,19 @@ Enable the **Web Server (IIS)** server role and establish role services.
 
 Navigate to **Control Panel > Programs > Programs and Features > Turn Windows features on or off** (left side of the screen). Open the group for **Internet Information Services** and **Web Management Tools**. Check the box for **IIS Management Console**. Check the box for **World Wide Web Services**. Accept the default features for **World Wide Web Services** or customize the IIS features to suit your needs.
 
-![image](iis/_static/wf.png)
+![IIS Management Console and World Wide Web Services are selected in Windows Features.](iis/_static/windows-features-win10.png)
 
 ### Windows Server operating systems
 
-For server operating systems, use the **Add Roles and Features Wizard** via the **Manage** menu or the link in **Server Manager**. On the **Server Roles** step, check the box for **Web Server (IIS)**.
+For server operating systems, use the **Add Roles and Features** wizard via the **Manage** menu or the link in **Server Manager**. On the **Server Roles** step, check the box for **Web Server (IIS)**.
 
-![image](iis/_static/rs.png)
+![The Web Server IIS role is selected in the Select server roles step.](iis/_static/server-roles-ws2016.png)
 
 On the **Role services** step, select the IIS role services you desire or accept the default role services provided.
 
-![image](iis/_static/role-services.png)
+![The default role services are selected in the Select role services step.](iis/_static/role-services-ws2016.png)
 
-Proceed through the **Confirmation** step to enable the web server role and services.
-
-<a name=unlock-handlers></a>
+Proceed through the **Confirmation** step to install the web server role and services.
 
 ## Install the .NET Core Windows Server Hosting bundle
 
@@ -56,7 +54,11 @@ Proceed through the **Confirmation** step to enable the web server role and serv
 
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
 
-For more information, see [ASP.NET Core Module](../fundamentals/servers/aspnet-core-module.md).
+> [!NOTE]
+> If you only plan to host self-contained applications and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command line:
+> **DotNetCore.1.1.0.Preview1-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+
+For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
 
 ## Application configuration
 
@@ -108,7 +110,7 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 ```none
 
    "tools": {
-     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
    },
    "scripts": {
      "postpublish": "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
@@ -137,23 +139,23 @@ To include the *publish-iis* tool in your application, add entries to the *tools
 
 Open the **Add Website** window.
 
-   ![image](iis/_static/addwebsitecontextmenu.png)
+   ![Click Add Website from the Sites contextual menu.](iis/_static/add-website-context-menu-ws2016.png)
 
 Configure the website.
 
-   ![image](iis/_static/addwebsite.png)
+   ![Supply the Site name, physical path, and Host name in the Add Website step.](iis/_static/add-website-ws2016.png)
 
 In the **Application Pools** panel, open the **Edit Application Pool** window by right-clicking on the website's application pool and selecting **Basic Settings...** from the popup menu.
 
-   ![image](iis/_static/apppoolsbasicsettingscontextmenu.png)
+   ![Select Basic Settings from the contextual menu of the Application Pool.](iis/_static/apppools-basic-settings-ws2016.png)
 
 Set the **.NET CLR version** to **No Managed Code**.
 
-   ![image](iis/_static/editapppool.png)
+   ![Set No Managed Code for the .NET CLR Version.](iis/_static/edit-apppool-ws2016.png)
 
 Browse the website.
 
-   ![image](iis/_static/browsewebsite.png)
+   ![The Microsoft Edge browser has loaded the IIS startup page.](iis/_static/browsewebsite.png)
 
 ## Create a Data Protection Registry Hive
 
