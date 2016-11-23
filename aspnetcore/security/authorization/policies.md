@@ -79,7 +79,7 @@ A requirement doesn't need to have data or properties.
 
 ## Authorization Handlers
 
-An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
+An authorization handler is responsible for the evaluation of any properties of a requirement. The  authorization handler must evaluate them against a provided `AuthorizationHandlerContext` to decide if authorization is allowed. A requirement can have [multiple handlers](policies.md#security-authorization-policies-based-multiple-handlers). Handlers must inherit `AuthorizationHandler<T>` where T is the requirement it handles.
 
 <a name=security-authorization-handler-example></a>
 
@@ -90,7 +90,7 @@ The minimum age handler might look like this:
 ```csharp
 public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
 {
-    protected override Task HandleRequirementAsync(AuthorizationContext context, MinimumAgeRequirement requirement)
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumAgeRequirement requirement)
     {
         if (!context.User.HasClaim(c => c.Type == ClaimTypes.DateOfBirth &&
                                    c.Issuer == "http://contoso.com"))
