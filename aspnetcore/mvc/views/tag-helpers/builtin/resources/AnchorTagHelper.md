@@ -1,6 +1,8 @@
-﻿[Back To Built In Tag Helpers List](../builtin.md)
+﻿[Back To Built In Tag Helpers List](../../builtin.md)
+
 
 # AnchorTagHelper
+
 
 The AnchorTagHelper enhances the anchor (`<a ... ></a>`). A new set of attributes are defined that work with the anchor tag such that the link generated (on the href tag) is based on a combination of these new attributes that work together to form the final redirect URL which includes an optional protocol update such as https.
 
@@ -8,7 +10,7 @@ For reference, the following ASP.NET ```startup.cs``` and ```SpeakerController.c
 
 ![](../_static/ProjectControllers.png)
 
-**startup.cs**
+**Startup.cs**
 ```
 // This method gets called by the runtime. 
 // Use this method to configure the HTTP request pipeline.
@@ -19,6 +21,8 @@ public void Configure(IApplicationBuilder app,
     //...
 }  
 ```
+
+**SpeakerController.cs**
 
 [!code-csharp[SpeakerController](../sample/TagHelpersBuiltInAspNetCore/src/TagHelpersBuiltInAspNetCore/Controllers/SpeakerController.cs)]
 

@@ -1,4 +1,4 @@
-﻿# ASP.NET Core Included Tag Helper
+﻿# ASP.NET Core Built in Razor Tag Helpers
 
 By [Peter Kellner](http://peterkellner.net) 
 
@@ -11,35 +11,35 @@ Microsoft has included 17 Tag Helpers that can be immediately used in .net Core 
 
 **[AnchorTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[CacheTagHelper](builtin/resources/AnchorTagHelper.md)**
+[comment]: **[CacheTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[DistributedTagHelper](builtin/resources/AnchorTagHelper.md)**
+[comment]: **[DistributedTagHelper](builtin/resources/AnchorTagHelper.md)**
 
-**[EnvironmentTagHelper](builtin/resources/EnvironmentTagHelper.md)**
+[comment]: **[EnvironmentTagHelper](builtin/resources/EnvironmentTagHelper.md)**
 
-**[FormActionTagHelper](builtin/resources/FormActionTagHelper.md)**
+[comment]: **[FormActionTagHelper](builtin/resources/FormActionTagHelper.md)**
 
-**[FormTagTagHelper](builtin/resources/FormTagHelper.md)**
+[comment]: **[FormTagTagHelper](builtin/resources/FormTagHelper.md)**
 
-**[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
+[comment]: **[ImageTagHelper](builtin/resources/ImageTagHelper.md)**
 
-**[InputTagHelper](builtin/resources/InputTagHelper.md)**
+[comment]: **[InputTagHelper](builtin/resources/InputTagHelper.md)**
 
-**[LabelTagHelper](builtin/resources/LabelTagHelper.md)**
+[comment]: **[LabelTagHelper](builtin/resources/LabelTagHelper.md)**
 
-**[LinkTagHelper](builtin/resources/LinkTagHelper.md)**
+[comment]: **[LinkTagHelper](builtin/resources/LinkTagHelper.md)**
 
-**[OptionTagHelper](builtin/resources/OptionTagHelper.md)**
+[comment]: **[OptionTagHelper](builtin/resources/OptionTagHelper.md)**
 
-**[ScriptTagHelper](builtin/resources/ScriptTagTagHelper.md)**
+[comment]: **[ScriptTagHelper](builtin/resources/ScriptTagTagHelper.md)**
 
-**[SelectTagHelper](builtin/resources/SelectTagTagHelper.md)**
+[comment]: **[SelectTagHelper](builtin/resources/SelectTagTagHelper.md)**
 
-**[TextAreaTagHelper](builtin/resources/TextAreaTagHelper.md)**
+[comment]: **[TextAreaTagHelper](builtin/resources/TextAreaTagHelper.md)**
 
-**[ValidationMessageTagHelper](builtin/resources/ValidationMessageTagHelper.md)**
+[comment]: **[ValidationMessageTagHelper](builtin/resources/ValidationMessageTagHelper.md)**
 
-**[ValidationSummaryHelper](builtin/resources/ValidationSummaryTagHelper.md)**
+[comment]: **[ValidationSummaryHelper](builtin/resources/ValidationSummaryTagHelper.md)**
 
 <br/>
 

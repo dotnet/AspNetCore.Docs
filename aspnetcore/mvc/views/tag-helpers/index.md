@@ -1,4 +1,4 @@
----
+﻿---
 title: Tag Helpers
 author: rick-anderson
 ms.author: riande
@@ -16,5 +16,7 @@ uid: mvc/views/tag-helpers/index
 * [Introduction to Tag Helpers](intro.md)
 
 * [Working with Forms](../working-with-forms.md)
+
+* [Built in Tag Helpers](builtin.md)
 
 * [Authoring Tag Helpers](authoring.md)
