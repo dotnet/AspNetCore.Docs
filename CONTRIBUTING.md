@@ -15,6 +15,8 @@ You'll need a basic understanding of [Git and GitHub.com](https://guides.github.
 * Submit a pull request (PR) to master with your changes.
 * Respond to PR feedback.
 
+For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET Core repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
+
 ## Markdown syntax
 
 Articles are written in [DocFx-flavored Markdown](http://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown Template](https://github.com/dotnet/docs/blob/master/styleguide/template.md) in the .NET Core repo style guide. 
