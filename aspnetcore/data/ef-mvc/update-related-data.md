@@ -261,7 +261,7 @@ The HttpPost `Create` method adds each selected course to the `Courses` navigati
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
 ```csharp
-instructor.Courses = new List<Course>();
+instructor.Courses = new List<CourseAssignment>();
 ```
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
