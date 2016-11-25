@@ -291,7 +291,7 @@ Test by running the **Create** page and adding an instructor.
 
 ## Handling Transactions
 
-As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://ef.readthedocs.io/en/latest/saving/transactions.html).
+As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/en-us/ef/core/saving/transactions).
 
 ## Summary
 
