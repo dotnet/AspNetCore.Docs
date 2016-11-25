@@ -78,7 +78,7 @@ In *Views/Courses/Edit.cshtml*, make the same change for the Department field th
 
 Also in *Views/Courses/Edit.cshtml*, add a course number field before the Credits field. Because it's the primary key, it's displayed, but it can't be changed.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=37-43)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=16-21)]
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
