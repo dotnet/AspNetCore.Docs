@@ -6,6 +6,9 @@ using Microsoft.Extensions.Logging;
 
 namespace MiddlewareSample
 {
+    /// <summary>
+    /// Sync
+    /// </summary>
     public class Startup
     {
         private readonly string _environment;
