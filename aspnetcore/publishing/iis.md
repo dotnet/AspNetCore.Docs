@@ -46,17 +46,17 @@ On the **Role services** step, select the IIS role services you desire or accept
 
 ![The default role services are selected in the Select role services step.](iis/_static/role-services-ws2016.png)
 
-Proceed through the **Confirmation** step to install the web server role and services.
+Proceed through the **Confirmation** step to install the web server role and services. A server/IIS restart is not required after installing the Web Server (IIS) role. We will execute a server/IIS restart after installing the .NET Core Windows Server Hosting bundle in the next step.
 
 ## Install the .NET Core Windows Server Hosting bundle
 
 1. Install the [.NET Core Windows Server Hosting](https://aka.ms/dotnetcore_windowshosting_1_1_0) bundle on the server. The bundle will install the .NET Core Runtime, .NET Core Library, and the ASP.NET Core Module. The module creates the reverse-proxy between IIS and the Kestrel server.
 
-2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command-line to pickup changes to the system PATH.
+2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command line to pickup changes to the system PATH.
 
 > [!NOTE]
 > If you only plan to host self-contained applications and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command line:
-> **DotNetCore.1.1.0.Preview1-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+> **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
 
 For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
 
@@ -190,23 +190,23 @@ Common errors and general troubleshooting instructions:
 
 ### Installer unable to obtain VC++ Redistributable
 
-* **Installer Exception:** Installation of the .NET Core Windows Server Hosting Bundle fails with *0x80070002 - The system cannot find the file specified*.
+* **Installer Exception:** ErrorCode = 0x80070002
 
 Troubleshooting:
 
-* If the server does not have Internet access while installing the server hosting bundle, this exception will ensue when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)* packages online. You may obtain an installer for the packages from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
+* If the server does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
 
 ### Platform conflicts with RID
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** - Application Error: Faulting module: KERNELBASE.dll Exception code: 0xe0434352 Faulting module path: C:\WINDOWS\system32\KERNELBASE.dll - IIS AspNetCore Module: Failed to start process with commandline '"dotnet" .\my_application.dll' (portable app) or '"PATH\my_application.exe"' (self-contained app), ErrorCode = '0x80004005'.
+* **Application Log:** - ErrorCode = 0x80004005
 
-* **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'teststandalone.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
+* **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'my_application.dll'. An attempt was made to load a program with an incorrect format.
 
 Troubleshooting:
 
-* If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win81-x64** (**dotnet publish -c Release -r win81-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+* If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
 ### URI endpoint wrong or stopped website
 
@@ -224,7 +224,7 @@ Troubleshooting:
 
 ### CoreWebEngine or W3SVC server features disabled
 
-* **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the Microsoft HTTP Platform Handler 1.x.
+* **OS Exception:** The IIS 7.0 CoreWebEngine and W3SVC features must be installed to use the ASP.NET Core Module.
 
 Troubleshooting:
 
@@ -254,29 +254,15 @@ Troubleshooting:
 
 * Confirm that you have enabled the proper server role. See [IIS Configuration](#iis-configuration).
 
-* Check **Programs & Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [IIS Configuration](#iis-configuration).
+* Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [IIS Configuration](#iis-configuration).
 
 * Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
 
-### Hosting bundle not installed or server not restarted
-
-* **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
-
-* **Application Log:** Process '0' failed to start. Port = PORT, Error Code = '-2147024894'.
-
-* **ASP.NET Core Module Log:** Log file created but empty
-
-Troubleshooting:
-
-* You may have deployed a portable application without installing .NET Core on the server. If you are attempting to deploy a portable application and have not installed .NET Core, run the **.NET Core Windows Server Hosting Bundle Installer** on the server. See [Install the .NET Core Windows Server Hosting Bundle](#install-the-net-core-windows-server-hosting-bundle).
-
-* You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command-line.
-
-### Incorrect *processPath*, missing PATH variable, or *dotnet.exe* access violation
+### Incorrect *processPath*, missing PATH variable, hosting bundle not installed, server/IIS not restarted, VC++ Redistributable not installed, or *dotnet.exe* access violation
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Failed to start process with commandline '"dotnet" .\my_application.dll' (portable app) or '".\my_application_Foo.exe"' (self-contained app), ErrorCode = '0x80070002'.
+* **Application Log:** ErrorCode = 0x80070002
 
 * **ASP.NET Core Module Log:** Log file created but empty
 
@@ -286,17 +272,23 @@ Troubleshooting:
 
 * For a portable application, *dotnet.exe* might not be accessible via the PATH settings. Confirm that *C:\Program Files\dotnet\* exists in the System PATH settings.
 
-* For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the *C:\Program Files\dotnet* directory.
+* For a portable application, *dotnet.exe* might not be accessible for the user identity of the Application Pool. Confirm that the AppPool user identity has access to the *C:\Program Files\dotnet* directory. Confirm that there are no deny rules configured for the AppPool user identity on the *C:\Program Files\dotnet* and application directories.
 
-* You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command-line.
+* You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
+
+* You may have deployed a portable application without installing the .NET Core runtime on the server. If you are attempting to deploy a portable application and have not installed the .NET Core runtime, run the **.NET Core Windows Server Hosting bundle installer** on the server. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle).
+
+* You may have deployed a portable application and installed .NET Core without restarting the server/IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
+
+* You may have deployed a portable application and the *Microsoft Visual C++ 2015 Redistributable (x64)* is not installed on the server. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840). Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line after running the installer.
 
 ### Incorrect *arguments* of *<aspNetCore>* element
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Failed to start process with commandline '"dotnet" .\my_application_Foo.dll', ErrorCode = '0x80004005'.
+* **Application Log:** ErrorCode = 0x80004005
 
-* **ASP.NET Core Module Log:** The application to execute does not exist: 'PATH\my_application_Foo.dll'
+* **ASP.NET Core Module Log:** The application to execute does not exist: 'PATH\my_application.dll'
 
 Troubleshooting:
 
@@ -306,7 +298,7 @@ Troubleshooting:
 
 * **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
 
-* **Application Log:** Failed to start process with commandline '[IIS_WEBSITE_PHYSICAL_PATH] ', Error Code = '0x80004005'.
+* **Application Log:** ErrorCode = 0x80004005
 
 * **ASP.NET Core Module Log:** Missing method, file, or assembly exception. The method, file, or assembly specified in the exception is a .NET Framework method, file, or assembly.
 
@@ -326,19 +318,17 @@ Troubleshooting
 
 * Confirm that the Application Pool is not in the *Stopped* state.
 
-### IIS Integration middleware not implemented or *.UseUrls()* after *.UseIISIntegration()*
+### IIS Integration middleware not implemented
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Process was created with commandline '"dotnet" .\my_application.dll' (portable app) or '".\my_application.exe"' (self-contained app) but either crashed or did not reponse within given time or did not listen on the given port 'PORT', ErrorCode = '0x800705b4'
+* **Application Log:** ErrorCode = 0x800705b4
 
 * **ASP.NET Core Module Log:** Log file created and shows normal operation.
 
 Troubleshooting
 
-* Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method of the application's *WebHostBuilder()*.
-
-* If you are using ASP.NET Core 1.0, and you call the *.UseUrls()* extension method when self-hosting with Kestrel, confirm that it is positioned before the *.UseIISIntegration()* extension method on *WebHostBuilder()*. *.UseIISIntegration()* must set the Url for the reverse-proxy when running Kestrel behind IIS and not have its value overridden by *.UseUrls()*. In ASP.NET Core 1.1, this is not required, because `UseIISIntegration` overwrites `UseUrls` regardless of the order they are called in.
+* Confirm that you have correctly referenced the IIS Integration middleware by calling the *.UseIISIntegration()* method on the application's *WebHostBuilder()*.
 
 ### Sub-application includes a `<handlers>` section
 
@@ -356,7 +346,7 @@ Troubleshooting
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** Failed to start process with commandline '"dotnet" .my_application.dll' (portable app) or '".my_application.exe"' (self-contained app), ErrorCode = '0x800705b4'
+* **Application Log:** ErrorCode = 0x800705b4
 
 * **ASP.NET Core Module Log:** Log file created but empty
 
