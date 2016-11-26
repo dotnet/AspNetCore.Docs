@@ -190,7 +190,7 @@ Common errors and general troubleshooting instructions:
 
 ### Installer unable to obtain VC++ Redistributable
 
-* **Installer Exception:** ErrorCode = 0x80070002
+* **Installer Exception:** ErrorCode = 0x80070002 - The system cannot find the file specified.
 
 Troubleshooting:
 
@@ -200,13 +200,13 @@ Troubleshooting:
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** - ErrorCode = 0x80004005
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' failed to start process with commandline '"C:\{PATH}\my_application.{exe|dll}" ', ErrorCode = '0x80004005 : ff.
 
 * **ASP.NET Core Module Log:** Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'my_application.dll'. An attempt was made to load a program with an incorrect format.
 
 Troubleshooting:
 
-* If you published a self-contained application, confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
+* Confirm that you didn't set a **platform** in **buildOptions** of *project.json* that conflicts with the publishing RID. For example, do not specify a **platform** of **x86** and publish with an RID of **win10-x64** (**dotnet publish -c Release -r win10-x64**). The project will publish without warning or error but fail with the above logged exceptions on the server.
 
 ### URI endpoint wrong or stopped website
 
@@ -232,7 +232,7 @@ Troubleshooting:
 
 ### Incorrect website physical path or application missing
 
-* **Browser:** 403 Forbidden: Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
+* **Browser:** 403 Forbidden - Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
 
 * **Application Log:** No entry
 
@@ -244,7 +244,7 @@ Troubleshooting:
 
 ### Incorrect server role, module not installed, or incorrect permissions
 
-* **Browser:** 500.19 Internal Server Error: The requested page cannot be accessed because the related configuration data for the page is invalid.
+* **Browser:** 500.19 Internal Server Error - The requested page cannot be accessed because the related configuration data for the page is invalid.
 
 * **Application Log:** No entry
 
@@ -256,13 +256,13 @@ Troubleshooting:
 
 * Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [IIS Configuration](#iis-configuration).
 
-* Make sure that the **Application Pool Process Model Identity** is either set to **ApplicationPoolIdentity**; or if a custom identity is in use, confirm the identity has the correct permissions to access the application's assets folder.
+* Make sure that the **Application Pool > Process Model > Identity** is set to **ApplicationPoolIdentity** or your custom identity has the correct permissions to access the application's assets folder.
 
 ### Incorrect *processPath*, missing PATH variable, hosting bundle not installed, server/IIS not restarted, VC++ Redistributable not installed, or *dotnet.exe* access violation
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** ErrorCode = 0x80070002
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' failed to start process with commandline '".\my_application.exe" ', ErrorCode = '0x80070002 : 0.
 
 * **ASP.NET Core Module Log:** Log file created but empty
 
@@ -286,7 +286,7 @@ Troubleshooting:
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** ErrorCode = 0x80004005
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' failed to start process with commandline '"dotnet" .\my_application.dll', ErrorCode = '0x80004005 : 80008081.
 
 * **ASP.NET Core Module Log:** The application to execute does not exist: 'PATH\my_application.dll'
 
@@ -296,9 +296,9 @@ Troubleshooting:
 
 ### Missing .NET Framework version
 
-* **Browser:** 502.3 Bad Gateway: There was a connection error while trying to route the request.
+* **Browser:** 502.3 Bad Gateway - There was a connection error while trying to route the request.
 
-* **Application Log:** ErrorCode = 0x80004005
+* **Application Log:** ErrorCode = Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' failed to start process with commandline '"dotnet" .\my_application.dll', ErrorCode = '0x80004005 : 80008081.
 
 * **ASP.NET Core Module Log:** Missing method, file, or assembly exception. The method, file, or assembly specified in the exception is a .NET Framework method, file, or assembly.
 
@@ -322,7 +322,7 @@ Troubleshooting
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** ErrorCode = 0x800705b4
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' created process with commandline '"C:\{PATH}\my_application.{exe|dll}" ' but either crashed or did not reponse or did not listen on the given port '{PORT}', ErrorCode = '0x800705b4'
 
 * **ASP.NET Core Module Log:** Log file created and shows normal operation.
 
@@ -346,7 +346,7 @@ Troubleshooting
 
 * **Browser:** HTTP Error 502.5 - Process Failure
 
-* **Application Log:** ErrorCode = 0x800705b4
+* **Application Log:** Application 'MACHINE/WEBROOT/APPHOST/MY_APPLICATION' with physical root 'C:\{PATH}\' created process with commandline '"C:\{PATH}\my_application.{exe|dll}" ' but either crashed or did not reponse or did not listen on the given port '{PORT}', ErrorCode = '0x800705b4'
 
 * **ASP.NET Core Module Log:** Log file created but empty
 
