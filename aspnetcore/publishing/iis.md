@@ -232,7 +232,7 @@ Troubleshooting:
 
 ### Incorrect website physical path or application missing
 
-* **Browser:** 403 Forbidden - Access is denied **--OR--** 403.14 Forbidden: The Web server is configured to not list the contents of this directory.
+* **Browser:** 403 Forbidden - Access is denied **--OR--** 403.14 Forbidden - The Web server is configured to not list the contents of this directory.
 
 * **Application Log:** No entry
 
