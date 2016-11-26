@@ -89,7 +89,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 ### Mono instructions
 
 * Install Mono via Homebrew - `brew install mono`.
-* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases/tag/v2.7.2).
+* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
 * Extract to `\bin\docfx`.
 * Create an alias for **docfx**:
 
