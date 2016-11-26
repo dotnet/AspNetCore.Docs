@@ -138,7 +138,7 @@ Many developers write code to implement the repository and unit of work patterns
 
 For information about how to implement the repository and unit of work patterns, see [the Entity Framework 5 version of this tutorial series](http://www.asp.net/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application).
 
-Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://ef.readthedocs.io/en/latest/miscellaneous/testing.html).
+Entity Framework Core implements an in-memory database provider that can be used for testing. For more information, see [Testing with InMemory](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory).
 
 ## Automatic change detection
 
