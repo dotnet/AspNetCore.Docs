@@ -190,11 +190,15 @@ Common errors and general troubleshooting instructions:
 
 ### Installer unable to obtain VC++ Redistributable
 
-* **Installer Exception:** ErrorCode = 0x80070002 - The system cannot find the file specified.
+* **Installer Exception:** 0x80072efd - Unspecified error
+
+* **Installer Log Exception\*:** Error 0x80072efd: Failed to execute EXE package.
+
+\*The log is located at C:\Users\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{timestamp}.log.
 
 Troubleshooting:
 
-* If the server does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
+* If the server does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840). If the installer fails, you may not receive the .NET Core runtime required to host portable applications. If you plan to host portable applications, confirm that the runtime is installed in Programs &amp; Features. You may obtain a runtime installer from [.NET Downloads](https://www.microsoft.com/net/download/core). After installing the runtime, restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
 
 ### Platform conflicts with RID
 
@@ -276,7 +280,7 @@ Troubleshooting:
 
 * You may have deployed a portable application and installed .NET Core without restarting IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
 
-* You may have deployed a portable application without installing the .NET Core runtime on the server. If you are attempting to deploy a portable application and have not installed the .NET Core runtime, run the **.NET Core Windows Server Hosting bundle installer** on the server. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle).
+* You may have deployed a portable application without installing the .NET Core runtime on the server. If you are attempting to deploy a portable application and have not installed the .NET Core runtime, run the **.NET Core Windows Server Hosting bundle installer** on the server. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle). If you are attempting to install the .NET Core runtime on a server without an Internet connection, obtain the runtime from [.NET Downloads](https://www.microsoft.com/net/download/core) and run the hosting bundle installer from an administrator command line to only install the module using **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**. Complete the installation by restarting the server or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
 
 * You may have deployed a portable application and installed .NET Core without restarting the server/IIS. Either restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
 
