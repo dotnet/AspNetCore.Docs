@@ -82,7 +82,7 @@ Content *negotiation* only takes place if an `Accept` header appears in the requ
 negotiation taking place - the server is determining what format it will use.
 
 > [!NOTE]
-> If the Accept header contains `/`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
+> If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on `MvcOptions`.
 
 ### Browsers and Content Negotiation
 
