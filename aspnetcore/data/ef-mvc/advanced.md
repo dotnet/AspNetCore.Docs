@@ -94,7 +94,7 @@ Click **Back to List** to see the list of courses with the revised number of cre
 
 ![Courses Index page](advanced/_static/courses-index.png)
 
-For more information about raw SQL queries, see [Raw SQL Queries](https://ef.readthedocs.io/en/latest/querying/raw-sql.html).
+For more information about raw SQL queries, see [Raw SQL Queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql).
 
 ## Examine SQL sent to the database
 
