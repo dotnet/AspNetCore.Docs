@@ -93,7 +93,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=294-298)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=294-299)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
