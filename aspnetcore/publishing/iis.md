@@ -55,8 +55,10 @@ Proceed through the **Confirmation** step to install the web server role and ser
 2. Restart the server or execute **net stop was /y** followed by **net start w3svc** from the command line to pickup changes to the system PATH.
 
 > [!NOTE]
-> If you only plan to host self-contained applications and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command line:
-> **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+> If you only plan to host self-contained applications and thus don't require the .NET Core runtime on the server, you have the option of only installing the ASP.NET Core Module by running the installer from an Administrator command line: **DotNetCore.1.1.0-WindowsHosting.exe OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0**
+
+> [!NOTE]
+> If you use an IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](../hosting/aspnet-core-module.md#aspnet-core-module-with-iis-shared-configuration).
 
 For more information, see [ASP.NET Core Module overview](../fundamentals/servers/aspnet-core-module.md) and [ASP.NET Core Module Configuration Reference](../hosting/aspnet-core-module.md).
 
@@ -190,15 +192,23 @@ Common errors and general troubleshooting instructions:
 
 ### Installer unable to obtain VC++ Redistributable
 
-* **Installer Exception:** 0x80072efd - Unspecified error
+* **Installer Exception:** 0x80072efd or 0x80072f76 - Unspecified error
 
-* **Installer Log Exception\*:** Error 0x80072efd: Failed to execute EXE package.
+* **Installer Log Exception\*:** Error 0x80072efd or 0x80072f76: Failed to execute EXE package
 
 \*The log is located at C:\Users\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{timestamp}.log.
 
 Troubleshooting:
 
 * If the server does not have Internet access while installing the server hosting bundle, this exception will occur when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable (x64)*. You may obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53840). If the installer fails, you may not receive the .NET Core runtime required to host portable applications. If you plan to host portable applications, confirm that the runtime is installed in Programs &amp; Features. You may obtain a runtime installer from [.NET Downloads](https://www.microsoft.com/net/download/core). After installing the runtime, restart the server or restart IIS by executing **net stop was /y** followed by **net start w3svc** from the command line.
+
+### 
+
+* **Application Log:** The Module DLL **C:\WINDOWS\system32\inetsrv\aspnetcore.dll** failed to load. The data is the error.
+
+Troubleshooting:
+
+* Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory are not preserved during an OS upgrade. If you have the ASP.NET Core Module installed prior to an OS upgrade and then try to run any AppPool in 32-bit mode after an OS upgrade, you will encounter this issue. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle). Select **Repair** when you run the installer.
 
 ### Platform conflicts with RID
 
@@ -258,7 +268,7 @@ Troubleshooting:
 
 * Confirm that you have enabled the proper server role. See [IIS Configuration](#iis-configuration).
 
-* Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [IIS Configuration](#iis-configuration).
+* Check **Programs &amp; Features** and confirm that the **Microsoft ASP.NET Core Module** has been installed. If the **Microsoft ASP.NET Core Module** is not present in the list of installed programs, install the module. See [Install the .NET Core Windows Server Hosting bundle](#install-the-net-core-windows-server-hosting-bundle).
 
 * Make sure that the **Application Pool > Process Model > Identity** is set to **ApplicationPoolIdentity** or your custom identity has the correct permissions to access the application's assets folder.
 
