@@ -18,7 +18,7 @@ In this section you'll add search capability to the `Index` action method that l
 
 Update the `Index` action method to enable search:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=256-267)]
+[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
 The first line of the `Index` action method creates a [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) query to select the movies:
 
@@ -35,9 +35,9 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 ```csharp
 if (!String.IsNullOrEmpty(searchString))
-   {
-       movies = movies.Where(s => s.Title.Contains(searchString));
-   }
+{
+    movies = movies.Where(s => s.Title.Contains(searchString));
+}
 ```
 
 The `s => s.Title.Contains()` code above is a [Lambda Expression](http://msdn.microsoft.com/en-us/library/bb397687.aspx). Lambdas are used in method-based [LINQ](http://msdn.microsoft.com/en-us/library/bb397926.aspx) queries as arguments to standard query operator methods such as the [Where](http://msdn.microsoft.com/en-us/library/system.linq.enumerable.where.aspx) method or `Contains` used in the code above. LINQ queries are not executed when they are defined or when they are modified by calling a method such as `Where`, `Contains`  or `OrderBy`. Instead, query execution is deferred, which means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](http://msdn.microsoft.com/en-us/library/bb738633.aspx).
@@ -67,11 +67,11 @@ Change the parameter to `id` and all occurrences of `searchString` change to `id
 
 The previous `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&range=256-267)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_1stSearch)]
 
 The updated `Index` method:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&range=275-286)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1,8&name=snippet_SearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -79,7 +79,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=256-267)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_1stSearch)]
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
@@ -93,7 +93,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&range=294-299)]
+[!code-csharp[Main](./start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=snippet_SearchPost)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
@@ -145,7 +145,7 @@ The movie-genre view model will contain:
 
 Replace the `Index` method with the following code:
 
-[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?range=306-331)]
+[!code-csharp[Main](start-mvc/sample2/src/MvcMovie/Controllers/MoviesController.cs?name=snippet_SearchGenre)]
 
 The following code is a `LINQ` query that retrieves all the genres from the database.
 
