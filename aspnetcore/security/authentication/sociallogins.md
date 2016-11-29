@@ -95,6 +95,9 @@ Use the following pages to configure your application to use the respective prov
 * [Microsoft](microsoft-logins.md) instructions
 * [Other provider](other-logins.md) instructions
 
+> [NOTE!]
+> `app.UseIdentity()` call in `Configure()` method in `Startup.cs` file should be listed first before any other external providers.
+
 ## Optionally set password
 
 When you register with an external login provider, you do not have a password registered with the app. This alleviates you from creating and remembering a password for the site, but it also makes you dependent on the external login provider. If the external login provider is unavailable, you won't be able to log in to the web site.
