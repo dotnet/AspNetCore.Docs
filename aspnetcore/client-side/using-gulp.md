@@ -167,7 +167,7 @@ If you haven’t already created a new Web app, create a new ASP.NET Web Applica
     gulp.task("min", ["min:js", "min:css"]);
     ```
 
-2.  Open the *project.json* file (add if not there) and add the following.
+2.  Open the *package.json* file (add if not there) and add the following.
 
     <!-- literal_block {"ids": [], "names": [], "highlight_args": {}, "backrefs": [], "dupnames": [], "linenos": false, "classes": [], "xml:space": "preserve", "language": "javascript"} -->
     
