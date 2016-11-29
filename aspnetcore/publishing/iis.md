@@ -95,8 +95,8 @@ To configure *IISIntegration* service options, include a service configuration f
    });
    ```
 
-| Option               | Setting|
-| ----------------- | ------------ | 
+| Option | Setting|
+| --- | --- | 
 | AutomaticAuthentication | If true, the authentication middleware will alter the request user arriving and respond to generic challenges. If false,the authentication middleware will only provide identity and respond to challenges when explicitly indicated by theAuthenticationScheme |
 | ForwardClientCertificate | If true and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `ITLSConnectionFeature` will be populated. |
 | ForwardWindowsAuthentication | If true, authentication middleware will attempt to authenticate using platform handler windows authentication. If false, authentication middleware won’t be added. |
@@ -173,6 +173,10 @@ In web farm scenarios, an application can be configured to use a UNC path to sto
 ## Configuration of sub-applications
 
 When adding applications to an IIS Site's root application, the root application *web.config* file should include the `<handlers>` section, which adds the ASP.NET Core Module as a handler for the app. Applications added to the root application shouldn't include the `<handlers>` section. If you repeat the `<handlers>` section in a sub-application's *web.config* file, you will receive a 500.19 (Internal Server Error) referencing the faulty config file when you attempt to browse the sub-application.
+
+## Configuration of IIS via **web.config**
+
+IIS configuration is still influenced by the `system.webServer` section of **web.config** for those IIS features that apply to a reverse proxy configuration. For example, you may have IIS configured at the server level to use dynamic compression, but you could disable that setting for an app with the `urlCompression` element in the app's **web.config** file. For more information, see the [configuration reference for <system.webServer>](https://www.iis.net/configreference/system.webserver).
 
 ## Common errors
 
