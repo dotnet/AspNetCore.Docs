@@ -26,4 +26,4 @@ uid: mvc/controllers/index
 
 * [Areas](areas.md)
 
-* [🔧 Working with the Application Model](application-model.md)
+* [Working with the Application Model](application-model.md)

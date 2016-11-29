@@ -4,4 +4,4 @@
 # [Dependency Injection and Controllers](dependency-injection.md)
 # [Testing Controller Logic](testing.md)
 # [Areas](areas.md)
-# [🔧 Working with the Application Model](application-model.md)
+# [Working with the Application Model](application-model.md)
