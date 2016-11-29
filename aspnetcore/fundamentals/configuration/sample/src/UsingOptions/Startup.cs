@@ -28,7 +28,7 @@ namespace UsingOptions
             // Adds services required for using options.
             services.AddOptions();
 
-            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            // Register the IConfiguration instance which MyOptions binds against.
             services.Configure<MyOptions>(Configuration);
 
             // Add framework services.

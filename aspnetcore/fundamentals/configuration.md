@@ -1,11 +1,14 @@
 ---
-title: Configuration
+title: Configuration | Microsoft Docs
 author: rick-anderson
+description: Demonstrates the configuration API
+keywords: ASP.NET Core, configuration, JSON
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 11/29/2016
 ms.topic: article
-ms.assetid: f9bdbef5-e8a4-4e8d-a499-e59f30967995
+ms.assetid: b3a5984d-e172-42eb-8a48-547e4acb6806
+ms.technology: aspnet
 ms.prod: aspnet-core
 uid: fundamentals/configuration
 ---
@@ -27,19 +30,19 @@ The configuration API reads lists of name-value pairs. The name-value pairs can 
 * An encrypted user store
 * Custom providers, which you install or create
 
-Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom POCO object (.NET class).
+Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (.NET class).
 
-[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnet/fundamentals/configuration/sample)
+[View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 
   ## Simple configuration
 
 The following console app uses the JSON configuration provider:
 
-[!code-csharp[Main](configuration/sample/JsonConfig/Program.cs)]
+[!code-csharp[Main](configuration/sample/src/ConfigJson/Program.cs)]
 
 The app reads and displays the following configuration settings:
 
-[!code-json[Main](configuration/sample/JsonConfig/appsettings.json)]
+[!code-json[Main](configuration/sample/src/ConfigJson/appsettings.json)]
 
 Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a particular value, you access the `Configuration` indexer with the corresponding item’s key:
 
@@ -50,28 +53,28 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-The sample above uses the configuration indexer to read values. In ASP.NET Core applications, we recommend you use the [options pattern](xref:fundamentals/configuration#options-config-objects) rather than the indexer to read configuration values. We'll demonstrate that later in this document.
+The sample above uses the configuration indexer to read values. In ASP.NET Core applications, we recommend you use the [options pattern](xref:fundamentals/configuration#options-config-objects) rather than the indexer to read configuration values. We'll show that later in this document.
 
 It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
 
 1. JSON provider, reading *appsettings.json*
-2. JSON provider, reading *appsettings.<EnvironmentName>.json*
+2. JSON provider, reading *appsettings.\<EnvironmentName>.json*
 3. Environment variables provider
 
-<!--
-TODO add link
-http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/JsonConfigurationExtensions/index.html#Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile)
--->
-See ``AddJsonFile`` for an explanation of the parameters. Configuration sources are read in the order they are specified. In the code above, the environment variables are read last, any configuration values set through the environment would replace those set in the two previous providers.
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet2&highlight=7-9)]
+
+See [AddJsonFile](https://docs.microsoft.com/aspnet/core/api/microsoft.extensions.configuration.jsonconfigurationextensions) for an explanation of the parameters. `reloadOnChange` is only supported in ASP.NET Core 1.1 and higher. 
+
+Configuration sources are read in the order they are specified. In the code above, the environment variables are read last. Any configuration values set through the environment would replace those set in the two previous providers.
 
 The environment is typically set to one of `Development`, `Staging`, or `Production`. See [Working with Multiple Environments](environments.md) for more information.
 
 Configuration considerations:
 
-* The built in configuration providers are not refreshed when the configuration data changes. If your configuration data changes, you'll need to restart your app to get the new data.
+* `IOptionsSnapshot` can reload configuration data when it changes. Use `IOptionsSnapshot` if you need to reload configuration data.  See [IOptionsSnapshot](#ioptionssnapshot) for more information.
 * Configuration keys are case insensitive.
 * A best practice is to specify environment variables last, so that the local environment can override anything set in deployed configuration files.
-* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, such secrets should be specified outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
+* **Never** store passwords or other sensitive data in configuration provider code or in plain text configuration files. You also shouldn't use production secrets in your development or test environments. Instead, specify secrets outside the project tree, so they cannot be accidentally committed into your repository. Learn more about [Working with Multiple Environments](environments.md) and managing [Safe storage of app secrets during development](../security/app-secrets.md).
 * If `:` cannot be used in environment variables in your system,  replace `:`  with `__` (double underscore).
 
 <a name=options-config-objects></a>
@@ -87,258 +90,76 @@ The options class must be non-abstract with a public parameterless constructor. 
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MyOptions.cs)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Models/MyOptions.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   public class MyOptions
-   {
-// rm
-       public MyOptions()
-       {
-           // Set default value.
-           Option1 = "value1_from_ctor";
-       }
-       public string Option1 { get; set; }
-       public int Option2 { get; set; } = 5;
-   }
-   ````
-
 <a name=options-example></a>
 
-In the following code, the JSON configuration provider is enabled and the `MyOptions` class is added to the service container. The `MyOptions` class is bound to configuration.
+In the following code, the JSON configuration provider is enabled. The `MyOptions` class is added to the service container and bound to configuration.
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup.cs?name=snippet1&highlight=8,20-22)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup.cs", "highlight_args": {"linenostart": 1, "hl_lines": [5, 6, 7, 8, 10, 13, 15, 17, 18, 20, 21]}, "names": []} -->
 
-````c#
-
-   public class Startup
-   {
-// RM
-       public Startup(IHostingEnvironment env)
-       {
-           // Set up configuration sources.
-           var builder = new ConfigurationBuilder()
-               .SetBasePath(env.ContentRootPath)
-               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-           Configuration = builder.Build();
-       }
-
-       public IConfigurationRoot Configuration { get; set; }
-
-       public void ConfigureServices(IServiceCollection services)
-       {
-           // Adds services required for using options.
-           services.AddOptions();
-
-           // Register the ConfigurationBuilder instance which MyOptions binds against.
-           services.Configure<MyOptions>(Configuration);
-
-           // Add framework services.
-           services.AddMvc();
-       }
-
-   ````
-
-The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on `IOptions<TOptions>` to access settings:
-<!--
-http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IOptions<TOptions>.md
--->
+The following [controller](../mvc/controllers/index.md)  uses [Dependency Injection](dependency-injection.md) on [`IOptions<TOptions>`](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.options.ioptions-1) to access settings:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController.cs?name=snippet1)]
-
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   public class HomeController : Controller
-   {
-// rm
-       private readonly MyOptions _optionsAccessor;
-
-       public HomeController(IOptions<MyOptions> optionsAccessor)
-       {
-           _optionsAccessor = optionsAccessor.Value;
-       }
-
-       public IActionResult Index()
-       {
-           var option1 = _optionsAccessor.Option1;
-           var option2 = _optionsAccessor.Option2;
-           return Content($"option1 = {option1}, option2 = {option2}");
-       }
-   }
-
-   ````
 
 With the following *appsettings.json* file:
 
 [!code[Main](configuration/sample/src/UsingOptions/appsettings1.json)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/appsettings1.json", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````json
-
-   {
-removre me
-     "option1": "value1_from_json",
-     "option2": 2
-   }
-
-   ````
-
 The `HomeController.Index` method returns `option1 = value1_from_json, option2 = 2`.
+
+Typical apps won't bind the entire configuration to a single options file. Later on I'll show how to use `GetSection` to bind to a section.
 
 In the following code, a second `IConfigureOptions<TOptions>` service is added to the service container. It uses a delegate to configure the binding with `MyOptions`.
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup2.cs?name=snippet1)]
-<!--
-http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Options/IConfigureOptions-TOptions/index.html.md#Microsoft.Extensions.Options.IConfigureOptions<TOptions>
--->
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup2.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9, 10, 11, 12, 13]}, "names": []} -->
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup2.cs?name=snippet1&highlight=8-13)]
 
-````c#
+You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered.
 
-   public void ConfigureServices(IServiceCollection services)
-   {
-// rm
-       // Adds services required for using options.
-       services.AddOptions();
+Each call to `Configure<TOptions>]` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. 
 
-       // Register the ConfigurationBuilder instance which MyOptions binds against.
-       services.Configure<MyOptions>(Configuration);
-
-       // Registers the following lambda used to configure options.
-       services.Configure<MyOptions>( myOptions =>
-       {
-           myOptions.Option1 = "value1_from_action";
-       });
-
-       // Add framework services.
-       services.AddMvc();
-   }
-
-   ````
-
-You can add multiple configuration providers. Configuration providers are available in NuGet packages. They are applied in order they are registered. Each call to `Configure<TOptions>]` adds an `IConfigureOptions<TOptions>` service to the service container. In the example above, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the value of `Option1` is overridden by the configured delegate in the highlighted code above. When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
+When more than one configuration service is enabled, the last configuration source specified “wins”. With the code above, the `HomeController.Index` method returns `option1 = value1_from_action, option2 = 2`.
 
 When you bind options to configuration, each property in your options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*. A sub-property sample is shown later in this article.
 
 In the following code, a third `IConfigureOptions<TOptions>` service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
 
-[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup3.cs?name=snippet1)]
+[!code-csharp[Main](configuration/sample/src/UsingOptions/Startup3.cs?name=snippet1&highlight=16-17)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Startup3.cs", "highlight_args": {"linenostart": 1, "hl_lines": [15, 16]}, "names": []} -->
-
-````c#
-
-   public void ConfigureServices(IServiceCollection services)
-   { // rm
-       // Adds services required for using options.
-       services.AddOptions();
-
-       // Configure with Microsoft.Extensions.Options.ConfigurationExtensions
-       services.Configure<MyOptions>(Configuration);
-
-       // Configure MyOptions using code.
-       services.Configure<MyOptions>(myOptions =>
-       {
-           myOptions.Option1 = "value1_from_action";
-       });
-
-       // Configure using a sub-section of the appsettings.json file.
-       services.Configure<MySubOptions>(Configuration.GetSection("subsection"));
-
-       // Add framework services.
-       services.AddMvc();
-   }
-   on
-   // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-   public void Configure(IApplicationBuilder app,
-       ILoggerFactory loggerFactory)
-   {
-       loggerFactory.AddConsole();
-
-       app.UseDeveloperExceptionPage();
-       app.UseMvcWithDefaultRoute();
-   }
-
-   ````
 Using the following *appsettings.json* file:
 
 [!code[Main](configuration/sample/src/UsingOptions/appsettings.json)]
-
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````json
-
-   {
-     "option1": "value1_from_json-xx",
-     "option2": -1,
-
-     "subsection": {
-   	  "suboption1": "subvalue1_from_json",
-   	  "suboption2": 200
-     }
-   }
-
-   ````
 
 The `MySubOptions` class:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Models/MySubOptions.cs)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Models/MySubOptions.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   public class MySubOptions
-   { // rm
-       public MySubOptions()
-       {
-           // Set default values.
-           SubOption1 = "value1_from_ctor";
-           SubOption2 = 5;
-       }
-       public string SubOption1 { get; set; }
-       public int SubOption2 { get; set; }
-   }
-
-   ````
-
 With the following `Controller`:
 
 [!code-csharp[Main](configuration/sample/src/UsingOptions/Controllers/HomeController2.cs?name=snippet1)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/UsingOptions/Controllers/HomeController2.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   public class HomeController : Controller
-   { // rm
-       private readonly MySubOptions _subOptionsAccessor;
-
-       public HomeController(IOptions<MySubOptions> subOptionsAccessor)
-       {
-           _subOptionsAccessor = subOptionsAccessor.Value;
-       }
-
-       public IActionResult Index()
-       {
-           var subOption1 = _subOptionsAccessor.SubOption1;
-           var subOption2 = _subOptionsAccessor.SubOption2;
-           return Content($"subOption1 = {subOption1}, subOption2 = {subOption2}");
-       }
-   }
-
-   ````
-
 `subOption1 = subvalue1_from_json, subOption2 = 200` is returned.
 
 <a name=in-memory-provider></a>
+
+## IOptionsSnapshot
+
+*Requires ASP.NET Core 1.1 or higher.*
+
+`IOptionsSnapshot` supports reloading configuration data when the configuration file has changed.  It also has minimal overhead if you don't care about changes. Using `IOptionsSnapshot` with `reloadOnChange: true`, the options are bound to `IConfiguration` and reloaded when changed.
+
+The following sample demonstrates how a new `IOptionsSnapshot` is created after *config.json* changes. Requests to server will return the same time when *config.json* has **not** changed. The first request after *config.json* changes will show a new time.
+
+[!code-csharp[Main](configuration/sample/IOptionsSnapshot2/Startup.cs?name=snippet1&highlight=1-9,13-18,32,33,52,53)]
+
+The following image shows the server output:
+
+![browser image showing "Last Updated: 11/22/2016 4:43 PM"](configuration/_static/first.png)
+
+Refreshing the browser doesn't change the message value or time displayed (when *config.json* has not changed).
+
+Change and save the  *config.json* and then refresh the browser:
+
+![browser image showing "Last Updated to,e: 11/22/2016 4:53 PM"](configuration/_static/change.png)
 
 ## In-memory provider and binding to a POCO class
 
@@ -346,269 +167,43 @@ The following sample shows how to use the in-memory provider and bind to a class
 
 [!code-csharp[Main](configuration/sample/src/InMemory/Program.cs)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/InMemory/Program.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   using Microsoft.Extensions.Configuration;
-   using System;
-   using System.Collections.Generic;
-
-   // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
-// rm
-   public class Program
-   {   
-       static public IConfigurationRoot Configuration { get; set; }
-       public static void Main(string[] args = null)
-       {
-           var dict = new Dictionary<string, string>
-               {
-                   {"Profile:MachineName", "Rick"},
-                   {"App:MainWindow:Height", "11"},
-                   {"App:MainWindow:Width", "11"},
-                   {"App:MainWindow:Top", "11"},
-                   {"App:MainWindow:Left", "11"}
-               };
-
-           var builder = new ConfigurationBuilder();
-           builder.AddInMemoryCollection(dict);
-           Configuration = builder.Build();
-           Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
-
-           var window = new MyWindow();
-           Configuration.GetSection("App:MainWindow").Bind(window);
-           Console.WriteLine($"Left {window.Left}");
-       }
-   }
-   ````
-
 [!code-csharp[Main](configuration/sample/src/InMemory/MyWindow.cs)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/InMemory/MyWindow.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
+Configuration values are returned as strings, but binding enables the construction of objects. Bindling allows you to retrieve POCO objects or even entire object graphs. The following sample shows how to bind to the `MyWindow` class and use the options pattern with a ASP.NET Core MVC app:
 
-````none
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/MyWindow.cs)]
 
-   public class MyWindow
-   { // rm
-       public int Height { get; set; }
-       public int Width { get; set; }
-       public int Top { get; set; }
-       public int Left { get; set; }
-   }
-   ````
-
-Configuration values are not limited to scalars. You can retrieve POCO objects or even entire object graphs. The following sample shows how to bind to the `MyWindow` class and use the options pattern with a ASP.NET Core MVC app:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/WebConfigBind/MyWindow.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   public class MyWindow
-   {
-       public int Height { get; set; }
-       public int Width { get; set; }
-       public int Top { get; set; }
-       public int Left { get; set; }
-   }
-   ````
-
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/WebConfigBind/appsettings.json", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````json
-
-   {
-     "AppConfiguration": {
-       "MainWindow": {
-         "Height": "400",
-         "Width": "600",
-         "Top": "5",
-         "Left": "11"
-       }
-     }
-   }
-
-   ````
+[!code-json[Main](configuration/sample/src/WebConfigBind/appsettings.json)]
 
 Bind the custom class in `ConfigureServices` in the `Startup` class:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/WebConfigBind/Startup.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   public void ConfigureServices(IServiceCollection services)
-   {
-       services.Configure<MyWindow>(options => 
-           Configuration.GetSection("AppConfiguration:MainWindow").Bind(options));
-       services.AddMvc();
-   }
-
-   ````
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet1&highlight=3)]
 
 Display the settings from the `HomeController`:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/WebConfigBind/Controllers/HomeController.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   using Microsoft.AspNetCore.Mvc;
-   using Microsoft.Extensions.Options;
-
-   public class HomeController : Controller
-   {
-       private readonly IOptions<MyWindow> _optionsAccessor;
-
-       public HomeController(IOptions<MyWindow> optionsAccessor)
-       {
-           _optionsAccessor = optionsAccessor;
-       }
-       public IActionResult Index()
-       {
-           var height = _optionsAccessor.Value.Height;
-           var width = _optionsAccessor.Value.Width;
-           var left = _optionsAccessor.Value.Left;
-           var top = _optionsAccessor.Value.Top;
-
-           return Content($"height = {height}, width = {width}, "
-                        + $"Left = {left}, Top = {top}");
-       }
-   }
-   ````
-
+[!code-json[Main](configuration/sample/src/WebConfigBind/Controllers/HomeController.cs)]
 
   ### GetValue
 
 The following sample demonstrates the `GetValue<T>` extension method:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/InMemoryGetValue/Program.cs", "highlight_args": {"linenostart": 1, "hl_lines": [25, 26, 27, 28, 29]}, "names": []} -->
+[!code-json[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
 
-````none
-
-   using Microsoft.Extensions.Configuration;
-   using System;
-   using System.Collections.Generic;
-
-   // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
-   public class Program
-   {   
-       static public IConfigurationRoot Configuration { get; set; }
-       public static void Main(string[] args = null)
-       {
-           var dict = new Dictionary<string, string>
-               {
-                   {"Profile:MachineName", "Rick"},
-                   {"App:MainWindow:Height", "11"},
-                   {"App:MainWindow:Width", "11"},
-                   {"App:MainWindow:Top", "11"},
-                   {"App:MainWindow:Left", "11"}
-               };
-
-           var builder = new ConfigurationBuilder();
-           builder.AddInMemoryCollection(dict);
-           Configuration = builder.Build();
-           Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
-
-           // Show GetValue overload and set the default value to 80
-           // You typically would set default values in the constructor.
-           // Requires NuGet package "Microsoft.Extensions.Configuration.Binder"
-           var left = Configuration.GetValue<int>("App:MainWindow:Left", 80);
-           Console.WriteLine($"Left {left}");
-
-           var window = new MyWindow();
-           Configuration.GetSection("App:MainWindow").Bind(window);
-           Console.WriteLine($"Left {window.Left}");
-       }
-   }
-   ````
-
-The ConfigurationBinder’s `GetValue<T>`  method allows you to specify a default value (80 in the sample). Default values are more easily set in the class constructor. `GetValue` is basically just syntax sugar for `GetSection(<key>).TypeConverter.Convert<T>`, it's not doing any binding.
+The ConfigurationBinder’s `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>()` is for simple scenarios and does not bind to entire sections. `GetValue<T>()` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
   ## Binding to an object graph
 
 You can recursively bind to each object in a class. Consider the following `AppOptions` class:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/ObjectGraph/AppOptions.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   public class AppOptions
-   {
-       public Window Window { get; set; }
-       public Connection Connection { get; set; }
-       public Profile Profile { get; set; }
-   }
-
-   public class Window
-   {
-       public int Height { get; set; }
-       public int Width { get; set; }
-   }
-
-   public class Connection
-   {
-       public string Value { get; set; }
-   }
-
-   public class Profile
-   {
-       public string Machine { get; set; }
-   }
-
-   ````
+[!code-json[Main](configuration/sample/src/ObjectGraph/AppOptions.cs)]
 
 The following sample binds to the `AppOptions` class:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/ObjectGraph/Program.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   using Microsoft.Extensions.Configuration;
-   using System;
-   using System.IO;
-
-   // Add these NuGet packages:
-   // "Microsoft.Extensions.Configuration.Binder"
-   // "Microsoft.Extensions.Configuration.FileExtensions"
-   // "Microsoft.Extensions.Configuration.Json": 
-   public class Program
-   {
-       public static void Main(string[] args = null)
-       {
-           var builder = new ConfigurationBuilder()
-                      .SetBasePath(Directory.GetCurrentDirectory())
-                      .AddJsonFile("appsettings.json");
-
-           var config = builder.Build();
-
-           var appConfig = new AppOptions();
-           config.GetSection("App").Bind(appConfig);
-
-           Console.WriteLine($"Height {appConfig.Window.Height}");
-       }
-   }
-
-   ````
+[!code-json[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=18-20)]
 
 Using the following *appsettings.json* file:
 
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/ObjectGraph/appsettings.json", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````json
-
-   {
-     "App": {
-       "Profile": {
-         "Machine": "Rick"
-       },
-       "Connection": {
-         "Value": "connectionstring"
-       },
-       "Window": {
-         "Height": "11",
-         "Width": "11"
-       }
-     }
-   }
-   ````
+[!code-json[Main](configuration/sample/src/ObjectGraph/appsettings.json)]
 
 The program displays `Height 11`.
 

@@ -32,6 +32,7 @@ namespace UsingOptions
             services.AddOptions();
 
             // Configure with Microsoft.Extensions.Options.ConfigurationExtensions
+            // Binding the whole configuration should be rare, subsections are more typical.
             services.Configure<MyOptions>(Configuration);
 
             // Configure MyOptions using code.

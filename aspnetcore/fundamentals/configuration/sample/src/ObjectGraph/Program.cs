@@ -17,6 +17,7 @@ public class Program
         var config = builder.Build();
 
         var appConfig = new AppOptions();
+
         config.GetSection("App").Bind(appConfig);
 
         Console.WriteLine($"Height {appConfig.Window.Height}");

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WebConfigBind
 {
+    #region snippet2
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -21,15 +22,14 @@ namespace WebConfigBind
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-
+        #endregion
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MyWindow>(options => 
-                Configuration.GetSection("AppConfiguration:MainWindow").Bind(options));
+            services.Configure<MyWindow>(Configuration.GetSection("AppConfiguration:MainWindow"));
             services.AddMvc();
         }
         #endregion
