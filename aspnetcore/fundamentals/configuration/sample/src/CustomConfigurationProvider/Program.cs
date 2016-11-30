@@ -13,10 +13,12 @@ public static class Program
         builder.AddJsonFile("appsettings.json");
         var connectionStringConfig = builder.Build();
 
-        // Chain calls together as a fluent API.
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
+            // Add "appsettings.json" to bootstrap EF config.
             .AddJsonFile("appsettings.json")
+            // Add the EF configuration provider, which will override any
+            // config made with the JSON provider.
             .AddEntityFrameworkConfig(options =>
                 options.UseSqlServer(connectionStringConfig.GetConnectionString(
                     "DefaultConnection"))

@@ -103,7 +103,7 @@ The following [controller](../mvc/controllers/index.md)  uses [Dependency Inject
 
 With the following *appsettings.json* file:
 
-[!code[Main](configuration/sample/src/UsingOptions/appsettings1.json)]
+[!code-json[Main](configuration/sample/src/UsingOptions/appsettings1.json)]
 
 The `HomeController.Index` method returns `option1 = value1_from_json, option2 = 2`.
 
@@ -127,7 +127,7 @@ In the following code, a third `IConfigureOptions<TOptions>` service is added to
 
 Using the following *appsettings.json* file:
 
-[!code[Main](configuration/sample/src/UsingOptions/appsettings.json)]
+[!code-json[Main](configuration/sample/src/UsingOptions/appsettings.json)]
 
 The `MySubOptions` class:
 
@@ -187,7 +187,7 @@ Display the settings from the `HomeController`:
 
 The following sample demonstrates the `GetValue<T>` extension method:
 
-[!code-json[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
+[!code-csharp[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
 
 The ConfigurationBinder’s `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>()` is for simple scenarios and does not bind to entire sections. `GetValue<T>()` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
@@ -201,6 +201,12 @@ The following sample binds to the `AppOptions` class:
 
 [!code-json[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=18-20)]
 
+**ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convienent than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
+
+```c#
+    var appConfig = config.GetSection("App").Get<AppOptions>();
+```
+
 Using the following *appsettings.json* file:
 
 [!code-json[Main](configuration/sample/src/ObjectGraph/appsettings.json)]
@@ -209,9 +215,7 @@ The program displays `Height 11`.
 
 The following code can be used to unit test the configuration:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "highlight_args": {}, "names": []} -->
-
-````c#
+```c#
 
    [Fact]
    public void CanBindObjectTree()
@@ -235,346 +239,119 @@ The following code can be used to unit test the configuration:
        Assert.Equal(11, options.Window.Width);
        Assert.Equal("connectionstring", options.Connection.Value);
    }
-   ````
+   ```
 
 <a name=custom-config-providers></a>
 
-  ## Entity Framework custom provider
+  ## Simple sample of Entity Framework custom provider
 
-In this section we'll create a simple configuration provider that reads name-value pairs from a database using EF.
+In this section we'll create a simple configuration provider that reads name-value pairs from a database using EF. 
 
 Define a `ConfigurationValue` entity for storing configuration values in the database:
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/ConfigurationValue.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````c#
-
-   public class ConfigurationValue
-   {
-       public string Id { get; set; }
-       public string Value { get; set; }
-   }
-   ````
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/ConfigurationValue.cs)]
 
 Add a `ConfigurationContext` to store and access the configured values:
 
 <!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs", "highlight_args": {"linenostart": 1, "hl_lines": [7]}, "names": []} -->
 
-````c#
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/ConfigurationContext.cs?name=snippet1)]
 
-   public class ConfigurationContext : DbContext
-   {
-       public ConfigurationContext(DbContextOptions options) : base(options)
-       {
-       }
+Create an class that inherits from [IConfigurationSource](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.configuration.iconfigurationsource):
 
-       public DbSet<ConfigurationValue> Values { get; set; }
-   }
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs?highlight=7)]
 
-   ````
+Create the custom configuration provider by inheriting from [ConfigurationProvider](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.configuration.configurationprovider).  The configuration provider initializes the database when it's empty:
 
-Create an `EntityFrameworkConfigurationSource` that inherits from [IConfigurationSource](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/IConfigurationSource/index.html.md#Microsoft.Extensions.Configuration.IConfigurationSource.md):
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18-19,38-39)]
 
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationSource.cs", "highlight_args": {"linenostart": 1, "hl_lines": [7, 16, 17, 18, 19]}, "names": []} -->
+The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") these are displayed when the sample is run.
 
-````c#
+You can also add an `EFConfigSource` extension method for adding the configuration source:
 
-   using System;
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.Extensions.Configuration;
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs?highlight=12)]
 
-   namespace CustomConfigurationProvider
-   {
-       public class EntityFrameworkConfigurationSource : IConfigurationSource
-       {
-           private readonly Action<DbContextOptionsBuilder> _optionsAction;
+The following code shows how to use the custom `EFConfigProvider`:
 
-           public EntityFrameworkConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
-           {
-               _optionsAction = optionsAction;
-           }
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=19-23)]
 
-           public IConfigurationProvider Build(IConfigurationBuilder builder)
-           {
-               return new EntityFrameworkConfigurationProvider(_optionsAction);
-           }
-       }
-   }
-   ````
-
-Create the custom configuration provider by inheriting from [ConfigurationProvider](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationProvider/index.html.md#Microsoft.Extensions.Configuration.ConfigurationProvider.md). The configuration data is loaded by overriding the `Load` method, which reads in all the configuration data from the configured database. For demonstration purposes, the configuration provider also takes care of initializing the database if it hasn't already been created and populated:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 37, 38]}, "names": []} -->
-
-````c#
-
-   using System;
-   using System.Collections.Generic;
-   using System.Linq;
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.Extensions.Configuration;
-
-   namespace CustomConfigurationProvider
-   {
-       public class EntityFrameworkConfigurationProvider : ConfigurationProvider
-       {
-           public EntityFrameworkConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)
-           {
-               OptionsAction = optionsAction;
-           }
-
-           Action<DbContextOptionsBuilder> OptionsAction { get; }
-
-           public override void Load()
-           {
-               var builder = new DbContextOptionsBuilder<ConfigurationContext>();
-               OptionsAction(builder);
-
-               using (var dbContext = new ConfigurationContext(builder.Options))
-               {
-                   dbContext.Database.EnsureCreated();
-                   Data = !dbContext.Values.Any()
-                       ? CreateAndSaveDefaultValues(dbContext)
-                       : dbContext.Values.ToDictionary(c => c.Id, c => c.Value);
-               }
-           }
-
-           private static IDictionary<string, string> CreateAndSaveDefaultValues(
-               ConfigurationContext dbContext)
-           {
-               var configValues = new Dictionary<string, string>
-                   {
-                       { "key1", "value_from_ef_1" },
-                       { "key2", "value_from_ef_2" }
-                   };
-               dbContext.Values.AddRange(configValues
-                   .Select(kvp => new ConfigurationValue { Id = kvp.Key, Value = kvp.Value })
-                   .ToArray());
-               dbContext.SaveChanges();
-               return configValues;
-           }
-       }
-   }
-
-   ````
-
-Note the values that are being stored in the database ("value_from_ef_1" and "value_from_ef_2"); these are displayed in the sample below to demonstrate the configuration is reading values from the DB.
-
-You can also add an `AddEntityFrameworkConfiguration` extension method for adding the configuration source:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs", "highlight_args": {"linenostart": 1, "hl_lines": [9]}, "names": []} -->
-
-````c#
-
-   using System;
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.Extensions.Configuration;
-
-   namespace CustomConfigurationProvider
-   {
-       public static class EntityFrameworkExtensions
-       {
-           public static IConfigurationBuilder AddEntityFrameworkConfig(
-               this IConfigurationBuilder builder, Action<DbContextOptionsBuilder> setup)
-           {
-               return builder.Add(new EntityFrameworkConfigurationSource(setup));
-           }
-       }
-   }
-   ````
-
-Create a [ConfigurationBuilder](http://docs.asp.net/projects/api/en/latest/autoapi/Microsoft/Extensions/Configuration/ConfigurationBuilder/index.html.md#Microsoft.Extensions.Configuration.ConfigurationBuilder.md) to set up your configuration sources. To add the `EntityFrameworkConfigurationProvider`, specify the EF data provider and connection string. How should you configure the connection string? Using configuration of course! Add an *appsettings.json* file as a configuration source to bootstrap setting up the `EntityFrameworkConfigurationProvider`. Note the sample adds the custom `EntityFrameworkConfigurationProvider` after the JSON provider, so any settings in the database will override settings in *appsettings.json*:
-
-<!-- literal_block {"xml:space": "preserve", "language": "c#", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/Program.cs", "highlight_args": {"linenostart": 1, "hl_lines": [19, 20, 21, 22, 23]}, "names": []} -->
-
-````c#
-
-   using System;
-   using System.IO;
-   using Microsoft.EntityFrameworkCore;
-   using Microsoft.Extensions.Configuration;
-   using CustomConfigurationProvider;
-
-   public static class Program
-   {
-       public static void Main()
-       {
-           var builder = new ConfigurationBuilder();
-           builder.SetBasePath(Directory.GetCurrentDirectory());
-           builder.AddJsonFile("appsettings.json");
-           var connectionStringConfig = builder.Build();
-
-           // Chain calls together as a fluent API.
-           var config = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json")
-               .AddEntityFrameworkConfig(options =>
-                   options.UseSqlServer(connectionStringConfig.GetConnectionString(
-                       "DefaultConnection"))
-               )
-               .Build();
-
-           Console.WriteLine("key1={0}", config["key1"]);
-           Console.WriteLine("key2={0}", config["key2"]);
-           Console.WriteLine("key3={0}", config["key3"]);
-       }
-   }
-
-   ````
+Note the sample adds the custom `EFConfigProvider` after the JSON provider, so any settings from the database will override settings from the *appsettings.json* file.
 
 Using the following *appsettings.json* file:
 
-<!-- literal_block {"xml:space": "preserve", "language": "json", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CustomConfigurationProvider/appsettings.json", "highlight_args": {"linenostart": 1}, "names": []} -->
+[!code-json[Main](configuration/sample/src/CustomConfigurationProvider/appsettings.json)]
 
-````json
+The following is displayed:
 
-   {
-     "ConnectionStrings": {
-       "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=CustomConfigurationProvider;Trusted_Connection=True;MultipleActiveResultSets=true"
-     },
-     "key1": "value_from_json_1",
-     "key2": "value_from_json_2",
-     "key3": "value_from_json_3"
-   }
-
-   ````
-
-The following displayed:
-
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    key1=value_from_ef_1
    key2=value_from_ef_2
    key3=value_from_json_3
-   ````
+   ```
 
   ## CommandLine configuration provider
 
 The following sample enables the CommandLine configuration provider last:
 
-<!-- literal_block {"xml:space": "preserve", "language": "none", "dupnames": [], "linenos": false, "classes": [], "ids": [], "backrefs": [], "source": "/Users/shirhatti/src/Docs/aspnet/fundamentals/configuration/sample/src/CommandLine/Program.cs", "highlight_args": {"linenostart": 1}, "names": []} -->
-
-````none
-
-   using Microsoft.Extensions.Configuration;
-   using System;
-   using System.Collections.Generic;
-   using System.Linq;
-
-   // Add NuGet  <package id="Microsoft.Extensions.Configuration.Binder"
-   public class Program
-   {
-       static public IConfigurationRoot Configuration { get; set; }
-
-       static public Dictionary<string, string> GetSwitchMappings(
-       IReadOnlyDictionary<string, string> configurationStrings)
-       {
-           return configurationStrings.Select(item =>
-               new KeyValuePair<string, string>(
-                   "-" + item.Key.Substring(item.Key.LastIndexOf(':') + 1),
-                   item.Key))
-                   .ToDictionary(
-                       item => item.Key, item => item.Value);
-       }
-       public static void Main(string[] args = null)
-       {
-           var dict = new Dictionary<string, string>
-               {
-                   {"Profile:MachineName", "Rick"},
-                   {"App:MainWindow:Left", "11"}
-               };
-
-           var builder = new ConfigurationBuilder();
-           builder.AddInMemoryCollection(dict)
-                 .AddCommandLine(args, GetSwitchMappings(dict));
-           Configuration = builder.Build();
-           Console.WriteLine($"Hello {Configuration["Profile:MachineName"]}");
-
-           // Set the default value to 80
-           var left = Configuration.GetValue<int>("App:MainWindow:Left", 80);
-           Console.WriteLine($"Left {left}");
-       }
-   }
-   ````
+[!code-csharp[Main](configuration/sample/src/CommandLine/Program.cs)]
 
 Use the following to pass in configuration settings:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    dotnet run /Profile:MachineName=Bob /App:MainWindow:Left=1234
-   ````
+   ```
 
 Which displays:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    Hello Bob
    Left 1234
-   ````
+   ```
 
 The `GetSwitchMappings` method allows you to use `-` rather than `/` and it strips the leading subkey prefixes. For example:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
+```
 
    dotnet run -MachineName=Bob -Left=7734
-   ````
+   ```
 
 Displays:
 
 <!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
 
-````
-
+```
    Hello Bob
    Left 7734
-   ````
+   ```
 
 Command-line arguments must include a value (it can be null). For example:
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    dotnet run /Profile:MachineName=
-   ````
+   ```
 
 Is OK, but
 
-<!-- literal_block {"xml:space": "preserve", "dupnames": [], "classes": [], "ids": [], "backrefs": [], "names": []} -->
-
-````
-
+```
    dotnet run /Profile:MachineName
-   ````
+   ```
 
 results in an exception. An exception will be thrown if you specify a command-line switch prefix of - or -- for which there’s no corresponding switch mapping.
 
   ## The *web.config* file
 
-*web.config* is required when you host the app in IIS or IIS-Express. It turns on the AspNetCoreModule in IIS to launch your app. It may also be used to configure other IIS settings and modules.If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
+*web.config* is required when you host the app in IIS or IIS-Express. It turns on the AspNetCoreModule in IIS to launch your app. It may also be used to configure other IIS settings and modules. If you are using Visual Studio and delete *web.config*, Visual Studio will create a new one.
 
   ### Additional notes
 
-* Dependency Injection (DI) is not setup until after `ConfigureServices` is invoked and the configuration system is not DI aware
-
+* Dependency Injection (DI) is not setup until after `ConfigureServices` is invoked and the configuration system is not DI aware.
 * `IConfiguration` has two specializations:
 
   * `IConfigurationRoot`  Used for the root node. Can trigger a reload.
+  * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`.
 
-  * `IConfigurationSection`  Represents a section of configuration values. The `GetSection` and `GetChildren` methods return an `IConfigurationSection`
-
-  ### Additional Resources
+### Additional Resources
 
 * [Working with Multiple Environments](environments.md)
-
 * [Safe storage of app secrets during development](../security/app-secrets.md)
-
 * [Dependency Injection](dependency-injection.md)

@@ -4,18 +4,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace CustomConfigurationProvider
 {
-    public class EntityFrameworkConfigurationSource : IConfigurationSource
+    public class EFConfigSource : IConfigurationSource
     {
         private readonly Action<DbContextOptionsBuilder> _optionsAction;
 
-        public EntityFrameworkConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
+        public EFConfigSource(Action<DbContextOptionsBuilder> optionsAction)
         {
             _optionsAction = optionsAction;
         }
 
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new EntityFrameworkConfigurationProvider(_optionsAction);
+            return new EFConfigProvider(_optionsAction);
         }
     }
 }
