@@ -177,11 +177,11 @@ Configuration values are returned as strings, but binding enables the constructi
 
 Bind the custom class in `ConfigureServices` in the `Startup` class:
 
-[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/Startup.cs?name=snippet1&highlight=3,4)]
 
 Display the settings from the `HomeController`:
 
-[!code-json[Main](configuration/sample/src/WebConfigBind/Controllers/HomeController.cs)]
+[!code-csharp[Main](configuration/sample/src/WebConfigBind/Controllers/HomeController.cs)]
 
   ### GetValue
 
@@ -189,17 +189,17 @@ The following sample demonstrates the `GetValue<T>` extension method:
 
 [!code-csharp[Main](configuration/sample/src/InMemoryGetValue/Program.cs?highlight=25-27)]
 
-The ConfigurationBinder’s `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>()` is for simple scenarios and does not bind to entire sections. `GetValue<T>()` gets scalar values from `GetSection(key).Value` converted to a specific type.
+The ConfigurationBinder’s `GetValue<T>` method allows you to specify a default value (80 in the sample). `GetValue<T>` is for simple scenarios and does not bind to entire sections. `GetValue<T>` gets scalar values from `GetSection(key).Value` converted to a specific type.
 
   ## Binding to an object graph
 
 You can recursively bind to each object in a class. Consider the following `AppOptions` class:
 
-[!code-json[Main](configuration/sample/src/ObjectGraph/AppOptions.cs)]
+[!code-csharp[Main](configuration/sample/src/ObjectGraph/AppOptions.cs)]
 
 The following sample binds to the `AppOptions` class:
 
-[!code-json[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=18-20)]
+[!code-csharp[Main](configuration/sample/src/ObjectGraph/Program.cs?highlight=18-20)]
 
 **ASP.NET Core 1.1** and higher can use  `Get<T>`, which works with entire sections. `Get<T>` can be more convienent than using `Bind`. The following code shows how to use `Get<T>` with the sample above:
 
@@ -265,15 +265,15 @@ Create the custom configuration provider by inheriting from [ConfigurationProvid
 
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkConfigurationProvider.cs?highlight=9,18-19,38-39)]
 
-The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") these are displayed when the sample is run.
+The highlighted values from the database ("value_from_ef_1" and "value_from_ef_2") are displayed when the sample is run.
 
-You can also add an `EFConfigSource` extension method for adding the configuration source:
+You can add an `EFConfigSource` extension method for adding the configuration source:
 
 [!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/EntityFrameworkExtensions.cs?highlight=12)]
 
 The following code shows how to use the custom `EFConfigProvider`:
 
-[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=19-23)]
+[!code-csharp[Main](configuration/sample/src/CustomConfigurationProvider/Program.cs?highlight=20-24)]
 
 Note the sample adds the custom `EFConfigProvider` after the JSON provider, so any settings from the database will override settings from the *appsettings.json* file.
 

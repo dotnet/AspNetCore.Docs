@@ -29,7 +29,8 @@ namespace WebConfigBind
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MyWindow>(Configuration.GetSection("AppConfiguration:MainWindow"));
+            services.Configure<MyWindow>(
+                Configuration.GetSection("AppConfiguration:MainWindow"));
             services.AddMvc();
         }
         #endregion
