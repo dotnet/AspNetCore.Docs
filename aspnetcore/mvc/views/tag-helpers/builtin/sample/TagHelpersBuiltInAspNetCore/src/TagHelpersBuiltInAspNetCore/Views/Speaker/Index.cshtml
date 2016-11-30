@@ -1,0 +1,13 @@
+﻿@model System.Collections.Generic.List<TagHelpersBuiltInAspNetCore.Controllers.ModelData>
+
+@{
+    ViewBag.Title = "Speakers";
+}
+
+<h2>Speakers</h2>
+<ul>
+    @foreach (var speaker in @Model)
+    {
+        <li><a href="/Speaker/@speaker.SpeakerId">@speaker.SpeakerId</a></li>
+    }
+</ul>

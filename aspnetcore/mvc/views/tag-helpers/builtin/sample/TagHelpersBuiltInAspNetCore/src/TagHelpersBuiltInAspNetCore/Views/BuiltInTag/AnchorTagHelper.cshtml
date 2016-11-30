@@ -1,0 +1,166 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "AnchorTagHelper";
+}
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" type="text/css">
+
+
+
+
+<style type="text/css">
+    body {
+        padding-top: 5px;
+        padding-bottom: 40px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    div.row {
+        border: 2px solid;
+    }
+
+    div.col {
+        border: 1px solid;
+    }
+
+    .classWithPad {
+        margin: 10px 10px 10px 10px;
+    }
+
+    .backcolor {
+        background-color: #eff0f1;
+    }
+
+    .backcolortop {
+        background: #ccc;
+    }
+</style>
+
+
+
+
+<h1>AnchorTagHelper</h1>
+
+@Html.Raw(Html.Encode("<a asp-action='Index' asp-controller='Speaker'>Speakers</a>"))<br /><br />
+<div id="DebugMe">
+    <prettytaghelper replacement-text="Speakers"><a asp-action='Index' asp-controller='Speaker'>Speakers</a></prettytaghelper>
+</div>
+
+
+
+
+<script>
+
+
+    $(document)
+        .ready(function() {
+            var options = {
+                "indent": "auto",
+                "indent-spaces": 2,
+                "wrap": 120,
+                "markup": true,
+                "output-xml": false,
+                "numeric-entities": true,
+                "quote-marks": true,
+                "quote-nbsp": false,
+                "show-body-only": true,
+                "quote-ampersand": false,
+                "break-before-br": true,
+                "uppercase-tags": false,
+                "uppercase-attributes": false,
+                "drop-font-tags": true,
+                "tidy-mark": false
+            }
+
+            var innerHtmlNojQuery = $("div#DebugMe")[0].innerHTML;
+            var result1 = tidy_html5(innerHtmlNojQuery, options);
+            $("#PutHereNoJquery").text(result1);
+            $("#PutHereNoJquery").wrapAll('<xmp id="htmlXmp" class="prettyprint" />');
+
+            $('.nsyte').nonSuckyYouTubeEmbed();
+            var innerHtmlWithjQuery = $("div#DebugMe")[0].innerHTML;
+
+            $('#executeJqueryId')
+                .on('click',
+                    function (e) {
+                        var result2 = tidy_html5(innerHtmlWithjQuery, options);
+                        $("#PutHereWithJquery").text(result2);
+                        $("#PutHereWithJquery").wrapAll('<xmp id="htmlXmp" class="prettyprint" />');
+                        PR.prettyPrint();
+                    });
+        });
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+    @*<prettytaghelper replacement-text="Speakers" >@Html.Raw("<a asp-protocol='https' asp-action='Index' asp-controller='Speaker'>Speakers</a>")</prettytaghelper>*@
+
+
+
+    @*<a asp-protocol='https' asp-action='About' asp-controller='Home'>@Html.Raw(@Html.Encode("<a asp-protocol='https' asp-action='About' asp-controller='Home'>Text</a>"))</a>
+
+
+
+        <br/><br/>
+        <a asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">%3Ca+asp-action%3D%22AboutBlog%22+asp-controller%3D%22Home%22+asp-area%3D%22Blogs%22%3EText%3C%2Fa%3E</a>*@
+
+
+    @*<a asp-action="Evaluations" asp-controller="Speaker"  asp-fragment="SpeakerEvaluations">About Speaker Evals</a>*@
+
+
+    @*<span>Simplest Usage</span><br/>
+        <a asp-action="About">About</a>
+        <br/><br/>
+
+
+        <span>Simplest Usage (being more explicit)</span><br />
+        <a asp-action="About" asp-controller="BuiltInTag">About</a>
+        <br /><br />
+
+
+        <span>Simplest Usage (being more explicit)</span><br />
+        <a asp-controller="BuiltInTag">About</a>
+        <br /><br />
+
+
+
+        <span>Simplest Usage (being more explicit)</span><br />
+        <a asp-action="About">About</a>
+        <br /><br />
+
+        <span>Simplest Usage (being more explicit)</span><br />
+        <a  asp-action="AboutBlog" asp-controller="Home" asp-area="Blogs">Blogs About</a>
+        <br /><br />
+
+    *@
+
+    @*<a asp-controller="Speaker" asp-action="Detail" asp-route-name="Ronald">Ronald</a>
+        <a asp-controller="Speaker" asp-action="Detail" asp-route-id="11">Speaker 11</a>*@
+
+    @*<a asp-route="speakerevals">SpeakerEvals</a>*@
+
+
+    @*@{
+            var dict =
+                new Dictionary<string, string>
+                {
+                    {"speakerId", "11"},
+                    {"currentYear", "true"}
+                };
+        }
+        <a asp-route="speakerevalscurrent"
+           asp-all-route-data="dict">SpeakerEvals</a>*@
