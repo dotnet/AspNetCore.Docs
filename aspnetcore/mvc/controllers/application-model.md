@@ -96,7 +96,7 @@ This convention is applied as an attribute on a controller.
 
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=ControllerDescription&highlight=1)]
 
-The `description` property is still accessed in the same manner as in previous examples.
+The "description" property is accessed in the same manner as in previous examples.
 
 ### Sample: Modifying the ActionModel Description
 
