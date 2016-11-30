@@ -1,5 +1,5 @@
 ---
-title: 🔧 Working with the Application Model | Microsoft Docs
+title: Working with the Application Model | Microsoft Docs
 author: ardalis
 description: 
 keywords: ASP.NET Core, ASP.NET Core MVC, application model
