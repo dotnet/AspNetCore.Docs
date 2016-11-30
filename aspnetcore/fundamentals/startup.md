@@ -14,13 +14,13 @@ uid: fundamentals/startup
 ---
 # Application Startup
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](http://ardalis.com) and [Tom Dykstra](https://github.com/tdykstra/)
 
 The `Startup` class configures the request pipeline that handles all requests made to the application.
 
 ## The Startup class
 
-All ASP.NET applications require at least one `Startup` class. When an application starts, ASP.NET searches the primary assembly for a class named `Startup` (in any namespace). You can specify a different assembly to search using the *Hosting:Application* configuration key. It doesn't matter whether the class is defined as `public`; ASP.NET will still load it if it conforms to the naming convention. If there are multiple `Startup` classes, ASP.NET selects one based on its namespace (matching the project's root namespace first, otherwise using the class in the alphabetically first namespace).
+All ASP.NET applications require at least one `Startup` class. When an application starts, ASP.NET searches the primary assembly for a class named `Startup` (in any namespace). You can specify a different assembly to search using the *Hosting:Application* configuration key. The class doesn't have to be `public`. If there are multiple `Startup` classes, ASP.NET looks for one in the project's root namespace, otherwise it chooses one in the alphabetically first namespace.
 
 You can define separate `Startup` classes for different environments, and the appropriate one will be selected at runtime. Learn more in [Working with multiple environments](environments.md#startup-conventions).
 
@@ -44,7 +44,7 @@ Additional services, like `IHostingEnvironment` and `ILoggerFactory` may also be
 
 ## The ConfigureServices method
 
-The `Startup` class can include a `ConfigureServices` method. This is a public method on the `Startup` class that takes an `IServiceCollection` instance as a parameter and optionally returns an `IServiceProvider`. The `ConfigureServices` method is called before `Configure`. This is necessary because some features like ASP.NET MVC require certain services to be added in `ConfigureServices` before they can be wired up to the request pipeline.
+The `Startup` class can include a `ConfigureServices` method that takes an `IServiceCollection` parameter and optionally returns an `IServiceProvider`. The `ConfigureServices` method is called before `Configure`, as some features must be added before they can be wired up to the request pipeline.
 
 For features that require substantial setup there are `Add[Something]` extension methods on `IServiceCollection`. This example from the default web site template configures the app to use services for Entity Framework, Identity, and MVC:
 
@@ -52,27 +52,11 @@ For features that require substantial setup there are `Add[Something]` extension
 
 Adding services to the services container makes them available within your application via [dependency injection](dependency-injection.md).
 
-The `ConfigureServices` method is also where you should add configuration option classes that you would like to have available in your application. See the [Configuration](configuration.md) topic to learn more about configuring options.
+The `ConfigureServices` method is also where you should add configuration option classes. Learn more in [Configuration](configuration.md).
 
 ## Services Available in Startup
 
-ASP.NET Core provides certain application services and objects during an application's startup. You can request certain sets of these services by simply including the appropriate interface as a parameter on your `Startup` class's constructor or one of its `Configure` or `ConfigureServices` methods. The services available to each method in the `Startup` class are described below.
-
-* **IApplicationBuilder**
-
-  Used to build the application request pipeline. Available only to the `Configure` method in `Startup`. Learn more about [Middleware](middleware.md).
-
-* **IHostingEnvironment**
-
-  Provides the current `EnvironmentName`, `ContentRootPath`, `WebRootPath`, and web root file provider. Available to the `Startup` constructor and `Configure` method.
-
-* **ILoggerFactory**
-
-  Provides a mechanism for creating loggers and adding logging providers. Available to the `Startup` constructor and `Configure` method. Learn more about [Logging](logging.md).
-
-* **IServiceCollection**
-
-  The current set of services configured in the container. Available only to the `ConfigureServices` method, and used by that method to configure the services available to an application.
+ASP.NET Core dependency injection provides application services during an application's startup. You can request these services by including the appropriate interface as a parameter on your `Startup` class's constructor or one of its `Configure` or `ConfigureServices` methods. 
 
 Looking at each method in the `Startup` class in the order in which they are called, the following services may be requested as parameters:
 
@@ -85,9 +69,6 @@ Looking at each method in the `Startup` class in the order in which they are cal
 ## Additional Resources
 
 * [Working with Multiple Environments](environments.md)
-
 * [Middleware](middleware.md)
-
 * [Logging](logging.md)
-
 * [Configuration](configuration.md)
