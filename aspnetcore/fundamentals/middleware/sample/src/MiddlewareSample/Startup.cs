@@ -20,7 +20,7 @@ namespace MiddlewareSample
         public void ConfigureServices(IServiceCollection services)
         {
         }
-
+        
         //public void Configure(IApplicationBuilder app)
         //{
         //    app.Run(async context =>
@@ -122,4 +122,4 @@ namespace MiddlewareSample
             });
         }
     }
-}
+}//
