@@ -49,6 +49,8 @@ Kestrel is great for serving dynamic content from ASP.NET, however the web servi
 
 For the purposes of this guide, we are going to use a single instance of Nginx that runs on the same server alongside your HTTP server. However, based on your requirements you may choose a different setup.
 
+When setting up a reverse-proxy server other than IIS, you must call `app.UseIdentity` (in `Configure`) before any other external providers.
+
 ### Install Nginx
 
 ```
