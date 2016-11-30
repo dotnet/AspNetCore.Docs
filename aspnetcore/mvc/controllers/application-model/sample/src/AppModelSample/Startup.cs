@@ -32,6 +32,7 @@ namespace AppModelSample
             services.AddMvc(options =>
             {
                 options.Conventions.Add(new ApplicationDescription("My Application Description"));
+                options.Conventions.Add(new NamespaceRoutingConvention());
             });
         }
         #endregion
