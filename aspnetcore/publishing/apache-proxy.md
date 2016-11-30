@@ -140,7 +140,7 @@ An example service file for our application.
 ```
 
 > [!NOTE]
-> **User** -- If *apache* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> **User** -- If the user *apache* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 

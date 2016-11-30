@@ -78,7 +78,7 @@ In *Views/Courses/Edit.cshtml*, make the same change for the Department field th
 
 Also in *Views/Courses/Edit.cshtml*, add a course number field before the Credits field. Because it's the primary key, it's displayed, but it can't be changed.
 
-[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=37-43)]
+[!code-html[Main](intro/samples/cu/Views/Courses/Edit.cshtml?range=16-21)]
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
@@ -261,7 +261,7 @@ The HttpPost `Create` method adds each selected course to the `Courses` navigati
 Notice that in order to be able to add courses to the `Courses` navigation property you have to initialize the property as an empty collection:
 
 ```csharp
-instructor.Courses = new List<Course>();
+instructor.Courses = new List<CourseAssignment>();
 ```
 
 As an alternative to doing this in controller code, you could do it in the Instructor model by changing the property getter to automatically create the collection if it doesn't exist, as shown in the following example:
@@ -291,7 +291,7 @@ Test by running the **Create** page and adding an instructor.
 
 ## Handling Transactions
 
-As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://ef.readthedocs.io/en/latest/saving/transactions.html).
+As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](https://docs.microsoft.com/ef/core/saving/transactions).
 
 ## Summary
 

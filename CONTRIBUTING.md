@@ -13,7 +13,10 @@ You'll need a basic understanding of [Git and GitHub.com](https://guides.github.
 * Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as change an existing article or create a new one. Wait for approval from the ASP.NET documentation team before you invest much time. 
 * Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
 * Submit a pull request (PR) to master with your changes.
+* If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla2.dotnetfoundation.org/)
 * Respond to PR feedback.
+
+For an example where this process led to publication of a new article, see [issue 67](https://github.com/dotnet/docs/issues/67) and [pull request 798](https://github.com/dotnet/docs/pull/798) in the .NET Core repository. The new article is [Documenting your code](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
 ## Markdown syntax
 
@@ -87,7 +90,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 ### Mono instructions
 
 * Install Mono via Homebrew - `brew install mono`.
-* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases/tag/v2.7.2).
+* Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
 * Extract to `\bin\docfx`.
 * Create an alias for **docfx**:
 

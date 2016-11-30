@@ -49,6 +49,19 @@ Kestrel is great for serving dynamic content from ASP.NET, however the web servi
 
 For the purposes of this guide, we are going to use a single instance of Nginx that runs on the same server alongside your HTTP server. However, based on your requirements you may choose a different setup.
 
+When setting up a reverse-proxy server other than IIS, you must call `app.UseIdentity` (in `Configure`) before any other external providers.
+
+Because requests are forwarded by reverse-proxy, use `ForwardedHeaders` middleware (from `Microsoft.AspNetCore.HttpOverrides` package) in order to set the  redirect URI with the `X-Forwarded-For` and `X-Forwarded-Proto` headers instead of `Request.Scheme` and `Request.Host`."
+
+Add `UseForwardedHeaders` to `Configure` before calling `app.UseFacebookAuthentication` or similar:
+
+```csharp
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+```
+
 ### Install Nginx
 
 ```
@@ -106,10 +119,10 @@ An example service file for our application.
 
 ```text
 [Unit]
-    Description=Example .NET Web API Application running on CentOS 7
+    Description=Example .NET Web API Application running on Ubuntu
 
     [Service]
-    ExecStart=/usr/local/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
+    ExecStart=/usr/bin/dotnet /var/aspnetcore/hellomvc/hellomvc.dll
     Restart=always
     RestartSec=10                                          # Restart service after 10 seconds if dotnet service crashes
     SyslogIdentifier=dotnet-example
@@ -120,7 +133,8 @@ An example service file for our application.
     WantedBy=multi-user.target
 ```
 
->note **User** If *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
+> [!NOTE]
+> **User** -- If the user *www-data* is not used by your configuration, the user defined here must be created first and given proper ownership for files
 
 Save the file and enable the service.
 

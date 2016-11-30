@@ -141,7 +141,7 @@ Right-click the Person table, and then click **Show Table Data** to see the disc
 
 ## Summary
 
-You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://ef.readthedocs.io/en/latest/modeling/inheritance.html). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
+You've implemented table-per-hierarchy inheritance for the `Person`, `Student`, and `Instructor` classes. For more information about inheritance in Entity Framework Core, see [Inheritance](https://docs.microsoft.com/en-us/ef/core/modeling/inheritance). In the next tutorial you'll see how to handle a variety of relatively advanced Entity Framework scenarios.
 
 >[!div class="step-by-step"]
 [Previous](concurrency.md)

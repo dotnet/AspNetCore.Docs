@@ -186,7 +186,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
 
 3.  Add the following `WebsiteInformationTagHelper` class to the *TagHelpers* folder.
 
-    [!code-none[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
+    [!code-csharp[Main](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/WebsiteInformationTagHelper.cs)]
     
     **Notes:**
     
