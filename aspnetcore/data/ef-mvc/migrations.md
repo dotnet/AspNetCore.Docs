@@ -90,7 +90,7 @@ Migrations also creates a "snapshot" of the current database schema in *Migratio
 
 [!code-csharp[Main](intro/samples/cu/Migrations/SchoolContextModelSnapshot1.cs?name=snippet_Truncate)]
 
-Because this code has to reflect the database state after the latest migration,  you can't remove a migration just by deleting the file named  *<timestamp>_<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://ef.readthedocs.io/en/latest/miscellaneous/cli/dotnet.html#dotnet-ef-migrations-remove) command.
+Because this code has to reflect the database state after the latest migration,  you can't remove a migration just by deleting the file named  *<timestamp>_<migrationname>.cs*. If you delete that file, the remaining migrations will be out of sync with the database snapshot file. To delete the last migration that you added, use the [dotnet ef migrations remove](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command.
 
 ## Apply the migration to the database
 
@@ -121,7 +121,7 @@ Run the application to verify that everything still works the same as before.
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. In this preview version of the tooling, the CLI commands are more stable than the PMC cmdlets, so this tutorial shows how to use the .NET Core CLI commands.
 
-For more information about the CLI commands, see [.NET Core CLI](https://ef.readthedocs.io/en/latest/miscellaneous/cli/dotnet.html). For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://ef.readthedocs.io/en/latest/miscellaneous/cli/powershell.html).
+For more information about the CLI commands, see [.NET Core CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet). For information about the PMC commands, see [Package Manager Console (Visual Studio)](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell).
 
 ## Summary
 
