@@ -96,7 +96,7 @@ Use the following pages to configure your application to use the respective prov
 * [Other provider](other-logins.md) instructions
 
 > [NOTE!]
-> Call `app.UseIdentity` (in `Configure()`) before any other external providers.
+> Call `app.UseIdentity` (in `Configure`) before any other external providers.
 
 ## Optionally set password
 
