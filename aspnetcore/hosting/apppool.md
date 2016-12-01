@@ -50,7 +50,7 @@ To grant the IIS worker process access to your application, you will need to mod
 
 6. Click the **Check Names** button and then click **OK**.
 
-You can also do this via the command-line by using **ICACLS** tool.
+You can also do this via a command prompt by using **ICACLS** tool.
 
 <!-- literal_block {"ids": [], "classes": ["code", "bat"], "xml:space": "preserve"} -->
 

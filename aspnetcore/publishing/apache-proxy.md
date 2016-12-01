@@ -73,7 +73,7 @@ The output should reflect something similar to the following.
 ```
 
 > [!NOTE]
-> In this example the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. The output may be different for your server. To verify where Apache is installed, run `whereis httpd` from the command line. 
+> In this example the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. The output may be different for your server. To verify where Apache is installed, run `whereis httpd` from a command prompt. 
 
 ### Configure Apache for reverse proxy
 
