@@ -177,7 +177,7 @@ public static void Main(string[] args)
    }
    ```
 
-In the example above, command line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from the command line:
+In the example above, command-line arguments may be passed in to configure the host, or configuration settings may optionally be specified in a *hosting.json* file. To specify the host run on a particular URL, you could pass in the desired value from a command prompt:
 
 ```none
 dotnet run --urls "http://*:5000"
