@@ -41,7 +41,7 @@ In the code above, the `IStringLocalizer<T>` implementation comes from [Dependen
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML encodes arguments that are formatted in the resource string, but not the resource string. In the sample highlighted below, only the value of `name` parameter is HTML encoded.
 
-[!code-csharp[Main](../fundamentals/localization/sample/Controllers/BookController.cs?highlight=3,5,20&start=1&end=23)]
+[!code-csharp[Main](../fundamentals/localization/sample/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 > [!NOTE]
 > You generally want to only localize text and not HTML.
@@ -62,7 +62,7 @@ Some developers use the `Startup` class to contain global or shared strings.  In
 
 ## View localization
 
-The `IViewLocalizer` service provides localized strings for a [`view](http://docs.asp.net/projects/mvc/en/latest/views/index.html). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
+The `IViewLocalizer` service provides localized strings for a [view](http://docs.asp.net/projects/mvc/en/latest/views/index.html). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
 [!code-HTML[Main](localization/sample/Views/Home/About.cshtml)]
 
@@ -83,7 +83,7 @@ The rendered view would contain the HTML markup from the resource file.
 > [!NOTE]
 > You generally want to only localize text and not HTML.
 
-To use a shared resource file in a view, inject `IHtmlLocalizer<T>``:
+To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
 [!code-HTML[Main](../fundamentals/localization/sample/Views/Test/About.cshtml?highlight=5,12)]
 
@@ -94,7 +94,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 * Resources/ViewModels.Account.RegisterViewModel.fr.resx
 * Resources/ViewModels/Account/RegisterViewModel.fr.resx
 
-[!code-csharp[Main](localization/sample/ViewModels/Account/RegisterViewModel.cs?start=9&end=36)]
+[!code-csharp[Main](localization/sample/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
 The runtime doesn't look up localized strings for non-validation attributes. In the code above, "Email" (from `[Display(Name = "Email")]`) will not be localized.
 
@@ -151,7 +151,7 @@ Localization is configured in the `ConfigureServices` method:
 
 The current culture on a request is set in the localization [Middleware](middleware.md). The localization middleware is enabled in the `Configure` method of *Startup.cs* file. Note,  the localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvc()`).
 
-[!code-csharp[Main](localization/sample/Startup.cs?range=107,136-159)]
+[!code-csharp[Main](localization/sample/Startup.cs?range=107-108,136-159)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -256,7 +256,7 @@ If you remove the ".fr" culture designator AND you have the culture set to Frenc
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
 
-[!code-none[Main](localization/sample/Views/Shared/_SelectLanguagePartial.cshtml)]
+[!code-HTML[Main](localization/sample/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
 
