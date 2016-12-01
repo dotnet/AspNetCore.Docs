@@ -1,6 +1,6 @@
 ---
 title: Key Storage Format | Microsoft Docs
-author: rick-anderson
+author: tdykstra
 description: 
 keywords: ASP.NET Core,
 ms.author: riande
