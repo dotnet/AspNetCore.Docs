@@ -100,7 +100,7 @@ The image above shows the three main extension points, you’re most likely to u
 
 2.  Customize `dotnet publish`
 
-    As stated previously `dotnet publish` is a command line utility that can be used to help publish your ASP.NET Core application. This is a cross platform command line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to script building and publishing. When `dotnet publish` is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the scripts section.
+    As stated previously `dotnet publish` is a command-line utility that can be used to help publish your ASP.NET Core application. This is a cross platform command-line utility (that is, you can use it on Windows, Mac or Linux) and does not require Visual Studio. If you are working on a team in which some developers are not using Visual Studio, then you may want to script building and publishing. When `dotnet publish` is executed it can be configured to execute custom commands before or after execution. The commands will be listed in project.json in the scripts section.
     
     The supported scripts for publish are prepublish and postpublish. The ASP.NET Core Web Application template uses the prepublish step by default. The relevant snippet from *project.json* is shown below.
     
