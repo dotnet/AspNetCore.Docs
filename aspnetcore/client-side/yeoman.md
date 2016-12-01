@@ -16,7 +16,7 @@ uid: client-side/yeoman
 
 By [Steve Smith](http://ardalis.com), [Scott Addie](https://scottaddie.com), [Rick Anderson](https://twitter.com/RickAndMSFT), [Noel Rice](http://blog.falafel.com/author/noel-rice/), and [Shayne Boyer](https://twitter.com/spboyer)
 
-[Yeoman](http://yeoman.io/) generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command line tool [yo](https://github.com/yeoman/yo) works alongside a Yeoman generator. Generators define the technologies that go into a project.
+[Yeoman](http://yeoman.io/) generates complete projects for a given set of client tools. Yeoman is an open-source tool that works like a Visual Studio project template. The Yeoman command-line tool [yo](https://github.com/yeoman/yo) works alongside a Yeoman generator. Generators define the technologies that go into a project.
 
 ## Install Node.js, npm, and Yeoman
 
@@ -30,7 +30,7 @@ npm install -g yo bower
 
 Note: If you get the error `npm ERR! Please try running this command again as root/Administrator.` on Mac OS, run the following command using [sudo](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/sudo.8.html): `sudo npm install -g yo bower`
 
-From the command line, install the ASP.NET generator:
+From a command prompt, install the ASP.NET generator:
 
 ```console
 npm install -g generator-aspnet
@@ -108,13 +108,13 @@ When all the dependencies are restored, press **F5** to run the project. The def
 
 You can prepare and host your web application using the [.NET Core](https://microsoft.com/net/core) command-line interface.
 
-From the command line, change the current directory to the folder containing the project (that is, the folder containing the *project.json* file):
+At a command prompt, change the current directory to the folder containing the project (that is, the folder containing the *project.json* file):
 
 ```console
 cd src\MyWebApp
    ```
 
-From the command line, restore the project's NuGet package dependencies:
+Restore the project's NuGet package dependencies:
 
 ```console
 dotnet restore
