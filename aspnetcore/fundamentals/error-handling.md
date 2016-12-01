@@ -26,16 +26,16 @@ To configure an app to display a page that shows detailed information about exce
 
 [!code-csharp[Main](error-handling/sample/Startup.cs?name=snippet_DevExceptionPage&highlight=7)]
 
-Put `UseDeveloperExceptionPage` before any middleware you want to catch the exception in, such as `app.UseMvc`.
+Put `UseDeveloperExceptionPage` before any middleware you want to catch exceptions in, such as `app.UseMvc`.
 
 >[!WARNING]
 > Enable the developer exception page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. [Learn more about configuring environments](environments.md).
 
-To see the developer exception page, run the sample application with the environment set to `Development`, and add `?throw=true` to the base URL of the app. 
+To see the developer exception page, run the sample application with the environment set to `Development`, and add `?throw=true` to the base URL of the app. The page includes several tabs with information about the exception and the request. The first tab includes a stack trace. 
 
 ![Stack trace](error-handling/_static/developer-exception-page.png)
 
-The page includes several tabs with information about the exception and the request. The first tab includes a stack trace. The next tab shows the query string parameters, if any.
+The next tab shows the query string parameters, if any.
 
 ![Query string parameters](error-handling/_static/developer-exception-page-query.png)
 
@@ -61,13 +61,13 @@ public IActionResult Index()
 
 ## Configuring status code pages
 
-By default, your app will not provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` by adding this line to the `Configure` method:
+By default, your app will not provide a rich status code page for HTTP status codes such as 500 (Internal Server Error) or 404 (Not Found). You can configure the `StatusCodePagesMiddleware` by adding a line to the `Configure` method:
 
 ```csharp
 app.UseStatusCodePages();
 ```
 
-By default, this middleware adds very simple, text-only handlers for common status codes, such as 404:
+By default, this middleware adds simple, text-only handlers for common status codes, such as 404:
 
 ![404 page](error-handling/_static/default-404-status-code.png)
 
@@ -113,7 +113,7 @@ Only the hosting layer can handle exceptions that take place during app startup.
 
 ## ASP.NET MVC Error Handling
 
-[MVC](../mvc/index.md) apps have some additional options when it comes to handling errors, such as configuring exception filters and performing model validation.
+[MVC](../mvc/index.md) apps have some additional options for handling errors, such as configuring exception filters and performing model validation.
 
 ### Exception Filters
 
