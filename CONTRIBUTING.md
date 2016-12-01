@@ -71,7 +71,7 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 
 ## Test your changes with DocFX
 
-Test your changes with the [DocFX command line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
+Test your changes with the [DocFX command-line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
 
 DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS. 
 
@@ -79,7 +79,7 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 
 * Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
-* In a command line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
+* In a command-line window, navigate to the *aspnet* folder (which contains the *docfx.json* file) and run the following command:
 
    ```
    docfx -t default --serve
