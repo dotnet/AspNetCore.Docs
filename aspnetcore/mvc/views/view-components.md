@@ -23,27 +23,17 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 New to ASP.NET Core MVC, view components are similar to partial views, but they are much more powerful. View components don’t use model binding, and only depend on the data you provide when calling into it. A view component:
 
 * Renders a chunk rather than a whole response
-
 * Includes the same separation-of-concerns and testability benefits found between a controller and view
-
 * Can have parameters and business logic
-
 * Is typically invoked from a layout page
-
 View Components are intended anywhere you have reusable rendering logic that is too complex for a partial view, such as:
 
 * Dynamic navigation menus
-
 * Tag cloud (where it queries the database)
-
 * Login panel
-
 * Shopping cart
-
 * Recently published articles
-
 * Sidebar content on a typical blog
-
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
 A `view component` consists of two parts, the class (typically derived from  [ViewComponent](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.viewcomponent) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
@@ -57,9 +47,7 @@ This section contains the high level requirements to create a view component. La
 A view component class can be created by any of the following:
 
 * Deriving from *ViewComponent*
-
 * Decorating a class with the `[ViewComponent]` attribute, or deriving from a class with the `[ViewComponent]` attribute
-
 * Creating a class where the name ends with the suffix *ViewComponent*
 
 Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name` property.
@@ -85,7 +73,6 @@ A view component defines its logic in an `InvokeAsync` method that returns an `I
 The runtime searches for the view in the following paths:
 
    * Views/\<controller_name>/Components/\<view_component_name>/\<view_name>
-
    * Views/Shared/Components/\<view_component_name>/\<view_name>
 
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
