@@ -117,7 +117,7 @@ Run the application to verify that everything still works the same as before.
 
 ![Students Index page](migrations/_static/students-index.png)
 
-## Command line interface (CLI) vs. Package Manager Console (PMC)
+## Command-line interface (CLI) vs. Package Manager Console (PMC)
 
 The EF tooling for managing migrations is available from .NET Core CLI commands or from PowerShell cmdlets in the Visual Studio **Package Manager Console** (PMC) window. In this preview version of the tooling, the CLI commands are more stable than the PMC cmdlets, so this tutorial shows how to use the .NET Core CLI commands.
 
