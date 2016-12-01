@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
-using System.Linq;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using ViewComponentSample.Models;
 
 namespace ViewComponentSample.Controllers
@@ -13,11 +13,14 @@ namespace ViewComponentSample.Controllers
             _ToDoContext = context;
         }
 
-
         public IActionResult Index()
         {
             var model = _ToDoContext.ToDo.ToList();
             return View(model);
+        }
+        public string Index2()
+        {
+            return "View()";
         }
     }
 }
