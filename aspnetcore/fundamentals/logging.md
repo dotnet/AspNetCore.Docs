@@ -155,7 +155,7 @@ A LoggerFactory instance can optionally be configured with custom `FilterLoggerS
 
 ### Configuring TraceSource Logging
 
-When running on the full .NET Framework you can configuring logging to use the existing [System.Diagnostics.TraceSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource(v=vs.110).aspx) libraries and providers, including easy access to the Windows event log. `TraceSource` allows you to route messages to a variety of listeners and is already in use by many organizations.
+When running on the full .NET Framework you can configure logging to use the existing [System.Diagnostics.TraceSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource(v=vs.110).aspx) libraries and providers, including easy access to the Windows event log. `TraceSource` allows you to route messages to a variety of listeners and is already in use by many organizations.
 
 First, be sure to add the `Microsoft.Extensions.Logging.TraceSource` package to your project (in *project.json*), along with any specific trace source packages you'll be using (in this case, `TextWriterTraceListener`):
 
