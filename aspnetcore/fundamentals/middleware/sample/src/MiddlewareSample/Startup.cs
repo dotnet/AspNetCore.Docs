@@ -116,10 +116,10 @@ namespace MiddlewareSample
                 return context.Request.Query.ContainsKey("branch");
             }, HandleBranch);
 
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello from " + _environment);
-            });
+            //app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync("Hello from " + _environment);
+            //});
         }
     }
 }//
