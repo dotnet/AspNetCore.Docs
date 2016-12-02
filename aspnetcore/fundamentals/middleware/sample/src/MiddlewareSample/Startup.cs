@@ -20,73 +20,66 @@ namespace MiddlewareSample
         public void ConfigureServices(IServiceCollection services)
         {
         }
-        
-        //public void Configure(IApplicationBuilder app)
-        //{
-        //    app.Run(async context =>
-        //    {
-        //        await context.Response.WriteAsync("Hello, World!");
-        //    });
 
-        //    app.Run(async context =>
-        //    {
-        //        await context.Response.WriteAsync("Hello, World, Again!");
-        //    });
-        //}
+        public void Configure(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello, World!");
+            });
 
-        /// <summary>
-        /// ConfigureLogInline
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="loggerfactory"></param>
-        //public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
-        //{
-        //    loggerfactory.AddConsole(minLevel: LogLevel.Information);
-        //    var logger = loggerfactory.CreateLogger(_environment);
-        //    app.Use(async (context, next) =>
-        //    {
-        //        logger.LogInformation("Handling request.");
-        //        await next.Invoke();
-        //        logger.LogInformation("Finished handling request.");
-        //    });
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello, World, Again!");
+            });
+        }
 
-        //    app.Run(async context =>
-        //    {
-        //        await context.Response.WriteAsync("Hello from " + _environment);
-        //    });
-        //}
+        public void ConfigureLogInline(IApplicationBuilder app, ILoggerFactory loggerfactory)
+        {
+            loggerfactory.AddConsole(minLevel: LogLevel.Information);
+            var logger = loggerfactory.CreateLogger(_environment);
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("Handling request.");
+                await next.Invoke();
+                logger.LogInformation("Finished handling request.");
+            });
 
-        //ConfigureLogMiddleware
-        //public void Configure(IApplicationBuilder app,
-        //    ILoggerFactory loggerfactory)
-        //{
-        //    loggerfactory.AddConsole(minLevel: LogLevel.Information);
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
 
-        //    app.UseRequestLogger();
+        public void ConfigureLogMiddleware(IApplicationBuilder app,
+            ILoggerFactory loggerfactory)
+        {
+            loggerfactory.AddConsole(minLevel: LogLevel.Information);
 
-        //    app.Run(async context =>
-        //    {
-        //        await context.Response.WriteAsync("Hello from " + _environment);
-        //    });
-        //}
+            app.UseRequestLogger();
 
-        //ConfigureEnvironmentOne
-        //public void Configure(IApplicationBuilder app)
-        //{
-        //    app.Run(async context =>
-        //    {
-        //        await context.Response.WriteAsync("Hello from " + _environment);
-        //    });
-        //}
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
 
-        //ConfigureEnvironmentTwo
-        //public void Configure(IApplicationBuilder app)
-        //{
-        //    app.Use(async (context, next) =>
-        //    {
-        //        await context.Response.WriteAsync("Hello from " + _environment);
-        //    });
-        //}
+
+        public void ConfigureEnvironmentOne(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
+
+        public void ConfigureEnvironmentTwo(IApplicationBuilder app)
+        {
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
+        }
 
         private static void HandleMapTest(IApplicationBuilder app)
         {
@@ -95,12 +88,12 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Map Test Successful");
             });
         }
-        //ConfigureMapping
-        //public void Configure(IApplicationBuilder app)
-        //{
-        //    app.Map("/maptest", HandleMapTest);
 
-        //}
+        public void ConfigureMapping(IApplicationBuilder app)
+        {
+            app.Map("/maptest", HandleMapTest);
+
+        }
 
         private static void HandleBranch(IApplicationBuilder app)
         {
@@ -109,17 +102,17 @@ namespace MiddlewareSample
                 await context.Response.WriteAsync("Branch used.");
             });
         }
-        //ConfigureMapWhen
-        public void Configure(IApplicationBuilder app)
+
+        public void ConfigureMapWhen(IApplicationBuilder app)
         {
             app.MapWhen(context => {
                 return context.Request.Query.ContainsKey("branch");
             }, HandleBranch);
 
-            //app.Run(async context =>
-            //{
-            //    await context.Response.WriteAsync("Hello from " + _environment);
-            //});
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello from " + _environment);
+            });
         }
     }
-}//
+}
