@@ -1,8 +1,8 @@
 ﻿//#define Final
 #if Final
 
-using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +24,7 @@ namespace ViewComponentSample.ViewComponents
             return db.ToDo.Where(x => x.IsDone == isDone &&
                                  x.Priority <= maxPriority).ToListAsync();
         }
-
+        #region snippet1
         public async Task<IViewComponentResult> InvokeAsync(
             int maxPriority, bool isDone)
         {
@@ -37,6 +37,7 @@ namespace ViewComponentSample.ViewComponents
             var items = await GetItemsAsync(maxPriority, isDone);
             return View(MyView, items);
         }
+        #endregion
     }
 }
 

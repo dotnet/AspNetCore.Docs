@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using ViewComponentSample.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ViewComponentSample
 {
@@ -10,22 +10,28 @@ namespace ViewComponentSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFramework()
-               .AddInMemoryDatabase()
-               .AddDbContext<ToDoContext>( options => 
-                options.UseInMemoryDatabase());
-
+            services.AddDbContext<ToDoContext>(options =>
+                   options.UseInMemoryDatabase());
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage(); 
-            app.UseIISPlatformHandler();
-            app.UseMvcWithDefaultRoute();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Todo}/{action=Index}/{id?}");
+            });
+
             SeedData.Initialize(app.ApplicationServices);
         }
-
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
