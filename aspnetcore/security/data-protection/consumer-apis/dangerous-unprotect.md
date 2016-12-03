@@ -36,7 +36,7 @@ DangerousUnprotect(byte[] protectedData, bool ignoreRevocationErrors,
 
 This API takes the protected payload (as a byte array) and returns the unprotected payload. There is no string-based overload. The two out parameters are as follows.
 
-* requiresMigration: will be set to true if the key used to protect this payload is no longer the active default key, e.g., the key used to protect this payload is old and a key rolling operation has since taken place. The caller may wish to consider reprotecting the payload depending on his business needs.
+* requiresMigration: will be set to true if the key used to protect this payload is no longer the active default key, e.g., the key used to protect this payload is old and a key rolling operation has since taken place. The caller may wish to consider reprotecting the payload depending on their business needs.
 
 * wasRevoked: will be set to true if the key used to protect this payload was revoked.
 
