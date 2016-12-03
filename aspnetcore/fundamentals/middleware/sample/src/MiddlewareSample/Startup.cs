@@ -6,9 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MiddlewareSample
 {
-    /// <summary>
-    /// Sync
-    /// </summary>
+   
     public class Startup
     {
         private readonly string _environment;
@@ -34,6 +32,10 @@ namespace MiddlewareSample
             });
         }
 
+         /// <summary>
+         /// 1.Comment Previous methods Configure
+         /// 2.Rename this methode to "configure" & Run Project
+         /// </summary>
         public void ConfigureLogInline(IApplicationBuilder app, ILoggerFactory loggerfactory)
         {
             loggerfactory.AddConsole(minLevel: LogLevel.Information);
@@ -51,6 +53,10 @@ namespace MiddlewareSample
             });
         }
 
+         /// <summary>
+         /// 1.Comment Previous methods Configure
+         /// 2.Rename this methode to "configure" & Run Project
+         /// </summary>
         public void ConfigureLogMiddleware(IApplicationBuilder app,
             ILoggerFactory loggerfactory)
         {
@@ -65,6 +71,10 @@ namespace MiddlewareSample
         }
 
 
+        /// <summary>
+        /// 1.Comment Previous methods Configure
+        /// 2.Rename this methode to "configure" & Run Project
+        /// </summary>
         public void ConfigureEnvironmentOne(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -73,6 +83,10 @@ namespace MiddlewareSample
             });
         }
 
+        /// <summary>
+        /// 1.Comment Previous methods Configure
+        /// 2.Rename this methode to "configure" & Run Project
+        /// </summary>
         public void ConfigureEnvironmentTwo(IApplicationBuilder app)
         {
             app.Use(async (context, next) =>
@@ -81,6 +95,9 @@ namespace MiddlewareSample
             });
         }
 
+        /// <summary>
+        /// Do not comment!
+        /// </summary>
         private static void HandleMapTest(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -89,12 +106,19 @@ namespace MiddlewareSample
             });
         }
 
+        /// <summary>
+        /// 1.Comment Previous methods Configure
+        /// 2.Rename this methode to "configure" & Run Project
+        /// </summary>
         public void ConfigureMapping(IApplicationBuilder app)
         {
             app.Map("/maptest", HandleMapTest);
 
         }
 
+        /// <summary>
+        /// Do not comment!
+        /// </summary>
         private static void HandleBranch(IApplicationBuilder app)
         {
             app.Run(async context =>
@@ -103,6 +127,10 @@ namespace MiddlewareSample
             });
         }
 
+        /// <summary>
+        /// 1.Comment Previous methods Configure
+        /// 2.Rename this methode to "configure" & Run Project
+        /// </summary>
         public void ConfigureMapWhen(IApplicationBuilder app)
         {
             app.MapWhen(context => {
