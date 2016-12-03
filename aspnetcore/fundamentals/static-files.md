@@ -24,7 +24,7 @@ Static files, such as HTML, CSS, image, and JavaScript, are assets that an ASP.N
 
 ## Serving static files
 
-Static files are typically located in the `web root` (*<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../index.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
+Static files are typically located in the `web root` (*\<content-root>/wwwroot*) folder. See Content root and Web root in  [Introduction to ASP.NET Core](../index.md) for more information. You generally set the content root to be the current directory so that your project's `web root` will be found while in development.
 
 [!code-csharp[Main](../common/samples/WebApplication1/Program.cs?highlight=5&start=12&end=22)]
 
@@ -46,12 +46,12 @@ You must include "Microsoft.AspNetCore.StaticFiles" in the *project.json* file.
 
 Suppose you have a project hierarchy where the static files you wish to serve are outside the `web root`. For example:
 
-   * wwwroot
-     * css
-     * images
-     * ...
-   * MyStaticFiles
-     * test.png
+* wwwroot
+  * css
+  * images
+  * ...
+* MyStaticFiles
+  * test.png
 
 For a request to access *test.png*, configure the static files middleware as follows:
 
@@ -73,17 +73,17 @@ Directory browsing allows the user of your web app to see a list of directories 
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet1)]
 
-And add required services by calling `AddDirectoryBrowser` extension method from  `Startup.ConfigureServices`:
+And add required services by calling `AddDirectoryBrowser` extension method from `Startup.ConfigureServices`:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?name=snippet2)]
 
-The code above allows directory browsing of the *wwwroot/images* folder using the URL http://<app>/MyImages, with links to each file and folder:
+The code above allows directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages, with links to each file and folder:
 
 ![image](static-files/_static/dir-browse.png)
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call for directory browsing of the *wwwroot/images* folder using the URL http://<app>/MyImages:
+Note the two `app.UseStaticFiles` calls. The first one is required to serve the CSS, images and JavaScript in the *wwwroot* folder, and the second call for directory browsing of the *wwwroot/images* folder using the URL http://\<app>/MyImages:
 
 [!code-csharp[Main](static-files/sample/StartupBrowse.cs?highlight=3,5&name=snippet1)]
 
@@ -98,13 +98,10 @@ Setting a default home page gives site visitors a place to start when visiting y
 
 With `UseDefaultFiles`, requests to a folder will search for:
 
-   * default.htm
-
-   * default.html
-
-   * index.htm
-
-   * index.html
+* default.htm
+* default.html
+* index.htm
+* index.html
 
 The first file found from the list will be served as if the request was the fully qualified URI (although the browser URL will continue to show the URI requested).
 
@@ -159,12 +156,12 @@ Using the file hierarchy and code above:
 | `http://<app>/StaticFiles/test.png`    |      MyStaticFiles/test.png |
 | `http://<app>/StaticFiles`              |     MyStaticFiles/default.html |
 
-If no default named files are in the *MyStaticFiles* directory, http://<app>/StaticFiles returns the directory listing with clickable links:
+If no default named files are in the *MyStaticFiles* directory, http://\<app>/StaticFiles returns the directory listing with clickable links:
 
 ![image](static-files/_static/db2.PNG)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://<app>/StaticFiles without the trailing slash and cause a client side redirect to http://<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
+> `UseDefaultFiles` and `UseDirectoryBrowser` will take the url http://\<app>/StaticFiles without the trailing slash and cause a client side redirect to http://\<app>/StaticFiles/ (adding the trailing slash). Without the trailing slash relative URLs within the documents would be incorrect.
 
 ### FileExtensionContentTypeProvider
 
@@ -190,7 +187,7 @@ With the code above, a request for a file with an unknown content type will be r
 ### Considerations
 
 >[!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. We recommend that you **not** enable directory browsing in production. Be careful about which directories you enable with `UseStaticFiles` or `UseDirectoryBrowser` as the entire directory and all sub-directories will be accessible. We recommend keeping public content in its own directory such as *<content root>/wwwroot*, away from application views, configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. We recommend that you **not** enable directory browsing in production. Be careful about which directories you enable with `UseStaticFiles` or `UseDirectoryBrowser` as the entire directory and all sub-directories will be accessible. We recommend keeping public content in its own directory such as *\<content root>/wwwroot*, away from application views, configuration files, etc.
 
 * The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of their underlying file system. For example, Windows is case insensitive, but Mac and Linux are not.
 
