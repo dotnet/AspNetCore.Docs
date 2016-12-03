@@ -24,7 +24,7 @@ This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC ro
 
 ## Routing basics
 
-Routing uses *routes* (implementations of `IRouter``) to:
+Routing uses *routes* (implementations of `IRouter`) to:
 
 * map incoming requests to *route handlers*
 
@@ -204,7 +204,7 @@ Routes must configured in the `Configure` method in the `Startup` class. The sam
 
 <!-- literal_block {"xml:space": "preserve", "source": "fundamentals/routing/sample/RoutingSample/Startup.cs", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
 
-```
+```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
 {
     var trackPackageRouteHandler = new RouteHandler(context =>
@@ -224,13 +224,14 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
     {
         var name = context.GetRouteValue("name");
         // This is the route handler when HTTP GET "hello/<anything>"  matches
-        // To match HTTP GET "hello/<anything>/<anything>, 
+        // To match HTTP GET "hello/<anything>/<anything>,
         // use routeBuilder.MapGet("hello/{*name}"
         return context.Response.WriteAsync($"Hi, {name}!");
-    });            
+    });
 
     var routes = routeBuilder.Build();
     app.UseRouter(routes);
+}
 ```
 
 The table below shows the responses with the given URIs.
