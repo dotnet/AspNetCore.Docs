@@ -39,7 +39,7 @@ public void Configure(IApplicationBuilder app)
     ...
 }
 ```
-The position of `app.UseResponseCaching()` relative to other middleware in the pipeline is important. Any terminal middleware placed before the Response Caching Middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](../fundamentals/static-files.md) before `app.UseResponseCaching()`, your static files will not be cached by the middleware. If you place Static File Middlware after `app.UseResponseCaching()`, your static files will be cached.
+The position of `app.UseResponseCaching()` relative to other middleware in the pipeline is important. Any terminal middleware placed before the Response Caching Middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](../fundamentals/static-files.md) before `app.UseResponseCaching()`, your static files will not be cached by the middleware. If you place Static File Middleware after `app.UseResponseCaching()`, your static files will be cached.
 
 There is no need for you to be concerned about the position of `app.UseDeveloperExceptionPage()` and the accidential caching of the developer exception page. The Response Caching Middleware only caches 200 (OK) server responses. The developer exception page is only produced on non-200 responses, so it will never be cached by the middleware.
 
@@ -51,7 +51,7 @@ Option | Default Value
 UseCaseSensitivePaths | <p>Determines if responses will be cached on case-sensitive paths.</p><p>The default value is `false`.</p>
 MaximumBodySize | <p>The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` [64 MB (67,108,864 bytes)].</p>
 
-The following example configures these options so that the middleware will independently cache responses on case-sensitive paths and on body response size. For example, the middlware would independently cache the responses for `/page1` and `/PaGe1`. The middlware would also only cache responses that have a body size less than 1 MB (1,024 bytes).
+The following example configures these options so that the middleware will independently cache responses on case-sensitive paths and on body response size. Configured as shown below, the middleware would independently cache the responses for `/page1` and `/PaGe1`. The middleware would also only cache responses that have a body size less than 1 MB (1,024 bytes).
 ```
 services.AddResponseCaching(options =>
 {
@@ -74,7 +74,7 @@ The `ResponseCache` attribute specifies the parameters necessary for setting app
 * `Vary` header parameters must be valid not equal to `*`.
 
 ## HTTP response caching headers
-Response caching by the middlware is configured via your HTTP response headers. The relevant headers are listed below with notes on how they affect caching.
+Response caching by the middleware is configured via your HTTP response headers. The relevant headers are listed below with notes on how they affect caching.
 
 Header | Details
 --- | --- |
