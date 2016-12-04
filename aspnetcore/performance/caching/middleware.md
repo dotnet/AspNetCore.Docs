@@ -94,4 +94,5 @@ The middleware sets the following headers when appropriate:
 
 ## Additional Resources
 
-TBD
+* [Middleware](../fundamentals/middleware.md)
+
