@@ -61,7 +61,7 @@ services.AddResponseCaching(options =>
 ```
 
 ## ResponseCache attribute
-The `ResponseCache` sttribute specifies the parameters necessary for setting appropriate headers for response caching with the middleware. See the [ResponseCache Attribute document](response.md#ResponseCache Attribute) and the [ResponseCacheAttribute Class API Reference](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for usage and a description of the parameters.
+The `ResponseCache` attribute specifies the parameters necessary for setting appropriate headers for response caching with the middleware. See the [ResponseCache Attribute document](response.md#ResponseCache Attribute) and the [ResponseCacheAttribute Class API Reference](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.mvc.responsecacheattribute) for usage and a description of the parameters.
 
 ## Caching conditions
 * The request must result in a 200 (OK) response from the server.
