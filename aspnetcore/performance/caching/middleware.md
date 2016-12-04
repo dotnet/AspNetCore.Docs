@@ -66,7 +66,7 @@ The `ResponseCache` attribute specifies the parameters necessary for setting app
 ## Caching conditions
 * The request must result in a 200 (OK) response from the server.
 * The request method must be GET or HEAD.
-* Terminal middlewares (e.g., Static File Middleware) must not process the response prior to the Response Caching Middleware.
+* Terminal middlewares, such as Static File Middleware, must not process the response prior to the Response Caching Middleware.
 * The Authorization header must not be present.
 * `Cache-Control` header parameters must be valid and the response must be marked `public`.
 * The `Pragma: no-cache` header/value must not be present.
