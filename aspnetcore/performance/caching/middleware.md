@@ -71,7 +71,7 @@ The `ResponseCache` attribute specifies the parameters necessary for setting app
 * `Cache-Control` header parameters must be valid and the response must be marked `public`.
 * The `Pragma: no-cache` header/value must not be present.
 * The `Set-Cookie` header must not be present.
-* `Vary` header parameters must be valid not equal to `*`.
+* `Vary` header parameters must be valid and not equal to `*`.
 
 ## HTTP response caching headers
 Response caching by the middleware is configured via your HTTP response headers. The relevant headers are listed below with notes on how they affect caching.
