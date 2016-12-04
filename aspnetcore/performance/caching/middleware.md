@@ -87,8 +87,11 @@ Expires | <p>The response must not be stale given the value provided.</p>
 If-None-Match | <p>The response will be served from cache if the value is not `*` and the `ETag` of the response doesn't match any of the values provided. Otherwise, a 304 (Not Modified) response will be served.</p>
 If-Modified-Since | <p>If the `If-None-Match` header is not present, a cached response will be served if the cached response date value is less than the value provided.</p>
 
-### Middleware-configured headers
 The middleware sets the following headers when appropriate:
 * Date
 * Age
 * Content-Length
+
+## Additional Resources
+
+TBD
