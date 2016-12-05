@@ -16,7 +16,7 @@ uid: security/data-protection/configuration/overview
 
 <a name=data-protection-configuring></a>
 
-When the data protection system is initialized it applies some [default settings](default-settings.md#data-protection-default-settings) based on the operational environment. These settings are generally good for applications running on a single machine. There are some cases where a developer may want to change these (perhaps because his application is spread across multiple machines or for compliance reasons), and for these scenarios the data protection system offers a rich configuration API.
+When the data protection system is initialized it applies some [default settings](default-settings.md#data-protection-default-settings) based on the operational environment. These settings are generally good for applications running on a single machine. There are some cases where a developer may want to change these (perhaps because their application is spread across multiple machines or for compliance reasons), and for these scenarios the data protection system offers a rich configuration API.
 
 <a name=data-protection-configuration-callback></a>
 
