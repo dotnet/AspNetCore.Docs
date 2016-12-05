@@ -14,7 +14,7 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity
 
-By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), Tom Dykstra, Jon Galloway, and [Erik Reitan](https://github.com/Erikre)
+By [Pranav Rastogi](https://github.com/rustd), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdkystra), Jon Galloway, and [Erik Reitan](https://github.com/Erikre)
 
 ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more.
 
