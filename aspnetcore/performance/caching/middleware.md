@@ -94,5 +94,5 @@ The middleware sets the following headers when appropriate:
 
 ## Additional Resources
 
-* [Middleware](xref:fundamentals/middleware.md)
+* [Middleware](xref:fundamentals/middleware)
 
