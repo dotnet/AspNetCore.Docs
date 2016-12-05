@@ -6,6 +6,7 @@ using Xunit;
 
 namespace PrimeWeb.IntegrationTests
 {
+    #region snippet_CheckPrime
     public class PrimeWebCheckPrimeShould
     {
         private readonly TestServer _server;
@@ -64,4 +65,5 @@ namespace PrimeWeb.IntegrationTests
                 responseString);
         }
     }
+    #endregion
 }
