@@ -87,7 +87,7 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
 > [!NOTE]
-> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [ð"§ Routing to Controller Actions](../mvc/controllers/routing.md).
+> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Routing to Controller Actions](../mvc/controllers/routing.md).
 
 This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
 
