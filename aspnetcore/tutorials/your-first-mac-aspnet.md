@@ -14,7 +14,7 @@ uid: tutorials/your-first-mac-aspnet
 ---
 # Your First ASP.NET Core Application on a Mac Using Visual Studio Code
 
-By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Shayne Boyer](https://twitter.com/spboyer)
+By [Daniel Roth](https://github.com/danroth27), [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shayne Boyer](https://twitter.com/spboyer)
 
 This article will show you how to write your first ASP.NET Core application on a Mac.
 
