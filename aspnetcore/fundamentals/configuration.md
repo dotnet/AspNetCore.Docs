@@ -16,7 +16,7 @@ uid: fundamentals/configuration
 
 <a name=fundamentals-configuration></a>
 
-[Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
+By [Steve Smith](http://ardalis.com) and [Daniel Roth](https://github.com/danroth27)
 
 ASP.NET Core supports a variety of different configuration options. Application configuration data can come from files using built-in support for JSON, XML, and INI formats, as well as from environment variables, command-line arguments or an in-memory collection. You can also write your own [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
