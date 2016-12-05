@@ -14,7 +14,7 @@ uid: mvc/views/razor
 ---
 # Razor Syntax Reference
 
-[Taylor Mullen](https://twitter.com/ntaylormullen) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Taylor Mullen](https://twitter.com/ntaylormullen) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## What is Razor?
 
