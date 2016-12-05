@@ -37,7 +37,7 @@ namespace StaticFiles
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
                 RequestPath = new PathString("/MyImages"),
                 ContentTypeProvider = provider
             });
@@ -45,7 +45,7 @@ namespace StaticFiles
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images")),
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
                 RequestPath = new PathString("/MyImages")
             });
         }
