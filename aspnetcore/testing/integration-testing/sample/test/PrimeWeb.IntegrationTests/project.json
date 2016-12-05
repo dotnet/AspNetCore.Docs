@@ -2,22 +2,19 @@
   "version": "1.0.0-*",
   "description": "PrimeWeb.IntegrationTests Class Library",
   "authors": [ "stevesmith (@ardalis)" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
 
   "dependencies": {
     "PrimeWeb": "1.0.0",
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-build10025",
-    "Microsoft.AspNetCore.TestHost": "1.0.0"
+    "Microsoft.AspNetCore.TestHost": "1.1.0"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.0",
+          "version": "1.1.0",
           "type": "platform"
         }
       },
