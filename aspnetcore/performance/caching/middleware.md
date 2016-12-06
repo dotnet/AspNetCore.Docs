@@ -41,6 +41,9 @@ public void Configure(IApplicationBuilder app)
 ```
 The position of `app.UseResponseCaching()` relative to other middleware in the pipeline is important. Any terminal middleware placed before the Response Caching Middleware will prevent the Response Caching Middleware from caching or serving the response. For example, if you place [Static File Middleware](xref:fundamentals/static-files) before `app.UseResponseCaching()`, your static files will not be cached by the middleware. If you place Static File Middleware after `app.UseResponseCaching()`, your static files will be cached.
 
+>[!TIP]
+> If you place Static File Middleware before Response Caching Middleware, you can provide a prefix to the middleware that will force it to ignore requests with a path that doesn't match your prefix. For example, you can prefix your application's static file links with **assets** (**http://www.myapp.com/assets/staticfile.txt**) and configure the middleware to ignore any requests that do not include the **assets** prefix, `app.UseStaticFiles("/assets")`. Note that "**assets**" is only part of the path in your links to the static files. Your application will not have an **assets** folder, and your static files should remain in the **wwwroot** folder of your deployed application (**wwwroot\staticfile.txt**).
+
 There is no need for you to be concerned about the position of `app.UseDeveloperExceptionPage()` and the accidential caching of the developer exception page. The Response Caching Middleware only caches 200 (OK) server responses. The developer exception page is only produced on non-200 responses, so it will never be cached by the middleware.
 
 ## Options
