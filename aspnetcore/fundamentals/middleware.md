@@ -43,7 +43,7 @@ You can see an example of setting up the request pipeline in the default web sit
 3. Authentication
 4. MVC
 
-[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=86)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=8,9,10,14,17,19,23&start=58&end=84)]
 
 In the code above (in non-development environments), `UseExceptionHandler` is the first middleware added to the pipeline, therefore will catch any exceptions that occur in later calls.
 
@@ -64,7 +64,7 @@ The simplest possible ASP.NET application sets up a single request delegate that
 
 The first `App.Run` delegate terminates the pipeline. In the following example, only the first delegate ("Hello, World!") will run.
 
-[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5&start=21&end=31)]
+[!code-csharp[Main](middleware/sample/src/MiddlewareSample/Startup.cs?highlight=5&start=21&end=32)]
 
 You chain multiple request delegates together; the `next` parameter represents the next delegate in the pipeline. You can terminate (short-circuit) the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as this example demonstrates:
 

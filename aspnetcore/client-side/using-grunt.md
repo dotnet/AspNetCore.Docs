@@ -14,7 +14,7 @@ uid: client-side/using-grunt
 ---
 # Using Grunt
 
-[Noel Rice](http://blog.falafel.com/author/noel-rice/)
+By [Noel Rice](http://blog.falafel.com/author/noel-rice/)
 
 Grunt is a JavaScript task runner that automates script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Grunt is fully supported in Visual Studio, though the ASP.NET project templates use Gulp by default (see [Using Gulp](using-gulp.md)).
 

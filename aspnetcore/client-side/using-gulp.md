@@ -16,7 +16,7 @@ uid: client-side/using-gulp
 
 <a name=using-gulp></a>
 
-By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27) and [Shayne Boyer](https://twitter.com/spboyer)
+By [Erik Reitan](https://github.com/Erikre), [Scott Addie](https://scottaddie.com), [Daniel Roth](https://github.com/danroth27), and [Shayne Boyer](https://twitter.com/spboyer)
 
 In a typical modern web application, the build process might:
 

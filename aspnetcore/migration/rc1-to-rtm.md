@@ -14,7 +14,7 @@ uid: migration/rc1-to-rtm
 ---
 # Migrating from ASP.NET 5 RC1 to ASP.NET Core 1.0
 
-By [Cesar Blum Silveira](https://github.com/cesarbs), [Rachel Appel](http://github.com/rachelappel), [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Cesar Blum Silveira](https://github.com/cesarbs), [Rachel Appel](http://github.com/rachelappel), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET 5 RC1 apps were based on the .NET Execution Environment (DNX) and made use of DNX specific features. ASP.NET Core 1.0 is based on .NET Core, so you must first migrate your application to the new .NET Core project model. See [migrating from DNX to .NET Core CLI](https://docs.microsoft.com/en-us/dotnet/articles/core/migrating-from-dnx) for more information.
 

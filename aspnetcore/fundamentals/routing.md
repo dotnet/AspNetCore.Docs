@@ -24,7 +24,7 @@ This document covers the low level ASP.NET Core routing. For ASP.NET Core MVC ro
 
 ## Routing basics
 
-Routing uses *routes* (implementations of `IRouter``) to:
+Routing uses *routes* (implementations of `IRouter`) to:
 
 * map incoming requests to *route handlers*
 
@@ -87,7 +87,7 @@ Routing provides the `Route` class as the standard implementation of `IRouter`. 
 Most applications will create routes by calling `MapRoute` or one of the similar extension methods defined on `IRouteBuilder`. All of these methods will create an instance of `Route` and add it to the route collection.
 
 > [!NOTE]
-> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [ð"§ Routing to Controller Actions](../mvc/controllers/routing.md).
+> `MapRoute` doesn't take a route handler parameter - it only adds routes that will be handled by the `DefaultHandler`. Since the default handler is an `IRouter`, it may decide not to handle the request. For example, ASP.NET MVC is typically configured as a default handler that only handles requests that match an available controller and action. To learn more about routing to MVC, see [Routing to Controller Actions](../mvc/controllers/routing.md).
 
 This is an example of a `MapRoute` call used by a typical ASP.NET MVC route definition:
 
@@ -204,7 +204,7 @@ Routes must configured in the `Configure` method in the `Startup` class. The sam
 
 <!-- literal_block {"xml:space": "preserve", "source": "fundamentals/routing/sample/RoutingSample/Startup.cs", "ids": [], "linenos": false, "highlight_args": {"linenostart": 1}} -->
 
-```
+```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
 {
     var trackPackageRouteHandler = new RouteHandler(context =>
@@ -224,13 +224,14 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
     {
         var name = context.GetRouteValue("name");
         // This is the route handler when HTTP GET "hello/<anything>"  matches
-        // To match HTTP GET "hello/<anything>/<anything>, 
+        // To match HTTP GET "hello/<anything>/<anything>,
         // use routeBuilder.MapGet("hello/{*name}"
         return context.Response.WriteAsync($"Hi, {name}!");
-    });            
+    });
 
     var routes = routeBuilder.Build();
     app.UseRouter(routes);
+}
 ```
 
 The table below shows the responses with the given URIs.

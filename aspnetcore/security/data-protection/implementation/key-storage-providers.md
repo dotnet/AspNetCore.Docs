@@ -49,4 +49,4 @@ If you use the system registry as a persistence mechanism, consider using [Windo
 
 ## Custom key repository
 
-If the in-box mechanisms are not appropriate, the developer can specify his own key persistence mechanism by providing a custom IXmlRepository.
+If the in-box mechanisms are not appropriate, the developer can specify their own key persistence mechanism by providing a custom IXmlRepository.
