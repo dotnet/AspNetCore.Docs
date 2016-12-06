@@ -43,9 +43,9 @@ URL matching is the process by which routing dispatches an incoming request to a
 Incoming requests enter the `RouterMiddleware` which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext` `Handler` to a non-null
 `RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all routes are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
 
-The primary input to `RouteAsync` is the `RouteContext` `HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext` `RouteData` are outputs that will be set after a successful match.
+The primary input to `RouteAsync` is the `RouteContext` `HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext` `RouteData` are outputs that will be set after a route matches.
 
-A successful match during `RouteAsync` also will set the properties of the `RouteContext.RouteData` to appropriate values based on the request processing that was done. The `RouteContext.RouteData` contains important state information about the *result* of a route when it successfully matches a request.
+A match during `RouteAsync` will also set the properties of the `RouteContext.RouteData` to appropriate values based on the request processing done so far. If a route matches a request, the `RouteContext.RouteData` will contain important state information about the *result*.
 
 `RouteData` `Values` is a dictionary of *route values* produced from the route. These values are usually determined by tokenizing the URL, and can be used to accept user input, or to make further dispatching decisions inside the application.
 
