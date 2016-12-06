@@ -1,11 +1,11 @@
 ---
 title: In Memory Caching | Microsoft Docs
 author: ardalis
-description: 
-keywords: ASP.NET Core,
+description: Shows how to cache data in-memory.
+keywords: ASP.NET Core, cache, in-memory, performance
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 12/14/2016
 ms.topic: article
 ms.assetid: 819511cf-d33e-410a-b5a9-bef7fa64d2f3
 ms.technology: aspnet
@@ -14,12 +14,10 @@ uid: performance/caching/memory
 ---
 # In Memory Caching
 
->[!WARNING]
-> This page documents version 1.0.0-rc2 and has not yet been updated for version 1.0.0
 
-By [Steve Smith](http://ardalis.com)
+By [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Caching involves keeping a copy of data in a location that can be accessed more quickly than the source data. ASP.NET Core has rich support for caching in a variety of ways, including keeping data in memory on the local server, which is referred to as *in memory caching*.
+In-memory cached data can be accessed much faster than a database.
 
 [View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/caching/memory/sample)
 
@@ -27,19 +25,15 @@ Caching involves keeping a copy of data in a location that can be accessed more 
 
 ## Caching Basics
 
-Caching can dramatically improve the performance and scalability of ASP.NET applications, by eliminating unnecessary requests to external data sources for data that changes infrequently.
+Caching can significantly improve the performance and scalability of an app, by replacing requests to a persistent datastore with in memory data. Caching works best with data that changes infrequently. For example, data-driven navigation menus, which rarely change but are frequently requested. Caching can greatly improve performance by reducing round trips to the datastore.
 
-> [!NOTE]
-> Caching in all forms (in-memory or distributed, including session state) involves making a copy of data in order to optimize performance. The copied data should be considered ephemeral - it could disappear at any time. Apps should be written to not depend on cached data, but use it when available.
+Caching makes a copy of data that can be returned much faster than from the original source. You should write and test your app such that it can use cached data if it's available, but will fallback to the correctly using the underlying data source.
 
-ASP.NET supports several different kinds of caches, the simplest of which is represented by the `IMemoryCache` interface, which represents a cache stored in the memory of the local web server.
+ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the local web server.
 
-You should always write (and test!) your application such that it can use cached data if it's available, but otherwise will work correctly using the underlying data source.
+An in-memory cache is stored in the memory of the server hosting an ASP.NET app. Apps that utilize scale out in the cloud (run on multiple servers, that is a server farm), should ensure that sessons are sticky. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use  (Application Request Routing)[http://www.iis.net/learn/extensions/planning-for-arr] (ARR) to route all subsequent requests to the same server.
 
-An in-memory cache is stored in the memory of a single server hosting an ASP.NET app. If an app is hosted by multiple servers in a web farm or cloud hosting environment, the servers may have different values in their local in-memory caches. Apps that will be hosted in server farms or on cloud hosting should use a [distributed cache](distributed.md) to avoid cache consistency problems.
-
->[!TIP]
-> A common use case for caching is data-driven navigation menus, which rarely change but are frequently read for display within an application. Caching results that do not vary often but which are requested frequently can greatly improve performance by reducing round trips to out of process data stores and unnecessary computation.
+If an app is hosted by multiple servers in a web farm or cloud hosting environment, and you cannot guarantee sticky sessions (that is subsequent requests to to the same server), you will not be able to use the in-memory cache. Non-sticky sessions require using  a [distributed cache](distributed.md) to avoid cache consistency problems.
 
 ## Configuring In Memory Caching
 
