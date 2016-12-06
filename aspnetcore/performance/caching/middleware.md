@@ -3,7 +3,7 @@ title: Response Caching Middleware | Microsoft Docs
 author: rick-anderson
 ms.author: riande
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 12/05/2016
 ms.topic: article
 ms.assetid: f9267eab-2762-42ac-1638-4a25d2c9d67c
 ms.prod: aspnet-core
