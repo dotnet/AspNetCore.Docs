@@ -30,7 +30,7 @@ Routing uses *routes* (implementations of `IRouter`) to:
 
 * generate URLs used in responses
 
-Generally an app has a single collection of routes. The route collection is processed in order. Requests look for a match in the route collection by . Responses use routing to generate URLs.
+Generally, an app has a single collection of routes. When a request arrives, the route collection is processed in order. The incoming request looks for a route that matches the request URL by calling the `RouteAsync` method on each available route in the route collection. By contrast, a response can use routing to generate URLs (for example, for redirection or links) based on route information, and thus avoid having to hard-code URLs, which helps maintenability.
 
 Routing is connected to the [middleware](middleware.md) pipeline by the `RouterMiddleware` class. [ASP.NET MVC](../mvc/overview.md) adds routing to the middleware pipeline as part of its configuration. To learn about using routing as a standalone component, see [using-routing-middleware](#using-routing-middleware).
 
