@@ -67,7 +67,7 @@ The order in which configuration sources are specified is important, as this est
 
 It can be useful to have environment-specific configuration files. This can be achieved using the following:
 
-[!code-none[Main](../common/samples/WebApplication1/Startup.cs?highlight=6&range=20-35)]
+[!code-csharp[Main](../common/samples/WebApplication1/Startup.cs?highlight=6&range=20-35)]
 
 The `IHostingEnvironment` service is used to get the current environment. In the `Development` environment, the highlighted line of code above would look for a file named `appsettings.Development.json` and use its values, overriding any other values, if it's present. Learn more about [Working with Multiple Environments](environments.md).
 
@@ -78,7 +78,7 @@ When specifying files as configuration sources, you can optionally specify wheth
 
 One way to leverage the order precedence of `Configuration` is to specify default values, which can be overridden. In the console application below, a default value for the `username` setting is specified in an in-memory collection, but this is overridden if a command-line argument for `username` is passed to the application. You can see in the output how many different configuration sources are configured in the application at each stage of its execution.
 
-[!code-none[Main](../fundamentals/configuration/sample/src/ConfigConsole/Program.cs?highlight=22,25)]
+[!code-csharp[Main](../fundamentals/configuration/sample/src/ConfigConsole/Program.cs?highlight=22,25)]
 
 When run, the program will display the default value unless a command-line parameter overrides it.
 
