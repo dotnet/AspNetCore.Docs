@@ -2,7 +2,7 @@
 title: Enabling authentication using Facebook, Google and other external  | Microsoft Docs
 author: rick-anderson
 description: 
-keywords: ASP.NET Core,
+keywords: ASP.NET Core, authentication, social, authentication providers, google, facebook, twitter, microsoft account
 ms.author: riande
 manager: wpickett
 ms.date: 11/1/2016
@@ -10,8 +10,9 @@ ms.topic: article
 ms.assetid: eda7ee17-f38c-462e-8d1d-63f459901cf3
 ms.technology: aspnet
 ms.prod: aspnet-core
-uid: security/authentication/sociallogins
+uid: security/authentication/social/index
 ---
+
 # Enabling authentication using Facebook, Google and other external providers
 
 <a name=security-authentication-social-logins></a>
@@ -22,7 +23,7 @@ This tutorial demonstrates how to build an ASP.NET Core app that enables users t
 
 [Facebook](facebook-logins.md), [Twitter](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are covered in the following sections. Many third-party packages facilitate the use of other providers not covered here.
 
-![image](sociallogins/_static/social.png)
+![image](index/_static/social.png)
 
 Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party. For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://developers.facebook.com/case-studies) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
@@ -36,11 +37,11 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 * In Visual Studio, create a new project (from the Start Page, or via **File > New > Project**):
 
-![image](sociallogins/_static/new-project.png)
+![image](index/_static/new-project.png)
 
 * Tap **Web Application** and verify **Authentication** is set to **Individual User Accounts**:
 
-![image](sociallogins/_static/select-project.png)
+![image](index/_static/select-project.png)
 
 ## Enable SSL
 
@@ -54,7 +55,7 @@ Some external authentication providers reject requests coming from origins that 
 
 * Copy the SSL URL and paste it into the **App URL**:
 
-![image](sociallogins/_static/ssl.png)
+![image](index/_static/ssl.png)
 
 * Modify the `services.AddMvc();` code in `Startup.cs` under `ConfigureServices` to reject all requests that are not coming over *https*:
 
@@ -74,7 +75,7 @@ services.AddMvc(options =>
 
 The template used to create the sample project in this tutorial has code in `Startup.cs` which reads the configuration values from a secret store:
 
-[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 As a best practice, it is not recommended to store the secrets in a configuration file in the application since they can be checked into source control which may be publicly accessible.
 
@@ -83,7 +84,7 @@ The **SecretManager** tool stores sensitive application settings in the user pro
 > [NOTE!]
 > Most login providers assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application uses to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
-Install the [Secret Manager tool](../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
+Install the [Secret Manager tool](../../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
 
 ## Setup login providers required by your application
 
@@ -106,11 +107,11 @@ To create a password and sign in using your email that you set during the sign i
 
 * Tap the **Hello <email alias>** link at the top right corner to navigate to the **Manage** view.
 
-![image](sociallogins/_static/pass1.png)
+![image](index/_static/pass1.png)
 
 * Tap **Create**
 
-![image](sociallogins/_static/pass2.png)
+![image](index/_static/pass2.png)
 
 * Set a valid password and you can use this to sign in with your email.
 

@@ -18,17 +18,17 @@ uid: security/authentication/twitter-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 
-This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](sociallogins.md).
+This tutorial shows you how to enable your users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](index.md).
 
 ## Creating the app in Twitter
 
 * Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one. After signing in, the **Application Management** page is shown:
 
-![image](sociallogins/_static/TwitterAppManage.png)
+![image](index/_static/TwitterAppManage.png)
 
 * Tap **Create New App** and fill out the application **Name**:
 
-![image](sociallogins/_static/TwitterCreate.png)
+![image](index/_static/TwitterCreate.png)
 
 * Enter your current site URL with *signin-twitter* appended into the **Callback URL** field. For example, `https://localhost:44320/signin-twitter`.
   
@@ -40,15 +40,15 @@ This tutorial shows you how to enable your users to [sign in with their Twitter 
 
 * Tap **Create your Twitter application**. New application details are displayed:
 
-![image](sociallogins/_static/TwitterAppDetails.png)
+![image](index/_static/TwitterAppDetails.png)
 
 ## Storing Twitter ConsumerKey and ConsumerSecret
 
-Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described on the [social login overview page](sociallogins.md).
+Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described on the [social login overview page](index.md).
 
 * Switch to the **Keys and Access Tokens** tab. Note the `Consumer Key` and `Consumer Secret`:
 
-![image](sociallogins/_static/TwitterKeys.png)
+![image](index/_static/TwitterKeys.png)
 
 * Execute the following commands in your project working directory to store the Twitter secrets:
 
@@ -59,9 +59,9 @@ Link sensitive settings like Twitter `ConsumerKey` and `ConsumerSecret` to your 
   dotnet user-secrets set Authentication:Twitter:ConsumerSecret <consumer-secret>
      ```
 
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
+The following code reads the configuration values stored by the [Secret Manager](../../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Twitter middleware
 
@@ -84,21 +84,21 @@ app.UseTwitterAuthentication(new TwitterOptions()
 
 Run your application and click **Log in**. An option to sign in with Twitter appears:
 
-![image](sociallogins/_static/DoneTwitter.png)
+![image](index/_static/DoneTwitter.png)
 
 Clicking on **Twitter** redirects to Twitter for authentication:
 
-![image](sociallogins/_static/TwitterLogin.png)
+![image](index/_static/TwitterLogin.png)
 
 After entering your Twitter credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Twitter credentials:
 
-![image](sociallogins/_static/Done.png)
+![image](index/_static/Done.png)
 
 ## Next steps
 
-* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
+* This article showed how you can authenticate with Twitter. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 
 * Once you publish your web site to Azure web app, you should reset the `ConsumerSecret` in the Twitter developer portal.
 

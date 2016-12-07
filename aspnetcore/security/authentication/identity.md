@@ -139,4 +139,4 @@ with xref links
 
 * [Two-factor authentication with SMS](2fa.md#security-authentication-2fa)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md#security-authentication-social-logins)
+* [Enabling authentication using Facebook, Google and other external providers](social/index.md)

@@ -18,7 +18,7 @@ uid: security/authentication/facebook-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](sociallogins.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
+This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](index.md). We start by creating a Facebook AppId by following the [official steps](https://developers.facebook.com/docs/apps/register).
 
 ## Creating the app in Facebook
 
@@ -26,19 +26,19 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 * Tap **My Apps** in the upper right corner:
 
-![image](sociallogins/_static/FBMyApps.png)
+![image](index/_static/FBMyApps.png)
 
 * Tap **+ Add a New App** and fill out the form to create a new app ID:
 
-![image](sociallogins/_static/FBNewAppId.png)
+![image](index/_static/FBNewAppId.png)
 
 * The **Product Setup** page is displayed, letting you select the features for your new app. Tap **Get Started** on **Facebook Login**:
 
-![image](sociallogins/_static/FBProductSetup.png)
+![image](index/_static/FBProductSetup.png)
 
 * You are presented with the **Client OAuth Settings** page, with some defaults already set:
 
-![image](sociallogins/_static/FBOAuthSetup.png)
+![image](index/_static/FBOAuthSetup.png)
 
 * Enter your base URI with *signin-facebook* appended into the **Valid OAuth Redirect URIs** field. For example, `https://localhost:44320/signin-facebook`.
   
@@ -54,7 +54,7 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 ## Storing Facebook AppId and AppSecret
 
-Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](sociallogins.md). Execute the following commands in your project working directory:
+Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](index.md). Execute the following commands in your project working directory:
 
 * Set the Facebook AppId
 
@@ -72,9 +72,9 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
   dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
      ```
 
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
+The following code reads the configuration values stored by the [Secret Manager](../../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Facebook middleware
 
@@ -97,21 +97,21 @@ app.UseFacebookAuthentication(new FacebookOptions()
 
 Run your application and click **Log in**. You will see an option to sign in with Facebook.
 
-![image](sociallogins/_static/DoneFacebook.png)
+![image](index/_static/DoneFacebook.png)
 
 When you click on Facebook, you will be redirected to Facebook for authentication.
 
-![image](sociallogins/_static/FBLogin2.png)
+![image](index/_static/FBLogin2.png)
 
 Once you enter your Facebook credentials, then you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Facebook credentials:
 
-![image](sociallogins/_static/Done.png)
+![image](index/_static/Done.png)
 
 ## Next steps
 
-* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
+* This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 
 * Once you publish your web site to Azure web app, you should reset the `AppSecret` in the Facebook developer portal.
 
