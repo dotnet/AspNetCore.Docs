@@ -40,8 +40,8 @@ Routing is connected to the [middleware](middleware.md) pipeline by the `RouterM
 
 URL matching is the process by which routing dispatches an incoming request to a *handler*. This process is generally based on data in the URL path, but can be extended to consider any data in the request. The ability to dispatch requests to separate handlers is key to scaling the size and complexity of an application.
 
-Incoming requests enter the `RouterMiddleware` which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext` `Handler` to a non-null
-`RequestDelegate`. If a handler is set a route, it will be invoked to process the request and no further routes will be processed. If all routes are executed, and no handler is found for a request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
+Incoming requests enter the `RouterMiddleware`, which calls the `RouteAsync` method on each route in sequence. The `IRouter` instance chooses whether to *handle* the request by setting the `RouteContext` `Handler` to a non-null
+`RequestDelegate`. If a route sets a handler for the request, route processing stops and the handler will be invoked to process the request. If all routes are tried and no handler is found for the request, the middleware calls *next* and the next middleware in the request pipeline is invoked.
 
 The primary input to `RouteAsync` is the `RouteContext` `HttpContext` associated with the current request. The `RouteContext.Handler` and `RouteContext` `RouteData` are outputs that will be set after a route matches.
 
