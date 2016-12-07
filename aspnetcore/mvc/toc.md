@@ -2,3 +2,4 @@
 # [Models](models/toc.md)
 # [Views](views/toc.md)
 # [Controllers](controllers/toc.md)
+# [Extensibility](extensibility/toc.md)
