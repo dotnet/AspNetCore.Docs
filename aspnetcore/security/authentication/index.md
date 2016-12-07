@@ -16,7 +16,7 @@ uid: security/authentication/index
 
 * [Introduction to Identity](identity.md)
 
-* [Enabling authentication using Facebook, Google and other external providers](sociallogins.md)
+* [Enabling authentication using Facebook, Google and other external providers](social/index.md)
 
 * [Account Confirmation and Password Recovery](accconfirm.md)
 

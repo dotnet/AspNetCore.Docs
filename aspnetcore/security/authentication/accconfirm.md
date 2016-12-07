@@ -210,7 +210,7 @@ With the current templates, once a user completes the registration form, they ar
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](sociallogins.md).
+To complete this section, you must first enable an external authentication provider. See [Enabling authentication using Facebook, Google and other external providers](social/index.md).
 
 You can combine local and social accounts by clicking on your email link. In the following sequence "RickAndMSFT@gmail.com" is first created as a local login, but you can create the account as a social login first, then add a local login.
 
