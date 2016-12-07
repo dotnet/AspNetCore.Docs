@@ -1,24 +1,24 @@
 ---
-title: Migrating HTTP Modules to Middleware | Microsoft Docs
+title: Migrating HTTP handlers and modules to ASP.NET Core middleware | Microsoft Docs
 author: rick-anderson
 description: 
 keywords: ASP.NET Core,
-ms.author: riande
+ms.author: tdykstra
 manager: wpickett
-ms.date: 10/14/2016
+ms.date: 12/07/2016
 ms.topic: article
 ms.assetid: 9c826a76-fbd2-46b5-978d-6ca6df53531a
 ms.technology: aspnet
 ms.prod: aspnet-core
 uid: migration/http-modules
 ---
-# Migrating HTTP Modules to Middleware
+# Migrating HTTP handlers and modules to ASP.NET Core middleware 
 
 By [Matt Perdeck](http://www.linkedin.com/in/mattperdeck)
 
 This article shows how to migrate existing ASP.NET [HTTP modules and handlers](https://msdn.microsoft.com/library/bb398986.aspx) to ASP.NET Core [middleware](../fundamentals/middleware.md).
 
-## Handlers and modules revisited
+## Modules and handlers revisited
 
 Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules and handlers work:
 
