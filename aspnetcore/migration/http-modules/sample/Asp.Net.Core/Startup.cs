@@ -40,7 +40,6 @@ namespace Asp.Net.Core
             services.Configure<MyMiddlewareOptions>(
                 Configuration.GetSection("MyMiddlewareOptionsSection"));
 
-
             // Add framework services.
             services.AddMvc();
         }

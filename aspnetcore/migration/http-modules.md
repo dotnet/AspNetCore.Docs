@@ -90,7 +90,7 @@ An existing HTTP module will look similar to this:
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyModule.cs?highlight=6,8,24,31)]
 
-As shown in the [Middleware](../fundamentals/middleware.md) page, an ASP.NET Core middleware is simply a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
+As shown in the [Middleware](../fundamentals/middleware.md) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
 
 <a name=http-modules-usemiddleware></a>
 
@@ -106,7 +106,7 @@ Your module might terminate a request, for example if the user is not authorized
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs?highlight=9,10,11,12,13&name=snippet_Terminate)]
 
-A middleware handles this by simply not calling `Invoke` on the next middleware in the pipeline. Keep in mind that this does not fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
+A middleware handles this by not calling `Invoke` on the next middleware in the pipeline. Keep in mind that this does not fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
 
 [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
@@ -132,11 +132,11 @@ If ordering becomes a problem, you could split your module into multiple middlew
 
 An HTTP handler looks something like this:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs?highlight=5,7,13,14,15,16&range=1-19,31-32)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/HttpHandlers/ReportHandler.cs?highlight=5,7,13,14,15,16)]
 
 In your ASP.NET Core project, you would translate this to a middleware similar to this:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,28,30,32&range=1-26,39-47)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,40,42,44)]
 
 This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there is no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
 
@@ -180,7 +180,7 @@ The new [configuration system](../fundamentals/configuration.md) gives you these
 
     [!code-json[Main](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
-    *MyMiddlewareOptionsSection* here is simply a section name. It doesn't have to be the same as the name of your options class.
+    *MyMiddlewareOptionsSection* here is a section name. It doesn't have to be the same as the name of your options class.
 
 3. Associate the option values with the options class
 
@@ -198,15 +198,15 @@ The new [configuration system](../fundamentals/configuration.md) gives you these
 
     3.  Associate your options with your options class:
 
-      [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+      [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=6-8)]
 
-    4.  Inject the options into your middleware constructor. This is similar to injecting options into a controller.
+4.  Inject the options into your middleware constructor. This is similar to injecting options into a controller.
 
-     [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
+  [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
 
-    The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
+  The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
 
-    This is not limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
+  This is not limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
 
 ## Loading middleware options through direct injection
 
@@ -218,7 +218,7 @@ The solution is to get the options objects with the actual options values in you
 
 1.  Add a second key to *appsettings.json*
 
-    To add a second set of options to the *appsettings.json* file, simply use a new key to uniquely identify it:
+    To add a second set of options to the *appsettings.json* file, use a new key to uniquely identify it:
 
     [!code-json[Main](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
