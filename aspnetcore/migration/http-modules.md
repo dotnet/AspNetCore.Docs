@@ -14,12 +14,9 @@ uid: migration/http-modules
 ---
 # Migrating HTTP Modules to Middleware
 
->[!WARNING]
-> This page documents version 1.0.0-rc1 and has not yet been updated for version 1.0.0
-
 By [Matt Perdeck](http://www.linkedin.com/in/mattperdeck)
 
-This article shows how to migrate existing ASP.NET [HTTP modules and handlers](https://msdn.microsoft.com/en-us/library/bb398986.aspx) to ASP.NET Core [middleware](../fundamentals/middleware.md#fundamentals-middleware).
+This article shows how to migrate existing ASP.NET [HTTP modules and handlers](https://msdn.microsoft.com/library/bb398986.aspx) to ASP.NET Core [middleware](../fundamentals/middleware.md).
 
 ## Handlers and modules revisited
 
@@ -29,15 +26,15 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Handlers are:**
 
-   * Classes that implement [IHttpHandler](https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx)
+   * Classes that implement [IHttpHandler](https://msdn.microsoft.com/library/system.web.ihttphandler.aspx)
 
    * Used to handle requests with a given file name or extension, such as *.report*
 
-   * [Configured](https://msdn.microsoft.com/en-us/library/46c5ddfy(v=vs.100).aspx) in *Web.config*
+   * [Configured](https://msdn.microsoft.com/library/46c5ddfy.aspx) in *Web.config*
 
 **Modules are:**
 
-   * Classes that implement [IHttpModule](https://msdn.microsoft.com/en-us/library/system.web.ihttpmodule(v=vs.100).aspx)
+   * Classes that implement [IHttpModule](https://msdn.microsoft.com/library/system.web.ihttpmodule.aspx)
 
    * Invoked for every request
 
@@ -45,11 +42,11 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
    * Able to add to the HTTP response, or create their own
 
-   * [Configured](https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx) in *Web.config*
+   * [Configured](https://msdn.microsoft.com/library/ms227673.aspx) in *Web.config*
 
 **The order in which modules process incoming requests is determined by:**
 
-   1. The [application life cycle](https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx), which is a series events fired by ASP.NET: [BeginRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.beginrequest(v=vs.100).aspx), [AuthenticateRequest](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.authenticaterequest(v=vs.100).aspx), etc. Each module can create a handler for one or more events.
+   1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](https://msdn.microsoft.com/library/system.web.httpapplication.beginrequest.aspx), [AuthenticateRequest](https://msdn.microsoft.com/library/system.web.httpapplication.authenticaterequest.aspx), etc. Each module can create a handler for one or more events.
 
    2. For the same event, the order in which they are configured in *Web.config*.
 
@@ -71,13 +68,13 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
    * Invoked in principle for every request
 
-   * Able to short-circuit a request, by [not passing the request to the next middleware](xref:migration/http-modules#http-modules-shortcircuiting-middleware)
+   * Able to short-circuit a request, by [not passing the request to the next middleware](#http-modules-shortcircuiting-middleware)
 
    * Able to create their own HTTP response
 
 **Middleware and modules are processed in a different order:**
 
-   * Order of middleware is based on the order in which they are inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/en-us/library/ms227673(v=vs.100).aspx) events
+   * Order of middleware is based on the order in which they are inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
 
    * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
@@ -97,7 +94,7 @@ As shown in the [Middleware](../fundamentals/middleware.md) page, an ASP.NET Cor
 
 <a name=http-modules-usemiddleware></a>
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
 The above middleware template was taken from the section on [writing middleware](../fundamentals/middleware.md#middleware-writing-middleware).
 
@@ -107,11 +104,11 @@ The *MyMiddlewareExtensions* helper class makes it easier to configure your midd
 
 Your module might terminate a request, for example if the user is not authorized:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs?highlight=9,10,11,12,13&range=18-31)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net4/Asp.Net4/Modules/MyTerminatingModule.cs?highlight=9,10,11,12,13&name=snippet_Terminate)]
 
 A middleware handles this by simply not calling `Invoke` on the next middleware in the pipeline. Keep in mind that this does not fully terminate the request, because previous middlewares will still be invoked when the response makes its way back through the pipeline.
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&range=16-26)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyTerminatingMiddleware.cs?highlight=7,8&name=snippet_Terminate)]
 
 When you migrate your module's functionality to your new middleware, you may find that your code doesn't compile because the `HttpContext` class has significantly changed in ASP.NET Core. [Later on](#migrating-to-the-new-httpcontext), you'll see how to migrate to the new ASP.NET Core HttpContext.
 
@@ -123,13 +120,13 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
 
 Convert this by [adding your new middleware](../fundamentals/middleware.md#creating-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=12&range=1-2,12-15,46-48,54-58,105,109,110)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
 The exact spot in the pipeline where you insert your new middleware depends on the event that it handled as a module (`BeginRequest`, `EndRequest`, etc.) and its order in your list of modules in *Web.config*.
 
-As previously stated, there is no more application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
+As previously stated, there is no application life cycle in ASP.NET Core and the order in which responses are processed by middleware differs from the order used by modules. This could make your ordering decision more  challenging.
 
-If ordering becomes a problem, you could split your module into multiple middleware that can be ordered independently.
+If ordering becomes a problem, you could split your module into multiple middleware components that can be ordered independently.
 
 ## Migrating handler code to middleware
 
@@ -139,7 +136,7 @@ An HTTP handler looks something like this:
 
 In your ASP.NET Core project, you would translate this to a middleware similar to this:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,29,31,33&range=1-26,38-47)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/ReportHandlerMiddleware.cs?highlight=7,9,13,20,21,22,23,28,30,32&range=1-26,39-47)]
 
 This middleware is very similar to the middleware corresponding to modules. The only real difference is that here there is no call to `_next.Invoke(context)`. That makes sense, because the handler is at the end of the request pipeline, so there will be no next middleware to invoke.
 
@@ -153,7 +150,7 @@ You could convert this by adding your new handler middleware to the request pipe
 
 One solution is to branch the pipeline for requests with a given extension, using the `MapWhen` extension method. You do this in the same `Configure` method where you add the other middleware:
 
-[!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=12,13,14,15,16,17&range=1-2,12-15,46-48,54-55,82-87,105,109,110)]
+[!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
 `MapWhen` takes these parameters:
 
@@ -169,49 +166,47 @@ Some modules and handlers have configuration options that are stored in *Web.con
 
 The new [configuration system](../fundamentals/configuration.md) gives you these options to solve this:
 
-* Directly inject the options into the middleware, as shown in the [next section](xref:migration/http-modules#loading-middleware-options-through-direct-injection).
+* Directly inject the options into the middleware, as shown in the [next section](#loading-middleware-options-through-direct-injection).
 
 * Use the [options pattern](../fundamentals/configuration.md#options-config-objects):
 
 1.  Create a class to hold your middleware options, for example:
 
-    [!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs?range=8-12)]
+    [!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Options)]
 
 2.  Store the option values
 
-    The new configuration system allows you to essentially store option values anywhere you want. However, most sites use *appsettings.json*, so we'll take that approach:
+    The configuration system allows you to store option values anywhere you want. However, most sites use *appsettings.json*, so we'll take that approach:
 
-    [!code-json[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json?range=1,6-10)]
+    [!code-json[Main](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
     *MyMiddlewareOptionsSection* here is simply a section name. It doesn't have to be the same as the name of your options class.
 
 3. Associate the option values with the options class
 
-    The options pattern uses ASP.NET Core's dependency injection framework to associate the options type (such as `MyMiddlewareOptions`) with an `MyMiddlewareOptions` object that has the actual options.
+    The options pattern uses ASP.NET Core's dependency injection framework to associate the options type (such as `MyMiddlewareOptions`) with a `MyMiddlewareOptions` object that has the actual options.
 
     Update your `Startup` class:
 
     1.  If you're using *appsettings.json*, add it to the configuration builder in the `Startup` constructor:
 
-        [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=7&range=14-23,106,109)]
+      [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
     2.  Configure the options service:
 
-        [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=5&range=14-15,28-29,31-33,43,109)]
+      [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
 
     3.  Associate your options with your options class:
 
-        [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=7,8&range=14-15,28-29,31-32,36-39,43,109)]
+      [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
 
-4.  Inject the options into your middleware constructor. This is similar to injecting options into a controller.
+    4.  Inject the options into your middleware constructor. This is similar to injecting options into a controller.
 
-    [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs?highlight=7,10,13,19,24&range=6-7,24-47)]
+     [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_MiddlewareWithParams&highlight=4,7,10,15-16)]
 
     The [UseMiddleware](#http-modules-usemiddleware) extension method that adds your middleware to the `IApplicationBuilder` takes care of dependency injection.
 
     This is not limited to `IOptions` objects. Any other object that your middleware requires can be injected this way.
-
-<a name=loading-middleware-options-through-direct-injection></a>
 
 ## Loading middleware options through direct injection
 
@@ -225,23 +220,17 @@ The solution is to get the options objects with the actual options values in you
 
     To add a second set of options to the *appsettings.json* file, simply use a new key to uniquely identify it:
 
-    [!code-json[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/appsettings.json?highlight=2,3,4,5)]
+    [!code-json[Main](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
-2.  Retrieve options values. The `Get` method on the `Configuration` property lets you retrieve options values:
+2.  Retrieve options values and pass them to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
 
-    [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=12,13,14,15,16&range=1-2,12-15,46-48,54-55,62-66,67,70,71,105,109,110)]
-
-3.  Pass options values to middleware. The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values: 
-
-    [!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Startup.cs?highlight=18-22&range=1-2,12-15,46-48,54-55,62-72,105,109,110)]
+    [!code-csharp[Main](http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=20-23)]
 
 4.  Enable middleware to take an options parameter. Provide an overload of the `Use...` extension method (that takes the options parameter and passes it to `UseMiddleware`). When `UseMiddleware` is called with parameters, it passes the parameters to your middleware constructor when it instantiates the middleware object.
 
-    [!code-csharp[Main](../migration/http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs?highlight=17,18,19,20,21,22&range=1-7,48-64)]
+    [!code-csharp[Main](../migration/http-modules/sample/Asp.Net.Core/Middleware/MyMiddlewareWithParams.cs?name=snippet_Extensions&highlight=9-14)]
 
-    Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor:
-
-    [!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/MyMiddlewareWithParams.cs?range=14-23)]
+    Note how this wraps the options object in an `OptionsWrapper` object. This implements `IOptions`, as expected by the middleware constructor.
 
 ## Migrating to the new HttpContext
 
@@ -251,72 +240,76 @@ You saw earlier that the `Invoke` method in your middleware takes a parameter of
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://msdn.microsoft.com/en-us/library/system.web.httpcontext(v=vs.110).aspx) to the new `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.aspx) to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
 ### HttpContext
 
 **HttpContext.Items** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=51)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Items)]
 
 **Unique request ID (no System.Web.HttpContext counterpart)**
 
 Gives you a unique id for each request. Very useful to include in your logs.
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=46)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Trace)]
 
 ### HttpContext.Request
 
 **HttpContext.Request.HttpMethod** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=59)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Method)]
 
 **HttpContext.Request.QueryString** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=66-76)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Query)]
 
-**HttpContext.Request.Url and HttpContext.Request.RawUrl** translate to:
+**HttpContext.Request.Url** and **HttpContext.Request.RawUrl** translate to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=83-84)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Url)]
 
 **HttpContext.Request.IsSecureConnection** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=89)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Secure)]
 
 **HttpContext.Request.UserHostAddress** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=96)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
 **HttpContext.Request.Cookies** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=104-106)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
+
+**HttpContext.Request.RequestContext.RouteData** translates to:
+
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Route)]
 
 **HttpContext.Request.Headers** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=120-135)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Headers)]
 
 **HttpContext.Request.UserAgent** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=142)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Agent)]
 
 **HttpContext.Request.UrlReferrer** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=147)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Referrer)]
 
 **HttpContext.Request.ContentType** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=152-159)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Type)]
 
 **HttpContext.Request.Form** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=167-177)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Form)]
 
 > [!WARNING]
 > Read form values only if the content sub type is *x-www-form-urlencoded* or *form-data*.
 
 **HttpContext.Request.InputStream** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=191-196)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Input)]
 
 > [!WARNING]
 > Use this code only in a handler type middleware, at the end of a pipeline.
@@ -325,27 +318,23 @@ Gives you a unique id for each request. Very useful to include in your logs.
 >
 >This does not apply to reading a form as shown earlier, because that is done from a buffer.
 
-**HttpContext.Request.RequestContext.RouteData**
-
-RouteData is not available in middleware in RC1.
-
 ### HttpContext.Response
 
-**HttpContext.Response.Status and HttpContext.Response.StatusDescription** translate to:
+**HttpContext.Response.Status** and **HttpContext.Response.StatusDescription** translate to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=208-209)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Status)]
 
-**HttpContext.Response.ContentEncoding and HttpContext.Response.ContentType** translate to:
+**HttpContext.Response.ContentEncoding** and **HttpContext.Response.ContentType** translate to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=214-217)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespType)]
 
 **HttpContext.Response.ContentType** on its own also translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=222)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_RespTypeOnly)]
 
 **HttpContext.Response.Output** translates to:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=229-230)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Output)]
 
 **HttpContext.Response.TransmitFile**
 
@@ -368,7 +357,7 @@ public async Task Invoke(HttpContext httpContext)
 
 The `SetHeaders` callback method would look like this:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=235-266)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
 **HttpContext.Response.Cookies**
 
@@ -384,11 +373,11 @@ public async Task Invoke(HttpContext httpContext)
 
 The `SetCookies` callback method would look like the following:
 
-[!code-csharp[Main](http-modules/sample/Asp.Net5/src/Asp.Net5/Middleware/HttpContextDemoMiddleware.cs?range=270-282)]
+[!code-csharp[Main](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
 ## Additional Resources
 
-* [HTTP Handlers and HTTP Modules Overview](https://msdn.microsoft.com/en-us/library/bb398986.aspx)
+* [HTTP Handlers and HTTP Modules Overview](https://msdn.microsoft.com/library/bb398986.aspx)
 
 * [Configuration](../fundamentals/configuration.md)
 

@@ -1,7 +1,7 @@
-﻿// ASP.NET 5 middleware
+﻿// ASP.NET Core middleware
 
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace MyApp.Middleware

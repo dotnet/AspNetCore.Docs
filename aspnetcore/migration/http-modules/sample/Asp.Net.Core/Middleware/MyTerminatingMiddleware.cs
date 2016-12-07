@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace MyApp.Middleware
@@ -13,7 +13,8 @@ namespace MyApp.Middleware
             _next = next;
         }
 
-        // ASP.NET 5 middleware that may terminate the request
+        #region snippet_Terminate
+        // ASP.NET Core middleware that may terminate the request
 
         public async Task Invoke(HttpContext context)
         {
@@ -24,6 +25,7 @@ namespace MyApp.Middleware
 
             // Clean up.
         }
+        #endregion
 
         private bool TerminateRequest()
         {
