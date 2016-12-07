@@ -1,6 +1,6 @@
 ---
-title: In Memory Caching | Microsoft Docs
-author: ardalis
+title: In memory caching | Microsoft Docs
+author: rick-anderson
 description: Shows how to cache data in-memory.
 keywords: ASP.NET Core, cache, in-memory, performance
 ms.author: riande
@@ -12,10 +12,9 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: performance/caching/memory
 ---
-# In Memory Caching
+# In memory caching
 
-
-By [Steve Smith](http://ardalis.com), [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](http://ardalis.com)
 
 In-memory cached data can be accessed much faster than a database.
 
@@ -23,136 +22,90 @@ In-memory cached data can be accessed much faster than a database.
 
 <a name=caching-basics></a>
 
-## Caching Basics
+## Caching basics
 
-Caching can significantly improve the performance and scalability of an app, by replacing requests to a persistent datastore with in memory data. Caching works best with data that changes infrequently. For example, data-driven navigation menus, which rarely change but are frequently requested. Caching can greatly improve performance by reducing round trips to the datastore.
+Caching can significantly improve the performance and scalability of an app by reducing round trips to the datastore. Caching works best with data that changes infrequently.
 
-Caching makes a copy of data that can be returned much faster than from the original source. You should write and test your app such that it can use cached data if it's available, but will fallback to the correctly using the underlying data source.
+Caching makes a copy of data that can be returned much faster than from the original source. You should write and test your app such to use cached data when it's available, but fallback to the underlying data source when unavailable.
 
 ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the local web server.
 
-An in-memory cache is stored in the memory of the server hosting an ASP.NET app. Apps that utilize scale out in the cloud (run on multiple servers, that is a server farm), should ensure that sessons are sticky. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use  (Application Request Routing)[http://www.iis.net/learn/extensions/planning-for-arr] (ARR) to route all subsequent requests to the same server.
+An in-memory cache uses memory from the ASP.NET app. Apps that utilize scale out in the cloud (run on multiple servers, that is a server farm), should ensure that sessons are sticky. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use  [Application Request Routing](http://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all subsequent requests to the same server.
 
-If an app is hosted by multiple servers in a web farm or cloud hosting environment, and you cannot guarantee sticky sessions (that is subsequent requests to to the same server), you will not be able to use the in-memory cache. Non-sticky sessions require using  a [distributed cache](distributed.md) to avoid cache consistency problems.
+If an app is hosted by multiple servers in a web farm or cloud hosting environment, and you cannot guarantee sticky sessions (that is subsequent requests to to the same server), you will not be able to use the in-memory cache. Non-sticky sessions require a [distributed cache](distributed.md) to avoid cache consistency problems. 
 
-## Configuring In Memory Caching
+For some apps, a [distributed cache](distributed.md) can support higher scale out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process. The `IMemoryCache` cache will evict entries under memory pressure unless the [cache priority](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheitempriority) is set to `CacheItemPriority.NeverRemove`. You can set the [cache priority](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheitempriority) to adjust the priority the cache evicts items under memory pressure.
 
-To use an in memory cache in your ASP.NET application, add the following dependencies to your *project.json* file:
+## Using `IMemoryCache`
 
-[!code-json[Main](memory/sample/src/CachingSample/project.json?range=7-13&highlight=4)]
+In-memory caching is a *service* that is referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
 
-Caching in ASP.NET Core is a *service* that should be referenced from your application by [Dependency Injection](../../fundamentals/dependency-injection.md). To register the caching service and make it available within your app, add the following line to your `ConfigureServices` method in `Startup`:
+[!code-csharp[Main](memory/sample/WebCache/Startup.cs?highlight=8,9)] 
 
-[!code-csharp[Main](memory/sample/src/CachingSample/Startup.cs?range=12-15&highlight=3)]
+The code above requires NuGet package "Microsoft.Extensions.Caching.Memory".
 
-You utilize caching in your app by requesting an instance of `IMemoryCache` in your controller or middleware constructor. In the sample for this article, we are using a simple middleware component to handle requests by returning customized greeting. The constructor is shown here:
+Request the `IMemoryCache` instance in the constructor:
 
-[!code-csharp[Main](memory/sample/src/CachingSample/Middleware/GreetingMiddleware.cs?range=19-28&highlight=2,7)] 
+```c#
+  public class HomeController : Controller
+  {
 
-## Reading and Writing to a Memory Cache
-
-The middleware's `Invoke` method returns the cached data when it's available.
-
-There are two methods for accessing cache entries:
-
-**`Get`**
-
-`Get` will return the value if it exists, but otherwise returns `null`.
-
-**`TryGet`**
-
-`TryGet` will assign the cached value to an `out` parameter and return true if the entry exists. Otherwise it returns false.
-
-Use the `Set` method to write to the cache. `Set` accepts the key to use to look up the value, the value to be cached, and a set of `MemoryCacheEntryOptions`. The `MemoryCacheEntryOptions` allow you to specify absolute or sliding time-based cache expiration, caching priority, callbacks, and dependencies. These options are detailed below.
-
-The sample code (shown below) uses the `SetAbsoluteExpiration` method on `MemoryCacheEntryOptions` to cache greetings for one minute.
-
-[!code-csharp[Main](memory/sample/src/CachingSample/Middleware/GreetingMiddleware.cs?highlight=7,10,16-18&range=30-58)]
-
-In addition to setting an absolute expiration, a sliding expiration can be used to keep frequently requested items in the cache:
-
-```csharp
-// keep item in cache as long as it is requested at least
-// once every 5 minutes
-new MemoryCacheEntryOptions()
-  .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+      public HomeController(IMemoryCache memoryCache)
+      {
+          _memoryCache = memoryCache;
+      }
 ```
 
-To avoid having frequently-accessed cache entries growing too stale (because their sliding expiration is constantly reset), you can combine absolute and sliding expirations:
+The following code uses [TryGetValue](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache) to cache and fetch the current time:
 
-```csharp
-// keep item in cache as long as it is requested at least
-// once every 5 minutes...
-// but in any case make sure to refresh it every hour
-new MemoryCacheEntryOptions()
-  .SetSlidingExpiration(TimeSpan.FromMinutes(5))
-  .SetAbsoluteExpiration(TimeSpan.FromHours(1))
-```
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet1)]
 
-By default, an instance of `MemoryCache` will automatically manage the items stored, removing entries when necessary in response to memory pressure in the app. You can influence the way cache entries are managed by setting their `CacheItemPriority` when adding the item to the cache. For instance, if you have an item you want to keep in the cache unless you explicitly remove it, you would use the `NeverRemove` priority option:
+The current time and the cached time is display:
 
-```csharp
-// keep item in cache indefinitely unless explicitly removed
-new MemoryCacheEntryOptions()
-  .SetPriority(CacheItemPriority.NeverRemove))
-```
+[!code-html[Main](memory/sample/webcache/views/home/index.cshtml)]
 
-When you do want to explicitly remove an item from the cache, you can do so easily using the `Remove` method:
+The `DateTime.Now` value will stay in the cache while there are requests within the timeout period and not enough memory pressure to evict the cached entry. The image below show the cached value is older than the current value:
 
-```csharp
-cache.Remove(cacheKey);
-```
+![Index view with two different times displayed](memory/_static/time.png)
 
-## Cache Dependencies and Callbacks
+The following code calls [Get](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions) to fetch the cached time:
 
-You can configure cache entries to depend on other cache entries, the file system, or programmatic tokens, evicting the entry in response to changes. You can register a callback, which will run when a cache item is evicted.
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 
-[!code-csharp[Main](memory/sample/test/CachingSample.Tests/MemoryCacheTests.cs?highlight=6-11,18&range=22-41)]
+The following code uses [GetOrCreate](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions) to cache data. 
 
-The callback is run on a different thread from the code that removes the item from the cache.
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet2)]
 
->[!WARNING]
-> If the callback is used to repopulate the cache it is possible other requests for the cache will take place (and find it empty) before the callback completes, possibly resulting in several threads repopulating the cached value.
+[GetOrCreateAsync](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions) is the asyncronous version.
 
-Possible `eviction reasons` are:
+See [IMemoryCache methods](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheextensions).
 
-**None**
+## Using `MemoryCacheEntryOptions`
 
-No reason known.
+The following sample:
 
-**Removed**
+- Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when requested frequently.
+- Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
+- Set the [cache priority](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheitempriority) to `CacheItemPriority.NeverRemove`. 
+- Sets a [PostEvictionDelegate](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
 
-The item was manually removed by a call to `Remove()`
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_et)]
 
-**Replaced**
+## Cache dependencies
 
-The item was overwritten.
+The following sample shows how to expire a cache entry if a dependant entry expires. A `CancellationTokenSource` is added to the cached item. When `Cancel` is called on the token, both cache entries are evicted. 
 
-**Expired**
+[!code-csharp[Main](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_ed)]
 
-The item timed out.
+Using a `CancellationTokenSource` allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` block will inherit triggers and timeouts.
 
-**TokenExpired**
+### Addition notes
 
-The token the item depended upon fired an event.
+- If the callback is used to repopulate the cache it is possible other requests for the cache will take place (and find it empty) before the callback completes, possibly resulting in several threads repopulating the cached value.
 
-**Capacity**
 
-The item was removed as part of the cache's memory management process.
+- When one cache entry is used to create another, the new one copies the existing entry's expiration tokens and time-based expiration settings. The copy is not expired by manual removal or updating of the parent entry.
 
-You can specify that one or more cache entries depend on a `CancellationTokenSource` by adding the expiration token to the `MemoryCacheEntryOptions` object. When a cached item is invalidated, call `Cancel` on the token, which will expire all of the associated cache entries (with a reason of `TokenExpired`). The following unit test demonstrates this:
-
-[!code-csharp[Main](memory/sample/test/CachingSample.Tests/MemoryCacheTests.cs?highlight=7,16,21&range=43-64)]
-
-Using a `CancellationTokenSource` allows multiple cache entries to all be expired without the need to create a dependency between cache entries themselves (in which case, you must ensure that the source cache entry exists before it is used as a dependency for other entries).
-
-Cache entries will inherit triggers and timeouts from other entries accessed while creating the new entry. This approach ensures that subordinate cache entries expire at the same time as related entries.
-
-[!code-csharp[Main](memory/sample/test/CachingSample.Tests/MemoryCacheTests.cs?highlight=7,11,13,23,24&range=66-94)]
-
-> [!NOTE]
-> When one cache entry is used to create another, the new one copies the existing entry's expiration tokens and time-based expiration settings, if any. It is not expired in response to manual removal or updating of the existing entry.
-
-## Other Resources
+### Other Resources
 
 * [Working with a Distributed Cache](distributed.md)

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Primitives;
 public class HomeController : Controller
 {
     private const string CacheKeyTime = "_CacheKeyTime";
+    private const string CacheKeyTime2 = "_CacheKeyTime2";
     private const string CacheKeyMS = "_CacheKeyMS";
     private const string CacheKeyMS2 = "_CacheKeyMS2";
     private const string CacheKeyMS3 = "_CacheKeyMS3";
@@ -23,67 +24,73 @@ public class HomeController : Controller
         _memoryCache = memoryCache;
     }
 
+    #region snippet1
     public IActionResult Index()
     {
-        string cachedVal;
+        DateTime cachedVal;
 
         // Look for cache key.
         if (!_memoryCache.TryGetValue(CacheKeyTime, out cachedVal))
         {
             // Key not in cache, so get data.
-            cachedVal = DateTime.Now.TimeOfDay.ToString();
+            cachedVal = DateTime.Now;
 
             // Set cache options.
             var cacheOptions = new MemoryCacheEntryOptions()
             {
                 // Cache a short time for easy testing.
-                SlidingExpiration = TimeSpan.FromSeconds(5),
-                // Evict this under memory pressure before
-                // normal (default) and high. 
-                Priority = CacheItemPriority.Low
+                SlidingExpiration = TimeSpan.FromSeconds(3),
             };
 
             // Save data in cache.
             _memoryCache.Set(CacheKeyTime, cachedVal, cacheOptions);
         }
 
-        ViewData["CachedTime"] = cachedVal;
-
-        return View();
+        return View(cachedVal);
     }
+    #endregion
 
-    public string TestCopy()
+    #region snippet_gct
+    public IActionResult GetCachedTime()
     {
-        var cacheEntry = _memoryCache.CreateEntry("key1");
-        return "";
-
+        var cachedVal = _memoryCache.Get<DateTime>(CacheKeyTime);
+        return View("Index", cachedVal);
     }
+#endregion
+
+    #region snippet2
+    public IActionResult Index2()
+    {
+        DateTime cachedVal = _memoryCache.GetOrCreate<DateTime>(CacheKeyTime2, e =>
+        {
+            return DateTime.Now;
+        });
+
+        return View("Index", cachedVal);
+    }
+    #endregion
 
     public IActionResult Remove()
     {
         _memoryCache.Remove(CacheKeyTime);
+
         ViewData["CachedTime"] = "Removed";
 
         return View("Index");
     }
 
-    public IActionResult Get()
-    {
-        ViewData["CachedTime"] = _memoryCache.Get<string>(CacheKeyTime);
-        return View("Index");
-    }   
-
+    #region snippet_et
     public IActionResult EvictionTime()
     {
-        _memoryCache.Set<string>(CacheKeyMS,
-            DateTime.Now.TimeOfDay.Milliseconds.ToString(),
+        _memoryCache.Set<DateTime>(CacheKeyMS,
+            DateTime.Now,
             GetMemCacheOptions(6, 2, CacheItemPriority.NeverRemove, AfterEvicted));
 
         return RedirectToAction("CheckEvictionTime");
     }
 
     private MemoryCacheEntryOptions GetMemCacheOptions(int absExpire, int slideExpire,
-        CacheItemPriority cachePriority, PostEvictionDelegate postEvictDelegate)
+      CacheItemPriority cachePriority, PostEvictionDelegate postEvictDelegate)
     {
         return new MemoryCacheEntryOptions()
             // Longest possible time to keep in cache.
@@ -104,30 +111,30 @@ public class HomeController : Controller
 
     public IActionResult CheckEvictionTime()
     {
-        ViewData["CachedMS"] = _memoryCache.Get<string>(CacheKeyMS);
         ViewData["Message"] = _evictionMsg1;
 
-        return View();
+        return View(_memoryCache.Get<DateTime>(CacheKeyMS));
     }
+    #endregion
 
-    // Expire an entry if the dependent entry expires
+    #region snippet_ed
     public IActionResult EvictDependency()
     {
         using (var entry = _memoryCache.CreateEntry(CacheKeyMS2))
         {
-            // expire this entry if the entry with key "CacheKeyMS23" expires.
+            // expire this entry if the dependant entry expires.
             entry.Value = DateTime.Now.TimeOfDay.Milliseconds.ToString();
             entry.RegisterPostEvictionCallback(AfterEvicted2);
-            Thread.Sleep(5);
+
             _memoryCache.Set(CacheKeyMS3,
-                DateTime.Now.TimeOfDay.Milliseconds.ToString(),
+                DateTime.Now.AddMilliseconds(4).TimeOfDay.Milliseconds.ToString(),
                 new CancellationChangeToken(_cts2.Token));
         }
 
-       return RedirectToAction("CheckEvictDependency");
+        return RedirectToAction("CheckEvictDependency");
     }
 
-    public IActionResult CheckEvictDependency(int ? id)
+    public IActionResult CheckEvictDependency(int? id)
     {
         ViewData["CachedMS2"] = _memoryCache.Get<string>(CacheKeyMS2);
         ViewData["CachedMS3"] = _memoryCache.Get<string>(CacheKeyMS3);
@@ -137,8 +144,10 @@ public class HomeController : Controller
         {
             _cts2.Cancel();
         }
+
         return View();
     }
+    #endregion
 
     private static void AfterEvicted2(object key, object value,
     EvictionReason reason, object state)

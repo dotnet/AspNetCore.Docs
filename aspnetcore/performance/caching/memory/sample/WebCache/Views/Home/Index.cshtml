@@ -1,7 +1,5 @@
-﻿@{
-    ViewData["Title"] = "About";
-}
+﻿@model DateTime
 
-<h3>@ViewData["CachedTime"] -- Cached Time</h3>
+<h3>@Model.TimeOfDay.ToString() -- Cached Time</h3>
 <h3>@DateTime.Now.TimeOfDay.ToString() -- Current Time</h3>
 
