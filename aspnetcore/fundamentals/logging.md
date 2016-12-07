@@ -122,7 +122,7 @@ ASP.NET Core defines the following [log levels](https://docs.microsoft.com/aspne
 
 * Information = 2
 
-  For tracking the general flow of the application. These logs typically have some long term value. Example: `Request received for path /api/todo`
+  For tracking the general flow of the application. These logs typically have some long-term value. Example: `Request received for path /api/todo`
 
 * Warning = 3
 
