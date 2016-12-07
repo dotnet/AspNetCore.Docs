@@ -16,7 +16,7 @@ uid: mvc/controllers/application-model
 
 By [Steve Smith](http://ardalis.com)
 
-ASP.NET Core MVC defines an *application model* representing the components your MVC app. You can read and manipulate this model to modify how MVC elements behave.
+ASP.NET Core MVC defines an *application model* representing the components of an MVC app. You can read and manipulate this model to modify how MVC elements behave.
 
 ## Models and Providers
 
@@ -31,7 +31,7 @@ The ASP.NET Core MVC Application Model has the following structure:
 
 Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy.
 
-ASP.NET Core MVC loads the application model using a provider pattern, defined by the [`IApplicationModelProvider`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelprovider) interface. Implementations of this interface "wrap" one another, with each implementation calling `OnProvidersExecuting` in ascending order based on its `Order` property. The `OnProvidersExecuted` method is then called in reverse order. The framework defines several providers:
+ASP.NET Core MVC loads the application model using a provider pattern, defined by the [IApplicationModelProvider](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.iapplicationmodelprovider) interface. Implementations of this interface "wrap" one another, with each implementation calling `OnProvidersExecuting` in ascending order based on its `Order` property. The `OnProvidersExecuted` method is then called in reverse order. The framework defines several providers:
 
 First (`Order=-1000`):
 
@@ -49,11 +49,11 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 
 * Adding global filters to the context
 * Adding controllers to the context
-* Adding appropriate controller methods as actions
+* Adding public controller methods as actions
 * Adding action method parameters to the context
 * Applying route and other attributes
 
-Certain built-in MVC behaviors, such as ignoring static methods on controllers when discovering actions, are implemented in the `DefaultApplicationModelProvider` and can be overridden by replacing its behavior (for example, its virtual `IsAction` method). This provider is also responsible for constructing the [`ControllerModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel), [`PropertyModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel) instances.
+Some built-in behaviors are implemented by the `DefaultApplicationModelProvider` and can be overridden by replacing its behavior. For example, normally static methods are not added as controller actions. You can change this by overriding the virtual `IsAction` method. This provider is also responsible for constructing the [`ControllerModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel), [`PropertyModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel) instances.
 
 The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the `AuthorizeFilter` and `AllowAnonymousFilter` attributes. [Learn more about these attributes](https://docs.microsoft.com/aspnet/core/security/authorization/simple).
 
@@ -61,7 +61,7 @@ The `CorsApplicationModelProvider` implements behavior associated with the `IEna
 
 ## Conventions
 
-In addition to defining providers and models, the application model defines a variety of convention abstractions. These conventions provide a simpler way to customize the behavior of the models than overriding the entire model or provider, and are the recommended way to modify your app's behavior.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior.
 
 The following conventions are available:
 
@@ -130,6 +130,9 @@ This attribute is applied to an action method in the `HomeController`:
 
 Even though the method name is `SomeName`, the attribute overrides the MVC convention of using the method name and replaces the action name with `MyCoolAction`. Thus, the route used to reach this action is `/Home/MyCoolAction`.
 
+> [!NOTE]
+> This example is essentially the same as using the built-in [ActionName](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.actionnameattribute) attribute.
+
 ### Sample: Custom Routing Convention
 
 You can use an `IApplicationModelConvention` to customize how routing works. For example, the following convention will incorporate Controllers' namespaces into their routes, replacing `.` in the namespace with `/` in the route:
@@ -141,9 +144,9 @@ The convention is added as an option in Startup.
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
 
 > [!TIP]
-> If you need to add a convention to MVC separately from where MVC is configured (for instance, as part of your own [middleware](https://docs.microsoft.com/aspnet/core/fundamentals/middleware)), you can access `MvcOptions` using `services.Configure<MvcOptions>(c => c.Conventions.Add(YOURCONVENTION));`
+> You can add conventions to your [middleware](https://docs.microsoft.com/aspnet/core/fundamentals/middleware) by accessing `MvcOptions` using `services.Configure<MvcOptions>(c => c.Conventions.Add(YOURCONVENTION));`
 
-This sample only applies to convention to routes that aren't using attribute routing, and for demo purposes it's further constrained to only apply to controllers with "Namespace" in the name. This controller demonstrates the behavior applied by this convention:
+This sample applies this convention to routes that are not using attribute routing where the controller has  "Namespace" in its name. The following controller demonstrates this convention:
 
 [!code-csharp[Main](./application-model/sample/src/AppModelSample/Controllers/NamespaceRoutingController.cs?highlight=7-8)]
 
@@ -163,10 +166,10 @@ services.AddMvc().AddWebApiConventions();
 
 The conventions provided by the shim are only applied to parts of the app that have had certain attributes applied to them. The following four attributes are used to control which controllers should have their conventions modified by the shim's conventions:
 
-* [UseWebApiActionConventionsAttribute]()
-* [UseWebApiOverloadingAttribute]()
-* [UseWebApiParameterConventionsAttribute]()
-* [UseWebApiRoutesAttribute]()
+* [UseWebApiActionConventionsAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiactionconventionsattribute)
+* [UseWebApiOverloadingAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapioverloadingattribute)
+* [UseWebApiParameterConventionsAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiparameterconventionsattribute)
+* [UseWebApiRoutesAttribute](https://docs.microsoft.com/aspnet/core/api/microsoft.aspnetcore.mvc.webapicompatshim.usewebapiroutesattribute)
 
 ### Action Conventions
 
