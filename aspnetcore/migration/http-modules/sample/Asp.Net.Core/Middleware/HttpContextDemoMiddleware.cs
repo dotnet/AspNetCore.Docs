@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
-using Microsoft.AspNet.Http.Extensions;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Routing;
 
 namespace MyApp.Middleware
 {
@@ -25,10 +26,10 @@ namespace MyApp.Middleware
             // ASP.NET 4 - HttpContext.Response.Headers  
             // ASP.NET 4 - HttpContext.Response.Cookies  
             // 
-            // Issue with all response headers is that they will not be sent after anything has been written to the
-            // response body.
-            // To solve this, use OnStarting to set a callback that will be called right before headers are sent.
-            // Set the headers in that callback.
+            // Issue with all response headers is that they will not be sent 
+            // after anything has been written to the response body.
+            // To solve this, use OnStarting to set a callback that will be called 
+            // right before headers are sent. Set the headers in that callback.
             //
             // Setting a cookie results in a Set-Cookie response header.
             // So use an OnStarting handler here as well.
@@ -42,28 +43,28 @@ namespace MyApp.Middleware
             // Context
 
             // Unique request ID (no ASP.NET 4 counterpart)
-            //>01
+            #region snippet_Trace
             string requestId = httpContext.TraceIdentifier;
-            //<01
+            #endregion
 
             // ASP.NET 4 - HttpContext.Items
-            //>01b
+            #region snippet_Items
             IDictionary<object, object> items = httpContext.Items;
-            //<01b
+            #endregion
 
             // ==================================================================
             // Request
 
             // ASP.NET 4 - HttpContext.Request.HttpMethod
-            //>02
+            #region snippet_Method
             string httpMethod = httpContext.Request.Method;
-            //<02
+            #endregion
 
             // ----------
 
             // ASP.NET 4 - HttpContext.Request.QueryString
-            //>03
-            IReadableStringCollection queryParameters = httpContext.Request.Query;
+            #region snippet_Query
+            IQueryCollection queryParameters = httpContext.Request.Query;
 
             // If no query parameter "key" used, values will have 0 items
             // If single value used for a key (...?key=v1), values will have 1 item ("v1")
@@ -74,50 +75,40 @@ namespace MyApp.Middleware
             // If single value used for a key (...?key=v1), value will be "v1"
             // If key has multiple values (...?key=v1&key=v2), value will be "v1,v2"
             string value = queryParameters["key"].ToString();
-            //<03
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.Url and HttpContext.Request.RawUrl
-            //>04
-            // using Microsoft.AspNet.Http.Extensions;
+            #region snippet_Url
+            // using Microsoft.AspNetCore.Http.Extensions;
             var url = httpContext.Request.GetDisplayUrl();
-            //<04
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.IsSecureConnection
-            //>05
+            #region snippet_Secure
             var isSecureConnection = httpContext.Request.IsHttps;
-            //<05
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.UserHostAddress
-            //>06
+            #region snippet_Host
             var userHostAddress = httpContext.Connection.RemoteIpAddress?.ToString();
-            //<06
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.Cookies 
-
-            //>07
-            IReadableStringCollection cookies = httpContext.Request.Cookies;
+            #region snippet_Cookies
+            IRequestCookieCollection cookies = httpContext.Request.Cookies;
             string unknownCookieValue = cookies["unknownCookie"]; // will be null (no exception)
             string knownCookieValue = cookies["cookie1name"];     // will be actual value
-            //<07
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.RequestContext.RouteData
-            // RouteData is not available in middleware in RC1. See
-            // https://github.com/aspnet/Mvc/issues/3826
-            // http://stackoverflow.com/questions/34083240/accessing-requestcontext-routedata-values-in-asp-net-5-vnext
-
-            // ----------
+            // using Microsoft.AspNetCore.Routing;
+            #region snippet_Route
+            var routeValue = httpContext.GetRouteValue("key");
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.Headers
-            //>08
-            // using Microsoft.AspNet.Http.Headers;
+            #region snippet_Headers
+            // using Microsoft.AspNetCore.Http.Headers;
             // using Microsoft.Net.Http.Headers;
 
             IHeaderDictionary headersDictionary = httpContext.Request.Headers;
@@ -133,22 +124,20 @@ namespace MyApp.Middleware
             // For known header, knownheaderValues has 1 item and knownheaderValue is the value
             IList<string> knownheaderValues = headersDictionary[HeaderNames.AcceptLanguage];
             string knownheaderValue = headersDictionary[HeaderNames.AcceptLanguage].ToString();
-            //<08
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.UserAgent
-            //>12
+            #region snippet_Agent
             string userAgent = headersDictionary[HeaderNames.UserAgent].ToString();
-            //<12
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.UrlReferrer
-            //>13
+            #region snippet_Referrer
             string urlReferrer = headersDictionary[HeaderNames.Referer].ToString();
-            //<13
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.ContentType 
-            //>14
+            #region snippet_Type
             // using Microsoft.Net.Http.Headers;
 
             MediaTypeHeaderValue mediaHeaderValue = requestHeaders.ContentType;
@@ -157,13 +146,10 @@ namespace MyApp.Middleware
             string contentSubType = mediaHeaderValue?.SubType;  // ex. x-www-form-urlencoded
 
             System.Text.Encoding requestEncoding = mediaHeaderValue?.Encoding;
-            //<14
-
-
-            // ----------
+            #endregion
 
             // ASP.NET 4 - HttpContext.Request.Form 
-            //>15
+            #region snippet_Form
             if (httpContext.Request.HasFormContentType)
             {
                 IFormCollection form;
@@ -175,7 +161,8 @@ namespace MyApp.Middleware
                 string firstName = form["firstname"];
                 string lastName = form["lastname"];
             }
-            //<15
+            #endregion
+
             // ----------
             // See 
             // http://stackoverflow.com/questions/31389781/read-body-twice-in-asp-net-5/
@@ -187,51 +174,49 @@ namespace MyApp.Middleware
             // If you need to read the body multiple times per request, see
             // http://stackoverflow.com/questions/31389781/read-body-twice-in-asp-net-5/
 
-            //>16
+            #region snippet_Input
             string inputBody;
             using (var reader = new System.IO.StreamReader(
                 httpContext.Request.Body, System.Text.Encoding.UTF8))
             {
                 inputBody = reader.ReadToEnd();
             }
-            //<16
+            #endregion
 
             // Use this middleware as a handler, so no call to 
-            // await _next.Invoke(aspnet5HttpContext);
+            // await _next.Invoke(aspnetCoreHttpContext);
 
             // ==================================================================
             // Response
 
             // ASP.NET 4 - HttpContext.Response.Status  
             // ASP.NET 4 - HttpContext.Response.StatusDescription (obsolete, removed from HTTP/2) 
-            //>30
-            // using Microsoft.AspNet.Http;
+            #region snippet_Status
+            // using Microsoft.AspNetCore.Http;
             httpContext.Response.StatusCode = StatusCodes.Status200OK;
-            //<30
+            #endregion
 
             // ASP.NET 4 - HttpContext.Response.ContentEncoding and HttpContext.Response.ContentType  
-            //>31
+            #region snippet_RespType
             // using Microsoft.Net.Http.Headers;
             var mediaType = new MediaTypeHeaderValue("application/json");
             mediaType.Encoding = System.Text.Encoding.UTF8;
             httpContext.Response.ContentType = mediaType.ToString();
-            //<31
+            #endregion
 
             // ASP.NET 4 - HttpContext.Response.ContentType only 
-            //>32
+            #region snippet_RespTypeOnly
             httpContext.Response.ContentType = "text/html";
-            //<32
+            #endregion
 
-            // ----------------------
             // ASP.NET 4 - HttpContext.Response.Output  
-            //
-            //>33
+            #region  snippet_Output
             string responseContent = GetResponseContent();
             await httpContext.Response.WriteAsync(responseContent);
-            //<33
+            #endregion
         }
 
-        //>41
+        #region snippet_SetHeaders
         // using Microsoft.AspNet.Http.Headers;
         // using Microsoft.Net.Http.Headers;
 
@@ -264,9 +249,9 @@ namespace MyApp.Middleware
             // If you use .Net 4.6+, Task.CompletedTask will be a bit faster
             return Task.FromResult(0);
         }
-        //<41
+        #endregion
 
-        //>42
+        #region snippet_SetCookies
         private Task SetCookies(object context)
         {
             var httpContext = (HttpContext)context;
@@ -280,7 +265,7 @@ namespace MyApp.Middleware
             // If you use .Net 4.6+, Task.CompletedTask will be a bit faster
             return Task.FromResult(0); 
         }
-        //<42
+        #endregion
 
         // You would normally use MVC to generate HTML like this.
         private string GetResponseContent()

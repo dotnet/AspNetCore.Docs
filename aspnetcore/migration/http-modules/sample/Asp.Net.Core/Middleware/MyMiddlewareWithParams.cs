@@ -1,27 +1,19 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
-using Microsoft.Extensions.OptionsModel;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace MyApp.Middleware
 {
+    #region snippet_Options
     public class MyMiddlewareOptions
     {
         public string Param1 { get; set; }
         public string Param2 { get; set; }
     }
+    #endregion
 
-    // Remove this when Microsoft.Extensions.Options becomes available from NuGet
-    public class OptionsWrapper<TOptions> : IOptions<TOptions> where TOptions : class, new()
-    {
-        public OptionsWrapper(TOptions options)
-        {
-            Value = options;
-        }
-
-        public TOptions Value { get; }
-    }
-
+    #region snippet_MiddlewareWithParams
     public class MyMiddlewareWithParams
     {
         private readonly RequestDelegate _next;
@@ -45,7 +37,9 @@ namespace MyApp.Middleware
             // using configuration in _myMiddlewareOptions
         }
     }
+    #endregion
 
+    #region snippet_Extensions
     public static class MyMiddlewareWithParamsExtensions
     {
         public static IApplicationBuilder UseMyMiddlewareWithParams(
@@ -61,4 +55,5 @@ namespace MyApp.Middleware
                 new OptionsWrapper<MyMiddlewareOptions>(myMiddlewareOptions));
         }
     }
+    #endregion
 }

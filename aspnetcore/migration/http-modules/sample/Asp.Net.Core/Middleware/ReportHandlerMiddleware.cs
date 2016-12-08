@@ -1,7 +1,7 @@
-﻿// ASP.NET 5 middleware migrated from a handler
+﻿// ASP.NET Core middleware migrated from a handler
 
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace MyApp.Middleware

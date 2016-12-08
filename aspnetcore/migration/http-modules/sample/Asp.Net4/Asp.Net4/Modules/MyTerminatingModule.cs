@@ -15,6 +15,7 @@ namespace MyApp.Modules
             application.EndRequest += (new EventHandler(this.Application_EndRequest));
         }
 
+        #region snippet_Terminate
         // ASP.NET 4 module that may terminate the request
 
         private void Application_BeginRequest(Object source, EventArgs e)
@@ -29,6 +30,7 @@ namespace MyApp.Modules
                 return;
             }
         }
+        #endregion
 
         private void Application_EndRequest(Object source, EventArgs e)
         {
