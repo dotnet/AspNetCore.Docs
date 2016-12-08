@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Threading;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 public class HomeController : Controller
 {
     private const string CacheKeyTime = "_CacheKeyTime";
-    private const string CacheKeyTime2 = "_CacheKeyTime2";
     private const string CacheKeyMS = "_CacheKeyMS";
     private const string CacheKeyMS2 = "_CacheKeyMS2";
     private const string CacheKeyMS3 = "_CacheKeyMS3";
@@ -56,14 +56,27 @@ public class HomeController : Controller
         var cachedVal = _memoryCache.Get<DateTime>(CacheKeyTime);
         return View("Index", cachedVal);
     }
-#endregion
+    #endregion
 
     #region snippet2
     public IActionResult Index2()
     {
-        DateTime cachedVal = _memoryCache.GetOrCreate<DateTime>(CacheKeyTime2, e =>
+        DateTime cachedVal = _memoryCache.GetOrCreate<DateTime>(CacheKeyTime, entry =>
         {
+            entry.SlidingExpiration = TimeSpan.FromSeconds(3);
             return DateTime.Now;
+        });
+
+        return View("Index", cachedVal);
+    }
+
+    public async Task<IActionResult> Index3()
+    {
+        DateTime cachedVal = await 
+            _memoryCache.GetOrCreateAsync<DateTime>(CacheKeyTime, entry =>
+        {
+            entry.SlidingExpiration = TimeSpan.FromSeconds(3);
+            return Task.FromResult <DateTime>(DateTime.Now);
         });
 
         return View("Index", cachedVal);
@@ -149,6 +162,8 @@ public class HomeController : Controller
     }
     #endregion
 
+    // TODO Review How can I add global _evictionMsg2 to callback so I don't need 
+    // a callback per global. I would rather not have AfterEvicted and AfterEvicted2
     private static void AfterEvicted2(object key, object value,
     EvictionReason reason, object state)
     {
