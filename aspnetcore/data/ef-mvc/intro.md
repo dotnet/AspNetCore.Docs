@@ -1,5 +1,5 @@
 ---
-title: Contoso University sample app | Microsoft Docs
+title: Getting started with ASP.NET Core MVC and Entity Framework Core using Visual Studio | Microsoft Docs
 author: tdykstra
 description: 
 keywords: ASP.NET Core,

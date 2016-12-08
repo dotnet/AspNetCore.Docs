@@ -1,5 +1,5 @@
 ---
-title: Sorting, filtering, paging, and grouping | Microsoft Docs
+title: Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial | Microsoft Docs
 author: rick-anderson
 author: tdykstra
 description: 
@@ -12,7 +12,8 @@ ms.technology: aspnet
 ms.prod: aspnet-core
 uid: data/ef-mvc/sort-filter-page
 ---
-# Sorting, filtering, paging, and grouping
+
+# Sorting, filtering, paging, and grouping - EF Core with ASP.NET Core MVC tutorial
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 1.0 MVC web applications using Entity Framework Core 1.0 and Visual Studio 2015. For information about the tutorial series, see [the first tutorial in the series](intro.md).
 

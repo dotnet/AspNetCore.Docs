@@ -18,37 +18,37 @@ uid: security/authentication/microsoft-logins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 
-This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core project created on the [previous page](sociallogins.md).
+This tutorial shows you how to enable your users to sign in with their Microsoft account using a sample ASP.NET Core project created on the [previous page](index.md).
 
 ## Creating the app in Microsoft Developer Portal
 
 * Navigate to [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com):
 
-![image](sociallogins/_static/MicrosoftDev.png)
+![image](index/_static/MicrosoftDev.png)
 
 * Tap **sign in**:
 
-![image](sociallogins/_static/MicrosoftDevLogin.png)
+![image](index/_static/MicrosoftDevLogin.png)
 
 If you don't already have a Microsoft account, tap **[Create one!](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=13&ct=1478151035&rver=6.7.6643.0&wp=SAPI_LONG&wreply=https%3a%2f%2fapps.dev.microsoft.com%2fLoginPostBack&id=293053&aadredir=1&contextid=D70D4F21246BAB50&bk=1478151036&uiflavor=web&uaid=f0c3de863a914c358b8dc01b1ff49e85&mkt=EN-US&lc=1033&lic=1)**. After signing in you are redirected to **My applications** page:
 
-![image](sociallogins/_static/MicrosoftDevApps.png)
+![image](index/_static/MicrosoftDevApps.png)
 
 * Tap **Add an app** in the upper right corner and enter your **application name**:
 
-![image](sociallogins/_static/MicrosoftDevAppCreate.png)
+![image](index/_static/MicrosoftDevAppCreate.png)
 
 * The **Registration** page is displayed:
 
-![image](sociallogins/_static/MicrosoftDevAppReg.png)
+![image](index/_static/MicrosoftDevAppReg.png)
 
 * Tap **Add Platform** in the **Platforms** section and select the **Web** platform:
 
-![image](sociallogins/_static/MicrosoftDevAppPlatform.png)
+![image](index/_static/MicrosoftDevAppPlatform.png)
 
 * In the new **Web** platform section, enter your current site URL with *signin-microsoft* appended into the **Redirect URIs** field. For example, `https://localhost:44320/signin-microsoft`:
 
-![image](sociallogins/_static/MicrosoftRedirectUri.png)
+![image](index/_static/MicrosoftRedirectUri.png)
   
   > [!NOTE]
   > When deploying the site you'll need to register a new public url.
@@ -62,13 +62,13 @@ If you don't already have a Microsoft account, tap **[Create one!](https://signu
 
 ## Storing Microsoft ApplicationId and Secret
 
-Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your application configuration by using the [Secret Manager tool](../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](sociallogins.md).
+Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](index.md).
 
 * Note the `Application Id` displayed on the **Registration** page.
 
 * Tap **Generate New Password** in the **Application Secrets** section. This displays a box where you can copy the application secret:
 
-![image](sociallogins/_static/MicrosoftDevPassword.png)
+![image](index/_static/MicrosoftDevPassword.png)
 
 * Execute the following commands in your project working directory to store the Microsoft secrets:
 
@@ -79,9 +79,9 @@ Link sensitive settings like Microsoft `ApplicationId` and `Secret` to your appl
   dotnet user-secrets set Authentication:Microsoft:ClientSecret <client-secret>
      ```
 
-The following code reads the configuration values stored by the [Secret Manager](../app-secrets.md#security-app-secrets):
+The following code reads the configuration values stored by the [Secret Manager](../../app-secrets.md#security-app-secrets):
 
-[!code-csharp[Main](../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
+[!code-csharp[Main](../../../common/samples/WebApplication1/Startup.cs?highlight=11&range=20-36)]
 
 ## Enable Microsoft Account middleware
 
@@ -104,26 +104,26 @@ app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
 
 Run your application and click **Log in**. An option to sign in with Microsoft appears:
 
-![image](sociallogins/_static/DoneMicrosoft.png)
+![image](index/_static/DoneMicrosoft.png)
 
 When you click on Microsoft, you are redirected to Microsoft for authentication:
 
-![image](sociallogins/_static/MicrosoftLogin.png)
+![image](index/_static/MicrosoftLogin.png)
 
 After entering your Microsoft Account credentials, you are redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
 
-![image](sociallogins/_static/Done.png)
+![image](index/_static/Done.png)
 
 > [!NOTE]
 > If the Microsoft Account provider redirects you to a sign in error page, note the error title and description directly following the `#` (hashtag) in the Uri. The most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform. In this case, ensure protocol, host, and port are all correct. Your application should be using `https` protocol and the redirect uri should end with **signin-microsoft** as that's the route Microsoft Account middleware requests the login provider to redirect to.
 
-![image](sociallogins/_static/MicrosoftLoginError.png)
+![image](index/_static/MicrosoftLoginError.png)
 
 ## Next steps
 
-* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](sociallogins.md).
+* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 
 * Once you publish your web site to Azure web app, you should reset the `Secret` in the Microsoft developer portal.
 
