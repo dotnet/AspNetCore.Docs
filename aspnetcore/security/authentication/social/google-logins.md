@@ -81,7 +81,7 @@ This tutorial shows you how to enable your users to sign in with their Google+ a
 
 ## Storing Google ClientID and ClientSecret
 
-Link sensitive settings like Google `ClientID` and `ClientSecret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social login overview page](index.md).
+Link sensitive settings like Google `ClientID` and `ClientSecret` to your application configuration by using the [Secret Manager tool](../../app-secrets.md) instead of storing them in your configuration file directly, as described in the [social authentication overview page](index.md).
 
 * Open the JSON file downloaded in the last step. Note the `client_id` and `client_secret` values present in the JSON structure.
 
@@ -114,6 +114,9 @@ app.UseGoogleAuthentication(new GoogleOptions()
     ClientSecret = Configuration["Authentication:Google:ClientSecret"]
 });
 ```
+
+> [!NOTE]
+> Call `UseIdentity` before you call `UseGoogleAuthentication`. See the [social authentication overview page](index.md).
 
 ## Sign in with Google
 
