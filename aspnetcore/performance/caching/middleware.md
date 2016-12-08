@@ -22,7 +22,7 @@ To include the middleware in your project, add a reference to the  [`Microsoft.A
 
 ## Extensions
 In `ConfgureServices`, add the middleware to your service collection.
-```
+```c#
 public void ConfigureServices(IServiceCollection services)
 {
     ...
@@ -31,7 +31,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 Configure the application to use the middleware when processing requests.
-```
+```c#
 public void Configure(IApplicationBuilder app)
 {
     ...
@@ -55,7 +55,7 @@ UseCaseSensitivePaths | <p>Determines if responses will be cached on case-sensit
 MaximumBodySize | <p>The largest cacheable size for the response body in bytes.</p>The default value is `64 * 1024 * 1024` [64 MB (67,108,864 bytes)].</p>
 
 The following example configures these options so that the middleware will independently cache responses on case-sensitive paths and on body response size. Configured as shown below, the middleware would independently cache the responses for `/page1` and `/PaGe1`. The middleware would also only cache responses that have a body size less than 1 MB (1,024 bytes).
-```
+```c#
 services.AddResponseCaching(options =>
 {
     options.UseCaseSensitivePaths = true;
