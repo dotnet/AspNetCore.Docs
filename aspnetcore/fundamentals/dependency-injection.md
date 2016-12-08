@@ -82,7 +82,7 @@ Note that `CharacterRepository` requests an `ApplicationDbContext` in its constr
 
 In this case, both `ICharacterRepository` and in turn `ApplicationDbContext` must be registered with the services container in `ConfigureServices` in `Startup`. `ApplicationDbContext` is configured with the call to the extension method `AddDbContext<T>`. The following code shows the registration of the `CharacterRepository` type.
 
-[!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Startup.cs?highlight=2,3,4,10&range=17-33)]
+[!code-csharp[Main](dependency-injection/sample/DependencyInjectionSample/Startup.cs?highlight=3-5,11&range=16-32)]
 
 Entity Framework contexts should be added to the services container using the `Scoped` lifetime. This is taken care of automatically if you use the helper methods as shown above. Repositories that will make use of Entity Framework should use the same lifetime.
 
@@ -131,7 +131,7 @@ To demonstrate the object lifetimes within and between separate individual reque
 
 Now two separate requests are made to this controller action:
 
-![image](dependency-injection/_static/lifetimes_request1.png)   
+![image](dependency-injection/_static/lifetimes_request1.png)
 
 ![image](dependency-injection/_static/lifetimes_request2.png)
 
@@ -185,18 +185,18 @@ Next, configure the container in `ConfigureServices` and return an `IServiceProv
 
 ```csharp
 public IServiceProvider ConfigureServices(IServiceCollection services)
-   {
-     services.AddMvc();
-     // add other framework services
+{
+  services.AddMvc();
+  // add other framework services
 
-     // Add Autofac
-     var containerBuilder = new ContainerBuilder();
-     containerBuilder.RegisterModule<DefaultModule>();
-     containerBuilder.Populate(services);
-     var container = containerBuilder.Build();
-     return new AutofacServiceProvider(container);
-   }
-   ```
+  // Add Autofac
+  var containerBuilder = new ContainerBuilder();
+  containerBuilder.RegisterModule<DefaultModule>();
+  containerBuilder.Populate(services);
+  var container = containerBuilder.Build();
+  return new AutofacServiceProvider(container);
+}
+```
 
 > [!NOTE]
 > When using a third-party DI container, you must change `ConfigureServices` so that it returns `IServiceProvider` instead of `void`.
@@ -205,13 +205,13 @@ Finally, configure Autofac as normal in `DefaultModule`:
 
 ```csharp
 public class DefaultModule : Module
-   {
-     protected override void Load(ContainerBuilder builder)
-     {
-       builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-     }
-   }
-   ```
+{
+  protected override void Load(ContainerBuilder builder)
+  {
+    builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+  }
+}
+```
 
 At runtime, Autofac will be used to resolve types and inject dependencies. [Learn more about using Autofac and ASP.NET Core](http://docs.autofac.org/en/latest/integration/aspnetcore.html).
 
