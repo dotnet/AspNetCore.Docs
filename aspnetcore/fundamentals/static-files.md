@@ -30,7 +30,7 @@ Static files are typically located in the `web root` (*\<content-root>/wwwroot*)
 
 Static files can be stored in any folder under the `web root` and accessed with a relative path to that root. For example, when you create a default Web application project using Visual Studio, there are several folders created within the *wwwroot*  folder - *css*, *images*, and *js*. The URI to access an image in the *images* subfolder:
 
-* `http://\<app>/images/\<imageFileName>`
+* `http://<app>/images/<imageFileName>`
 * `http://localhost:9189/images/banner3.svg`
 
 In order for static files to be served, you must configure the [Middleware](middleware.md) to add static files to the pipeline. The static file middleware can be configured by adding a dependency on the *Microsoft.AspNetCore.StaticFiles* package to your project and then calling the `UseStaticFiles` extension method from `Startup.Configure`:
