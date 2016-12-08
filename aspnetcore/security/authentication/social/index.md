@@ -81,7 +81,7 @@ As a best practice, it is not recommended to store the secrets in a configuratio
 
 The **SecretManager** tool stores sensitive application settings in the user profile folder on the local machine. These settings are then seamlessly merged with settings from all other sources during application startup.
 
-> [NOTE!]
+> [!NOTE]
 > Most login providers assign **Application Id** and **Application Secret** during the registration process. These values are effectively the *user name* and *password* your application uses to access their API, and constitute the "secrets" linked to your application configuration with the help of **Secret Manager** instead of storing them in configuration files directly.
 
 Install the [Secret Manager tool](../../app-secrets.md) so that you can use it to store tokens assigned by each login provider below.
@@ -96,7 +96,7 @@ Use the following pages to configure your application to use the respective prov
 * [Microsoft](microsoft-logins.md) instructions
 * [Other provider](other-logins.md) instructions
 
-> [NOTE!]
+> [!NOTE]
 > Call `app.UseIdentity` (in `Configure`) before any other external providers.
 
 ## Optionally set password
