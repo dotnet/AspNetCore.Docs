@@ -4,6 +4,9 @@ using System.IO;
 
 // Add NuGet <package id="Microsoft.Extensions.Configuration" and
 // <package id="Microsoft.Extensions.Configuration.Json"
+// .NET Framework 4.x use the following path:
+//.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), @"..\.."))
+
 public class Program
 {
     static public IConfigurationRoot Configuration { get; set; }
@@ -11,9 +14,6 @@ public class Program
     {
         var builder = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
-            // .Net 4.X requires parent.parent directory.
-            //.SetBasePath(Path.Combine(
-            //     Directory.GetCurrentDirectory(), @"..\.."))
             .AddJsonFile("appsettings.json");
 
         Configuration = builder.Build();

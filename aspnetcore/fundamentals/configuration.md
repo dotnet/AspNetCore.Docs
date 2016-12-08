@@ -18,10 +18,7 @@ uid: fundamentals/configuration
 
 [Rick Anderson](https://twitter.com/RickAndMSFT), [Mark Michaelis](http://intellitect.com/author/mark-michaelis/), [Steve Smith](http://ardalis.com), [Daniel Roth](https://github.com/danroth27)
 
-<!-- SEE https://github.com/aspnet/Configuration/issues/532
--->
-
-The configuration API reads lists of name-value pairs. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
+The configuration API provides a way of configuring an app based on a list of name-value pairs that can be read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for:
 
 * File formats (INI, JSON, and XML)
 * Command-line arguments
@@ -30,7 +27,7 @@ The configuration API reads lists of name-value pairs. The name-value pairs can 
 * An encrypted user store
 * Custom providers, which you install or create
 
-Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (.NET class).
+Each configuration value maps to a string key. There’s built-in binding support to deserialize settings into a custom [POCO](https://en.wikipedia.org/wiki/Plain_Old_CLR_Object) object (a simple .NET class with properties).
 
 [View or download sample code](https://github.com/aspnet/docs/tree/master/aspnetcore/fundamentals/configuration/sample)
 
@@ -44,7 +41,7 @@ The app reads and displays the following configuration settings:
 
 [!code-json[Main](configuration/sample/src/ConfigJson/appsettings.json)]
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a particular value, you access the `Configuration` indexer with the corresponding item’s key:
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, you access the `Configuration` indexer with the corresponding item’s key:
 
 ```
    Console.WriteLine(
@@ -53,7 +50,7 @@ Configuration consists of a hierarchical list of name-value pairs in which the n
 
 Name/value pairs written to the built in `Configuration` providers are **not** persisted, however, you can create a custom provider that saves values. See [custom configuration provider](xref:fundamentals/configuration#custom-config-providers).
 
-The sample above uses the configuration indexer to read values. In ASP.NET Core applications, we recommend you use the [options pattern](xref:fundamentals/configuration#options-config-objects) rather than the indexer to read configuration values. We'll show that later in this document.
+The sample above uses the configuration indexer to read values. When the `Configuration` object is available, the indexer is a convenient way to access setting. To flow information from configuration into other parts of the app outside of `Startup`, we recommend using the [options pattern](xref:fundamentals/configuration#options-config-objects). We'll show that later in this document.
 
 It's typical to have different configuration settings for different environments, for example, development, test and production. The following highlighted code hooks up two configuration providers to three sources:
 
@@ -245,7 +242,7 @@ The following code can be used to unit test the configuration:
 
   ## Simple sample of Entity Framework custom provider
 
-In this section we'll create a simple configuration provider that reads name-value pairs from a database using EF. 
+In this section, we'll create a simple configuration provider that reads name-value pairs from a database using EF. 
 
 Define a `ConfigurationValue` entity for storing configuration values in the database:
 
