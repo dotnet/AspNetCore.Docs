@@ -2,6 +2,7 @@
 
 namespace CustomConfigurationProvider
 {
+    #region snippet1
     public class ConfigurationContext : DbContext
     {
         public ConfigurationContext(DbContextOptions options) : base(options)
@@ -10,4 +11,5 @@ namespace CustomConfigurationProvider
 
         public DbSet<ConfigurationValue> Values { get; set; }
     }
+    #endregion
 }
