@@ -42,13 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            @*<snippet_1>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
-            @*</snippet_1>*@
         </tr>
 }
     </tbody>
