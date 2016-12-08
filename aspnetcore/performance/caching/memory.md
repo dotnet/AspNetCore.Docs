@@ -80,7 +80,7 @@ See [IMemoryCache methods](https://docs.microsoft.com/en-us/aspnet/core/api/micr
 
 The following sample:
 
-- Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when requested frequently.
+- Sets the absolute expiration time. This is the maximum time the entry can be cached and prevents the item from becoming too stale when the sliding expiration is continuously renewed.
 - Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
 - Sets the [cache priority](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.cacheitempriority) to `CacheItemPriority.NeverRemove`. 
 - Sets a [PostEvictionDelegate](https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
@@ -99,7 +99,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 - When using a callback to repopulate a cache item:
 
-  - multiple requests can find the cached key value empty (because the callback hasn't completed). 
+  - Multiple requests can find the cached key value empty (because the callback hasn't completed). 
   - This can result in several threads repopulating the cached item.
 
 - When one cache entry is used to create another, the new one copies the existing entry's expiration tokens and time-based expiration settings. The copy is not expired by manual removal or updating of the parent entry.

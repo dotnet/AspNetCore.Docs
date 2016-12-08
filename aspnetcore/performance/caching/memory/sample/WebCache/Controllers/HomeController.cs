@@ -119,7 +119,7 @@ public class HomeController : Controller
     private static void AfterEvicted(object key, object value,
         EvictionReason reason, object state)
     {
-        _evictionMsg1 = "Value: " + value + ", Reason: " + reason;
+        _evictionMsg1 = $"key: {key}, Value: {value}, Reason: {reason}";
     }
 
     public IActionResult CheckEvictionTime()
@@ -167,7 +167,7 @@ public class HomeController : Controller
     private static void AfterEvicted2(object key, object value,
     EvictionReason reason, object state)
     {
-        _evictionMsg2 = "Value: " + value + ", Reason: " + reason;
+        _evictionMsg2 = $"key: {key}, Value: {value}, Reason: {reason}";
     }
 
     public IActionResult CheckCancel(int? id = 0)
