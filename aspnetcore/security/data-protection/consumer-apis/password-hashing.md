@@ -24,6 +24,6 @@ The package currently offers a method `KeyDerivation.Pbkdf2` which allows hashin
 
 3. The `KeyDerivation.Pbkdf2` method requires the caller to specify all parameters (salt, PRF, and iteration count). The `Rfc2898DeriveBytes` type provides default values for these.
 
-[!code-none[Main](password-hashing/samples/passwordhasher.cs)]
+[!code-csharp[Main](password-hashing/samples/passwordhasher.cs)]
 
 See the source code for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.
