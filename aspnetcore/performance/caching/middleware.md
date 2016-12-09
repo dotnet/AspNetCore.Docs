@@ -99,6 +99,6 @@ The middleware sets the following headers when appropriate:
 
 ## Additional Resources
 
-* [Application Startup](startup.md)
+* [Application Startup](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware)
 
