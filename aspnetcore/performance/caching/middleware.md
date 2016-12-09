@@ -76,6 +76,9 @@ The `ResponseCache` attribute specifies the parameters necessary for setting app
 * The `Set-Cookie` header must not be present.
 * `Vary` header parameters must be valid and not equal to `*`.
 
+>[!NOTE]
+> The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks will set the `Cache-Control` and `Pragma` headers to `no-cache` so that responses will not be cached.
+
 ## HTTP response caching headers
 Response caching by the middleware is configured via your HTTP response headers. The relevant headers are listed below with notes on how they affect caching.
 
