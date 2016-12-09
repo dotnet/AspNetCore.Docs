@@ -66,7 +66,7 @@ These messages have short-term usefulness during development. They contain infor
 
 **Information**
 
-These messages are used to track the general flow of the application. These logs should have some long term value, as opposed to `Verbose` level messages, which do not. Example: `Request received for path /foo`
+These messages are used to track the general flow of the application. These logs should have some long-term value, as opposed to `Debug` level messages, which do not. Example: `Request received for path /foo`
 
 **Warning**
 
