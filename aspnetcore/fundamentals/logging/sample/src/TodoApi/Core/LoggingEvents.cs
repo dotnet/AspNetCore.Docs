@@ -1,5 +1,6 @@
 ﻿namespace TodoApi.Core
 {
+    #region snippet_LoggingEvents
     public class LoggingEvents
     {
         public const int GENERATE_ITEMS = 1000;
@@ -12,4 +13,5 @@
         public const int GET_ITEM_NOTFOUND = 4000;
         public const int UPDATE_ITEM_NOTFOUND = 4001;
     }
+    #endregion
 }

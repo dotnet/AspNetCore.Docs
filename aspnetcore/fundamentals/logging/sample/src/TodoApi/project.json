@@ -4,15 +4,16 @@
     "preserveCompilationContext": true
   },
   "dependencies": {
-    "System.Diagnostics.TextWriterTraceListener": "4.0.0",
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-    "Microsoft.Extensions.Logging": "1.0.0",
-    "Microsoft.Extensions.Logging.Console": "1.0.0",
-    "Microsoft.Extensions.Logging.Filter": "1.0.0",
-    "Microsoft.Extensions.Logging.TraceSource": "1.0.0"
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0",
+    "Microsoft.Extensions.Logging": "1.1.0",
+    "Microsoft.Extensions.Logging.Console": "1.1.0",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0",
+    "Microsoft.Extensions.Logging.Filter": "1.1.0",
+    "Microsoft.Extensions.Logging.TraceSource": "1.1.0",
+    "System.Diagnostics.TextWriterTraceListener": "4.0.0"
   },
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
@@ -31,7 +32,7 @@
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.0",
+          "version": "1.1.0",
           "type": "platform"
         }
       },
@@ -42,7 +43,7 @@
     },
     "net461": {
       "dependencies": {
-        "Microsoft.Extensions.Logging.EventLog": "1.0.0"
+        "Microsoft.Extensions.Logging.EventLog": "1.1.0"
       }
     }
   },
