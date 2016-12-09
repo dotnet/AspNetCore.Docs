@@ -20,7 +20,7 @@ namespace ConfigConsole
             Console.WriteLine("Added Memory Source. Sources: " + builder.Sources.Count());
 
             builder.AddCommandLine(args);
-            Console.WriteLine("Added Command-line Source. Sources: " + builder.Sources.Count());
+            Console.WriteLine("Added Command Line Source. Sources: " + builder.Sources.Count());
 
             var config = builder.Build();
             string username = config["username"];
