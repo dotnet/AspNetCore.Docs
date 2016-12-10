@@ -19,7 +19,7 @@ In this tutorial, you'll take an existing ASP.NET Core app and deploy it to a Na
 
 ## Introduction
 
-Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/en-us/library/mt126167.aspx) for more details and download links for 180 Days evaluation versions. 
+Nano Server is an installation option in Windows Server 2016, offering a tiny footprint, better security and better servicing than Server Core or full Server. Please consult the official [Nano Server documentation](https://technet.microsoft.com/library/mt126167.aspx) for more details and download links for 180 Days evaluation versions. 
 There are 3 easy ways for you to try out Nano Server, when you sign in with your MS account:
 
 1. You can download the Windows Server 2016 ISO file, and build a Nano Server image
@@ -47,16 +47,14 @@ Now you're able to manage it using PowerShell remoting, which is the only way to
 
 Open an elevated PowerShell window to add your remote Nano Server instance to your `TrustedHosts` list.
 
-> which is necessary when remoting with WinRM over HTTP (default port 5985). After importing a certificate and enabling 
-> WinRM over HTTPS/SSL (port 5986) you no longer need to alter the `TrustedHosts` list.
-
-
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
 ````
    $nanoServerIpAddress = "192.168.1.10"
    Set-Item WSMan:\localhost\Client\TrustedHosts "$nanoServerIpAddress" -Concatenate -Force
    ````
+This is necessary when remoting with WinRM over HTTP (default port 5985). After importing a certificate and enabling 
+WinRM over HTTPS/SSL (port 5986) you no longer need to alter the `TrustedHosts` list.
 
 Once you have added your Nano Server instance to your `TrustedHosts`, you can connect to it using PowerShell remoting
 
@@ -64,8 +62,7 @@ Once you have added your Nano Server instance to your `TrustedHosts`, you can co
 
 ````
    $nanoServerSession = New-PSSession -ComputerName $nanoServerIpAddress -Credential ~\Administrator
-   Enter-PSSession $nanoServerSession
-   ````
+   Enter-PSSession $nanoServerSession   ````
 
 A successful connection results in a prompt with a format looking like: `[192.168.1.10]: PS C:\Users\Administrator\Documents>`
 
@@ -95,8 +92,7 @@ New-NetFirewallRule -Name "AspNetCore IIS" -DisplayName "Allow HTTP on TCP/80" `
    ````
 
 Note: This code line is divided by a line breaker escape character that helps reading by wrapping too long lines of code. If you copy-paste it directly
-into your Powershell Remoting prompt it may not work as expected. It works very fine though if paste it in the Powershell ISE and execute the script or selected lines
-with F8.
+into your Powershell Remoting prompt it may not work as expected. It works fine, though, if you paste it in the Powershell ISE and execute the script or selected lineswith F8.
 
 ## Installing IIS
 
@@ -120,7 +116,7 @@ To quickly verify if IIS is setup correctly, you can visit the url `http://192.1
 
 The ASP.NET Core Module is an IIS 7.5+ module which is responsible for process management of ASP.NET Core HTTP listeners and to proxy requests to processes that it manages. At the moment, the process to install the ASP.NET Core Module for IIS is manual. You will need to install the version of the [.NET Core Windows Server Hosting bundle](https://dot.net/) on a regular (not Nano) machine. After installing the bundle on a regular machine, you will need to copy the following files to the file share that we created earlier.
 
-On a regular (not Nano) Server with IIS run the following copy commands:
+On a regular (not Nano) server with IIS run the following copy commands:
 
 <!-- literal_block {"ids": [], "classes": ["code", "ps1"], "xml:space": "preserve"} -->
 
@@ -153,8 +149,7 @@ Run the following script in the remote session:
 
    # Initialize variables
    $aspNetCoreHandlerFilePath="C:\windows\system32\inetsrv\aspnetcore.dll"
-   Reset-IISServerManager -confirm:$false
-   $sm = Get-IISServerManager
+   Reset-IISServerManager -confirm:$false   $sm = Get-IISServerManager
 
    # Add AppSettings section 
    $sm.GetApplicationHostConfiguration().RootSectionGroup.Sections.Add("appSettings")
@@ -190,9 +185,9 @@ Run the following script in the remote session:
 ## Installing .NET Core Framework
 
 If you published a portable app (FDD),
-.NET Core must be installed on the target machine. Execute the following Powershell script in a remote Powershell session to install the .NET Framework on your Nano Server.
+.NET Core must be installed on the target machine. Execute the following Powershell script throughout a remote Powershell session to install the .NET Framework on your Nano Server.
 
-> to understand the differences of Framework-dependent deployments (FDD) and Self-contained deployments (SCD) check
+> to understand the differences between Framework-dependent deployments (FDD) and Self-contained deployments (SCD) check
 > [deployment options](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/)
 
 [!code-powershell[Main](nano-server/Download-Dotnet.ps1)]
