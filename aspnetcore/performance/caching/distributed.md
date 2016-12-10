@@ -102,6 +102,9 @@ To use sql-cache tool add SqlConfig.Tools to the tools section of the project.js
 
 [!code-csharp[Main](./distributed/sample/src/DistCacheSample/project.json?highlight=6&range=14-20)]
 
+> [!NOTE]
+> When any of the tools are defined in the project.json file, you must be in the same directory in order to use the tooling commands.
+
 Test SqlConfig.Tools by running the following command
 
 ```none
