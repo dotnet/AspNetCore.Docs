@@ -105,7 +105,7 @@ Also, be aware that once the headers for a response have been sent, you can't ch
 
 ## Server exception handling
 
-In addition to the exception handling logic in your app, the [server](servers/overview.md) hosting your app will perform some exception handling. If the server catches an exception before the headers have been sent it sends a 500 Internal Server Error response with no body. If it catches an exception after the headers have been sent, it closes the connection. Requests that are not handled by your app will be handled by the server, and any exception that occurs will be handled by the server's exception handling. Any custom error pages or exception handling middleware or filters you have configured for your app will not affect this behavior.
+In addition to the exception handling logic in your app, the [server](servers/index.md) hosting your app will perform some exception handling. If the server catches an exception before the headers have been sent it sends a 500 Internal Server Error response with no body. If it catches an exception after the headers have been sent, it closes the connection. Requests that are not handled by your app will be handled by the server, and any exception that occurs will be handled by the server's exception handling. Any custom error pages or exception handling middleware or filters you have configured for your app will not affect this behavior.
 
 ## Startup exception handling
 
