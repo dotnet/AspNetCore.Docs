@@ -56,7 +56,7 @@ Complete the **New ASP.NET Core Web Application - MvcMovie** dialog:
 
 Visual Studio used a default template for the MVC project you just created, so you have a working app right now by entering a project name and selecting a few options. This is a simple "Hello World!" project, and it's a good place to start,
 
-Tap **F5** to run the app in debug mode or **Ctl-F5** in non-debug mode.
+Tap **F5** to run the app in debug mode or **Ctrl-F5** in non-debug mode.
 
 ![running app](start-mvc/_static/1.png)
 
