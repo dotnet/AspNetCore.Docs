@@ -88,6 +88,10 @@ In this topic, you'll learn how to use ASP.NET Core Identity to add functionalit
     Identity has some default behaviors that you can override in your application's startup class.
  
     [!code-csharp[Main](identity/sample/src/ASPNET-IdentityDemo/Startup.cs?highlight=5&range=57-78)]
+	
+	For more information about how to configure Identity, see [Configure Identity](identity-configuration.md).
+	
+	You also can configure the data type of the primary key, see [Configure Identity primary keys data type](identity-primary-key-configuration.md).
  
 6.  View the database.
 
