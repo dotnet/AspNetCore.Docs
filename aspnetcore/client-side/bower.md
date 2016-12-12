@@ -27,7 +27,7 @@ Bower is a "package manager for the web." Bower lets you install and restore cli
 
 ASP.NET Core project templates pre-construct the client build process for you. The ubiquitous jQuery and Bootstrap packages are installed, and the plumbing for Bower is already in place. The screenshot below depicts the initial project in Solution Explorer. It's important to enable the "Show All Files" option, as the bower.json file is hidden by default.
 
-![image](bower/_static/mvc-project.png)
+![mvc start project solution](bower/_static/mvc-project.png)
 
 Client-side packages are listed in the bower.json file. The ASP.NET Core project template pre-configures bower.json with jQuery, jQuery validation, and Bootstrap.
 
@@ -39,7 +39,7 @@ Let’s add support for [Font Awesome](http://fontawesome.io) to add some scalab
 
 * In the window that appears, click the "Browse" tab, and filter the packages list by typing "font-awesome" into the search box:
 
-    ![image](bower/_static/manage-bower-packages.png)
+    ![manage bower packages](bower/_static/manage-bower-packages.png)
 
 * Confirm that the "Save changes to bower.json" checkbox is checked, select the desired version from the drop-down list, and click the Install button.
 
@@ -49,11 +49,11 @@ Let’s add support for [Font Awesome](http://fontawesome.io) to add some scalab
 
 * At the end of the `dependencies` section in bower.json, add a comma and type "font-awesome". Notice as you type that you get IntelliSense with a list of available packages. Select "font-awesome" from the list.
 
-    ![image](bower/_static/add-package.png)
+    ![bower package explorer](bower/_static/add-package.png)
 
 * Add a colon and then select the latest stable version of the package from the drop-down list. The double quotes will be added automatically.
 
-    ![image](bower/_static/version-intellisense.png)
+    ![bower version intellisense](bower/_static/version-intellisense.png)
 
     > [!NOTE]
     > Bower uses [semantic versioning](http://semver.org/) to organize dependencies. Semantic versioning, also known as SemVer, identifies packages with the numbering scheme \<major>.\<minor>.\<patch>. Intellisense simplifies semantic versioning by showing only a few common choices. The top item in the Intellisense list (4.6.3 in the example above) is considered the latest stable version of the package. The caret (^) symbol matches the most recent major version and the tilde (~) matches the most recent minor version.
@@ -73,7 +73,7 @@ Now that the installation step has been completed, expand the twisty to the left
 
 In Solution Explorer, expand the *wwwroot* node. The *lib* directory should now contain all of the packages, including the font-awesome package.
 
-![image](bower/_static/package-lib.png)
+![list of bower packages in project](bower/_static/package-lib.png)
 
 Let's add the Font Awesome Icons to the Home Page.  Open `Views\Shared\_Layout.cshtml` and add the css resource to the environment tag helper for **Development**.
 
@@ -104,7 +104,7 @@ In the environment tag helper for **Staging,Production**, use the CDN location o
 
 Open `Views\Home\Index.cshtml` and add the icons to the **How to**, **Overview**, and **Run & Deploy** headers. You'll notice when typing, IntelliSense is available on the css classes.
 
-![image](bower/_static/css-intellisense.png)
+![css intellisense in cshtml](bower/_static/css-intellisense.png)
 
 Add the question icon to the **How to** header.
 
@@ -127,7 +127,7 @@ Add the question icon to the **How to** header.
 
 Run the application to see the changes.
 
-![image](bower/_static/app-with-icons.png)
+![app with icons after changes](bower/_static/app-with-icons.png)
 
 ## Exploring the Client Build Process
 
@@ -149,7 +149,7 @@ The first step is to define the packages your application needs and to download 
 
 3.  In Solution Explorer, the *src* directory includes a project.json file, and *wwwroot* and *Dependencies* nodes. The project directory will look like the screenshot below.
 
-    ![image](bower/_static/empty-project.png)
+    ![empty project](bower/_static/empty-project.png)
 
 4.  In Solution Explorer, right-click the project, and add the following item:
 
@@ -177,7 +177,7 @@ The first step is to define the packages your application needs and to download 
 
     The project should now include *bootstrap* and *jQuery* directories in two locations: *Dependencies/Bower* and *wwwroot/lib*. It's the .bowerrc file which instructed Bower to install the assets within *wwwroot/lib*.
 
-    ![image](bower/_static/bower-dependencies.png)
+    ![bower dependencies](bower/_static/bower-dependencies.png)
 
 ### Reference Packages
 
@@ -256,4 +256,4 @@ Add jQuery and Bootstrap components to the page to verify that the web applicati
 
 4.  With the Index.html file opened, press `Ctrl+Shift+W` to view the page in the browser. Verify that the jumbotron styling is applied, the jQuery code responds when the button is clicked, and that the Bootstrap button changes state.
 
-    ![image](bower/_static/jumbotron.png)
+    ![jumbotron style applied](bower/_static/jumbotron.png)
