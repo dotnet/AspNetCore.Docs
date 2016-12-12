@@ -109,3 +109,15 @@ DocFX requires the .NET Framework on Windows, or Mono for Linux or macOS.
 ## Voice and tone
 
 Our goal is to write documentation that is easily understandable by the widest possible audience. To that end we have established guidelines for writing style that we ask our contributors to follow. For more information, see [Voice and tone guidelines](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md) in the .NET Core repo.
+
+## Redirects
+
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article won't get 404s.  To seet up a redirect, create a file that has the redirect target URL as shown below, and put it in the original file's location. 
+
+```
+---
+redirect_url: /aspnet/core/location-of-target-for-redirect
+---
+```
+
+For an example, see the [redirect file](https://github.com/aspnet/Docs/blob/master/aspnetcore/security/authentication/sociallogins.md) that redirects `/security/authentication/sociallogins` to `/security/authentication/social/index`.
