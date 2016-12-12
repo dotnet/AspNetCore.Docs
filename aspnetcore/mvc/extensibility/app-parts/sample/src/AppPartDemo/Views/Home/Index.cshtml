@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Reflection
+@model IEnumerable<TypeInfo>
+
+<h1>HomeController</h1>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="@item.Name">@item.Name</a></li>
+    }
+</ul>
