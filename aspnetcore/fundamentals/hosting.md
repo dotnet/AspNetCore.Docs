@@ -20,7 +20,7 @@ To run an ASP.NET Core app, you need to configure and launch a host using `WebHo
 
 ## What is a Host?
 
-ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers/overview.md).
+ASP.NET Core apps require a *host* in which to execute. A host must implement the `IWebHost` interface, which exposes collections of features and services, and a `Start` method. The host is typically created using an instance of a `WebHostBuilder`, which builds and returns a  `WebHost` instance. The `WebHost` references the server that will handle requests. Learn more about [servers](servers/index.md).
 
 ### What is the difference between a host and a server?
 
