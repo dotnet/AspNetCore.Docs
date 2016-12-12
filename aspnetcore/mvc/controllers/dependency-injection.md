@@ -62,7 +62,7 @@ This error occurs when we have not configured a service in the `ConfigureService
 
 Once the service has been configured, running the application and navigating to the home page should display the time-based message as expected:
 
-![image](dependency-injection/_static/server-greeting.png)
+![Server Greeting](dependency-injection/_static/server-greeting.png)
 
 >[!TIP]
 > See [Testing Controller Logic](testing.md) to learn how to explicitly request dependencies [http://deviq.com/explicit-dependencies-principle](http://deviq.com/explicit-dependencies-principle) in controllers makes code easier to test.

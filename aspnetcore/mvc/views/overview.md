@@ -24,7 +24,7 @@ In the Model-View-Controller (MVC) pattern, the *view* encapsulates the presenta
 
 ASP.NET Core MVC views are *.cshtml* files stored by default in a *Views* folder within the application. Typically, each controller will have its own folder, in which are views for specific controller actions.
 
-![image](overview/_static/views_solution_explorer.png)
+![Views folder in Solution Explorer](overview/_static/views_solution_explorer.png)
 
 In addition to action-specific views, [partial views](partial.md), [layouts, and other special view files](layout.md) can be used to help reduce repetition and allow for reuse within the app's views.
 
@@ -56,7 +56,7 @@ The `View` helper method has several overloads to make returning views easier fo
 
 When this action returns, the *About.cshtml* view shown above is rendered:
 
-![image](overview/_static/about-page.png)
+![About page](overview/_static/about-page.png)
 
 ### View Discovery
 

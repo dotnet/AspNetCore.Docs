@@ -155,7 +155,7 @@ routes.MapRoute(
 
 This template will match a URL path like `/en-US/Products/5` and will extract the values `{ controller = Products, action = Details, id = 5 }` and the data tokens `{ locale = en-US }`.
 
-![image](routing/_static/tokens.png)
+![Locals Windows tokens](routing/_static/tokens.png)
 
 <a name=id1></a>
 

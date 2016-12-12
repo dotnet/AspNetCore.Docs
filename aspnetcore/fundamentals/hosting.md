@@ -105,11 +105,11 @@ new WebHostBuilder()
 
 When Detailed Errors is set to `false` and Capture Startup Errors is `true`, a generic error page is displayed in response to every request to the server.
 
-![image](hosting/_static/generic-error-page.png)
+![Generic error page](hosting/_static/generic-error-page.png)
 
 When Detailed Errors is set to `true` and Capture Startup Errors is `true`, a detailed error page is displayed in response to every request to the server.
 
-![image](hosting/_static/detailed-error-page.png)
+![Detailed error page](hosting/_static/detailed-error-page.png)
 
 **Environment** `string`
 
