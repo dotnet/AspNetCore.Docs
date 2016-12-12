@@ -1,0 +1,23 @@
+---
+title: Configure Identity primary keys data type | Microsoft Docs
+uid: security/authentication/identity-primary-key-configuration
+---
+# Configure Identity primary keys data type
+
+ASP.NET Core Identity allows you to easily configure the data type you want for the primary keys. By default, Identity uses string data type but you can very quickly override this behavior.
+
+## How to
+
+1.  The first step is to implement the Identity's model, and override the <string> behavior to <data type you want>'s one.
+
+    [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationUser.cs?highlight=10-12&range=7-13)]
+
+    [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Models/ApplicationRole.cs?highlight=9-11&range=7-12)]
+	
+2.  Implement the database context of Identity with your models and the data type you want for primary keys
+
+    [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Data/ApplicationDbContext.cs?highlight=11&range=9-26)]
+	
+3.  Use you models and the data type you want for primary keys when you declare the identity service in your application's startup class
+
+    [!code-csharp[Main](identity/sample/src/ASPET-IdentityDemo-PrimaryKeysConfig/Startup.cs?highlight=47-49&range=39-79)]
