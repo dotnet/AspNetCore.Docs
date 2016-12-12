@@ -86,9 +86,9 @@ The following code reads the configuration values stored by the [Secret Manager]
 ## Enable Microsoft Account middleware
 
 > [!NOTE]
-> Use NuGet to install the [Microsoft.AspNetCore.Authentication.Microsoft](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
+> Use NuGet to install the [Microsoft.AspNetCore.Authentication.MicrosoftAccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount) package if it hasn't already been installed. Alternatively, execute the following commands in your project directory:
 >
-> `dotnet install Microsoft.AspNetCore.Authentication.Microsoft`
+> `dotnet install Microsoft.AspNetCore.Authentication.MicrosoftAccount`
 
 Add the Microsoft Account middleware in the `Configure` method in `Startup.cs`:
 
